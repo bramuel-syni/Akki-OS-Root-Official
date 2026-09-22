@@ -122,6 +122,39 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Recommendation**: **(a) or (b)**. **(b)** is smaller blast radius. **(c)** adds a new custody-vending API (state-of-record surface event; may need owner ratification).
 - **Continues**: everything else. R-91 horizon 2026-09-23T03:23:15Z unchanged.
 
+## DQ-12 · CP-DOT-ENV-HYGIENE scheduled post-R-91 · agent-side seal
+
+- **Surfaced by**: DQ-11 hygiene probe at 2026-09-22T~06:15Z (receipt `phase0/hygiene_receipts/20260922T061500Z_dot_env_hygiene_probe.md`).
+- **Scope**: dedicated small §3.3 seal riding a post-R-91 boundary (per owner Ruling this-session 2026-09-22T~06:10Z verbatim: *"schedule CP-DOT-ENV-HYGIENE (git rm --cached backend/.env + untracked-from-birth .env.local pattern) as its own small seal riding a post-R-91 boundary"*).
+- **Cure**:
+  1. `git rm --cached /app/backend/.env` on `/app` main. File stays on disk; git stops tracking future changes.
+  2. Introduce `/app/backend/.env.local` untracked-from-birth (already covered by `.env.*` gitignore rule at `/app/.gitignore:89`). Supervisor sources both files. New secrets land only in `.env.local`.
+  3. Verify `git check-ignore -v backend/.env.local` returns the ignore rule; verify `git ls-files backend/.env` returns empty post-rm-cached.
+  4. Update supervisor `frontend`/`backend` config to source both `.env` (public config · tracked) and `.env.local` (secrets · untracked) if not already.
+- **RED-first test invariants** (author at wave open):
+  - `test_backend_env_is_gitignored` — `git check-ignore -v backend/.env` returns success + rule.
+  - `test_backend_env_local_untracked` — `.env.local` is untracked AND check-ignore returns success.
+  - `test_no_secrets_pattern_in_tracked_env` — sweep of `backend/.env` (tracked at HEAD) for AK/SK/TOKEN/API_KEY/JWT_SECRET/EMERGENT_LLM_KEY-name → value-pair regex hits = zero (either key absent OR value shape ≠ high-entropy).
+- **Blocks**: nothing operationally. `.env` continues to be sourced by supervisor throughout.
+- **Continues**: everything.
+- **Timing**: post-R-91 boundary (any time after horizon 2026-09-23T03:23:15Z + Continuity Bundle regen). Small seal; can piggyback on any post-R-91 wave-close.
+
+## DQ-13 · CREDENTIAL ROTATION REQUIRED · owner-side · `EMERGENT_LLM_KEY` + `JWT_SECRET`
+
+- **Surfaced by**: DQ-11 hygiene probe at 2026-09-22T~06:15Z (receipt above).
+- **Fact**: TWO live secrets currently in tracked `/app/backend/.env` AND in git history at `dc48d5313` + `e214236a8` (both commits carry the same value; committed 2026-09-19):
+  - **`EMERGENT_LLM_KEY`** — 30-char high-entropy key. Used by backend for LLM inference (`emergentintegrations` library reads this).
+  - **`JWT_SECRET`** — 64-char high-entropy key. Used to sign session JWTs. **Past history holders can forge tokens.**
+- **Rotation actions (owner-side)**:
+  - **EMERGENT_LLM_KEY**: rotate at emergent management console (Profile → Manage Plan → Universal Key → rotate). Any holder of git history has the old key; assume compromised.
+  - **JWT_SECRET**: rotate to a fresh 64-char random. Rotation invalidates all outstanding session tokens (users must re-login). This is the correct fail-safe posture after historical leak.
+- **Follow-up (agent-side)**: after owner rotates:
+  1. Update `/app/backend/.env` with new values (but this creates DQ-11 recurrence unless CP-DOT-ENV-HYGIENE has landed).
+  2. Preferred sequencing: **DQ-12 CP-DOT-ENV-HYGIENE lands FIRST** (moves .env-source to `.env.local`), then owner rotation drops new values into `.env.local` (untracked). Zero-risk.
+- **Blocks**: nothing operationally today. Old secrets continue to function until rotation. **Historical leak is permanent** in git history (SO §3.8 no-history-rewrite); rotation is the only cure.
+- **Continues**: everything.
+- **Related**: DQ-11 (CP-VEND-HUAWEI-OBS cure module authored this-session for OBS-side secret handling) uses the same custody-xlsx-in-memory pattern that CP-DOT-ENV-HYGIENE + rotation enable at scale.
+
 ---
 
 ## Standing rules for this file
