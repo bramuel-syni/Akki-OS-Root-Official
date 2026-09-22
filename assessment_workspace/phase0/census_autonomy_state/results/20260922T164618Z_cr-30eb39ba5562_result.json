@@ -1,0 +1,13 @@
+{
+  "census_run_id": "cr-30eb39ba5562",
+  "tenant_id": "AKKI-TEST",
+  "completed_at_utc": "20260922T164618Z",
+  "payload": {
+    "trigger": "on_demand_api",
+    "connect_source_descriptor": {
+      "source": "akki-test-fixture",
+      "lane": "ops-proof-b"
+    },
+    "note": "Commit-A shape gate landed; data_source adapter fold-in + sealed asset_registry_writer wiring in Phase 3 continuation sub-slices per R-106 \u00a73."
+  }
+}
