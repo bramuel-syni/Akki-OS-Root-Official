@@ -27179,5 +27179,41 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 3 continuation A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEAL RECORD · 2026-09-22T19:50:00Z END -->
 
+<!-- PHASE 3 CLOSED · 2026-09-22T21:22:00Z BEGIN -->
+
+## PHASE 3 CENSUS PRODUCTIZATION · CLOSED · 2026-09-22T21:22:00Z
+
+**Owner ratification verbatim (2026-09-22T~21:21Z):**
+
+> "Phase 3 exit proof accepted: all six steps curl-evidenced with real state transitions, honest degradation, an auto-banked actionable item resolved through the API, live 4xH200 capture, and registry surfaces reading through. Census productization is CLOSED as a phase — mark it so in DECISIONS and the objective card. Proceed: A'''-cont-B (badge + polling on real producer data) → Phase 4 banked order → forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT. Report at seal boundaries."
+
+**Card marker:** `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` milestone_status updated to `CLOSED · 2026-09-22T21:22:00Z · PHASE 3 CENSUS PRODUCTIZATION productized end-to-end` with a full §CLOSED section appended below the SO §6.2 anchor line (owner MUST-DO checklist verified item-by-item · owner MUST-NOT verified · owner STOP conditions all CLOSED · exit-proof anchors cited per curl receipt).
+
+**Seal chain (chronological · condensed):**
+- PHASE 3 Commit-A `c3e6725c` (+4 · service_shape gate).
+- PHASE 3 A' `55ffc389` (+7 · JWT-gated router + state_reader).
+- PHASE 3 A'' `527d09bf` (+8 · UI drawer twin).
+- PHASE 3 A''' `c3807d7` (+6 · GPU-spend real telemetry via sealed SSH bridge).
+- DQ-GPU-SSH-KEYS self-resolve `f4399ea0` (4×H200 live confirmed).
+- PHASE 3 A'''-cont-A `a0dcc06` (+9 · response-required queue + endpoints).
+- PHASE 3 A'''' `1eea98967` (+11 · data-source adapter + FIRST REAL PRODUCER path).
+- PHASE 3 A''''-cont-A `1d47128` (+10 · producer bridge + 3 JWT-gated router endpoints).
+- PHASE 3 E2E EXIT PROOF state mini-bank `64d322b4` (11 raw curl receipts on AKKI-TEST).
+
+**Cumulative ratchet delta over PHASE 3: 6086 → 6139 (+53 canonical measured).**
+
+**Owner MUST-DO checklist (§MUST-DO 1-10)** verified item-by-item at the closure record inside the objective card. **Owner MUST-NOT (§MUST-NOT 1-6)** verified. **Owner STOP conditions (§STOP 1-4)** all CLOSED. **Owner EXIT verbatim** ("Exit: a tester can click Run census on AKKI-TEST and watch a real census complete") DELIVERED with 11 raw curl receipts banked at `phase0/drill_receipts_cp_census_autonomy_a_quad_prime_cont_a/e2e_exit_proof/`.
+
+**R-102/R-106 EXIT EVIDENCE FOR PHASE 3 · DELIVERED AND ACCEPTED**.
+
+**Follow-on lanes (queued · NOT part of this closure):**
+- A'''-cont-B (UI response-required-badge + polling hook · real producer data from A''''-cont-A now available) — opens NEXT.
+- PHASE 4 (banked order): entitlements backend → Connect/Commission wizards live → CP-SKILLS-LAYER → CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
+- −2 collection-drift forensic (P1) — resolve before Order B audit passes.
+- Order B → Order A audits — remaining ops lanes.
+- BUILD_JOURNAL + OWNER_RETURN_REPORT — final assembly.
+
+<!-- PHASE 3 CLOSED · 2026-09-22T21:22:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
