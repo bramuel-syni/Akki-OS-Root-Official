@@ -73,6 +73,11 @@ import AppsFrequent from "@/pages/os/AppsFrequent";
 import AppsConnected from "@/pages/os/AppsConnected";
 import AppsRequests from "@/pages/os/AppsRequests";
 
+// PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · additive route mount for the sealed
+// Canon-5-§14 Shaping-Wizard component at /os/work/commission (owner banked
+// order 2026-09-22T~21:21Z: "Connect + Commission wizards live").
+import WorkCommission from "@/pages/os/WorkCommission";
+
 // Sub-slice 4h · 2 DAP LATEST view classes (10+11) as honest-gap surfaces per 4g deferral resolution.
 import AdminApprovalsLedger from "@/pages/dap/AdminApprovalsLedger";
 import AdminWatchTrailBridge from "@/pages/dap/AdminWatchTrailBridge";
@@ -1330,6 +1335,9 @@ function App() {
           {/* Sub-slice 4h · 2 DAP LATEST view classes (view 10 + 11) — reachable at top-level /dap/... */}
           <Route path="/dap/approvals-ledger" element={<AdminApprovalsLedger />} />
           <Route path="/dap/watch-trail-bridge" element={<AdminWatchTrailBridge />} />
+
+          {/* PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · Canon-5-§14 Shaping-Wizard live at workstudio.commission */}
+          <Route path="/os/work/commission" element={<WorkCommission />} />
 
           {/* Track 2 — OS Prototype v2 (V8 PortalIframe) */}
           <Route path="/" element={<PortalIframe />} />
