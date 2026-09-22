@@ -14,6 +14,13 @@ import ConnectResources from "@/pages/dap/ConnectResources";
 import Entitlement from "@/pages/dap/Entitlement";
 import CanonCountdown from "@/pages/dap/CanonCountdown";
 
+/* ── PHASE 3 continuation A'' · Census Autonomy overlay drawer ─────────
+ * Additive React overlay outside the prototype iframe (SO §3.8). Mounts
+ * a floating "Run census" launcher + running-card that polls the REAL
+ * scheduler state endpoint. Never synthesizes progress (owner directive).
+ */
+import CensusAutonomyDrawer from "@/components/portal/CensusAutonomyDrawer";
+
 // v2 OS Prototype · Turn 4 sub-slice 4d GREEN · Frontend rebuild slice 2 ·
 // Work tab surfaces (7) + Monitor sub-view surfaces (2). Each surface is a
 // native React implementation of the design-of-record shape with honest-gap
@@ -1328,6 +1335,8 @@ function App() {
           <Route path="*" element={<PortalIframe />} />
         </Routes>
       </BrowserRouter>
+      {/* PHASE 3 continuation A'' · additive overlay above prototype iframe */}
+      <CensusAutonomyDrawer />
     </div>
   );
 }
