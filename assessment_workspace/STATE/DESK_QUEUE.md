@@ -66,7 +66,7 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Continues**: everything else.
 
 
-## DQ-07 · GPU visibility · owner said "GPUs are connected" but they are NOT visible from this preview container
+## DQ-07 · GPU visibility · owner said "GPUs are connected" but they are NOT visible from this preview container  ~~CLOSED at GPU-LANE-OPEN-20260922 seal (2026-09-22T~01:07Z)~~
 
 - **Surfaced at**: HYGIENE-20260921 seal (2026-09-22T~00:38Z), immediately after owner directive "GPUs are connected. Re-inventory compute NOW."
 - **Fact**: Twelve read-only probes ran this seal — `nvidia-smi` (127 not-found), `lspci` (binary absent), `ls /dev/nvidia*` (2 no-such-file), `ls /dev/dri` (2 no-such-file), `/proc/driver/nvidia` (absent), `nvcc` (absent), `/usr/local/cuda*` (absent), `lsmod|grep nvidia` (empty), `dmesg|grep -iE 'nvidia|nouveau'` (empty), `env|grep -iE 'cuda|nvidia|gpu'` (no env vars), `python3 -c 'import torch'` (ModuleNotFoundError). Full receipt: `phase0/gpu_probes/20260922T003800Z_GPU_INVENTORY_PROBE.json`. Container was not started with `--gpus`, no `nvidia.com/gpu` allocated, no device passthrough.
@@ -75,6 +75,7 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Blocks**: GPU-quality language-ID on the Digicow S3 speech corpus · GPU re-classification of `*_probable` and `music_or_noise` segments from CENSUS-2 · pipeline extension over NAS/OBS audio once those walks land · any faster-whisper / silero / torch inference lane.
 - **Continues**: S4a-DIGICOW-RDS adapter scaffolding (CPU-only) · Order B / Q-1 full audit run (CPU-only) · deep NAS via JUMP `smbclient` (network I/O, no GPU) · OBS ListObjectsV2 sweep across 106 buckets (network I/O, no GPU) · CPU-heuristic audio classification already banked at CENSUS-2 (16.59 h speech / 1.11 h music / balance ambient).
 - **Disk pre-flight for when GPU unblocks**: `/app` is at 88 % (1.3 G free) — do NOT install model weights there. `/` overlay has 75 G free — install faster-whisper/silero and model caches there; use int8 quantized variants; clear cache after one-shot pass if disk pressure returns.
+- **CLOSED**: owner drop `GPU CREDs.xlsx` sha256 `483b8f697dde5117d03bbc7b2cddc322fe49788f65d0d99b0516ff3c9fcdc29b` (2026-09-22T~00:45Z) named two hosts direct-reachable on public IPs: `akki-vm` (41.173.184.244) and `akki-vm-ii` (41.173.184.247). New pw drop failed (matches 2026-08-28 hardening posture), pubkey auth via banked `id_ed25519_akki_gpu` succeeded on both. Verified via ssh + `nvidia-smi`: **4 × NVIDIA H200 · 572 GB HBM3e VRAM · driver 570.211.01 · Ubuntu 24.04.4**. Full sweep for language-ID launched, ETA ~35 min. On-disk record cited (as owner referenced): `phase0/gpu_receipts/`, `phase0/keypair_hardening_receipts/`, `STATE/DECISIONS.md:521,1601,4525,4621`. Path taken: **(c)** direct on public IPs — no JUMP needed for this lane.
 
 ## DQ-08 · Historical commit 816be899 still carries the raw MySQL passwords · policy tradeoff, disclosed
 

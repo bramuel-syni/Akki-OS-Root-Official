@@ -1,0 +1,121 @@
+{
+  "receipt_id": "GPU-LANE-OPEN-20260922T005000Z",
+  "surfaced_at": "2026-09-22T00:50:00Z",
+  "supersedes": "GPU-INVENTORY-PROBE-20260922T003800Z (in-container probe, GPUs_NOT_VISIBLE)",
+  "trigger": "owner directive 2026-09-22T~00:45Z 'GPU credentials landed; DQ-07 unblock path (a)/(c) chosen'",
+  "standing_order": "SO 6.8 (no GO required); HYGIENE-20260921 shape-only for reports/receipts",
+  "read_only": true,
+  "credentials_source": {
+    "artifact_url_provided_by_owner": "customer-assets-cm19k8pv/artifacts/2lvys6ee_GPU CREDs.xlsx",
+    "local_path_ephemeral_off_app_volume": "/tmp/gpu_creds_20260922/GPU_CREDs.xlsx",
+    "local_mode": "0600",
+    "sha256": "483b8f697dde5117d03bbc7b2cddc322fe49788f65d0d99b0516ff3c9fcdc29b",
+    "tracked_in_any_repo": false,
+    "shape_only_structure": "openpyxl parse; Sheet1; 17 rows; single-column KV; two host blocks separated by blanks",
+    "hosts_declared_in_drop_by_identity_only": [
+      { "hostname": "akki-vm-ii", "user": "ubuntu", "public_ip": "41.173.184.247", "pw_shape": "16-char high-entropy-mixed (value not surfaced)" },
+      { "hostname": "akki-vm",    "user": "ubuntu", "public_ip": "41.173.184.244", "pw_shape": "16-char high-entropy-mixed (value not surfaced)" }
+    ]
+  },
+  "on_disk_record_the_owner_referenced": {
+    "primary_evidence": [
+      { "path": "phase0/gpu_receipts/",                                                           "tracked": true, "count": "16+ receipts", "date_range": "2026-08-28 to 2026-09-20", "notes": "wave-H1 SSH connectivity proof, wave-H2 hardware fact sheet, wave-H3 CUDA/PyTorch verify, wave-H multihost probes for both akki-vm and akki-vm-ii, wave-H install/bootstrap probes" },
+      { "path": "phase0/keypair_hardening_receipts/",                                             "tracked": true, "count": "9 receipts",   "date_range": "2026-08-28 to 2026-08-31", "notes": "step1 keygen -> step7 final verify; both hosts moved to key-only, ubuntu account locked, password auth dropin at sshd_config.d/00-akki-no-password.conf" },
+      { "path": "phase0/keypair_hardening_receipts/20260828T162217Z_step1_keygen.json",           "tracked": true, "notes": "declares private_key_path=/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu, ed25519, mode 0600, pubkey fingerprint SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A" },
+      { "path": "phase0/keypair_hardening_receipts/20260828T162738Z_step7_final_verify.json",    "tracked": true, "notes": "both hosts key-auth green, ubuntu@akki-vm and ubuntu@akki-vm-ii verified" }
+    ],
+    "state_level_references": [
+      { "file": "STATE/CONTEXT.md",   "line": 91,    "notes": "first mention 2026-08-18: TCP 41.173.184.244:22 reachable, egress rotation pinned" },
+      { "file": "STATE/DECISIONS.md", "line": 521,   "notes": "prior HELD verdict for akki-vm LIFTED; security posture: key-only SSH, password auth dead server-wide, sshd_config.d/00-akki-no-password.conf, ubuntu account locked" },
+      { "file": "STATE/DECISIONS.md", "line": 1601,  "notes": "One VM 'akki-vm' Public IP 41.173.184.244 Private IP 100.70.50.3 Username ubuntu OS ubuntu24.04" },
+      { "file": "STATE/DECISIONS.md", "line": 4525,  "notes": "second host arrival: 'Hostname: akki-vm-ii / Public IP: 41.173.184.247 / Re-integrate to GPU now'" },
+      { "file": "STATE/DECISIONS.md", "line": 4621,  "notes": "original drop of both VMs; MULTI-HOST integration mandate" },
+      { "file": "STATE/NEXT.md",      "line": 958,   "notes": "AKKI_GPU_HOST=41.173.184.244 AKKI_GPU_PRIVATE_IP=100.70.50.3 AKKI_GPU_PORT=22 AKKI_GPU_USERNAME=ubuntu AKKI_GPU_OS=ubuntu24.04 AKKI_GPU_VM_NAME=akki-vm banked in .env" }
+    ],
+    "citation_summary": "Owner said 'on disc there should be a record' — record exists in three places: (1) phase0/gpu_receipts/ tracked directory with 16 receipts documenting the hosts at hardware+CUDA+PyTorch level from 2026-08-28, (2) phase0/keypair_hardening_receipts/ with the pubkey install/verify/scrub-passwords chain that produced the current auth posture, (3) STATE/DECISIONS.md carrying the owner rulings pinning both hosts by IP and hostname."
+  },
+  "auth_resolution_this_seal": {
+    "first_attempt_password_from_new_xlsx": "FAILED on both hosts (auth_failed via paramiko).",
+    "match_with_banked_posture": "Consistent with STATE/DECISIONS.md:521 which recorded 'password auth dead server-wide' as of 2026-08-28. The passwords in the new xlsx are stale-vs-current-server-config or reserved-for-recovery only. Not blocking.",
+    "second_attempt_pubkey_from_banked_path": "OK on both hosts (2020 ms and 2023 ms handshake). Auth method reported by server: publickey. Ed25519 fingerprint SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A matches phase0/keypair_hardening_receipts/20260828T162217Z_step1_keygen.json verbatim.",
+    "in_memory_only": true,
+    "credentials_touched_disk": false
+  },
+  "gpu_hosts": [
+    {
+      "hostname_verified_via_ssh": "akki-vm-ii",
+      "ip": "41.173.184.247",
+      "os": "Ubuntu 24.04.4 LTS (Noble Numbat)",
+      "kernel": "6.8.0-106-generic #106-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar 6 07:58:08 UTC 2026 x86_64",
+      "cpu": { "model": "Intel Xeon Platinum 8558", "cores": 36 },
+      "mem_gb": 460.4,
+      "disk_root": "/dev/vda1 72G total / 62G used / 9.9G free / 87% used",
+      "disk_pressure_note": "akki-vm-ii is TIGHT on disk — 9.9G free of 72G. Reserve for scratch audio downloads only; clear per batch.",
+      "gpus": [
+        { "index": 0, "model": "NVIDIA H200", "driver": "570.211.01", "vram_total_mib": 143771, "vram_free_mib": 143167, "util_gpu_pct": 0, "temp_c": 31, "power_w": 76.63, "uuid": "GPU-c59c154d-f308-f79f-09fd-19ecae790b03" },
+        { "index": 1, "model": "NVIDIA H200", "driver": "570.211.01", "vram_total_mib": 143771, "vram_free_mib": 143167, "util_gpu_pct": 0, "temp_c": 42, "power_w": 82.92, "uuid": "GPU-12834670-6217-3f68-0414-905ce8699a95" }
+      ],
+      "software": {
+        "python": "3.12.3",
+        "torch": "installed and importable, cuda_available reports (via pynvml, deprecation warning noted, non-fatal)",
+        "faster_whisper": "NOT INSTALLED (ImportError) - will need pip install if this host is used for language-ID",
+        "openai_whisper": "NOT installed",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "boto3": "1.34.46",
+        "nvcc": "not on PATH (CUDA runtime present via driver 570.211.01; no dev toolkit — sufficient for inference)"
+      }
+    },
+    {
+      "hostname_verified_via_ssh": "akki-vm",
+      "ip": "41.173.184.244",
+      "os": "Ubuntu 24.04.4 LTS (Noble Numbat)",
+      "kernel": "6.8.0-106-generic #106-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar 6 07:58:08 UTC 2026 x86_64",
+      "cpu": { "model": "Intel Xeon Platinum 8558", "cores": 36 },
+      "mem_gb": 460.4,
+      "disk_root": "/dev/vda1 72G total / 50G used / 22G free / 70% used",
+      "disk_pressure_note": "akki-vm has 22G free — more comfortable margin than akki-vm-ii.",
+      "gpus": [
+        { "index": 0, "model": "NVIDIA H200", "driver": "570.211.01", "vram_total_mib": 143771, "vram_free_mib": 143167, "util_gpu_pct": 0, "temp_c": 34, "power_w": 76.82, "uuid": "GPU-e87acccb-7848-1573-98ae-fcf26b185c0b" },
+        { "index": 1, "model": "NVIDIA H200", "driver": "570.211.01", "vram_total_mib": 143771, "vram_free_mib": 143167, "util_gpu_pct": 0, "temp_c": 34, "power_w": 76.78, "uuid": "GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1" }
+      ],
+      "software": {
+        "python": "3.12.3",
+        "torch": "installed and importable, cuda_available (with same pynvml deprecation warning as ii)",
+        "faster_whisper": "1.2.1 INSTALLED - preferred host for language-ID lane",
+        "openai_whisper": "NOT installed",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "boto3": "1.34.46",
+        "nvcc": "not on PATH"
+      }
+    }
+  ],
+  "compute_headline": "4 x NVIDIA H200 across two hosts (2 per host) - 572 GB total HBM3e VRAM - all idle at probe time - faster-whisper already available on akki-vm (preferred lane).",
+  "gpu_lane_bootstrap_plan": {
+    "target_workload": "Language-ID over the Digicow S3 speech corpus (bucket=training-content-2026, prefix=audio/, 1602 OK objects, 16.59 h speech + ambiguous cohort).",
+    "primary_host": "akki-vm (41.173.184.244) - faster-whisper pre-installed, 22 G free disk margin, dual H200.",
+    "backup_host": "akki-vm-ii (41.173.184.247) - install faster-whisper via pip and share the manifest for parallel dual-host throughput if runtime warrants.",
+    "model_choice": "faster-whisper large-v3 in float16 (H200 has 143 GB VRAM per device, model is ~3 GB - massive headroom, no need for int8).",
+    "language_detection_only": "faster-whisper's built-in detect_language() on the first 30 seconds is sufficient; no transcript generated, no transcript retained.",
+    "no_second_store": "S3 GetObject streamed to /dev/shm/langid_scratch/<uuid>.tmp on GPU host, faster-whisper reads the file, then IMMEDIATE unlink before recording detection result. /dev/shm is tmpfs - RAM-backed - never touches persistent disk. Fallback path if /dev/shm not writable: /tmp/langid_scratch/ with strict per-batch cleanup.",
+    "receipts_output_only": "Per-object: {key, dur_s, prior_label, gpu_lang, gpu_lang_conf, gpu_wall_ms, host_fp}. No audio bytes, no transcript, no speaker embeddings.",
+    "compute_parallelism": "Start 2 workers per H200 = 4 workers on akki-vm - matches CENSUS-2 CPU throughput pattern; monitor GPU util. If <60%, add workers.",
+    "estimated_completion": "Language-ID on 30-s prefix of large-v3 on H200 ~= 100-200 objects/min per worker; 1602 objects finishes in 4-8 minutes wall-time with 4 workers - massive overkill compute vs corpus size.",
+    "pilot_first": "Run a 20-object pilot from the speech_probable cohort first; verify /dev/shm+ffmpeg+faster-whisper pipeline; then unleash the full 1602-object sweep in the background."
+  },
+  "aws_creds_transit_plan": {
+    "source_local": "/app/assessment_workspace/custody/credentials/incoming_20260921/20260921T153705Z_DIGICOW_digicow_access_keys_csv.csv",
+    "shape": "AWS CLI export csv - Access key ID 20-char + Secret access key 40-char high-entropy",
+    "transit_to_gpu_host": "in-memory via SSH env-var injection at exec_command call; never written to disk on GPU host; runner uses boto3.client('s3', aws_access_key_id=..., aws_secret_access_key=..., region_name='eu-west-1')",
+    "no_env_file_persistence": true,
+    "runtime_key_lifetime_on_gpu_host": "process-lifetime only, wiped when SSH session ends"
+  },
+  "non_actions": [
+    "No push, no fetch.",
+    "No testing_agent.",
+    "No history rewrite.",
+    "No modification to sealed classes.",
+    "No touch to programme/track-a this seal.",
+    "Ratchet floor 5858 untouched.",
+    "R-91 hold intact at 2026-09-23T03:23:15Z (~26.6 h from this receipt)."
+  ]
+}

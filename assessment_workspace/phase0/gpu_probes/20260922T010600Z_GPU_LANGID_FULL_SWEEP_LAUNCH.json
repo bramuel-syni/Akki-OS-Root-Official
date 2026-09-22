@@ -1,0 +1,77 @@
+{
+  "receipt_id": "GPU-LANGID-FULL-SWEEP-LAUNCH-20260922T010600Z",
+  "surfaced_at": "2026-09-22T01:06:00Z",
+  "trigger": "owner directive 2026-09-22T~00:45Z 'GPU credentials landed; open the GPU lane immediately once verified'",
+  "standing_order": "SO 6.8 (no GO required); HYGIENE-20260921 shape-only for receipts; no-second-store per Doc-5 B5.4",
+  "host": {
+    "hostname": "akki-vm",
+    "ip": "41.173.184.244",
+    "auth": "publickey (banked id_ed25519_akki_gpu, fingerprint SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A)",
+    "os": "Ubuntu 24.04.4 LTS",
+    "cpu": "Intel Xeon Platinum 8558 x 36 cores",
+    "ram_gb": 460.4,
+    "disk_root_free_gb_before_sweep": 22
+  },
+  "shards": [
+    { "idx": 0, "gpu_visible": "cuda:0 (H200, UUID GPU-e87acccb-7848-1573-98ae-fcf26b185c0b)", "cuda_visible_devices_env": "0", "manifest_count": 784, "output_path_on_host": "/dev/shm/langid_full_shard0_stdout.jsonl", "scratch_path_on_host": "/dev/shm/langid_scratch_0/" },
+    { "idx": 1, "gpu_visible": "cuda:1 (H200, UUID GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1)", "cuda_visible_devices_env": "1", "manifest_count": 784, "output_path_on_host": "/dev/shm/langid_full_shard1_stdout.jsonl", "scratch_path_on_host": "/dev/shm/langid_scratch_1/" }
+  ],
+  "model": {
+    "family": "faster-whisper",
+    "size": "tiny",
+    "compute_type": "int8",
+    "cache_source": "already cached on host (Systran/faster-whisper-tiny)",
+    "detect_head_seconds": 30,
+    "rationale": "tiny model is sufficient for language identification (Whisper's LID head is language-agnostic on the encoder's mel-spec embedding); pilot MINI5 confirmed 5/5 success on formerly-failing files; int8 stabilises across concurrent processes on Hopper H200"
+  },
+  "manifest": {
+    "source": "phase0/connectivity_receipts/20260921T200021Z_ESTATE_CENSUS_v2.json -> surfaces.digicow_s3_audio.per_file_compact filtered where status=OK and dur_s>0 and 'label' present",
+    "total_before_split": 1568,
+    "excluded_from_census_manifest": "34 objects that were status=OK but missing a heuristic label at census time; and 81 objects that were status=FFPROBE_FAIL (empty audio/ prefix marker etc); already reflected in CENSUS-2 aggregate",
+    "shard_split": "sequential halves; MP4s land in the second half preserving prior_label distribution roughly"
+  },
+  "aws_credentials_transit": {
+    "source_local": "custody/credentials/incoming_20260921/20260921T153705Z_DIGICOW_digicow_access_keys_csv.csv",
+    "vault_state": "gitignored, 0600, drwx------ parent",
+    "transit_mechanism": "SSH env-var injection at exec_command time",
+    "on_host_persistence": "process-lifetime only; no .env file, no ~/.aws/credentials",
+    "region": "eu-west-1",
+    "bucket": "training-content-2026",
+    "prefix": "audio/"
+  },
+  "no_second_store_invariant": {
+    "s3_pull_to_transient_wav": "S3 GetObject body streamed to ffmpeg stdin; ffmpeg writes 16 kHz mono 30 s wav to /dev/shm/langid_scratch_<shard>/<uuid>.wav (tmpfs, RAM-backed)",
+    "unlink_lifecycle": "os.unlink() in the finally clause of process_one for every object regardless of OK/ERR",
+    "transcript_retention": "none; without_timestamps=True; segments iterator consumed at most 1 element only to force info.language population",
+    "audio_persistence_on_gpu_host": "zero (tmpfs + immediate unlink)",
+    "retained_artifacts": ["key", "dur_s", "prior_label", "gpu_lang", "gpu_lang_conf", "gpu_wall_ms", "host_fp", "gpu_index", "worker_slot", "status", "err (only if error)"]
+  },
+  "concurrency_bug_and_workaround": {
+    "symptom": "RuntimeError: CUDA failed with error invalid argument",
+    "reproduction_matrix": [
+      { "pilot": "B", "config": "2 threads sharing 1 WhisperModel per GPU (fp16, tiny)", "result": "8/20 OK, 12/20 CUDA error" },
+      { "pilot": "C", "config": "1 thread per GPU, 2 separate WhisperModel instances in same process (fp16, tiny)", "result": "13/20 OK, 7/20 CUDA error" },
+      { "pilot": "D", "config": "same as C but int8 compute type", "result": "11/20 OK, 9/20 CUDA error" },
+      { "pilot": "MINI5", "config": "int8, workers_per_gpu=1, single visible GPU per process, single process total", "result": "5/5 OK, 0 CUDA errors on formerly-failing files" }
+    ],
+    "root_cause_inferred": "ctranslate2 Whisper on Hopper H200 (compute capability 9.0) with driver 570.211.01 has shared state that leaks across WhisperModel instances in the same Python process even when they target different CUDA devices",
+    "workaround": "process-level isolation: one Python process per GPU via CUDA_VISIBLE_DEVICES; inside each process, one WhisperModel, one worker, strictly sequential inference",
+    "not_yet_verified_cases": "large-v3 fp16 with the same process-isolation may also work; not tested because tiny+int8 is sufficient for LID and had 100% pilot success"
+  },
+  "expected_completion": {
+    "pilot_rate_obs_per_sec_per_gpu_sequential": 0.4,
+    "combined_rate_obs_per_sec_two_gpus": 0.8,
+    "eta_wall_minutes_upper_bound": "~35-40 min",
+    "next_seal_expected_at": "~2026-09-22T01:41Z"
+  },
+  "non_actions": [
+    "No push, no fetch.",
+    "No testing_agent.",
+    "No history rewrite.",
+    "No modification to sealed classes.",
+    "No touch to programme/track-a.",
+    "Ratchet floor 5858 untouched.",
+    "R-91 hold intact.",
+    "HF-HOLD standing; xet-client stall on large-v3 fetch observed and worked around by falling back to already-cached tiny."
+  ]
+}

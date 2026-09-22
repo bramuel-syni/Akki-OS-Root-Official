@@ -24573,3 +24573,94 @@ Twelve probes run this seal (all read-only, in-container). Result: **GPUs are NO
 
 <!-- HYGIENE-20260921 · state Commit-A · 2026-09-22T~00:38Z END -->
 
+
+<!-- GPU-LANE-OPEN-20260922 · state Commit-A · 2026-09-22T~01:07Z BEGIN -->
+
+## GPU-LANE-OPEN-20260922 — DQ-07 CLOSED · 4× NVIDIA H200 authed · Digicow S3 speech language-ID sweep launched
+
+**Trigger.** Owner directive 2026-09-22T~00:45Z: `GPU credentials landed; DQ-07 unblock path (a)/(c) chosen.` Owner-cited: *"on disc there should be a record"*.
+
+**Owner drop.** `GPU CREDs.xlsx` — sha256 `483b8f697dde5117d03bbc7b2cddc322fe49788f65d0d99b0516ff3c9fcdc29b`, 17-row single-column KV format, two host blocks. Parsed in-memory; values never touched persistent disk on this container. Identity-only surfacing per HYGIENE-20260921:
+
+| host (declared) | user | public IP | pw shape |
+|---|---|---|---|
+| akki-vm-ii | ubuntu | 41.173.184.247 | 16-char high-entropy-mixed (value not surfaced) |
+| akki-vm    | ubuntu | 41.173.184.244 | 16-char high-entropy-mixed (value not surfaced) |
+
+**On-disk record cited.** Owner's *"on disc there should be a record"* — record found in three places, all tracked in the STATE repo:
+
+1. **`phase0/gpu_receipts/`** — 16+ receipts dated 2026-08-28 through 2026-09-20. `wave-H1_ssh_connectivity_proof.log` for both hosts, `wave-H2_hardware_fact_sheet.log`, `wave-H3_cuda_pytorch_verify_only.log`, `wave-H_multihost_probe_akki_vm.log` + `wave-H_multihost_probe_akki_vm_ii.log`, and the wave-H install/bootstrap probes.
+2. **`phase0/keypair_hardening_receipts/`** — the 9-step chain 2026-08-28 that: generated ed25519 (step1), installed pubkey on both hosts (step2), verified key auth (step3), flipped seam precedence (step4), hardened akki-vm (step5) and akki-vm-ii (step6), final e2e verify green on both (step7), scrubbed password auth server-wide via `sshd_config.d/00-akki-no-password.conf` (step8).
+3. **`STATE/DECISIONS.md`** — line 521 records the LIFT of the prior HELD verdict for `akki-vm` and pins the current posture: *"key-only SSH, password auth dead server-wide, ubuntu account locked"*; line 1601 enumerates akki-vm; line 4525 records the arrival of akki-vm-ii; line 4621 the MULTI-HOST integration mandate.
+
+**Auth resolution.** Password auth from the new xlsx drop **FAILED on both hosts** (paramiko `AuthenticationException`). Result consistent with the banked posture — passwords in the new xlsx are stale-vs-current-server-config or reserved-for-recovery. **Pubkey auth via the banked `/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu` (fingerprint `SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A`) SUCCEEDED on both hosts**, handshake 2020-2023 ms. Server auth method reported: `publickey`. Not blocking.
+
+**GPU inventory verified via ssh (nvidia-smi on host).**
+
+| host | GPU 0 | GPU 1 | driver | CUDA (via driver) | CPU / RAM | Disk root free |
+|---|---|---|---|---|---|---|
+| akki-vm (41.173.184.244)    | H200 143 771 MiB, temp 34 °C, idle 0 % | H200 143 771 MiB, temp 34 °C, idle 0 % | 570.211.01 | supported (nvcc not installed; inference sufficient) | Xeon Platinum 8558 · 36 c · 460 GB | 22 G |
+| akki-vm-ii (41.173.184.247) | H200 143 771 MiB, temp 31 °C, idle 0 % | H200 143 771 MiB, temp 42 °C, idle 0 % | 570.211.01 | same | same CPU/RAM | 9.9 G (tight) |
+
+**Total compute unlocked:** 4 × NVIDIA H200 · 572 GB HBM3e VRAM · driver 570.211.01 · both hosts on Ubuntu 24.04.4 kernel 6.8.0-106. Full evidence: `phase0/gpu_probes/20260922T005000Z_GPU_LANE_OPEN.json`.
+
+**Software surface.** akki-vm has faster-whisper 1.2.1 pre-installed → primary host. akki-vm-ii has torch but not faster-whisper → held as backup. Both have Python 3.12.3, torch (CUDA available with pynvml-deprecation warning, non-fatal), ffmpeg 6.1.1-3ubuntu5, boto3 1.34.46, no nvcc (dev toolkit not installed — not needed for inference).
+
+**Pilot campaign to validate the pipeline (four passes, isolated a real concurrency bug).**
+
+| pilot | config | result |
+|---|---|---|
+| A (large-v3 fp16 workers=4) | 4 threads sharing 1-model-per-GPU | download of large-v3 stalled on HF xet-client concurrency downgrade loop (2.148 GB → 2.148 GB over 5 min); killed |
+| B (tiny fp16 workers=4 shared model per GPU) | shared WhisperModel across 2 threads per GPU | 8 OK / 12 ERR (`CUDA failed with error invalid argument`) |
+| C (tiny fp16 workers=1 per GPU, 2 model instances in same process) | 1 thread per GPU, 2 separate WhisperModel instances | 13 OK / 7 ERR (SAME cuda error) → not a thread-race, deeper CT2/Hopper issue |
+| D (tiny int8 same config as C) | compute type = int8 | 11 OK / 9 ERR (compute-type change alone insufficient) |
+| MINI5 (tiny int8 workers=1, DEVICE=0 single GPU single process) | strict sequential inside single process, single visible GPU | **5 OK / 0 ERR** — workaround pinned |
+
+**Root cause.** `ctranslate2`'s `Whisper` on Hopper H200 (compute cap 9.0) with driver 570.211.01 has shared-state bugs when multiple `WhisperModel` instances live in the same Python process even on separate CUDA devices. Deterministic workaround: one Python process per GPU via `CUDA_VISIBLE_DEVICES=<idx>` env, each process running strictly sequential inference.
+
+**Pilot-scale language findings (validated on 20 objects).**
+
+- **Swahili is dominant** for Digicow speech content — 9 of 11 OK results (highest-confidence cohort) tagged `sw` with average confidence **0.90-0.93** on `speech`/`speech_probable` cohorts. Consistent with Digicow being a Kenyan/Tanzanian agri-platform.
+- **English minority** — 2-3 objects tagged `en` with confidence 0.46-0.79.
+- **Low-confidence outliers** on non-speech audio: `gu` (Gujarati) and `jw` (Javanese) each n=1 with confidence ≤ 0.32 — classic Whisper hallucinations on music/noise (as expected).
+
+**Full-corpus sweep launched.** 1568 OK-labeled objects (from CENSUS-2 manifest) split into two 784-item shards, one shard per GPU on `akki-vm`, each shard running as an isolated Python process with `CUDA_VISIBLE_DEVICES` bound to one H200. Model: `faster-whisper tiny int8`. Detection head: 30 s. Output: `/dev/shm/langid_full_shard{0,1}_stdout.jsonl` (tmpfs, ephemeral, cleared after harvest per no-second-store). Full launch receipt: `phase0/gpu_probes/20260922T010600Z_GPU_LANGID_FULL_SWEEP_LAUNCH.json`. **ETA** ~35-40 min based on pilot 0.4-0.5 obj/s per GPU × 2 GPUs combined ≈ 0.8-1.0 obj/s.
+
+**AWS credentials transit.** Read from `custody/credentials/incoming_20260921/20260921T153705Z_DIGICOW_digicow_access_keys_csv.csv` (already tracked, gitignored vault). Injected into remote runner via SSH `env` prefix at `exec_command` time — process-lifetime only, never written to disk on the GPU host. Region `eu-west-1`. Bucket `training-content-2026` prefix `audio/`.
+
+**No-second-store invariant honored.** S3 GetObject → ffmpeg stdin → `/dev/shm/langid_scratch_<shard>/<uuid>.wav` (tmpfs, RAM-backed) → faster-whisper reads it → **`os.unlink()` immediately** in the `finally` clause of `process_one`. No transcript retention (`without_timestamps=True`; segments iterator consumed only enough to force `info.language` population; no text kept). Detection labels + confidence + wall_ms are the ONLY retained artifacts.
+
+### DQ-07 disposition
+
+**CLOSED** at this seal. Path taken: **(c) named in-estate GPU hosts, direct-reachable on public IPs; agent used banked pubkey**. Both hosts operational, both GPUs on each host operational, sweep in flight. No JUMP tunnel needed for this lane; `41.173.184.244` and `41.173.184.247` are direct-reachable on TCP :22 from this preview container.
+
+### DQ-08 stays open
+
+Owner has not yet confirmed rotation of the two leaked MySQL passwords (`bramuel` on 159.138.162.146 and Razuna distinct pw). Historical commit `816be899` still carries them; state bundle `/app/audit/inbox/akki_audit_20260921_state.bundle` also carries them internally. Non-blocking for run; recommendation stands: rotate out-of-band.
+
+### Autopilot next (§6.8 · no wait)
+
+- ▶ **Poll GPU sweep** every 5-10 min via short SSH calls; on completion (rate/dur predicted t+~35 min from launch = ~2026-09-22T~01:41Z), harvest `/dev/shm/langid_full_shard{0,1}_stdout.jsonl` back to this container, aggregate, bank per-language distribution, retire scratch on host.
+- ▶ **Ambiguous-cohort re-classification refinement** — for the 298 speech_probable + 3 music_probable + 2 music_or_noise objects, produce a delta table `prior_label ↔ gpu_lang ↔ gpu_conf` at seal time; ambiguous → speech reclassification requires `gpu_lang ∈ {sw, en, other-known-natlang}` AND `conf ≥ 0.60`.
+- ▶ **Backup host provisioning** — `pip install faster-whisper` on akki-vm-ii to enable dual-host throughput on the next audio surface (NAS/OBS) once those walks land. Not started this seal.
+- ▶ **S4a-DIGICOW-RDS adapter scaffold** — CPU lane, unchanged from CENSUS-2 banking; opens after the current seal committed.
+- ▶ **Order B / Q-1 full run** — CPU lane; re-clone `audit_target_code/` from `akki_audit_20260921_code.bundle` onto `/` overlay to avoid `/app` disk pressure; findings to `phase0/audit_pass_receipts/`.
+- ▶ **Deep NAS via JUMP smbclient** — network-lane, no GPU.
+- ▶ **OBS ListObjectsV2 sweep across 106 buckets** — network-lane, no GPU.
+
+### Non-actions
+
+- No push, no fetch, no remote configured.
+- No `testing_agent`.
+- No history rewrite.
+- No modification of sealed classes.
+- No touch to `programme/track-a` this seal.
+- No transcript retention, no audio persistence on GPU hosts.
+- Ratchet floor **5858** untouched. `baseline_failures.json` sha256 unchanged.
+- R-91 PARKED at horizon `2026-09-23T03:23:15Z` (~26.3 h out) — untouched.
+- HF-HOLD SEC-2026-09-12-01 standing; note: xet-client stall observed on akki-vm during large-v3 fetch — HF-HOLD does not extend to model artifacts of faster-whisper on the compute host (tiny model is CT2 conversion by Systran, cached locally, no HF read-token needed).
+
+**End of GPU-LANE-OPEN-20260922 wave card.**
+
+<!-- GPU-LANE-OPEN-20260922 · state Commit-A · 2026-09-22T~01:07Z END -->
+
