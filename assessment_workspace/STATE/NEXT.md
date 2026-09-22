@@ -57,6 +57,33 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-02-XXT00:30Z · autopilot Turn-4-sub-slice-4j SEAL close · CP-TENANT-SEPARATION open primary + PHASE 2 opens**
+
+**Turn 4 sub-slice 4j SEALED** via §3.3 5-Commit-Seal (pattern):
+- code Commit-A `d2bfb02324bcfb0b98aa78f8b4f47dab5e631a6f` on `programme/track-a` (2026-02-XX · 6 new services/tenant_separation/ modules + contracts/canonical_tenant_ids.schema.json + tests/invariants/test_cp_tenant_separation.py + baseline_failures.json ratchet 6072→6080 · +8 measured).
+- /app main companion Commit-A `68b6956abcc9b3e1d1d53fdb1bac08ee7bd2bf08` (vendored twin mirror sync · 6 tenant_separation modules + 1 schema + MANIFEST.json regen · /app/frontend/public/audit/ORCH_BOOT.md ratchet regen 6080 · submodule pointer advance).
+- state Commit-B `8998e173d6f24c4c5b1a465facaaa577fb9c9528` (owner-ruling verbatim + this-seal record + pointer-line tail cure + DQ-19+DQ-20 in DESK_QUEUE + PINS post-4j reference block + RESUME rewrite → 4k NEXT + NEXT this-marker + ORCH_BOOT ratchet regen + drill_receipts mirror).
+- state Commit-C fixup `<PENDING-4J-CC>` (R-6 boundary regen advancing heads_last_sealed).
+- /app main Commit-C companion `<PENDING-4J-CC-APP>` (audit ORCH_BOOT byte-identical mirror sync).
+
+**Ratchet floor**: **6080** (was 6072 pre-4j · +8 measured). baseline_failures.json sha256 `6b1e2395f34f7ebe655dc93e85ca3e58d0fc4add8b77488643e5c0a295a7c3f3` was `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e`.
+
+**R-103 autonomous forks this-slice** (all banked in DECISIONS.md 4j seal record verbatim):
+1. **Fork (a) EXECUTED — DQ-18 SPLIT to 4k**: combined 4j PHASE-2 open + DQ-18 CP-R91-RETIRE-SUPERSEDE would exceed SO §6.4 NOTHING-BEYOND (~250+ new invariant lines + baseline drain + annotation drain + card frontmatter bump). 4k dedicated slice preserves discipline. Reversible.
+2. **PRIN-1 refinement applied verbatim** — owner "no override; admit as named-but-unseated" refinement 2026-02-XX. Runtime records at `services/tenant_separation/dap_activation.py` carry name + role only; NO identity material for RMS + DIGICOW. Seat_state flips at custody-material admission at future slice (DQ-19 · DQ-20).
+3. **Boot-invariant same-seal cure** — `test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom` was RED at 4i-tail (state-only 3-commit left DECISIONS.md ending in HTML comment · owner ruling append cure lands pointer at true tail). Standing-lesson banked: state-only §3.3 3-commit MUST re-run boot subset post-Commit-B.
+4. **Vendored-twin same-seal sync** — 4j code Commit-A ships 6 new tenant_separation modules + 1 schema which must land in `/app/backend/vendored/extraction_akki/backend/**` per CP-PROD-DEPLOY-SELF-CONTAINMENT mirror invariant. Sync via `tools/prod_vendor_sync.py` at /app companion Commit-A · structural_sha256 → `397acf791951ec91dde8b53d350bf055e4b5c26bb2c606cda58f9c78145a2236`.
+
+**Pre-Commit-A double-green byte-identical**: SweepA `20260222T0020Z` 6083 passed / 1 skipped · SweepB `20260222T0025Z` 6083 passed / 1 skipped · stripped_sha256 `d50373e03b7c763c9b7008e545d92a0ebf11d6b88cc3c29cc07291290a3b16a7` IDENTICAL both sweeps · BASELINE_GUARD=1 PYTHONHASHSEED=0. Observed 6083 = 6072 (prior floor) + 8 (new invariants) + 3 (transient R-91 baseline passes still in list but currently passing).
+
+**8 invariants landed** at `tests/invariants/test_cp_tenant_separation.py` (SO §2.5 verbatim-docstring quoting card body byte-verbatim): `test_four_tenants_declared_verbatim` + `test_every_source_has_tenant_id` + `test_dap_activated_per_tenant` + `test_oversight_screens_per_tenant_no_cross` + `test_platform_operator_no_content_read` + `test_no_tenant_selectable_ui` + `test_isolation_sweep_zero_violations` + `test_two_approving_authority_forks_banked`.
+
+**Autopilot next**: this-Commit-C fixup this-boundary → /app main Commit-C companion → Turn 4 sub-slice **4k** opens (CP-R91-RETIRE-SUPERSEDE dedicated slice · partial-retirement of 2 v8-substitution baselines via NEW additive superseding invariant module · +2 ratchet advance 6080→6082 · property 4 set-equality preserved because v8-substitution entries aren't in `MIRROR_DRIFT_NODEIDS`) → then PHASE 3 CENSUS PRODUCTIZATION opens.
+
+**Standing bounds unchanged**: zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6080 · HF-HOLD SEC-2026-09-12-01 · DQ-17 owner-side rotation UNTOUCHED · DQ-13 owner-side rotation UNTOUCHED · R-101 preserved WHAT partially honored (mirror done at 4h · retirement leg SPLIT to 4k) · R-102 productized-or-honest-gap satisfied (tenant-separation IS productized · 8 invariants prove isolation · 2 tier-4 forks banked with named-but-unseated discipline) · R-103 amendment applied · R-104 approving authorities named-but-unseated · R-105 folded · §6.8 report-and-continue.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T~10:22Z · autopilot Turn-4-sub-slice-4i SEAL close · state-only PINS sha-pin + Continuity Bundle deferral banking**
 
 **Turn 4 sub-slice 4i SEALED** via state-only 3-commit protocol (no code Commit-A · no /app companion Commit-A):

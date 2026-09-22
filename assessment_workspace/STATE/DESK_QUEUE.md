@@ -255,3 +255,31 @@ Filed post-INCIDENT-2026-09-22-01 during RMS CREDS 2 ingest (custody fold-in sub
 - **Continues**: everything. 4i can proceed with Continuity Bundle regen + PINS sha-pin + hygiene independently; DQ-18 supersede can fold-in at 4i, OR land as dedicated CP-R91-RETIRE-SUPERSEDE slice, OR queue behind 4i and land at 4j — whichever preserves SO §6.4 nothing-beyond scope discipline.
 - **Priority**: **P1** (unblocks R-101 preserved WHAT retirement leg · sequenced pre-PHASE-2 so tenant-separation opens on a fully-closed R-91 wave).
 
+
+## DQ-19 · APPROVING AUTHORITY · RMS tenant · Tier-4 fork · named-but-unseated at 4j · custody-material pending
+
+- **Surfaced at**: Turn 4 sub-slice 4j Commit-A (PHASE 2 CP-TENANT-SEPARATION open · 2026-02-XX).
+- **Fact**: Owner card `TENANT_SEPARATION.md` §4 verbatim: "The named approving authority is a tier-4 fork per tenant — bank both to STATE/DESK_QUEUE.md; until named, no controlled request executes (DAP-14 holds by construction; nothing is defaulted)." Owner refinement this-session verbatim: "No override on the PRIN-1 authorities — admit as named-but-unseated records (names + roles only; identity details arrive only via the custody path per R-104; controlled-request routing testable on AKKI-TEST synthetics meanwhile)."
+- **State at 4j**: `services/tenant_separation/dap_activation.py::_ACTIVATIONS["RMS"]["dap_14_named_authority"]` carries the name-of-record ("RMS Data-Owner Authority (name-of-record pending custody)") and role ("principal_of_record_dap_14_approver") with `seat_state="named_but_unseated"`. Zero identity material (no public_key / no mfa_anchor / no contact_modality) — those arrive only through a §4.1 §F sha-pinned custody drop per R-104.
+- **Options**:
+  - **(a)** Owner supplies RMS Data-Owner Authority identity material via a custody drop at `custody/credentials/rms_approving_authority_<yyyymmdd>.xlsx` (sha-pinned per §4.1 §F).
+  - **(b)** Owner names a different principal-of-record for RMS DAP-14 before controlled requests execute against RMS.
+  - **(c)** Owner defers RMS DAP-14 seating until a specific downstream slice needs it (RMS live extractions block until then).
+- **Recommendation**: **(a)**. This is the shape the wave was designed against; identity material lands via custody, seat_state flips from `named_but_unseated` → `seated_named` at that slice, and no code changes here.
+- **Blocks**: any RMS controlled-request execution (DAP-14 holds by construction). AKKI-TEST synthetics + audit-fixture routing exercises continue unblocked.
+- **Continues**: PHASE 2 seals with named-but-unseated record + AKKI-TEST-routable synthetics. PHASE 3 CENSUS PRODUCTIZATION opens on top.
+- **Priority**: **P1** (unblocks RMS live controlled requests · doesn't block PHASE 2 seal).
+
+## DQ-20 · APPROVING AUTHORITY · DIGICOW tenant · Tier-4 fork · named-but-unseated at 4j · custody-material pending
+
+- **Surfaced at**: Turn 4 sub-slice 4j Commit-A (PHASE 2 CP-TENANT-SEPARATION open · 2026-02-XX).
+- **Fact**: Owner card `TENANT_SEPARATION.md` §4 verbatim (same as DQ-19). Owner refinement this-session verbatim: "No override on the PRIN-1 authorities — admit as named-but-unseated records (names + roles only; identity details arrive only via the custody path per R-104 · controlled-request routing testable on AKKI-TEST synthetics meanwhile)."
+- **State at 4j**: `services/tenant_separation/dap_activation.py::_ACTIVATIONS["DIGICOW"]["dap_14_named_authority"]` carries the name-of-record ("DigiCow Data-Owner Authority (name-of-record pending custody)") and role ("principal_of_record_dap_14_approver") with `seat_state="named_but_unseated"`. Zero identity material — arrives via §4.1 §F sha-pinned custody drop per R-104.
+- **Options**:
+  - **(a)** Owner supplies DIGICOW Data-Owner Authority identity material via a custody drop at `custody/credentials/digicow_approving_authority_<yyyymmdd>.xlsx` (sha-pinned per §4.1 §F).
+  - **(b)** Owner names a different principal-of-record for DIGICOW DAP-14 before controlled requests execute against DIGICOW.
+  - **(c)** Owner defers DIGICOW DAP-14 seating until a specific downstream slice needs it (DIGICOW live extractions block until then).
+- **Recommendation**: **(a)**. Symmetric with DQ-19.
+- **Blocks**: any DIGICOW controlled-request execution (DAP-14 holds by construction). AKKI-TEST + audit-fixture routing exercises continue unblocked.
+- **Continues**: PHASE 2 seals with named-but-unseated record. PHASE 3 CENSUS PRODUCTIZATION opens on top.
+- **Priority**: **P1**.

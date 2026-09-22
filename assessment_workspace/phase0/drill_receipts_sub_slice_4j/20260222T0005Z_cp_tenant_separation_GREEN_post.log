@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, anyio-4.14.2, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 8 items
+
+tests/invariants/test_cp_tenant_separation.py::test_four_tenants_declared_verbatim PASSED [ 12%]
+tests/invariants/test_cp_tenant_separation.py::test_every_source_has_tenant_id PASSED [ 25%]
+tests/invariants/test_cp_tenant_separation.py::test_dap_activated_per_tenant PASSED [ 37%]
+tests/invariants/test_cp_tenant_separation.py::test_oversight_screens_per_tenant_no_cross PASSED [ 50%]
+tests/invariants/test_cp_tenant_separation.py::test_platform_operator_no_content_read PASSED [ 62%]
+tests/invariants/test_cp_tenant_separation.py::test_no_tenant_selectable_ui PASSED [ 75%]
+tests/invariants/test_cp_tenant_separation.py::test_isolation_sweep_zero_violations PASSED [ 87%]
+tests/invariants/test_cp_tenant_separation.py::test_two_approving_authority_forks_banked PASSED [100%]
+
+============================== 8 passed in 0.68s ===============================

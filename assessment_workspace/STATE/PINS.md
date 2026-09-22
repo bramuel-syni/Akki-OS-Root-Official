@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T100408Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T105809Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -840,3 +840,56 @@ Standing bounds unchanged. Zero-push discipline unchanged.
 - **Continuity Bundle regen deferral rationale (R-103 autonomous fork this-4i):** disk pressure at 91% (978MB free · last 3-bundle regen consumed 313MB · new regen would push to ~92% or trigger disk-full risk during work). Deferred to a slice AFTER Order A audit close purges obsolete artifacts (Order A includes archival of pre-M0 continuity artifacts per its close scope) OR until disk-pressure remediation is separately scheduled. Non-blocking: existing bundles at `20260921T083500Z`, `20260921T114536Z`, `20260921T122757Z` remain intact + tracked + sha-pinned in state master repo. Reconstruction from outside the sandbox remains possible via last-good bundle set.
 
 <!-- Post-4h seal reference block · 2026-09-22T10:14:00Z END -->
+
+---
+
+## Turn 4 sub-slice 4j SEAL · post-CP-TENANT-SEPARATION wave-close reference block · 2026-02-XXT00:30:00Z
+
+### baseline_failures.json
+- rel path: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+- **sha256 THIS-SEAL**: `6b1e2395f34f7ebe655dc93e85ca3e58d0fc4add8b77488643e5c0a295a7c3f3`
+- sha256 pre-4j: `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e` (post-4h · unchanged through 4i state-only)
+- **counts_at_baseline.passed: 6080** (was 6072 · +8 measured for CP-TENANT-SEPARATION 8 new invariants)
+- **invariants_enforced_when_baseline_guard_1.passed_floor: 6080** (paired · monotonic-up)
+- baseline_failures[] unchanged 5 entries (3 R-91 mirror-drift + 2 v8-substitution transiently-GREEN · retire at 4k CP-R91-RETIRE-SUPERSEDE)
+- ratchet_history entries: 308 (+1 · schema-complete per DQ-09 lesson)
+
+### notes/ORCH_BOOT.md + /app/frontend/public/audit/ORCH_BOOT.md
+- notes copy sha256 THIS-SEAL: `3f2f2f79cf82e4114eda5f2fd5e85563932ed5782114420310f144390bc47222`
+- audit copy sha256 THIS-SEAL: `3f2f2f79cf82e4114eda5f2fd5e85563932ed5782114420310f144390bc47222` (byte-identical)
+- ratchet.passed_floor: 6080 (equals live baseline_failures.json.passed_floor)
+- ratchet.baseline_failures_sha256: `6b1e2395f34f7ebe655dc93e85ca3e58d0fc4add8b77488643e5c0a295a7c3f3` (equals live sha256)
+
+### /app/backend/vendored/extraction_akki/ · vendored twin
+- structural_sha256 THIS-SEAL: `397acf791951ec91dde8b53d350bf055e4b5c26bb2c606cda58f9c78145a2236`
+- file_count: 1012 (was 1005 · +7 = 6 tenant_separation modules + 1 schema)
+- generator: tools/prod_vendor_sync.py deterministic sync tool
+
+### tests/invariants/test_cp_tenant_separation.py
+- rel path: repos/Extraction-Akki/backend/tests/invariants/test_cp_tenant_separation.py
+- 8 tests (SO §2.5 verbatim-docstring per owner card TENANT_SEPARATION.md verbatim)
+- MUST-DO 2..8 + tier-4 forks coverage
+- companion additive package: services.tenant_separation (6 modules)
+
+### Double-sweep stripped-sha256 pre-Commit-A · BASELINE_GUARD=1 PYTHONHASHSEED=0
+- SweepA `20260222T0020Z`: 6083 passed / 1 skipped / 520 warnings in 179.89s · stripped_sha256 `d50373e03b7c763c9b7008e545d92a0ebf11d6b88cc3c29cc07291290a3b16a7`
+- SweepB `20260222T0025Z`: 6083 passed / 1 skipped / 520 warnings in 180.50s · stripped_sha256 `d50373e03b7c763c9b7008e545d92a0ebf11d6b88cc3c29cc07291290a3b16a7`
+- **IDENTICAL byte-for-byte (stripped)**
+
+### 3-repo HEADs post-4j Commit-A landing
+- `/app/assessment_workspace/repos/Extraction-Akki` (programme/track-a): `d2bfb02324bcfb0b98aa78f8b4f47dab5e631a6f`
+- `/app/assessment_workspace` (master): `8998e173d6f24c4c5b1a465facaaa577fb9c9528` (Commit-B) → `<PENDING-4J-CC-master>` (Commit-C fixup)
+- `/app` (main): `68b6956abcc9b3e1d1d53fdb1bac08ee7bd2bf08` (companion) → `<PENDING-4J-CC-appmain>` (Commit-C companion)
+
+### Failed test set THIS-SEAL (all 5 R-91 wrap-subset · transiently GREEN in real bytes · retire at 4k)
+- tests/invariants/test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell (R-91 mirror-drift · retain at 4k)
+- tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom (R-91 v8-substitution · **RETIRE at 4k** per Fork (a) SPLIT)
+- tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present (R-91 v8-substitution · **RETIRE at 4k** per Fork (a) SPLIT)
+- tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js (R-91 mirror-drift · retain at 4k)
+- tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir (R-91 mirror-drift · retain at 4k)
+
+### DESK_QUEUE tier-4 forks banked THIS-SEAL
+- **DQ-19** · APPROVING AUTHORITY · RMS · named-but-unseated · custody-material pending R-104 (P1 · owner-exclusive · recommendation: option (a) custody drop)
+- **DQ-20** · APPROVING AUTHORITY · DIGICOW · named-but-unseated · custody-material pending R-104 (P1 · owner-exclusive · recommendation: option (a) custody drop)
+
+<!-- STATE/PINS.md · post-4j wave-close reference block appended · 2026-02-XXT00:30:00Z END -->

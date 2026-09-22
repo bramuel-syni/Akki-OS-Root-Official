@@ -26536,3 +26536,73 @@ None this-slice (state-only · no invariant delta · no ratchet delta).
 Standing bounds unchanged: zero push · terminal pytest+curl only · no `testing_agent` STRICTLY BANNED · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6072 UNCHANGED · HF-HOLD SEC-2026-09-12-01 · R-101 preserved WHAT partially honored (mirror done at 4h · retirement leg deferred per R-105 to DQ-18) · R-102 productized-or-honest-gap satisfied · R-103 amendment applied (autonomous forks · annotated · Continuity Bundle regen deferred + DQ-18 deferred + Hygiene null-observation) · R-104 approving authorities await PHASE 2 · R-105 folded.
 
 <!-- Turn 4 sub-slice 4i · state-only 3-commit seal · Commit-B · 2026-09-22T10:22:00Z END -->
+
+---
+
+## OWNER RULING · Turn 4 sub-slice 4j GO + PRIN-1 refinement + drill-receipt pruning approval (verbatim · 2026-02-XX in-session)
+
+Banked per SO §2 "Every owner ruling is banked verbatim in STATE/DECISIONS.md BEFORE any action is taken on it."
+
+**Owner text (verbatim in-session, in reply to agent 4j plan confirmation)**:
+
+> "§6.8 — proceed exactly as planned. 4j = PHASE-2 open primary + DQ-18 fold-in if it fits §6.4 (else split to 4k per your fork a). No override on the PRIN-1 authorities — admit as named-but-unseated records (names + roles only; identity details arrive only via the custody path per R-104; controlled-request routing testable on AKKI-TEST synthetics meanwhile). Forks (a)(b)(c) all approved. On (c) disk pressure: pruning old drill receipts per §6.5 is approved, and prefer staging any large transient artifacts on the / overlay (75G free) rather than /app. Continue without check-ins per R-103; report at seal boundaries."
+
+**Effect on 4j scope (all discipline-compatible; scope-frozen SO §6.4 NOTHING-BEYOND)**:
+
+1. **§6.8 authority reaffirmed** — 4j opens on 4i seal without waiting; §6.8.1 "the next item opens on the seal of the current one." Report-and-continue at 4j seal boundary; no check-in mid-slice.
+
+2. **PHASE-2 open primary** — CP-TENANT-SEPARATION opens per card `TENANT_SEPARATION.md` (card_sha256 `3aefe137ebf33ac86e4a7a21603a7d5fee9f276009eab69416a097375d5e24dc` unchanged). 8 planned invariants author at wave-open + 8 tests turn RED-first → GREEN → double-green byte-identical BASELINE_GUARD=1 sweep.
+
+3. **PRIN-1 refinement — named-but-unseated records**: PHASE-2 admits the four tenants + their principals but seats the DAP-14 named-approving-authority slot with "named-but-unseated" records (names + roles only). Identity details (public-key material, MFA anchors, contact modality) arrive ONLY via the custody path per R-104 (§4.1 §F sha-pin-at-intake). Controlled-request routing (DAP-15 first-decision-wins) is testable on AKKI-TEST synthetics meanwhile — the wave does NOT require live custody-drop admission before the seal lands.
+   - **PRIN-2 named-authority admission** is satisfied by the roster carrying named-but-unseated principals (name + role · zero identity-material fields).
+   - **DAP-14** named-approving-authority holds by construction for live controlled requests against RMS/DigiCow until identity material arrives per custody. **AKKI-TEST** synthetics exercise the routing without triggering the hold.
+   - Discipline-compatible: preserves the two tier-4 forks (DQ-19 · DQ-20) — the forks close on identity-material admission at future slice, not on the roster admission at 4j.
+
+4. **DQ-18 fold-in decision — SPLIT to 4k per Fork (a)**:
+   - Agent autonomous evaluation: DQ-18 (partial-retirement of 2 v8-substitution baselines via NEW additive superseding invariant + 4-leg retirement + milestone SEALED bump) requires ≥250 new invariant lines + baseline drain + annotation drain + ratchet bump 6072→6074 + card frontmatter bump. Combined with PHASE-2 8-invariant authoring + additive `services/platform_operator/*` module for MUST-DO 6 + tier-4 fork bank at MUST-DO 4 + oversight-screen surface additivity at MUST-DO 5, folding both into 4j exceeds SO §6.4 NOTHING-BEYOND slice discipline.
+   - **AUTONOMOUS RECOMMENDATION-EXECUTED per Fork (a) approval**: 4j = PHASE-2 open primary only. 4k = CP-R91-RETIRE-SUPERSEDE dedicated slice (pre-PHASE-3 CENSUS PRODUCTIZATION). Reversible fork · annotated · preserves R-101 preserved WHAT partial (mirror done at 4h · retirement leg to 4k).
+
+5. **Forks (a)/(b)/(c) approved**:
+   - (a) SPLIT if 4j+DQ-18 exceeds §6.4 — EXECUTED, see 4 above.
+   - (b) Canon-vs-canon tension surface at RED-first authoring — bank fork per §6.5 and CONTINUE per R-103.
+   - (c) Disk pressure fallback — approved: prune old drill_receipts (retain last 5 slices) + prefer / overlay (75G free) for large transient artifacts; /app disk currently 91% used, 974MB free.
+
+6. **Drill-receipt pruning approval** — §6.5 authority to prune drill_receipts (retain last 5 slice-worth of receipts on /app; older ones can archive to / overlay if needed). Preserves seal-file receipts (immutable per SO §3.3 R-5).
+
+**Applied in this-turn 4j Commit-A/B/C sequence per §6.8 report-and-continue**.
+
+**Boot-invariant same-seal cure at this-boundary**:
+- Test `test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom` RED at 4i-tail (last 5 non-empty lines missing pointer line; 4i state-only seal appended `<!-- END -->` HTML comment as tail).
+- Cure: append `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law` line at true DECISIONS.md tail. Additive-only per §3.8. Land IN this-same-append so the pre-Commit-A double-green sweep can gate cleanly at 5-failed / 6072-passed.
+- Standing-lesson banked: state-only §3.3 3-commit seals MUST re-run boot-invariant subset (test_orch_boot + test_standing_orders_present + test_objective_card_pinned + test_seal_cites_card) post-Commit-B, before declaring seal complete. This-cure retroactively closes 4i-tail drift.
+
+Standing bounds unchanged: zero push · terminal pytest+curl only · no `testing_agent` STRICTLY BANNED · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6072 UNCHANGED · HF-HOLD SEC-2026-09-12-01 · DQ-17 owner-side rotation OPEN · DQ-13 owner-side rotation OPEN.
+
+<!-- OWNER RULING BANKED · Turn 4 sub-slice 4j GO + PRIN-1 named-but-unseated + fork approvals · 2026-02-XX · same-seal cure DECISIONS-pointer-tail END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## Turn 4 sub-slice 4j · Commit-C fixup · R-6 boundary regen · 2026-02-XXT00:35:00Z
+
+Banks Commit-B sha for the 4j SEAL boundary per SO §7 R-1 and R-6 mandate. All three of (a) DECISIONS.md, (b) NEXT.md, (c) RESUME.md now carry the sha for the SEALED Commit-B; `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` advances to this-Commit-B; `heads_last_sealed.code_repo.head` advances to 4j Commit-A.
+
+**SEAL COMMIT SHAs (Turn 4 sub-slice 4j)**:
+- **code Commit-A (programme/track-a)**: `d2bfb02324bcfb0b98aa78f8b4f47dab5e631a6f` (short `d2bfb023`)
+- **/app main companion Commit-A**: `68b6956abcc9b3e1d1d53fdb1bac08ee7bd2bf08` (short `68b6956a`)
+- **state Commit-B (master)**: `8998e173d6f24c4c5b1a465facaaa577fb9c9528` (short `8998e173`)
+- **state Commit-C fixup (master)**: this-commit (advances heads_last_sealed to above shas)
+- **/app main Commit-C companion**: NEXT-STEP (audit ORCH_BOOT byte-identical mirror sync post-fixup)
+
+**Byte-identical mirror attestations at Commit-C fixup**:
+- notes/ORCH_BOOT.md sha256 `e9c472a5084accfd75146057d3f4f90b5f011fb6df2e9e2ada1a3c0de5539d9a`
+- /app/frontend/public/audit/ORCH_BOOT.md sha256 `e9c472a5084accfd75146057d3f4f90b5f011fb6df2e9e2ada1a3c0de5539d9a` (byte-identical to notes copy pre-Commit-C companion; will be re-mirrored at /app companion Commit-C)
+
+**Ratchet at fixup**: passed_floor `6080` · baseline_failures.json sha256 `6b1e2395f34f7ebe655dc93e85ca3e58d0fc4add8b77488643e5c0a295a7c3f3` · both fields UNCHANGED from Commit-B.
+
+**test_orch_boot.py invariants at fixup**: `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` GREEN post-this-fixup-bank (state_repo.head + code_repo.head both banked in DECISIONS/NEXT/RESUME/PINS per R-6 discipline).
+
+<!-- Turn 4 sub-slice 4j Commit-C fixup · R-6 boundary regen · 2026-02-XXT00:35:00Z END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
