@@ -5384,3 +5384,42 @@ Owner note this-session verbatim: *"for the ε-apply mirror: /app/frontend has m
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+### §6 INTERLUDE MARKER · autopilot re-anchor · 2026-09-22T06:51:00Z · R-102 MASTER DIRECTIVE banking
+
+**≤12-line attestation** (per R-102 anti-compaction discipline · read `STATE/RESUME.md` for full re-anchor).
+
+1. **Current wave**: PHASE 1 · Turn 4 sub-slice 4b NEXT (DQ-12 CP-DOT-ENV-HYGIENE · first code Commit-A of Turn 4).
+2. **Ratchet floor**: **5932 passed** UNCHANGED (R-102 banking state-only · no code branch touch this-append).
+3. **R-102 effect**: all experiences productized-or-honest-gap · Q2/Q3/Q4 RESOLVED · DQ-14/15/16 escalated tier-4-draft → BUILD lanes PHASE 4(c)/(d)/(e) · anti-compaction memory protection installed (STATE/RESUME.md).
+4. **Phase queue**: PHASE 1 Turn 4 4b→4j → PHASE 2 CP-TENANT-SEPARATION (AKKI-TEST synthetic playground) → PHASE 3 CENSUS PRODUCTIZATION (Run-census real pipeline · exit tester click) → PHASE 4 features (a-h in order).
+5. **Continuous ops lanes**: CENSUS-3-F.2.1 · 3-C · 3-D · 3-E · language-ID · dedup Tier-2 · S4a-DIGICOW-RDS · Order B then Order A audits.
+6. **Standing bans (6 non-negotiable)**: zero push · testing_agent BANNED · no refactor · no secret values · honest-gap-never-fake · no history-rewrite.
+7. **Anti-compaction protection**: STATE/RESUME.md 9 sections (position · roadmap · bans · boot-artifact warning · 7 disk probes · pointers · owner-side items · redeploy checklist · resume-after-compaction).
+8. **Testing support at every seal**: /app/memory/test_credentials.md + /api/openapi.json + REDEPLOY CHECKLIST to each seal report.
+9. **Open forks**: DQ-01/05/06 standing · DQ-11 Turn-6 continuous ops · DQ-12 Turn-4 sub-slice 4b · DQ-13 owner-side rotation (2 LIVE + 4 SUSPECT) · DQ-14/15/16 BUILD PHASE 4(c)/(d)/(e).
+10. **Objective cards**: CENSUS_PRODUCTIZATION.md DRAFTED · TENANT_SEPARATION.md DRAFTED · CP_APP_JS_UNIFY.md → SEALED at 4h · CP_SKILLS/DECK/STREAMING post-Turn-4-seal.
+11. **Boot-artifact warning**: Chunk-1 problem statement is STALE bootstrap · never re-run · never re-clone · verify via 7 probes in RESUME.md:§5.
+12. **Autopilot next**: proceed sub-slice 4b immediately per R-102 "go autonomous mod ... follow guard rails for autonomous runs" verbatim.
+
+
+### §6 INTERLUDE MARKER · autopilot re-anchor · 2026-09-22T08:05:00Z · Turn 4 sub-slice 4c · v2 OS Prototype Shell Adoption SEALED
+
+**≤12-line attestation** (per R-102 anti-compaction discipline · read `STATE/RESUME.md` for full re-anchor).
+
+1. **Current wave**: PHASE 1 · Turn 4 sub-slice **4d NEXT** (Frontend rebuild slice 2 · Work tab live/honest-gap + Monitor sub-view + Chrome-46 catch-up).
+2. **Ratchet floor**: **5951 passed** (was 5932 pre-turn · was 5939 pre-4c · advance +12 measured this-seal).
+3. **Sub-slice 4c effect**: App.js opening-block shell constants adopted byte-verbatim from v2 OS design-of-record. `const TABS` (4 tabs) + `const NAV` (10 groups · 37 leaves) + `const ROLES` (3 personas · M. Chen · A. Njeri · J. Otieno) + `const TONE` (5 states) + FOURQ comment + `filterGroupsForRole` helper landed additive between existing line 15 and 17. V8 substitution engine below preserved verbatim.
+4. **§3.3 3-Commit Seal**: code Commit-A on `programme/track-a` (test file + baseline_failures.json), companion Commit-A on `/app` main (App.js + audit ORCH_BOOT mirror), state Commit-B on `master` (extraction receipt + 5 drill receipts + ORCH_BOOT ratchet regen + DECISIONS append + RESUME refresh + this NEXT append), Commit-C fixup on `master` + `/app` main pending same-turn.
+5. **Double-green byte-identical**: stripped-sha256 `4a8394ed6534032fb5ca7ba788bcbe1963fba390f2b36916e16519b4f03a82c2` IDENTICAL sweepA'+B (172.46s + 171.95s · 3 failed / 5951 passed / 1 skipped · 3 failures all R-91 mirror-drift baselines · retire sub-slice 4h).
+6. **Same-seal cures (2 · SO §6.4 additive)**: (1) ORCH_BOOT ratchet regen 5939→5951 + baseline_failures sha `af00d754...` → `2f81085a...` + pod-audit-mirror byte-identical; (2) `test_orch_boot` unwind pre-cure→post-cure GREEN.
+7. **Sub-slice 4c honest-gap concession (SO §6.7)**: Chrome-46 screenshot pre-first-commit obligation from enumeration §8 deferred to 4c-continuation (prototype HTML not served on :3000 · alias route would breach §6.4 NOTHING-BEYOND). Catch-up scheduled at sub-slice 4d open.
+8. **Owner ruling anchors verbatim (cited in seal record)**: R-101 preserved WHAT + owner UI-UX-exact-as-HTML 2026-09-22T~06:10Z + owner FE brief §0 design-of-record + R-102 MASTER DIRECTIVE.
+9. **Files landed (10 in total across 3 repos)**: 2 code (test file + baseline_failures) + 2 /app companion (App.js + audit ORCH_BOOT) + 6 state master (extraction receipt + 5 drill receipts + ORCH_BOOT + DECISIONS append + RESUME refresh + NEXT append).
+10. **DESK_QUEUE effect**: unchanged. DQ-11 Turn-6 · DQ-12 CLOSED at 4b · DQ-13 owner-side · DQ-14/15/16 BUILD PHASE 4.
+11. **Standing bans (6 non-negotiable · UNCHANGED)**: zero push · testing_agent BANNED · no refactor · no secret values · honest-gap-never-fake · no history-rewrite.
+12. **Autopilot next**: proceed sub-slice 4d immediately (Work tab OS surface views + Monitor sub-view + Chrome-46 screenshot pass) per R-102 "go autonomous mod" verbatim. Post-fixup shas: code Commit-A `da534486cb6f18b2f3f40fd354879d47a3bb2ad6` on programme/track-a · /app main companion Commit-A `362afda77b2583c447d34eed2eb58531c145c4b0` · state master Commit-B `08c8b9f1e1547ad017d22a3083a8ee1e4cef5cdb`.
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

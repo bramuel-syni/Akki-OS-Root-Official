@@ -161,10 +161,10 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Continues**: everything.
 - **Related**: DQ-11 (CP-VEND-HUAWEI-OBS cure module scheduled Turn-6 R-101 sequence) uses the same custody-xlsx-in-memory pattern that CP-DOT-ENV-HYGIENE + rotation enable at scale. Broad sweep verified `HUAWEI_OBS_AK/SK` have **zero hits in tracked disk** (correctly outside git; keys live at `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds`).
 
-## DQ-14 · CP-SKILLS-LAYER (tier-4 · desk recommendation) · owner-side scope decision
+## DQ-14 · CP-SKILLS-LAYER · **BUILD lane · PHASE 4(c) per R-102 MASTER DIRECTIVE** (was: tier-4 draft-only)
 
 - **Surfaced by**: Spec-coverage gap digest 2026-09-22T~06:20Z, digest §3.1 rank-3 finding — **5 of 8 A18.x rules NOT BUILT** (largest single not-built concentration in the 602-rule registry).
-- **Owner ruling relayed to desk 2026-09-22T~06:35Z verbatim** (Q2 of digest §6 Q-bundle): *"owner-side scope decisions, now with the owner (skills layer card, deck engine card, streaming extraction fork). Bank them in DESK_QUEUE as tier-4 items and continue; do not hold anything on them. Note in the queue entries the desk recommendation: open all three objective cards now (drafting cards is cheap and preserves sequencing memory), build order to be ranked by the owner at the next batch."*
+- **Escalated at 2026-09-22T~06:50Z** per owner R-102 verbatim: *"Q2/Q3/Q4 are RESOLVED by this directive — all three objective cards (CP-SKILLS-LAYER, CP-DECK-ENGINE, CP-STREAMING-EXTRACTION) are OPENED and BUILT in this run, not just drafted."*
 - **NOT BUILT rules** (verbatim from Doc 18 · Objective O11 Skills & Rendering):
   - A18.1 *"The provisioning record, reused verbatim"* — NOT BUILT
   - A18.2 *"The slice freezes; it never edits"* — NOT BUILT
@@ -172,40 +172,35 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
   - A18.5 *"Scope is enforced server-side, not by client discipline"* — NOT BUILT
   - A18.8 *"Complete donor code exists; it is not in this build"* — NOT BUILT
 - **BUILT in place** (A18.4, A18.6, A18.7): floor-refusal invariant · async-delivery-adoption · owner-confirmed-concept snapshot parity.
-- **Desk recommendation**: OPEN `STATE/OBJECTIVES/CP_SKILLS_LAYER.md` at next boundary drafting card only (owner-side scope; do not hold anything on it). Sequenced post-CP-TENANT-SEPARATION alongside CENSUS-PRODUCTIZATION per owner's own logic (skills-per-tenant scoping likely needed).
-- **Blocks**: nothing operationally. R-101 ε-apply ships prototype's skills-tab views live-wired-where-real, honest-gap where-not, per owner's Q1 ruling.
+- **Build sequence**: opens PHASE 4(c) after CENSUS-PRODUCTIZATION seal in PHASE 3. Sequenced this way because skills-per-tenant scoping is a consumer of the CP-TENANT-SEPARATION scaffold.
+- **Blocks**: nothing operationally. R-101 ε-apply ships prototype's skills-tab views live-wired-where-real, honest-gap where-not (per R-102 "functional or honest-gap" bar).
 - **Continues**: everything.
-- **Timing**: opens post-CP-TENANT-SEPARATION seal (parallel with CENSUS-PRODUCTIZATION build). Build-order ranked by owner at next batch.
 
-## DQ-15 · CP-DECK-ENGINE (tier-4 · desk recommendation) · owner-side scope decision
+## DQ-15 · CP-DECK-ENGINE · **BUILD lane · PHASE 4(d) per R-102 MASTER DIRECTIVE** (was: tier-4 draft-only)
 
 - **Surfaced by**: Spec-coverage gap digest 2026-09-22T~06:20Z, digest §3.1 rank-4 finding — **14 of 14 DR-R1..R14 rules PARTIAL, 0 BUILT** (whole deck-rendering pipeline scaffolded only).
-- **Owner ruling relayed to desk 2026-09-22T~06:35Z verbatim**: same as DQ-14 (tier-4 · draft card · owner-ranks-build-order).
+- **Escalated at 2026-09-22T~06:50Z** per owner R-102 same-verbatim.
 - **PARTIAL rules** (14 · Deck Engine Spec · deck_engine.md):
   - DR-R1 *"One backend rendering service · input DeckSpec_v0, output a deck"* — PARTIAL
   - DR-R2 *"Determinism is a contract: identical (spec, token version, engine version) MUST produce byte-identical output"* — PARTIAL
   - DR-R3 *"Charts render as engine-generated SVG from plate law — no client-side charting runtime"* — PARTIAL
   - DR-R4 *"DeckSpec_v0 — a frozen contract (crosses executive app + OS boundaries)"* — PARTIAL
   - DR-R5..R14 · fail-closed validation + engine guarantees + mechanical lint + versioned token sets + HTML/PDF delivery + metering + backend-only parallel-safe pattern — all PARTIAL.
-  - DR-R10, DR-R13 additionally flagged `STATEMENT UNRECOVERED — extraction artefact (RD-16)` — source `deck_engine.md` not on ruling desk; verbatim restoration needed before build.
-- **Desk recommendation**: OPEN `STATE/OBJECTIVES/CP_DECK_ENGINE.md` at next boundary drafting card only. Include RD-16 note (restore verbatim source before authoring DR-R10 + DR-R13). Sequenced independently — deck rendering is a separate rendering-service subsystem, no tenant-scoping dependency in the same way as CENSUS/SKILLS.
-- **Blocks**: nothing operationally. R-101 ε-apply ships prototype's Documents/Deck tab as UI-only (backend deck-render call raises honest-gap since DR-R1..R14 PARTIAL); user sees the tab but the "generate deck" button lands the honest-gap pattern.
-- **Continues**: everything.
-- **Timing**: build-order ranked by owner at next batch. Card open is cheap and preserves sequencing memory.
+  - DR-R10, DR-R13 additionally flagged `STATEMENT UNRECOVERED — extraction artefact (RD-16)` — source `deck_engine.md` restore verbatim before build.
+- **Build sequence**: opens PHASE 4(d) after PHASE 4(c). Independent of tenant-separation (deck rendering is a service · no per-tenant birth constraint).
+- **Exit criteria**: user clicks Documents/Deck tab · asks for a deck (DeckSpec_v0 input) · engine renders HTML/PDF byte-deterministically · delivered per prototype.
 
-## DQ-16 · CP-STREAMING-EXTRACTION-FORK (tier-4 · desk recommendation) · owner-side scope decision
+## DQ-16 · CP-STREAMING-EXTRACTION · **BUILD lane · PHASE 4(e) per R-102 MASTER DIRECTIVE** (was: tier-4 draft-only fork)
 
 - **Surfaced by**: Spec-coverage gap digest 2026-09-22T~06:20Z, digest §3.1 rank-6 finding — **4 of 4 SE-1..SE-4 rules PARTIAL** (real-time ASR streaming not implemented; batch-only ships).
-- **Owner ruling relayed to desk 2026-09-22T~06:35Z verbatim**: same as DQ-14 (tier-4 · draft card · owner-ranks-build-order).
+- **Escalated at 2026-09-22T~06:50Z** per owner R-102 same-verbatim.
 - **PARTIAL rules** (4 · SV extension · Streaming extraction):
   - SE-1 *"Streaming extraction is a named second mode of §17.4a, sharing its tokenized representation and Character Register outputs"* — PARTIAL
   - SE-2 *"Candidate: NVIDIA Nemotron ASR Streaming — cache-aware, 40 language-locales, language-ID conditioning built in"* — PARTIAL
-  - SE-3 *(unrecovered? not visible in extract; assumed part of set)* — PARTIAL
+  - SE-3 *(unrecovered in extraction · needs canon verbatim restore)* — PARTIAL
   - SE-4 *"Methodology, not a model: compact model tuned by register normalization against the Character Register"* — PARTIAL
-- **Desk recommendation**: OPEN as **fork behind CENSUS-3-F.2.1 live-OBS-bind slice** at `STATE/OBJECTIVES/CP_STREAMING_EXTRACTION.md`. CENSUS-3-F.2.1 already streams (OBS audio → GPU) so extending the same runtime layer to streaming ASR (SE-1..4) is architecturally closer than a standalone objective. Sequenced post-CP-VEND-HUAWEI-OBS (Turn-6 R-101 sequence) which unblocks CENSUS-3-F.2.1 live-bind.
-- **Blocks**: nothing operationally. R-101 ε-apply ships prototype's audio extraction UI live-wired to batch pipeline (existing) + honest-gap where a streaming control appears in the prototype.
-- **Continues**: everything.
-- **Timing**: card open cheap; sequenced post-CP-VEND-HUAWEI-OBS + CENSUS-3-F.2.1 live-bind; build-order ranked by owner at next batch.
+- **Build sequence**: opens PHASE 4(e) BEHIND CENSUS-3-F.2.1 live-OBS-bind slice (continuous ops lane · runs after CP-VEND-HUAWEI-OBS DQ-11 cure at Turn-6). SE-1..4 extends the F.2.1 streaming runtime to ASR modality.
+- **Exit criteria**: audio-source registered · live streaming ASR via cache-aware Nemotron (or methodology-equivalent compact model) · Character Register writes preserve tokenized-representation · language-ID conditioning honoured · runtime GREEN per SE-1..4 invariant tests.
 
 ---
 

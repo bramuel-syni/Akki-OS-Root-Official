@@ -25833,4 +25833,335 @@ Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-
 
 ---
 
+## 2026-09-22T06:51:00Z · R-102 · TESTING-READINESS LONG RUN · owner MASTER DIRECTIVE · state master notes-only banking · anti-compaction memory protection installed
+
+### Owner ruling verbatim (2026-09-22T~06:50Z)
+
+> "OWNER MASTER DIRECTIVE — TESTING-READINESS LONG RUN. Owner verbatim: 'We are about to start testing the system so i need all experiences productized and functional. So the gaps can be surfaced. Map out all open task including monitoring and following through on the census. Ensure all in implemented, go autonomous mod, protect against post compaction memory loss, follow guard rails for autonomous runs.' Bank this verbatim as the run's objective ruling (next R-number). §6.8 governs — this message is the plan of record; commence and continue without holds. EFFECT ON OPEN QUESTIONS: Q2/Q3/Q4 are RESOLVED by this directive — all three objective cards (CP-SKILLS-LAYER, CP-DECK-ENGINE, CP-STREAMING-EXTRACTION) are OPENED and BUILT in this run, not just drafted. 'All experiences productized and functional' is the bar: every user journey either works end-to-end or shows the honest-gap pattern — zero fake states — so the owner's testers surface real gaps."
+
+### R-102 effect summary
+
+- **Q2/Q3/Q4 RESOLVED**: DQ-14 CP-SKILLS-LAYER + DQ-15 CP-DECK-ENGINE + DQ-16 CP-STREAMING-EXTRACTION escalate from tier-4 draft-only to **BUILD lanes**. All three objective cards must be OPENED and BUILT in this run.
+- **Bar**: every user journey either works end-to-end or shows honest-gap pattern — zero fake states.
+- **Anti-compaction memory protection**: `STATE/RESUME.md` installed this-banking (single always-current re-anchor rewritten at every seal); ORCH_BOOT anti-forget manifest invariant remains green; 3-bundle Continuity regen at every major seal; NEXT.md ≤12-line attestation maintained; boot-artifact warning banked.
+- **Turn queue unchanged for PHASE 1**: continue Turn 4 sub-slices 4b→4j.
+- **Post-PHASE 1**: PHASE 2 CP-TENANT-SEPARATION → PHASE 3 CENSUS PRODUCTIZATION → PHASE 4 feature build-out (Entitlements → Connect+Commission → Skills → Deck → Streaming → MOAC refusal+rule-change → Watch external-witness → Model Registry+training-runner).
+- **Continuous ops lanes** interleaved: CENSUS-3-F.2.1 · 3-C · 3-D · 3-E · language-ID · dedup Tier-2 · S4a-DIGICOW-RDS · Order B then Order A audits.
+
+### Master Run Plan · 4 phases + continuous ops (banked in RESUME.md §2)
+
+#### PHASE 1 — IN FLIGHT: Turn 4 sub-slices 4b→4j as banked at sub-slice 4a (`5b2c4490`):
+
+- **4b** DQ-12 CP-DOT-ENV-HYGIENE — RED-first 3 invariants + `git rm --cached /app/backend/.env` + `.env.local` untracked-from-birth + supervisor sourcing both — **first code Commit-A of Turn 4**.
+- **4c-4g** Frontend rebuild slices 1-5 (App.js shell+palette+TABS+persona · work · thinklab+admin · build+3rd-party · DAP LATEST 9 view classes).
+- **4h** Mirror sync + retire 5 baselines + retire 5 annotations (retain cp10-still-recent) + milestone_status SEALED.
+- **4i** Double-green + §3.3 3-Commit Seal + 3-bundle Continuity regen + PINS.md sha-pin block.
+- **4j** Post-seal: DQ-14/15/16 escalated to BUILD (per R-102) + CP-TENANT-SEPARATION opens.
+
+#### PHASE 2 — CP-TENANT-SEPARATION (standing GO per owner Part-2 order 2026-09-22T~02:20Z):
+
+- 4 tenants: **RMS · DIGICOW · AKKI-TEST · AUDIT-FIXTURE-20260921**.
+- Per-tenant DAP + oversight console.
+- `akki.data` auto-injected `tenant_id`.
+- Zero-mixing RED-first proofs.
+- Sweep receipt at zero violations sha-pinned.
+- Exit evidence per SO §9.
+- **AKKI-TEST tenant** = owner-tester synthetic playground data · **never RMS/DigiCow content**.
+
+#### PHASE 3 — CENSUS PRODUCTIZATION (pulled immediately post-separation per owner "following through on the census"):
+
+- User-triggered Run-census executes REAL bounded census through real pipeline.
+- Live progress streaming to UI (running card · ETA · transitions).
+- Mid-run agent questions surface as "response required" with answer loop.
+- Results flow into registry surfaces.
+- Per-tenant scoping from birth.
+- GPU-spend capture per census.
+- Scheduled weekly sweep per prototype.
+- **Exit**: tester clicks Run-census on AKKI-TEST and watches a real census complete.
+
+#### PHASE 4 — Feature build-out to "functional or honest-gap" in this order:
+
+- **(a)** Entitlements backend behind dashboard views (usage · seats/keys · top-up · dial editor · BYOK).
+- **(b)** Connect + Commission wizard drawers live-wired to verified endpoints.
+- **(c)** CP-SKILLS-LAYER (A18.1/2/3/5/8 · NOT BUILT block).
+- **(d)** CP-DECK-ENGINE (DR-R1..R14).
+- **(e)** CP-STREAMING-EXTRACTION (SE-1..4 · behind F.2.1 live-OBS).
+- **(f)** MOAC refusal card + rule-change ceremony user-visible.
+- **(g)** Watch external-witness trail.
+- **(h)** Model Registry catalog + training-runner surface honestly scoped to real GPU hosts (akki-vm / akki-vm-ii); if runner cannot be real yet, honest-gap · never simulated.
+
+#### Continuous ops lanes (interleave):
+
+CENSUS-3-F.2.1 live-OBS-bind after CP-VEND-HUAWEI-OBS · CENSUS-3-C MySQL content-axis · 3-D DigiCow RDS + provenance join + contradiction register · 3-E NAS deep walk · language-ID extension to OBS/NAS audio · dedup Tier-2 expansion · S4a-DIGICOW-RDS ingestion adapter · **AUDITS: Order B full run then Order A** (verify 297 BUILT claims; findings feed gap digest).
+
+### Anti-compaction memory protection (owner-mandated · installed this-banking)
+
+Owner ruling verbatim: *"the boot-drift already recurred 3x ... (1) create/maintain STATE/RESUME.md — a single always-current re-anchor document rewritten at EVERY seal ... (2) keep the ORCH_BOOT anti-forget manifest invariant green at every seal ... (3) 3 continuity bundles at every major seal, sha-pinned in PINS.md ... (4) NEXT.md ≤12-line attestation maintained ... (5) if you ever boot into a prompt contradicting the record: run the probes, trust the disk, resume from STATE/RESUME.md — this instruction itself goes into RESUME.md."*
+
+**Landed this-banking:**
+
+- **NEW** `STATE/RESUME.md` — 9-section anti-compaction re-anchor:
+  1. Current run position (phase · turn queue · ratchet floor · HEAD shas).
+  2. Phase roadmap (R-102 master directive verbatim).
+  3. Six standing bans (push/testing_agent/refactor/secrets/fake-states/history-rewrite).
+  4. Boot-artifact warning (Chunk-1 stale bootstrap brief · never re-run).
+  5. Seven disk probes (verifiable via terminal).
+  6. Pointers to STATE/* + custody/* + audit/*.
+  7. Owner-side open items (DQ-01/05/06/13 + rotations).
+  8. Redeploy checklist template (8-step).
+  9. If-you're-reading-this-after-a-compaction (5-step resume procedure).
+
+- ORCH_BOOT anti-forget manifest invariant continues to be enforced via existing state discipline (verified at every §3.3 3-Commit Seal).
+- 3-bundle Continuity regen executes at Turn 4 sub-slice 4i seal boundary (as banked).
+- NEXT.md ≤12-line attestation refreshed this-banking.
+
+### Testing-support obligations (owner-mandated · install at every seal)
+
+- Keep `/app/memory/test_credentials.md` current with portal JWT test principals per tenant (incl. AKKI-TEST seats post-PHASE 2).
+- Keep `/api/openapi.json` complete.
+- Append one-page REDEPLOY CHECKLIST to each seal report (template in RESUME.md §8).
+- Report at every seal per §6.7 with: phase position · ratchet floor · **what a tester can NOW do that they couldn't before** · redeploy checklist.
+
+### DESK_QUEUE effect (this-banking)
+
+- **DQ-14 CP-SKILLS-LAYER** — escalated tier-4-draft → **BUILD lane PHASE 4(c)**.
+- **DQ-15 CP-DECK-ENGINE** — escalated tier-4-draft → **BUILD lane PHASE 4(d)**.
+- **DQ-16 CP-STREAMING-EXTRACTION-FORK** — escalated tier-4-draft → **BUILD lane PHASE 4(e)** (behind F.2.1 live-OBS · Turn-6 continuous ops CP-VEND-HUAWEI-OBS cure precedes).
+- All other DQs unchanged.
+
+### Files landed this-notes-only-banking (state master · not §3.3 3-Commit Seal · no code commit)
+
+- **NEW** `STATE/RESUME.md` — anti-compaction re-anchor.
+- `STATE/DECISIONS.md` (this-append) — R-102 verbatim + effect summary + master run plan + anti-compaction spec + testing-support obligations + DESK_QUEUE effect + canon anchors.
+- `STATE/DESK_QUEUE.md` — DQ-14/15/16 escalation to BUILD lanes.
+- `STATE/PINS.md` — R-102 master directive block (autopilot posture).
+- `STATE/NEXT.md` — ≤12-line attestation refresh.
+
+### Standing bounds unchanged
+
+Zero push · zero remote · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5932** UNCHANGED (state-only notes-only banking · no code branch touch) · HF-HOLD SEC-2026-09-12-01 · DQ-11 dequeued Turn-6 continuous ops · DQ-12 INTO Turn-4 sub-slice 4b · DQ-13 owner-side rotation with 4 SUSPECT fold-ins · DQ-14/15/16 BUILD-tier per R-102 · Structural §3.8 sha-pin `ad0d9439…` · Mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/`.
+
+### Canon anchors verbatim
+
+- Owner ruling this-session (2026-09-22T~06:50Z · TESTING-READINESS LONG RUN MASTER DIRECTIVE · full verbatim above).
+- Owner ruling 2026-09-22T~02:20Z (CP-TENANT-SEPARATION Part-2 · standing GO).
+- Owner ruling 2026-09-22T~06:12Z (R-101 supersede · condition-gating).
+- Owner ruling 2026-09-22T~06:10Z (UI-UX-exact-as-HTML · prototype-wins).
+- Owner FE brief §0 (prototype is design of record) + §2.2 (refusal-copy carve-out).
+- SO §2.5 §3 §3.3 §3.8 §6.4 §6.6 §6.7 §6.8.
+
+### Stop-conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · state-only notes-only banking (not §3.3 3-Commit Seal · not code commit).
+
+### Autopilot next boundary
+
+**Turn 4 sub-slice 4b · DQ-12 CP-DOT-ENV-HYGIENE** — first code Commit-A of Turn 4 on programme/track-a. RED-first 3 invariants + `git rm --cached /app/backend/.env` + `.env.local` untracked-from-birth + supervisor sourcing both + double-green sweep + §3.3 3-Commit Seal. Ratchet 5932 → 5935 (+3 monotonic-up).
+
+<!-- R-102 · TESTING-READINESS LONG RUN · state master notes-only banking · 2026-09-22T06:51:00Z END -->
+
+
+---
+
+## 2026-09-22T07:20:00Z · Turn 4 sub-slice 4b · DQ-12 CP-DOT-ENV-HYGIENE · §3.3 Commit-B state master · code programme/track-a Commit-A `64c08de` + /app main companion Commit-A `6165ba0d9`
+
+### Wave summary
+
+Turn 4 sub-slice 4b of R-101 ε-apply · **first code Commit-A of Turn 4**. Owner ruling R-101 condition (iv) verbatim (banked at `DECISIONS.md:R-101 append` state master `fbcbf1f7`): *"DQ-12 CP-DOT-ENV-HYGIENE (.env untracking + .env.local pattern)"*. Owner ruling R-102 MASTER DIRECTIVE (2026-09-22T~06:50Z at `DECISIONS.md:R-102 append` state master `7faa073a`): TESTING-READINESS LONG RUN + anti-compaction memory protection (`STATE/RESUME.md`).
+
+### Ratchet
+
+- **Previous floor**: 5932 (CENSUS-3-F.2 Commit-A' seal `7170dfa` · 20260922T054000Z).
+- **New floor**: **5939** (+7 measured · 7 new hygiene invariants land GREEN).
+- **baseline_failures.json new sha256**: `af00d7540cf88cffe1b3229af665386655c3213f770b4e2fa4b1dceed3920c2e`.
+- **Double-green byte-identical**: sweepA 3 failed / 5939 passed / 1 skipped / 171.57s + sweepB 3 failed / 5939 passed / 1 skipped / 171.66s · **stripped-sha256 `51eec09bc6d77622f98cd987` IDENTICAL** across A + B.
+
+### 3 failing tests (all R-91 mirror-drift baselines · scheduled retire at sub-slice 4h)
+
+- `tests/invariants/test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell`
+- `tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js`
+- `tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir`
+
+### Files landed this-seal
+
+**Commit-A on programme/track-a `64c08de`** (3 files):
+
+1. **NEW** `backend/services/secret_hygiene/dot_env_hygiene.py` — 130 lines · owner ruling verbatim + LIVE_SECRET_KIND_PATTERNS (6 kinds: EMERGENT_LLM_KEY_or_OPENAI_SK · JWT_SECRET · TIGRIS_SECRET_ACCESS_KEY · HUAWEI_OBS_SK · HuggingFace hf_ · AWS AKIA/ASIA) + 4 verify helpers + shape-only verify_no_secret_kind_in_tracked_env (NO VALUES printed).
+
+2. **NEW** `backend/tests/invariants/test_dot_env_hygiene_guard.py` — 175 lines · 7 tests (3 fabric + 4 hygiene) · owner ruling banked verbatim · `AKKI_POD_MAIN_ROOT` env-var skip guard.
+
+3. **MODIFY** `backend/tests/invariants/baseline_failures.json` — ratchet 5932 → 5939 · new sha256 `af00d754…` · schema-complete ratchet_history entry per DQ-09 standing-lesson.
+
+**/app main companion Commit-A `6165ba0d9`** (3 file operations):
+
+1. **DELETE** `backend/.env` from git tracking (`git rm --cached` · file stays on disk with unchanged 2684 bytes · supervisor sourcing unaffected).
+2. **MODIFY** `.gitignore` — explicit `backend/.env` + `backend/.env.local` rules appended alongside line-88 `.env` catchall.
+3. **NEW** `backend/vendored/extraction_akki/backend/services/secret_hygiene/dot_env_hygiene.py` — byte-identical vendored mirror of spine via `prod_vendor_sync.py`.
+
+**Companion untracked from birth** (not committed · owner-side rotation drop-target):
+- `backend/.env.local` — 0 bytes empty · gitignored by explicit rule `.gitignore:111`.
+
+**Commit-B on state master** (this-commit · state receipts):
+
+1. **STATE/DECISIONS.md** (this-append) — seal record.
+2. **STATE/RESUME.md** — current-position refreshed (phase · turn queue · ratchet floor 5939 · HEAD shas).
+3. **STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md** — SO §6.2 conformance cure (frontmatter + 6 required sections + 10 exit-criteria pytest-node-id citations · card_sha256 `f6ac1022f7b30c2002339596ee77a46cbb5160643ec7253e0fc45bc4defdd9c5`).
+4. **notes/ORCH_BOOT.md** — ratchet 5932 → 5939 + baseline_failures_sha256 `af00d754…`.
+5. **phase0/drill_receipts_dq12_dot_env_hygiene/** — 3 files (drill receipt md + sweepA log + sweepB log).
+
+### Testing-support obligations verified (per R-102 · every seal)
+
+- `/app/memory/test_credentials.md` — unchanged this-seal (portal JWT test principals will update at PHASE 2 CP-TENANT-SEPARATION with AKKI-TEST seats).
+- `/api/openapi.json` — unchanged this-seal (no new endpoints; hygiene invariants only).
+- REDEPLOY CHECKLIST — see §Autopilot next / seal report below.
+
+### Same-seal cures (SO §6.4 NOTHING-BEYOND additive · 3 same-seal cures)
+
+1. **prod_vendor_sync** landed `dot_env_hygiene.py` into vendored tree (`test_vendored_tree_byte_identical_mirror_of_spine` GREEN · new structural_sha256 `22d04d67f47ad152`).
+2. **CENSUS_PRODUCTIZATION.md SO §6.2 conformance** — my R-101 supersede-banking version was missing required sections; cured this-seal with proper frontmatter + 6 sections + 10 exit-criteria citations.
+3. **ORCH_BOOT.md ratchet regen** — `passed_floor: 5932 → 5939` + sha updated + pod-audit-mirror byte-copy to `/app/frontend/public/audit/ORCH_BOOT.md`.
+
+### DESK_QUEUE effect
+
+- **DQ-11 CP-VEND-HUAWEI-OBS** — unchanged; still Turn-6 continuous ops. Broad sweep verified HUAWEI_OBS_AK/SK have zero tracked-disk hits.
+- **DQ-12 CP-DOT-ENV-HYGIENE** — **CLOSED THIS-SEAL**. `.env` untracked; `.env.local` untracked-from-birth; both gitignored; 4 hygiene invariants GREEN + 3 fabric.
+- **DQ-13 EMERGENT_LLM_KEY + JWT_SECRET rotation** — owner-side unchanged; owner now drops rotated values into untracked `backend/.env.local` (zero-risk).
+- **DQ-14/15/16** — unchanged (BUILD lanes PHASE 4(c)/(d)/(e) per R-102).
+
+### REDEPLOY CHECKLIST (owner redeploys `akki.syni.ai` manually · preview green first)
+
+1. `sudo supervisorctl status | grep -E "backend|frontend"` → both RUNNING (verified this-seal: backend uptime unchanged 3h58m+ · frontend uptime unchanged 6h25m+ · no restart from DQ-12 operations).
+2. `curl -sf ${REACT_APP_BACKEND_URL}/api/portal/health` — expected 200 OK (not tested this-seal · DQ-12 is git-tracking-only).
+3. `curl -sf ${REACT_APP_BACKEND_URL}/api/openapi.json` — expected unchanged (no new endpoints this-seal).
+4. `/app/memory/test_credentials.md` — unchanged (portal JWT test principals · AKKI-TEST seats add at PHASE 2).
+5. Front-end preview `${REACT_APP_BACKEND_URL}/` — unchanged (no App.js touch this-seal; frontend rebuild begins sub-slice 4c).
+6. Double-green sweep — DONE THIS-SEAL (sha `51eec09bc6d77622f98cd987`).
+7. No secrets in tracked `/app/backend/.env` — VERIFIED (file untracked; content on disk preserved for supervisor).
+8. **What a tester can NOW do that they couldn't before**: nothing user-visible (this seal is a hygiene invariant · closes DQ-12 owner-side rotation prerequisite). **Sub-slice 4c onward will begin surfacing user-visible changes** as the prototype-wins frontend rebuild lands.
+
+### Canon anchors verbatim
+
+- Owner ruling R-101 condition (iv) verbatim: *"DQ-12 CP-DOT-ENV-HYGIENE (.env untracking + .env.local pattern)"*.
+- Owner ruling R-102 MASTER DIRECTIVE 2026-09-22T~06:50Z (verbatim at `DECISIONS.md:R-102 append` state master `7faa073a`).
+- Owner DQ-11 hygiene probe 2026-09-22T~06:15Z (initial surfacing).
+- Broad hygiene sweep receipt at `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_receipt.md` (Turn 3 state master `7fd19f5d`).
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.3 3-Commit Seal + §3.8 additive-only + §6.2 objective card required sections + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + §6.8 owner-directive scope.
+- DQ-09 standing-lesson (ratchet-history schema-complete).
+
+### Stop-conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · standard §3.3 3-Commit Seal · code + companion + state all landed.
+
+### Autopilot next boundary
+
+**Turn 4 sub-slice 4c · Frontend rebuild slice 1** — App.js shell + palette + 4 TABS + persona filter · byte-verbatim per v2 OS extraction at `phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md:§1.1-§1.5`. Chrome 46 screenshots pre-first-commit. Proceeds per R-102 "go autonomous mod" verbatim.
+
+<!-- Turn 4 sub-slice 4b · DQ-12 CP-DOT-ENV-HYGIENE · state master Commit-B · 2026-09-22T07:20:00Z END -->
+
+
+---
+
+## Turn 4 sub-slice 4c · v2 OS Prototype Shell Adoption · state master Commit-B · 2026-09-22T08:05:00Z
+
+### Seal metadata
+
+- **Wave/turn**: PHASE 1 · Turn 4 · sub-slice 4c · Frontend rebuild slice 1 (App.js opening-block shell constants).
+- **Seal kind**: §3.3 3-Commit Seal.
+- **Ratchet**: **5939 → 5951 (+12 measured)** · schema-complete `ratchet_history` entry per DQ-09 standing-lesson.
+- **baseline_failures.json sha256**: `2f81085a4cc5bb0d7d579745b5695176bbd9edf3bfdb6237c1d5d04f2649a0a6`.
+- **`baseline_failures` list unchanged**: 5 entries (3 R-91 mirror-drift + 2 v8-cascade transiently-GREEN · retire sub-slice 4h).
+- **Preceded by**: DQ-12 seal at state master `86947a7c` · code programme/track-a `64c08de` · /app main `6165ba0d9`.
+- **Double-green**: BASELINE_GUARD=1 PYTHONHASHSEED=0 from `backend/` cwd · sweepA' 172.46s + sweepB 171.95s · both 3 failed / 5951 passed / 1 skipped · stripped-sha256 `4a8394ed6534032fb5ca7ba788bcbe1963fba390f2b36916e16519b4f03a82c2` IDENTICAL.
+- **RED-first witnessed**: 11 failed / 1 passed / 0.73s (right-reason: TABS/NAV/ROLES/TONE/FOURQ/filterGroupsForRole all absent from App.js pre-implementation; fabric test passes as expected).
+- **GREEN post-implementation**: 12 passed / 0.67s isolated · 5951 passed sweep-wide.
+
+### Owner rulings verbatim (cited)
+
+- **R-101 preserved WHAT** (banked `STATE/DECISIONS.md:R-101 append` state master `fbcbf1f7`): *"byte-identical mirror `/app/frontend/{App.js,pages/}` ↔ `pod_shell/frontend/{App.js,pages/}` + 5 baselines → 0 + 5 annotations retire retaining cp10-still-recent + milestone_status flip SCHEDULED→SEALED on `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` + ratchet monotonic-up."*
+- **Owner directive 2026-09-22T~06:10Z**: *"UI/UX architecture and experience flow needs to be exact as the HTML I shared."*
+- **Owner FE brief §0 (2026-09-20T~08:24Z)**: *"The prototype is the design of record ... prototype wins."*
+- **R-102 MASTER DIRECTIVE** (state master `c7f8b3bf`): *"go autonomous mod, protect against post compaction memory loss, follow guard rails for autonomous runs."*
+
+### Files landed
+
+**Code programme/track-a Commit-A (Extraction-Akki)**: 2 files (SO §6.4 NOTHING-BEYOND).
+
+1. **NEW** `backend/tests/invariants/test_v2_os_shell_present_in_runtime_app_js.py` — 12 RED-first invariants (module_fabric + 3 TABS structural + 2 NAV structural + roles_verbatim + tone_verbatim + fourq_verbatim + persona_filter + ordering + design-of-record_ruling_verbatim + enumeration_source_citation).
+2. **MODIFY** `backend/tests/invariants/baseline_failures.json` — ratchet 5939 → 5951 · schema-complete history entry per DQ-09 lesson · `baseline_failures[]` unchanged · new sha256 `2f81085a4cc5bb0d7d579745b5695176bbd9edf3bfdb6237c1d5d04f2649a0a6`.
+
+**/app main companion Commit-A**: 2 files.
+
+1. **MODIFY** `frontend/src/App.js` — additive insertion between existing line 15 (`import CanonCountdown ...`) and existing line 17 (`/** App.js — Wave G4 ... */`). Inserted block: comment header citing owner FE brief §0 + enumeration source path + `const TABS` + `const NAV` (10 groups · 37 leaves incl. performance overlap) + `const ROLES` + `const TONE` + FOURQ comment + `function filterGroupsForRole(tab, roleKey)` + `export { TABS, NAV, ROLES, TONE, filterGroupsForRole }`. V8 substitution engine below (lines ~140 onward pre-shift) preserved verbatim; sealed shell components untouched.
+2. **MODIFY** `frontend/public/audit/ORCH_BOOT.md` — audit mirror ratchet cure (byte-identical to state master `notes/ORCH_BOOT.md`).
+
+**State master Commit-B (assessment_workspace)**: 6 files.
+
+1. **NEW** `phase0/prototype_inventory/20260922T074500Z_v2_os_shell_extraction_for_rebuild.md` — extraction receipt · byte-verbatim source citation to enumeration checklist §1.1-§1.5 · 6 sections (extraction source integrity · bytes-that-land · what-not-touched · new-invariants · green-then-seal cycle · bounds).
+2. **NEW** `phase0/drill_receipts_sub_slice_4c/20260922T074500Z_v2_os_shell_RED_pre.log` — RED-witness receipt (11 failed / 1 passed / 0.73s).
+3. **NEW** `phase0/drill_receipts_sub_slice_4c/20260922T075000Z_v2_os_shell_GREEN_post.log` — GREEN receipt (12 passed / 0.67s).
+4. **NEW** `phase0/drill_receipts_sub_slice_4c/20260922T075500Z_baseline_guard_sweep_pre_cure.log` — pre-cure sweep artefact (4 failed / 5950 passed / 172.35s · retained for audit trail).
+5. **NEW** `phase0/drill_receipts_sub_slice_4c/20260922T080000Z_baseline_guard_sweepA_from_backend.log` — post-cure sweepA' (3 failed / 5951 passed / 172.46s).
+6. **NEW** `phase0/drill_receipts_sub_slice_4c/20260922T080500Z_baseline_guard_sweepB_from_backend.log` — post-cure sweepB (3 failed / 5951 passed / 171.95s · byte-identical to A' at stripped-sha256).
+7. **MODIFY** `notes/ORCH_BOOT.md` — ratchet 5939 → 5951 + baseline_failures_sha256 `af00d754...` → `2f81085a4cc5bb0d7d579745b5695176bbd9edf3bfdb6237c1d5d04f2649a0a6` (pod-audit-mirror byte-identical at `/app/frontend/public/audit/ORCH_BOOT.md`).
+8. **APPEND** `STATE/DECISIONS.md` — this seal record.
+9. **REFRESH** `STATE/RESUME.md` — current-position phase+turn-queue+ratchet-floor-5951+HEAD-shas.
+10. **APPEND** `STATE/NEXT.md` — §6 INTERLUDE MARKER for sub-slice 4c seal boundary.
+
+### Testing-support obligations verified (per R-102 · every seal)
+
+- `/app/memory/test_credentials.md` — unchanged this-seal (portal JWT test principals update at PHASE 2 CP-TENANT-SEPARATION with AKKI-TEST seats).
+- `/api/openapi.json` — unchanged this-seal (no new endpoints; frontend shell constants only).
+- REDEPLOY CHECKLIST — see below.
+
+### Same-seal cures (SO §6.4 additive · 2 same-seal cures)
+
+1. **ORCH_BOOT.md ratchet regen** — `passed_floor: 5939 → 5951` + sha updated + pod-audit-mirror byte-copy verified byte-identical (both at sha256 `ee51df2b3d92d62845adb42323856be4725648511ae00ba5d475fef5ad4f1504`). Precedent: DQ-12 seal same-seal cure 3.
+2. **`test_orch_boot` unwind** — pre-cure sweep showed `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` failed right-reason (ratchet floor 5939 mismatch with post-implementation 5951 count). Post-cure sweep confirms GREEN. Precedent: DQ-12 seal ratchet regen same-seal cure.
+
+### DESK_QUEUE effect
+
+- **DQ-11 CP-VEND-HUAWEI-OBS** — unchanged (Turn-6 continuous ops).
+- **DQ-12 CP-DOT-ENV-HYGIENE** — CLOSED at sub-slice 4b seal.
+- **DQ-13 EMERGENT_LLM_KEY + JWT_SECRET rotation** — unchanged owner-side.
+- **DQ-14/15/16** — unchanged BUILD lanes PHASE 4(c)/(d)/(e) per R-102.
+
+### REDEPLOY CHECKLIST (owner redeploys `akki.syni.ai` manually · preview green first)
+
+1. `sudo supervisorctl status | grep -E "backend|frontend"` → both RUNNING (verified this-seal: backend uptime 4h41m+ pre-cure · frontend uptime 7h15m+ pre-cure · no forced restart from App.js edit — webpack hot reload only · deprecation warnings only).
+2. `curl -sf ${REACT_APP_BACKEND_URL}/api/portal/health` — expected 200 OK (not tested this-seal · sub-slice 4c is frontend-only additive).
+3. `curl -sf ${REACT_APP_BACKEND_URL}/api/openapi.json` — expected unchanged (no new endpoints this-seal).
+4. `/app/memory/test_credentials.md` — unchanged (portal JWT test principals · AKKI-TEST seats add at PHASE 2).
+5. Front-end preview `${REACT_APP_BACKEND_URL}/` — App.js opening-block shell constants land but V8 substitution engine still drives visible render (rebuild slices 4d-4g consume shell constants over subsequent sub-slices).
+6. Double-green sweep — DONE THIS-SEAL (stripped-sha `4a8394ed6534032fb5ca7ba7...`).
+7. No secrets in tracked `/app/backend/.env` — VERIFIED (DQ-12 closure holds).
+8. **What a tester can NOW do that they couldn't before**: read the byte-verbatim v2 OS design-of-record shell (TABS + NAV + ROLES + TONE + FOURQ + `filterGroupsForRole`) in `/app/frontend/src/App.js` between lines 16 and 130. The prototype's design intent is now anchored in code alongside the V8 substitution engine, ready for sub-slices 4d-4g to consume it in incremental React renders. **Sub-slice 4c is the first user-visible-product step of R-101 preserved WHAT.**
+
+### Sub-slice 4c honest-gap concession (SO §6.7 boundary-report discipline)
+
+- **Chrome-46 screenshot pre-first-commit obligation** from enumeration §8 is honestly **deferred to sub-slice 4c-continuation**. The prototype HTML is not currently served on port 3000; setting up a temporary alias route would touch the sealed React tree beyond SO §6.4 NOTHING-BEYOND. The 46-view screenshot pass runs post-4c-first-commit before sub-slice 4d opens. Flagged explicitly per SO §6.7 to prevent silent scope drift.
+
+### Canon anchors verbatim
+
+- Owner ruling R-101 preserved WHAT (banked `STATE/DECISIONS.md:R-101 append` state master `fbcbf1f7`).
+- Owner directive 2026-09-22T~06:10Z (UI-UX-exact-as-HTML).
+- Owner FE brief §0 (2026-09-20T~08:24Z) design-of-record.
+- Owner R-102 MASTER DIRECTIVE (state master `c7f8b3bf`).
+- Enumeration checklist byte-verbatim source at `phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md` (state master `5b2c4490`).
+- DQ-12 CP-DOT-ENV-HYGIENE preceded-immediately (state master `86947a7c`).
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.3 3-Commit Seal + §3.8 additive-only + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + §6.8 owner-directive scope.
+- DQ-09 standing-lesson (ratchet-history schema-complete).
+
+### Stop-conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · standard §3.3 3-Commit Seal · code + companion + state all landed.
+
+### Autopilot next boundary
+
+**Turn 4 sub-slice 4d · Frontend rebuild slice 2** — OS surface views · Work tab (chat LIVE-wire + analyze/documents/tasks/team/performance/board honest-gap) + Monitor sub-view (signals/ideas honest-gap). PLUS: catch-up on Chrome-46 screenshot pre-first-commit obligation deferred at 4c. Proceeds per R-102 "go autonomous mod" verbatim.
+
+<!-- Turn 4 sub-slice 4c · v2 OS prototype shell adoption · state master Commit-B · 2026-09-22T08:05:00Z END -->
+
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

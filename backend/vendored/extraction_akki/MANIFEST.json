@@ -1,5 +1,5 @@
 {
-  "file_count": 1004,
+  "file_count": 1005,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -3253,6 +3253,10 @@
       "sha256": "41a400fcd0ca3207699e36891bf62e3dc58bab6f6a56f60e60d18d369ed2ccee",
       "size_bytes": 16206
     },
+    "services/secret_hygiene/dot_env_hygiene.py": {
+      "sha256": "9ddab2ebf4a88a1885e3a70095db1a64b8114160ec2ec914e946b48e7a6e5a01",
+      "size_bytes": 5174
+    },
     "services/secret_hygiene/hf_token.py": {
       "sha256": "ddfa3322288aa12c667465d5ad45fc56476e3d769d331a01bc2c4a6a7a9acf2f",
       "size_bytes": 5949
@@ -4018,7 +4022,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T05:44:20Z",
+  "generated_at_utc": "2026-09-22T07:13:50Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4032,7 +4036,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "4e584cca11f764c7cc1d6509da5e63c72d06f1861c80d983d7cd34df5a243656",
+  "structural_sha256": "ce1118de8dfe7cef74822ac04442d20f3cd3a16eca4664e145ff4461eb767d9a",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
