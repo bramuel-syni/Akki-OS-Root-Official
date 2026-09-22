@@ -1,0 +1,94 @@
+{
+  "receipt_id": "GPU-LANE-REVERIFY-A-TRIPLE-PRIME-20260922T190000Z",
+  "surfaced_at": "2026-09-22T19:00:00Z",
+  "surfaced_by": "main-agent Autopilot",
+  "trigger": "owner correction: DQ-GPU-SSH-KEYS is NOT an owner ask; custody key already banked, prior probe green; reverify + flip GPU_CONNECT_MODE=real",
+  "standing_order": "SO 6.8 (no GO required); SO §3.8 additive-only (this bank is a receipt-drop, no code touched)",
+  "read_only": true,
+  "supersedes_context": "GPU-LANE-OPEN-20260922T005000Z (this-session-earlier probe of same custody key; re-verified GREEN in this new turn)",
+
+  "credentials_source": {
+    "custody_path_pinned": "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu",
+    "mode_bytes": "0600",
+    "pubkey_fingerprint_ed25519": "SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A",
+    "matches_step1_keygen_receipt": "phase0/keypair_hardening_receipts/20260828T162217Z_step1_keygen.json",
+    "credentials_touched_disk": false,
+    "credentials_committed_to_git": false
+  },
+
+  "reachability_probe": {
+    "akki_vm_public_ip": "41.173.184.244",
+    "akki_vm_tcp_22_reachable": true,
+    "akki_vm_ii_public_ip": "41.173.184.247",
+    "akki_vm_ii_tcp_22_reachable": true
+  },
+
+  "auth_probe": {
+    "method": "ssh -i <custody_key> -o PasswordAuthentication=no -o BatchMode=yes -o StrictHostKeyChecking=no",
+    "akki_vm_auth_result": "OK (pubkey · hostname banner matched 'akki-vm')",
+    "akki_vm_ii_auth_result": "OK (pubkey · hostname banner matched 'akki-vm-ii')"
+  },
+
+  "nvidia_smi_live_capture": {
+    "query_verbatim": "nvidia-smi --query-gpu=index,name,driver_version,memory.total,memory.used,utilization.gpu,power.draw --format=csv,noheader",
+    "captured_at_utc": "2026-09-22T19:00:00Z",
+    "akki_vm": {
+      "hostname_verified_via_ssh": "akki-vm",
+      "gpus": [
+        {"index": 0, "name": "NVIDIA H200", "driver_version": "570.211.01", "memory_total_mib": 143771, "memory_used_mib": 0, "utilization_gpu_pct": 0, "power_draw_w": 76.98},
+        {"index": 1, "name": "NVIDIA H200", "driver_version": "570.211.01", "memory_total_mib": 143771, "memory_used_mib": 0, "utilization_gpu_pct": 0, "power_draw_w": 76.93}
+      ]
+    },
+    "akki_vm_ii": {
+      "hostname_verified_via_ssh": "akki-vm-ii",
+      "gpus": [
+        {"index": 0, "name": "NVIDIA H200", "driver_version": "570.211.01", "memory_total_mib": 143771, "memory_used_mib": 0, "utilization_gpu_pct": 0, "power_draw_w": 76.55},
+        {"index": 1, "name": "NVIDIA H200", "driver_version": "570.211.01", "memory_total_mib": 143771, "memory_used_mib": 0, "utilization_gpu_pct": 0, "power_draw_w": 83.39}
+      ]
+    },
+    "total_gpus_confirmed": 4,
+    "gpu_model_confirmed": "NVIDIA H200",
+    "driver_confirmed": "570.211.01",
+    "vram_per_gpu_confirmed_mib": 143771,
+    "note": "Matches GPU-LANE-OPEN-20260922T005000Z receipt (4x H200 across two hosts) verbatim; wall-clock power values fluctuate normally in idle envelope."
+  },
+
+  "flip_of_pod_env": {
+    "action": "additive backend/.env vars for GPU_CONNECT_MODE=real + AKKI_GPU_HOSTS + per-host {slug}_* config",
+    "backend_env_path": "/app/backend/.env",
+    "env_change_committed_to_git": false,
+    "env_change_tracked_by_git": false,
+    "vars_added_names_only": [
+      "GPU_CONNECT_MODE",
+      "AKKI_GPU_HOSTS",
+      "AKKI_VM_HOST",
+      "AKKI_VM_PORT",
+      "AKKI_VM_USERNAME",
+      "AKKI_VM_HOSTNAME_EXPECTED",
+      "AKKI_VM_SSH_PRIVATE_KEY_PATH",
+      "AKKI_VM_II_HOST",
+      "AKKI_VM_II_PORT",
+      "AKKI_VM_II_USERNAME",
+      "AKKI_VM_II_HOSTNAME_EXPECTED",
+      "AKKI_VM_II_SSH_PRIVATE_KEY_PATH"
+    ],
+    "supervisor_action": "sudo supervisorctl restart backend (env reload)",
+    "note": "SSH_PASSWORD vars intentionally NOT set — server-side password auth is dead per keypair hardening chain 2026-08-28 (phase0/keypair_hardening_receipts/). Key-only auth is the only working method."
+  },
+
+  "dq_gpu_ssh_keys_closure": {
+    "status": "SELF_RESOLVED",
+    "reason": "Custody key + reachability + auth + live nvidia-smi capture ALL confirmed GREEN this turn; the DQ was never an owner ask — it was mis-classified in the prior seal report. Owner correction 2026-09-22T~18:55Z clarified.",
+    "receipt_bank_this_turn": "phase0/gpu_probes/20260922T190000Z_GPU_LANE_REVERIFY_A_TRIPLE_PRIME.json",
+    "kept_open_in_state_pinboard": false
+  },
+
+  "authoritative_pins": {
+    "custody_key_path": "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu",
+    "pubkey_path": "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu.pub",
+    "fingerprint": "SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A",
+    "hosts_slugs": ["akki-vm", "akki-vm-ii"],
+    "hosts_public_ips": {"akki-vm": "41.173.184.244", "akki-vm-ii": "41.173.184.247"},
+    "backend_env_gpu_connect_mode": "real (as of this receipt · post-flip)"
+  }
+}

@@ -27033,3 +27033,34 @@ Code repo `programme/track-a`:
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+<!-- OWNER CORRECTION 2026-09-22T18:55Z · DQ-GPU-SSH-KEYS SELF-RESOLVED · GPU live-lane flip · 2026-09-22T19:00Z BEGIN -->
+
+## OWNER CORRECTION 2026-09-22T18:55Z · DQ-GPU-SSH-KEYS SELF-RESOLVED · GPU live-lane flipped
+
+**Owner correction verbatim**: "CORRECTION on DQ-GPU-SSH-KEYS — this is NOT an owner ask. The GPU-host SSH credentials already exist in custody and were PROVEN working this session: banked key at /app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu (fingerprint SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A), pubkey auth succeeded on BOTH akki-vm (41.173.184.244) and akki-vm-ii (41.173.184.247) — receipt at phase0/gpu_probes/20260922T005000Z_GPU_LANE_OPEN.json (4x H200 verified via nvidia-smi over that exact key; password auth is dead server-side by design, key-only per the 2026-08-28 hardening chain in phase0/keypair_hardening_receipts/). Action: probe the key against both hosts; if it still authenticates (expected), flip GPU_CONNECT_MODE=real, close DQ-GPU-SSH-KEYS as self-resolved with the probe receipt, and land live nvidia-smi capture. Only if the key genuinely fails does it become an owner ask, with the failure evidence."
+
+**Actions this-turn (2026-09-22T19:00Z)**:
+
+1. **Custody key verified** at `/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu` · mode 0600 · fingerprint `SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A` matches the pin in `phase0/keypair_hardening_receipts/20260828T162217Z_step1_keygen.json` verbatim.
+2. **TCP reachability probe** — both hosts 22/tcp open (akki-vm 41.173.184.244 · akki-vm-ii 41.173.184.247).
+3. **SSH pubkey auth probe** — both hosts authenticated via `ssh -i <custody_key> -o PasswordAuthentication=no -o BatchMode=yes ubuntu@<host>`; hostname banners verified `akki-vm` / `akki-vm-ii` respectively.
+4. **Live `nvidia-smi` capture** — BOTH hosts returned 2 NVIDIA H200 rows each (driver 570.211.01 · 143771 MiB VRAM per GPU · idle envelope 76–83W). **4× H200 confirmed** exactly matching prior `phase0/gpu_probes/20260922T005000Z_GPU_LANE_OPEN.json`.
+5. **`/app/backend/.env` additive flip** — appended `GPU_CONNECT_MODE=real` + `AKKI_GPU_HOSTS=akki-vm,akki-vm-ii` + slug env vars (`AKKI_VM_HOST`, `AKKI_VM_PORT`, `AKKI_VM_USERNAME`, `AKKI_VM_HOSTNAME_EXPECTED`, `AKKI_VM_SSH_PRIVATE_KEY_PATH` + `AKKI_VM_II_*` twin). `.env` is `.gitignore`d — never committed. Runtime SSH_PASSWORD intentionally omitted (server-side password auth is dead per the 2026-08-28 keypair-hardening chain; key-only is the only working method).
+6. **End-to-end in-process E2E** — loaded dotenv, called `services.census_autonomy.gpu_spend_capture.capture_gpu_spend()` → returned `{"status": "CAPTURED", "mode": "real", "hosts_captured": ["akki-vm", "akki-vm-ii"], "per_host_raw": {<live redacted nvidia-smi stdout for each host>}, "query": "nvidia-smi --query-gpu=timestamp,name,index,power.draw,utilization.gpu,memory.used --format=csv,noheader"}`. Sealed ssh_seam banked 2 `census_autonomy_gpu_spend_capture` receipts at `phase0/gpu_receipts/20260922T190000Z_akki_vm_census_autonomy_gpu_spend_capture_gpurcp-c84016689c3f.log` + `20260922T190003Z_akki_vm_ii_census_autonomy_gpu_spend_capture_gpurcp-bf9ebb8b431c.log`.
+7. **Probe receipt banked** at `phase0/gpu_probes/20260922T190000Z_GPU_LANE_REVERIFY_A_TRIPLE_PRIME.json`.
+8. **`STATE/RESUME.md §7`** updated: `DQ-GPU-SSH-KEYS` line replaced with `SELF-RESOLVED 2026-09-22T19:00Z` + full evidence chain.
+
+**Closure verdict**: DQ-GPU-SSH-KEYS was mis-classified as an owner-ask in the A''' Commit-A seal report — the credentials had been in custody continuously since 2026-08-28 (verified against the immutable step1_keygen receipt). Owner correction identified the miscall; this turn banked the reverify proof + flipped the pod runtime. The A''' `gpu_spend_capture` module now runs in real-mode `CAPTURED` semantics by default, not `HONEST_GAP_MOCK_MODE`.
+
+**Anomaly note update**: `phase0/drill_receipts_cp_census_autonomy_a_double_prime/anomaly_note.md` amended with Order B audit dependency section (the −2 collection-drift forensic MUST resolve before the Order B audit passes over the 6097 → 6103 → 6109 ratchet range · owner correction directive).
+
+**No code Commit-A this turn**: only `.env` (gitignored · runtime pod config) + state-repo receipts + `STATE/RESUME.md` + `STATE/DECISIONS.md` + `STATE/PINS.md` + `anomaly_note.md` touched. This is a state-only mini-bank (state Commit-B pattern) — not a full 5-commit seal.
+
+**Standing bounds unchanged**: zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next**: PHASE 3 A'''-cont opens (response-required queue + 2 routers + UI response-required-badge) per owner directive: "the drawer advertises response-required; the backing queue + endpoints must exist before anything else — an advertised control with no endpoint is a fake state by another name". Then A'''' data_source fold-in → Phase 4(a-h) → audits → ops lanes → Owner Return Report. Report at seal boundaries.
+
+<!-- OWNER CORRECTION 2026-09-22T18:55Z · DQ-GPU-SSH-KEYS SELF-RESOLVED · GPU live-lane flip · 2026-09-22T19:00Z END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

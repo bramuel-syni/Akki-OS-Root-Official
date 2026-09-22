@@ -41,6 +41,16 @@
 
 Discovery banked here per SO §6.8 END-OF-WAVE format section 4 ("Discoveries not envisioned at planning"). Forensic root-cause of the −2 collection drift is queued as a future desk-lane item — not blocking this seal because monotonic ratchet + subset check + skipped-max invariants all hold.
 
+## Order B Audit Dependency (owner correction 2026-09-22T~18:55Z)
+
+**MUST be resolved before the Order B audit passes over this ratchet range** (6097 → 6103 → 6109). Auditor will trip on the arithmetic mismatch between `counts_at_baseline` totals and observed `collected` if the forensic root-cause is not documented at that boundary. This note IS the standing evidence pointer; the forensic itself must be a dedicated desk-lane sweep that either:
+
+1. Locates the 2 tests that disappeared from collection between the A' seal snapshot and the A'' Sweep A (candidate hypothesis: parametrized-test whose cardinality is a function of a filesystem directory that changed size between seals — e.g. a receipts-manifest parametrize), OR
+2. Restates the A' seal `counts_at_baseline` snapshot arithmetic (legacy_conditional_skips vs skipped semantics) such that the pre/post totals reconcile, OR
+3. Retroactively adjusts the frozen counts_at_baseline snapshot with owner sign-off (breaking the "never rewrite history" bound only under explicit owner ruling).
+
+Until one of those three closes, the Order B audit MUST NOT be run over this ratchet range without banking this pointer in the auditor's exceptions log.
+
 ## Bank
 
 - Sweep-A log: `sweep_A_2026-09-22.log`

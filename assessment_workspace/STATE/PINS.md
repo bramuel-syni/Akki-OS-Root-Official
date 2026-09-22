@@ -1159,3 +1159,46 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - **DQ-GPU-SSH-KEYS** — **P1** · Owner-side SSH credentials for `akki-vm` (41.173.184.244) + `akki-vm-ii` (41.173.184.247) needed to flip `GPU_CONNECT_MODE=real` and unlock live nvidia-smi capture. Currently sealed ssh_seam has no configured hosts under real mode → mock-mode returns HONEST_GAP_MOCK_MODE per owner directive (no fabrication).
 
 <!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A''' Commit-A reference block · 2026-09-22T18:50:00Z END -->
+
+<!-- STATE/PINS.md · OWNER CORRECTION 2026-09-22T18:55Z · DQ-GPU-SSH-KEYS SELF-RESOLVED · state-only mini-bank · 2026-09-22T19:00:00Z BEGIN -->
+
+## OWNER CORRECTION 2026-09-22T18:55Z · DQ-GPU-SSH-KEYS SELF-RESOLVED · GPU live-lane flipped
+
+**Owner correction**: DQ-GPU-SSH-KEYS was mis-classified as an owner-ask in the A''' Commit-A seal report; custody key was already banked and proven working this session. Owner corrective action: probe key against both hosts; if authenticated (expected), flip GPU_CONNECT_MODE=real, close DQ as self-resolved with the probe receipt.
+
+### Custody key pins (verbatim · unchanged since 2026-08-28)
+- Path: `/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu`
+- Mode: `0600`
+- Fingerprint: `SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A`
+- Pubkey: `/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu.pub`
+- Comment: `akki-gpu-hosts-seam-key-20260828T162217Z` (ED25519)
+- Provenance: `phase0/keypair_hardening_receipts/20260828T162217Z_step1_keygen.json`
+
+### GPU-host lane pins (post-flip)
+- `akki-vm` — public IP `41.173.184.244` · port 22 · user `ubuntu` · 2× NVIDIA H200 · driver `570.211.01` · 143771 MiB VRAM/GPU
+- `akki-vm-ii` — public IP `41.173.184.247` · port 22 · user `ubuntu` · 2× NVIDIA H200 · driver `570.211.01` · 143771 MiB VRAM/GPU
+- Total: **4× H200 · 575084 MiB VRAM total across both hosts**
+
+### `/app/backend/.env` runtime state (gitignored · not committed)
+- `GPU_CONNECT_MODE=real`
+- `AKKI_GPU_HOSTS=akki-vm,akki-vm-ii`
+- `AKKI_VM_HOST=41.173.184.244` · `AKKI_VM_PORT=22` · `AKKI_VM_USERNAME=ubuntu` · `AKKI_VM_HOSTNAME_EXPECTED=akki-vm` · `AKKI_VM_SSH_PRIVATE_KEY_PATH=<custody_key_path>`
+- `AKKI_VM_II_HOST=41.173.184.247` · `AKKI_VM_II_PORT=22` · `AKKI_VM_II_USERNAME=ubuntu` · `AKKI_VM_II_HOSTNAME_EXPECTED=akki-vm-ii` · `AKKI_VM_II_SSH_PRIVATE_KEY_PATH=<custody_key_path>`
+- `AKKI_*_SSH_PASSWORD`: intentionally UNSET (server-side password auth dead per 2026-08-28 hardening; key-only is the only working method).
+
+### E2E CAPTURED proof (in-process)
+- Call: `services.census_autonomy.gpu_spend_capture.capture_gpu_spend()`
+- Return: `{"status": "CAPTURED", "mode": "real", "hosts_captured": ["akki-vm", "akki-vm-ii"], "per_host_raw": {<live redacted nvidia-smi stdout>}, "query": "nvidia-smi --query-gpu=timestamp,name,index,power.draw,utilization.gpu,memory.used --format=csv,noheader"}`
+- Sealed ssh_seam auto-banked receipts:
+  - `phase0/gpu_receipts/20260922T190000Z_akki_vm_census_autonomy_gpu_spend_capture_gpurcp-c84016689c3f.log` (rc=0 · 3.196s · 2 H200 rows)
+  - `phase0/gpu_receipts/20260922T190003Z_akki_vm_ii_census_autonomy_gpu_spend_capture_gpurcp-bf9ebb8b431c.log` (rc=0 · 3.049s · 2 H200 rows)
+- Probe receipt: `phase0/gpu_probes/20260922T190000Z_GPU_LANE_REVERIFY_A_TRIPLE_PRIME.json`
+
+### DQ closure
+- `DQ-GPU-SSH-KEYS` status: **SELF_RESOLVED** (was P1 · mis-classified as owner-ask in the A''' seal report; owner correction 2026-09-22T~18:55Z clarified · closure receipt above)
+- **Removed** from `RESUME.md §7 OWNER-EXCLUSIVE OPEN` list; anchored here in PINS for cold-reader continuity.
+
+### Order B audit dependency (owner correction 2026-09-22T~18:55Z)
+- `phase0/drill_receipts_cp_census_autonomy_a_double_prime/anomaly_note.md` amended with Order B audit dependency section: the −2 collection-drift forensic MUST resolve before the Order B audit passes over the 6097 → 6103 → 6109 ratchet range. Three resolution paths documented in the note.
+
+<!-- STATE/PINS.md · OWNER CORRECTION 2026-09-22T18:55Z · DQ-GPU-SSH-KEYS SELF-RESOLVED · state-only mini-bank · 2026-09-22T19:00:00Z END -->
