@@ -14,6 +14,124 @@ import ConnectResources from "@/pages/dap/ConnectResources";
 import Entitlement from "@/pages/dap/Entitlement";
 import CanonCountdown from "@/pages/dap/CanonCountdown";
 
+// ---------------------------------------------------------------------------
+// v2 OS Prototype Shell · Design-of-Record Constants
+// (byte-verbatim per phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md §1.1-§1.5)
+// R-101 preserved WHAT · e-apply Turn 4 sub-slice 4c · 2026-09-22T07:45:00Z
+//
+// Owner FE brief §0 verbatim (2026-09-20T~08:24Z):
+//   "The prototype is the design of record ... prototype wins."
+//
+// Owner directive verbatim 2026-09-22T~06:10Z:
+//   "UI/UX architecture and experience flow needs to be exact as the HTML I shared."
+//
+// This block is ADDITIVE (SO §3.8): the V8 substitution engine below is
+// preserved verbatim. The shell constants are consumed by sub-slices 4d-4g
+// as the OS surface + DAP LATEST rebuild lands over the V8 iframe path.
+// ---------------------------------------------------------------------------
+
+const TABS = [
+  { key:'work',  label:'Work',           groups:['workstudio','thinklab','collab','monitor'] },
+  { key:'build', label:'Build',          groups:['build','buildlib'] },
+  { key:'apps',  label:'3rd Party Apps', groups:[] },
+  { key:'admin', label:'Admin',          groups:['estate','approvals','watch'], right:true }
+];
+
+const NAV = [
+  { key:'workstudio', label:'WorkStudio', tab:'work', items:[
+      { key:'chat',        label:'Chat' },
+      { key:'analyze',     label:'Data Suite' },
+      { key:'documents',   label:'Documents' },
+      { key:'tasks',       label:'My Work' },
+      { key:'team',        label:'My Team' },
+      { key:'performance', label:'Company Goals' },
+      { key:'board',       label:'Board' }
+  ]},
+  { key:'thinklab', label:'ThinkLab', tab:'work', items:[
+      { key:'clarity',     label:'Seek Clarity' },
+      { key:'strategy',    label:'Develop Strategy' },
+      { key:'hypothesis',  label:'Test Hypothesis' },
+      { key:'perspective', label:'Get Perspective' }
+  ]},
+  { key:'collab', label:'Collab', tab:'work', items:[
+      { key:'mentions', label:'Mentions' },
+      { key:'emails',   label:'Emails' },
+      { key:'projects', label:'Projects/Tasks' },
+      { key:'hrstuff',  label:'HR Stuff' }
+  ]},
+  { key:'monitor', label:'Monitor', tab:'work', items:[
+      { key:'performance', label:'Performance' },
+      { key:'signals',     label:'Signals' },
+      { key:'ideas',       label:'Ideas' }
+  ]},
+  { key:'estate', label:'Manage Estate', tab:'admin', items:[
+      { key:'estate',     label:'Registry' },
+      { key:'govern',     label:'Shield' },
+      { key:'greymirror', label:'Grey Mirror' }
+  ]},
+  { key:'approvals', label:'Approvals', tab:'admin', items:[
+      { key:'spendreq',       label:'Spend Requests' },
+      { key:'rulesupd',       label:'Rules Updates' },
+      { key:'modeladmission', label:'Model Approval' }
+  ]},
+  { key:'watch', label:'The Watch', tab:'admin', items:[
+      { key:'wstate',     label:'State' },
+      { key:'wrecord',    label:'Record' },
+      { key:'wunder',     label:'Under Watch' },
+      { key:'wdecisions', label:'Decisions' }
+  ]},
+  { key:'build', label:'Build Your Resources', tab:'build', items:[
+      { key:'train',      label:'Train Models' },
+      { key:'agentbuild', label:'Build Agents' },
+      { key:'buildskill', label:'Build Skill' },
+      { key:'extract',    label:'Extract Data' }
+  ]},
+  { key:'buildlib', label:'Your Resources', tab:'build', divider:true, items:[
+      { key:'youragents', label:'Agents' },
+      { key:'yourmodels', label:'Models' }
+  ]},
+  { key:'thirdparty', label:'3rd Party Apps', tab:'apps', items:[
+      { key:'appsnew',       label:'New' },
+      { key:'appsfrequent',  label:'Frequent' },
+      { key:'appsconnected', label:'Connected' },
+      { key:'appsrequests',  label:'Requests' }
+  ]}
+];
+
+const ROLES = [
+  { key:'compliance', label:'Compliance Owner', person:'M. Chen',   dept:'Compliance', initials:'MC', groups:['estate','approvals'] },
+  { key:'watch',      label:'Watch Officer',    person:'A. Njeri',  dept:'The Watch',  initials:'AN', groups:['watch'] },
+  { key:'operator',   label:'Operator',         person:'J. Otieno', dept:'Operations', initials:'JO', groups:['estate'] }
+];
+
+const TONE = {
+  plain:  { bg:'#fff',                       border:'var(--line)',    color:'var(--ink)'  },
+  held:   { bg:'rgba(176,141,46,.07)',       border:'var(--brass)',   color:'var(--ink)'  },
+  refused:{ bg:'rgba(184,57,91,.06)',        border:'var(--oxblood)', color:'var(--ink)'  },
+  failed: { bg:'var(--surface2)',            border:'var(--line)',    color:'var(--ink3)' },
+  drill:  { bg:'var(--surface)',             border:'var(--line)',    color:'var(--ink2)' }
+};
+
+/* Four-questions surfaces. Rule zero: every block leads with a sentence;
+   measures live behind "see the working". */
+
+// Persona-filter helper · Admin tab shows only groups the current role owns.
+// Enumeration §1.3 line 45 verbatim: "a persona sees only their `groups` in
+// Admin tab; the Watch officer sees only `watch`; the operator sees only
+// `estate`; the compliance owner sees `estate + approvals`. Non-admin tabs
+// (work, build, apps) are unconditional."
+function filterGroupsForRole(tab, roleKey) {
+  const role = ROLES.find(r => r.key === roleKey);
+  const tabDef = TABS.find(t => t.key === tab);
+  if (!tabDef) return [];
+  if (tab !== 'admin' || !role) return tabDef.groups;
+  return tabDef.groups.filter(g => role.groups.includes(g));
+}
+
+// Export the shell constants so upcoming rebuild slices (4d-4g) can consume
+// them without touching the V8 substitution engine below.
+export { TABS, NAV, ROLES, TONE, filterGroupsForRole };
+
 /**
  * App.js — Wave G4 · V8 LITERAL adoption · owner Wave G3 REJECT corrections.
  *

@@ -38,10 +38,10 @@ generator: main-agent Autopilot (CENSUS-3-F Commit-C fixup · state master · R-
 regeneration_reason: census-3-f-2-commit-c-fixup-r-6-boundary-regen-advancing-state-repo-head-02cbaf6b-to-aae0ff81-plus-insert-code-repo-entry-7170dfac-plus-ratchet-already-advanced-pre-commit-a-prime-at-5926-to-5932-plus-owner-f-2-forks-verbatim-banked-plus-dq-11-filed
 
 ratchet:
-  passed_floor: 5932
-  counts_at_baseline_passed: 5932
+  passed_floor: 5951
+  counts_at_baseline_passed: 5951
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: e5e357c70d69272cf33a536f8ec6c1c67475408ee13ad78d6f3a7c754f9ce13c
+  baseline_failures_sha256: 2f81085a4cc5bb0d7d579745b5695176bbd9edf3bfdb6237c1d5d04f2649a0a6
 
 heads_last_sealed:
   state_repo:
