@@ -1,29 +1,28 @@
 # STATE/RESUME.md — anti-compaction re-anchor (rewritten at EVERY seal)
 
-**Last rewrite:** 2026-09-22T22:52:00Z (**PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · 5-Commit-Seal LANDED + Post-seal double-green byte-identical stripped-sha256 `3be2ed081c1ef7c62f89348630a2eb8d46f1d0f3f865a3389197ac0bc13813fe` IDENTICAL both 6160 passed / 1 skipped / 0 failed · ratchet 6150 → 6157 · Commission wizard now LIVE at /os/work/commission**).
+**Last rewrite:** 2026-09-22T23:10:00Z (**PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING · 5-Commit-Seal LANDED · ratchet 6157 → 6160 · Item (b) Connect-half CLOSED as ALREADY-LIVE per R-102 with disk-verifiable conformance receipt · SO §3.8 additive-only measurement-only seal**).
 
 ---
 
 ## 1 · POSITION
 
-- **Phase:** **PHASE 3 CLOSED** (2026-09-22T21:22:00Z owner-ratified). **PHASE 4 (a) CP-COMMISSION-WIZARD-LIVE SEALED THIS-TURN**. PHASE 4 continues.
+- **Phase:** **PHASE 3 CLOSED** · **PHASE 4 (a) + P4-(b-i) SEALED** · PHASE 4 continues.
 - **Turn queue (condensed):**
-  - 4a-4j ✅ · 4k ✅ · PHASE 3 Commit-A + A' + A'' + A''' + A'''-cont-A + A'''' + A''''-cont-A + A'''-cont-B ✅ SEALED · ratchet 6086 → 6150 over PHASE 3.
-  - E2E EXIT PROOF ✅ DELIVERED (state mini-bank `64d322b4`).
-  - PHASE 3 CENSUS PRODUCTIZATION ✅ CLOSED 2026-09-22T21:22:00Z (owner-ratified).
-  - **PHASE 4 (a) CP-COMMISSION-WIZARD-LIVE ✅ SEALED THIS-TURN** — 5 commits: Code Commit-A `032ada9` (programme/track-a · +7 measured · ratchet 6150→6157) · /app companion A `42bab1711` (main · frontend twin + audit + gitlink) · State Commit-B `56461dfa` (master · banks A + companion + baseline_failures_sha256 `bfdfda54...` → `b72166cb323577a81914b2086d03cdb3e00efcc63770d960dbf600745c087ab7`) · State Commit-C fixup `d5be5371` (master · R-6 boundary regen · Banked-Lesson-#1 respected) · /app Commit-C companion `5b4cd68e0` (main · byte-identical audit mirror sync). **Post-seal double-green byte-identical `BASELINE_GUARD=1 PYTHONHASHSEED=0` stripped-sha256 `3be2ed081c1ef7c62f89348630a2eb8d46f1d0f3f865a3389197ac0bc13813fe` IDENTICAL both 6160 passed / 1 skipped / 0 failed / 520 warnings each** (6160 = 6157 floor + 3 R-91 mirror-drift transient GREEN).
-  - **PHASE 4 banked order** (progress this-slice):
-    1. entitlements backend ✅ ALREADY SEALED (21/21 property tests GREEN · router mounted at `/api/portal/entitlement/*`).
-    2. Connect + Commission wizards live · **Commission-half LANDED ✅** (this-slice) · Connect-half deferred pending owner disambiguation.
-    3. CP-SKILLS-LAYER — queued NEXT.
+  - PHASE 3 A' + A'' + A''' + A'''-cont-A + A'''' + A''''-cont-A + A'''-cont-B ✅ SEALED · E2E EXIT PROOF ✅ · PHASE 3 CLOSED 2026-09-22T21:22:00Z.
+  - **PHASE 4 (a) CP-COMMISSION-WIZARD-LIVE ✅ SEALED** (2026-09-22T22:52Z · Commission wizard LIVE at `/os/work/commission` · Code `032ada9` + companion `42bab1711` + State `56461dfa` + Commit-C `d5be5371` + companion-C `5b4cd68e0` · ratchet 6150→6157).
+  - **PHASE 4 (b-i) CP-CONNECT-CONFORMANCE-RULING ✅ SEALED THIS-TURN** (2026-09-22T23:10Z · Item (b) Connect-half CLOSED as ALREADY-LIVE · Code `d6eee5d6` + companion `9f8411716` + State `760ce38f` + Commit-C `6f532a76` + companion-C `216569fc5` · ratchet 6157→6160 · GREEN-first measurement seal · owner ruling: LATER-wins ordering · 2026-09-20 DAP LATEST prototype 4-panel c:key/c:agents/c:compute/c:models shape MATCHES React `ConnectResources` 4-tab `/dap/connect/:tab` shape · legacy `ConnectWizard.jsx` retired-in-place per its own 2026-08-14 docstring · disk-verifiable conformance receipt at `phase0/drill_receipts_cp_connect_conformance_ruling_phase_4_b_i/20260922T2258Z_CONFORMANCE_RECEIPT.md`).
+  - **PHASE 4 banked order** (progress):
+    1. entitlements backend ✅ ALREADY SEALED.
+    2. Connect + Commission wizards live · **Commission-half LANDED** (P4-a) · **Connect-half CLOSED as ALREADY-LIVE** (P4-b-i).
+    3. **CP-SKILLS-LAYER** — queued NEXT (opens next slice · A18.1/2/3/5/8 — registry's biggest NOT-BUILT block: skill provisioning · freeze-not-edit · scope · donor code · productized-or-honest-gap per R-102).
     4. CP-DECK-ENGINE — queued.
     5. CP-STREAMING-EXTRACTION — queued.
     6. MOAC refusal ceremony — queued.
     7. Watch trail — queued.
     8. Model Registry honest-scoped — queued.
   - **Order B → Order A audits** (resolve `-2` collection-drift forensic first).
-  - **Remaining ops lanes** → **BUILD_JOURNAL + OWNER_RETURN_REPORT**.
-- **Ratchet floor: `6157`** (was 6150 pre-P4-a · +7 canonical measured) · baseline_failures_sha256 `b72166cb323577a81914b2086d03cdb3e00efcc63770d960dbf600745c087ab7`.
+  - **BUILD_JOURNAL + OWNER_RETURN_REPORT**.
+- **Ratchet floor: `6160`** (was 6157 pre-P4-b-i · +3 canonical measured GREEN-first) · baseline_failures_sha256 `48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9`.
 
 ## 2 · STANDING (R-102 + R-103 + R-104 + R-105 + R-106 + §6.8)
 
@@ -55,7 +54,7 @@ python3 -c "import json; d=json.load(open('/app/assessment_workspace/repos/Extra
 tail -80 /app/assessment_workspace/STATE/DECISIONS.md && cat /app/assessment_workspace/STATE/NEXT.md
 ```
 
-Expected: probe-7 `{'failed': 3, 'passed': 6157, 'skipped': 1, ...}` · 11 A'''-cont-B UI badge + **7 PHASE-4-a CP-COMMISSION-WIZARD-LIVE invariants** added most-recent.
+Expected: probe-7 `{'failed': 3, 'passed': 6160, 'skipped': 1, ...}` · 11 A'''-cont-B UI badge + 7 P4-a CP-COMMISSION-WIZARD-LIVE + **3 P4-b-i CP-CONNECT-CONFORMANCE-RULING invariants** added most-recent.
 
 ## 6 · POINTERS
 
@@ -78,7 +77,7 @@ Expected: probe-7 `{'failed': 3, 'passed': 6157, 'skipped': 1, ...}` · 11 A'''-
 - **DQ-20** — **P1 · DIGICOW approving authority · named-but-unseated**.
 - **DQ-GPU-SSH-KEYS** — SELF-RESOLVED 2026-09-22T19:00Z.
 - **-2 collection-drift** — P1 forensic queued behind Order B audit.
-- **NEW: Connect-wizard live-ness disambiguation** — banked P1 for next slice. Existing `ConnectResources` at `/dap/connect/:tab` is already live · legacy `ConnectWizard.jsx` retired-in-place per component docstring ("Owner Simplification 2026-08-14"). Owner directive verbatim needed to close the item cleanly.
+- **NEW: Connect-wizard disambiguation** — **RESOLVED THIS-TURN** via P4-b-i CP-CONNECT-CONFORMANCE-RULING · LATER-wins ordering applied · prototype 4-panel shape MATCHES React 4-tab shape · Item (b) Connect-half CLOSED as ALREADY-LIVE per R-102. Follow-on copy-alignment sub-slice deferred (banked-not-blocking).
 - DQ-18 · CP-R91-RETIRE-SUPERSEDE · partially CLOSED at 4k.
 
 ## 8 · SEVEN BANKED LESSONS
@@ -91,23 +90,35 @@ Expected: probe-7 `{'failed': 3, 'passed': 6157, 'skipped': 1, ...}` · 11 A'''-
 6. **ratchet_history entry `passed` field must equal NEW post-seal floor** (matching `counts_at_baseline.passed`), NOT pre-seal floor · authored this-turn after right-reason RED on `test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` (6150 != 6157) cured same-slice.
 7. **`json.dump(indent=2)` drift on `baseline_failures.json`** — prior file was 4-space indented · use `indent=4` on next Commit-A regen to preserve prior format · semantic content unchanged · sha256 pinned in ORCH_BOOT.md matches.
 
-## 9 · SEAL SUMMARY (THIS-TURN P4-a)
+## 9 · SEAL SUMMARY (LAST-TURN P4-a + THIS-TURN P4-b-i)
+
+**P4-a CP-COMMISSION-WIZARD-LIVE** (Commission wizard now LIVE at `/os/work/commission` · ratchet 6150→6157):
+
+| Commit | SHA | Branch |
+|---|---|---|
+| Code Commit-A | `032ada921d8e359ec0c5322d9a354af9f5b973fa` | programme/track-a |
+| /app companion A | `42bab1711a013f489b8fad1d0dd71729be7299f6` | main |
+| State Commit-B | `56461dfa3802ecf4f71e810695d892d33e5e4ab9` | master |
+| State Commit-C fixup | `d5be537165c8d16591e3ea836a7cf408101e7206` | master |
+| /app Commit-C companion | `5b4cd68e06f80995cc2d630283a5ae2e8d89f68a` | main |
+
+**P4-b-i CP-CONNECT-CONFORMANCE-RULING** (Item (b) Connect-half CLOSED as ALREADY-LIVE per R-102 · ratchet 6157→6160):
 
 | Commit | SHA | Branch | Purpose |
 |---|---|---|---|
-| Code Commit-A | `032ada921d8e359ec0c5322d9a354af9f5b973fa` | programme/track-a | 7 new invariants + WorkCommission.jsx + App.js route + baseline_failures.json ratchet 6150→6157 |
-| /app companion A | `42bab1711a013f489b8fad1d0dd71729be7299f6` | main | frontend twin (WorkCommission + App.js) + audit ORCH_BOOT ratchet regen + gitlink advance |
-| State Commit-B | `56461dfa3802ecf4f71e810695d892d33e5e4ab9` | master | banks Commit-A + companion + ratchet advance + baseline_failures_sha256 → `b72166cb...` + drill receipts |
-| State Commit-C fixup | `d5be537165c8d16591e3ea836a7cf408101e7206` | master | R-6 boundary regen · prepends fresh P4-a ORCH_BOOT stanza · Banked-Lesson-#1 respected |
-| /app Commit-C companion | `5b4cd68e06f80995cc2d630283a5ae2e8d89f68a` | main | audit ORCH_BOOT byte-identical mirror sync post state Commit-C |
+| Code Commit-A | `d6eee5d6b94bc6fef28a076459bd41011fdbabbe` | programme/track-a | 3 forward-drift-detector pins + conformance ruling + baseline_failures.json bump |
+| /app companion A | `9f8411716bfc9a1fcd92b87f42a503ee7edb7d39` | main | audit ORCH_BOOT ratchet regen + gitlink advance |
+| State Commit-B | `760ce38f02b607ea686b39098bea056ca8a51230` | master | banks A + companion + drill receipts + baseline_failures_sha256 `48c13b0d...` |
+| State Commit-C fixup | `6f532a767f45d63b1dc296b4867b1f7085320e8c` | master | R-6 boundary regen · fresh P4-b-i stanza · Banked-Lesson-#1 respected |
+| /app Commit-C companion | `216569fc5fea2d3e414372e93037d2875636425d` | main | audit ORCH_BOOT byte-identical mirror sync |
 
-Post-seal double-green byte-identical stripped-sha256 `3be2ed081c1ef7c62f89348630a2eb8d46f1d0f3f865a3389197ac0bc13813fe` IDENTICAL sweep_A/B both 6160 passed / 1 skipped / 0 failed / 520 warnings in ~192s each.
+Pre-Commit-A double-green byte-identical stripped-sha256 `033467633e7e62f8c72b76b92d4467ae1a643a82da42aedb50c168552b58f4a5` IDENTICAL sweep_A/B both 6163 passed / 1 skipped / 0 failed / 520 warnings in ~192s each.
 
 ## 10 · AUTOPILOT NEXT
 
-- **Connect-wizard live-ness disambiguation** — banked as owner-facing question in Section 7 above.
-- **CP-SKILLS-LAYER** — Phase 4 item 3 queued NEXT.
+- **CP-SKILLS-LAYER** — Phase 4 item 3 opens NEXT (A18.1/2/3/5/8 · registry's biggest NOT-BUILT block: skill provisioning · freeze-not-edit · scope · donor code · productized-or-honest-gap per R-102).
 - Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
 - Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
+- Follow-on lane deferred: Connect-tab copy-alignment sub-slice (content-only shift to prototype's exact `title`/`sub` wording on tabs where backend exists · triggerable by future owner directive · not blocking).
 
 Report at seal boundaries per §6.8. Zero check-ins. Standing bounds unchanged.

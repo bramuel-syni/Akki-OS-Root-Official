@@ -27319,5 +27319,56 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · 5-Commit-Seal LANDED · 2026-09-22T22:52:00Z END -->
 
+<!-- PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING · 5-Commit-Seal LANDED · 2026-09-22T23:10:00Z BEGIN -->
+
+## PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING · 5-Commit-Seal LANDED · 2026-09-22T23:10:00Z
+
+**Owner ruling verbatim this-turn** (2026-09-22T~22:53Z at P4-a seal-boundary report):
+
+> "CONNECT-WIZARD DISAMBIGUATION — ruled by ordering the owner's own directives in time, no fresh owner ask needed: the 2026-08-14 'retire the 5-step wizard, Connect collapses to ONE panel' simplification is OLDER than the 2026-09-20 prototype drops + the owner's 'UI/UX architecture and experience flow needs to be exact as the HTML I shared' ruling. LATER WINS. Therefore: check the v2 OS + DAP LATEST prototypes' Connect flow (the design of record). If the prototype presents Connect as the one-panel ConnectResources shape → item (b) closes as ALREADY-LIVE with a conformance receipt (screenshot/DOM-check vs prototype). If the prototype presents a different Connect flow (multi-step drawer, wizard states) → prototype wins: implement to the prototype additively, retiring nothing sealed. Bank whichever outcome with evidence in the next boundary report — this is a disk-verifiable decision, not an owner fork."
+
+**Disk-truth measurement** (banked as evidence bundle at `phase0/drill_receipts_cp_connect_conformance_ruling_phase_4_b_i/20260922T2258Z_CONFORMANCE_RECEIPT.md`):
+
+| Prototype (DAP LATEST 2026-09-20T1140Z · design-of-record) | React (ConnectResources.jsx · as-built) | Shape match |
+|---|---|---|
+| `c:key` / "Connect your workspace" | `tab=key` / "Workspace API Key" (BackendPending) | ✓ |
+| `c:agents` / "Connect your AI agent" | `tab=agents` / "Your AI Agent" (BackendPending) | ✓ |
+| `c:compute` / "Your compute" | `tab=compute` / "Your Compute" (POST /api/connect/gpu exists · form deferred) | ✓ |
+| `c:models` / "Your models and recipes" | `tab=models` / "Your Models & Recipes" (POST /api/connect/intent exists · form deferred) | ✓ |
+
+**Ruling banked:** SHAPE MATCHES 4/4. Item (b) Connect-half **CLOSED as ALREADY-LIVE** per R-102 productized-or-honest-gap. Legacy `ConnectWizard.jsx` retired-in-place per its own 2026-08-14 docstring (unrouted · preserved on disk per SO §3.8 additive-only).
+
+**Seal chain (5 commits):**
+
+| # | Commit | SHA | Branch | Purpose |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `d6eee5d6b94bc6fef28a076459bd41011fdbabbe` | programme/track-a | +3 forward-drift-detector structural pins (test_cp_connect_conformance_ruling_phase_4_b_i.py) + baseline_failures.json ratchet 6157→6160 · GREEN-first measurement seal per SO §3.8 additive-only |
+| 2 | /app companion Commit-A | `9f8411716bfc9a1fcd92b87f42a503ee7edb7d39` | main | audit ORCH_BOOT + notes ORCH_BOOT ratchet regen (replace_all on 8 stacked stanzas · new floor 6160 + new baseline_failures_sha256 `48c13b0d...`) + gitlink advance `032ada9` → `d6eee5d6` |
+| 3 | State Commit-B | `760ce38f02b607ea686b39098bea056ca8a51230` | master | Banks A + companion + drill receipts (conformance receipt + pytest RED-pre + pre-Commit-A sweep_A + sweep_B). Ratchet 6157→6160. |
+| 4 | State Commit-C fixup | `6f532a767f45d63b1dc296b4867b1f7085320e8c` | master | R-6 boundary regen prepending fresh P4-b-i ORCH_BOOT stanza · advances `heads_last_sealed.state_repo.head` `56461dfa` (P4-a Commit-B) → this-P4-b-i Commit-B `760ce38f` + `code_repo.head` `032ada9` (P4-a Commit-A) → this-P4-b-i Commit-A `d6eee5d6`. Banked-Lesson-#1 respected throughout. |
+| 5 | /app main Commit-C companion | `216569fc5fea2d3e414372e93037d2875636425d` | main | Audit ORCH_BOOT byte-identical mirror sync post state Commit-C. |
+
+**Ratchet: 6157 → 6160 (+3 canonical measured GREEN-first).**
+
+**baseline_failures.json sha256:** `48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9` (was `b72166cb323577a81914b2086d03cdb3e00efcc63770d960dbf600745c087ab7`).
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- `ConnectResources.jsx` (byte-identical twins) · `ConnectWizard.jsx` (byte-identical twins · retired-in-place · unrouted) · `App.js` (byte-identical twins · zero touch this-slice) · `RMS_DAP_LATEST.html` prototype (design-of-record · zero touch).
+- All PHASE 3 sealed carriers + P4-a sealed chain UNCHANGED.
+- **Zero code touch (measurement-only seal). Zero backend edits. Zero frontend edits. Zero vendored tree changes.**
+
+**Pre-Commit-A double-green byte-identical `BASELINE_GUARD=1 PYTHONHASHSEED=0`:** stripped-sha256 `033467633e7e62f8c72b76b92d4467ae1a643a82da42aedb50c168552b58f4a5` IDENTICAL sweep_A (192.43s) + sweep_B (192.62s) both **6163 passed / 1 skipped / 0 failed / 520 warnings** each. Post-seal boot-invariant subset RE-VERIFIED GREEN (23/23 · `test_orch_boot` + `test_baseline_no_new_breakage` + `test_standing_orders_present` + `test_cp_connect_conformance_ruling_phase_4_b_i`).
+
+**GREEN-first measurement seal pattern** — no NEW surface being built; the 3 invariants document the owner ruling as ratcheted drift-detectors. If wizard-step tokens ever reappear on prototype-side OR React-side OR `ConnectWizard` gets re-mounted, tests fire right-reason. This is a valid additive discipline per SO §3.8 because nothing sealed is being modified — the seal is a MEASUREMENT + RULING bank.
+
+**Follow-on lane (banked-not-closed · deferred):**
+- Connect-tab copy-alignment sub-slice: swap tab title/lead to prototype's exact `title:'Connect your workspace'` + `sub:'A key lets you query the data ...'` wording ON tabs where backend is present (compute/models). Content-only shift · not shape. Interleaves after CP-SKILLS-LAYER opens; triggerable by future owner directive.
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** RESUME.md rewritten this-boundary. **CP-SKILLS-LAYER opens NEXT** (Phase 4 item 3 · A18.1/2/3/5/8 — registry's biggest NOT-BUILT block · productized-or-honest-gap per R-102). Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped. Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
+
+<!-- PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING · 5-Commit-Seal LANDED · 2026-09-22T23:10:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
