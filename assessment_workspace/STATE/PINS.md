@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T184315Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T191653Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1202,3 +1202,55 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - `phase0/drill_receipts_cp_census_autonomy_a_double_prime/anomaly_note.md` amended with Order B audit dependency section: the −2 collection-drift forensic MUST resolve before the Order B audit passes over the 6097 → 6103 → 6109 ratchet range. Three resolution paths documented in the note.
 
 <!-- STATE/PINS.md · OWNER CORRECTION 2026-09-22T18:55Z · DQ-GPU-SSH-KEYS SELF-RESOLVED · state-only mini-bank · 2026-09-22T19:00:00Z END -->
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A'''-cont-A Commit-A reference block · 2026-09-22T19:15:00Z BEGIN -->
+
+## PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A pin block
+
+### baseline_failures.json — ratchet 6109 → 6118 (+9 canonical measured)
+- sha256 post-A'''-cont-A: `88ce4652d26e4adf5aaae225d0092d7bed55c3289dcea68a6e8138afbd7a58eb`
+- sha256 pre-A'''-cont-A:  `b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3`
+- counts_at_baseline.passed: 6118 · counts_at_baseline.failed: 3 (unchanged)
+- passed_floor: 6118 · ratchet_history entries: 314 (+1)
+
+### notes/ORCH_BOOT.md + /app/frontend/public/audit/ORCH_BOOT.md
+- ratchet.passed_floor: 6118 · ratchet.baseline_failures_sha256: `88ce4652...`
+
+### /app/backend/vendored/extraction_akki/ · vendored twin
+- structural_sha256 THIS-SEAL: `458c224f9583dc1970d7933bb619e39c01e1461d0e15fcc1fba1c047cc5f113f`
+- file_count 1023 → 1025 (+2 · response_required_queue.py + portal_census_response_required.py)
+
+### tests/invariants/test_cp_census_autonomy_response_required_a_triple_prime_cont_a.py
+- 9 RED-first invariants · SO §2.5 verbatim-docstring · owner directive quoted verbatim in module docstring
+- companion additive files: `services/census_autonomy/response_required_queue.py` (NEW · fs-cursor-backed queue) + `routers/portal_census_response_required.py` (NEW · 2 JWT-gated routes)
+- sealed carrier imports: `services.auth.{dependencies, identity}` + `services.enforce.principal_context_adapter` (READ-ONLY)
+
+### Router pins (SO §3.10-α · Final constants)
+- `LIST_ROUTE_PATH = "/api/portal/census/response-required-items"`
+- `RESOLVE_ROUTE_PATH_TEMPLATE = "/api/portal/census/response-required-items/{item_id}/resolve"`
+
+### Module pins (SO §3.10-α · Final constants + closed vocab)
+- `RESPONSE_REQUIRED_ITEM_STATE_CODES = ("PENDING", "RESOLVED_ACCEPTED", "RESOLVED_REJECTED")`
+- `RESPONSE_REQUIRED_DIR = CENSUS_STATE_DIR / "response_required"` (Final Path off env)
+- Public exceptions: `ItemNotFound` · `InvalidResolvedState`
+
+### Server.py mounts (spine + pod_shell + runtime · byte-identical Ship-Manifest DoD)
+- Spine `backend/server.py` line 279-286: additive import + `app.include_router(portal_census_response_required_router.router)`
+- Pod_shell `pod_shell/backend/server.py`: byte-identical with runtime `/app/backend/server.py` md5 `19055c84140536c87bab24ada03fcd5f`
+
+### Double-green stripped-sha256 pre-Commit-A · BASELINE_GUARD=1 PYTHONHASHSEED=0
+- Sweep A (2026-09-22T19:11Z · 192.09s): 6121 passed / 1 skipped / 0 failed · stripped_sha256 `31ba5011dcff95542b4844c73b9aaa5662dba8579ae8bb7ac7a012b02f386805`
+- Sweep B (2026-09-22T19:14Z · 191.66s): 6121 passed / 1 skipped / 0 failed · stripped_sha256 `31ba5011dcff95542b4844c73b9aaa5662dba8579ae8bb7ac7a012b02f386805`
+- **IDENTICAL byte-for-byte (stripped)**
+
+### 3-repo HEADs post-PHASE-3-A'''-cont-A Commit-A landing
+- `/app/assessment_workspace/repos/Extraction-Akki` (programme/track-a): `a0dcc0626fa80ec357dd8a56adc7fc2a21104669`
+- `/app/assessment_workspace` (master): `b06b1cac` → then post-DQ-GPU mini-bank `f4399ea0` → `<PENDING-P3-CA-TPRIME-CONT-A-CB-master>`
+- `/app` (main): `739ac5e4a4d1ae2e15d1fdf1cec5d3081d244d8a` → `<PENDING-P3-CA-TPRIME-CONT-A-CC-appmain>`
+
+### Queue infra semantics
+- Queue is ORIGIN-EMPTY at mount time (no baked-in items)
+- Production writers into queue DEFERRED to future slice (engine-refusal-bank bridge or drawer-owner-in-the-loop button)
+- UI response-required-badge component DEFERRED to A'''-cont-B slice
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A'''-cont-A Commit-A reference block · 2026-09-22T19:15:00Z END -->

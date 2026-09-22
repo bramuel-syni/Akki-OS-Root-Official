@@ -57,6 +57,42 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-22T19:15Z · autopilot PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEAL close · BACKING QUEUE + ENDPOINTS PRODUCTIZED (owner "advertised control with no endpoint is a fake state" satisfied)**
+
+**PHASE 3 A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-Commit-C fixup):
+- code Commit-A `a0dcc0626fa80ec357dd8a56adc7fc2a21104669` on `programme/track-a` (2026-09-22T19:13Z · NEW services.census_autonomy.response_required_queue (fs-cursor-backed queue · 3 public callables · closed vocab · exception classes · atomic FS pattern) + NEW routers.portal_census_response_required (2 JWT-gated routes) + additive spine+pod_shell server.py mount + 9 RED-first invariants).
+- /app main companion Commit-A `739ac5e4a4d1ae2e15d1fdf1cec5d3081d244d8a` (2026-09-22T19:15Z · +2 vendored files · MANIFEST regen 1023→1025 · runtime server.py additive mount · audit ORCH_BOOT regen 6118 · gitlink c3807d7→a0dcc06).
+- state Commit-B `<PENDING-P3-CA-TPRIME-CONT-A-CB>` · Commit-C fixup `<PENDING-P3-CA-TPRIME-CONT-A-CC>` · /app Commit-C companion `<PENDING-P3-CA-TPRIME-CONT-A-CC-APP>` (this-turn will land these next).
+
+**Ratchet floor**: **6118** (was 6109 pre-A'''-cont-A · +9 canonical measured). baseline_failures.json sha256 `88ce4652d26e4adf5aaae225d0092d7bed55c3289dcea68a6e8138afbd7a58eb` was `b4237e36...`.
+
+**API endpoints landed** (JWT-gated · `require_identity_or_deny` gate identical to A' pattern):
+- `GET  /api/portal/census/response-required-items` — returns `{items: [<PENDING items sorted by banked_at_utc ascending>], count}`
+- `POST /api/portal/census/response-required-items/{item_id}/resolve` — body: `{resolution_text, resolved_state}` · returns `{item: <resolved payload>}` · 404 on unknown item_id · 400 on invalid resolved_state
+
+**Module public API** (`services.census_autonomy.response_required_queue`):
+- `bank_response_required_item(*, census_run_id, tenant_id, reason_text, refusal_code, decision_timestamp_utc) -> item_id`
+- `list_pending_response_required_items() -> list[dict]`
+- `resolve_response_required_item(*, item_id, resolver_id, resolution_text, resolved_state) -> dict`
+- Public constants: `RESPONSE_REQUIRED_ITEM_STATE_CODES` (Final closed vocab) + `RESPONSE_REQUIRED_DIR` (Final Path off `CENSUS_AUTONOMY_STATE_DIR` env)
+- Public exceptions: `ItemNotFound` + `InvalidResolvedState`
+
+**Owner directive HONORED verbatim**: "the drawer advertises response-required; the backing queue + endpoints must exist before anything else — an advertised control with no endpoint is a fake state by another name." Now: the backing queue + endpoints exist end-to-end; the queue is ORIGIN-EMPTY at mount time; production writers (engine-refusal-bank bridge or drawer-in-the-loop button) DEFERRED to future slice.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0**: SweepA2 (2026-09-22T19:11Z · 192.09s) + SweepB2 (2026-09-22T19:14Z · 191.66s) both 6121 passed / 1 skipped / 0 failed / 520 warnings · stripped-sha256 `31ba5011dcff95542b4844c73b9aaa5662dba8579ae8bb7ac7a012b02f386805` IDENTICAL. 6121 = 6118 floor + 3 above-floor.
+
+**Same-slice cure this-Commit-A (SO §6.8)**: Ship-Manifest DoD 4-test drift after additive server.py mount cured by copying `/app/backend/server.py` → `pod_shell/backend/server.py` byte-identical in same Commit-A (`test_repo_pod_shell_and_runtime_server_are_byte_identical` + `test_repo_server_routers_are_covered_by_pod_or_known_unwired` + `test_every_router_is_wired_or_declared_unwired` + `test_runtime_server_matches_repo_pod_shell` all 4 RESTORED GREEN).
+
+**Vendored twin same-seal sync**: +2 files · file_count 1023→1025 · structural_sha256 `458c224f9583dc1970d7933bb619e39c01e1461d0e15fcc1fba1c047cc5f113f` · mirror invariant RE-VERIFIED GREEN.
+
+**Sealed carriers UNCHANGED per SO §3.8**: services.auth.* (imported READ-ONLY) · services.census_autonomy.{engine, service_shape, scheduler_program, tenant_scope, state_reader, gpu_spend_capture} (queue module PARALLEL) · routers.portal_census_autonomy (A') · services.tenant_separation (4j) · mtafiti.asset_registry_writer (Canon-9 §3) · R-86/R-88/R-99/R-100/R-100-UNWIND seal chain.
+
+**Standing bounds unchanged**: zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next (§6.8 report-and-continue)**: State Commit-C fixup this-boundary → /app main Commit-C companion → **PHASE 3 A'''-cont-B opens** (UI response-required-badge React overlay component + `useResponseRequiredList` polling hook mounted alongside A'' `CensusAutonomyDrawer` · byte-identical /app/frontend/src ↔ pod_shell/frontend/src twin) → A'''' data_source fold-in → Phase 4(a-h) → audits → ops lanes → Owner Return Report.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T18:50Z · autopilot PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A SEAL close · REAL-TELEMETRY GPU-SPEND CAPTURE PRODUCTIZED (mock HONEST_GAP + real STOP#2 HONEST_GAP)**
 
 **PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-Commit-C fixup):

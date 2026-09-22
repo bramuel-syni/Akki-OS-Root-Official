@@ -1,29 +1,26 @@
 # STATE/RESUME.md — anti-compaction re-anchor (rewritten at EVERY seal)
 
-**Last rewrite:** 2026-09-22T18:50:00Z (PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND **Commit-A + /app companion Commit-A LANDED** · ratchet 6103 → 6109 · additive gpu_spend_capture module (thin adapter over sealed ssh_seam) with mock-mode HONEST_GAP + real-mode STOP-condition-2 HONEST_GAP semantics; NO fabricated GPU numbers per owner CENSUS_PRODUCTIZATION §44).
+**Last rewrite:** 2026-09-22T19:15:00Z (PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE **Commit-A + /app companion Commit-A LANDED** · ratchet 6109 → 6118 · additive filesystem-cursor-backed queue module + 2 JWT-gated routers + Ship-Manifest DoD parity restored; owner directive HONORED verbatim "advertised control with no endpoint is a fake state by another name" — the backing queue + endpoints now exist end-to-end).
 
 ---
 
 ## 1 · POSITION
 
-- **Phase:** PHASE 3 · **CENSUS AUTONOMY SERVICE** OPEN · Commit-A + A' + A'' + **A''' LANDED** · continuation **A'''-cont (response-required queue + routers + UI badge)** OR **A'''' (data_source adapter fold-in)** NEXT.
+- **Phase:** PHASE 3 · **CENSUS AUTONOMY SERVICE** OPEN · Commit-A + A' + A'' + A''' + **A'''-cont-A LANDED** · continuation **A'''-cont-B (UI response-required-badge)** OR **A'''' (data_source adapter fold-in)** NEXT.
 - **Turn queue:**
   - 4a-4j ✅ SEALED · 4k ✅ SEALED (ratchet 6080→6086).
   - PHASE 3 Commit-A ✅ SEALED · ratchet 6086→6090.
   - PHASE 3 A' ✅ SEALED · ratchet 6090→6097.
-  - PHASE 3 A'' ✅ SEALED · code `527d09bf1948a6b32068769d5dcde6c9abcc192c` · /app `dd8ba7303` · state B `0e976251` · state C `6d654a66` · /app C `8dae79d6b` · ratchet 6097→6103.
-  - **PHASE 3 A''' ✅ SEALED THIS-TURN** at code `c3807d7c72c9599db4e692ee88e44c8378ee1873` · /app companion `615ac44ac` · state B `<PENDING-P3-ATP-CB>` · state C `<PENDING-P3-ATP-CC>` · /app C `<PENDING-P3-ATP-CC-APP>` (CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A · 6 new RED-first invariants at `tests/invariants/test_cp_census_autonomy_gpu_spend_a_triple_prime.py` · NEW additive `services/census_autonomy/gpu_spend_capture.py` (thin adapter over sealed `services.training_runner.ssh_seam`) · GPU_SPEND_CAPTURE_STATE_CODES Final tuple ('CAPTURED','HONEST_GAP_UNREACHABLE','HONEST_GAP_MOCK_MODE') closed vocab · mock-mode returns HONEST_GAP_MOCK_MODE with no fabricated numeric fields · real-mode + unreachable returns HONEST_GAP_UNREACHABLE per STOP condition #2 · owner directive 'NO GPU-spend fabrication' enforced by 6-marker source-level ban · ratchet 6103→6109 +6 measured · double-green stripped-sha256 `bd2010df9cd70e7294cf92a04eaf2ae7a2a6ee08de9a2209ba813b7af2e4a8ac` IDENTICAL · 6112 passed / 1 skipped / 0 failed each · vendored twin same-seal sync file_count 1022→1023 structural_sha256 88dad1bd... · same-slice cure DECISIONS.md pointer restored to last-5-lines window).
-  - **PHASE 3 A'''-cont NEXT** (RESPONSE-REQUIRED QUEUE + routers + UI response-required-badge): `services/census_autonomy/response_required_queue.py` filesystem-cursor-backed · `POST /api/portal/census/response-required-items/{item_id}/resolve` + `GET /api/portal/census/response-required-items` (JWT-gated) · NEW `ResponseRequiredBadge.jsx` React overlay component mounted alongside `CensusAutonomyDrawer.jsx`.
-  - **A'''' after A'''-cont**: `data_source` adapter fold-in (Order B MySQL RDS · Order A NAS CIFS · OBS audio) + sealed `mtafiti.asset_registry_writer` wiring (Canon-9 §3 single-writer).
+  - PHASE 3 A'' ✅ SEALED · code `527d09bf` · ratchet 6097→6103.
+  - PHASE 3 A''' ✅ SEALED · code `c3807d7` · ratchet 6103→6109.
+  - **DQ-GPU-SSH-KEYS SELF-RESOLVED** at state mini-Commit-B `f4399ea0` / /app mirror `6cb888c1c` (custody key reverified · both hosts pubkey-authed · 4× H200 live nvidia-smi captured · backend/.env flipped GPU_CONNECT_MODE=real · gpu_spend_capture returning `status=CAPTURED` end-to-end · probe receipt banked).
+  - **PHASE 3 A'''-cont-A ✅ SEALED THIS-TURN** at code `a0dcc0626fa80ec357dd8a56adc7fc2a21104669` · /app companion `739ac5e4a` · state B `<PENDING-P3-CA-TPRIME-CONT-A-CB>` · state C `<PENDING-P3-CA-TPRIME-CONT-A-CC>` · /app C `<PENDING-P3-CA-TPRIME-CONT-A-CC-APP>` (CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · 9 new RED-first invariants at `tests/invariants/test_cp_census_autonomy_response_required_a_triple_prime_cont_a.py` · NEW additive `services/census_autonomy/response_required_queue.py` (filesystem-cursor-backed queue rooted at `CENSUS_STATE_DIR/response_required/` · 3 public callables bank/list/resolve · `RESPONSE_REQUIRED_ITEM_STATE_CODES` Final closed vocab `('PENDING','RESOLVED_ACCEPTED','RESOLVED_REJECTED')` · atomic write-then-rename FS pattern · ItemNotFound + InvalidResolvedState exception classes · queue is ORIGIN-EMPTY at mount time · never fabricates) + NEW additive `routers/portal_census_response_required.py` (2 JWT-gated routes at `LIST_ROUTE_PATH` and `RESOLVE_ROUTE_PATH_TEMPLATE` Final constants · `require_identity_or_deny` gate identical to A' pattern) + additive `server.py` mount in BOTH spine + pod_shell + runtime (byte-identical between pod_shell/backend/server.py and /app/backend/server.py per Ship-Manifest DoD) · ratchet 6109→6118 +9 measured · double-green stripped-sha256 `31ba5011dcff95542b4844c73b9aaa5662dba8579ae8bb7ac7a012b02f386805` IDENTICAL sweep_A/B both 6121 passed / 1 skipped / 0 failed · vendored twin same-seal sync +2 files file_count 1023→1025 structural_sha256 `458c224f9583dc1970d7933bb619e39c01e1461d0e15fcc1fba1c047cc5f113f` · same-slice cure Ship-Manifest DoD parity restored).
+  - **PHASE 3 A'''-cont-B NEXT** (UI response-required-badge): `ResponseRequiredBadge.jsx` React overlay component + `useResponseRequiredList.js` polling hook mounted alongside A'' `CensusAutonomyDrawer.jsx` in App.js twin (byte-identical /app/frontend/src ↔ pod_shell/frontend/src).
+  - **A'''' after A'''-cont-B**: `data_source` adapter fold-in (Order B MySQL RDS · Order A NAS CIFS · OBS audio) + sealed `mtafiti.asset_registry_writer` wiring (Canon-9 §3 single-writer).
   - PHASE 4 (a-h) → Order B → Order A → BUILD_JOURNAL + OWNER_RETURN_REPORT.
-  - R-101 preserved WHAT: mirror at 4h · v8-substitution retirement at 4k · 3 mirror-drift baselines transiently GREEN post-A'' but list retained; explicit retirement deferred to future CP-APP-JS-UNIFY.
-  - R-102 MASTER DIRECTIVE: **productized-or-honest-gap SATISFIED** (system census + on-demand JWT + UI overlay drawer with REAL state polling + GPU-spend capture with mock-mode HONEST_GAP + real-mode STOP-condition-2 all productized).
-  - R-103 amendment: no check-ins · autonomous forks with annotation.
-  - R-104 approving authorities: named-but-unseated (RMS + DIGICOW · custody-material via §4.1 §F · excluded from `CENSUS_ADMITTED_TENANT_IDS`).
-  - R-105 partial-retirement design: executed at 4k.
-  - **R-106 CENSUS AUTONOMY SERVICE**: Commit-A + A' + A'' + A''' LANDED · A'''-cont/A'''' authored NEXT.
-  - §6.8 report-and-continue.
-- **Ratchet floor: `6109`** (was 6103 pre-A''' · +6 canonical measured) · sha256 `b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3`.
+  - R-101 preserved WHAT · R-102 productized-or-honest-gap SATISFIED (system census + on-demand JWT + UI drawer + GPU-spend + response-required queue+endpoints).
+  - R-103 amendment applied · R-104 approving authorities named-but-unseated · R-105 partial-retirement design · R-106 CENSUS AUTONOMY SERVICE Commit-A + A' + A'' + A''' + A'''-cont-A LANDED.
+- **Ratchet floor: `6118`** (was 6109 pre-A'''-cont-A · +9 canonical measured) · sha256 `88ce4652d26e4adf5aaae225d0092d7bed55c3289dcea68a6e8138afbd7a58eb`.
 
 ## 2 · STANDING (R-102 + R-103 + R-104 + R-105 + R-106 + §6.8)
 

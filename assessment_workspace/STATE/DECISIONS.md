@@ -27064,3 +27064,55 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+<!-- PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEAL RECORD · 2026-09-22T19:15:00Z BEGIN -->
+
+## PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEAL RECORD
+
+**When:** 2026-09-22T19:15:00Z (Code Commit-A `a0dcc0626fa80ec357dd8a56adc7fc2a21104669` on `programme/track-a` + /app main companion Commit-A `739ac5e4a4d1ae2e15d1fdf1cec5d3081d244d8a` on `main`; state Commit-B this-record; state Commit-C fixup + /app Commit-C companion NEXT).
+
+**Scope frozen SO §6.4 NOTHING-BEYOND (6 files code repo + 5 files /app main):**
+
+Code repo `programme/track-a`:
+1. NEW `backend/services/census_autonomy/response_required_queue.py` (~220 lines · filesystem-cursor-backed queue rooted at `CENSUS_STATE_DIR/response_required/` per sealed engine state-directory convention · 3 public callables `bank_response_required_item` / `list_pending_response_required_items` / `resolve_response_required_item` · `RESPONSE_REQUIRED_ITEM_STATE_CODES` Final tuple `('PENDING','RESOLVED_ACCEPTED','RESOLVED_REJECTED')` closed vocab · `RESPONSE_REQUIRED_DIR` Final path · `ItemNotFound` + `InvalidResolvedState` exception classes · atomic write-then-rename FS pattern · queue is ORIGIN-EMPTY at mount time · never fabricates queue items).
+2. NEW `backend/routers/portal_census_response_required.py` (~130 lines · APIRouter with 2 JWT-gated routes at `LIST_ROUTE_PATH = '/api/portal/census/response-required-items'` and `RESOLVE_ROUTE_PATH_TEMPLATE = '/api/portal/census/response-required-items/{item_id}/resolve'` Final constants · `require_identity_or_deny` gate identical to A' router pattern · GET returns `{items, count}` for PENDING · POST accepts `{resolution_text, resolved_state}` body and transitions the item · 404 on unknown item_id · 400 on invalid resolved_state).
+3. MODIFY `backend/server.py` (spine · additive router import + `app.include_router` mount at line 279-286 · additive comment references owner directive verbatim).
+4. MODIFY `pod_shell/backend/server.py` (byte-identical mirror of `/app/backend/server.py` post additive mount · Ship-Manifest DoD parity same-slice cure).
+5. NEW `backend/tests/invariants/test_cp_census_autonomy_response_required_a_triple_prime_cont_a.py` (~340 lines · 9 RED-first invariants: (1) service module exists · (2) 3 public callables exposed · (3) closed vocab paired-equality · (4) storage roots under `CENSUS_STATE_DIR/response_required/` · (5) router module exists with 2 routes at Final paths · (6) router uses JWT gate · (7) bank→list→resolve behavioural cycle · (8) unknown+bad-state resolve rejected via exception classes · (9) router mounted in both spine + runtime server.py).
+6. MODIFY `backend/tests/invariants/baseline_failures.json` (ratchet 6109 → 6118 · +9 canonical measured · schema-complete ratchet_history entry).
+
+/app main:
+1. NEW `backend/vendored/extraction_akki/backend/services/census_autonomy/response_required_queue.py` (byte-identical vendored twin).
+2. NEW `backend/vendored/extraction_akki/backend/routers/portal_census_response_required.py` (byte-identical vendored twin).
+3. MODIFY `backend/vendored/extraction_akki/MANIFEST.json` (structural_sha256 `458c224f9583dc1970d7933bb619e39c01e1461d0e15fcc1fba1c047cc5f113f` · file_count 1023 → 1025 · +2 vendored files).
+4. MODIFY `backend/server.py` (runtime · additive router import + include_router · byte-identical with pod_shell/backend/server.py per Ship-Manifest DoD).
+5. MODIFY `frontend/public/audit/ORCH_BOOT.md` (byte-identical mirror of notes ORCH_BOOT ratchet-block regen 6109 → 6118 + new baseline_failures sha256 `88ce4652d26e4adf5aaae225d0092d7bed55c3289dcea68a6e8138afbd7a58eb`).
+6. MODIFY `assessment_workspace/repos/Extraction-Akki` gitlink (c3807d7 → a0dcc06).
+
+**Ratchet:** 6109 → 6118 (+9 canonical measured). baseline_failures.json sha256 `88ce4652d26e4adf5aaae225d0092d7bed55c3289dcea68a6e8138afbd7a58eb` was `b4237e36...`.
+
+**Owner directive HONORED verbatim (2026-09-22T~19:05Z):** "the drawer advertises response-required; the backing queue + endpoints must exist before anything else — an advertised control with no endpoint is a fake state by another name." Now honored: the backing queue module + JWT-gated GET/POST endpoints exist and are mounted in both spine + pod_shell + runtime server.py.
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- `services.auth.dependencies.require_identity_or_deny` + `services.auth.identity.Identity` + `services.enforce.principal_context_adapter.principal_context` — imported READ-ONLY by the new router.
+- PHASE 3 Commit-A `c3e6725c` services.census_autonomy carriers (engine + service_shape + scheduler_program + tenant_scope + state_reader) — queue module sits PARALLEL to them; no imports of their internals.
+- PHASE 3 A' `55ffc389` routers.portal_census_autonomy — untouched.
+- PHASE 3 A'' `527d09bf` pod_shell + /app/frontend React drawer + hook + App.js — untouched.
+- PHASE 3 A''' `c3807d7` services.census_autonomy.gpu_spend_capture — untouched.
+- 4j services.tenant_separation · Canon-9 §3 mtafiti.asset_registry_writer · R-86/R-88/R-99/R-100/R-100-UNWIND seal chain — all untouched.
+
+**Queue is ORIGIN-EMPTY at mount time.** Production writers into the queue (engine-refusal-bank bridge or drawer-owner-in-the-loop button) DEFERRED to future slices per SO §6.4 NOTHING-BEYOND. The drawer UI response-required badge component + drawer twin edit DEFERRED to the A'''-cont-B slice.
+
+**RED-first authenticity:** RED-pre 9/9 FAIL right-reason (ModuleNotFoundError on service + router modules · assertion failure on server.py mount check) → GREEN-post 9/9 PASS 0.72s. Receipts at `phase0/drill_receipts_cp_census_autonomy_a_triple_prime_cont_a/RED_pre_2026-09-22.log` + `GREEN_post_2026-09-22.log`.
+
+**Double-green byte-identity:** `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (192.09s) + sweep_B (191.66s) both 6121 passed / 1 skipped / 0 failed / 520 warnings · stripped-sha256 `31ba5011dcff95542b4844c73b9aaa5662dba8579ae8bb7ac7a012b02f386805` IDENTICAL. 6121 = 6118 floor + 3 above-floor.
+
+**Same-slice cure this-Commit-A (SO §6.8):** After the initial spine + runtime server.py additive mount, Ship-Manifest DoD invariants tripped 4 tests: `test_repo_pod_shell_and_runtime_server_are_byte_identical` + `test_repo_server_routers_are_covered_by_pod_or_known_unwired` + `test_every_router_is_wired_or_declared_unwired` + `test_runtime_server_matches_repo_pod_shell`. Cured by copying `/app/backend/server.py` → `pod_shell/backend/server.py` byte-identical in THIS SAME Commit-A. All 4 RESTORED GREEN.
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed` to this-Commit-B SHA + code Commit-A `a0dcc06` + /app companion `739ac5e4a`) → /app main Commit-C companion audit ORCH_BOOT byte-identical sync → **PHASE 3 A'''-cont-B opens** (UI response-required-badge React overlay component + polling hook mounted alongside A'' CensusAutonomyDrawer) → A'''' data_source fold-in → Phase 4(a-h) → audits → ops lanes → Owner Return Report. Report at seal boundaries.
+
+<!-- PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEAL RECORD · 2026-09-22T19:15:00Z END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
