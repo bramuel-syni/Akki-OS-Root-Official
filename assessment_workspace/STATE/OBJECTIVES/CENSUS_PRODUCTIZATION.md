@@ -3,7 +3,7 @@ card_id: CENSUS_PRODUCTIZATION
 title: CENSUS-PRODUCTIZATION · user-triggered run + live progress + tenant-scoped GPU-spend capture
 ratified_at_utc: 2026-09-22T06:59:00Z
 ratified_by: owner ('OWNER MASTER DIRECTIVE — TESTING-READINESS LONG RUN' 2026-09-22T~06:50Z · R-102 · verbatim order · §6.8 · escalates DQ-14/15/16 to BUILD lanes and elevates CENSUS-PRODUCTIZATION to PHASE 3)
-card_sha256: f6ac1022f7b30c2002339596ee77a46cbb5160643ec7253e0fc45bc4defdd9c5
+card_sha256: 3a076c66dafa3b4ec65ce01b6b337434a34cdc9fe1d01ad308228a5c58d82c64
 milestone_status: CLOSED · 2026-09-22T21:22:00Z · PHASE 3 CENSUS PRODUCTIZATION productized end-to-end · owner ratification: "Phase 3 exit proof accepted: all six steps curl-evidenced with real state transitions, honest degradation, an auto-banked actionable item resolved through the API, live 4xH200 capture, and registry surfaces reading through. Census productization is CLOSED as a phase — mark it so in DECISIONS and the objective card." (2026-09-22T~21:21Z verbatim)
 sequence_gate: opens AFTER CP-TENANT-SEPARATION seal (per-tenant scoping required from birth); interleaves with PHASE-4 feature lanes as compute allows
 ---

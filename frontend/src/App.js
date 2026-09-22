@@ -20,6 +20,7 @@ import CanonCountdown from "@/pages/dap/CanonCountdown";
  * scheduler state endpoint. Never synthesizes progress (owner directive).
  */
 import CensusAutonomyDrawer from "@/components/portal/CensusAutonomyDrawer";
+import ResponseRequiredBadge from "@/components/portal/ResponseRequiredBadge";
 
 // v2 OS Prototype · Turn 4 sub-slice 4d GREEN · Frontend rebuild slice 2 ·
 // Work tab surfaces (7) + Monitor sub-view surfaces (2). Each surface is a
@@ -1337,6 +1338,8 @@ function App() {
       </BrowserRouter>
       {/* PHASE 3 continuation A'' · additive overlay above prototype iframe */}
       <CensusAutonomyDrawer />
+      {/* PHASE 3 continuation A'''-cont-B · response-required badge overlay */}
+      <ResponseRequiredBadge />
     </div>
   );
 }
