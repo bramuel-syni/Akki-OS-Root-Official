@@ -27,7 +27,7 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Blocks**: nothing.
 - **Continues**: everything.
 
-## DQ-03 · S4 sub-slice blocked · MySQL `159.138.162.146` credentials
+## DQ-03 · S4 sub-slice blocked · MySQL `159.138.162.146` credentials  ~~CLEARED at CENSUS-2 seal (2026-09-21T~20:00Z)~~
 
 - **Surfaced at**: CP-ESTATE-INGESTION wave-card AUTHOR (2026-09-21T13:15Z); confirmed still blocked at AUDIT-PREP seal.
 - **Fact**: Fresh RMS creds sheet (2026-09-21) omitted this host. All other MySQL hosts in the ingestion scope authenticate.
@@ -35,8 +35,9 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Recommendation**: **(a)** — the "MICROSERVICES-primary" DB is a named scope target; option (b) loses a scope target; (c) still needs a cred drop.
 - **Blocks**: S4 sub-slice for host `159.138.162.146` only.
 - **Continues**: all other MySQL sub-slices (8 of 9 hosts proven authable), NAS CIFS, Digicow AWS RDS/S3.
+- **CLEARED**: fresh drop `RMS_CREDS.xlsx` sha256 `3311dae2…10cc545` (2026-09-21T~19:35Z) supplies `bramuel` / `[REDACTED-SECRET §HYGIENE-20260921]` for this host. WEEGO cluster now authed via JUMP (paramiko + `mysql --defaults-extra-file=<(...)`). 4 databases · 443 tables · 951 MB on `weego` DB alone · latest `update_time` = 2026-09-21T04:48Z. <!-- HYGIENE-20260921: raw pw redacted at HEAD; historical commit 816be899 still carries it. -->
 
-## DQ-04 · S4 sub-slice blocked · MySQL `HOST` placeholder (WEEGO)
+## DQ-04 · S4 sub-slice blocked · MySQL `HOST` placeholder (WEEGO)  ~~CLEARED at CENSUS-2 seal (2026-09-21T~20:00Z)~~
 
 - **Surfaced at**: CP-ESTATE-INGESTION wave-card AUTHOR; confirmed still blocked at AUDIT-PREP seal.
 - **Fact**: The fresh creds sheet has valid credentials for WEEGO but the host cell contains the literal string `HOST` (placeholder), not an IP.
@@ -44,6 +45,7 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Recommendation**: **(a)**.
 - **Blocks**: WEEGO ingestion sub-slice only.
 - **Continues**: everything else.
+- **CLEARED**: WEEGO IS `159.138.162.146` — the section-header row carries the placeholder `HOST` label, and member rows (`analytics`, `sql_demo`, `sql_trial1`, `weego`) inherit from the section credentials. Section-inheritance parser landed in `tools/estate_census_v2.py:_load_fresh_creds`. Same clearance as DQ-03.
 
 ## DQ-05 · S4 sub-slice blocked · Huawei OBS `obs:object:GetObject` scope missing
 
@@ -62,6 +64,26 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Recommendation**: **(b)** unless a corpus is specifically needed by an in-flight card. HF-HOLD is standing; no card in flight requires it.
 - **Blocks**: any HF-sourced ingestion sub-slice.
 - **Continues**: everything else.
+
+
+## DQ-07 · GPU visibility · owner said "GPUs are connected" but they are NOT visible from this preview container
+
+- **Surfaced at**: HYGIENE-20260921 seal (2026-09-22T~00:38Z), immediately after owner directive "GPUs are connected. Re-inventory compute NOW."
+- **Fact**: Twelve read-only probes ran this seal — `nvidia-smi` (127 not-found), `lspci` (binary absent), `ls /dev/nvidia*` (2 no-such-file), `ls /dev/dri` (2 no-such-file), `/proc/driver/nvidia` (absent), `nvcc` (absent), `/usr/local/cuda*` (absent), `lsmod|grep nvidia` (empty), `dmesg|grep -iE 'nvidia|nouveau'` (empty), `env|grep -iE 'cuda|nvidia|gpu'` (no env vars), `python3 -c 'import torch'` (ModuleNotFoundError). Full receipt: `phase0/gpu_probes/20260922T003800Z_GPU_INVENTORY_PROBE.json`. Container was not started with `--gpus`, no `nvidia.com/gpu` allocated, no device passthrough.
+- **Options**: **(a)** Owner supplies a remote GPU host (SSH endpoint + creds) reachable via existing JUMP `159.138.173.250` or directly · **(b)** This preview container is redeployed with GPU device passthrough (k8s `nvidia.com/gpu` resource + NVIDIA device plugin, or Docker `--gpus all`) — this is an owner/platform action, not an agent action · **(c)** Owner names the specific in-estate GPU host (e.g., `digicow-vm-gpu-01` or equivalent) and provides address + creds; agent tunnels via JUMP.
+- **Recommendation**: **(a)** or **(c)** — either provides a fast unblock without a redeploy. **(b)** works but is slower.
+- **Blocks**: GPU-quality language-ID on the Digicow S3 speech corpus · GPU re-classification of `*_probable` and `music_or_noise` segments from CENSUS-2 · pipeline extension over NAS/OBS audio once those walks land · any faster-whisper / silero / torch inference lane.
+- **Continues**: S4a-DIGICOW-RDS adapter scaffolding (CPU-only) · Order B / Q-1 full audit run (CPU-only) · deep NAS via JUMP `smbclient` (network I/O, no GPU) · OBS ListObjectsV2 sweep across 106 buckets (network I/O, no GPU) · CPU-heuristic audio classification already banked at CENSUS-2 (16.59 h speech / 1.11 h music / balance ambient).
+- **Disk pre-flight for when GPU unblocks**: `/app` is at 88 % (1.3 G free) — do NOT install model weights there. `/` overlay has 75 G free — install faster-whisper/silero and model caches there; use int8 quantized variants; clear cache after one-shot pass if disk pressure returns.
+
+## DQ-08 · Historical commit 816be899 still carries the raw MySQL passwords · policy tradeoff, disclosed
+
+- **Surfaced at**: HYGIENE-20260921 seal (2026-09-22T~00:38Z).
+- **Fact**: The additive-supersede scrub landed at HEAD replaces the tokens at the tip, but state commit `816be899` (CENSUS-2-20260921) still carries the two raw MySQL passwords (`bramuel` and Razuna) in its own diff. Anyone doing `git show 816be899` or `git checkout 816be899` sees them. SO §3.8 forbids `git filter-branch` / `rebase -i` / force-push to erase them from history — the only correction path available under standing orders is additive supersede at HEAD, which is what landed.
+- **Options**: **(a)** Accept the tradeoff (recommended) and rotate the two passwords out-of-band so the historical leak becomes moot · **(b)** Owner temporarily suspends SO §3.8 for a targeted history rewrite of the two committed values across just these four blobs (destructive, breaks bundle hashes, breaks external mirrors' sync) · **(c)** Take no action and treat the historical leak as acceptable residual risk.
+- **Recommendation**: **(a)**. Rotating the credentials neutralises the historical leak without breaking additive-only. Any external mirror or bundle already shipped is a bounded blast radius (the state bundle `akki_audit_20260921_state.bundle` in `/app/audit/inbox/` still carries the leak inside it — flag).
+- **Blocks**: nothing operationally (agent can continue on either resolution).
+- **Continues**: everything.
 
 ---
 

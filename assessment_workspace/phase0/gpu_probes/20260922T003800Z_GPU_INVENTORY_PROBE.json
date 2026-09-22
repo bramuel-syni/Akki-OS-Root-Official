@@ -1,0 +1,45 @@
+{
+  "receipt_id": "GPU-INVENTORY-PROBE-20260922T003800Z",
+  "surfaced_at": "2026-09-22T00:38:00Z",
+  "trigger": "owner directive: 'GPUs are connected. Re-inventory compute NOW.'",
+  "standing_order": "SO 6.8 (no GO required)",
+  "read_only": true,
+  "container_context": {
+    "hostname_probe": "container-local-only",
+    "note": "This receipt reflects visibility from *this* preview container. It does not attest to physical GPU presence on any remote host in the estate - only to whether devices are exposed into this runtime."
+  },
+  "probes_run": [
+    { "probe": "which nvidia-smi",                  "exit_code": 127,  "result": "command not found; not on PATH" },
+    { "probe": "nvidia-smi",                        "exit_code": 127,  "result": "command not found" },
+    { "probe": "which lspci",                       "exit_code": null, "result": "binary absent from /usr/bin, /sbin, /usr/sbin" },
+    { "probe": "ls /dev/nvidia*",                   "exit_code": 2,    "result": "No such file or directory" },
+    { "probe": "ls /dev/dri",                       "exit_code": 2,    "result": "No such file or directory" },
+    { "probe": "ls /proc/driver/nvidia",            "exit_code": null, "result": "absent" },
+    { "probe": "which nvcc",                        "exit_code": null, "result": "absent" },
+    { "probe": "ls /usr/local/cuda*",               "exit_code": null, "result": "no CUDA install dir" },
+    { "probe": "lsmod | grep -i nvidia",            "exit_code": null, "result": "empty (either no modules or lsmod restricted)" },
+    { "probe": "dmesg | grep -iE 'nvidia|nouveau'", "exit_code": null, "result": "empty" },
+    { "probe": "env | grep -iE 'cuda|nvidia|gpu'",  "exit_code": null, "result": "no GPU env vars set" },
+    { "probe": "python3 -c 'import torch'",         "exit_code": 1,    "result": "ModuleNotFoundError: torch (not installed)" }
+  ],
+  "finding": "GPUS_NOT_VISIBLE_FROM_THIS_CONTAINER",
+  "finding_evidence_summary": "No /dev/nvidia*, no /proc/driver/nvidia, no CUDA toolkit, no kernel modules, no NVIDIA env vars, no lspci binary to enumerate PCI, no torch. All twelve probes negative or absent.",
+  "implication": "Any GPU work the owner directed (language-ID via faster-whisper/silero on the S3 speech corpus, GPU-quality re-classification of *_probable and music_or_noise segments, extension to NAS/OBS audio) cannot execute in-place. The compute lane remains BLOCKED pending an access path.",
+  "possible_paths_to_unblock_pending_owner_answer": [
+    "Path A: Owner supplies a remote GPU host (SSH endpoint + creds) reachable via the existing JUMP 159.138.173.250 or directly; agent runs faster-whisper/silero there and returns detection+confidence only, no transcript retention.",
+    "Path B: This preview container is redeployed with GPU device passthrough (Kubernetes nvidia.com/gpu resource allocated by the scheduler + NVIDIA device plugin installed on the node, or Docker --gpus all). This is an owner/platform action, not an agent action.",
+    "Path C: Owner confirms GPUs are on a specific in-estate host (e.g., digicow-vm-gpu-01 or similar) and provides its address + creds; agent tunnels via JUMP if needed."
+  ],
+  "disk_pressure_observed_alongside": {
+    "/app": "8.6G used / 9.8G total (88%) - 1.3G free - NEAR-LIMIT",
+    "/ (overlay)": "20G used / 95G total (21%) - 75G free - AMPLE"
+  },
+  "disk_recommendation_for_when_gpu_unblocks": "Install faster-whisper / silero / model caches under / (overlay, 75G free) not /app (near-limit). Use int8 quantized model variants; clear model cache after pass if run is one-shot.",
+  "non_actions": [
+    "No push, no fetch - SO 6.8 discipline.",
+    "No testing_agent invocation - STRICTLY BANNED.",
+    "No refactoring - SO 3.8.",
+    "No modification to sealed classes - SO 3.8.",
+    "R-91 hold intact - horizon 2026-09-23T03:23:15Z (~26.9h from this receipt); no epsilon-apply until AFTER boundary."
+  ]
+}
