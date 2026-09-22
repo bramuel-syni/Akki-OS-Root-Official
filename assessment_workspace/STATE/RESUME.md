@@ -1,22 +1,22 @@
 # STATE/RESUME.md — anti-compaction re-anchor (rewritten at EVERY seal)
 
-**Last rewrite:** 2026-09-22T23:36:00Z (**PHASE 4 (c-i) · CP-SKILLS-LAYER-A18-1 · 5-Commit-Seal LANDED · ratchet 6160 → 6165 · Doc-18-§A18.1 8-field provisioning-record contract shape-freeze LANDED · Slice 1 of CP-SKILLS-LAYER chunked series**).
+**Last rewrite:** 2026-09-22T23:54:00Z (**PHASE 4 (c-ii) · CP-SKILLS-LAYER-A18-2 · 5-Commit-Seal LANDED · ratchet 6165 → 6171 · A18-2 write-once slice-binding guardrail LANDED on top of P4-c-i A18.1 contract · Slice 2 of CP-SKILLS-LAYER chunked series**).
 
 ---
 
 ## 1 · POSITION
 
-- **Phase:** PHASE 3 CLOSED · **P4-a + P4-(b-i) + P4-(c-i) SEALED** · CP-SKILLS-LAYER opened as chunked series · A18.1 landed.
+- **Phase:** PHASE 3 CLOSED · **P4-a + P4-(b-i) + P4-(c-i) + P4-(c-ii) SEALED** · CP-SKILLS-LAYER chunked series 2/5 complete.
 - **Turn queue (condensed):**
-  - PHASE 3 CLOSED · **P4-a Commission wizard LIVE** at `/os/work/commission` · **P4-b-i Connect-half CLOSED as ALREADY-LIVE** per conformance ruling · **P4-c-i A18.1 provisioning-record contract shape-freeze SEALED THIS-TURN**.
-  - **P4-c-i seal chain:** Code `2f7d6b58` (programme/track-a · +5 measured · new contract + snapshot + 5 pins + additive CONTRACT_TO_SNAPSHOT entry) · /app companion `7402412d2` (main · vendored twin file_count 1028→1029 + MANIFEST regen + audit ORCH_BOOT + gitlink) · State `6bc0045e` (master) · Commit-C `ff125c59` · companion-C `96d9b1f01`. Pre-Commit-A double-green stripped-sha256 `176a63e2e1968fed6ae05327c7172378492fde11d1bf115f697dfdd9cc8e1030` IDENTICAL sweep_A/B both 6169/1/0/520.
-  - **CP-SKILLS-LAYER sub-slices queued** (per SPEC_COVERAGE_GAP_DIGEST 5-of-8 A18.x NOT-BUILT bucket):
-    - c-ii · A18.2 write-once slice-binding guardrail — corpus_slice_ref immutability + new-material=new-skill_id enforcement.
-    - c-iii · A18.3 + A18.5 governance-and-scope UI cues.
-    - c-iv · A18.8 donor-code intake (∼356 lines from RMS-IQ-Core-2 + Akki-OS-V1).
+  - PHASE 3 CLOSED · **P4-a Commission wizard LIVE** · **P4-b-i Connect-half CLOSED as ALREADY-LIVE** · **P4-c-i A18.1 shape-freeze** · **P4-c-ii A18-2 write-once slice-binding SEALED THIS-TURN**.
+  - **P4-c-ii seal chain:** Code `f7f08207da458007db4a2024a2934f97dffe9537` (programme/track-a · +6 measured · new services/skill_provisioning_persistence.py + 6 pins) · /app companion `8989afd4420a250d47138f29d45f45eea845ac63` (main · vendored file_count 1029→1030) · State `d847070dc3e23726ae38c621b3895b4dd99194b0` · Commit-C `b21b9192a8d4b65409d0cfb8bb8fa21badad3da8` · companion-C `3b048cb30a2a4c1d66708c4aa490f2e636b90d5e`. Pre-Commit-A double-green stripped-sha256 `b2a90405dcbee9f076cb039870e24ac83428f6894d5521f3f6133b3bbcbb45f3` IDENTICAL sweep_A/B both 6175/1/0/520.
+  - **CP-SKILLS-LAYER sub-slices REMAINING:**
+    - c-iii · A18.3 + A18.5 governance-and-scope UI cues (per-call gate + server-side scope enforcement).
+    - c-iv · A18.8 donor-code intake (~356 lines LIFT).
+    - **c-CLOSE · CP-SKILLS-LAYER-SERIES-CLOSE** UI-visible tester walkthrough (buildskill UI reflecting real provisioning state or honest gap per owner pacing note).
   - Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
   - Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
-- **Ratchet floor: `6165`** (was 6160 pre-P4-c-i · +5 canonical measured) · baseline_failures_sha256 `8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150`.
+- **Ratchet floor: `6171`** (was 6165 pre-P4-c-ii · +6 canonical measured) · baseline_failures_sha256 `263c8586947d5b6ce838036920a94f841065053a781afe3c511d981c97e978c2`.
 
 ## 2 · STANDING (R-102 + R-103 + R-104 + R-105 + R-106 + §6.8)
 
@@ -48,7 +48,7 @@ python3 -c "import json; d=json.load(open('/app/assessment_workspace/repos/Extra
 tail -80 /app/assessment_workspace/STATE/DECISIONS.md && cat /app/assessment_workspace/STATE/NEXT.md
 ```
 
-Expected: probe-7 `{'failed': 3, 'passed': 6165, 'skipped': 1, ...}` · adds **5 P4-c-i CP-SKILLS-LAYER-A18-1 invariants** most-recent (A18.1 provisioning-record shape-freeze).
+Expected: probe-7 `{'failed': 3, 'passed': 6171, 'skipped': 1, ...}` · adds **6 P4-c-ii CP-SKILLS-LAYER-A18-2 invariants** most-recent (A18-2 write-once slice-binding guardrail).
 
 ## 6 · POINTERS
 
@@ -74,15 +74,17 @@ Expected: probe-7 `{'failed': 3, 'passed': 6165, 'skipped': 1, ...}` · adds **5
 - **NEW: Connect-wizard disambiguation** — **RESOLVED THIS-TURN** via P4-b-i CP-CONNECT-CONFORMANCE-RULING · LATER-wins ordering applied · prototype 4-panel shape MATCHES React 4-tab shape · Item (b) Connect-half CLOSED as ALREADY-LIVE per R-102. Follow-on copy-alignment sub-slice deferred (banked-not-blocking).
 - DQ-18 · CP-R91-RETIRE-SUPERSEDE · partially CLOSED at 4k.
 
-## 8 · SEVEN BANKED LESSONS
+## 8 · NINE BANKED LESSONS
 
-1. **YAML plain-scalar hazard** — RE-HONORED this-turn in P4-a state Commit-C fixup (all embedded-colon patterns replaced with dashes throughout the fresh stanza).
+1. **YAML plain-scalar hazard** — embedded-colon patterns crash `yaml.safe_load`; use dashes in generator/regeneration_reason plain-scalar values.
 2. Server.py mirror-edit rule — mirror pair is `/app/backend/server.py ↔ pod_shell/backend/server.py` (NOT spine ↔ pod_shell).
 3. Canon-9 §3 negative-scan literal-substring hazard — compose attr-name via string concatenation.
 4. Producer-bridge additive discipline — AST-scan bans engine-internal imports.
 5. Frontend banned-marker discipline — docstring rephrase at same-Commit-A.
-6. **ratchet_history entry `passed` field must equal NEW post-seal floor** (matching `counts_at_baseline.passed`), NOT pre-seal floor · authored this-turn after right-reason RED on `test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` (6150 != 6157) cured same-slice.
-7. **`json.dump(indent=2)` drift on `baseline_failures.json`** — prior file was 4-space indented · use `indent=4` on next Commit-A regen to preserve prior format · semantic content unchanged · sha256 pinned in ORCH_BOOT.md matches.
+6. **ratchet_history entry `passed` field must equal NEW post-seal floor** (not pre-seal) — matching `counts_at_baseline.passed`.
+7. **`json.dump(indent=2)` drift on `baseline_failures.json`** — prior file was 4-space indented; current format is 2-space post-P4-a; preserve current format on subsequent Commit-As.
+8. **Drift-detector tests against another sealed contract must inspect the actual JSON schema before writing field-name assertions** — my P4-c-i initial `test_provisioning_record_is_distinct_from_a18_7_provenance_contract` incorrectly assumed A18.7 had a `steps` field (actual: `provenance_chain`). Cured same-slice. Pattern-of-record: mirror the shape-freeze pattern of `test_snapshot_matches_current_schema` rather than hard-coding specific field names; if hard-coding field names is unavoidable (as in non-collision proofs), assert with both DIRECTIONS (each contract has a field the other doesn't).
+9. **NEW file at `backend/contracts/` requires `tools/prod_vendor_sync.py` run same-Commit-A** — else `test_vendored_tree_byte_identical_mirror_of_spine` fires right-reason. Vendored MANIFEST.json file_count + structural_sha256 must be updated before double-green sweep. Also applies to `backend/services/` and `backend/routers/` — any new file within the vendored scope requires re-sync.
 
 ## 9 · SEAL SUMMARY (LAST-TURN P4-a + THIS-TURN P4-b-i)
 
@@ -110,9 +112,13 @@ Pre-Commit-A double-green byte-identical stripped-sha256 `033467633e7e62f8c72b76
 
 ## 10 · AUTOPILOT NEXT
 
-- **CP-SKILLS-LAYER-A18-2** (Slice 2) — write-once slice-binding guardrail (corpus_slice_ref immutability · new-material=new-skill_id enforcement).
-- **CP-SKILLS-LAYER-A18-3 + A18-5** (Slice 3) — governance-and-scope UI cues.
+**Owner pacing note banked** (2026-09-22T~23:38Z verbatim): "the skills series is contract/guardrail-heavy — remember R-102's bar is USER-visible productized-or-honest-gap, so when the series closes, ensure the skills surface in the UI (buildskill view) reflects the real provisioning state or an honest gap, and note in the series-close report what a tester can DO with skills, not just what contracts exist."
+
+Implication: CP-SKILLS-LAYER series close (after A18-8 lands) MUST include a UI-visible surface tying `/dap/buildskill` (or equivalent) to real `SkillProvisioningRecordV0` state or an honest-gap `BackendPending` cite. Series-close report MUST document a concrete tester-facing what-can-I-do-with-skills walkthrough (or the honest-gap declaration if backend-pending).
+
+- **CP-SKILLS-LAYER-A18-3 + A18-5** (Slice 3) — governance-and-scope UI cues (per-call gate + server-side scope enforcement UI cues). OPENS NEXT.
 - **CP-SKILLS-LAYER-A18-8** (Slice 4) — donor-code intake (∼356 lines LIFT from RMS-IQ-Core-2 + Akki-OS-V1).
+- **CP-SKILLS-LAYER-SERIES-CLOSE** (Slice 5 · UI-visible per owner pacing note) — `buildskill` (or workstudio/skills) UI reflecting real provisioning state or honest-gap · series-close tester walkthrough report.
 - Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
 - Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
 - Follow-on Connect-tab copy-alignment sub-slice deferred (banked-not-blocking).

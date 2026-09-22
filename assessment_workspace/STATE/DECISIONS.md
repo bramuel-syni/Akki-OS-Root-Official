@@ -27414,5 +27414,47 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 4 (c-i) · CP-SKILLS-LAYER-A18-1 · 5-Commit-Seal LANDED · 2026-09-22T23:36:00Z END -->
 
+<!-- PHASE 4 (c-ii) · CP-SKILLS-LAYER-A18-2 · 5-Commit-Seal LANDED · 2026-09-22T23:54:00Z BEGIN -->
+
+## PHASE 4 (c-ii) · CP-SKILLS-LAYER-A18-2 · 5-Commit-Seal LANDED · 2026-09-22T23:54:00Z
+
+**Doc 18 §A18.2 verbatim:** "The slice freezes; it never edits. Corpus slice binds at freeze... write-once. If the underlying material needs to change, the platform provisions a new skill against a new slice — it does not mutate the old one."
+
+**Owner pacing note honored** (2026-09-22T~23:38Z verbatim · banked to RESUME §10): "...the skills series is contract/guardrail-heavy — remember R-102's bar is USER-visible productized-or-honest-gap, so when the series closes, ensure the skills surface in the UI (buildskill view) reflects the real provisioning state or an honest gap, and note in the series-close report what a tester can DO with skills, not just what contracts exist." → UI-visible tester walkthrough deferred to CP-SKILLS-LAYER-SERIES-CLOSE (Slice 5 of chunked series).
+
+**Slice 2 of CP-SKILLS-LAYER chunked series** — A18-2 write-once slice-binding guardrail LANDED on top of P4-c-i A18.1 shape-frozen contract.
+
+**Seal chain (5 commits):**
+
+| # | Commit | SHA | Branch | Purpose |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `f7f08207da458007db4a2024a2934f97dffe9537` | programme/track-a | NEW `backend/services/skill_provisioning_persistence.py` (~150 lines · JSONL append-only write-once persistence · WriteOnceViolation on BOTH `skill_id` AND `corpus_slice_ref` anchors) + NEW test file (~215 lines · 6 pins) + baseline_failures.json ratchet 6165→6171. |
+| 2 | /app companion Commit-A | `8989afd4420a250d47138f29d45f45eea845ac63` | main | Vendored twin sync (file_count 1029→1030 · structural_sha256 `f7471fc3...` → `252c2ebbe2941e3c3c373320dde26907c3a5c258082918980e1eb3f402eaa8df`) + audit/notes ORCH_BOOT ratchet regen + gitlink `2f7d6b58` → `f7f08207`. |
+| 3 | State Commit-B | `d847070dc3e23726ae38c621b3895b4dd99194b0` | master | Banks A + companion + drill receipts + baseline_failures_sha256 `8f5e23b3...` → `263c8586947d5b6ce838036920a94f841065053a781afe3c511d981c97e978c2`. |
+| 4 | State Commit-C fixup | `b21b9192a8d4b65409d0cfb8bb8fa21badad3da8` | master | R-6 boundary regen · fresh P4-c-ii stanza · Banked-Lesson-#1 respected. |
+| 5 | /app main Commit-C companion | `3b048cb30a2a4c1d66708c4aa490f2e636b90d5e` | main | Audit ORCH_BOOT byte-identical mirror sync. |
+
+**Ratchet: 6165 → 6171 (+6 canonical measured).**
+
+**Distinct from sealed A18.7 write-once at `services/skill_files/persistence.py`:**
+- A18.7 write-once anchor = `skill_id` only (buyer-facing chain).
+- A18-2 write-once anchors = BOTH `skill_id` AND `corpus_slice_ref` (owner-facing frozen tuple + slice-per-skill canon binding).
+
+**Negative-surface invariant:** module exposes NO mutator (`update`/`edit`/`mutate`/`replace`/`set_field`/`modify`/`patch` all absent) + public callable set tight to `{append, read_all, get_by_skill_id, get_by_corpus_slice_ref}`. Revocation deferred to a follow-on sub-slice via event-sourced tombstone append (banked-not-blocking per owner ruling that revocation is a distinct lifecycle from the frozen tuple).
+
+**Sealed carriers UNCHANGED per SO §3.8:** A18.7 chain (SkillFileProvenanceV0 + write-once persistence + snapshot + parity attest + all M15-W2 shape-freeze tests) UNCHANGED · P4-c-i A18.1 SkillProvisioningRecordV0 contract + snapshot + shape-freeze tests UNCHANGED · new module lives beside existing at `services/` per additive discipline.
+
+**Pre-Commit-A double-green byte-identical `BASELINE_GUARD=1 PYTHONHASHSEED=0`:** stripped-sha256 `b2a90405dcbee9f076cb039870e24ac83428f6894d5521f3f6133b3bbcbb45f3` IDENTICAL sweep_A (191.29s) + sweep_B (191.12s) both **6175 passed / 1 skipped / 0 failed / 520 warnings** each.
+
+**Banked Lessons 8 + 9 respected:**
+- Lesson #8: non-collision test uses BOTH-DIRECTIONS field assertions (A18-2 has `corpus_slice_ref` which A18.7 doesn't · A18.7 has `provenance_chain` which A18-2 doesn't) — banked as pattern in P4-c-i lesson.
+- Lesson #9: vendored MANIFEST sync same-slice via `tools/prod_vendor_sync.py` after adding the new `backend/services/` file (file_count 1029 → 1030 · structural_sha256 refreshed) — sweep A/B both GREEN on first attempt this-turn (no retry needed).
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** RESUME.md rewritten this-boundary. **CP-SKILLS-LAYER-A18-3 + A18-5** (Slice 3) opens NEXT — governance-and-scope UI cues (per-call gate that governance rides every response per A18.3 · server-side scope enforcement UI cue per A18.5). Then A18-8 donor-code intake (Slice 4). Then CP-SKILLS-LAYER-SERIES-CLOSE (Slice 5 · UI-visible per owner pacing note) — `buildskill` UI reflecting real provisioning state or honest-gap + series-close tester walkthrough report per R-102 USER-visible bar.
+
+<!-- PHASE 4 (c-ii) · CP-SKILLS-LAYER-A18-2 · 5-Commit-Seal LANDED · 2026-09-22T23:54:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
