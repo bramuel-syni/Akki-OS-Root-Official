@@ -1,5 +1,5 @@
 {
-  "file_count": 1005,
+  "file_count": 1012,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -84,6 +84,10 @@
     "contracts/canon_census_source_candidate.py": {
       "sha256": "0d826de6ab7221533f6010026b5f34280fb54d6169558f312d3178fd6a59b95a",
       "size_bytes": 2838
+    },
+    "contracts/canonical_tenant_ids.schema.json": {
+      "sha256": "26abe90973386bb572b556b617f141fa2320d38c4ef731242afffe72fb4c97ff",
+      "size_bytes": 833
     },
     "contracts/census_job_manifest.py": {
       "sha256": "448300b1748599a9bad824bce867555116b474e6154428509a80fdaab49570a1",
@@ -3681,6 +3685,30 @@
       "sha256": "ef1fd96c3eed33a2350d5d08ed54204ca903c0fb19da125ea9f0e345286c3a58",
       "size_bytes": 8660
     },
+    "services/tenant_separation/__init__.py": {
+      "sha256": "d7a6d7797f997b3d264e10590929f966c11839b3e9c6aa191b009a37e7ef73e5",
+      "size_bytes": 994
+    },
+    "services/tenant_separation/dap_activation.py": {
+      "sha256": "c73e87d45edd1ff0283926dec831fde3d76fcaab4bb6f7a8a1d3402c52538221",
+      "size_bytes": 6570
+    },
+    "services/tenant_separation/isolation_sweep.py": {
+      "sha256": "0bddc23be10026caf74203d1b11d1b980674549cc813afc987eec315da94c546",
+      "size_bytes": 7354
+    },
+    "services/tenant_separation/oversight_screens.py": {
+      "sha256": "1f71aa3fb1e2efb392adf82c03ef1cb8b8d6b6cb0804bb175db862da4e245b74",
+      "size_bytes": 4846
+    },
+    "services/tenant_separation/platform_operator.py": {
+      "sha256": "e296bda104f1533178c78d62a7d523c6275b9bb90bb87e18e5228c7acf22ce41",
+      "size_bytes": 6319
+    },
+    "services/tenant_separation/tenant_registry.py": {
+      "sha256": "2e19c0bf8ee34a1e7526a0d0d5f93192e3a964ee4b08141d1669be3bf101c3fd",
+      "size_bytes": 4775
+    },
     "services/trace/__init__.py": {
       "sha256": "dd10ca9984a9584f26fb2629942204be6bca7b89de58fd09f5fb9c6eafaacbb6",
       "size_bytes": 704
@@ -4022,7 +4050,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T07:13:50Z",
+  "generated_at_utc": "2026-09-22T10:54:24Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4036,7 +4064,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "ce1118de8dfe7cef74822ac04442d20f3cd3a16eca4664e145ff4461eb767d9a",
+  "structural_sha256": "397acf791951ec91dde8b53d350bf055e4b5c26bb2c606cda58f9c78145a2236",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
