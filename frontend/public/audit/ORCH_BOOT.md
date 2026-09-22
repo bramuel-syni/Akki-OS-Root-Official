@@ -38,10 +38,10 @@ generator: main-agent Autopilot (PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING 
 regeneration_reason: phase-4-b-i-cp-connect-conformance-ruling-commit-c-fixup-r-6-boundary-regen-advancing-state-head-56461dfa-to-760ce38f-plus-code-head-032ada9-to-d6eee5d6-plus-ratchet-6157-to-6160-plus-3-canonical-measured-connect-half-closed-as-already-live
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -62,10 +62,10 @@ generator: main-agent Autopilot (PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · Com
 regeneration_reason: phase-4-a-cp-commission-wizard-live-commit-c-fixup-r-6-boundary-regen-advancing-state-head-5ffa1586-to-56461dfa-plus-code-head-3108b41-to-032ada9-plus-ratchet-6150-to-6157-plus-7-canonical-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -87,10 +87,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'''-cont-B · CP-CENSUS-A
 regeneration_reason: phase-3-continuation-a-triple-prime-cont-b-cp-census-autonomy-response-required-badge-ui-commit-c-fixup-r-6-boundary-regen-advancing-state-head-105145d5-to-5ffa1586-plus-code-head-1d47128-to-3108b41-plus-ratchet-6139-to-6150-plus-11-canonical-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -112,10 +112,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A''''-cont-A · CP-CENSUS-
 regeneration_reason: phase-3-continuation-a-quad-prime-cont-a-cp-census-autonomy-producer-bridge-commit-c-fixup-r-6-boundary-regen-advancing-state-head-d438871a-to-4c10648-plus-code-head-1eea98967-to-1d47128-plus-ratchet-6129-to-6139-plus-10-canonical-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -137,10 +137,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'''' · CP-CENSUS-AUTONOM
 regeneration_reason: phase-3-continuation-a-quad-prime-cp-census-autonomy-data-source-adapter-commit-c-fixup-r-6-boundary-regen-advancing-state-head-b36b9d64-to-f4011652-plus-code-head-a0dcc06-to-1eea98967-plus-ratchet-6118-to-6129-plus-11-canonical-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -162,10 +162,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'''-cont-A · CP-CENSUS-A
 regeneration_reason: phase-3-continuation-a-triple-prime-cont-a-cp-census-autonomy-response-required-queue-commit-c-fixup-r-6-boundary-regen-advancing-state-head-b06b1cac-to-8edc7e3f-plus-code-head-c3807d7-to-a0dcc06-plus-ratchet-6109-to-6118-plus-9-canonical-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -187,10 +187,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY
 regeneration_reason: phase-3-continuation-a-triple-prime-cp-census-autonomy-gpu-spend-commit-c-fixup-r-6-boundary-regen-advancing-state-head-6d654a66-to-0b36ae9d-plus-code-head-527d09bf-to-c3807d7-plus-ratchet-6103-to-6109-plus-6-canonical-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -212,10 +212,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-
 regeneration_reason: phase-3-continuation-a-double-prime-cp-census-autonomy-ui-drawer-commit-c-fixup-r-6-boundary-regen-advancing-state-head-f34db5ef-to-0e976251-plus-code-head-55ffc389-to-527d09bf-plus-ratchet-6097-to-6103-plus-6-canonical-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -237,10 +237,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A' · CP-CENSUS-AUTONOMY-R
 regeneration_reason: phase-3-continuation-a-prime-cp-census-autonomy-router-commit-c-fixup-r-6-boundary-regen-advancing-state-head-cf7c5fca-to-f34db5ef-plus-code-head-c3e6725c-to-55ffc389-plus-ratchet-6090-to-6097-plus-7-measured
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
 heads_last_sealed:
   state_repo:
@@ -266,10 +266,10 @@ generator: main-agent Autopilot (PHASE 3 · CP-CENSUS-AUTONOMY-SERVICE · Commit
 regeneration_reason: phase-3-census-autonomy-service-commit-c-fixup-r-6-boundary-regen-advancing-state-head-f775adf6-to-cf7c5fca-plus-code-head-eed6c032-to-c3e6725c-plus-ratchet-6086-to-6090-plus-4-measured-system-census-productized
 
 ratchet:
-  passed_floor: 6160
-  counts_at_baseline_passed: 6160
+  passed_floor: 6165
+  counts_at_baseline_passed: 6165
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9
+  baseline_failures_sha256: 8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150
 
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki

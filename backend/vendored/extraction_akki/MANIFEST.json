@@ -1,5 +1,5 @@
 {
-  "file_count": 1028,
+  "file_count": 1029,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -308,6 +308,10 @@
     "contracts/skill_file_provenance_v0.py": {
       "sha256": "4cd76c126dffae3d16d5fe4e3284056306ef81f61c51b7fb538cb0dbc5c8a38d",
       "size_bytes": 4495
+    },
+    "contracts/skill_provisioning_record_v0.py": {
+      "sha256": "74c41fbe43900c4d096f2b152afec337d352e45f11c35d95f9d549ae57f826b5",
+      "size_bytes": 5038
     },
     "contracts/solva_reasoning.py": {
       "sha256": "974d786635b16abc83b9cfd0f68adab5e88581926f97a421b96b4aa5983f761b",
@@ -4114,7 +4118,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T20:56:46Z",
+  "generated_at_utc": "2026-09-22T23:22:47Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4128,7 +4132,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "3dbda87ece4b9c428f939484650ff300459859992efdbe34198b9a9477615b02",
+  "structural_sha256": "f7471fc3d059ff32d9ba012c53666128ac86a5bd7d5d9cdc75b4a8f70fcc5407",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
