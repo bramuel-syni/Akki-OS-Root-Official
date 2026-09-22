@@ -27215,5 +27215,50 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 3 CLOSED · 2026-09-22T21:22:00Z END -->
 
+<!-- PHASE 3 continuation A'''-cont-B · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-BADGE-UI · Commit-A + State Commit-D SEAL RECORD · 2026-09-22T22:10:00Z BEGIN -->
+
+## PHASE 3 continuation A'''-cont-B · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-BADGE-UI · 5-Commit-Seal COMPLETE (+ additive Commit-D cure) · 2026-09-22T22:10:00Z
+
+**Owner directive HONORED verbatim (2026-09-22T~21:21Z):**
+
+> "Proceed: A'''-cont-B (badge + polling on real producer data) → Phase 4 banked order → forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT."
+
+**Seal chain (chronological · this-turn A'''-cont-B):**
+
+| # | Commit | SHA | Branch | Purpose |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `3108b41d52fa432db45eb6af06005e14bf74d5c2` | programme/track-a (Extraction-Akki) | 11 new invariants + `pod_shell/frontend/src/hooks/useResponseRequiredList.js` (~100 lines polling hook fetching sealed A'''-cont-A endpoint every 15s) + `pod_shell/frontend/src/components/portal/ResponseRequiredBadge.jsx` (~310 lines overlay badge · parses sealed A'''' `_MARKER_RE` verbatim JS-side · POST `/resolve` closes E2E loop from UI · `data-testid` on every interactive element) + `App.js` additive 2-line mount block + `baseline_failures.json` 6139→6150 +11 canonical measured. Zero backend edits. Sealed carriers UNCHANGED per SO §3.8. |
+| 2 | /app companion Commit-A | `e5287d2d57f4013ee9f617600829b5eddbb3e221` | main (/app) | Frontend twin same-seal sync (byte-identical `/app/frontend/src/` twins · Ship-Manifest DoD parity + wave_g pod_shell frontend mirror RE-VERIFIED GREEN) + audit ORCH_BOOT stanza prepend (initial · with `Proceed:` variant) + card `CENSUS_PRODUCTIZATION.md` `card_sha256` re-pin post §CLOSED section append + gitlink advance `1d47128` (A''''-cont-A) → `3108b41` (A'''-cont-B). |
+| 3 | State Commit-B | `5ffa15864fdf9940792ad82c4f4053f5006dee3a` | master (state) | Banks code Commit-A + /app companion Commit-A + ratchet advance 6139→6150 + `baseline_failures_sha256` `88ce4652...` → `bfdfda543f295af990586c49d4d5e0908491510fb0f46d5bf9afb88dd1167d5f`. |
+| 4 | State Commit-C fixup | `2441b1eadb718edb42dbbee6c1bfa338474898b6` | master (state) | R-6 boundary regen prepending A'''-cont-B ORCH_BOOT stanza · advancing `heads_last_sealed.state_repo.head` `105145d5` (A''''-cont-A Commit-C) → this-A'''-cont-B Commit-B `5ffa1586` + `heads_last_sealed.code_repo.head` `1d47128` (A''''-cont-A Commit-A) → this-A'''-cont-B Commit-A `3108b41`. **INADVERTENTLY banked the ORCH_BOOT.md line-37 generator: value with an unquoted plain-scalar colon `Proceed: A'''-cont-B ...` inside the parenthesized value → `yaml.safe_load` raised `ScannerError` right-reason at column 966 → `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` FAIL. Cured additively in Commit-D below.** |
+| 5 | **State Commit-D** (additive same-slice cure post-C · Banked-Lesson-#1) | **`1efab4c87be6d0f19255f1157684f0a00eec5166`** | master (state) | **Surgical single-character cure**: `notes/ORCH_BOOT.md` line 37 `Proceed:` → `Proceed -` (Banked Lesson #1 re-honored · YAML plain-scalar hazard requires dashes for embedded-colon patterns in parenthesized values). Folded same-slice pin refreshes previously banked on /app companion Commit-A but not on state master: `STATE/PINS.md` commissioning_record aisca-gpu-01 `20260922T191653Z` → `20260922T214430Z` + `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` `card_sha256` `f6ac1022...defdd9c5` → `3a076c66dafa3b4ec65ce01b6b337434a34cdc9fe1d01ad308228a5c58d82c64`. Ratchet floor 6150 unchanged. baseline_failures_sha256 unchanged. heads_last_sealed unchanged. Sealed carriers UNCHANGED. |
+| 6 | /app main Commit-C companion | `dce2d6dc4ae7c00363da798d95f7dcb3ae27a8d2` | main (/app) | Audit ORCH_BOOT byte-identical mirror sync post state Commit-C `2441b1ea` + Commit-D `1efab4c8`. Mirror-syncs: `frontend/public/audit/ORCH_BOOT.md` sha256 `1eea68038a1d8af926eaaf10a03e0cfa2202b75f3b38ebb4766fa85aa7e569be` + `assessment_workspace/notes/ORCH_BOOT.md` sha256 `1eea68038a1d8af926eaaf10a03e0cfa2202b75f3b38ebb4766fa85aa7e569be` (both byte-identical to state Commit-D `notes/ORCH_BOOT.md`) + `assessment_workspace/STATE/PINS.md` byte-identical mirror. Reverted `backend/vendored/extraction_akki/MANIFEST.json` `generated_at_utc` timestamp-only drift (structural_sha256 `3dbda87ece4b9c428f939484650ff300459859992efdbe34198b9a9477615b02` + file_count 1028 unchanged · A'''-cont-B was frontend-only · vendored twin is backend-only per SO Ship-Manifest DoD scope). |
+
+**Ratchet: 6139 → 6150 (+11 canonical measured).**
+
+**baseline_failures.json sha256:** `bfdfda543f295af990586c49d4d5e0908491510fb0f46d5bf9afb88dd1167d5f` (was `88ce4652d26e4adf5aaae225d0092d7bed55c3289dcea68a6e8138afbd7a58eb`).
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- All PHASE 3 sealed carriers (`services.census_autonomy.*` chain + `routers.portal_census_autonomy` + `routers.portal_census_response_required` + `routers.portal_census_autonomy_producer` + `services.mtafiti.asset_registry_writer` + all 4j/4k + R-86/R-88/R-99/R-100 chain). Zero backend touch. Zero engine touch.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0** (banked in prior turn's log): stripped_sha256 `88a506f479a16c3a9a9a1a20f0fda540b566e1fe8b05d6ac63af4a3a2f9941f8` IDENTICAL sweep_A/B both 6153 passed / 1 skipped / 0 failed.
+
+**Post-seal-close double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0** (this-turn · verifies Commit-D cure + /app Commit-C companion did not break invariants): stripped_sha256 `0fc991d385fb037d86157f2d08b570bbd56138d08865cac0d00610db8c9c7111` IDENTICAL sweep_A (2026-09-22T22:02Z · 192.82s) + sweep_B (2026-09-22T22:06Z · 191.40s) both 6153 passed / 1 skipped / 0 failed / 520 warnings each (6153 = 6150 floor + 3 R-91 mirror-drift baseline_failures transiently GREEN). Receipts at `phase0/drill_receipts_cp_census_autonomy_a_triple_prime_cont_b/`.
+
+**Boot-invariant subset RE-VERIFIED GREEN** (29/29): `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` + 13 × `test_baseline_no_new_breakage` + 5 × `test_baseline_drift_annotations_present` + 6 × `test_standing_orders_present` + 4 × `test_r91_v8_substitution_retirement_guard`.
+
+**Banked Lessons preserved (five):**
+1. YAML plain-scalar hazard (RE-HONORED THIS-TURN via Commit-D — see cure table row 5 above).
+2. Server.py mirror-edit rule (mirror pair is `/app/backend/server.py ↔ pod_shell/backend/server.py`).
+3. Canon-9 §3 negative-scan literal-substring hazard (compose attr-name via string concatenation).
+4. Producer-bridge additive discipline (AST-scan for banned internal imports).
+5. Frontend banned-marker discipline (docstring rephrase at same-Commit-A to avoid synthesis-marker collisions).
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** RESUME.md rewritten this-boundary. **PHASE 4 opens** — entitlements backend Commit-A first (per owner banked order): entitlements backend → Connect/Commission wizards live → CP-SKILLS-LAYER → CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped. Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT. Report at seal boundaries per §6.8.
+
+<!-- PHASE 3 continuation A'''-cont-B · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-BADGE-UI · Commit-A + State Commit-D SEAL RECORD · 2026-09-22T22:10:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
