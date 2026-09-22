@@ -1,5 +1,5 @@
 {
-  "file_count": 1026,
+  "file_count": 1028,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -513,6 +513,10 @@
       "sha256": "447f9f1e728fc134967850e9dd7f1f725b5dcbb502a07a7d00e433dee67726f6",
       "size_bytes": 7369
     },
+    "routers/portal_census_autonomy_producer.py": {
+      "sha256": "8347afc9d44205dd5217bd9323f14e3d111713b1a3296234ab8ebe5964bf476a",
+      "size_bytes": 11052
+    },
     "routers/portal_census_response_required.py": {
       "sha256": "56de17dea9f91faa5ed3333076016f71f1dba6067e59b8927b888e50f6c6e741",
       "size_bytes": 4780
@@ -1024,6 +1028,10 @@
     "services/census_autonomy/gpu_spend_capture.py": {
       "sha256": "1ed8e0774689cbccf40b483d3ce110d8a78b191da42de73b8207d55e7bc591b5",
       "size_bytes": 6715
+    },
+    "services/census_autonomy/producer_bridge.py": {
+      "sha256": "46f68adf982fda9483faa8747ee9f38d4c43830ab1b1b823be872ff29cde3e5e",
+      "size_bytes": 10309
     },
     "services/census_autonomy/response_required_queue.py": {
       "sha256": "354105319be36a5375d85f264c584d3338735f1b74db13bd160ee4a274061da3",
@@ -4106,7 +4114,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T19:46:15Z",
+  "generated_at_utc": "2026-09-22T20:56:46Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4120,7 +4128,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "cfc84853be37c76830181bb5de4344f1b2c4cfdcb40c0731da0915d3375017d9",
+  "structural_sha256": "3dbda87ece4b9c428f939484650ff300459859992efdbe34198b9a9477615b02",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }

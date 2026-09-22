@@ -476,6 +476,17 @@ app.include_router(portal_census_autonomy_router.router)
 from routers import portal_census_response_required as portal_census_response_required_router  # noqa: E402
 app.include_router(portal_census_response_required_router.router)
 
+# PHASE 3 continuation A''''-cont-A · CP-CENSUS-AUTONOMY-PRODUCER-BRIDGE
+# additive router mount. Exposes the producer bridge + synchronous-run +
+# GPU-spend endpoints so the R-102/R-106 END-TO-END EXIT PROOF is
+# curl-drivable inside the pod without waiting on the scheduler's
+# 60-second poll interval. Owner directive verbatim 2026-09-22T~19:58Z:
+# "close Phase 3 with an END-TO-END EXIT PROOF, curl-evidenced in the
+# next report ... Every step a raw curl receipt. That is the R-102/R-106
+# exit evidence for Phase 3."
+from routers import portal_census_autonomy_producer as portal_census_autonomy_producer_router  # noqa: E402
+app.include_router(portal_census_autonomy_producer_router.router)
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}
