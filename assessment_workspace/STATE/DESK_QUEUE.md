@@ -97,6 +97,18 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Continues**: everything.
 - **CLOSED**: this-Commit-B (2026-09-22T~03:45Z). BASELINE_GUARD=1 double-green stripped-sha256 `213996fe...` byte-identical run1 + run2 · 5914 passed · 4 pre-existing baseline fails · 1 skip. `test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` GREEN. `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` GREEN. Standing lesson banked in DECISIONS.md: future waves must verify `passed_floor` bump landed in the file (spot-check `git diff HEAD -- backend/tests/invariants/baseline_failures.json`) before Commit-A. <!-- carried forward per additive-only §3.8; entry preserves history. -->
 
+## DQ-10 · `/app main` `3840c8f58 ---` hook auto-commit anomaly · monitoring-only
+
+- **Surfaced at**: CENSUS-3-F Commit-B state seal (2026-09-22T~05:15Z) during re-anchor.
+- **Fact**: `/app main` HEAD `3840c8f58f520137886e21c30abc8b0b084c0990` (committed 2026-09-22T04:15:43Z by `E1 Autopilot`) carries the literal subject `---` (three dashes) followed by a full-length body containing the CENSUS-SURFACE-A Commit-C fixup narrative. The prior commit `fc4e572ab` is the explicit Commit-C companion. `3840c8f58` appears to be an Emergent pre-commit-hook auto-commit that stripped the subject line — the body-first narrative structure is otherwise identical to a normal seal report.
+- **Options**:
+  - **(a)** Monitor-only: bank one-line note here and in this-Commit-B DECISIONS narrative; take no further action unless it recurs.
+  - **(b)** Dedicated close-and-cure: identify the pre-commit hook, patch it to preserve subject on auto-commit, seal as CP-HOOK-AUTO-COMMIT-CURE.
+- **Recommendation**: **(a)** per owner Ruling 3 verbatim (2026-09-22T~04:2XZ) — *"As you proposed: short DQ item + one-line note in the Commit-B DECISIONS entry. No dedicated close needed unless the anomaly recurs — if a second hook auto-commit with a `---` subject ever lands, promote it to its own DQ with the hook config as the suspect."*
+- **Blocks**: nothing operationally. The commit body carries full seal-report content, so audit legibility is preserved.
+- **Continues**: everything. R-91 ε-apply at horizon 2026-09-23T03:23:15Z unchanged. CENSUS-3-F sealing this-wave unchanged.
+- **Promotion trigger**: if a second commit with `---` (or any structurally-anomalous) subject lands on `/app main` from `E1 Autopilot`, promote DQ-10 to its own dedicated close with the hook config as suspect (per owner Ruling 3).
+
 ---
 
 ## Standing rules for this file

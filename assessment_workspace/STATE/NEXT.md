@@ -57,6 +57,34 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-22T~05:25Z · autopilot post-CENSUS-3-F-Commit-C-fixup**
+
+**CENSUS-3-F SEALED** via §3.3 3-Commit protocol:
+- code Commit-A `24d813fa9e2710e4163a5659af6744ffe61fe126` on `programme/track-a` (2026-09-22T05:10Z).
+- /app main Commit-A companion `fe7efe08b62c23ae989355b6b52b999965b48a10` (vendored mirror sync 2 files under services/data_source/obs_huawei_audio_read_only/ · new structural_sha256 `55add9b2f88fd3ccb44340fef49b60a8f391894de468aa21fee92c8de8e3266f`).
+- state Commit-B `02cbaf6b947be16fba9257ec45349bc328cc6177` on state master (wave card + same-seal hygiene 3 rows TENANT_SEPARATION + cp10 harness fresh receipt + DQ-10 monitoring-only + drill receipts).
+- state Commit-C fixup this-turn (R-6 boundary regen advancing heads_last_sealed.state_repo.head `d7e063ae` → `02cbaf6b` + insert code_repo entry for `24d813fa`).
+- /app main Commit-C companion next-turn (audit ORCH_BOOT byte-identical mirror sync + workspace-mirror sync).
+
+**Ratchet floor**: **5926** (was 5914 · +12 measured per owner Ruling 4: +11 CENSUS-3-F new invariants + 1 recouped from ratchet_history schema-typo cure). baseline_failures.json sha256 `f4361a2e438832686387fe4b236291cb8bbd3e708cdce9b9f9b82fbaa156710a`.
+
+**Pre-Commit-A double-green byte-identical**: 3 failed / 5926 passed / 1 skipped · stripped-sha256 `87565bddcb2bbc749e46708eafcfe2c776f60296bdccf84da0c20dce7744d52f` IDENTICAL run1+run2 · 172.08s + 172.14s · 3 failures all wrap-subset (R-91 pod_shell mirror-drift baselines closing at horizon).
+
+**Owner Rulings verbatim this-session** (banked in Commit-B DECISIONS wave card):
+- Ruling 2: opened CENSUS-3-F GPU pipeline.
+- Ruling 1a: same-seal hygiene 3 rows on TENANT_SEPARATION card per DQ-09 precedent.
+- Ruling 2a: cp10 harness re-run + fresh receipt · one-file-class expansion admitted.
+- Ruling 3: DQ-10 monitoring-only for /app main `3840c8f58 ---` hook auto-commit anomaly.
+- Ruling 4: ratchet = double-green MEASURED (not arithmetic); 5914 → 5926 both-basis annotation banked.
+
+**R-91 horizon**: `2026-09-23T03:23:15Z` UNCHANGED PARKED NO EXPEDITE (~21.97h out at Commit-C fixup).
+
+**Autopilot next**: HOLD for R-91 → R-91 ε-APPLY at horizon (App.js byte-identical mirror + banked UI specs land + Continuity Bundle regen 3 bundles closes CENSUS-SURFACE-A + CENSUS-3-F deferrals) → Post-R-91 OPEN CP-TENANT-SEPARATION with card hygiene-cured this-wave. Interleaved: CENSUS-3-F.2 live-streaming sub-slice + CENSUS-3-C/D/E census lanes + S4a-DIGICOW-RDS + Order B/Q-1 continue on this-Commit-C seal.
+
+**Standing bounds unchanged**: zero push · zero remote configured · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor 5926 · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · Structural §3.8 guard on services/request_context/context.py sha-pin ad0d9439 · Mirror-invariant guard on /app/backend/vendored/extraction_akki/backend/ structural mirror new structural_sha256 55add9b2 at Commit-A companion.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-19T~04:50Z · autopilot R-33 wake-up · post-CP-M13-W2-COMMIT-A**
 
 **M13-W2 Commit-A LANDED** at `programme/track-a` head `f2d0a7921831f41a0b8b1f1e6461b7925e55bc50` (2026-09-19T04:47:00Z). MILESTONE 4 SECOND SUB-WAVE SEALED at Commit-A level (M13-W1 TCB governance sealed 2026-09-17). §3.3 Commit-B/Commit-C pending as next step this-turn.
