@@ -462,6 +462,13 @@ app.include_router(portal_entitlement_router.router)
 from routers import portal_census as portal_census_router  # noqa: E402
 app.include_router(portal_census_router.router)
 
+# PHASE 3 continuation A' (2026-09-22T~16:53Z) — CENSUS AUTONOMY SERVICE
+# on-demand run trigger + real-scheduler-state polling. Mirror of the
+# repo assembler mount at backend/server.py. Ship-Manifest DoD parity
+# preserved (test_repo_server_routers_are_covered_by_pod_or_known_unwired).
+from routers import portal_census_autonomy as portal_census_autonomy_router  # noqa: E402
+app.include_router(portal_census_autonomy_router.router)
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}

@@ -1,5 +1,5 @@
 {
-  "file_count": 1020,
+  "file_count": 1022,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -509,6 +509,10 @@
       "sha256": "a46fd139011b80e79b691026929709088d63c4cedc20a126e9dd6c05ee9929a8",
       "size_bytes": 16904
     },
+    "routers/portal_census_autonomy.py": {
+      "sha256": "447f9f1e728fc134967850e9dd7f1f725b5dcbb502a07a7d00e433dee67726f6",
+      "size_bytes": 7369
+    },
     "routers/portal_entitlement.py": {
       "sha256": "9a10039248b35c182b2a29c7bdebd17af49b000856ced938cd1657bccde73143",
       "size_bytes": 10199
@@ -1016,6 +1020,10 @@
     "services/census_autonomy/service_shape.py": {
       "sha256": "473a21f840cb356232cf6e9e8a38be7552630fef54d45392f287c3bead6cc532",
       "size_bytes": 4773
+    },
+    "services/census_autonomy/state_reader.py": {
+      "sha256": "0fc5387bf6d254d79e22a18d0e54b748887dd71fe9e36d1c679244ef3f10095e",
+      "size_bytes": 3813
     },
     "services/census_autonomy/tenant_scope.py": {
       "sha256": "4d062cfbc660a54e00ab18a46afdd073288a9967527198017e6765d4ee3c5a47",
@@ -4082,7 +4090,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T13:53:50Z",
+  "generated_at_utc": "2026-09-22T17:11:16Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4096,7 +4104,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "6ff44254890532ebcff2ca5f8f7296ea12565305dfce9339606e38e4ca999ee3",
+  "structural_sha256": "082210b5bd609a7e0d23fc842c05f017d9778ad396215f900694d95101c2e56a",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }

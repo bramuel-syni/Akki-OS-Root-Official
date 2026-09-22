@@ -38,10 +38,10 @@ generator: main-agent Autopilot (PHASE 3 · CP-CENSUS-AUTONOMY-SERVICE · Commit
 regeneration_reason: phase-3-census-autonomy-service-commit-c-fixup-r-6-boundary-regen-advancing-state-head-f775adf6-to-cf7c5fca-plus-code-head-eed6c032-to-c3e6725c-plus-ratchet-6086-to-6090-plus-4-measured-system-census-productized
 
 ratchet:
-  passed_floor: 6090
-  counts_at_baseline_passed: 6090
+  passed_floor: 6097
+  counts_at_baseline_passed: 6097
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: e6a47f7843b7cb2a56b151158671b909631b146e6a5e9dfee6726379ec167928
+  baseline_failures_sha256: eb377b5c7627b5e06c12db68ba0a84a76003ac2a5503e6e3c233422aeca9ea3d
 
 heads_last_sealed:
   state_repo:
