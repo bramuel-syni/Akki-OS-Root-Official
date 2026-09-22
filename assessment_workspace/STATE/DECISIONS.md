@@ -24664,3 +24664,106 @@ Owner has not yet confirmed rotation of the two leaked MySQL passwords (`bramuel
 
 <!-- GPU-LANE-OPEN-20260922 · state Commit-A · 2026-09-22T~01:07Z END -->
 
+
+<!-- CENSUS-3-20260922-A · state Commit-A · 2026-09-22T~01:45Z BEGIN -->
+
+## CENSUS-3-20260922-A — OBS full sweep + Digicow S3 lang-ID sweep (partial) · LawfulBasisAdmit banked · owner-confirmed OBS partially readable
+
+**Trigger.** Owner directive 2026-09-22T~01:35Z verbatim (banked verbatim at `phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json`): *"can akki run the census job across all RMS and Digicow data. OBS is not blocked. You can read."* Scope: all 8 census axes at CONTENT depth across HUAWEI OBS (106 buckets), RMS MySQL (8 clusters, 42 dbs, ~429 M rows), Digicow RDS, Digicow S3, NAS. This card is CENSUS-3 slice **A** (OBS + S3 partial); MySQL/RDS/NAS/provenance land in slices B/C/D at the next seals.
+
+### OBS access reassessment (owner declaration verified with fresh probe)
+
+Sweep of all **106 buckets** with banked HPUA keys via esdk-obs-python. HeadBucket + paginated ListObjectsV2 (cap: 20 pages × 1000 keys per bucket) + deterministic sample of 5 objects per bucket with `Range: bytes=0-15` GetObject (16-byte magic-sniff, no content retention).
+
+| axis | prior 2026-09-21 (9-bucket delta) | this seal (full 106) |
+|---|---|---|
+| HeadBucket 2xx | 9/9 | **106/106** |
+| ListObjects 2xx | 9/9 | 101/106 |
+| **GetObject 2xx (at least one probed object)** | **0/9** (rms-ai returned 403) | **32/106** |
+| GetObject 403 AccessDenied | 9/9 | 74/106 |
+
+**Verdict**: owner directive *partially confirmed*. 32 of 106 buckets are now content-readable with the current HPUA keys where before none of the tested 9 were. **rms-ai specifically still returns 403** — DQ-05 still applies to rms-ai and 73 other buckets. Banked as evidence, not blocking (§6.8 rule).
+
+Two InvalidObjectState cases (`fast-channels`, `citizen-classifieds`) indicate Cold-tier storage; those need `restoreObject` ceremony before reads. Owner action pending on those two.
+
+### Estate roll-up (from OBS sweep · under 20-page cap; 33 buckets have more pages pending)
+
+| axis | value |
+|---|---|
+| Objects catalogued this pass | **950 791** |
+| Bytes catalogued this pass | **161.76 TB** |
+| Buckets with more pages pending beyond cap | **33 / 106** (~31%) → estate is materially larger than 161 TB |
+| Regions live | tr-west-1 (130.38 TB · 31 buckets) · af-south-1 (31.22 TB · 70 buckets) · ap-southeast-3 (0.16 TB · 4 buckets) · ap-southeast-1 (0.00 TB · 1 bucket = rms-ai) |
+
+### Content-class distribution (owner priority: non-music/speech holdings)
+
+| class | objects | share |
+|---|---|---|
+| **video** | 396 067 | 42 % |
+| **image** | 180 728 | 19 % |
+| **audio** | **172 977** | **18 %** |
+| **other** | 140 670 | 15 % |
+| **doc**   |  43 443 |  5 % |
+| **code**  |  13 539 |  1 % |
+| **archive** |  3 367 | 0.4 % |
+
+Owner-priority axis (non-music/speech) = **82 %** of catalogued objects. Audio (music+speech candidates) = 18 %.
+
+### Top-10 audio buckets by object count
+
+`news-vault` (af-south-1, 19 815) · `na7p41j6` (tr-west-1, 19 287) · `na7p4oy4` (tr-west-1, 19 168) · `na7p4oco` (af-south-1, 19 124) · `na7p43do` (af-south-1, 18 732) · `na7p43js` (af-south-1, 17 431) · `rmsbroadcast` (af-south-1, 16 994) · `na7p41jk` (tr-west-1, 13 776) · `na7p43hs` (tr-west-1, 8 474) · `na7p42tq` (tr-west-1, 8 177). **Sum top-10 ≈ 160 k audio objects** — dwarfs Digicow S3 (1602 objects) by 100×.
+
+### Top-10 video buckets by object count
+
+`2024offairrecs` (19 925) · `one-signal-live-service` (19 888) · `na7p4oxs` (19 201) · `na7p42xw` (19 056) · `na7p42yg` (18 733) · `na7p43d6` (18 574) · `na7p410c` (17 744) · `na7p4100` (17 732) · `na7p4oz6` (16 685) · `music-bucket-rms` (15 677).
+
+### Content-readable buckets that intersect with audio holdings (next GPU lane targets)
+
+`news-vault` · `rmsbroadcast` · `music-bucket-rms` · `skizaaudio` · `google-transcripts` · `chamgei-backup` · `citizen-vod` · `instore-radio-items` · `hot96backup` · `edailynew` · `inoorotv` · `citizentv` · `razuna.royalmedia` · `razuna-ireland-replication-7sep2017` · `royalmedia` — **15 audio-bearing buckets openable**. Next seal opens the OBS→GPU audio routing lane against these; dual-host now available (faster-whisper 1.2.1 installed on akki-vm-ii this seal — pip PEP-668 blocked initially, resolved with `--break-system-packages --user`).
+
+### Digicow S3 GPU language-ID sweep · in flight at this seal
+
+Launched 2026-09-22T~01:06Z; at **CENSUS-3-A seal time it is ~78 % complete** (1234/1568 objects). Combined rate ~0.75 obj/s across 2 H200s. ETA to full completion: ~5-7 more min. Shard-0 has ~10 % CT2 residual errors (63/500 first-batch); shard-1 has ~1 % (7/500) — asymmetry noted for post-mortem in the completion receipt (next seal). Aggregate results (language distribution + ambiguous-cohort re-classification promotion) land in **CENSUS-3-B** seal.
+
+### Axes populated this seal
+
+| axis | OBS status | notes |
+|---|---|---|
+| 1. Inventory | ✅ full | 106 buckets, 950 791 objects, per-region + per-content-class rollups |
+| 2. Dimensions | ✅ per-bucket | size-histogram + LastModified min/max per bucket in receipt |
+| 3. Components | ✅ sampled | magic-byte sniff on 530 objects (5 × 106 buckets); magic-kind retained, no content |
+| 4. Language | 🟡 partial | Digicow S3 lang-ID sweep in flight; OBS-audio lane opens next seal |
+| 5. Quality | 🟡 partial | access-tier + cold-tier flagged; codec-quality via ffprobe deferred to audio-routing lane |
+| 6. Meta-dynamics | 🟡 partial | LM min/max captured; growth-rate axis needs a T-N vs T-0 delta (next seal) |
+| 7. Records & narratives | 🟡 partial | class counts only; content sampling on doc/code deferred to next-pass with 403 tolerance |
+| 8. Factfulness | ⏸ deferred | requires shared-ID enumeration; opens after RDS content axis lands (CENSUS-3-B) |
+
+### Lanes opened for CENSUS-3-B / C / D (next seals)
+
+- **CENSUS-3-B**: (i) MySQL content-axis aggregates across 8 clusters — per-table null rates on key columns, dup-rate estimates via `COUNT DISTINCT` on candidate PK columns, timestamp min/max, text-column LID on seed-pinned samples, narrative typology per db (visitors, news, KRA, weego, viusasa, skiza/jipange USSD, razuna DAM, citizen_digital); serial-per-cluster, off-peak posture, viusasa_staging (357 GB) aggregates+bounded samples only. (ii) Digicow RDS content axis (digicow_live + ndume) same treatment. (iii) Digicow S3 lang-ID **completion** + ambiguous-cohort re-classification delta + contradiction register scaffold.
+- **CENSUS-3-C**: NAS deep walk via JUMP smbclient (bounded per-share); route audio to GPU pipeline.
+- **CENSUS-3-D**: OBS audio → GPU pipeline against the 15 openable audio buckets (dual-host: akki-vm + akki-vm-ii); OBS doc/code sampling; provenance join S3-key ↔ RDS-row on the confirmed shared-ID field; contradiction register populated.
+
+### Autopilot next (§6.8 · no wait)
+
+- ▶ **Poll and harvest** the akki-vm lang-ID sweep — expected in the next 5-10 min from this seal.
+- ▶ **CENSUS-3-B** opens immediately after harvest: MySQL content-axis (serial per cluster) + RDS content-axis + lang-ID aggregate.
+- ▶ CPU lanes (S4a-DIGICOW-RDS scaffolding, Order B / Q-1) continue interleaved — census work must not starve them.
+
+### Non-actions
+
+- No push, no fetch.
+- No `testing_agent`.
+- No history rewrite.
+- No modification of sealed classes.
+- No content retention (magic-bytes retained, not payloads).
+- No second store (OBS bytes never left the wire → hex-slice → magic-kind classifier → discarded).
+- Ratchet floor **5858** untouched.
+- R-91 PARKED at horizon `2026-09-23T03:23:15Z` (~26.0 h out) — untouched.
+- Rate-limit posture applied: OBS sweep at 12 concurrent bucket workers (rate-controlled by HPUA API limits; no MySQL touched this seal).
+- HYGIENE-20260921 shape-only policy enforced on the new HPUA cred read (values never printed; identity only surfaced as `IAM user BramwelMwalo · AK-len=20 · SK-len=40`).
+
+**End of CENSUS-3-A wave card.**
+
+<!-- CENSUS-3-20260922-A · state Commit-A · 2026-09-22T~01:45Z END -->
+

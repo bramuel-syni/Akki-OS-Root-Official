@@ -1,0 +1,23 @@
+{
+  "receipt_id": "LAWFUL-BASIS-ADMIT-CENSUS3-20260922T014000Z",
+  "surfaced_at": "2026-09-22T01:40:00Z",
+  "citation": "CENSUS-3 directive, owner verbatim (2026-09-22T~01:35Z)",
+  "owner_directive_verbatim": "OWNER DIRECTIVE \u2014 CENSUS-3: full content-level census across ALL RMS and Digicow data. Owner's words: 'can akki run the census job across all RMS and Digicow data. OBS is not blocked. You can read.' Execute per \u00a76.8, no hold. Treat OBS as READABLE...",
+  "scope": [
+    "HUAWEI OBS (106 buckets) - list + content sampling + audio -> GPU pipeline",
+    "RMS MYSQL (8 clusters, 42 dbs) - aggregate SQL only, seed-pinned samples for text lang detection",
+    "DIGICOW RDS (digicow_live + ndume)",
+    "DIGICOW S3 (fold running lang sweep + provenance join)",
+    "NAS (deep walk via JUMP smbclient)"
+  ],
+  "invariants": {
+    "read_only": true,
+    "no_second_store": true,
+    "no_content_retention": true,
+    "shape_only_creds": true,
+    "rate_limit_mysql": "serial per cluster; off-peak posture; viusasa_staging (357GB): aggregates + bounded samples only, no full scans",
+    "no_push_no_fetch": true,
+    "ratchet_untouched": true,
+    "r91_parked": true
+  }
+}

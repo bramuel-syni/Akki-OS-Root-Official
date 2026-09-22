@@ -1,0 +1,145 @@
+{
+  "attempted_at_utc": "2026-09-22T01:27:43Z",
+  "per_bucket": [
+    {
+      "bucket": "rms-ai",
+      "endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+      "steps": {
+        "headBucket": {
+          "status": 200,
+          "elapsed_ms": 1446
+        },
+        "listObjects_max1": {
+          "status": 200,
+          "count": 1,
+          "elapsed_ms": 525
+        },
+        "sample_object": {
+          "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00643c19-cbcc-43b8-88bc-69118bb889e9.jpg",
+          "size": 5898,
+          "etag": "\"8d562fdb0f9a4aea535b058cd94c3cd5\"",
+          "lastModified": "2026/07/21 06:38:31"
+        },
+        "headObject": {
+          "status": 403,
+          "contentLength": null,
+          "contentType": null,
+          "elapsed_ms": 506
+        }
+      },
+      "exception": "AttributeError: 'dict' object has no attribute 'range'"
+    },
+    {
+      "bucket": "2024offairrecs",
+      "endpoint": "obs.af-south-1.myhuaweicloud.com",
+      "steps": {
+        "headBucket": {
+          "status": 200,
+          "elapsed_ms": 2222
+        },
+        "listObjects_max1": {
+          "status": 200,
+          "count": 1,
+          "elapsed_ms": 815
+        },
+        "sample_object": {
+          "key": "DAS_Imexport_Export_xlsx_8bfc8f83291a4ad1aa2920dba3fcf0bf.zip",
+          "size": 22,
+          "etag": "\"fd5834ab7b237c0c33ea5814f9fdf847-1\"",
+          "lastModified": "2025/10/26 19:39:40"
+        },
+        "headObject": {
+          "status": 403,
+          "contentLength": null,
+          "contentType": null,
+          "elapsed_ms": 835
+        }
+      },
+      "exception": "AttributeError: 'dict' object has no attribute 'range'"
+    },
+    {
+      "bucket": "citizen-vod",
+      "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+      "steps": {
+        "headBucket": {
+          "status": 200,
+          "elapsed_ms": 1869
+        },
+        "listObjects_max1": {
+          "status": 200,
+          "count": 1,
+          "elapsed_ms": 667
+        },
+        "sample_object": {
+          "key": "169008/552cef2a-88c4-4dd2-8f6a-e74fd87b002d_vertical.mp4",
+          "size": 2399569,
+          "etag": "\"c650014ce603423e735d36f56840f7bb\"",
+          "lastModified": "2026/05/15 09:48:22"
+        },
+        "headObject": {
+          "status": 200,
+          "contentLength": 2399569,
+          "contentType": "video/mp4",
+          "elapsed_ms": 664
+        }
+      },
+      "exception": "AttributeError: 'dict' object has no attribute 'range'"
+    },
+    {
+      "bucket": "librarydirectupload2",
+      "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+      "steps": {
+        "headBucket": {
+          "status": 200,
+          "elapsed_ms": 1490
+        },
+        "listObjects_max1": {
+          "status": 200,
+          "count": 1,
+          "elapsed_ms": 512
+        },
+        "sample_object": {
+          "key": ".DS_Store",
+          "size": 30724,
+          "etag": "\"4ec50800b33f372978dbac8f1900a61a\"",
+          "lastModified": "2024/04/15 10:41:45"
+        },
+        "headObject": {
+          "status": 403,
+          "contentLength": null,
+          "contentType": null,
+          "elapsed_ms": 536
+        }
+      },
+      "exception": "AttributeError: 'dict' object has no attribute 'range'"
+    },
+    {
+      "bucket": "cal-docs",
+      "endpoint": "obs.af-south-1.myhuaweicloud.com",
+      "steps": {
+        "headBucket": {
+          "status": 200,
+          "elapsed_ms": 2370
+        },
+        "listObjects_max1": {
+          "status": 200,
+          "count": 1,
+          "elapsed_ms": 848
+        },
+        "sample_object": {
+          "key": "20240312144503322569_CitizenDigitalVAS.jpg",
+          "size": 61972,
+          "etag": "\"b946bf84df323e3de3009a7e86ed688d\"",
+          "lastModified": "2024/03/21 11:03:24"
+        },
+        "headObject": {
+          "status": 200,
+          "contentLength": 61972,
+          "contentType": "binary/octet-stream",
+          "elapsed_ms": 857
+        }
+      },
+      "exception": "AttributeError: 'dict' object has no attribute 'range'"
+    }
+  ]
+}

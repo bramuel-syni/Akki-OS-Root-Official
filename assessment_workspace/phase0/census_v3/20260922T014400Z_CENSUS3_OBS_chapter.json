@@ -1,0 +1,177 @@
+{
+  "receipt_id": "CENSUS3-OBS-FULL-SWEEP-20260922T013648Z",
+  "surfaced_at": "2026-09-22T01:36:48Z",
+  "wave_id": "CENSUS-3 (OBS chapter, first slice)",
+  "trigger": "owner directive 2026-09-22T~01:35Z 'CENSUS-3 · full content-level census across ALL RMS and Digicow data. OBS is not blocked. You can read.'",
+  "lawful_basis_admit_ref": "phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+  "standing_order": "SO 6.8 (no GO required); HYGIENE-20260921 shape-only; read-only; no-second-store",
+
+  "obs_access_reassessment": {
+    "prior_verdict_2026_09_21": "PARTIAL_HEADS_OK_LIST_OR_GET_FAILED (from 9-bucket delta rerun; proof_of_read on rms-ai returned 403)",
+    "owner_declaration_this_seal": "OBS is not blocked. You can read.",
+    "empirical_re_test_this_seal": {
+      "buckets_probed": 106,
+      "head_bucket_ok": 106,
+      "list_returned_objects": 101,
+      "getobject_range16_ok_at_least_one_object": 32,
+      "getobject_range16_denied_everywhere_probed": 74,
+      "verdict": "OWNER_PARTIALLY_CONFIRMED - 32 of 106 buckets now yield content bytes with banked HPUA keys; the remaining 74 still return AccessDenied or InvalidObjectState (cold-tier); rms-ai specifically STILL returns 403 with the current keys, matching the prior receipt; the change since 2026-09-21 is that ~30% of the estate is now content-readable where before only HeadBucket+List was open"
+    },
+    "rms_ai_still_403": {
+      "region": "ap-southeast-1",
+      "error_code": "AccessDenied",
+      "http": 403,
+      "note": "banked verbatim per §6.8 evidence rule; does not block the 32 OK buckets; DQ-05 remains applicable to rms-ai and 73 other buckets"
+    }
+  },
+
+  "sweep_config": {
+    "sdk": "esdk-obs-python (obs client v3+)",
+    "sdk_verified": "present in local python env (`import obs` ok)",
+    "credentials_source": "/app/backend/estate_keys/data_sources/huawei_credentials.csv (IAM user BramwelMwalo, AK-len=20, SK-len=40)",
+    "credentials_transit": "in-memory only (csv.reader on local file); no env-var persistence, no printing",
+    "workers": 12,
+    "max_list_pages_per_bucket": 20,
+    "max_keys_per_page": 1000,
+    "sample_objects_for_getobject": 5,
+    "getobject_range": "bytes=0-15 (16-byte magic-sniff probe only; magic-kind retained, no content bytes stored)",
+    "deterministic_sampling_seed": 20260922,
+    "wall_seconds_total": 312
+  },
+
+  "estate_rollup": {
+    "total_objects_scanned_across_buckets_capped": 950791,
+    "total_bytes_scanned_across_buckets_capped_TB": 161.76,
+    "buckets_with_pagination_pending_beyond_cap_20pages": 33,
+    "note_on_cap": "33 buckets have more than 20 000 objects (20 pages x 1000 keys); their totals are lower bounds; a next-pass with uncapped listing would refine the estate size upward",
+    "per_region_TB": {
+      "tr-west-1":     { "buckets": 31, "objects": 397338, "TB": 130.38 },
+      "af-south-1":    { "buckets": 70, "objects": 502944, "TB":  31.22 },
+      "ap-southeast-3":{ "buckets":  4, "objects":  30509, "TB":   0.16 },
+      "ap-southeast-1":{ "buckets":  1, "objects":  20000, "TB":   0.00 }
+    }
+  },
+
+  "content_axis_1_inventory": {
+    "content_class_totals": {
+      "video":   396067,
+      "image":   180728,
+      "audio":   172977,
+      "other":   140670,
+      "doc":      43443,
+      "code":      13539,
+      "archive":   3367
+    },
+    "share_of_owner_priority_non_music_speech": {
+      "video_image_doc_code_archive_other_pct": 82.0,
+      "audio_pct": 18.0,
+      "note": "owner priority 'Non-music/speech holdings' is the majority — 82 % of catalogued objects are non-audio classes"
+    }
+  },
+
+  "content_axis_2_dimensions": {
+    "note": "dimensions here = size distribution + LastModified range; per-bucket in per_bucket field of the sweep receipt at phase0/connectivity_receipts/20260922T013648Z_CENSUS3_OBS_full_sweep.json",
+    "estate_wide_freshness": "computed per-bucket; oldest LM range observed goes back to 2015 (`apr252017` bucket); newest LM within 2026-09 across active buckets"
+  },
+
+  "content_axis_3_components": {
+    "note": "magic-byte sniff results on the sampled objects; retained magic-kind only (JPEG/PNG/MP4/MP3/PDF/etc), not bytes"
+  },
+
+  "content_axis_4_language": {
+    "surface_scope": "audio content only for this axis; deferred to GPU lane",
+    "gpu_lane_status": "akki-vm sweep on Digicow S3 (1568 objects) running; ETA ~10 min from this seal; ~1100 processed at seal time · 87 err (mostly shard-0 CT2 residual)",
+    "next": "extend GPU lane to OBS audio buckets (top 10: news-vault, na7p41j6, na7p4oy4, na7p4oco, na7p43do, na7p43js, rmsbroadcast, na7p41jk, na7p43hs, na7p42tq — sum ~160 k audio objects); dual-host now enabled (akki-vm-ii faster-whisper 1.2.1 installed this seal)"
+  },
+
+  "content_axis_5_quality": {
+    "note": "OBS quality axis = access-tier + read-tier x codec; captured per-bucket in access classification (32 OK / 74 denied / 33 partial-list-cap) and via ffprobe on audio (deferred to lane launch when we route OBS audio into the GPU pipeline)",
+    "cold_tier_buckets_returning_InvalidObjectState": ["fast-channels (af-south-1)", "citizen-classifieds (af-south-1)"],
+    "note_cold_tier": "these are Cold storage class per OBS; require restore ceremony before reads; owner may or may not want them thawed"
+  },
+
+  "content_axis_6_meta_dynamics": {
+    "note": "meta-dynamics = churn/growth; deferred to a lm-histogram second pass; today's LastModified min/max per bucket is captured in per_bucket field",
+    "buckets_active_recently_2026_09": "count is per-bucket in receipt; not aggregated this seal"
+  },
+
+  "content_axis_7_records_and_narratives": {
+    "surface_scope": "text/xml/json/html/csv/log/md content-type classes",
+    "counts": {
+      "doc_class": 43443,
+      "code_class": 13539
+    },
+    "note": "narrative typology (what the records describe) requires content-body reads on doc/code samples; deferred to next lane pass which will pull first-N-bytes on doc/code samples with tolerance for 403"
+  },
+
+  "content_axis_8_factfulness": {
+    "note": "factfulness = cross-surface consistency (S3 key ↔ RDS row ↔ OBS key ↔ NAS path); requires a shared-ID enumeration across surfaces; deferred to next seal when NAS walk lands and MySQL content-axis aggregates complete"
+  },
+
+  "top_bucket_lists_for_next_lanes": {
+    "audio_top10_by_object_count": [
+      { "bucket": "news-vault",       "region": "af-south-1", "audio_objects": 19815 },
+      { "bucket": "na7p41j6",         "region": "tr-west-1",  "audio_objects": 19287 },
+      { "bucket": "na7p4oy4",         "region": "tr-west-1",  "audio_objects": 19168 },
+      { "bucket": "na7p4oco",         "region": "af-south-1", "audio_objects": 19124 },
+      { "bucket": "na7p43do",         "region": "af-south-1", "audio_objects": 18732 },
+      { "bucket": "na7p43js",         "region": "af-south-1", "audio_objects": 17431 },
+      { "bucket": "rmsbroadcast",     "region": "af-south-1", "audio_objects": 16994 },
+      { "bucket": "na7p41jk",         "region": "tr-west-1",  "audio_objects": 13776 },
+      { "bucket": "na7p43hs",         "region": "tr-west-1",  "audio_objects":  8474 },
+      { "bucket": "na7p42tq",         "region": "tr-west-1",  "audio_objects":  8177 }
+    ],
+    "audio_top10_getobject_readability_check_next_lane": "pending; the 32 buckets in getobject_ok list will be intersected with these top-audio names to identify which audio buckets are actually routable to the GPU pipeline",
+    "video_top10_by_object_count": [
+      { "bucket": "2024offairrecs",           "region": "af-south-1", "video_objects": 19925 },
+      { "bucket": "one-signal-live-service",  "region": "ap-southeast-3", "video_objects": 19888 },
+      { "bucket": "na7p4oxs",                 "region": "tr-west-1", "video_objects": 19201 },
+      { "bucket": "na7p42xw",                 "region": "af-south-1", "video_objects": 19056 },
+      { "bucket": "na7p42yg",                 "region": "af-south-1", "video_objects": 18733 },
+      { "bucket": "na7p43d6",                 "region": "tr-west-1", "video_objects": 18574 },
+      { "bucket": "na7p410c",                 "region": "tr-west-1", "video_objects": 17744 },
+      { "bucket": "na7p4100",                 "region": "tr-west-1", "video_objects": 17732 },
+      { "bucket": "na7p4oz6",                 "region": "tr-west-1", "video_objects": 16685 },
+      { "bucket": "music-bucket-rms",         "region": "af-south-1", "video_objects": 15677 }
+    ]
+  },
+
+  "getobject_ok_bucket_names_32": [
+    "citizen-digital-cms-files-copy", "cal-docs", "caldocs", "datauploadroyalmedia.co.ke",
+    "drivesdata.royalmedia", "elections-portal-backup", "citizen-vod", "instore-radio-items",
+    "elections", "may172017", "miss-intl-somalia", "chamgei-backup",
+    "citizen-digital-cms-files", "edailynew", "inoorotv", "citizentv",
+    "hot96backup", "google-transcripts", "music-bucket-rms", "mar142017",
+    "onesignal-logos", "razuna-ireland-replication-7sep2017",
+    "rekognition-video-console-demo-dub-917562226170-nm20tsok0pm1ea",
+    "s3hub-806142fb68af5725514152f0ae3fb5978d4899aaf394fc186460f3fe2",
+    "shikisha", "obituariesnew", "test-regionireland",
+    "skizaaudio", "rmsbroadcast", "royalmedia", "news-vault", "razuna.royalmedia"
+  ],
+
+  "getobject_ok_audio_intersect_next_lane_targets": [
+    "news-vault", "rmsbroadcast", "music-bucket-rms", "skizaaudio", "google-transcripts",
+    "chamgei-backup", "citizen-vod", "instore-radio-items", "hot96backup", "edailynew",
+    "inoorotv", "citizentv", "razuna.royalmedia", "razuna-ireland-replication-7sep2017",
+    "royalmedia"
+  ],
+
+  "next_seal_lanes_opened_not_yet_run": {
+    "MySQL_content_axis_aggregates": "S1 · 8 clusters · per-table null rates on key columns, dup-rate estimates, timestamp min/max, text-column language on seed-pinned samples · rate-limited serial per cluster · off-peak posture · aggregates only, no full scans on viusasa_staging",
+    "Digicow_RDS_content_axis": "S2 · digicow_live + ndume text-field typology + freshness confirmation · aggregate SQL only",
+    "Digicow_S3_langid_completion": "S3 · running · harvest at completion; then bank per-language distribution + ambiguous-cohort re-classification delta",
+    "NAS_deep_walk_via_JUMP_smbclient": "S4 · bounded batches per share · route discovered audio to GPU lane",
+    "OBS_audio_routing_to_GPU": "S5 · take intersect of audio-top10 x getobject-ok-32 (see field getobject_ok_audio_intersect_next_lane_targets); stream to akki-vm and akki-vm-ii (dual-host); language-ID + speech/music tighten with faster-whisper tiny int8",
+    "Provenance_join_S3_to_RDS": "S6 · once shared-ID field confirmed via RDS content axis"
+  },
+
+  "non_actions_this_seal": [
+    "No push, no fetch.",
+    "No testing_agent.",
+    "No history rewrite.",
+    "No modification to sealed classes.",
+    "No touch to programme/track-a.",
+    "Ratchet floor 5858 untouched.",
+    "R-91 hold intact; ~26.0 h out."
+  ]
+}
