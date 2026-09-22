@@ -778,3 +778,37 @@ Companion deliverables (hashed for auditor cross-check, not bundle pins):
 Standing bounds unchanged. Zero-push discipline unchanged.
 
 <!-- AUDIT-PREP-20260921 · 2026-09-21T18:20:00Z END -->
+
+
+<!-- R-101 · R-91-TIMER-SUPERSEDED CONDITION-GATE PINS · 2026-09-22T06:15:23Z BEGIN -->
+
+## R-101 condition-gate pins · replaces R-91 horizon 2026-09-23T03:23:15Z NO EXPEDITE
+
+Owner ruling relayed 2026-09-22T~06:15Z verbatim (banked at `STATE/DECISIONS.md:R-101 append`): *"Unless you think otherwise i dont think the timer is useful or the rule - commence if xxx conditions are met. I dont think the rule serves much because there will always be something more to build or change. Should be a better way to manage the risk as we need to see what you are building and the only way now is the front end."*
+
+**Effect:** the R-91 clock-gate (horizon `2026-09-23T03:23:15Z`) is SUPERSEDED. The R-91 WHAT (byte-identical mirror + 5 baselines → 0 + 5 annotations retire · retain cp10-still-recent · milestone_status SEALED) is UNCHANGED.
+
+### Condition-gate set (all 6 gate the ε-apply)
+
+| Cond | Text | Verification |
+|---|---|---|
+| (i) | Pre-apply BASELINE_GUARD=1 PYTHONHASHSEED=0 double-green byte-identical at floor 5932 | Two consecutive sweep receipts stripped-sha256 match |
+| (ii) | Prototype conformance material banked (starter suffices to begin; full 46-view completes inside wave) | `phase0/prototype_inventory/20260922T062000Z_prototype_inventory_starter.md` present + full enum completes at wave first work item |
+| (iii) | ε-apply byte-identical mirror executes R-91 CEREMONY-OPEN §22243 ten operations verbatim + frontend rebuild to v2 OS + LATEST DAP prototypes + honest-gap strings + Run-census wired only to REAL | 5 baselines → 0 · 5 annotations retire (retain cp10-still-recent) · milestone_status SEALED |
+| (iv) | Same-boundary riders: DQ-12 CP-DOT-ENV-HYGIENE (untrack `/app/backend/.env` + `.env.local` pattern + 3 RED tests) AND 3-bundle Continuity regen | DQ-12 sealed inside wave · 3 bundles sha-pinned in this PINS.md |
+| (v) | Post-apply mirror invariants GREEN · double-green byte-identical at new floor · §3.3 3-Commit Seal | Ratchet monotonic-up (5932 → 5937+) · state Commit-B ratifies |
+| (vi) | CP-TENANT-SEPARATION opens on that seal per owner Part-2 order (2026-09-22T~02:20Z) | `STATE/OBJECTIVES/TENANT_SEPARATION.md` pinned pre-first-RED · four-tenant scaffold banked |
+
+### Preserved historical constants (do NOT edit)
+
+- `services/canon/rules_service/rules_service_vocabulary.py::RBM_8_R91_LIVE_EVIDENCE_HORIZON_UTC = "2026-09-23T03:23:15Z"` — remains as banked-history live-evidence-receipt constant (R-98 seal `38eeef6c`). The owner supersede retires the clock's operational effect, not the R-98 canon-rule authoring.
+- R-91 CEREMONY-OPEN banking (`STATE/DECISIONS.md:22213-22340`) — preserved verbatim as authoritative WHAT reference.
+- SO §6.6 audit standard on countdown mechanics — unchanged for future ceremonies. This supersede is owner-authored per §6.8 owner-directive authority; it is not a precedent for ad-hoc countdown-cutting by the desk.
+
+### Objective card opened this-banking
+
+- `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` — CENSUS-PRODUCTIZATION objective card DRAFTED · pinned pre-first-RED · sequenced post-CP-TENANT-SEPARATION. Owner correction on desk gap read awaited at R-101 ε-apply seal report.
+
+Standing bounds unchanged. Zero-push discipline unchanged.
+
+<!-- R-101 · R-91-TIMER-SUPERSEDED CONDITION-GATE PINS · 2026-09-22T06:15:23Z END -->

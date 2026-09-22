@@ -122,10 +122,11 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Recommendation**: **(a) or (b)**. **(b)** is smaller blast radius. **(c)** adds a new custody-vending API (state-of-record surface event; may need owner ratification).
 - **Continues**: everything else. R-91 horizon 2026-09-23T03:23:15Z unchanged.
 
-## DQ-12 · CP-DOT-ENV-HYGIENE scheduled post-R-91 · agent-side seal
+## DQ-12 · CP-DOT-ENV-HYGIENE · **sequenced INTO R-101 ε-apply wave** (was: agent-side seal post-R-91)
 
 - **Surfaced by**: DQ-11 hygiene probe at 2026-09-22T~06:15Z (receipt `phase0/hygiene_receipts/20260922T061500Z_dot_env_hygiene_probe.md`).
-- **Scope**: dedicated small §3.3 seal riding a post-R-91 boundary (per owner Ruling this-session 2026-09-22T~06:10Z verbatim: *"schedule CP-DOT-ENV-HYGIENE (git rm --cached backend/.env + untracked-from-birth .env.local pattern) as its own small seal riding a post-R-91 boundary"*).
+- **Re-sequenced at**: 2026-09-22T~06:15Z per owner ruling relayed to desk (banked at `DECISIONS.md:R-101 append` condition (iv) verbatim): *"same-boundary riders: DQ-12 CP-DOT-ENV-HYGIENE + 3-bundle Continuity regen"*. R-91 timer superseded (R-101); DQ-12 rides the same ε-apply boundary as the mirror + frontend rebuild, no longer a separate small seal.
+- **Scope**: DQ-12 lands as the FIRST commit-A slice of the R-101 ε-apply wave (before the frontend rebuild slice) so any secret-hygiene finds from the broader sweep can also fold in cleanly.
 - **Cure**:
   1. `git rm --cached /app/backend/.env` on `/app` main. File stays on disk; git stops tracking future changes.
   2. Introduce `/app/backend/.env.local` untracked-from-birth (already covered by `.env.*` gitignore rule at `/app/.gitignore:89`). Supervisor sources both files. New secrets land only in `.env.local`.
@@ -137,7 +138,7 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
   - `test_no_secrets_pattern_in_tracked_env` — sweep of `backend/.env` (tracked at HEAD) for AK/SK/TOKEN/API_KEY/JWT_SECRET/EMERGENT_LLM_KEY-name → value-pair regex hits = zero (either key absent OR value shape ≠ high-entropy).
 - **Blocks**: nothing operationally. `.env` continues to be sourced by supervisor throughout.
 - **Continues**: everything.
-- **Timing**: post-R-91 boundary (any time after horizon 2026-09-23T03:23:15Z + Continuity Bundle regen). Small seal; can piggyback on any post-R-91 wave-close.
+- **Timing**: **inside R-101 ε-apply wave**, ratchet monotonic-up on the 3 hygiene invariants + the mirror-invariant retirements + net-new frontend tests.
 
 ## DQ-13 · CREDENTIAL ROTATION REQUIRED · owner-side · `EMERGENT_LLM_KEY` + `JWT_SECRET`
 
@@ -156,6 +157,16 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Related**: DQ-11 (CP-VEND-HUAWEI-OBS cure module authored this-session for OBS-side secret handling) uses the same custody-xlsx-in-memory pattern that CP-DOT-ENV-HYGIENE + rotation enable at scale.
 
 ---
+
+## R-101 supersede rider (2026-09-22T06:15:23Z · owner ruling relayed to desk)
+
+R-91 clock-gate (horizon `2026-09-23T03:23:15Z` NO EXPEDITE) is SUPERSEDED per owner ruling banked at `DECISIONS.md:R-101 append`. The R-91 WHAT (byte-identical mirror + 5 baselines → 0 + 5 annotations retire · retain cp10-still-recent · milestone_status SEALED) is unchanged. R-91 ε-apply commences at NEXT boundary condition-gated on the 6 conditions installed at R-101 (see `DECISIONS.md` R-101 append §CONDITION SET and `PINS.md` `R-101 CONDITION-GATE` block).
+
+**Effect on queue:**
+- DQ-11 timing tag "R-91 horizon 2026-09-23T03:23:15Z unchanged" — SUPERSEDED. Queued to Turn-5 CP-VEND-HUAWEI-OBS after Turn-3 R-101 ε-apply + Turn-4 Order B.
+- DQ-12 re-sequenced INTO R-101 ε-apply wave as first Commit-A slice (see DQ-12 above · edited this-append).
+- DQ-13 owner-side rotation — unchanged; DQ-12 lands FIRST enabling zero-risk rotation into `.env.local`.
+- CENSUS-PRODUCTIZATION objective card DRAFTED at `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` · sequenced post-CP-TENANT-SEPARATION per owner second-question response requirement.
 
 ## Standing rules for this file
 

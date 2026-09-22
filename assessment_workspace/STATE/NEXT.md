@@ -5367,4 +5367,20 @@ Owner note this-session verbatim: *"for the ε-apply mirror: /app/frontend has m
 - **Diff-vs-prior-attestation**: last banked §6 INTERLUDE MARKER was `R-59 · 2026-09-19T~19:05Z` (M17-W5 fork closed) · milestone advance since: R-85..R-100 + R-100-UNWIND + CP-PROD-DEPLOY-SELF-CONTAINMENT + AUDIT-PREP-20260921 + HUAWEI-OBS-ACCESS-DRILL + JUMP-CONNECTIVITY-RETRY + SO §6.8 adoption + FULL-ESTATE-CENSUS-20260921 + HYGIENE-20260921 + GPU-INVENTORY-20260922 + GPU-LANE-OPEN-20260922 + CENSUS-3-20260922-A + CENSUS-3-20260922-B + CENSUS-SURFACE-A (base → journey A' → registry landing A" → Commit-B → this Commit-C) all sealed since · ratchet floor advance 5711 → **5914** (+203 monotonic-up) · resumed under §6.8 "no GO exists" autopilot after owner Part 2 CP-TENANT-SEPARATION order banked pre-first-RED.
 
 
+### §6 INTERLUDE MARKER · autopilot re-anchor · 2026-09-22T06:15:23Z · R-101 R-91-TIMER-SUPERSEDED banking
+
+- **Current wave**: R-101 state-only supersede banking (not a §3.3 3-Commit Seal · notes-only per `14173772` FE FIX-PASS CLOSURE + `0e7a07b0` HUNT-first banking precedents).
+- **Ratchet floor**: **5932 passed** UNCHANGED at this banking (no code branch touch · state-only).
+- **R-91 marker flip**: ⏳ PARKED horizon `2026-09-23T03:23:15Z` NO EXPEDITE → **⏳ CONDITION-GATED R-101** (6 conditions installed at `STATE/DECISIONS.md:R-101 append`). Horizon retired as live gate; RBM-8 canon rule preserved.
+- **Open forks (DESK_QUEUE)**: DQ-01 auditor-builder independence (standing) · DQ-05 OBS `GetObject` IAM (still blocked) · DQ-06 HF-HOLD SEC-2026-09-12-01 (still open) · DQ-08 historical `816be899` pw exposure (mitigated) · DQ-11 CP-VEND-HUAWEI-OBS (dequeued to Turn-5 post-UI wave per owner priority) · DQ-12 CP-DOT-ENV-HYGIENE (**sequenced INTO R-101 ε-apply wave**) · DQ-13 EMERGENT_LLM_KEY + JWT_SECRET rotation (owner-side).
+- **Active bounds**: zero push · terminal pytest + curl only · `testing_agent` STRICTLY BANNED per SO §6 · additive-only §3.8 · three-repo discipline · HF-HOLD standing · **R-91 clock-gate SUPERSEDED** per owner ruling 2026-09-22T~06:12Z.
+- **Next action queue (post-R-101 banking)**:
+  1. **Turn 2 · BROAD HYGIENE SWEEP** — every tracked file in every git repo present (/app, assessment_workspace, repos/{Extraction-Akki, RMS-IQ-Core-2, Akki-OS-V1, Akki-Executive-Core, Akki-Executive-Final}) for live secret material · shape-only receipt at `phase0/hygiene_receipts/20260922T*_broad_sweep.md` · one pass · fold into DQ-13.
+  2. **Turn 3 · R-101 ε-apply + FRONTEND REBUILD WAVE** — prototype full enumeration (46-view checklist) executes inside as first work item · then ε-apply byte-identical mirror · rebuild runtime frontend to v2 OS + LATEST DAP prototypes · "prototype wins" · streaming/transition states · honest-gap strings · Run-census wired only to REAL · DQ-12 CP-DOT-ENV-HYGIENE rider · 3-bundle Continuity regen · §3.3 3-Commit Seal.
+  3. **Turn 4 · Audit ORDER B FULL RUN** — interleaved second per owner visibility priority (UI wave = first) · re-clone `akki_audit_20260921_code.bundle` onto `/` overlay (75G free) · full build-and-run verdict then §8 sections with planted-violation RED proofs · receipts at `phase0/audit_pass_receipts/20260922T*_order_b_verdict.md`.
+  4. **Turn 5 · CP-VEND-HUAWEI-OBS** — DQ-11 cure · `services.secret_hygiene.huawei_obs_vend` reads AK/SK/endpoint in-memory from `custody/credentials/rms_connection_creds_v1.xlsx` · RED-first α+β+γ+δ + custody-cat guard + zero-side-effect assertion · §3.3 3-Commit Seal · unblocks CENSUS-3-F.2.1 live-OBS-bind slice.
+  5. **Turn 6 · C/D/E + S4a-DIGICOW-RDS pre-flights** — hunt-first · bundle fork questions into ONE owner ask.
+- **Objective card open this-banking**: `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` (DRAFTED · pinned pre-first-RED · sequenced post-CP-TENANT-SEPARATION). Owner correction awaited on desk gap read at R-101 ε-apply seal report.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

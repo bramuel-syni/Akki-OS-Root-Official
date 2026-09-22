@@ -25478,4 +25478,184 @@ Zero push · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY
 
 ---
 
+## 2026-09-22T06:15:23Z · R-101 · R-91-TIMER-SUPERSEDED · owner ruling relayed to desk · condition-gating replaces clock-gating · R-91 WHAT preserved · ε-apply commences at NEXT boundary
+
+### Owner ruling verbatim (2026-09-22T~06:12Z · relayed to desk 2026-09-22T~06:15Z)
+
+> "Unless you think otherwise i dont think the timer is useful or the rule - commence if xxx conditions are met. I dont think the rule serves much because there will always be something more to build or change. Should be a better way to manage the risk as we need to see what you are building and the only way now is the front end."
+
+**Desk concurrence relayed as part of same owner ruling:** *"clock-gating is replaced by CONDITION-gating."*
+
+### Effect · what supersedes and what does not
+
+**SUPERSEDES:** the R-91 TIMER only. The 2026-09-23T03:23:15Z horizon (ordinary-tier 48-hour countdown per proposal filing 2026-09-21T03:23:15Z + 48h per R-18 effect 12) is retired as a live gate. The R-98 code-encoded constant `RBM_8_R91_LIVE_EVIDENCE_HORIZON_UTC="2026-09-23T03:23:15Z"` becomes a **historical** live-evidence receipt — the ceremony mechanic (RBM-8 + SER C.5 I-4) stays canon, its live evidence horizon was the R-91 CEREMONY-OPEN filing that has now been superseded on its clock-half only.
+
+**DOES NOT SUPERSEDE:**
+- The R-91 WHAT — byte-identical mirror `/app/frontend/{App.js,pages/}` ↔ `pod_shell/frontend/{App.js,pages/}`, 5 baselines → 0, 5 annotations retire (3 mirror-drift + 2 v8-cascade), retain `test_cp10_harness_receipt_is_still_recent`, milestone_status flip SCHEDULED → SEALED on `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md`, ratchet monotonic-up.
+- The RBM-8 ceremony mechanic canon (Canon-3 §24 rule-change · ordinary tier · propose → counter-sign → wait → apply) — future ceremonies still countdown.
+- SO §6.6 audit standard on countdown mechanics — future countdowns cannot be shortened just because a sweep is already green. This supersede is a rule-change on THIS specific ceremony's clock-half, effected via owner ruling on owner authority; it is not a precedent for ad-hoc countdown-cutting by the desk.
+- The R-91 apply operation set (10 operations at `DECISIONS.md:22243`) — every operation still executes at ε-apply.
+- Any other unrelated hold (HF-HOLD SEC-2026-09-12-01 · Structural §3.8 sha-pin ad0d9439 · Mirror-invariant guard · DQ-11 open on Huawei OBS vend · DQ-13 owner-side rotation).
+
+### CONDITION SET replacing the TIMER (banked as R-101 condition-gate)
+
+The following six conditions replace the horizon `2026-09-23T03:23:15Z` NO EXPEDITE gate:
+
+1. **Pre-apply gate:** full BASELINE_GUARD=1 PYTHONHASHSEED=0 **double-green byte-identical** sweep at current floor **5932** proving the tree is clean going in. If either run diverges from the other in stripped-sha256, STOP-AND-REPORT rather than open Commit-A.
+
+2. **Prototype conformance material:** the banked prototype inventory starter at `phase0/prototype_inventory/20260922T062000Z_prototype_inventory_starter.md` is sufficient to BEGIN the wave; the full 46-view enumeration (all 31 OS leaves per v2 OS `RMS_AI_Prototype_v2.html` + full DAP state machine per `RMS_DAP_LATEST.html`) completes INSIDE the wave as its first work item, not a pre-flight.
+
+3. **ε-apply operation:** execute the byte-identical mirror per R-91 CEREMONY-OPEN §22243 verbatim — retire 5 baseline entries + retire 5 annotation keys (retain `test_cp10_harness_receipt_is_still_recent`) — the WHAT is unchanged from the ceremony, only the WHEN moves. THEN rebuild the runtime frontend to v2 OS + LATEST DAP prototypes ("prototype wins" per owner Front-End Integration Brief), streaming/transition states included, honest-gap strings where a control has no live backend yet — never a fake state. The Run-census control wires only to what is REAL at ship time (bounded real census run if feasible; otherwise honest-gap pattern; no simulated progress).
+
+4. **Same-boundary riders:**
+   - **DQ-12 CP-DOT-ENV-HYGIENE** — untrack `/app/backend/.env` (`git rm --cached`) + adopt `.env.local` pattern + add `.env` to `.gitignore` + 3 RED-first invariant tests (a) `.env` is not tracked, (b) `.env.local` pattern documented at `notes/env_hygiene_pattern.md`, (c) `.env.local` exists at runtime with the required keys via loader — sequenced INTO the ε-apply wave as the first commit-A slice.
+   - **3-bundle Continuity regen** (code programme/track-a + state master + /app main) closing both standing deferrals carried since CP-PROD-DEPLOY `20260921T122757Z`.
+
+5. **Post-apply gate:** mirror invariants (`test_runtime_frontend_app_matches_repo_pod_shell` + `test_app_frontend_App_js_mirrors_pod_shell_App_js` + `test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir`) all GREEN. BASELINE_GUARD=1 PYTHONHASHSEED=0 **double-green byte-identical** sweep at new floor. §3.3 3-Commit Seal. Ratchet monotonic-up (5932 → 5937+ · retired baseline entries + net-new mirror-invariant / hygiene tests balance).
+
+6. **Sequence release:** on that seal, CP-TENANT-SEPARATION opens with `STATE/OBJECTIVES/TENANT_SEPARATION.md` pinned pre-first-RED per owner Part-2 order verbatim (2026-09-22T~02:20Z at CENSUS-SURFACE-A boundary), four-tenant scaffold (RMS + DIGICOW + AKKI-TEST + AUDIT-FIXTURE-20260921), two tier-4 approving-authority forks banked to `DESK_QUEUE.md` at wave open.
+
+### Ceremony canon vs. owner-authored supersede
+
+The supersede is **owner-authored**, not agent-authored, and is banked here on owner ruling as-of-record. It is not a §6.4 pre-ruling event; it is a §6.8 owner directive superseding a live gate. The R-98 authored RBM-8 rule remains canon; this ceremony's clock became a live evidence receipt whose life-cycle just ended by owner ruling. Future ceremonies still countdown per RBM-8 / SER C.5 I-4 / SO §6.6.
+
+### DESK_QUEUE effect
+
+- **R-91 PARKED / horizon 2026-09-23T03:23:15Z NO EXPEDITE** — RETIRED at this-append.
+- **R-91 ε-apply gated on R-101 conditions (i)-(vi) above** — installed at this-append.
+- **DQ-12 CP-DOT-ENV-HYGIENE** — sequences INTO the ε-apply wave (no longer a separate post-R-91 seal).
+- **DQ-13 credential rotation** (EMERGENT_LLM_KEY + JWT_SECRET) — remains owner-side, unchanged.
+- **CENSUS-PRODUCTIZATION** — new objective card TO BE AUTHORED (see §Second owner question, below) sequenced post-CP-TENANT-SEPARATION.
+
+### Retrieval companion
+
+Paired retrieval receipt banked at `phase0/retrievals/20260922T061500Z_r91_verbatim_retrieval.md` — quotes R-91 CEREMONY-OPEN verbatim, attributes authorship (owner ruling 2026-09-21T~01:00Z · Path ε RATIFIED · main-agent proposal + owner counter-sign per SO:437 batched clause), horizon-value rationale (proposal-filing + 48h ordinary tier · not owner-chosen number), and the FIVE retiring annotations verbatim from `baseline_failures.json`. Traces every quote to file:line.
+
+### Second owner question · CENSUS PRODUCTIZATION gap read (agent honest answer · owner correction awaited)
+
+Owner question verbatim (relayed to desk this-session):
+
+> "the census wizard will do what you/E1 are doing for Akki now, for when the user is using the system?"
+
+**Desk read (honest answer · owner to confirm or correct):** **NO — not yet fully.** What exists today:
+
+- **(a) Operator-run census tools** — `estate_census_v1.py`, `v2.py`, `v3.py` at `phase0/tools/` (or equivalents) invoked by main-agent from terminal; results banked at `phase0/census_v3/*.json` etc.
+- **(b) Census receipts + read endpoints on the portal** — `/api/portal/census/records` LIST + `/api/portal/census/records/{census_number}` DETAIL landed at CENSUS-SURFACE-A Commit-A' journey extension (2026-09-22T~03:30Z · code sha `e06ecf9`); `/api/portal/census/{assets,surfaces,access,latest,duplication}` landed at Commit-A (code sha `4dfc446`).
+- **(c) Designed-but-not-shipped Run-census UI** — banked specs at `phase0/surface_connection/portal_census_journey_ui_spec.md` + `portal_registry_landing_ui_spec.md` awaiting ε-apply land in `App.js` / `RegistryLandingPage.jsx`.
+
+**What does NOT exist:**
+
+- **User-triggered in-product census execution** — "Run census" button driving the real pipeline (connect-source registration → census run with live progress → mid-run agent questions surfacing as *response-required* → results into the registry) per-tenant scoped, with GPU-spend capture.
+
+**Objective card to bank:** `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` — CENSUS-PRODUCTIZATION drafted this-append (see file). Sequenced **post-CP-TENANT-SEPARATION** because user-run censuses must be tenant-scoped from birth (per-tenant registry write · per-tenant GPU-spend budget · per-tenant lawful-basis admit · per-tenant conversation surface). In the R-101 ε-apply UI, the Run-census control ships wired to whatever is REAL at ship time — bounded real census run if feasible, otherwise the honest-gap pattern. **No simulated progress.**
+
+### R-101 next-boundary autopilot posture
+
+1. **Turn 2 · BROAD HYGIENE SWEEP** (this-turn immediately post-R-101 banking) — grep every tracked file in every git repo present on disk (`/app`, `/app/assessment_workspace`, `/app/assessment_workspace/repos/{Extraction-Akki, RMS-IQ-Core-2, Akki-OS-V1, Akki-Executive-Core, Akki-Executive-Final}`) for live secret material (AKIA*, sk-*, hf_*, Bearer, PRIVATE KEY, mongodb://user:pass, JWT secrets, `.env.local` in-body, hard-coded tokens). No values printed in receipt — file:line + kind-of-secret only. Fold any hits into DQ-13 rotation list. Bank at `phase0/hygiene_receipts/20260922T*_broad_sweep.md`.
+2. **Turn 3 · ε-apply + FRONTEND REBUILD WAVE** — prototype full enumeration (46-view checklist) executes INSIDE the wave as its first work item, then ε-apply mirror + frontend rebuild + DQ-12 hygiene rider + 3-bundle Continuity regen + §3.3 3-Commit Seal.
+3. **Turn 4 · Audit ORDER B full run** (interleaved second per owner visibility priority · UI wave takes priority) — re-clone `/app/audit/inbox/akki_audit_20260921_code.bundle` onto `/` overlay (~75G free); full build-and-run verdict first, then §8 sections with planted-violation RED proofs. Receipts at `phase0/audit_pass_receipts/20260922T*_order_b_verdict.md` per owner ruling (d).
+4. **Turn 5 · CP-VEND-HUAWEI-OBS** (DQ-11 cure · unblocks CENSUS-3-F.2.1 live-OBS-bind slice) — build `services.secret_hygiene.huawei_obs_vend` reading AK/SK/endpoint in-memory from `custody/credentials/rms_connection_creds_v1.xlsx`. RED-first tests (α+β+γ+δ + custody-cat guard + zero-side-effect). §3.3 3-Commit Seal.
+5. **Turn 6 · C/D/E + S4a-DIGICOW-RDS pre-flights** — hunt-first, bundle fork questions into ONE owner ask.
+
+### Standing bounds unchanged
+
+Zero push · zero remote configured on `programme/track-a` or `master` · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5932** · HF-HOLD SEC-2026-09-12-01 · DQ-11 filed at CENSUS-3-F.2 Commit-B · DQ-12 sequences INTO R-101 ε-apply · DQ-13 owner-side rotation pending · Structural §3.8 guard sha-pin `ad0d9439…` · Mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/` · Continuity Bundle regen 3 bundles executes at R-101 ε-apply seal boundary (closes CENSUS-SURFACE-A + CENSUS-3-F + CENSUS-3-F.2 deferrals in one seal).
+
+### Canon anchors verbatim
+
+- Owner ruling this-session (2026-09-22T~06:12Z · verbatim above · R-91 timer superseded · condition-gating installed · ε-apply commences next boundary · frontend visibility priority · Run-census wired only to REAL).
+- Owner second question this-session (2026-09-22T~06:12Z · verbatim above · census productization gap · honest answer requested at ε-apply seal report).
+- R-91 CEREMONY-OPEN (2026-09-21T03:23:15Z · `DECISIONS.md:22213-22340` · Path ε RATIFIED · owner counter-sign + main-agent proposal per SO:437) — WHAT preserved.
+- R-98 RBM-8 authoring (`38eeef6c` on programme/track-a · 2026-09-21T~07:10Z · `RBM_8_CEREMONY_WINDOW_IS_RIGID` + `RBM_8_R91_LIVE_EVIDENCE_HORIZON_UTC="2026-09-23T03:23:15Z"`) — ceremony canon preserved; R-91 becomes historical live-evidence receipt.
+- Owner NO-EXPEDITE ruling (2026-09-21T~06:15Z · `DECISIONS.md:23236` verbatim) — SUPERSEDED THIS-APPEND by owner authority; SO §6.6 audit standard on countdown mechanics unchanged for future ceremonies.
+- Owner CONNECT-don't-duplicate (2026-09-22T~02:20Z at CENSUS-SURFACE-A Commit-A) — preserved.
+- Owner Part-2 CP-TENANT-SEPARATION order (2026-09-22T~02:20Z · `TENANT_SEPARATION.md` DRAFTED, pinned pre-first-RED) — preserved; opens on R-101 ε-apply seal.
+- Owner design-of-record ruling (2026-09-22T~06:10Z at CENSUS-3-F.2 seal boundary) — v2 OS 2026-09-20T08:24Z + RMS_DAP_LATEST 2026-09-20T11:40Z bind. Owner ratified pro tem "newest owner drop wins" (relayed this-session).
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.3 3-Commit Seal + §3.8 additive-only + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + §6.8 owner-directive scope.
+
+### Stop-conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · this-append is state-only banking (no code branch touch; no ratchet delta) per precedent (`14173772` FE FIX-PASS CLOSURE state-only banking + `0e7a07b0` HUNT-first banking) — NOT a §3.3 3-Commit Seal; it is a **notes-only banking** of an owner supersede ruling under SO §6.8.
+
+<!-- R-101 · R-91-TIMER-SUPERSEDED · state master notes-only banking · 2026-09-22T06:15:23Z END -->
+
+
+---
+
+## 2026-09-22T06:20:00Z · SPEC-COVERAGE GAP DIGEST · state master notes-only banking · owner-queued deliverable · R-101 boundary rider
+
+### Owner directive verbatim (2026-09-22T~06:20Z · relayed to desk queued-for-next-boundary)
+
+> "The census wizard response worries me. This is a clearly prescribed spec in the documents, no? wondering what other features could be missing in the build."
+>
+> "NEW DELIVERABLE — SPEC-COVERAGE GAP DIGEST (owner-readable, one document). You already hold the instrument: the Builder-Status-filled Master Requirements Registry (602 rules: BUILT 297 / PARTIAL 293 / NOT BUILT 12, each with commit citations) plus the Promise Registry map. Produce: 1. A feature-area rollup ... 2. Split each area's gaps into USER-VISIBLE FEATURE gaps vs INTERNAL MECHANISM gaps ... 3. The census wizard as the worked example: quote the prescribing spec lines verbatim (canon B5.7/Doc 9 #13, A17.10, the FE brief + prototype Run-census journey) ... 4. An honest one-paragraph answer to 'what other features could be missing': the registry's own numbers say ~half the spec is fully built; name the top 5-10 user-visible feature areas with the largest un-built surface. Bank it at STATE/notes/SPEC_COVERAGE_GAP_DIGEST_20260922.md + state commit ... Note: the running Order B/A audits independently verify the BUILT claims — say so in the digest so the owner knows claims get checked, not trusted."
+
+### Digest banked
+
+- **Path**: `STATE/notes/SPEC_COVERAGE_GAP_DIGEST_20260922.md` (this-commit-add).
+- **Reproducible extract script**: `phase0/retrievals/20260922T062000Z_spec_coverage_extract.py` (this-commit-add · runs `openpyxl.load_workbook` + Builder-Status column groupby on `System Rules Registry` sheet · reproduces every count).
+- **Workbook sha-pin**: `8fde06a682f55d65ea55d26776facaad5070e33293a65aface2ed31e63e14b75` (from `PINS.md` AUDIT-PREP-20260921 block).
+
+### Top-line numbers (from digest §1)
+
+| Status | Count | Share |
+|---|---:|---:|
+| BUILT | 297 | 49.3 % |
+| PARTIAL | 293 | 48.7 % |
+| NOT BUILT | 12 | 2.0 % |
+
+**Approximately half the spec is fully built by desk-claim; the other half is either scaffolded-but-not-invariant-bound (PARTIAL) or absent (NOT BUILT).** The census wizard is not an isolated case; it is one instance of a systemic PARTIAL surface.
+
+### Top user-visible feature gaps (owner concern class · from digest §3.1 rank-1..10)
+
+1. **Census wizard / Run-census journey** (B5.1..B5.7 · A17.10-11) — 9 rules PARTIAL — the owner's presenting case.
+2. **Entitlements / licence surfaces** (ENT-2..48) — 28 rules PARTIAL — usage dashboard + org-admin + top-up + dial editor + BYOK.
+3. **Skills layer** (A18.1, A18.2, A18.3, A18.5, A18.8) — **5 NOT BUILT of 8** — largest single not-built concentration.
+4. **Deck Engine** (DR-R1..R14) — 14 rules PARTIAL, 0 BUILT — whole deck-rendering pipeline scaffolded only.
+5. **Training runner / Model Admission surface** (A17.12, A17.13, A17.14) — "no runner exists in any modality" · "shows a capability with nothing running behind it".
+6. **Streaming Extraction** (SE-1..4) — 4 rules PARTIAL — real-time ASR not implemented.
+7. **Model Registry catalog UI** (A20.1..A20.14) — 14 rules PARTIAL — 14 model candidates named on paper only.
+8. **Connect + Commission wizard UI** — backend endpoints "✅ verified" in FE brief §5.10/§5.11; drawer state machines live in prototype only.
+9. **MOAC user-visible refusal + rule-change ceremony** (BR-11.1-2 NOT BUILT · BR-12.1-2 PARTIAL · ENT-46 refusal-card) — one-refusal-card + customer rule-change ceremony not user-visible.
+10. **Watch's own external-witness ceremony surface** (BR-7.2, BR-7.3) — no watched-by-outside audit trail visible to owner.
+
+### Owner questions raised by digest §6 (queued as R-101 ε-apply seal-boundary owner asks)
+
+- **Q1**: depth vs. breadth of ε-apply UI — Entitlements dashboard ship in same ε-apply wave (honest-gap for parts with no live backend) or wait for next boundary once Run-census control ships?
+- **Q2**: Skills-layer priority — open `CP-SKILLS-LAYER` objective card alongside `CENSUS_PRODUCTIZATION` sequenced post-CP-TENANT-SEPARATION? Or defer?
+- **Q3**: Deck Engine gap — open `CP-DECK-ENGINE` objective card? Or later product surface?
+- **Q4**: Streaming Extraction — open SE-1..4 as fork behind CENSUS-3-F.2.1 live-OBS-bind?
+
+These bundle into ONE owner ask at R-101 ε-apply seal (per owner "one owner ask" pattern) unless owner overrides.
+
+### Independent verification posture
+
+Digest §5 closes with: **"Owner-facing claims here get audited, not trusted."** The running **Order B** (audit-target tags `audit/code-20260921` + `audit/state-20260921` · pinned in `PINS.md` AUDIT-PREP-20260921 block) and **Order A** independently verify the BUILT claims by re-running the cited tests and cross-checking commit references. The desk-claim count in this digest becomes an auditor-confirmed count only after those runs land verdicts. Order B full run remains at Turn 5 of the R-101 sequence (post-broad-hygiene-sweep + post-ε-apply seal · per owner priority).
+
+### Files landed this-notes-only-banking (state master · not §3.3 3-Commit Seal)
+
+- **NEW** `STATE/notes/SPEC_COVERAGE_GAP_DIGEST_20260922.md` — 6 sections: top-line + feature-area rollup + user-visible/internal split + census wizard worked example (verbatim canon quotes + rule IDs + halves) + honest paragraph + owner-Q bundle.
+- **NEW** `phase0/retrievals/20260922T062000Z_spec_coverage_extract.py` — reproducible extraction script (openpyxl + Builder-Status groupby · runs from the workbook sha-pinned at `PINS.md` `8fde06a6…`).
+- `STATE/DECISIONS.md` (this-append · digest banking pointer + owner directive verbatim + top-line numbers).
+
+### Standing bounds unchanged
+
+Zero push · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5932** UNCHANGED (state-only notes-only banking · no code branch touch · no delta) · HF-HOLD SEC-2026-09-12-01 · Structural §3.8 sha-pin `ad0d9439…` · Mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/`.
+
+### Canon anchors verbatim
+
+- Owner directive this-session (2026-09-22T~06:20Z · verbatim above · NEW DELIVERABLE SPEC-COVERAGE GAP DIGEST queued for next boundary · slots AFTER current unit not displacing ε-apply wave order · include top-line table in next report · independent verification note).
+- R-101 supersede banking (immediately-precedes this-append at `STATE/DECISIONS.md:R-101 append` state master commit `fbcbf1f7`).
+- Master Requirements Registry QA v2 with Builder-Status column filled at AUDIT-PREP-20260921 seal (workbook sha256 `8fde06a682f55d65ea55d26776facaad5070e33293a65aface2ed31e63e14b75` · `PINS.md:AUDIT-PREP-20260921 block`).
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.8 additive-only + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + §6.8 owner-directive scope.
+
+### Stop-conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · notes-only banking per precedent (`14173772` FE FIX-PASS CLOSURE + `0e7a07b0` HUNT-first + this-session R-101 supersede immediately-precedes).
+
+<!-- SPEC-COVERAGE GAP DIGEST · state master notes-only banking · 2026-09-22T06:20:00Z END -->
+
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
