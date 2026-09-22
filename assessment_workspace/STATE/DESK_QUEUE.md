@@ -109,6 +109,19 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Continues**: everything. R-91 ε-apply at horizon 2026-09-23T03:23:15Z unchanged. CENSUS-3-F sealing this-wave unchanged.
 - **Promotion trigger**: if a second commit with `---` (or any structurally-anomalous) subject lands on `/app main` from `E1 Autopilot`, promote DQ-10 to its own dedicated close with the hook config as suspect (per owner Ruling 3).
 
+## DQ-11 · `/app/backend/.env` tracked-instead-of-gitignored · blocks live OBS env-bind
+
+- **Surfaced at**: CENSUS-3-F.2 Commit-A' pre-flight (2026-09-22T~05:35Z) during owner-ruled FORK-F.2-OBS-CUSTODY α precondition check ("verify it is gitignored before writing").
+- **Fact**: `git -C /app ls-files backend/.env` returns the path. `/app/.gitignore` lines 88-90 (`.env` / `.env.*` / `*.env`) do NOT apply because git ignores rules for already-tracked files. History carries `.env` at commits `dc48d5313` (2026-09-19 · frontend feat) + `e214236a8` (2026-09-19 · W10 allowlist). Existing content is benign (`AKKI_VM_HOST`/`USERNAME`/`PORT`, `MONGO_URL`, `EMERGENT_LLM_KEY` etc.) but writing `HUAWEI_OBS_SK` to it would be a credential-in-log defect that survives forever in git history.
+- **Blocks**: **CENSUS-3-F.2.1 live-OBS-bind slice** (queued behind this DQ). Keys ARE durable at `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds` (openpyxl sheet-name probe verified, values not read).
+- **Does NOT block**: CENSUS-3-F.2 shape landed this-wave (`runtime.py` + 6 live invariants GREEN), HF-offline env guard, phase0 receipt writer, cursor persistence. `stream_object` SAFE-REFUSES cleanly via `refuse_live_obs_without_env` when any OBS env key is missing.
+- **Owner cure options**:
+  - **(a)** Dedicated `CP-DOT-ENV-HYGIENE` seal: `git rm --cached /app/backend/.env` on `/app` main, add explicit `.env` entry to `.gitignore`, keep file on disk for supervisor runtime. Historical tracked commits remain but future edits stay untracked. Preferred if you want the .env to be the sole env source.
+  - **(b)** Introduce `/app/backend/.env.local` (untracked from birth; already covered by `.env.*` gitignore rule but git respects that for a new file). Supervisor sources both. New sensitive keys land only in `.env.local`. Non-invasive to existing tracked .env.
+  - **(c)** `services.secret_hygiene.huawei_obs_vend` — NEW module that reads `HUAWEI_OBS_AK/SK/ENDPOINT` from `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds` at process start via `openpyxl`, applies existing custody-cat guard, and returns them as an in-memory tuple. Adapter binds via this vend surface instead of env. Sidesteps `.env` entirely. Custody-hygiene guards apply.
+- **Recommendation**: **(a) or (b)**. **(b)** is smaller blast radius. **(c)** adds a new custody-vending API (state-of-record surface event; may need owner ratification).
+- **Continues**: everything else. R-91 horizon 2026-09-23T03:23:15Z unchanged.
+
 ---
 
 ## Standing rules for this file

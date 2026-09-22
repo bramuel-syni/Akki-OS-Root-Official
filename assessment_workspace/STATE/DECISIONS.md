@@ -25348,6 +25348,134 @@ Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-
 <!-- CENSUS-3-F · state Commit-C fixup · 2026-09-22T05:25:00Z END -->
 
 
+## CENSUS-3-F.2 · Commit-B · state master · 2026-09-22T06:00:00Z
+
+**Wave**: CENSUS-3-F.2 (live-streaming runtime bindings · additive to CENSUS-3-F Commit-A shape · single-wave narrative per owner FORK-F.2-COMMIT-SHAPE ruling).
+**Preceded by**: CENSUS-3-F ✅ SEALED at state Commit-C `0e156be9` + /app main Commit-C companion `d549dd08d`.
+**Banks code Commit-A'**: `7170dfacb1c91d604fdbb51fc5ae9fbccd4c5d6a` on `programme/track-a` at 2026-09-22T~05:57Z.
+**Banks /app main Commit-A' companion**: `93fa1ebba02fbd7f26b9e59bcd264627c33411b1` at 2026-09-22T~05:58Z (vendored mirror sync 1 file).
+
+### Owner F.2 forks ruled verbatim (2026-09-22T~05:35Z)
+
+- **FORK-F.2-WRITER (γ)** — state-repo receipt files under `phase0/drill_receipts_census_3_f/reads/`, CP-CLEANUP precedent, no Canon-9 §3 surface event. (β) rejected. (α) `EXTERNAL_READ_EVENT_OBS` collection variant BANKED as future-additive option if owner later wants read events queryable on registry surface — NOT built at F.2.
+- **FORK-F.2-OBS-CUSTODY (α + constraint)** — env-bind with `.env`-gitignored precondition. **HALF-δ triggered**: keys ARE durable at `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds` (openpyxl sheet-name probe confirmed, values not read); **BUT** `/app/backend/.env` is TRACKED in `/app` git (`git ls-files backend/.env` returned; history commits `dc48d5313` + `e214236a8`). Writing `HUAWEI_OBS_SK` to a tracked `.env` = credential-in-log defect. Falling back to (δ) on live-OBS-bind half; live env-vend waits for **DQ-11** close.
+- **FORK-F.2-HF-MODEL-BIND (α)** — `local_files_only=True` AND `HF_HUB_OFFLINE=1` set in adapter runtime env before load. Landed as `ensure_hf_offline_env()` + `assert_hf_offline_env()` guards. Faster-whisper model already at `/root/.cache/huggingface/hub/models--Systran--faster-whisper-tiny/` — no network under HF-HOLD.
+- **FORK-F.2-COMMIT-SHAPE (Commit-A')** — additive extension of CENSUS-3-F wave, single-wave narrative per CENSUS-SURFACE-A precedent.
+
+### Commit-A' code scope frozen (3 files)
+
+- NEW `backend/services/data_source/obs_huawei_audio_read_only/runtime.py` (~370 lines · additive helpers · zero sealed-surface edit).
+- NEW `backend/tests/invariants/test_census_3_f_2_live_streaming.py` (6 RED-first live invariants).
+- M `backend/tests/invariants/baseline_failures.json` (ratchet 5926 → 5932 · +6 measured · new sha `e5e357c70d69272cf33a536f8ec6c1c67475408ee13ad78d6f3a7c754f9ce13c` · ratchet_history[-1] carries full schema per DQ-09 lesson).
+
+### /app main Commit-A' companion `93fa1ebba` scope (2 files)
+
+- NEW `/app/backend/vendored/extraction_akki/backend/services/data_source/obs_huawei_audio_read_only/runtime.py` (byte-identical mirror of spine).
+- M `/app/backend/vendored/extraction_akki/MANIFEST.json` (+1 file entry · structural_sha256 `55add9b2` → `4e584cca11f764c7cc1d6509da5e63c72d06f1861c80d983d7cd34df5a243656`).
+
+### Commit-B this-commit state master scope
+
+- `STATE/DECISIONS.md` · this-append (CENSUS-3-F.2 Commit-B wave card).
+- `STATE/DESK_QUEUE.md` · NEW entry **DQ-11** (`/app/backend/.env` tracked-not-gitignored · blocks live env-vend of HUAWEI_OBS_AK/SK/ENDPOINT · keys known-durable in xlsx custody · owner-side cure = `git rm --cached` the .env or point at a truly-gitignored path).
+- `notes/ORCH_BOOT.md` · ratchet-only regen (`passed_floor` 5926 → 5932 · `counts_at_baseline_passed` 5926 → 5932 · `baseline_failures_sha256` `f4361a2e` → `e5e357c70d69272cf33a536f8ec6c1c67475408ee13ad78d6f3a7c754f9ce13c`). Byte-identical POD audit mirror sync happens at Commit-C fixup companion.
+- `phase0/drill_receipts_census_3_f/*.log` (4 new files):
+  - `20260922T053800Z_census_3_f_2_RED_pre.log` — 6/6 fail right-reason ModuleNotFoundError.
+  - `20260922T054000Z_census_3_f_2_GREEN_post.log` — 6/6 pass 0.64s post-restore.
+  - `20260922T054800Z_census_3_f_2_pre_commit_a_prime_BASELINE_GUARD1_run1_v2.log` — 3 failed / 5932 passed / 1 skipped / 172.47s.
+  - `20260922T055400Z_census_3_f_2_pre_commit_a_prime_BASELINE_GUARD1_run2.log` — 3 failed / 5932 passed / 1 skipped / 172.78s · byte-identical stripped-sha256 `f74a9887695e7a782f75ffddb0cc2a9a68d60434acfc39bb52f9b756148cacd3`.
+
+Pre-run1 intermediate (not banked as final receipt but recorded): 20260922T054300Z sweep showed vendored-tree drift; cured via `python3 tools/prod_vendor_sync.py` (files_written=1) landing as `/app main` Commit-A' companion `93fa1ebba`. Re-run at 054800Z clean.
+
+### The 3 failing tests (all wrap-subset · R-91 baseline · unchanged since CENSUS-SURFACE-A wave)
+
+- `test_ship_manifest_dod::test_runtime_frontend_app_matches_repo_pod_shell`
+- `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_App_js_mirrors_pod_shell_App_js`
+- `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir`
+
+All close at R-91 ε-apply on horizon `2026-09-23T03:23:15Z` UNCHANGED.
+
+### DQ-11 · `/app/backend/.env` tracked-not-gitignored · fresh-filed
+
+- `git ls-files backend/.env` returns the path (file IS tracked despite `/app/.gitignore` `.env`/`*.env` rules — tracked-before-ignore precedence).
+- Historical content in `dc48d5313` + `e214236a8` — `AKKI_VM_HOST`/`USERNAME`/`PORT` etc. present, but NO `HUAWEI_OBS_SK`-class secrets (yet).
+- Blocker for **CENSUS-3-F.2.1** (live-OBS-bind slice · queued): the SK cannot be added to a tracked `.env` without leaking to git log forever.
+- Cure options for owner:
+  - **(a)** `git rm --cached /app/backend/.env` in a dedicated CP-DOT-ENV-HYGIENE seal. Existing tracked history remains but future changes stay untracked. Supervisor keeps file on disk for runtime env.
+  - **(b)** Migrate deployment env to a `/app/backend/.env.local` (untracked from birth) that supervisor sources alongside the tracked `.env`; new OBS keys land only in `.env.local`.
+  - **(c)** Point adapter at a custody-vending API (`services.secret_hygiene.huawei_obs_vend` — new module) that reads keys from `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds` at process start. Avoids .env entirely.
+- **Blocks**: CENSUS-3-F.2.1 live-OBS-bind slice.
+- **Continues**: everything else — CENSUS-3-F.2 shape + HF-offline + cursor + phase0 receipts all landed and GREEN this-wave.
+
+### Canon anchors (verbatim)
+
+- Owner F.2 forks 2026-09-22T~05:35Z (γ / α HALF-δ / α / Commit-A' verbatim above).
+- Owner Ruling 2 2026-09-22T~04:14Z (CENSUS-3-F GPU pipeline opens).
+- Owner Rulings 1a/2a/3/4 verbatim this-session (banked at CENSUS-3-F Commit-B `02cbaf6b`).
+- CENSUS-SURFACE-A Commit-B autopilot line 2026-09-22T~03:45Z (F.2 sub-slice pattern).
+- SO §6.8 clause A verbatim 2026-09-21T~18:35Z (S4 IS OPEN).
+- CP-CLEANUP-STATE-DISCIPLINE 2026-09-19T~18:30Z (phase0 disk-only receipts).
+- HF-HOLD SEC-2026-09-12-01 STANDING (DQ-06).
+- **DQ-11 this-wave** (`/app/backend/.env` tracked-not-gitignored).
+- Canon-9 §3 single-writer preserved by construction (this-wave zero sealed writer surface event; disk-only phase0 receipts).
+- Doc 5 B5.2 lawful-basis-at-Admit + B5.4 append-only writer.
+- SO §2.5/§3/§3.3/§3.8/§3.10/§3.10-α/§6.4/§6.7/§6.8.
+- DQ-09 standing-lesson (this-wave applied CLEAN from first write — ratchet_history[-1] carries schema-complete `at_utc`+`commit`+`cp`+`note`+`passed`+`delta`).
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · R-91 stays PARKED · horizon `2026-09-23T03:23:15Z` UNCHANGED · current UTC `2026-09-22T~06:00Z` < horizon (~21.4h out at this-Commit-B).
+
+### Autopilot next
+
+- **Commit-C fixup this-turn** state master (R-6 boundary regen: `heads_last_sealed.state_repo.head` `02cbaf6b` → `<this-Commit-B SHA>` + insert new `code_repo` entry for Commit-A' `7170dfac` in ORCH_BOOT.md `heads_last_sealed` block).
+- **/app main Commit-C companion** (audit ORCH_BOOT byte-identical mirror + workspace-mirror sync).
+- **HOLD for R-91 horizon** `2026-09-23T03:23:15Z` NO EXPEDITE.
+- **CENSUS-3-F.2.1 live-OBS-bind slice** — QUEUED on DQ-11 close (env-hygiene remediation lands the HUAWEI_OBS_* keys durably).
+- **R-91 ε-APPLY at horizon**: App.js byte-identical mirror + banked UI specs land + Continuity Bundle regen 3 bundles closes CENSUS-SURFACE-A + CENSUS-3-F + CENSUS-3-F.2 deferrals in one seal boundary.
+- **Post-R-91 OPEN CP-TENANT-SEPARATION** with card hygiene-cured at CENSUS-3-F Commit-B.
+- **Interleave lanes**: C/D/E + S4a preflight hunt-first pending capacity.
+
+### Standing bounds unchanged
+
+- Zero push · zero remote configured · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY BANNED per SO §6).
+- Additive-only per SO §3.8 · three-repo discipline · §6.4 NOTHING-BEYOND.
+- Ratchet monotonic-up · floor now **5932** (this-seal · +6 measured over prior 5926 · schema-complete ratchet entry).
+- HF-HOLD `SEC-2026-09-12-01` still standing · **DQ-11 filed this-wave** · R-24 UNLISTED · R-25 tagged.
+- Structural §3.8 guard on `services/request_context/context.py` sha-pin `ad0d9439…` unchanged.
+- Mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/` structural mirror `55add9b2` → `4e584cca` (this-wave extends by 1 file via Commit-A' companion).
+- R-91 PARKED · horizon `2026-09-23T03:23:15Z` **NO EXPEDITE**.
+
+**End of CENSUS-3-F.2. Commit-A' + companion ✅ SEALED. Commit-B ✅ SEALING with this-append. Commit-C fixup follows.**
+
+<!-- CENSUS-3-F.2 · state Commit-B · 2026-09-22T06:00:00Z END -->
+
+
+## CENSUS-3-F.2 · Commit-C fixup · state master · 2026-09-22T06:05:00Z
+
+**Wave**: CENSUS-3-F.2 ✅ SEALED at this Commit-C fixup.
+**Commit-B banked**: `aae0ff81df981dec451b4561da0059a5c3f678e6` (state master, sealed 2026-09-22T06:00:00Z).
+**Code Commit-A' banked**: `7170dfacb1c91d604fdbb51fc5ae9fbccd4c5d6a` (`programme/track-a`, sealed 2026-09-22T05:57:00Z).
+**/app main Commit-A' companion banked**: `93fa1ebba02fbd7f26b9e59bcd264627c33411b1` (`/app main`, sealed 2026-09-22T05:58:00Z).
+**/app main Commit-C companion**: pending next-turn (audit ORCH_BOOT byte-identical mirror + workspace-mirror sync).
+
+### Commit-C scope frozen SO §6.4 NOTHING-BEYOND (3 files)
+
+- `notes/ORCH_BOOT.md` · R-6 boundary regen: `state_repo.head` `02cbaf6b` → `aae0ff81` + INSERT new `code_repo` entry at TOP for Commit-A' `7170dfac` above the existing `24d813fa` block + `generated_at_utc` and `regeneration_reason` updates + ratchet fields (`passed_floor`/`counts_at_baseline_passed`) already at 5932 from pre-Commit-A' regen (unchanged at Commit-C).
+- `STATE/DECISIONS.md` · this-append (Commit-C fixup section banking Commit-B `aae0ff81` per R-6 attestation curing `test_orch_boot._banked_in_state` which was RED pre-append).
+- `STATE/NEXT.md` · §6.1 attestation update.
+- `/app/frontend/public/audit/ORCH_BOOT.md` · lands in `/app main` Commit-C companion next-turn.
+
+### Continuity Bundle regen 3 bundles DEFERRED (unchanged carry from CENSUS-SURFACE-A Commit-B autopilot line)
+
+Next Continuity Bundle set opens at R-91 ε-apply on horizon `2026-09-23T03:23:15Z` UNCHANGED NO EXPEDITE. Last banked set remains `20260921T122757Z`.
+
+### Standing bounds unchanged
+
+Zero push · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo · ratchet monotonic-up floor **5932** (unchanged at Commit-C) · HF-HOLD `SEC-2026-09-12-01` · **DQ-11 filed at Commit-B** · Structural §3.8 sha-pin `ad0d9439…` · Mirror-invariant `55add9b2` → `4e584cca` (advanced at Commit-A' companion) · R-91 PARKED horizon `2026-09-23T03:23:15Z` NO EXPEDITE.
+
+**End of CENSUS-3-F.2. ✅ SEALED via §3.3 3-Commit protocol** — code Commit-A' `7170dfac` → /app main Commit-A' companion `93fa1ebba` → state Commit-B `aae0ff81` → state Commit-C this-commit → /app main Commit-C companion next-turn.
+
+<!-- CENSUS-3-F.2 · state Commit-C fixup · 2026-09-22T06:05:00Z END -->
+
+
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

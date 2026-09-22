@@ -57,6 +57,31 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-22T~06:05Z · autopilot post-CENSUS-3-F-2-Commit-C-fixup**
+
+**CENSUS-3-F.2 SEALED** via §3.3 3-Commit protocol:
+- code Commit-A' `7170dfacb1c91d604fdbb51fc5ae9fbccd4c5d6a` on `programme/track-a` (2026-09-22T05:57Z).
+- /app main Commit-A' companion `93fa1ebba02fbd7f26b9e59bcd264627c33411b1` (vendored mirror sync 1 file runtime.py · new structural_sha256 `4e584cca11f764c7cc1d6509da5e63c72d06f1861c80d983d7cd34df5a243656`).
+- state Commit-B `aae0ff81df981dec451b4561da0059a5c3f678e6` on state master (wave card + DQ-11 filed + 5 drill receipts + ratchet regen).
+- state Commit-C fixup this-turn.
+- /app main Commit-C companion next-turn.
+
+**Ratchet floor**: **5932** (was 5926 · +6 measured · schema-complete ratchet_history entry — DQ-09 lesson applied clean from first write).
+
+**Owner F.2 forks ruled verbatim** (2026-09-22T~05:35Z): γ (writer=phase0 disk-only) · α+HALF-δ (OBS-custody env-bind precondition failed on .env-hygiene · DQ-11 filed) · α (HF-offline via `HF_HUB_OFFLINE=1`+`TRANSFORMERS_OFFLINE=1` before load) · Commit-A' (additive extension of CENSUS-3-F single-wave).
+
+**DQ-11 filed**: `/app/backend/.env` is tracked in `/app` git despite gitignore rules (tracked-before-ignore). Blocks **CENSUS-3-F.2.1 live-OBS-bind** slice. Keys are known-durable at `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds`. Cure options at DESK_QUEUE.md DQ-11.
+
+**Pre-Commit-A' double-green byte-identical**: 3 failed / 5932 passed / 1 skipped · stripped-sha256 `f74a9887695e7a782f75ffddb0cc2a9a68d60434acfc39bb52f9b756148cacd3` · 3 failures all R-91 wrap-subset closing at horizon.
+
+**R-91 horizon**: `2026-09-23T03:23:15Z` UNCHANGED PARKED NO EXPEDITE (~21.4h out at Commit-C fixup).
+
+**Autopilot next**: HOLD for R-91 → CENSUS-3-F.2.1 live-OBS-bind queues on DQ-11 close → R-91 ε-APPLY at horizon (App.js byte-identical mirror + banked UI specs land + Continuity Bundle regen 3 bundles closes SURFACE-A + F + F.2 deferrals) → Post-R-91 OPEN CP-TENANT-SEPARATION. Interleave lanes C/D/E + S4a pre-flight hunt-first pending capacity.
+
+**Standing bounds unchanged**: zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo · ratchet monotonic-up floor 5932 · HF-HOLD SEC-2026-09-12-01 · DQ-11 filed · Structural §3.8 sha-pin ad0d9439 · Mirror-invariant 4e584cca.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T~05:25Z · autopilot post-CENSUS-3-F-Commit-C-fixup**
 
 **CENSUS-3-F SEALED** via §3.3 3-Commit protocol:
