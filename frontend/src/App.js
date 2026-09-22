@@ -14,6 +14,20 @@ import ConnectResources from "@/pages/dap/ConnectResources";
 import Entitlement from "@/pages/dap/Entitlement";
 import CanonCountdown from "@/pages/dap/CanonCountdown";
 
+// v2 OS Prototype · Turn 4 sub-slice 4d GREEN · Frontend rebuild slice 2 ·
+// Work tab surfaces (7) + Monitor sub-view surfaces (2). Each surface is a
+// native React implementation of the design-of-record shape with honest-gap
+// disclosure where backend wiring is pending PHASE 3/4. SO §3.8 additive-only.
+import WorkChat from "@/pages/os/WorkChat";
+import WorkAnalyze from "@/pages/os/WorkAnalyze";
+import WorkDocuments from "@/pages/os/WorkDocuments";
+import WorkTasks from "@/pages/os/WorkTasks";
+import WorkTeam from "@/pages/os/WorkTeam";
+import WorkPerformance from "@/pages/os/WorkPerformance";
+import WorkBoard from "@/pages/os/WorkBoard";
+import MonitorSignals from "@/pages/os/MonitorSignals";
+import MonitorIdeas from "@/pages/os/MonitorIdeas";
+
 // ---------------------------------------------------------------------------
 // v2 OS Prototype Shell · Design-of-Record Constants
 // (byte-verbatim per phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md §1.1-§1.5)
@@ -1216,6 +1230,21 @@ function App() {
             <Route path="estates/:estateId" element={<DataEstates />} />
             <Route path="*" element={<Navigate to="/dap" replace />} />
           </Route>
+
+          {/* Track 3 — OS Native React surfaces · Turn 4 sub-slice 4d · Work tab + Monitor sub-view.
+             Routes are additive (SO §3.8) and land BEFORE the PortalIframe wildcard fallback so
+             a tester can reach each native surface at ${REACT_APP_BACKEND_URL}/os/work/<leaf> or
+             /os/monitor/<leaf>. Un-implemented leaves continue to fall through to the V8/PortalIframe
+             render at "/" and "/*" until subsequent sub-slices (4e-4g) land more native surfaces. */}
+          <Route path="/os/work/chat" element={<WorkChat />} />
+          <Route path="/os/work/analyze" element={<WorkAnalyze />} />
+          <Route path="/os/work/documents" element={<WorkDocuments />} />
+          <Route path="/os/work/tasks" element={<WorkTasks />} />
+          <Route path="/os/work/team" element={<WorkTeam />} />
+          <Route path="/os/work/performance" element={<WorkPerformance />} />
+          <Route path="/os/work/board" element={<WorkBoard />} />
+          <Route path="/os/monitor/signals" element={<MonitorSignals />} />
+          <Route path="/os/monitor/ideas" element={<MonitorIdeas />} />
 
           {/* Track 2 — OS Prototype v2 (V8 PortalIframe) */}
           <Route path="/" element={<PortalIframe />} />
