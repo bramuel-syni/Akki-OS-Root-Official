@@ -27370,5 +27370,49 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING · 5-Commit-Seal LANDED · 2026-09-22T23:10:00Z END -->
 
+<!-- PHASE 4 (c-i) · CP-SKILLS-LAYER-A18-1 · 5-Commit-Seal LANDED · 2026-09-22T23:36:00Z BEGIN -->
+
+## PHASE 4 (c-i) · CP-SKILLS-LAYER-A18-1 · 5-Commit-Seal LANDED · 2026-09-22T23:36:00Z
+
+**Owner banked order** (2026-09-22T~22:53Z verbatim): "Then CP-SKILLS-LAYER opens as planned (A18.1/2/3/5/8 — the registry's biggest NOT-BUILT block: skill provisioning, freeze-not-edit, scope, donor code — productized-or-honest-gap per R-102)."
+
+**Doc 18 §A18.1 verbatim** (Canon-of-Record · Wave B grounding brief): "A18.1 [CANON] The provisioning record, reused verbatim... `{ skill_id, corpus_slice_ref: artifact-store key, key_grant_id, floor, scope, endpoint_path, provisioned_at, revoked_at?: str }`... §3.7 annex, RMS Intelligence spec, 2026-07."
+
+**Slice 1 of CP-SKILLS-LAYER chunked series** — A18.1 provisioning-record contract shape-freeze LANDED. Sub-slices queued: c-ii A18.2 write-once slice-binding · c-iii A18.3+A18.5 governance-and-scope UI cues · c-iv A18.8 donor-code intake.
+
+**Seal chain (5 commits):**
+
+| # | Commit | SHA | Branch | Purpose |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `2f7d6b584b168dfa56198c1888c3a2af1d8ea335` | programme/track-a | NEW `backend/contracts/skill_provisioning_record_v0.py` (~130 lines · Pydantic v2 · 8-field frozen tuple verbatim · extra=forbid · ISO-8601 tz-aware validator) + NEW `skill_provisioning_record_v0.contract_snapshot.json` (parity snapshot · M15-W2 discipline) + NEW `test_cp_skills_layer_a18_1_phase_4_c_i.py` (~230 lines · 5 RED-first invariants) + additive `test_frozen_contract_snapshot_parity.CONTRACT_TO_SNAPSHOT` entry (same-slice cure per file's own two-side-edit protocol) + baseline_failures.json ratchet 6160→6165. |
+| 2 | /app companion Commit-A | `7402412d2a686a4335ac8bc1fd1c889b8733beba` | main | Vendored twin sync (`backend/vendored/extraction_akki/backend/contracts/skill_provisioning_record_v0.py` byte-identical · MANIFEST.json file_count 1028→1029 + structural_sha256 `3dbda87e...` → `f7471fc3d059ff32d9ba012c53666128ac86a5bd7d5d9cdc75b4a8f70fcc5407` via `tools/prod_vendor_sync.py`) + audit/notes ORCH_BOOT ratchet regen + gitlink advance `d6eee5d6` → `2f7d6b58`. |
+| 3 | State Commit-B | `6bc0045e0a1ef5264943ad7c89ff9fac9b9cb552` | master | Banks A + companion + drill receipts + baseline_failures_sha256 `48c13b0d...` → `8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150`. |
+| 4 | State Commit-C fixup | `ff125c5914750c70aca95dc7db3f8e91b6487274` | master | R-6 boundary regen prepending fresh P4-c-i ORCH_BOOT stanza · advances state.head `760ce38f` → `6bc0045e` + code.head `d6eee5d6` → `2f7d6b58`. Banked-Lesson-#1 respected throughout. |
+| 5 | /app main Commit-C companion | `96d9b1f016b0e78c1cffe43eb0b86480623355c6` | main | Audit ORCH_BOOT byte-identical mirror sync. |
+
+**Ratchet: 6160 → 6165 (+5 canonical measured).**
+
+**baseline_failures.json sha256:** `8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150` (was `48c13b0d...`).
+
+**Vendored twin:** file_count 1028 → 1029 · structural_sha256 `f7471fc3d059ff32d9ba012c53666128ac86a5bd7d5d9cdc75b4a8f70fcc5407`.
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- Sealed A18.7 `SkillFileProvenanceV0` module + snapshot + parity attest + all M15-W2 shape-freeze tests UNCHANGED.
+- All `services/skill_files/*.py` (persistence + router + state) UNCHANGED.
+- All PHASE 3 + P4-a + P4-b-i sealed carriers UNCHANGED.
+- `test_frozen_contract_snapshot_parity.CONTRACT_TO_SNAPSHOT` gained ONE new entry (additive per file's own two-side-edit protocol · zero modification to existing entries).
+
+**Pre-Commit-A double-green byte-identical `BASELINE_GUARD=1 PYTHONHASHSEED=0`:** stripped-sha256 `176a63e2e1968fed6ae05327c7172378492fde11d1bf115f697dfdd9cc8e1030` IDENTICAL sweep_A (190.23s) + sweep_B (192.35s) both **6169 passed / 1 skipped / 0 failed / 520 warnings** each (6169 = 6165 floor + 4 above-floor).
+
+**Same-slice cures (banked lesson candidates):**
+- Test-side field-name assumption cure — first GREEN-post attempt had `test_provisioning_record_is_distinct_from_a18_7_provenance_contract` asserting `"steps" in prov_chain_schema["properties"]` (my initial assumption about A18.7 field name). Actual A18.7 field is `provenance_chain`. Cured same-slice by fixing the test assertion to use `provenance_chain` (correct field) + also assert `corpus_slice_ref` distinguishes A18.1. GREEN 5/5 after cure. Banked lesson candidate #8: **when authoring drift-detector tests against another sealed contract, always inspect the actual JSON schema before writing field-name assertions** (mirror the shape-freeze pattern of `test_snapshot_matches_current_schema` rather than hard-coding specific field names).
+- Vendored twin auto-sync — first pre-Commit-A double-green attempt FAILED right-reason on `test_vendored_tree_byte_identical_mirror_of_spine` because the new contract at `backend/contracts/skill_provisioning_record_v0.py` is IN vendored scope. Cured same-slice by running `tools/prod_vendor_sync.py`. Banked lesson candidate #9: **any NEW file at `backend/contracts/` requires `tools/prod_vendor_sync.py` run same-Commit-A to update `backend/vendored/extraction_akki/MANIFEST.json` file_count + structural_sha256 before double-green sweep**.
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** RESUME.md rewritten this-boundary. **CP-SKILLS-LAYER-A18-2** (Slice 2) opens NEXT — write-once slice-binding guardrail (`corpus_slice_ref` immutability across writes with same `skill_id` · new-material=new-skill_id enforcement · mirrors sealed A18.7 write-once persistence pattern in `services/skill_files/persistence.py`).
+
+<!-- PHASE 4 (c-i) · CP-SKILLS-LAYER-A18-1 · 5-Commit-Seal LANDED · 2026-09-22T23:36:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

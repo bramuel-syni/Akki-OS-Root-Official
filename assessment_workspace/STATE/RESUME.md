@@ -1,28 +1,22 @@
 # STATE/RESUME.md — anti-compaction re-anchor (rewritten at EVERY seal)
 
-**Last rewrite:** 2026-09-22T23:10:00Z (**PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING · 5-Commit-Seal LANDED · ratchet 6157 → 6160 · Item (b) Connect-half CLOSED as ALREADY-LIVE per R-102 with disk-verifiable conformance receipt · SO §3.8 additive-only measurement-only seal**).
+**Last rewrite:** 2026-09-22T23:36:00Z (**PHASE 4 (c-i) · CP-SKILLS-LAYER-A18-1 · 5-Commit-Seal LANDED · ratchet 6160 → 6165 · Doc-18-§A18.1 8-field provisioning-record contract shape-freeze LANDED · Slice 1 of CP-SKILLS-LAYER chunked series**).
 
 ---
 
 ## 1 · POSITION
 
-- **Phase:** **PHASE 3 CLOSED** · **PHASE 4 (a) + P4-(b-i) SEALED** · PHASE 4 continues.
+- **Phase:** PHASE 3 CLOSED · **P4-a + P4-(b-i) + P4-(c-i) SEALED** · CP-SKILLS-LAYER opened as chunked series · A18.1 landed.
 - **Turn queue (condensed):**
-  - PHASE 3 A' + A'' + A''' + A'''-cont-A + A'''' + A''''-cont-A + A'''-cont-B ✅ SEALED · E2E EXIT PROOF ✅ · PHASE 3 CLOSED 2026-09-22T21:22:00Z.
-  - **PHASE 4 (a) CP-COMMISSION-WIZARD-LIVE ✅ SEALED** (2026-09-22T22:52Z · Commission wizard LIVE at `/os/work/commission` · Code `032ada9` + companion `42bab1711` + State `56461dfa` + Commit-C `d5be5371` + companion-C `5b4cd68e0` · ratchet 6150→6157).
-  - **PHASE 4 (b-i) CP-CONNECT-CONFORMANCE-RULING ✅ SEALED THIS-TURN** (2026-09-22T23:10Z · Item (b) Connect-half CLOSED as ALREADY-LIVE · Code `d6eee5d6` + companion `9f8411716` + State `760ce38f` + Commit-C `6f532a76` + companion-C `216569fc5` · ratchet 6157→6160 · GREEN-first measurement seal · owner ruling: LATER-wins ordering · 2026-09-20 DAP LATEST prototype 4-panel c:key/c:agents/c:compute/c:models shape MATCHES React `ConnectResources` 4-tab `/dap/connect/:tab` shape · legacy `ConnectWizard.jsx` retired-in-place per its own 2026-08-14 docstring · disk-verifiable conformance receipt at `phase0/drill_receipts_cp_connect_conformance_ruling_phase_4_b_i/20260922T2258Z_CONFORMANCE_RECEIPT.md`).
-  - **PHASE 4 banked order** (progress):
-    1. entitlements backend ✅ ALREADY SEALED.
-    2. Connect + Commission wizards live · **Commission-half LANDED** (P4-a) · **Connect-half CLOSED as ALREADY-LIVE** (P4-b-i).
-    3. **CP-SKILLS-LAYER** — queued NEXT (opens next slice · A18.1/2/3/5/8 — registry's biggest NOT-BUILT block: skill provisioning · freeze-not-edit · scope · donor code · productized-or-honest-gap per R-102).
-    4. CP-DECK-ENGINE — queued.
-    5. CP-STREAMING-EXTRACTION — queued.
-    6. MOAC refusal ceremony — queued.
-    7. Watch trail — queued.
-    8. Model Registry honest-scoped — queued.
-  - **Order B → Order A audits** (resolve `-2` collection-drift forensic first).
-  - **BUILD_JOURNAL + OWNER_RETURN_REPORT**.
-- **Ratchet floor: `6160`** (was 6157 pre-P4-b-i · +3 canonical measured GREEN-first) · baseline_failures_sha256 `48c13b0dbdabb1bc4554e4c88c799ecc6888e03a256f05899b133e905a4960c9`.
+  - PHASE 3 CLOSED · **P4-a Commission wizard LIVE** at `/os/work/commission` · **P4-b-i Connect-half CLOSED as ALREADY-LIVE** per conformance ruling · **P4-c-i A18.1 provisioning-record contract shape-freeze SEALED THIS-TURN**.
+  - **P4-c-i seal chain:** Code `2f7d6b58` (programme/track-a · +5 measured · new contract + snapshot + 5 pins + additive CONTRACT_TO_SNAPSHOT entry) · /app companion `7402412d2` (main · vendored twin file_count 1028→1029 + MANIFEST regen + audit ORCH_BOOT + gitlink) · State `6bc0045e` (master) · Commit-C `ff125c59` · companion-C `96d9b1f01`. Pre-Commit-A double-green stripped-sha256 `176a63e2e1968fed6ae05327c7172378492fde11d1bf115f697dfdd9cc8e1030` IDENTICAL sweep_A/B both 6169/1/0/520.
+  - **CP-SKILLS-LAYER sub-slices queued** (per SPEC_COVERAGE_GAP_DIGEST 5-of-8 A18.x NOT-BUILT bucket):
+    - c-ii · A18.2 write-once slice-binding guardrail — corpus_slice_ref immutability + new-material=new-skill_id enforcement.
+    - c-iii · A18.3 + A18.5 governance-and-scope UI cues.
+    - c-iv · A18.8 donor-code intake (∼356 lines from RMS-IQ-Core-2 + Akki-OS-V1).
+  - Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
+  - Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
+- **Ratchet floor: `6165`** (was 6160 pre-P4-c-i · +5 canonical measured) · baseline_failures_sha256 `8f5e23b37b10cf3ae74783b48b1933a87c40c8f6e22dd6de455076e8ac213150`.
 
 ## 2 · STANDING (R-102 + R-103 + R-104 + R-105 + R-106 + §6.8)
 
@@ -54,7 +48,7 @@ python3 -c "import json; d=json.load(open('/app/assessment_workspace/repos/Extra
 tail -80 /app/assessment_workspace/STATE/DECISIONS.md && cat /app/assessment_workspace/STATE/NEXT.md
 ```
 
-Expected: probe-7 `{'failed': 3, 'passed': 6160, 'skipped': 1, ...}` · 11 A'''-cont-B UI badge + 7 P4-a CP-COMMISSION-WIZARD-LIVE + **3 P4-b-i CP-CONNECT-CONFORMANCE-RULING invariants** added most-recent.
+Expected: probe-7 `{'failed': 3, 'passed': 6165, 'skipped': 1, ...}` · adds **5 P4-c-i CP-SKILLS-LAYER-A18-1 invariants** most-recent (A18.1 provisioning-record shape-freeze).
 
 ## 6 · POINTERS
 
@@ -116,9 +110,11 @@ Pre-Commit-A double-green byte-identical stripped-sha256 `033467633e7e62f8c72b76
 
 ## 10 · AUTOPILOT NEXT
 
-- **CP-SKILLS-LAYER** — Phase 4 item 3 opens NEXT (A18.1/2/3/5/8 · registry's biggest NOT-BUILT block: skill provisioning · freeze-not-edit · scope · donor code · productized-or-honest-gap per R-102).
+- **CP-SKILLS-LAYER-A18-2** (Slice 2) — write-once slice-binding guardrail (corpus_slice_ref immutability · new-material=new-skill_id enforcement).
+- **CP-SKILLS-LAYER-A18-3 + A18-5** (Slice 3) — governance-and-scope UI cues.
+- **CP-SKILLS-LAYER-A18-8** (Slice 4) — donor-code intake (∼356 lines LIFT from RMS-IQ-Core-2 + Akki-OS-V1).
 - Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
 - Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
-- Follow-on lane deferred: Connect-tab copy-alignment sub-slice (content-only shift to prototype's exact `title`/`sub` wording on tabs where backend exists · triggerable by future owner directive · not blocking).
+- Follow-on Connect-tab copy-alignment sub-slice deferred (banked-not-blocking).
 
 Report at seal boundaries per §6.8. Zero check-ins. Standing bounds unchanged.
