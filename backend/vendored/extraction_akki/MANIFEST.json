@@ -1,5 +1,5 @@
 {
-  "file_count": 1012,
+  "file_count": 1014,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -880,6 +880,14 @@
     "services/baseline_line/router.py": {
       "sha256": "23ef7fb7d20823a63beac08eff8e59eaa9025cba8cc43c17e985c2a1b901dfcf",
       "size_bytes": 658
+    },
+    "services/baseline_retirement_supersede/__init__.py": {
+      "sha256": "6bd3a18b25e0b000b9e0e076c7d2150defb8559d5cc0a6eb8191ed323dbf17aa",
+      "size_bytes": 1292
+    },
+    "services/baseline_retirement_supersede/v8_substitution_retire.py": {
+      "sha256": "ae01ae02907e66d4aae3290a523028d57bf6bad84b459bc5b3674b74a26ef5cd",
+      "size_bytes": 4195
     },
     "services/business_continuity/__init__.py": {
       "sha256": "6760670a55d86a5e99de7389a6fa2c5dd443c236cb43a9427a1412ff8cf55b47",
@@ -4050,7 +4058,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T10:54:24Z",
+  "generated_at_utc": "2026-09-22T13:29:52Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4064,7 +4072,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "397acf791951ec91dde8b53d350bf055e4b5c26bb2c606cda58f9c78145a2236",
+  "structural_sha256": "b467153f026a63ad7c1f5832e7147fea041727917adaa0903eb99f1788656077",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
