@@ -469,6 +469,13 @@ app.include_router(portal_census_router.router)
 from routers import portal_census_autonomy as portal_census_autonomy_router  # noqa: E402
 app.include_router(portal_census_autonomy_router.router)
 
+# PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE
+# Additive mount for JWT-gated GET/POST over the filesystem-cursor-backed
+# response-required queue. Owner directive 2026-09-22T~19:05Z: an advertised
+# control with no endpoint is a fake state by another name.
+from routers import portal_census_response_required as portal_census_response_required_router  # noqa: E402
+app.include_router(portal_census_response_required_router.router)
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}
