@@ -38,10 +38,10 @@ generator: main-agent Autopilot (CP-PARTY-HALTED-ADDITIVE-SUB-WAVE Commit-C fixu
 regeneration_reason: cp-prod-deploy-self-containment-commit-c-fixup-r6-boundary-regen-advancing-state-repo-head-to-24661fed-plus-new-code-repo-history-entry-for-cp-prod-deploy-commit-a-283524d8-plus-companion-app-main-commit-25790c2c-two-path-server-py-plus-vendored-tree-plus-requirements-closure-plus-mirror-invariant-test-per-owner-cp-prod-deploy-directive-verbatim-2026-09-21-11-45z-owner-explicit-authorization-during-r91-hold
 
 ratchet:
-  passed_floor: 5858
-  counts_at_baseline_passed: 5858
+  passed_floor: 5914
+  counts_at_baseline_passed: 5914
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 5266564fdfa09d6977b1684293864ef361754444cfb6178f4e3fdb1b5e6117cb
+  baseline_failures_sha256: db5a7989304de03c2cf2b73f9c191e7beb5a8c7d95c568ffa9459dbb4869d105
 
 heads_last_sealed:
   state_repo:

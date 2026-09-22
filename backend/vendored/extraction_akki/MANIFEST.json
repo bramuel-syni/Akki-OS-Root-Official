@@ -1,5 +1,5 @@
 {
-  "file_count": 999,
+  "file_count": 1001,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -500,6 +500,10 @@
     "routers/operator.py": {
       "sha256": "85ec43e280985fbf3e177d5d35f6d4c1f7d4dc6218c90478218dc2509e785df1",
       "size_bytes": 3096
+    },
+    "routers/portal_census.py": {
+      "sha256": "a46fd139011b80e79b691026929709088d63c4cedc20a126e9dd6c05ee9929a8",
+      "size_bytes": 16904
     },
     "routers/portal_entitlement.py": {
       "sha256": "9a10039248b35c182b2a29c7bdebd17af49b000856ced938cd1657bccde73143",
@@ -2509,6 +2513,10 @@
       "sha256": "53110a1dd178d5201542d04f2627dbc38f46c00c1aa6d548c72b000fb61d19aa",
       "size_bytes": 2583
     },
+    "services/mtafiti/census3_registry_hydrator.py": {
+      "sha256": "88416a6a00abb08173f8922399161d91e2e97cc598829ba633f275c207240045",
+      "size_bytes": 72779
+    },
     "services/mtafiti/composition_census.py": {
       "sha256": "f909330a60366a9077e020e7f0a47b7a5274b527d3707e2021febae1e6a35b85",
       "size_bytes": 11705
@@ -3998,7 +4006,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-21T12:11:08Z",
+  "generated_at_utc": "2026-09-22T03:29:12Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4012,7 +4020,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "379318b9f4e5e297fa7c7b90b5fa9e8244cf2e00f4b0cc81d94e6a016d9a14e8",
+  "structural_sha256": "47fb9ed3f435d566c62ad8deb5223d3351958492449a9c6e426152e97d76685c",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
