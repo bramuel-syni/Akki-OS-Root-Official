@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T181358Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T184315Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1106,3 +1106,56 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - Evidence banked at `phase0/drill_receipts_cp_census_autonomy_a_double_prime/red_first_ordering.md`
 
 <!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A'' Commit-A reference block · 2026-09-22T18:20:00Z END -->
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A''' Commit-A reference block · 2026-09-22T18:50:00Z BEGIN -->
+
+## PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A pin block
+
+### baseline_failures.json — ratchet 6103 → 6109 (+6 canonical measured)
+- sha256 post-A''': `b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3`
+- sha256 pre-A''':  `aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28`
+- counts_at_baseline.passed: 6109 (was 6103 · +6 measured)
+- counts_at_baseline.failed: 3 (unchanged · 3 R-91 mirror-drift baselines RETAINED per R-86 anchor)
+- passed_floor: 6109
+- ratchet_history entries: 313 (+1 · commit=PENDING-P3-CA-TPRIME → resolves at Commit-C fixup)
+
+### notes/ORCH_BOOT.md + /app/frontend/public/audit/ORCH_BOOT.md
+- ratchet.passed_floor: 6109 · ratchet.baseline_failures_sha256: `b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3`
+- both twins md5 `fb78231ceb2ed2abfe9dd2b3f5317845`
+
+### /app/backend/vendored/extraction_akki/ · vendored twin
+- structural_sha256 THIS-SEAL: `88dad1bdba27584fb1b60b5242487b533e0f0ad1ade86e1fe97b4875e8aa297f` (was earlier post-A' `082210b5bd...`; A'' UNCHANGED vendored; A''' +1 file)
+- file_count 1022 → 1023 (+1 · gpu_spend_capture.py)
+
+### tests/invariants/test_cp_census_autonomy_gpu_spend_a_triple_prime.py
+- 6 RED-first invariants (SO §2.5 verbatim-docstring · owner directives quoted verbatim in module docstring)
+- companion additive file: `services/census_autonomy/gpu_spend_capture.py` (NEW · thin adapter over sealed ssh_seam)
+- sealed carrier imports: `services.training_runner.ssh_seam.{execute_remote_command, current_mode, is_mock, list_hosts}` (READ-ONLY · identity discipline · invariant 5)
+
+### Double-green stripped-sha256 pre-Commit-A · BASELINE_GUARD=1 PYTHONHASHSEED=0
+- Sweep A (2026-09-22T18:40Z · 191.17s): 6112 passed / 1 skipped / 0 failed · stripped_sha256 `bd2010df9cd70e7294cf92a04eaf2ae7a2a6ee08de9a2209ba813b7af2e4a8ac`
+- Sweep B (2026-09-22T18:43Z · 191.36s): 6112 passed / 1 skipped / 0 failed · stripped_sha256 `bd2010df9cd70e7294cf92a04eaf2ae7a2a6ee08de9a2209ba813b7af2e4a8ac`
+- **IDENTICAL byte-for-byte (stripped)**
+
+### 3-repo HEADs post-PHASE-3-A''' Commit-A landing
+- `/app/assessment_workspace/repos/Extraction-Akki` (programme/track-a): `c3807d7c72c9599db4e692ee88e44c8378ee1873`
+- `/app/assessment_workspace` (master): `6d654a66` → `<PENDING-P3-ATP-CB-master>` → `<PENDING-P3-ATP-CC-master>`
+- `/app` (main): `615ac44ac` → `<PENDING-P3-ATP-CC-appmain>`
+
+### GPU_SPEND_CAPTURE closed-vocab (SO §3.10-α Final tuple)
+- `GPU_SPEND_CAPTURE_STATE_CODES = ("CAPTURED", "HONEST_GAP_UNREACHABLE", "HONEST_GAP_MOCK_MODE")`
+- `NVIDIA_SMI_QUERY = "nvidia-smi --query-gpu=timestamp,name,index,power.draw,utilization.gpu,memory.used --format=csv,noheader"`
+- `CAPTURE_PURPOSE = "census_autonomy_gpu_spend_capture"` (banked in every ssh_seam receipt)
+
+### Owner "NO GPU-spend fabrication" enforcement (source-level guard · invariant 4 · 6 banned markers)
+- `fake_gpu` · `mock_gpu_spend` · `synthesized_watts` · `random.random` · `random.randint` · `random.choice`
+
+### Mode dispatch record shapes
+- **HONEST_GAP_MOCK_MODE**: `{status, captured_at_utc, mode, note}` (no numeric fields — invariant 6 bans watts / gpu_load_percent / memory_used_mib)
+- **HONEST_GAP_UNREACHABLE**: `{status, captured_at_utc, mode, unreachable_hosts, reason_per_host, note}` (per STOP condition #2 · zero fabricated telemetry)
+- **CAPTURED**: `{status, captured_at_utc, mode, hosts_captured, per_host_raw, query}` (per_host_raw = dict host_slug → redacted nvidia-smi stdout verbatim from sealed ssh_seam)
+
+### Owner-exclusive open (new)
+- **DQ-GPU-SSH-KEYS** — **P1** · Owner-side SSH credentials for `akki-vm` (41.173.184.244) + `akki-vm-ii` (41.173.184.247) needed to flip `GPU_CONNECT_MODE=real` and unlock live nvidia-smi capture. Currently sealed ssh_seam has no configured hosts under real mode → mock-mode returns HONEST_GAP_MOCK_MODE per owner directive (no fabrication).
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A''' Commit-A reference block · 2026-09-22T18:50:00Z END -->

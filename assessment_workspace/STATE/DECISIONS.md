@@ -26978,3 +26978,58 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-UI-DRAWER · Commit-A SEAL RECORD · 2026-09-22T18:20:00Z END -->
 
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+<!-- PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A SEAL RECORD · 2026-09-22T18:50:00Z BEGIN -->
+
+## PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A SEAL RECORD
+
+**When:** 2026-09-22T18:50:00Z (Code Commit-A `c3807d7c72c9599db4e692ee88e44c8378ee1873` on `programme/track-a` + /app main companion Commit-A `615ac44ac` on `main`; state Commit-B this-record; state Commit-C fixup + /app Commit-C companion NEXT).
+
+**Scope frozen SO §6.4 NOTHING-BEYOND (3 files code repo + 3 files /app main):**
+
+Code repo `programme/track-a`:
+1. NEW `backend/services/census_autonomy/gpu_spend_capture.py` (~160 lines · thin adapter over sealed `services.training_runner.ssh_seam` · GPU_SPEND_CAPTURE_STATE_CODES Final tuple `('CAPTURED','HONEST_GAP_UNREACHABLE','HONEST_GAP_MOCK_MODE')` closed vocab · mode-dispatched capture: mock → HONEST_GAP_MOCK_MODE (no fabricated fields) · real+reachable → CAPTURED with per-host redacted nvidia-smi stdout · real+unreachable → HONEST_GAP_UNREACHABLE per STOP condition #2).
+2. NEW `backend/tests/invariants/test_cp_census_autonomy_gpu_spend_a_triple_prime.py` (~180 lines · 6 RED-first invariants · SO §2.5 verbatim-docstring · owner directives quoted verbatim in module docstring).
+3. MODIFY `backend/tests/invariants/baseline_failures.json` (ratchet 6103→6109 · +6 canonical measured · schema-complete ratchet_history entry).
+
+/app main:
+1. NEW `backend/vendored/extraction_akki/backend/services/census_autonomy/gpu_spend_capture.py` (byte-identical vendored twin via `tools/prod_vendor_sync.py`).
+2. MODIFY `backend/vendored/extraction_akki/MANIFEST.json` (structural_sha256 `88dad1bdba27584fb1b60b5242487b533e0f0ad1ade86e1fe97b4875e8aa297f` · file_count 1022→1023 · +1 vendored file).
+3. MODIFY `frontend/public/audit/ORCH_BOOT.md` (byte-identical mirror of notes ORCH_BOOT ratchet-block regen 6103→6109 + new baseline_failures sha256 `b4237e36...`).
+4. MODIFY `assessment_workspace/repos/Extraction-Akki` gitlink (527d09bf1 → c3807d7).
+
+**Ratchet:** 6103 → 6109 (+6 canonical measured). baseline_failures.json sha256 `b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3` was `aea4469a...`.
+
+**Owner directives HONORED (verbatim source of record):**
+- `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md §44`: "NO GPU-spend fabrication. Numbers come from live host telemetry (akki-vm / akki-vm-ii nvidia-smi captures at run time) or the run is banked without a GPU-spend claim." Enforced by invariant 4 (6-marker source-level ban: `fake_gpu` · `mock_gpu_spend` · `synthesized_watts` · `random.random` · `random.randint` · `random.choice`).
+- `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md STOP #2`: "If nvidia-smi telemetry is not reachable at run-time from the pod (SSH/network issue) STOP GPU-spend capture · honest-gap it · file DQ-fork; do NOT fabricate." Enforced by mode dispatch: real+unreachable returns HONEST_GAP_UNREACHABLE with `unreachable_hosts` + `reason_per_host` fields but ZERO numeric telemetry.
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- `services.training_runner.ssh_seam` — imported READ-ONLY: `execute_remote_command` (governed paramiko exec with redaction + ledgered receipts) + `current_mode` / `is_mock` / `list_hosts`. Never re-declared (invariant 5).
+- PHASE 3 Commit-A `c3e6725c` services.census_autonomy carriers (engine + service_shape + scheduler_program + tenant_scope + state_reader) — gpu_spend_capture stands PARALLEL, never modifies them.
+- PHASE 3 A' `55ffc389` routers.portal_census_autonomy — untouched.
+- PHASE 3 A'' `527d09bf` pod_shell + /app/frontend React drawer + hook + App.js — untouched.
+- 4j `services.tenant_separation` · Canon-9 §3 `mtafiti.asset_registry_writer` · R-86/R-88/R-99/R-100/R-100-UNWIND seal chain — all untouched.
+
+**Vendored mirror invariant `test_vendored_tree_byte_identical_mirror_of_spine`** RE-VERIFIED GREEN post-Commit-A (structural_sha256 `88dad1bdba27584fb1b60b5242487b533e0f0ad1ade86e1fe97b4875e8aa297f`).
+
+**RED-first authenticity:** RED-pre 6/6 FAIL right-reason `ImportError: cannot import name 'gpu_spend_capture'` (module absent pre-impl · authored BEFORE any code lands) → GREEN-post 6/6 PASS 0.71s. Receipts banked at `phase0/drill_receipts_cp_census_autonomy_a_triple_prime/RED_pre_2026-09-22.log` + `GREEN_post_2026-09-22.log`.
+
+**Double-green byte-identity:** `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (191.17s) + sweep_B (191.36s) both produced 6112 passed / 1 skipped / 0 failed / 520 warnings with stripped-sha256 `bd2010df9cd70e7294cf92a04eaf2ae7a2a6ee08de9a2209ba813b7af2e4a8ac` IDENTICAL. 6112 = 6109 floor + 3 above-floor (all 3 R-91 mirror-drift baseline_failures transiently GREEN from A'' twin sync). Full receipts at `phase0/drill_receipts_cp_census_autonomy_a_triple_prime/sweep_A_2026-09-22.{log,stripped}` + `sweep_B_2026-09-22.{log,stripped}` + `double_green_sha256.txt`.
+
+**Same-slice cure this-Commit-A (SO §6.8):** `test_standing_orders_present::test_decisions_carries_pointer_near_bottom` broke after A'' seal (my A'' seal append pushed the `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law` pointer out of the last-5-lines window). Cured by appending the pointer at bottom of DECISIONS.md this-Commit-A.
+
+**Response-required queue + 2 routers + UI response-required-badge** DEFERRED to future A'''-cont slice per SO §6.4 NOTHING-BEYOND (would have expanded scope beyond 3 files this-Commit-A).
+
+**Owner-exclusive open (new this-A'''):** `DQ-GPU-SSH-KEYS` P1 — Owner-side SSH credentials for `akki-vm` (41.173.184.244) + `akki-vm-ii` (41.173.184.247) needed to flip `GPU_CONNECT_MODE=real` and unlock live nvidia-smi capture. Currently the sealed ssh_seam has no configured hosts under real mode; mock-mode returns HONEST_GAP_MOCK_MODE per owner directive (no fabrication). Filing at `STATE/DESK_QUEUE.md` deferred to next desk-queue update batch.
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed` to this-Commit-B SHA + code Commit-A `c3807d7` + /app companion `615ac44a`) → /app main Commit-C companion audit ORCH_BOOT byte-identical sync → **PHASE 3 A'''-cont opens** (response-required queue + 2 routers + UI response-required-badge) OR **PHASE 3 A'''' opens** (data_source adapter fold-in + mtafiti.asset_registry_writer wiring) — pick at seal boundary per §6.8 report-and-continue.
+
+<!-- PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A SEAL RECORD · 2026-09-22T18:50:00Z END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

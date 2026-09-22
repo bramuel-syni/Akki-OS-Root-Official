@@ -57,6 +57,44 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-22T18:50Z · autopilot PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A SEAL close · REAL-TELEMETRY GPU-SPEND CAPTURE PRODUCTIZED (mock HONEST_GAP + real STOP#2 HONEST_GAP)**
+
+**PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY-GPU-SPEND · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-Commit-C fixup):
+- code Commit-A `c3807d7c72c9599db4e692ee88e44c8378ee1873` on `programme/track-a` (2026-09-22T18:47Z · NEW backend/services/census_autonomy/gpu_spend_capture.py (~160 lines · thin adapter over sealed services.training_runner.ssh_seam · GPU_SPEND_CAPTURE_STATE_CODES Final closed vocab · never fabricates GPU numbers) + NEW tests/invariants/test_cp_census_autonomy_gpu_spend_a_triple_prime.py (6 RED-first invariants) + MODIFY baseline_failures.json ratchet 6103->6109 +6 measured).
+- /app main companion Commit-A `615ac44ac` (2026-09-22T18:50Z · vendored twin sync +1 file · MANIFEST regen file_count 1022->1023 · audit ORCH_BOOT ratchet regen 6103->6109 · gitlink advance 527d09bf1 -> c3807d7).
+- state Commit-B `<PENDING-P3-ATP-CB>` · Commit-C fixup `<PENDING-P3-ATP-CC>` · /app Commit-C companion `<PENDING-P3-ATP-CC-APP>` (this-turn will land these next).
+
+**Ratchet floor**: **6109** (was 6103 pre-A''' · +6 canonical measured). baseline_failures.json sha256 `b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3` was `aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28`.
+
+**Module landed**:
+- `services.census_autonomy.gpu_spend_capture` — thin adapter · public callable `capture_gpu_spend()` returns dict with `status` from Final closed vocab (`CAPTURED` | `HONEST_GAP_UNREACHABLE` | `HONEST_GAP_MOCK_MODE`)
+- Mode dispatch: mock → HONEST_GAP_MOCK_MODE (zero numeric fields) · real+reachable → CAPTURED per-host redacted nvidia-smi stdout · real+unreachable → HONEST_GAP_UNREACHABLE with unreachable_hosts + reason_per_host
+- Sealed ssh_seam imports: execute_remote_command + current_mode + is_mock + list_hosts (all READ-ONLY · invariant 5)
+- nvidia-smi query pinned as Final constant: `nvidia-smi --query-gpu=timestamp,name,index,power.draw,utilization.gpu,memory.used --format=csv,noheader`
+
+**Owner directives HONORED verbatim** (STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md §44 + STOP #2):
+- 'NO GPU-spend fabrication. Numbers come from live host telemetry ... or the run is banked without a GPU-spend claim.'
+- 'If nvidia-smi telemetry is not reachable at run-time from the pod ... STOP GPU-spend capture · honest-gap it · file DQ-fork; do NOT fabricate.'
+
+Enforced by:
+- Invariant 4: 6-marker source-level ban (`fake_gpu` · `mock_gpu_spend` · `synthesized_watts` · `random.random` · `random.randint` · `random.choice`)
+- Invariant 6: mock-mode HONEST_GAP_MOCK_MODE contract (no watts / gpu_load_percent / memory_used_mib fields in record)
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0**:
+- Sweep A (2026-09-22T18:40Z · 191.17s) + Sweep B (2026-09-22T18:43Z · 191.36s) both stripped_sha256 `bd2010df9cd70e7294cf92a04eaf2ae7a2a6ee08de9a2209ba813b7af2e4a8ac` IDENTICAL · 6112 passed / 1 skipped / 0 failed / 520 warnings each · 6112 = 6109 floor + 3 above-floor (all 3 R-91 mirror-drift baseline_failures transiently GREEN from A'' twin sync).
+
+**Same-slice cure this-Commit-A (SO §6.8)**: `test_standing_orders_present::test_decisions_carries_pointer_near_bottom` (broke after A'' seal append pushed pointer out of last-5-lines window) — cured by appending `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law` at bottom of DECISIONS.md THIS-Commit-A.
+
+**Owner-exclusive open (new this-A''')**: `DQ-GPU-SSH-KEYS` P1 — Owner-side SSH credentials for `akki-vm` (41.173.184.244) + `akki-vm-ii` (41.173.184.247) needed to flip `GPU_CONNECT_MODE=real` and unlock live nvidia-smi capture. Currently mock-mode returns HONEST_GAP_MOCK_MODE per owner directive (no fabrication).
+
+**Response-required queue + 2 routers + UI response-required-badge** DEFERRED to future A'''-cont slice per SO §6.4 NOTHING-BEYOND.
+
+**Standing bounds unchanged**: zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated excluded from `CENSUS_ADMITTED_TENANT_IDS`.
+
+**Autopilot next (§6.8 report-and-continue)**: State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed` to this-Commit-B SHA + code Commit-A `c3807d7` + /app companion `615ac44a`) → /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync) → **PHASE 3 A'''-cont opens** (response-required queue + 2 routers + UI response-required-badge) **OR** **PHASE 3 A'''' opens** (data_source adapter fold-in + mtafiti.asset_registry_writer wiring) — pick at seal boundary.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T18:20Z · autopilot PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-UI-DRAWER · Commit-A SEAL close · REAL-STATE UI OVERLAY DRAWER PRODUCTIZED**
 
 **PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-UI-DRAWER · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-Commit-C fixup):
