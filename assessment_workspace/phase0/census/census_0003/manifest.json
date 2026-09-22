@@ -1,0 +1,156 @@
+{
+  "census_id": 3,
+  "started_at_utc": "2026-09-22T01:36:48Z",
+  "finished_at_utc": "2026-09-22T02:05:00Z",
+  "initiator": "owner",
+  "databases": [],
+  "rollup": {
+    "database_count": 0,
+    "table_count": 0,
+    "total_row_count": 0,
+    "wave_id": "CENSUS-3",
+    "estate_scope": "full-estate content-grade content-level census across ALL RMS and Digicow data",
+    "surface_count_measured": 6,
+    "surface_names": [
+      "obs_huawei",
+      "digicow_s3",
+      "digicow_rds",
+      "mysql_jump_clusters",
+      "nas_dsm",
+      "obs_audio_lid_sweep"
+    ]
+  },
+  "single_database_visibility_flag": false,
+  "finding_sentence": "CENSUS-3 measures the estate at the surface level rather than the database level; database_count/table_count are 0 because this run's chapters (OBS full sweep + duplication tiered + LID sweep) target buckets, mirrors, and audio content — not RDS tables. Detailed measurements live under phase0/census_v3/ and are reachable through /api/portal/census/* (JWT-gated) as well as this manifest's census_v3_extensions block. CENSUS-3 C/D/E/F lanes (MySQL clusters, Digicow RDS content-axis, NAS deep walk, OBS audio GPU pipeline) will land as census_0004..census_00XX in the same shape.",
+  "audit_trail": [
+    {
+      "at_utc": "2026-09-22T01:36:48Z",
+      "sql_shape": "obs_full_sweep",
+      "database": "obs_huawei",
+      "principal": "owner",
+      "receipt_ref": "phase0/census_v3/20260922T014400Z_CENSUS3_OBS_chapter.json"
+    },
+    {
+      "at_utc": "2026-09-22T02:00:00Z",
+      "sql_shape": "duplication_tier1_etag_and_size",
+      "database": "obs_huawei+digicow_s3",
+      "principal": "owner",
+      "receipt_ref": "phase0/census_v3/duplication_v2/20260922T020000Z_TIER1_analysis.json"
+    },
+    {
+      "at_utc": "2026-09-22T02:03:00Z",
+      "sql_shape": "digicow_langid_aggregate",
+      "database": "digicow_s3_audio",
+      "principal": "owner",
+      "receipt_ref": "phase0/census_v3/duplication_v2/20260922T020300Z_DIGICOW_LANGID_AGGREGATE.json"
+    },
+    {
+      "at_utc": "2026-09-22T02:05:00Z",
+      "sql_shape": "duplication_tier2_three_point_range_reads",
+      "database": "obs_huawei+digicow_s3",
+      "principal": "owner",
+      "receipt_ref": "phase0/census_v3/duplication_v2/20260922T020500Z_TIER2_analysis.json"
+    },
+    {
+      "at_utc": "2026-09-22T02:05:00Z",
+      "sql_shape": "duplication_chapter_v2_close",
+      "database": "obs_huawei+digicow_s3",
+      "principal": "owner",
+      "receipt_ref": "phase0/census_v3/duplication_v2/20260922T020500Z_CENSUS3_DUPLICATION_CHAPTER_V2.json"
+    }
+  ],
+  "census_v3_extensions": {
+    "additive_wave": "CENSUS-SURFACE-A · connect existing surfaces (Canon-9 §13 Mtafiti authority · Canon-4 §8 one-record-per-source) to CENSUS-3 chapters · owner course-correction 2026-09-22T~02:20Z verbatim: 'you should be connecting the existing one to it'.",
+    "provenance_pointers": [
+      "phase0/census_v3/20260922T014400Z_CENSUS3_OBS_chapter.json",
+      "phase0/census_v3/duplication_v2/20260922T020000Z_TIER1_analysis.json",
+      "phase0/census_v3/duplication_v2/20260922T020300Z_DIGICOW_LANGID_AGGREGATE.json",
+      "phase0/census_v3/duplication_v2/20260922T020500Z_TIER2_analysis.json",
+      "phase0/census_v3/duplication_v2/20260922T020500Z_CENSUS3_DUPLICATION_CHAPTER_V2.json",
+      "phase0/gpu_probes/20260922T010600Z_GPU_LANGID_FULL_SWEEP_LAUNCH.json"
+    ],
+    "surface_breakdown": {
+      "obs_huawei": {
+        "bucket_count_total": 106,
+        "bucket_count_head_ok": 106,
+        "bucket_count_list_returned_objects": 101,
+        "bucket_count_getobject_readable": 32,
+        "bucket_count_getobject_blocked": 74,
+        "estate_size_tb": 161.76,
+        "audio_share_pct_approx": 18.0,
+        "chapter_ref": "phase0/census_v3/20260922T014400Z_CENSUS3_OBS_chapter.json"
+      },
+      "digicow_s3": {
+        "bucket_count_total_probed": null,
+        "chapter_ref": "phase0/census_v3/duplication_v2/20260922T020000Z_TIER1_analysis.json",
+        "note": "Digicow S3 catalogue counts consolidated into TIER1_analysis chapter"
+      },
+      "digicow_rds": {
+        "cluster_count": 2,
+        "cluster_names": ["digicow_live", "ndume"],
+        "table_count_prior_census_id_2": 233,
+        "content_axis_pending_lane": "CENSUS-3-D",
+        "chapter_ref": "phase0/census/census_0002/manifest.json"
+      },
+      "mysql_jump_clusters": {
+        "cluster_count_reachable_via_jump": 3,
+        "cluster_count_blocked_egress": 5,
+        "content_axis_pending_lane": "CENSUS-3-C",
+        "receipt_ref": "phase0/connectivity_receipts/20260921T124751Z_JUMP_retry_owner_authorized_20260921.json"
+      },
+      "nas_dsm": {
+        "endpoint": "10.10.55.55:5000",
+        "content_axis_pending_lane": "CENSUS-3-E",
+        "note": "smbclient deep walk pending"
+      },
+      "obs_audio_lid_sweep": {
+        "objects_evaluated": 1568,
+        "swahili_speech_share_pct": 92.7,
+        "chapter_ref": "phase0/census_v3/duplication_v2/20260922T020300Z_DIGICOW_LANGID_AGGREGATE.json"
+      }
+    },
+    "duplication_summary": {
+      "tier_1_method": "ETag + size on List responses",
+      "tier_2_method": "3-point range read at [head, mid, tail] with sha256 hash-and-discard (no persistence)",
+      "hypothesis_rejected_by_evidence": [
+        {"pair": "caldocs vs cal-docs", "verdict": "distinct content · name similarity is not evidence of duplication"},
+        {"pair": "na7p4* named series", "verdict": "blocked on GetObject · cannot verify content-grade duplication until owner IAM grant lands"}
+      ],
+      "real_mirrors_confirmed": [
+        {"pair": "google-transcripts == rmsbroadcast", "verdict": "real mirror · Tier-1 ETag identical · Tier-2 3-point range identical"}
+      ],
+      "chapter_ref": "phase0/census_v3/duplication_v2/20260922T020500Z_CENSUS3_DUPLICATION_CHAPTER_V2.json"
+    },
+    "access_summary": {
+      "readable_bucket_count": 32,
+      "blocked_bucket_count": 74,
+      "blocked_slice_breakdown": {
+        "na7p4_series": {
+          "bucket_count": null,
+          "current_state": "403 AccessDenied across all probed regions with current HPUA keys",
+          "owner_action_to_unlock": "IAM grant on na7p4* audit-scope on RMS admin side · not credentials rotation"
+        },
+        "cold_tier_restore": {
+          "bucket_count": null,
+          "current_state": "InvalidObjectState on cold-tier buckets · Get requires restore-first",
+          "owner_action_to_unlock": "S3 restore request on affected cold-tier buckets (Huawei OBS S3-compatible RestoreObject) · we do not issue restores without owner GO because it triggers real cost"
+        },
+        "hf_token": {
+          "current_state": "HF-HOLD SEC-2026-09-12-01 still standing · we cannot pull HF models under this hold",
+          "owner_action_to_unlock": "Rotate HF token out-of-band (SEC-2026-09-12-01 close-out) · then update /app/backend/.env HF_TOKEN and lift the hold-flag receipt"
+        }
+      }
+    },
+    "gpu_pipeline_status": {
+      "hosts_authenticated": ["akki-vm@41.173.184.244", "akki-vm-ii@41.173.184.247"],
+      "gpu_inventory": "4x NVIDIA H200 (2 per host)",
+      "concurrency_workaround": "1 process per GPU via CUDA_VISIBLE_DEVICES (ctranslate2 Hopper concurrency bug)",
+      "next_lane": "CENSUS-3-F · OBS audio streaming inference on 15 readable OBS audio buckets · queued to launch on backend-surface-A landing"
+    },
+    "wave_hold_state": {
+      "r91_horizon_utc": "2026-09-23T03:23:15Z",
+      "hold_scope": "R-91 bars the ε-apply mirror of /app/frontend/src/App.js at horizon · does not bar owner-ordered backend work per owner's 2026-09-21T~11:45Z ruling verbatim: 'This work is authorized NOW during the R-91 hold (the hold bars the ε-apply, not owner-ordered work). R-91 still applies only at the horizon.'",
+      "ui_dashboard_status": "banked at phase0/surface_connection/portal_census_ui_spec.md for post-R-91 App.js implementation · zero App.js touch this-wave"
+    }
+  }
+}

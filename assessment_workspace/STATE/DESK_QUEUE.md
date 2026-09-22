@@ -86,6 +86,17 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Blocks**: nothing operationally (agent can continue on either resolution).
 - **Continues**: everything.
 
+
+## ~~DQ-09 · Ratchet-of-record drift on `programme/track-a` · file `passed_floor` stuck at 5858 through three subsequent Commits-A~~ CLOSED at CENSUS-SURFACE-A Commit-B seal (2026-09-22T~03:45Z)
+
+- **Surfaced at**: CENSUS-SURFACE-A Commit-A" (this-Commit-B state seal · 2026-09-22T~03:32Z at sweep boundary).
+- **Fact**: On `programme/track-a` HEAD `e06ecf9` and at `HEAD~1` `4dfc446`, `backend/tests/invariants/baseline_failures.json` shows `counts_at_baseline.passed: 5858` and `passed_floor: 5858`. The last commit to actually write the file was `283524d` (CP-PROD-DEPLOY, 5857 → 5858). The three subsequent code commits — `42a0d3a` R-100-UNWIND (claimed 5852→5857), `4dfc446` SURFACE-A Commit-A (claimed 5858→5874), `e06ecf9` SURFACE-A Commit-A' (claimed 5874→5892) — declared ratchet bumps in their commit messages but did NOT touch the file. §1 SESSION BOOT PROTOCOL verification rule requires `counts_at_baseline.passed == passed_floor` and both to match the sweep-observed count — the file-of-record was stale by 34 (later 56) counts against the sweep-measured truth. `test_baseline_no_new_breakage` was silently GREEN throughout because the guard is `sweep_passed >= file_floor`, not equality.
+- **Options**: **(a)** Reconcile at the next Commit-A pre-Commit-A regen (bump file to sweep-measured value in an additive step; monotonic-up preserved; no history rewrite). **(b)** Retroactive amend of the three prior Commits-A (destructive · violates §4 zero-push and §3.8 additive-only · inadmissible). **(c)** Leave stale and defer (carries §1 verify miss forward · unlisted risk that a future compaction-restart refuses to boot).
+- **Recommendation**: **(a)**. Executed this-Commit-B seal (baseline_failures.json 5858 → 5914 · new sha256 `db5a7989...` · ORCH_BOOT.md ratchet regenerated to match · byte-identical POD audit mirror synced).
+- **Blocks**: nothing operationally.
+- **Continues**: everything.
+- **CLOSED**: this-Commit-B (2026-09-22T~03:45Z). BASELINE_GUARD=1 double-green stripped-sha256 `213996fe...` byte-identical run1 + run2 · 5914 passed · 4 pre-existing baseline fails · 1 skip. `test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` GREEN. `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` GREEN. Standing lesson banked in DECISIONS.md: future waves must verify `passed_floor` bump landed in the file (spot-check `git diff HEAD -- backend/tests/invariants/baseline_failures.json`) before Commit-A. <!-- carried forward per additive-only §3.8; entry preserves history. -->
+
 ---
 
 ## Standing rules for this file

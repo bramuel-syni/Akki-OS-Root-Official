@@ -449,6 +449,19 @@ app.include_router(portal_requests_router.router)
 from routers import portal_entitlement as portal_entitlement_router  # noqa: E402
 app.include_router(portal_entitlement_router.router)
 
+# CENSUS-SURFACE-A · owner course-correction 2026-09-22T~02:20Z verbatim:
+# "CONNECT, don't duplicate: write the census results INTO the existing
+# registry through its own sealed writer contract ... and expose them
+# through the EXISTING read surface family — extending existing routes
+# additively (e.g., a census/asset-inventory view on the portal read
+# surface) rather than inventing a standalone /api/census/* family."
+# Additive-only per SO §3.8. Router already carries prefix
+# "/api/portal/census" · 5 endpoints (assets · surfaces · access ·
+# latest · duplication) · same JWT-only pattern as R-100 portal reads
+# via require_identity_or_deny + principal_context wrapper.
+from routers import portal_census as portal_census_router  # noqa: E402
+app.include_router(portal_census_router.router)
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}
