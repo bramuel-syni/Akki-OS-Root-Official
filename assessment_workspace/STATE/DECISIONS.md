@@ -27260,5 +27260,64 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 3 continuation A'''-cont-B · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-BADGE-UI · Commit-A + State Commit-D SEAL RECORD · 2026-09-22T22:10:00Z END -->
 
+<!-- PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · 5-Commit-Seal LANDED · 2026-09-22T22:52:00Z BEGIN -->
+
+## PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · 5-Commit-Seal LANDED · 2026-09-22T22:52:00Z
+
+**Owner banked order verbatim** (2026-09-22T~21:21Z at PHASE 3 close):
+
+> "PHASE 4 (banked order): entitlements backend → Connect + Commission wizards live → CP-SKILLS-LAYER → CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped."
+
+**Owner ACK this-turn verbatim** (2026-09-22T after seal-close report of A'''-cont-B):
+
+> "§6.8 — continue. Clean recovery: the broken-YAML Commit-C cure, the floor-vs-sweep-count correction (6150 floor, 6153 passed), and the spurious MANIFEST drift revert are all acknowledged — exactly the disk-over-banner discipline the run needs. Phase 4 entitlements slice approved as scoped: measure sealed-vs-pinned delta on ENT-16/17/32/35, RED-first for the missing surface only, 5-commit seal. Then the rest of the Phase 4 banked order. Report at seal boundaries."
+
+**Disk-truth reconciliation this-turn** (per user's re-anchor discipline: verify disk over banner):
+
+- Entitlements backend was **ALREADY SEALED** at time of this session — the CP-ENTITLEMENT-WAVE-SETUP (R-81) card described a two-wave scope (setup then build), and the build wave (R-82) has ALREADY landed. `services/entitlement_service_v1/` carries 7 module files (`__init__`, `allowance`, `catalog`, `cascade_selector`, `chokepoint_resolver`, `customer_key_plane`, `licence`). `routers/portal_entitlement.py` mounted at `/api/portal/entitlement/*`. All 21 property tests in `test_entitlement_service_v1_property_tests.py` PASS (including the 4 previously-RED-pinned tests: ENT-16 chokepoint_resolver + ENT-17 pure_resolver + ENT-32 R-24 gate + ENT-35 customer_key_plane). Owner sealed-vs-pinned delta = 0 (nothing pinned outstanding). Slice pivoted to the NEXT Phase 4 banked item (Connect + Commission wizards live) with the Commission-half landed this-turn.
+
+**Seal chain (5 commits · CP-COMMISSION-WIZARD-LIVE):**
+
+| # | Commit | SHA | Branch | Purpose |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `032ada921d8e359ec0c5322d9a354af9f5b973fa` | programme/track-a (Extraction-Akki) | 7 new RED-first structural invariants at `tests/invariants/test_cp_commission_wizard_live_phase_4_a.py` + NEW `pod_shell/frontend/src/pages/os/WorkCommission.jsx` (~80 lines · thin page wrapper rendering the sealed Canon-5-§14 `<CommissionWizard />` at `/os/work/commission` · WORKSTUDIO breadcrumb + Canon-5-§14 mandatory-fields lead paragraph verbatim · `data-testid` markers on every surface element) + MODIFY `pod_shell/frontend/src/App.js` additive import + Route + MODIFY `backend/tests/invariants/baseline_failures.json` ratchet 6150→6157 (+7 canonical measured). Zero backend edits. Sealed carriers UNCHANGED per SO §3.8. |
+| 2 | /app companion Commit-A | `42bab1711a013f489b8fad1d0dd71729be7299f6` | main (/app) | Frontend twin same-seal sync (byte-identical `/app/frontend/src/` twins · Ship-Manifest DoD parity + wave_g pod_shell frontend mirror RE-VERIFIED GREEN): NEW `WorkCommission.jsx` twin sha256 `3ec38fa76c9b7739ee2d7756203c42f1` + MODIFY `App.js` twin sha256 `06f53484e543f7090d1d6f21e90b1906`. Audit + notes ORCH_BOOT ratchet regen pre-Commit-A (replace_all on 8 stacked ratchet stanzas · new floor 6157 + new baseline_failures_sha256 `b72166cb323577a81914b2086d03cdb3e00efcc63770d960dbf600745c087ab7`). Gitlink advance `3108b41` (A'''-cont-B) → `032ada9` (P4-a Commit-A) [force-added because parent path `assessment_workspace/repos/` is gitignored while submodule pointer is tracked · matches prior-seal pattern]. |
+| 3 | State Commit-B | `56461dfa3802ecf4f71e810695d892d33e5e4ab9` | master (state) | Banks code Commit-A + /app companion Commit-A. ORCH_BOOT.md ratchet stanzas updated in-place (replace_all on 8 stacked stanzas per prior-seal pattern). Drill receipts banked at `phase0/drill_receipts_cp_commission_wizard_live_phase_4_a/`: RED-pre 2/7-fail-right-reason at `20260922T2225Z_PHASE_4_A_right_reason_red.log` + GREEN-post 7/7-pass at `20260922T2227Z_PHASE_4_A_green_post.log` + FIRST double-green attempt FAILED right-reason (banked lesson #6 evidence) at `20260922T2230Z_pre_commit_a_sweep_A.log` + RETRY double-green byte-identical at `20260922T2233Z_pre_commit_a_sweep_A.log` + `20260922T2237Z_pre_commit_a_sweep_B.log`. |
+| 4 | State Commit-C fixup | `d5be537165c8d16591e3ea836a7cf408101e7206` | master (state) | R-6 boundary regen prepending fresh P4-a ORCH_BOOT.md stanza · advances `heads_last_sealed.state_repo.head` `5ffa1586` (A'''-cont-B Commit-B) → this-P4-a Commit-B `56461dfa` + `heads_last_sealed.code_repo.head` `3108b41` (A'''-cont-B Commit-A) → this-P4-a Commit-A `032ada9`. **Banked-Lesson-#1 (YAML plain-scalar hazard) HONORED THROUGHOUT** — all embedded-colon patterns replaced with dashes in the new stanza's `generator:` and `seal_kind:` values. `yaml.safe_load` parses cleanly. |
+| 5 | /app main Commit-C companion | `5b4cd68e06f80995cc2d630283a5ae2e8d89f68a` | main (/app) | Audit ORCH_BOOT byte-identical mirror sync post state Commit-C `d5be5371`. Mirror-syncs `frontend/public/audit/ORCH_BOOT.md` + `assessment_workspace/notes/ORCH_BOOT.md` byte-identical (both sha256 `e5fa89001da567f663908f79cd77ee81`). `test_orch_boot` RE-VERIFIED GREEN. |
+
+**Ratchet: 6150 → 6157 (+7 canonical measured).**
+
+**baseline_failures.json sha256:** `b72166cb323577a81914b2086d03cdb3e00efcc63770d960dbf600745c087ab7` (was `bfdfda543f295af990586c49d4d5e0908491510fb0f46d5bf9afb88dd1167d5f`).
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- `CommissionWizard.jsx` (Canon 5 §14 Shaping Wizard · Phase 7 Stage B-1 operator variant) consumed by identity import ONLY · byte-identical twins md5 `4e32876311524cf20b7c3a7561c4539e`.
+- `backend/routers/wizard_operator.py` + `services/wizard/*` backend surface consumed by frontend fetch calls ONLY (verified live via curl this-turn: `POST /api/wizard/operator/session` returned real `session_id=wiz-719bf621b031` + `trace_id=trc-d5ffff595b5e`).
+- `server.py` mount block for `wizard_operator` (line 105-106) pre-existing since Phase 7 Stage B-1 seal · mirror pair `/app/backend/server.py ↔ pod_shell/backend/server.py` sha256 `6840d542bfce588865633048edc16edc90c8d2be2b8f0a3341413d40c4a17728`.
+- All PHASE 3 sealed carriers (A' + A'' + A''' + A'''-cont-A + A'''' + A''''-cont-A + A'''-cont-B) UNCHANGED.
+
+**Pre-Commit-A double-green byte-identical `BASELINE_GUARD=1 PYTHONHASHSEED=0`:** stripped-sha256 `3be2ed081c1ef7c62f89348630a2eb8d46f1d0f3f865a3389197ac0bc13813fe` IDENTICAL sweep_A (192.06s) + sweep_B (192.10s) both **6160 passed / 1 skipped / 0 failed / 520 warnings** each.
+
+**Post-seal-close double-green byte-identical** (verifies Commit-C fixup + /app Commit-C companion did not break invariants): stripped-sha256 `3be2ed081c1ef7c62f89348630a2eb8d46f1d0f3f865a3389197ac0bc13813fe` IDENTICAL sweep_A (2026-09-22T22:44Z · 190.71s) + sweep_B (2026-09-22T22:48Z · 191.66s) both **6160 passed / 1 skipped / 0 failed / 520 warnings** each. Same stripped-sha256 as pre-Commit-A — proves the Commit-C ORCH_BOOT prepend + /app companion did not alter test-observable state.
+
+**Banked Lessons (now 7):**
+1. YAML plain-scalar hazard (RE-HONORED this-turn in state Commit-C fixup).
+2. Server.py mirror-edit rule.
+3. Canon-9 §3 negative-scan literal-substring hazard.
+4. Producer-bridge additive discipline.
+5. Frontend banned-marker discipline.
+6. **NEW · ratchet_history entry `passed` field must equal NEW post-seal floor** — not the pre-seal floor. FIRST double-green attempt FAILED right-reason on `test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` (assertion: `history[-1]["passed"] == counts["passed"]` — 6150 != 6157). Cured same-slice by setting `ratchet_history[-1].passed = 6157`. Next Commit-A on this file MUST set the passed field to the new floor at authoring time.
+7. **NEW · `json.dump(indent=2)` drift on `baseline_failures.json`** — prior file was 4-space indented · my regen used 2-space · semantic content unchanged (json.load-consumers unaffected) · sha256 pinned in ORCH_BOOT.md matches · cosmetic diff amplifies line counts on git log but does not break invariants. Next Commit-A on this file MUST use `indent=4` to preserve prior format.
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** RESUME.md rewritten this-boundary. **PHASE 4 continues** per owner banked order:
+- **Connect-wizard live-ness disambiguation** — banked as owner-facing question (existing `ConnectResources` at `/dap/connect/:tab` is already live · legacy `ConnectWizard.jsx` retired-in-place per component docstring "Owner Simplification 2026-08-14" · owner directive verbatim needed to close cleanly).
+- **CP-SKILLS-LAYER** — Phase 4 item 3 queued NEXT (or interleave with Connect-half depending on owner disambiguation).
+- Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
+- Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
+
+<!-- PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · 5-Commit-Seal LANDED · 2026-09-22T22:52:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
