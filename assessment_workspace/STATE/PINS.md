@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T132442Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T150051Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1591,10 +1591,154 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - State: `52a70308` (CP-ENT-16 mini-bank · pre-State-B tip).
 - /app: `62ea504e` (/app-A companion `main`).
 
-**REPORT-AND-CONTINUE receipt line (this-seal · state bundle pending post-Commit-C-fixup):**
+**Milestone-seal continuity bundles (SO §6.9(5) AMENDED 5th application):**
+- Code bundle: `continuity_bundles/code_20260923T133531Z_CP_CENSUS_THREE_WAVES.bundle` · 19,282,360 bytes (18.4 MiB) · sha256 `ba3cb28f47456741e8b6b5dcb644723c85a4b49cb0b28f8aea2de6fb695f065e` @ `programme/track-a` `b9eb36d99814e6c68a4a5ee2370e9021971e31b2`.
+- State bundle: `continuity_bundles/state_20260923T133537Z_CP_CENSUS_THREE_WAVES.bundle` · 217,486,325 bytes (207.4 MiB) · sha256 `6c715c99d4adabf5b8f1acdff00f28dd7ef76f573cbfa982bb00d21ce291b438` @ `master` `14e3e96955c` (State-C fixup).
 
-`CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY seal 5-commit chain IN FLIGHT · SO §6.9 amendment §6 item 8 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · census_three_waves_v1 §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE lid_wave_overlay_and_admission_v1 · 10 RED-first pins ALL GREEN · Ratchet 6340 → 6350 · Additive-only per SO §3.8 · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
+### CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY 5-commit seal chain (FULL SHA TABLE · POST-MINI-BANK)
+
+| # | Commit | SHA | Branch |
+|---|---|---|---|
+| 1 | Code Commit-A | `b9eb36d99814e6c68a4a5ee2370e9021971e31b2` | `programme/track-a` |
+| 2 | /app companion A | `62ea504ea` | `main` |
+| 3 | State Commit-B | `70e39cf10426c49276867ad8265fc1815d56f6dd` | `master` |
+| 4 | State Commit-C fixup | `14e3e96955c` | `master` |
+| 5 | /app companion C | `58d7f192a` | `main` |
+| 6 | State mini-bank | *(this commit)* | `master` |
+
+**REPORT-AND-CONTINUE receipt line (this-seal · FULLY SEALED):**
+
+`CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY FULLY SEALED · SO §6.9 amendment §6 item 8 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · census_three_waves_v1 §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE lid_wave_overlay_and_admission_v1 · 10 RED-first pins ALL GREEN · double-green stripped_sha256 c10b70efc5ab8c6086e83f3fb2f862bdb61ece2977bfee3684d882239c35ca88 IDENTICAL both sweeps 6359 passed · Ratchet 6340 → 6350 · SO §6.9(5) AMENDED 5th application: code bundle sha256 ba3cb28f47456741e8b6b5dcb644723c85a4b49cb0b28f8aea2de6fb695f065e (18.4 MiB @ programme/track-a b9eb36d9) + state bundle sha256 6c715c99d4adabf5b8f1acdff00f28dd7ef76f573cbfa982bb00d21ce291b438 (207.4 MiB @ master 14e3e969) · GAPS_FIXED_LEDGER 10 invariant-seat entries at boundary · Sealed CP-SO-6.9-LID-WAVE carrier UNCHANGED per SO §3.8 additive-only · Item 5.11.c of EXECUTION_ORDER.md CLOSED · Item 5.11.d (TENANT-SEPARATION) opens next per RUN-TO-COMPLETION mandate 2026-02-23 · REPORT-AND-CONTINUE not idle-halt.`
 
 <!-- CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY-PINS-2026-02-23 END -->
 
 
+<!-- CP-TENANT-SEPARATION-PINS-2026-02-23 BEGIN · SO §6.9(5) AMENDED · 6th application -->
+
+## CP-TENANT-SEPARATION · Item 5.11.d · SEAL BOUNDARY 2026-02-23T~14:20Z · SO §6.9 amendment §6 item 7 verbatim
+
+**Seal ID:** CP-TENANT-SEPARATION-20260223
+
+**Owner anchor (SO §6.9 amendment §6 item 7 verbatim):**
+
+> "tenant separation with named authorities Fred Afune / Muthoni Kiarie / Samuel Kibacia [RMS] + Vincent Kimani / Peninah Wanja [DigiCow], any-one decision rule, isolation sweep as exit evidence."
+
+**Ruling (b) AKKI-RUNS-IT verbatim honored structurally:** E1 wires the seam INTO Census Autonomy Service; pod NEVER data path.
+
+**Named authorities (5 across 2 tenants):**
+- **RMS (3):** Fred Afune · Muthoni Kiarie · Samuel Kibacia.
+- **DigiCow (2):** Vincent Kimani · Peninah Wanja.
+- **AKKI-TEST (0):** HONEST-GAP posture explicit — empty tuple + `AKKI_TEST_HONEST_GAP_POSTURE` Final marker + boundary refuses `AKKI-TEST` approvals via `UnknownAuthorityRefused` (not silent bypass).
+
+**Any-one decision rule (structural):** exactly one named authority from the correct tenant approves; cross-tenant refused (`CrossTenantAuthorityRefused`); unknown authority refused (`UnknownAuthorityRefused`); unknown tenant refused (`UnknownTenantRefused`).
+
+**Isolation sweep exit evidence:** `run_tenant_isolation_sweep()` returns `TenantIsolationSweepReceipt_v1(rms_authorities_count=3, digicow_authorities_count=2, overlap_count=0, overlap=(), disjoint=True)` · 141 machine-readable JSON receipts corpus at `backend/phase0/tenant_isolation_sweep_receipts/*.json`.
+
+**New additive module:**
+- `backend/services/entitlement_service_v1/tenant_separation_v1.py` (~178 lines · §1.2 modality-extension composing sealed CP-ENT-16 pilot_licence_seeds_v1 tenant identifiers).
+
+**Test module:**
+- `backend/tests/invariants/test_cp_tenant_separation_any_one_rule.py` (10 RED-first pins).
+
+**Ratchet:** `6350 → 6369` (+19 canonical measured · composed **+10 own new pins** + **+9 fold-in gap-closure** CP-CENSUS-THREE-WAVES card_sha256 placeholder heal + card restructured to fully-conforming SO §6.2 schema) · `baseline_failures.json` sha256 post-bump `0a2ddca10e7623aa523f7bfdf1b5ccfef8447d420968c178f358750d45d322cf` · `notes/ORCH_BOOT.md` notes+audit byte-identical sha256 `8990b06ad169e0e1888c3647da57d82ca4e88056854573e85833d2b271619376`.
+
+**Double-green byte-identical stripped_sha256:** `08974bfafc99082d7b363c34b02549533009883620eae6facdcc5ac18bfffd86` IDENTICAL sweep_A + sweep_B (both 6369 passed / 13 skipped / 0 failed / 520 warnings / ~200s each).
+
+**Objective card:** `STATE/OBJECTIVES/CP_TENANT_SEPARATION_20260223.md` (card_sha256 `6c1676580466e334ea76e25c5e61c26f4d64e487ed90a09d244092be3a5cbb35`).
+
+**Comprehensive receipt:** `phase0/cp_tenant_separation_20260223/receipt.md`.
+
+**3-repo HEADs at seal boundary (Commit-A + companion-A):**
+- Code: `04d603caa44db14528e4b329cfac65a9872ee584` (Code-A `programme/track-a`).
+- State: `746f1075` (CP-CENSUS mini-bank · pre-State-B tip).
+- /app: `3264db035` (/app-A companion `main`).
+
+**Milestone-seal continuity bundles (SO §6.9(5) AMENDED 6th application):**
+- Code bundle: `continuity_bundles/code_20260923T142615Z_CP_TENANT_SEPARATION.bundle` · sha256 `b01f8ca2631af390e6cdb6917733899ff8c2f2cf4f4f890e00d9271ad640e5fa` · ~19 MiB @ `programme/track-a` `04d603caa44db14528e4b329cfac65a9872ee584`.
+- State bundle: pending post-Commit-C-fixup; will be pin-locked at mini-bank.
+
+### CP-TENANT-SEPARATION 5-commit seal chain (FULL SHA TABLE · POST-MINI-BANK)
+
+| # | Commit | SHA | Branch |
+|---|---|---|---|
+| 1 | Code Commit-A | `04d603caa44db14528e4b329cfac65a9872ee584` | `programme/track-a` |
+| 2 | /app companion A | `3264db035` | `main` |
+| 3 | State Commit-B | `978f219c13b298ac89d648ea172aee6450eaae5f` | `master` |
+| 4 | State Commit-C fixup | `be20dc3e3fca9f7f340bf59b68c81b224f976ec6` | `master` |
+| 5 | /app companion C | `b1d9e7244` | `main` |
+| 6 | State mini-bank | *(this commit)* | `master` |
+
+**Milestone-seal continuity bundles (SO §6.9(5) AMENDED 6th application · state bundle pin-locked):**
+- Code bundle: `continuity_bundles/code_20260923T142615Z_CP_TENANT_SEPARATION.bundle` · ~19 MiB · sha256 `b01f8ca2631af390e6cdb6917733899ff8c2f2cf4f4f890e00d9271ad640e5fa` @ `programme/track-a` `04d603caa44db14528e4b329cfac65a9872ee584`.
+- State bundle: `continuity_bundles/state_20260923T143523Z_CP_TENANT_SEPARATION.bundle` · ~208 MiB · sha256 `5e372280307686f1b2e139699d3cf508172f3d6492192535448c14ca3519bd30` @ `master` `be20dc3e3fca9f7f340bf59b68c81b224f976ec6` (State-C fixup).
+
+**REPORT-AND-CONTINUE receipt line (this-seal · FULLY SEALED):**
+
+`CP-TENANT-SEPARATION FULLY SEALED · SO §6.9 amendment §6 item 7 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · named authorities Fred Afune / Muthoni Kiarie / Samuel Kibacia [RMS] + Vincent Kimani / Peninah Wanja [DigiCow] + any-one decision rule + isolation sweep as EXIT EVIDENCE (disjoint=True) + AKKI-TEST HONEST-GAP explicit · tenant_separation_v1 §1.2 modality-extension composing sealed CP-ENT-16 pilot_licence_seeds_v1 · 10 RED-first own pins ALL GREEN · double-green stripped_sha256 08974bfafc99082d7b363c34b02549533009883620eae6facdcc5ac18bfffd86 IDENTICAL both sweeps 6369 passed · Ratchet 6350 → 6369 (+19 composed: +10 own new pins + +9 fold-in gap-closure CP-CENSUS-THREE-WAVES card_sha256 placeholder heal) · SO §6.9(5) AMENDED 6th application: code bundle sha256 b01f8ca2631af390e6cdb6917733899ff8c2f2cf4f4f890e00d9271ad640e5fa (~19 MiB @ programme/track-a 04d603ca) + state bundle sha256 5e372280307686f1b2e139699d3cf508172f3d6492192535448c14ca3519bd30 (~208 MiB @ master be20dc3e) · GAPS_FIXED_LEDGER 11 own + 1 fold-in invariant-seat entries at boundary · Sealed CP-ENT-16 pilot_licence_seeds_v1 carrier UNCHANGED per SO §3.8 additive-only · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam; pod NEVER data path · Item 5.11.d of EXECUTION_ORDER.md CLOSED · Item 5.11.e (TRACK-4-AUTONOMY-WIRING) opens next per RUN-TO-COMPLETION mandate 2026-02-23 · REPORT-AND-CONTINUE not idle-halt.`
+
+<!-- CP-TENANT-SEPARATION-PINS-2026-02-23 END -->
+
+
+
+---
+
+## CP-TRACK-4-AUTONOMY-WIRING · Item 5.11.e · SEAL BOUNDARY 2026-02-23T~14:50Z · SO §6.9 amendment §6 item 6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim
+
+<!-- CP-TRACK-4-AUTONOMY-WIRING-PINS-2026-02-23 START -->
+
+**Owner canon anchor verbatim (SO §6.9 amendment §6 item 6):**
+
+> "Register LID pass + corpus census + training seam as Census Autonomy
+>  Service jobs. Verification of autonomy pickup (receipt from the
+>  autonomy engine's run log showing the job ran) is the EXIT EVIDENCE
+>  for each such wiring seal. E1 wires the seams INTO the Census
+>  Autonomy Service so Akki runs them autonomously — then STEPS BACK.
+>  E1's pod is NEVER the training host and NEVER a data path."
+
+**Ruling (b) AKKI-RUNS-IT verbatim 2026-02-23:** E1 wires the seam INTO Census Autonomy Service; pod is never data path.
+
+**Objective card:** `STATE/OBJECTIVES/CP_TRACK_4_AUTONOMY_WIRING_20260223.md` · card_sha256 `21799936eafffe2548be7dc2236f3a19ab43b7850b34560f2c32f134f59dcca9` (line-removed convention).
+
+**Ratchet:** 6369 → 6379 (+10 canonical measured own new pins) · baseline_failures.json sha256 post-bump `7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2`.
+
+**Pre-Commit-A double-green:** BASELINE_GUARD=1 PYTHONHASHSEED=0 stripped_sha256 `b039979de0feb2e5de97600e52c65a82f76b351468f5fb6077166bfcb8981f06` IDENTICAL sweep_A (20260923T145644Z ~202s) + sweep_B (20260923T150017Z ~202s) both 6379 passed / 13 skipped / 0 failed / 520 warnings.
+
+**ORCH_BOOT.md notes+audit:** byte-identical sha256 `e44aab3bc76dd19ccf9ba320591b3d92d345b126b624d5f679989f2f8c50098a` with ratchet.passed_floor 6379 + counts_at_baseline_passed 6379 + baseline_failures_sha256 7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2.
+
+**NEW additive module:** `backend/services/census_autonomy/track_4_autonomy_wiring_v1.py` (~283 lines) — `TRACK_4_JOB_KINDS` + `Track4LidPassRegistration_v1` + `Track4AllJobsRegistered_v1` + `AutonomyEngineRunReceipt_v1` + `Track4BoundaryRefused` base + `PodIsNeverDataPathAtTrack4Error` + `Track4JobKindRefused` + `AutonomyEngineRunReceiptStatusRefused` + `TRACK_4_AUTONOMY_WIRING_POSTURE` + `POD_IS_NEVER_DATA_PATH_POSTURE_TRACK_4` + `E1_STEPS_BACK_AFTER_WIRING_POSTURE` + `register_lid_pass_as_census_autonomy_job` + `register_all_three_track_4_jobs` + `emit_autonomy_engine_run_receipt`.
+
+**Test file:** `backend/tests/invariants/test_cp_track_4_autonomy_wiring.py` (10 RED-first pins · RED_pre 10/10 authentic ImportError right-reason · GREEN_post 10/10 passed 0.75s).
+
+**Sealed carriers UNCHANGED per SO §3.8 additive-only:**
+- `services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py` (CP-SO-6.9-LID-WAVE).
+- `services/audio_plane_v1/census_three_waves_v1.py` (CP-CENSUS-THREE-WAVES).
+- `services/audio_plane_v1/training_run_boundary_v1.py` (CP-AIP-10-TRAINING-RUNS).
+- `services/census_autonomy/engine.py` (R-106 sealed).
+
+**LIVE-ENGINE EXIT EVIDENCE (owner verbatim exit clause):**
+- Analysis/evidence script: `/app/assessment_workspace/tools/generate_track_4_autonomy_run_receipts.py` runs LIVE Census Autonomy engine end-to-end on all 3 wired jobs.
+- 3 machine-readable per-job JSON receipts at `backend/phase0/track_4_autonomy_engine_run_receipts/20260923T144803Z_{lid_pass,census_three_waves,training_runs}_engine_run_receipt.json`.
+- 1 composite seal-level exit-evidence receipt at `backend/phase0/track_4_autonomy_engine_run_receipts/20260923T144803Z_seal_level_composite_exit_evidence.json`.
+- Engine live_status = `COMPLETE` on all 3 runs.
+- Persisted result JSON on disk: `cr-f639cb8dbc7d` (lid_pass) + `cr-b104d3303bda` (census_three_waves) + `cr-5f7e857492e7` (training_runs).
+
+**5-commit seal chain (this-seal):**
+
+| # | Commit | SHA | Branch |
+|---|---|---|---|
+| 1 | Code Commit-A | `b49f7e9066b93ed3c89f370d68b0757400dfc241` | `programme/track-a` |
+| 2 | /app companion A | `313300d9f` | `main` |
+| 3 | State Commit-B | `45868f313920d64a2df6b21683abf19d34cbdaa2` | `master` |
+| 4 | State Commit-C fixup | `e49aa34d4a4ddb87c4de16df5d7e3e5b91b9065d` | `master` |
+| 5 | /app companion C | *(next)* | `main` |
+| 6 | State mini-bank | *(mini-bank)* | `master` |
+
+**Milestone-seal continuity bundle (SO §6.9(5) AMENDED 7th application):**
+- Code bundle: `continuity_bundles/code_20260923T150603Z_CP_TRACK_4_AUTONOMY_WIRING.bundle` · ~18 MiB · sha256 `0b7b355f62e4f5e1632c10f0f6e1fcd5a1b724d682e54a1fc4dfc6ae95387273` @ `programme/track-a` `b49f7e9066b93ed3c89f370d68b0757400dfc241`.
+- State bundle: `continuity_bundles/state_20260923T151527Z_CP_TRACK_4_AUTONOMY_WIRING.bundle` · ~208 MiB · sha256 `19848d132951ce56cfa59285ad3df5a236b038c9f004c3e02599a32c6d89fbf7` @ `master` `e49aa34d4a4ddb87c4de16df5d7e3e5b91b9065d` (State-C fixup).
+
+**REPORT-AND-CONTINUE receipt line (this-seal · FULLY SEALED):**
+
+`CP-TRACK-4-AUTONOMY-WIRING FULLY SEALED · SO §6.9 amendment §6 item 6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · register LID pass + corpus census + training seam as Census Autonomy Service jobs; verification of autonomy pickup (receipt from the autonomy engine's run log showing the job ran) is the EXIT EVIDENCE for each such wiring seal; E1 wires the seams INTO the Census Autonomy Service so Akki runs them autonomously — then STEPS BACK · track_4_autonomy_wiring_v1 §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE + CP-CENSUS-THREE-WAVES + CP-AIP-10-TRAINING-RUNS · 10 RED-first own pins ALL GREEN · double-green stripped_sha256 b039979de0feb2e5de97600e52c65a82f76b351468f5fb6077166bfcb8981f06 IDENTICAL both sweeps 6379 passed · Ratchet 6369 → 6379 (+10 canonical measured own new pins) · SO §6.9(5) AMENDED 7th application: code bundle sha256 0b7b355f62e4f5e1632c10f0f6e1fcd5a1b724d682e54a1fc4dfc6ae95387273 (~18 MiB @ programme/track-a b49f7e9) + state bundle sha256 19848d132951ce56cfa59285ad3df5a236b038c9f004c3e02599a32c6d89fbf7 (~208 MiB @ master e49aa34d) · GAPS_FIXED_LEDGER 10 own invariant-seat entries + 1 LIVE-engine EXIT EVIDENCE demonstration at boundary · Sealed carriers UNCHANGED per SO §3.8 additive-only · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seams; pod NEVER data path (pod://* + /app/* refused at every registration seat) · E1 STEPS BACK — Track-4's role ends at wire-in; the LIVE autonomy engine picked up + executed all 3 wired jobs inside Akki's boundary without E1 orchestration · LIVE-ENGINE EXIT EVIDENCE: 3 machine-readable JSON per-job receipts + 1 composite seal-level exit-evidence receipt at backend/phase0/track_4_autonomy_engine_run_receipts/*.json; engine_live_status=COMPLETE on all 3 runs (cr-f639cb8dbc7d lid_pass + cr-b104d3303bda census_three_waves + cr-5f7e857492e7 training_runs) · Item 5.11.e of EXECUTION_ORDER.md CLOSED · Item 5.11.f (CP-AIP-ASSIST-CENSUS) opens next per RUN-TO-COMPLETION mandate 2026-02-23 · REPORT-AND-CONTINUE not idle-halt.`
+
+<!-- CP-TRACK-4-AUTONOMY-WIRING-PINS-2026-02-23 END -->

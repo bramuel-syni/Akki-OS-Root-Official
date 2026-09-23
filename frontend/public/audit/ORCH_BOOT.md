@@ -1339,9 +1339,9 @@ heads_last_sealed:
     seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS Code Commit-A 9e3ca45a · +8 canonical measured (6332 -> 6340) · double-green stripped_sha256 1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5"
 
 
-generated_at_utc: 2026-02-23T14:52:30Z
-generator: "CP-TRACK-4-AUTONOMY-WIRING pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6369 -> 6379 + baseline_failures.json sha256 to post-bump 7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2 · +10 canonical measured own new pins on Track-4 autonomy wiring boundary · heads_last_sealed UNCHANGED at CP-TENANT-SEPARATION State-B 978f219c + Code-A 04d603ca (this-CP heads advance at Commit-C fixup post-Commit-B)"
-regeneration_reason: pre-commit-a-cp-track-4-autonomy-wiring-ratchet-only-regen-6369-to-6379-plus-10-canonical-measured-own-pins-track-4-autonomy-wiring-boundary
+generated_at_utc: 2026-02-23T15:12:00Z
+generator: "CP-TRACK-4-AUTONOMY-WIRING state Commit-C fixup R-6 boundary regen · advancing heads_last_sealed.state_repo.head 978f219c (CP-TENANT-SEPARATION State-B) -> 45868f31 (this-CP State-B) + code_repo.head 04d603ca (CP-TENANT-SEPARATION Code-A) -> b49f7e9 (this-CP Code-A) · ratchet.passed_floor UNCHANGED at 6379 · state mini-bank rows 1-3 of CP-TRACK-4-AUTONOMY-WIRING 5-commit-seal chain banked in DECISIONS.md"
+regeneration_reason: post-commit-b-cp-track-4-autonomy-wiring-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
 
 ratchet:
   passed_floor: 6379
@@ -1353,15 +1353,15 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 978f219c13b298ac89d648ea172aee6450eaae5f
-    sealed_at_utc: 2026-02-23T14:30:00Z
-    seal_kind: "CP-TENANT-SEPARATION state Commit-B 978f219c (banks Code Commit-A 04d603ca + /app companion 3264db035 + Item 5.11.d of EXECUTION_ORDER.md · SO §6.9 amendment §6 item 7 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · tenant_separation_v1 §1.2 modality-extension of sealed CP-ENT-16 pilot_licence_seeds_v1 · named authorities Fred Afune / Muthoni Kiarie / Samuel Kibacia [RMS] + Vincent Kimani / Peninah Wanja [DigiCow] + any-one decision rule + isolation-sweep exit-evidence · Fold-in orthogonal gap-closure CP-CENSUS-THREE-WAVES card_sha256 placeholder heal)"
+    head: 45868f313920d64a2df6b21683abf19d34cbdaa2
+    sealed_at_utc: 2026-02-23T15:10:00Z
+    seal_kind: "CP-TRACK-4-AUTONOMY-WIRING state Commit-B (this-B · banks Code Commit-A b49f7e9066b93ed3c89f370d68b0757400dfc241 + /app companion 313300d9f + Item 5.11.e of EXECUTION_ORDER.md · SO §6.9 amendment §6 item 6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · TRACK_4_JOB_KINDS Literal-closed 3-tuple + Track4LidPassRegistration_v1 + Track4AllJobsRegistered_v1 + AutonomyEngineRunReceipt_v1 + Track4BoundaryRefused base + 3 refusal subclasses + 3 Final posture markers + register_lid_pass_as_census_autonomy_job + register_all_three_track_4_jobs + emit_autonomy_engine_run_receipt · §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE + CP-CENSUS-THREE-WAVES + CP-AIP-10-TRAINING-RUNS · LIVE-ENGINE EXIT EVIDENCE landed same-seal: 3 machine-readable JSON per-job receipts + 1 composite seal-level exit-evidence receipt from LIVE Census Autonomy engine end-to-end runs · state bundle emission pending post-this-C-fixup per SO §6.9(5) AMENDED 7th application)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 04d603caa44db14528e4b329cfac65a9872ee584
-    sealed_at_utc: 2026-02-23T14:20:00Z
-    seal_kind: "CP-TENANT-SEPARATION Code Commit-A 04d603ca · +19 canonical measured (composed +10 own new pins + +9 fold-in gap-closure CP-CENSUS-THREE-WAVES card_sha256 placeholder heal · 6350 -> 6369) · double-green stripped_sha256 08974bfafc99082d7b363c34b02549533009883620eae6facdcc5ac18bfffd86"
+    head: b49f7e9066b93ed3c89f370d68b0757400dfc241
+    sealed_at_utc: 2026-02-23T15:03:00Z
+    seal_kind: "CP-TRACK-4-AUTONOMY-WIRING Code Commit-A b49f7e9 · +10 canonical measured own new pins · ratchet 6369 -> 6379 · Track-4 boundary composes 3 sealed registration seats (LID pass + census-three-waves + training-runs) + emits AutonomyEngineRunReceipt_v1 per job; Ruling (b) AKKI-RUNS-IT verbatim honored — pod NEVER data path (pod://* + /app/* refused at every registration seat via PodIsNeverDataPathAtTrack4Error) · double-green stripped_sha256 b039979de0feb2e5de97600e52c65a82f76b351468f5fb6077166bfcb8981f06 IDENTICAL both sweeps 6379 passed"
 
 
 ```

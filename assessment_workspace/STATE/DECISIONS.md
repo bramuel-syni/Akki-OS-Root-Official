@@ -29021,3 +29021,166 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+# CP-TENANT-SEPARATION-20260223 · Item 5.11.d · SEAL-REPORT · 2026-02-23T~14:20Z
+
+**Seal ID:** CP-TENANT-SEPARATION-20260223
+**Ledger item:** Item 5.11.d of `STATE/EXECUTION_ORDER.md` (4th item of Item 5.11 wave)
+**Owner directive verbatim (SO §6.9 amendment §6 item 7):** "tenant separation with named authorities Fred Afune / Muthoni Kiarie / Samuel Kibacia [RMS] + Vincent Kimani / Peninah Wanja [DigiCow], any-one decision rule, isolation sweep as exit evidence."
+**Ruling (b) AKKI-RUNS-IT verbatim** honored structurally: E1 wires the seam INTO Census Autonomy Service; pod NEVER data path.
+**Objective card:** `STATE/OBJECTIVES/CP_TENANT_SEPARATION_20260223.md` (card_sha256 `6c1676580466e334ea76e25c5e61c26f4d64e487ed90a09d244092be3a5cbb35`).
+**Comprehensive receipt:** `phase0/cp_tenant_separation_20260223/receipt.md`.
+
+## 5-commit seal chain (IN FLIGHT · State-B this-commit)
+
+| # | Commit | SHA | Branch |
+|---|---|---|---|
+| 1 | Code Commit-A | `04d603caa44db14528e4b329cfac65a9872ee584` | `programme/track-a` |
+| 2 | /app companion A | `3264db035` | `main` |
+| 3 | State Commit-B | *(this commit · post-commit SHA banked at Commit-C fixup)* | `master` |
+| 4 | State Commit-C fixup | pending post-Commit-B | `master` |
+| 5 | /app companion C | pending post-Commit-C | `main` |
+| 6 | State mini-bank | pending post-companion-C | `master` |
+
+## Ratchet
+
+- passed_pre: 6350 · passed_post: 6369 · **delta +19** (composed **+10 own new pins** + **+9 fold-in gap-closure** CP-CENSUS-THREE-WAVES card_sha256 placeholder heal + card restructure to fully-conforming SO §6.2 schema).
+- baseline_failures.json sha256 post-bump: `0a2ddca10e7623aa523f7bfdf1b5ccfef8447d420968c178f358750d45d322cf`.
+- notes+audit ORCH_BOOT.md byte-identical sha256: `8990b06ad169e0e1888c3647da57d82ca4e88056854573e85833d2b271619376`.
+
+## Double-green byte-identical pre-Commit-A sweep
+
+- stripped_sha256 sweep_A + sweep_B: `08974bfafc99082d7b363c34b02549533009883620eae6facdcc5ac18bfffd86` IDENTICAL.
+- Both: 6369 passed / 13 skipped / 0 failed / 520 warnings / ~200s each.
+- BASELINE_GUARD=1 receipt: passed=6369 / baseline-failures-remaining=0 / quarantined=0.
+- Receipt paths: `backend/phase0/drill_receipts_cp_tenant_separation/20260923T141622Z_sweep_A_final_v2.log` + `20260923T141953Z_sweep_B_final_v2.log`.
+
+## Own new invariant pins (10 · all RED-first → GREEN)
+
+Test file: `backend/tests/invariants/test_cp_tenant_separation_any_one_rule.py` — 10 pins verifying: RMS+DigiCow verbatim tuples · 5-tuple union · any-one accept · cross-tenant refused · unknown authority refused · unknown tenant refused · **isolation sweep exit-evidence** (disjoint=True) · posture marker · §1.2 no-redeclaration · AKKI-TEST honest-gap explicit.
+
+## Additive module
+
+`backend/services/entitlement_service_v1/tenant_separation_v1.py` (~178 lines · §1.2 modality-extension composing sealed CP-ENT-16 pilot_licence_seeds_v1 tenant identifiers).
+
+## Bundle continuity (SO §6.9(5) AMENDED · 6th application)
+
+- Code bundle: `continuity_bundles/code_20260923T142615Z_CP_TENANT_SEPARATION.bundle` · sha256 `b01f8ca2631af390e6cdb6917733899ff8c2f2cf4f4f890e00d9271ad640e5fa` · ~19 MiB @ `programme/track-a` `04d603caa44db14528e4b329cfac65a9872ee584`.
+- State bundle: pending post-Commit-C-fixup.
+
+## GAPS_FIXED_LEDGER at this boundary
+
+**11 own gaps** closed + **1 fold-in orthogonal gap-closure** (CP-CENSUS-THREE-WAVES card_sha256 placeholder heal · 3 test_objective_card_pinned failures healed). Full detail at `STATE/GAPS_FIXED_LEDGER.md` "CP-TENANT-SEPARATION · Item 5.11.d · SEALED" section.
+
+**Ledger check** — this seal implements EXECUTION_ORDER.md Item 5.11.d CP-TENANT-SEPARATION and nothing else. Additive-only per SO §3.8. Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam; pod NEVER data path. REPORT-AND-CONTINUE not idle-halt. RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+# CP-TENANT-SEPARATION-20260223 · State Commit-C fixup · 2026-02-23T~14:35Z
+
+**R-6 boundary regen advancing `heads_last_sealed` in `notes/ORCH_BOOT.md`:**
+- `state_repo.head`: `70e39cf10426c49276867ad8265fc1815d56f6dd` (CP-CENSUS-THREE-WAVES State-B) → `978f219c13b298ac89d648ea172aee6450eaae5f` (this-B).
+- `code_repo.head`: `b9eb36d99814e6c68a4a5ee2370e9021971e31b2` (CP-CENSUS-THREE-WAVES Code-A) → `04d603caa44db14528e4b329cfac65a9872ee584` (this-Code-A).
+
+**State mini-bank rows 1-3 (5-commit-seal chain so far):**
+- Row 1 (Code Commit-A): `04d603caa44db14528e4b329cfac65a9872ee584` on programme/track-a · 2026-02-23T~14:20Z.
+- Row 2 (/app companion-A): `3264db035` on main · 2026-02-23T~14:26Z.
+- Row 3 (State Commit-B): `978f219c13b298ac89d648ea172aee6450eaae5f` on master · 2026-02-23T~14:30Z.
+
+**Ledger check** — this fixup implements Item 5.11.d R-6 boundary regen + state mini-bank rows 1-3 and nothing else. Additive-only.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+# CP-TRACK-4-AUTONOMY-WIRING-20260223 · State Commit-B opening · 2026-02-23T~15:10Z · Item 5.11.e of EXECUTION_ORDER.md · SO §6.9 amendment §6 item 6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim
+
+## Owner canon anchor verbatim
+
+**SO §6.9 amendment §6 item 6 (2026-02-23):**
+
+> "Register LID pass + corpus census + training seam as Census Autonomy
+>  Service jobs. Verification of autonomy pickup (receipt from the
+>  autonomy engine's run log showing the job ran) is the EXIT EVIDENCE
+>  for each such wiring seal. E1 wires the seams INTO the Census
+>  Autonomy Service so Akki runs them autonomously — then STEPS BACK.
+>  E1's pod is NEVER the training host and NEVER a data path."
+
+**Ruling (b) AKKI-RUNS-IT verbatim (2026-02-23):**
+
+> "E1 wires the seam INTO the Census Autonomy Service. Pod is never a
+>  data path."
+
+## Ratchet advance
+
+- 6369 → 6379 (+10 canonical measured own new pins).
+- baseline_failures.json sha256 post-bump: `7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2`.
+- ORCH_BOOT.md notes+audit byte-identical sha256: `e44aab3bc76dd19ccf9ba320591b3d92d345b126b624d5f679989f2f8c50098a`.
+
+## Double-green byte-identical pre-Commit-A sweep
+
+BASELINE_GUARD=1 PYTHONHASHSEED=0 stripped_sha256 `b039979de0feb2e5de97600e52c65a82f76b351468f5fb6077166bfcb8981f06` IDENTICAL sweep_A (20260923T145644Z ~202s) + sweep_B (20260923T150017Z ~202s) both 6379 passed / 13 skipped / 0 failed / 520 warnings.
+
+## Own new invariant pins (10 · all RED-first → GREEN)
+
+- `test_track_4_wires_all_three_seams_registration_aggregate`
+- `test_lid_pass_registration_seat_via_track_4`
+- `test_pod_prefix_refused_at_lid_registration_seat`
+- `test_autonomy_engine_run_receipt_shape_frozen`
+- `test_autonomy_engine_run_receipt_status_literal_closed`
+- `test_job_kind_literal_closed_three_kinds`
+- `test_track_4_autonomy_wiring_posture_marker_present`
+- `test_pod_is_never_data_path_posture_track_4_marker_present`
+- `test_no_redeclaration_of_sealed_symbols_1_2`
+- `test_track_4_e1_steps_back_posture_marker_present`
+
+## Additive module
+
+`backend/services/census_autonomy/track_4_autonomy_wiring_v1.py` (~283 lines) — §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE + CP-CENSUS-THREE-WAVES + CP-AIP-10-TRAINING-RUNS. Sealed carriers untouched per SO §3.8.
+
+## LIVE-ENGINE EXIT EVIDENCE
+
+Owner verbatim exit clause satisfied by LIVE Census Autonomy engine end-to-end execution of all 3 wired jobs:
+
+- lid_pass · census_run_id=`cr-f639cb8dbc7d` · engine_live_status=COMPLETE · persisted at `/app/assessment_workspace/phase0/census_autonomy_state/results/20260923T144803Z_cr-f639cb8dbc7d_result.json`.
+- census_three_waves · census_run_id=`cr-b104d3303bda` · engine_live_status=COMPLETE · persisted at `/app/assessment_workspace/phase0/census_autonomy_state/results/20260923T144803Z_cr-b104d3303bda_result.json`.
+- training_runs · census_run_id=`cr-5f7e857492e7` · engine_live_status=COMPLETE · persisted at `/app/assessment_workspace/phase0/census_autonomy_state/results/20260923T144803Z_cr-5f7e857492e7_result.json`.
+- Composite seal-level exit-evidence: `backend/phase0/track_4_autonomy_engine_run_receipts/20260923T144803Z_seal_level_composite_exit_evidence.json`.
+
+## Bundle continuity (SO §6.9(5) AMENDED · 7th application)
+
+- Code bundle: `continuity_bundles/code_20260923T150603Z_CP_TRACK_4_AUTONOMY_WIRING.bundle` · sha256 `0b7b355f62e4f5e1632c10f0f6e1fcd5a1b724d682e54a1fc4dfc6ae95387273` · ~18 MiB @ `programme/track-a` `b49f7e9066b93ed3c89f370d68b0757400dfc241`.
+- State bundle: pending post-Commit-C-fixup.
+
+## GAPS_FIXED_LEDGER at this boundary
+
+**10 own gaps** closed + **1 LIVE-engine EXIT EVIDENCE demonstration**. Full detail at `STATE/GAPS_FIXED_LEDGER.md` "CP-TRACK-4-AUTONOMY-WIRING · Item 5.11.e · SEALED" section.
+
+**Ledger check** — this seal implements EXECUTION_ORDER.md Item 5.11.e CP-TRACK-4-AUTONOMY-WIRING and nothing else. Additive-only per SO §3.8. Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seams; pod NEVER data path (`pod://*` + `/app/*` refused at every registration seat). E1 STEPS BACK — Track-4's role ends at wire-in; the LIVE autonomy engine picked up + executed all 3 wired jobs inside Akki's boundary without E1 orchestration. REPORT-AND-CONTINUE not idle-halt. RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+# CP-TRACK-4-AUTONOMY-WIRING-20260223 · State Commit-C fixup · 2026-02-23T~15:12Z
+
+**R-6 boundary regen advancing `heads_last_sealed` in `notes/ORCH_BOOT.md`:**
+- `state_repo.head`: `978f219c13b298ac89d648ea172aee6450eaae5f` (CP-TENANT-SEPARATION State-B) → `45868f313920d64a2df6b21683abf19d34cbdaa2` (this-B).
+- `code_repo.head`: `04d603caa44db14528e4b329cfac65a9872ee584` (CP-TENANT-SEPARATION Code-A) → `b49f7e9066b93ed3c89f370d68b0757400dfc241` (this-Code-A).
+
+**State mini-bank rows 1-3 (5-commit-seal chain so far):**
+- Row 1 (Code Commit-A): `b49f7e9066b93ed3c89f370d68b0757400dfc241` on programme/track-a · 2026-02-23T~15:03Z.
+- Row 2 (/app companion-A): `313300d9f` on main · 2026-02-23T~15:07Z.
+- Row 3 (State Commit-B): `45868f313920d64a2df6b21683abf19d34cbdaa2` on master · 2026-02-23T~15:10Z.
+
+**Ledger check** — this fixup implements Item 5.11.e R-6 boundary regen + state mini-bank rows 1-3 and nothing else. Additive-only.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
