@@ -1058,6 +1058,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-7-TARGET-OUTCOME-PLANNER Commit-A e8d59f8 on programme/track-a · Item 5.7 of EXECUTION_ORDER.md · +8 canonical measured AIP v1.0 §10.2 + §11.1 + §11.4 + §16.2 TargetOutcome-planner-compose-boundary GREEN · §1.2 modality-extension composing sealed CP-M6-7-2/3 planner + CP-AIP-6 TargetOutcome_v0"
 
 
+
+generated_at_utc: 2026-02-23T08:08:00Z
+generator: "main-agent Autopilot (CP-AIP-8-SAMPLING-REFLECTION pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6310 -> 6317 + baseline_failures.json sha256 to post-bump 1fee0e418b6d1ff3efcaf849a75f03577c01c5b5d975fa61352f47f737c29be6 · heads_last_sealed UNCHANGED at last CP-AIP-7 state Commit-C fixup 9bf12590 + Code Commit-A e8d59f8 · this-CP heads advance at Commit-C fixup post-Commit-B · +7 canonical measured AIP v1.0 §11.2 plan-without-calibration-stage refused at S&R boundary + §11.2 cost-quote-never-point-estimate at S&R output + §11.3 V114a proposed-milestone-list-required + §11.3 V114b sealed Milestone done_condition refusal bubbled + §11.3 V114c/V114d commission-open-only-after-agreement + §1.2 no-redeclaration scan + Anti-drift anchor scan)"
+regeneration_reason: pre-commit-a-cp-aip-8-sampling-reflection-ratchet-only-regen-6310-to-6317-plus-7-canonical-measured-aip-v1-0-section-11-2-11-3-sampling-reflection-compose-boundary
+
+ratchet:
+  passed_floor: 6317
+  counts_at_baseline_passed: 6317
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 1fee0e418b6d1ff3efcaf849a75f03577c01c5b5d975fa61352f47f737c29be6
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 9bf12590f5a858fec40d32ced5b71eff9866d4eb
+    sealed_at_utc: 2026-02-23T08:03:00Z
+    seal_kind: "CP-AIP-7-TARGET-OUTCOME-PLANNER state Commit-C fixup 9bf12590 (last sealed · pre-CP-AIP-8)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: e8d59f83c18d147496b7619145bc6ce41221296d
+    sealed_at_utc: 2026-02-23T08:00:00Z
+    seal_kind: "CP-AIP-7-TARGET-OUTCOME-PLANNER Commit-A e8d59f8 on programme/track-a (last sealed · pre-CP-AIP-8)"
+
+
 ```
 
 ---

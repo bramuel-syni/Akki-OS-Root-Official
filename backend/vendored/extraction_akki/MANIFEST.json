@@ -1,5 +1,5 @@
 {
-  "file_count": 1057,
+  "file_count": 1058,
   "files": [
     {
       "path": "backend/__init__.py",
@@ -1020,6 +1020,11 @@
       "path": "backend/services/audio_plane_v1/register_write_boundary.py",
       "sha256": "bb40dde495507a82cf2a66ae564341889a066ede61acfdc7bceb1b50b90a820a",
       "size": 10746
+    },
+    {
+      "path": "backend/services/audio_plane_v1/sampling_reflection_boundary_v1.py",
+      "sha256": "015b33d1fa000adac232daa34c235708b3fb0e2aaf01a63f9d9de1d3650ab390",
+      "size": 8906
     },
     {
       "path": "backend/services/audio_plane_v1/synthesis_attribute_capturer.py",
@@ -5287,8 +5292,8 @@
       "size": 19816
     }
   ],
-  "generated_at_utc": "2026-09-23T07:30:36Z",
+  "generated_at_utc": "2026-09-23T08:03:26Z",
   "source": "/app/assessment_workspace/repos/Extraction-Akki",
-  "structural_sha256": "79b1a651b074927153b57b3aee24fd56f25ce71133342a10a62c87f6d7e5debd",
+  "structural_sha256": "a75285a748023fb8772f8b494fadf25d932dfea0229ffbe6f9222c25ad921a8e",
   "target": "/app/backend/vendored/extraction_akki"
 }
