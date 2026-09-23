@@ -28609,4 +28609,50 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 
 ---
 
+## 2026-02-23T07:55:30Z — OWNER CONTEXT DROP · Newvault news-script/audio pairing (BANKED · PARKED)
+
+- Owner drop received 2026-02-23T07:55:30Z immediately after CP-AIP-6 brief report-and-continue - banked verbatim at STATE/OWNER_DROPS/newvault_script_audio_20260223/DROP.md - Newvault news scripts are HTML documents with <p>-script-paragraphs + <strong>-byline/slug + <audio src="/storage/*.mp3"> embedded broadcast clip - paired text+audio near-ground-truth ASR supervision - feeds AIP §4.1 language ID + occurrence index + §10.2 test-set stratification - PARKED card CP-NEWVAULT-SCRIPT-AUDIO-PAIRING drafted at STATE/OBJECTIVES/queued/CP_NEWVAULT_SCRIPT_AUDIO_PAIRING.md - candidate slot after CP-AIP-10 seals - DO NOT build until ledger promotes it - additive-only banking - no scope change to CP-AIP-7 in flight - CP-AIP sequence continues uninterrupted per owner cadence directive.
+
+
+---
+
+## CP-AIP-7-TARGET-OUTCOME-PLANNER · SEAL RECORD · 2026-02-23T08:00:00Z (5-Commit-Seal LANDING — state Commit-B this-turn)
+
+### CP-AIP-7-TARGET-OUTCOME-PLANNER seal record (2026-02-23T~08:00Z · AIP v1.0 §10 + §11.1 + §11.4 + §16.2 TargetOutcome-planner-compose-boundary GREEN · §1.2 modality-extension composing sealed CP-M6-7-2/3 planner + CP-AIP-6 TargetOutcome_v0)
+
+- **Scope:** AIP v1.0 §10.2 test-set-precedes-training at planner entry + §11.1 population-resolved-against-register + §11.4 additive-only-stratum-set (register never subtracts) + §11.4 P188 (V118) cost-quote-with-CI at boundary + §16.2 owner working default missed-stratum-gates-release fail-closed. Pure §1.2 modality-extension composing sealed CP-M6-7-2 `PlannerCore` + `LearnedReorderLayer` + `run_eligibility_gate` + `PlanReproducibilityWitness` + CP-M6-7-3 `CoverageReport` + `CostQuoteWithCI` + `CostQuoteMissingCIError` + CP-M6-3 `CharacterRegister` + CP-AIP-6 `TargetOutcome_v0`. `canon_ref: AIP v1.0 §10.1..§10.2 verbatim + §11.1 verbatim + §11.4 P185..P188 (V115..V118) + §16.2 owner working default 2026-02-23T04:15Z + §1.2 + §1.5.`
+- **Ledger check:** this seal implements EXECUTION_ORDER.md Item 5.7 CP-AIP-7-TARGET-OUTCOME-PLANNER and nothing else.
+- **Additive-only carriers landed (2 modules · sealed carriers UNCHANGED per SO §3.8):**
+  - `backend/services/audio_plane_v1/register_stratum_resolver_v1.py` (~70 lines · `resolve_population_against_register` callable + `PopulationNotResolvableAgainstRegister` ValueError refusal · imports sealed CP-M6-3 `CharacterRegister` · `HONEST_GAP_V1_POSTURE` Final marker citing §11.1 verbatim).
+  - `backend/services/audio_plane_v1/target_outcome_planner_boundary_v1.py` (~200 lines · `PlannerBoundaryResult_v1` frozen 3-carrier + 5 refusal classes all subclassing `PlannerBoundaryRefused` (`TestSetUnresolvedAtPlannerEntry` §10.2 · `PopulationNotResolvableAgainstRegister` §11.1 re-exported · `StratumSetSubtractedFromRegisterError` §11.4 · `CostQuoteMissingCIAtBoundary` §11.4 P188 · `MissedStratumReleaseAtBoundary` §16.2) + 4 boundary callables `enter_planner_with_target_outcome` + `assert_coverage_report_additive_over_register` + `build_cost_quote_with_ci_at_boundary` + `assert_missed_stratum_gates_release` · `TestSetIndex_v1` Protocol seam · re-exports sealed `run_eligibility_gate` by name in `__all__` per §11.1 verbatim reuse-unchanged discipline · `HONEST_GAP_V1_POSTURE` Final marker).
+- **Ratchet:** floor 6302 → 6310 (+8 canonical measured) · `invariants_enforced_when_baseline_guard_1.passed_floor` advanced in lock-step · baseline_failures.json sha256 post-bump `d21668cf63983425da254fe5453f7f59af81048dbb8e9a9bfb265a2472de7dd4`.
+- **8 pins by anchor:** §10.2 test-set-precedes-training at planner entry (1) · §11.1 population-resolved-against-register (1) · §11.4 additive-only-stratum-set (1) · §11.4 P188 (V118) cost-quote-with-CI at boundary (1) · §16.2 owner working default missed-stratum-gates-release fail-closed (1) · §11.1 sealed run_eligibility_gate composition (1) · §1.2 no-redeclaration scan on 14 sealed planner+register symbols (1) · Anti-drift §3 + §5 anchor scan + ledger-check (1).
+- **Pre-Commit-A double-green:** 6319 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical `stripped_sha256 cc980fbfb1a3118e0a49d182a6d2e42d89b17982200100c2c2d12b10abf029ca` IDENTICAL both sweeps (sweep_A 186.89s · sweep_B 186.37s).
+- **CP_AIP_7 card** pulled from `STATE/OBJECTIVES/queued/` + rewritten fully-conforming SO §6.2 · card_sha256 `80f9757cd6fb7957e450e4cbdd16eadb9490d9d45c75dca679807c4c3cec32bd`.
+- **§16.2 owner working default 2026-02-23T04:15Z** verbatim applied: 'platform default for gate_policy where Outcome does not set it is missed-stratum-gates-release (fail-closed per §1.5 doctrine).'
+- **§15 P234 verbatim** re-observed: 'The planner must never accept a hand-authored Outcome once the wizard exists' — CP-AIP-6 landed the wizard; CP-AIP-7 now lands the planner compose boundary consuming the wizard's compiled `TargetOutcome_v0`.
+- **Owner drop banked (Newvault script-audio pairing):** verbatim at `STATE/OWNER_DROPS/newvault_script_audio_20260223/DROP.md` + PARKED card `STATE/OBJECTIVES/queued/CP_NEWVAULT_SCRIPT_AUDIO_PAIRING.md`. Additive-only banking · no scope change to CP-AIP-7.
+- **SPEC-CONFLICT log:** NONE this slice.
+- **Comprehensive receipt:** `phase0/cp_aip_7_target_outcome_planner_20260223/receipt.md`.
+
+### CP-AIP-7-TARGET-OUTCOME-PLANNER state Commit-B references (2026-02-23T~08:02:00Z · full 5-commit chain SHAs banked at mini-bank fixup post-Commit-C)
+
+- **Code Commit-A** landed 2026-02-23T~08:00Z: `e8d59f8` on `programme/track-a` (repos/Extraction-Akki).
+- **/app companion A** landed 2026-02-23T~08:01Z: `fd4f3db4` on `main` (/app · vendored twin sync 1055 → 1057 + notes/audit ORCH_BOOT ratchet-only regen 6302 → 6310 + gitlink advance ab3f80a2 → e8d59f8).
+
+### CP-AIP-7-TARGET-OUTCOME-PLANNER full seal chain SHAs (state mini-bank · pending post-Commit-C fixup rewrite)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `e8d59f8` | programme/track-a |
+| 2. /app companion A | `fd4f3db4` | main |
+| 3. State Commit-B | `cf34bf30` | master |
+| 4. State Commit-C fixup | *(pending — this-fixup)* | master |
+| 5. /app companion C | *(pending — post-fixup)* | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail. Full 5-commit chain will be re-banked post-mini-bank on state master.
+
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

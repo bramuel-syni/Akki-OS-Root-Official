@@ -1032,6 +1032,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-6-OBJECTIVE-WIZARD Commit-A ab3f80a2 on programme/track-a (last sealed · pre-CP-AIP-7)"
 
 
+
+generated_at_utc: 2026-02-23T08:03:00Z
+generator: "main-agent Autopilot (CP-AIP-7-TARGET-OUTCOME-PLANNER Commit-C fixup · R-6 boundary regen advancing heads_last_sealed.state_repo.head aaaa5a42 -> cf34bf30 (CP-AIP-7 state Commit-B this-turn) + heads_last_sealed.code_repo.head ab3f80a2 -> e8d59f8 (CP-AIP-7 Commit-A this-turn) · ratchet.passed_floor UNCHANGED at 6310 · baseline_failures.json sha256 UNCHANGED at d21668cf63983425da254fe5453f7f59af81048dbb8e9a9bfb265a2472de7dd4 · Item 5.7 of EXECUTION_ORDER.md CLOSED · AIP v1.0 §10.2 test-set-precedes-training at planner entry + §11.1 population-resolved-against-register + §11.4 additive-only-stratum-set + §11.4 P188 cost-quote-with-CI at boundary + §16.2 owner working default missed-stratum-gates-release fail-closed GREEN · owner context drop Newvault script-audio pairing banked verbatim at STATE/OWNER_DROPS/newvault_script_audio_20260223/DROP.md + PARKED card queued/CP_NEWVAULT_SCRIPT_AUDIO_PAIRING.md · SPEC-CONFLICT log NONE)"
+regeneration_reason: post-commit-b-cp-aip-7-target-outcome-planner-commit-c-fixup-r-6-boundary-regen-advancing-state-head-to-cf34bf30-and-code-head-to-e8d59f8-plus-ratchet-6302-to-6310-plus-8-canonical-measured-item-5-7-of-execution-order-closed
+
+ratchet:
+  passed_floor: 6310
+  counts_at_baseline_passed: 6310
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: d21668cf63983425da254fe5453f7f59af81048dbb8e9a9bfb265a2472de7dd4
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: cf34bf30987c5798962790a7ad0fc2685cf6c69a
+    sealed_at_utc: 2026-02-23T08:02:00Z
+    seal_kind: "CP-AIP-7-TARGET-OUTCOME-PLANNER state Commit-B cf34bf30 on master · Item 5.7 of EXECUTION_ORDER.md · AIP v1.0 §10.2 + §11.1 + §11.4 + §16.2 TargetOutcome-planner-compose-boundary GREEN · 2 NEW additive modules landed · sealed CP-M6-7-2/3 planner primitives + CP-M6-3 CharacterRegister + CP-AIP-6 TargetOutcome_v0 UNCHANGED per SO §3.8 · NEW backend/tests/invariants/test_cp_aip_7_target_outcome_planner_aip_v1_0_section_10_11.py (8 pins) + baseline_failures.json ratchet 6302->6310 · Pre-Commit-A double-green stripped_sha256 cc980fbfb1a3118e0a49d182a6d2e42d89b17982200100c2c2d12b10abf029ca IDENTICAL both sweeps · CP_AIP_7 card pulled from queued/ + rewritten fully-conforming SO §6.2 · Owner context drop Newvault script-audio pairing banked verbatim + PARKED card (candidate slot after CP-AIP-10) · SPEC-CONFLICT log NONE"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: e8d59f83c18d147496b7619145bc6ce41221296d
+    sealed_at_utc: 2026-02-23T08:00:00Z
+    seal_kind: "CP-AIP-7-TARGET-OUTCOME-PLANNER Commit-A e8d59f8 on programme/track-a · Item 5.7 of EXECUTION_ORDER.md · +8 canonical measured AIP v1.0 §10.2 + §11.1 + §11.4 + §16.2 TargetOutcome-planner-compose-boundary GREEN · §1.2 modality-extension composing sealed CP-M6-7-2/3 planner + CP-AIP-6 TargetOutcome_v0"
+
+
 ```
 
 ---

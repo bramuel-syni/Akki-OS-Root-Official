@@ -210,7 +210,28 @@
 - ✅ Honest-gap banked: §8.3 propose-qualify-graduate + stub-agent-before-LLM mechanical guard is DEFERRED to a follow-on additive seal (this slice enforces §8.4 STRUCTURAL COMPILE rejections only).
 - ✅ 5-commit seal chain (SHAs recorded post-landing).
 
-#### Item 5.7 · CP-AIP-7-TARGET-OUTCOME-PLANNER — 🟡 **NEXT** (opens immediately post CP-AIP-6 seal per owner cadence directive · §10 seven-field TargetOutcome schema + §11.1 population resolved against register + §11.4 test-set precedes training verbatim).
+#### Item 5.7 · CP-AIP-7-TARGET-OUTCOME-PLANNER — ✅ **DONE 2026-02-23T~08:00Z** (AIP v1.0 §10.2 test-set-precedes-training at planner entry + §11.1 population-resolved-against-register + §11.4 additive-only-stratum-set + §11.4 P188 cost-quote-with-CI at boundary + §16.2 owner working default missed-stratum-gates-release fail-closed GREEN · §1.2 modality-extension composing sealed CP-M6-7-2/3 planner + CP-AIP-6 TargetOutcome_v0)
+
+- ✅ RED_pre 8/8 failed 0.74s (authentic ModuleNotFoundError + FileNotFoundError right-reason).
+- ✅ GREEN_post 8/8 passed 0.70s.
+- ✅ Ratchet bump 6302 → 6310 (+8 canonical measured · baseline_failures.json sha256 `d21668cf63983425da254fe5453f7f59af81048dbb8e9a9bfb265a2472de7dd4`).
+- ✅ TWO additive modules landed under `backend/services/audio_plane_v1/` (§1.2 modality-extension of sealed CP-M6-7-2 + CP-M6-7-3 + CP-M6-3 + CP-AIP-6):
+  - `register_stratum_resolver_v1.py` (~70 lines · `resolve_population_against_register` callable + `PopulationNotResolvableAgainstRegister` refusal · imports sealed `CharacterRegister` · `HONEST_GAP_V1_POSTURE` Final marker).
+  - `target_outcome_planner_boundary_v1.py` (~200 lines · `PlannerBoundaryResult_v1` frozen 3-carrier + 5 refusal classes all subclassing `PlannerBoundaryRefused` (`TestSetUnresolvedAtPlannerEntry` · `PopulationNotResolvableAgainstRegister` re-exported · `StratumSetSubtractedFromRegisterError` · `CostQuoteMissingCIAtBoundary` · `MissedStratumReleaseAtBoundary`) + 4 boundary callables · composes sealed CP-AIP-6 `TargetOutcome_v0` + sealed CP-M6-7-2/3 `run_eligibility_gate` + `CoverageReport` + `CostQuoteWithCI` + sealed CP-M6-3 `CharacterRegister` · re-exports `run_eligibility_gate` by name in `__all__` per §11.1 verbatim reuse-unchanged discipline · `TestSetIndex_v1` Protocol seam · `HONEST_GAP_V1_POSTURE` Final marker).
+- ✅ Vendored twin sync file_count 1055 → 1057 · structural_sha256 `79b1a651b074927153b57b3aee24fd56f25ce71133342a10a62c87f6d7e5debd`.
+- ✅ CP_AIP_7 objective card pulled up from `queued/` + rewritten fully-conforming (SO §6.2 · card_sha256 `80f9757cd6fb7957e450e4cbdd16eadb9490d9d45c75dca679807c4c3cec32bd`).
+- ✅ Pre-Commit-A double-green BASELINE_GUARD=1 PYTHONHASHSEED=0:
+  - sweep_A 6319 passed / 1 skipped / 0 failed / 520 warnings / 186.89s
+  - sweep_B 6319 passed / 1 skipped / 0 failed / 520 warnings / 186.37s
+  - stripped_sha256 `cc980fbfb1a3118e0a49d182a6d2e42d89b17982200100c2c2d12b10abf029ca` IDENTICAL both sweeps.
+- ✅ Comprehensive receipt banked at `phase0/cp_aip_7_target_outcome_planner_20260223/receipt.md`.
+- ✅ Drill receipts banked at `repos/Extraction-Akki/backend/phase0/drill_receipts_cp_aip_7_target_outcome_planner/`.
+- ✅ SPEC-CONFLICT log: NONE this slice.
+- ✅ §16.2 owner working default 2026-02-23T04:15Z verbatim applied: 'platform default for gate_policy where Outcome does not set it is missed-stratum-gates-release (fail-closed per §1.5 doctrine).'
+- ✅ **Owner context drop banked** (Newvault news-script/audio pairing · 2026-02-23T07:55:30Z): `STATE/OWNER_DROPS/newvault_script_audio_20260223/DROP.md` + PARKED card `STATE/OBJECTIVES/queued/CP_NEWVAULT_SCRIPT_AUDIO_PAIRING.md` (candidate slot: after CP-AIP-10). Additive-only banking · no scope change to CP-AIP-7.
+- ✅ 5-commit seal chain (SHAs recorded post-landing).
+
+#### Item 5.8 · CP-AIP-8-SAMPLING-REFLECTION — 🟡 **NEXT** (opens immediately post CP-AIP-7 per owner cadence directive · §11.2 calibration + §11.3 milestone list + §11.5 reflection).
 
 - Execute in strict spec §15 order per DECISIONS.md CP list:
   - CP-AIP-1-INGEST-CAPTURE (§4.1-4.4)
