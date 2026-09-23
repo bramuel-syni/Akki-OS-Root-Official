@@ -1006,6 +1006,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-6-OBJECTIVE-WIZARD Commit-A ab3f80a2 on programme/track-a · Item 5.6 of EXECUTION_ORDER.md · +10 canonical measured AIP v1.0 §8 Objective Wizard compile boundary + §9 Collection Schema baseline v1.0 + §12.1 Registry Namespace sealed-not-deleted GREEN · §16.1 (c) CLEAN receipt applied verbatim"
 
 
+
+generated_at_utc: 2026-02-23T07:58:00Z
+generator: "main-agent Autopilot (CP-AIP-7-TARGET-OUTCOME-PLANNER pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6302 -> 6310 + baseline_failures.json sha256 to post-bump d21668cf63983425da254fe5453f7f59af81048dbb8e9a9bfb265a2472de7dd4 · heads_last_sealed UNCHANGED at last CP-AIP-6 state Commit-B mini-bank 783aa62f + code Commit-A ab3f80a2 · this-CP heads advance at Commit-C fixup post-Commit-B · +8 canonical measured AIP v1.0 §10.2 test-set-precedes-training at planner entry + §11.1 population-resolved-against-register + §11.4 additive-only-stratum-set (register never subtracts) + §11.4 P188 (V118) cost-quote-with-CI at boundary + §16.2 owner working default missed-stratum-gates-release fail-closed + §11.1 sealed run_eligibility_gate composition + §1.2 no-redeclaration scan on 14 sealed planner+register symbols + Anti-drift anchor scan)"
+regeneration_reason: pre-commit-a-cp-aip-7-target-outcome-planner-ratchet-only-regen-6302-to-6310-plus-8-canonical-measured-aip-v1-0-section-10-11-1-11-4-16-2-target-outcome-planner-compose-boundary
+
+ratchet:
+  passed_floor: 6310
+  counts_at_baseline_passed: 6310
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: d21668cf63983425da254fe5453f7f59af81048dbb8e9a9bfb265a2472de7dd4
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: aaaa5a426ce3766e3af6c7b4a24e366bc9761117
+    sealed_at_utc: 2026-02-23T07:53:00Z
+    seal_kind: "CP-AIP-6-OBJECTIVE-WIZARD state Commit-C fixup aaaa5a42 (last sealed · pre-CP-AIP-7)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: ab3f80a2cda1b10b2c642b02d2bbcd4d2889e0c9
+    sealed_at_utc: 2026-02-23T07:45:00Z
+    seal_kind: "CP-AIP-6-OBJECTIVE-WIZARD Commit-A ab3f80a2 on programme/track-a (last sealed · pre-CP-AIP-7)"
+
+
 ```
 
 ---
