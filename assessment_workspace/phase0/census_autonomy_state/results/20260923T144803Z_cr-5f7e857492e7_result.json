@@ -1,0 +1,13 @@
+{
+  "census_run_id": "cr-5f7e857492e7",
+  "tenant_id": "track4-training_runs",
+  "completed_at_utc": "20260923T144803Z",
+  "payload": {
+    "trigger": "on_demand_api",
+    "connect_source_descriptor": {
+      "job_kind": "training_runs",
+      "descriptor_kind": "track_4_wired_registration"
+    },
+    "note": "Commit-A shape gate landed; data_source adapter fold-in + sealed asset_registry_writer wiring in Phase 3 continuation sub-slices per R-106 \u00a73."
+  }
+}

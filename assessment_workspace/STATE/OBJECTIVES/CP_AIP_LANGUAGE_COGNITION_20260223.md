@@ -4,6 +4,7 @@ card_id: CP-AIP-LANGUAGE-COGNITION
 ledger_item: EXECUTION_ORDER.md · Item 5.12
 authority: SO §6.8 standing authority (owner drop `STATE/OWNER_DROPS/language_cognition_20260223/DROP.md`)
 status: PROMOTED — 2026-02-23T~17:20Z at Item 5.12 State Commit-B (post-Item-5.11.g seal · Item 5.11 wave COMPLETE)
+card_sha256: 34338079d0340d2a0723aa765e6c611afb927056de05eb7700cf4b8053a4d91b
 ---
 
 # CP-AIP-LANGUAGE-COGNITION — a trained language-identification model for the RMS estate
