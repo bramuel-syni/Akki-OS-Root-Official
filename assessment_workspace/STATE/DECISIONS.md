@@ -28697,7 +28697,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 | 1. Code Commit-A | `dba4499` | programme/track-a |
 | 2. /app companion A | `b9f9f3f2` | main |
 | 3. State Commit-B | `0685510d` | master |
-| 4. State Commit-C fixup | (post-B) | master |
-| 5. /app companion C | (post-B) | main |
+| 4. State Commit-C fixup | `1507cad9` | master |
+| 5. /app companion C | `c069bec5` | main |
 
 Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.

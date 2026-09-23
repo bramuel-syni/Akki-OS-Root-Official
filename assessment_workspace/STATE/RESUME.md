@@ -151,11 +151,11 @@ Unchanged.
 |---|---|---|---|
 | Code Commit-A | `dba4499` | programme/track-a | 1 NEW module + 7 RED-first pins + baseline_failures ratchet bump 6310 → 6317 + drill receipts |
 | /app companion A | `b9f9f3f2` | main | vendored twin sync (1 new file · MANIFEST 1057 → 1058) + notes ORCH_BOOT ratchet-only regen + audit ORCH_BOOT byte-identical mirror + gitlink advance e8d59f8 → dba4499 |
-| State Commit-B | (this-turn) | master | banks CP-AIP-8 objective card + queued/CP_AIP_8 delete-promotion + comprehensive receipt + audio-estate OWNER_DROP + DROP_CORRECTION + two fold-in receipts (Q1 viusasa census + Q2 na7p4* unarchive cost estimate) + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
-| State Commit-C fixup | (post-B) | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads |
-| /app companion C | (post-B) | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror + OWNER_DROP + receipts mirror |
+| State Commit-B | `0685510d` | master | banks CP-AIP-8 objective card + queued/CP_AIP_8 delete-promotion + comprehensive receipt + audio-estate OWNER_DROP + DROP_CORRECTION + two fold-in receipts (Q1 viusasa census + Q2 na7p4* unarchive cost estimate) + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
+| State Commit-C fixup | `1507cad9` | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads (state 9bf12590 → 0685510d + code e8d59f8 → dba4499) + state mini-bank of 5-commit SHAs into DECISIONS.md |
+| /app companion C | `c069bec5` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror + audio-estate OWNER_DROP + receipts mirror |
 
-(SHAs to be recorded in state mini-bank post-fixup. Full 5-commit seal chain in flight. Item 5.8 of EXECUTION_ORDER.md closes at mini-bank.)
+(All 5 SHAs banked. Full 5-commit seal chain LANDED. Item 5.8 of EXECUTION_ORDER.md CLOSED.)
 
 ## 10 · AUTOPILOT NEXT
 
