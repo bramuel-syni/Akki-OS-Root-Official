@@ -283,3 +283,59 @@ Filed post-INCIDENT-2026-09-22-01 during RMS CREDS 2 ingest (custody fold-in sub
 - **Blocks**: any DIGICOW controlled-request execution (DAP-14 holds by construction). AKKI-TEST + audit-fixture routing exercises continue unblocked.
 - **Continues**: PHASE 2 seals with named-but-unseated record. PHASE 3 CENSUS PRODUCTIZATION opens on top.
 - **Priority**: **P1**.
+
+## DQ-21 · CP-AIP-LANGUAGE-COGNITION · presenter-minimum-N per language · DEFAULT 20 tagged pending
+
+- **Surfaced at**: Owner order 2026-02-23T~16:07Z inserting Item 5.12 CP-AIP-LANGUAGE-COGNITION (banked at `STATE/OWNER_DROPS/language_cognition_20260223/DROP.md` + `STATE/DECISIONS.md`).
+- **Fact**: Owner card line verbatim: "A minimum of N distinct presenters per language (DEFAULT 20, tagged pending); train and test splits share no speaker. This is the criterion that separates learning a language from learning a voice."
+- **State at fork**: `SpeakerDisjointSplitContract_v1.presenter_minimum_n = 20` (DEFAULT · tagged pending) per queued card `STATE/OBJECTIVES/queued/CP_AIP_LANGUAGE_COGNITION.md` MUST-DO §3.
+- **Options**:
+  - **(a)** Owner confirms N=20 as final threshold.
+  - **(b)** Owner sets a different N (higher = stronger speaker-disjoint discipline; lower = risk of learning voices).
+  - **(c)** Owner defers ratification; DEFAULT N=20 stands meanwhile per owner directive verbatim: "DEFAULT values stand meanwhile."
+- **Recommendation**: **(a)** or **(c)**. DEFAULT proceeds meanwhile per owner's explicit "not a hold · fork" instruction.
+- **Blocks**: nothing. Card + RED tests + additive modules build under standing authority with DEFAULT N=20 tagged pending.
+- **Continues**: Item 5.12 card promotion + RED-first pin authoring + base registration extension + corpus-assembly seam.
+- **Priority**: **P2** (fork not hold · DEFAULT stands).
+
+## DQ-22 · CP-AIP-LANGUAGE-COGNITION · per-language MOAC accuracy threshold · DEFAULT ≥90% tagged pending
+
+- **Surfaced at**: Owner order 2026-02-23T~16:07Z (same source as DQ-21).
+- **Fact**: Owner card line verbatim: "per-language accuracy on speaker-disjoint real material (DEFAULT ≥90%)."
+- **State at fork**: `LanguageCognitionMoacContract_v1.per_language_accuracy_default = 0.90` per queued card MUST-DO §6.
+- **Options**:
+  - **(a)** Owner confirms ≥90% as final MOAC threshold.
+  - **(b)** Owner sets a different threshold.
+  - **(c)** Owner defers ratification; DEFAULT ≥90% stands meanwhile.
+- **Recommendation**: **(a)** or **(c)**. DEFAULT proceeds meanwhile per owner's explicit fork instruction.
+- **Blocks**: nothing.
+- **Continues**: Item 5.12 machinery.
+- **Priority**: **P2** (fork not hold · DEFAULT stands).
+
+## DQ-23 · CP-AIP-LANGUAGE-COGNITION · code-switch span-accuracy threshold · DEFAULT ≥85% tagged pending
+
+- **Surfaced at**: Owner order 2026-02-23T~16:07Z (same source as DQ-21).
+- **Fact**: Owner card line verbatim: "code-switch span accuracy — boundary within a ruled tolerance and label correct (DEFAULT ≥85%)."
+- **State at fork**: `LanguageCognitionMoacContract_v1.code_switch_span_accuracy_default = 0.85` per queued card MUST-DO §6.
+- **Options**:
+  - **(a)** Owner confirms ≥85% as final MOAC threshold + ratifies boundary tolerance value (frames-of-tolerance for span boundary alignment).
+  - **(b)** Owner sets a different threshold.
+  - **(c)** Owner defers ratification; DEFAULT ≥85% stands meanwhile.
+- **Recommendation**: **(a)** or **(c)**. DEFAULT proceeds meanwhile per owner's explicit fork instruction. Owner ratification of the boundary-tolerance frame-count is deferred alongside — DEFAULT to be pinned in card at 5.12 open.
+- **Blocks**: nothing.
+- **Continues**: Item 5.12 machinery.
+- **Priority**: **P2** (fork not hold · DEFAULT stands).
+
+## DQ-24 · CP-AIP-LANGUAGE-COGNITION · DP-SGD opt-out · DEFAULT applies tagged pending
+
+- **Surfaced at**: Owner order 2026-02-23T~16:07Z (same source as DQ-21).
+- **Fact**: Owner card line verbatim: "DP-SGD default applies unless the owner opts out for this internal run, recorded."
+- **State at fork**: `RmsCustodyRightsPosture_v1.dp_sgd_default = True` + `dp_opt_out_ref = None` per queued card MUST-DO §9.
+- **Options**:
+  - **(a)** Owner confirms DP-SGD default applies (`dp_opt_out_ref = None` remains).
+  - **(b)** Owner opts out for this internal run — records the opt-out at a specific ref path (e.g., `STATE/OWNER_DROPS/language_cognition_dp_opt_out_<yyyymmdd>/`) and `dp_opt_out_ref` gets pinned.
+  - **(c)** Owner defers ratification; DEFAULT DP-SGD stands meanwhile.
+- **Recommendation**: **(a)** or **(c)**. DEFAULT proceeds meanwhile per owner's explicit fork instruction. DP-SGD is the safer default (privacy-preserving); opt-out requires explicit recording per owner directive verbatim: "unless the owner opts out for this internal run, recorded."
+- **Blocks**: nothing.
+- **Continues**: Item 5.12 machinery.
+- **Priority**: **P2** (fork not hold · DEFAULT stands).
