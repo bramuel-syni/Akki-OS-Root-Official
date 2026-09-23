@@ -1346,9 +1346,13 @@ function App() {
           {/* PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · Canon-5-§14 Shaping-Wizard live at workstudio.commission */}
           <Route path="/os/work/commission" element={<WorkCommission />} />
 
-          {/* Track 2 — OS Prototype v2 (V8 PortalIframe) */}
-          <Route path="/" element={<PortalIframe />} />
-          <Route path="*" element={<PortalIframe />} />
+          {/* Track 2 — RETIRED per owner ruling 2026-02-23T~19:00Z verbatim: "We should not be having 2 URL routes to begin with."
+             CP-SINGLE-SURFACE-RULING (Item 5.15 · SO §6.9(1) config/entries class · prospective, immediate, no countdown).
+             The V1 HTML iframe surface (PortalIframe → /v8_prototype.html) is retired-superseded from live routing;
+             the PortalIframe component definition + public/v8_prototype.html file remain on disk (archive · additive record).
+             Root and wildcard now redirect to /dap (single live shell · DAPLayout carries the JWT login-gated surface). */}
+          <Route path="/" element={<Navigate to="/dap" replace />} />
+          <Route path="*" element={<Navigate to="/dap" replace />} />
         </Routes>
       </BrowserRouter>
       {/* PHASE 3 continuation A'' · additive overlay above prototype iframe */}
