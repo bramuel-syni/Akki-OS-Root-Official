@@ -1,5 +1,5 @@
 {
-  "file_count": 1062,
+  "file_count": 1063,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -705,6 +705,10 @@
       "sha256": "2025b123c4960e1fca81401394c89ae8a02dc2be17dfdf226951800db3f25ea1",
       "size_bytes": 6276
     },
+    "services/audio_plane_v1/census_three_waves_v1.py": {
+      "sha256": "d41428939ba5774d81010e00002aceda6b32ccc3335a30fb67d2ea0a9dc8f33e",
+      "size_bytes": 9989
+    },
     "services/audio_plane_v1/channel_condition_profiler.py": {
       "sha256": "059c1f24be4de54a82e063381d54ba1145c22d58488fa15ce46e425adf054185",
       "size_bytes": 9927
@@ -800,6 +804,10 @@
     "services/audio_plane_v1/leakage_path_harness.py": {
       "sha256": "03ccdbf0683115f40bcc770f8f109acfdc50c2e241c23090529ab499b4bd4bd8",
       "size_bytes": 10167
+    },
+    "services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py": {
+      "sha256": "b043f65c98275af2a9447d9558e8bc33df5c03058a08316cf8a0b5533fcecd1f",
+      "size_bytes": 13907
     },
     "services/audio_plane_v1/milestones.py": {
       "sha256": "b5f1b077f3b7bac2e05087871ef3ebc158aedcdbbfac0e96cc73fa033c28b8d6",
@@ -2168,6 +2176,10 @@
     "services/entitlement_service_v1/licence.py": {
       "sha256": "f457bef70cec1149ca80ed5f6a09c41e6bd35e8e253b67d58efc088d03b3a4c8",
       "size_bytes": 5254
+    },
+    "services/entitlement_service_v1/pilot_licence_seeds_v1.py": {
+      "sha256": "7847b9bdafec27d1b79d9c9ed0ef3477e00a2ccc5090cd509583dcac8460a6d8",
+      "size_bytes": 6336
     },
     "services/estate_keys/__init__.py": {
       "sha256": "efe7a6ee6ffdb957df345b49545a75617beb5a1270993732007995542d45216e",
@@ -4240,17 +4252,9 @@
     "services/wpw/tier2_report.py": {
       "sha256": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
       "size_bytes": 19816
-    },
-    "services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py": {
-      "sha256": "b043f65c98275af2a9447d9558e8bc33df5c03058a08316cf8a0b5533fcecd1f",
-      "size_bytes": 13907
-    },
-    "services/entitlement_service_v1/pilot_licence_seeds_v1.py": {
-      "sha256": "7847b9bdafec27d1b79d9c9ed0ef3477e00a2ccc5090cd509583dcac8460a6d8",
-      "size_bytes": 6336
     }
   },
-  "generated_at_utc": "2026-09-23T13:06:00Z",
+  "generated_at_utc": "2026-09-23T13:20:40Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4264,7 +4268,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "4e64299c4c679a16cff3264577c33a82bc668e4de56444aae7d431802543bf8b",
+  "structural_sha256": "5afab4210c1c647497e9216d5a6d4a105c05f13772ac1702578a6d7c38e09f7e",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }

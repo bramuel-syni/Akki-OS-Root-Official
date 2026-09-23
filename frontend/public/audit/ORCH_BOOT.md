@@ -33,15 +33,15 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-02-23T05:20:00Z
-generator: "main-agent Autopilot (CP-AIP-1-INGEST-CAPTURE pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6232 -> 6244 + baseline_failures.json sha256 to post-bump value · heads_last_sealed UNCHANGED at last CP-CENSUS-RMS-STATION-LANGUAGE-AXIS state Commit-B a798827518604a37b90a221d9c5e40e3ba0fbc41 + code Commit-A 832bdf25b681d717fdb0fb25b6710078392c8909 · this-CP heads advance at Commit-C fixup post-Commit-B)"
-regeneration_reason: pre-commit-a-cp-aip-1-ingest-capture-ratchet-only-regen-6232-to-6244-plus-12-canonical-measured-aip-v1-0-section-4-first-class-ingestion-provenance-carriers
+generated_at_utc: 2026-02-23T13:55:00Z
+generator: "main-agent Autopilot (CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6340 -> 6350 + baseline_failures.json sha256 to post-bump value · heads_last_sealed UNCHANGED at last CP-ENT-16-PILOT-LICENCE-SEEDS state Commit-B 6256dbf7 + code Commit-A 9e3ca45a · this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-census-three-waves-with-lid-overlay-ratchet-only-regen-6340-to-6350-plus-10-canonical-measured-so-6-9-amendment-6-item-8-three-wave-census-orchestration-boundary-plus-lid-overlay-from-first-run
 
 ratchet:
-  passed_floor: 6244
-  counts_at_baseline_passed: 6244
+  passed_floor: 6350
+  counts_at_baseline_passed: 6350
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: b6c94ce644ee88d7792b6be38a8bcd9f99b7a96e9cc100ef4123ed2d5a285666
+  baseline_failures_sha256: e7eb57d0ba2b213b2f9b4361c6a45a6d51e39b07bbd94139314741dfaac80998
 
 heads_last_sealed:
   state_repo:
@@ -1294,10 +1294,10 @@ generator: "main-agent Autopilot (CP-ENT-16-PILOT-LICENCE-SEEDS pre-Commit-A rat
 regeneration_reason: pre-commit-a-cp-ent-16-pilot-licence-seeds-ratchet-only-regen-6332-to-6340-plus-8-canonical-measured-so-6-9-amendment-6-verbatim
 
 ratchet:
-  passed_floor: 6340
-  counts_at_baseline_passed: 6340
+  passed_floor: 6350
+  counts_at_baseline_passed: 6350
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c
+  baseline_failures_sha256: e7eb57d0ba2b213b2f9b4361c6a45a6d51e39b07bbd94139314741dfaac80998
 
 heads_last_sealed:
   state_repo:
@@ -1319,10 +1319,10 @@ generator: "CP-ENT-16-PILOT-LICENCE-SEEDS state Commit-C fixup R-6 boundary rege
 regeneration_reason: post-commit-b-cp-ent-16-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
 
 ratchet:
-  passed_floor: 6340
-  counts_at_baseline_passed: 6340
+  passed_floor: 6350
+  counts_at_baseline_passed: 6350
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c
+  baseline_failures_sha256: e7eb57d0ba2b213b2f9b4361c6a45a6d51e39b07bbd94139314741dfaac80998
 
 heads_last_sealed:
   state_repo:
