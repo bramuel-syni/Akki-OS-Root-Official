@@ -1339,6 +1339,31 @@ heads_last_sealed:
     seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS Code Commit-A 9e3ca45a · +8 canonical measured (6332 -> 6340) · double-green stripped_sha256 1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5"
 
 
+generated_at_utc: 2026-02-23T14:35:00Z
+generator: "CP-TENANT-SEPARATION state Commit-C fixup R-6 boundary regen · advancing heads_last_sealed.state_repo.head 70e39cf1 (CP-CENSUS-THREE-WAVES State-B) -> 978f219c (this-CP State-B) + code_repo.head b9eb36d9 (CP-CENSUS-THREE-WAVES Code-A) -> 04d603ca (this-CP Code-A) · ratchet.passed_floor UNCHANGED at 6369 · state mini-bank rows 1-3 of CP-TENANT-SEPARATION 5-commit-seal chain banked in DECISIONS.md"
+regeneration_reason: post-commit-b-cp-tenant-separation-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
+
+ratchet:
+  passed_floor: 6369
+  counts_at_baseline_passed: 6369
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 0a2ddca10e7623aa523f7bfdf1b5ccfef8447d420968c178f358750d45d322cf
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 978f219c13b298ac89d648ea172aee6450eaae5f
+    sealed_at_utc: 2026-02-23T14:30:00Z
+    seal_kind: "CP-TENANT-SEPARATION state Commit-B 978f219c (banks Code Commit-A 04d603ca + /app companion 3264db035 + Item 5.11.d of EXECUTION_ORDER.md · SO §6.9 amendment §6 item 7 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · tenant_separation_v1 §1.2 modality-extension of sealed CP-ENT-16 pilot_licence_seeds_v1 · named authorities Fred Afune / Muthoni Kiarie / Samuel Kibacia [RMS] + Vincent Kimani / Peninah Wanja [DigiCow] + any-one decision rule + isolation-sweep exit-evidence · Fold-in orthogonal gap-closure CP-CENSUS-THREE-WAVES card_sha256 placeholder heal)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 04d603caa44db14528e4b329cfac65a9872ee584
+    sealed_at_utc: 2026-02-23T14:20:00Z
+    seal_kind: "CP-TENANT-SEPARATION Code Commit-A 04d603ca · +19 canonical measured (composed +10 own new pins + +9 fold-in gap-closure CP-CENSUS-THREE-WAVES card_sha256 placeholder heal · 6350 -> 6369) · double-green stripped_sha256 08974bfafc99082d7b363c34b02549533009883620eae6facdcc5ac18bfffd86"
+
+
 ```
 
 ## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)
