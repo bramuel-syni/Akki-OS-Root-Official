@@ -28640,17 +28640,17 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 - **Code Commit-A** landed 2026-02-23T~08:00Z: `e8d59f8` on `programme/track-a` (repos/Extraction-Akki).
 - **/app companion A** landed 2026-02-23T~08:01Z: `fd4f3db4` on `main` (/app · vendored twin sync 1055 → 1057 + notes/audit ORCH_BOOT ratchet-only regen 6302 → 6310 + gitlink advance ab3f80a2 → e8d59f8).
 
-### CP-AIP-7-TARGET-OUTCOME-PLANNER full seal chain SHAs (state mini-bank · pending post-Commit-C fixup rewrite)
+### CP-AIP-7-TARGET-OUTCOME-PLANNER full seal chain SHAs (state mini-bank · 2026-02-23T08:05:00Z)
 
 | Commit | SHA | Branch |
 |---|---|---|
 | 1. Code Commit-A | `e8d59f8` | programme/track-a |
 | 2. /app companion A | `fd4f3db4` | main |
 | 3. State Commit-B | `cf34bf30` | master |
-| 4. State Commit-C fixup | *(pending — this-fixup)* | master |
-| 5. /app companion C | *(pending — post-fixup)* | main |
+| 4. State Commit-C fixup | `9bf12590` | master |
+| 5. /app companion C | `436d4f2a` | main |
 
-Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail. Full 5-commit chain will be re-banked post-mini-bank on state master.
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 
 
 ---

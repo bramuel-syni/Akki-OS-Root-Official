@@ -135,11 +135,11 @@ Unchanged.
 |---|---|---|---|
 | Code Commit-A | `e8d59f8` | programme/track-a | 2 NEW modules + 8 RED-first pins + baseline_failures ratchet bump 6302 → 6310 + drill receipts |
 | /app companion A | `fd4f3db4` | main | vendored twin sync (2 new files · MANIFEST 1055 → 1057) + notes ORCH_BOOT ratchet-only regen + audit ORCH_BOOT byte-identical mirror + gitlink advance ab3f80a2 → e8d59f8 |
-| State Commit-B | *(this-turn · SHA banked at mini-bank fixup)* | master | banks CP-AIP-7 objective card + queued/CP_AIP_7 delete-promotion + comprehensive receipt + Newvault OWNER_DROP + Newvault PARKED card + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
-| State Commit-C fixup | *(pending post-B)* | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads + state mini-bank of 5-commit SHAs into DECISIONS.md |
-| /app companion C | *(pending post-C)* | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
+| State Commit-B | `cf34bf30` | master | banks CP-AIP-7 objective card + queued/CP_AIP_7 delete-promotion + comprehensive receipt + Newvault OWNER_DROP + Newvault PARKED card + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
+| State Commit-C fixup | `9bf12590` | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads (state aaaa5a42 → cf34bf30 + code ab3f80a2 → e8d59f8) + state mini-bank of 5-commit SHAs into DECISIONS.md |
+| /app companion C | `436d4f2a` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror + Newvault OWNER_DROP mirror + PARKED card mirror |
 
-(All SHAs will be re-banked at the state mini-bank fixup post-Commit-C.)
+(All 5 SHAs banked. Full 5-commit seal chain LANDED. Item 5.7 of EXECUTION_ORDER.md CLOSED.)
 
 ## 10 · AUTOPILOT NEXT
 
