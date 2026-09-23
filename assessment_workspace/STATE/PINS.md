@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T174641Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T175707Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1931,3 +1931,41 @@ Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry.
 `CP-AIP-LANGUAGE-COGNITION State Commit-B · Item 5.12 · SPEC ENHANCEMENT owner order 2026-02-23T~16:07Z verbatim + SO §6.8 standing authority · 12 MUST-DO/MUST-NOT card lines as RED-first invariant node IDs · 2 NEW additive modules (~560 lines total) composing sealed CP-SO-6.9-LID-WAVE + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-ASSIST-CENSUS by identity (§1.2 no-redeclaration) · Ratchet 6399 → 6411 · Double-green stripped_sha256 7ac8a18af0db7a3840a61335c427a1a7b87fdb7037f9a14609fb3c16c3be5918 IDENTICAL both sweeps 6411 passed · Long-pole DQ-17 (NAS/Weego) recorded as ONLY gate FACT not policy hold via CorpusChannelUnreachableHonestGap_v1 · In-pod compute honest-gap on execution NEVER a mock per COMMISSIONED_JOB_HONEST_GAP_NOT_MOCK_POSTURE · Sealed carriers UNCHANGED · Ruling (b) AKKI-RUNS-IT verbatim honored — training compute + weights + labelled corpus NEVER leave Akki boundary · Item 5.11 wave COMPLETE (5.11.a-g SEALED) · Item 5.13 FINAL DELIVERABLE opens next · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
 
 <!-- CP-AIP-LANGUAGE-COGNITION-PINS-2026-02-23 END -->
+
+---
+
+<!-- ITEM-5-13-FINAL-DELIVERABLE-PINS-2026-02-23 START -->
+
+## Item 5.13 · FINAL DELIVERABLE · continuity bundle pin (SO §6.9(5) AMENDED · 11th application)
+
+**Boundary:** Item 5.13 · COMPILE-OWNER-RETURN-REPORT + BUILD-JOURNAL · docs-only single State commit + follow-up final-bundle-pin State commit (this commit) · owner-approved plan 2026-02-23T~17:37Z.
+
+**Item 5.13 State commit:** `1ac8b90a803ef55118350285474386911c87a8a9` on `master` (2026-02-23T~17:50Z · adds `OWNER_RETURN_REPORT.md` + `BUILD_JOURNAL.md` + patches `STATE/EXECUTION_ORDER.md`/`STATE/RESUME.md`/`STATE/DECISIONS.md`/`STATE/OBJECTIVES/CP_AIP_LANGUAGE_COGNITION_20260223.md` for hygiene; harness receipt refreshed on disk · zero code delta · programme/track-a HEAD `7e84cd98` UNCHANGED · /app main HEAD `07e6a481` UNCHANGED).
+
+**FINAL bundles (SO §6.9(5) AMENDED · 11th application · both branches captured including THIS Item 5.13 commit):**
+
+- **Code bundle:** `/tmp/code_20260923T175502Z_ITEM_5_13_FINAL.bundle`
+  - Size: ~18 MiB
+  - sha256: `866c9ef86b1223449edba20e81f6d13fdb31ce0ac85602afb25e0439f62823d5`
+  - Head: `programme/track-a` @ `7e84cd98f37aea50f9d0ed55fbd8d654ffc582f7`
+  - `git bundle verify`: **is okay · complete history**
+  - **Reproducibility note:** sha256 IDENTICAL to Item 5.12 CP-AIP-LANGUAGE-COGNITION code bundle (same head, byte-identical content). This is an intentional reproducibility signal — programme/track-a had zero code delta at Item 5.13.
+
+- **State bundle:** `/tmp/state_20260923T175502Z_ITEM_5_13_FINAL.bundle`
+  - Size: ~209 MiB
+  - sha256: `382bf792393ed94279a5f4884386421b9460d4927a4030fe45cab7ea44ed3f15`
+  - Head: `master` @ `1ac8b90a803ef55118350285474386911c87a8a9` (Item 5.13 State commit)
+  - `git bundle verify`: **is okay · complete history**
+  - **NEW head** carries `OWNER_RETURN_REPORT.md` + `BUILD_JOURNAL.md` + Item 5.13 hygiene fixes; captures the completed ledger.
+
+**Space-constraint transparency:** /app pod volume (nvme0n4 · 9.8 GiB cap) at 100% (21 MiB free) at bundle emission; bundles written to /tmp (60 GiB overlay free) verified bundle-verify is okay complete history. sha256-pin holds regardless of path per CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-LANGUAGE-COGNITION precedent.
+
+**Completion continuity assertion:** with these two bundle sha256s pinned in this pin block, the FINAL sealed state (through Item 5.13 delivered) is reproducible off-pod. This satisfies the §6.9(5) objective "the completion milestone must itself survive its environment" (owner order 2026-02-23T post-Item-5.13-plan approval).
+
+**Anchor to Item 5.14 · AUDIT-CLOSE (next commit):** the Order B audit re-run against the FINAL sealed state clones from the code bundle sha256 `866c9ef86b1223449edba20e81f6d13fdb31ce0ac85602afb25e0439f62823d5` above. The Order A audit re-run clones from the state bundle sha256 `382bf792393ed94279a5f4884386421b9460d4927a4030fe45cab7ea44ed3f15` above. Both receipts bank under `phase0/audit_close_item_5_14/` and produce an AUDIT-CLOSE addendum section appended (additive-only, no rewrite) to `OWNER_RETURN_REPORT.md`.
+
+**REPORT-AND-CONTINUE receipt line (this Item-5.13-final-bundle-pin commit):**
+
+`Item 5.13 FINAL DELIVERABLE final-bundle-pin State commit · docs-only follow-up per owner-approved plan · code bundle sha256 866c9ef86b1223449edba20e81f6d13fdb31ce0ac85602afb25e0439f62823d5 (~18 MiB @ programme/track-a 7e84cd98 · IDENTICAL to Item 5.12 code bundle · reproducibility signal) + state bundle sha256 382bf792393ed94279a5f4884386421b9460d4927a4030fe45cab7ea44ed3f15 (~209 MiB @ master 1ac8b90a Item-5.13 head · at /tmp path per disk-constraint transparency) · SO §6.9(5) AMENDED 11th application · completion continuity secured off-pod · Item 5.14 AUDIT-CLOSE opens next per owner ledger addendum 2026-02-23T post-5.13-commit · Ledger check - this commit implements Item 5.13 final continuity bundle pin and nothing else · Additive-only per SO §3.8 · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
+
+<!-- ITEM-5-13-FINAL-DELIVERABLE-PINS-2026-02-23 END -->

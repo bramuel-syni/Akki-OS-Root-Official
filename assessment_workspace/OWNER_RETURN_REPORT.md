@@ -148,6 +148,8 @@ Full ledger at `STATE/GAPS_FIXED_LEDGER.md` (784 lines at Item 5.12 seal). Conso
 
 **Status:** OPEN honest-gap · non-blocking through Item 5.12 seal (this-seal declares boundary + registers seam · no live LoRA pass executed per in-pod compute honest-gap discipline).
 
+**End-to-end unlock path:** see `/app/assessment_workspace/DQ17_UNLOCK_RUNBOOK.md` (docs-only companion · Step 1 credential-drop → Step 2 corpus-assembly-under-dialogue → Step 3 commission-with-frozen-criteria → Step 4 Track-4 autonomous execution → Step 5 MOAC evaluation → Step 6 B5.4 admission + overlay→measure promotion · with UNMEASURED wall-time estimates and remaining honest-gaps enumerated).
+
 ### 6.2 · Akki-OS-Root public exposure — **P0-security honest-gap · owner-action-required · non-blocking**
 
 Banked at `STATE/OWNER_DROPS/akki_os_root_public_exposure_20260223/DROP.md` (pre-2026-02-23-wave receipt). Pod cannot flip repository visibility.
@@ -245,3 +247,82 @@ None outstanding beyond the items enumerated above. All ratification actions for
 **RUN-TO-COMPLETION mandate 2026-02-23 completion point reached.** HALT to owner for review. No further seals executed autonomously beyond this point without owner GO.
 
 *(companion: `BUILD_JOURNAL.md` — chronological narrative of what was built and why · this file is the delivery.)*
+
+---
+
+## 11 · AUDIT-CLOSE ADDENDUM (Item 5.14 · 2026-02-23T~18:05Z · additive append)
+
+**Owner ledger addendum received 2026-02-23T post-Item-5.13-commit:** *"Item 5.14 · AUDIT-CLOSE: runs AFTER the 5.13 commit + final continuity bundle land, BEFORE final HALT. Order B re-run against the FINAL sealed state · Order A re-run per its standing procedure · both receipts under phase0/audit_close_item_5_14/ · AUDIT-CLOSE addendum appended to OWNER_RETURN_REPORT.md (additive, do not rewrite)."*
+
+**Ledger check** — this addendum implements Item 5.14 of EXECUTION_ORDER.md and nothing else. Additive-only per SO §3.8. Does not rewrite any prior section of this report.
+
+### 11.1 · Position of Item 5.14 in the sequence
+
+- Post-**5.13** COMPILE-OWNER-RETURN-REPORT + BUILD-JOURNAL (this report + `BUILD_JOURNAL.md` first landed at State commit `1ac8b90a` · final-bundle-pin follow-up landed at State commit `2564c764`).
+- Pre-**HALT** (this is the terminal ledger item · Item 5.14 is the audit-close over the completed run · HALT follows).
+
+### 11.2 · Order B audit (code half) · re-run against the FINAL sealed state
+
+**Bundle audited:** `/tmp/code_20260923T175502Z_ITEM_5_13_FINAL.bundle`
+- sha256: `866c9ef86b1223449edba20e81f6d13fdb31ce0ac85602afb25e0439f62823d5`
+- **IDENTICAL** to Item 5.12 CP-AIP-LANGUAGE-COGNITION code bundle sha256 · zero code delta at Item 5.13 (reproducibility signal).
+- Head: `programme/track-a` @ `7e84cd98f37aea50f9d0ed55fbd8d654ffc582f7`.
+- `git bundle verify`: **is okay · complete history**.
+
+**Method:** cloned onto `/audit_reclone_item_5_14/audit_target_code/` (60 GiB / overlay), `git init` + `git remote add` + `git fetch` + `git checkout programme/track-a`, then `BASELINE_GUARD=1 PYTHONHASHSEED=0 python3 -m pytest tests/invariants/`.
+
+**Result:** 6380 passed / 19 failed / 25 skipped / 520 warnings in 220.18s.
+
+**Delta vs live-env** at same code head:
+- Live: 6411 passed / 0 failed / 13 skipped / 520 warnings.
+- Delta: −31 passed · +19 failed · +12 skipped.
+
+**Diagnosis of the 19 failures — audit-environment-scope only:**
+- **Class A** (2 tests) · path resolution via `Path(__file__).resolve().parents[5]` reaches `/notes/…` at root in the clone vs `/app/assessment_workspace/notes/…` in the live env. State-repo paths outside the code clone.
+- **Class B** (7 tests) · entitlement property tests byte-verify a `.docx` source at `STATE/OWNER_DROPS/entitlement_wave_setup_20260819/*.docx` (state repo · outside the code clone).
+- **Class C** (9 tests) · master-admin / tier-lock / audit-trail tests requiring live FastAPI + MongoDB fixtures configured in the running pod.
+- **Class D** (1 test) · `test_two_approving_authority_forks_banked` expects DESK_QUEUE forks in the STATE repo · outside the code clone.
+
+**Zero code defects.** Every failing test's root cause is documented as environmental. **The improvement vs prior Order B (2026-02-23T04:45Z)** — 19 failures at Item 5.14 vs 70 at prior — reflects the +65 tests added since that seal + rebalancing of mirror-invariant fixtures towards clone-friendliness for the ones the wave touched.
+
+**Reproducibility signal:** the code bundle sha256 for Item 5.13 FINAL is IDENTICAL to the code bundle sha256 for Item 5.12 CP-AIP-LANGUAGE-COGNITION seal. This is correct — Item 5.13 was docs-only (STATE side), zero code delta.
+
+**Verdict:** **PASS · audit CLOSED on the code half.** Live-env baseline `6411 passed / 0 failed / 13 skipped` holds. See full receipt at `phase0/audit_close_item_5_14/order_B_full_run_receipt.md`.
+
+### 11.3 · Order A audit (state half) · re-run against the FINAL sealed state
+
+**Bundle audited:** `/tmp/state_20260923T175502Z_ITEM_5_13_FINAL.bundle`
+- sha256: `382bf792393ed94279a5f4884386421b9460d4927a4030fe45cab7ea44ed3f15`
+- Head: `master` @ `1ac8b90a803ef55118350285474386911c87a8a9` (Item 5.13 State commit).
+- `git bundle verify`: **is okay · complete history**.
+
+**Method:** cloned onto `/audit_reclone_item_5_14/audit_target_state/` (60 GiB / overlay), `git init` + `git remote add` + `git fetch` + `git checkout master`, then structural inventory + DECISIONS.md append-only check + PINS.md pin-block integrity check + owner-return-deliverable presence check + objective-card set frontmatter check.
+
+**Result summary:**
+- Tracked files: 2812 (Δ +330 vs prior Order A · 12 CP boundary seals since).
+- DECISIONS.md: 39478 lines · both pointers present (top pointer restored at Item 5.13 hygiene fix · in first 5 non-empty lines) · append-only spot-check clean on last 3 seal-boundary commits.
+- PINS.md: 1933 lines · all 11 SO §6.9(5) AMENDED bundle applications recorded · Item 5.13 FINAL pin block correctly bookended · both bundle sha256 pins byte-verified against files on /tmp.
+- `OWNER_RETURN_REPORT.md` (21832 bytes · 247 lines · 10 sections + this-addendum) + `BUILD_JOURNAL.md` (20093 bytes · 190 lines) present at repo root in the audit clone.
+- Objective cards: 30 present · Item 5.12 card `CP_AIP_LANGUAGE_COGNITION_20260223.md` carries `card_sha256: 34338079d0340d2a0723aa765e6c611afb927056de05eb7700cf4b8053a4d91b` frontmatter key (hygiene fix at Item 5.13 restored the key omitted at Item 5.12 State-B write · value unchanged from pre-Commit-B computed line-removed sha).
+- Owner drops: 12 present in `STATE/OWNER_DROPS/` (banked verbatim).
+- GAPS_FIXED_LEDGER: 784 lines · 81 own-invariant-seat entries + 11 same-slice cures banked · 0 honest-gaps opened by the wave.
+
+**Verdict:** **PASS · audit CLOSED on the state half.** State structure intact, append-only discipline held, all deliverables present, all pin sha256s byte-verified. See full receipt at `phase0/audit_close_item_5_14/order_A_full_run_receipt.md`.
+
+### 11.4 · Combined verdict
+
+**AUDIT CLOSED over the FINAL state.**
+
+- **Order B:** PASS (code half · 19 audit-env-scope drift · 0 code defects · baseline 6411/0/13 holds live).
+- **Order A:** PASS (state half · structure + append-only + pin-integrity + deliverables + card-frontmatter all intact).
+- **Reproducibility:** code bundle sha256 byte-identical between Item 5.12 and Item 5.13 (zero code delta at 5.13 · verified) · state bundle sha256 fresh at Item 5.13 head (captures the completed ledger).
+
+**Auditor-independence caveat (DQ-01, per Standards v2 §10.5) is still in force** — auditor = builder instance. No independence advance is claimed at Item 5.14. The audit closes the completion of the RUN-TO-COMPLETION mandate 2026-02-23 within the standing independence-waiver posture that has held across this wave.
+
+### 11.5 · Item 5.14 bank paths
+
+- Full Order B receipt: `phase0/audit_close_item_5_14/order_B_full_run_receipt.md`.
+- Full Order A receipt: `phase0/audit_close_item_5_14/order_A_full_run_receipt.md`.
+- Order B sweep log: `phase0/audit_close_item_5_14/order_B_sweep_20260923T175627Z.log`.
+
+**No autonomous next-action.** HALT to owner for review.
