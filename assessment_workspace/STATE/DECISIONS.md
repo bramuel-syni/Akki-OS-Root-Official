@@ -28656,3 +28656,48 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-02-23T08:06:00Z — OWNER CONTEXT DROP 2 · audio estate leads + na7p4* unarchive cost estimate (BANKED · TWO RECEIPTS DELIVERED)
+
+- Owner drop received 2026-02-23T08:06:00Z during CP-AIP-8 pre-Commit-A build - banked verbatim at STATE/OWNER_DROPS/audio_estate_leads_and_na7p4_cost_20260223/DROP.md - two statements Q1 viusasa transcoded-content bucket lead on CAL Huawei account with folders MUSIC and MUSIC-AUDIO + Q2 na7p4* unarchive cost estimate with owner console screenshot facts (na7p4374 tr-west-1 Archive class direct-reading enabled) - owner correction 2026-02-23T08:09:00Z banked separately at DROP_CORRECTION.md (na7p4* is Huawei not AWS - Scenario C direction corrected to cross-check readable AWS S3 estate for copies) - two fold-in receipts delivered at CP-AIP-8 state Commit-B boundary receipt_Q1_viusasa_census.md (HONEST-GAP CAL creds not present in pod - measured viusasa buckets on RMS/AI account) + receipt_Q2_na7p4_unarchive_cost.md (38 na7p4* buckets aggregate 492877 objects 102.59 TB decimal LOWER BOUND with 13/38 buckets more_pages_pending - three scenarios laid out with measured Huawei OBS FAQ rates - Scenario A direct-read placeholder rate - Scenario B restore full corpus lower bound $3386 no egress or $15492 with egress - Scenario C zero-restore via AWS overlap gap-flagged pending additive census) - additive-only banking - no scope change to CP-AIP-8 in flight - CP-AIP sequence continues uninterrupted per owner cadence directive.
+
+
+---
+
+## CP-AIP-8-SAMPLING-REFLECTION · SEAL RECORD · 2026-02-23T08:12:00Z (5-Commit-Seal LANDING — state Commit-B this-turn)
+
+### CP-AIP-8-SAMPLING-REFLECTION seal record (2026-02-23T~08:12Z · AIP v1.0 §11.2 plan-without-calibration-stage refused at S&R boundary + §11.2 cost-quote-never-point-estimate at S&R output + §11.3 V114a proposed-milestone-list-required + §11.3 V114b sealed Milestone done_condition refusal bubbled + §11.3 V114c/V114d commission-open-only-after-agreement GREEN · §1.2 modality-extension composing sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary)
+
+- **Scope:** AIP v1.0 §11.2 + §11.3 + §16.2 Sampling-and-Reflection compose-boundary. Pure §1.2 modality-extension composing sealed CP-M6-8-1 calibration primitives (`CalibrationOutput` + `CalibrationVolume` + `PerStratumTestSetEval` + `ScalingCurveFit` + `assert_full_run_quote_has_ci` + `assert_plan_has_calibration_stage` + `PlanWithoutCalibrationStageRefused` + `PointEstimateOnlyQuoteRefused` + `CalibrationVolumeCountError`) + sealed §11.3 milestone primitives (`Milestone` + `MilestoneList` + `construct_milestone_list` + `agree_milestone_list` + `assert_commission_open_only_after_agreement` + `MilestoneMissingDoneConditionError` + `MilestoneMissingOwnerError` + `MilestoneListEmptyError` + `MilestoneListAlreadyAgreedError` + `CommissionOpenBeforeAgreementError`) + sealed CP-AIP-7 `PlannerBoundaryResult_v1` + CP-M6-7-3 `CostQuoteWithCI`. `canon_ref: AIP v1.0 §11.2 P179 verbatim + §11.3 V114a..V114d verbatim + §16.2 codec-choice-measurement + §1.2 + §1.5.`
+- **Ledger check:** this seal implements EXECUTION_ORDER.md Item 5.8 CP-AIP-8-SAMPLING-REFLECTION and nothing else.
+- **Additive-only carrier landed (1 module · sealed carriers UNCHANGED per SO §3.8):**
+  - `backend/services/audio_plane_v1/sampling_reflection_boundary_v1.py` (~180 lines · `SamplingReflectionBoundaryResult_v1` frozen 3-carrier + 3 refusal classes all subclassing `SamplingReflectionBoundaryRefused` (`PlanWithoutCalibrationAtSRBoundary` §11.2 · `PointEstimateAtSRBoundary` §11.2 · `MilestoneListMissingAtSRBoundary` §11.3) + 4 boundary callables `enter_sr_with_planner_result` + `assert_full_run_quote_at_boundary` + `build_milestone_list_at_boundary` + `assert_commission_open_at_boundary` · `HONEST_GAP_V1_POSTURE` Final marker citing §11.2 P179 verbatim).
+- **Ratchet:** floor 6310 → 6317 (+7 canonical measured) · `invariants_enforced_when_baseline_guard_1.passed_floor` advanced in lock-step · baseline_failures.json sha256 post-bump `1fee0e418b6d1ff3efcaf849a75f03577c01c5b5d975fa61352f47f737c29be6`.
+- **7 pins by anchor:** §11.2 V113f verbatim plan-without-calibration-stage refused (1) · §11.2 V113e verbatim cost-quote-never-point-estimate (1) · §11.3 V114a verbatim proposed-milestone-list-required (1) · §11.3 V114b verbatim sealed Milestone done_condition refusal bubbled (1) · §11.3 V114c/V114d verbatim commission-open-only-after-agreement (1) · §1.2 no-redeclaration scan on 12 sealed calibration+milestone+planner symbols (1) · Anti-drift §3 + §5 anchor scan + ledger-check (1).
+- **Pre-Commit-A double-green:** 6326 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical `stripped_sha256 fdcbfe3454e8a8ae60eb55c75ee61e23205734ce672eaae430cc70873e7f7469` IDENTICAL both sweeps (sweep_A 186.79s · sweep_B 187.05s).
+- **CP_AIP_8 card** pulled from `STATE/OBJECTIVES/queued/` + rewritten fully-conforming SO §6.2 · card_sha256 `d65ca42ea6cf188fcd59c2ea5dd566f02a09f6633c02e01212cbd50492224833`.
+- **§11.2 P179 verbatim** applied at compose boundary: 'The first job prices the real job.' + 'stated confidence interval — never a point estimate' + 'A plan without a calibration stage is rejected.'
+- **§11.3 V114 series verbatim** composed: V114a (proposed milestone list) + V114b (done-condition + owner) + V114c (owner reviews and agrees) + V114d (from that point all reporting is against it).
+- **Owner drop 2 banked** (audio estate leads + na7p4* unarchive cost estimate · 2026-02-23T08:06:00Z verbatim + correction 2026-02-23T08:09:00Z verbatim): `STATE/OWNER_DROPS/audio_estate_leads_and_na7p4_cost_20260223/DROP.md` + `DROP_CORRECTION.md` + fold-in receipts `receipt_Q1_viusasa_census.md` + `receipt_Q2_na7p4_unarchive_cost.md`. Additive-only banking · no scope change to CP-AIP-8.
+- **SPEC-CONFLICT log:** NONE this slice.
+- **Comprehensive receipt:** `phase0/cp_aip_8_sampling_reflection_20260223/receipt.md`.
+
+### CP-AIP-8-SAMPLING-REFLECTION state Commit-B references (2026-02-23T~08:12:00Z · full 5-commit chain SHAs banked at mini-bank fixup post-Commit-C)
+
+- **Code Commit-A** landed 2026-02-23T~08:10Z: `dba4499` on `programme/track-a` (repos/Extraction-Akki).
+- **/app companion A** landed 2026-02-23T~08:11Z: `b9f9f3f2` on `main` (/app · vendored twin sync 1057 → 1058 + notes/audit ORCH_BOOT ratchet-only regen 6310 → 6317 + gitlink advance e8d59f8 → dba4499).
+
+### CP-AIP-8-SAMPLING-REFLECTION full seal chain SHAs (state mini-bank · TBD post-fixup)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `dba4499` | programme/track-a |
+| 2. /app companion A | `b9f9f3f2` | main |
+| 3. State Commit-B | `0685510d` | master |
+| 4. State Commit-C fixup | (post-B) | master |
+| 5. /app companion C | (post-B) | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.

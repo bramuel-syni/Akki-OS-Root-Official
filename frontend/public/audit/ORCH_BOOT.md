@@ -1193,3 +1193,30 @@ If any line above disagrees with its cited source, the source is authoritative. 
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+generated_at_utc: 2026-09-23T08:29:39Z
+generator: "main-agent Autopilot (CP-AIP-8-SAMPLING-REFLECTION state Commit-C fixup · R-6 boundary regen · advancing heads_last_sealed.state_repo.head 9bf12590 -> 0685510d (this-B) + code_repo.head e8d59f8 -> dba4499 (this-code-A) · ratchet UNCHANGED at 6317 · state mini-bank of 5-commit-seal chain SHAs banked in DECISIONS.md post-fixup)"
+regeneration_reason: post-commit-b-cp-aip-8-sampling-reflection-boundary-regen-state-head-9bf12590-to-0685510d-code-head-e8d59f83-to-dba4499
+
+ratchet:
+  passed_floor: 6317
+  counts_at_baseline_passed: 6317
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 1fee0e418b6d1ff3efcaf849a75f03577c01c5b5d975fa61352f47f737c29be6
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 0685510d
+    sealed_at_utc: 2026-09-23T08:29:39Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION state Commit-B 0685510d (this-turn) · banks Code Commit-A dba4499 + /app companion b9f9f3f2 + owner drop 2 audio-estate + 2 fold-in receipts + CP-AIP-8 objective card + comprehensive receipt + sweep_A/B raw + stripped logs + DECISIONS + EXECUTION_ORDER + RESUME rewrites + notes/ORCH_BOOT ratchet-only regen"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: dba4499
+    sealed_at_utc: 2026-02-23T08:10:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a · Item 5.8 of EXECUTION_ORDER.md · +7 canonical measured AIP v1.0 §11.2 + §11.3 S&R compose-boundary GREEN · §1.2 modality-extension composing sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary"
+
+

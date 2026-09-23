@@ -231,7 +231,28 @@
 - ✅ **Owner context drop banked** (Newvault news-script/audio pairing · 2026-02-23T07:55:30Z): `STATE/OWNER_DROPS/newvault_script_audio_20260223/DROP.md` + PARKED card `STATE/OBJECTIVES/queued/CP_NEWVAULT_SCRIPT_AUDIO_PAIRING.md` (candidate slot: after CP-AIP-10). Additive-only banking · no scope change to CP-AIP-7.
 - ✅ 5-commit seal chain (SHAs recorded post-landing).
 
-#### Item 5.8 · CP-AIP-8-SAMPLING-REFLECTION — 🟡 **NEXT** (opens immediately post CP-AIP-7 per owner cadence directive · §11.2 calibration + §11.3 milestone list + §11.5 reflection).
+#### Item 5.8 · CP-AIP-8-SAMPLING-REFLECTION — ✅ **DONE 2026-02-23T~08:12Z** (AIP v1.0 §11.2 plan-without-calibration-stage refused at S&R boundary + §11.2 cost-quote-never-point-estimate at S&R output + §11.3 V114a proposed-milestone-list-required + §11.3 V114b sealed Milestone done_condition refusal bubbled + §11.3 V114c/V114d commission-open-only-after-agreement GREEN · §1.2 modality-extension composing sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary)
+
+- ✅ RED_pre 7/7 failed 0.74s (authentic ModuleNotFoundError + AssertionError right-reason).
+- ✅ GREEN_post 7/7 passed 0.70s (after PIN 6 no-redeclaration-scan pattern refinement to require class-name boundary chars).
+- ✅ Ratchet bump 6310 → 6317 (+7 canonical measured · baseline_failures.json sha256 `1fee0e418b6d1ff3efcaf849a75f03577c01c5b5d975fa61352f47f737c29be6`).
+- ✅ ONE additive module under `backend/services/audio_plane_v1/` (§1.2 modality-extension of sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary):
+  - `sampling_reflection_boundary_v1.py` (~180 lines · `SamplingReflectionBoundaryResult_v1` frozen 3-carrier + 3 refusal classes all subclassing `SamplingReflectionBoundaryRefused` (`PlanWithoutCalibrationAtSRBoundary` · `PointEstimateAtSRBoundary` · `MilestoneListMissingAtSRBoundary`) + 4 boundary callables composing sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 `PlannerBoundaryResult_v1` + sealed CP-M6-7-3 `CostQuoteWithCI` · `HONEST_GAP_V1_POSTURE` Final marker citing §11.2 P179 verbatim).
+- ✅ Vendored twin sync file_count 1057 → 1058 · structural_sha256 `a75285a748023fb8772f8b494fadf25d932dfea0229ffbe6f9222c25ad921a8e`.
+- ✅ CP_AIP_8 card pulled up from `queued/` + rewritten fully-conforming (SO §6.2 · card_sha256 `d65ca42ea6cf188fcd59c2ea5dd566f02a09f6633c02e01212cbd50492224833`).
+- ✅ Pre-Commit-A double-green BASELINE_GUARD=1 PYTHONHASHSEED=0:
+  - sweep_A 6326 passed / 1 skipped / 0 failed / 520 warnings / 186.79s
+  - sweep_B 6326 passed / 1 skipped / 0 failed / 520 warnings / 187.05s
+  - stripped_sha256 `fdcbfe3454e8a8ae60eb55c75ee61e23205734ce672eaae430cc70873e7f7469` IDENTICAL both sweeps.
+- ✅ **Owner drop 2 banked** (audio estate leads + na7p4* unarchive cost estimate · 2026-02-23T08:06:00Z verbatim + correction 2026-02-23T08:09:00Z verbatim): `STATE/OWNER_DROPS/audio_estate_leads_and_na7p4_cost_20260223/DROP.md` + `DROP_CORRECTION.md` + fold-in receipts `receipt_Q1_viusasa_census.md` (HONEST-GAP CAL creds not present) + `receipt_Q2_na7p4_unarchive_cost.md` (38 buckets · 492,877 objects · 102.59 TB decimal LOWER-BOUND · three scenarios with measured Huawei OBS FAQ rates and explicit rate placeholders / honest-gaps). Additive-only banking · no scope change to CP-AIP-8.
+- ✅ Comprehensive receipt banked at `phase0/cp_aip_8_sampling_reflection_20260223/receipt.md`.
+- ✅ Drill receipts banked at `repos/Extraction-Akki/backend/phase0/drill_receipts_cp_aip_8_sampling_reflection/`.
+- ✅ SPEC-CONFLICT log: NONE this slice.
+- ✅ §11.2 P179 verbatim applied at boundary: 'The first job prices the real job.' + 'stated confidence interval — never a point estimate' + 'A plan without a calibration stage is rejected.'
+- ✅ §11.3 V114 series composed verbatim (V114a proposed-milestone-list · V114b done-condition+owner · V114c owner reviews and agrees · V114d from that point all reporting is against it).
+- ✅ 5-commit seal chain (SHAs recorded post-landing).
+
+#### Item 5.9 · CP-AIP-9-COMMISSION-VIEW — 🟡 **NEXT** (opens immediately post CP-AIP-8 per owner cadence directive · §13 milestones-first · artifacts as drill-down evidence only · ZERO new backend computation · any surface element needing computation beyond reading existing artifacts is out of spec per §13.4 and must be pinned as such).
 
 - Execute in strict spec §15 order per DECISIONS.md CP list:
   - CP-AIP-1-INGEST-CAPTURE (§4.1-4.4)
