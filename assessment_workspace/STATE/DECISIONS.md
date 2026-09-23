@@ -28594,17 +28594,17 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 - **/app companion A** landed 2026-02-23T~07:51Z: `0612204b` on `main` (/app · vendored twin sync 1050 → 1055 + notes/audit ORCH_BOOT ratchet-only regen 6292 → 6302 + gitlink advance c915ab48 → ab3f80a2).
 - **State Commit-B** landed 2026-02-23T~07:52Z: `04c69597` on `master` (this repo · banks objective card + queued/ delete-promotion + comprehensive receipt + sweep_A/B logs + EXECUTION_ORDER + DECISIONS + RESUME rewrites + notes ORCH_BOOT pre-Commit-A ratchet-only regen).
 
-### CP-AIP-6-OBJECTIVE-WIZARD full seal chain SHAs (state mini-bank · pending post-Commit-C fixup rewrite)
+### CP-AIP-6-OBJECTIVE-WIZARD full seal chain SHAs (state mini-bank · 2026-02-23T07:55:00Z)
 
 | Commit | SHA | Branch |
 |---|---|---|
 | 1. Code Commit-A | `ab3f80a2` | programme/track-a |
 | 2. /app companion A | `0612204b` | main |
 | 3. State Commit-B | `04c69597` | master |
-| 4. State Commit-C fixup | *(pending — this-fixup)* | master |
-| 5. /app companion C | *(pending — post-fixup)* | main |
+| 4. State Commit-C fixup | `aaaa5a42` | master |
+| 5. /app companion C | `ffb71454` | main |
 
-Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail. Full 5-commit chain will be re-banked post-mini-bank on state master.
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 
 
 ---

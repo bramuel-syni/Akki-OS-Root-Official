@@ -133,11 +133,11 @@ Unchanged.
 |---|---|---|---|
 | Code Commit-A | `ab3f80a2` | programme/track-a | 5 NEW modules + 10 RED-first pins + baseline_failures ratchet bump 6292 → 6302 + drill receipts + frozen_contract_snapshot_parity fold-in |
 | /app companion A | `0612204b` | main | vendored twin sync (5 new files · MANIFEST 1050 → 1055) + notes ORCH_BOOT ratchet-only regen + audit ORCH_BOOT byte-identical mirror + gitlink advance c915ab48 → ab3f80a2 |
-| State Commit-B | *(this-turn · SHA banked at mini-bank fixup)* | master | banks CP-AIP-6 objective card + queued/CP_AIP_6 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
-| State Commit-C fixup | *(pending post-B)* | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads + state mini-bank of 5-commit SHAs into DECISIONS.md |
-| /app companion C | *(pending post-C)* | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
+| State Commit-B | `04c69597` | master | banks CP-AIP-6 objective card + queued/CP_AIP_6 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
+| State Commit-C fixup | `aaaa5a42` | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads (state 6ae3fe3e → 04c69597 + code c915ab48 → ab3f80a2) + state mini-bank of 5-commit SHAs into DECISIONS.md |
+| /app companion C | `ffb71454` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
 
-(All SHAs will be re-banked at the state mini-bank fixup post-Commit-C.)
+(All 5 SHAs banked. Full 5-commit seal chain LANDED. Item 5.6 of EXECUTION_ORDER.md CLOSED.)
 
 **Prior seals banked (append-only):**
 
