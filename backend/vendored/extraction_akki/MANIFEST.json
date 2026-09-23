@@ -1,5 +1,5 @@
 {
-  "file_count": 1065,
+  "file_count": 1066,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -1104,6 +1104,10 @@
     "services/census_autonomy/__init__.py": {
       "sha256": "aece0782f71e73969b696d7ae6956be4b34e284d8380afe3812225ceea62d57e",
       "size_bytes": 1738
+    },
+    "services/census_autonomy/assist_census_v1.py": {
+      "sha256": "c0a8c2689be337805bc8983813f8422b3877eb7c1e097b1418d3d1ca253eeee9",
+      "size_bytes": 8569
     },
     "services/census_autonomy/data_source_adapter.py": {
       "sha256": "b7c3a1f622c3d2b8cca7ff4d6d0d8c918a331e4de314756dc6c9e5978865b350",
@@ -4262,7 +4266,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-23T14:56:30Z",
+  "generated_at_utc": "2026-09-23T15:46:53Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4276,7 +4280,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "3f83d37525a0cbce75036379eec04129097cc8e52494cbe0a30266cdcbb7bdcb",
+  "structural_sha256": "a3a2194b89c5a95cdb8ae84855898995c6e5af3bf4e66309cdfb10d23088d3be",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }

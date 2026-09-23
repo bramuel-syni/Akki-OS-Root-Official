@@ -1339,15 +1339,15 @@ heads_last_sealed:
     seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS Code Commit-A 9e3ca45a · +8 canonical measured (6332 -> 6340) · double-green stripped_sha256 1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5"
 
 
-generated_at_utc: 2026-02-23T15:12:00Z
-generator: "CP-TRACK-4-AUTONOMY-WIRING state Commit-C fixup R-6 boundary regen · advancing heads_last_sealed.state_repo.head 978f219c (CP-TENANT-SEPARATION State-B) -> 45868f31 (this-CP State-B) + code_repo.head 04d603ca (CP-TENANT-SEPARATION Code-A) -> b49f7e9 (this-CP Code-A) · ratchet.passed_floor UNCHANGED at 6379 · state mini-bank rows 1-3 of CP-TRACK-4-AUTONOMY-WIRING 5-commit-seal chain banked in DECISIONS.md"
-regeneration_reason: post-commit-b-cp-track-4-autonomy-wiring-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
+generated_at_utc: 2026-02-23T15:36:00Z
+generator: "CP-AIP-ASSIST-CENSUS pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6379 -> 6389 + baseline_failures.json sha256 to post-bump cfe002176cc78641b13dea985e0ee7c6fa20bf0df7bf84ce2d99b0f94a10ccb4 · +10 canonical measured own new pins on Census Assistant boundary (six binding conditions verbatim as MUST-DO/MUST-NOT test IDs · placement OUTSIDE the TCB) · SO §6.9 amendment + owner drop assist_cards_preapproved_and_run_to_completion verbatim · heads_last_sealed UNCHANGED at CP-TRACK-4-AUTONOMY-WIRING State-B 45868f31 + Code-A b49f7e9 (this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-aip-assist-census-ratchet-only-regen-6379-to-6389-plus-10-canonical-measured-own-pins-six-binding-conditions
 
 ratchet:
-  passed_floor: 6379
-  counts_at_baseline_passed: 6379
+  passed_floor: 6389
+  counts_at_baseline_passed: 6389
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2
+  baseline_failures_sha256: cfe002176cc78641b13dea985e0ee7c6fa20bf0df7bf84ce2d99b0f94a10ccb4
 
 heads_last_sealed:
   state_repo:
