@@ -5778,3 +5778,47 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+**§6 INTERLUDE MARKER · 2026-02-23T00:17:00Z · autopilot PHASE 4 (c-iii) · CP-SKILLS-LAYER-A18-3 + A18-5 · Commit-A SEAL close · A18.3 PER-CALL GOVERNANCE ENVELOPE CONTRACT + A18.5 SERVER-SIDE SCOPE RESOLVER PRODUCTIZED (Slice 3 of 5)**
+
+**P4-c-iii · CP-SKILLS-LAYER-A18-3 + A18-5 · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-turn):
+- code Commit-A `dafb45c8b004bad233439920c85cfae0847c6800` on `programme/track-a` (2026-02-23T00:14Z · NEW backend/contracts/skill_call_governance_envelope_v0.py + NEW backend/services/skill_call_scope_resolver.py + NEW parity snapshot + NEW test file [12 pins] + additive parity-map entry + baseline_failures.json bump 6171→6183 +12 canonical measured).
+- /app main companion Commit-A `b312ec870a58a39b557b39e7c34437a8d9e485a1` (2026-02-23T00:16Z · vendored twin +2 files · MANIFEST 1030→1032 · structural_sha256 141cac1c · audit + notes ORCH_BOOT regen 6183 · gitlink advance).
+- state Commit-B `a3f228b0b070af55d4d80cf3b268c76c87950193` · Commit-C fixup `<PENDING-P4-C-III-CC>` · /app Commit-C companion `<PENDING-P4-C-III-CC-APP>`.
+
+**Ratchet floor**: **6183** (was 6171 pre-P4-c-iii · +12 canonical measured). baseline_failures.json sha256 `81e790bbbc42cc13aa178c178c6a84d73001d83150ebfba880bd317351759a88`.
+
+**A18.3 per-call governance envelope contract landed** (SO §3.8 additive-only):
+- `contracts.skill_call_governance_envelope_v0.SkillCallGovernanceEnvelopeV0` — Pydantic v2 BaseModel · 7 required fields · `extra="forbid"` · ISO-8601 tz-aware `decision_ts` validator.
+- Field order (verbatim per canon flow): `call_id`, `skill_id`, `grant_id`, `policy_ref`, `decision_ts`, `governance_class`, `floor_applied`.
+- Parity snapshot at `tests/invariants/skill_call_governance_envelope_v0.contract_snapshot.json` (additionalProperties=false · required-set-of-7).
+- CONTRACT_TO_SNAPSHOT map additive entry (same-slice cure per BL from A18.1).
+
+**A18.5 server-side scope resolver landed** (SO §3.8 additive-only):
+- `services.skill_call_scope_resolver.resolve_scope_for_call(skill_id, *, client_supplied_scope=None) -> str` — reads scope from sealed A18.1 record via A18.2 `get_by_skill_id` public callable ONLY.
+- `services.skill_call_scope_resolver.ClientSuppliedScopeRefused(RuntimeError)` — raised BEFORE any lookup when caller passes non-None `client_supplied_scope` kwarg (A18.5 verbatim: "never the control").
+- `services.skill_call_scope_resolver.SkillNotProvisioned(RuntimeError)` — raised when skill_id absent from A18.2 write-once persistence (no default scope, no fallback).
+- Public surface tight to `resolve_scope_for_call()` only · negative-surface ban on `widen_*`, `override_*`, `from_client_*`, `accept_client_*`, `merge_client_*`.
+
+**Owner directive HONORED verbatim** (2026-02-23T~00:03Z via ask_human reply):
+- "The Doc-18 §A18-3 / §A18-5 anchors suffice" — both primary anchors quoted verbatim in module docstrings per SO §2.5.
+- "if the sealed gate infrastructure you pin over carries its own canon anchors ... cite those secondarily in the docstring so the drift-detector names the carrier it guards — disk-verifiable" — secondary carrier `backend/services/auth/engineer_key_grant.py` cited by name in `skill_call_scope_resolver.py` docstring (Invariant 7 asserts presence of the "engineer_key_grant" literal in the module body).
+- "your call on the exact IDs" — cited: engineer_key_grant.py (A18.5 primary infrastructure carrier per canon "Access rides the engineer key-grant records"), skill_provisioning_record_v0.py (A18.1 provisioning-record consumed), skill_provisioning_persistence.py (A18.2 write-once persistence — `get_by_skill_id` public callable ONLY).
+
+**Deferred (explicit SO §6.4 NOTHING-BEYOND per this-slice scope)**:
+- Runtime wiring of A18.3 envelope into the sealed inner-gate per-call carrier (contract shape pinned this-slice; runtime wiring is a later slice).
+- Runtime wiring of A18.5 resolver into a router surface (resolver landed as a callable; router surface is a later slice).
+- A18.8 donor-code intake (Slice 4).
+- CP-SKILLS-LAYER-SERIES-CLOSE UI-visible tester walkthrough at `/dap/buildskill` (Slice 5).
+
+**Double-green**: `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (191.13s) + sweep_B (191.95s) both stripped-sha256 `32d6e0969064b9fd947be0e1f91c9f46d042393b6044b3a40640cccd1e521739` IDENTICAL · 6188 passed / 1 skipped / 0 failed / 520 warnings each. Receipts banked at `phase0/drill_receipts_cp_skills_layer_a18_3_a18_5/`.
+
+**Autopilot next (§6.8 report-and-continue)**: State Commit-C fixup this-turn (R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B SHA + `code_repo.head` to `dafb45c8`) → /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync) → **CP-SKILLS-LAYER-A18-8** (Slice 4 · donor-code intake) opens.
+
+**Standing bounds unchanged**: zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated · ratchet monotonic-up floor 6183.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

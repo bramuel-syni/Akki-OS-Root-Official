@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T234254Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T000325Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1254,3 +1254,37 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - UI response-required-badge component DEFERRED to A'''-cont-B slice
 
 <!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A'''-cont-A Commit-A reference block · 2026-09-22T19:15:00Z END -->
+
+<!-- P4-C-III-PINS-2026-02-23 BEGIN -->
+
+## PHASE 4 (c-iii) · CP-SKILLS-LAYER-A18-3 + A18-5 · **SEALED 2026-02-23T00:17:00Z**
+
+- **CODE branch:** `programme/track-a` in `/app/assessment_workspace/repos/Extraction-Akki`
+- **CODE head (Commit-A):** `dafb45c8b004bad233439920c85cfae0847c6800`
+- **/app companion Commit-A:** `b312ec870a58a39b557b39e7c34437a8d9e485a1`
+- **STATE branch:** `master` in `/app/assessment_workspace`
+- **STATE head (Commit-B):** pending this-banking
+- **RATCHET at this seal:** **6183 pass / 3 fail (baseline · all transient GREEN in current sweep) / 1 skip · floor 6183 · monotonic-up from 6171** (+12 canonical measured)
+- **baseline_failures.json sha256 (post-seal):** `81e790bbbc42cc13aa178c178c6a84d73001d83150ebfba880bd317351759a88`
+- **notes/ORCH_BOOT.md sha256 (post-regen · byte-identical with /app audit mirror):** `27414c1e572f5f5edea18e745049bfe440546806a9ec848d777f262ebea17a9d`
+- **Double-sweep byte-identical stripped-sha256:** `32d6e0969064b9fd947be0e1f91c9f46d042393b6044b3a40640cccd1e521739`
+- **Vendored MANIFEST.json:** file_count 1030→1032 · structural_sha256 `141cac1c27e7df8bf3d1570478f91e6a19ca592077f75082832df3a1f1f4e59e`
+- **New backend files:**
+  1. `backend/contracts/skill_call_governance_envelope_v0.py` (A18.3 Pydantic 7-field frozen envelope)
+  2. `backend/tests/invariants/skill_call_governance_envelope_v0.contract_snapshot.json` (parity snapshot)
+  3. `backend/services/skill_call_scope_resolver.py` (A18.5 server-side scope resolver + refusal exceptions)
+  4. `backend/tests/invariants/test_cp_skills_layer_a18_3_a18_5_phase_4_c_iii.py` (12 pins · 6 A18.3 + 6 A18.5)
+- **Modified backend files:**
+  1. `backend/tests/invariants/test_frozen_contract_snapshot_parity.py` (+1 line additive CONTRACT_TO_SNAPSHOT entry)
+  2. `backend/tests/invariants/baseline_failures.json` (ratchet 6171→6183)
+- **Sealed carriers UNCHANGED per SO §3.8:**
+  - `contracts/skill_provisioning_record_v0.py` (A18.1 Slice 1)
+  - `services/skill_provisioning_persistence.py` (A18.2 Slice 2) — imported READ-ONLY via `get_by_skill_id` public callable
+  - `services/skill_files/persistence.py` (A18.7 buyer-facing)
+  - `services/auth/engineer_key_grant.py` (secondary carrier · cited in docstring, never modified)
+  - All PHASE 3 sealed chain + P4-a + P4-b-i + P4-c-i + P4-c-ii
+- **Owner directive verbatim (2026-02-23T~00:03Z via ask_human reply):**
+  > "§6.8 — (a) Y, proceed exactly as scoped. (b) The Doc-18 §A18-3 / §A18-5 anchors suffice; if the sealed gate infrastructure you pin over carries its own canon anchors (e.g., MOAC/agent-containment gate rules), cite those secondarily in the docstring so the drift-detector names the carrier it guards — disk-verifiable, your call on the exact IDs. (c) No owner action has landed: DQ-17 rotation still pending owner-side, −2 drift forensic still queued pre-Order-B, no new drops. Boundary unchanged. Boot sequence + lessons discipline as you stated. Go — and per §6.8.6, future turn-ends report-and-continue rather than Y/N menus."
+- **Banked Lesson #10 first-appearance this-slice** (NEW Pydantic contract requires same-slice CONTRACT_TO_SNAPSHOT map additive entry alongside parity snapshot).
+
+<!-- P4-C-III-PINS-2026-02-23 END -->

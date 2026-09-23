@@ -27458,3 +27458,72 @@ Code repo `programme/track-a`:
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+---
+
+## PHASE 4 (c-iii) · CP-SKILLS-LAYER-A18-3 + A18-5 · SEAL RECORD · 2026-02-23T00:17:00Z
+
+**Slice 3 of CP-SKILLS-LAYER chunked series LANDED.** Structural drift-detector pins for Doc 18 §A18.3 [CANON] per-call governance envelope contract + Doc 18 §A18.5 [CANON] server-side scope resolver behaviour. No sealed carriers modified per SO §3.8 additive-only.
+
+**Owner banked ratification of Slice 3 plan** (2026-02-23T~00:03Z verbatim via ask_human reply):
+
+> "§6.8 — (a) Y, proceed exactly as scoped. (b) The Doc-18 §A18-3 / §A18-5 anchors suffice; if the sealed gate infrastructure you pin over carries its own canon anchors (e.g., MOAC/agent-containment gate rules), cite those secondarily in the docstring so the drift-detector names the carrier it guards — disk-verifiable, your call on the exact IDs. (c) No owner action has landed: DQ-17 rotation still pending owner-side, −2 drift forensic still queued pre-Order-B, no new drops. Boundary unchanged. Boot sequence + lessons discipline as you stated. Go — and per §6.8.6, future turn-ends report-and-continue rather than Y/N menus."
+
+**Seal chain:**
+
+| Commit | SHA | Branch |
+|---|---|---|
+| Code Commit-A | `dafb45c8b004bad233439920c85cfae0847c6800` | programme/track-a |
+| /app companion A | `b312ec870a58a39b557b39e7c34437a8d9e485a1` | main |
+| State Commit-B | (this commit) | master |
+| State Commit-C fixup | (next) | master |
+| /app Commit-C companion | (subsequent) | main |
+
+**Ratchet:** 6171 → **6183** (+12 canonical measured). baseline_failures_sha256 `81e790bbbc42cc13aa178c178c6a84d73001d83150ebfba880bd317351759a88` (was `263c8586947d5b6ce838036920a94f841065053a781afe3c511d981c97e978c2`).
+
+**Files landed (Commit-A):**
+- NEW `backend/contracts/skill_call_governance_envelope_v0.py` (~130 lines · Pydantic v2 · 7-field frozen tuple · extra=forbid · ISO-8601 tz-aware `decision_ts` validator · Doc 18 §A18.3 verbatim canon anchor).
+- NEW `backend/tests/invariants/skill_call_governance_envelope_v0.contract_snapshot.json` (parity snapshot · additionalProperties=false).
+- NEW `backend/services/skill_call_scope_resolver.py` (~120 lines · `resolve_scope_for_call(skill_id, *, client_supplied_scope=None)` · `ClientSuppliedScopeRefused` + `SkillNotProvisioned` · Doc 18 §A18.5 verbatim + secondary carrier cite to sealed `services/auth/engineer_key_grant.py`).
+- NEW `backend/tests/invariants/test_cp_skills_layer_a18_3_a18_5_phase_4_c_iii.py` (12 RED-first pins · 6 A18.3 envelope + 6 A18.5 resolver).
+- MODIFY `backend/tests/invariants/test_frozen_contract_snapshot_parity.py` (+1 additive line in CONTRACT_TO_SNAPSHOT map · same-slice cure per BL from A18.1).
+- MODIFY `backend/tests/invariants/baseline_failures.json` (ratchet 6171→6183 · new ratchet_history entry · indent=2 preserved).
+
+**Companion Commit-A on /app main:**
+- NEW `backend/vendored/extraction_akki/backend/contracts/skill_call_governance_envelope_v0.py` (byte-identical vendored twin).
+- NEW `backend/vendored/extraction_akki/backend/services/skill_call_scope_resolver.py` (byte-identical vendored twin).
+- MODIFY `backend/vendored/extraction_akki/MANIFEST.json` (file_count 1030→1032 · structural_sha256 141cac1c…).
+- MODIFY `frontend/public/audit/ORCH_BOOT.md` + `assessment_workspace/notes/ORCH_BOOT.md` (ratchet regen · both sha256 `27414c1e572f5f5edea18e745049bfe440546806a9ec848d777f262ebea17a9d`).
+- Gitlink advance `assessment_workspace/repos/Extraction-Akki` `f7f08207` → `dafb45c8`.
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- `backend/contracts/skill_provisioning_record_v0.py` (A18.1 Slice 1) UNCHANGED.
+- `backend/services/skill_provisioning_persistence.py` (A18.2 Slice 2) UNCHANGED — the scope resolver imports its `get_by_skill_id` public callable ONLY.
+- `backend/services/skill_files/persistence.py` (A18.7 buyer-facing) UNCHANGED.
+- `backend/services/auth/engineer_key_grant.py` (secondary carrier per canon "Access rides the engineer key-grant records") UNCHANGED — cited as disk-verifiable anchor in resolver docstring, never modified.
+- `backend/services/agent_containment/{ceilings,serving_freeze}.py` UNCHANGED.
+- `backend/services/c13_scope/{key_derivation,provenance,read_refusal,ttl}.py` UNCHANGED.
+- Entire PHASE 3 sealed chain + P4-a/P4-b-i/P4-c-i/P4-c-ii UNCHANGED.
+
+**RED-first authentic:**
+- RED-pre: `ModuleNotFoundError: No module named 'contracts.skill_call_governance_envelope_v0'` at collection time (right-reason).
+- GREEN-post: 12/12 pass in 0.73s.
+
+**Pre-Commit-A double-green byte-identical:**
+- `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (191.13s) + sweep_B (191.95s) both 6188 passed / 1 skipped / 0 failed / 520 warnings.
+- stripped-sha256 `32d6e0969064b9fd947be0e1f91c9f46d042393b6044b3a40640cccd1e521739` IDENTICAL both sweeps.
+- 6188 = 6183 floor + 5 above-floor (baseline_failures entries currently transiently GREEN · subset check trivially satisfied at 0 failed).
+
+**Banked Lesson #10 first-appearance (this slice):**
+
+> NEW Pydantic contract requires same-slice CONTRACT_TO_SNAPSHOT map additive entry at `tests/invariants/test_frozen_contract_snapshot_parity.py` (line ~93 area) alongside the parity snapshot JSON — else parity bijectivity test fires right-reason RED. Same-slice cure per BL from A18.1 slice — pattern repeated here; entry added at Commit-A alongside the new contract file.
+
+**Autopilot next (§6.8 report-and-continue):**
+- State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B SHA + `code_repo.head` to `dafb45c8`).
+- /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync post-fixup).
+- Then **CP-SKILLS-LAYER-A18-8** (Slice 4 · donor-code intake ~356 lines LIFT from RMS-IQ-Core-2 + Akki-OS-V1) opens.
+- Then **CP-SKILLS-LAYER-SERIES-CLOSE** (Slice 5 · UI-visible per owner pacing note).
+
+**Standing bounds unchanged:** zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6183 · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 owner rotation UNTOUCHED · DQ-19+DQ-20 named-but-unseated · §6.8 report-and-continue.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
