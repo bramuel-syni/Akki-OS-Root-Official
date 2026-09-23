@@ -1162,6 +1162,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a (last sealed · pre-CP-AIP-9)"
 
 
+
+generated_at_utc: 2026-02-23T10:55:00Z
+generator: "main-agent Autopilot (CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT state Commit-C fixup · R-6 boundary regen advancing heads_last_sealed.state_repo.head 1507cad9 -> 79a2ff0b683ca4ae982c3d79bdf16014483f416f (this-B banks Code Commit-A 30f8ccdead956977cd6608e5d30907c23c428190 + /app companion 4d57db1a67a9752b5d63acbde07c8b691cc7e5f7 + THREE additive fold-in owner drops (a) SO §6.9(5) AMENDED bundle-based continuity supersedes private-mirror-push · PRIVATE-MIRROR-REMOTE-MISSING RETIRED per §6.9 named-protected-objective-failure doctrine · CP-AIP-9 code bundle emitted at Code-A HEAD 30f8ccd = continuity_bundles/code_20260923T104129Z_CP_AIP_9.bundle sha256 054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672 · STANDING_ORDERS §6.9.5 amended additively · .gitignore continuity_bundles/*.bundle pattern (b) AKKI-OS-ROOT-PUBLIC-EXPOSURE NEW P0-security honest-gap · pod cannot flip visibility · owner-action-required · non-blocking (c) CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING PRE-APPROVED BY CONSTRUCTION under §6.8 · Track-5 pre-build checkpoint REMOVED · six binding conditions verbatim as MUST-DO/MUST-NOT test IDs · OWNER STEPPING AWAY · RUN-TO-COMPLETION mandate ACTIVE · HALT ONLY on SPEC-CONFLICT-<n> · hard custody/gate violation · completion + OWNER_RETURN_REPORT + BUILD_JOURNAL · GAPS_FIXED_LEDGER 10 entries + 2 honest-gaps + 1 honest-gap retired + 1 SO amendment + 1 pre-approval-by-construction) + code_repo.head dba4499d1a95205f8bd01c9f22ed7aa51ece8ca2 -> 30f8ccdead956977cd6608e5d30907c23c428190 (this-code-A) · ratchet UNCHANGED at 6313 (env_drift_reset kind admitted at pre-Commit-A regen · R-91 ε retirement scaffolding-class per SO §6.9 clause 1) · state mini-bank of 5-commit-seal chain SHAs banked in DECISIONS.md post-fixup)"
+regeneration_reason: post-commit-b-cp-aip-9-commission-view-plus-r91-epsilon-retirement-boundary-regen-state-head-1507cad9-to-79a2ff0b-code-head-dba4499-to-30f8ccd
+
+ratchet:
+  passed_floor: 6313
+  counts_at_baseline_passed: 6313
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: e72809c29a8810b1272820cfb0e6f281392650ef865912f413ca7c7d04a8b540
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 79a2ff0b683ca4ae982c3d79bdf16014483f416f
+    sealed_at_utc: 2026-02-23T10:50:00Z
+    seal_kind: "CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT state Commit-B 79a2ff0b (banks Code Commit-A 30f8ccd + /app companion 4d57db1a6 + Item 5.9 of EXECUTION_ORDER.md + AIP v1.0 §13 Commission View compose-boundary GREEN under owner §13.4 ZERO-new-backend-computation constraint + §1.2 modality-extension composing sealed CP-M6-9-1/9-2 commission_view + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary + sealed CP-AIP-8 S&R-boundary + sealed CP-M6-7-3 CostQuoteWithCI + R-91 ε retirement folded in at same boundary per SO §6.9 clause 1 scaffolding-class + THREE additive fold-in owner drops (a) SO §6.9(5) AMENDED bundle-based continuity supersedes private-mirror-push · PRIVATE-MIRROR-REMOTE-MISSING RETIRED (b) AKKI-OS-ROOT-PUBLIC-EXPOSURE NEW P0-security honest-gap owner-action-required non-blocking (c) CP-AIP-ASSIST cards PRE-APPROVED BY CONSTRUCTION + RUN-TO-COMPLETION mandate ACTIVE + GAPS_FIXED_LEDGER 10 entries + 2 honest-gaps + 1 honest-gap retired + 1 SO amendment + 1 pre-approval-by-construction + Ledger check verbatim)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 30f8ccdead956977cd6608e5d30907c23c428190
+    sealed_at_utc: 2026-02-23T09:22:00Z
+    seal_kind: "CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT Commit-A 30f8ccd on programme/track-a · Item 5.9 of EXECUTION_ORDER.md + SO §6.9 clause 1 scaffolding-class retirement · AIP v1.0 §13 Commission View compose-boundary GREEN under owner §13.4 ZERO-new-backend-computation constraint · ratchet 6325 → 6313 via env_drift_reset kind (scaffolding retirement admits lower baseline · monotonic segment reset per owner ruling 2026-09-13 Option A mechanism)"
+
+
 ```
 
 ---

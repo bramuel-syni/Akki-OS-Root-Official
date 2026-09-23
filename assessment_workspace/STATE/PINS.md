@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T060055Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T101638Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1319,3 +1319,56 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - **QUEUED owner correction (mid-Slice-4)** — CP-CENSUS-TENANT-ADMISSION-CORRECTION opens post-seal · full verbatim in DECISIONS.md.
 
 <!-- P4-C-IV-PINS-2026-02-23 END -->
+
+
+## CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT · **SEAL BOUNDARY 2026-02-23T~10:20Z**
+
+<!-- CP-AIP-9-PINS-2026-02-23 BEGIN · SO §6.9(5)-AMENDED bundle-based continuity FIRST APPLICATION -->
+
+### Milestone-seal continuity bundle pins (SO §6.9.5 AMENDED 2026-02-23 · bundle-based)
+
+**Mechanism:** per SO §6.9.5 (amended 2026-02-23 · verbatim owner drop banked at `STATE/OWNER_DROPS/so_6_9_clause_5_bundle_amendment_20260223/DROP.md`), every milestone seal emits a git bundle of BOTH `programme/track-a` and `master`, sha256-pinned here, deposited at the pod-local deliverables endpoint `/app/assessment_workspace/continuity_bundles/`. No credentials, no push, nothing public. The pod stays the working store; the bundle is the off-pod copy the platform's artefact mechanism fetches at session close.
+
+**Code bundle — programme/track-a at Code Commit-A HEAD:**
+- **Path:** `continuity_bundles/code_20260923T104129Z_CP_AIP_9.bundle`
+- **Size:** 19,182,116 bytes (18.3 MiB)
+- **sha256:** `054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672`
+- **Refs:** `refs/heads/programme/track-a` → `30f8ccdead956977cd6608e5d30907c23c428190` (= CP-AIP-9 Code Commit-A HEAD)
+- **Verify:** `git bundle verify` → "is okay" · **records a complete history** · hash algorithm: sha1
+- **Emitted at:** 2026-02-23T~10:41Z pre-Commit-B (Code-A already landed)
+
+**State bundle — master at seal-tail HEAD:**
+- **Path:** `continuity_bundles/state_<ts>_CP_AIP_9.bundle` (PENDING — emitted after State Commit-C fixup lands so the bundle carries the complete 5-commit-chain-bar-/app-C sealed state)
+- **sha256:** PENDING-POST-STATE-COMMIT-C-FIXUP
+- **Refs:** `refs/heads/master` → (State Commit-C fixup HEAD, to be filled in the State mini-bank commit)
+- **Pin lock-in:** State mini-bank commit finalizes both bundle pins.
+
+**One-sentence protected objective:** the sealed record survives its environment (pod crash, session compaction, audit-inbox rotation) without depending on push credentials or repo visibility.
+
+### Retirement — Private-visibility check + `PRIVATE-MIRROR-REMOTE-MISSING` honest-gap
+
+- **Retired at this boundary** per SO §6.9(5) AMENDED. Prior text preserved additively in `STANDING_ORDERS.md §6.9.5` above the SUPERSEDED-BY block per SO §3.8.
+- **Named objective the retired gate failed to protect:** continuity of the sealed record across environment loss.
+- **Why withdrawn per §6.9 doctrine:** the visibility gate would refuse-correctly on public repos and yet a refusal here protects nothing — continuity is met by the sha-pinned bundle regardless of remote visibility.
+- **Historical banking preserved without edit** (additive-only per SO §3.8): `STATE/OWNER_DROPS/na7p4_park_proceed_autonomously_mirror_probe_20260223/DROP.md` (case (c) probe result stands as historical record).
+
+### `AKKI-OS-ROOT-PUBLIC-EXPOSURE` — new P0-security honest-gap · non-blocking
+
+- **Recorded at this boundary** per owner drop 2026-02-23 banked at `STATE/OWNER_DROPS/akki_os_root_public_exposure_20260223/DROP.md`.
+- **Named objective:** customer connector hostnames must not be exposed on a public repo.
+- **Pod-side probe result:** cannot flip `bramuel-syni/Akki-OS-Root` visibility from this pod — no `gh` CLI installed, no admin token env var, repo not on-disk in this pod.
+- **Owner-action-required (any one path sufficient):** GitHub UI Settings → Danger Zone → Change visibility → Make private; OR `gh repo edit bramuel-syni/Akki-OS-Root --visibility private`; OR REST API PATCH with admin PAT.
+- **Non-blocking status (owner-directed):** in-flight CP-AIP-9 5-commit seal continues without pause.
+
+### 3-repo HEADs at seal boundary (pre-mini-bank tip)
+
+- **Code (programme/track-a):** `30f8ccdead956977cd6608e5d30907c23c428190` (Code Commit-A — CP-AIP-9 + R-91 ε retirement)
+- **State (master):** `cf62339e31b0fb7243ae4cd78cb44c68f6c315dc` (OWNER-Q3 fold-in · pre-Commit-B tip · Commit-B lands next)
+- **/app (main):** `4d57db1a67a9752b5d63acbde07c8b691cc7e5f7` (/app Commit-A companion of Code-A)
+
+### Milestone-seal REPORT-AND-CONTINUE receipt line (this-seal)
+
+`CP-AIP-9 seal · code bundle sha256 054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672 (18.3 MiB · programme/track-a @ 30f8ccd) · state bundle sha256 PENDING-POST-COMMIT-C · SO §6.9(5) AMENDED bundle-based continuity FIRST APPLICATION · PRIVATE-MIRROR-REMOTE-MISSING RETIRED · AKKI-OS-ROOT-PUBLIC-EXPOSURE recorded (P0-security · owner-action-required · non-blocking).`
+
+<!-- CP-AIP-9-PINS-2026-02-23 END -->
+

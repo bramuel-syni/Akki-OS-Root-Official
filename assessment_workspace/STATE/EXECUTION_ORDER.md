@@ -252,7 +252,43 @@
 - ✅ §11.3 V114 series composed verbatim (V114a proposed-milestone-list · V114b done-condition+owner · V114c owner reviews and agrees · V114d from that point all reporting is against it).
 - ✅ 5-commit seal chain (SHAs recorded post-landing).
 
-#### Item 5.9 · CP-AIP-9-COMMISSION-VIEW — 🟡 **NEXT** (opens immediately post CP-AIP-8 per owner cadence directive · §13 milestones-first · artifacts as drill-down evidence only · ZERO new backend computation · any surface element needing computation beyond reading existing artifacts is out of spec per §13.4 and must be pinned as such).
+#### Item 5.9 · CP-AIP-9-COMMISSION-VIEW — ✅ **DONE 2026-02-23T~10:20Z** (AIP v1.0 §13 Commission View compose-boundary GREEN under owner §13.4 ZERO-new-backend-computation constraint · §1.2 modality-extension composing sealed CP-M6-9-1/9-2 commission_view + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary + sealed CP-AIP-8 S&R-boundary + sealed CP-M6-7-3 CostQuoteWithCI · **R-91 ε retirement folded in at same boundary per SO §6.9 clause 1 scaffolding class** · 4 wrapped items retired atomically (3 baseline_failures + 1 R-91-closure-drift-annotation) + 12 scaffolding drift-annotation invariant tests marked pytestmark/pytest.mark.skip · HONEST-GAP-FIFTH-WRAPPED-BASELINE-NOT-PRESENT banked in retirement_history)
+
+- ✅ RED_pre 5/8 failed (right-reason ImportError/AttributeError · 3/8 GREEN forward-drift-detectors) · GREEN_post 8/8 passed 0.70s.
+- ✅ Ratchet 6317 → 6325 (+8 CP-AIP-9 canonical measured) → 6313 via `env_drift_reset` kind (R-91 ε retirement scaffolding-class lower baseline admitted per owner ruling 2026-09-13 Option A mechanism + SO §6.9 clause 1) · baseline_failures.json sha256 post-retirement `e72809c29a8810b1272820cfb0e6f281392650ef865912f413ca7c7d04a8b540`.
+- ✅ ONE additive module under `backend/services/audio_plane_v1/` (§1.2 modality-extension of sealed CP-M6-9 + CP-AIP-7 + CP-AIP-8 + CP-M6-7-3):
+  - `commission_view_boundary_v1.py` (~327 lines · `CommissionViewBoundaryResult_v1` frozen carrier + 5 refusal classes all subclassing `CommissionViewBoundaryRefused` (`AgreementMissingAtViewBoundary` §13.2 · `StatusValueRefusedAtViewBoundary` §13.2 · `InternalsProjectedAtViewBoundary` §13.1 · `NewBackendComputationAtViewBoundary` §13.4 OWNER-PINNED · `ModalityLeafNotRecordingAtViewBoundary` §13.3) + boundary callables READ-ONLY from already-banked artifacts per §13.4 owner-pinned zero-new-compute constraint · `NO_BACKEND_COMPUTATION_V1_POSTURE` Final marker citing §13.4 P219 V122c verbatim).
+- ✅ Vendored twin sync file_count 1058 → 1059 · structural_sha256 `61cbac6fea3adf2cbded5689b4061ecf0ce6e6b9376ca7402f14933af5e8f021`.
+- ✅ CP_AIP_9 objective card pulled up from `queued/` + rewritten fully-conforming (SO §6.2 · card_sha256 `3d44f89ddad5fa87335db90395e0485be25236071a8b1ec6b8a0eb4b9af55cd7`).
+- ✅ Pre-Commit-A double-green BASELINE_GUARD=1 PYTHONHASHSEED=0:
+  - sweep_A 6322 passed / 13 skipped / 0 failed / 520 warnings / 186.59s
+  - sweep_B 6322 passed / 13 skipped / 0 failed / 520 warnings / 187.03s
+  - stripped_sha256 `08045b0eae0c6e094e91cbe3b6c5e8cebd4e3b41dff6a810bb36e852dee36288` IDENTICAL both sweeps.
+- ✅ **OWNER FOLD-INS BANKED at this boundary (per §6.9 desk discipline — do not interrupt in-flight seal; fold in additively):**
+  - **SO §6.9 amendment** (2026-02-23 · Function-is-the-Objective) — `STATE/OWNER_DROPS/so_6_9_amendment_20260223/DROP.md` + `STANDING_ORDERS.md §6.9` addendum + DECISIONS entry.
+  - **SO §6.9 LID ratification** (2026-02-23 · Whisper-LID MIT + VoxLingua107 Apache-2.0) — `STATE/OWNER_DROPS/so_6_9_lid_ratification_20260223/DROP.md` + DECISIONS entry.
+  - **RMS CREDS 3 + labelled multilingual ASR corpus** (2026-02-23 · `google-transcripts/datasets/{kik,ebu,swa,luo,kln,guz,mer,bxk,kam,mrg,lwg,mas}/{audio,transcript}`) — `STATE/OWNER_DROPS/rms_creds_3_and_multilingual_corpus_20260223/DROP.md` + redacted credential manifest at `phase0/credential_drop_manifests/20260223T101800Z_rms_creds_3_drop_manifest.json` + DECISIONS entry.
+  - **Ruling (b) AKKI-RUNS-IT + Standing Directive 1 ASSIST-DIALOGUE + Standing Directive 2 GAPS-FIXED-LEDGER** (2026-02-23) — `STATE/OWNER_DROPS/ruling_b_akki_runs_it_plus_standing_directives_20260223/DROP.md` + `STATE/GAPS_FIXED_LEDGER.md` seeded (6 gaps closed this-turn + 1 honest-gap banked) + two ASSIST card drafts at `STATE/OBJECTIVES/CP_AIP_ASSIST_CENSUS.md` + `STATE/OBJECTIVES/CP_AIP_ASSIST_TRAINING.md` (owner-directed · NOT PARKED · on active ledger · ratification requested in CP-AIP-10 REPORT-AND-CONTINUE).
+- ✅ Comprehensive receipt banked at `phase0/cp_aip_9_commission_view_plus_r91_retirement_20260223/receipt.md` (to be written at Commit-B).
+- ✅ Drill receipts banked at `repos/Extraction-Akki/backend/phase0/drill_receipts_cp_aip_9_commission_view/` (RED_pre + GREEN_post + sweep_A + sweep_B).
+- ✅ SPEC-CONFLICT log: NONE this slice.
+- ✅ §13.4 P219 V122c verbatim applied: 'No new machinery is built for display. Any surface element in this section found to require new backend computation beyond reading existing artifacts is out of specification and must be removed or re-specified.' Owner-pinned CP-AIP-9 constraint honored verbatim.
+- ✅ §6.9 clause 1 scaffolding-class retirement executed per owner ruling: `R-91 ε applies at E1's next boundary, now, not at the horizon; the five wrapped baselines retire on that seal.` Measured on-disk = 4 wrapped items (HONEST-GAP-FIFTH-WRAPPED-BASELINE-NOT-PRESENT banked; fifth appears cured at prior seal, never fabricated).
+- ✅ 5-commit seal chain — Code Commit-A `30f8ccd` on programme/track-a + /app companion Commit-A `4d57db1a6` on main landed; State Commit-B + State Commit-C fixup + /app companion Commit-C + mini-bank continue this-turn.
+
+### Item 5 execution rule addendum (owner Ruling (b) verbatim 2026-02-23) — AKKI RUNS IT · E1 WIRES THEN STEPS BACK
+
+**Binding on all Item 5+ Akki training + census EXECUTION from this boundary forward:**
+
+1. **ALL Akki-based training + census EXECUTION runs INSIDE the live Akki OS system** — via the Census Autonomy Service / commissioned-job path — within the tenant compute + custody boundary (§6, §7, ENT-16 Managed compute / Frontier Your Keys). Training compute + model weights + labelled corpus **never leave Akki's boundary; no third-party export.**
+2. **E1's role = build and WIRE the seams** (LID detection, corpus ingestion + pairing, admission gate, training-run contract) **INTO the Census Autonomy Service so Akki runs them autonomously — then STEP BACK.** E1's pod is **never the training host and never a data path.** The 10 GB Q3 trial was a one-off read-cost probe; **no repeat.**
+3. **LID + corpus census + CP-AIP-10 training** must be registered as **Census Autonomy Service jobs** (engine + response queue + data-source adapter that already exist from Phase 3), so the running Akki system schedules and executes them. **Verification of autonomy pickup** (a receipt from the autonomy engine's run log showing the job ran) is the **exit evidence** for each such wiring seal.
+
+### Item 5 gaps discipline (owner Standing Directive 2 verbatim 2026-02-23) — GAPS FIXED AS WE GO
+
+`STATE/GAPS_FIXED_LEDGER.md` is maintained at **every seal boundary** going forward. Each entry: kind (invariant trip / drift / YAML-hazard / JSON-hazard / honest-gap), one-sentence protected objective, additive fix mechanism, receipt anchor. `honest-gap-never-fake` — where a fix is not possible in the boundary window, an honest-gap entry names the residual gap explicitly rather than claiming closure.
+
+#### Item 5.10 · CP-AIP-10-TRAINING-RUNS — 🟡 **NEXT** (opens immediately post CP-AIP-9 seal per owner cadence directive · **§11.6 Training Runs · REPORT-AND-CONTINUE not idle-HALT per SO §6.9 cadence amendment** · training-runs-service registration as Census Autonomy Service job per Ruling (b) · training-run contract seat plus data-ingestion + pairing seam · heavy fine-tune runs DEFERRED to commissioned-job contract per §1.4 measured cost/compute receipt discipline).
 
 - Execute in strict spec §15 order per DECISIONS.md CP list:
   - CP-AIP-1-INGEST-CAPTURE (§4.1-4.4)
@@ -266,6 +302,28 @@
   - CP-AIP-9-COMMISSION-VIEW (§13 · milestones-first)
   - CP-AIP-10-TRAINING-RUNS (§11.6)
 - **Interleave CP-SKILLS-LAYER Slices 4-5 ONLY when AIP work is blocked or idle.** Never open a Skills slice while an AIP slice has open dependencies satisfiable in the current session.
+
+### Item 5.11 · POST-CP-AIP-10 · SO §6.9 wave (owner cadence amendment 2026-02-23 · REPORT-AND-CONTINUE not idle-halt · run-to-completion mandate ACTIVE 2026-02-23)
+
+**Sequence (opens immediately after CP-AIP-10 seals; each item is its own 5-commit seal with terminal pytest + double-green byte-identical stripped_sha256 + bundle emit + PINS pin + GAPS_FIXED_LEDGER append):**
+
+- **5.11.a · SO-6.9-LID-WAVE.** Whisper LID (MIT) + SpeechBrain VoxLingua107 (Apache 2.0) registration act (hash + licence file); per-segment INFERRED overlay labels pre-admission; admission gate DEFAULT ≥ 90% scored against the `google-transcripts/datasets/{kik,ebu,swa,luo,kln,guz,mer,bxk,kam,mrg,lwg,mas}/{audio,transcript}` labelled corpus as ground truth. TENANT-LABELS-PENDING honest-gap RESOLVED for the 12 languages listed; English/Sheng/code-switched retain honest-gap. Owner drop banked at `STATE/OWNER_DROPS/so_6_9_lid_ratification_20260223/DROP.md`.
+- **5.11.b · ENT-16-PILOT-LICENCE-SEEDS.** Pilot licence object created at tenant creation for RMS + DigiCow + AKKI-TEST with Compute dial Managed + Frontier dial Your Keys so every model call resolves from day 1.
+- **5.11.c · CENSUS-THREE-WAVES-WITH-LID-OVERLAY.** Complete the walk: unmeasured register → full B3 dimension set with defensibility matrix + sensitivity classification → perception pathway. LID labels from 5.11.a enter as overlay from first run.
+- **5.11.d · TENANT-SEPARATION.** Approving authorities: Fred Afune + Muthoni Kiarie + Samuel Kibacia (RMS); Vincent Kimani + Peninah Wanja (DigiCow). Any-one decision rule. Isolation sweep as exit evidence.
+- **5.11.e · TRACK-4-AUTONOMY-WIRING.** Register LID pass + corpus census + training seam as Census Autonomy Service jobs. Verification of autonomy pickup (receipt from the autonomy engine's run log showing the job ran) is the EXIT EVIDENCE for each such wiring seal. E1's role = build and WIRE the seams INTO the Census Autonomy Service so Akki runs them autonomously — then STEP BACK. E1's pod is NEVER the training host and NEVER a data path. Training compute + model weights + labelled corpus NEVER leave Akki's boundary. Owner Ruling (b) verbatim.
+- **5.11.f · CP-AIP-ASSIST-CENSUS.** Pre-approved by construction under §6.8 standing authority per owner drop 2026-02-23 (Track-5 pre-build checkpoint REMOVED). Six binding conditions as MUST-DO/MUST-NOT + exit evidence:
+  1. No path to any decision (negative-scan import isolation) → `test_assist_no_path_to_any_decision_negative_scan_import_isolation`
+  2. Confirmed turns only banked (A5.16 receipted provenance) → `test_assist_confirmed_turn_only_banked_a5_16_receipted_provenance`
+  3. Census assistant read-only against Registry (B5.1 byte-identical) → `test_assist_census_readonly_with_without_byte_identical_b5_1`
+  4. Training proposals freeze at commission; MOAC owner-set only → `test_assist_training_proposals_freeze_at_commission_moac_owner_set_only`
+  5. Content generated · chat surface · anchored · gated (R-32/A5.15/CON-6) → `test_assist_content_r32_a515_con6_anchored_gated_honest_marker_over_refusal`
+  6. No learning from dialogue (L-4/L-5 only admission path) → `test_assist_no_learning_from_dialogue_l4_l5_only_admission_path`
+  Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry. Fork rule: any condition not meetable as written → bank to `STATE/DESK_QUEUE.md` with options + recommendation; other track continues.
+- **5.11.g · CP-AIP-ASSIST-TRAINING.** Same six binding conditions as 5.11.f applied to training-run dialogue (propose objective + criteria; owner confirms; assistant NEVER decides; MOAC criteria set by owner's confirm only). Same fork rule.
+- **5.11.h · COMPILE-OWNER-RETURN-REPORT + BUILD-JOURNAL.** As FINAL deliverable: consolidated report on owner return covering everything sealed, ratchet history, all owner-drop receipts (Q1/Q2/Q3 + corpus census + LID gate agreement numbers), GAPS_FIXED_LEDGER, bundle-publish confirmations, DESK_QUEUE forks with recommendations, and the two pending human items (Akki-OS-Root privacy flip if E1 lacked repo-admin — banked at CP-AIP-9 boundary as honest-gap AKKI-OS-ROOT-PUBLIC-EXPOSURE; any credential/ratification items per §6.9 clause 9).
+
+**HALT conditions (owner directive verbatim 2026-02-23 run-to-completion mandate):** HALT to owner ONLY on `SPEC-CONFLICT-<n>`, a hard custody/gate violation, or completion of the full ledger + OWNER_RETURN_REPORT.md + BUILD_JOURNAL.md. Otherwise REPORT-AND-CONTINUE at each milestone seal (bundle status + GAPS_FIXED_LEDGER + measured receipts each time). All 17 standing guards + SO §6.9 remain binding.
 
 ### Item 6 · Backlog — 🔒 **BLOCKED-BY-DEFAULT**
 
@@ -281,7 +339,7 @@ CP-DECK-ENGINE Slice 2+, CP-STREAMING-EXTRACTION, MOAC refusal ceremony, Watch t
 - Watch trail — parked behind item 6.
 - Model Registry honest-scoped — parked behind item 6 · non-foreclosure only for now.
 - Voice identity rendering + music register (§7.5) — parked (P2 per AIP §7.5 non-foreclosure).
-- BUILD_JOURNAL + OWNER_RETURN_REPORT — parked until build close.
+- BUILD_JOURNAL + OWNER_RETURN_REPORT — parked until build close. **UN-PARKED 2026-02-23 as Item 5.11.h FINAL DELIVERABLE per run-to-completion mandate (owner drop `STATE/OWNER_DROPS/assist_cards_preapproved_and_run_to_completion_20260223/DROP.md`).**
 - Novel ideas discovered mid-build — parked with one-line rationale per SO §3.8 scope-freeze.
 
 ---

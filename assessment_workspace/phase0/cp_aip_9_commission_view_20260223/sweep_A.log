@@ -1,0 +1,2598 @@
+============================= test session starts ==============================
+collected 6748 items
+
+tests/invariants/test_service_1_refusal_envelope.py .                    [  0%]
+tests/invariants/test_8_ext.py ....................                      [  0%]
+tests/invariants/test_9_2a_purge_ast_gate.py ....                        [  0%]
+tests/invariants/test_9_2a_real_perception.py .........................  [  0%]
+tests/invariants/test_a17_16_model_form_offer.py .......                 [  0%]
+tests/invariants/test_a18_6_async_delivery_adoption.py ..                [  0%]
+tests/invariants/test_actor_declaration_v0_contract_frozen.py .          [  0%]
+tests/invariants/test_admission_refusal_dispatch.py ..........           [  1%]
+tests/invariants/test_admission_refusal_v0_contract_frozen.py .          [  1%]
+tests/invariants/test_admit_refuses_undeclared_actor.py ......           [  1%]
+tests/invariants/test_agent_containment_spec_v1_ingest.py .......        [  1%]
+tests/invariants/test_akki_arch_import_assertions.py ....                [  1%]
+tests/invariants/test_alpha_gap_hardening.py .....                       [  1%]
+tests/invariants/test_answer_fluency_af_g1_to_g8.py .............        [  1%]
+tests/invariants/test_approval_contracts_frozen.py ..                    [  1%]
+tests/invariants/test_artifact_store.py .....................            [  1%]
+tests/invariants/test_ast_egress_gate.py ..                              [  1%]
+tests/invariants/test_audio_plane_hermetic_no_external_calls.py ..       [  1%]
+tests/invariants/test_audio_plane_no_sibling_services.py ...             [  2%]
+tests/invariants/test_audio_segment_v0_contract_frozen.py ........       [  2%]
+tests/invariants/test_audit_trail_overview.py ....................       [  2%]
+tests/invariants/test_backfilled_contract_snapshots.py ...               [  2%]
+tests/invariants/test_baseline_drift_annotations_present.py .....        [  2%]
+tests/invariants/test_baseline_line_v0_contract_frozen.py .              [  2%]
+tests/invariants/test_baseline_no_new_breakage.py ............           [  2%]
+tests/invariants/test_blocked_vocabulary_correction.py ......            [  2%]
+tests/invariants/test_c13_closure_key_scoping_provenance_ttl.py ........ [  2%]
+                                                                         [  2%]
+tests/invariants/test_ca1_audit_sweep_cp_e6.py ....                      [  3%]
+tests/invariants/test_ca1_n2_breach_notification_enforcement.py ........ [  3%]
+...                                                                      [  3%]
+tests/invariants/test_ca1_n3_erasure_enforcement.py .......              [  3%]
+tests/invariants/test_ca1_n5_ledger_continuity_enforcement.py ......     [  3%]
+tests/invariants/test_ca1_n5_rto_landed.py ......                        [  3%]
+tests/invariants/test_campaign_infra.py ................................ [  3%]
+..............                                                           [  4%]
+tests/invariants/test_ccs1_c17_seam_bundle_freeze.py ...........         [  4%]
+tests/invariants/test_ccs2_dap_entitlement_freeze.py .............       [  4%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py ............            [  4%]
+tests/invariants/test_cd5_2_no_schedule_assertions.py ......             [  4%]
+tests/invariants/test_census_3_f_2_live_streaming.py ......              [  4%]
+tests/invariants/test_census_3_f_obs_audio_pipeline.py ...........       [  5%]
+tests/invariants/test_census_dimensions.py ..................            [  5%]
+tests/invariants/test_census_dimensions_ast_gate.py ..                   [  5%]
+tests/invariants/test_census_dimensions_wire_shape.py .....              [  5%]
+tests/invariants/test_census_engine_contract.py .............            [  5%]
+tests/invariants/test_census_wire_shape.py .........                     [  5%]
+tests/invariants/test_chokepoint_registers_all_crossings.py ............ [  5%]
+...                                                                      [  5%]
+tests/invariants/test_claims_validation_row_v0_contract_frozen.py ...... [  6%]
+...                                                                      [  6%]
+tests/invariants/test_close_run_whitepaper_ref_citation.py .....         [  6%]
+tests/invariants/test_commercial_cut_man_g1.py ..................        [  6%]
+tests/invariants/test_composed_conclusion_class_from_solva_boundary.py . [  6%]
+.                                                                        [  6%]
+tests/invariants/test_composed_conclusion_dispatch.py ......             [  6%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py ..       [  6%]
+tests/invariants/test_compute_estate_contract.py ............            [  6%]
+tests/invariants/test_compute_frontend_substitutions.py ............     [  6%]
+tests/invariants/test_compute_residuals_frontend.py ...........          [  7%]
+tests/invariants/test_compute_seam_artifact_hash_verified.py ...         [  7%]
+tests/invariants/test_compute_seam_no_unledgered_exec.py ...             [  7%]
+tests/invariants/test_compute_v2_frontend.py ...........                 [  7%]
+tests/invariants/test_conclusion_class_signature.py ...                  [  7%]
+tests/invariants/test_connect_draft_roundtrip.py ...........             [  7%]
+tests/invariants/test_connect_gpu_acceptance_wired.py ..........         [  7%]
+tests/invariants/test_connect_gpu_pipeline.py ...............            [  7%]
+tests/invariants/test_connect_gpu_scope_S_or_M.py ..                     [  7%]
+tests/invariants/test_connect_ui1c_gates.py ...........                  [  8%]
+tests/invariants/test_containment_frozen.py ..                           [  8%]
+tests/invariants/test_content_registry_v1_section_2_and_3.py ........... [  8%]
+                                                                         [  8%]
+tests/invariants/test_content_registry_v1_section_4_and_5.py ..........  [  8%]
+tests/invariants/test_content_registry_v1_section_6_to_9.py ..........   [  8%]
+tests/invariants/test_continuity_attestation_frozen.py .                 [  8%]
+tests/invariants/test_cost_ledger_w6_cp2.py .............                [  8%]
+tests/invariants/test_cp_aip_1_ingest_capture_aip_v1_0_section_4.py .... [  8%]
+........                                                                 [  8%]
+tests/invariants/test_cp_aip_2_dedup_condition_map_aip_v1_0_section_4_5.py . [  8%]
+.........                                                                [  9%]
+tests/invariants/test_cp_aip_3_character_register_custody_aip_v1_0_section_6.py . [  9%]
+...........                                                              [  9%]
+tests/invariants/test_cp_aip_4_codec_service_aip_v1_0_section_3.py ..... [  9%]
+.........                                                                [  9%]
+tests/invariants/test_cp_aip_5_clustering_aip_v1_0_section_5_3.py ...... [  9%]
+......                                                                   [  9%]
+tests/invariants/test_cp_aip_6_objective_wizard_aip_v1_0_section_8_9_12.py . [  9%]
+.........                                                                [  9%]
+tests/invariants/test_cp_aip_7_target_outcome_planner_aip_v1_0_section_10_11.py . [  9%]
+.......                                                                  [  9%]
+tests/invariants/test_cp_aip_8_sampling_reflection_aip_v1_0_section_11_2_11_3.py . [  9%]
+......                                                                   [ 10%]
+tests/invariants/test_cp_aip_9_commission_view_aip_v1_0_section_13.py .. [ 10%]
+......                                                                   [ 10%]
+tests/invariants/test_cp_census_autonomy_data_source_adapter_a_quad_prime.py . [ 10%]
+..........                                                               [ 10%]
+tests/invariants/test_cp_census_autonomy_gpu_spend_a_triple_prime.py ... [ 10%]
+...                                                                      [ 10%]
+tests/invariants/test_cp_census_autonomy_producer_bridge_a_quad_prime_cont_a.py . [ 10%]
+.........                                                                [ 10%]
+tests/invariants/test_cp_census_autonomy_response_required_a_triple_prime_cont_a.py . [ 10%]
+........                                                                 [ 10%]
+tests/invariants/test_cp_census_autonomy_response_required_badge_a_triple_prime_cont_b.py . [ 10%]
+..........                                                               [ 10%]
+tests/invariants/test_cp_census_autonomy_router_a_prime.py .......       [ 10%]
+tests/invariants/test_cp_census_autonomy_service_shape_gate.py ....      [ 11%]
+tests/invariants/test_cp_census_autonomy_ui_a_double_prime.py ........   [ 11%]
+tests/invariants/test_cp_census_rms_station_language_axis_phase_4_census_scheduler.py . [ 11%]
+.......                                                                  [ 11%]
+tests/invariants/test_cp_census_tenant_admission_correction_phase_4_c_v.py . [ 11%]
+...........                                                              [ 11%]
+tests/invariants/test_cp_commission_wizard_live_phase_4_a.py .......     [ 11%]
+tests/invariants/test_cp_connect_conformance_ruling_phase_4_b_i.py ...   [ 11%]
+tests/invariants/test_cp_deck_engine_dr_r4_opening_phase_4_d_i.py ...... [ 11%]
+                                                                         [ 11%]
+tests/invariants/test_cp_e7_digicow_pii_sanitizer_sweep.py .....         [ 11%]
+tests/invariants/test_cp_m11_gate_release_d6_canon_ref.py ......         [ 11%]
+tests/invariants/test_cp_m11_gate_release_watch_m9_callers_vs_schema_xfail.py . [ 11%]
+                                                                         [ 11%]
+tests/invariants/test_cp_m11_gate_release_watch_schema.py ......         [ 11%]
+tests/invariants/test_cp_skills_layer_a18_1_phase_4_c_i.py .....         [ 12%]
+tests/invariants/test_cp_skills_layer_a18_2_phase_4_c_ii.py ......       [ 12%]
+tests/invariants/test_cp_skills_layer_a18_3_a18_5_phase_4_c_iii.py ..... [ 12%]
+.......                                                                  [ 12%]
+tests/invariants/test_cp_skills_layer_a18_8_phase_4_c_iv.py ...........  [ 12%]
+tests/invariants/test_cp_skills_layer_series_close_phase_4_c_vi.py ..... [ 12%]
+.......                                                                  [ 12%]
+tests/invariants/test_cp_tenant_separation.py ........                   [ 12%]
+tests/invariants/test_credentials_paste_parser.py ...................... [ 13%]
+                                                                         [ 13%]
+tests/invariants/test_critic_pass_lift.py ...........................    [ 13%]
+tests/invariants/test_dap_lifecycle_party_halted_sub_wave.py .........   [ 13%]
+tests/invariants/test_dap_lifecycle_waited_days_surfaces.py ....         [ 13%]
+tests/invariants/test_dap_lifecycle_wave.py ............................ [ 14%]
+.............................                                            [ 14%]
+tests/invariants/test_default_class_ruled_constants.py ................  [ 14%]
+tests/invariants/test_dispatch_grain_form_refusal.py ....                [ 14%]
+tests/invariants/test_dispatch_shape_responsive.py ............          [ 14%]
+tests/invariants/test_dispatch_v0_untouched.py ...                       [ 15%]
+tests/invariants/test_dispatcher_advances_on_dead_trainer.py ....        [ 15%]
+tests/invariants/test_dispatcher_gpu_pinning.py ........                 [ 15%]
+tests/invariants/test_dispatcher_no_double_setsid.py ..                  [ 15%]
+tests/invariants/test_dispatcher_queue_drained_marker.py .....           [ 15%]
+tests/invariants/test_doc14_020_rights_quarantine_enforcement.py ....... [ 15%]
+                                                                         [ 15%]
+tests/invariants/test_dot_env_hygiene_guard.py .......                   [ 15%]
+tests/invariants/test_emit_moac_chokepoint_admission.py .....            [ 15%]
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py .......          [ 15%]
+tests/invariants/test_engineer_key_grant_ledger.py ...                   [ 15%]
+tests/invariants/test_engineer_key_grant_load_bearing_wire_shape.py .... [ 15%]
+....                                                                     [ 15%]
+tests/invariants/test_entitlement_service_v1_property_tests.py ......... [ 15%]
+............                                                             [ 16%]
+tests/invariants/test_ep4_terminal_test_guard.py .......                 [ 16%]
+tests/invariants/test_ep5_non_adoption_invariant.py .....                [ 16%]
+tests/invariants/test_estate_keys_and_connect_estate.py ............     [ 16%]
+tests/invariants/test_evidence_register_module.py ........               [ 16%]
+tests/invariants/test_evidence_register_router_user_path.py ........     [ 16%]
+tests/invariants/test_evidence_register_row_v0_contract_frozen.py ...... [ 16%]
+....                                                                     [ 16%]
+tests/invariants/test_extraction_params_v0.py ...                        [ 16%]
+tests/invariants/test_feasibility_dual_consumer_schema.py ...            [ 16%]
+tests/invariants/test_feasibility_honesty_under_absence.py ....          [ 17%]
+tests/invariants/test_feasibility_readonly.py .                          [ 17%]
+tests/invariants/test_feasibility_result_v0_contract_frozen.py .         [ 17%]
+tests/invariants/test_five_rings_v0_zero_mutation_ast_cell.py ...        [ 17%]
+tests/invariants/test_fixture_refresh_fr_g1_to_g7.py .......             [ 17%]
+tests/invariants/test_floor_feasibility_shared_derivation.py ....        [ 17%]
+tests/invariants/test_frozen_contract_snapshot_parity.py ...             [ 17%]
+tests/invariants/test_g5v5_dap_tier_a_1_to_30.py ....................... [ 17%]
+..........                                                               [ 17%]
+tests/invariants/test_g5v5_dap_tier_b_31_to_38.py ...........            [ 17%]
+tests/invariants/test_g5v5_doc1_a5_1_to_a5_9.py ................         [ 18%]
+tests/invariants/test_g5v5_doc5_a5_1_to_a5_6.py ..............           [ 18%]
+tests/invariants/test_g5v5_doc5_b5_1_to_b5_5.py ...........              [ 18%]
+tests/invariants/test_g5v5_family_d_rbm_roc.py ......................... [ 18%]
+...............                                                          [ 19%]
+tests/invariants/test_g5v5_sfp_1_7.py .......                            [ 19%]
+tests/invariants/test_govern_g_g1_to_g_g8.py ........                    [ 19%]
+tests/invariants/test_govern_ui1b_gates.py .................             [ 19%]
+tests/invariants/test_governed_seat_fill_full_http_journey.py ....       [ 19%]
+tests/invariants/test_grain_compatibility_shared_source.py .....         [ 19%]
+tests/invariants/test_handoff_artifact_reachable_waveb.py ....           [ 19%]
+tests/invariants/test_handoff_contract_v0_contract_frozen.py .           [ 19%]
+tests/invariants/test_handoff_route_readonly.py .......                  [ 19%]
+tests/invariants/test_harden_sh_defeats_include_precedence.py ...        [ 20%]
+tests/invariants/test_hardening_orchestrator.py .........                [ 20%]
+tests/invariants/test_invariant_contract_snapshots.py ......             [ 20%]
+tests/invariants/test_ip_allowlist_middleware.py ................        [ 20%]
+tests/invariants/test_ip_allowlist_owner_access.py .................     [ 20%]
+tests/invariants/test_launcher_respawns_dead_dispatcher.py ..            [ 20%]
+tests/invariants/test_layer_c_signal_ring_conformance.py .......         [ 20%]
+tests/invariants/test_ledger_absorbs_outer_gate_and_v2_via_stamp_audit.py . [ 20%]
+....                                                                     [ 20%]
+tests/invariants/test_ledger_v1_contract_frozen.py .                     [ 20%]
+tests/invariants/test_ledger_v1_dataclass_pydantic_mirror_parity.py .... [ 21%]
+                                                                         [ 21%]
+tests/invariants/test_license_class_config_governs_taxonomy.py ...       [ 21%]
+tests/invariants/test_lift_manifest_schema.py ..                         [ 21%]
+tests/invariants/test_llm_chokepoint_sole_importer.py ......             [ 21%]
+tests/invariants/test_llm_crossing_receipt_metering.py ....              [ 21%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py .....      [ 21%]
+tests/invariants/test_llm_masking_tier_enforced.py .....                 [ 21%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py .......       [ 21%]
+tests/invariants/test_lowered_standard_w6_cp5.py .........               [ 21%]
+tests/invariants/test_m10_ledger.py ........................             [ 21%]
+tests/invariants/test_m10_w2a_verifier_credential_separation_and_receipt_store.py . [ 21%]
+..............                                                           [ 22%]
+tests/invariants/test_m10_w2b_head_hash_publication_and_cadence.py ..... [ 22%]
+..........                                                               [ 22%]
+tests/invariants/test_m10_w3_sev1_wire_on_chain_break.py ............... [ 22%]
+..                                                                       [ 22%]
+tests/invariants/test_m10_w4a_refusal_writer_consolidation.py .......... [ 22%]
+......                                                                   [ 22%]
+tests/invariants/test_m10_w4b_countersign_writer_consolidation.py ...... [ 22%]
+..........                                                               [ 23%]
+tests/invariants/test_m10_w4c_northena_writer_consolidation.py ......... [ 23%]
+.......                                                                  [ 23%]
+tests/invariants/test_m10_w4d_deletion_writer_consolidation.py ......... [ 23%]
+.......                                                                  [ 23%]
+tests/invariants/test_m10_w4e_memory_writer_consolidation.py ........... [ 23%]
+.....                                                                    [ 23%]
+tests/invariants/test_m11w1_data_layer_sole_motor_importer.py ...        [ 23%]
+tests/invariants/test_m11w1_data_repository_akki_data_001.py ........... [ 24%]
+..                                                                       [ 24%]
+tests/invariants/test_m11w1_m9_files_untouched.py .                      [ 24%]
+tests/invariants/test_m11w2_x_akki_context_hmac.py ..........            [ 24%]
+tests/invariants/test_m11w3_control_plane_gates.py ..................... [ 24%]
+....................                                                     [ 24%]
+tests/invariants/test_m11w4_w7_control_plane_gates.py .................. [ 25%]
+.......................................................                  [ 25%]
+tests/invariants/test_m12_w1_llm_chokepoint_callsite_level_negative_scan.py . [ 25%]
+..                                                                       [ 25%]
+tests/invariants/test_m12_w1b_sec1_policy_integrity.py .............     [ 26%]
+tests/invariants/test_m12_w1c_sec1_policy_integrity_runtime_wire.py .... [ 26%]
+........                                                                 [ 26%]
+tests/invariants/test_m12_w1d_dap7_custody_option_d.py .........         [ 26%]
+tests/invariants/test_m12_w1f_watch_input_seat_lango_scoring.py ........ [ 26%]
+....                                                                     [ 26%]
+tests/invariants/test_m12_w1g_closed_outbound_network.py ..........      [ 26%]
+tests/invariants/test_m12_w1h_d16_d17_structural_prohibitions.py ....... [ 26%]
+...                                                                      [ 26%]
+tests/invariants/test_m12_w1i_tcb_chokepoint_golden_input_byte_identical.py . [ 26%]
+....................................                                     [ 27%]
+tests/invariants/test_m12b_w1_certificate_carrying_verdict_rows.py ..... [ 27%]
+.....                                                                    [ 27%]
+tests/invariants/test_m12b_w1_ed25519_primitive_determinism.py ......... [ 27%]
+.                                                                        [ 27%]
+tests/invariants/test_m12b_w1_m11_gate_release_c2_xfail_retirement.py .. [ 27%]
+...                                                                      [ 27%]
+tests/invariants/test_m12b_w1_signature_as_guard_schema_field_exclusion.py . [ 27%]
+........                                                                 [ 28%]
+tests/invariants/test_m12b_w1_watch_vocabulary_caller_flip_ast.py ...... [ 28%]
+                                                                         [ 28%]
+tests/invariants/test_m13_w2_kms_envelope_and_rotation.py .........      [ 28%]
+tests/invariants/test_m13_w3_otel_instrumentation.py .......             [ 28%]
+tests/invariants/test_m13_w4_terraform_manifest.py ........              [ 28%]
+tests/invariants/test_m13_w5_b10_runbooks.py ........                    [ 28%]
+tests/invariants/test_m14_w1_handoff_contract_shape_freeze.py ........   [ 28%]
+tests/invariants/test_m14_w2_mkondo_registry.py ......                   [ 28%]
+tests/invariants/test_m14_w3_answering_service_collections.py ......     [ 28%]
+tests/invariants/test_m14_w4_webhook_delivery_signed.py .......          [ 28%]
+tests/invariants/test_m14_w5_seal_integration.py ......                  [ 29%]
+tests/invariants/test_m15_w1_whitepaper_draft_shape_freeze.py ........   [ 29%]
+tests/invariants/test_m15_w2_skill_file_provenance_shape_freeze.py ..... [ 29%]
+..                                                                       [ 29%]
+tests/invariants/test_m15_w3_documents_registry_collections.py ......    [ 29%]
+tests/invariants/test_m15_w4_frame_precedence.py .......                 [ 29%]
+tests/invariants/test_m15_w5_seal_integration.py ......                  [ 29%]
+tests/invariants/test_m16_w1_cif_proposal_shape_freeze.py .......        [ 29%]
+tests/invariants/test_m16_w2_cif_detection.py .......                    [ 29%]
+tests/invariants/test_m16_w3_cif_acceptance_point.py .......             [ 29%]
+tests/invariants/test_m16_w4_cif_output_routing.py .......               [ 29%]
+tests/invariants/test_m16_w5_seal_integration.py .......                 [ 30%]
+tests/invariants/test_m17_w1_application_contract_shape_freeze.py ...... [ 30%]
+..                                                                       [ 30%]
+tests/invariants/test_m17_w2_integration_console_key_issuance.py ....... [ 30%]
+                                                                         [ 30%]
+tests/invariants/test_m17_w3_personal_client_session.py .......          [ 30%]
+tests/invariants/test_m17_w4_governance_in_client_invariants.py .......  [ 30%]
+tests/invariants/test_m17_w5_seal_integration.py .......                 [ 30%]
+tests/invariants/test_m17_w6_handoff_binding_adapter_and_type_tag.py ... [ 30%]
+....                                                                     [ 30%]
+tests/invariants/test_master_admin_auth_reconciliation.py .............. [ 30%]
+...                                                                      [ 30%]
+tests/invariants/test_master_admin_pending_seams.py ......               [ 31%]
+tests/invariants/test_master_admin_recent_actions.py .....               [ 31%]
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py ...        [ 31%]
+tests/invariants/test_memory_compaction_v1_hard_bans_grep_negative.py .. [ 31%]
+....                                                                     [ 31%]
+tests/invariants/test_memory_compaction_v1_property_tests.py .......     [ 31%]
+tests/invariants/test_memory_compaction_v1_residual_invariants.py ...... [ 31%]
+                                                                         [ 31%]
+tests/invariants/test_memory_compaction_v1_w3_tcb_registration.py ...    [ 31%]
+tests/invariants/test_memory_compaction_v1_w4_one_chain_integration.py . [ 31%]
+.....                                                                    [ 31%]
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py ..... [ 31%]
+..                                                                       [ 31%]
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py ........      [ 31%]
+tests/invariants/test_memory_service_m_g1_to_m_g9.py ................... [ 32%]
+.....                                                                    [ 32%]
+tests/invariants/test_mirage_artifact_v0_contract_frozen.py .........    [ 32%]
+tests/invariants/test_mirage_contracts_frozen.py ...                     [ 32%]
+tests/invariants/test_model_acceptance_card_v0_contract_frozen.py .      [ 32%]
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py ...... [ 32%]
+.....                                                                    [ 32%]
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py .....   [ 32%]
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py . [ 32%]
+....                                                                     [ 32%]
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_kernel.py . [ 32%]
+......                                                                   [ 32%]
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py . [ 32%]
+......                                                                   [ 32%]
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py . [ 32%]
+.....                                                                    [ 32%]
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py ............ [ 33%]
+..                                                                       [ 33%]
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py ..... [ 33%]
+.............                                                            [ 33%]
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py ........ [ 33%]
+.                                                                        [ 33%]
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py ...... [ 33%]
+..........................................                               [ 34%]
+tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py . [ 34%]
+........                                                                 [ 34%]
+tests/invariants/test_mtafiti_gpu_discovery_wave_close.py ..........     [ 34%]
+tests/invariants/test_mtafiti_invariants.py ..................           [ 34%]
+tests/invariants/test_multi_table_extract.py ........................... [ 35%]
+.....                                                                    [ 35%]
+tests/invariants/test_n_series_contracts_frozen.py ..                    [ 35%]
+tests/invariants/test_no_unauthorized_deletion_path.py ...               [ 35%]
+tests/invariants/test_northena_admit_gate_converge_ledger.py ........... [ 35%]
+.......                                                                  [ 35%]
+tests/invariants/test_northena_ledger_retention.py ..                    [ 35%]
+tests/invariants/test_northena_ledger_row_v0.py .                        [ 35%]
+tests/invariants/test_objective_card_pinned.py .....                     [ 35%]
+tests/invariants/test_objective_request_v2_contract_frozen.py .          [ 35%]
+tests/invariants/test_opportunity_briefs_ob_g1_to_g5.py ................ [ 36%]
+                                                                         [ 36%]
+tests/invariants/test_optimizer_comparison_v0_contract_frozen.py ....... [ 36%]
+..                                                                       [ 36%]
+tests/invariants/test_orch_boot.py F                                     [ 36%]
+tests/invariants/test_orchestrator_resilience.py ................        [ 36%]
+tests/invariants/test_orchestrator_resilience_r2.py ...............      [ 36%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py .........       [ 36%]
+tests/invariants/test_orchestrator_resilience_wire.py ..............     [ 36%]
+tests/invariants/test_outer_gate_irreversibility.py ..........           [ 37%]
+tests/invariants/test_output_verified_seal.py .......................... [ 37%]
+.....                                                                    [ 37%]
+tests/invariants/test_p1_cp1_tenant_context_enforcement.py .......       [ 37%]
+tests/invariants/test_p1_cp2_tenant_entity.py .....                      [ 37%]
+tests/invariants/test_p1_cp3_workspace_entity.py .....                   [ 37%]
+tests/invariants/test_p1_cp4_user_entity.py .....                        [ 37%]
+tests/invariants/test_p1_cp5_service_account_entity.py .....             [ 37%]
+tests/invariants/test_p1_cp6_tenant_lifecycle.py ........                [ 38%]
+tests/invariants/test_p1_custody_closure.py ............................ [ 38%]
+....                                                                     [ 38%]
+tests/invariants/test_p2_buildable_now.py .........................      [ 38%]
+tests/invariants/test_p2_cp1_role_registry.py .....                      [ 39%]
+tests/invariants/test_p2_cp2_role_assignment.py .......                  [ 39%]
+tests/invariants/test_p2_cp3_permission_evaluation.py ..........         [ 39%]
+tests/invariants/test_p2_cp4_session_binder.py ............              [ 39%]
+tests/invariants/test_p2_cp5_break_glass_session.py ..............       [ 39%]
+tests/invariants/test_p3_cp1_estate_entity.py .........                  [ 39%]
+tests/invariants/test_p3_cp2_connector_entity.py .........               [ 39%]
+tests/invariants/test_p3_cp3_connector_mode_lattice.py ..........        [ 40%]
+tests/invariants/test_p3_cp4_mode_change_approval.py .............       [ 40%]
+tests/invariants/test_p3_cp5_connection_test.py ............             [ 40%]
+tests/invariants/test_p4_cp1_compute_integration.py ..........           [ 40%]
+tests/invariants/test_p4_cp2_allocation_entity.py ...........            [ 40%]
+tests/invariants/test_p4_cp3_task_entity.py .........                    [ 40%]
+tests/invariants/test_p4_cp4_task_scope_enforcement.py ..........        [ 41%]
+tests/invariants/test_p4_cp5_task_invalidation.py ...........            [ 41%]
+tests/invariants/test_p4_cp6_scheduler_admission.py .............        [ 41%]
+tests/invariants/test_p4_cp7_metering_ledger.py .............            [ 41%]
+tests/invariants/test_p4_cp8_preemption_contract.py ...........          [ 41%]
+tests/invariants/test_p5_cp1_app_entity.py .......                       [ 41%]
+tests/invariants/test_p5_cp2_app_enablement.py .............             [ 42%]
+tests/invariants/test_p5_cp3_app_revalidation.py ..............          [ 42%]
+tests/invariants/test_p5_cp4_wizard_state_machine.py .................   [ 42%]
+tests/invariants/test_p5_cp5_provisioning_report.py .................    [ 42%]
+tests/invariants/test_p5_cp6_theme_entity.py ..................          [ 43%]
+tests/invariants/test_p6_cp1_audit_event.py ...........                  [ 43%]
+tests/invariants/test_p6_cp2_audit_event_types.py ............           [ 43%]
+tests/invariants/test_p6_cp3_cross_tenant_access_suite.py .............. [ 43%]
+..                                                                       [ 43%]
+tests/invariants/test_p6_cp4_pilot_tenant_register.py .............      [ 43%]
+tests/invariants/test_p6_cp5_sandbox_offboarding.py ..............       [ 44%]
+tests/invariants/test_parity_seat_extends_thin_kernel.py ..              [ 44%]
+tests/invariants/test_phase3_subcycle1_gates.py ..........               [ 44%]
+tests/invariants/test_phase_5_stage_b_async_delivery.py ................ [ 44%]
+..................                                                       [ 44%]
+tests/invariants/test_phase_6_stage_b_economics.py ..................... [ 45%]
+...                                                                      [ 45%]
+tests/invariants/test_phase_7_stage_b_1_wizard.py ...................... [ 45%]
+...............                                                          [ 45%]
+tests/invariants/test_phase_7_stage_b_2_wizard.py ...................... [ 45%]
+.....................                                                    [ 46%]
+tests/invariants/test_phase_7_stage_b_3_wizard.py ...................... [ 46%]
+........................................................................ [ 47%]
+.....s....                                                               [ 47%]
+tests/invariants/test_phase_8_b_1_auth_and_shims.py .................... [ 48%]
+.............                                                            [ 48%]
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py ........... [ 48%]
+...                                                                      [ 48%]
+tests/invariants/test_phase_8_b_5a_compliance.py ....................... [ 48%]
+..........                                                               [ 48%]
+tests/invariants/test_phase_8_b_5b.py ..........................         [ 49%]
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py .................... [ 49%]
+..                                                                       [ 49%]
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py .................... [ 49%]
+............                                                             [ 50%]
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py .................... [ 50%]
+.........................                                                [ 50%]
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py ................. [ 51%]
+..............................                                           [ 51%]
+tests/invariants/test_portal_census_journey.py ..................        [ 51%]
+tests/invariants/test_portal_census_surface_connection.py .............. [ 51%]
+...                                                                      [ 52%]
+tests/invariants/test_portal_registry_landing.py ......................  [ 52%]
+tests/invariants/test_pricing_paths_b_honest_501.py ......               [ 52%]
+tests/invariants/test_principal_context_adapter.py .....                 [ 52%]
+tests/invariants/test_principal_model_v1.py .............                [ 52%]
+tests/invariants/test_production_housing_ph_g1_to_g6.py ................ [ 52%]
+........                                                                 [ 53%]
+tests/invariants/test_qualified_data_outer_gate_ride.py ..               [ 53%]
+tests/invariants/test_qualified_data_selection.py ......                 [ 53%]
+tests/invariants/test_r100_portal_write_surface.py ..................... [ 53%]
+                                                                         [ 53%]
+tests/invariants/test_r4_2_transform_forms_wired.py ...                  [ 53%]
+tests/invariants/test_r4_3_memory_wired.py ...                           [ 53%]
+tests/invariants/test_r4_4_handoff_wired.py ...                          [ 53%]
+tests/invariants/test_r4_5_opportunity_briefs_pipeline_wired.py ....     [ 53%]
+tests/invariants/test_r4_6_7_whitepapers_and_n_series.py .....           [ 53%]
+tests/invariants/test_r4_8_critic_seam_producer_wiring.py .....          [ 53%]
+tests/invariants/test_r88_baseline_annotation_total_coverage.py ..       [ 53%]
+tests/invariants/test_r88_cp10_harness_scheduled_closure_drift_annotation.py . [ 53%]
+.....                                                                    [ 53%]
+tests/invariants/test_r91_v8_substitution_retirement_guard.py ....       [ 54%]
+tests/invariants/test_r99_canon_rules_registry_router_surface.py ....... [ 54%]
+..                                                                       [ 54%]
+tests/invariants/test_rds_data_submit.py ........................        [ 54%]
+tests/invariants/test_reasoning_faculty_isolation.py ................    [ 54%]
+tests/invariants/test_recipe_seat_and_optimizer_harness.py ............. [ 54%]
+.                                                                        [ 54%]
+tests/invariants/test_record_matrix_thin_kernel.py ......                [ 55%]
+tests/invariants/test_reflection_before_commit.py ............           [ 55%]
+tests/invariants/test_registry_facts.py ...............                  [ 55%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py .....  [ 55%]
+tests/invariants/test_registry_prove_ui1d_gates.py .................     [ 55%]
+tests/invariants/test_registry_recipe_version_m_d_extension.py ......    [ 55%]
+tests/invariants/test_remote_harden_sudo_invocation.py ..                [ 55%]
+tests/invariants/test_retention_enforcement_w6_cp3.py ..........         [ 56%]
+tests/invariants/test_rules_update_lifecycle_frozen.py ...               [ 56%]
+tests/invariants/test_ruling2_occupation_pii.py .........                [ 56%]
+tests/invariants/test_ruling4_keypair_hardening.py ...........           [ 56%]
+tests/invariants/test_ruling5_census_clarification_drawer_contract.py .. [ 56%]
+...                                                                      [ 56%]
+tests/invariants/test_seal_cites_card.py ..                              [ 56%]
+tests/invariants/test_secret_hygiene_hf_token_guard.py .......           [ 56%]
+tests/invariants/test_service_1_invariants.py .......                    [ 56%]
+tests/invariants/test_service_1_refusal_envelope.py .......              [ 56%]
+tests/invariants/test_sever_certainty_signal_v0_contract_frozen.py ..... [ 56%]
+....                                                                     [ 56%]
+tests/invariants/test_shaping_wizard_r3.py .........                     [ 57%]
+tests/invariants/test_shield_dry_run_preview.py .......                  [ 57%]
+tests/invariants/test_shield_train_admission_request.py ......           [ 57%]
+tests/invariants/test_shield_train_masking_policy.py ..............      [ 57%]
+tests/invariants/test_shield_train_pii_registry_expansion.py ........... [ 57%]
+.                                                                        [ 57%]
+tests/invariants/test_shield_train_pipeline.py .........                 [ 57%]
+tests/invariants/test_shield_train_row_executor.py ..........            [ 57%]
+tests/invariants/test_shield_train_run.py .............................. [ 58%]
+                                                                         [ 58%]
+tests/invariants/test_ship_manifest_dod.py ........                      [ 58%]
+tests/invariants/test_ship_manifest_dod_collection_health.py ..........  [ 58%]
+tests/invariants/test_ship_manifest_dod_route_table_drift.py ........... [ 58%]
+...........................................................              [ 59%]
+tests/invariants/test_ship_manifest_dod_runtime_drift_guard.py .         [ 59%]
+tests/invariants/test_signal_ring_dimensions_v0.py ..                    [ 59%]
+tests/invariants/test_skill_file_provenance_v0_contract_frozen.py ...... [ 59%]
+..                                                                       [ 59%]
+tests/invariants/test_skill_files_module.py ........                     [ 59%]
+tests/invariants/test_skill_files_router_user_path.py .......            [ 60%]
+tests/invariants/test_sms_body_emit.py ....................              [ 60%]
+tests/invariants/test_solva_assertion_boundary.py ..........             [ 60%]
+tests/invariants/test_solva_reasoning_stages.py ......                   [ 60%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py ....... [ 60%]
+                                                                         [ 60%]
+tests/invariants/test_solva_trace_ledger_integration.py ...              [ 60%]
+tests/invariants/test_spec_id_tracking_index.py .........                [ 60%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py .............. [ 61%]
+........                                                                 [ 61%]
+tests/invariants/test_standing_orders_mission_framed_rule.py ..          [ 61%]
+tests/invariants/test_standing_orders_present.py ...F...                 [ 61%]
+tests/invariants/test_substrate_drop_gate.py .............               [ 61%]
+tests/invariants/test_sw6_hyg_1_credential_metadata.py ......            [ 61%]
+tests/invariants/test_targeta_invariants.py ............                 [ 61%]
+tests/invariants/test_task_identity_thin_kernel.py .....                 [ 61%]
+tests/invariants/test_team_ui1e_gates.py .............                   [ 62%]
+tests/invariants/test_thinklab_reasoning_wire.py ...                     [ 62%]
+tests/invariants/test_trace_lens_cross_engine_correlation.py .......     [ 62%]
+tests/invariants/test_trace_lens_readonly.py .................           [ 62%]
+tests/invariants/test_trainer_runner_module.py ............              [ 62%]
+tests/invariants/test_training_endpoints.py .........                    [ 62%]
+tests/invariants/test_training_material_admit_v0_contract_frozen.py .... [ 62%]
+...                                                                      [ 62%]
+tests/invariants/test_training_module.py ..................              [ 63%]
+tests/invariants/test_training_params_v0_contract_frozen.py ........     [ 63%]
+tests/invariants/test_training_router_cp5_user_path.py .........         [ 63%]
+tests/invariants/test_training_run_v0_contract_frozen.py ..........      [ 63%]
+tests/invariants/test_training_runs_router_user_path.py .......          [ 63%]
+tests/invariants/test_transform_forms.py .....................           [ 63%]
+tests/invariants/test_use_data_commission_verdict.py .................   [ 64%]
+tests/invariants/test_v0_paths_byte_identical_after_4a.py .              [ 64%]
+tests/invariants/test_v0_paths_byte_identical_after_4b.py ..             [ 64%]
+tests/invariants/test_v0_paths_byte_identical_after_5b.py .............. [ 64%]
+......                                                                   [ 64%]
+tests/invariants/test_v0_paths_byte_identical_after_6b.py .............. [ 64%]
+........                                                                 [ 64%]
+tests/invariants/test_v0_paths_byte_identical_after_7b_1.py ............ [ 65%]
+..............                                                           [ 65%]
+tests/invariants/test_v21_logits_tensor_fits_gpu.py ..                   [ 65%]
+tests/invariants/test_v2_gate_refusal_cumulative.py .............        [ 65%]
+tests/invariants/test_v2_os_build_collab_apps_surfaces_present.py ...... [ 65%]
+.......................................                                  [ 66%]
+tests/invariants/test_v2_os_shell_present_in_runtime_app_js.py ......... [ 66%]
+...                                                                      [ 66%]
+tests/invariants/test_v2_os_thinklab_and_admin_surfaces_present.py ..... [ 66%]
+........................................                                 [ 66%]
+tests/invariants/test_v2_os_work_and_monitor_surfaces_present.py ....... [ 67%]
+........................                                                 [ 67%]
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py .... [ 67%]
+                                                                         [ 67%]
+tests/invariants/test_vendored_tree_mirrors_spine.py .                   [ 67%]
+tests/invariants/test_w10_cp1_ruling_1_firing_drill.py .......           [ 67%]
+tests/invariants/test_w10_cp2_mirage_machinery.py .................      [ 67%]
+tests/invariants/test_w10_cp3_drills_and_fitness.py ............         [ 68%]
+tests/invariants/test_w10_cp4_reserved_decisions.py .............        [ 68%]
+tests/invariants/test_w10_cp5_witness_fabric.py ...............          [ 68%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py .......                [ 68%]
+tests/invariants/test_w10_cp7_doc14_expansion.py ........                [ 68%]
+tests/invariants/test_w10_cp8_state_endpoints.py .......                 [ 68%]
+tests/invariants/test_w10_cp9_composite_lock.py .....                    [ 68%]
+tests/invariants/test_w1_cp1_job_manifest_and_kind_registry.py ......... [ 68%]
+................................                                         [ 69%]
+tests/invariants/test_w1_cp2_admission_supervisor.py ................... [ 69%]
+                                                                         [ 69%]
+tests/invariants/test_w1_cp2b_runtime_supervisor.py ................     [ 69%]
+tests/invariants/test_w1_cp3_governance.py .......................       [ 70%]
+tests/invariants/test_w1_cp4_supervisor_governance_compose.py .......... [ 70%]
+.                                                                        [ 70%]
+tests/invariants/test_w1b_cp1_retention_policy.py ................       [ 70%]
+tests/invariants/test_w1b_cp2_source_connector.py ...................... [ 71%]
+.....                                                                    [ 71%]
+tests/invariants/test_w1b_cp3_synology_file_station.py ..............    [ 71%]
+tests/invariants/test_w1b_cp4_capability_registry.py ...............     [ 71%]
+tests/invariants/test_w1b_cp5_attribute_stream_bundle.py ............... [ 71%]
+.                                                                        [ 71%]
+tests/invariants/test_w1b_cp5_contract_shells.py ............            [ 71%]
+tests/invariants/test_w1c_platform_integration_proof.py ...........      [ 72%]
+tests/invariants/test_w5_cp4_backend_endpoints.py .........              [ 72%]
+tests/invariants/test_w7_cp1_training_rates.py .....                     [ 72%]
+tests/invariants/test_w7_cp3_model_registry.py .............             [ 72%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py .........       [ 72%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py ........       [ 72%]
+tests/invariants/test_w7_cp7_router_mount.py ...........                 [ 72%]
+tests/invariants/test_w8_cp1_canonical_projection.py ........            [ 73%]
+tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py ...             [ 73%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py ......                   [ 73%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py ........              [ 73%]
+tests/invariants/test_w8_cp4_n_series_scaffolding.py ......              [ 73%]
+tests/invariants/test_w8_cp5_trace_surface.py ......                     [ 73%]
+tests/invariants/test_w8_cp6_rules_update_lifecycle.py ...........       [ 73%]
+tests/invariants/test_w9_cp1_watch_seam.py ............                  [ 73%]
+tests/invariants/test_w9_cp2_route_recheck_failure.py ........           [ 73%]
+tests/invariants/test_w9_cp3_route_staleness_flag.py .......             [ 74%]
+tests/invariants/test_w9_cp4_continuity_attestation.py .......           [ 74%]
+tests/invariants/test_w9_cp5_containment.py ...........                  [ 74%]
+tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py . [ 74%]
+.....                                                                    [ 74%]
+tests/invariants/test_w_registry_full_build_cp10_wave_close.py ..        [ 74%]
+tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py ....... [ 74%]
+.                                                                        [ 74%]
+tests/invariants/test_w_registry_full_build_cp8_v3_substitution_rules.py . [ 74%]
+......                                                                   [ 74%]
+tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py .....  [ 74%]
+tests/invariants/test_w_registry_full_build_payload_shapes.py .......... [ 74%]
+....                                                                     [ 74%]
+tests/invariants/test_w_registry_full_build_route_inventory.py ......... [ 75%]
+...............                                                          [ 75%]
+tests/invariants/test_watch_action_v0_contract_frozen.py ............    [ 75%]
+tests/invariants/test_watch_cp_c2_http_journey.py .......                [ 75%]
+tests/invariants/test_watch_cp_c2_macho_mkono.py ..................      [ 75%]
+tests/invariants/test_watch_cp_c3_http_journey.py ........               [ 75%]
+tests/invariants/test_watch_cp_c3_mark_dye_pack.py ..........            [ 76%]
+tests/invariants/test_watch_cp_c3_mirage_isolation.py ........           [ 76%]
+tests/invariants/test_watch_cp_c4_http_journey.py ......                 [ 76%]
+tests/invariants/test_watch_cp_c4_witness.py ........                    [ 76%]
+tests/invariants/test_watch_cp_c5_console_honesty.py .....               [ 76%]
+tests/invariants/test_watch_seam_frozen.py ..                            [ 76%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py ......... [ 76%]
+.....                                                                    [ 76%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py ...... [ 76%]
+.......                                                                  [ 76%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py ..... [ 77%]
+........                                                                 [ 77%]
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py .......... [ 77%]
+...                                                                      [ 77%]
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py ............   [ 77%]
+tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py ......          [ 77%]
+tests/invariants/test_wave_f_pin_vs_installed_environment_invariant.py . [ 77%]
+....                                                                     [ 77%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py ........       [ 77%]
+tests/invariants/test_wave_g_v8_shell_port.py .......................... [ 78%]
+........................................................................ [ 79%]
+........................................................................ [ 80%]
+...................................................                      [ 81%]
+tests/invariants/test_wcensus_cp_c1_source_candidate.py ......           [ 81%]
+tests/invariants/test_wcensus_cp_c2_measurement.py ......                [ 81%]
+tests/invariants/test_wcensus_cp_c3_census_run.py ......                 [ 81%]
+tests/invariants/test_wcensus_cp_c4_registry_write.py ......             [ 81%]
+tests/invariants/test_wcensus_cp_c5_job_manifest.py ......               [ 81%]
+tests/invariants/test_wcensus_cp_c6_stratum_activation.py ......         [ 81%]
+tests/invariants/test_wcensus_supplement_audio_inventory_mount.py ...... [ 81%]
+                                                                         [ 81%]
+tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py ....... [ 81%]
+                                                                         [ 81%]
+tests/invariants/test_wcro_cp_cro1_source_record_extension.py ......     [ 81%]
+tests/invariants/test_wcro_cp_cro2_estate_enumerator.py ......           [ 81%]
+tests/invariants/test_wd12_poc_receipt_contract.py ......                [ 82%]
+tests/invariants/test_wdap_2a_external_party_principal_and_admission.py . [ 82%]
+........                                                                 [ 82%]
+tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py ........  [ 82%]
+tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py ... [ 82%]
+....                                                                     [ 82%]
+tests/invariants/test_wdap_2d_objective_freeze_and_assistance_chat.py .. [ 82%]
+...                                                                      [ 82%]
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py .... [ 82%]
+......                                                                   [ 82%]
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py .........    [ 82%]
+tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py ....... [ 82%]
+.                                                                        [ 82%]
+tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py . [ 82%]
+.......                                                                  [ 83%]
+tests/invariants/test_wdaswr_cp_daswr1_analyze_workspace_engine.py ..... [ 83%]
+                                                                         [ 83%]
+tests/invariants/test_wdddr_cp_dddr1_deep_dive_engine.py .....           [ 83%]
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py .......        [ 83%]
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py ......    [ 83%]
+tests/invariants/test_wdslift_cp_d3_source_registry.py ......            [ 83%]
+tests/invariants/test_wdslift_cp_d4_analyze_tabs.py ......               [ 83%]
+tests/invariants/test_wdslift_cp_d5_analysis_session.py ......           [ 83%]
+tests/invariants/test_wdslift_cp_d6_export_artefact.py ......            [ 83%]
+tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py ......         [ 83%]
+tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py ......   [ 83%]
+tests/invariants/test_wexr_cp_exr1_render_export_and_release.py ........ [ 84%]
+.                                                                        [ 84%]
+tests/invariants/test_whitepaper_draft_frozen.py .                       [ 84%]
+tests/invariants/test_witness_fabric_frozen.py ...                       [ 84%]
+tests/invariants/test_wm2_sw10_doc0_attr6_reference_monitor.py ...       [ 84%]
+tests/invariants/test_wm2_sw11_doc0_attr7_baseline.py ....               [ 84%]
+tests/invariants/test_wm2_sw12_doc0_attr8_audit_au3.py ....              [ 84%]
+tests/invariants/test_wm2_sw13_doc0_attr10_determinism.py ....           [ 84%]
+tests/invariants/test_wm2_sw14_coherence_br_11.py ....                   [ 84%]
+tests/invariants/test_wm2_sw15_doc0_attr12_governance_ceremony.py .....  [ 84%]
+tests/invariants/test_wm2_sw1_rule_registry_bootstrap.py .......         [ 84%]
+tests/invariants/test_wm2_sw2_rules_service_ceremony.py ...........      [ 84%]
+tests/invariants/test_wm2_sw3_rule_book_library.py ......                [ 84%]
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py ........  [ 84%]
+tests/invariants/test_wm2_sw5_g8_reliable_time_source.py .......         [ 85%]
+tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py .......         [ 85%]
+tests/invariants/test_wm2_sw7_doc0_attr1_tcb.py ....                     [ 85%]
+tests/invariants/test_wm2_sw8_doc0_attr2_subsystems.py ...               [ 85%]
+tests/invariants/test_wm2_sw9_doc0_attr3_triad.py ....                   [ 85%]
+tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py ..........         [ 85%]
+tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py ....... [ 85%]
+.                                                                        [ 85%]
+tests/invariants/test_wm3_sw12_m3_block_completion.py .......            [ 85%]
+tests/invariants/test_wm3_sw1_flag2_tight_budget_defensible_write.py ... [ 85%]
+..                                                                       [ 85%]
+tests/invariants/test_wm3_sw2_watch_stack_core.py ......                 [ 85%]
+tests/invariants/test_wm3_sw3_watch_learning_certificate_library.py .... [ 85%]
+...                                                                      [ 85%]
+tests/invariants/test_wm3_sw4_watch_learning_mirage_provocation.py ..... [ 85%]
+...                                                                      [ 86%]
+tests/invariants/test_wm3_sw5_watch_learning_research_queue.py ......    [ 86%]
+tests/invariants/test_wm3_sw6_watch_learning_capability_admission.py ... [ 86%]
+....                                                                     [ 86%]
+tests/invariants/test_wm3_sw7_agent_containment.py ......                [ 86%]
+tests/invariants/test_wm3_sw8_pruning_unlearning.py ......               [ 86%]
+tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py .......        [ 86%]
+tests/invariants/test_wm4_sw1_solva_explain_surface.py .......           [ 86%]
+tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py ........       [ 86%]
+tests/invariants/test_wm4_sw3_estate_check_chip.py ........              [ 86%]
+tests/invariants/test_wm4_sw4_three_verdicts.py .........                [ 86%]
+tests/invariants/test_wm4_sw5_handoff_contract.py ........               [ 87%]
+tests/invariants/test_wm4_sw6_m4_block_completion.py .......             [ 87%]
+tests/invariants/test_wm6_1_1_language_identifier.py .......             [ 87%]
+tests/invariants/test_wm6_1_2_code_switch_detector.py .......            [ 87%]
+tests/invariants/test_wm6_1_3_channel_condition_profiler.py ........     [ 87%]
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py .......    [ 87%]
+tests/invariants/test_wm6_2_1_instance_condition_map.py .......          [ 87%]
+tests/invariants/test_wm6_2_2_dedup_path.py .........                    [ 87%]
+tests/invariants/test_wm6_3_1_character_register.py .......              [ 87%]
+tests/invariants/test_wm6_3_2_leakage_path_harness.py ........           [ 88%]
+tests/invariants/test_wm6_3_3_register_write_boundary.py ..........      [ 88%]
+tests/invariants/test_wm6_3_4_register_read_boundary.py ........         [ 88%]
+tests/invariants/test_wm6_4_1_audio_codec_service_skeleton.py .......    [ 88%]
+tests/invariants/test_wm6_4_2_codec_version_carrier.py .......           [ 88%]
+tests/invariants/test_wm6_4_3_census_visibility.py ........              [ 88%]
+tests/invariants/test_wm6_4_4_perimeter_boundary.py ........             [ 88%]
+tests/invariants/test_wm6_5_1_clustering_registration.py .......         [ 88%]
+tests/invariants/test_wm6_5_2_human_validation_loop.py ............      [ 89%]
+tests/invariants/test_wm6_5_3_cluster_stability.py ........              [ 89%]
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py ...... [ 89%]
+........                                                                 [ 89%]
+tests/invariants/test_wm6_6_2_collection_schema.py .........             [ 89%]
+tests/invariants/test_wm6_6_3_commission_registry_namespace.py ......... [ 89%]
+..                                                                       [ 89%]
+tests/invariants/test_wm6_6_4_backend_registry.py ........               [ 89%]
+tests/invariants/test_wm6_7_1_target_outcome.py ..........               [ 89%]
+tests/invariants/test_wm6_7_2_training_planner.py ..........             [ 90%]
+tests/invariants/test_wm6_7_3_planner_outputs.py ..........              [ 90%]
+tests/invariants/test_wm6_8_1_calibration.py ..........                  [ 90%]
+tests/invariants/test_wm6_8_2_milestones.py ..........                   [ 90%]
+tests/invariants/test_wm6_9_1_commission_view.py ..........              [ 90%]
+tests/invariants/test_wm6_9_2_commission_view_render.py ..........       [ 90%]
+tests/invariants/test_wm7_w1_post_1_resource_registry.py ............... [ 91%]
+...........                                                              [ 91%]
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py ......        [ 91%]
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py .......        [ 91%]
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py ......         [ 91%]
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py . [ 91%]
+......                                                                   [ 91%]
+tests/invariants/test_wm8_csd_1_cross_service_binding.py .......         [ 91%]
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py ............ [ 91%]
+....                                                                     [ 91%]
+tests/invariants/test_wm8_tests_first_guard_invariant_part_b.py ......   [ 92%]
+tests/invariants/test_wpw_tier1_notebook.py ..............               [ 92%]
+tests/invariants/test_wpw_tier2_report.py ...............                [ 92%]
+tests/invariants/test_wregext_g3_cp_r1_asset_class_schema.py .....       [ 92%]
+tests/invariants/test_wregext_g3_cp_r2_typed_custody_class.py ....       [ 92%]
+tests/invariants/test_wregext_g3_cp_r3_class_enumeration.py ....         [ 92%]
+tests/invariants/test_wregext_g3_cp_r4_governance_taxonomy.py ....       [ 92%]
+tests/invariants/test_wregext_g3_cp_r5_fp_registry.py .....              [ 92%]
+tests/invariants/test_wregext_g3_cp_r6_ledger_visibility.py .....        [ 92%]
+tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py ......         [ 92%]
+tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py ......        [ 93%]
+tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py . [ 93%]
+.....                                                                    [ 93%]
+tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py . [ 93%]
+.....                                                                    [ 93%]
+tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py ......         [ 93%]
+tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py ......   [ 93%]
+tests/invariants/test_wsolvalift_cp_s1_two_faculty_seam.py ...           [ 93%]
+tests/invariants/test_wsolvalift_cp_s2_assertion_boundary_signature.py . [ 93%]
+....                                                                     [ 93%]
+tests/invariants/test_wsolvalift_cp_s3_load_bearing_returns_refs.py ...  [ 93%]
+tests/invariants/test_wsolvalift_cp_s4_three_action_refusal.py ....      [ 93%]
+tests/invariants/test_wsolvalift_cp_s5_trace_from_first_commit.py ...    [ 93%]
+tests/invariants/test_wsolvalift_cp_s6_intent_audit.py ...               [ 93%]
+tests/invariants/test_wsolvalift_cp_s7_critic_seam.py ....               [ 93%]
+tests/invariants/test_wsolvalift_cp_s8_donor_lift_case_agnostic.py ..... [ 93%]
+                                                                         [ 93%]
+tests/live_preview/test_phase3_sc2_live.py F.....                        [ 93%]
+tests/live_preview/test_phase3_sc3_govern_live.py F.........             [ 94%]
+tests/registry/test_g3_op_values_v1_1_execution.py .............         [ 94%]
+tests/registry/test_instance_fixture_b_walkthrough.py ....               [ 94%]
+tests/registry/test_instance_isolation.py .....                          [ 94%]
+tests/registry/test_machine_readable_registry_mrr_g1_to_g6.py ........F. [ 94%]
+....                                                                     [ 94%]
+tests/registry/test_part_ii_journey_steps_alias_canonicalization.py .... [ 94%]
+.                                                                        [ 94%]
+tests/registry/test_q4_gates.py .....F.                                  [ 94%]
+tests/registry/test_registry_v1_consolidation_byte_identity.py ....      [ 94%]
+tests/registry/test_shave_v1_attestation.py ..........                   [ 95%]
+tests/registry/test_shield_custody_chain.py ...                          [ 95%]
+tests/registry/test_standing_queries_sq_g1_to_g10.py ............F..     [ 95%]
+tests/test_eab_1_pipeline.py ..........F...                              [ 95%]
+tests/test_extraction_params_v0.py .................                     [ 95%]
+tests/test_g1_stamper_and_v3.py ......                                   [ 95%]
+tests/test_govern_ui1b_iter15.py F.........                              [ 95%]
+tests/test_govern_ui1b_iter16.py F.FFFF                                  [ 96%]
+tests/test_instance_fixture_a_roundtrip.py .......................       [ 96%]
+tests/test_layer_a_handlers.py .....                                     [ 96%]
+tests/test_layer_b_providers.py .....                                    [ 96%]
+tests/test_layer_c_aggregator.py ...                                     [ 96%]
+tests/test_lift_manifest.py ..................................F......... [ 97%]
+....................................................................     [ 98%]
+tests/test_memory_http_surface.py .FF...........                         [ 98%]
+tests/test_no_direct_llm_calls_outside_shield.py F                       [ 98%]
+tests/test_northena_invariants.py .........FF                            [ 98%]
+tests/test_perception_router.py ..                                       [ 98%]
+tests/test_smoke.py .....                                                [ 98%]
+tests/test_synthetic_fixture_roundtrip.py ....                           [ 98%]
+tests/test_ui1d_iter22_live.py F........                                 [ 98%]
+tests/test_ui1d_live_preview.py F..........                              [ 99%]
+tests/test_ui1e_iter23_live.py F......F..                                [ 99%]
+tests/test_ui1e_iter24_live.py FFF...FF.....                             [ 99%]
+tests/test_use_data_http_iter11.py FFFFFFFFFFFFFF                        [ 99%]
+tests/test_use_data_iter12_addendum.py ....FFFFFFFF                      [ 99%]
+tests/test_use_data_iter14_sample_all_identities.py FFFFFF               [ 99%]
+tests/test_v1_harness.py ....                                            [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=6332 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 2 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_orch_boot.py::test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads
+    tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__ test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads ___
+
+    def test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads():
+        """
+        R-6 anti-forget boot manifest self-check.  See module docstring for the
+        verbatim owner ruling that dictates each assertion's shape.
+        """
+        # 1. Both copies must exist.  Absence = orchestrator boot broken.
+        assert ORCH_BOOT_NOTES.exists(), (
+            f"ORCH_BOOT.md missing at {ORCH_BOOT_NOTES} — orchestrator boot "
+            f"broken; regenerate both copies per STANDING_ORDERS §7 R-6"
+        )
+        assert ORCH_BOOT_AUDIT.exists(), (
+            f"ORCH_BOOT.md missing at {ORCH_BOOT_AUDIT} — downloadable audit "
+            f"copy required; regenerate both copies per STANDING_ORDERS §7 R-6"
+        )
+    
+        # 2. Byte-identity between notes and audit copies.
+        notes_sha = _sha256_of(ORCH_BOOT_NOTES)
+        audit_sha = _sha256_of(ORCH_BOOT_AUDIT)
+        assert notes_sha == audit_sha, (
+            f"ORCH_BOOT.md byte-drift: notes-copy sha256={notes_sha} vs "
+            f"audit-copy sha256={audit_sha} — both must be byte-identical; "
+            f"regenerate both per STANDING_ORDERS §7 R-6"
+        )
+    
+        # 3. Parse the yaml block.
+        body = _extract_yaml_block(ORCH_BOOT_NOTES.read_text())
+    
+        # 4. Ratchet block: passed_floor MUST equal live baseline_failures.json.
+        #    This is the drift-and-burn field per owner ruling; always-on.
+        baseline = json.loads(BASELINE_FAILURES_JSON.read_text())
+        live_floor = baseline["invariants_enforced_when_baseline_guard_1"][
+            "passed_floor"
+        ]
+        live_count = baseline["counts_at_baseline"]["passed"]
+    
+        ratchet = body["ratchet"]
+>       assert ratchet["passed_floor"] == live_floor, (
+            f"ORCH_BOOT ratchet.passed_floor={ratchet['passed_floor']} does not "
+            f"match baseline_failures.json passed_floor={live_floor}; regenerate "
+            f"per STANDING_ORDERS §7 R-6"
+        )
+E       AssertionError: ORCH_BOOT ratchet.passed_floor=6317 does not match baseline_failures.json passed_floor=6325; regenerate per STANDING_ORDERS §7 R-6
+E       assert 6317 == 6325
+
+tests/invariants/test_orch_boot.py:104: AssertionError
+__________________ test_decisions_carries_pointer_near_bottom __________________
+
+    def test_decisions_carries_pointer_near_bottom() -> None:
+        lines = _non_empty_lines(DECISIONS_PATH)
+        bottom = lines[-PROXIMITY_WINDOW:]
+>       assert POINTER_LINE in bottom, (
+            f"pointer line not found in last {PROXIMITY_WINDOW} non-empty "
+            f"lines of {DECISIONS_PATH}: last {PROXIMITY_WINDOW} were {bottom}"
+        )
+E       AssertionError: pointer line not found in last 5 non-empty lines of /app/assessment_workspace/STATE/DECISIONS.md: last 5 were ['| 2. /app companion A | `b9f9f3f2` | main |', '| 3. State Commit-B | `0685510d` | master |', '| 4. State Commit-C fixup | `1507cad9` | master |', '| 5. /app companion C | `c069bec5` | main |', 'Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.']
+E       assert 'READ STATE/STANDING_ORDERS.md FIRST — permanent standing law' in ['| 2. /app companion A | `b9f9f3f2` | main |', '| 3. State Commit-B | `0685510d` | master |', '| 4. State Commit-C fi...mpanion C | `c069bec5` | main |', 'Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.']
+
+tests/invariants/test_standing_orders_present.py:99: AssertionError
+____________________________ test_readyz_parity_34 _____________________________
+
+    def test_readyz_parity_34():
+        r = requests.get(f"{BASE}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/live_preview/test_phase3_sc2_live.py:26: AssertionError
+___________________________ test_1_readyz_parity_34 ____________________________
+
+    def test_1_readyz_parity_34():
+        r = requests.get(f"{BASE_URL}/api/readyz", timeout=15)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/live_preview/test_phase3_sc3_govern_live.py:57: AssertionError
+______________________________ test_mrr_g_parity _______________________________
+
+model = RegistryModel(promises=[Promise(promise_id='PROM-S1-provable-envelope-inheritance', text='Answers, skills, and artifac...y_v0.9_supplement_phase3_subcycle3.md', 'sha256': 'ac4f601aae26f2b51e211a51c27efc9cb84773c067f023cca72c80808239d4c8'}])
+
+    def test_mrr_g_parity(model):
+        ok, errs = check_mrr_g_parity(model)
+>       assert ok, "MRR-G-Parity failed:\n" + "\n".join(errs)
+E       AssertionError: MRR-G-Parity failed:
+E         contract count 92 ≠ 36
+E         snapshot count 107 ≠ 36
+E       assert False
+
+tests/registry/test_machine_readable_registry_mrr_g1_to_g6.py:154: AssertionError
+_________________________ test_q4_run_holds_parity_31 __________________________
+
+    def test_q4_run_holds_parity_31():
+        """R4 #6: Q4 execution is doc-only + query-engine additive; Parity 31 held."""
+        contracts_dir = REPO_ROOT / "backend" / "contracts"
+        contract_count = len(list(contracts_dir.glob("*.py")))
+>       assert contract_count == 36, f"Parity 36 violation: {contract_count} contracts"
+E       AssertionError: Parity 36 violation: 92 contracts
+E       assert 92 == 36
+
+tests/registry/test_q4_gates.py:121: AssertionError
+_____________________________ test_sq_g_parity_31 ______________________________
+
+    def test_sq_g_parity_31():
+        contracts_dir = REPO_ROOT / "backend" / "contracts"
+        snapshots_dir = REPO_ROOT / "backend" / "tests" / "invariants"
+>       assert len(list(contracts_dir.glob("*.py"))) == 36
+E       AssertionError: assert 92 == 36
+E        +  where 92 = len([PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/contracts/operator_turn.py'), PosixPath('/app/asse...dger_v1.py'), PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/contracts/service_1_refusal.py'), ...])
+E        +    where [PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/contracts/operator_turn.py'), PosixPath('/app/asse...dger_v1.py'), PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/contracts/service_1_refusal.py'), ...] = list(<generator object Path.glob at 0xfa0d2a983bc0>)
+E        +      where <generator object Path.glob at 0xfa0d2a983bc0> = glob('*.py')
+E        +        where glob = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/contracts').glob
+
+tests/registry/test_standing_queries_sq_g1_to_g10.py:276: AssertionError
+_______ test_fence_1_trace_resolver_single_code_path_no_modality_branch ________
+
+    def test_fence_1_trace_resolver_single_code_path_no_modality_branch():
+        """FENCE 1 · AST attest: no modality-branch If-statement in trace resolver.
+    
+        The resolver must NOT contain an `if` statement branching on modality,
+        source_type, or occurrence-specific isinstance checks. Same code path for
+        base audio and occurrence units.
+    
+        AST-based check (not string grep) so that docstring mentions of the
+        forbidden patterns (documenting what the fence prevents) do not
+        false-positive.
+        """
+        import ast as _ast
+        src = Path(
+            "/app/backend/services/perception/eab_1_pipeline/a2_trace_walker.py"
+>       ).read_text()
+          ^^^^^^^^^^^
+
+tests/test_eab_1_pipeline.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/backend/services/perception/eab_1_pipeline/a2_trace_walker.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/backend/services/perception/eab_1_pipeline/a2_trace_walker.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_______________________ TestParity.test_parity_still_36 ________________________
+
+self = <backend.tests.test_govern_ui1b_iter15.TestParity object at 0xfa0d2386d450>
+
+    def test_parity_still_36(self):
+        r = requests.get(f"{BASE_URL}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_govern_ui1b_iter15.py:50: AssertionError
+____________________________ test_readyz_parity_36 _____________________________
+
+    def test_readyz_parity_36():
+        r = requests.get(f"{BASE_URL}/api/readyz", timeout=30)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_govern_ui1b_iter16.py:50: AssertionError
+___________________ test_dpo_can_read_held_session_envelope ____________________
+
+dpo_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjUiLCJlbWFpbCI6ImRlbW8uZHBvQGRlbW8ucm1z...yI6W10sImlhdCI6MTc5MDE1NTI1NCwiZXhwIjoxNzkwMTU2MTU0LCJ0eXBlIjoiYWNjZXNzIn0.EgyZR-NYD43sipCwih6q3hfGXI4-ShIE4wBb1TJrAWw'
+
+    def test_dpo_can_read_held_session_envelope(dpo_token):
+        sids = getattr(pytest, "dpo_held_session_ids", [])
+        assert sids, "prerequisite: holds list yielded no session ids"
+        read_only_seen = False
+        for sid in sids:
+            r = requests.get(
+                f"{BASE_URL}/api/use_data/session/{sid}",
+                headers={"Authorization": f"Bearer {dpo_token}"},
+                timeout=30,
+            )
+>           assert r.status_code == 200, f"GET session {sid} for DPO failed: {r.status_code} {r.text[:300]}"
+E           AssertionError: GET session s-sample-held-931dee699868 for DPO failed: 404 {"detail":"Not Found"}
+E           assert 404 == 200
+E            +  where 404 = <Response [404]>.status_code
+
+tests/test_govern_ui1b_iter16.py:83: AssertionError
+___________________ test_analyst_denied_on_held_session_read ___________________
+
+analyst_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjciLCJlbWFpbCI6ImRlbW8uYW5hbHlzdEBkZW1v...yI6W10sImlhdCI6MTc5MDE1NTI1NSwiZXhwIjoxNzkwMTU2MTU1LCJ0eXBlIjoiYWNjZXNzIn0.Hhxl5GkJlPgAlhpCGwR2F9waLYl5DEFMQNxcPbUqUK4'
+dpo_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjUiLCJlbWFpbCI6ImRlbW8uZHBvQGRlbW8ucm1z...yI6W10sImlhdCI6MTc5MDE1NTI1NCwiZXhwIjoxNzkwMTU2MTU0LCJ0eXBlIjoiYWNjZXNzIn0.EgyZR-NYD43sipCwih6q3hfGXI4-ShIE4wBb1TJrAWw'
+
+    def test_analyst_denied_on_held_session_read(analyst_token, dpo_token):
+        sids = getattr(pytest, "dpo_held_session_ids", [])
+        assert sids
+        sid = sids[0]
+        r = requests.get(
+            f"{BASE_URL}/api/use_data/session/{sid}",
+            headers={"Authorization": f"Bearer {analyst_token}"},
+            timeout=30,
+        )
+>       assert r.status_code == 403, f"analyst should be denied, got {r.status_code} {r.text[:200]}"
+E       AssertionError: analyst should be denied, got 404 {"detail":"Not Found"}
+E       assert 404 == 403
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_govern_ui1b_iter16.py:107: AssertionError
+___________________ test_dpo_use_data_sessions_excludes_held ___________________
+
+dpo_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjUiLCJlbWFpbCI6ImRlbW8uZHBvQGRlbW8ucm1z...yI6W10sImlhdCI6MTc5MDE1NTI1NCwiZXhwIjoxNzkwMTU2MTU0LCJ0eXBlIjoiYWNjZXNzIn0.EgyZR-NYD43sipCwih6q3hfGXI4-ShIE4wBb1TJrAWw'
+
+    def test_dpo_use_data_sessions_excludes_held(dpo_token):
+        r = requests.get(
+            f"{BASE_URL}/api/use_data/sessions",
+            headers={"Authorization": f"Bearer {dpo_token}"},
+            timeout=30,
+        )
+>       assert r.status_code == 200, r.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_govern_ui1b_iter16.py:119: AssertionError
+_______________________ test_admin_can_read_held_session _______________________
+
+admin_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI6ImFkbWluQHJtcy5leGFtcGxl...ZSJ9XSwiaWF0IjoxNzkwMTU1MjU1LCJleHAiOjE3OTAxNTYxNTUsInR5cGUiOiJhY2Nlc3MifQ.yysK-qupwChzfTmLRGnzLtHhi5Vrv5cD6x-p1M13Ti0'
+
+    def test_admin_can_read_held_session(admin_token):
+        sids = getattr(pytest, "dpo_held_session_ids", [])
+        assert sids
+        sid = sids[0]
+        r = requests.get(
+            f"{BASE_URL}/api/use_data/session/{sid}",
+            headers={"Authorization": f"Bearer {admin_token}"},
+            timeout=30,
+        )
+>       assert r.status_code == 200, f"admin GET failed: {r.status_code} {r.text[:300]}"
+E       AssertionError: admin GET failed: 404 {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_govern_ui1b_iter16.py:144: AssertionError
+___ test_manifest_entry_resolves[backend/services/northena/state_machine.py] ___
+
+entry = {'cousin_citation': None, 'lift_kind': 'mandate-forced-net-new', 'module': 'backend/services/northena/state_machine.py...Northena mandate §12 verbatim: 'the four-stage Admit / Gate / Converge / Ledger state machine' declared net-new.", ...}
+
+    @pytest.mark.parametrize(
+        "entry",
+        ENTRIES,
+        ids=[e["module"] for e in ENTRIES],
+    )
+    def test_manifest_entry_resolves(entry: Dict) -> None:
+        """Verifies the claim resolves per Conditions 1 & 2."""
+>       _check_entry(entry)
+
+tests/test_lift_manifest.py:209: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+e = {'cousin_citation': None, 'lift_kind': 'mandate-forced-net-new', 'module': 'backend/services/northena/state_machine.py...Northena mandate §12 verbatim: 'the four-stage Admit / Gate / Converge / Ledger state machine' declared net-new.", ...}
+
+    def _check_entry(e: Dict) -> None:
+        module_path = e["module"]
+        kind = e["lift_kind"]
+    
+        assert kind in VALID_LIFT_KINDS, (
+            f"[{module_path}] invalid lift_kind {kind!r}; must be one of "
+            f"{sorted(VALID_LIFT_KINDS)}"
+        )
+        # The module itself must actually exist — a manifest entry for a
+        # deleted/missing module is nonsense.
+>       assert (REPO_ROOT / module_path).exists(), (
+            f"[{module_path}] module file does not exist at claimed path"
+        )
+E       AssertionError: [backend/services/northena/state_machine.py] module file does not exist at claimed path
+E       assert False
+E        +  where False = exists()
+E        +    where exists = (PosixPath('/app/assessment_workspace/repos/Extraction-Akki') / 'backend/services/northena/state_machine.py').exists
+
+tests/test_lift_manifest.py:84: AssertionError
+____________________________ test_readyz_parity_34 _____________________________
+
+    def test_readyz_parity_34():
+        r = requests.get(f"{BASE}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_memory_http_surface.py:39: AssertionError
+__________________________ test_build_info_parity_34 ___________________________
+
+    def test_build_info_parity_34():
+        r = requests.get(f"{BASE}/api/system/build_info", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_memory_http_surface.py:49: AssertionError
+___________________ test_no_direct_llm_calls_outside_shield ____________________
+
+    def test_no_direct_llm_calls_outside_shield():
+        """Fails with a per-violation report so PRs know exactly what to fix."""
+        violations: List[str] = []
+        for path in _iter_python_files():
+            try:
+                text = path.read_text(encoding="utf-8")
+            except OSError:
+                continue
+            for line_no, line in enumerate(text.splitlines(), start=1):
+                # Skip docstring/comment lines — they are not executable.
+                stripped = line.lstrip()
+                if stripped.startswith("#"):
+                    continue
+                for label, pat in FORBIDDEN_PATTERNS:
+                    if pat.search(line):
+                        # Final defence: lines INSIDE a docstring also slip
+                        # the comment check above. We use a cheap heuristic
+                        # by stripping triple-quoted regions per file.
+                        if _line_in_docstring(text, line_no):
+                            continue
+                        rel = path.relative_to(BACKEND)
+                        violations.append(
+                            f"{rel}:{line_no}  [{label}]  {line.strip()[:140]}"
+                        )
+    
+>       assert not violations, (
+            "Phase B invariant breach — direct LLM provider call outside "
+            "services/synisense/shield/. All LLM calls MUST route through "
+            "`services.synisense.shield.client.invoke(...)`. "
+            f"\n\n{len(violations)} violation(s):\n  " + "\n  ".join(violations)
+        )
+E       AssertionError: Phase B invariant breach — direct LLM provider call outside services/synisense/shield/. All LLM calls MUST route through `services.synisense.shield.client.invoke(...)`. 
+E         
+E         5 violation(s):
+E           services/registry_facts/facts.py:249  [EMERGENT_LLM_KEY env read]  if (os.environ.get("EMERGENT_LLM_KEY") or "").strip():
+E           services/chokepoint/llm.py:78  [emergentintegrations.llm import]  from emergentintegrations.llm.chat import LlmChat, UserMessage  # noqa: WPS433
+E           services/chokepoint/llm.py:185  [LlmChat(]  return LlmChat(
+E           services/chokepoint/llm.py:256  [EMERGENT_LLM_KEY env read]  key = os.environ.get("EMERGENT_LLM_KEY", "").strip()
+E           services/chokepoint/llm.py:435  [UserMessage(]  response_text = await client.send_message(UserMessage(text=redacted_prompt))
+E       assert not ['services/registry_facts/facts.py:249  [EMERGENT_LLM_KEY env read]  if (os.environ.get("EMERGENT_LLM_KEY") or "").str...s/chokepoint/llm.py:435  [UserMessage(]  response_text = await client.send_message(UserMessage(text=redacted_prompt))']
+
+tests/test_no_direct_llm_calls_outside_shield.py:117: AssertionError
+______________________ test_N_INV_10_stamp_audit_absorbed ______________________
+
+    @pytest.mark.asyncio
+    async def test_N_INV_10_stamp_audit_absorbed():
+        from contracts.northena_ledger import LedgerArtifactRef
+        from services.northena import ledger
+        written = []
+        async def _capture(row): written.append(row)
+        with patch("services.northena.ledger.record", new=_capture):
+            entry = {"unit_id": "u-1", "decision": "refuse",
+                     "reason": "floor_violation", "judged_signal_dimensions": [],
+                     "floor_violation": True}
+            ar = LedgerArtifactRef(artifact_type="objective_request",
+                                   artifact_id="x", version="v0")
+>           row = await ledger.absorb_stamp_audit(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+                run_id="r", trace_id="t", stage="gate", entry=entry,
+                artifact_ref=ar, lawful_basis_ref="lb")
+E           AttributeError: module 'services.northena.ledger' has no attribute 'absorb_stamp_audit'
+
+tests/test_northena_invariants.py:169: AttributeError
+______________________ test_N_INV_11_governors_orthogonal ______________________
+
+    def test_N_INV_11_governors_orthogonal():
+        ALLOWED_SOLVA = {"admit.py"}  # Admit CALLS the assist; that's allowed.
+        ALLOWED_SYNI = set()          # Northena never imports SyniSense at G2a.
+        for py in NORTHENA_DIR.rglob("*.py"):
+            src = py.read_text()
+            if "solva" in src.lower() and py.name not in ALLOWED_SOLVA:
+                # Allow references in comments/docstrings only if not `import`.
+>               assert "from services.solva" not in src and "import services.solva" not in src, (
+                    f"N-INV-11: unexpected Solva import in {py.name}"
+                )
+E               AssertionError: N-INV-11: unexpected Solva import in router.py
+E               assert ('from services.solva' not in '"""services...s),\n    }\n'
+E                 
+E                 'from services.solva' is contained here:
+E                   na_ledger
+E                   from services.solva import reasoning as solva_reasoning
+E                 ? +++++++++++++++++++
+E                   
+E                   ...
+E                 
+E                 ...Full output truncated (204 lines hidden), use '-vv' to show)
+
+tests/test_northena_invariants.py:187: AssertionError
+______________________________ test_readyz_parity ______________________________
+
+    def test_readyz_parity():
+        r = requests.get(f"{BASE}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1d_iter22_live.py:38: AssertionError
+_____________________________ test_live_parity_36 ______________________________
+
+    def test_live_parity_36():
+        r = requests.get(f"{BASE_URL}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1d_live_preview.py:30: AssertionError
+______________________________ test_l1_parity_36 _______________________________
+
+    def test_l1_parity_36():
+        r = requests.get(f"{BASE_URL}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1e_iter23_live.py:49: AssertionError
+____________ test_l8_grant_revoke_single_source_engineer_key_grants ____________
+
+admin_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI6ImFkbWluQHJtcy5leGFtcGxl...ZSJ9XSwiaWF0IjoxNzkwMTU1MjY0LCJleHAiOjE3OTAxNTYxNjQsInR5cGUiOiJhY2Nlc3MifQ.OfQz9vDy89Y-RlTTPUcjFya-GjZhff9O3ch_yAfsbB4'
+
+    def test_l8_grant_revoke_single_source_engineer_key_grants(admin_token):
+        grantee = "e2e.iter23@e2e.example.com"
+        scope = "GET /api/team/access_register"
+        r = requests.post(f"{BASE_URL}/api/team/access_register/grant",
+                          headers=_auth(admin_token),
+                          json={"grantee_email": grantee, "endpoint_scope": scope,
+                                "reason_verbatim": "iter23 test"}, timeout=15)
+        assert r.status_code == 200
+        grant_id = r.json()["grant"]["grant_id"]
+        # Confirm via /api/team/access_register
+        reg = requests.get(f"{BASE_URL}/api/team/access_register",
+                           headers=_auth(admin_token), timeout=15).json()
+        found_team = any(row["grant_id"] == grant_id for row in reg["rows"])
+        assert found_team
+        # Confirm via /api/engineer/key_grants (SAME SOURCE — must query the
+        # actual grantee, since engineer surface returns self grants by default
+        # per Owner ruling · self-service inspection semantics).
+        eng = requests.get(f"{BASE_URL}/api/engineer/key_grants",
+                           headers=_auth(admin_token),
+                           params={"grantee_email": grantee}, timeout=15)
+>       assert eng.status_code == 200, eng.text[:200]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1e_iter23_live.py:236: AssertionError
+____________________ test_r1_engineer_key_grants_self_admin ____________________
+
+admin_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI6ImFkbWluQHJtcy5leGFtcGxl...ZSJ9XSwiaWF0IjoxNzkwMTU1MjY3LCJleHAiOjE3OTAxNTYxNjcsInR5cGUiOiJhY2Nlc3MifQ.uufEuny0QZvKA6mzNs8UCMrkE3NUKuxgKIwuIumso3k'
+
+    def test_r1_engineer_key_grants_self_admin(admin_token):
+        r = requests.get(f"{BASE_URL}/api/engineer/key_grants",
+                         headers=_auth(admin_token), timeout=15)
+>       assert r.status_code == 200, f"expected 200, got {r.status_code}: {r.text[:300]}"
+E       AssertionError: expected 200, got 404: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1e_iter24_live.py:53: AssertionError
+________________ test_r2_engineer_key_grants_by_seeded_grantee _________________
+
+admin_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI6ImFkbWluQHJtcy5leGFtcGxl...ZSJ9XSwiaWF0IjoxNzkwMTU1MjY3LCJleHAiOjE3OTAxNTYxNjcsInR5cGUiOiJhY2Nlc3MifQ.uufEuny0QZvKA6mzNs8UCMrkE3NUKuxgKIwuIumso3k'
+
+    def test_r2_engineer_key_grants_by_seeded_grantee(admin_token):
+        # Discover a seeded sample grantee from team access register
+        reg = requests.get(f"{BASE_URL}/api/team/access_register",
+                           headers=_auth(admin_token), timeout=15)
+        assert reg.status_code == 200
+        rows = reg.json().get("rows", [])
+        sample_row = None
+        for row in rows:
+            gid = row.get("grant_id", "")
+            if gid.startswith("sample-team-grant-active-") and row.get("state") == "active":
+                sample_row = row
+                break
+        if sample_row is None:
+            pytest.skip("no sample-team-grant-active-* row present to probe")
+        grantee = sample_row["who_grantee_email"]
+        r = requests.get(f"{BASE_URL}/api/engineer/key_grants",
+                         headers=_auth(admin_token),
+                         params={"grantee_email": grantee}, timeout=15)
+>       assert r.status_code == 200, r.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1e_iter24_live.py:78: AssertionError
+_____________ test_p0_team_grant_engineer_single_source_roundtrip ______________
+
+admin_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI6ImFkbWluQHJtcy5leGFtcGxl...ZSJ9XSwiaWF0IjoxNzkwMTU1MjY3LCJleHAiOjE3OTAxNTYxNjcsInR5cGUiOiJhY2Nlc3MifQ.uufEuny0QZvKA6mzNs8UCMrkE3NUKuxgKIwuIumso3k'
+
+    def test_p0_team_grant_engineer_single_source_roundtrip(admin_token):
+        grantee = f"iter24.probe.{uuid.uuid4().hex[:8]}@test.example.com"
+        scope = "GET /api/team/access_register"
+    
+        # (a) Grant via team endpoint
+        r = requests.post(f"{BASE_URL}/api/team/access_register/grant",
+                          headers=_auth(admin_token),
+                          json={"grantee_email": grantee,
+                                "endpoint_scope": scope,
+                                "reason_verbatim": "iter24 single-source test"},
+                          timeout=15)
+        assert r.status_code == 200, r.text[:300]
+        grant_id = r.json()["grant"]["grant_id"]
+    
+        # (b) Confirm on team access register
+        reg = requests.get(f"{BASE_URL}/api/team/access_register",
+                           headers=_auth(admin_token), timeout=15).json()
+        assert any(row["grant_id"] == grant_id for row in reg["rows"]), \
+            "new grant not visible on team access register"
+    
+        # (c) Confirm on engineer key_grants (SINGLE-SOURCE)
+        eng = requests.get(f"{BASE_URL}/api/engineer/key_grants",
+                           headers=_auth(admin_token),
+                           params={"grantee_email": grantee}, timeout=15)
+>       assert eng.status_code == 200, eng.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1e_iter24_live.py:109: AssertionError
+______________________ test_p1_decision_verbatim_required ______________________
+
+self = <HTTPSConnection(host='akki-reuse-assess.preview.emergentagent.com', port=443) at 0xfa0c64872d50>
+
+    def _new_conn(self) -> socket.socket:
+        """Establish a socket connection and set nodelay settings on it.
+    
+        :return: New socket connection.
+        """
+        try:
+>           sock = connection.create_connection(
+                (self._dns_host, self.port),
+                self.timeout,
+                source_address=self.source_address,
+                socket_options=self.socket_options,
+            )
+
+/root/.venv/lib/python3.11/site-packages/urllib3/connection.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/.venv/lib/python3.11/site-packages/urllib3/util/connection.py:85: in create_connection
+    raise err
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+address = ('akki-reuse-assess.preview.emergentagent.com', 443), timeout = 15
+source_address = None, socket_options = [(6, 1, 1)]
+
+    def create_connection(
+        address: tuple[str, int],
+        timeout: _TYPE_TIMEOUT = _DEFAULT_TIMEOUT,
+        source_address: tuple[str, int] | None = None,
+        socket_options: _TYPE_SOCKET_OPTIONS | None = None,
+    ) -> socket.socket:
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`socket.getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        An host of '' or port 0 tells the OS to use the default.
+        """
+    
+        host, port = address
+        if host.startswith("["):
+            host = host.strip("[]")
+        err = None
+    
+        # Using the value from allowed_gai_family() in the context of getaddrinfo lets
+        # us select whether to work with IPv4 DNS records, IPv6 records, or both.
+        # The original create_connection function always returns all records.
+        family = allowed_gai_family()
+    
+        try:
+            host.encode("idna")
+        except UnicodeError:
+            raise LocationParseError(f"'{host}', label empty or too long") from None
+    
+        for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket.socket(af, socktype, proto)
+    
+                # If provided, set socket level options before connecting.
+                _set_socket_options(sock, socket_options)
+    
+                if timeout is not _DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+>               sock.connect(sa)
+E               TimeoutError: timed out
+
+/root/.venv/lib/python3.11/site-packages/urllib3/util/connection.py:73: TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+self = <urllib3.connectionpool.HTTPSConnectionPool object at 0xfa0c64871f10>
+method = 'GET', url = '/api/team/approval_surface', body = None
+headers = {'User-Agent': 'python-requests/2.34.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-aliv...SJ9XSwiaWF0IjoxNzkwMTU1MjY3LCJleHAiOjE3OTAxNTYxNjcsInR5cGUiOiJhY2Nlc3MifQ.uufEuny0QZvKA6mzNs8UCMrkE3NUKuxgKIwuIumso3k'}
+retries = Retry(total=0, connect=None, read=False, redirect=None, status=None)
+redirect = False, assert_same_host = False
+timeout = Timeout(connect=15, read=15, total=None), pool_timeout = None
+release_conn = False, chunked = False, body_pos = None, preload_content = False
+decode_content = False, response_kw = {}, destination_scheme = None, conn = None
+release_this_conn = True, http_tunnel_required = False, err = None
+clean_exit = False
+
+    def urlopen(  # type: ignore[override]
+        self,
+        method: str,
+        url: str,
+        body: _TYPE_BODY | None = None,
+        headers: typing.Mapping[str, str] | None = None,
+        retries: Retry | bool | int | None = None,
+        redirect: bool = True,
+        assert_same_host: bool = True,
+        timeout: _TYPE_TIMEOUT = _DEFAULT_TIMEOUT,
+        pool_timeout: int | None = None,
+        release_conn: bool | None = None,
+        chunked: bool = False,
+        body_pos: _TYPE_BODY_POSITION | None = None,
+        preload_content: bool = True,
+        decode_content: bool = True,
+        **response_kw: typing.Any,
+    ) -> BaseHTTPResponse:
+        """
+        Get a connection from the pool and perform an HTTP request. This is the
+        lowest level call for making a request, so you'll need to specify all
+        the raw details.
+    
+        .. note::
+    
+           More commonly, it's appropriate to use a convenience method
+           such as :meth:`request`.
+    
+        .. note::
+    
+           `release_conn` will only behave as expected if
+           `preload_content=False` because we want to make
+           `preload_content=False` the default behaviour someday soon without
+           breaking backwards compatibility.
+    
+        :param method:
+            HTTP request method (such as GET, POST, PUT, etc.)
+    
+        :param url:
+            The URL to perform the request on.
+    
+        :param body:
+            Data to send in the request body, either :class:`str`, :class:`bytes`,
+            an iterable of :class:`str`/:class:`bytes`, or a file-like object.
+    
+        :param headers:
+            Dictionary of custom headers to send, such as User-Agent,
+            If-None-Match, etc. If None, pool headers are used. If provided,
+            these headers completely replace any pool-specific headers.
+    
+        :param retries:
+            Configure the number of retries to allow before raising a
+            :class:`~urllib3.exceptions.MaxRetryError` exception.
+    
+            If ``None`` (default) will retry 3 times, see ``Retry.DEFAULT``. Pass a
+            :class:`~urllib3.util.retry.Retry` object for fine-grained control
+            over different types of retries.
+            Pass an integer number to retry connection errors that many times,
+            but no other types of errors. Pass zero to never retry.
+    
+            If ``False``, then retries are disabled and any exception is raised
+            immediately. Also, instead of raising a MaxRetryError on redirects,
+            the redirect response will be returned.
+    
+        :type retries: :class:`~urllib3.util.retry.Retry`, False, or an int.
+    
+        :param redirect:
+            If True, automatically handle redirects (status codes 301, 302,
+            303, 307, 308). Each redirect counts as a retry. Disabling retries
+            will disable redirect, too.
+    
+        :param assert_same_host:
+            If ``True``, will make sure that the host of the pool requests is
+            consistent else will raise HostChangedError. When ``False``, you can
+            use the pool on an HTTP proxy and request foreign hosts.
+    
+        :param timeout:
+            If specified, overrides the default timeout for this one
+            request. It may be a float (in seconds) or an instance of
+            :class:`urllib3.util.Timeout`.
+    
+        :param pool_timeout:
+            If set and the pool is set to block=True, then this method will
+            block for ``pool_timeout`` seconds and raise EmptyPoolError if no
+            connection is available within the time period.
+    
+        :param bool preload_content:
+            If True, the response's body will be preloaded into memory.
+    
+        :param bool decode_content:
+            If True, will attempt to decode the body based on the
+            'content-encoding' header.
+    
+        :param release_conn:
+            If False, then the urlopen call will not release the connection
+            back into the pool once a response is received (but will release if
+            you read the entire contents of the response such as when
+            `preload_content=True`). This is useful if you're not preloading
+            the response's content immediately. You will need to call
+            ``r.release_conn()`` on the response ``r`` to return the connection
+            back into the pool. If None, it takes the value of ``preload_content``
+            which defaults to ``True``.
+    
+        :param bool chunked:
+            If True, urllib3 will send the body using chunked transfer
+            encoding. Otherwise, urllib3 will send the body using the standard
+            content-length form. Defaults to False.
+    
+        :param int body_pos:
+            Position to seek to in file-like body in the event of a retry or
+            redirect. Typically this won't need to be set because urllib3 will
+            auto-populate the value when needed.
+        """
+        # Ensure that the URL we're connecting to is properly encoded
+        if url.startswith("/"):
+            # URLs starting with / are inherently schemeless.
+            url = to_str(_encode_target(url))
+            destination_scheme = None
+        else:
+            parsed_url = parse_url(url)
+            destination_scheme = parsed_url.scheme
+            url = to_str(parsed_url.url)
+    
+        if headers is None:
+            headers = self.headers
+    
+        if not isinstance(retries, Retry):
+            retries = Retry.from_int(retries, redirect=redirect, default=self.retries)
+    
+        if release_conn is None:
+            release_conn = preload_content
+    
+        # Check host
+        if assert_same_host and not self.is_same_host(url):
+            raise HostChangedError(self, url, retries)
+    
+        conn = None
+    
+        # Track whether `conn` needs to be released before
+        # returning/raising/recursing. Update this variable if necessary, and
+        # leave `release_conn` constant throughout the function. That way, if
+        # the function recurses, the original value of `release_conn` will be
+        # passed down into the recursive call, and its value will be respected.
+        #
+        # See issue #651 [1] for details.
+        #
+        # [1] <https://github.com/urllib3/urllib3/issues/651>
+        release_this_conn = release_conn
+    
+        http_tunnel_required = connection_requires_http_tunnel(
+            self.proxy, self.proxy_config, destination_scheme
+        )
+    
+        # Merge the proxy headers. Only done when not using HTTP CONNECT. We
+        # have to copy the headers dict so we can safely change it without those
+        # changes being reflected in anyone else's copy.
+        if not http_tunnel_required:
+            headers = headers.copy()  # type: ignore[attr-defined]
+            headers.update(self.proxy_headers)  # type: ignore[union-attr]
+    
+        # Must keep the exception bound to a separate variable or else Python 3
+        # complains about UnboundLocalError.
+        err = None
+    
+        # Keep track of whether we cleanly exited the except block. This
+        # ensures we do proper cleanup in finally.
+        clean_exit = False
+    
+        # Rewind body position, if needed. Record current position
+        # for future rewinds in the event of a redirect/retry.
+        body_pos = set_file_position(body, body_pos)
+    
+        try:
+            # Request a connection from the queue.
+            timeout_obj = self._get_timeout(timeout)
+            conn = self._get_conn(timeout=pool_timeout)
+    
+            conn.timeout = timeout_obj.connect_timeout  # type: ignore[assignment]
+    
+            # Is this a closed/new connection that requires CONNECT tunnelling?
+            if self.proxy is not None and http_tunnel_required and conn.is_closed:
+                try:
+                    self._prepare_proxy(conn)
+                except (BaseSSLError, OSError, SocketTimeout) as e:
+                    self._raise_timeout(
+                        err=e, url=self.proxy.url, timeout_value=conn.timeout
+                    )
+                    raise
+    
+            # If we're going to release the connection in ``finally:``, then
+            # the response doesn't need to know about the connection. Otherwise
+            # it will also try to release it and we'll have a double-release
+            # mess.
+            response_conn = conn if not release_conn else None
+    
+            # Make the request on the HTTPConnection object
+>           response = self._make_request(
+                conn,
+                method,
+                url,
+                timeout=timeout_obj,
+                body=body,
+                headers=headers,
+                chunked=chunked,
+                retries=retries,
+                response_conn=response_conn,
+                preload_content=preload_content,
+                decode_content=decode_content,
+                **response_kw,
+            )
+
+/root/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py:788: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py:488: in _make_request
+    raise new_e
+/root/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py:464: in _make_request
+    self._validate_conn(conn)
+/root/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py:1106: in _validate_conn
+    conn.connect()
+/root/.venv/lib/python3.11/site-packages/urllib3/connection.py:759: in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <HTTPSConnection(host='akki-reuse-assess.preview.emergentagent.com', port=443) at 0xfa0c64872d50>
+
+    def _new_conn(self) -> socket.socket:
+        """Establish a socket connection and set nodelay settings on it.
+    
+        :return: New socket connection.
+        """
+        try:
+            sock = connection.create_connection(
+                (self._dns_host, self.port),
+                self.timeout,
+                source_address=self.source_address,
+                socket_options=self.socket_options,
+            )
+        except socket.gaierror as e:
+            raise NameResolutionError(self.host, self, e) from e
+        except SocketTimeout as e:
+>           raise ConnectTimeoutError(
+                self,
+                f"Connection to {self.host} timed out. (connect timeout={self.timeout})",
+            ) from e
+E           urllib3.exceptions.ConnectTimeoutError: (<HTTPSConnection(host='akki-reuse-assess.preview.emergentagent.com', port=443) at 0xfa0c64872d50>, 'Connection to akki-reuse-assess.preview.emergentagent.com timed out. (connect timeout=15)')
+
+/root/.venv/lib/python3.11/site-packages/urllib3/connection.py:213: ConnectTimeoutError
+
+The above exception was the direct cause of the following exception:
+
+self = <requests.adapters.HTTPAdapter object at 0xfa0d23747610>
+request = <PreparedRequest [GET]>, stream = False, timeout = 15, verify = True
+cert = None, proxies = OrderedDict()
+
+    def send(
+        self,
+        request: PreparedRequest,
+        stream: bool = False,
+        timeout: _t.TimeoutType = None,
+        verify: _t.VerifyType = True,
+        cert: _t.CertType = None,
+        proxies: dict[str, str] | None = None,
+    ) -> Response:
+        """Sends PreparedRequest object. Returns Response object.
+    
+        :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.
+        :param stream: (optional) Whether to stream the request content.
+        :param timeout: (optional) How long to wait for the server to send
+            data before giving up, as a float, or a :ref:`(connect timeout,
+            read timeout) <timeouts>` tuple.
+        :type timeout: float or tuple or urllib3 Timeout object
+        :param verify: (optional) Either a boolean, in which case it controls whether
+            we verify the server's TLS certificate, or a string, in which case it
+            must be a path to a CA bundle to use
+        :param cert: (optional) Any user-provided SSL certificate to be trusted.
+        :param proxies: (optional) The proxies dictionary to apply to the request.
+        :rtype: requests.Response
+        """
+    
+        assert _is_prepared(request)
+    
+        try:
+            conn = self.get_connection_with_tls_context(
+                request, verify, proxies=proxies, cert=cert
+            )
+        except LocationValueError as e:
+            raise InvalidURL(e, request=request)
+    
+        self.cert_verify(conn, request.url, verify, cert)
+        url = self.request_url(request, proxies)
+        self.add_headers(
+            request,
+            stream=stream,
+            timeout=timeout,
+            verify=verify,
+            cert=cert,
+            proxies=proxies,
+        )
+    
+        chunked = not (request.body is None or "Content-Length" in request.headers)
+    
+        if isinstance(timeout, tuple):
+            try:
+                connect, read = timeout
+                resolved_timeout = TimeoutSauce(connect=connect, read=read)
+            except ValueError:
+                raise ValueError(
+                    f"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, "
+                    f"or a single float to set both timeouts to the same value."
+                )
+        elif isinstance(timeout, TimeoutSauce):
+            resolved_timeout = timeout
+        else:
+            resolved_timeout = TimeoutSauce(connect=timeout, read=timeout)
+    
+        try:
+>           resp = conn.urlopen(
+                method=request.method,
+                url=url,
+                body=request.body,  # type: ignore[arg-type]  # urllib3 stubs don't accept Iterable[bytes | str]
+                headers=request.headers,  # type: ignore[arg-type]  # urllib3#3072
+                redirect=False,
+                assert_same_host=False,
+                preload_content=False,
+                decode_content=False,
+                retries=self.max_retries,
+                timeout=resolved_timeout,
+                chunked=chunked,
+            )
+
+/root/.venv/lib/python3.11/site-packages/requests/adapters.py:696: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py:842: in urlopen
+    retries = retries.increment(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Retry(total=0, connect=None, read=False, redirect=None, status=None)
+method = 'GET', url = '/api/team/approval_surface', response = None
+error = ConnectTimeoutError(<HTTPSConnection(host='akki-reuse-assess.preview.emergentagent.com', port=443) at 0xfa0c64872d50>, 'Connection to akki-reuse-assess.preview.emergentagent.com timed out. (connect timeout=15)')
+_pool = <urllib3.connectionpool.HTTPSConnectionPool object at 0xfa0c64871f10>
+_stacktrace = <traceback object at 0xfa0c64873040>
+
+    def increment(
+        self,
+        method: str | None = None,
+        url: str | None = None,
+        response: BaseHTTPResponse | None = None,
+        error: Exception | None = None,
+        _pool: ConnectionPool | None = None,
+        _stacktrace: TracebackType | None = None,
+    ) -> Self:
+        """Return a new Retry object with incremented retry counters.
+    
+        :param response: A response object, or None, if the server did not
+            return a response.
+        :type response: :class:`~urllib3.response.BaseHTTPResponse`
+        :param Exception error: An error encountered during the request, or
+            None if the response was received successfully.
+    
+        :return: A new ``Retry`` object.
+        """
+        if self.total is False and error:
+            # Disabled, indicate to re-raise the error.
+            raise reraise(type(error), error, _stacktrace)
+    
+        total = self.total
+        if total is not None:
+            total -= 1
+    
+        connect = self.connect
+        read = self.read
+        redirect = self.redirect
+        status_count = self.status
+        other = self.other
+        cause = "unknown"
+        status = None
+        redirect_location = None
+    
+        if error and self._is_connection_error(error):
+            # Connect retry?
+            if connect is False:
+                raise reraise(type(error), error, _stacktrace)
+            elif connect is not None:
+                connect -= 1
+    
+        elif error and self._is_read_error(error):
+            # Read retry?
+            if read is False or method is None or not self._is_method_retryable(method):
+                raise reraise(type(error), error, _stacktrace)
+            elif read is not None:
+                read -= 1
+    
+        elif error:
+            # Other retry?
+            if other is not None:
+                other -= 1
+    
+        elif response and response.get_redirect_location():
+            # Redirect retry?
+            if redirect is not None:
+                redirect -= 1
+            cause = "too many redirects"
+            response_redirect_location = response.get_redirect_location()
+            if response_redirect_location:
+                redirect_location = response_redirect_location
+            status = response.status
+    
+        else:
+            # Incrementing because of a server error like a 500 in
+            # status_forcelist and the given method is in the allowed_methods
+            cause = ResponseError.GENERIC_ERROR
+            if response and response.status:
+                if status_count is not None:
+                    status_count -= 1
+                cause = ResponseError.SPECIFIC_ERROR.format(status_code=response.status)
+                status = response.status
+    
+        history = self.history + (
+            RequestHistory(method, url, error, status, redirect_location),
+        )
+    
+        new_retry = self.new(
+            total=total,
+            connect=connect,
+            read=read,
+            redirect=redirect,
+            status=status_count,
+            other=other,
+            history=history,
+        )
+    
+        if new_retry.is_exhausted():
+            reason = error or ResponseError(cause)
+>           raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='akki-reuse-assess.preview.emergentagent.com', port=443): Max retries exceeded with url: /api/team/approval_surface (Caused by ConnectTimeoutError(<HTTPSConnection(host='akki-reuse-assess.preview.emergentagent.com', port=443) at 0xfa0c64872d50>, 'Connection to akki-reuse-assess.preview.emergentagent.com timed out. (connect timeout=15)'))
+
+/root/.venv/lib/python3.11/site-packages/urllib3/util/retry.py:543: MaxRetryError
+
+During handling of the above exception, another exception occurred:
+
+admin_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI6ImFkbWluQHJtcy5leGFtcGxl...ZSJ9XSwiaWF0IjoxNzkwMTU1MjY3LCJleHAiOjE3OTAxNTYxNjcsInR5cGUiOiJhY2Nlc3MifQ.uufEuny0QZvKA6mzNs8UCMrkE3NUKuxgKIwuIumso3k'
+
+    def test_p1_decision_verbatim_required(admin_token):
+>       r = requests.get(f"{BASE_URL}/api/team/approval_surface",
+                         headers=_auth(admin_token), timeout=15)
+
+tests/test_ui1e_iter24_live.py:177: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/.venv/lib/python3.11/site-packages/requests/api.py:87: in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.venv/lib/python3.11/site-packages/requests/api.py:71: in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.venv/lib/python3.11/site-packages/requests/sessions.py:651: in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.venv/lib/python3.11/site-packages/requests/sessions.py:784: in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <requests.adapters.HTTPAdapter object at 0xfa0d23747610>
+request = <PreparedRequest [GET]>, stream = False, timeout = 15, verify = True
+cert = None, proxies = OrderedDict()
+
+    def send(
+        self,
+        request: PreparedRequest,
+        stream: bool = False,
+        timeout: _t.TimeoutType = None,
+        verify: _t.VerifyType = True,
+        cert: _t.CertType = None,
+        proxies: dict[str, str] | None = None,
+    ) -> Response:
+        """Sends PreparedRequest object. Returns Response object.
+    
+        :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.
+        :param stream: (optional) Whether to stream the request content.
+        :param timeout: (optional) How long to wait for the server to send
+            data before giving up, as a float, or a :ref:`(connect timeout,
+            read timeout) <timeouts>` tuple.
+        :type timeout: float or tuple or urllib3 Timeout object
+        :param verify: (optional) Either a boolean, in which case it controls whether
+            we verify the server's TLS certificate, or a string, in which case it
+            must be a path to a CA bundle to use
+        :param cert: (optional) Any user-provided SSL certificate to be trusted.
+        :param proxies: (optional) The proxies dictionary to apply to the request.
+        :rtype: requests.Response
+        """
+    
+        assert _is_prepared(request)
+    
+        try:
+            conn = self.get_connection_with_tls_context(
+                request, verify, proxies=proxies, cert=cert
+            )
+        except LocationValueError as e:
+            raise InvalidURL(e, request=request)
+    
+        self.cert_verify(conn, request.url, verify, cert)
+        url = self.request_url(request, proxies)
+        self.add_headers(
+            request,
+            stream=stream,
+            timeout=timeout,
+            verify=verify,
+            cert=cert,
+            proxies=proxies,
+        )
+    
+        chunked = not (request.body is None or "Content-Length" in request.headers)
+    
+        if isinstance(timeout, tuple):
+            try:
+                connect, read = timeout
+                resolved_timeout = TimeoutSauce(connect=connect, read=read)
+            except ValueError:
+                raise ValueError(
+                    f"Invalid timeout {timeout}. Pass a (connect, read) timeout tuple, "
+                    f"or a single float to set both timeouts to the same value."
+                )
+        elif isinstance(timeout, TimeoutSauce):
+            resolved_timeout = timeout
+        else:
+            resolved_timeout = TimeoutSauce(connect=timeout, read=timeout)
+    
+        try:
+            resp = conn.urlopen(
+                method=request.method,
+                url=url,
+                body=request.body,  # type: ignore[arg-type]  # urllib3 stubs don't accept Iterable[bytes | str]
+                headers=request.headers,  # type: ignore[arg-type]  # urllib3#3072
+                redirect=False,
+                assert_same_host=False,
+                preload_content=False,
+                decode_content=False,
+                retries=self.max_retries,
+                timeout=resolved_timeout,
+                chunked=chunked,
+            )
+    
+        except (ProtocolError, OSError) as err:
+            raise ConnectionError(err, request=request)
+    
+        except MaxRetryError as e:
+            if isinstance(e.reason, ConnectTimeoutError):
+                # TODO: Remove this in 3.0.0: see #2811
+                if not isinstance(e.reason, NewConnectionError):
+>                   raise ConnectTimeout(e, request=request)
+E                   requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='akki-reuse-assess.preview.emergentagent.com', port=443): Max retries exceeded with url: /api/team/approval_surface (Caused by ConnectTimeoutError(<HTTPSConnection(host='akki-reuse-assess.preview.emergentagent.com', port=443) at 0xfa0c64872d50>, 'Connection to akki-reuse-assess.preview.emergentagent.com timed out. (connect timeout=15)'))
+
+/root/.venv/lib/python3.11/site-packages/requests/adapters.py:717: ConnectTimeout
+______________________________ test_p1_parity_36 _______________________________
+
+    def test_p1_parity_36():
+        r = requests.get(f"{BASE_URL}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_ui1e_iter24_live.py:193: AssertionError
+____________________________ test_readyz_parity_36 _____________________________
+
+    def test_readyz_parity_36():
+        r = requests.get(f"{BASE_URL}/api/readyz", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:31: AssertionError
+__________________________ test_build_info_parity_36 ___________________________
+
+    def test_build_info_parity_36():
+        r = requests.get(f"{BASE_URL}/api/system/build_info", timeout=10)
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:40: AssertionError
+______________________ test_ceiling_get_returns_1000_usd _______________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_ceiling_get_returns_1000_usd(h):
+        r = requests.get(f"{BASE_URL}/api/use_data/ceiling", headers=h, timeout=10)
+>       assert r.status_code == 200, r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:47: AssertionError
+________________ test_ceiling_write_refused_change_a_rule_only _________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_ceiling_write_refused_change_a_rule_only(h):
+        r = requests.post(f"{BASE_URL}/api/use_data/ceiling", headers=h,
+                          json={"ceiling_usd": 5000}, timeout=10)
+>       assert r.status_code == 422, r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 422
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:57: AssertionError
+______________ test_session_create_valid_doors[integrate_an_app] _______________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'integrate_an_app'
+
+    @pytest.mark.parametrize("door", ["integrate_an_app", "export_or_license", "train_a_model"])
+    def test_session_create_valid_doors(h, door):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:68: AssertionError
+______________ test_session_create_valid_doors[export_or_license] ______________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'export_or_license'
+
+    @pytest.mark.parametrize("door", ["integrate_an_app", "export_or_license", "train_a_model"])
+    def test_session_create_valid_doors(h, door):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:68: AssertionError
+________________ test_session_create_valid_doors[train_a_model] ________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'train_a_model'
+
+    @pytest.mark.parametrize("door", ["integrate_an_app", "export_or_license", "train_a_model"])
+    def test_session_create_valid_doors(h, door):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:68: AssertionError
+__________________ test_session_create_invalid_door_rejected ___________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_session_create_invalid_door_rejected(h):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": "delete_a_dataset"}, timeout=10)
+>       assert r.status_code == 422
+E       assert 404 == 422
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:78: AssertionError
+________________________ test_commit_all_pass_runs_now _________________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_commit_all_pass_runs_now(h):
+>       sid = _create_session(h)
+              ^^^^^^^^^^^^^^^^^^
+
+tests/test_use_data_http_iter11.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'integrate_an_app'
+
+    def _create_session(h, door="integrate_an_app"):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:85: AssertionError
+__________________ test_commit_rights_null_absolute_no_route ___________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_commit_rights_null_absolute_no_route(h):
+>       sid = _create_session(h)
+              ^^^^^^^^^^^^^^^^^^
+
+tests/test_use_data_http_iter11.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'integrate_an_app'
+
+    def _create_session(h, door="integrate_an_app"):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:85: AssertionError
+______________ test_commit_class_d_unresolvable_absolute_no_route ______________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_commit_class_d_unresolvable_absolute_no_route(h):
+>       sid = _create_session(h)
+              ^^^^^^^^^^^^^^^^^^
+
+tests/test_use_data_http_iter11.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'integrate_an_app'
+
+    def _create_session(h, door="integrate_an_app"):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:85: AssertionError
+________________ test_commit_privacy_floor_missing_escalatable _________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_commit_privacy_floor_missing_escalatable(h):
+>       sid = _create_session(h)
+              ^^^^^^^^^^^^^^^^^^
+
+tests/test_use_data_http_iter11.py:155: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'integrate_an_app'
+
+    def _create_session(h, door="integrate_an_app"):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:85: AssertionError
+___________________ test_commit_over_ceiling_held_for_check ____________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_commit_over_ceiling_held_for_check(h):
+>       sid = _create_session(h)
+              ^^^^^^^^^^^^^^^^^^
+
+tests/test_use_data_http_iter11.py:166: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'integrate_an_app'
+
+    def _create_session(h, door="integrate_an_app"):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:85: AssertionError
+_______________________ test_anonymous_read_session_401 ________________________
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+
+    def test_anonymous_read_session_401(h):
+>       sid = _create_session(h)
+              ^^^^^^^^^^^^^^^^^^
+
+tests/test_use_data_http_iter11.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+h = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE2MzM5Yzc0Mjc5MzFkZWU2OTk4NjgiLCJlbWFpbCI...jE3OTAxNTYyMjIsInR5cGUiOiJhY2Nlc3MifQ.c0TcN2F2-kpb1XicTMVQ6trXjbMeo2yIrS8mzoQVBJ4', 'Content-Type': 'application/json'}
+door = 'integrate_an_app'
+
+    def _create_session(h, door="integrate_an_app"):
+        r = requests.post(f"{BASE_URL}/api/use_data/session", headers=h,
+                          json={"door": door}, timeout=10)
+>       assert r.status_code in (200, 201), r.text
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_http_iter11.py:85: AssertionError
+_ test_sessions_envelope_has_one_sample_each[demo.master_admin@demo.rms.example.com-demo-master-admin-pw-master_admin] _
+
+email = 'demo.master_admin@demo.rms.example.com'
+password = 'demo-master-admin-pw', _role = 'master_admin'
+
+    @pytest.mark.parametrize("email,password,_role", DEMO_IDENTITIES)
+    def test_sessions_envelope_has_one_sample_each(email, password, _role):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok), timeout=15)
+>       assert r.status_code == 200, r.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter12_addendum.py:62: AssertionError
+_ test_sessions_envelope_has_one_sample_each[demo.dpo@demo.rms.example.com-demo-dpo-pw-dpo] _
+
+email = 'demo.dpo@demo.rms.example.com', password = 'demo-dpo-pw', _role = 'dpo'
+
+    @pytest.mark.parametrize("email,password,_role", DEMO_IDENTITIES)
+    def test_sessions_envelope_has_one_sample_each(email, password, _role):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok), timeout=15)
+>       assert r.status_code == 200, r.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter12_addendum.py:62: AssertionError
+_ test_sessions_envelope_has_one_sample_each[demo.operator@demo.rms.example.com-demo-operator-pw-operator] _
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+_role = 'operator'
+
+    @pytest.mark.parametrize("email,password,_role", DEMO_IDENTITIES)
+    def test_sessions_envelope_has_one_sample_each(email, password, _role):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok), timeout=15)
+>       assert r.status_code == 200, r.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter12_addendum.py:62: AssertionError
+_ test_sessions_envelope_has_one_sample_each[demo.analyst@demo.rms.example.com-demo-analyst-pw-ask_console_user] _
+
+email = 'demo.analyst@demo.rms.example.com', password = 'demo-analyst-pw'
+_role = 'ask_console_user'
+
+    @pytest.mark.parametrize("email,password,_role", DEMO_IDENTITIES)
+    def test_sessions_envelope_has_one_sample_each(email, password, _role):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok), timeout=15)
+>       assert r.status_code == 200, r.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter12_addendum.py:62: AssertionError
+___________ test_sample_session_get_carries_top_level_is_sample_flag ___________
+
+    def test_sample_session_get_carries_top_level_is_sample_flag():
+        tok = _login("demo.operator@demo.rms.example.com", "demo-operator-pw")
+        listing = requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok), timeout=15).json()
+>       ip_id = listing["in_progress"][0]["session_id"]
+                ^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'in_progress'
+
+tests/test_use_data_iter12_addendum.py:82: KeyError
+_________________________ test_cross_operator_scoping __________________________
+
+    def test_cross_operator_scoping():
+        tok_op = _login("demo.operator@demo.rms.example.com", "demo-operator-pw")
+        tok_dpo = _login("demo.dpo@demo.rms.example.com", "demo-dpo-pw")
+        op_ids = {r["session_id"] for r in
+>                 requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok_op), timeout=15).json()["in_progress"]
+                  + requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok_op), timeout=15).json()["ready"]}
+E       KeyError: 'in_progress'
+
+tests/test_use_data_iter12_addendum.py:108: KeyError
+__________________ test_new_session_survives_backend_restart ___________________
+
+    @pytest.mark.durability
+    def test_new_session_survives_backend_restart():
+        tok = _login("demo.operator@demo.rms.example.com", "demo-operator-pw")
+        # Open a new (non-sample) session
+        r = requests.post(f"{BASE_URL}/api/use_data/session",
+                          headers=_auth(tok), json={"door": "train_a_model"}, timeout=15)
+>       assert r.status_code in (200, 201), r.text[:300]
+E       AssertionError: {"detail":"Not Found"}
+E       assert 404 in (200, 201)
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter12_addendum.py:124: AssertionError
+______________________ test_sample_doc_count_is_exactly_8 ______________________
+
+    def test_sample_doc_count_is_exactly_8():
+        # Aggregate across all four demo identities
+        total = 0
+        for email, password, _ in DEMO_IDENTITIES:
+            tok = _login(email, password)
+            body = requests.get(f"{BASE_URL}/api/use_data/sessions", headers=_auth(tok), timeout=15).json()
+>           total += sum(1 for r in body["in_progress"] if r.get("is_sample"))
+                                    ^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'in_progress'
+
+tests/test_use_data_iter12_addendum.py:149: KeyError
+___ test_sample_pinned_for_identity[admin@rms.example.com-admin-b1-test-pw] ____
+
+email = 'admin@rms.example.com', password = 'admin-b1-test-pw'
+
+    @pytest.mark.parametrize("email,password", IDENTITIES)
+    def test_sample_pinned_for_identity(email, password):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers={"Authorization": f"Bearer {tok}"}, timeout=15)
+>       assert r.status_code == 200, f"sessions fetch failed for {email}: {r.status_code} {r.text[:400]}"
+E       AssertionError: sessions fetch failed for admin@rms.example.com: 404 {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter14_sample_all_identities.py:35: AssertionError
+_ test_sample_pinned_for_identity[demo.master_admin@demo.rms.example.com-demo-master-admin-pw] _
+
+email = 'demo.master_admin@demo.rms.example.com'
+password = 'demo-master-admin-pw'
+
+    @pytest.mark.parametrize("email,password", IDENTITIES)
+    def test_sample_pinned_for_identity(email, password):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers={"Authorization": f"Bearer {tok}"}, timeout=15)
+>       assert r.status_code == 200, f"sessions fetch failed for {email}: {r.status_code} {r.text[:400]}"
+E       AssertionError: sessions fetch failed for demo.master_admin@demo.rms.example.com: 404 {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter14_sample_all_identities.py:35: AssertionError
+__ test_sample_pinned_for_identity[demo.dpo@demo.rms.example.com-demo-dpo-pw] __
+
+email = 'demo.dpo@demo.rms.example.com', password = 'demo-dpo-pw'
+
+    @pytest.mark.parametrize("email,password", IDENTITIES)
+    def test_sample_pinned_for_identity(email, password):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers={"Authorization": f"Bearer {tok}"}, timeout=15)
+>       assert r.status_code == 200, f"sessions fetch failed for {email}: {r.status_code} {r.text[:400]}"
+E       AssertionError: sessions fetch failed for demo.dpo@demo.rms.example.com: 404 {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter14_sample_all_identities.py:35: AssertionError
+_ test_sample_pinned_for_identity[demo.operator@demo.rms.example.com-demo-operator-pw] _
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    @pytest.mark.parametrize("email,password", IDENTITIES)
+    def test_sample_pinned_for_identity(email, password):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers={"Authorization": f"Bearer {tok}"}, timeout=15)
+>       assert r.status_code == 200, f"sessions fetch failed for {email}: {r.status_code} {r.text[:400]}"
+E       AssertionError: sessions fetch failed for demo.operator@demo.rms.example.com: 404 {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter14_sample_all_identities.py:35: AssertionError
+_ test_sample_pinned_for_identity[demo.analyst@demo.rms.example.com-demo-analyst-pw] _
+
+email = 'demo.analyst@demo.rms.example.com', password = 'demo-analyst-pw'
+
+    @pytest.mark.parametrize("email,password", IDENTITIES)
+    def test_sample_pinned_for_identity(email, password):
+        tok = _login(email, password)
+        r = requests.get(f"{BASE_URL}/api/use_data/sessions", headers={"Authorization": f"Bearer {tok}"}, timeout=15)
+>       assert r.status_code == 200, f"sessions fetch failed for {email}: {r.status_code} {r.text[:400]}"
+E       AssertionError: sessions fetch failed for demo.analyst@demo.rms.example.com: 404 {"detail":"Not Found"}
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+tests/test_use_data_iter14_sample_all_identities.py:35: AssertionError
+__________________ test_sample_seed_idempotent_after_restart ___________________
+
+    def test_sample_seed_idempotent_after_restart():
+        """Restart backend twice and ensure sample count remains constant."""
+        import subprocess, time
+    
+        # baseline count via admin
+        tok = _login(*IDENTITIES[0])
+        def _fetch_ids(t):
+            # We cannot query Mongo directly here; instead validate each identity still has exactly 1 sample at [0] on each list.
+            counts = {}
+            for em, pw in IDENTITIES:
+                tok2 = _login(em, pw)
+                body = requests.get(f"{BASE_URL}/api/use_data/sessions", headers={"Authorization": f"Bearer {tok2}"}, timeout=15).json()
+                ip_samples = [s for s in (body.get("in_progress") or []) if s.get("is_sample")]
+                rd_samples = [s for s in (body.get("ready") or []) if s.get("is_sample")]
+                counts[em] = (len(ip_samples), len(rd_samples))
+            return counts
+    
+        before = _fetch_ids(tok)
+        subprocess.run(["sudo", "supervisorctl", "restart", "backend"], check=True)
+        time.sleep(8)
+        # wait for backend to be live
+        for _ in range(20):
+            try:
+                if requests.get(f"{BASE_URL}/api/readyz", timeout=5).status_code == 200:
+                    break
+            except Exception:
+                pass
+            time.sleep(1)
+        after = _fetch_ids(tok)
+        assert before == after, f"sample counts changed after restart: before={before} after={after}"
+        # Each identity should have exactly 1 sample per list
+        for em, (ip, rd) in after.items():
+>           assert ip == 1, f"{em}: in_progress sample count = {ip}, expected 1"
+E           AssertionError: admin@rms.example.com: in_progress sample count = 0, expected 1
+E           assert 0 == 1
+
+tests/test_use_data_iter14_sample_all_identities.py:81: AssertionError
+----------------------------- Captured stdout call -----------------------------
+backend: stopped
+backend: started
+=============================== warnings summary ===============================
+tests/test_use_data_iter12_addendum.py:118
+  /app/assessment_workspace/repos/Extraction-Akki/backend/tests/test_use_data_iter12_addendum.py:118: PytestUnknownMarkWarning: Unknown pytest.mark.durability - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.durability
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_portal_census_journey.py: 16 warnings
+tests/invariants/test_portal_census_surface_connection.py: 4 warnings
+tests/invariants/test_portal_registry_landing.py: 21 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_portal_census_journey.py: 16 warnings
+tests/invariants/test_portal_census_surface_connection.py: 4 warnings
+tests/invariants/test_portal_registry_landing.py: 21 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_orch_boot.py::test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads
+FAILED tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom
+FAILED tests/live_preview/test_phase3_sc2_live.py::test_readyz_parity_34 - as...
+FAILED tests/live_preview/test_phase3_sc3_govern_live.py::test_1_readyz_parity_34
+FAILED tests/registry/test_machine_readable_registry_mrr_g1_to_g6.py::test_mrr_g_parity
+FAILED tests/registry/test_q4_gates.py::test_q4_run_holds_parity_31 - Asserti...
+FAILED tests/registry/test_standing_queries_sq_g1_to_g10.py::test_sq_g_parity_31
+FAILED tests/test_eab_1_pipeline.py::test_fence_1_trace_resolver_single_code_path_no_modality_branch
+FAILED tests/test_govern_ui1b_iter15.py::TestParity::test_parity_still_36 - a...
+FAILED tests/test_govern_ui1b_iter16.py::test_readyz_parity_36 - assert 404 =...
+FAILED tests/test_govern_ui1b_iter16.py::test_dpo_can_read_held_session_envelope
+FAILED tests/test_govern_ui1b_iter16.py::test_analyst_denied_on_held_session_read
+FAILED tests/test_govern_ui1b_iter16.py::test_dpo_use_data_sessions_excludes_held
+FAILED tests/test_govern_ui1b_iter16.py::test_admin_can_read_held_session - A...
+FAILED tests/test_lift_manifest.py::test_manifest_entry_resolves[backend/services/northena/state_machine.py]
+FAILED tests/test_memory_http_surface.py::test_readyz_parity_34 - assert 404 ...
+FAILED tests/test_memory_http_surface.py::test_build_info_parity_34 - assert ...
+FAILED tests/test_no_direct_llm_calls_outside_shield.py::test_no_direct_llm_calls_outside_shield
+FAILED tests/test_northena_invariants.py::test_N_INV_10_stamp_audit_absorbed
+FAILED tests/test_northena_invariants.py::test_N_INV_11_governors_orthogonal
+FAILED tests/test_ui1d_iter22_live.py::test_readyz_parity - assert 404 == 200
+FAILED tests/test_ui1d_live_preview.py::test_live_parity_36 - assert 404 == 200
+FAILED tests/test_ui1e_iter23_live.py::test_l1_parity_36 - assert 404 == 200
+FAILED tests/test_ui1e_iter23_live.py::test_l8_grant_revoke_single_source_engineer_key_grants
+FAILED tests/test_ui1e_iter24_live.py::test_r1_engineer_key_grants_self_admin
+FAILED tests/test_ui1e_iter24_live.py::test_r2_engineer_key_grants_by_seeded_grantee
+FAILED tests/test_ui1e_iter24_live.py::test_p0_team_grant_engineer_single_source_roundtrip
+FAILED tests/test_ui1e_iter24_live.py::test_p1_decision_verbatim_required - r...
+FAILED tests/test_ui1e_iter24_live.py::test_p1_parity_36 - assert 404 == 200
+FAILED tests/test_use_data_http_iter11.py::test_readyz_parity_36 - assert 404...
+FAILED tests/test_use_data_http_iter11.py::test_build_info_parity_36 - assert...
+FAILED tests/test_use_data_http_iter11.py::test_ceiling_get_returns_1000_usd
+FAILED tests/test_use_data_http_iter11.py::test_ceiling_write_refused_change_a_rule_only
+FAILED tests/test_use_data_http_iter11.py::test_session_create_valid_doors[integrate_an_app]
+FAILED tests/test_use_data_http_iter11.py::test_session_create_valid_doors[export_or_license]
+FAILED tests/test_use_data_http_iter11.py::test_session_create_valid_doors[train_a_model]
+FAILED tests/test_use_data_http_iter11.py::test_session_create_invalid_door_rejected
+FAILED tests/test_use_data_http_iter11.py::test_commit_all_pass_runs_now - As...
+FAILED tests/test_use_data_http_iter11.py::test_commit_rights_null_absolute_no_route
+FAILED tests/test_use_data_http_iter11.py::test_commit_class_d_unresolvable_absolute_no_route
+FAILED tests/test_use_data_http_iter11.py::test_commit_privacy_floor_missing_escalatable
+FAILED tests/test_use_data_http_iter11.py::test_commit_over_ceiling_held_for_check
+FAILED tests/test_use_data_http_iter11.py::test_anonymous_read_session_401 - ...
+FAILED tests/test_use_data_iter12_addendum.py::test_sessions_envelope_has_one_sample_each[demo.master_admin@demo.rms.example.com-demo-master-admin-pw-master_admin]
+FAILED tests/test_use_data_iter12_addendum.py::test_sessions_envelope_has_one_sample_each[demo.dpo@demo.rms.example.com-demo-dpo-pw-dpo]
+FAILED tests/test_use_data_iter12_addendum.py::test_sessions_envelope_has_one_sample_each[demo.operator@demo.rms.example.com-demo-operator-pw-operator]
+FAILED tests/test_use_data_iter12_addendum.py::test_sessions_envelope_has_one_sample_each[demo.analyst@demo.rms.example.com-demo-analyst-pw-ask_console_user]
+FAILED tests/test_use_data_iter12_addendum.py::test_sample_session_get_carries_top_level_is_sample_flag
+FAILED tests/test_use_data_iter12_addendum.py::test_cross_operator_scoping - ...
+FAILED tests/test_use_data_iter12_addendum.py::test_new_session_survives_backend_restart
+FAILED tests/test_use_data_iter12_addendum.py::test_sample_doc_count_is_exactly_8
+FAILED tests/test_use_data_iter14_sample_all_identities.py::test_sample_pinned_for_identity[admin@rms.example.com-admin-b1-test-pw]
+FAILED tests/test_use_data_iter14_sample_all_identities.py::test_sample_pinned_for_identity[demo.master_admin@demo.rms.example.com-demo-master-admin-pw]
+FAILED tests/test_use_data_iter14_sample_all_identities.py::test_sample_pinned_for_identity[demo.dpo@demo.rms.example.com-demo-dpo-pw]
+FAILED tests/test_use_data_iter14_sample_all_identities.py::test_sample_pinned_for_identity[demo.operator@demo.rms.example.com-demo-operator-pw]
+FAILED tests/test_use_data_iter14_sample_all_identities.py::test_sample_pinned_for_identity[demo.analyst@demo.rms.example.com-demo-analyst-pw]
+FAILED tests/test_use_data_iter14_sample_all_identities.py::test_sample_seed_idempotent_after_restart
+===== 57 failed, 6690 passed, 1 skipped, 521 warnings in 336.88s (0:05:36) =====

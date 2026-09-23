@@ -1,0 +1,224 @@
+........................................................................ [  1%]
+........................................................................ [  2%]
+........................................................................ [  3%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  7%]
+........................................................................ [  8%]
+........................................................................ [  9%]
+....F................................................................... [ 11%]
+........................................................................ [ 12%]
+........................................................................ [ 13%]
+.....F....F.F.F........FFF.............................................. [ 14%]
+........................................................................ [ 15%]
+........................................................................ [ 17%]
+........................................................................ [ 18%]
+........................................................................ [ 19%]
+........................................................................ [ 20%]
+........................................................................ [ 22%]
+........................................................................ [ 23%]
+........................................................................ [ 24%]
+........................................................................ [ 25%]
+........................................................................ [ 27%]
+........................................................................ [ 28%]
+........................................................................ [ 29%]
+........................................................................ [ 30%]
+...........F.............FFFFFFF........................................ [ 31%]
+........................................................................ [ 33%]
+........................................................................ [ 34%]
+........................................................................ [ 35%]
+........................................................................ [ 36%]
+........................................................................ [ 38%]
+........................................................................ [ 39%]
+........................................................................ [ 40%]
+........................................................................ [ 41%]
+........................................................................ [ 42%]
+........................................................................ [ 44%]
+........................................................................ [ 45%]
+........................................................................ [ 46%]
+.....................F.................................................. [ 47%]
+........................................................................ [ 49%]
+............................................................s........... [ 50%]
+........................................................................ [ 51%]
+........................................................................ [ 52%]
+........................................................................ [ 54%]
+........................................................................ [ 55%]
+........................................................................ [ 56%]
+........................................................................ [ 57%]
+........................................................................ [ 58%]
+..............F......................................................... [ 60%]
+........................................................................ [ 61%]
+..FF............F....................................................... [ 62%]
+........................................................................ [ 63%]
+........................................................................ [ 65%]
+........................................................................ [ 66%]
+........................................................................ [ 67%]
+........................................................................ [ 68%]
+........................................................................ [ 70%]
+........................................................................ [ 71%]
+........................................................................ [ 72%]
+........................................................................ [ 73%]
+........................................................................ [ 74%]
+....................................................................F... [ 76%]
+........................................................................ [ 77%]
+...............FFFFFFFF...........FFFFFFFFFFFFFFF..FFFFFFFFFFFFFFFFFFFFF [ 78%]
+F....................................................................... [ 79%]
+........................................................................ [ 81%]
+.................F..FF..........s.....ss................................ [ 82%]
+........................................................................ [ 83%]
+......s................................................................. [ 84%]
+......................ssssssss.......................................... [ 85%]
+........................................................................ [ 87%]
+........................................................................ [ 88%]
+........................................................................ [ 89%]
+........................................................................ [ 90%]
+........................................................................ [ 92%]
+........................................................................ [ 93%]
+........................................................................ [ 94%]
+........................................................................ [ 95%]
+........................................................................ [ 97%]
+........................................................................ [ 98%]
+........................................................................ [ 99%]
+..............................                                           [100%]
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_cp_e7_digicow_pii_sanitizer_sweep.py::test_cp_e7_pii_sweep_receipt_note_is_present
+FAILED tests/invariants/test_entitlement_service_v1_property_tests.py::test_wave_setup_spec_docx_source_sha256_byte_verified
+FAILED tests/invariants/test_entitlement_service_v1_property_tests.py::test_ent_19_customer_key_preferred_over_reseller_frontier_when_both_exist
+FAILED tests/invariants/test_entitlement_service_v1_property_tests.py::test_ent_26_frontier_allowance_exhaustion_cascades_locally_with_fixed_string
+FAILED tests/invariants/test_entitlement_service_v1_property_tests.py::test_ent_34_unreachable_reseller_cascade_locally_with_fixed_string
+FAILED tests/invariants/test_entitlement_service_v1_property_tests.py::test_fixed_string_ent_23_cost_not_yet_measured_byte_match_spec_docx
+FAILED tests/invariants/test_entitlement_service_v1_property_tests.py::test_fixed_string_ent_26_frontier_allowance_used_byte_match_spec_docx
+FAILED tests/invariants/test_entitlement_service_v1_property_tests.py::test_fixed_string_ent_34_frontier_unavailable_byte_match_spec_docx
+FAILED tests/invariants/test_master_admin_auth_reconciliation.py::test_master_admin_endpoint_master_admin_role_permits[POST-/api/pricing/tier_lock-body0-200]
+FAILED tests/invariants/test_master_admin_recent_actions.py::test_audit_trail_returns_recent_master_admin_rule_change_rows
+FAILED tests/invariants/test_master_admin_recent_actions.py::test_audit_trail_reverse_chronological_ordering
+FAILED tests/invariants/test_master_admin_recent_actions.py::test_audit_trail_does_not_embed_raw_diff_as_primary_display
+FAILED tests/invariants/test_master_admin_recent_actions.py::test_audit_trail_full_diff_ref_link_resolves_to_ledger_row
+FAILED tests/invariants/test_master_admin_tier_lock_path_a_ledger.py::test_tier_lock_commit_emits_ledger_row
+FAILED tests/invariants/test_master_admin_tier_lock_path_a_ledger.py::test_tier_lock_commit_writes_versioned_file
+FAILED tests/invariants/test_master_admin_tier_lock_path_a_ledger.py::test_tier_lock_commit_idempotent_by_idempotency_key
+FAILED tests/invariants/test_phase_6_stage_b_economics.py::test_master_admin_gated_pricing_writes
+FAILED tests/invariants/test_seal_cites_card.py::test_every_cited_exit_test_file_exists_on_disk
+FAILED tests/invariants/test_ship_manifest_dod.py::test_runtime_server_matches_repo_pod_shell
+FAILED tests/invariants/test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell
+FAILED tests/invariants/test_ship_manifest_dod_route_table_drift.py::test_repo_pod_shell_and_runtime_server_are_byte_identical
+FAILED tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py::test_pod_shell_boots_and_returns_403_on_root
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_list_reads_real_registry
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_brief_detail_returns_real_row
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_by_source_filters_correctly
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_regenerate_reports_pipeline_available
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp6_perception_list_importable_and_returns_shape
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp6_perception_execution_mode_module_importable
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp6_perception_per_source_route_returns_source_scoped_shape
+FAILED tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp7_rules_updates_pending_reads_phase0_rules_ledger
+FAILED tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_model_registry_full_record_endpoint_returns_roster
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_mix_carries_six_cut_dict_or_honest_gap
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_mix_reading_carries_reading_or_honest_gap
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_source_profile_carries_ef_profile_fields
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_cir_carries_classifications_and_pending_count
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_estate_intelligence_carries_standout_or_honest_gap
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_opportunities_carries_briefs_or_honest_gap
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp3_census_history_carries_history_list_and_count
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp3_census_status_carries_state_field
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_registry_full_record_carries_models_list_or_honest_gap
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_journal_carries_model_id_and_journal_rows
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_checks_carries_model_id_and_checks
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_refusals_carries_model_id_and_refusals
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_traffic_carries_traffic_dict
+FAILED tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_answering_carries_answering_mode_field
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_source_profile_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_cir_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_reading_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_estate_intelligence_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_opportunities_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_history_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_status_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_full_record_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_journal_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_checks_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_refusals_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_traffic_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_answering_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_list_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_detail_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_regenerate_post
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_by_source_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_list_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_source_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_execution_mode_get
+FAILED tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_rules_updates_pending_get
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_hooks_and_api_client_mirror_pod_shell
+70 failed, 5779 passed, 13 skipped, 438 warnings in 185.24s (0:03:05)

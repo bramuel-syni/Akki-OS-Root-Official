@@ -28701,3 +28701,147 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 | 5. /app companion C | `c069bec5` | main |
 
 Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## 2026-02-23 · SO §6.9 FUNCTION-IS-THE-OBJECTIVE AMENDMENT · owner drop received mid-CP-AIP-9 pre-Commit-A · verbatim banked at OWNER_DROPS/so_6_9_amendment_20260223/DROP.md · addendum landed in STANDING_ORDERS.md §6.9
+
+- Verbatim owner text stored at `STATE/OWNER_DROPS/so_6_9_amendment_20260223/DROP.md` sections 1-2 (word-for-word Direction + 9 clauses + application sequence items a-h).
+- STANDING_ORDERS.md §6.9 addendum appended verbatim (change-mechanism ladder, sealed-additive class, HF hazard re-scope, LID, private-mirror, spec corrections, tenant separation, census three waves, audit, desk discipline, cadence amendment REPORT-AND-CONTINUE).
+- Ledger check - this fold-in implements owner-directed SO §6.9 amendment and nothing else. The in-flight CP-AIP-9 seal continues on the same commit as an additive fold-in per §6.9 clause 2 sealed-additive class.
+
+### Immediate compliance items (per application sequence a-d)
+
+- (a) Verbatim banking - DONE this-turn (OWNER_DROPS + STANDING_ORDERS §6.9 + this DECISIONS entry with dashes not colons per owner directive).
+- (b) R-91 ε retirement scheduled for CP-AIP-9-COMMISSION-VIEW Commit-A - THIS SEAL is the next boundary per §6.9 clause 1 scaffolding class (owner ruling, applied at next boundary). Wrapped-set inventory at retirement time - 3 baseline_failures entries + 1 known_r91_closure_scheduled_receipt_drift_annotations entry = 4 items in current baseline_failures.json. Owner directive names "five wrapped baselines"; measured on-disk set is 4. HONEST-GAP-FIFTH-WRAPPED-BASELINE-NOT-PRESENT recorded at retirement receipt; retiring what is on disk (all 4).
+- (c) PrincipalRequestContext unwind - LANDED at prior seal R-100-UNWIND Commit-A `42a0d3a04f13486b8929a59f8fd98d7f5a36d226` (2026-09-21T~11:00Z owner directive verbatim - sealed carrier byte-restored, `services/enforce/principal_context_adapter.py` wrapper owns `@contextlib.contextmanager` protocol, `portal_requests.py` + `portal_entitlement.py` re-pointed 9 substitutions, `test_principal_context_adapter.py` 5 tests GREEN including sealed-bytes sha256 pin `ad0d9439af44bd5f6fa57f9aa1371ede7ca526789e47db10b45dddc79c39cfb`). Per §6.9 clause 2 - LEAVE IT. No further cancellation work required.
+- (d) HF hazard re-scope - RECORDED. `HF-HOLD SEC-2026-09-12-01` was previously LIFTED under a prior owner order (banked 2026-02-23 pre-CP-AIP-8 at DECISIONS.md CP-AIP-1 credential-hold-LIFT). §6.9 clause 3 confirms hazard scope = presentation of the leaked credential (not the host); public unauthenticated weight pulls proceed now; Local serving path unblocks today. Three-step revocation (revoke - generate - re-drop with §F sha-pin) remains the closer.
+
+### Re-class bookkeeping (verbatim from §6.9 clause 1)
+
+- ENT-10, ENT-11, ENT-12 - Configuration and entries class - receipted owner act, prospective, immediate. DAP-26 no-retroactivity holds.
+- CON-2 - Copy class - contract-version PR with substitution-rule update. Ceremony reserved for governance copy (refusal card + honest-gap strings) only.
+- DAP-26 - no-retroactivity holds across the re-class.
+
+### Cadence amendment (verbatim from §6.9 "Continue.")
+
+- Prior order (2026-02-23 GO cadence banked at CP-AIP-4 GO entry) - HALT after CP-AIP-10 seals for full plane completion report; immediate HALT on any SPEC-CONFLICT-<n>.
+- AMENDED - CP-AIP-10 completion report becomes REPORT-AND-CONTINUE (no idle halt). Dispatch report, then proceed directly into SO-6.9 wave items e-h (LID overlay INFERRED labels + admission gate DEFAULT >=90% - ENT-16 pilot licence seeds for RMS/DigiCow/AKKI-TEST - private mirror push at every milestone seal or PRIVATE-MIRROR-REMOTE-MISSING honest-gap - census three waves with LID overlay from first run + tenant separation with named authorities and any-one rule + CON-20/SFP-8 corrections).
+- Immediate HALT on any SPEC-CONFLICT-<n> - preserved.
+
+### Desk discipline internalised
+
+Every refusal / hold / gate written from this desk from this drop forward carries a one-sentence protected-objective annotation. Where a canon marker (unmeasured / INFERRED / honest-gap / fallback) makes the state honest, the marker replaces the refusal. A ruling that cannot name what it protects is withdrawn.
+
+
+
+## 2026-02-23 · SO §6.9 LID RATIFICATION · owner ruling verbatim received mid-CP-AIP-9 pre-Commit-A sweep · banked at OWNER_DROPS/so_6_9_lid_ratification_20260223/DROP.md · absorbs SO-6.9 wave item e
+
+- Verbatim ruling banked at `STATE/OWNER_DROPS/so_6_9_lid_ratification_20260223/DROP.md` §1-2 (Language identification ratified for use now; the gate follows).
+- Two audio-native models ratified for registration act - Whisper LID (MIT) + SpeechBrain VoxLingua107 (Apache 2.0). Pin weight-file sha256 + record licence file = registration act. Public unauthenticated weight pulls per §6.9 clause 3; anti-token discipline (no HF token presented; env scrubbed of HF_TOKEN/HUGGINGFACEHUB_API_TOKEN/HUGGING_FACE_HUB_TOKEN before process start).
+- Rejected options recorded - fastText LID.176 = WAITING-ON-TRANSCRIPTS (parked, not registered; labels text, not audio); Silero = LICENCE-REVIEW-REQUIRED C5.4 (parked, not registered; commercial verification required).
+- Overlay-detection record shape - {segment_ref, model_entry, label|None, confidence, execution_mode, regime pre-admission, marker INFERRED/unmeasured, disagreement_with_other_model, detected_at_utc}. B5.4 shown-not-counted enforced by structural do-not-flow-into-counted-measure guard at admission-gate compose boundary. Below-model-confidence = record unmeasured never labelled. Nothing is ever relabelled - promotion changes regime, not labels.
+- Admission gate contract - DEFAULT threshold >=90% segment-level agreement tagged pending; receipted act (owner signature per Canon 8 §4 W2) flips regime pre-admission -> post-admission for future detections; absence of tenant-labelled sample = TENANT-LABELS-PENDING honest-gap marker (not refusal per §6.9 desk discipline); gate machinery lands regardless.
+- Re-fetch provenance - 2h25min = OWNER-Q3 sampled audio (raw bytes deleted after Q3 hashing). Re-fetch from s3://training-content-2026/audio/ zero-cost path; sha256 verified against q3_aws_sample_hashes_only.json; storage at /overlay/lid_q3_resample_20260223/ never /app.
+- Sequencing per owner - finish in-flight CP-AIP-9/CP-AIP-10 seals first; LID work runs as FIRST item of SO-6.9 wave replacing/absorbing prior item e. Items f/g/h unchanged (ENT-16 pilot licence seeds -> private mirror -> census three waves + tenant separation + CON-20/SFP-8 corrections).
+- One-sentence protected-objective annotations recorded per §6.9 desk discipline (see DROP.md §8) for each gate/marker in the LID slice.
+- Ledger check - this ruling banks SO-6.9 wave item e replacement and nothing else. Additive-only. No sealed carrier edit. In-flight CP-AIP-9 seal continues on the same commit; LID slice opens as its own seal after CP-AIP-10 REPORT-AND-CONTINUE.
+
+
+
+## 2026-02-23 · OWNER DROP · RMS CREDS 3 + labelled multilingual ASR corpus · banked at OWNER_DROPS/rms_creds_3_and_multilingual_corpus_20260223/DROP.md · feeds SO-6.9 LID wave + CP-AIP-10 training · additive-only
+
+- Verbatim owner text banked at `STATE/OWNER_DROPS/rms_creds_3_and_multilingual_corpus_20260223/DROP.md` §1-4 (transcribed audio for languages; OBS bucket + folder layout; access granted).
+- Credentials CSV downloaded to non-tracked estate_keys path `/app/backend/estate_keys/data_sources/rms_creds_3_20260223.csv` (0600, root, 1908 bytes, 78 lines, 7 columns · sha256 `9d02dffbceb2dbe2bb0639c05874740cf06029d4e3fe9c4fcb38cf4ea83060c8`). §4.1 §F sha-pin discipline applied. §6.9 clause 3 hazard scope: access proceeds now; presentation of the leaked credential remains structurally impossible from tracked repos.
+- Redacted state manifest banked at `phase0/credential_drop_manifests/20260223T101800Z_rms_creds_3_drop_manifest.json` · manifest sha256 `d899737c935e68121109606af55294bc80db6bf81d13023dba1b12abc8ef1775` · 55 redacted row summaries · 4 sections (VIUSASA + USSD + MICROSERVICES + NAS - ACESS). Hosts `[MASKED · len=N]` no partial exposure; passwords `[REDACTED · len=N]`; keys first 4 chars only.
+- Strategic payload = OBS bucket `google-transcripts/datasets` with 12 language subfolders (kik/ebu/swa/luo/kln/guz/mer/bxk/kam/mrg/lwg/mas) each containing `audio/` + `transcript/` paired directories. This is near-ground-truth labelled multilingual ASR corpus - resolves TENANT-LABELS-PENDING honest-gap for the 12 languages listed; English/Sheng/code-switched retain honest-gap for their scope.
+- Application sequence (verbatim owner items 1-6): item 1 credential handling DONE this-drop; items 2-6 (bucket locate + corpus census + LID gate feed + CP-AIP-10 training linkage + station-axis cross-check) QUEUED as SO-6.9 wave sub-items e2-e6 opening after CP-AIP-9/10 seals per owner sequencing.
+- DQ-17/DQ-13 notes: this drop is another leaked-secret surface; deferred rotation post-build per §6.9; do not gate on it.
+- One-sentence protected-objective annotations recorded per §6.9 desk discipline (see DROP.md §6) for each item.
+- Ledger check - this fold-in banks owner drop verbatim and nothing else. Additive-only. No sealed carrier edit. In-flight CP-AIP-9 seal continues on this same commit boundary.
+
+
+
+## 2026-02-23 · SO §6.9 CLAUSE 5 AMENDED · bundle-based continuity supersedes private-mirror-push · owner drop banked at OWNER_DROPS/so_6_9_clause_5_bundle_amendment_20260223/DROP.md · Private-visibility check RETIRED · additive-only fold-in at CP-AIP-9 State Commit-B boundary
+
+- Verbatim owner text banked at `STATE/OWNER_DROPS/so_6_9_clause_5_bundle_amendment_20260223/DROP.md` §1-2 (SO §6.9.5 AMENDED + APPLY block). Supersedes prior §6.9.5 language + the na7p4 owner drop's a/b/c private-remote instruction without deleting them (both preserved additively per SO §3.8).
+- Mechanism: bundle-based continuity, not push-based. At EVERY milestone seal, produce a git bundle of BOTH `programme/track-a` and `master`, sha256-pin in `STATE/PINS.md`, publish to `/app/assessment_workspace/continuity_bundles/` (pod-local deliverables endpoint). No credentials, no push, nothing public.
+- STANDING_ORDERS.md §6.9.5 amended: prior single-paragraph text preserved verbatim above the amended block (additive marker SUPERSEDED-BY per SO §3.8). Milestone-seal checklist added: after Code-A + State-B land, emit bundles; sha256-pin in PINS.md; publish deposit at continuity_bundles/; no push.
+- Retirement recorded: Private-visibility check + `PRIVATE-MIRROR-REMOTE-MISSING` honest-gap RETIRED at this boundary. Named objective the retired gate failed to protect: continuity of the sealed record across environment loss. Withdrawn per §6.9 "a ruling that cannot name what it protects is withdrawn" - a visibility gate that refuses-correctly on public repos protects nothing when continuity is met by the sha-pinned bundle regardless of visibility.
+- Historical banking preserved without edit (additive-only per SO §3.8): `STATE/OWNER_DROPS/na7p4_park_proceed_autonomously_mirror_probe_20260223/DROP.md` case (c) probe result stands as historical record; the honest-gap it recorded is retired, but the probe receipt itself is not rewritten.
+- First application: CP-AIP-9 State Commit-B boundary. Code bundle emitted at Code-A HEAD `30f8ccd`: `continuity_bundles/code_20260923T104129Z_CP_AIP_9.bundle` (19,182,116 bytes · sha256 `054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672` · `git bundle verify` "is okay" complete history). State bundle emitted post-Commit-C-fixup (pin locks in at mini-bank commit).
+- `.gitignore` additive entry landed: `continuity_bundles/*_CP_AIP_*.bundle` + `_CP_CENSUS_` + `_SO_6_9_` + `_MILESTONE_` patterns ignored so new bundles are off-pod deliverables (sha256-pins in tracked PINS.md are the sealed record); historic pre-amendment bundles remain tracked because gitignore does not untrack.
+- Redundancy trigger: if a private remote is later configured with credentials, E1 pushes from then on and bundle emit becomes redundant; bundles continue to emit additively until owner-ruled retired.
+- One-sentence protected-objective annotations recorded per §6.9 desk discipline (see DROP.md §6) for each item.
+- Ledger check - this fold-in banks the owner amendment verbatim + retires the private-visibility check per named objective failure + adds bundle-emit to the milestone-seal checklist, and nothing else. Additive-only. No sealed carrier edit. In-flight CP-AIP-9 seal continues on this same commit boundary.
+
+
+
+## 2026-02-23 · AKKI-OS-ROOT-PUBLIC-EXPOSURE · new P0-security honest-gap · non-blocking · owner drop banked at OWNER_DROPS/akki_os_root_public_exposure_20260223/DROP.md · owner-action-required · surfaced
+
+- Verbatim owner text banked at `STATE/OWNER_DROPS/akki_os_root_public_exposure_20260223/DROP.md` §1 (Akki-OS-Root PUBLIC, receipts carry customer connector hosts, MAKE IT PRIVATE, treat as P0-security but non-blocking).
+- Named objective (owner-provided): customer connector hostnames must not be exposed on a public repo.
+- Pod-side probe result (measured this-drop):
+  - `gh` CLI NOT installed in pod (`which gh` returns nothing; neither `/usr/bin/gh` nor `/usr/local/bin/gh` exists).
+  - No GitHub admin token env vars set (`GH_TOKEN` / `GITHUB_TOKEN` / `GH_ADMIN_TOKEN` all empty).
+  - `Akki-OS-Root` repo NOT on-disk in this pod (the four cloned repos are `Extraction-Akki` + `Akki-OS-V1` + `Akki-Executive-Core` + `RMS-IQ-Core-2`; no `Akki-OS-Root`).
+  - Unauth'd API cannot change visibility.
+- Conclusion: pod CANNOT flip `bramuel-syni/Akki-OS-Root` visibility under any in-pod path. Owner-action-required path (Drop §1 else-branch) applies.
+- Owner-action-required (any one sufficient):
+  1. GitHub UI: `https://github.com/bramuel-syni/Akki-OS-Root/settings` → Danger Zone → Change visibility → Make private → confirm by typing repo name.
+  2. `gh repo edit bramuel-syni/Akki-OS-Root --visibility private --accept-visibility-change-consequences`.
+  3. REST API PATCH with admin PAT: `curl -X PATCH -H "Authorization: Bearer <PAT>" https://api.github.com/repos/bramuel-syni/Akki-OS-Root -d '{"private":true}'`.
+- Non-blocking status per owner directive: in-flight CP-AIP-9 seal continues without pause; the honest-gap is banked at CP-AIP-9 State Commit-B + GAPS_FIXED_LEDGER + OWNER_RETURN_REPORT.md pending-human-items section.
+- Adjacent hygiene measurement (this-drop, additive-only, scope-freeze-preserving): the four cloned repos operated on in this run all have `origin https://github.com/bramuel-syni/<repo>` with no auth token embedded in the remote URL; per Chunk-1 canon probe they are all currently PUBLIC on GitHub. If any of them ALSO carries customer connector hostnames, that is a separate P0-security surface not covered by this drop; expansion is deferred as a distinct owner-desk item per SO §3.8 scope-freeze.
+- E1 has not, at any point in this session, pushed content to or fetched receipts from `Akki-OS-Root`; the exposure predates this session and is not caused by any E1 action. Measured, not asserted.
+- One-sentence protected-objective annotations recorded per §6.9 desk discipline (see DROP.md §6).
+- Ledger check - this fold-in banks the P0-security honest-gap verbatim + records the pod-side probe result + surfaces the exact owner action, and nothing else. Additive-only. No sealed carrier edit. In-flight CP-AIP-9 seal continues on this same commit boundary.
+
+
+
+## 2026-02-23 · CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING PRE-APPROVED · Track-5 checkpoint REMOVED · owner drop banked at OWNER_DROPS/assist_cards_preapproved_and_run_to_completion_20260223/DROP.md · run-to-completion mandate ACTIVE
+
+- Verbatim owner text banked at `STATE/OWNER_DROPS/assist_cards_preapproved_and_run_to_completion_20260223/DROP.md` §1-3 (pre-approval + execution + run-to-completion mandate).
+- Both CP-AIP-ASSIST cards PRE-APPROVED BY CONSTRUCTION under §6.8 standing authority. No spec review required. No GO required. Prior Track-5 pre-build checkpoint REMOVED.
+- Six binding conditions verbatim as MUST-DO/MUST-NOT + exit evidence:
+  1. No path to any decision (negative-scan: assistant modules import nothing from approval/commission/gate/measure; and nothing there imports them; decide-point reachable only via human confirm carrying that human's principal).
+  2. Confirmed turns only banked (A5.16 receipted decision with provenance; unconfirmed = draft, never enters decision record).
+  3. Census assistant read-only (Registry no-write; census WITH-assistant byte-identical to census WITHOUT-assistant per B5.1).
+  4. Training assistant's proposals freeze at commission (Objective + criteria set immutable post-Northena-freeze; MOAC criteria set by owner confirm never by assistant).
+  5. Content: Generated, chat surface, anchored, gated (R-32 sentence-without-anchor refused; A5.15 number-not-in-Registry refused; CON-6 honest markers over refusals wherever canon provides one).
+  6. No learning from dialogue (no per-tenant adaptation; no cross-tenant memory; improvements enter only via research queue + capability admission per L-4 + L-5).
+- Placement OUTSIDE the TCB (owner-directed). Decide-points (confirm, commission, criteria-set) pre-existing and stay where they are. Every user-facing string is a Content Registry entry (R-32/A5.15/CON-6 chain).
+- Test-ID anchor (proposed, finalised at card open): one RED-first invariant per condition = `test_assist_no_path_to_any_decision_negative_scan_import_isolation` + `test_assist_confirmed_turn_only_banked_a5_16_receipted_provenance` + `test_assist_census_readonly_with_without_byte_identical_b5_1` + `test_assist_training_proposals_freeze_at_commission_moac_owner_set_only` + `test_assist_content_r32_a515_con6_anchored_gated_honest_marker_over_refusal` + `test_assist_no_learning_from_dialogue_l4_l5_only_admission_path`.
+- Fork rule: any condition not meetable as written → bank to `STATE/DESK_QUEUE.md` with options + recommendation; the OTHER track continues. Surface at next milestone report.
+- Exit: six test IDs green in the ratchet · both cards pinned · 5-commit seal per §3.3.
+- Ledger position update: prior Track-5 pre-build checkpoint (report drafts to owner before building) REMOVED. Both cards move onto active ledger as sequential seals opening AFTER Track-4 (Census Autonomy Service wiring) completes.
+- New execution order (post-CP-AIP-9): CP-AIP-10 → SO-6.9 LID wave → ENT-16 seeds → census three waves + tenant separation → Track-4 autonomy wiring → CP-AIP-ASSIST-CENSUS → CP-AIP-ASSIST-TRAINING → compile OWNER_RETURN_REPORT.md + BUILD_JOURNAL.md as FINAL deliverable.
+- OWNER STEPPING AWAY: run-to-completion mandate ACTIVE. HALT to owner ONLY on: SPEC-CONFLICT-<n> · hard custody/gate violation · completion of full ledger + OWNER_RETURN_REPORT.md + BUILD_JOURNAL.md. Otherwise REPORT-AND-CONTINUE at each milestone seal (bundle status + GAPS_FIXED_LEDGER + measured receipts each time). All 17 standing guards + SO §6.9 remain binding.
+- One-sentence protected-objective annotations recorded per §6.9 desk discipline (see DROP.md §7) for each condition.
+- Ledger check - this fold-in banks the pre-approval verbatim + the run-to-completion mandate + the placement + fork + exit rules, and nothing else. Additive-only. No sealed carrier edit. In-flight CP-AIP-9 seal continues on this same commit boundary.
+
+
+
+## 2026-02-23 · CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT · state Commit-C fixup · R-6 boundary regen + state mini-bank rows 1-3
+
+- R-6 boundary regen executed on `notes/ORCH_BOOT.md` (+ byte-identical audit twin at `/app/frontend/public/audit/ORCH_BOOT.md`) advancing:
+  - `heads_last_sealed.state_repo.head`: `1507cad9b1ba28c00c2b80c37cd8b7bd8f555f87` (CP-AIP-8 Commit-C fixup) → `79a2ff0b683ca4ae982c3d79bdf16014483f416f` (this CP-AIP-9 State Commit-B)
+  - `heads_last_sealed.code_repo.head`: `dba4499d1a95205f8bd01c9f22ed7aa51ece8ca2` (CP-AIP-8 Commit-A) → `30f8ccdead956977cd6608e5d30907c23c428190` (this CP-AIP-9 Code Commit-A)
+  - `ratchet.passed_floor`: UNCHANGED at 6313 (env_drift_reset kind admitted at pre-Commit-A regen · R-91 ε retirement scaffolding-class per SO §6.9 clause 1)
+  - `baseline_failures_sha256`: UNCHANGED at `e72809c29a8810b1272820cfb0e6f281392650ef865912f413ca7c7d04a8b540`
+- State mini-bank rows 1-3 of CP-AIP-9 5-commit seal chain:
+  | Row | Commit | SHA | Branch |
+  |---|---|---|---|
+  | 1 | Code Commit-A | `30f8ccdead956977cd6608e5d30907c23c428190` | programme/track-a |
+  | 2 | /app companion Commit-A | `4d57db1a67a9752b5d63acbde07c8b691cc7e5f7` | main |
+  | 3 | State Commit-B | `79a2ff0b683ca4ae982c3d79bdf16014483f416f` | master |
+- Rows 4 (State Commit-C fixup) + 5 (/app companion Commit-C) + 6 (State mini-bank) filled at their landing commits.
+- Ledger check - this fixup implements Item 5.9 of `EXECUTION_ORDER.md` R-6 boundary regen + state mini-bank rows 1-3, and nothing else. Additive-only. No sealed carrier edit.
+
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

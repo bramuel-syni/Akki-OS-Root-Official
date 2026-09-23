@@ -34,3 +34,13 @@ phase0/mtafiti_gpu_discovery/
 phase0/harness_ground_truth/
 phase0/estate_reconciliation/
 phase0/m7_w1_post_2_verification/
+
+# SO §6.9(5) AMENDED 2026-02-23 · bundle-based continuity mechanism (owner drop banked at
+# STATE/OWNER_DROPS/so_6_9_clause_5_bundle_amendment_20260223/DROP.md)
+# New continuity bundles at every milestone seal are off-pod DELIVERABLES, not tracked in
+# the state repo. sha256-pins live in STATE/PINS.md (tracked). Historic pre-amendment
+# bundles remain tracked (gitignore does not untrack). No credentials, no push, nothing public.
+continuity_bundles/*_CP_AIP_*.bundle
+continuity_bundles/*_CP_CENSUS_*.bundle
+continuity_bundles/*_SO_6_9_*.bundle
+continuity_bundles/*_MILESTONE_*.bundle

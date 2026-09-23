@@ -21,30 +21,47 @@
 
 ---
 
-**Last rewrite:** 2026-02-23T08:15:00Z (**Item 5.8 CP-AIP-8-SAMPLING-REFLECTION FULLY SEALED · AIP v1.0 §11.2 plan-without-calibration-stage refused at S&R boundary + §11.2 cost-quote-never-point-estimate at S&R output + §11.3 V114a proposed-milestone-list-required + §11.3 V114b sealed Milestone done_condition refusal bubbled + §11.3 V114c/V114d commission-open-only-after-agreement GREEN · §1.2 modality-extension composing sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary · ratchet floor 6310 → 6317 · +7 canonical measured RED-first pins · pre-Commit-A double-green byte-identical stripped_sha256 `fdcbfe3454e8a8ae60eb55c75ee61e23205734ce672eaae430cc70873e7f7469` IDENTICAL both sweeps 6326 passed 1 skipped 0 failed 520 warnings · CP_AIP_8 card pulled from queued/ + rewritten fully-conforming card_sha256 `d65ca42ea6cf188fcd59c2ea5dd566f02a09f6633c02e01212cbd50492224833` · SPEC-CONFLICT log NONE · Owner drop 2 banked (audio estate leads + na7p4* unarchive cost estimate 2026-02-23T08:06:00Z + correction 2026-02-23T08:09:00Z) at STATE/OWNER_DROPS/audio_estate_leads_and_na7p4_cost_20260223/ + two fold-in receipts delivered receipt_Q1_viusasa_census.md (HONEST-GAP CAL creds not in pod) + receipt_Q2_na7p4_unarchive_cost.md (38 na7p4* Huawei OBS TR-Istanbul buckets · 492,877 objects · 102.59 TB decimal LOWER-BOUND · three scenarios A/B/C with measured Huawei OBS FAQ rates and explicit rate placeholders/honest-gaps · Scenario C direction corrected per owner: cross-check readable AWS S3 estate for copies) · additive-only banking · SEQUENTIAL EXECUTION CONTINUES · CP-AIP-9-COMMISSION-VIEW opens NEXT with §13.4 ZERO-new-backend-computation constraint owner-pinned · HALT after CP-AIP-10 seals for full plane completion report · immediate HALT on any SPEC-CONFLICT-<n>**).
+**Last rewrite:** 2026-02-23T~10:45:00Z (**Item 5.9 CP-AIP-9-COMMISSION-VIEW IN-FLIGHT · Code Commit-A `30f8ccd` LANDED · /app companion-A `4d57db1a6` LANDED · State Commit-B PENDING with three fold-in banks queued: (a) SO §6.9(5) AMENDED bundle-based continuity supersedes private-mirror-push · `PRIVATE-MIRROR-REMOTE-MISSING` RETIRED per §6.9 named-protected-objective-failure doctrine · CP-AIP-9 code bundle emitted at Code-A HEAD `30f8ccd` = `continuity_bundles/code_20260923T104129Z_CP_AIP_9.bundle` (19,182,116 bytes · sha256 `054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672` · git-bundle-verify "is okay" complete history) (b) `AKKI-OS-ROOT-PUBLIC-EXPOSURE` NEW P0-security honest-gap · owner-action-required · non-blocking (pod cannot flip visibility: no `gh` CLI · no admin token · repo not on-disk) (c) CP-AIP-ASSIST cards pre-approved by construction under §6.8 · Track-5 pre-build checkpoint REMOVED · six binding conditions verbatim as MUST-DO/MUST-NOT test IDs · OWNER-STEPPING-AWAY / RUN-TO-COMPLETION mandate ACTIVE · HALT ONLY on SPEC-CONFLICT-<n> · hard custody/gate violation · completion of full ledger + OWNER_RETURN_REPORT.md + BUILD_JOURNAL.md**).
 
 ### 🔧 NEXT COMMAND AT RESUME (compaction-safe anchor)
 
 ```bash
-# CP-AIP-8 SEALED. Proceed IMMEDIATELY to CP-AIP-9-COMMISSION-VIEW under §13.4 ZERO-new-backend-computation constraint.
-# Owner cadence directive verbatim (2026-02-23 GO): 'run CP-AIP-5 → CP-AIP-10 sequentially;
-#   HALT after CP-AIP-10 for full plane completion report; immediate HALT on any SPEC-CONFLICT-<n>.'
+# CP-AIP-9 State Commit-B pending. Three additive fold-in banks queued at the SAME boundary:
+#   (a) SO §6.9(5) AMENDED (bundle-based continuity supersedes private-mirror-push) + Private-visibility
+#       check RETIRED per §6.9 named-protected-objective-failure doctrine. Bank verbatim owner drop at
+#       STATE/OWNER_DROPS/so_6_9_clause_5_bundle_amendment_20260223/DROP.md. CP-AIP-9 code bundle already
+#       emitted: continuity_bundles/code_20260923T104129Z_CP_AIP_9.bundle · sha256
+#       054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672 · at Code-A HEAD 30f8ccd.
+#   (b) AKKI-OS-ROOT-PUBLIC-EXPOSURE NEW P0-security honest-gap · owner-action-required · non-blocking
+#       (pod cannot flip visibility: no gh CLI · no admin token · repo not on-disk). Bank at
+#       STATE/OWNER_DROPS/akki_os_root_public_exposure_20260223/DROP.md.
+#   (c) CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING PRE-APPROVED BY CONSTRUCTION under §6.8 standing
+#       authority. Track-5 pre-build checkpoint REMOVED. Six binding conditions verbatim as MUST-DO/
+#       MUST-NOT test IDs. Placement OUTSIDE the TCB. Every user-facing string is a Content Registry
+#       entry. Fork rule → STATE/DESK_QUEUE.md. OWNER STEPPING AWAY · RUN-TO-COMPLETION mandate
+#       ACTIVE. Bank at STATE/OWNER_DROPS/assist_cards_preapproved_and_run_to_completion_20260223/DROP.md.
 #
-# Owner CP-AIP-9 constraint verbatim (2026-02-23 at CP-AIP-8 report-and-continue):
-#   'CP-AIP-9 (§13: milestones-first, artifacts as drill-down evidence only, ZERO new backend
-#    computation — any surface element needing computation beyond reading existing artifacts
-#    is out of spec per §13.4 and must be pinned as such)'
+# HALT ONLY on: SPEC-CONFLICT-<n> · hard custody/gate violation · completion of full ledger +
+# OWNER_RETURN_REPORT.md + BUILD_JOURNAL.md. Otherwise REPORT-AND-CONTINUE at every seal (bundle
+# status + GAPS_FIXED_LEDGER each time). All 17 standing guards + SO §6.9 binding.
 #
 # NEXT ACTION:
-#   mv /app/assessment_workspace/STATE/OBJECTIVES/queued/CP_AIP_9_COMMISSION_VIEW.md \
-#      /app/assessment_workspace/STATE/OBJECTIVES/CP_AIP_9_COMMISSION_VIEW.md
-#   # Rewrite fully-conforming SO §6.2 (YAML frontmatter + 6 required sections + hash pin + EXIT node IDs).
-#   # Author RED-first pins for §13 milestones-first surface contract + §13.4 no-new-backend-computation
-#   #   pins (each surface element scoped as READ-ONLY of already-banked artifacts + one anti-computation
-#   #   scan pin ensuring the new module contains no computation beyond reading, formatting, or joining
-#   #   banked artifacts).
-#   # Full 5-commit seal per SO §3.3 with terminal pytest only, BASELINE_GUARD=1 PYTHONHASHSEED=0
-#   # double-green byte-identical stripped_sha256.
+#   1. State Commit-B on master: bank CP-AIP-9 objective card + queued-delete + comprehensive receipt +
+#      three fold-in owner drops (a/b/c) + STANDING_ORDERS §6.9.5 amended + DECISIONS entries + PINS
+#      code-bundle pin + GAPS_FIXED_LEDGER 10 entries + EXECUTION_ORDER 5.11 wave + RESUME rewrite +
+#      .gitignore continuity_bundles/*.bundle rule.
+#   2. State Commit-C fixup: R-6 boundary regen advancing heads_last_sealed to State-B + Code-A 30f8ccd
+#      + state mini-bank rows 1-3.
+#   3. Emit state bundle at State-C fixup HEAD → continuity_bundles/state_<ts>_CP_AIP_9.bundle;
+#      sha256-pin in PINS.md.
+#   4. /app companion Commit-C: byte-identical audit twin mirror.
+#   5. State mini-bank commit: RESUME rewrite + PINS state-bundle-pin final + full 5-commit SHA table.
+#   6. Report bundle status + GAPS_FIXED_LEDGER at seal boundary. Proceed to CP-AIP-10.
+#
+# POST-CP-AIP-9 ledger (Item 5.11 wave; sequential seals; no idle-halt):
+#   CP-AIP-10-TRAINING-RUNS → SO-6.9-LID-WAVE → ENT-16-PILOT-LICENCE-SEEDS →
+#   CENSUS-THREE-WAVES-WITH-LID-OVERLAY → TENANT-SEPARATION → TRACK-4-AUTONOMY-WIRING →
+#   CP-AIP-ASSIST-CENSUS → CP-AIP-ASSIST-TRAINING → COMPILE OWNER_RETURN_REPORT.md + BUILD_JOURNAL.md.
 ```
 
 ---

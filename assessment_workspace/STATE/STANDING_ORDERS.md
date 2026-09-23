@@ -568,4 +568,85 @@ That trio is the anti-compaction memory chain. Any successor that skips it OR tr
 
 ---
 
+## §6.9 — FUNCTION IS THE OBJECTIVE; ADHERENCE IS HOW IT'S KEPT HONEST (owner ruling 2026-02-23 · verbatim addendum · binding on E1, the auditor, and this desk from receipt)
+
+**Direction (verbatim, owner).** "The platform exists to do work on real estates for real tenants. Governance is what makes that work trustworthy — it is not the work. From here, every ruling that refuses, holds, or gates must state in one sentence the material objective it protects. Where canon provides a marker that lets function proceed transparently — unmeasured, INFERRED, honest-gap, the fallback markers — the marker is used and the work continues; refusal is reserved for the cases where a marker cannot make the state honest. A ruling that cannot name what it protects is withdrawn."
+
+### §6.9.1 — Change-mechanism ladder (blast-radius sized)
+
+- **Behaviour-changing rules** (TCB, custody, the Watch, approval logic) — **ceremony with countdown. Unchanged.**
+- **Configuration and entries** (catalog rows, credit rates, licence fields, allow-lists, ceilings) — **a receipted owner act, prospective, immediate. DAP-26's no-retroactivity holds; the countdown does not apply.** ENT-10, ENT-11, ENT-12 **re-classed here.**
+- **Copy** (fixed strings) — **a contract-version PR with the substitution-rule update.** Ceremony only for **governance copy** — the refusal card, the honest-gap strings. CON-2 **re-classed here.**
+- **Scaffolding** (test guards, fixtures, floor assertions) — **owner ruling, applied at the next boundary.** R-91 ε applies at E1's next boundary, now, not at the horizon; **the five wrapped baselines retire on that seal.**
+
+### §6.9.2 — Sealed-additive class
+
+Additive members on a sealed class are permitted when (a) no existing member changes, (b) the sealed tests are byte-identical and green, and (c) the diff is banked with the seal. **No wrapper, no ceremony.** *(If a `PrincipalRequestContext` unwind has not landed, cancel it; if it has, leave it.)*
+
+### §6.9.3 — HF hold re-scoped to the hazard
+
+The hazard is **presentation of the leaked credential, not the host.** Public, unauthenticated weight pulls **proceed now** — the Local serving path unblocks. The hold applies **only** to operations that would present the old token. The three-step revocation still closes it.
+
+### §6.9.4 — Language identification: labels flow now
+
+Register Whisper LID (MIT) and SpeechBrain VoxLingua107 (Apache 2.0) with **hash + licence file as the registration act.** Run on every segment; write each label as an overlay detection with `{model_entry, confidence, execution_mode, regime}` **pre-admission** — replacing the refusal marker with a real per-segment label **marked INFERRED.** Build the admission gate alongside on tenant-labelled real segments, **threshold DEFAULT ≥ 90%**, abstain-below-confidence recorded as unmeasured. When a model clears, labels **promote overlay → measure by a receipted act;** nothing is relabelled.
+
+### §6.9.5 — Continuity over the letter of §4
+
+A **private mirror** of `programme/track-a` and `master`, pushed at every milestone seal. §4's **purpose** — no unreviewed public code — is preserved; its **letter** is amended to permit the private remote.
+
+### §6.9.5 (AMENDED 2026-02-23) — SUPERSEDED-BY: continuity is bundle-based, not push-based
+
+**Owner drop verbatim (2026-02-23 · banked at `STATE/OWNER_DROPS/so_6_9_clause_5_bundle_amendment_20260223/DROP.md`):**
+
+> "An off-pod copy of programme/track-a and master at every milestone seal: a git bundle of both branches, sha-pinned in PINS.md, published to the deliverables endpoint. A private remote may replace this where one exists; it is not required. The objective is unchanged — the sealed record survives its environment. The pod stays the working store. The bundle is the copy. E1 already produces it for the audit; it now produces it at every seal and publishes it. No credentials, no push, nothing public. Retire the Private-visibility check; it would fail correctly on both repos, which are public. If a private remote is set up later, E1 pushes from then on and the bundle becomes redundant."
+
+**Mechanism (binding at every milestone seal from 2026-02-23 forward):**
+
+1. **After** Code Commit-A lands on `programme/track-a` **and** State Commit-B lands on `master`, emit a git bundle of BOTH branches — `code_<ISO8601Z>.bundle` + `state_<ISO8601Z>.bundle` — into `/app/assessment_workspace/continuity_bundles/`.
+2. **sha256-pin both bundles in `STATE/PINS.md`** with seal id + branch heads (SHA-40).
+3. **Publish = deposit at `/app/assessment_workspace/continuity_bundles/`** (well-known pod path; the pod is the working store and the bundle is the off-pod copy the platform's artefact mechanism fetches at session close).
+4. **No credentials, no push, nothing public.** Bundles are gitignored from tracked repos; only the sha256 pins live in the sealed state record.
+5. **Milestone-seal REPORT-AND-CONTINUE receipt** carries both bundle sha256s + sizes + the SHAs they contain.
+
+**Retirement:** the Private-visibility check + `PRIVATE-MIRROR-REMOTE-MISSING` honest-gap are **RETIRED at this boundary**. Per §6.9 "a ruling that cannot name what it protects is withdrawn" — a visibility gate that would refuse-correctly on public repos protects nothing when the actual continuity objective is met by the sha-pinned bundle. Retirement receipt banked in `STATE/DECISIONS.md` + `STATE/GAPS_FIXED_LEDGER.md` at CP-AIP-9 seal boundary.
+
+**Redundancy trigger:** if a private remote is later configured with credentials, E1 pushes from then on and the bundle emit becomes redundant (bundles still emit additively until owner-ruled retired; nothing about the bundle mechanism is destructive).
+
+### §6.9.6 — Specifications corrected where they over-reached
+
+- **CON-20:** content receipt on **change of hook**, not per render. Ranking is deterministic and re-derivable.
+- **SFP-8:** E1 measures reproduction on the actual hardware **before any refusal path is wired;** the tolerance is ruled from the measurement. Serving degrades with a marker; gates refuse.
+- **ENT-16:** rule kept, **seed added** — a pilot licence object created at tenant creation for **RMS, DigiCow, AKKI-TEST** — **Compute dial Managed, Frontier dial Your Keys** — so every model call resolves from the first day.
+
+### §6.9.7 — Tenant separation (proceeds as ordered)
+
+Approving authorities as named: **Fred Afune, Muthoni Kiarie, Samuel Kibacia (RMS); Vincent Kimani, Peninah Wanja (DigiCow)** — **any-one decision rule** — **isolation sweep as exit evidence.**
+
+### §6.9.8 — Census three waves
+
+Complete the walk with the **unmeasured register**, the **full B3 dimension set with defensibility matrix + sensitivity classification**, then the **perception pathway** — and **language labels from §6.9.4 enter as overlay from the first run.**
+
+### §6.9.9 — Audit runs as ordered
+
+Standards v2 + §6.8 unchanged. What still reaches the owner unchanged: **tier-4 forks batched at seals; credential drops; the ratification signature.**
+
+### §6.9 — Desk discipline (applies to your rulings too)
+
+- The **one-sentence protected objective** on every refusal / hold / gate.
+- The **marker** (unmeasured / INFERRED / honest-gap / fallback) **over the refusal** wherever canon provides one.
+- Where a ruling proves to have blocked function without naming what it protected, **its reversal without being asked.**
+
+### §6.9 — Cadence amendment ("Continue.")
+
+- Prior order: HALT after CP-AIP-10 seals for full plane completion report.
+- **AMENDED:** CP-AIP-10 completion report is **REPORT-AND-CONTINUE (no idle halt)** — dispatch report, then proceed directly into the SO-6.9 wave (LID → ENT-16 seeds → private-mirror → census three waves + tenant separation + CON-20/SFP-8 corrections).
+- **Immediate HALT on any `SPEC-CONFLICT-<n>`** preserved.
+
+### §6.9 — Verbatim source
+
+Owner drop banked verbatim at `STATE/OWNER_DROPS/so_6_9_amendment_20260223/DROP.md`. All application-sequence directives (items a–h) are recorded there and mirrored in the immediate-compliance record for this boundary. This §6.9 addendum is authoritative; any prior text in this file that conflicts is SUPERSEDED-BY §6.9 at this boundary.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
