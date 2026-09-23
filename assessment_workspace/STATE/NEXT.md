@@ -57,6 +57,35 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-02-23T00:41:00Z · autopilot PHASE 4 (c-v) · CP-CENSUS-TENANT-ADMISSION-CORRECTION · Commit-A SEAL close · OWNER QUEUED CORRECTION EXECUTED (owner "the census results are supposed to be admitted in the tenants without mixing up · RMS results go into RMS tenant, DigiCow goes into DigiCow tenant" satisfied · census admission ≠ DAP-14 controlled-request seating boundary annotated + drift-detector pin + retro-assignment records banked additively)**
+
+**PHASE 4 (c-v) · CP-CENSUS-TENANT-ADMISSION-CORRECTION · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-turn):
+- code Commit-A `570750563e62c22dae76a775b7264da2d2334c74` on `programme/track-a` (2026-02-23T00:44Z · NEW services.census_autonomy.tenant_admission_correction adapter over sealed carriers · owner correction verbatim in module docstring + `OWNER_CORRECTION_VERBATIM_ANCHOR` machine-readable constant · `CENSUS_ADMITS_ALL_FOUR_CANONICAL_TENANTS` declarative posture Final · `CENSUS_ADMISSION_SOURCE_MAP` mirrors owner §3 · `RETRO_ASSIGNMENT_RECORDS` for census_0001/0002 → DIGICOW + rms_item_3_receipts → RMS · `DAP_14_CONTROLLED_REQUEST_GATING_STAYS_HELD` boundary annotation · 3 product-language callables + 12 RED-first invariants).
+- /app main companion Commit-A `c0d5e20537ec32b717949cea652af258c2b59e41` (2026-02-23T00:47Z · +1 vendored file · MANIFEST regen 1033→1034 · structural_sha256 358f9b0e→db5ad2dc · audit + notes ORCH_BOOT ratchet regen all 14 stanzas 6194→6206 · gitlink ee505425→570750563).
+- state Commit-B `<PENDING-P4-C-V-CB>` · Commit-C fixup `<PENDING-P4-C-V-CC>` · /app Commit-C companion `<PENDING-P4-C-V-CC-APP>` (this-turn will land these next).
+
+**Ratchet floor**: **6206** (was 6194 pre-P4-c-v · +12 canonical measured). baseline_failures.json sha256 `5bc2c43755c5e167b938b2c6f54280d43c344b33f03e57792b6de198ef27a55f` was `ec58438f667cd17686b7ffcf29a58225e1bef88c2b4371f1347e2baa4b70a1ac`.
+
+**Owner correction §5 verbatim boundary annotated**:
+- Census admission ≠ DAP-14 controlled-request seating (two distinct controls).
+- `census_lawful_basis_admits(tenant_id) -> bool` returns True for every canonical tenant (RMS + DIGICOW + AKKI-TEST + AUDIT-FIXTURE-20260921) per owner LawfulBasisAdmit.
+- `is_census_admission_orthogonal_to_dap_14_seating()` returns True (structural orthogonality proof).
+- `DAP_14_CONTROLLED_REQUEST_GATING_STAYS_HELD = ("RMS", "DIGICOW")` — held on DQ-19 + DQ-20 until custody-material drop.
+- On-disk finding: sealed `CENSUS_ADMITTED_TENANT_IDS` already admits all four canonical tenants at runtime (filter matches nothing because sealed `TENANT_ROLES` never sets `named_but_unseated` · that state lives on `dap_activation._ACTIVATIONS[t]["dap_14_named_authority"]["seat_state"]` instead). Correction lands as drift-detector on the sealed behaviour, not as an edit to the sealed comment.
+
+**Retro-assignment record (additive re-registration · sealed receipts UNCHANGED)**:
+- `census_0001` → DIGICOW.
+- `census_0002` → DIGICOW.
+- `rms_item_3_receipts` → RMS.
+
+**Sealed carriers UNCHANGED per SO §3.8**: `services.census_autonomy.tenant_scope` + `services.tenant_separation.tenant_registry` + `services.tenant_separation.dap_activation` + all prior seal chain.
+
+**Pre-Commit-A double-green**: stripped-sha256 `8d17fd23e6050e7e53f096bcded421aa432614d419ce88b7dd5f0d6c6887f92d` IDENTICAL sweep_A (193.30s) + sweep_B (193.51s) both 6211 passed / 1 skipped / 0 failed / 520 warnings. 6211 = 6206 floor + 5 above-floor. Receipts banked at `phase0/drill_receipts_cp_census_tenant_admission_correction/`.
+
+**Autopilot next**: state Commit-B this-turn (banks code Commit-A `57075056` + /app companion `c0d5e205` + drill receipts + DECISIONS.md CP entry + PINS.md drift + this NEXT.md marker + RESUME.md rewrite) → state Commit-C fixup (R-6 boundary regen advancing heads_last_sealed) → /app main Commit-C companion (byte-identical audit ORCH_BOOT mirror sync) → **CP-SKILLS-LAYER-SERIES-CLOSE opens** (Slice 5 · UI-visible tester walkthrough at `/dap/buildskill` live-or-honest-gap per owner pacing note) → CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped → −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT. Report at seal boundaries.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T19:50Z · autopilot PHASE 3 continuation A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEAL close · ADAPTER LAYER + FIRST REAL PRODUCER PATH PRODUCTIZED (owner "wire that producer through the adapter layer only, never the sealed engine" satisfied)**
 
 **PHASE 3 A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-turn):

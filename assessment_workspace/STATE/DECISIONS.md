@@ -27632,3 +27632,154 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 **Standing bounds unchanged:** zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6194 · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 remain in force ONLY at DAP-14 controlled-request seating (census admission corrected) · §6.8 report-and-continue.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## PHASE 4 (c-v) · CP-CENSUS-TENANT-ADMISSION-CORRECTION · SEAL RECORD · 2026-02-23T00:41:00Z
+
+**Slice EXECUTED per owner queued correction (2026-02-23T00:30Z verbatim ·
+banked at Slice-4 State Commit-B 55ab3335).**
+
+Small additive slice landing declarative pins + drift-detector proving the
+sealed `CENSUS_ADMITTED_TENANT_IDS` already admits all four canonical tenants
+at runtime, mirroring owner §3 source-to-tenant registration map, banking
+retro-assignment records for `census_0001`/`census_0002` → DIGICOW and
+RMS Item-3 receipts → RMS, and explicitly annotating that DAP-14 controlled-
+request seating stays held on DQ-19/DQ-20 (orthogonal to census admission).
+
+**On-disk finding this-slice (banked as a design note):** sealed
+`services/census_autonomy/tenant_scope.py::CENSUS_ADMITTED_TENANT_IDS` already
+admits all four canonical tenants at runtime — the filter
+`if TENANT_ROLES.get(t) not in ("named_but_unseated",)` matches nothing
+because sealed `TENANT_ROLES` never sets `named_but_unseated` (that state
+lives on sealed
+`services/tenant_separation/dap_activation._ACTIVATIONS[t]["dap_14_named_authority"]["seat_state"]`
+for DAP-14 controlled-request gating instead). The comment on lines 38-42 of
+tenant_scope.py claiming "only 'seated_named' tenants and the AKKI-TEST
+fixture are census-admitted" is stale — runtime behaviour was correct-by-
+accident. Editing the sealed carrier's comment/docstring is banned by SO §3.8.
+This correction lands additively via a new module + drift-detector pins on
+the sealed behaviour, not as an edit to the sealed carrier's stale comment.
+
+**Seal chain:**
+
+| Commit | SHA | Branch |
+|---|---|---|
+| Code Commit-A | `570750563e62c22dae76a775b7264da2d2334c74` | programme/track-a |
+| /app companion A | `c0d5e20537ec32b717949cea652af258c2b59e41` | main |
+| State Commit-B | (this commit) | master |
+| State Commit-C fixup | (next) | master |
+| /app Commit-C companion | (subsequent) | main |
+
+**Ratchet:** 6194 → **6206** (+12 canonical measured). baseline_failures_sha256
+`5bc2c43755c5e167b938b2c6f54280d43c344b33f03e57792b6de198ef27a55f`.
+
+**Files landed (Commit-A on programme/track-a):**
+- NEW `backend/services/census_autonomy/tenant_admission_correction.py`
+  (~300 lines · owner correction verbatim in module docstring + machine-
+  readable `OWNER_CORRECTION_VERBATIM_ANCHOR` constant per SO §2.5 ·
+  `CENSUS_ADMITS_ALL_FOUR_CANONICAL_TENANTS` declarative posture Final ·
+  `CENSUS_ADMISSION_SOURCE_MAP` mirrors owner §3 source-to-tenant map ·
+  `RETRO_ASSIGNMENT_RECORDS` additive re-registration for census_0001 →
+  DIGICOW, census_0002 → DIGICOW, rms_item_3_receipts → RMS ·
+  `DAP_14_CONTROLLED_REQUEST_GATING_STAYS_HELD` boundary annotation ·
+  product-language callables `census_lawful_basis_admits` +
+  `retro_assignment_for_artefact` +
+  `is_census_admission_orthogonal_to_dap_14_seating`).
+- NEW `backend/tests/invariants/test_cp_census_tenant_admission_correction_phase_4_c_v.py`
+  (12 RED-first structural pins · SO §2.5 verbatim-docstring · owner
+  correction quoted verbatim in file docstring · pin coverage: module
+  presence + declarative posture flag + drift-detector on sealed
+  `CENSUS_ADMITTED_TENANT_IDS` + per-tenant admission probes + owner §3
+  source map + sealed `SOURCE_ROSTER` registration binding +
+  `RETRO_ASSIGNMENT` records + callable + product-language admission
+  callable + DAP-14 seating held for RMS + DIGICOW + orthogonality
+  assertion + explicit boundary set + verbatim-anchor discipline +
+  boundary annotation names DQ-19 + DQ-20 + sealed carriers cited).
+- MODIFY `backend/tests/invariants/baseline_failures.json`
+  (ratchet 6194 → 6206 · +12 canonical measured · schema-complete
+  ratchet_history entry per Banked Lesson #6).
+
+**Companion Commit-A on /app main:**
+- NEW `backend/vendored/extraction_akki/backend/services/census_autonomy/tenant_admission_correction.py`
+  (byte-identical vendored twin).
+- MODIFY `backend/vendored/extraction_akki/MANIFEST.json`
+  (file_count 1033 → 1034 · structural_sha256 `358f9b0e…` → `db5ad2dc…`).
+- MODIFY `frontend/public/audit/ORCH_BOOT.md` +
+  `assessment_workspace/notes/ORCH_BOOT.md` (ratchet regen all 14 stacked
+  stanzas · passed_floor 6194 → 6206 · baseline_failures_sha256 `ec58438f…`
+  → `5bc2c437…` · both copies sha256 `4116473303042ca272bbdc1e64106ba11134bdd15a8d84f874433c73bd6d27d5`).
+- Gitlink advance `assessment_workspace/repos/Extraction-Akki` `ee505425` →
+  `57075056`.
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- `services/census_autonomy/tenant_scope.py` (55ffc389 · read-only import ·
+  stale comment on lines 38-42 NOT edited · drift-detector pin lands on the
+  sealed carrier's live behaviour instead).
+- `services/tenant_separation/tenant_registry.py` (4j eed6c032 ·
+  `SOURCE_ROSTER` unchanged).
+- `services/tenant_separation/dap_activation.py` (4j eed6c032 · RMS +
+  DIGICOW `seat_state` remains `"named_but_unseated"`).
+- All prior seal chain UNCHANGED.
+
+**RED-first authentic:**
+- RED-pre: 1 error at collection time (ImportError · cannot import name
+  'tenant_admission_correction' from 'services.census_autonomy'
+  · receipt at `phase0/drill_receipts_cp_census_tenant_admission_correction/RED_pre_20260223T003800Z.log`).
+- GREEN-post: 12/12 pass 0.73s (receipt at same-dir
+  `GREEN_post_20260223T004000Z.log`).
+
+**Pre-Commit-A double-green byte-identical:**
+- `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (193.30s) + sweep_B (193.51s)
+  both 6211 passed / 1 skipped / 0 failed / 520 warnings.
+- stripped-sha256 `8d17fd23e6050e7e53f096bcded421aa432614d419ce88b7dd5f0d6c6887f92d`
+  IDENTICAL both sweeps.
+- 6211 = 6206 floor + 5 above-floor.
+
+**Owner correction §5 verbatim boundary annotation satisfied:**
+- Census admission ≠ DAP-14 controlled-request seating. Two distinct controls
+  now provably orthogonal via declarative pin + runtime drift-detector on
+  sealed carrier.
+- DQ-19 (RMS approving authority) + DQ-20 (DIGICOW approving authority)
+  remain named-but-unseated · DAP-14 controlled-request execution stays held
+  until custody-material drop.
+- RMS + DIGICOW simultaneously admitted for CENSUS jobs (owner correction
+  bullet 1) and held at DAP-14 (owner correction bullet 5).
+
+**Retro-assignment record (owner correction §4 verbatim):**
+- `census_0001` → DIGICOW (additive_re_registration).
+- `census_0002` → DIGICOW (additive_re_registration).
+- `rms_item_3_receipts` → RMS (additive_re_registration).
+- Sealed receipts NOT rewritten; additive re-registration only.
+
+**Same-slice cures folded:**
+- (a) Pin 11 module-source check softened to constant-defined-in-source check
+  after RED-pre revealed Python docstring wrapping breaks phrase-level
+  substring matching (runtime `OWNER_CORRECTION_VERBATIM_ANCHOR` constant
+  concatenates literals at compile time so the value carries the phrases
+  unbroken; the source-level check now verifies the constant is defined
+  rather than that every wrapped phrase appears as a single substring).
+- (b) baseline_failures.json bump script uses `ensure_ascii=False` to
+  preserve historical unicode chars (em-dash / arrow) verbatim; first-pass
+  ASCII-escaping produced ~1000-line noise diff that was reverted.
+- (c) sweeps re-run after baseline_failures.json byte content changed under
+  cure (b) — new stripped-sha256 IDENTICAL both sweeps.
+
+**Autopilot next (§6.8 report-and-continue):**
+- State Commit-C fixup this-boundary (R-6 boundary regen advancing
+  `heads_last_sealed.state_repo.head` to this-Commit-B SHA +
+  `code_repo.head` to `570750563e62c22dae76a775b7264da2d2334c74`).
+- /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync
+  post-fixup).
+- Then **CP-SKILLS-LAYER-SERIES-CLOSE** (Slice 5 · UI-visible tester
+  walkthrough at `/dap/buildskill` · live-or-honest-gap per owner pacing note)
+  opens.
+
+**Standing bounds unchanged:** zero push · terminal `pytest` only ·
+**no `testing_agent`** · additive-only §3.8 · three-repo · ratchet monotonic-
+up floor 6206 · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 owner rotation UNTOUCHED
+· DQ-19 + DQ-20 named-but-unseated remain in force ONLY at DAP-14 controlled-
+request seating (census admission corrected orthogonally per this slice) ·
+§6.8 report-and-continue.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
