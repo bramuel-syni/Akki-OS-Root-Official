@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-02-23T03:05:00Z
-generator: main-agent Autopilot (PHASE 4 (d-i) - CP-DECK-ENGINE-DR-R4-OPENING - Commit-C fixup - state master - R-6 boundary regen advancing heads_last_sealed.state_repo.head 22738f20b40cfe112c85b837a0758782b1f29101 (P4-c-vi Commit-B) -> this-P4-d-i Commit-B 17ac82569a1e09e821bdc7f80a6344e986c35267 [banks code Commit-A b68cc02fc3e40e86e38e706bdfbf8ed0cbf6aa73 on programme/track-a + /app main companion Commit-A fb40d6f5bdfdb2cf37e2ec57d11cad17f4eb947b - NEW additive backend/contracts/deck_spec_v0.py (114 lines - SO 3.10-alpha closed-schema Pydantic BaseModel frozen=True + extra=forbid - Slice-1 minimum-viable fields deck_id str min_length=1 + spec_version Literal['v0'] - module-level DR_R4_SOURCE_RESTORE_HONEST_GAP Final[str] naming deck_engine.md + RD-16 verbatim per R-102 productized-or-honest-gap discipline) + NEW deck_spec_v0.contract_snapshot.json (frozen parity snapshot additionalProperties=false required deck_id + spec_version) + NEW test_cp_deck_engine_dr_r4_opening_phase_4_d_i.py (6 RED-first structural pins) + additive CONTRACT_TO_SNAPSHOT map entry per BL #10 + baseline_failures.json ratchet 6218-to-6224 +6 canonical measured - Slice 1 of CP-DECK-ENGINE 14-DR-R chunked series OPENING - DR-R4 shape-freeze OPENING half - full field enumeration DEFERRED to Slice 2 behind deck_engine.md verbatim restore RD-16 flag - vendored twin file_count 1035-to-1036 structural_sha256 7f9a3fbd07565df55a4e4c9e2eab6a526aea0d683f9e058733abe2813b2d5aa5 to 85ec187883f40a0b208439d3b5e2f63c1cd2f7fb8e2eeeb93a85270a80cb82f1 - double-green byte-identical stripped_sha256 5998ae6832544cb698c861cf20c0b5699e6db8bfc42c6c6b61cfe4b9b2d360fa IDENTICAL sweep_A/B both 6230 passed 1 skipped 0 failed 520 warnings - CP-DECK-ENGINE 14-DR-R chunked series OPENED at Slice 1 - CP-DECK-ENGINE Slice 2 opens NEXT after this-slice seal + owner-queued CENSUS-3-C + Razuna/Newsvault binding-verify tasks folded to scheduler queue mid-seal] - advances heads_last_sealed.code_repo.head 419244cdb99cbbe6af8f85df7e39fa8519114289 (P4-c-vi Commit-A) -> this-wave Commit-A b68cc02fc3e40e86e38e706bdfbf8ed0cbf6aa73 - Sealed carriers UNCHANGED per SO 3.8 - Standing bounds unchanged)
-regeneration_reason: phase-4-d-i-cp-deck-engine-dr-r4-opening-commit-c-fixup-r-6-boundary-regen-advancing-state-head-22738f20-to-17ac8256-plus-code-head-419244cdb-to-b68cc02fc-plus-ratchet-6218-to-6224-plus-6-canonical-measured-dr-r4-deckspec-v0-shape-freeze-opening-slice-owner-queued-census-3-c-plus-razuna-newsvault-binding-verify-folded-to-scheduler
+generated_at_utc: 2026-02-23T03:55:00Z
+generator: main-agent Autopilot (CP-CENSUS-RMS-STATION-LANGUAGE-AXIS Commit-C fixup - state master - R-6 boundary regen advancing heads_last_sealed.state_repo.head 17ac82569a1e09e821bdc7f80a6344e986c35267 (P4-d-i Commit-B) -> this-CP-CENSUS-RMS-STATION-LANGUAGE-AXIS Commit-B a798827518604a37b90a221d9c5e40e3ba0fbc41 [banks code Commit-A 832bdf25b681d717fdb0fb25b6710078392c8909 on programme/track-a + /app main companion Commit-A 7b21450a74f35bd1bdc981e4619d7b7b8d14c736 - owner-queued Task 3 fold-in verbatim (2026-02-23 mid-P4-d-i-seal) Audio - there are local language sample per station - each station represents local language - all research with title - eg inoro is kikuyu ramogi is luo etc. Update this. RMS = Royal Media Services (Kenya) - station identity is authoritative language metadata for audio - NEW additive backend/services/rms_station_language_axis.py (~391 lines) with 16-station cited map (13 radio + 3 TV owner-anchored bindings Inooro/Ramogi FM+TV + Citizen TV verified verbatim) + owner HONESTY RULE verbatim + WHISPER_CORROBORATABLE_LANGUAGES frozenset Swahili + English + attribution_for_asset callable applying HONESTY RULE + OBS_BUCKET_TO_STATION over 11 owner-named buckets + na7p4* series honest-gap Final + NEW test_cp_census_rms_station_language_axis_phase_4_census_scheduler.py (8 RED-first structural pins) + baseline_failures.json ratchet 6224-to-6232 +8 canonical measured - Sealed carriers UNCHANGED per SO §3.8 - RED-first authentic ModuleNotFoundError right-reason - GREEN-post 8/8 pass 0.71s - Pre-Commit-A double-green byte-identical stripped_sha256 fb2624a016a2c95081fd86857d058ff58863b03c7e466b820ddf629b70940fe8 IDENTICAL sweep_A/B both 6238 passed 1 skipped 0 failed 520 warnings - baseline_failures.json sha256 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977 post-bump - research receipt banked at phase0/rms_station_language_axis_research/receipt_20260223T032000Z.md with 8 root sources + 16 station-level citation records per owner all research with title directive - owner credential-hold LIFT same-turn banked verbatim at STATE/DECISIONS.md top - HF-HOLD SEC-2026-09-12-01 LIFTED-BY-OWNER-ORDER DQ-06 RESOLVED-BY-OWNER-ORDER DQ-13 + DQ-17 DEFERRED-POST-BUILD - AIP Spec v1.0 owner drop queued in DECISIONS.md for CP-AIP-SPEC-INGEST work block opening AFTER -2 collection-drift forensic + Order B + Order A audits] - advances heads_last_sealed.code_repo.head b68cc02fc3e40e86e38e706bdfbf8ed0cbf6aa73 (P4-d-i Commit-A) -> this-wave Commit-A 832bdf25b681d717fdb0fb25b6710078392c8909 - Sealed carriers UNCHANGED per SO §3.8 - Standing bounds unchanged)
+regeneration_reason: r6-boundary-regen-post-commit-c-fixup-at-cp-census-rms-station-language-axis-advancing-state-head-17ac8256-to-a7988275-plus-code-head-b68cc02fc-to-832bdf25-plus-ratchet-6224-to-6232-plus-8-canonical-measured-owner-queued-task-3-rms-station-language-axis-fold-in
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 17ac82569a1e09e821bdc7f80a6344e986c35267
-    sealed_at_utc: 2026-02-23T03:00:00Z
-    seal_kind: "PHASE 4 (d-i) - CP-DECK-ENGINE-DR-R4-OPENING - state Commit-B - banks code Commit-A b68cc02 + /app companion fb40d6f5 - Slice 1 of CP-DECK-ENGINE 14-DR-R chunked series OPENING - NEW backend/contracts/deck_spec_v0.py (SO 3.10-alpha closed-schema Pydantic BaseModel frozen=True + extra=forbid - Slice-1 minimum-viable fields deck_id + spec_version Literal v0 - DR_R4_SOURCE_RESTORE_HONEST_GAP Final naming deck_engine.md + RD-16 verbatim) + NEW deck_spec_v0.contract_snapshot.json + NEW test file (6 RED-first pins) + additive CONTRACT_TO_SNAPSHOT map entry - 6 RED-first pins - Sealed carriers UNCHANGED - CP-SKILLS-LAYER chunked series unchanged - server.py mirror pair unchanged (P4-d-i additive-only zero router surface Slice 1 contract shape only) - ratchet 6218-to-6224 +6 canonical - double-green byte-identical stripped_sha256 5998ae6832544cb698c861cf20c0b5699e6db8bfc42c6c6b61cfe4b9b2d360fa IDENTICAL both 6230 passed - CP-DECK-ENGINE Slice 2 opens NEXT after seal (full field enumeration post deck_engine.md verbatim restore) - owner-queued CENSUS-3-C RMS text-column language-detection (CPU/SQL-only raised to next census-scheduler slot) + Razuna/Newsvault RMS-tenant binding-verify + OBS audio sweep inclusion (next census-pass gate) folded to scheduler queue mid-seal without interrupt"
+    head: a798827518604a37b90a221d9c5e40e3ba0fbc41
+    sealed_at_utc: 2026-02-23T03:50:00Z
+    seal_kind: "CP-CENSUS-RMS-STATION-LANGUAGE-AXIS - state Commit-B - banks code Commit-A 832bdf2 + /app companion 7b21450a7 - owner-queued Task 3 fold-in verbatim - RMS = Royal Media Services (Kenya) - station identity is authoritative language metadata for audio - NEW backend/services/rms_station_language_axis.py 391 lines carrying OWNER_DIRECTIVE_VERBATIM + OWNER_HONESTY_RULE_VERBATIM + RMS_STATION_LANGUAGE_AXIS 16-station tuple (13 radio + 3 TV owner-anchored Inooro/Ramogi FM+TV + Citizen TV verbatim) + WHISPER_CORROBORATABLE_LANGUAGES frozenset Swahili + English + attribution_for_asset callable applying HONESTY RULE + OBS_BUCKET_TO_STATION 11 owner-named buckets + NA7P4_SERIES_HONEST_GAP Final + NEW test_cp_census_rms_station_language_axis_phase_4_census_scheduler.py 8 RED-first structural pins - Sealed carriers UNCHANGED - contracts.deck_spec_v0 P4-d-i unchanged - services.census_autonomy.tenant_admission_correction P4-c-v unchanged (this slice attributes station identity WITHIN RMS tenant already admitted at P4-c-v) - server.py mirror pair unchanged (metadata module only zero router surface) - ratchet 6224-to-6232 +8 canonical - double-green byte-identical stripped_sha256 fb2624a016a2c95081fd86857d058ff58863b03c7e466b820ddf629b70940fe8 IDENTICAL both 6238 passed - owner credential-hold LIFT banked verbatim at DECISIONS.md top same-turn - AIP Spec v1.0 owner drop queued for CP-AIP-SPEC-INGEST post-audits - Task 1 CENSUS-3-C + Task 2 Razuna/Newsvault binding-verify remain scheduler-queued at next census-pass"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: b68cc02fc3e40e86e38e706bdfbf8ed0cbf6aa73
-    sealed_at_utc: 2026-02-23T02:50:00Z
-    seal_kind: "PHASE 4 (d-i) - CP-DECK-ENGINE-DR-R4-OPENING - Commit-A b68cc02 code programme/track-a - Slice 1 of CP-DECK-ENGINE 14-DR-R chunked series OPENING - NEW backend/contracts/deck_spec_v0.py (~114 lines - SO 3.10-alpha closed-schema Pydantic BaseModel with model_config ConfigDict extra=forbid + frozen=True from day one - Slice-1 minimum-viable fields deck_id str min_length=1 required for DR-R2 byte-identical-output determinism identity + DR-R12 metering cost-ledger keying + spec_version Literal v0 required as declarative version anchor per Doc-0 R-105 partial-retirement design - module-level DR_R4_SOURCE_RESTORE_HONEST_GAP Final str constant naming missing deck_engine.md source + RD-16 extraction-artefact flag banked by Master Requirements Registry against DR-R10 + DR-R13 verbatim per R-102 productized-or-honest-gap discipline) + NEW backend/tests/invariants/deck_spec_v0.contract_snapshot.json (frozen parity snapshot - additionalProperties=false - required deck_id + spec_version - spec_version const v0) + NEW test_cp_deck_engine_dr_r4_opening_phase_4_d_i.py (6 RED-first structural pins - module presence + Canon anchor + snapshot parity + Slice-1 minimum-viable field set + frozen + extra=forbid closed-schema discipline + honest-gap Final constant + CONTRACT_TO_SNAPSHOT parity-map additive entry) + additive test_frozen_contract_snapshot_parity.py CONTRACT_TO_SNAPSHOT map entry deck_spec_v0.py -> deck_spec_v0.contract_snapshot.json per BL #10 + baseline_failures.json ratchet 6218-to-6224 +6 canonical measured schema-complete ratchet_history entry per BL #6 - Sealed carriers UNCHANGED per SO 3.8 - RED-first authentic ModuleNotFoundError + assertion right-reason - GREEN-post 6/6 pass 0.70s - Pre-Commit-A double-green byte-identical stripped_sha256 5998ae6832544cb698c861cf20c0b5699e6db8bfc42c6c6b61cfe4b9b2d360fa IDENTICAL sweep_A/B both 6230 passed 1 skipped 0 failed"
+    head: 832bdf25b681d717fdb0fb25b6710078392c8909
+    sealed_at_utc: 2026-02-23T03:45:00Z
+    seal_kind: "CP-CENSUS-RMS-STATION-LANGUAGE-AXIS - Commit-A 832bdf2 code programme/track-a - owner-queued Task 3 fold-in verbatim (2026-02-23 mid-P4-d-i-seal) - RMS = Royal Media Services (Kenya) - NEW backend/services/rms_station_language_axis.py (~391 lines - OWNER_DIRECTIVE_VERBATIM concat-guard proof BL #3 + OWNER_HONESTY_RULE_VERBATIM whisper-cannot-distinguish-vernaculars + RMS_STATION_LANGUAGE_AXIS Final tuple 16 station records 13 radio + 3 TV each with station_name + language + whisper_can_corroborate + research_citation_title + research_citation_url + cross_reference_url + owner-anchored bindings Inooro FM = Kikuyu + Ramogi FM = Luo/Dholuo + Inooro TV = Kikuyu + Ramogi TV = Luo + Citizen TV = Kiswahili verified verbatim + WHISPER_CORROBORATABLE_LANGUAGES Final frozenset only Swahili + English + OBS_BUCKET_TO_STATION 11 owner-named buckets inoorotv + citizentv + citizen-vod + hot96backup + chamgei-backup + news-vault + rmsbroadcast + razuna.royalmedia + instore-radio-items + edailynew + skizaaudio + NA7P4_SERIES_HONEST_GAP Final str + attribution_for_asset callable applies HONESTY RULE vernacular-station-returns-unavailable + Swahili-station-model-Swahili-corroborated + English-station-model-English-corroborated + English-station-model-Kikuyu-unavailable) + NEW backend/tests/invariants/test_cp_census_rms_station_language_axis_phase_4_census_scheduler.py (8 RED-first structural pins - module presence + OWNER_DIRECTIVE_VERBATIM concat-guard + 16-station map length + owner-anchored bindings verbatim + every station carries citation title+url + MODEL_CORROBORATION_POLICY Final HONESTY RULE + WHISPER_CORROBORATABLE_LANGUAGES exact frozenset + attribution_for_asset callable across 4 scenarios + OBS_BUCKET_TO_STATION 11-bucket coverage + NA7P4_SERIES_HONEST_GAP present) + baseline_failures.json ratchet 6224-to-6232 +8 canonical measured schema-complete ratchet_history entry per BL #6 - BL #7 indent=2 - BL #11 ensure_ascii=False - Sealed carriers UNCHANGED per SO §3.8 - services.census_autonomy.tenant_admission_correction P4-c-v CENSUS_ADMISSION_SOURCE_MAP unchanged - contracts.deck_spec_v0 P4-d-i unchanged - RED-first authentic ModuleNotFoundError right-reason - GREEN-post 8/8 pass 0.71s - Pre-Commit-A double-green byte-identical stripped_sha256 fb2624a016a2c95081fd86857d058ff58863b03c7e466b820ddf629b70940fe8 IDENTICAL sweep_A/B both 6238 passed 1 skipped 0 failed 520 warnings ~191s each - research receipt banked at phase0/rms_station_language_axis_research/receipt_20260223T032000Z.md - owner credential-hold LIFT this-turn same-session (HF-HOLD SEC-2026-09-12-01 LIFTED-BY-OWNER-ORDER + DQ-06 RESOLVED + DQ-13 + DQ-17 DEFERRED-POST-BUILD) banked verbatim at DECISIONS.md - AIP Spec v1.0 owner drop queued for CP-AIP-SPEC-INGEST work block opening after audits"
 
 
 generated_at_utc: 2026-02-23T02:25:00Z
@@ -63,10 +63,10 @@ generator: main-agent Autopilot (PHASE 4 (c-vi) - CP-SKILLS-LAYER-SERIES-CLOSE -
 regeneration_reason: phase-4-c-vi-cp-skills-layer-series-close-commit-c-fixup-r-6-boundary-regen-advancing-state-head-57670cf5-to-22738f20-plus-code-head-570750563-to-419244cdb-plus-ratchet-6206-to-6218-plus-12-canonical-measured-ui-visible-tester-walkthrough-live-at-dap-buildskill-cp-skills-layer-series-closed
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -88,10 +88,10 @@ generator: main-agent Autopilot (PHASE 4 (c-v) - CP-CENSUS-TENANT-ADMISSION-CORR
 regeneration_reason: phase-4-c-v-cp-census-tenant-admission-correction-commit-c-fixup-r-6-boundary-regen-advancing-state-head-55ab3335-to-57670cf5-plus-code-head-ee505425-to-57075056-plus-ratchet-6194-to-6206-plus-12-canonical-measured-owner-queued-correction-executed-additively
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -112,10 +112,10 @@ generator: main-agent Autopilot (PHASE 4 (c-iv) - CP-SKILLS-LAYER-A18-8 - Commit
 regeneration_reason: phase-4-c-iv-cp-skills-layer-a18-8-commit-c-fixup-r-6-boundary-regen-advancing-state-head-a3f228b0-to-55ab3335-plus-code-head-dafb45c8-to-ee505425-plus-ratchet-6183-to-6194-plus-11-canonical-measured-a18-8-donor-code-provenance-manifest-landed
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -136,10 +136,10 @@ generator: main-agent Autopilot (PHASE 4 (c-iii) - CP-SKILLS-LAYER-A18-3-A18-5 -
 regeneration_reason: phase-4-c-iii-cp-skills-layer-a18-3-a18-5-commit-c-fixup-r-6-boundary-regen-advancing-state-head-d847070d-to-a3f228b0-plus-code-head-f7f08207-to-dafb45c8-plus-ratchet-6171-to-6183-plus-12-canonical-measured-a18-3-envelope-plus-a18-5-scope-resolver-landed
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -160,10 +160,10 @@ generator: main-agent Autopilot (PHASE 4 (c-ii) · CP-SKILLS-LAYER-A18-2 · Comm
 regeneration_reason: phase-4-c-ii-cp-skills-layer-a18-2-commit-c-fixup-r-6-boundary-regen-advancing-state-head-6bc0045e-to-d847070d-plus-code-head-2f7d6b58-to-f7f08207-plus-ratchet-6165-to-6171-plus-6-canonical-measured-a18-2-write-once-guardrail-landed
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -184,10 +184,10 @@ generator: main-agent Autopilot (PHASE 4 (c-i) · CP-SKILLS-LAYER-A18-1 · Commi
 regeneration_reason: phase-4-c-i-cp-skills-layer-a18-1-commit-c-fixup-r-6-boundary-regen-advancing-state-head-760ce38f-to-6bc0045e-plus-code-head-d6eee5d6-to-2f7d6b58-plus-ratchet-6160-to-6165-plus-5-canonical-measured-a18-1-shape-freeze-landed
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -208,10 +208,10 @@ generator: main-agent Autopilot (PHASE 4 (b-i) · CP-CONNECT-CONFORMANCE-RULING 
 regeneration_reason: phase-4-b-i-cp-connect-conformance-ruling-commit-c-fixup-r-6-boundary-regen-advancing-state-head-56461dfa-to-760ce38f-plus-code-head-032ada9-to-d6eee5d6-plus-ratchet-6157-to-6160-plus-3-canonical-measured-connect-half-closed-as-already-live
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -232,10 +232,10 @@ generator: main-agent Autopilot (PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · Com
 regeneration_reason: phase-4-a-cp-commission-wizard-live-commit-c-fixup-r-6-boundary-regen-advancing-state-head-5ffa1586-to-56461dfa-plus-code-head-3108b41-to-032ada9-plus-ratchet-6150-to-6157-plus-7-canonical-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -257,10 +257,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'''-cont-B · CP-CENSUS-A
 regeneration_reason: phase-3-continuation-a-triple-prime-cont-b-cp-census-autonomy-response-required-badge-ui-commit-c-fixup-r-6-boundary-regen-advancing-state-head-105145d5-to-5ffa1586-plus-code-head-1d47128-to-3108b41-plus-ratchet-6139-to-6150-plus-11-canonical-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -282,10 +282,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A''''-cont-A · CP-CENSUS-
 regeneration_reason: phase-3-continuation-a-quad-prime-cont-a-cp-census-autonomy-producer-bridge-commit-c-fixup-r-6-boundary-regen-advancing-state-head-d438871a-to-4c10648-plus-code-head-1eea98967-to-1d47128-plus-ratchet-6129-to-6139-plus-10-canonical-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -307,10 +307,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'''' · CP-CENSUS-AUTONOM
 regeneration_reason: phase-3-continuation-a-quad-prime-cp-census-autonomy-data-source-adapter-commit-c-fixup-r-6-boundary-regen-advancing-state-head-b36b9d64-to-f4011652-plus-code-head-a0dcc06-to-1eea98967-plus-ratchet-6118-to-6129-plus-11-canonical-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -332,10 +332,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'''-cont-A · CP-CENSUS-A
 regeneration_reason: phase-3-continuation-a-triple-prime-cont-a-cp-census-autonomy-response-required-queue-commit-c-fixup-r-6-boundary-regen-advancing-state-head-b06b1cac-to-8edc7e3f-plus-code-head-c3807d7-to-a0dcc06-plus-ratchet-6109-to-6118-plus-9-canonical-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -357,10 +357,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A''' · CP-CENSUS-AUTONOMY
 regeneration_reason: phase-3-continuation-a-triple-prime-cp-census-autonomy-gpu-spend-commit-c-fixup-r-6-boundary-regen-advancing-state-head-6d654a66-to-0b36ae9d-plus-code-head-527d09bf-to-c3807d7-plus-ratchet-6103-to-6109-plus-6-canonical-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -382,10 +382,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-
 regeneration_reason: phase-3-continuation-a-double-prime-cp-census-autonomy-ui-drawer-commit-c-fixup-r-6-boundary-regen-advancing-state-head-f34db5ef-to-0e976251-plus-code-head-55ffc389-to-527d09bf-plus-ratchet-6097-to-6103-plus-6-canonical-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -407,10 +407,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A' · CP-CENSUS-AUTONOMY-R
 regeneration_reason: phase-3-continuation-a-prime-cp-census-autonomy-router-commit-c-fixup-r-6-boundary-regen-advancing-state-head-cf7c5fca-to-f34db5ef-plus-code-head-c3e6725c-to-55ffc389-plus-ratchet-6090-to-6097-plus-7-measured
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
 heads_last_sealed:
   state_repo:
@@ -436,10 +436,10 @@ generator: main-agent Autopilot (PHASE 3 · CP-CENSUS-AUTONOMY-SERVICE · Commit
 regeneration_reason: phase-3-census-autonomy-service-commit-c-fixup-r-6-boundary-regen-advancing-state-head-f775adf6-to-cf7c5fca-plus-code-head-eed6c032-to-c3e6725c-plus-ratchet-6086-to-6090-plus-4-measured-system-census-productized
 
 ratchet:
-  passed_floor: 6224
-  counts_at_baseline_passed: 6224
+  passed_floor: 6232
+  counts_at_baseline_passed: 6232
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c
+  baseline_failures_sha256: 73485dbfe9d85d83b47c581fd1bf7c95d90e7bffc382d90111d1351e1223f977
 
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
