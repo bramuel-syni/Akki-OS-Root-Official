@@ -746,6 +746,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-1-INGEST-CAPTURE Commit-A 590747f2 on programme/track-a · Item 5.1 of EXECUTION_ORDER.md · NEW backend/services/audio_plane_v1/ingestion_provenance_v1.py (~200 lines · 5 frozen dataclass carriers LanguageEvidence_v1 SwitchPointFact_v1 ConditionProfileRef_v1 SynthesisGroupAttributesRef_v1 IngestionSegmentProvenance_v1 + IngestionProvenanceIncomplete refusal class · §4.6 (a) full-triple gate at __post_init__ · §1.5 unrepresentable-not-policed · sha256 3662e823221744dbd350f639da90316cfc092871b5cec957c5ca47cad49ee5ef) + NEW backend/services/audio_plane_v1/ingestion_capture_v1.py (~200 lines · compose_segment_provenance station-prior composer + owner HONESTY RULE via sealed rms_station_language_axis.attribution_for_asset per §1.2 modality-extension-not-parallel + assert_provenance_meets_section_4_6 fail-closed gate callable + IngestionProvenanceRefused refusal class · sha256 d026d11087a2bcf858a6dd13d7651b645ab49095f768dd74f00f49e9e14c79b0) + NEW backend/tests/invariants/test_cp_aip_1_ingest_capture_aip_v1_0_section_4.py (12 RED-first structural + composition pins §4.1..§4.6 all-anchored + owner HONESTY RULE preservation composition test + §1.2 modality-extension negative-scan + §4.1 retired language_hint plumbing negative-scan + station-prior citation title+URL required + module docstring §4-anchor scan + ledger-check anchor scan) + baseline_failures.json ratchet 6232->6244 +12 canonical measured ratchet_history entry per BL #6 + BL #7 indent=2 + BL #11 ensure_ascii=False · Sealed carriers UNCHANGED per SO §3.8 (language_identifier CP-M6-1-1 + channel_condition_profiler CP-M6-1-3 + code_switch_detector CP-M6-1-2 + synthesis_attribute_capturer CP-M6-1-4 + instance_condition_map CP-M6-2-1 + rms_station_language_axis CP-CENSUS) · RED-first authentic ModuleNotFoundError right-reason · GREEN-post 12/12 pass 0.71s · Pre-Commit-A double-green byte-identical stripped_sha256 c37a65fb7c3e6492dd991d1fe5d4c383d5ab0914b422e48dac66944955dd4c19 IDENTICAL sweep_A/B both 6250 passed 1 skipped 0 failed 520 warnings ~192s each · comprehensive receipt banked at state Commit-B phase0/cp_aip_1_ingest_capture_20260223/receipt.md · Item 4 defect discovered mid-slice (11 non-conforming CP-AIP cards from Item 4 documentation) + remediated additively (CP_AIP_1 rewritten fully-conforming SO §6.2 + 10 queued cards moved to STATE/OBJECTIVES/queued/ per Item 5 sequencing law · additive · zero deletion) · SPEC-CONFLICT log NONE this slice"
 
 
+
+generated_at_utc: 2026-02-23T06:03:00Z
+generator: "main-agent Autopilot (CP-AIP-2-DEDUP-CONDITION-MAP pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6244 -> 6254 + baseline_failures.json sha256 to post-bump 73f87115f9a78e94fd16544d07a81e54e7a68941021005acb466df49a8f708b4 · heads_last_sealed UNCHANGED at last CP-AIP-1 state Commit-B 463ed07f9cd2416413ae4f768c6dff2ada38ce80 + code Commit-A 590747f2fa3d5216edebb6e813062cdeea386b5a · this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-aip-2-dedup-condition-map-ratchet-only-regen-6244-to-6254-plus-10-canonical-measured-aip-v1-0-section-4-5-dedup-instance-condition-map-provenance-carriers
+
+ratchet:
+  passed_floor: 6254
+  counts_at_baseline_passed: 6254
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 73f87115f9a78e94fd16544d07a81e54e7a68941021005acb466df49a8f708b4
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 463ed07f9cd2416413ae4f768c6dff2ada38ce80
+    sealed_at_utc: 2026-02-23T05:43:00Z
+    seal_kind: "CP-AIP-1-INGEST-CAPTURE state Commit-B 463ed07f (last sealed · pre-CP-AIP-2)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 590747f2fa3d5216edebb6e813062cdeea386b5a
+    sealed_at_utc: 2026-02-23T05:41:00Z
+    seal_kind: "CP-AIP-1-INGEST-CAPTURE Commit-A 590747f2 on programme/track-a (last sealed · pre-CP-AIP-2)"
+
+
 ```
 
 ---
