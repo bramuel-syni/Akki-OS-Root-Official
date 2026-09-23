@@ -184,7 +184,33 @@
 - ✅ SPEC-CONFLICT log: NONE this slice.
 - ✅ 5-commit seal chain (SHAs recorded post-landing).
 
-#### Item 5.6 · CP-AIP-6-OBJECTIVE-WIZARD — 🟡 **NEXT** (opens immediately post CP-AIP-5 per owner cadence directive · brief report-and-continue after seal · §8, §9, §12.1 variant extension).
+#### Item 5.6 · CP-AIP-6-OBJECTIVE-WIZARD — ✅ **DONE 2026-02-23T~07:50Z** (AIP v1.0 §8 Objective Wizard compile boundary + §9 Collection Schema baseline v1.0 + §12.1 Registry Namespace sealed-not-deleted GREEN · §16.1 (c) CLEAN receipt applied verbatim · sibling contract not sealed carrier edit)
+
+- ✅ RED_pre 10/10 failed 0.69s (authentic ModuleNotFoundError + AssertionError right-reason).
+- ✅ GREEN_post 10/10 passed 0.71s.
+- ✅ Ratchet bump 6292 → 6302 (+10 canonical measured · baseline_failures.json sha256 `3750f45c6126a723efbe559762060edee6b02f5aabb22b32edaa811afb2d6885`).
+- ✅ FIVE additive modules landed (§1.2 modality-extension of sealed CP-M11-wizard state machine + `WizardCommitState_v0` · sealed carriers UNCHANGED per SO §3.8 + §16.1 (c) CLEAN receipt verbatim):
+  - `backend/contracts/target_outcome_v0.py` (~85 lines · `TargetOutcome_v0` frozen seven-field schema per §10.1 verbatim + `StratumAcceptance_v0` two-dimensional (accuracy + coverage) + closed-set `GATE_POLICIES`).
+  - `backend/contracts/collection_schema_v0.py` (~65 lines · `CollectionSchema_v0` frozen two-tier + `BASELINE_TIER_V1_0_CONTENTS` Final 5-tuple verbatim per §9.2 + `CUSTODY_VIOLATING_TOKENS` 8-tuple).
+  - `backend/contracts/wizard_objective_commit_state_v0.py` (~80 lines · `ObjectiveSession_v0` frozen 6-carrier per §8.5 + `OBJECTIVE_VARIANT_NAME` Final constant · sibling contract).
+  - `backend/services/wizard/objective_compile.py` (~135 lines · `compile_target_outcome` + `compile_collection_schema` + 3 refusal classes `TestSetRefMissing` + `AcceptanceBarNotStratified` + `CustodyViolation` all subclassing `ObjectiveCompileError` · §8.4 (a) (b) (c) enforced structurally).
+  - `backend/services/registry/audio_modality_namespace.py` (~120 lines · `AudioModalityNamespace_v0` frozen + `ScopedWrite_v0` + `NamespaceState` Literal · NO `delete` method per §1.5 unrepresentable-not-policed).
+- ✅ Vendored twin sync file_count 1050 → 1055 · structural_sha256 `ca3684c454fd14a75d7724610006cb8c92ba739b82604fc3909be422e9d12749`.
+- ✅ CP_AIP_6 objective card pulled up from `queued/` + rewritten fully-conforming (SO §6.2 · card_sha256 `2147181fd6e598cc0619286eab63558802871298875aba93c0e7fc8a3b115fb9`).
+- ✅ Pre-Commit-A double-green BASELINE_GUARD=1 PYTHONHASHSEED=0:
+  - sweep_A 6311 passed / 1 skipped / 0 failed / 520 warnings / 187.62s
+  - sweep_B 6311 passed / 1 skipped / 0 failed / 520 warnings / 186.30s
+  - stripped_sha256 `8d8518c9dc0f75a545dfe3b0c7452dd9128eef0a6b7ecd1d492427d44b20e4a3` IDENTICAL both sweeps.
+- ✅ Frozen contract snapshot parity fold-in: 3 new frozen-dataclass modules appended to `NON_CONTRACT_UTILITY_MODULES` in `test_frozen_contract_snapshot_parity.py` per FL-P4-W6-08 pattern.
+- ✅ Comprehensive receipt banked at `phase0/cp_aip_6_objective_wizard_20260223/receipt.md`.
+- ✅ Drill receipts banked at `repos/Extraction-Akki/backend/phase0/drill_receipts_cp_aip_6_objective_wizard/`.
+- ✅ SPEC-CONFLICT log: NONE this slice.
+- ✅ §16.1 (c) CLEAN receipt applied verbatim: sibling contract `wizard_objective_commit_state_v0.py` lands the objective variant; sealed `WizardCommitState_v0.variant` Literal NOT edited (follow-on additive when elicitation flow lands).
+- ✅ §16.2 baseline-tier contents PENDING-OWNER-CONFIRMATION per owner working default 2026-02-23T04:15Z (5-tuple encoded verbatim).
+- ✅ Honest-gap banked: §8.3 propose-qualify-graduate + stub-agent-before-LLM mechanical guard is DEFERRED to a follow-on additive seal (this slice enforces §8.4 STRUCTURAL COMPILE rejections only).
+- ✅ 5-commit seal chain (SHAs recorded post-landing).
+
+#### Item 5.7 · CP-AIP-7-TARGET-OUTCOME-PLANNER — 🟡 **NEXT** (opens immediately post CP-AIP-6 seal per owner cadence directive · §10 seven-field TargetOutcome schema + §11.1 population resolved against register + §11.4 test-set precedes training verbatim).
 
 - Execute in strict spec §15 order per DECISIONS.md CP list:
   - CP-AIP-1-INGEST-CAPTURE (§4.1-4.4)

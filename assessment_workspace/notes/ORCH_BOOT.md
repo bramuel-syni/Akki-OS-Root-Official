@@ -980,6 +980,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-5-CLUSTERING Commit-A c915ab48 on programme/track-a (last sealed · pre-CP-AIP-6)"
 
 
+
+generated_at_utc: 2026-02-23T07:53:00Z
+generator: "main-agent Autopilot (CP-AIP-6-OBJECTIVE-WIZARD Commit-C fixup · R-6 boundary regen advancing heads_last_sealed.state_repo.head 6ae3fe3e -> 04c69597 (CP-AIP-6 state Commit-B this-turn) + heads_last_sealed.code_repo.head c915ab48 -> ab3f80a2 (CP-AIP-6 Commit-A this-turn) · ratchet.passed_floor UNCHANGED at 6302 · baseline_failures.json sha256 UNCHANGED at 3750f45c6126a723efbe559762060edee6b02f5aabb22b32edaa811afb2d6885 · Item 5.6 of EXECUTION_ORDER.md CLOSED · AIP v1.0 §8 Objective Wizard compile boundary + §9 Collection Schema baseline v1.0 + §12.1 Registry Namespace sealed-not-deleted GREEN · §16.1 (c) CLEAN receipt applied verbatim (sibling contract not sealed carrier edit) · §16.2 baseline-tier PENDING-OWNER-CONFIRMATION · Honest gap banked: §8.3 propose-qualify-graduate + stub-agent-before-LLM DEFERRED to follow-on additive seal · SPEC-CONFLICT log NONE)"
+regeneration_reason: post-commit-b-cp-aip-6-objective-wizard-commit-c-fixup-r-6-boundary-regen-advancing-state-head-to-04c69597-and-code-head-to-ab3f80a2-plus-ratchet-6292-to-6302-plus-10-canonical-measured-item-5-6-of-execution-order-closed
+
+ratchet:
+  passed_floor: 6302
+  counts_at_baseline_passed: 6302
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 3750f45c6126a723efbe559762060edee6b02f5aabb22b32edaa811afb2d6885
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 04c69597
+    sealed_at_utc: 2026-02-23T07:52:00Z
+    seal_kind: "CP-AIP-6-OBJECTIVE-WIZARD state Commit-B 04c69597 on master · Item 5.6 of EXECUTION_ORDER.md · AIP v1.0 §8 Objective Wizard compile boundary + §9 Collection Schema baseline v1.0 + §12.1 Registry Namespace sealed-not-deleted GREEN · 5 NEW additive modules landed (contracts/target_outcome_v0.py ~85 lines + contracts/collection_schema_v0.py ~65 lines + contracts/wizard_objective_commit_state_v0.py ~80 lines + services/wizard/objective_compile.py ~135 lines + services/registry/audio_modality_namespace.py ~120 lines) · sealed CP-M11-wizard state machine + WizardCommitState_v0 UNCHANGED per SO §3.8 + §16.1 (c) CLEAN receipt verbatim · NEW backend/tests/invariants/test_cp_aip_6_objective_wizard_aip_v1_0_section_8_9_12.py (10 pins) + baseline_failures.json ratchet 6292->6302 · Pre-Commit-A double-green stripped_sha256 8d8518c9dc0f75a545dfe3b0c7452dd9128eef0a6b7ecd1d492427d44b20e4a3 IDENTICAL both sweeps 6311 passed 1 skipped 0 failed 520 warnings · CP_AIP_6 card pulled from queued/ + rewritten fully-conforming SO §6.2 card_sha256 2147181fd6e598cc0619286eab63558802871298875aba93c0e7fc8a3b115fb9 · SPEC-CONFLICT log NONE · §16.2 baseline-tier PENDING-OWNER-CONFIRMATION · Honest gap banked: §8.3 propose-qualify-graduate + stub-agent-before-LLM DEFERRED to follow-on additive seal"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: ab3f80a2
+    sealed_at_utc: 2026-02-23T07:45:00Z
+    seal_kind: "CP-AIP-6-OBJECTIVE-WIZARD Commit-A ab3f80a2 on programme/track-a · Item 5.6 of EXECUTION_ORDER.md · +10 canonical measured AIP v1.0 §8 Objective Wizard compile boundary + §9 Collection Schema baseline v1.0 + §12.1 Registry Namespace sealed-not-deleted GREEN · §16.1 (c) CLEAN receipt applied verbatim"
+
+
 ```
 
 ---

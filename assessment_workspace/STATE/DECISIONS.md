@@ -28564,4 +28564,49 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 
 ---
 
+## CP-AIP-6-OBJECTIVE-WIZARD · SEAL RECORD · 2026-02-23T07:50:00Z (5-Commit-Seal LANDING — state Commit-B this-turn)
+
+### CP-AIP-6-OBJECTIVE-WIZARD seal record (2026-02-23T~07:50Z · AIP v1.0 §8 + §9 + §12.1 Objective Wizard compile boundary + Collection Schema baseline v1.0 + Registry Namespace sealed-not-deleted GREEN · §16.1 (c) CLEAN receipt applied verbatim)
+
+- **Scope:** AIP v1.0 §8 Objective Wizard compile boundary + §9 Collection Schema two-tier + §12.1 Registry Namespace sealed-not-deleted · pure §1.2 modality-extension of sealed CP-M11-wizard state machine (sibling contract lands objective variant per §16.1 (c) CLEAN receipt · sealed `WizardCommitState_v0` NOT edited). `canon_ref: AIP v1.0 §8.1..§8.5 + §9.1..§9.3 + §10.1..§10.2 + §12.1 + §1.2 + §1.5 + §6.2 + §16.1 (c) CLEAN receipt verbatim + §16.2 baseline-tier PENDING-OWNER-CONFIRMATION.`
+- **Ledger check:** this seal implements EXECUTION_ORDER.md Item 5.6 CP-AIP-6-OBJECTIVE-WIZARD and nothing else.
+- **Additive-only carriers landed (5 modules · sealed carriers UNCHANGED per SO §3.8):**
+  - `backend/contracts/target_outcome_v0.py` (~85 lines · `TargetOutcome_v0` frozen dataclass seven-field schema per §10.1 verbatim + `StratumAcceptance_v0` two-dimensional (accuracy + coverage) per §10.1 + closed-set `GATE_POLICIES` Final constant).
+  - `backend/contracts/collection_schema_v0.py` (~65 lines · `CollectionSchema_v0` frozen two-tier + `BASELINE_TIER_V1_0_CONTENTS` Final 5-tuple verbatim per §9.2 + `CUSTODY_VIOLATING_TOKENS` 8-tuple mirroring CP-AIP-3 write-boundary discipline).
+  - `backend/contracts/wizard_objective_commit_state_v0.py` (~80 lines · `ObjectiveSession_v0` frozen 6-carrier dataclass per §8.5 verbatim + `OBJECTIVE_VARIANT_NAME` Final constant · sibling contract not sealed carrier edit per §16.1 (c) CLEAN receipt).
+  - `backend/services/wizard/objective_compile.py` (~135 lines · `compile_target_outcome` + `compile_collection_schema` compile-time boundary + 3 refusal classes `TestSetRefMissing` + `AcceptanceBarNotStratified` + `CustodyViolation` all subclassing `ObjectiveCompileError` · §8.4 verbatim rejections (a) (b) (c) enforced structurally).
+  - `backend/services/registry/audio_modality_namespace.py` (~120 lines · `AudioModalityNamespace_v0` frozen dataclass with `open()` / `close()` / `write_data_point()` / `list_scoped_writes()` · `ScopedWrite_v0` frozen carrier · `NamespaceState = Literal['open', 'sealed']` closed-set · NO `delete` method structurally per §1.5 unrepresentable-not-policed).
+- **Ratchet:** floor 6292 → 6302 (+10 canonical measured) · `invariants_enforced_when_baseline_guard_1.passed_floor` advanced in lock-step · baseline_failures.json sha256 post-bump `3750f45c6126a723efbe559762060edee6b02f5aabb22b32edaa811afb2d6885`.
+- **10 pins by anchor:** §8.4 (a) Outcome without test_set_ref REJECTED + §10.2 (1) · §8.4 (b) acceptance bar missing per-stratum dimension REJECTED + §10.1 + §10.2 (1) · §8.4 (c) CollectionSchema §6.2-custody-violating column REJECTED (1) · §9.2 baseline tier v1.0 verbatim 5-tuple + §16.2 PENDING (1) · §12.1 namespace closure state sealed-never-deleted + §1.5 (1) · §12.1 reads-compose-global writes-namespace-scoped (1) · §8.5 objective_session ledger data class (1) · §8.5 options_rejected ⊆ options_considered (1) · §1.2 no-redeclaration scan 4 sealed wizard carriers + §16.1 (c) (1) · Anti-drift §3 + §5 anchor scan + ledger-check (1).
+- **Pre-Commit-A double-green:** 6311 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical `stripped_sha256 8d8518c9dc0f75a545dfe3b0c7452dd9128eef0a6b7ecd1d492427d44b20e4a3` IDENTICAL both sweeps (sweep_A 187.62s · sweep_B 186.30s).
+- **Frozen contract snapshot parity fold-in:** 3 new frozen-dataclass modules (`target_outcome_v0.py` + `collection_schema_v0.py` + `wizard_objective_commit_state_v0.py`) appended to `NON_CONTRACT_UTILITY_MODULES` in `test_frozen_contract_snapshot_parity.py` per established FL-P4-W6-08 pattern (append-only exempt-list · like `canon_census_source_candidate.py`, `data_suite_workspace.py`).
+- **CP_AIP_6 card** pulled from `STATE/OBJECTIVES/queued/` + rewritten fully-conforming SO §6.2 · card_sha256 `2147181fd6e598cc0619286eab63558802871298875aba93c0e7fc8a3b115fb9`.
+- **§16.1 (c) CLEAN receipt verbatim applied** (2026-02-23T05:00:00Z at `phase0/aip_spec_verification_20260223/receipt.md`): extend existing state machine with additive `objective` variant on `WizardCommitState_v0.variant` Literal · sibling machine explicitly rejected per §1.2. This seal lands the sibling CONTRACT (`wizard_objective_commit_state_v0.py`); the sealed `WizardCommitState_v0` is NOT edited (the additive variant on the Literal will follow-on additively when the elicitation flow lands).
+- **§16.2 baseline-tier contents** PENDING-OWNER-CONFIRMATION per owner working default 2026-02-23T04:15Z: v1.0 proposed 5-tuple encoded verbatim.
+- **§15 P234 verbatim** observed: 'The planner must never accept a hand-authored Outcome once the wizard exists' — the wizard LANDS BEFORE the planner (CP-AIP-7 next).
+- **SPEC-CONFLICT log:** NONE this slice.
+- **Comprehensive receipt:** `phase0/cp_aip_6_objective_wizard_20260223/receipt.md`.
+- **Honest gap banked for follow-on (not this seal · additive-only bans retroactive pin injection into landed Commit-A `ab3f80a2`):** §8.3 propose-qualify-graduate discipline + stub-agent-before-LLM mechanical guard is DEFERRED to a follow-on additive seal (candidate CP-AIP-6.1 or as an aspect of the elicitation-flow slice). This slice enforces the §8.4 STRUCTURAL COMPILE-TIME REJECTIONS (a/b/c) — the §8.3 propose-qualify-graduate flow itself is not sampled by this seal's 10 pins. Recorded per §7 guard 5 scope-freeze + "Absence is a finding" rule verbatim.
+
+### CP-AIP-6-OBJECTIVE-WIZARD state Commit-B references (2026-02-23T~07:52:00Z · full 5-commit chain SHAs banked at mini-bank fixup post-Commit-C)
+
+- **Code Commit-A** landed 2026-02-23T~07:45Z: `ab3f80a2` on `programme/track-a` (repos/Extraction-Akki).
+- **/app companion A** landed 2026-02-23T~07:51Z: `0612204b` on `main` (/app · vendored twin sync 1050 → 1055 + notes/audit ORCH_BOOT ratchet-only regen 6292 → 6302 + gitlink advance c915ab48 → ab3f80a2).
+- **State Commit-B** landed 2026-02-23T~07:52Z: `04c69597` on `master` (this repo · banks objective card + queued/ delete-promotion + comprehensive receipt + sweep_A/B logs + EXECUTION_ORDER + DECISIONS + RESUME rewrites + notes ORCH_BOOT pre-Commit-A ratchet-only regen).
+
+### CP-AIP-6-OBJECTIVE-WIZARD full seal chain SHAs (state mini-bank · pending post-Commit-C fixup rewrite)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `ab3f80a2` | programme/track-a |
+| 2. /app companion A | `0612204b` | main |
+| 3. State Commit-B | `04c69597` | master |
+| 4. State Commit-C fixup | *(pending — this-fixup)* | master |
+| 5. /app companion C | *(pending — post-fixup)* | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail. Full 5-commit chain will be re-banked post-mini-bank on state master.
+
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
