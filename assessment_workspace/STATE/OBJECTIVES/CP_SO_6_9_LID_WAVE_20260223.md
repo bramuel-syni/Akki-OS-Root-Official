@@ -3,7 +3,7 @@ card_id: CP_SO_6_9_LID_WAVE_20260223
 title: SO §6.9 LID wave · Whisper-LID (MIT) + VoxLingua107 (Apache-2.0) registration acts + OverlayLidDetection_v1 shape + admission gate DEFAULT ≥ 90% scored against google-transcripts labelled corpus + regime promotion by receipted act + anti-token HF pull wrapper · Item 5.11.a
 ratified_at_utc: 2026-02-23T12:15:00Z
 ratified_by: Owner drop verbatim 2026-02-23 (SO §6.9 LID RATIFICATION) — 'Register two audio-native models instead, both under licences that need no review — Whisper language detection (MIT) and SpeechBrain VoxLingua107 (Apache 2.0) — pinning the hash and recording the licence file as the registration act.' + RUN-TO-COMPLETION mandate 2026-02-23 + owner ruling verbatim 'Admission gate DEFAULT ≥ 90% scored against google-transcripts/datasets/{kik,ebu,swa,luo,kln,guz,mer,bxk,kam,mrg,lwg,mas}/{audio,transcript} labelled corpus as ground truth. TENANT-LABELS-PENDING RESOLVED for 12 languages listed; English/Sheng/code-switched retain honest-gap.'
-card_sha256: <computed_at_promote>
+card_sha256: 1f5712e33dde1c044f1a06e5ccadf0ce20639a3eba67e274a41054ee70fab8ee
 milestone_status: QUEUED (Item 5.11.a · opens immediately post CP-AIP-10 seal · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE)
 ---
 

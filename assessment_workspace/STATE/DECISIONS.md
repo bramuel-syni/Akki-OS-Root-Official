@@ -28952,7 +28952,53 @@ Every refusal / hold / gate written from this desk from this drop forward carrie
 - **Row 2 (/app companion Commit-A):** `0e90b8c3dcef0bb5b2169cd2d6ce0eb492bf1059` on `main` · 2026-02-23T~12:35Z · notes ORCH_BOOT pre-Commit-A ratchet-only regen 6321 → 6332 + audit ORCH_BOOT byte-identical mirror + Extraction-Akki gitlink advance 8ef25c1 → d4eae498 + vendored/extraction_akki MANIFEST.json advance (1060 → 1061 files).
 - **Row 3 (State Commit-B):** `e6ec649b28962049d6c969713e001c81e630870d` on `master` · 2026-02-23T~12:40Z · banks Code-A + /app-A + Item 5.11.a + objective card promoted + comprehensive receipt + GAPS_FIXED_LEDGER 11 invariant-seat entries + PINS CP-SO-6.9-LID-WAVE pin block + EXECUTION_ORDER Item 5.11.a status advance + DECISIONS entries + CP-AIP-10 mini-bank rows 4-6 supplement.
 - **Rows 4-6 (State-C fixup this-commit + /app-C companion + state mini-bank):** pending sequential landing this-turn.
-- **Ledger check** — this fixup implements Item 5.11.a of `EXECUTION_ORDER.md` R-6 boundary regen + state mini-bank rows 1-3, and nothing else. Additive-only. No sealed carrier edit.
+- **Ledger check** — this state Commit-C fixup implements Item 5.11.a of `EXECUTION_ORDER.md` R-6 boundary regen + state mini-bank rows 1-3, and nothing else. Additive-only. No sealed carrier edit.
+
+
+## 2026-02-23 · CP-SO-6.9-LID-WAVE · state mini-bank rows 4-6 COMPLETION · full 6-commit-seal chain SHAs banked (additive supplement to prior mini-bank at 793c920c)
+
+- Row 4 (State Commit-C fixup): `a07a1592f4eb0a822261000fd46f0338854c6350` on master.
+- Row 5 (/app companion Commit-C): `d27d50f2cf6a8f32e60c4393c2016f402d5f6549` on main.
+- Row 6 (State mini-bank): `793c920c36d7713d143224cd43718ac293e40d04` on master · RESUME.md post-seal rewrite + PINS.md state-bundle pin final (sha256 9b92f86735823ba91e825e5d95e1596e72703d3558954cff608b73327acf70a2 @ master a07a1592).
+- CP-SO-6.9-LID-WAVE 6-commit seal chain FULLY LANDED. Item 5.11.a of `EXECUTION_ORDER.md` CLOSED.
+- Additive-only supplement per R-6 discipline (chicken-and-egg pattern). Banked here at CP-ENT-16 pre-Commit-A regen boundary.
+- Ledger check - this supplement banks the CP-SO-6.9-LID-WAVE mini-bank rows 4-6 into DECISIONS.md, and nothing else. Additive-only.
+
+
+## 2026-02-23 · CP-ENT-16-PILOT-LICENCE-SEEDS · state Commit-B (opens Item 5.11.b · banks Code-A `9e3ca45a` + /app-A `2c88897f3` · SO §6.9 amendment §6 verbatim + Ruling (b) verbatim · §1.2 modality-extension of sealed CP-ENTITLEMENT-BUILD-WAVE R-82)
+
+**Seal boundary:** 2026-02-23T~13:25Z · **Item 5.11.b of `STATE/EXECUTION_ORDER.md`** · §1.2 modality-extension · RUN-TO-COMPLETION mandate ACTIVE.
+
+- **What sealed at Code Commit-A `9e3ca45a`:** SO §6.9 amendment §6 verbatim landed at entitlement-service boundary. Three pilot licence seed objects created for RMS + DigiCow + AKKI-TEST, each with `compute_dial="Managed"` + `frontier_dial="Your Keys"`. Tenant creation seam refuses without a pilot licence seed present (ENT-16 chokepoint resolution requires resolvable licence at day 1). One new additive module `backend/services/entitlement_service_v1/pilot_licence_seeds_v1.py` (~135 lines). §1.2 modality-extension composing sealed CP-ENTITLEMENT-BUILD-WAVE (R-82) `chokepoint_resolver.py`. Zero sealed-carrier edit per SO §3.8.
+- **RED-first authorship:** 8/8 failed authentically pre-authorship · 8/8 passed 0.71s post.
+- **Double-green byte-identity:** sweep_A + sweep_B both 6349 passed / 13 skipped / 0 failed · **stripped_sha256 IDENTICAL `1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5`**.
+- **Ratchet:** `6332` → `6340` (+8 canonical measured) · `baseline_failures.json` sha256 post-bump `129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c`.
+- **Continuity bundle (SO §6.9(5) AMENDED · 4th application):** code bundle `continuity_bundles/code_20260923T125822Z_CP_ENT_16.bundle` (18.4 MiB · sha256 `8ab58aa418413a08e8b37dc2492dca70e99cadab0e0ad815f0552a59d5ed186f` @ `programme/track-a` `9e3ca45a`).
+- **8 RED-first invariant pins (all GREEN):** PilotLicenceSeed_v1 4-field frozen shape + RMS/DigiCow/AKKI-TEST seeds Managed+Your-Keys + THREE_TENANT_PILOT_LICENCE_SEEDS tuple + tenant creation refuses without seed + EVERY_MODEL_CALL_RESOLVES_FROM_DAY_1_POSTURE Final marker + §1.2 no-redeclaration.
+- **Ruling (b) AKKI-RUNS-IT verbatim honored:** ENT-16 Managed compute + Frontier Your Keys structurally bound; training compute + model weights + labelled corpus never leave Akki boundary.
+- **Objective card promoted** from `queued/` to `STATE/OBJECTIVES/CP_ENT_16_PILOT_LICENCE_SEEDS_20260223.md` (card_sha256 `b50a64f0443e1260c94487aa80ac2495ff27478e487271d8fdf3e0058d0cc31d` pinned at promotion).
+- **Fold-in orthogonal gap-closure at this boundary:** CP-SO-6.9-LID-WAVE card_sha256 was `<computed_at_promote>` placeholder post-State-B; discovered during CP-ENT-16 sweep_A pre-authorship failure via `test_every_card_hash_pin_matches_body`; additively fixed to computed sha256 `1f5712e33dde1c044f1a06e5ccadf0ce20639a3eba67e274a41054ee70fab8ee`. Lesson: pin card_sha256 at promotion, not deferred.
+- **Comprehensive receipt:** `phase0/cp_ent_16_pilot_licence_seeds_20260223/receipt.md`.
+- **`heads_last_sealed` post-Commit-A regen:** state_repo.head `e6ec649b` (CP-SO-6.9-LID-WAVE state Commit-B) · code_repo.head `d4eae498` (CP-SO-6.9-LID-WAVE Code-A). This-CP heads advance at Commit-C fixup.
+- **5-commit seal chain:**
+  - Row 1 (Code Commit-A): `9e3ca45a9c6382732f52970966df800311eada17` on programme/track-a · 2026-02-23T~13:15Z.
+  - Row 2 (/app companion Commit-A): `2c88897f357072696b08ed4236ef80bcf4db9a84` on main · 2026-02-23T~13:20Z.
+  - Row 3 (State Commit-B): *(this commit)* on master.
+- **Ledger check** — this state Commit-B implements Item 5.11.b of `EXECUTION_ORDER.md` and nothing else. Additive-only. No sealed carrier edit. Fold-in card-pin fix orthogonal per §6.9 desk discipline.
+
+
+## 2026-02-23 · CP-ENT-16-PILOT-LICENCE-SEEDS · state Commit-C fixup · R-6 boundary regen + state mini-bank rows 1-3
+
+- R-6 boundary regen at `notes/ORCH_BOOT.md`: heads_last_sealed advanced to state_repo.head `6256dbf7774c6885a6044502492c34ce33a75049` (this-B) + code_repo.head `9e3ca45a9c6382732f52970966df800311eada17` (this-Code-A). Ratchet UNCHANGED at 6340.
+- CP-SO-6.9-LID-WAVE state mini-bank `793c920c` additively banked at CP-ENT-16 pre-Commit-A regen per prior-seal chicken-and-egg pattern.
+
+### CP-ENT-16-PILOT-LICENCE-SEEDS 5-commit-seal chain — state mini-bank rows 1-3
+
+- Row 1 (Code Commit-A): `9e3ca45a9c6382732f52970966df800311eada17` on programme/track-a · 2026-02-23T~13:15Z.
+- Row 2 (/app companion): `2c88897f357072696b08ed4236ef80bcf4db9a84` on main · 2026-02-23T~13:20Z.
+- Row 3 (State Commit-B): `6256dbf7774c6885a6044502492c34ce33a75049` on master · 2026-02-23T~13:25Z.
+
+**Ledger check** — this fixup implements Item 5.11.b R-6 boundary regen + state mini-bank rows 1-3 and nothing else. Additive-only.
 
 
 ---

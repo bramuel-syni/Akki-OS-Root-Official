@@ -318,3 +318,41 @@
 - **Sealed carriers untouched** — additive-only per SO §3.8: CP-M6-1-1 `language_identifier.py` unchanged.
 - **Ratchet:** `6321` → `6332` (+11 canonical measured) · baseline_failures.json sha256 post-bump `468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314` · double-green stripped_sha256 `b71bead1574966208bf999b2f59477324c7f0c8c20381ce98d6ecccc2240650a`.
 - **Continuity:** code bundle sha256 `c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f` @ `programme/track-a` `d4eae498` (state bundle pin pending post-Commit-C-fixup).
+
+---
+
+## Seal boundary: CP-ENT-16-PILOT-LICENCE-SEEDS (2026-02-23T~13:15Z · Item 5.11.b · SO §6.9 amendment §6 verbatim)
+
+### 1-6. Pilot licence seed structural invariants (RED-first pins)
+
+- **Kind:** invariant seats · 6 pins on frozen dataclass shape + 3 tenant seed constants + tuple + boundary refusal.
+- **What tripped:** SO §6.9 amendment §6 verbatim requires pilot licence object at tenant creation for RMS + DigiCow + AKKI-TEST with `Compute dial Managed` + `Frontier dial Your Keys`; no on-disk representation before this seal.
+- **Protected objective:** ensures every model call resolves from day 1 (ENT-16 chokepoint has a resolvable licence for every seeded tenant).
+- **Additive fix:** `PilotLicenceSeed_v1` frozen 4-field dataclass + `RMS/DIGICOW/AKKI_TEST_PILOT_LICENCE_SEED` Final constants + `THREE_TENANT_PILOT_LICENCE_SEEDS` tuple + `create_tenant_with_pilot_licence_seed` boundary refuses without seed. Tests GREEN.
+- **Receipt anchor:** `phase0/cp_ent_16_pilot_licence_seeds_20260223/receipt.md §3`.
+
+### 7. EVERY_MODEL_CALL_RESOLVES_FROM_DAY_1_POSTURE Final marker
+
+- **Kind:** compaction-safe posture marker.
+- **Additive fix:** `EVERY_MODEL_CALL_RESOLVES_FROM_DAY_1_POSTURE: Final[str]` verbatim SO §6.9 amendment §6 line.
+
+### 8. §1.2 no-redeclaration of sealed CP-ENTITLEMENT-BUILD-WAVE symbols
+
+- **Kind:** sealed-carrier redeclaration guard.
+- **Additive fix:** AST scan test rejects `PrincipalV1`, `PrincipalKind`, `resolve`, `ResolutionRefusal` shadow.
+
+### 9. Fold-in orthogonal gap-closure: CP-SO-6.9-LID-WAVE card_sha256 placeholder
+
+- **Kind:** SO §6.2 hash-pin drift (discovered during CP-ENT-16 sweep pre-authorship).
+- **What tripped:** CP-SO-6.9-LID-WAVE card_sha256 was `<computed_at_promote>` placeholder post-State-B; `test_every_card_hash_pin_matches_body` invariant would have failed at any post-State-B sweep.
+- **Protected objective:** ensures every card in `STATE/OBJECTIVES/` has valid computed hash-pin per SO §6.2.
+- **Additive fix:** computed `card_sha256 = 1f5712e33dde1c044f1a06e5ccadf0ce20639a3eba67e274a41054ee70fab8ee` and pinned at pre-CP-ENT-16 sweep boundary.
+- **Lesson banked:** pin card_sha256 at promotion (before any sweep runs post-State-B), not as post-hoc computation.
+
+### Seal-boundary summary
+
+- **8 gaps closed** additively at CP-ENT-16 boundary (all RED-first with authentic ImportError → GREEN → double-green byte-identical).
+- **1 orthogonal gap closed** at same boundary (CP-SO-6.9-LID-WAVE card_sha256 pin).
+- **Sealed carriers untouched** — additive-only per SO §3.8.
+- **Ratchet:** `6332` → `6340` · baseline_failures.json sha256 `129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c` · double-green stripped_sha256 `1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5`.
+- **Continuity:** code bundle sha256 `8ab58aa418413a08e8b37dc2492dca70e99cadab0e0ad815f0552a59d5ed186f` @ `programme/track-a` `9e3ca45a` (state bundle pin pending).

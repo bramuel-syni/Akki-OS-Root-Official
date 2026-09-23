@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T122527Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T125501Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1465,7 +1465,13 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - **Emitted at:** 2026-02-23T~12:29Z pre-Commit-B (Code-A already landed)
 
 **State bundle — master at seal-tail HEAD:**
-- **Path:** *(pending emission at post-Commit-C-fixup boundary · to be sha-pinned by state mini-bank commit)*
+- **Path:** `continuity_bundles/state_20260923T123757Z_CP_SO_6_9_LID_WAVE.bundle`
+- **Size:** 217,372,818 bytes (207.3 MiB)
+- **sha256:** `9b92f86735823ba91e825e5d95e1596e72703d3558954cff608b73327acf70a2`
+- **Refs:** `refs/heads/master` → `a07a1592f4eb0a822261000fd46f0338854c6350` (= CP-SO-6.9-LID-WAVE state Commit-C fixup HEAD)
+- **Verify:** `git bundle verify` → "is okay" · complete history · hash algorithm: sha1
+- **Emitted at:** 2026-02-23T~12:38Z post-Commit-C-fixup
+- **Pin lock-in:** this state mini-bank commit finalizes both bundle pins (this file · same commit).
 
 ### LID model registration acts (SO §6.9 LID RATIFICATION §4 verbatim)
 
@@ -1504,16 +1510,45 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 
 `CP-SO-6.9-LID-WAVE seal 5-commit chain IN FLIGHT (Code-A + /app-A landed · State-B in progress) · SO §6.9 LID RATIFICATION verbatim §1-§9 · Whisper-LID MIT + VoxLingua107 Apache-2.0 registration acts (6-field verbatim shape) + OverlayLidDetection_v1 marker/regime structural invariants + LID_DO_NOT_FLOW_INTO_COUNTED_MEASURE_POSTURE Final marker (B5.4) + admission gate DEFAULT ≥ 0.90 pending scored against google-transcripts/ 12-language labelled corpus + regime promotion by receipted act canon 8 §4 W2 + LID_NOTHING_RELABELLED_AT_REGIME_FLIP_POSTURE Final marker + anti-token HF pull wrapper SO §6.9 clause 3 + TENANT_LABELS_PENDING_HONEST_GAP English/Sheng/code-switched + 12 languages RESOLVED · lid_wave_overlay_and_admission_v1 §1.2 modality-extension of sealed CP-M6-1-1 language_identifier.py · code bundle sha256 c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f (18.3 MiB · programme/track-a @ d4eae498) · state bundle emission pending post-Commit-C-fixup · SO §6.9(5) AMENDED continuity 3rd application · Additive-only per SO §3.8 · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam; weight-file pulls DEFERRED to Track-4 Census Autonomy Service jobs · REPORT-AND-CONTINUE not idle-halt per §6.9 cadence amendment · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
 
-### CP-SO-6.9-LID-WAVE 5-commit seal chain (IN FLIGHT · partial · full table lands at mini-bank)
+### CP-SO-6.9-LID-WAVE 5-commit seal chain (FULL SHA TABLE · POST-MINI-BANK)
 
-| # | Commit | SHA | Branch | Status |
+| # | Commit | SHA | Branch | Purpose |
 |---|---|---|---|---|
-| 1 | Code Commit-A | `d4eae498984abd7da16b1d36692178f513ad10b5` | `programme/track-a` | ✅ LANDED (2026-02-23T~12:30Z) |
-| 2 | /app companion A | `0e90b8c3dcef0bb5b2169cd2d6ce0eb492bf1059` | `main` | ✅ LANDED (2026-02-23T~12:35Z) |
-| 3 | State Commit-B | *(this commit)* | `master` | 🟡 IN PROGRESS |
-| 4 | State Commit-C fixup | *(pending)* | `master` | 🟡 PENDING |
-| 5 | /app companion C | *(pending)* | `main` | 🟡 PENDING |
-| 6 | State mini-bank | *(pending)* | `master` | 🟡 PENDING |
+| 1 | Code Commit-A | `d4eae498984abd7da16b1d36692178f513ad10b5` | `programme/track-a` | 1 new module `lid_wave_overlay_and_admission_v1.py` (~325 lines) + 11 RED-first pins + baseline_failures ratchet 6321→6332 + drill receipts |
+| 2 | /app companion A | `0e90b8c3dcef0bb5b2169cd2d6ce0eb492bf1059` | `main` | notes/audit ORCH_BOOT pre-Commit-A regen + Extraction-Akki gitlink advance 8ef25c1→d4eae498 + vendored MANIFEST advance + code bundle emitted |
+| 3 | State Commit-B | `e6ec649b28962049d6c969713e001c81e630870d` | `master` | Objective card promoted + queued-delete + comprehensive receipt + GAPS_FIXED_LEDGER 11 invariant-seat entries + PINS CP-SO-6.9-LID-WAVE pin block + EXECUTION_ORDER Item 5.11.a IN-FLIGHT + DECISIONS opening + CP-AIP-10 mini-bank rows 4-6 supplement |
+| 4 | State Commit-C fixup | `a07a1592f4eb0a822261000fd46f0338854c6350` | `master` | R-6 boundary regen advancing heads_last_sealed to State-B + Code-A + state mini-bank rows 1-3 |
+| 5 | /app companion C | `d27d50f2cf6a8f32e60c4393c2016f402d5f6549` | `main` | byte-identical audit twin of State-B + State-C fixup |
+| 6 | State mini-bank | *(this commit)* | `master` | RESUME rewrite + PINS state-bundle-pin final + full 6-commit SHA table + milestone-seal REPORT-AND-CONTINUE receipt line |
 
 <!-- CP-SO-6-9-LID-WAVE-PINS-2026-02-23 END -->
+
+
+## CP-ENT-16-PILOT-LICENCE-SEEDS · **SEAL BOUNDARY 2026-02-23T~13:15Z · SO §6.9 amendment §6 verbatim**
+
+<!-- CP-ENT-16-PILOT-LICENCE-SEEDS-PINS-2026-02-23 BEGIN · SO §6.9(5) AMENDED · 4th application -->
+
+**Code bundle:** `continuity_bundles/code_20260923T125822Z_CP_ENT_16.bundle` · 19,271,374 bytes (18.4 MiB) · sha256 `8ab58aa418413a08e8b37dc2492dca70e99cadab0e0ad815f0552a59d5ed186f` @ `programme/track-a` `9e3ca45a9c6382732f52970966df800311eada17`.
+
+**State bundle:** *(pending post-Commit-C-fixup)*.
+
+**3-repo HEADs at seal boundary:**
+- Code: `9e3ca45a9c6382732f52970966df800311eada17` (Code-A)
+- State: `793c920c36d7713d143224cd43718ac293e40d04` (CP-SO-6.9-LID-WAVE mini-bank · pre-State-B tip)
+- /app: `2c88897f357072696b08ed4236ef80bcf4db9a84` (/app-A companion)
+
+**Ratchet floor post-seal:** `6340` (was `6332` · +8 canonical measured). `baseline_failures.json` sha256 post-bump: `129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c`. Double-green stripped_sha256: `1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5` IDENTICAL both sweeps 6349 passed.
+
+**Three pilot licence seeds (SO §6.9 amendment §6 verbatim):**
+| tenant | compute_dial | frontier_dial |
+|---|---|---|
+| RMS | Managed | Your Keys |
+| DigiCow | Managed | Your Keys |
+| AKKI-TEST | Managed | Your Keys |
+
+**REPORT-AND-CONTINUE receipt line (this-seal · state bundle pending):**
+
+`CP-ENT-16-PILOT-LICENCE-SEEDS seal 5-commit chain IN FLIGHT · SO §6.9 amendment §6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · pilot_licence_seeds_v1 §1.2 modality-extension composing sealed CP-ENTITLEMENT-BUILD-WAVE (R-82) chokepoint_resolver.py · 8 RED-first pins ALL GREEN · code bundle sha256 8ab58aa418413a08e8b37dc2492dca70e99cadab0e0ad815f0552a59d5ed186f (18.4 MiB @ programme/track-a 9e3ca45a) · Ratchet 6332 → 6340 · SO §6.9(5) AMENDED continuity 4th application · Additive-only per SO §3.8 · Fold-in orthogonal card-pin drift fix banked at same boundary · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
+
+<!-- CP-ENT-16-PILOT-LICENCE-SEEDS-PINS-2026-02-23 END -->
 

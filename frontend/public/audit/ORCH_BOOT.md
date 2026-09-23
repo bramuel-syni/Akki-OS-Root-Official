@@ -1314,6 +1314,31 @@ heads_last_sealed:
     seal_kind: "CP-SO-6.9-LID-WAVE Code Commit-A d4eae498 (last sealed · pre-CP-ENT-16-PILOT-LICENCE-SEEDS)"
 
 
+generated_at_utc: 2026-02-23T13:30:00Z
+generator: "CP-ENT-16-PILOT-LICENCE-SEEDS state Commit-C fixup R-6 boundary regen · advancing heads_last_sealed.state_repo.head e6ec649b -> 6256dbf7 (this-CP state Commit-B) + code_repo.head d4eae498 -> 9e3ca45a (this-CP Code-A) · ratchet.passed_floor UNCHANGED at 6340 · state mini-bank rows 1-3 of CP-ENT-16 5-commit-seal chain banked in DECISIONS.md"
+regeneration_reason: post-commit-b-cp-ent-16-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
+
+ratchet:
+  passed_floor: 6340
+  counts_at_baseline_passed: 6340
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 6256dbf7774c6885a6044502492c34ce33a75049
+    sealed_at_utc: 2026-02-23T13:25:00Z
+    seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS state Commit-B 6256dbf7 (banks Code Commit-A 9e3ca45a + /app companion 2c88897f3 + Item 5.11.b of EXECUTION_ORDER.md · SO §6.9 amendment §6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · pilot_licence_seeds_v1 §1.2 modality-extension of sealed CP-ENTITLEMENT-BUILD-WAVE R-82 · Fold-in card-pin fix for CP-SO-6.9-LID-WAVE)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 9e3ca45a9c6382732f52970966df800311eada17
+    sealed_at_utc: 2026-02-23T13:15:00Z
+    seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS Code Commit-A 9e3ca45a · +8 canonical measured (6332 -> 6340) · double-green stripped_sha256 1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5"
+
+
 ```
 
 ## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)
