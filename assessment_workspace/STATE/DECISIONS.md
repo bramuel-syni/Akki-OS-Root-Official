@@ -27905,3 +27905,289 @@ but-unseated at DAP-14 seating only (census admission corrected orthogonally
 at P4-c-v) · §6.8 report-and-continue.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-02-23T02:55:00Z · CP-DECK-ENGINE-DR-R4-OPENING · Slice 1 of CP-DECK-ENGINE 14-DR-R chunked series (OPENING)
+
+**Slice size:** small · own §3.3 5-Commit-Seal · opens PHASE 4(d).
+
+**Owner boundary directive verbatim (2026-02-23 · post-P4-c-vi seal · this-turn):**
+> ...continue the queue in the same breath per §6.8: CP-DECK-ENGINE
+> next. Reminder: no A/B menus at turn ends — report and continue.
+
+**Owner R-102 verbatim (STATE/DESK_QUEUE.md DQ-15 · 2026-09-22T~06:50Z):**
+> Q2/Q3/Q4 are RESOLVED by this directive — all three objective cards
+> (CP-SKILLS-LAYER, CP-DECK-ENGINE, CP-STREAMING-EXTRACTION) are OPENED
+> and BUILT in this run, not just drafted.
+
+**DR-R4 verbatim (Master Requirements Registry line 269 · truncation preserved as-received · registry self-flags RD-16 extraction-artefact against DR-R10 + DR-R13 · source deck_engine.md UNRECOVERED at build-open):**
+> DR-R4  DeckSpec_v0 — a frozen contract (it crosses the application
+> boundary: the executive app and OS paths both submit it; freeze
+> argued on D4b at Stage A, ...
+
+**What landed (SO §3.8 additive-only, zero sealed-carrier edit):**
+
+- NEW `backend/contracts/deck_spec_v0.py` (114 lines · SO §3.10-α closed-
+  schema discipline · Pydantic BaseModel with `model_config=ConfigDict(
+  extra='forbid', frozen=True)` · Slice-1 minimum-viable fields:
+  * `deck_id` (str · min_length=1) — required for DR-R2 byte-identical-
+    output determinism identity (the (spec, token version, engine version)
+    tuple) and DR-R12 metering cost-ledger keying by {deck_id}.
+  * `spec_version` (Literal['v0']) — declarative version anchor · Doc-0
+    R-105 partial-retirement design (future DeckSpec_v1 is a NEW contract,
+    never mutation of V0).
+  * Module-level `DR_R4_SOURCE_RESTORE_HONEST_GAP: Final[str]` constant
+    naming `deck_engine.md` + `RD-16` verbatim per R-102 productized-or-
+    honest-gap discipline.
+- NEW `backend/tests/invariants/deck_spec_v0.contract_snapshot.json`
+  (24 lines · frozen parity snapshot · additionalProperties=false ·
+  required=[deck_id, spec_version] · schema attests spec_version as
+  Literal const 'v0').
+- NEW `backend/tests/invariants/test_cp_deck_engine_dr_r4_opening_phase_4_d_i.py`
+  (~272 lines · 6 RED-first structural pins · SO §2.5 verbatim-docstring).
+- MODIFY `backend/tests/invariants/test_frozen_contract_snapshot_parity.py`
+  (additive entry in `CONTRACT_TO_SNAPSHOT` map · deck_spec_v0.py →
+  deck_spec_v0.contract_snapshot.json · BL #10 same-slice discipline).
+- MODIFY `backend/tests/invariants/baseline_failures.json` (ratchet
+  6218 → 6224 · +6 canonical measured · BL #11 ensure_ascii=False ·
+  BL #7 indent=2 preserved · BL #6 schema-complete ratchet_history entry).
+- Vendored twin sync +1 file · MANIFEST 1035→1036 · structural_sha256
+  `7f9a3fbd07565df55a4e4c9e2eab6a526aea0d683f9e058733abe2813b2d5aa5` →
+  `85ec187883f40a0b208439d3b5e2f63c1cd2f7fb8e2eeeb93a85270a80cb82f1`.
+- ORCH_BOOT.md all 16 stacked ratchet stanzas swept 6218 → 6224 +
+  `fdf1a8e0…` → `66ae28aa7a7fbc2db40de200c26ffe0b9163239f6e58641bae6060eaacf6d61c`;
+  notes + audit mirrors byte-identical.
+
+**Pin coverage (6 pins · all RED-first · GREEN-post 6/6 in 0.70s):**
+1. Contract module presence + verbatim DR-R4 canon marker + source-registry
+   citation (BL #3 string-concatenation for negative-scan safety).
+2. Parity snapshot present + `model_json_schema()` matches snapshot byte-
+   identically.
+3. Slice-1 minimum-viable field set: exactly `(deck_id, spec_version)` ·
+   both required · order-preserving.
+4. Closed-schema discipline: `model_config.frozen is True` + `.extra ==
+   'forbid'` + extra unknown field at construction rejected +
+   post-construction attribute assignment refused.
+5. `DR_R4_SOURCE_RESTORE_HONEST_GAP` Final[str] constant exists + non-empty
+   + names `deck_engine.md` + names `RD-16` verbatim.
+6. `CONTRACT_TO_SNAPSHOT` map declares `deck_spec_v0.py` →
+   `deck_spec_v0.contract_snapshot.json` (BL #10 two-side additive edit).
+
+**RED-first authentic:**
+- RED-pre: 6 failures at collection time (ModuleNotFoundError right-reason ·
+  assertion right-reason receipts at
+  `phase0/drill_receipts_cp_deck_engine_dr_r4_opening/RED_pre_20260223T024500Z.log`).
+- GREEN-post: 6/6 pass 0.70s (receipt at same-dir
+  `GREEN_post_20260223T024900Z.log`).
+
+**Pre-Commit-A double-green byte-identical:**
+- `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (190.50s) + sweep_B (191.50s)
+  both 6230 passed / 1 skipped / 0 failed / 520 warnings.
+- stripped-sha256 `5998ae6832544cb698c861cf20c0b5699e6db8bfc42c6c6b61cfe4b9b2d360fa`
+  IDENTICAL both sweeps.
+- 6230 = 6224 floor + 6 above-floor.
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- All prior PHASE 3 + PHASE 4 (a-c-vi) seal chain UNCHANGED.
+- CP-SKILLS-LAYER chunked series (P4-c-i to P4-c-vi) UNCHANGED — DeckSpec_v0
+  is a distinct new frozen contract at a distinct module path with an
+  independent JSON schema.
+- server.py mirror pair UNCHANGED (P4-d-i additive-only · zero router
+  surface · Slice 1 lands contract shape only).
+
+**Autopilot next (§6.8 report-and-continue):**
+- State Commit-C fixup this-boundary (R-6 boundary regen advancing
+  `heads_last_sealed.state_repo.head` to this-Commit-B SHA +
+  `code_repo.head` to `b68cc02fc3e40e86e38e706bdfbf8ed0cbf6aa73`).
+- /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync).
+- State mini-bank (RESUME.md post-seal rewrite pointing to CP-DECK-ENGINE
+  Slice 2).
+- /app main §6.8 boundary report.
+- Then **CP-DECK-ENGINE Slice 2** opens (full field enumeration post
+  deck_engine.md verbatim restore).
+
+**Standing bounds unchanged:** zero push · terminal `pytest` only ·
+**no `testing_agent`** · additive-only §3.8 · three-repo · ratchet
+monotonic-up floor 6224 · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19 +
+DQ-20 held at DAP-14 seating only · §6.8 report-and-continue.
+
+---
+
+## 2026-02-23T02:57:00Z · OWNER-QUEUED CENSUS SCHEDULER TASKS (fold-in this-turn · no interrupt to P4-d-i seal)
+
+Owner banked mid-P4-d-i-seal verbatim two census questions with answer-evidence
+folded to the scheduler/job queue. Current slice continues uninterrupted;
+these ride the scheduler queue.
+
+### Task 1 · CENSUS-3-C · RMS MySQL/RDS text-column language-detection
+
+**Owner verbatim (2026-02-23 · mid-turn):**
+> Non-English TEXT tracking in RMS: the MySQL/RDS content-axis lane
+> (CENSUS-3-C) carries the text-column language-detection spec (seed-pinned
+> sampled rows, language distribution incl. Swahili/Sheng/French per the
+> prototype's IN WHICH LANGUAGE card) but has NOT yet executed. Owner is
+> asking about it — raise its priority: schedule CENSUS-3-C as a
+> census-scheduler job at the next opportunity (it is CPU/SQL-only, no
+> GPU needed), covering the RMS databases (razuna, news_vault,
+> citizen_digital, weego, db_visitors, saa, kra_reports, viusasa bounded,
+> USSD dbs bounded) with per-db language distribution over sampled text
+> columns + narrative-field typology. Results land tenant-scoped to RMS
+> on the registry surfaces. Include the language table in the boundary
+> report when it lands.
+
+**Priority:** RAISED to next census-scheduler slot (CPU/SQL-only · no GPU).
+
+**Scope (verbatim from owner):**
+- RMS DBs: `razuna`, `news_vault`, `citizen_digital`, `weego`,
+  `db_visitors`, `saa`, `kra_reports`, `viusasa` (bounded), USSD DBs
+  (bounded).
+- Per-db language distribution over sampled text columns
+  (Swahili/Sheng/French per prototype IN WHICH LANGUAGE card).
+- Narrative-field typology.
+
+**Seat:** census-scheduler · CPU-only lane (no GPU dependency ⇒ unblocked
+by DQ-11/DQ-12 rotation lane).
+
+**Delivery:** language table lands in the next census boundary report ·
+tenant-scoped to RMS on registry surfaces.
+
+**Blocked-on:** DQ-17 P0 weego password rotation (blocks weego DB access
+until owner rotation lands; the other 7 DBs proceed unblocked at that
+scheduler slot).
+
+### Task 2 · Razuna + Newsvault RMS-tenant binding-verify + OBS audio sweep inclusion
+
+**Owner verbatim (2026-02-23 · mid-turn):**
+> Razuna + Newsvault (159.138.173.58): already connected at metadata depth
+> (CENSUS-2: razuna 4.80 GB + news_vault 977 MB profiled via Jump tunnel)
+> and their OBS counterparts (news-vault bucket 19,815 audio objects;
+> razuna.royalmedia) are in the 15 content-readable audio buckets. Confirm
+> in the next census pass that both are registered as RMS-tenant sources
+> per the §3 map (they are on the map — verify the binding receipt exists)
+> and that the OBS audio sweep job includes news-vault + razuna.royalmedia
+> when it runs.
+
+**Priority:** next census-pass gate.
+
+**Two receipts to bank:**
+1. **RMS-tenant binding receipt** for both razuna + news_vault DBs against
+   the CP-TENANT-SEPARATION §3 source-to-tenant map (already declared in
+   sealed `services/census_autonomy/tenant_admission_correction.py`
+   `CENSUS_ADMISSION_SOURCE_MAP` constant at P4-c-v). Verify the binding
+   receipt EXISTS on-disk under `phase0/census_autonomy_state/` — if
+   absent, produce it in the next census pass as a first-class additive
+   artefact.
+2. **OBS audio sweep job manifest** must include `news-vault` bucket
+   (19,815 audio objects) + `razuna.royalmedia` bucket when the job runs
+   (both in the sealed 15-content-readable-audio-bucket set per CENSUS-2
+   metadata sweep).
+
+**Seat:** census-scheduler · OBS-reader lane (blocked on DQ-05 Huawei OBS
+IAM GetObject grant · owner-exclusive).
+
+**Standing:** current slice (P4-d-i CP-DECK-ENGINE-DR-R4-OPENING seal) is
+NOT interrupted; both census tasks ride the scheduler/job queue. They will
+land as their own §3.3 5-Commit-Seals when the scheduler slot opens.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-02-23T03:12:00Z · OWNER-QUEUED CENSUS SCHEDULER TASK 3 · RMS station→language axis (mid-P4-d-i-seal fold-in · no interrupt)
+
+**Owner verbatim (2026-02-23 · mid-seal · post-Commit-C fixup · this-turn):**
+> Audio — there are local language sample per station — each station represents
+> local language — all research with title — eg inoro is kikuyu, ramogi is luo,
+> etc. Update this.
+
+**Owner-provided meaning (verbatim in same message):**
+> Meaning: RMS is Royal Media Services (Kenya) — each station broadcasts in a
+> specific local language, so STATION IDENTITY is authoritative language
+> metadata for its audio.
+
+**Owner-directed execution (verbatim):**
+> Execute as a small census-model update:
+>
+> 1. RESEARCH the full RMS station→language map with cited sources (web
+>    search, titles/links banked in the receipt — the owner asked for
+>    "all research with title"). Known anchors the owner gave:
+>    Inooro = Kikuyu, Ramogi = Luo (Dholuo). Complete the set (expect:
+>    Citizen TV/Radio Citizen = Swahili/English, Hot 96 = English,
+>    Chamgei = Kalenjin, Musyi = Kamba, Muuga = Kimeru, Mulembe = Luhya,
+>    Egesa = Ekegusii/Kisii, Bahari = coastal Swahili, Wimwaro = Kiembu,
+>    Sulwe/Vuuka = Luhya variants — VERIFY each with a source, do not
+>    trust my list).
+> 2. CROSS-REFERENCE the map against estate identifiers: the NAS 16
+>    off-air channels, OBS buckets (inoorotv, citizentv, citizen-vod,
+>    hot96backup, chamgei-backup, news-vault, rmsbroadcast,
+>    razuna.royalmedia, instore-radio-items, edailynew, skizaaudio, the
+>    na7p4* series when unblocked), and any station fields in the MySQL
+>    dbs. Bank a station→language→sources(assets) mapping table.
+> 3. FOLD INTO the census language axis: per-asset expected_language
+>    from station attribution becomes a first-class field alongside
+>    model-detected language. HONESTY RULE: whisper-class models do NOT
+>    reliably distinguish Kikuyu/Luo/Kalenjin/Kamba etc. — where the
+>    model can't corroborate, the attribution is "station-prior (cited),
+>    model-corroboration: unavailable" — never present model output as
+>    confirming a language it can't detect. Where model says
+>    Swahili/English it corroborates those stations only.
+> 4. Update the registry/census read surfaces so the language card can
+>    show the local-language split per station attribution (tenant-scoped
+>    to RMS), and bank the research receipt + mapping as a state note
+>    with the owner's directive verbatim.
+>
+> This is additive census-model work — a small slice or a
+> scheduler-job update, sequenced at your next natural boundary
+> alongside CENSUS-3-C. Current slice continues uninterrupted.
+
+**Priority:** RAISED · next natural boundary alongside CENSUS-3-C
+(Task 1) · additive census-model work · small slice or scheduler-job
+update.
+
+**Sub-tasks (verbatim from owner):**
+1. RESEARCH: web-search the full RMS station↔language map with cited
+   titles/links banked in the receipt. Known anchors: Inooro = Kikuyu,
+   Ramogi = Luo (Dholuo). Complete the set; owner-suspected candidates
+   to VERIFY (not trust): Citizen TV/Radio Citizen = Swahili/English,
+   Hot 96 = English, Chamgei = Kalenjin, Musyi = Kamba, Muuga = Kimeru,
+   Mulembe = Luhya, Egesa = Ekegusii/Kisii, Bahari = coastal Swahili,
+   Wimwaro = Kiembu, Sulwe/Vuuka = Luhya variants.
+2. CROSS-REFERENCE against estate identifiers: NAS 16 off-air channels ·
+   OBS buckets (inoorotv, citizentv, citizen-vod, hot96backup,
+   chamgei-backup, news-vault, rmsbroadcast, razuna.royalmedia,
+   instore-radio-items, edailynew, skizaaudio, na7p4* when unblocked) ·
+   MySQL station-fields. Bank station→language→sources(assets) mapping
+   table.
+3. FOLD into census language axis: per-asset `expected_language` from
+   station attribution as first-class field alongside model-detected
+   language.
+4. HONESTY RULE (owner-verbatim): whisper-class models do NOT reliably
+   distinguish Kikuyu/Luo/Kalenjin/Kamba etc. Where model can't
+   corroborate: attribution is `station-prior (cited),
+   model-corroboration: unavailable`. Model output NEVER presented as
+   confirming a language it can't detect. Model corroborates Swahili +
+   English only.
+5. Update registry/census read surfaces to show local-language split
+   per station attribution (tenant-scoped to RMS).
+6. Bank research receipt + mapping table as state note with owner
+   directive verbatim.
+
+**Sequencing (owner-verbatim):** small slice or scheduler-job update at
+next natural boundary alongside CENSUS-3-C. Current P4-d-i slice continues
+uninterrupted; Task 3 rides scheduler/job queue as own §3.3 5-Commit-Seal
+when scheduler slot opens.
+
+**Seat:** census-scheduler · CPU-only lane (research phase web-search;
+mapping phase small model-agnostic table); OBS-reader lane for asset
+cross-reference (blocked-on-DQ-05 for OBS depth) — Task 3 research +
+mapping proceeds unblocked at metadata depth.
+
+**Standing:** current P4-d-i seal-close is NOT interrupted; Task 3
+rides scheduler queue alongside Task 1 (CENSUS-3-C) at next census-pass.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
