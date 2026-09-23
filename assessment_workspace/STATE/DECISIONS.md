@@ -27527,3 +27527,108 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 **Standing bounds unchanged:** zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6183 · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 owner rotation UNTOUCHED · DQ-19+DQ-20 named-but-unseated · §6.8 report-and-continue.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## PHASE 4 (c-iv) · CP-SKILLS-LAYER-A18-8 · SEAL RECORD · 2026-02-23T00:32:00Z
+
+**Slice 4 of CP-SKILLS-LAYER chunked series LANDED.** Provenance manifest + 11 RED-first drift-detector pins over the sealed 356-line donor code lifted verbatim from RMS-IQ-Core-2 + Akki-OS-V1 at earlier waves.
+
+**Owner ruling on donor-code LIFT (this-session verbatim):**
+
+> "§6.8 — continue to Slice 4. Seal acknowledged (floor 6183, lesson #10 banked, owner anchor discipline verified). One rule for the donor-code LIFT from RMS-IQ-Core-2 / Akki-OS-V1: lifted code enters through the same additive discipline as new code — cite the donor repo + path + commit in the module docstring (provenance per §A18.8), run the lifted surface through RED-first pins exactly as if authored fresh, and no donor code touches sealed carriers. Then Slice 5 series-close with the tester walkthrough (what a human can DO at buildskill, live-or-honest-gap). Report at seal boundaries."
+
+**Seal chain:**
+
+| Commit | SHA | Branch |
+|---|---|---|
+| Code Commit-A | `ee505425feea114acb057f87c0125f75baa6d085` | programme/track-a |
+| /app companion A | `047c1b49eb5f29ef6bb1fbc678b63cff557e75ff` | main |
+| State Commit-B | (this commit) | master |
+| State Commit-C fixup | (next) | master |
+| /app Commit-C companion | (subsequent) | main |
+
+**Ratchet:** 6183 → **6194** (+11 canonical measured). baseline_failures_sha256 `ec58438f667cd17686b7ffcf29a58225e1bef88c2b4371f1347e2baa4b70a1ac`.
+
+**Files landed (Commit-A):**
+- NEW `backend/services/skill_donor_provenance.py` (~180 lines · Final constants manifest · donor repos + pinned commits from STATE/PINS.md · donor paths + byte-verbatim sha256 + line counts frozen at slice-freeze · public callables `spine_root()` + `donor_manifest()` REFERENCE-NOT-COPY · REMAINING_SCOPE_HONEST_GAP declares Slice-5 remaining scope verbatim).
+- NEW `backend/tests/invariants/test_cp_skills_layer_a18_8_phase_4_c_iv.py` (11 RED-first pins · 4 provenance-manifest + 6 sealed-donor drift-detectors + 1 manifest-shape).
+- MODIFY `backend/tests/invariants/baseline_failures.json` (ratchet 6183→6194).
+
+**Companion Commit-A on /app main:**
+- NEW `backend/vendored/extraction_akki/backend/services/skill_donor_provenance.py` (byte-identical vendored twin).
+- MODIFY `backend/vendored/extraction_akki/MANIFEST.json` (file_count 1032→1033 · structural_sha256 `358f9b0e...`).
+- MODIFY `frontend/public/audit/ORCH_BOOT.md` + `assessment_workspace/notes/ORCH_BOOT.md` (ratchet regen · both sha256 `52d56a120eab3493d5e7e07cfe38540ac5c6582a7df40bdebc991dff8e6c1084`).
+- Gitlink advance `assessment_workspace/repos/Extraction-Akki` `dafb45c8` → `ee505425`.
+
+**Donor manifest anchors (three-way byte-identity verified across Extraction-Akki spine + RMS-IQ-Core-2 + Akki-OS-V1):**
+- `backend/contracts/callable_skill_provisioning_v0.py` · 101 lines · sha256 `d61a446c9ba130347320085b3de95f198c2e5bb7d1503c3af524a7b1535fa391`
+- `backend/services/transform_forms/callable_skill_gate.py` · 144 lines · sha256 `02d5674517a804eb93ba5c8b1ab1d64368294650294a3a32a6164396c99b3871`
+- `backend/services/transform_forms/callable_skill_persistence.py` · 111 lines · sha256 `0590339f1efe1bb5944aeba57037f9fa27dae71cb7eb116565f1792227a5c428`
+- **TOTAL 356 lines** · EXACTLY matches canon §A18.8 verbatim word-for-word.
+
+**Donor repos (from STATE/PINS.md · unchanged since baseline 2026-08-14):**
+- `RMS-IQ-Core-2` · main · `ea5aa019521eee22ad4f8ea29efdfa2af357be3b`
+- `Akki-OS-V1` · main · `8c361903cdd319bfdc0709de3f4392f5bfa3956b`
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- Three donor files stay byte-identical (drift-detector Invariant 6 sha256-verifies each on every sweep).
+- A18.1 / A18.2 / A18.3 / A18.5 slice modules UNCHANGED.
+- A18.7 buyer-facing provenance chain UNCHANGED.
+- `services/auth/engineer_key_grant.py` UNCHANGED.
+- All prior sealed chain UNCHANGED.
+
+**RED-first authentic:**
+- RED-pre: `ImportError: cannot import name 'skill_donor_provenance' from 'services'` at collection time (right-reason).
+- GREEN-post: 11/11 pass 0.73s.
+
+**Pre-Commit-A double-green byte-identical:**
+- `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (192.73s) + sweep_B (192.78s) both 6199 passed / 1 skipped / 0 failed / 520 warnings.
+- stripped-sha256 `dfb8d45637954398db152812311e6036873591c80dc126b44b3fe390e3f8ed80` IDENTICAL both sweeps.
+
+**Canon §A18.8 satisfaction posture:**
+- ~40% liftable-directly SATISFIED: 356 lines already in spine · manifest pins them · byte-verbatim sha256 asserts on every sweep.
+- Remaining ~60% honest-gap DECLARED verbatim: 'the remaining contracts, the corpus-slice custody seam (shared with Document 17's execution layer), a skill-files registry surface on the frontend, delivered inside the same W11 envelope as the trainer runner.'
+- Landing target = CP-SKILLS-LAYER-SERIES-CLOSE (Slice 5) UI-visible tester walkthrough at `/dap/buildskill` (live-or-honest-gap per owner pacing note).
+
+---
+
+## OWNER QUEUED CORRECTION · 2026-02-23T00:30Z (mid-Slice-4 · verbatim) · TO EXECUTE AT NEXT BOUNDARY
+
+**Verbatim (received during Slice 4 sweep):**
+
+> "QUEUED FOR NEXT BOUNDARY — owner correction on census tenant admission, do not break the current slice. Owner's words: 'the census results are supposed to be admitted in the tenants without mixing up — RMS results go into RMS tenant, DigiCow goes into DigiCow tenant.'
+>
+> The owner is right, and the current gating conflates two different controls:
+> 1. DAP-14 approving-authority seating gates CONTROLLED REQUESTS — a party asking to extract/receive data. That is what stays held until identity material arrives via custody (DQ-19/20).
+> 2. CENSUS admission is NOT a controlled request. Per the owner's CP-TENANT-SEPARATION order §3, data assignment is BY REGISTRATION: every source is bound to exactly one tenant, and census artefacts carry their tenant_id via akki.data auto-injection (census_0001/0002 → DIGICOW; Item-3 receipts → RMS; the §3 source map is the registry). The census is the estate owner's own metadata survey under the banked LawfulBasisAdmit — it does not need an approving authority to run or to land results in the owning tenant.
+>
+> CORRECTION TO EXECUTE at the next boundary (small slice, RED-first):
+> - Remove RMS and DIGICOW from the census-admission exclusion: CENSUS_ADMITTED_TENANT_IDS (or its equivalent gate) admits all four tenants for CENSUS jobs specifically.
+> - Bind sources per the owner's §3 map at registration: RMS ← Weego, USSD, Citizen Digital, Visitors (MySQL), NAS 16 channels, OBS google-transcripts, Razuna/Newsvault, GaussDB/Viusasa-when-creds; DIGICOW ← digicow_live, ndume, the Digicow AWS account (creds already held).
+> - Census runs and their artefacts/receipts land tenant-scoped: RMS census results visible only in the RMS tenant, DigiCow only in DigiCow — the existing zero-mixing invariants (AKKI-DATA-001 refusals, no default tenant) enforce the separation; add RED pins proving an RMS census run's rows are invisible to a DIGICOW principal and vice versa.
+> - Retro-assignment: the already-banked census artefacts (Digicow census chapters → DIGICOW; RMS estate receipts → RMS) get their tenant binding per §3 verbatim — additive re-registration, no rewriting of sealed receipts.
+> - What STAYS gated on DQ-19/20: only DAP controlled-request execution (approvals, extractions, standing approvals) for those tenants — annotate that boundary explicitly in the census admission module docstring.
+> Bank the owner's correction verbatim as a ruling; report the fix in the boundary report after the current skills slice seals. Current slice continues uninterrupted."
+
+**Binding effects (banked · to execute post-Slice-4-seal):**
+
+1. **CENSUS admission ≠ DAP-14 controlled-request seating.** These are two distinct controls. R-104 (RMS + DIGICOW named-but-unseated · excluded from CENSUS_ADMITTED_TENANT_IDS) as it stood conflated the two — it stays IN FORCE for **DAP-14 controlled requests** (approvals, extractions, standing approvals) but is CORRECTED at the census-admission gate: **all four tenants MUST be admitted for CENSUS jobs specifically** (RMS + DIGICOW + BDO + Trinity).
+2. **Source-to-tenant bindings per CP-TENANT-SEPARATION §3 verbatim** (owner's §3 source map):
+   - RMS ← Weego, USSD, Citizen Digital, Visitors (MySQL), NAS 16 channels, OBS google-transcripts, Razuna/Newsvault, GaussDB/Viusasa-when-creds.
+   - DIGICOW ← digicow_live, ndume, the Digicow AWS account (creds already held).
+   - Registration is authoritative; per-artefact `tenant_id` injection via `akki.data` auto-injection remains the mechanism.
+3. **Zero-mixing invariants** (AKKI-DATA-001 refusal on tenant-mismatched writes · no-default-tenant · sealed at CP-TENANT-SEPARATION 4j) STAY IN FORCE. RED pins landing next slice prove: `census_run(tenant_id=RMS)`'s rows are invisible to a DIGICOW principal read, and vice versa.
+4. **Retro-assignment** (additive · no rewrite of sealed receipts): already-banked Digicow census chapters (`census_0001`, `census_0002`) → DIGICOW; RMS estate receipts (Item-3 census, weego first-byte trials) → RMS. Additive re-registration record; sealed receipts unchanged.
+5. **Docstring boundary annotation** at census-admission module: explicit note that DAP-14 controlled-request gating (approvals, extractions, standing approvals for RMS + DIGICOW) STAYS held until DQ-19 + DQ-20 identity material lands via custody; census jobs run under the estate-owner's own banked LawfulBasisAdmit without approving authority.
+
+**Slice sizing:** small · RED-first · own §3.3 5-Commit-Seal (opens IMMEDIATELY after Slice-4 5-commit chain closes).
+
+**Slice-order impact:**
+- **CP-CENSUS-TENANT-ADMISSION-CORRECTION** (owner-queued) → OPENS NEXT (was: CP-SKILLS-LAYER-SERIES-CLOSE Slice 5).
+- **CP-SKILLS-LAYER-SERIES-CLOSE** (Slice 5 · buildskill tester walkthrough) → SLOTS AFTER the census correction seal.
+- Both slices remain within the CP-SKILLS-LAYER wave envelope by owner pacing note; the census correction is a small orthogonal fix that lands cleanly between Slice 4 and Slice 5.
+
+**Standing bounds unchanged:** zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6194 · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 remain in force ONLY at DAP-14 controlled-request seating (census admission corrected) · §6.8 report-and-continue.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

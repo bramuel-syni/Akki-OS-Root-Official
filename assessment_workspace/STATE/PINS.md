@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T000325Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T003226Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1288,3 +1288,34 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - **Banked Lesson #10 first-appearance this-slice** (NEW Pydantic contract requires same-slice CONTRACT_TO_SNAPSHOT map additive entry alongside parity snapshot).
 
 <!-- P4-C-III-PINS-2026-02-23 END -->
+
+<!-- P4-C-IV-PINS-2026-02-23 BEGIN -->
+
+## PHASE 4 (c-iv) · CP-SKILLS-LAYER-A18-8 · **SEALED 2026-02-23T00:32:00Z**
+
+- **CODE branch:** `programme/track-a` in `/app/assessment_workspace/repos/Extraction-Akki`
+- **CODE head (Commit-A):** `ee505425feea114acb057f87c0125f75baa6d085`
+- **/app companion Commit-A:** `047c1b49eb5f29ef6bb1fbc678b63cff557e75ff`
+- **STATE branch:** `master` in `/app/assessment_workspace`
+- **STATE head (Commit-B):** pending this-banking
+- **RATCHET at this seal:** **6194 pass / 3 fail (baseline · transient GREEN) / 1 skip · floor 6194 · monotonic-up from 6183** (+11 canonical measured)
+- **baseline_failures.json sha256 (post-seal):** `ec58438f667cd17686b7ffcf29a58225e1bef88c2b4371f1347e2baa4b70a1ac`
+- **notes/ORCH_BOOT.md sha256 (post-regen · byte-identical /app audit mirror):** `52d56a120eab3493d5e7e07cfe38540ac5c6582a7df40bdebc991dff8e6c1084`
+- **Double-sweep byte-identical stripped-sha256:** `dfb8d45637954398db152812311e6036873591c80dc126b44b3fe390e3f8ed80`
+- **Vendored MANIFEST.json:** file_count 1032→1033 · structural_sha256 `358f9b0e24ca8929bced5f8b4c10953db640fc852cc89130dc6ef54ac4d3bb8b`
+- **New backend files:**
+  1. `backend/services/skill_donor_provenance.py` (A18.8 Final manifest · donor sha256 + line counts frozen · 356-line canon anchor · REMAINING_SCOPE_HONEST_GAP declared verbatim)
+  2. `backend/tests/invariants/test_cp_skills_layer_a18_8_phase_4_c_iv.py` (11 RED-first pins)
+- **Sealed donor code UNCHANGED per SO §3.8 (drift-detector Invariant 6 sha256-asserts each sweep):**
+  - `backend/contracts/callable_skill_provisioning_v0.py` · 101 lines · sha256 `d61a446c9ba130347320085b3de95f198c2e5bb7d1503c3af524a7b1535fa391`
+  - `backend/services/transform_forms/callable_skill_gate.py` · 144 lines · sha256 `02d5674517a804eb93ba5c8b1ab1d64368294650294a3a32a6164396c99b3871`
+  - `backend/services/transform_forms/callable_skill_persistence.py` · 111 lines · sha256 `0590339f1efe1bb5944aeba57037f9fa27dae71cb7eb116565f1792227a5c428`
+  - TOTAL 356 lines · matches canon §A18.8 verbatim word-for-word.
+- **Donor repos (from STATE/PINS.md · byte-identical three-way verified):**
+  - RMS-IQ-Core-2 · main · `ea5aa019521eee22ad4f8ea29efdfa2af357be3b`
+  - Akki-OS-V1 · main · `8c361903cdd319bfdc0709de3f4392f5bfa3956b`
+- **Owner LIFT ruling verbatim (this-session):**
+  > "One rule for the donor-code LIFT from RMS-IQ-Core-2 / Akki-OS-V1: lifted code enters through the same additive discipline as new code — cite the donor repo + path + commit in the module docstring (provenance per §A18.8), run the lifted surface through RED-first pins exactly as if authored fresh, and no donor code touches sealed carriers."
+- **QUEUED owner correction (mid-Slice-4)** — CP-CENSUS-TENANT-ADMISSION-CORRECTION opens post-seal · full verbatim in DECISIONS.md.
+
+<!-- P4-C-IV-PINS-2026-02-23 END -->

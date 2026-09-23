@@ -5822,3 +5822,53 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+**§6 INTERLUDE MARKER · 2026-02-23T00:32:00Z · autopilot PHASE 4 (c-iv) · CP-SKILLS-LAYER-A18-8 · Commit-A SEAL close · DONOR-CODE PROVENANCE MANIFEST + 11 DRIFT-DETECTOR PINS PRODUCTIZED (Slice 4 of 5)**
+
+**P4-c-iv · CP-SKILLS-LAYER-A18-8 · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-turn):
+- code Commit-A `ee505425feea114acb057f87c0125f75baa6d085` on `programme/track-a` (2026-02-23T00:30Z · NEW backend/services/skill_donor_provenance.py [~180 lines · Final manifest · donor sha256 pinned] + NEW test file [11 pins] + baseline_failures.json bump 6183→6194 +11 canonical measured).
+- /app main companion Commit-A `047c1b49eb5f29ef6bb1fbc678b63cff557e75ff` (2026-02-23T00:32Z · vendored twin +1 file · MANIFEST 1032→1033 · structural_sha256 358f9b0e · audit + notes ORCH_BOOT regen 6194 · gitlink advance).
+- state Commit-B `55ab3335b28017613c1a50d849a0f8c7582bb0bc` · Commit-C fixup `<PENDING-P4-C-IV-CC>` · /app Commit-C companion `<PENDING-P4-C-IV-CC-APP>`.
+
+**Ratchet floor**: **6194** (was 6183 pre-P4-c-iv · +11 canonical measured). baseline_failures.json sha256 `ec58438f667cd17686b7ffcf29a58225e1bef88c2b4371f1347e2baa4b70a1ac`.
+
+**A18.8 donor-code provenance landed** (SO §3.8 additive-only · zero sealed-carrier edit):
+- Frozen manifest constants: donor repos + pinned commits from STATE/PINS.md + donor paths + sha256 + line counts.
+- 356-line canon anchor verified (contract 101 + gate 144 + persistence 111 = 356 exact match).
+- Byte-identity across Extraction-Akki spine + RMS-IQ-Core-2 + Akki-OS-V1 (three-way).
+- REMAINING_SCOPE_HONEST_GAP declares Slice-5 remaining scope verbatim: 'the remaining contracts, the corpus-slice custody seam (shared with Document 17's execution layer), a skill-files registry surface on the frontend, delivered inside the same W11 envelope as the trainer runner.'
+
+**Owner LIFT ruling HONORED verbatim** (this-session · quoted in module + test docstrings):
+- Donor repo + path + commit cited in module docstring per §A18.8.
+- RED-first pins run as if authored fresh (`ImportError` → 11/11 GREEN).
+- No donor code touches sealed carriers (drift-detector Invariant 6 sha256-asserts on every sweep).
+
+**Double-green**: `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (192.73s) + sweep_B (192.78s) both stripped-sha256 `dfb8d45637954398db152812311e6036873591c80dc126b44b3fe390e3f8ed80` IDENTICAL · 6199 passed / 1 skipped / 0 failed / 520 warnings each. Receipts banked at `phase0/drill_receipts_cp_skills_layer_a18_8/`.
+
+---
+
+**QUEUED FOR NEXT BOUNDARY · OWNER CORRECTION 2026-02-23T00:30Z · CP-CENSUS-TENANT-ADMISSION-CORRECTION**
+
+Owner banked mid-Slice-4 verbatim (full text in DECISIONS.md at 2026-02-23T00:32:00Z entry). Summary:
+
+- Census admission ≠ DAP-14 controlled-request seating. Two distinct controls.
+- CENSUS_ADMITTED_TENANT_IDS admits all four tenants (RMS + DIGICOW + BDO + Trinity) for census jobs specifically.
+- DAP-14 controlled-request gating STAYS held on DQ-19/20 (approvals, extractions, standing approvals).
+- Source-to-tenant bindings per CP-TENANT-SEPARATION §3 verbatim (owner's §3 map).
+- Retro-assignment additive (Digicow census_0001/_0002 → DIGICOW; RMS Item-3 receipts → RMS).
+- RED pins proving zero-mixing (RMS census rows invisible to DIGICOW principal; vice versa).
+- Docstring boundary annotation at census-admission module.
+
+**Slice sizing:** small · own §3.3 5-Commit-Seal · opens IMMEDIATELY post-P4-c-iv seal.
+
+**Autopilot next (§6.8 report-and-continue)**: state Commit-C fixup this-turn → /app main Commit-C companion → **CP-CENSUS-TENANT-ADMISSION-CORRECTION** (small slice · owner-queued mid-Slice-4) opens → **CP-SKILLS-LAYER-SERIES-CLOSE** (Slice 5 · UI-visible tester walkthrough at /dap/buildskill live-or-honest-gap) slots after the census correction seal.
+
+**Standing bounds unchanged**: zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 in force ONLY at DAP-14 controlled-request seating (census admission corrected) · ratchet monotonic-up floor 6194.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
