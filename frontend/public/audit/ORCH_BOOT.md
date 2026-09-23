@@ -1188,6 +1188,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT Commit-A 30f8ccd on programme/track-a · Item 5.9 of EXECUTION_ORDER.md + SO §6.9 clause 1 scaffolding-class retirement · AIP v1.0 §13 Commission View compose-boundary GREEN under owner §13.4 ZERO-new-backend-computation constraint · ratchet 6325 → 6313 via env_drift_reset kind (scaffolding retirement admits lower baseline · monotonic segment reset per owner ruling 2026-09-13 Option A mechanism)"
 
 
+
+generated_at_utc: 2026-02-23T11:15:00Z
+generator: "main-agent Autopilot (CP-AIP-10-TRAINING-RUNS pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6313 -> 6321 + baseline_failures.json sha256 to post-bump 0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd · heads_last_sealed UNCHANGED at last CP-AIP-9 state mini-bank 0684f597 + Code Commit-A 30f8ccd · this-CP heads advance at Commit-C fixup post-Commit-B · +8 canonical measured AIP v1.0 §11.6 P189a run-refused-without-passed-calibration + §11.6 P190a-d completion-certificate-4-field-shape + §11.6 P190e failed-strata-plain-reporting + §11.5 P185a per-example-provenance-required + §11.5 P187 rights-lapse-enumerable-model-ids + Ruling (b) verbatim pod-never-data-path + §1.2 no-redeclaration + §1.4 heavy-fine-tune-deferred-posture · training-run-boundary as §1.2 modality-extension composing sealed CP-AIP-8 S&R + sealed CP-AIP-7 planner + sealed CP-M6-7-3 CostQuoteWithCI + sealed CP-AIP-4 pretraining_contract_v1 posture pattern · Ruling (b) AKKI-RUNS-IT verbatim honored - E1 wires seam then steps back · heavy fine-tune DEFERRED to commissioned-job with measured cost receipt)"
+regeneration_reason: pre-commit-a-cp-aip-10-training-runs-ratchet-only-regen-6313-to-6321-plus-8-canonical-measured-aip-v1-0-section-11-6-and-11-5-plus-ruling-b-akki-runs-it-verbatim
+
+ratchet:
+  passed_floor: 6321
+  counts_at_baseline_passed: 6321
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 2fc7dd3f78a67c3c27f229e8e932e9b308e72a3a
+    sealed_at_utc: 2026-02-23T11:00:00Z
+    seal_kind: "CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT state Commit-C fixup 2fc7dd3f (last sealed · pre-CP-AIP-10 · state mini-bank 0684f597 follows and is banked at CP-AIP-10 Commit-C fixup per prior-seal pattern)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 30f8ccdead956977cd6608e5d30907c23c428190
+    sealed_at_utc: 2026-02-23T09:22:00Z
+    seal_kind: "CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT Commit-A 30f8ccd (last sealed · pre-CP-AIP-10)"
+
+
 ```
 
 ---
