@@ -1,5 +1,5 @@
 {
-  "file_count": 1061,
+  "file_count": 1062,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -4244,9 +4244,13 @@
     "services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py": {
       "sha256": "b043f65c98275af2a9447d9558e8bc33df5c03058a08316cf8a0b5533fcecd1f",
       "size_bytes": 13907
+    },
+    "services/entitlement_service_v1/pilot_licence_seeds_v1.py": {
+      "sha256": "7847b9bdafec27d1b79d9c9ed0ef3477e00a2ccc5090cd509583dcac8460a6d8",
+      "size_bytes": 6336
     }
   },
-  "generated_at_utc": "2026-09-23T12:20:00Z",
+  "generated_at_utc": "2026-09-23T13:06:00Z",
   "source": {
     "included_top_dirs": [
       "services",

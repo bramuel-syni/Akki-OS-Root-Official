@@ -1289,6 +1289,31 @@ heads_last_sealed:
     seal_kind: "CP-SO-6.9-LID-WAVE Code Commit-A d4eae498 on programme/track-a · Item 5.11.a of EXECUTION_ORDER.md · SO §6.9 LID RATIFICATION verbatim §1-§9 · +11 canonical measured (6321 -> 6332) · double-green stripped_sha256 b71bead1574966208bf999b2f59477324c7f0c8c20381ce98d6ecccc2240650a · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam; weight-file pulls DEFERRED to Track-4 Census Autonomy Service jobs · pod NEVER training host or data path"
 
 
+generated_at_utc: 2026-02-23T13:05:00Z
+generator: "main-agent Autopilot (CP-ENT-16-PILOT-LICENCE-SEEDS pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6332 -> 6340 + baseline_failures.json sha256 to post-bump 129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c · heads_last_sealed UNCHANGED at last CP-SO-6.9-LID-WAVE state Commit-B e6ec649b + Code Commit-A d4eae498 · this-CP heads advance at Commit-C fixup post-Commit-B · +8 canonical measured SO §6.9 amendment §6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · pilot_licence_seeds_v1 §1.2 modality-extension composing sealed CP-ENTITLEMENT-BUILD-WAVE chokepoint_resolver.py · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23)"
+regeneration_reason: pre-commit-a-cp-ent-16-pilot-licence-seeds-ratchet-only-regen-6332-to-6340-plus-8-canonical-measured-so-6-9-amendment-6-verbatim
+
+ratchet:
+  passed_floor: 6340
+  counts_at_baseline_passed: 6340
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: e6ec649b28962049d6c969713e001c81e630870d
+    sealed_at_utc: 2026-02-23T12:40:00Z
+    seal_kind: "CP-SO-6.9-LID-WAVE state Commit-B e6ec649b (last sealed · pre-CP-ENT-16-PILOT-LICENCE-SEEDS · state mini-bank 793c920c follows and is banked at CP-ENT-16-PILOT-LICENCE-SEEDS Commit-C fixup per prior-seal pattern)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: d4eae498984abd7da16b1d36692178f513ad10b5
+    sealed_at_utc: 2026-02-23T12:30:00Z
+    seal_kind: "CP-SO-6.9-LID-WAVE Code Commit-A d4eae498 (last sealed · pre-CP-ENT-16-PILOT-LICENCE-SEEDS)"
+
+
 ```
 
 ## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)
