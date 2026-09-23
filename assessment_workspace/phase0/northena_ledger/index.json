@@ -562662,5 +562662,965 @@
     "stage": "converge",
     "decision": "terminate_success",
     "at_iso": "2026-09-23T01:16:35.569745Z"
+  },
+  {
+    "row_id": "led-2e6813b570c8",
+    "run_id": "run-cf0d33542cb1",
+    "trace_id": "trace-1e71de0e9acb",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:39:14.356305Z"
+  },
+  {
+    "row_id": "led-41596c9d8bc2",
+    "run_id": "cc-run-c029733471be",
+    "trace_id": "disp-afce52d9e99e",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:39:37.896046Z"
+  },
+  {
+    "row_id": "led-746db69a3034",
+    "run_id": "cc-run-7accd65e6d03",
+    "trace_id": "test-cbf",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:39:38.237429Z"
+  },
+  {
+    "row_id": "led-9c2177d0d40a",
+    "run_id": "cc-run-9cf819441d01",
+    "trace_id": "disp-41ac6ba775a7",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:39:38.568907Z"
+  },
+  {
+    "row_id": "led-cb077316d033",
+    "run_id": "cc-run-c5dd50e518b4",
+    "trace_id": "disp-ea62eb701ed2",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:39:38.901246Z"
+  },
+  {
+    "row_id": "led-ecacddff6a31",
+    "run_id": "cc-run-91d9ede950a1",
+    "trace_id": "disp-fc56e2898b02",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:39:39.878082Z"
+  },
+  {
+    "row_id": "led-714204000d1a",
+    "run_id": "run-99426e3ea402",
+    "trace_id": "trace-d47398741c59",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:39:48.157097Z"
+  },
+  {
+    "row_id": "led-96ab88b13f35",
+    "run_id": "run-99426e3ea402",
+    "trace_id": "trace-d47398741c59",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:39:48.482118Z"
+  },
+  {
+    "row_id": "led-7cb71c0ebe60",
+    "run_id": "run-abs-1",
+    "trace_id": "trace-abs-1",
+    "stage": "gate",
+    "decision": "fresh",
+    "at_iso": "2026-09-23T01:40:03.288919Z"
+  },
+  {
+    "row_id": "led-4d91b6a30d2e",
+    "run_id": "run-abs-2",
+    "trace_id": "trace-abs-2",
+    "stage": "gate",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:03.758117Z"
+  },
+  {
+    "row_id": "led-4120ecf6ca30",
+    "run_id": "run-5ef33b8dc227",
+    "trace_id": "trace-18f26be8aba1",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:56.314636Z"
+  },
+  {
+    "row_id": "led-941be67a15ee",
+    "run_id": "run-0ea29718d979",
+    "trace_id": "trace-55695608fb4d",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:56.797954Z"
+  },
+  {
+    "row_id": "led-fd95e6c65cb9",
+    "run_id": "run-cb0288d06a62",
+    "trace_id": "trace-9d7b43c84cdc",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:57.137066Z"
+  },
+  {
+    "row_id": "led-2d2f787c4875",
+    "run_id": "run-5aa77f1b1320",
+    "trace_id": "trace-ba5c7b9ff480",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:57.474265Z"
+  },
+  {
+    "row_id": "led-99fd19692485",
+    "run_id": "run-a7cc74b27f70",
+    "trace_id": "trace-f4ce36e41d32",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:57.811335Z"
+  },
+  {
+    "row_id": "led-88df06845cce",
+    "run_id": "run-b0d43b8f453e",
+    "trace_id": "trace-8d88051ba453",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:58.147114Z"
+  },
+  {
+    "row_id": "led-f41e9afa3177",
+    "run_id": "run-6a70e7cacf11",
+    "trace_id": "trace-5c1e901e180e",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:58.483967Z"
+  },
+  {
+    "row_id": "led-d4ae0a7f4606",
+    "run_id": "run-854a1761164e",
+    "trace_id": "trace-aa91c023407c",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:58.803673Z"
+  },
+  {
+    "row_id": "led-a11f784a82e5",
+    "run_id": "run-25ff9f1fe6de",
+    "trace_id": "trace-d2fcf8215a5c",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:59.123730Z"
+  },
+  {
+    "row_id": "led-54b5ad50bc0a",
+    "run_id": "run-55474074e8ef",
+    "trace_id": "trace-9f8a57c56691",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:59.443454Z"
+  },
+  {
+    "row_id": "led-2b5c42ccb9b0",
+    "run_id": "run-6ceeb5133932",
+    "trace_id": "trace-384a6b7e79e1",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:40:59.762539Z"
+  },
+  {
+    "row_id": "led-52308993de68",
+    "run_id": "run-1772cf463f5b",
+    "trace_id": "trace-b19a72ebe68b",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:00.082238Z"
+  },
+  {
+    "row_id": "led-76f9598e3005",
+    "run_id": "r3",
+    "trace_id": "t3",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:00.443056Z"
+  },
+  {
+    "row_id": "led-3e0c99152a61",
+    "run_id": "r4",
+    "trace_id": "t4",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:00.776703Z"
+  },
+  {
+    "row_id": "led-f3ed9c9756fc",
+    "run_id": "run-dd0349321498",
+    "trace_id": "trace-4212e7eac308",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:01.123401Z"
+  },
+  {
+    "row_id": "led-ef7908a69677",
+    "run_id": "r5-1",
+    "trace_id": "trace-65457b9c1a22",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:02.274860Z"
+  },
+  {
+    "row_id": "led-da6f06f8dda3",
+    "run_id": "run-895e6fedbe95",
+    "trace_id": "trace-cccb7f81abb3",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:22.816247Z"
+  },
+  {
+    "row_id": "led-e147b3a84f9c",
+    "run_id": "run-95e1a98f93b4",
+    "trace_id": "trace-c3133f370c63",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:23.154612Z"
+  },
+  {
+    "row_id": "led-51316d3eaa49",
+    "run_id": "run-848eae828adb",
+    "trace_id": "trace-417e4fe74648",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:23.485940Z"
+  },
+  {
+    "row_id": "led-1a855abcd13d",
+    "run_id": "run-848eae828adb",
+    "trace_id": "trace-417e4fe74648",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:23.809295Z"
+  },
+  {
+    "row_id": "led-b15fb2cf282b",
+    "run_id": "run-848eae828adb",
+    "trace_id": "trace-417e4fe74648",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:24.127246Z"
+  },
+  {
+    "row_id": "led-a3a79cc674b2",
+    "run_id": "run-d59a7c66a2ab",
+    "trace_id": "trace-e3452a676a8b",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:24.457135Z"
+  },
+  {
+    "row_id": "led-63ac12b7076a",
+    "run_id": "run-d59a7c66a2ab",
+    "trace_id": "trace-e3452a676a8b",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:24.778176Z"
+  },
+  {
+    "row_id": "led-d46e7a25f326",
+    "run_id": "run-d59a7c66a2ab",
+    "trace_id": "trace-e3452a676a8b",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:25.093770Z"
+  },
+  {
+    "row_id": "led-9614818e119d",
+    "run_id": "run-b82143d1aa86",
+    "trace_id": "trace-9b3181f1b812",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:25.422646Z"
+  },
+  {
+    "row_id": "led-78f6bdf14c4a",
+    "run_id": "run-b82143d1aa86",
+    "trace_id": "trace-9b3181f1b812",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:25.741407Z"
+  },
+  {
+    "row_id": "led-2a8df599b4b6",
+    "run_id": "run-b82143d1aa86",
+    "trace_id": "trace-9b3181f1b812",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:26.056231Z"
+  },
+  {
+    "row_id": "led-fd186b552b17",
+    "run_id": "run-6f2627b52e14",
+    "trace_id": "trace-af6e5e419ccc",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:26.385374Z"
+  },
+  {
+    "row_id": "led-8b64b66f8c83",
+    "run_id": "run-6f2627b52e14",
+    "trace_id": "trace-af6e5e419ccc",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:26.704818Z"
+  },
+  {
+    "row_id": "led-d5583058cece",
+    "run_id": "run-6f2627b52e14",
+    "trace_id": "trace-af6e5e419ccc",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:27.019370Z"
+  },
+  {
+    "row_id": "led-457c9089535f",
+    "run_id": "run-a2dba0110b47",
+    "trace_id": "trace-254915fc8485",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:27.335393Z"
+  },
+  {
+    "row_id": "led-f9ae94c0554a",
+    "run_id": "run-a2dba0110b47",
+    "trace_id": "trace-254915fc8485",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:27.652602Z"
+  },
+  {
+    "row_id": "led-fce0beaebcf4",
+    "run_id": "run-a2dba0110b47",
+    "trace_id": "trace-254915fc8485",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:27.965962Z"
+  },
+  {
+    "row_id": "led-81543aebc8b9",
+    "run_id": "run-5cd52592d1b3",
+    "trace_id": "trace-b2a5c60c479b",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:28.312741Z"
+  },
+  {
+    "row_id": "led-aa1192d9022f",
+    "run_id": "run-5cd52592d1b3",
+    "trace_id": "trace-b2a5c60c479b",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:28.629966Z"
+  },
+  {
+    "row_id": "led-c820e91c6fd7",
+    "run_id": "run-042ddf96ae3c",
+    "trace_id": "trace-cf92b532b621",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:28.980795Z"
+  },
+  {
+    "row_id": "led-057a98266f59",
+    "run_id": "run-042ddf96ae3c",
+    "trace_id": "trace-cf92b532b621",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:29.299399Z"
+  },
+  {
+    "row_id": "led-bbfdd747d01c",
+    "run_id": "run-f4715dd44e4b",
+    "trace_id": "trace-ad76aea0e1ee",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:29.625104Z"
+  },
+  {
+    "row_id": "led-6b15b5499b6f",
+    "run_id": "run-f4715dd44e4b",
+    "trace_id": "trace-ad76aea0e1ee",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:41:29.942302Z"
+  },
+  {
+    "row_id": "led-3a2808a83167",
+    "run_id": "g3-test-run-b36d461317c2",
+    "trace_id": "g3-test-trace-2e359d6d8fbb",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:45.103353Z"
+  },
+  {
+    "row_id": "led-1ff2598a4cf2",
+    "run_id": "run-bd6b924cbc99",
+    "trace_id": "trace-2422fbc6e39a",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:49.682872Z"
+  },
+  {
+    "row_id": "led-82024ee91c30",
+    "run_id": "run-bd6b924cbc99",
+    "trace_id": "trace-2422fbc6e39a",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:50.005583Z"
+  },
+  {
+    "row_id": "led-57324121f265",
+    "run_id": "run-bd6b924cbc99",
+    "trace_id": "trace-2422fbc6e39a",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:50.318940Z"
+  },
+  {
+    "row_id": "led-5cd5b2a74a01",
+    "run_id": "g5a-corr-solva-run-4c3f77d2",
+    "trace_id": "g5a-corr-solva-31c56a9d",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:50.891067Z"
+  },
+  {
+    "row_id": "led-5d4c222a9f12",
+    "run_id": "run-6b5eca579a6b",
+    "trace_id": "trace-b98324571f93",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:51.489474Z"
+  },
+  {
+    "row_id": "led-e3eb2b9cfa3a",
+    "run_id": "run-6b5eca579a6b",
+    "trace_id": "trace-b98324571f93",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:51.805305Z"
+  },
+  {
+    "row_id": "led-55ee738c8c11",
+    "run_id": "run-6b5eca579a6b",
+    "trace_id": "trace-b98324571f93",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:52.117230Z"
+  },
+  {
+    "row_id": "led-eb5c9823e345",
+    "run_id": "run-b6ad129200c2",
+    "trace_id": "trace-f1b400447ee1",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:41:53.039095Z"
+  },
+  {
+    "row_id": "led-79d69f31ddfe",
+    "run_id": "run-b6ad129200c2",
+    "trace_id": "trace-f1b400447ee1",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:41:53.362667Z"
+  },
+  {
+    "row_id": "led-2f2e0612ba71",
+    "run_id": "run-b6ad129200c2",
+    "trace_id": "trace-f1b400447ee1",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:41:53.675409Z"
+  },
+  {
+    "row_id": "led-ed1887022983",
+    "run_id": "run-8d72b0110ed9",
+    "trace_id": "trace-2abe85fce2f4",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:42:35.321416Z"
+  },
+  {
+    "row_id": "led-f3f6617a0813",
+    "run_id": "cc-run-06c12e3829e5",
+    "trace_id": "disp-71089e6bab56",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:42:59.324256Z"
+  },
+  {
+    "row_id": "led-b71c488f334b",
+    "run_id": "cc-run-b8e34aadd5dd",
+    "trace_id": "test-cbf",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:42:59.669884Z"
+  },
+  {
+    "row_id": "led-994cb73ac267",
+    "run_id": "cc-run-eb293d680da9",
+    "trace_id": "disp-ae4d5d6edba0",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:43:00.002305Z"
+  },
+  {
+    "row_id": "led-57475917e0ed",
+    "run_id": "cc-run-2e0fae988cec",
+    "trace_id": "disp-06b444c379f8",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:43:00.336556Z"
+  },
+  {
+    "row_id": "led-40dd0f8a16ff",
+    "run_id": "cc-run-1ca7452e025c",
+    "trace_id": "disp-6633aeff853a",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:43:01.316091Z"
+  },
+  {
+    "row_id": "led-f8f0f99d6c0c",
+    "run_id": "run-9d0a78014959",
+    "trace_id": "trace-9a2a794453a1",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:43:09.595058Z"
+  },
+  {
+    "row_id": "led-d39c49f30299",
+    "run_id": "run-9d0a78014959",
+    "trace_id": "trace-9a2a794453a1",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:43:09.920862Z"
+  },
+  {
+    "row_id": "led-d0b055980701",
+    "run_id": "run-abs-1",
+    "trace_id": "trace-abs-1",
+    "stage": "gate",
+    "decision": "fresh",
+    "at_iso": "2026-09-23T01:43:24.760784Z"
+  },
+  {
+    "row_id": "led-cf1339102f19",
+    "run_id": "run-abs-2",
+    "trace_id": "trace-abs-2",
+    "stage": "gate",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:43:25.115704Z"
+  },
+  {
+    "row_id": "led-a45083aaaa56",
+    "run_id": "run-ad352d2ae0a5",
+    "trace_id": "trace-512e0c7b5159",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:17.621687Z"
+  },
+  {
+    "row_id": "led-8b9d38ff942a",
+    "run_id": "run-7a09c7753632",
+    "trace_id": "trace-0e764865dd79",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:17.961163Z"
+  },
+  {
+    "row_id": "led-ecbe08a24eaa",
+    "run_id": "run-cd26ef32f01d",
+    "trace_id": "trace-7449e7b33344",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:18.302467Z"
+  },
+  {
+    "row_id": "led-8c9c0b68462c",
+    "run_id": "run-47d6c9969b42",
+    "trace_id": "trace-9d7680ed0c6d",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:18.640896Z"
+  },
+  {
+    "row_id": "led-00c0dc162968",
+    "run_id": "run-b215b8899560",
+    "trace_id": "trace-2a7a46e602be",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:18.980120Z"
+  },
+  {
+    "row_id": "led-a61f55b26303",
+    "run_id": "run-dc037d4f97c8",
+    "trace_id": "trace-dbaa04d2b1d8",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:19.316834Z"
+  },
+  {
+    "row_id": "led-1c9ecbbea600",
+    "run_id": "run-f56ddbb5eb47",
+    "trace_id": "trace-3d6b9bd7f973",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:19.654614Z"
+  },
+  {
+    "row_id": "led-46dd7f15cb97",
+    "run_id": "run-237dfb808114",
+    "trace_id": "trace-27d6129572d5",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:19.977134Z"
+  },
+  {
+    "row_id": "led-4fc011225275",
+    "run_id": "run-4fa3af2ee221",
+    "trace_id": "trace-028a7fa83898",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:20.299852Z"
+  },
+  {
+    "row_id": "led-3860367c6205",
+    "run_id": "run-6896ce7d62e9",
+    "trace_id": "trace-45688f7e136d",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:20.622362Z"
+  },
+  {
+    "row_id": "led-5bcf60396faa",
+    "run_id": "run-20706845a6d2",
+    "trace_id": "trace-bb16662c7639",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:20.943391Z"
+  },
+  {
+    "row_id": "led-90b935b1d5d4",
+    "run_id": "run-403685fa7d43",
+    "trace_id": "trace-7ce22c9e8606",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:21.264545Z"
+  },
+  {
+    "row_id": "led-59f6ef7a1995",
+    "run_id": "r3",
+    "trace_id": "t3",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:21.625429Z"
+  },
+  {
+    "row_id": "led-2363514d7038",
+    "run_id": "r4",
+    "trace_id": "t4",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:21.959214Z"
+  },
+  {
+    "row_id": "led-c58f8a450723",
+    "run_id": "run-6c424a00d844",
+    "trace_id": "trace-ad4d978f2e28",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:22.309180Z"
+  },
+  {
+    "row_id": "led-a12f2b33d589",
+    "run_id": "r5-1",
+    "trace_id": "trace-09ef51e62953",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:23.468209Z"
+  },
+  {
+    "row_id": "led-554c550cee30",
+    "run_id": "run-c6678a005d6d",
+    "trace_id": "trace-ee358446a81c",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:44.072569Z"
+  },
+  {
+    "row_id": "led-647f3bbfe6c8",
+    "run_id": "run-5585324b6472",
+    "trace_id": "trace-24e9ad4d5251",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:44.420680Z"
+  },
+  {
+    "row_id": "led-953c530d067a",
+    "run_id": "run-2345dd1e829a",
+    "trace_id": "trace-e295bd876eaa",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:44.759990Z"
+  },
+  {
+    "row_id": "led-8bbbffdf074f",
+    "run_id": "run-2345dd1e829a",
+    "trace_id": "trace-e295bd876eaa",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:44:45.085747Z"
+  },
+  {
+    "row_id": "led-264eeb7a4f96",
+    "run_id": "run-2345dd1e829a",
+    "trace_id": "trace-e295bd876eaa",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:44:45.406565Z"
+  },
+  {
+    "row_id": "led-8c2d1d85e2aa",
+    "run_id": "run-2adad9364d3a",
+    "trace_id": "trace-bd77170e87fe",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:45.739610Z"
+  },
+  {
+    "row_id": "led-e8b7911baff7",
+    "run_id": "run-2adad9364d3a",
+    "trace_id": "trace-bd77170e87fe",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:44:46.064340Z"
+  },
+  {
+    "row_id": "led-d5c16ef450bf",
+    "run_id": "run-2adad9364d3a",
+    "trace_id": "trace-bd77170e87fe",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:44:46.383878Z"
+  },
+  {
+    "row_id": "led-608478e52957",
+    "run_id": "run-9ca72ce7e07a",
+    "trace_id": "trace-791e6d7a3fd0",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:46.717472Z"
+  },
+  {
+    "row_id": "led-e547d8884bab",
+    "run_id": "run-9ca72ce7e07a",
+    "trace_id": "trace-791e6d7a3fd0",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:44:47.040229Z"
+  },
+  {
+    "row_id": "led-bda46aef4215",
+    "run_id": "run-9ca72ce7e07a",
+    "trace_id": "trace-791e6d7a3fd0",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:44:47.359998Z"
+  },
+  {
+    "row_id": "led-a53c927b0824",
+    "run_id": "run-081c352ed569",
+    "trace_id": "trace-de14008ffbee",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:47.693062Z"
+  },
+  {
+    "row_id": "led-ce436ce587b0",
+    "run_id": "run-081c352ed569",
+    "trace_id": "trace-de14008ffbee",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:44:48.015680Z"
+  },
+  {
+    "row_id": "led-e1a30b95a74b",
+    "run_id": "run-081c352ed569",
+    "trace_id": "trace-de14008ffbee",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:44:48.333547Z"
+  },
+  {
+    "row_id": "led-a3cec5c80372",
+    "run_id": "run-54d9c481aace",
+    "trace_id": "trace-c81c9ff3b82c",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:48.651662Z"
+  },
+  {
+    "row_id": "led-f20ea4cdb1f6",
+    "run_id": "run-54d9c481aace",
+    "trace_id": "trace-c81c9ff3b82c",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:44:48.971206Z"
+  },
+  {
+    "row_id": "led-23f58dcf92d5",
+    "run_id": "run-54d9c481aace",
+    "trace_id": "trace-c81c9ff3b82c",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:44:49.291020Z"
+  },
+  {
+    "row_id": "led-655899e29bd0",
+    "run_id": "run-75031c3db10c",
+    "trace_id": "trace-a6f7b9e7a348",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:49.639718Z"
+  },
+  {
+    "row_id": "led-9437ad382176",
+    "run_id": "run-75031c3db10c",
+    "trace_id": "trace-a6f7b9e7a348",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:49.962402Z"
+  },
+  {
+    "row_id": "led-79179f17d384",
+    "run_id": "run-516c76541549",
+    "trace_id": "trace-218b1b9a08b1",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:50.314732Z"
+  },
+  {
+    "row_id": "led-2556754dfb5f",
+    "run_id": "run-516c76541549",
+    "trace_id": "trace-218b1b9a08b1",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:50.635706Z"
+  },
+  {
+    "row_id": "led-805e25b78555",
+    "run_id": "run-86c73728b44b",
+    "trace_id": "trace-c6b329199dd2",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:44:50.967653Z"
+  },
+  {
+    "row_id": "led-6201f80ddfbe",
+    "run_id": "run-86c73728b44b",
+    "trace_id": "trace-c6b329199dd2",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-23T01:44:51.288951Z"
+  },
+  {
+    "row_id": "led-896c9ac2a5c4",
+    "run_id": "g3-test-run-b32a6406325d",
+    "trace_id": "g3-test-trace-ddba375b5d4a",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:45:06.309949Z"
+  },
+  {
+    "row_id": "led-fdab356d93c2",
+    "run_id": "run-fde80ebf5fe2",
+    "trace_id": "trace-15e6b4cacb0f",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:45:11.048149Z"
+  },
+  {
+    "row_id": "led-6f34cd8af502",
+    "run_id": "run-fde80ebf5fe2",
+    "trace_id": "trace-15e6b4cacb0f",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:45:11.375258Z"
+  },
+  {
+    "row_id": "led-ee3bbe8c59f0",
+    "run_id": "run-fde80ebf5fe2",
+    "trace_id": "trace-15e6b4cacb0f",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:45:11.690068Z"
+  },
+  {
+    "row_id": "led-7f348181ffad",
+    "run_id": "g5a-corr-solva-run-2d8d45bb",
+    "trace_id": "g5a-corr-solva-61b54b48",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:45:12.264845Z"
+  },
+  {
+    "row_id": "led-b5bcaea99ec1",
+    "run_id": "run-6810403a6cf8",
+    "trace_id": "trace-784f9451f24d",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:45:12.861042Z"
+  },
+  {
+    "row_id": "led-7bf26799de1b",
+    "run_id": "run-6810403a6cf8",
+    "trace_id": "trace-784f9451f24d",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:45:13.180356Z"
+  },
+  {
+    "row_id": "led-ebf1c903d211",
+    "run_id": "run-6810403a6cf8",
+    "trace_id": "trace-784f9451f24d",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:45:13.492935Z"
+  },
+  {
+    "row_id": "led-da7b9c909b63",
+    "run_id": "run-2dfab6810c95",
+    "trace_id": "trace-979a16dac395",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-23T01:45:14.253321Z"
+  },
+  {
+    "row_id": "led-ae979800558d",
+    "run_id": "run-2dfab6810c95",
+    "trace_id": "trace-979a16dac395",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-09-23T01:45:14.569771Z"
+  },
+  {
+    "row_id": "led-82b7699cc2db",
+    "run_id": "run-2dfab6810c95",
+    "trace_id": "trace-979a16dac395",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-23T01:45:14.884254Z"
   }
 ]

@@ -1,27 +1,27 @@
 # STATE/RESUME.md — anti-compaction re-anchor (rewritten at EVERY seal)
 
-**Last rewrite:** 2026-02-23T00:54:00Z (**PHASE 4 (c-v) · CP-CENSUS-TENANT-ADMISSION-CORRECTION · 5-Commit-Seal FULLY LANDED · ratchet 6194 → 6206 · owner queued correction executed · census admission ≠ DAP-14 controlled-request seating boundary annotated · retro-assignment records banked additively · Slice 5 CP-SKILLS-LAYER-SERIES-CLOSE opens NEXT**).
+**Last rewrite:** 2026-02-23T02:35:00Z (**PHASE 4 (c-vi) · CP-SKILLS-LAYER-SERIES-CLOSE · 5-Commit-Seal FULLY LANDED · ratchet 6206 → 6218 · UI-visible tester walkthrough LIVE at `/dap/buildskill` reading sealed A18.2 persistence via public `read_all()` ONLY · CP-SKILLS-LAYER chunked series NOW CLOSED at Slice 5 · CP-DECK-ENGINE opens NEXT**).
 
 ---
 
 ## 1 · POSITION
 
-- **Phase:** PHASE 3 CLOSED · **P4-a + P4-(b-i) + P4-(c-i) + P4-(c-ii) + P4-(c-iii) + P4-(c-iv) + P4-(c-v) SEALED** · owner queued correction executed additively.
+- **Phase:** PHASE 3 CLOSED · **P4-a + P4-(b-i) + P4-(c-i) + P4-(c-ii) + P4-(c-iii) + P4-(c-iv) + P4-(c-v) + P4-(c-vi) FULLY SEALED · CP-SKILLS-LAYER chunked series CLOSED at Slice 5**.
 - **Turn queue (condensed):**
-  - PHASE 3 CLOSED · **P4-a Commission wizard LIVE** · **P4-b-i Connect-half CLOSED as ALREADY-LIVE** · **P4-c-i A18.1 shape-freeze** · **P4-c-ii A18-2 write-once slice-binding** · **P4-c-iii A18.3 + A18.5 governance-and-scope pins** · **P4-c-iv A18.8 donor-code provenance** · **P4-c-v CP-CENSUS-TENANT-ADMISSION-CORRECTION FULLY SEALED THIS-TURN**.
-  - **P4-c-v seal chain (COMPLETE):** Code `570750563e62c22dae76a775b7264da2d2334c74` (programme/track-a · +12 measured) · /app companion `c0d5e20537ec32b717949cea652af258c2b59e41` (main) · State Commit-B `57670cf55e3ede22618f3aaeff95f57d9e452baf` (master) · Commit-C fixup `471b47ade7321bb686394d65af9468ad03ec73f4` (master) · companion-C `63be431bca4eb3ae65ad556649062e5590418c48` (main). Pre-Commit-A double-green stripped-sha256 `8d17fd23e6050e7e53f096bcded421aa432614d419ce88b7dd5f0d6c6887f92d` IDENTICAL sweep_A/B both 6211/1/0/520.
-  - **CP-SKILLS-LAYER-SERIES-CLOSE** (Slice 5 of 5) OPENS NEXT — UI-visible tester walkthrough at `/dap/buildskill` (live-or-honest-gap per owner pacing note).
-  - Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
+  - PHASE 3 CLOSED · **P4-a Commission wizard LIVE** · **P4-b-i Connect-half CLOSED as ALREADY-LIVE** · **P4-c-i A18.1 shape-freeze** · **P4-c-ii A18.2 write-once slice-binding** · **P4-c-iii A18.3 + A18.5 governance-and-scope pins** · **P4-c-iv A18.8 donor-code provenance** · **P4-c-v CP-CENSUS-TENANT-ADMISSION-CORRECTION FULLY SEALED** · **P4-c-vi CP-SKILLS-LAYER-SERIES-CLOSE FULLY SEALED THIS-TURN**.
+  - **P4-c-vi seal chain (COMPLETE):** Code `419244cdb99cbbe6af8f85df7e39fa8519114289` (programme/track-a · +12 measured) · /app companion `27c7276d8` (main) · State Commit-B `22738f20b40cfe112c85b837a0758782b1f29101` (master) · Commit-C fixup `37bf8f4cd5c6ac1b22da283815104cfb71f67f29` (master) · companion-C `05d77e6cb458e488773fb65a0d0b003c23ca8f39` (main). Pre-Commit-A double-green stripped-sha256 `2d124258c5e127e933b44e204b53b50f012e574a271906afe780705eae3063d6` IDENTICAL sweep_A (189.67s) + sweep_B (190.35s) both 6223/1/0/520.
+  - **CP-DECK-ENGINE** OPENS NEXT — Canon 3 §13 deck-engine service pins + drift-detectors.
+  - Then CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped.
   - Then −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
-- **Ratchet floor: `6206`** (was 6194 pre-P4-c-v · +12 canonical measured) · baseline_failures_sha256 `5bc2c43755c5e167b938b2c6f54280d43c344b33f03e57792b6de198ef27a55f`.
+- **Ratchet floor: `6218`** (was 6206 pre-P4-c-vi · +12 canonical measured) · baseline_failures_sha256 `fdf1a8e0f178c23f7f63a81c70b1290cb68efd4f08b7583b4cb477289150a7f4`.
 
 ## 2 · STANDING (R-102 + R-103 + R-104 [CORRECTED] + R-105 + R-106 + §6.8)
 
-- R-102/R-106: productized-or-honest-gap · PHASE 3 EXIT-EVIDENCED · PHASE 4 (a) Commission wizard LIVE · A18.3/A18.5 structural pins LANDED · A18.8 donor code with provenance manifest LANDED · **P4-c-v CENSUS-TENANT-ADMISSION-CORRECTION LANDED · owner §3 registration map declaratively pinned + retro-assignment records banked · DAP-14 orthogonality declared** · Slice 5 UI-visible walkthrough queued.
+- R-102/R-106: productized-or-honest-gap · PHASE 3 EXIT-EVIDENCED · PHASE 4 (a) Commission wizard LIVE · A18.3/A18.5 structural pins LANDED · A18.8 donor code with provenance manifest LANDED · **P4-c-v CENSUS-TENANT-ADMISSION-CORRECTION SEALED · owner §3 registration map declaratively pinned + retro-assignment records banked · DAP-14 orthogonality declared** · **P4-c-vi CP-SKILLS-LAYER-SERIES-CLOSE Slice 5 UI-visible walkthrough LIVE at `/dap/buildskill` reading sealed A18.2 persistence via public `read_all()` ONLY · ORIGIN-EMPTY renders honest-gap product-language block · CP-SKILLS-LAYER chunked series CLOSED**.
 - R-103: single continuous run · no check-ins · additive-reversible.
-- **R-104 CORRECTED (executed this-turn per owner queued directive 2026-02-23T00:30Z):** RMS + DIGICOW remain named-but-unseated ONLY for **DAP-14 controlled-request gating** (approvals, extractions, standing approvals — those stay held on DQ-19/20). CENSUS admission is a DIFFERENT control: all four canonical tenants ARE admitted for census jobs. Correction landed via additive `services/census_autonomy/tenant_admission_correction.py` carrier + 12 RED-first pins including drift-detector on sealed `CENSUS_ADMITTED_TENANT_IDS == CANONICAL_TENANT_IDS`.
+- **R-104 CORRECTED (executed P4-c-v per owner queued directive 2026-02-23T00:30Z):** RMS + DIGICOW remain named-but-unseated ONLY for **DAP-14 controlled-request gating** (approvals, extractions, standing approvals — those stay held on DQ-19/20). CENSUS admission is a DIFFERENT control: all four canonical tenants ARE admitted for census jobs. Correction landed via additive `services/census_autonomy/tenant_admission_correction.py` carrier + 12 RED-first pins.
 - R-105: partial-retirement design executed at 4k.
-- R-106: PHASE 3 CLOSED + PHASE 4 (a-c-v) SEALED-A.
+- R-106: PHASE 3 CLOSED + PHASE 4 (a-c-vi) SEALED-A.
 - §6.8: plan is authority · report-and-continue.
 
 ## 3 · SIX STANDING BANS (UNCHANGED)
@@ -45,27 +45,28 @@ python3 -c "import json; d=json.load(open('/app/assessment_workspace/repos/Extra
 tail -200 /app/assessment_workspace/STATE/DECISIONS.md && cat /app/assessment_workspace/STATE/NEXT.md
 ```
 
-Expected: probe-7 `{'failed': 3, 'passed': 6206, 'skipped': 1, ...}` · adds **12 P4-c-v CP-CENSUS-TENANT-ADMISSION-CORRECTION invariants** most-recent (module presence + declarative posture flag + drift-detector on sealed CENSUS_ADMITTED_TENANT_IDS + per-tenant admission probes + owner §3 source map + sealed SOURCE_ROSTER registration binding + RETRO_ASSIGNMENT records + product-language admission callable + DAP-14 seating held + orthogonality assertion + verbatim-anchor discipline + boundary annotation names DQ-19 + DQ-20 + sealed carriers cited).
+Expected: probe-7 `{'failed': 3, 'passed': 6218, 'skipped': 1, ...}` · adds **12 P4-c-vi CP-SKILLS-LAYER-SERIES-CLOSE invariants** most-recent (router module presence + shape / mount in spine+pod_shell+runtime / AST scan sealed-public-callable-only / endpoint returns real ORIGIN-EMPTY state / endpoint round-trip against appended record / frontend page files present at both twins byte-identical / hook files present at both twins byte-identical / App.js twin declares additive route byte-identical / page carries required data-testids / product-language discipline SO §4 banned-token scan / plain-product empty-state copy present / hook paired-equality with router route path Final).
 
 ## 6 · POINTERS
 
 - 10 additive modules under `services/census_autonomy/` — PHASE 3 chain sealed.
-- 3 census autonomy routers + `routers/wizard_operator.py` (sealed pre-P4-a).
+- 3 census autonomy routers + `routers/wizard_operator.py` (sealed pre-P4-a) + **`routers/dap_buildskill.py` (P4-c-vi THIS-TURN · JWT-gated GET `/api/dap/buildskill/provisioning-records` reads sealed A18.2 persistence via public `read_all()` ONLY · never fabricates · never caches)**.
 - **PHASE-4-a `WorkCommission.jsx` page** at `/os/work/commission` byte-identical twins.
 - **NEW `contracts/skill_provisioning_record_v0.py`** (A18.1 Slice 1).
 - **NEW `services/skill_provisioning_persistence.py`** (A18.2 Slice 2).
 - **NEW `contracts/skill_call_governance_envelope_v0.py`** (A18.3 Slice 3) + parity snapshot + parity-map entry.
 - **NEW `services/skill_call_scope_resolver.py`** (A18.5 Slice 3).
 - **NEW `services/skill_donor_provenance.py`** (A18.8 Slice 4 · Final manifest · donor sha256 pinned + 356-line canon anchor).
-- **NEW `services/census_autonomy/tenant_admission_correction.py`** (P4-c-v THIS-TURN · owner correction verbatim + machine-readable anchor + declarative posture pin + owner §3 source map + retro-assignment records + DAP-14 orthogonality boundary annotation + 3 product-language callables).
+- **NEW `services/census_autonomy/tenant_admission_correction.py`** (P4-c-v · owner correction verbatim + machine-readable anchor + declarative posture pin + owner §3 source map + retro-assignment records + DAP-14 orthogonality boundary annotation + 3 product-language callables).
+- **NEW `pages/dap/BuildSkill.jsx` (~250 lines) + `hooks/useBuildSkillProvisioning.js` (~100 lines) byte-identical twins across `/app/frontend/src/**` ↔ `pod_shell/frontend/src/**`** (P4-c-vi THIS-TURN · React functional component · honest-gap product-language block when count=0 · record list when count>0 · `dap-buildskill-*` data-testid on every interactive/critical element · plain-product-language SO §4 · banned engineering tokens absent).
 - Sealed donor code (byte-verbatim across Extraction-Akki + RMS-IQ-Core-2 + Akki-OS-V1) at:
   - `contracts/callable_skill_provisioning_v0.py` (101 · d61a446c)
   - `services/transform_forms/callable_skill_gate.py` (144 · 02d56745)
   - `services/transform_forms/callable_skill_persistence.py` (111 · 0590339f)
-- server.py mirror pair `/app/backend/server.py ↔ pod_shell/backend/server.py` sha256 `6840d542bfce588865633048edc16edc90c8d2be2b8f0a3341413d40c4a17728` UNCHANGED (P4-c-v additive-only · zero router surface).
-- Test files: **`test_cp_census_tenant_admission_correction_phase_4_c_v.py` (12 pins THIS-TURN)** + prior 5 A18 slices.
-- Drill receipts: **`drill_receipts_cp_census_tenant_admission_correction/`** (RED_pre + GREEN_post + sweepA + sweepB).
-- Ratchet-bump tool: **`tools/cp_census_tenant_admission_correction_bump_baseline.py`** (ensure_ascii=False to preserve historical unicode chars · Banked Lesson #11 first-appearance).
+- server.py mirror pair `/app/backend/server.py ↔ pod_shell/backend/server.py` sha256 `5bef7205ec76034ebd40e2f281d063b8907dbfd25ad898d862bcb24acf45b353` (P4-c-vi Commit-A · additive router mount block `from routers import dap_buildskill as dap_buildskill_router` + `app.include_router(dap_buildskill_router.router)` · byte-identical twins re-verified per BL #2).
+- Test files: **`test_cp_skills_layer_series_close_phase_4_c_vi.py` (12 pins THIS-TURN)** + prior 6 A18-and-correction slices.
+- Drill receipts: **`drill_receipts_cp_skills_layer_series_close/`** (RED_pre + GREEN_post + sweepA + sweepB).
+- Ratchet-bump tool: **`tools/cp_skills_layer_series_close_bump_baseline.py`** (ensure_ascii=False per BL #11).
 
 ## 7 · OWNER-EXCLUSIVE OPEN
 
@@ -78,10 +79,10 @@ Expected: probe-7 `{'failed': 3, 'passed': 6206, 'skipped': 1, ...}` · adds **1
 - **DQ-GPU-SSH-KEYS** — SELF-RESOLVED 2026-09-22T19:00Z.
 - **-2 collection-drift** — P1 forensic queued behind Order B audit.
 - **Connect-wizard disambiguation** — RESOLVED at P4-b-i.
-- **OWNER QUEUED CORRECTION (mid-Slice-4)** — CP-CENSUS-TENANT-ADMISSION-CORRECTION **EXECUTED THIS-TURN** as P4-c-v (Code-A + /app-companion-A + State-B landed; C-fixup + /app companion-C PENDING).
+- **OWNER QUEUED CORRECTION (mid-Slice-4)** — CP-CENSUS-TENANT-ADMISSION-CORRECTION FULLY SEALED at P4-c-v.
 - DQ-18 · CP-R91-RETIRE-SUPERSEDE · partially CLOSED at 4k.
 
-## 8 · ELEVEN BANKED LESSONS (adds BL #11 THIS-TURN)
+## 8 · ELEVEN BANKED LESSONS (unchanged this-turn)
 
 1. YAML plain-scalar hazard — embedded-colon patterns crash `yaml.safe_load`; use dashes.
 2. Server.py mirror-edit rule — mirror pair is `/app/backend/server.py ↔ pod_shell/backend/server.py`.
@@ -93,40 +94,51 @@ Expected: probe-7 `{'failed': 3, 'passed': 6206, 'skipped': 1, ...}` · adds **1
 8. Drift-detector tests against another sealed contract must inspect the actual JSON schema before writing field-name assertions.
 9. NEW file at `backend/contracts/` / `backend/services/` requires `tools/prod_vendor_sync.py` run same-Commit-A.
 10. NEW Pydantic contract requires same-slice CONTRACT_TO_SNAPSHOT map additive entry alongside parity snapshot.
-11. **BL #11 first-appearance THIS-TURN (P4-c-v):** `json.dumps(indent=2)` writes on `baseline_failures.json` MUST pass `ensure_ascii=False` — the historical on-disk file uses literal unicode (em-dash, arrow, middle-dot) throughout its notes/descriptions. Default `ensure_ascii=True` escape-converts every non-ASCII char into `\uXXXX` sequences, producing a ~1000-line noise diff that masks the actual +12 line ratchet_history append. Ratchet-bump tools MUST specify `ensure_ascii=False` in the json.dumps call.
+11. `json.dumps(indent=2)` writes on `baseline_failures.json` MUST pass `ensure_ascii=False` — historical on-disk unicode chars (em-dash, arrow, middle-dot) must NOT escape-convert. Ratchet-bump tools MUST specify `ensure_ascii=False`.
 
-## 9 · SEAL SUMMARY (LAST-TURN P4-c-iv + THIS-TURN P4-c-v)
+## 9 · SEAL SUMMARY (LAST-TURN P4-c-v + THIS-TURN P4-c-vi)
 
-**P4-c-iv CP-SKILLS-LAYER-A18-8** (donor-code provenance manifest + 11 drift-detector pins · ratchet 6183→6194):
+**P4-c-v CP-CENSUS-TENANT-ADMISSION-CORRECTION** (declarative pins + owner §3 map + retro-assignment records + DAP-14 orthogonality · ratchet 6194→6206):
 
 | Commit | SHA | Branch |
 |---|---|---|
-| Code Commit-A | `ee505425feea114acb057f87c0125f75baa6d085` | programme/track-a |
-| /app companion A | `047c1b49eb5f29ef6bb1fbc678b63cff557e75ff` | main |
-| State Commit-B | `55ab3335b28017613c1a50d849a0f8c7582bb0bc` | master |
-| State Commit-C fixup | `e9c11e51` | master |
-| /app Commit-C companion | `76cbfe1b4` | main |
+| Code Commit-A | `570750563e62c22dae76a775b7264da2d2334c74` | programme/track-a |
+| /app companion A | `c0d5e20537ec32b717949cea652af258c2b59e41` | main |
+| State Commit-B | `57670cf55e3ede22618f3aaeff95f57d9e452baf` | master |
+| State Commit-C fixup | `471b47ade7321bb686394d65af9468ad03ec73f4` | master |
+| /app Commit-C companion | `63be431bca4eb3ae65ad556649062e5590418c48` | main |
+| State mini-bank | `c848c91558dfba60ecf9b1f2bc650106b4ea0890` | master |
+| /app boundary report | `af40ef93a579e92cb1819e0ed9c1af639711093a` | main |
 
-**P4-c-v CP-CENSUS-TENANT-ADMISSION-CORRECTION** (declarative pins + owner §3 map + retro-assignment records + DAP-14 orthogonality · ratchet 6194→6206 · THIS-TURN):
+**P4-c-vi CP-SKILLS-LAYER-SERIES-CLOSE** (Slice 5 · UI-visible tester walkthrough at `/dap/buildskill` · live reading of sealed A18.2 via public `read_all()` ONLY + honest-gap block when count=0 · ratchet 6206→6218 · THIS-TURN COMPLETE):
 
 | Commit | SHA | Branch | Purpose |
 |---|---|---|---|
-| Code Commit-A | `570750563e62c22dae76a775b7264da2d2334c74` | programme/track-a | 12 RED-first pins + NEW `services/census_autonomy/tenant_admission_correction.py` (~300 lines · owner correction verbatim + 3 callables) + baseline_failures.json bump |
-| /app companion A | `c0d5e20537ec32b717949cea652af258c2b59e41` | main | vendored twin sync +1 file · MANIFEST 1033→1034 · structural_sha256 358f9b0e→db5ad2dc · audit + notes ORCH_BOOT regen all 14 stanzas · gitlink advance ee505425→57075056 |
-| State Commit-B | `57670cf55e3ede22618f3aaeff95f57d9e452baf` | master | banks Commit-A + companion + drill receipts + DECISIONS.md CP entry + NEXT.md marker + RESUME.md rewrite + ratchet-bump tool |
-| State Commit-C fixup | `471b47ade7321bb686394d65af9468ad03ec73f4` | master | R-6 boundary regen · fresh P4-c-v stanza advancing heads_last_sealed |
-| /app Commit-C companion | `63be431bca4eb3ae65ad556649062e5590418c48` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup |
+| Code Commit-A | `419244cdb99cbbe6af8f85df7e39fa8519114289` | programme/track-a | NEW `backend/routers/dap_buildskill.py` (~110 lines · JWT-gated GET `/api/dap/buildskill/provisioning-records` · reads sealed A18.2 via public `read_all()` ONLY · AST-checkable no-private-import discipline) + NEW `pod_shell/frontend/src/pages/dap/BuildSkill.jsx` (~250 lines) + NEW `pod_shell/frontend/src/hooks/useBuildSkillProvisioning.js` (~100 lines) + additive router mount in server.py mirror-pair (byte-identical `/app/backend/server.py ↔ pod_shell/backend/server.py`) + additive App.js route in twin pair + 12 RED-first pins + baseline_failures.json bump |
+| /app companion A | `27c7276d8` | main | frontend twins byte-identical + vendored twin sync +1 file · MANIFEST 1034→1035 · structural_sha256 db5ad2dc→7f9a3fbd · audit + notes ORCH_BOOT regen all 14 stanzas · gitlink advance 57075056→419244c |
+| State Commit-B | `22738f20b40cfe112c85b837a0758782b1f29101` | master | banks Commit-A + companion + drill receipts + DECISIONS.md CP entry + NEXT.md marker + RESUME.md rewrite + ratchet-bump tool |
+| State Commit-C fixup | `37bf8f4cd5c6ac1b22da283815104cfb71f67f29` | master | R-6 boundary regen · fresh P4-c-vi stanza advancing heads_last_sealed |
+| /app Commit-C companion | `05d77e6cb458e488773fb65a0d0b003c23ca8f39` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup |
 
-Pre-Commit-A double-green byte-identical stripped-sha256 `8d17fd23e6050e7e53f096bcded421aa432614d419ce88b7dd5f0d6c6887f92d` IDENTICAL sweep_A (193.30s) + sweep_B (193.51s) both 6211 passed / 1 skipped / 0 failed / 520 warnings.
+Pre-Commit-A double-green byte-identical stripped-sha256 `2d124258c5e127e933b44e204b53b50f012e574a271906afe780705eae3063d6` IDENTICAL sweep_A (189.67s) + sweep_B (190.35s) both 6223 passed / 1 skipped / 0 failed / 520 warnings. 6223 = 6218 floor + 5 above-floor.
 
 ## 10 · AUTOPILOT NEXT
 
-**All 5 seal commits LANDED THIS-TURN.**
+**All 5 seal commits LANDED THIS-TURN. CP-SKILLS-LAYER chunked series NOW CLOSED at Slice 5.**
 
-**Next slice · CP-SKILLS-LAYER-SERIES-CLOSE (Slice 5 · UI-visible per owner pacing note):**
-- `/dap/buildskill` UI reflecting real provisioning state or honest-gap.
-- Tester walkthrough report: what a human can DO at buildskill live-or-honest-gap.
+**Tester walkthrough at `/dap/buildskill` (live-or-honest-gap per R-102 user-visible bar · concrete steps a human takes and what they see · owner boundary directive verbatim satisfied):**
+1. Human navigates to preview URL `/dap/buildskill`.
+2. Sees breadcrumb `DAP · BUILD A SKILL` and page title `Build a Skill`.
+3. Page auto-fetches `/api/dap/buildskill/provisioning-records` via `useBuildSkillProvisioning` hook (uses `process.env.REACT_APP_BACKEND_URL` verbatim).
+4. Unauthenticated: 401 branch preserves view + shows honest-gap "Not yet authenticated" block per `useCensusRunState.js` banked pattern.
+5. Authenticated (`demo.master_admin@demo.rms.example.com` via `/api/auth/login`): endpoint returns `{records:[],count:0}` at ORIGIN-EMPTY.
+6. Page renders the **NO SKILLS PROVISIONED YET** honest-gap block — plain-product-language body copy per SO §4 (banned engineering tokens absent per test pin 12 negative-scan).
+7. Human clicks the `dap-buildskill-refresh-button` — hook refetches; view preserved on error, updated on success.
+8. When A18.2 sealed persistence has records (via any future authorized producer surface), the page renders the record list keyed by `skill_id` with the 8 fields drawn verbatim from sealed `SkillProvisioningRecordV0`: `skill_id`, `donor_repo`, `donor_path`, `donor_commit`, `scope`, `governance_class`, `provisioned_at`, `provisioning_actor_id`.
 
-Then CP-DECK-ENGINE → CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped → −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
+**Next slice · CP-DECK-ENGINE (Canon 3 §13):**
+- Deck-engine service pins + drift-detectors.
+
+Then CP-STREAMING-EXTRACTION → MOAC refusal ceremony → Watch trail → Model Registry honest-scoped → −2 collection-drift forensic → Order B → Order A → ops lanes → BUILD_JOURNAL + OWNER_RETURN_REPORT.
 
 Report at seal boundaries per §6.8. Zero check-ins. Standing bounds unchanged.

@@ -27783,3 +27783,125 @@ request seating (census admission corrected orthogonally per this slice) ·
 §6.8 report-and-continue.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-02-23T02:15:00Z · CP-SKILLS-LAYER-SERIES-CLOSE · Slice 5 of CP-SKILLS-LAYER chunked series (SERIES CLOSE)
+
+**Slice size:** small · own §3.3 5-Commit-Seal · owner pacing note honored (live-or-honest-gap per R-102 user-visible bar).
+
+**Owner boundary directive verbatim (2026-02-23 · slice open):**
+> §6.8 — continue. ... Proceed to CP-SKILLS-LAYER-SERIES-CLOSE (Slice 5):
+> the buildskill surface must show real provisioning state or honest-gap,
+> and the boundary report must include the tester walkthrough — the
+> concrete steps a human takes and what they see.
+
+**What landed (SO §3.8 additive-only, zero sealed-carrier edit):**
+
+- NEW `backend/routers/dap_buildskill.py` (~110 lines · 1 JWT-gated GET endpoint
+  at `/api/dap/buildskill/provisioning-records` · reads sealed A18.2 persistence
+  via public `read_all()` callable ONLY · AST-checkable no-private-import
+  discipline · never fabricates · never caches · reads sealed store on every
+  call · `_read_provisioning_records_body` helper extracted for invariant
+  round-trip pins).
+- NEW `pod_shell/frontend/src/pages/dap/BuildSkill.jsx` (~250 lines · DAP surface
+  · React functional component · imports `useBuildSkillProvisioning` hook ·
+  renders honest-gap product-language block when count=0 · renders record list
+  when count>0 · `dap-buildskill-*` data-testid on every interactive/critical
+  element · plain-product-language per SO §4 · banned engineering tokens
+  (endpoint/manifest/ratchet/invariant/seam/hash/PID) absent from user-facing
+  surface · byte-identical `/app` twin synced at same-Commit-A).
+- NEW `pod_shell/frontend/src/hooks/useBuildSkillProvisioning.js` (~100 lines ·
+  poll-once + refetch hook · consumes route path Final constant from backend
+  router · uses `process.env.REACT_APP_BACKEND_URL` verbatim · never fabricates:
+  no synthetic default records array · preserves previous view on error branch
+  per `useCensusRunState.js` banked lesson · byte-identical `/app` twin).
+- MODIFY `pod_shell/frontend/src/App.js` + `/app/frontend/src/App.js` (both twins
+  byte-identical · additive `DapBuildSkill` import (alias avoids collision with
+  existing `pages/os/BuildSkill` import) + additive Route `path=/dap/buildskill`).
+- MODIFY `backend/server.py` (spine) + `pod_shell/backend/server.py` +
+  `/app/backend/server.py` (runtime) — additive router mount block. Runtime
+  mirror pair `/app/backend/server.py ↔ pod_shell/backend/server.py` sha256
+  `5bef7205ec76034ebd40e2f281d063b8907dbfd25ad898d862bcb24acf45b353` byte-
+  identical (BL #2 satisfied).
+- NEW `backend/tests/invariants/test_cp_skills_layer_series_close_phase_4_c_vi.py`
+  (~600 lines · 12 RED-first structural pins · SO §2.5 verbatim-docstring · owner
+  boundary directive quoted verbatim in file docstring).
+- MODIFY `backend/tests/invariants/baseline_failures.json` (ratchet 6206 → 6218
+  · +12 canonical measured · schema-complete `ratchet_history` entry per BL #6 ·
+  BL #11 `ensure_ascii=False` respected).
+- Vendored twin sync +1 file · MANIFEST 1034→1035 · structural_sha256
+  `db5ad2dcdeded02e5e141ea24c7a0231f39a946d7ccb949bb4308dc9248e4f6c` →
+  `7f9a3fbd07565df55a4e4c9e2eab6a526aea0d683f9e058733abe2813b2d5aa5`.
+- ORCH_BOOT.md all 14 stacked ratchet stanzas swept (`passed_floor` 6206→6218,
+  `baseline_failures_sha256` `5bc2c437…` → `fdf1a8e0…`); notes + audit mirrors
+  byte-identical sha256 `c10c924bbc811fd69b84c9b2b2f96a7ebd5bc41d988a8543864d4e2a4b8cff5f`.
+
+**Pin coverage (12 pins · all RED-first · GREEN-post 12/12 in 0.61s):**
+1. Router module presence at `backend.routers.dap_buildskill`.
+2. Router shape declares `route_path_final` constant matching `/api/dap/buildskill/provisioning-records`.
+3. Router mount in spine `backend/server.py`.
+4. Router mount in pod_shell mirror `pod_shell/backend/server.py`.
+5. Router mount in runtime `/app/backend/server.py` (byte-identical to pod_shell twin).
+6. AST scan — router imports only sealed A18.2 public callable (`read_all`); zero private-helper imports (`_store_file` / `_active_dir` / `_default_dir` / `_configure_for_tests`).
+7. Endpoint returns real ORIGIN-EMPTY state `{records:[],count:0}` via direct `_read_provisioning_records_body()` invocation.
+8. Endpoint round-trip against appended record (append via A18.2 public `append_one` → helper returns that record verbatim via sealed `read_all()` chain).
+9. Frontend page files present at both twins byte-identical (`/app` ↔ `pod_shell`).
+10. Frontend hook files present at both twins byte-identical.
+11. App.js twin pair declares additive route byte-identical.
+12. Page carries required `dap-buildskill-*` data-testids + plain-product-language SO §4 banned-token scan + honest-gap empty-state copy present + hook paired-equality with router `route_path_final` Final constant.
+
+**Live curl verification (against preview URL · authorized):**
+- GET `/api/dap/buildskill/provisioning-records` without JWT → HTTP 401 `{"detail":"identity refused"}`.
+- POST `/api/auth/login` `demo.master_admin@demo.rms.example.com` → HTTP 200 TokenPair.
+- GET `/api/dap/buildskill/provisioning-records` with Bearer → HTTP 200 `{"records":[],"count":0}`.
+
+**Live screenshot verification (against preview URL `/dap/buildskill`):**
+- `data-testid='dap-buildskill-surface'` present.
+- Title `Build a Skill` rendered.
+- Breadcrumb `DAP · BUILD A SKILL` rendered.
+- Honest-gap block `NO SKILLS PROVISIONED YET` rendered.
+- Honest-gap body plain-product-language rendered.
+- Refresh button present + click-callable.
+- 401 error branch preserved-view discipline observed when unauthenticated.
+
+**RED-first authentic:**
+- RED-pre: 1 error at collection time (ImportError · cannot import name
+  `dap_buildskill` from `backend.routers` · receipt at
+  `phase0/drill_receipts_cp_skills_layer_series_close/RED_pre_20260223T005900Z.log`).
+- GREEN-post: 12/12 pass 0.61s (receipt at same-dir `GREEN_post_20260223T010100Z.log`).
+
+**Pre-Commit-A double-green byte-identical:**
+- `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (189.67s) + sweep_B (190.35s)
+  both 6223 passed / 1 skipped / 0 failed / 520 warnings.
+- stripped-sha256 `2d124258c5e127e933b44e204b53b50f012e574a271906afe780705eae3063d6`
+  IDENTICAL both sweeps.
+- 6223 = 6218 floor + 5 above-floor.
+
+**Owner R-102 verbatim satisfied:** `productized-or-honest-gap — the USER-visible bar.` — /dap/buildskill route now serves the sealed A18.2 provisioning state to any authenticated human tester; ORIGIN-EMPTY renders honest-gap block; when records exist they render the 8-field record list. Zero fabrication; zero synthetic default array; endpoint reads sealed persistence every call.
+
+**Sealed carriers UNCHANGED per SO §3.8:**
+- `services.skill_provisioning_persistence` (P4-c-ii Commit-A `f7f08207` ·
+  `read_all()` consumed READ-ONLY · zero imports of private helpers).
+- `contracts.skill_provisioning_record_v0` (P4-c-i Commit-A `2f7d6b58` ·
+  8-field frozen tuple · consumed via `model_dump()`).
+- `services.auth.dependencies.require_identity_or_deny` (earlier auth wave).
+- All prior PHASE 3 + PHASE 4 (a-c-v) seal chain UNCHANGED.
+
+**Autopilot next (§6.8 report-and-continue):**
+- State Commit-C fixup this-boundary (R-6 boundary regen advancing
+  `heads_last_sealed.state_repo.head` to this-Commit-B SHA +
+  `code_repo.head` to `419244cdb99cbbe6af8f85df7e39fa8519114289`).
+- /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync
+  post-fixup).
+- State mini-bank (RESUME.md post-seal rewrite pointing forward to CP-DECK-ENGINE).
+- /app main §6.8 boundary report with tester walkthrough embedded.
+- Then **CP-DECK-ENGINE** opens.
+
+**Standing bounds unchanged:** zero push · terminal `pytest` only ·
+**no `testing_agent`** · additive-only §3.8 · three-repo · ratchet monotonic-
+up floor 6218 · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19 + DQ-20 named-
+but-unseated at DAP-14 seating only (census admission corrected orthogonally
+at P4-c-v) · §6.8 report-and-continue.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -5901,3 +5901,44 @@ Owner banked mid-Slice-4 verbatim (full text in DECISIONS.md at 2026-02-23T00:32
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+**§6 INTERLUDE MARKER · 2026-02-23T02:15:00Z · autopilot PHASE 4 (c-vi) · CP-SKILLS-LAYER-SERIES-CLOSE · Commit-A SEAL close · UI-VISIBLE TESTER WALKTHROUGH LIVE AT `/dap/buildskill` (Slice 5 of CP-SKILLS-LAYER · SERIES CLOSE)**
+
+**P4-c-vi · CP-SKILLS-LAYER-SERIES-CLOSE · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C fixup + /app Commit-C companion pending this-turn):
+- code Commit-A `419244cdb99cbbe6af8f85df7e39fa8519114289` on `programme/track-a` (2026-02-23T01:46Z · NEW `backend/routers/dap_buildskill.py` [~110 lines · JWT-gated GET `/api/dap/buildskill/provisioning-records`] + NEW `pod_shell/frontend/src/pages/dap/BuildSkill.jsx` [~250 lines] + NEW `pod_shell/frontend/src/hooks/useBuildSkillProvisioning.js` [~100 lines] + additive App.js route in twin pair + additive server.py router mount in spine + pod_shell + runtime mirror pair + NEW test file [12 pins] + baseline_failures.json bump 6206→6218 +12 canonical measured).
+- /app main companion Commit-A `27c7276d8` (2026-02-23T02:00Z · frontend twins byte-identical + vendored twin +1 file · MANIFEST 1034→1035 · structural_sha256 `db5ad2dc` → `7f9a3fbd` · audit + notes ORCH_BOOT regen 6218 · gitlink advance `57075056` → `419244c`).
+- state Commit-B `<PENDING>` · Commit-C fixup `<PENDING>` · /app Commit-C companion `<PENDING>`.
+
+**Ratchet floor**: **6218** (was 6206 pre-P4-c-vi · +12 canonical measured). baseline_failures.json sha256 `fdf1a8e0f178c23f7f63a81c70b1290cb68efd4f08b7583b4cb477289150a7f4`.
+
+**UI-visible tester walkthrough LIVE** (owner boundary directive verbatim: "the buildskill surface must show real provisioning state or honest-gap, and the boundary report must include the tester walkthrough — the concrete steps a human takes and what they see"):
+
+1. Human navigates to preview URL `/dap/buildskill`.
+2. Sees breadcrumb `DAP · BUILD A SKILL` and page title `Build a Skill`.
+3. Page auto-fetches `/api/dap/buildskill/provisioning-records` via `useBuildSkillProvisioning` hook (uses `process.env.REACT_APP_BACKEND_URL` verbatim).
+4. Unauthenticated: 401 branch preserves view + shows honest-gap "Not yet authenticated" block per `useCensusRunState.js` banked pattern.
+5. Authenticated (`demo.master_admin@demo.rms.example.com` via `/api/auth/login`): endpoint returns `{records:[],count:0}` at ORIGIN-EMPTY.
+6. Page renders the **NO SKILLS PROVISIONED YET** honest-gap block — plain-product-language body copy per SO §4 (banned engineering tokens `endpoint`/`manifest`/`ratchet`/`invariant`/`seam`/`hash`/`PID` confirmed absent from user-facing surface via test pin 12 negative-scan).
+7. Human clicks the `dap-buildskill-refresh-button` — hook refetches; view preserved on error, updated on success.
+8. When A18.2 sealed persistence has records (via any future authorized producer surface), the page renders the record list keyed by `skill_id` with the 8 fields drawn verbatim from sealed `SkillProvisioningRecordV0`: `skill_id`, `donor_repo`, `donor_path`, `donor_commit`, `scope`, `governance_class`, `provisioned_at`, `provisioning_actor_id`.
+
+**Live curl verification (authorized this-slice against preview URL):**
+- GET without JWT → HTTP 401 `{"detail":"identity refused"}`.
+- POST `/api/auth/login` demo.master_admin@demo.rms.example.com → HTTP 200 TokenPair.
+- GET with Bearer → HTTP 200 `{"records":[],"count":0}`.
+
+**Live screenshot verification** confirmed the six required elements: `dap-buildskill-surface` testid, page title, breadcrumb, honest-gap header, honest-gap body copy, refresh button.
+
+**CP-SKILLS-LAYER chunked series NOW CLOSED**: A18.1 shape-freeze (P4-c-i) + A18.2 write-once (P4-c-ii) + A18.3 governance envelope + A18.5 scope resolver (P4-c-iii) + A18.8 donor provenance (P4-c-iv) + Slice 5 UI-visible walkthrough (P4-c-vi · THIS-TURN). Series close honoured owner pacing note verbatim.
+
+**Double-green**: `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (189.67s) + sweep_B (190.35s) both stripped-sha256 `2d124258c5e127e933b44e204b53b50f012e574a271906afe780705eae3063d6` IDENTICAL · 6223 passed / 1 skipped / 0 failed / 520 warnings each. Receipts banked at `phase0/drill_receipts_cp_skills_layer_series_close/`.
+
+**Autopilot next (§6.8 report-and-continue)**: state Commit-B this-turn (banks Commit-A + companion + drill receipts + DECISIONS.md CP entry + this NEXT.md marker + RESUME.md rewrite + ratchet-bump tool) → state Commit-C fixup this-turn (R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B SHA + `code_repo.head` to `419244c` + `app_repo.head` to `27c7276d8`) → /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync) → state mini-bank (RESUME.md post-seal rewrite pointing to CP-DECK-ENGINE) → /app main §6.8 boundary report with tester walkthrough embedded → **CP-DECK-ENGINE** opens.
+
+**Standing bounds unchanged**: zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 · DQ-19+DQ-20 named-but-unseated at DAP-14 seating only (census admission corrected orthogonally at P4-c-v) · ratchet monotonic-up floor 6218.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
