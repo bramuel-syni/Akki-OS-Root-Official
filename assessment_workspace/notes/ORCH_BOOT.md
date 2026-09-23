@@ -1214,6 +1214,31 @@ heads_last_sealed:
     seal_kind: "CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT Commit-A 30f8ccd (last sealed · pre-CP-AIP-10)"
 
 
+generated_at_utc: 2026-02-23T12:00:00Z
+generator: "main-agent Autopilot (CP-AIP-10-TRAINING-RUNS state Commit-C fixup R-6 boundary regen · advancing heads_last_sealed.state_repo.head 2fc7dd3f -> 5780899b (this-CP state Commit-B banks Code Commit-A 8ef25c1 + /app companion a47b3ab03 + Item 5.10 of EXECUTION_ORDER.md · CP-AIP-9 state mini-bank 0684f597 banked additively at CP-AIP-10 pre-Commit-A regen per prior-seal chicken-and-egg pattern) + code_repo.head 30f8ccd -> 8ef25c1 (this-CP Code Commit-A) · ratchet.passed_floor UNCHANGED at 6321 · baseline_failures.json sha256 UNCHANGED at post-bump 0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd · state mini-bank rows 1-3 of CP-AIP-10 5-commit-seal chain banked in DECISIONS.md · Item 5.10 of EXECUTION_ORDER.md continues · Ledger check - this fixup implements Item 5.10 R-6 boundary regen + state mini-bank rows 1-3 and nothing else · Additive-only · No sealed carrier edit)"
+regeneration_reason: post-commit-b-cp-aip-10-training-runs-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
+
+ratchet:
+  passed_floor: 6321
+  counts_at_baseline_passed: 6321
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 5780899b997ae1cd3ef81691fb9297146fbaa365
+    sealed_at_utc: 2026-02-23T11:55:00Z
+    seal_kind: "CP-AIP-10-TRAINING-RUNS state Commit-B 5780899b (banks Code Commit-A 8ef25c1 + /app companion a47b3ab03 + Item 5.10 of EXECUTION_ORDER.md · AIP v1.0 §11.6 + §11.5 + Ruling (b) AKKI-RUNS-IT verbatim · training-run-boundary as §1.2 modality-extension composing sealed CP-AIP-8 S&R + sealed CP-AIP-7 planner + sealed CP-M6-7-3 CostQuoteWithCI + sealed CP-AIP-4 pretraining_contract_v1 posture pattern · pod-never-data-path structural refusal + heavy fine-tune deferred to commissioned-job · GAPS_FIXED_LEDGER 8 invariant-seat entries · SO §6.9(5) AMENDED 2nd application code bundle emitted · CP-AIP-10 LAST BY CONSTRUCTION for AIP-plane · REPORT-AND-CONTINUE into Item 5.11 wave)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 8ef25c10ba28fbf09255396281a619a4be819612
+    sealed_at_utc: 2026-02-23T11:47:00Z
+    seal_kind: "CP-AIP-10-TRAINING-RUNS Code Commit-A 8ef25c1 on programme/track-a · Item 5.10 of EXECUTION_ORDER.md · AIP v1.0 §11.6 P189a + §11.6 P190a-e + §11.5 P185a + §11.5 P187 + Ruling (b) AKKI-RUNS-IT verbatim + §1.2 no-redeclaration + §1.4 heavy-fine-tune-deferred-posture · training_run_boundary_v1 § 1.2 modality-extension · +8 canonical measured (6313 -> 6321) · double-green stripped_sha256 92d09b7d7f27897fdc7827bbcde23f584cdcb46c3f8be56f4cb23e150ecc7378 · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam then steps back · pod NEVER training host or data path · heavy fine-tune DEFERRED to commissioned-job with measured cost receipt)"
+
+
 ```
 
 ---

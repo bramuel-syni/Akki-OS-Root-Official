@@ -28842,6 +28842,67 @@ Every refusal / hold / gate written from this desk from this drop forward carrie
 - Ledger check - this fixup implements Item 5.9 of `EXECUTION_ORDER.md` R-6 boundary regen + state mini-bank rows 1-3, and nothing else. Additive-only. No sealed carrier edit.
 
 
+
+## 2026-02-23 · CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT · state mini-bank rows 4-6 COMPLETION · full 5-commit-seal chain SHAs banked (additive supplement to prior 2026-02-23 mini-bank commit at 0684f597)
+
+- Row 4 (State Commit-C fixup): `2fc7dd3f78a67c3c27f229e8e932e9b308e72a3a` on master · R-6 boundary regen + state mini-bank rows 1-3.
+- Row 5 (/app companion Commit-C): `d8d954639...` on main · byte-identical audit twin mirror of state Commit-B + Commit-C fixup.
+- Row 6 (State mini-bank): `0684f5977c1b3d69bd42a6a5ff88a54ce27b7f9c` on master · RESUME.md post-seal rewrite + PINS.md state-bundle pin final.
+- CP-AIP-9 5-commit seal chain FULLY LANDED (6 commits including mini-bank). Item 5.9 of `EXECUTION_ORDER.md` CLOSED.
+- Additive-only supplement per R-6 discipline (ORCH_BOOT invariant expects heads to be banked in DECISIONS.md). Rows 4-6 are banked here at CP-AIP-10 pre-Commit-A regen boundary to close the R-6 loop that the mini-bank commit itself could not close (chicken-and-egg: the mini-bank could not bank its own SHA into DECISIONS.md).
+- Ledger check - this supplement banks the CP-AIP-9 mini-bank rows 4-6 into DECISIONS.md to satisfy R-6 heads_last_sealed banking requirement, and nothing else. Additive-only. No sealed carrier edit.
+
+
+## 2026-02-23 · CP-AIP-10-TRAINING-RUNS · state Commit-B (opens Item 5.10 · banks Code-A `8ef25c1` + /app-A `a47b3ab03` · AIP v1.0 §11.6 + §11.5 + Ruling (b) verbatim · **LAST BY CONSTRUCTION for AIP-plane**)
+
+**Seal boundary:** 2026-02-23T~11:55Z · **Item 5.10 of `STATE/EXECUTION_ORDER.md`** · §1.2 modality-extension · RUN-TO-COMPLETION mandate ACTIVE.
+
+- **What sealed at Code Commit-A `8ef25c1`:** AIP v1.0 §11.6 Training-Runs commissioned-job compose-boundary GREEN + §11.5 per-example-provenance-through-training enforced structurally + Ruling (b) AKKI-RUNS-IT verbatim Census-Autonomy-Service registration seam with pod-never-data-path structural refusal. One new additive module `backend/services/audio_plane_v1/training_run_boundary_v1.py` (~347 lines · frozen dataclasses + 7 refusal classes + 2 Final markers) composing sealed CP-AIP-8 S&R + CP-AIP-7 planner + CP-M6-7-3 CostQuoteWithCI + CP-AIP-4 pretraining_contract_v1 posture pattern. Zero sealed-carrier edit per SO §3.8.
+- **RED-first authorship (measured):** 8/8 invariant pins failed authentically with `ImportError` right-reason pre-authorship (module absent) · 8/8 passed 0.73s post-authorship.
+- **Double-green byte-identity (BASELINE_GUARD=1 PYTHONHASHSEED=0):** sweep_A + sweep_B both 6330 passed / 13 skipped / 0 failed / 520 warnings / ~200s each · **stripped_sha256 IDENTICAL `92d09b7d7f27897fdc7827bbcde23f584cdcb46c3f8be56f4cb23e150ecc7378`** (12458 stripped bytes).
+- **Ratchet:** `6313` → `6321` (+8 canonical measured) via SO §6.9 clause 0 sanctioned bump kind (`baseline_failures.json` sha256 post-bump `0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd`).
+- **Continuity bundle (SO §6.9(5) AMENDED · 2nd application):** code bundle `continuity_bundles/code_20260923T114743Z_CP_AIP_10.bundle` (18.3 MiB · sha256 `48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41` @ `programme/track-a` `8ef25c1`) · `git bundle verify` "is okay" · complete history · sha256 pinned in `STATE/PINS.md` CP-AIP-10 pin block. State bundle emission pending post-Commit-C-fixup boundary.
+- **8 RED-first invariant pins (all GREEN post-authorship at boundary):**
+  1. §11.6 P189a run-refused-without-passed-calibration.
+  2. §11.6 P190a-d completion-certificate-4-field-shape verbatim (`compute_consumed` + `data_touched` + `manifest_hash` + `per_stratum_results`).
+  3. §11.6 P190e failed-strata-plain-reporting (`PerStratumResult_v1.status` Literal `passed`/`failed` · identical surface shape).
+  4. §11.5 P185a per-example-provenance-required (`TrainingManifest_v1.append_row` refuses empty provenance_ref).
+  5. §11.5 P187 rights-lapse-enumerable-model-ids (`RightsLapseDetector_v1.enumerate_affected_model_ids -> frozenset[str]`).
+  6. Ruling (b) verbatim pod-never-data-path (`register_training_run_as_census_autonomy_job` refuses `pod://` and `/app/` prefixed refs).
+  7. §1.2 no-redeclaration of sealed symbols (AST scan).
+  8. §1.4 + §11.6 heavy-fine-tune-deferred-posture marker (`HEAVY_FINETUNE_DEFERRED_TO_COMMISSIONED_JOB_POSTURE` Final marker present).
+- **Owner Ruling (b) AKKI-RUNS-IT verbatim honored at this seal:** E1 wires the seam into the Census Autonomy Service then steps back; pod is NEVER training host or data path. Heavy fine-tune runs DEFERRED to commissioned-job contract per §1.4 measured cost/compute receipt discipline. Two Final posture markers pinned at boundary (`POD_IS_NEVER_DATA_PATH_POSTURE` + `HEAVY_FINETUNE_DEFERRED_TO_COMMISSIONED_JOB_POSTURE`).
+- **Objective card promoted** from `STATE/OBJECTIVES/queued/CP_AIP_10_TRAINING_RUNS.md` to `STATE/OBJECTIVES/CP_AIP_10_TRAINING_RUNS.md` (fully-conforming SO §6.2 · card_sha256 `f1cd77d7c2cfae3bd68b4aa21dc7cfc764f076c1c5c962049771f8e8d8fb5246` · 6 required sections: OBJECTIVE + MUST DO + MUST NOT + EXIT + STOP + ANCHORS).
+- **ASSIST cards restored to `queued/`** per owner drop 2026-02-23 (Track-5 pre-build checkpoint REMOVED · CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING PRE-APPROVED BY CONSTRUCTION under §6.8; both cards move back to `queued/` for sequential opening after Track-4 autonomy wiring per EXECUTION_ORDER §5.11.f / §5.11.g).
+- **Comprehensive receipt** at `phase0/cp_aip_10_training_runs_20260223/receipt.md` (this-turn).
+- **GAPS_FIXED_LEDGER** at CP-AIP-10 boundary appended with 8 invariant-seat entries (all closed additively · sealed carriers untouched).
+- **PINS.md** appended with CP-AIP-10 pin block including code bundle sha + 3-repo HEADs + Ruling (b) posture markers + REPORT-AND-CONTINUE receipt line + 5-commit chain in-flight table.
+- **EXECUTION_ORDER.md** Item 5.10 status advanced from 🟡 NEXT to 🟡 IN-FLIGHT (State-B in progress).
+- **`heads_last_sealed` post-Commit-A regen** at `notes/ORCH_BOOT.md`: `state_repo.head = 2fc7dd3f` (CP-AIP-9 state Commit-C fixup — last sealed pre-CP-AIP-10) · `code_repo.head = 30f8ccd` (CP-AIP-9 Code Commit-A — last sealed pre-CP-AIP-10). This-CP heads advance at CP-AIP-10 Commit-C fixup.
+- **5-commit seal chain (rows 1-2 landed · row 3 = this commit):**
+  - Row 1 (Code Commit-A): `8ef25c10ba28fbf09255396281a619a4be819612` on programme/track-a · +1 additive module + 8 RED-first pins + baseline_failures ratchet + drill receipts.
+  - Row 2 (/app companion A): `a47b3ab038f7771011b158a1621bafe7d4d01b9b` on main · notes ORCH_BOOT R-6 boundary regen + audit ORCH_BOOT byte-identical mirror + Extraction-Akki gitlink advance 30f8ccd → 8ef25c1 + code bundle emitted.
+  - Row 3 (State Commit-B): *(this commit)* on master.
+  - Rows 4-6 (State-C fixup + /app-C + mini-bank): pending sequential landing this-turn.
+- **Ledger check** — this state Commit-B implements Item 5.10 of `EXECUTION_ORDER.md` and nothing else. Additive-only. No sealed carrier edit. RED-first · terminal pytest only · BASELINE_GUARD double-green byte-identical stripped_sha256 · SO §6.9(5) AMENDED continuity bundles · Ruling (b) AKKI-RUNS-IT verbatim honored (E1 wires seam then steps back).
+
+
+## 2026-02-23 · CP-AIP-10-TRAINING-RUNS · state Commit-C fixup · R-6 boundary regen + state mini-bank rows 1-3
+
+**Seal boundary:** 2026-02-23T~12:00Z · **Item 5.10 of `STATE/EXECUTION_ORDER.md`** · additive-only · no sealed carrier edit.
+
+- **R-6 boundary regen** at `notes/ORCH_BOOT.md`: heads_last_sealed advanced to state_repo.head `5780899b997ae1cd3ef81691fb9297146fbaa365` (this-B) + code_repo.head `8ef25c10ba28fbf09255396281a619a4be819612` (this-Code-A). Ratchet UNCHANGED at 6321 · baseline_failures.json sha256 UNCHANGED at post-bump `0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd`.
+- **CP-AIP-9 state mini-bank `0684f597`** — additively banked at CP-AIP-10 pre-Commit-A regen boundary per prior-seal chicken-and-egg pattern (mini-bank cannot bank its own SHA into its own commit; banked at successor CP's pre-Commit-A regen instead).
+
+### CP-AIP-10 5-commit-seal chain — state mini-bank rows 1-3 (of 6 · full table lands at final mini-bank)
+
+- **Row 1 (Code Commit-A):** `8ef25c10ba28fbf09255396281a619a4be819612` on `programme/track-a` · 2026-02-23T~11:47Z · +1 additive module `training_run_boundary_v1.py` + 8 RED-first invariant pins + baseline_failures ratchet 6313 → 6321 + drill receipts + code bundle emitted `continuity_bundles/code_20260923T114743Z_CP_AIP_10.bundle` sha256 `48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41`.
+- **Row 2 (/app companion Commit-A):** `a47b3ab038f7771011b158a1621bafe7d4d01b9b` on `main` · 2026-02-23T~11:50Z · notes ORCH_BOOT pre-Commit-A ratchet-only regen 6313 → 6321 + audit ORCH_BOOT byte-identical mirror + Extraction-Akki gitlink advance 30f8ccd → 8ef25c1.
+- **Row 3 (State Commit-B):** `5780899b997ae1cd3ef81691fb9297146fbaa365` on `master` · 2026-02-23T~11:55Z · banks Code-A + /app-A + Item 5.10 + objective card promoted + ASSIST cards restored to queued/ + comprehensive receipt + GAPS_FIXED_LEDGER 8 invariant-seat entries + PINS CP-AIP-10 pin block + EXECUTION_ORDER Item 5.10 status advance + DECISIONS entries.
+- **Rows 4-6 (State-C fixup this-commit + /app-C companion + state mini-bank):** pending sequential landing this-turn.
+- **Ledger check** — this fixup implements Item 5.10 of `EXECUTION_ORDER.md` R-6 boundary regen + state mini-bank rows 1-3, and nothing else. Additive-only. No sealed carrier edit.
+
+
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

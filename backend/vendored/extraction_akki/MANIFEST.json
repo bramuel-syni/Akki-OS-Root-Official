@@ -1,5 +1,5 @@
 {
-  "file_count": 1059,
+  "file_count": 1060,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -840,6 +840,10 @@
     "services/audio_plane_v1/training_planner.py": {
       "sha256": "734cc12b37fce6cfe0245cd7e09177f467fa6e1393096497a55339c87c88446d",
       "size_bytes": 20019
+    },
+    "services/audio_plane_v1/training_run_boundary_v1.py": {
+      "sha256": "0d39009cff5b17f3070ce55faecb9601c8fb7bc1e5e514fa6be0efce291475a7",
+      "size_bytes": 13591
     },
     "services/audio_poc/__init__.py": {
       "sha256": "14e01c8e928085d47590c0b03f82f9042915b4b24e9d2d6cd3457bfb66199570",
@@ -4238,7 +4242,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-23T10:23:01Z",
+  "generated_at_utc": "2026-09-23T11:29:21Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4252,7 +4256,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "61cbac6fea3adf2cbded5689b4061ecf0ce6e6b9376ca7402f14933af5e8f021",
+  "structural_sha256": "4e64299c4c679a16cff3264577c33a82bc668e4de56444aae7d431802543bf8b",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }

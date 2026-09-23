@@ -288,7 +288,7 @@
 
 `STATE/GAPS_FIXED_LEDGER.md` is maintained at **every seal boundary** going forward. Each entry: kind (invariant trip / drift / YAML-hazard / JSON-hazard / honest-gap), one-sentence protected objective, additive fix mechanism, receipt anchor. `honest-gap-never-fake` — where a fix is not possible in the boundary window, an honest-gap entry names the residual gap explicitly rather than claiming closure.
 
-#### Item 5.10 · CP-AIP-10-TRAINING-RUNS — 🟡 **NEXT** (opens immediately post CP-AIP-9 seal per owner cadence directive · **§11.6 Training Runs · REPORT-AND-CONTINUE not idle-HALT per SO §6.9 cadence amendment** · training-runs-service registration as Census Autonomy Service job per Ruling (b) · training-run contract seat plus data-ingestion + pairing seam · heavy fine-tune runs DEFERRED to commissioned-job contract per §1.4 measured cost/compute receipt discipline).
+#### Item 5.10 · CP-AIP-10-TRAINING-RUNS — 🟡 **IN-FLIGHT** (Code Commit-A `8ef25c1` LANDED + /app companion `a47b3ab03` LANDED + State Commit-B in progress · **§11.6 Training Runs · REPORT-AND-CONTINUE not idle-HALT per SO §6.9 cadence amendment** · training-runs-service registration as Census Autonomy Service job per Ruling (b) · training-run contract seat plus data-ingestion + pairing seam · heavy fine-tune runs DEFERRED to commissioned-job contract per §1.4 measured cost/compute receipt discipline).
 
 - Execute in strict spec §15 order per DECISIONS.md CP list:
   - CP-AIP-1-INGEST-CAPTURE (§4.1-4.4)

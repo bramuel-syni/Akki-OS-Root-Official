@@ -141,3 +141,79 @@
 ---
 
 ## (future seal boundaries append below · never rewrite prior entries · honest-gap-never-fake)
+
+---
+
+## Seal boundary: CP-AIP-10-TRAINING-RUNS (2026-02-23T~11:45Z · LAST BY CONSTRUCTION for AIP-plane · REPORT-AND-CONTINUE into Item 5.11 wave)
+
+### 1. §11.6 P189a run-refused-without-passed-calibration (structural refusal · §1.5 unrepresentable-not-policed)
+
+- **Kind:** invariant seat (RED-first pin at boundary).
+- **What tripped:** AIP v1.0 §11.6 requires that a training run cannot open unless the CP-AIP-8 S&R boundary produced a `SamplingReflectionBoundaryResult_v1` with `calibration_status == "passed"`. Prior to this-seal there was no code path structurally binding that.
+- **Protected objective:** ensures no training compute is expended on populations whose sampling calibration never passed the §11.2 acceptance floor.
+- **Additive fix:** `open_training_run` at `training_run_boundary_v1.py` receives the sealed `SamplingReflectionBoundaryResult_v1` and raises `CalibrationNotPassedAtTrainingRunOpen_v1` when `calibration_status != "passed"`. Test: `test_training_run_refused_without_passed_calibration_11_6` GREEN.
+- **Receipt anchor:** `phase0/cp_aip_10_training_runs_20260223/receipt.md §4`.
+
+### 2. §11.6 P190a-d completion-certificate-4-field-shape (verbatim structural pin)
+
+- **Kind:** shape-invariant seat (RED-first pin).
+- **What tripped:** §11.6 enumerates the four Final fields verbatim (`compute_consumed`, `data_touched`, `manifest_hash`, `per_stratum_results`); no code artifact structurally bound that four-tuple.
+- **Protected objective:** ensures every completed training run emits a certificate whose surface shape is auditor-verifiable against the spec.
+- **Additive fix:** `CompletionCertificate_v1` frozen dataclass with exactly those four fields in exactly that order; test asserts field names + ordering + count. Test: `test_completion_certificate_carries_exactly_four_verbatim_fields_11_6` GREEN.
+- **Receipt anchor:** `training_run_boundary_v1.py CompletionCertificate_v1`.
+
+### 3. §11.6 P190e failed-strata-plain-reporting (surface-identity refusal · §1.5)
+
+- **Kind:** surface-shape identity invariant.
+- **What tripped:** §11.6 requires "failed strata reported as plainly as passed ones"; nothing in code enforced surface-shape identity between passed and failed rows.
+- **Protected objective:** ensures the completion certificate never obscures failed strata behind different rendering shape than passed strata.
+- **Additive fix:** `PerStratumResult_v1.status: Literal["passed","failed"]`; render function refuses to emit if any stratum absent; passed/failed rows share the same frozen surface. Test: `test_failed_strata_reported_as_plainly_as_passed_ones_11_6` GREEN.
+- **Receipt anchor:** `training_run_boundary_v1.py PerStratumResult_v1`.
+
+### 4. §11.5 P185a per-example-provenance-required-through-training (append-guard)
+
+- **Kind:** provenance-chain integrity invariant.
+- **What tripped:** §11.5 requires every training example's provenance to survive into the training manifest; no gate refused an empty `provenance_ref` at manifest-row append time.
+- **Protected objective:** ensures no training example enters the manifest without a traceable provenance-ref chain back to its acquisition receipt.
+- **Additive fix:** `TrainingManifestExampleRow_v1.provenance_ref: str` (frozen · non-empty enforced) + `TrainingManifest_v1.append_row` raises `TrainingExampleWithoutProvenanceRefRefused_v1` on empty ref. Test: `test_training_manifest_refuses_row_without_provenance_ref_11_5` GREEN.
+- **Receipt anchor:** `training_run_boundary_v1.py TrainingManifest_v1.append_row`.
+
+### 5. §11.5 P187 rights-lapse-enumerable-model-ids (frozenset-return contract)
+
+- **Kind:** enumerability contract invariant.
+- **What tripped:** §11.5 P187 requires that when rights lapse on any training example, the affected model set is enumerable; nothing in code bound the return type as an enumerable-not-policed frozenset.
+- **Protected objective:** ensures rights-lapse events yield a definite, non-mutable, iterable set of model ids for downstream retirement/take-down decisions.
+- **Additive fix:** `RightsLapseDetector_v1.enumerate_affected_model_ids(...) -> frozenset[str]`; test asserts return type == `frozenset` and elements are all `str`. Test: `test_rights_lapse_yields_enumerable_affected_model_ids_11_5` GREEN.
+- **Receipt anchor:** `training_run_boundary_v1.py RightsLapseDetector_v1`.
+
+### 6. Ruling (b) AKKI-RUNS-IT · pod-never-data-path structural refusal (owner verbatim 2026-02-23)
+
+- **Kind:** custody-boundary structural refusal + Census-Autonomy-Service registration seam.
+- **What tripped:** owner Ruling (b) verbatim: "E1's pod is never the training host and never a data path." Prior to this-seal, no code path structurally refused `pod://` / `/app/` prefixed refs at the training-run registration boundary.
+- **Protected objective:** ensures training compute + model weights + labelled corpus never traverse E1's pod at any registration point; every job runs inside the live Akki OS via the Census Autonomy Service.
+- **Additive fix:** `TrainingRunCensusAutonomyRegistration_v1` frozen 4-field dataclass (`data_source_adapter_ref`, `engine_response_queue_ref`, `training_manifest_ref`, `completion_certificate_return_ref`); `register_training_run_as_census_autonomy_job` raises `PodAsDataPathAtRegistrationError` / `PodAsTrainingHostAtRegistrationError` on any ref starting with `pod://` or `/app/`. `POD_IS_NEVER_DATA_PATH_POSTURE` Final marker present. Test: `test_training_run_census_autonomy_registration_pod_never_data_path_ruling_b` GREEN.
+- **Receipt anchor:** `training_run_boundary_v1.py register_training_run_as_census_autonomy_job` + `STATE/OWNER_DROPS/ruling_b_akki_runs_it_plus_standing_directives_20260223/DROP.md`.
+
+### 7. §1.2 no-redeclaration of sealed symbols (redeclaration-guard invariant)
+
+- **Kind:** sealed-carrier redeclaration guard.
+- **What tripped:** §1.2 modality-extension forbids redeclaration of sealed symbols; the added module needed a redeclaration-guard invariant to protect sealed CP-AIP-4/7/8/9 + CP-M6-7-3 carriers from accidental shadowing.
+- **Protected objective:** ensures new additive modules compose sealed symbols by import, never redeclare them.
+- **Additive fix:** `test_no_redeclaration_of_sealed_symbols_1_2` scans `training_run_boundary_v1.py` AST and asserts no class/function definitions match names of sealed carriers (`CostQuoteWithCI`, `PlannerBoundaryResult_v1`, `SamplingReflectionBoundaryResult_v1`, `PlanWithoutCalibrationAtSRBoundary`, `HONEST_GAP_V1_POSTURE`, etc.). Test: GREEN.
+- **Receipt anchor:** `test_cp_aip_10_training_runs_aip_v1_0_section_11_6_and_11_5.py::test_no_redeclaration_of_sealed_symbols_1_2`.
+
+### 8. §1.4 + §11.6 heavy-fine-tune-deferred-posture marker (measured-cost-receipt discipline)
+
+- **Kind:** measure-don't-assert posture marker.
+- **What tripped:** §1.4 requires measured-cost-receipt discipline; §11.6 heavy fine-tune runs cannot execute in E1's pod (Ruling (b)); nothing structurally banked the deferred-to-commissioned-job posture.
+- **Protected objective:** ensures a compaction-safe posture marker is present at the boundary so any successor session can measure the deferral policy without inference.
+- **Additive fix:** `HEAVY_FINETUNE_DEFERRED_TO_COMMISSIONED_JOB_POSTURE: Final[str]` = verbatim §11.6 + §1.4 text. Test: `test_heavy_fine_tune_deferred_to_commissioned_job_posture_marker_present_11_6_1_4` GREEN.
+- **Receipt anchor:** `training_run_boundary_v1.py HEAVY_FINETUNE_DEFERRED_TO_COMMISSIONED_JOB_POSTURE`.
+
+### Seal-boundary summary
+
+- **8 gaps closed** additively at CP-AIP-10 boundary — all 8 as RED-first invariant seats with authentic ImportError pre-authorship + GREEN post-authorship + double-green byte-identical stripped_sha256 across sweeps.
+- **0 honest-gaps opened** at this boundary (heavy-fine-tune deferral is a posture marker, not an honest-gap — the code path is refused structurally, not deferred with residual).
+- **Sealed carriers untouched** — additive-only per SO §3.8: CP-AIP-1..9 modules + CP-M6-7-3 CostQuoteWithCI + CP-AIP-4 pretraining_contract_v1 unchanged.
+- **Ratchet:** `6313` → `6321` (+8 canonical measured) · baseline_failures.json sha256 post-bump `0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd` · double-green stripped_sha256 `92d09b7d7f27897fdc7827bbcde23f584cdcb46c3f8be56f4cb23e150ecc7378`.
+- **Continuity:** code bundle sha256 `48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41` @ `programme/track-a` `8ef25c1` (state bundle pin pending post-Commit-C-fixup).

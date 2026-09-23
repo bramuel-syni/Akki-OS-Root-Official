@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T101638Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T114336Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1338,10 +1338,13 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - **Emitted at:** 2026-02-23T~10:41Z pre-Commit-B (Code-A already landed)
 
 **State bundle — master at seal-tail HEAD:**
-- **Path:** `continuity_bundles/state_<ts>_CP_AIP_9.bundle` (PENDING — emitted after State Commit-C fixup lands so the bundle carries the complete 5-commit-chain-bar-/app-C sealed state)
-- **sha256:** PENDING-POST-STATE-COMMIT-C-FIXUP
-- **Refs:** `refs/heads/master` → (State Commit-C fixup HEAD, to be filled in the State mini-bank commit)
-- **Pin lock-in:** State mini-bank commit finalizes both bundle pins.
+- **Path:** `continuity_bundles/state_20260923T105456Z_CP_AIP_9.bundle`
+- **Size:** 217,316,135 bytes (207.3 MiB)
+- **sha256:** `0535fcba168e5bab10ace37ce12a447158a33a1b6f0f0f4cd5a2b7674eff2366`
+- **Refs:** `refs/heads/master` → `2fc7dd3f78a67c3c27f229e8e932e9b308e72a3a` (= CP-AIP-9 State Commit-C fixup HEAD · the seal's state-tail before mini-bank)
+- **Verify:** `git bundle verify` → "is okay" · **records a complete history** · hash algorithm: sha1
+- **Emitted at:** 2026-02-23T~10:55Z post-Commit-C-fixup
+- **Pin lock-in:** State mini-bank commit finalizes both bundle pins (this file · same commit).
 
 **One-sentence protected objective:** the sealed record survives its environment (pod crash, session compaction, audit-inbox rotation) without depending on push credentials or repo visibility.
 
@@ -1366,9 +1369,79 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - **State (master):** `cf62339e31b0fb7243ae4cd78cb44c68f6c315dc` (OWNER-Q3 fold-in · pre-Commit-B tip · Commit-B lands next)
 - **/app (main):** `4d57db1a67a9752b5d63acbde07c8b691cc7e5f7` (/app Commit-A companion of Code-A)
 
-### Milestone-seal REPORT-AND-CONTINUE receipt line (this-seal)
+### Milestone-seal REPORT-AND-CONTINUE receipt line (this-seal · FINAL post-mini-bank)
 
-`CP-AIP-9 seal · code bundle sha256 054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672 (18.3 MiB · programme/track-a @ 30f8ccd) · state bundle sha256 PENDING-POST-COMMIT-C · SO §6.9(5) AMENDED bundle-based continuity FIRST APPLICATION · PRIVATE-MIRROR-REMOTE-MISSING RETIRED · AKKI-OS-ROOT-PUBLIC-EXPOSURE recorded (P0-security · owner-action-required · non-blocking).`
+`CP-AIP-9 seal COMPLETE · code bundle sha256 054fcd3c876d84912850ae710b7fd8e6f9e5208d3175ea071b5441ee5047a672 (18.3 MiB · programme/track-a @ 30f8ccd) · state bundle sha256 0535fcba168e5bab10ace37ce12a447158a33a1b6f0f0f4cd5a2b7674eff2366 (207.3 MiB · master @ 2fc7dd3f) · SO §6.9(5) AMENDED bundle-based continuity FIRST APPLICATION LANDED · PRIVATE-MIRROR-REMOTE-MISSING RETIRED · AKKI-OS-ROOT-PUBLIC-EXPOSURE recorded (P0-security · owner-action-required · non-blocking) · CP-AIP-ASSIST cards PRE-APPROVED BY CONSTRUCTION under §6.8 · Track-5 pre-build checkpoint REMOVED · RUN-TO-COMPLETION mandate ACTIVE.`
+
+### CP-AIP-9 5-commit seal chain (FULL SHA TABLE · POST-MINI-BANK)
+
+| # | Commit | SHA | Branch | Purpose |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `30f8ccdead956977cd6608e5d30907c23c428190` | `programme/track-a` | 1 new module + 8 RED-first pins + baseline_failures ratchet 6317→6325→6313 via env_drift_reset + 12 skip decorators + drill receipts |
+| 2 | /app companion A | `4d57db1a67a9752b5d63acbde07c8b691cc7e5f7` | `main` | notes/audit ORCH_BOOT R-6 regen + Extraction-Akki gitlink advance dba4499→30f8ccd |
+| 3 | State Commit-B | `79a2ff0b683ca4ae982c3d79bdf16014483f416f` | `master` | Objective card + queued-delete + comprehensive receipt + THREE fold-in owner drops (SO §6.9(5) amendment · Akki-OS-Root · ASSIST pre-approval) + STANDING_ORDERS §6.9.5 amended + PINS code-bundle-pin + GAPS_FIXED_LEDGER 10 entries + EXECUTION_ORDER 5.11 wave + RESUME rewrite + `.gitignore` bundle-ignore + DECISIONS entries |
+| 4 | State Commit-C fixup | `2fc7dd3f78a67c3c27f229e8e932e9b308e72a3a` | `master` | R-6 boundary regen advancing heads_last_sealed to State-B + Code-A + state mini-bank rows 1-3 |
+| 5 | /app companion C | `d8d954639...` | `main` | byte-identical audit twin mirror of State-B + State-C fixup |
+| 6 | State mini-bank | *(this commit)* | `master` | RESUME rewrite + PINS state-bundle-pin final + full 5-commit SHA table |
 
 <!-- CP-AIP-9-PINS-2026-02-23 END -->
+
+
+## CP-AIP-10-TRAINING-RUNS · **SEAL BOUNDARY 2026-02-23T~11:45Z · LAST BY CONSTRUCTION**
+
+<!-- CP-AIP-10-PINS-2026-02-23 BEGIN · SO §6.9(5) AMENDED bundle-based continuity · 2nd application -->
+
+### Milestone-seal continuity bundle pins (SO §6.9.5 AMENDED 2026-02-23 · bundle-based)
+
+**Mechanism:** per SO §6.9.5 (amended 2026-02-23 · verbatim owner drop banked at `STATE/OWNER_DROPS/so_6_9_clause_5_bundle_amendment_20260223/DROP.md`), every milestone seal emits a git bundle of BOTH `programme/track-a` and `master`, sha256-pinned here, deposited at the pod-local deliverables endpoint `/app/assessment_workspace/continuity_bundles/`. No credentials, no push, nothing public.
+
+**Code bundle — programme/track-a at Code Commit-A HEAD (this-seal · 2nd bundle application):**
+- **Path:** `continuity_bundles/code_20260923T114743Z_CP_AIP_10.bundle`
+- **Size:** 19,141,578 bytes (18.3 MiB)
+- **sha256:** `48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41`
+- **Refs:** `refs/heads/programme/track-a` → `8ef25c10ba28fbf09255396281a619a4be819612` (= CP-AIP-10 Code Commit-A HEAD)
+- **Verify:** `git bundle verify` → "is okay" · **records a complete history** · hash algorithm: sha1
+- **Emitted at:** 2026-02-23T~11:47Z pre-Commit-B (Code-A already landed)
+
+**State bundle — master at seal-tail HEAD:**
+- **Path:** *(pending emission at post-Commit-C-fixup boundary · to be sha-pinned by state mini-bank commit)*
+- **Emitted at:** 2026-02-23T~post-Commit-C-fixup (this-seal · state-tail before mini-bank)
+- **Pin lock-in:** State mini-bank commit finalizes state bundle pin (this file · same commit).
+
+**One-sentence protected objective:** the sealed record survives its environment (pod crash, session compaction, audit-inbox rotation) without depending on push credentials or repo visibility.
+
+### 3-repo HEADs at seal boundary (pre-mini-bank tip · State-B in flight)
+
+- **Code (programme/track-a):** `8ef25c10ba28fbf09255396281a619a4be819612` (Code Commit-A — CP-AIP-10-TRAINING-RUNS)
+- **State (master):** `0684f5977c1b3d69bd42a6a5ff88a54ce27b7f9c` (CP-AIP-9 state mini-bank · pre-CP-AIP-10 State-B tip · Commit-B lands next)
+- **/app (main):** `a47b3ab038f7771011b158a1621bafe7d4d01b9b` (/app Commit-A companion of Code-A)
+
+### Post-seal ratchet + baseline pin (measured)
+
+- **Ratchet floor post-seal:** `6321` (was `6313` pre-CP-AIP-10 · +8 canonical measured AIP v1.0 §11.6 P189a + §11.6 P190a-e + §11.5 P185a + §11.5 P187 + Ruling (b) verbatim pod-never-data-path + §1.2 no-redeclaration + §1.4 heavy-fine-tune-deferred-posture).
+- **`baseline_failures.json` sha256 post-bump:** `0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd`.
+- **Double-green sweep stripped_sha256:** `92d09b7d7f27897fdc7827bbcde23f584cdcb46c3f8be56f4cb23e150ecc7378` IDENTICAL sweep_A (~201s) + sweep_B (~198s) both 6330 passed / 13 skipped / 0 failed / 520 warnings / 12458 stripped bytes.
+
+### Ruling (b) AKKI-RUNS-IT posture markers (this-seal)
+
+- `POD_IS_NEVER_DATA_PATH_POSTURE` Final marker present in `training_run_boundary_v1` per owner Ruling (b) verbatim 2026-02-23.
+- `HEAVY_FINETUNE_DEFERRED_TO_COMMISSIONED_JOB_POSTURE` Final marker present per §1.4 measured cost/compute receipt discipline.
+- `register_training_run_as_census_autonomy_job` boundary structurally refuses `pod://` and `/app/` prefixed refs.
+
+### Milestone-seal REPORT-AND-CONTINUE receipt line (this-seal · state bundle pin pending mini-bank)
+
+`CP-AIP-10 seal 5-commit chain IN FLIGHT (Code-A + /app-A landed · State-B in progress) · AIP v1.0 §11.6 + §11.5 + Ruling (b) verbatim · code bundle sha256 48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41 (18.3 MiB · programme/track-a @ 8ef25c1) · state bundle emission pending post-Commit-C-fixup · SO §6.9(5) AMENDED continuity 2nd application · Additive-only per SO §3.8 · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam into Census Autonomy Service then steps back; pod NEVER training host or data path · Heavy fine-tune runs DEFERRED to commissioned-job contract per §1.4 measured cost/compute receipt · CP-AIP-10 LAST BY CONSTRUCTION for AIP-plane; Item 5.11 wave (LID + ENT-16 + census three waves + tenant separation + Track-4 autonomy wiring + CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING + OWNER_RETURN_REPORT + BUILD_JOURNAL) follows REPORT-AND-CONTINUE per run-to-completion mandate 2026-02-23.`
+
+### CP-AIP-10 5-commit seal chain (IN FLIGHT · partial · full table lands at mini-bank)
+
+| # | Commit | SHA | Branch | Status |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `8ef25c10ba28fbf09255396281a619a4be819612` | `programme/track-a` | ✅ LANDED (2026-02-23T~11:47Z) |
+| 2 | /app companion A | `a47b3ab038f7771011b158a1621bafe7d4d01b9b` | `main` | ✅ LANDED (2026-02-23T~11:50Z) |
+| 3 | State Commit-B | *(this commit)* | `master` | 🟡 IN PROGRESS |
+| 4 | State Commit-C fixup | *(pending)* | `master` | 🟡 PENDING |
+| 5 | /app companion C | *(pending)* | `main` | 🟡 PENDING |
+| 6 | State mini-bank | *(pending)* | `master` | 🟡 PENDING |
+
+<!-- CP-AIP-10-PINS-2026-02-23 END -->
 
