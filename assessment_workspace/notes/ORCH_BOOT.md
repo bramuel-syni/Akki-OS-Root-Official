@@ -33,15 +33,15 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-02-23T14:15:00Z
-generator: "main-agent Autopilot (CP-TENANT-SEPARATION pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6360 -> 6369 + baseline_failures.json sha256 to post-bump 0a2ddca10e7623aa523f7bfdf1b5ccfef8447d420968c178f358750d45d322cf · delta composed +10 canonical measured own new pins + +9 fold-in gap-closure CP-CENSUS-THREE-WAVES card_sha256 placeholder pinned to computed d857f2278902ac4d86e1bf4096330056b50bca3a1962810aa4432d2d46cfa133 + CP-CENSUS card restructured to fully-conforming SO §6.2 schema · heads_last_sealed UNCHANGED at last CP-CENSUS-THREE-WAVES state Commit-B 70e39cf1 + code Commit-A b9eb36d9 · this-CP heads advance at Commit-C fixup post-Commit-B)"
-regeneration_reason: pre-commit-a-cp-tenant-separation-ratchet-only-regen-6360-to-6369-plus-10-canonical-measured-own-pins-plus-9-fold-in-gap-closure-cp-census-three-waves-card-sha256-placeholder-heal
+generated_at_utc: 2026-02-23T14:52:00Z
+generator: "main-agent Autopilot (CP-TRACK-4-AUTONOMY-WIRING pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6369 -> 6379 + baseline_failures.json sha256 to post-bump 7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2 · delta +10 canonical measured own new pins on Track-4 autonomy wiring boundary (TRACK_4_JOB_KINDS Literal-closed 3-tuple + Track4LidPassRegistration_v1 + Track4AllJobsRegistered_v1 + AutonomyEngineRunReceipt_v1 + Track4BoundaryRefused + PodIsNeverDataPathAtTrack4Error + Track4JobKindRefused + AutonomyEngineRunReceiptStatusRefused + TRACK_4_AUTONOMY_WIRING_POSTURE + POD_IS_NEVER_DATA_PATH_POSTURE_TRACK_4 + E1_STEPS_BACK_AFTER_WIRING_POSTURE) · SO §6.9 amendment §6 item 6 + Ruling (b) AKKI-RUNS-IT verbatim - LIVE Census Autonomy engine executed all 3 wired jobs end-to-end (LID pass + census-three-waves + training-runs); 3 machine-readable run receipts persisted at backend/phase0/track_4_autonomy_engine_run_receipts/*.json + 1 composite seal-level exit-evidence receipt; engine_live_status=COMPLETE all 3 runs · heads_last_sealed UNCHANGED at last CP-CENSUS-RMS-STATION-LANGUAGE-AXIS state Commit-B 832bdf2 + code Commit-A 832bdf2 (this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-track-4-autonomy-wiring-ratchet-only-regen-6369-to-6379-plus-10-canonical-measured-own-pins-track-4-autonomy-wiring-boundary-live-census-autonomy-engine-run-receipts-exit-evidence
 
 ratchet:
-  passed_floor: 6369
-  counts_at_baseline_passed: 6369
+  passed_floor: 6379
+  counts_at_baseline_passed: 6379
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 0a2ddca10e7623aa523f7bfdf1b5ccfef8447d420968c178f358750d45d322cf
+  baseline_failures_sha256: 7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2
 
 heads_last_sealed:
   state_repo:
@@ -1339,15 +1339,15 @@ heads_last_sealed:
     seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS Code Commit-A 9e3ca45a · +8 canonical measured (6332 -> 6340) · double-green stripped_sha256 1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5"
 
 
-generated_at_utc: 2026-02-23T14:35:00Z
-generator: "CP-TENANT-SEPARATION state Commit-C fixup R-6 boundary regen · advancing heads_last_sealed.state_repo.head 70e39cf1 (CP-CENSUS-THREE-WAVES State-B) -> 978f219c (this-CP State-B) + code_repo.head b9eb36d9 (CP-CENSUS-THREE-WAVES Code-A) -> 04d603ca (this-CP Code-A) · ratchet.passed_floor UNCHANGED at 6369 · state mini-bank rows 1-3 of CP-TENANT-SEPARATION 5-commit-seal chain banked in DECISIONS.md"
-regeneration_reason: post-commit-b-cp-tenant-separation-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
+generated_at_utc: 2026-02-23T14:52:30Z
+generator: "CP-TRACK-4-AUTONOMY-WIRING pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6369 -> 6379 + baseline_failures.json sha256 to post-bump 7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2 · +10 canonical measured own new pins on Track-4 autonomy wiring boundary · heads_last_sealed UNCHANGED at CP-TENANT-SEPARATION State-B 978f219c + Code-A 04d603ca (this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-track-4-autonomy-wiring-ratchet-only-regen-6369-to-6379-plus-10-canonical-measured-own-pins-track-4-autonomy-wiring-boundary
 
 ratchet:
-  passed_floor: 6369
-  counts_at_baseline_passed: 6369
+  passed_floor: 6379
+  counts_at_baseline_passed: 6379
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 0a2ddca10e7623aa523f7bfdf1b5ccfef8447d420968c178f358750d45d322cf
+  baseline_failures_sha256: 7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2
 
 heads_last_sealed:
   state_repo:
