@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T114336Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T122527Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1404,9 +1404,13 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - **Emitted at:** 2026-02-23T~11:47Z pre-Commit-B (Code-A already landed)
 
 **State bundle — master at seal-tail HEAD:**
-- **Path:** *(pending emission at post-Commit-C-fixup boundary · to be sha-pinned by state mini-bank commit)*
-- **Emitted at:** 2026-02-23T~post-Commit-C-fixup (this-seal · state-tail before mini-bank)
-- **Pin lock-in:** State mini-bank commit finalizes state bundle pin (this file · same commit).
+- **Path:** `continuity_bundles/state_20260923T115815Z_CP_AIP_10.bundle`
+- **Size:** 217,420,678 bytes (207.4 MiB)
+- **sha256:** `137e04215dad2f20de0185ca986e3e31a22defa3bd4171c417f15e99171b523d`
+- **Refs:** `refs/heads/master` → `53f0bfb1478903335beb3c5f7a6c0f39e9c276e5` (= CP-AIP-10 state Commit-C fixup HEAD · the seal's state-tail before mini-bank)
+- **Verify:** `git bundle verify` → "is okay" · **records a complete history** · hash algorithm: sha1
+- **Emitted at:** 2026-02-23T~11:58Z post-Commit-C-fixup
+- **Pin lock-in:** this state mini-bank commit finalizes both bundle pins (this file · same commit).
 
 **One-sentence protected objective:** the sealed record survives its environment (pod crash, session compaction, audit-inbox rotation) without depending on push credentials or repo visibility.
 
@@ -1428,20 +1432,88 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 - `HEAVY_FINETUNE_DEFERRED_TO_COMMISSIONED_JOB_POSTURE` Final marker present per §1.4 measured cost/compute receipt discipline.
 - `register_training_run_as_census_autonomy_job` boundary structurally refuses `pod://` and `/app/` prefixed refs.
 
+### Milestone-seal REPORT-AND-CONTINUE receipt line (this-seal · FINAL post-mini-bank)
+
+`CP-AIP-10 seal COMPLETE · code bundle sha256 48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41 (18.3 MiB · programme/track-a @ 8ef25c1) · state bundle sha256 137e04215dad2f20de0185ca986e3e31a22defa3bd4171c417f15e99171b523d (207.4 MiB · master @ 53f0bfb1) · SO §6.9(5) AMENDED bundle-based continuity 2nd application LANDED · AIP v1.0 §11.6 Training-Runs commissioned-job compose-boundary GREEN + §11.5 per-example-provenance-through-training enforced structurally + Ruling (b) AKKI-RUNS-IT verbatim Census-Autonomy-Service-registration-seam + pod-never-data-path structural refusal + heavy fine-tune DEFERRED to commissioned-job per §1.4 measured cost/compute receipt · training_run_boundary_v1 §1.2 modality-extension composing sealed CP-AIP-8 S&R + sealed CP-AIP-7 planner + sealed CP-M6-7-3 CostQuoteWithCI + sealed CP-AIP-4 pretraining_contract_v1 posture pattern · 8 RED-first invariant pins ALL GREEN post-authorship · Ratchet 6313 → 6321 · double-green stripped_sha256 92d09b7d7f27897fdc7827bbcde23f584cdcb46c3f8be56f4cb23e150ecc7378 IDENTICAL both sweeps · GAPS_FIXED_LEDGER 8 invariant-seat entries additive at CP-AIP-10 boundary · 0 honest-gaps opened · Sealed carriers UNCHANGED per SO §3.8 additive-only · CP-AIP-10 LAST BY CONSTRUCTION for AIP-plane · REPORT-AND-CONTINUE into Item 5.11 wave (SO-6.9-LID · ENT-16 seeds · census three waves · tenant separation · Track-4 autonomy wiring · CP-AIP-ASSIST-CENSUS · CP-AIP-ASSIST-TRAINING · OWNER_RETURN_REPORT + BUILD_JOURNAL as FINAL deliverable) per RUN-TO-COMPLETION mandate 2026-02-23 · HALT ONLY on SPEC-CONFLICT-<n> · hard custody/gate violation · completion.`
+
+### CP-AIP-10 5-commit seal chain (FULL SHA TABLE · POST-MINI-BANK)
+
+| # | Commit | SHA | Branch | Purpose |
+|---|---|---|---|---|
+| 1 | Code Commit-A | `8ef25c10ba28fbf09255396281a619a4be819612` | `programme/track-a` | 1 new module `training_run_boundary_v1.py` (~347 lines) + 8 RED-first pins + baseline_failures ratchet 6313→6321 + drill receipts |
+| 2 | /app companion A | `a47b3ab038f7771011b158a1621bafe7d4d01b9b` | `main` | notes/audit ORCH_BOOT pre-Commit-A regen 6313→6321 + Extraction-Akki gitlink advance 30f8ccd→8ef25c1 + code bundle emitted |
+| 3 | State Commit-B | `5780899b997ae1cd3ef81691fb9297146fbaa365` | `master` | Objective card promoted + queued-delete + ASSIST cards restored to queued/ + comprehensive receipt + GAPS_FIXED_LEDGER 8 entries + PINS CP-AIP-10 pin block + EXECUTION_ORDER Item 5.10 IN-FLIGHT + DECISIONS opening |
+| 4 | State Commit-C fixup | `53f0bfb1478903335beb3c5f7a6c0f39e9c276e5` | `master` | R-6 boundary regen advancing heads_last_sealed to State-B + Code-A + state mini-bank rows 1-3 |
+| 5 | /app companion C | `2ce6309ab353859b4274eb9237ea4a8f1f138e47` | `main` | byte-identical audit twin mirror of State-B + State-C fixup + vendored/extraction_akki/MANIFEST.json advance (file_count 1059→1060 · training_run_boundary_v1.py added) |
+| 6 | State mini-bank | *(this commit)* | `master` | RESUME rewrite + PINS state-bundle-pin final + full 5-commit SHA table + milestone-seal REPORT-AND-CONTINUE receipt line |
+
+<!-- CP-AIP-10-PINS-2026-02-23 END -->
+
+
+## CP-SO-6.9-LID-WAVE · **SEAL BOUNDARY 2026-02-23T~12:30Z · SO §6.9 LID RATIFICATION verbatim**
+
+<!-- CP-SO-6-9-LID-WAVE-PINS-2026-02-23 BEGIN · SO §6.9(5) AMENDED bundle-based continuity · 3rd application -->
+
+### Milestone-seal continuity bundle pins (SO §6.9.5 AMENDED 2026-02-23 · bundle-based)
+
+**Code bundle — programme/track-a at Code Commit-A HEAD (this-seal · 3rd bundle application):**
+- **Path:** `continuity_bundles/code_20260923T122933Z_CP_SO_6_9_LID_WAVE.bundle`
+- **Size:** 19,235,396 bytes (18.3 MiB)
+- **sha256:** `c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f`
+- **Refs:** `refs/heads/programme/track-a` → `d4eae498984abd7da16b1d36692178f513ad10b5` (= CP-SO-6.9-LID-WAVE Code Commit-A HEAD)
+- **Verify:** `git bundle verify` → "is okay" · complete history · hash algorithm: sha1
+- **Emitted at:** 2026-02-23T~12:29Z pre-Commit-B (Code-A already landed)
+
+**State bundle — master at seal-tail HEAD:**
+- **Path:** *(pending emission at post-Commit-C-fixup boundary · to be sha-pinned by state mini-bank commit)*
+
+### LID model registration acts (SO §6.9 LID RATIFICATION §4 verbatim)
+
+| Model entry | Licence | Weight sha256 | Licence file | Pull provenance |
+|---|---|---|---|---|
+| `whisper-lid-v1-mit` | MIT | `[pinned at Track-4 pull]` | `phase0/lid_registration_20260223/licences/whisper_lid_MIT.txt` | `phase0/lid_registration_20260223/pull_provenance/whisper_lid.json` |
+| `speechbrain-voxlingua107-apache-2-0` | Apache-2.0 | `[pinned at Track-4 pull]` | `phase0/lid_registration_20260223/licences/voxlingua107_APACHE_2_0.txt` | `phase0/lid_registration_20260223/pull_provenance/voxlingua107.json` |
+
+**Weight-file pulls DEFERRED** to Track-4 Census Autonomy Service jobs per Ruling (b) AKKI-RUNS-IT verbatim — pod is NEVER training host or data path. Anti-token pull wrapper (`HuggingFacePullWrapperAntiToken_v1`) structurally refuses any bearer-like header; env scrubbed of `HF_TOKEN` / `HUGGINGFACEHUB_API_TOKEN` / `HUGGING_FACE_HUB_TOKEN` before headers built (SO §6.9 clause 3).
+
+### Admission gate + TENANT-LABELS status
+
+- **DEFAULT_THRESHOLD_PENDING:** `0.90` tagged `pending` (owner may retune before promotion).
+- **Ground truth corpus:** `google-transcripts/datasets/{kik,ebu,swa,luo,kln,guz,mer,bxk,kam,mrg,lwg,mas}/{audio,transcript}` (12-language labelled).
+- **TENANT-LABELS-PENDING RESOLVED** for: kik, ebu, swa, luo, kln, guz, mer, bxk, kam, mrg, lwg, mas (12 languages).
+- **TENANT-LABELS-PENDING RETAINED** as honest-gap for: **English + Sheng + code-switched** (3 languages) per SO §6.9 LID RATIFICATION §5-§6.
+
+### Rejected options bookkeeping (per owner drop §7 verbatim)
+
+- **fastText LID.176** → `WAITING-ON-TRANSCRIPTS` (parked, NOT registered).
+- **Silero language classifier** → `LICENCE-REVIEW-REQUIRED C5.4` (parked, NOT registered).
+
+### 3-repo HEADs at seal boundary (pre-mini-bank tip · State-B in flight)
+
+- **Code (programme/track-a):** `d4eae498984abd7da16b1d36692178f513ad10b5` (Code Commit-A — CP-SO-6.9-LID-WAVE)
+- **State (master):** `d7319fee58e0ec7eba3ea190dabe74380355319e` (CP-AIP-10 state mini-bank · pre-CP-SO-6.9-LID-WAVE State-B tip · Commit-B lands next)
+- **/app (main):** `0e90b8c3dcef0bb5b2169cd2d6ce0eb492bf1059` (/app Commit-A companion)
+
+### Post-seal ratchet + baseline pin (measured)
+
+- **Ratchet floor post-seal:** `6332` (was `6321` pre-CP-SO-6.9-LID-WAVE · +11 canonical measured).
+- **`baseline_failures.json` sha256 post-bump:** `468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314`.
+- **Double-green sweep stripped_sha256:** `b71bead1574966208bf999b2f59477324c7f0c8c20381ce98d6ecccc2240650a` IDENTICAL sweep_A (~199s) + sweep_B (~200s) both 6341 passed / 13 skipped / 0 failed / 520 warnings / 12458 stripped bytes.
+
 ### Milestone-seal REPORT-AND-CONTINUE receipt line (this-seal · state bundle pin pending mini-bank)
 
-`CP-AIP-10 seal 5-commit chain IN FLIGHT (Code-A + /app-A landed · State-B in progress) · AIP v1.0 §11.6 + §11.5 + Ruling (b) verbatim · code bundle sha256 48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41 (18.3 MiB · programme/track-a @ 8ef25c1) · state bundle emission pending post-Commit-C-fixup · SO §6.9(5) AMENDED continuity 2nd application · Additive-only per SO §3.8 · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam into Census Autonomy Service then steps back; pod NEVER training host or data path · Heavy fine-tune runs DEFERRED to commissioned-job contract per §1.4 measured cost/compute receipt · CP-AIP-10 LAST BY CONSTRUCTION for AIP-plane; Item 5.11 wave (LID + ENT-16 + census three waves + tenant separation + Track-4 autonomy wiring + CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING + OWNER_RETURN_REPORT + BUILD_JOURNAL) follows REPORT-AND-CONTINUE per run-to-completion mandate 2026-02-23.`
+`CP-SO-6.9-LID-WAVE seal 5-commit chain IN FLIGHT (Code-A + /app-A landed · State-B in progress) · SO §6.9 LID RATIFICATION verbatim §1-§9 · Whisper-LID MIT + VoxLingua107 Apache-2.0 registration acts (6-field verbatim shape) + OverlayLidDetection_v1 marker/regime structural invariants + LID_DO_NOT_FLOW_INTO_COUNTED_MEASURE_POSTURE Final marker (B5.4) + admission gate DEFAULT ≥ 0.90 pending scored against google-transcripts/ 12-language labelled corpus + regime promotion by receipted act canon 8 §4 W2 + LID_NOTHING_RELABELLED_AT_REGIME_FLIP_POSTURE Final marker + anti-token HF pull wrapper SO §6.9 clause 3 + TENANT_LABELS_PENDING_HONEST_GAP English/Sheng/code-switched + 12 languages RESOLVED · lid_wave_overlay_and_admission_v1 §1.2 modality-extension of sealed CP-M6-1-1 language_identifier.py · code bundle sha256 c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f (18.3 MiB · programme/track-a @ d4eae498) · state bundle emission pending post-Commit-C-fixup · SO §6.9(5) AMENDED continuity 3rd application · Additive-only per SO §3.8 · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam; weight-file pulls DEFERRED to Track-4 Census Autonomy Service jobs · REPORT-AND-CONTINUE not idle-halt per §6.9 cadence amendment · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
 
-### CP-AIP-10 5-commit seal chain (IN FLIGHT · partial · full table lands at mini-bank)
+### CP-SO-6.9-LID-WAVE 5-commit seal chain (IN FLIGHT · partial · full table lands at mini-bank)
 
 | # | Commit | SHA | Branch | Status |
 |---|---|---|---|---|
-| 1 | Code Commit-A | `8ef25c10ba28fbf09255396281a619a4be819612` | `programme/track-a` | ✅ LANDED (2026-02-23T~11:47Z) |
-| 2 | /app companion A | `a47b3ab038f7771011b158a1621bafe7d4d01b9b` | `main` | ✅ LANDED (2026-02-23T~11:50Z) |
+| 1 | Code Commit-A | `d4eae498984abd7da16b1d36692178f513ad10b5` | `programme/track-a` | ✅ LANDED (2026-02-23T~12:30Z) |
+| 2 | /app companion A | `0e90b8c3dcef0bb5b2169cd2d6ce0eb492bf1059` | `main` | ✅ LANDED (2026-02-23T~12:35Z) |
 | 3 | State Commit-B | *(this commit)* | `master` | 🟡 IN PROGRESS |
 | 4 | State Commit-C fixup | *(pending)* | `master` | 🟡 PENDING |
 | 5 | /app companion C | *(pending)* | `main` | 🟡 PENDING |
 | 6 | State mini-bank | *(pending)* | `master` | 🟡 PENDING |
 
-<!-- CP-AIP-10-PINS-2026-02-23 END -->
+<!-- CP-SO-6-9-LID-WAVE-PINS-2026-02-23 END -->
 

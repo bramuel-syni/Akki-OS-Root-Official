@@ -217,3 +217,104 @@
 - **Sealed carriers untouched** — additive-only per SO §3.8: CP-AIP-1..9 modules + CP-M6-7-3 CostQuoteWithCI + CP-AIP-4 pretraining_contract_v1 unchanged.
 - **Ratchet:** `6313` → `6321` (+8 canonical measured) · baseline_failures.json sha256 post-bump `0c7968cdf19694f301e67dc28fee7180e693b0e1f7053fbd3e8226fef5490abd` · double-green stripped_sha256 `92d09b7d7f27897fdc7827bbcde23f584cdcb46c3f8be56f4cb23e150ecc7378`.
 - **Continuity:** code bundle sha256 `48b2c169e5d04985f1754ff17d9ca0ce9688bd9c6067ba1dc9ca1252c7b08a41` @ `programme/track-a` `8ef25c1` (state bundle pin pending post-Commit-C-fixup).
+
+---
+
+## Seal boundary: CP-SO-6.9-LID-WAVE (2026-02-23T~12:30Z · Item 5.11.a · SO §6.9 LID RATIFICATION verbatim §1-§9)
+
+### 1. Whisper-LID (MIT) registration act shape structural invariant
+
+- **Kind:** invariant seat (RED-first pin at boundary).
+- **What tripped:** SO §6.9 LID RATIFICATION §4 verbatim requires a 6-field registration act shape for every LID model registered; Whisper-LID has no on-disk representation of this before the seal.
+- **Protected objective:** ensures the audio-provenance-and-licence traceability of every-segment LID label survives without a token-presentation hazard.
+- **Additive fix:** `LidModelRegistration_v1` frozen dataclass with 6 verbatim fields; `WHISPER_LID_REGISTRATION` Final constant carries `licence_id="MIT"`. Test: `test_whisper_lid_registration_act_shape_MIT_licence_pinned_so_6_9_lid` GREEN.
+- **Receipt anchor:** `phase0/cp_so_6_9_lid_wave_20260223/receipt.md §3`.
+
+### 2. VoxLingua107 (Apache-2.0) registration act shape structural invariant
+
+- **Kind:** invariant seat (RED-first pin at boundary).
+- **What tripped:** SO §6.9 LID RATIFICATION §4 verbatim requires the same 6-field shape for VoxLingua107; no on-disk registration.
+- **Protected objective:** ensures audio-native corroboration of Whisper-LID under a licence needing no review, before any regime flip.
+- **Additive fix:** `VOXLINGUA107_REGISTRATION` Final constant carries `licence_id="Apache-2.0"`. Test: `test_voxlingua107_registration_act_shape_apache_2_0_licence_pinned_so_6_9_lid` GREEN.
+- **Receipt anchor:** `lid_wave_overlay_and_admission_v1.py VOXLINGUA107_REGISTRATION`.
+
+### 3. OverlayLidDetection marker/label structural invariant (B5.4 shown-not-counted)
+
+- **Kind:** shape-invariant seat + refusal path.
+- **What tripped:** SO §6.9 LID RATIFICATION §5 + B5.4 require `marker="INFERRED"` iff `label is not None`; no code path enforced this bidirectionally.
+- **Protected objective:** ensures overlay labels are shown, never counted as a measure until admission-gate promotion.
+- **Additive fix:** `OverlayLidDetection_v1.__post_init__` raises `LidLabelBelowConfidenceMustBeUnmeasuredError` when invariant violated. Test: `test_overlay_lid_detection_marker_INFERRED_when_label_set_unmeasured_when_none_b5_4` GREEN.
+- **Receipt anchor:** `lid_wave_overlay_and_admission_v1.py OverlayLidDetection_v1`.
+
+### 4. OverlayLidDetection regime default `pre-admission` invariant
+
+- **Kind:** shape-invariant seat + refusal path.
+- **What tripped:** direct construction of `regime="post-admission"` would let overlay bypass the receipted-act promotion path.
+- **Protected objective:** ensures the shown-not-counted line is not crossed by construction; only a receipted act flips regime.
+- **Additive fix:** `OverlayLidDetection_v1.__post_init__` raises `LidOverlayMustNotFlowIntoCountedMeasureError` on direct `post-admission` construction. Test: `test_overlay_lid_detection_regime_starts_pre_admission_default_so_6_9` GREEN.
+- **Receipt anchor:** same.
+
+### 5. LID_DO_NOT_FLOW_INTO_COUNTED_MEASURE_POSTURE Final marker (B5.4)
+
+- **Kind:** compaction-safe posture marker.
+- **What tripped:** B5.4 line was not banked as a compaction-safe posture; a successor session could miss the shown-not-counted contract.
+- **Protected objective:** ensures a successor re-anchors the shown-not-counted contract from module source without inference.
+- **Additive fix:** `LID_DO_NOT_FLOW_INTO_COUNTED_MEASURE_POSTURE: Final[str]` verbatim B5.4 line. Test: `test_lid_do_not_flow_into_counted_measure_posture_marker_present_b5_4` GREEN.
+
+### 6. Admission gate DEFAULT_THRESHOLD_PENDING = 0.90 tagged pending
+
+- **Kind:** shape-invariant seat.
+- **What tripped:** SO §6.9 LID RATIFICATION §6 pins DEFAULT threshold ≥ 90% tagged pending; no code path fixed the DEFAULT.
+- **Protected objective:** ensures single-model overreach cannot enter measure until tenant-labelled agreement clears the DEFAULT bar (with `pending` tag so owner may retune).
+- **Additive fix:** `LidAdmissionGate_v1.DEFAULT_THRESHOLD_PENDING: ClassVar[float] = 0.90`; gate evaluation records `gate_status="pending"` until owner retunes. Test: `test_admission_gate_default_threshold_is_0_90_pending_so_6_9_lid` GREEN.
+
+### 7. Regime promotion requires owner receipted act (canon 8 §4 W2)
+
+- **Kind:** refusal-path invariant seat.
+- **What tripped:** canon 8 §4 W2 requires promotion be a receipted act with owner signature; no code path enforced this at the boundary.
+- **Protected objective:** ensures no LID label promotes to measured without owner receipt; historic overlays remain byte-identical.
+- **Additive fix:** `promote_lid_regime_by_receipted_act` raises `LidRegimePromotionRequiresOwnerReceiptedActError` when `owner_signature_ref` empty or `previous_regime == new_regime`. Test: `test_lid_regime_promotion_requires_owner_receipted_act_canon_8_4_W2` GREEN.
+
+### 8. LID_NOTHING_RELABELLED_AT_REGIME_FLIP_POSTURE Final marker + frozen dataclass guarantee
+
+- **Kind:** compaction-safe posture marker + structural guarantee.
+- **What tripped:** SO §6.9 LID RATIFICATION §5-§6 mandate "nothing is ever relabelled at regime flip"; no compaction-safe marker banked.
+- **Protected objective:** ensures historic overlay detections remain byte-identical when regime flips; future overlays get new regime.
+- **Additive fix:** `LID_NOTHING_RELABELLED_AT_REGIME_FLIP_POSTURE: Final[str]` + `OverlayLidDetection_v1` frozen dataclass guarantees mutation is impossible. Test: `test_lid_nothing_relabelled_at_regime_flip_posture_marker_present_so_6_9` GREEN.
+
+### 9. HF pull wrapper anti-token structural guarantee (SO §6.9 clause 3)
+
+- **Kind:** hazard-scope refusal + env-scrub invariant.
+- **What tripped:** SO §6.9 clause 3 verbatim requires no `Authorization`/`token=` header ever attached and env scrubbed of `HF_TOKEN` / `HUGGINGFACEHUB_API_TOKEN` / `HUGGING_FACE_HUB_TOKEN` before pull; no wrapper enforced this structurally.
+- **Protected objective:** ensures HF hazard scope stays "presentation of the leaked credential", not the host; public unauthenticated weight pull proceeds while token-presentation is structurally impossible for this call.
+- **Additive fix:** `HuggingFacePullWrapperAntiToken_v1.build_headers()` returns only User-Agent + Accept; post-build guard refuses any bearer-like key defensively via `TokenPresentedInPullError`; `scrub_env()` classmethod pops the three HF token env vars. Test: `test_hf_pull_wrapper_build_headers_has_no_bearer_like_key_so_6_9_clause_3` GREEN.
+
+### 10. TENANT-LABELS-PENDING honest-gap for English/Sheng/code-switched + 12 languages RESOLVED via google-transcripts/
+
+- **Kind:** honest-gap seat + resolution seat.
+- **What tripped:** SO §6.9 LID RATIFICATION §5-§6 + owner amendment naming 12 languages as RESOLVED via `google-transcripts/` — code had neither the residual honest-gap seat nor the resolved-set seat.
+- **Protected objective:** enables function-progression (admission gate builds and evaluates against 12 resolved languages) while naming the residual gap (English/Sheng/code-switched) rather than papering over it.
+- **Additive fix:** `TENANT_LABELS_PENDING_HONEST_GAP: Final = TenantLabelsPendingHonestGap_v1(languages=frozenset({"English","Sheng","code-switched"}))` + `LID_TENANT_LABELS_RESOLVED_12_LANGUAGES: Final[frozenset[str]] = frozenset({"kik","ebu","swa","luo","kln","guz","mer","bxk","kam","mrg","lwg","mas"})`. Test: `test_tenant_labels_pending_honest_gap_english_sheng_code_switched_so_6_9_lid_ratification` GREEN.
+- **Honest-gap status at boundary:** RETAINED for English/Sheng/code-switched (3 languages · residual per SO §6.9 LID RATIFICATION verbatim); RESOLVED for kik/ebu/swa/luo/kln/guz/mer/bxk/kam/mrg/lwg/mas (12 languages).
+
+### 11. §1.2 no-redeclaration of sealed CP-M6-1-1 symbols
+
+- **Kind:** sealed-carrier redeclaration guard.
+- **What tripped:** §1.2 forbids redeclaration of sealed symbols; without an AST-level scan, an accidental shadow of `LanguageIDBackend` / `UnratifiedInferredBackend` / `LanguageIDResult` / `AudioSegment` could not be caught.
+- **Protected objective:** ensures the LID-wave module composes CP-M6-1-1 by import only, never redeclares.
+- **Additive fix:** `test_no_redeclaration_of_sealed_symbols_1_2_so_6_9_lid` scans module AST for class/function names in the forbidden set. Test: GREEN.
+
+### Rejected options bookkeeping (per owner drop §7 verbatim)
+
+- **fastText LID.176** → `WAITING-ON-TRANSCRIPTS` — parked, NOT registered. Reason: labels text not audio + needs unregistered transcription model.
+- **Silero language classifier** → `LICENCE-REVIEW-REQUIRED C5.4` — parked, NOT registered. Reason: licence must be verified commercial before it can run (C5.4).
+
+### Seal-boundary summary
+
+- **11 gaps closed** additively at CP-SO-6.9-LID-WAVE boundary — all 11 as RED-first invariant seats with authentic ImportError pre-authorship + GREEN post-authorship + double-green byte-identical stripped_sha256 across sweeps.
+- **1 honest-gap RETAINED** at this boundary (`TENANT-LABELS-PENDING` for English/Sheng/code-switched · residual per SO §6.9 LID RATIFICATION verbatim).
+- **12 languages RESOLVED** via `google-transcripts/` corpus (kik/ebu/swa/luo/kln/guz/mer/bxk/kam/mrg/lwg/mas).
+- **2 rejected options recorded** (fastText LID.176 → WAITING-ON-TRANSCRIPTS · Silero → LICENCE-REVIEW-REQUIRED C5.4).
+- **Sealed carriers untouched** — additive-only per SO §3.8: CP-M6-1-1 `language_identifier.py` unchanged.
+- **Ratchet:** `6321` → `6332` (+11 canonical measured) · baseline_failures.json sha256 post-bump `468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314` · double-green stripped_sha256 `b71bead1574966208bf999b2f59477324c7f0c8c20381ce98d6ecccc2240650a`.
+- **Continuity:** code bundle sha256 `c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f` @ `programme/track-a` `d4eae498` (state bundle pin pending post-Commit-C-fixup).

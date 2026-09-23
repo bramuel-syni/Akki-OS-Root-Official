@@ -28903,6 +28903,58 @@ Every refusal / hold / gate written from this desk from this drop forward carrie
 - **Ledger check** — this fixup implements Item 5.10 of `EXECUTION_ORDER.md` R-6 boundary regen + state mini-bank rows 1-3, and nothing else. Additive-only. No sealed carrier edit.
 
 
+## 2026-02-23 · CP-AIP-10-TRAINING-RUNS · state mini-bank rows 4-6 COMPLETION · full 6-commit-seal chain SHAs banked (additive supplement to prior 2026-02-23 mini-bank commit at d7319fee)
+
+- Row 4 (State Commit-C fixup): `53f0bfb1478903335beb3c5f7a6c0f39e9c276e5` on master · R-6 boundary regen + state mini-bank rows 1-3.
+- Row 5 (/app companion Commit-C): `2ce6309ab353859b4274eb9237ea4a8f1f138e47` on main · byte-identical audit twin mirror of state Commit-B + Commit-C fixup + vendored MANIFEST advance.
+- Row 6 (State mini-bank): `d7319fee58e0ec7eba3ea190dabe74380355319e` on master · RESUME.md post-seal rewrite + PINS.md state-bundle pin final (sha256 137e04215dad2f20de0185ca986e3e31a22defa3bd4171c417f15e99171b523d @ master 53f0bfb1).
+- CP-AIP-10 6-commit seal chain FULLY LANDED (incl. mini-bank). Item 5.10 of `EXECUTION_ORDER.md` CLOSED. **CP-AIP-10 LAST BY CONSTRUCTION for AIP-plane.**
+- Additive-only supplement per R-6 discipline (ORCH_BOOT invariant expects heads to be banked in DECISIONS.md). Rows 4-6 banked here at CP-SO-6.9-LID-WAVE pre-Commit-A regen boundary to close the R-6 loop that the mini-bank commit itself could not close (chicken-and-egg pattern).
+- Ledger check - this supplement banks the CP-AIP-10 mini-bank rows 4-6 into DECISIONS.md to satisfy R-6 heads_last_sealed banking requirement, and nothing else. Additive-only. No sealed carrier edit.
+
+
+## 2026-02-23 · CP-SO-6.9-LID-WAVE · state Commit-B (opens Item 5.11.a · banks Code-A `d4eae498` + /app-A `0e90b8c3d` · SO §6.9 LID RATIFICATION verbatim §1-§9 · §1.2 modality-extension of sealed CP-M6-1-1 LanguageIDBackend)
+
+**Seal boundary:** 2026-02-23T~12:40Z · **Item 5.11.a of `STATE/EXECUTION_ORDER.md`** · §1.2 modality-extension · RUN-TO-COMPLETION mandate ACTIVE.
+
+- **What sealed at Code Commit-A `d4eae498`:** SO §6.9 LID RATIFICATION verbatim §1-§9 landed at audio-plane boundary. Whisper-LID (MIT) + VoxLingua107 (Apache-2.0) registered as canonical audio-native LID model registration acts (6-field verbatim shape: `model_entry` + `weight_sha256` + `licence_id` + `licence_file_path` + `pull_provenance_ref` + `execution_mode`). Overlay-detection record shape bound structurally (marker/label invariant · regime default `pre-admission` · do-not-flow-into-counted-measure guard). Admission gate DEFAULT threshold 0.90 tagged `pending`. Regime promotion by receipted act (canon 8 §4 W2). Anti-token HF pull wrapper (SO §6.9 clause 3 · env scrubbed of HF_TOKEN/HUGGINGFACEHUB_API_TOKEN/HUGGING_FACE_HUB_TOKEN). TENANT-LABELS-PENDING honest-gap covers English/Sheng/code-switched; 12 languages (kik/ebu/swa/luo/kln/guz/mer/bxk/kam/mrg/lwg/mas) RESOLVED via `google-transcripts/` corpus. §1.2 modality-extension composing sealed CP-M6-1-1 `LanguageIDBackend` at `services/audio_plane_v1/language_identifier.py` (D10 pluggable-seam). One new additive module `backend/services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py` (~325 lines). Zero sealed-carrier edit per SO §3.8.
+- **RED-first authorship (measured):** 11/11 invariant pins failed authentically with `ImportError` right-reason pre-authorship (module absent) · 11/11 passed 0.75s post-authorship.
+- **Double-green byte-identity (BASELINE_GUARD=1 PYTHONHASHSEED=0):** sweep_A + sweep_B both 6341 passed / 13 skipped / 0 failed / 520 warnings / ~199s each · **stripped_sha256 IDENTICAL `b71bead1574966208bf999b2f59477324c7f0c8c20381ce98d6ecccc2240650a`** (12458 stripped bytes).
+- **Ratchet:** `6321` → `6332` (+11 canonical measured) via SO §6.9 clause 0 sanctioned bump kind (`baseline_failures.json` sha256 post-bump `468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314` · `passed_floor` also advanced to 6332).
+- **Continuity bundle (SO §6.9(5) AMENDED · 3rd application):** code bundle `continuity_bundles/code_20260923T122933Z_CP_SO_6_9_LID_WAVE.bundle` (18.3 MiB · sha256 `c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f` @ `programme/track-a` `d4eae498`) · `git bundle verify` "is okay" · complete history · sha256 pinned in `STATE/PINS.md` CP-SO-6.9-LID-WAVE pin block. State bundle emission pending post-Commit-C-fixup.
+- **11 RED-first invariant pins (all GREEN post-authorship at boundary):** Whisper-LID/VoxLingua107 registration acts · OverlayLidDetection marker/regime invariants · LID_DO_NOT_FLOW_INTO_COUNTED_MEASURE_POSTURE Final marker · admission gate DEFAULT_THRESHOLD_PENDING 0.90 · regime promotion by receipted act canon 8 §4 W2 · LID_NOTHING_RELABELLED_AT_REGIME_FLIP_POSTURE Final marker · HF pull wrapper anti-token SO §6.9 clause 3 · TENANT_LABELS_PENDING_HONEST_GAP English/Sheng/code-switched + 12 languages RESOLVED · §1.2 no-redeclaration.
+- **Ruling (b) AKKI-RUNS-IT verbatim honored at this seal:** E1 wires the LID seams into the audio-plane; weight-file pulls DEFERRED to Track-4 Census Autonomy Service jobs. Pod is NEVER training host or data path.
+- **Rejected options bookkeeping** (per owner drop §7 verbatim): fastText LID.176 → `WAITING-ON-TRANSCRIPTS` (parked, NOT registered) · Silero language classifier → `LICENCE-REVIEW-REQUIRED C5.4` (parked, NOT registered).
+- **Objective card promoted** from `STATE/OBJECTIVES/queued/CP_SO_6_9_LID_WAVE_20260223.md` to `STATE/OBJECTIVES/CP_SO_6_9_LID_WAVE_20260223.md` (fully-conforming SO §6.2 · card_sha256 `16fd5e40c5ac5ac9726ef07e5ee98faa453359f4e1e95ef826f1905f5a380f29` · 6 required sections + 11 RED-first EXIT node IDs).
+- **Comprehensive receipt** at `phase0/cp_so_6_9_lid_wave_20260223/receipt.md`.
+- **GAPS_FIXED_LEDGER** at CP-SO-6.9-LID-WAVE boundary appended with 11 invariant-seat entries + 1 honest-gap retained (`TENANT-LABELS-PENDING` for English/Sheng/code-switched; RESOLVED for 12 languages).
+- **PINS.md** appended with CP-SO-6.9-LID-WAVE pin block.
+- **EXECUTION_ORDER.md** Item 5.11.a status advanced from queued → IN-FLIGHT.
+- **`heads_last_sealed` post-Commit-A regen** at `notes/ORCH_BOOT.md`: `state_repo.head = 5780899b` (CP-AIP-10 state Commit-B — last sealed pre-CP-SO-6.9-LID-WAVE) · `code_repo.head = 8ef25c1` (CP-AIP-10 Code Commit-A). This-CP heads advance at CP-SO-6.9-LID-WAVE Commit-C fixup.
+- **5-commit seal chain (rows 1-2 landed · row 3 = this commit):**
+  - Row 1 (Code Commit-A): `d4eae498984abd7da16b1d36692178f513ad10b5` on programme/track-a · 2026-02-23T~12:30Z · +1 additive module `lid_wave_overlay_and_admission_v1.py` + 11 RED-first invariant pins + baseline_failures ratchet 6321 → 6332 + drill receipts + code bundle emitted sha256 `c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f`.
+  - Row 2 (/app companion Commit-A): `0e90b8c3dcef0bb5b2169cd2d6ce0eb492bf1059` on main · 2026-02-23T~12:35Z · notes ORCH_BOOT pre-Commit-A ratchet-only regen 6321 → 6332 + audit ORCH_BOOT byte-identical mirror + Extraction-Akki gitlink advance 8ef25c1 → d4eae498 + vendored/extraction_akki MANIFEST.json advance (1060 → 1061 files).
+  - Row 3 (State Commit-B): *(this commit)* on master.
+  - Rows 4-6 (State-C fixup + /app-C + mini-bank): pending sequential landing this-turn.
+- **Ledger check** — this state Commit-B implements Item 5.11.a of `EXECUTION_ORDER.md` and nothing else. Additive-only. No sealed carrier edit. RED-first · terminal pytest only · BASELINE_GUARD double-green byte-identical stripped_sha256 · SO §6.9(5) AMENDED continuity bundles · Ruling (b) AKKI-RUNS-IT verbatim honored (E1 wires seam; weight pulls deferred to Track-4).
+
+
+## 2026-02-23 · CP-SO-6.9-LID-WAVE · state Commit-C fixup · R-6 boundary regen + state mini-bank rows 1-3
+
+**Seal boundary:** 2026-02-23T~12:45Z · **Item 5.11.a of `STATE/EXECUTION_ORDER.md`** · additive-only · no sealed carrier edit.
+
+- **R-6 boundary regen** at `notes/ORCH_BOOT.md`: heads_last_sealed advanced to state_repo.head `e6ec649b28962049d6c969713e001c81e630870d` (this-B) + code_repo.head `d4eae498984abd7da16b1d36692178f513ad10b5` (this-Code-A). Ratchet UNCHANGED at 6332 · baseline_failures.json sha256 UNCHANGED at post-bump `468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314`.
+- **CP-AIP-10 state mini-bank `d7319fee`** — additively banked at CP-SO-6.9-LID-WAVE pre-Commit-A regen boundary per prior-seal chicken-and-egg pattern.
+
+### CP-SO-6.9-LID-WAVE 5-commit-seal chain — state mini-bank rows 1-3 (of 6 · full table lands at final mini-bank)
+
+- **Row 1 (Code Commit-A):** `d4eae498984abd7da16b1d36692178f513ad10b5` on `programme/track-a` · 2026-02-23T~12:30Z · +1 additive module `lid_wave_overlay_and_admission_v1.py` + 11 RED-first invariant pins + baseline_failures ratchet 6321 → 6332 + drill receipts + code bundle emitted `continuity_bundles/code_20260923T122933Z_CP_SO_6_9_LID_WAVE.bundle` sha256 `c312d8cfcf611f59e8d3008df7be5cc27569d867931b1837dfe43ffb4def193f`.
+- **Row 2 (/app companion Commit-A):** `0e90b8c3dcef0bb5b2169cd2d6ce0eb492bf1059` on `main` · 2026-02-23T~12:35Z · notes ORCH_BOOT pre-Commit-A ratchet-only regen 6321 → 6332 + audit ORCH_BOOT byte-identical mirror + Extraction-Akki gitlink advance 8ef25c1 → d4eae498 + vendored/extraction_akki MANIFEST.json advance (1060 → 1061 files).
+- **Row 3 (State Commit-B):** `e6ec649b28962049d6c969713e001c81e630870d` on `master` · 2026-02-23T~12:40Z · banks Code-A + /app-A + Item 5.11.a + objective card promoted + comprehensive receipt + GAPS_FIXED_LEDGER 11 invariant-seat entries + PINS CP-SO-6.9-LID-WAVE pin block + EXECUTION_ORDER Item 5.11.a status advance + DECISIONS entries + CP-AIP-10 mini-bank rows 4-6 supplement.
+- **Rows 4-6 (State-C fixup this-commit + /app-C companion + state mini-bank):** pending sequential landing this-turn.
+- **Ledger check** — this fixup implements Item 5.11.a of `EXECUTION_ORDER.md` R-6 boundary regen + state mini-bank rows 1-3, and nothing else. Additive-only. No sealed carrier edit.
+
+
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

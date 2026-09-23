@@ -1264,6 +1264,31 @@ heads_last_sealed:
     seal_kind: "CP-AIP-10-TRAINING-RUNS Code Commit-A 8ef25c1 (last sealed · pre-CP-SO-6.9-LID-WAVE)"
 
 
+generated_at_utc: 2026-02-23T12:45:00Z
+generator: "main-agent Autopilot (CP-SO-6.9-LID-WAVE state Commit-C fixup R-6 boundary regen · advancing heads_last_sealed.state_repo.head 5780899b -> e6ec649b (this-CP state Commit-B banks Code Commit-A d4eae498 + /app companion 0e90b8c3d + Item 5.11.a of EXECUTION_ORDER.md · CP-AIP-10 state mini-bank d7319fee banked additively at CP-SO-6.9-LID-WAVE pre-Commit-A regen per prior-seal chicken-and-egg pattern) + code_repo.head 8ef25c1 -> d4eae498 (this-CP Code Commit-A) · ratchet.passed_floor UNCHANGED at 6332 · baseline_failures.json sha256 UNCHANGED at post-bump 468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314 · state mini-bank rows 1-3 of CP-SO-6.9-LID-WAVE 5-commit-seal chain banked in DECISIONS.md · Item 5.11.a of EXECUTION_ORDER.md continues · Ledger check - this fixup implements Item 5.11.a R-6 boundary regen + state mini-bank rows 1-3 and nothing else · Additive-only · No sealed carrier edit)"
+regeneration_reason: post-commit-b-cp-so-6-9-lid-wave-r-6-boundary-regen-heads-advance-plus-state-mini-bank-rows-1-3
+
+ratchet:
+  passed_floor: 6332
+  counts_at_baseline_passed: 6332
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: e6ec649b28962049d6c969713e001c81e630870d
+    sealed_at_utc: 2026-02-23T12:40:00Z
+    seal_kind: "CP-SO-6.9-LID-WAVE state Commit-B e6ec649b (banks Code Commit-A d4eae498 + /app companion 0e90b8c3d + Item 5.11.a of EXECUTION_ORDER.md · SO §6.9 LID RATIFICATION verbatim §1-§9 · Whisper-LID MIT + VoxLingua107 Apache-2.0 registration acts + OverlayLidDetection_v1 marker/regime invariants + admission gate DEFAULT_THRESHOLD_PENDING 0.90 + regime promotion by receipted act canon 8 §4 W2 + anti-token HF pull wrapper + TENANT_LABELS_PENDING_HONEST_GAP English/Sheng/code-switched retained + 12 languages RESOLVED via google-transcripts/ + §1.2 no-redeclaration · lid_wave_overlay_and_admission_v1 §1.2 modality-extension composing sealed CP-M6-1-1 language_identifier.py · Ruling (b) verbatim — E1 wires seam; weight pulls deferred to Track-4)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: d4eae498984abd7da16b1d36692178f513ad10b5
+    sealed_at_utc: 2026-02-23T12:30:00Z
+    seal_kind: "CP-SO-6.9-LID-WAVE Code Commit-A d4eae498 on programme/track-a · Item 5.11.a of EXECUTION_ORDER.md · SO §6.9 LID RATIFICATION verbatim §1-§9 · +11 canonical measured (6321 -> 6332) · double-green stripped_sha256 b71bead1574966208bf999b2f59477324c7f0c8c20381ce98d6ecccc2240650a · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam; weight-file pulls DEFERRED to Track-4 Census Autonomy Service jobs · pod NEVER training host or data path"
+
+
 ```
 
 ## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)
