@@ -1084,6 +1084,84 @@ heads_last_sealed:
     seal_kind: "CP-AIP-7-TARGET-OUTCOME-PLANNER Commit-A e8d59f8 on programme/track-a (last sealed · pre-CP-AIP-8)"
 
 
+
+generated_at_utc: 2026-02-23T08:16:00Z
+generator: "main-agent Autopilot (CP-AIP-8-SAMPLING-REFLECTION state Commit-C fixup · R-6 boundary regen · advancing heads_last_sealed.state_repo.head 9bf12590 -> 0685510d (this-B) + code_repo.head e8d59f83 -> dba4499d (this-code-A) · ratchet UNCHANGED at 6317 · state mini-bank of 5-commit-seal chain SHAs banked in DECISIONS.md post-fixup)"
+regeneration_reason: post-commit-b-cp-aip-8-sampling-reflection-boundary-regen-state-head-9bf12590-to-0685510d-code-head-e8d59f83-to-dba4499d
+
+ratchet:
+  passed_floor: 6317
+  counts_at_baseline_passed: 6317
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 1fee0e418b6d1ff3efcaf849a75f03577c01c5b5d975fa61352f47f737c29be6
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 0685510db3b001920c684a189467f3afc7e5aa55
+    sealed_at_utc: 2026-02-23T08:14:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION state Commit-B 0685510d (banks Code Commit-A dba4499 + /app companion b9f9f3f2 + owner drop 2 audio-estate + 2 fold-in receipts + CP-AIP-8 objective card + comprehensive receipt + sweep_A/B raw + stripped logs + DECISIONS + EXECUTION_ORDER + RESUME rewrites + notes/ORCH_BOOT ratchet-only regen)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: dba4499d1a95205f8bd01c9f22ed7aa51ece8ca2
+    sealed_at_utc: 2026-02-23T08:10:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a · Item 5.8 of EXECUTION_ORDER.md · +7 canonical measured AIP v1.0 §11.2 + §11.3 S&R compose-boundary GREEN · §1.2 modality-extension composing sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary"
+
+
+
+generated_at_utc: 2026-02-23T08:45:00Z
+generator: "main-agent Autopilot (CP-AIP-9-COMMISSION-VIEW pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6317 -> 6325 + baseline_failures.json sha256 to post-bump 3c53e7072fc197b82f59d71272c3b78bd177e877abf102a33ec793632a037f27 · heads_last_sealed UNCHANGED at last CP-AIP-8 state Commit-C fixup 1507cad9 + Code Commit-A dba4499 · this-CP heads advance at Commit-C fixup post-Commit-B · +8 canonical measured AIP v1.0 §13.2 V120b agreement-required-at-view-boundary + §13.2 V120c status-outside-closed-four-set-refused + §13.1 V119c internals-projection-refused + §13.4 V122c new-backend-computation-refused (OWNER-PINNED CONSTRAINT) + §13.3 V121a modality-leaf-only-recording-refused + §1.2 no-redeclaration scan + §13.4 NO_BACKEND_COMPUTATION_V1_POSTURE marker + Anti-drift anchor scan)"
+regeneration_reason: pre-commit-a-cp-aip-9-commission-view-ratchet-only-regen-6317-to-6325-plus-8-canonical-measured-aip-v1-0-section-13-commission-view-compose-boundary-owner-pinned-zero-new-backend-computation
+
+ratchet:
+  passed_floor: 6325
+  counts_at_baseline_passed: 6325
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 3c53e7072fc197b82f59d71272c3b78bd177e877abf102a33ec793632a037f27
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 1507cad9b1ba28c00c2b80c37cd8b7bd8f555f87
+    sealed_at_utc: 2026-02-23T08:16:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION state Commit-C fixup 1507cad9 (last sealed · pre-CP-AIP-9)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: dba4499d1a95205f8bd01c9f22ed7aa51ece8ca2
+    sealed_at_utc: 2026-02-23T08:10:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a (last sealed · pre-CP-AIP-9)"
+
+
+
+generated_at_utc: 2026-02-23T09:30:00Z
+generator: "main-agent Autopilot (CP-AIP-9-COMMISSION-VIEW + R-91-EPSILON-RETIREMENT pre-Commit-A ratchet ORCH_BOOT regen · advancing baseline_failures.json sha256 to post-retirement e72809c29a8810b1272820cfb0e6f281392650ef865912f413ca7c7d04a8b540 · passed_floor 6325 -> 6313 via env_drift_reset kind per owner ruling 2026-09-13 Option A mechanism (only sanctioned kind that admits a lower monotonic segment · SO §6.9 clause 1 scaffolding class authorizes owner-ruled scaffolding change at boundary · this application uses env_drift_reset to admit the scaffolding-retirement-induced lower baseline) · SO §6.9 clause 1 (owner ruling applied at next boundary): five wrapped baselines retire on that seal · MEASURED on-disk: 3 baseline_failures + 3 runtime drift annotations + 1 R-91 closure drift annotation = 4 wrapped items retired atomically (HONEST-GAP-FIFTH-WRAPPED-BASELINE-NOT-PRESENT · fifth appears cured at prior seal · never fabricated) · 12 scaffolding drift-annotation invariant tests marked pytest.mark.skip additively (test bodies UNCHANGED byte-identically) · net pass count 6325 -> 6313 · heads_last_sealed UNCHANGED at last CP-AIP-8 state Commit-C fixup 1507cad9 + Code Commit-A dba4499 · this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-aip-9-commission-view-plus-r91-epsilon-retirement-ratchet-regen-6325-to-6313-via-env-drift-reset-kind-scaffolding-class-per-so-6-9-clause-1
+
+ratchet:
+  passed_floor: 6313
+  counts_at_baseline_passed: 6313
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: e72809c29a8810b1272820cfb0e6f281392650ef865912f413ca7c7d04a8b540
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 1507cad9b1ba28c00c2b80c37cd8b7bd8f555f87
+    sealed_at_utc: 2026-02-23T08:16:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION state Commit-C fixup 1507cad9 (last sealed · pre-CP-AIP-9)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: dba4499d1a95205f8bd01c9f22ed7aa51ece8ca2
+    sealed_at_utc: 2026-02-23T08:10:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a (last sealed · pre-CP-AIP-9)"
+
+
 ```
 
 ---
@@ -1218,5 +1296,32 @@ heads_last_sealed:
     head: dba4499
     sealed_at_utc: 2026-02-23T08:10:00Z
     seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a · Item 5.8 of EXECUTION_ORDER.md · +7 canonical measured AIP v1.0 §11.2 + §11.3 S&R compose-boundary GREEN · §1.2 modality-extension composing sealed CP-M6-8-1 calibration + sealed §11.3 milestone + sealed CP-AIP-7 planner-boundary"
+
+
+
+
+generated_at_utc: 2026-09-23T08:40:50Z
+generator: "main-agent Autopilot (CP-AIP-9-COMMISSION-VIEW pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6317 -> 6325 + baseline_failures.json sha256 to post-bump 3c53e7072fc197b82f59d71272c3b78bd177e877abf102a33ec793632a037f27 · heads_last_sealed UNCHANGED at last CP-AIP-8 state Commit-C fixup 1507cad9 + Code Commit-A dba4499 · this-CP heads advance at Commit-C fixup post-Commit-B · +8 canonical measured AIP v1.0 §13.2 V120b agreement-required-at-view-boundary + §13.2 V120c status-outside-closed-four-set-refused + §13.1 V119c internals-projection-refused + §13.4 V122c new-backend-computation-refused (OWNER-PINNED CONSTRAINT) + §13.3 V121a modality-leaf-only-recording-refused + §1.2 no-redeclaration scan + §13.4 NO_BACKEND_COMPUTATION_V1_POSTURE marker + Anti-drift anchor scan)"
+regeneration_reason: pre-commit-a-cp-aip-9-commission-view-ratchet-only-regen-6317-to-6325-plus-8-canonical-measured-aip-v1-0-section-13-commission-view-compose-boundary-owner-pinned-zero-new-backend-computation
+
+ratchet:
+  passed_floor: 6325
+  counts_at_baseline_passed: 6325
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 3c53e7072fc197b82f59d71272c3b78bd177e877abf102a33ec793632a037f27
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 1507cad9
+    sealed_at_utc: 2026-02-23T08:16:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION state Commit-C fixup 1507cad9 (last sealed · pre-CP-AIP-9)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: dba4499
+    sealed_at_utc: 2026-02-23T08:10:00Z
+    seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a (last sealed · pre-CP-AIP-9)"
 
 
