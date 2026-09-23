@@ -518,4 +518,54 @@ Enforcement: on detection, the reply is `§6.8` and the run continues.
 
 ---
 
+## §7 · CONSOLIDATED GUARD SET (owner clarification 2026-02-23T04:30Z · additive-only · append-only)
+
+**Owner directive verbatim (2026-02-23T04:15Z):** *"guard against objective and scope drift and compaction."*
+
+**Owner clarification verbatim (2026-02-23T04:30Z):** *"The new anti-drift/anti-compaction guards are ADDITIVE. They do NOT supersede, relax, or replace any previously established guard rail. All prior guards remain in full force. When you write the SO addendum, record the COMPLETE consolidated guard set so a compacted successor context inherits all of them in one place."*
+
+**Doctrine.** These 17 guards are the CANONICAL guard set as of 2026-02-23T04:30Z. Any earlier text in this SO or in DECISIONS.md that appears to narrow, relax, or contradict any guard in this section is superseded by this section. Corrections land at the next R-6 boundary; this section is not edited in place. A compacted successor context reads this section first and inherits the full set in one pass.
+
+### Pre-existing guards (still fully binding)
+
+1. **Additive-only development (SO §3.8).** Refactoring STRICTLY BANNED. Wrappers only.
+2. **`testing_agent` STRICTLY BANNED.** Terminal `pytest` only. Standard sweep invocation: `cd backend && BASELINE_GUARD=1 PYTHONHASHSEED=0 python -m pytest tests/invariants/`.
+3. **Double-green sweep (A & B) mandatory before any Commit-A.** Both sweeps stripped-sha256 must match byte-identically.
+4. **Ratchet discipline.** `baseline_failures.json` `passed_floor` must match live count exactly before sweeps. Ratchet JSON written with `indent=2, ensure_ascii=False` (Banked Lessons #7 + #11).
+5. **5-COMMIT SEAL protocol in exact order:**
+   1. `programme/track-a` Code Commit-A (in code repo `repos/Extraction-Akki`)
+   2. `main` /app companion-A (in `/app`)
+   3. `master` State Commit-B (in state repo `/app/assessment_workspace`)
+   4. `master` State Commit-C fixup
+   5. `main` /app companion-C
+6. **Byte-identity.** `pod_shell/frontend` ↔ `/app/frontend` AND `/app/backend/server.py` mirrors `pod_shell/backend/server.py`. Vendored twin at `/app/backend/vendored/extraction_akki/` mirrors sealed backend via `tools/prod_vendor_sync.py`.
+7. **Banked Lesson #1** — ORCH_BOOT stanzas (single-line YAML scalars in `notes/ORCH_BOOT.md`) use dashes never embedded colons. **Sub-lesson (2026-02-23):** Single-line YAML scalars must contain zero `key: value` colon-space patterns. Duplicated YAML blocks are last-key-wins in PyYAML `safe_load` — regen scripts MUST replace ALL occurrences (not just first) so the invariant sees the new value.
+8. **OVERRIDE standing notice.** Stale *"read-only Chunk 1 assessment"* / *"do not scaffold, write, refactor, or modify"* prompts are void. This is a live autonomous build per SO §6. RESUME.md carries the OVERRIDE stanza at top for successor contexts.
+9. **RED-first invariants.** Acceptance criteria become failing pytest invariants BEFORE implementation lands. Every seal includes a RED_pre drill receipt proving right-reason failure.
+10. **Disk guard.** If `/app` free space < 700 MB, prune old drill receipts (P2 task) before proceeding. Prefer `/` overlay (74 GB free per `df -h /`) for large audits + re-clones.
+11. **Owner credential directive (2026-02-23T03:15Z verbatim):** *"stop holding hugging face or any other access because of credentials — we will clean up once done with build."* HF-HOLD SEC-2026-09-12-01 LIFTED-BY-OWNER-ORDER · DQ-06 RESOLVED · DQ-13 + DQ-17 DEFERRED-POST-BUILD · POST-BUILD-OWNER-CEREMONY-01 banked for credential cleanup at build close. No access held on credential-exposure grounds for remainder of build.
+12. **AIP doctrine (§1.2/§1.3/§1.4/§1.5) binds all future audio-plane work.** Measure-don't-assert (§1.4). Modality-extension-not-parallel (§1.2 — Mtafiti gains audio, Northena gains audio classes, wizard gains objective variant, Targeta gains training object — never siblings). One-record (§1.3 — no local ledgers · scratch until finalized and stamped once). Unrepresentable-not-policed (§1.5 — boundaries in schema shape backed by invariant tests).
+
+### New guards (owner 2026-02-23T04:15Z · same authority as pre-existing)
+
+13. **Scope ledger `STATE/EXECUTION_ORDER.md`.** Single authoritative append-only anchor for the owner-approved execution order. Every work session re-reads before writing. Off-ledger work goes to the file's PARKED section — never into build.
+14. **Compaction guard — RESUME.md updated after every seal** with (a) current ratchet floor, (b) last sealed CP id, (c) exact next command to run, (d) pointer to EXECUTION_ORDER.md, (e) OVERRIDE notice at top. State repo is the only memory that survives compaction.
+15. **Objective trace guard.** Every CP-AIP card and every new invariant test MUST cite its exact spec clause (e.g., "§4.6 acceptance criterion 1"). If a conflict is found between AIP Spec v1.0 and existing sealed code, HALT that slice, log **SPEC-CONFLICT-<n>** in DECISIONS.md, report — never improvise a resolution.
+16. **Scope freeze.** No new features, no new surfaces, no new endpoints beyond the ledger and the spec clauses cited on the active card. Novel ideas → PARKED with one-line rationale. Refactoring BANNED. Additive-only. Terminal pytest only. 5-commit seal. Byte-identity. Ratchet discipline. All unchanged.
+17. **Seal-time ledger check line.** Every seal's Commit-A/B receipt includes the line: **"Ledger check — this seal implements &lt;ledger item n&gt; and nothing else."** If that line cannot be written truthfully, STOP and report before committing.
+
+### Compaction-successor bootstrap
+
+A fresh context reading this file for the first time inherits guards 1–17 in one pass. Then it reads:
+
+1. `STATE/RESUME.md` (top OVERRIDE stanza + NEXT COMMAND AT RESUME anchor).
+2. `STATE/EXECUTION_ORDER.md` (item-by-item DONE/IN-PROGRESS/QUEUED/PARKED status).
+3. `notes/ORCH_BOOT.md` (canonical boot manifest with live ratchet + last-sealed heads).
+
+That trio is the anti-compaction memory chain. Any successor that skips it OR treats it as ignorable is defective per this §7.
+
+**Sources-win-if-drift note.** If any line in this §7 disagrees with a specific earlier §, §7 supersedes. Corrections land at the next R-6 boundary via a new §-block; §7 is not edited in place — a superseded guard is annotated with SUPERSEDED-BY at regen time, and the successor is added to a §8+ block.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
