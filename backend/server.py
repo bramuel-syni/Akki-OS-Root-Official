@@ -487,6 +487,16 @@ app.include_router(portal_census_response_required_router.router)
 from routers import portal_census_autonomy_producer as portal_census_autonomy_producer_router  # noqa: E402
 app.include_router(portal_census_autonomy_producer_router.router)
 
+# PHASE 4 (c-vi) · CP-SKILLS-LAYER-SERIES-CLOSE (Slice 5)
+# additive router mount. Exposes the DAP buildskill JSON surface that
+# reads sealed A18.2 persistence via its public read_all() callable ONLY.
+# Owner boundary directive verbatim (2026-02-23 · slice open):
+#   "the buildskill surface must show real provisioning state or
+#    honest-gap, and the boundary report must include the tester
+#    walkthrough — the concrete steps a human takes and what they see."
+from routers import dap_buildskill as dap_buildskill_router  # noqa: E402
+app.include_router(dap_buildskill_router.router)  # router path carries /api/dap/buildskill/provisioning-records
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}

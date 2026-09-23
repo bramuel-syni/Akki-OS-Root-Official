@@ -81,6 +81,11 @@ import WorkCommission from "@/pages/os/WorkCommission";
 // Sub-slice 4h · 2 DAP LATEST view classes (10+11) as honest-gap surfaces per 4g deferral resolution.
 import AdminApprovalsLedger from "@/pages/dap/AdminApprovalsLedger";
 import AdminWatchTrailBridge from "@/pages/dap/AdminWatchTrailBridge";
+// PHASE 4 (c-vi) · CP-SKILLS-LAYER-SERIES-CLOSE (Slice 5) · additive
+// import alias avoids collision with existing `BuildSkill` at pages/os/
+// (distinct NAV entry at /os/build/buildskill). This DAP surface lives
+// at /dap/buildskill per owner directive.
+import DapBuildSkill from "@/pages/dap/BuildSkill";
 
 // ---------------------------------------------------------------------------
 // v2 OS Prototype Shell · Design-of-Record Constants
@@ -1335,6 +1340,8 @@ function App() {
           {/* Sub-slice 4h · 2 DAP LATEST view classes (view 10 + 11) — reachable at top-level /dap/... */}
           <Route path="/dap/approvals-ledger" element={<AdminApprovalsLedger />} />
           <Route path="/dap/watch-trail-bridge" element={<AdminWatchTrailBridge />} />
+          {/* PHASE 4 (c-vi) · CP-SKILLS-LAYER-SERIES-CLOSE · Slice 5 · DAP buildskill surface */}
+          <Route path="/dap/buildskill" element={<DapBuildSkill />} />
 
           {/* PHASE 4 (a) · CP-COMMISSION-WIZARD-LIVE · Canon-5-§14 Shaping-Wizard live at workstudio.commission */}
           <Route path="/os/work/commission" element={<WorkCommission />} />
