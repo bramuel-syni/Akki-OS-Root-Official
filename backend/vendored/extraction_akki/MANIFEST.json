@@ -1,5 +1,5 @@
 {
-  "file_count": 1036,
+  "file_count": 1037,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -3301,6 +3301,10 @@
       "sha256": "1dcdcdf92f032c2c4682c8406eac1505c5de6b98de699d0da89878d2e96fa300",
       "size_bytes": 5806
     },
+    "services/rms_station_language_axis.py": {
+      "sha256": "d86f04cef615b67aaeccb94452d5947e100a7d851c9a6214f7d6f53ad63c7a47",
+      "size_bytes": 17847
+    },
     "services/rules_service/__init__.py": {
       "sha256": "76aa7a981e2060689f7a11e73bf7b1b6eeb954e81e97b470c877f5d8f808f881",
       "size_bytes": 135
@@ -4146,7 +4150,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-23T02:22:15Z",
+  "generated_at_utc": "2026-09-23T02:58:26Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4160,7 +4164,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "85ec187883f40a0b208439d3b5e2f63c1cd2f7fb8e2eeeb93a85270a80cb82f1",
+  "structural_sha256": "16cb783cc232b25e7b51fa77d226eb4d0f66a8ee5c76414b5fba507bd78e7719",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
