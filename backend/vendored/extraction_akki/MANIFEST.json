@@ -1,5 +1,5 @@
 {
-  "file_count": 1030,
+  "file_count": 1032,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -304,6 +304,10 @@
     "contracts/signal_ring.py": {
       "sha256": "bdd0608eb24af88a7a9b41f054365780573d6ec7e10f2542dc2dbb6e87a56c0b",
       "size_bytes": 2905
+    },
+    "contracts/skill_call_governance_envelope_v0.py": {
+      "sha256": "b2bd394a54c9a5048ccbef776d057f629837ed4af8bec330578ebec9633e37ad",
+      "size_bytes": 5004
     },
     "contracts/skill_file_provenance_v0.py": {
       "sha256": "4cd76c126dffae3d16d5fe4e3284056306ef81f61c51b7fb538cb0dbc5c8a38d",
@@ -3493,6 +3497,10 @@
       "sha256": "6b9db3306ec00918c7a4e38559ce07608bafa26bab65b8067ec0b0f52b6fd6e8",
       "size_bytes": 10386
     },
+    "services/skill_call_scope_resolver.py": {
+      "sha256": "1b4b92635dc18a760189443a201eaec952efdbcae75bb924e50bc65a994367d9",
+      "size_bytes": 5167
+    },
     "services/skill_files/__init__.py": {
       "sha256": "dc70af65f6ab769d698c504d2d03adadf6b96ac4e237a43b905667100f1f1089",
       "size_bytes": 665
@@ -4122,7 +4130,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T23:38:26Z",
+  "generated_at_utc": "2026-09-22T23:57:54Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4136,7 +4144,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "252c2ebbe2941e3c3c373320dde26907c3a5c258082918980e1eb3f402eaa8df",
+  "structural_sha256": "141cac1c27e7df8bf3d1570478f91e6a19ca592077f75082832df3a1f1f4e59e",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
