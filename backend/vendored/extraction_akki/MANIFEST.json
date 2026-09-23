@@ -1,5 +1,5 @@
 {
-  "file_count": 1060,
+  "file_count": 1061,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -4240,9 +4240,13 @@
     "services/wpw/tier2_report.py": {
       "sha256": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
       "size_bytes": 19816
+    },
+    "services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py": {
+      "sha256": "b043f65c98275af2a9447d9558e8bc33df5c03058a08316cf8a0b5533fcecd1f",
+      "size_bytes": 13907
     }
   },
-  "generated_at_utc": "2026-09-23T11:29:21Z",
+  "generated_at_utc": "2026-09-23T12:20:00Z",
   "source": {
     "included_top_dirs": [
       "services",

@@ -1239,9 +1239,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-10-TRAINING-RUNS Code Commit-A 8ef25c1 on programme/track-a · Item 5.10 of EXECUTION_ORDER.md · AIP v1.0 §11.6 P189a + §11.6 P190a-e + §11.5 P185a + §11.5 P187 + Ruling (b) AKKI-RUNS-IT verbatim + §1.2 no-redeclaration + §1.4 heavy-fine-tune-deferred-posture · training_run_boundary_v1 § 1.2 modality-extension · +8 canonical measured (6313 -> 6321) · double-green stripped_sha256 92d09b7d7f27897fdc7827bbcde23f584cdcb46c3f8be56f4cb23e150ecc7378 · Ruling (b) AKKI-RUNS-IT verbatim honored — E1 wires seam then steps back · pod NEVER training host or data path · heavy fine-tune DEFERRED to commissioned-job with measured cost receipt)"
 
 
-```
+generated_at_utc: 2026-02-23T12:20:00Z
+generator: "main-agent Autopilot (CP-SO-6.9-LID-WAVE pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6321 -> 6332 + baseline_failures.json sha256 to post-bump 468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314 · heads_last_sealed UNCHANGED at last CP-AIP-10 state Commit-B 5780899b + Code Commit-A 8ef25c1 · this-CP heads advance at Commit-C fixup post-Commit-B · +11 canonical measured SO §6.9 LID RATIFICATION §1-§9 verbatim (Whisper-LID MIT + VoxLingua107 Apache-2.0 registration acts + OverlayLidDetection_v1 marker structural invariant + regime default pre-admission + DO_NOT_FLOW_INTO_COUNTED_MEASURE Final marker + admission gate DEFAULT ≥ 0.90 pending + regime promotion requires owner receipted act canon 8 §4 W2 + NOTHING_RELABELLED Final marker + HF pull wrapper anti-token + TENANT_LABELS_PENDING honest-gap English/Sheng/code-switched + 12 languages RESOLVED via google-transcripts/ + §1.2 no-redeclaration) · lid_wave_overlay_and_admission_v1 as §1.2 modality-extension composing sealed CP-M6-1-1 LanguageIDBackend at services/audio_plane_v1/language_identifier.py · Sealed carriers UNCHANGED per SO §3.8 additive-only · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23)"
+regeneration_reason: pre-commit-a-cp-so-6-9-lid-wave-ratchet-only-regen-6321-to-6332-plus-11-canonical-measured-so-6-9-lid-ratification-verbatim
 
----
+ratchet:
+  passed_floor: 6332
+  counts_at_baseline_passed: 6332
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 468340729cd16eb9f544453f4d18e33a6069cce79b1ec3aa638975daa20ce314
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 5780899b997ae1cd3ef81691fb9297146fbaa365
+    sealed_at_utc: 2026-02-23T11:55:00Z
+    seal_kind: "CP-AIP-10-TRAINING-RUNS state Commit-B 5780899b (last sealed · pre-CP-SO-6.9-LID-WAVE · state mini-bank d7319fee follows and is banked at CP-SO-6.9-LID-WAVE Commit-C fixup per prior-seal pattern)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 8ef25c10ba28fbf09255396281a619a4be819612
+    sealed_at_utc: 2026-02-23T11:47:00Z
+    seal_kind: "CP-AIP-10-TRAINING-RUNS Code Commit-A 8ef25c1 (last sealed · pre-CP-SO-6.9-LID-WAVE)"
+
+
+```
 
 ## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)
 
