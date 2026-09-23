@@ -1328,13 +1328,13 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 6256dbf7774c6885a6044502492c34ce33a75049
+    head: 70e39cf10426c49276867ad8265fc1815d56f6dd
     sealed_at_utc: 2026-02-23T13:25:00Z
     seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS state Commit-B 6256dbf7 (banks Code Commit-A 9e3ca45a + /app companion 2c88897f3 + Item 5.11.b of EXECUTION_ORDER.md · SO §6.9 amendment §6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · pilot_licence_seeds_v1 §1.2 modality-extension of sealed CP-ENTITLEMENT-BUILD-WAVE R-82 · Fold-in card-pin fix for CP-SO-6.9-LID-WAVE)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 9e3ca45a9c6382732f52970966df800311eada17
+    head: b9eb36d99814e6c68a4a5ee2370e9021971e31b2
     sealed_at_utc: 2026-02-23T13:15:00Z
     seal_kind: "CP-ENT-16-PILOT-LICENCE-SEEDS Code Commit-A 9e3ca45a · +8 canonical measured (6332 -> 6340) · double-green stripped_sha256 1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5"
 

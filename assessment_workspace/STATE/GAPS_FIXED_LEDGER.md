@@ -356,3 +356,74 @@
 - **Sealed carriers untouched** — additive-only per SO §3.8.
 - **Ratchet:** `6332` → `6340` · baseline_failures.json sha256 `129abd82ae739afb459a939d20f38c22d45eae27244339b3b56446b65d3f625c` · double-green stripped_sha256 `1d5895556ccc3c5c80ad25b3d511ed8563d191fa62c570bc43cf7753425ed3f5`.
 - **Continuity:** code bundle sha256 `8ab58aa418413a08e8b37dc2492dca70e99cadab0e0ad815f0552a59d5ed186f` @ `programme/track-a` `9e3ca45a` (state bundle pin pending).
+
+---
+
+## CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY · Item 5.11.c · SEALED 2026-02-23T~14:05:00Z
+
+**Owner anchor (SO §6.9 amendment §6 item 8 verbatim):** *"The census proceeds in its three waves — complete the walk with the unmeasured register, the full B3 dimension set with the defensibility matrix and sensitivity classification, then the perception pathway — and language labels from item 4 enter it as overlay from the first run."*
+
+### 10. Three-wave ordered tuple with LID overlay from first run
+
+- **Kind:** invariant seat — SO §6.9 amendment §6 item 8 verbatim binding as ordered 3-tuple `("unmeasured_register", "b3_dimension_set", "perception_pathway")` with LID overlay entering at Wave 3.
+- **Protected objective:** the census walk executes in owner-verbatim order; overlay labels enter only through sealed CP-SO-6.9-LID-WAVE registrations.
+- **Additive fix:** `CENSUS_THREE_WAVES` Final tuple + `UnmeasuredRegisterWave_v1` (frozen · `dimensions_measured=False` per B5.4 shown-not-counted) + `B3DimensionSetWave_v1` (frozen · `defensibility_matrix_rule_ref` + `sensitivity_class` + 3 B3 dims) + `PerceptionPathwayWave_v1` (frozen · `lid_overlay_source_registration` + `lid_overlay_marker` Literal `INFERRED`/`unmeasured`).
+
+### 11. Wave-out-of-order refused at boundary
+
+- **Kind:** structural sequencing enforcement.
+- **What would trip:** opening Wave N with `prior_wave_completed != CENSUS_THREE_WAVES[N-1]`.
+- **Protected objective:** the walk cannot skip a wave; a missed Wave 1 cannot proceed to Wave 2/3 (the census "proceeds in its three waves" verbatim).
+- **Additive fix:** `open_wave(name, prior_wave_completed)` raises `CensusWaveOutOfOrderError` when the prior-wave contract is violated.
+
+### 12. Unknown wave name refused
+
+- **Kind:** Literal-closed 3-tuple set-membership guard.
+- **Additive fix:** `open_wave` raises `CensusWaveNameRefused` when `name not in CENSUS_THREE_WAVES`.
+
+### 13. LID overlay from first run: only sealed registrations accepted
+
+- **Kind:** identity-check against sealed singletons.
+- **What would trip:** a shape-equivalent fabricated `LidModelRegistration_v1` passed as overlay source.
+- **Protected objective:** SO §6.9 LID RATIFICATION verbatim — only Whisper-LID (MIT) or VoxLingua107 (Apache-2.0) sealed registration singletons carry the overlay; fabricated shapes never enter.
+- **Additive fix:** `lid_overlay_source_is_sealed_registration(source)` uses `is`-identity against `WHISPER_LID_REGISTRATION` / `VOXLINGUA107_REGISTRATION`.
+
+### 14. LID overlay marker structural preservation
+
+- **Kind:** B5.4 shown-not-counted line preserved by construction.
+- **Additive fix:** `PerceptionPathwayWave_v1.lid_overlay_marker` typed `Literal["INFERRED", "unmeasured"]` — no `post-admission` label constructible at Wave 3 exit; regime promotion is a receipted act landed in the sealed LID module.
+
+### 15. Ruling (b) AKKI-RUNS-IT verbatim at registration seam
+
+- **Kind:** pod-never-data-path structural refusal at seam.
+- **What would trip:** `engine_response_queue_ref` or `data_source_adapter_ref` starting with `pod://*` or `/app/*`.
+- **Protected objective:** E1 wires the seam INTO Census Autonomy Service; pod is never data path (owner Ruling (b) verbatim 2026-02-23).
+- **Additive fix:** `register_census_three_waves_as_census_autonomy_job(engine_response_queue_ref, data_source_adapter_ref)` raises `PodIsNeverDataPathError` on either forbidden prefix.
+
+### 16. LID_OVERLAY_ENTERS_FROM_FIRST_RUN_POSTURE Final marker
+
+- **Kind:** posture-marker string presence guarantee (SO §2.5 verbatim-anchor pattern).
+- **Additive fix:** `LID_OVERLAY_ENTERS_FROM_FIRST_RUN_POSTURE` Final str carries SO §6.9 amendment §6 item 8 verbatim.
+
+### 17. §1.2 no-redeclaration of sealed CP-SO-6.9-LID-WAVE symbols
+
+- **Kind:** sealed-carrier redeclaration guard.
+- **Additive fix:** AST scan test rejects `LidModelRegistration_v1`, `OverlayLidDetection_v1`, `WHISPER_LID_REGISTRATION`, `VOXLINGUA107_REGISTRATION`, `CharacterRegister`, `CharacterEntry` shadow.
+
+### 18. UnmeasuredRegisterWave_v1 dimensions_measured=False (B5.4)
+
+- **Kind:** B5.4 shown-not-counted enforcement.
+- **Protected objective:** the unmeasured register does not seed downstream counted measures; only Wave 2's B3-dim measurement + defensibility class can.
+- **Additive fix:** `UnmeasuredRegisterWave_v1` frozen with `dimensions_measured: bool` field pinned False at Wave 1 construction.
+
+### 19. B3DimensionSetWave_v1 defensibility matrix + sensitivity carrier
+
+- **Kind:** owner-verbatim required-fields on Wave 2 frozen carrier.
+- **Additive fix:** `B3DimensionSetWave_v1` frozen with required fields `b3_attachment_markedness` + `b3_genre_form` + `b3_corroboration` + `defensibility_matrix_rule_ref` + `sensitivity_class` — matches Canon 4 §5.1 (detection layer + verdict layer) + Canon 7 §3 (sensitivity conservative default).
+
+### Seal-boundary summary
+
+- **10 gaps closed** additively at CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY boundary (all RED-first with authentic ImportError → GREEN → double-green byte-identical).
+- **Sealed carriers untouched** — additive-only per SO §3.8 (CP-SO-6.9-LID-WAVE lid_wave_overlay_and_admission_v1.py unchanged).
+- **Ratchet:** `6340` → `6350` · baseline_failures.json sha256 `e7eb57d0ba2b213b2f9b4361c6a45a6d51e39b07bbd94139314741dfaac80998` · double-green stripped_sha256 `c10b70efc5ab8c6086e83f3fb2f862bdb61ece2977bfee3684d882239c35ca88`.
+

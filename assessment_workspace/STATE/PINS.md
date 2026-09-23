@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T125501Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T132442Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1530,7 +1530,18 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 
 **Code bundle:** `continuity_bundles/code_20260923T125822Z_CP_ENT_16.bundle` · 19,271,374 bytes (18.4 MiB) · sha256 `8ab58aa418413a08e8b37dc2492dca70e99cadab0e0ad815f0552a59d5ed186f` @ `programme/track-a` `9e3ca45a9c6382732f52970966df800311eada17`.
 
-**State bundle:** *(pending post-Commit-C-fixup)*.
+**State bundle:** `continuity_bundles/state_20260923T130159Z_CP_ENT_16.bundle` · 217,387,985 bytes (207.3 MiB) · sha256 `8d7f1c011320ef24c16dd4284b84c2dd0cce15fa1f1809e5734e8944fe229a6f` @ `master` `c1133373d4a9dbef2d4fd35aa4ab7f811d335c54`.
+
+### CP-ENT-16-PILOT-LICENCE-SEEDS 5-commit seal chain (FULL SHA TABLE · POST-MINI-BANK)
+
+| # | Commit | SHA | Branch |
+|---|---|---|---|
+| 1 | Code Commit-A | `9e3ca45a9c6382732f52970966df800311eada17` | `programme/track-a` |
+| 2 | /app companion A | `2c88897f357072696b08ed4236ef80bcf4db9a84` | `main` |
+| 3 | State Commit-B | `6256dbf7774c6885a6044502492c34ce33a75049` | `master` |
+| 4 | State Commit-C fixup | `c1133373d4a9dbef2d4fd35aa4ab7f811d335c54` | `master` |
+| 5 | /app companion C | `f38ee7d224c85e043e3193bba0c882fe1c8d755a` | `main` |
+| 6 | State mini-bank | *(this commit)* | `master` |
 
 **3-repo HEADs at seal boundary:**
 - Code: `9e3ca45a9c6382732f52970966df800311eada17` (Code-A)
@@ -1551,4 +1562,39 @@ Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_co
 `CP-ENT-16-PILOT-LICENCE-SEEDS seal 5-commit chain IN FLIGHT · SO §6.9 amendment §6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · pilot_licence_seeds_v1 §1.2 modality-extension composing sealed CP-ENTITLEMENT-BUILD-WAVE (R-82) chokepoint_resolver.py · 8 RED-first pins ALL GREEN · code bundle sha256 8ab58aa418413a08e8b37dc2492dca70e99cadab0e0ad815f0552a59d5ed186f (18.4 MiB @ programme/track-a 9e3ca45a) · Ratchet 6332 → 6340 · SO §6.9(5) AMENDED continuity 4th application · Additive-only per SO §3.8 · Fold-in orthogonal card-pin drift fix banked at same boundary · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
 
 <!-- CP-ENT-16-PILOT-LICENCE-SEEDS-PINS-2026-02-23 END -->
+
+<!-- CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY-PINS-2026-02-23 BEGIN -->
+## CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY · Item 5.11.c · SEALED 2026-02-23T~14:05:00Z
+
+**Seal ID:** CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY-20260223
+
+**Owner anchor (SO §6.9 amendment §6 item 8 verbatim):**
+
+> "The census proceeds in its three waves — complete the walk with the unmeasured register, the full B3 dimension set with the defensibility matrix and sensitivity classification, then the perception pathway — and language labels from item 4 enter it as overlay from the first run."
+
+**New additive module:**
+- `backend/services/audio_plane_v1/census_three_waves_v1.py` (~230 lines).
+
+**Test module:**
+- `backend/tests/invariants/test_cp_census_three_waves_with_lid_overlay.py` (10 pins).
+
+**Ratchet:** `6340 → 6350` (+10 canonical measured) · `baseline_failures.json` sha256 post-bump `e7eb57d0ba2b213b2f9b4361c6a45a6d51e39b07bbd94139314741dfaac80998` · `notes/ORCH_BOOT.md` notes+audit byte-identical sha256 `20770a715ba63df78ca3d3eb18cac9984889fb9b4eff1678b4d30770a222cb09`.
+
+**Double-green byte-identical stripped_sha256:** `c10b70efc5ab8c6086e83f3fb2f862bdb61ece2977bfee3684d882239c35ca88` IDENTICAL sweep_A + sweep_B (both 6359 passed / 13 skipped / 0 failed / 520 warnings / ~199s each).
+
+**Objective card:** `STATE/OBJECTIVES/CP_CENSUS_THREE_WAVES_20260223.md` (card_sha256 `ee0dad6f4e1f766b02e8a4a79df0e3272a5a2ee65399886f4b74405c64bbc7f9`).
+
+**Comprehensive receipt:** `phase0/cp_census_three_waves_20260223/receipt.md`.
+
+**3-repo HEADs at seal boundary (Commit-A + companion-A):**
+- Code: `b9eb36d99814e6c68a4a5ee2370e9021971e31b2` (Code-A `programme/track-a`).
+- State: `52a70308` (CP-ENT-16 mini-bank · pre-State-B tip).
+- /app: `62ea504e` (/app-A companion `main`).
+
+**REPORT-AND-CONTINUE receipt line (this-seal · state bundle pending post-Commit-C-fixup):**
+
+`CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY seal 5-commit chain IN FLIGHT · SO §6.9 amendment §6 item 8 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · census_three_waves_v1 §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE lid_wave_overlay_and_admission_v1 · 10 RED-first pins ALL GREEN · Ratchet 6340 → 6350 · Additive-only per SO §3.8 · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
+
+<!-- CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY-PINS-2026-02-23 END -->
+
 

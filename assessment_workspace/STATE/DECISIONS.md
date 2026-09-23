@@ -29004,3 +29004,20 @@ Every refusal / hold / gate written from this desk from this drop forward carrie
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-CENSUS-THREE-WAVES-WITH-LID-OVERLAY · State Commit-C fixup · Item 5.11.c · 2026-02-23T~14:10:00Z
+
+**R-6 boundary regen advancing `heads_last_sealed` in `notes/ORCH_BOOT.md`:**
+- `state_repo.head`: `6256dbf7774c6885a6044502492c34ce33a75049` (CP-ENT-16 State-B) → `70e39cf10426c49276867ad8265fc1815d56f6dd` (this-B).
+- `code_repo.head`: `9e3ca45a9c6382732f52970966df800311eada17` (CP-ENT-16 Code-A) → `b9eb36d99814e6c68a4a5ee2370e9021971e31b2` (this-Code-A).
+
+**State mini-bank rows 1-3 (5-commit-seal chain so far):**
+- Row 1 (Code Commit-A): `b9eb36d99814e6c68a4a5ee2370e9021971e31b2` on programme/track-a · 2026-02-23T~14:00Z.
+- Row 2 (/app companion-A): `62ea504e` on main · 2026-02-23T~14:00Z.
+- Row 3 (State Commit-B): `70e39cf10426c49276867ad8265fc1815d56f6dd` on master · 2026-02-23T~14:05Z.
+
+**Ledger check** — this fixup implements Item 5.11.c R-6 boundary regen + state mini-bank rows 1-3 and nothing else. Additive-only.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
