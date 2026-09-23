@@ -3,7 +3,7 @@ card_id: CP_TRACK_4_AUTONOMY_WIRING_20260223
 title: Track-4 autonomy wiring — register LID pass + corpus census + training seam as Census Autonomy Service jobs; autonomy engine run-log receipt = EXIT EVIDENCE · Item 5.11.e
 ratified_at_utc: 2026-02-23T14:50:00Z
 ratified_by: Owner drop verbatim 2026-02-23 SO §6.9 amendment §6 item 6 — 'Register LID pass + corpus census + training seam as Census Autonomy Service jobs. Verification of autonomy pickup (receipt from the autonomy engine's run log showing the job ran) is the EXIT EVIDENCE for each such wiring seal. E1 wires the seams INTO the Census Autonomy Service so Akki runs them autonomously — then STEPS BACK.' + Ruling (b) AKKI-RUNS-IT verbatim 2026-02-23 (E1's pod is NEVER the training host and NEVER a data path).
-card_sha256: 21799936eafffe2548be7dc2236f3a19ab43b7850b34560f2c32f134f59dcca9
+card_sha256: 7f880346971520de65a6621041631c9bbe54df8862da2878ebd1b44c52dd26b7
 milestone_status: OPEN (Item 5.11.e · opens immediately post CP-TENANT-SEPARATION seal · 5th item of Item 5.11 wave · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE)
 ---
 
@@ -73,6 +73,19 @@ Exit-evidence generator: `/app/assessment_workspace/tools/generate_track_4_auton
 
 - Machine-readable per-job JSON receipts at `backend/phase0/track_4_autonomy_engine_run_receipts/20260923T144803Z_{lid_pass,census_three_waves,training_runs}_engine_run_receipt.json` — each carries `engine_live_status=COMPLETE`, `wiring_receipt_status=completed`, `persisted_pending_job_path` + `persisted_result_or_refusal_path` pointing at LIVE engine on-disk state.
 - Composite seal-level exit-evidence receipt at `backend/phase0/track_4_autonomy_engine_run_receipts/20260923T144803Z_seal_level_composite_exit_evidence.json` composing all 3 per-job receipts + the 3 posture markers + owner verbatim exit clause.
+
+## STOP
+
+Stop at owner ratification of this card. If Owner rules SPEC-CONFLICT-<n>, HALT and log it in DECISIONS.md as SPEC-CONFLICT with the conflict text verbatim + which sealed carrier / owner clause is violated + proposed resolution. Owner ruling required to unblock. Otherwise (no conflict), REPORT-AND-CONTINUE into Item 5.11.f (CP-AIP-ASSIST-CENSUS · six binding conditions verbatim) per RUN-TO-COMPLETION mandate 2026-02-23.
+
+## ANCHORS
+
+- **Owner canon (SO §6.9 amendment §6 item 6 verbatim 2026-02-23):** 'Register LID pass + corpus census + training seam as Census Autonomy Service jobs. Verification of autonomy pickup (receipt from the autonomy engine's run log showing the job ran) is the EXIT EVIDENCE for each such wiring seal. E1 wires the seams INTO the Census Autonomy Service so Akki runs them autonomously — then STEPS BACK. E1's pod is NEVER the training host and NEVER a data path.'
+- **Ruling (b) AKKI-RUNS-IT verbatim 2026-02-23:** 'E1 wires the seam INTO the Census Autonomy Service. Pod is never a data path.'
+- **Sealed carriers extended (unchanged this seal per SO §3.8):** `services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py` (CP-SO-6.9-LID-WAVE Item 5.11.a) · `services/audio_plane_v1/census_three_waves_v1.py` (CP-CENSUS-THREE-WAVES Item 5.11.c) · `services/audio_plane_v1/training_run_boundary_v1.py` (CP-AIP-10-TRAINING-RUNS Item 5.10) · `services/census_autonomy/engine.py` (R-106 sealed engine).
+- **Standing Orders:** SO §3 RED-first · SO §3.8 additive-only · SO §6.2 objective-card + hash-pin · SO §6.4 same-seal orthogonal fold-in gap-closure · SO §6.9 desk discipline (markers-over-refusal + one-sentence protected-objective on every refusal/hold/gate) · SO §6.9(5) AMENDED bundle-based continuity · SO §7 17-guard consolidated set.
+- **Objective card hash-pin protocol:** `card_sha256` computed over card text with the `card_sha256:` frontmatter line removed (line-removed convention · pin protocol consistent with prior seals CP-TENANT-SEPARATION + CP-CENSUS-THREE-WAVES).
+- **Ledger check:** this card ratifies `CP-TRACK-4-AUTONOMY-WIRING` and nothing else. Additive-only per SO §3.8.
 
 ## RATIFICATION
 

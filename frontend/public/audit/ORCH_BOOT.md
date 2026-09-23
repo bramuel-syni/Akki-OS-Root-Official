@@ -1353,13 +1353,13 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 45868f313920d64a2df6b21683abf19d34cbdaa2
+    head: 565130d2e8b3c6167826cc25d824ea24621abda7
     sealed_at_utc: 2026-02-23T15:10:00Z
     seal_kind: "CP-TRACK-4-AUTONOMY-WIRING state Commit-B (this-B · banks Code Commit-A b49f7e9066b93ed3c89f370d68b0757400dfc241 + /app companion 313300d9f + Item 5.11.e of EXECUTION_ORDER.md · SO §6.9 amendment §6 item 6 verbatim + Ruling (b) AKKI-RUNS-IT verbatim · TRACK_4_JOB_KINDS Literal-closed 3-tuple + Track4LidPassRegistration_v1 + Track4AllJobsRegistered_v1 + AutonomyEngineRunReceipt_v1 + Track4BoundaryRefused base + 3 refusal subclasses + 3 Final posture markers + register_lid_pass_as_census_autonomy_job + register_all_three_track_4_jobs + emit_autonomy_engine_run_receipt · §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE + CP-CENSUS-THREE-WAVES + CP-AIP-10-TRAINING-RUNS · LIVE-ENGINE EXIT EVIDENCE landed same-seal: 3 machine-readable JSON per-job receipts + 1 composite seal-level exit-evidence receipt from LIVE Census Autonomy engine end-to-end runs · state bundle emission pending post-this-C-fixup per SO §6.9(5) AMENDED 7th application)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: b49f7e9066b93ed3c89f370d68b0757400dfc241
+    head: 424e2184d983b479c61ba9b49096fdfad9c7c3f1
     sealed_at_utc: 2026-02-23T15:03:00Z
     seal_kind: "CP-TRACK-4-AUTONOMY-WIRING Code Commit-A b49f7e9 · +10 canonical measured own new pins · ratchet 6369 -> 6379 · Track-4 boundary composes 3 sealed registration seats (LID pass + census-three-waves + training-runs) + emits AutonomyEngineRunReceipt_v1 per job; Ruling (b) AKKI-RUNS-IT verbatim honored — pod NEVER data path (pod://* + /app/* refused at every registration seat via PodIsNeverDataPathAtTrack4Error) · double-green stripped_sha256 b039979de0feb2e5de97600e52c65a82f76b351468f5fb6077166bfcb8981f06 IDENTICAL both sweeps 6379 passed"
 

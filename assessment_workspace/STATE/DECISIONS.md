@@ -29184,3 +29184,88 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+# CP-AIP-ASSIST-CENSUS-20260223 · State Commit-B opening · 2026-02-23T~15:50Z · Item 5.11.f of EXECUTION_ORDER.md · SO §6.9 amendment + owner drop `assist_cards_preapproved_and_run_to_completion_20260223/DROP.md` verbatim + Ruling (b) AKKI-RUNS-IT verbatim
+
+## Owner canon anchor verbatim
+
+**SO §6.9 amendment + owner drop `STATE/OWNER_DROPS/assist_cards_preapproved_and_run_to_completion_20260223/DROP.md` (2026-02-23):**
+
+Six binding conditions verbatim as MUST-DO/MUST-NOT test IDs:
+
+1. **No path to any decision** (negative-scan import isolation).
+2. **Confirmed turns only banked** (A5.16 receipted provenance).
+3. **Census assistant read-only against Registry** (B5.1 byte-identical census with/without assistant).
+4. **Training proposals freeze at commission; MOAC owner-set only.**
+5. **Content generated · chat surface · anchored · gated** (R-32/A5.15/CON-6) — §6.9 markers over refusal where a marker makes the state honest.
+6. **No learning from dialogue** (L-4/L-5 only admission path).
+
+Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry.
+
+**Ruling (b) AKKI-RUNS-IT verbatim (2026-02-23):**
+
+> "E1 wires the seam INTO the Census Autonomy Service. Pod is never a
+>  data path."
+
+## Ratchet advance
+
+- 6379 → 6389 (+10 canonical measured own new pins).
+- baseline_failures.json sha256 post-bump: `cfe002176cc78641b13dea985e0ee7c6fa20bf0df7bf84ce2d99b0f94a10ccb4`.
+- ORCH_BOOT.md notes+audit byte-identical sha256: `679e07cc19b82b9c411c93c8564255cb1f522011ff3b24e9476f2d9c2c09c694`.
+
+## Double-green byte-identical pre-Commit-A sweep
+
+BASELINE_GUARD=1 PYTHONHASHSEED=0 stripped_sha256 `bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d` IDENTICAL sweep_A (20260923T153434Z ~207s) + sweep_B (20260923T153850Z ~207s) both 6389 passed / 13 skipped / 0 failed / 520 warnings.
+
+## Own new invariant pins (10 · all RED-first → GREEN · six binding conditions verbatim as MUST-DO/MUST-NOT test IDs)
+
+- `test_assist_no_path_to_any_decision_negative_scan_import_isolation` (binding condition 1)
+- `test_assist_confirmed_turn_only_banked_a5_16_receipted_provenance` (binding condition 2)
+- `test_assist_census_readonly_with_without_byte_identical_b5_1` (binding condition 3)
+- `test_assist_training_proposals_freeze_at_commission_moac_owner_set_only` (binding condition 4)
+- `test_assist_content_r32_a515_con6_anchored_gated_honest_marker_over_refusal` (binding condition 5)
+- `test_assist_no_learning_from_dialogue_l4_l5_only_admission_path` (binding condition 6)
+- `test_assist_frozen_confirmed_turn_carrier_shape` (shape lock)
+- `test_assist_placement_outside_tcb_posture_marker_present` (placement anchor)
+- `test_assist_no_redeclaration_of_sealed_symbols_1_2` (§1.2 discipline)
+- `test_assist_six_binding_conditions_posture_markers_all_present` (owner-verbatim anchor)
+
+## Additive module
+
+`backend/services/census_autonomy/assist_census_v1.py` (~216 lines) — §1.2 modality-extension composing sealed Census Autonomy Service surface. Sealed carriers untouched per SO §3.8. Assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports.
+
+## EXIT EVIDENCE (structural)
+
+No LIVE engine run required — the assistant module is READ-ONLY against the Registry and has NO learning-write callables. EXIT EVIDENCE is structural: import-isolation + boundary-refusal + posture-marker presence. The 10 RED-first pins ARE the exit evidence; each of the six binding conditions maps to a named test that flipped from authentic RED to GREEN under baseline-guarded double-green sweeps.
+
+## Bundle continuity (SO §6.9(5) AMENDED · 8th application)
+
+- Code bundle: `continuity_bundles/code_20260923T154852Z_CP_AIP_ASSIST_CENSUS.bundle` · sha256 `7b5620ee7e98d2673a7b59cc134ff34c1159f679c761dbac54772caee067b6c3` · ~18 MiB @ `programme/track-a` `424e2184d983b479c61ba9b49096fdfad9c7c3f1`.
+- State bundle: pending post-Commit-C-fixup (SPACE-CONSTRAINT: /app pod volume at 99% · will emit to /tmp overlay first + verify sha256 · path/sha pinned at PINS bank commit per CP-TRACK-4-AUTONOMY-WIRING precedent).
+
+## GAPS_FIXED_LEDGER at this boundary
+
+**10 own gaps** closed. Full detail at `STATE/GAPS_FIXED_LEDGER.md` "CP-AIP-ASSIST-CENSUS · 10 own gaps closed at boundary" section.
+
+**Ledger check** — this seal implements EXECUTION_ORDER.md Item 5.11.f CP-AIP-ASSIST-CENSUS and nothing else. Additive-only per SO §3.8. Ruling (b) AKKI-RUNS-IT verbatim honored — assistant is READ-ONLY against Registry; NO learning-write callables; NO decision-boundary imports; pod NEVER data path. REPORT-AND-CONTINUE not idle-halt. RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+# CP-AIP-ASSIST-CENSUS-20260223 · State Commit-C fixup · 2026-02-23T~15:52Z
+
+**R-6 boundary regen advancing `heads_last_sealed` in `notes/ORCH_BOOT.md`:**
+- `state_repo.head`: `45868f313920d64a2df6b21683abf19d34cbdaa2` (CP-TRACK-4-AUTONOMY-WIRING State-B) → `565130d2e8b3c6167826cc25d824ea24621abda7` (this-B).
+- `code_repo.head`: `b49f7e9066b93ed3c89f370d68b0757400dfc241` (CP-TRACK-4-AUTONOMY-WIRING Code-A) → `424e2184d983b479c61ba9b49096fdfad9c7c3f1` (this-Code-A).
+
+**State mini-bank rows 1-3 (6-commit-seal chain so far):**
+- Row 1 (Code Commit-A): `424e2184d983b479c61ba9b49096fdfad9c7c3f1` on programme/track-a · 2026-02-23T~15:45Z.
+- Row 2 (/app companion-A): `63d821d8f` on main · 2026-02-23T~15:50Z.
+- Row 3 (State Commit-B): `565130d2e8b3c6167826cc25d824ea24621abda7` on master · 2026-02-23T~15:50Z.
+
+**Ledger check** — this fixup implements Item 5.11.f R-6 boundary regen + state mini-bank rows 1-3 and nothing else. Additive-only.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

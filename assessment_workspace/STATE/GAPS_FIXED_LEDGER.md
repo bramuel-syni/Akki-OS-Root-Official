@@ -587,3 +587,94 @@
 - **Ratchet:** `6369` → `6379` · baseline_failures.json sha256 `7130a31b2e22d2e326d215d8e9c9a9e6f3ddea53b0bfba7e24585603130bd8e2` · double-green stripped_sha256 `b039979de0feb2e5de97600e52c65a82f76b351468f5fb6077166bfcb8981f06`.
 - **Ruling (b) AKKI-RUNS-IT verbatim honored:** E1 wires the seams INTO Census Autonomy Service; pod NEVER data path (`pod://*` + `/app/*` refused at every registration seat via `PodIsNeverDataPathAtTrack4Error`). **E1 STEPS BACK** — Track-4's role ends at wire-in; the autonomy engine picks up the jobs inside Akki's boundary without E1 orchestration.
 - **RUN-TO-COMPLETION mandate ACTIVE:** REPORT-AND-CONTINUE into Item 5.11.f (CP-AIP-ASSIST-CENSUS · six binding conditions verbatim).
+
+---
+
+## CP-AIP-ASSIST-CENSUS — 10 own gaps closed at boundary 2026-02-23T~15:45Z (Item 5.11.f · SO §6.9 amendment + owner drop `assist_cards_preapproved_and_run_to_completion_20260223/DROP.md` verbatim + Ruling (b) AKKI-RUNS-IT verbatim)
+
+**Ledger check - this seal implements Item 5.11.f of EXECUTION_ORDER.md and nothing else.**
+
+**Owner canon anchors (verbatim):**
+
+Six binding conditions verbatim as MUST-DO/MUST-NOT test IDs:
+
+1. **No path to any decision** (negative-scan import isolation).
+2. **Confirmed turns only banked** (A5.16 receipted provenance).
+3. **Census assistant read-only against Registry** (B5.1 byte-identical census with/without assistant).
+4. **Training proposals freeze at commission; MOAC owner-set only.**
+5. **Content generated · chat surface · anchored · gated** (R-32/A5.15/CON-6) — §6.9 markers over refusal where a marker makes the state honest.
+6. **No learning from dialogue** (L-4/L-5 only admission path).
+
+Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry.
+
+**Ruling (b) AKKI-RUNS-IT verbatim 2026-02-23:** E1 wires the seam INTO Census Autonomy Service; pod is never data path.
+
+---
+
+### 1. Binding condition (1) — No path to any decision (negative-scan import isolation)
+
+- **Kind:** import-boundary isolation invariant.
+- **Protected objective:** the assistant module MUST NOT import any decision-boundary module. Placement OUTSIDE the TCB is enforced structurally, not merely by convention.
+- **Additive fix:** `test_assist_no_path_to_any_decision_negative_scan_import_isolation` negative-scans `assist_census_v1.py` for imports of decision-boundary modules (wizard commission surface, admission gate, MOAC set, training run boundary write-path, tenant seating). Passes only when zero prohibited imports exist.
+
+### 2. Binding condition (2) — Confirmed turns only banked (A5.16 receipted provenance)
+
+- **Kind:** boundary-refusal invariant on write-path.
+- **Protected objective:** an unconfirmed assistant turn MUST NEVER be persisted; every banked turn carries an A5.16 receipt reference.
+- **Additive fix:** `test_assist_confirmed_turn_only_banked_a5_16_receipted_provenance` exercises `bank_confirmed_assistant_turn(...)` with `confirmed_by_owner=False` and with missing/malformed `a5_16_receipt_ref`; asserts `UnconfirmedTurnBankRefused` raised in both cases; asserts the happy-path returns a `CensusAssistantConfirmedTurn_v1` whose `confirmed_by_owner is True` and `a5_16_receipt_ref` starts with `a5_16://`.
+
+### 3. Binding condition (3) — Census assistant read-only against Registry (B5.1 byte-identical census with/without assistant)
+
+- **Kind:** posture-marker + read-only-surface invariant.
+- **Protected objective:** the assistant MUST NEVER mutate the Registry; a census output derived WITH assistant activation is byte-identical to a census output derived WITHOUT.
+- **Additive fix:** `test_assist_census_readonly_with_without_byte_identical_b5_1` asserts presence of `ASSIST_CENSUS_READONLY_POSTURE` Final str citing binding condition (3) verbatim + B5.1 byte-identity clause; also asserts the module exposes NO Registry-write callables (negative-scan for `write_*` / `mutate_*` / `set_*` public names).
+
+### 4. Binding condition (4) — Training proposals freeze at commission; MOAC owner-set only
+
+- **Kind:** posture-marker + surface-exclusion invariant.
+- **Protected objective:** the census assistant MUST NOT propose training runs nor edit MOAC criteria; that surface belongs to CP-AIP-ASSIST-TRAINING (Item 5.11.g) and MOAC criteria are set by the owner's confirmation only at commission time.
+- **Additive fix:** `test_assist_training_proposals_freeze_at_commission_moac_owner_set_only` asserts presence of `MOAC_OWNER_SET_ONLY_POSTURE` Final str citing binding condition (4) verbatim; asserts `assist_census_v1` exposes NO training-proposal callables (negative-scan for `propose_training_*` / `set_moac_*` public names).
+
+### 5. Binding condition (5) — Content generated · chat surface · anchored · gated (R-32/A5.15/CON-6)
+
+- **Kind:** boundary-refusal invariant on render-path.
+- **Protected objective:** every user-facing string is a Content Registry entry with A5.15 anchor + CON-6 gate; §6.9 markers over refusal where a marker makes the state honest.
+- **Additive fix:** `test_assist_content_r32_a515_con6_anchored_gated_honest_marker_over_refusal` exercises `render_content_registry_entry(...)` with missing/malformed `a5_15_anchor_ref` and missing/malformed `con_6_gate_ref`; asserts `UngatedContentRefused` raised in both cases; asserts happy-path returns a `ContentRegistryEntry_v1` whose `a5_15_anchor_ref` starts with `a5_15://` and `con_6_gate_ref` starts with `con_6://`; asserts `honest_marker` is optional and accepts §6.9 marker vocabulary.
+
+### 6. Binding condition (6) — No learning from dialogue (L-4/L-5 only admission path)
+
+- **Kind:** posture-marker + surface-exclusion invariant.
+- **Protected objective:** assistant dialogue MUST NEVER feed training material; L-4/L-5 is the only admission path for training material.
+- **Additive fix:** `test_assist_no_learning_from_dialogue_l4_l5_only_admission_path` asserts presence of `NO_LEARNING_FROM_DIALOGUE_POSTURE` Final str citing binding condition (6) verbatim; asserts `assist_census_v1` exposes NO learning-write callables (negative-scan for `learn_*` / `admit_to_training_*` / `feed_training_*` public names).
+
+### 7. Frozen `CensusAssistantConfirmedTurn_v1` carrier shape lock
+
+- **Kind:** frozen-carrier shape invariant.
+- **Protected objective:** the banked-turn carrier MUST NOT drift in field set or field order between seals.
+- **Additive fix:** `test_assist_frozen_confirmed_turn_carrier_shape` asserts `CensusAssistantConfirmedTurn_v1` is a frozen dataclass with exactly the 7-field tuple: `session_id`, `tenant_id`, `role`, `content_registry_ref`, `confirmed_by_owner`, `confirmed_at_utc`, `a5_16_receipt_ref`.
+
+### 8. `PLACEMENT_OUTSIDE_TCB_POSTURE` posture marker presence
+
+- **Kind:** posture-marker anchor invariant.
+- **Protected objective:** placement OUTSIDE the TCB is declared intent, not merely inferred from directory layout.
+- **Additive fix:** `test_assist_placement_outside_tcb_posture_marker_present` asserts presence of `PLACEMENT_OUTSIDE_TCB_POSTURE` Final str citing the placement clause verbatim.
+
+### 9. §1.2 no-redeclaration of sealed CP-AIP-6 wizard + Census Autonomy Service response_required_queue + Track-4 autonomy wiring symbols
+
+- **Kind:** sealed-carrier redeclaration guard.
+- **Protected objective:** the assistant module MUST compose sealed carriers by identity, NEVER redeclare their symbols.
+- **Additive fix:** `test_assist_no_redeclaration_of_sealed_symbols_1_2` AST scan test rejects redeclaration of sealed CP-AIP-6 wizard commission symbols, sealed Census Autonomy Service `response_required_queue` symbols, and sealed CP-TRACK-4-AUTONOMY-WIRING `TRACK_4_JOB_KINDS` / `Track4LidPassRegistration_v1` / `Track4AllJobsRegistered_v1` / `AutonomyEngineRunReceipt_v1` symbols.
+
+### 10. `SIX_BINDING_CONDITIONS_POSTURE` posture marker anchor
+
+- **Kind:** owner-verbatim anchor invariant.
+- **Protected objective:** the six binding conditions are pinned verbatim inside the code carrier itself, not merely in the objective card, so they cannot drift silently between seals.
+- **Additive fix:** `test_assist_six_binding_conditions_posture_markers_all_present` asserts `SIX_BINDING_CONDITIONS_POSTURE` is a Final 6-tuple carrying all six binding conditions verbatim; asserts each element contains its numbered prefix `(1) ` .. `(6) `.
+
+### Seal-boundary summary
+
+- **10 own gaps closed** additively at CP-AIP-ASSIST-CENSUS boundary. **No LIVE-engine EXIT EVIDENCE** required for this seal (unlike CP-TRACK-4-AUTONOMY-WIRING) — the assistant module is READ-ONLY against the Registry and has NO learning-write callables; its EXIT EVIDENCE is structural (import-isolation + boundary-refusal + posture-marker presence) rather than runtime.
+- **Sealed carriers untouched** — additive-only per SO §3.8 (Census Autonomy engine.py + track_4_autonomy_wiring_v1.py + all prior CP-AIP-1..10 + CP-CENSUS-THREE-WAVES + CP-SO-6.9-LID-WAVE + CP-ENT-16 + CP-TENANT-SEPARATION all untouched).
+- **Ratchet:** `6379` → `6389` · baseline_failures.json sha256 `cfe002176cc78641b13dea985e0ee7c6fa20bf0df7bf84ce2d99b0f94a10ccb4` · double-green stripped_sha256 `bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d`.
+- **Ruling (b) AKKI-RUNS-IT verbatim honored:** assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; pod NEVER data path.
+- **RUN-TO-COMPLETION mandate ACTIVE:** REPORT-AND-CONTINUE into Item 5.11.g (CP-AIP-ASSIST-TRAINING · same six binding conditions applied to training-run dialogue).
