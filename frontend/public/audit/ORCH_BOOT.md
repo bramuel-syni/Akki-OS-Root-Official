@@ -1364,6 +1364,32 @@ heads_last_sealed:
     seal_kind: "CP-TRACK-4-AUTONOMY-WIRING Code Commit-A b49f7e9 · +10 canonical measured own new pins · ratchet 6369 -> 6379 · Track-4 boundary composes 3 sealed registration seats (LID pass + census-three-waves + training-runs) + emits AutonomyEngineRunReceipt_v1 per job; Ruling (b) AKKI-RUNS-IT verbatim honored — pod NEVER data path (pod://* + /app/* refused at every registration seat via PodIsNeverDataPathAtTrack4Error) · double-green stripped_sha256 b039979de0feb2e5de97600e52c65a82f76b351468f5fb6077166bfcb8981f06 IDENTICAL both sweeps 6379 passed"
 
 
+
+generated_at_utc: 2026-02-23T16:20:00Z
+generator: "CP-AIP-ASSIST-TRAINING pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6389 -> 6399 + baseline_failures.json sha256 to post-bump 7a13a04a96e120ca403878e3cb985c41d284ef4fdde80377656a9ee93ade7c69 · +10 canonical measured own new pins on Training-run dialogue assistant boundary (six binding conditions verbatim applied to training-run dialogue as MUST-DO/MUST-NOT test IDs · placement OUTSIDE the TCB · §1.2 modality-extension composing sealed CP-AIP-ASSIST-CENSUS assist_census_v1 by identity) · SO §6.9 amendment + owner drop assist_cards_preapproved_and_run_to_completion verbatim · heads_last_sealed UNCHANGED at CP-AIP-ASSIST-CENSUS State-B 565130d2 + Code-A 424e2184 (this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-aip-assist-training-ratchet-only-regen-6389-to-6399-plus-10-canonical-measured-own-pins-six-binding-conditions-training-scope
+
+ratchet:
+  passed_floor: 6399
+  counts_at_baseline_passed: 6399
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 7a13a04a96e120ca403878e3cb985c41d284ef4fdde80377656a9ee93ade7c69
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 565130d2e8b3c6167826cc25d824ea24621abda7
+    sealed_at_utc: 2026-02-23T15:50:00Z
+    seal_kind: "CP-AIP-ASSIST-CENSUS state Commit-B (banks Code Commit-A 424e2184d983b479c61ba9b49096fdfad9c7c3f1 · Item 5.11.f of EXECUTION_ORDER.md · SO §6.9 amendment + owner drop assist_cards_preapproved_and_run_to_completion verbatim + Ruling (b) verbatim · six binding conditions verbatim as MUST-DO/MUST-NOT test IDs · assist_census_v1 §1.2 modality-extension composing sealed Census Autonomy Service surface · 10 own new invariant pins · Ratchet 6379 → 6389 · double-green stripped_sha256 bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d IDENTICAL both sweeps 6389 passed)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 424e2184d983b479c61ba9b49096fdfad9c7c3f1
+    sealed_at_utc: 2026-02-23T15:45:00Z
+    seal_kind: "CP-AIP-ASSIST-CENSUS Code Commit-A 424e2184 · +10 canonical measured own new pins · ratchet 6379 -> 6389 · assist_census_v1 §1.2 modality-extension composing sealed Census Autonomy Service · assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; pod NEVER data path · double-green stripped_sha256 bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d IDENTICAL both sweeps 6389 passed"
+
+
 ```
 
 ## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)
@@ -1523,5 +1549,3 @@ heads_last_sealed:
     head: dba4499
     sealed_at_utc: 2026-02-23T08:10:00Z
     seal_kind: "CP-AIP-8-SAMPLING-REFLECTION Commit-A dba4499 on programme/track-a (last sealed · pre-CP-AIP-9)"
-
-
