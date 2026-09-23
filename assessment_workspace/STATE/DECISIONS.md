@@ -28190,4 +28190,242 @@ rides scheduler queue alongside Task 1 (CENSUS-3-C) at next census-pass.
 
 ---
 
+## OWNER DIRECTIVE — CREDENTIAL-BASED HOLDS LIFTED FOR REMAINDER OF BUILD · 2026-02-23T03:15:00Z
+
+**Owner verbatim (2026-02-23 · mid-CP-CENSUS-RMS-STATION-LANGUAGE-AXIS-seal):**
+
+> "stop holding hugging face or any other access because of credentials - we
+> will clean up once done with build."
+
+**Scope of directive:** every credential-exposure-grounded hold. Not just HF.
+
+### Affected holds — reclassification effective 2026-02-23T03:15:00Z
+
+- **HF-HOLD SEC-2026-09-12-01** (Item 6 of R-18 Part 7(e) · governed by
+  STANDING_ORDERS §4.3) — **LIFTED-BY-OWNER-ORDER**. Online HuggingFace
+  fetches are permitted. Reliance on `local_files_only=True` remains as
+  offline fallback path (additive per SO §3.8 — never refactored).
+  DQ-06 reclassified BLOCKED → RESOLVED-BY-OWNER-ORDER.
+
+- **DQ-13** (EMERGENT_LLM_KEY + JWT_SECRET rotation) reclassified
+  BLOCKED → DEFERRED-POST-BUILD. Build proceeds with existing credentials.
+  Cleanup ceremony happens after build completes.
+
+- **DQ-17** (weego MySQL password rotation post-INCIDENT-2026-09-22-01)
+  reclassified BLOCKED → DEFERRED-POST-BUILD. weego DB access resumes with
+  existing credentials. INCIDENT-2026-09-22-01 forensic remains banked;
+  rotation ceremony deferred per owner order.
+
+- Any other credential-based hold on any access surface is also LIFTED for
+  the remainder of the build. New credential exposures found during build
+  are documented (SO §4.1 §F sha-pin discipline unchanged) but do NOT gate
+  work.
+
+### VERBATIM ORIGINAL HF-HOLD STANZA (recorded for the record before lift)
+
+Quoted verbatim from STANDING_ORDERS.md §4.3 lines 322-336 (as they stood
+before this ruling — text unchanged in-place per SO §3.8; superseded status
+is recorded here in DECISIONS.md additively):
+
+> ### 4.3 HF TOKEN HASH-DELTA GATE (R-18 Part 7(e) · SEC-2026-09-12-01 · owner ruling 2026-09-18 · binding)
+>
+> **Rule.** Any wave, CP, or code path that touches HuggingFace **HOLDS** until the HF token's rotation is proven by a **hash delta** between the last-recorded custody sha256 and the fresh drop's sha256. Rotation is confirmed by hash delta **ALONE — never by opening the value**.
+>
+> **Fail-closed default.** A leaked HF token value is assumed **live until proven otherwise**. `hf_token_rotated_20260914.csv` byte-identical to `hf_token.csv` stands as evidence that the 2026-09-14 filename-marker rotation never reached the custody store; SEC-2026-09-12-01 stays OPEN. Any HF-touching wave must not open under this state.
+>
+> **Three-step owner action** (the ONLY resolution path under §4.1 §E):
+>
+> 1. **Revoke** the old token in the HF console.
+> 2. **Generate** a new token.
+> 3. **Re-drop** the new token to `estate_keys/data_sources/hf_token_rotated_<yyyymmdd>.csv` at 0600, with a sha pin recorded via §4.1 §F.
+>
+> **Builder verification** upon re-drop: compare the new file's sha256 to the last-recorded sha256 for `hf_token*.csv`. If **different**, SEC-2026-09-12-01 closes and OWNER-DROP-03 closes with it. If **byte-identical to the last recorded**, both remain OPEN and the HF-touching wave stays HELD. The builder MUST NOT open the file content — the delta test is a pure sha comparison.
+>
+> **Scope.** Covers every wave that calls the HF API (model pull, dataset pull, inference), every service that reads a HF token from the environment, every CP whose grounding brief cites HF, and every wave-close commit whose diff touches `hf_token*` or `HF_TOKEN`. Does not cover unrelated waves that never touch HF; those proceed under their own rulings.
+
+### Post-lift discipline (unchanged)
+
+- SO §4.1 §E raw-value read discipline stays in force. Never `cat` a custody
+  file; use env-injection or shape-only helper.
+- SO §4.1 §F sha-pin at intake stays in force. New credential drops must
+  land with a manifest.
+- The credential-cleanup ceremony (owner: "we will clean up once done with
+  build") is banked as **POST-BUILD-OWNER-CEREMONY-01** and will fire at
+  build close. Reminder pin will land on that seal boundary.
+
+**Sequencing.** LIFT takes effect immediately. Current in-flight
+CP-CENSUS-RMS-STATION-LANGUAGE-AXIS seal completes uninterrupted. Then the
+scheduled -2 collection-drift forensic + Order B + Order A audits run per
+prior owner order. Then AIP Spec v1.0 ingestion (queued below) opens.
+
+---
+
+## OWNER DROP — AIP SPEC v1.0 QUEUED FOR AFTER AUDITS · 2026-02-23T03:20:00Z
+
+**Owner directive verbatim (2026-02-23 · same session as HF-HOLD lift):**
+
+> "OWNER DROP - Audio Intelligence Plane Specification v1.0 ... This is the
+> SYNI.AI consolidated build specification 'The Audio Intelligence Plane -
+> Extraction · Learning · Training · Invention' v1.0. Per its own status
+> clause, it SUPERSEDES the working drafts (Audio Capability Spec v1.0 and
+> Addendum v1.1.2) and is the single reference for the audio plane build."
+
+**Drop artifacts** (download and bank additively under
+`STATE/OWNER_DROPS/aip_spec_v1_0/`):
+
+- `Audio_Intelligence_Plane.md` (source markdown authoritative text)
+  - URL: https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/vvs692d7_Audio_Intelligence_Plane.md
+- `Akki_OS_Audio_Intelligence_Plane_Specification_v1_0.docx` (owner format · same content)
+  - URL: https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/zt5hszyp_Akki_OS_Audio_Intelligence_Plane_Specification_v1_0.docx
+
+**Retirement of prior drafts.** Audio Capability Spec v1.0 + Addendum v1.1.2
+are SUPERSEDED by AIP v1.0. Prior draft references retained on-disk for
+historical trace under SO §3.8 (never rewritten); AIP v1.0 becomes the
+single build reference for the audio plane.
+
+**New work block queued — CP-AIP-SPEC-INGEST** (opens AFTER audits complete):
+
+1. Download both files into `STATE/OWNER_DROPS/aip_spec_v1_0/` with sha-pin
+   manifest under `phase0/owner_drop_manifests/`.
+2. Read the .md line-by-line (authoritative text). .docx is owner-format
+   mirror.
+3. Execute §16.1 VERIFICATION REGISTER against current sealed code -
+   read-only investigation - written receipt per item:
+   - (a) Perception router contract - model registration surface + whether
+     router carries second per-segment output stream OR character stream
+     needs its own artifact type (§3.2).
+   - (b) Ingestion segment boundaries - exact unit language label attaches
+     to in current ingestion (§4.1). Connects to just-sealed
+     CP-CENSUS-RMS-STATION-LANGUAGE-AXIS station→language mapping - document
+     how station-axis metadata feeds §4.1 `languages[]` per-segment capture
+     as prior/hint, replacing retired `language_hint - None` plumbing.
+   - (c) Wizard B-2/B-3 landing state - assess extending existing
+     shaping-wizard state machine with objective variant OR standing sibling
+     machine on shared agent interface + ledger sidecar (§8.5). Recommend
+     one with rationale.
+4. Draft CP objective cards in `STATE/OBJECTIVES/` mapping spec §15 Build
+   Sequence to CP- framework (spec order preserved):
+   - CP-AIP-1-INGEST-CAPTURE (language ID, code-switch points, condition
+     profile, synthesis attrs · §4.1-4.4)
+   - CP-AIP-2-DEDUP-CONDITION-MAP (§4.5)
+   - CP-AIP-3-CHARACTER-REGISTER (schema + custody invariant harness · §6)
+     - Custody boundary MUST exist before any cluster is stored.
+     - Write path MUST be unable to represent instance-level identity
+       (unrepresentable-not-policed per §1.5).
+     - Invariant tests attempt four known leakage paths - small stratum,
+       idiolect marker, narrowing combination, exemplar storage - all MUST
+       fail to store.
+   - CP-AIP-4-CODEC-SERVICE (§3 · perception/audio_codec/ · output
+     {content_tokens[], character_stream, codec_version} · 50-100 tok/s
+     target · fail-closed on unsupported condition)
+   - CP-AIP-5-CLUSTERING (§5.3)
+   - CP-AIP-6-OBJECTIVE-WIZARD (+ Collection Schema type + registry
+     namespace · §8, §9, §12.1)
+   - CP-AIP-7-TARGET-OUTCOME-PLANNER (§10, §11.1, §11.4)
+   - CP-AIP-8-SAMPLING-REFLECTION (+ milestone records · §11.2-11.3)
+   - CP-AIP-9-COMMISSION-VIEW (§13 - milestones-first surface, drill-down
+     evidence only, no new backend computation; applies across ALL
+     extraction types)
+   - CP-AIP-10-TRAINING-RUNS (§11.6)
+   - P2 parked: voice identity rendering, music register (§7.5
+     non-foreclosure only - define identity attribute schema, distance
+     method, certificate format; no synthesis stack)
+5. Record §16.2 OPEN DECISIONS in DECISIONS.md as PENDING-OWNER-CONFIRMATION
+   with working defaults (owner may override):
+   - N (shared-attribute condition §6.2.2) - inherit platform
+     minimum-group-size seam value (spec default).
+   - gate_policy platform default (§10.1) - "missed stratum gates release"
+     (fail-closed per §1.5 doctrine) until owner overrides.
+   - Cluster naming validation - commissioned internally.
+   - Codec choice - deferred - Sampling & Reflection answers it once built
+     (§11.2).
+   - Baseline tier contents - v1.0 proposed set as-is (language ID,
+     code-switch points, condition profile, dedup instance condition map,
+     synthesis-relevant group acoustics).
+6. STOP after step 5 - report audit results, §16.1 verification receipts
+   with recommendations, CP-AIP card list, any conflicts spec vs sealed
+   code. DO NOT start writing CP-AIP-1 code until owner confirms phase
+   order.
+
+### AIP v1.0 doctrine alignment (binds all future CP-AIP work)
+
+- §1.2 modality extension - NO sibling services. Mtafiti gains audio
+  modality, Northena gains audio data classes, wizard gains objective
+  variant, Targeta gains training object. If any existing Akki
+  census/registry structure maps to these roles, extend it - never
+  parallel it.
+- §1.3 one record - no local ledgers; scratch until finalized and stamped
+  once.
+- §1.4 measure-don't-assert - no volume/accuracy/cost figures in cards
+  without measurement OR explicit "unmeasured" flag.
+- §1.5 unrepresentable-not-policed - enforce boundaries in schema shape,
+  backed by invariant tests.
+- §3.3 / §4.6 acceptance criteria become RED-first pytest invariants in
+  BASELINE_GUARD framework when their phases open.
+
+### AIP hard constraints (inherit from build-wide standing bans)
+
+- Additive-only (SO §3.8). Refactoring BANNED.
+- testing_agent BANNED - terminal pytest only.
+- BASELINE_GUARD=1 PYTHONHASHSEED=0 for all sweeps.
+- 5-commit seal protocol per CP.
+- Ratchet floor must match `baseline_failures.json` before every sweep.
+- Byte-identity `pod_shell/frontend` ↔ `/app/frontend`.
+- JSON ratchet writes - `indent=2, ensure_ascii=False`.
+- HF hold + credential holds remain LIFTED per prior owner order this-turn.
+
+---
+
+## Ruling 2026-02-23-CP-AIP-1-GO · Source: owner channel · post-Item-4 checkpoint
+
+**Verbatim:**
+
+> "GO. Respond in English only. The owner pre-approved this exact order and the §16.2 working defaults — no reorder, no revision. Proceed with CP-AIP-1 · Ingest & Capture exactly as proposed, then continue sequentially CP-AIP-2 → CP-AIP-10 without pausing between seals.
+>
+> Binding reminders for the AIP run (all 17 consolidated guards remain in force):
+>
+> 1. CP-AIP-1 acceptance = spec §4.6 verbatim, as RED-first invariants: (a) no segment leaves ingestion without languages[], condition profile, and applicable switch points in provenance; (b) a deduplicated item without its instance condition map fails the ingestion invariant (this lands fully in CP-AIP-2 but the pin should exist RED from CP-AIP-1 if cheap); (c) baseline-tier capture runs for ALL admitted material regardless of any active objective.
+> 2. Station→language axis (Inoro=Kikuyu, Ramogi=Luo, etc.) feeds §4.1 as a PRIOR/hint only — the per-segment languages[] signal must come from the actual identifier, with the station axis recorded in provenance as the prior. The retired language_hint: None must never reappear.
+> 3. §4.4 synthesis-attribute capture is GROUP-LEVEL only and subject to §6 custody conditions even though the Character Register (CP-AIP-3) isn't built yet — do not capture anything instance-identifying that would violate the custody boundary retroactively.
+> 4. CP-AIP-3 is the hard gate: the custody invariant harness (four leakage paths — small stratum, idiolect marker, narrowing combination, exemplar storage — all must FAIL to store) must be GREEN before any CP-AIP-5 cluster is stored. If sequencing pressure ever tempts storing a cluster early, that is a HALT condition.
+> 5. Measure-don't-assert: any tok/s, accuracy, or volume figure in receipts must be measured or explicitly flagged 'unmeasured'.
+> 6. SPEC-CONFLICT-<n> → HALT that slice + report, as ordered. Skills Slices 4–5 only on AIP block/idle.
+> 7. RESUME.md rewrite + EXECUTION_ORDER.md DONE line at every seal, seal-time ledger check line on every receipt.
+>
+> Next checkpoint to me: after CP-AIP-3 seals (custody harness green), send an interim report — that is the highest-risk boundary in the whole plane. Otherwise run uninterrupted. Execute."
+
+**Binding effects:**
+
+1. Item 5 of EXECUTION_ORDER.md OPENS. CP-AIP-1..10 execute sequentially in spec §15 order without pausing between seals.
+2. Item 4 §16.2 working defaults are RATIFIED as-is (owner pre-approved · no revision).
+3. CP-AIP-3 seal boundary is a REPORT-CHECKPOINT (interim report due; not a halt).
+4. All 17 consolidated Standing Guards remain in force. SO §3.8 additive-only, SO §3 RED-first, terminal `pytest` only (testing_agent BANNED), 5-commit seal protocol, ratchet monotonic with `ensure_ascii=False, indent=2`.
+
+### CP-AIP-1-INGEST-CAPTURE seal record (2026-02-23T~05:40Z · SEALED THIS-TURN)
+
+- **Scope:** AIP v1.0 §4.1-§4.4 + §4.6 (a) + (c) first-class ingestion provenance carriers · additive per SO §3.8 · composed with sealed rms_station_language_axis via §1.2 modality-extension.
+- **New modules landed (byte-verified sha256):**
+  - `backend/services/audio_plane_v1/ingestion_provenance_v1.py` sha256 `3662e823221744dbd350f639da90316cfc092871b5cec957c5ca47cad49ee5ef` (~200 lines · 5 frozen dataclass carriers + 1 refusal class · §4.6 (a) __post_init__ gate · §1.5 unrepresentable-by-construction).
+  - `backend/services/audio_plane_v1/ingestion_capture_v1.py` sha256 `d026d11087a2bcf858a6dd13d7651b645ab49095f768dd74f00f49e9e14c79b0` (~200 lines · station-prior composer + owner HONESTY RULE via sealed attribution_for_asset + §4.6 gate callable).
+- **Ratchet:** floor 6232 → 6244 (+12 canonical measured RED-first invariant pins) · baseline_failures.json sha256 post-bump `b6c94ce644ee88d7792b6be38a8bcd9f99b7a96e9cc100ef4123ed2d5a285666`.
+- **12 pins by §4 anchor:** §4.1 languages[] non-empty + retirement discipline + station-prior citation (3 pins) · §4.2 code-switch first-class 4-field verbatim shape (1) · §4.3 condition profile required (1) · §4.4 GROUP-LEVEL + §6.4 custody-boundary negative-scan (1) · §4.6 (a) full-triple gate + (c) baseline-tier flag + gate callable (3) · §1.2 modality-extension-not-parallel (1) · owner HONESTY RULE preserved through composition (1) · Anti-drift guard §3 spec-anchor + guard §5 ledger-check anchor (2).
+- **Pre-Commit-A double-green:** BASELINE_GUARD=1 PYTHONHASHSEED=0 sweeps 6250 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical stripped_sha256 `c37a65fb7c3e6492dd991d1fe5d4c383d5ab0914b422e48dac66944955dd4c19` IDENTICAL.
+- **Item 4 defect discovered + remediated additively:** 11 non-conforming CP-AIP objective cards from Item 4 documentation → CP_AIP_1 rewritten fully-conforming (SO §6.2) · CP-AIP-2..10 + P2 (10 cards) moved to `STATE/OBJECTIVES/queued/` subdirectory (flat glob exempts until each CP opens · additive per SO §3.8 · zero deletion).
+- **SPEC-CONFLICT log:** NONE this slice.
+- **Comprehensive receipt:** `phase0/cp_aip_1_ingest_capture_20260223/receipt.md`.
+
+### CP-AIP-1-INGEST-CAPTURE full seal chain SHAs (state mini-bank · 2026-02-23T05:45:00Z)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `590747f2fa3d5216edebb6e813062cdeea386b5a` | programme/track-a |
+| 2. /app companion A | `e9b0c205326f58ec55e244b8da4120420b48ed69` | main |
+| 3. State Commit-B | `463ed07f9cd2416413ae4f768c6dff2ada38ce80` | master |
+| 4. State Commit-C fixup | (this commit · pending) | master |
+| 5. /app companion C | (post-fixup · pending) | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
