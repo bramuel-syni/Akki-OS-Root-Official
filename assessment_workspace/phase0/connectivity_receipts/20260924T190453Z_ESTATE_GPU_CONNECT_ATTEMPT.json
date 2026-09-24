@@ -1,0 +1,129 @@
+{
+ "receipt_id": "ESTATE-GPU-CONNECT-ATTEMPT-20260924T190453Z",
+ "surfaced_at": "2026-09-24T19:04:53.871827+00:00",
+ "surfaced_by": "main-agent (owner drop: 'Establish connection to Akki')",
+ "trigger": "owner uploaded 2 custody artefacts: 'RMS CREDS 3.csv' + 'GPU CREDs.xlsx'; owner directive: establish connection",
+ "read_only": true,
+ "no_secret_values_in_receipt": true,
+ "custody_drops_received": {
+  "rms_creds": {
+   "stored_at": "/app/backend/estate_keys/data_sources/RMS_CREDS_3.csv",
+   "mode": "0600",
+   "gitignored": true,
+   "tracked_by_git": false
+  },
+  "gpu_creds": {
+   "stored_at": "/app/backend/estate_keys/gpu_hosts/GPU_CREDS.xlsx",
+   "mode": "0600",
+   "gitignored": true,
+   "tracked_by_git": false,
+   "auth_kind": "password (26-char) x2 hosts"
+  }
+ },
+ "gpu_compute_lane": {
+  "hosts": [
+   {
+    "host": "akki-vm",
+    "ip": "41.173.184.244",
+    "user": "ubuntu"
+   },
+   {
+    "host": "akki-vm-ii",
+    "ip": "41.173.184.247",
+    "user": "ubuntu"
+   }
+  ],
+  "tcp_22_reachable": {
+   "41.173.184.244": true,
+   "41.173.184.247": true
+  },
+  "password_auth_result": "REFUSED_BY_SERVER",
+  "server_advertised_auth_methods": [
+   "publickey"
+  ],
+  "finding": "Both H200 hosts are PUBLICKEY-ONLY (password auth disabled server-side). The provided GPU_CREDs.xlsx passwords cannot open an SSH session.",
+  "required_to_unblock": "ed25519 private key id_ed25519_akki_gpu (pubkey fingerprint SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A per 20260922T190000Z_GPU_LANE_REVERIFY receipt) dropped to /app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu (0600).",
+  "honest_gap": "GPU/compute lane NOT established this attempt \u2014 key-only hosts, private key absent from pod."
+ },
+ "estate_mysql_direct": {
+  "authenticated_live": {
+   "USSD": {
+    "host": "110.238.76.159",
+    "user": "bramuel",
+    "user_db_count": 17,
+    "user_dbs": [
+     "artists_app",
+     "citizen_digital",
+     "db_jipange",
+     "db_skiza",
+     "freddy_dev",
+     "miniapps",
+     "tafaria_ecommerce",
+     "tafaria_shop",
+     "viupay_dev",
+     "viupay_fare",
+     "viupay_fare_test",
+     "viusasa_dev",
+     "viusasa_staging",
+     "viusasa_staging_2",
+     "viusasa_staging_dev",
+     "viutickets",
+     "viutickets_dev"
+    ],
+    "sample_table_counts": {
+     "artists_app": 0,
+     "citizen_digital": 39,
+     "db_jipange": 22
+    }
+   },
+   "RAZUNA_NEWSVAULT": {
+    "host": "159.138.173.58",
+    "user": "bramuel",
+    "user_db_count": 2,
+    "user_dbs": [
+     "news_vault",
+     "razuna"
+    ],
+    "sample_table_counts": {
+     "news_vault": 30,
+     "razuna": 89
+    }
+   }
+  },
+  "count_authenticated_direct": 2
+ },
+ "estate_mysql_behind_jump": {
+  "jump_bastion": "159.138.173.250:22 (TCP open)",
+  "clusters_needing_jump": [
+   "203.123.86.10 (VIUSASA)",
+   "159.138.164.93 (MICROSERVICES viupay)",
+   "159.138.164.124 (citizen_digital)",
+   "110.238.75.83 (citizen_digital)",
+   "203.123.83.144 (citizen-pulse)"
+  ],
+  "jump_cred_expected_at": "/app/backend/estate_keys/bastion/jump_server_radio_system.csv (3-row \u00b7 password auth \u00b7 per tools/step3_discovery_on_jump.py)",
+  "jump_cred_present": false,
+  "note": "JUMP bastion credential is NOT in RMS CREDS 3.csv; prior sweeps sourced it from legacy sheet custody/credentials/prior_baseline/d778eb1e_prior_baseline.xlsx (absent). estate_ed25519 key present in pod does NOT authenticate to JUMP.",
+  "honest_gap": "5 of 7 MySQL clusters remain unreachable until the JUMP bastion credential is dropped."
+ },
+ "nas_synology": {
+  "host": "10.10.55.55 (private RFC1918)",
+  "reachable_from_pod": false,
+  "note": "private IP; reachable only via JUMP-side SMB per prior sweeps."
+ },
+ "google_transcripts_langmap_in_sheet": [
+  "kik",
+  "ebu",
+  "swa",
+  "luo",
+  "kln",
+  "guz",
+  "mer",
+  "bxk",
+  "kam",
+  "mrg",
+  "lwg",
+  "mas"
+ ],
+ "summary": "CONNECTION PARTIALLY ESTABLISHED: 2/7 MySQL clusters live+readable now with the dropped RMS creds (USSD 17 DBs, Razuna/Newsvault 2 DBs incl. razuna 89 tables, news_vault 30 tables). GPU H200 lane + 5 JUMP-tunnelled clusters remain honest-gapped pending (a) ed25519 GPU key and (b) JUMP bastion credential."
+}
