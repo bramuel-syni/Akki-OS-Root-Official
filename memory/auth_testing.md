@@ -1,6 +1,6 @@
 # auth_testing.md
 
-**Auth model on the spine surface (`https://akki-reuse-assess.preview.emergentagent.com`):**
+**Auth model on the spine surface (`https://pensive-goodall-6.preview.emergentagent.com`):**
 
 - **Type:** bearer-token, no cookies, no sessions, no CSRF class.
 - **Frontend flow:** owner pastes token into the "OWNER ACCESS" card → saved to `localStorage.owner_token` → every axios call includes header `Authorization: Bearer <token>`.

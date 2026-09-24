@@ -41,7 +41,7 @@ The fix is scoped to `launch_detached` only. `stage_payloads`, `probe_state`, `s
 - **Earliest launch:** 2026-09-16T03:41:28Z (akki-vm sampler).
 - **Elapsed at recovery close:** 0.05 hours.
 - **Remaining:** 71.95 hours of 72.
-- **Report served:** `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md` — HTTP 200, 2362 bytes at recovery close.
+- **Report served:** `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md` — HTTP 200, 2362 bytes at recovery close.
 - **Sampler cadence:** 5 min (nvidia-smi query per GPU per host).
 - **Workload cadence:** 60 s per bench configuration; rotating matrix of matmul (bf16/fp16/fp32-tf32 × 8192/12288/16384) + attention (bf16 × 2k/4k/8k seq × batch 1/4). Every completed iteration = one banked JSONL row.
 - **Discipline held:** in-perimeter (torch.randn on-device only) · env-injection creds only (§E) · shape-only receipts · position-redaction · SEC probe-halt reading amended per owner ruling.
@@ -52,7 +52,7 @@ None. This is a state-repo tool fix + recovery. No code-repo change. Ratchet flo
 
 ## Owner-facing summary
 
-The 72h GPU utilization job is now genuinely LIVE with real bench iterations flowing. Prior state (03:30:31Z launch) had samplers-only-no-workload due to a launcher `$!` escape bug, now fixed. Recovery launched cleanly at 03:41:28Z. Report URL: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+The 72h GPU utilization job is now genuinely LIVE with real bench iterations flowing. Prior state (03:30:31Z launch) had samplers-only-no-workload due to a launcher `$!` escape bug, now fixed. Recovery launched cleanly at 03:41:28Z. Report URL: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 Next actions per owner sequence (verbatim DECISIONS 2026-09-16T~03:08Z step 4):
 1. Author M7-open milestone-boundary note + W0 (platform integrity) grounding brief.

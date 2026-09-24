@@ -118,7 +118,7 @@ Under owner's directive step-3 verbatim ("If both lanes exhaust or block: produc
 - akki-vm: 76 telemetry samples · 326 bench iters (ok=326) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: 70 telemetry samples · 326 bench iters (ok=326) · peak 100% util per GPU · ~693 W · ~71°C.
 - 652 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 ---
 

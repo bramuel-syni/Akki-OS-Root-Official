@@ -32,7 +32,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 - **1 hygiene CP landed** (CP-SW6-HYG-1) discharging SEC incident `sec_incident_jump_cred_leak_20260915T222935Z` with the shape-only `read_custody_metadata` helper + STANDING_ORDERS §4.1 §E amendment.
 - **Zero refactor of prior CPs** across the entire M6 walk (verified per-CP in every seal file).
 - **Zero SEC re-leak** since custody hygiene close; position-redaction hard-lock preserved across all 60+ boundary probes fired or NOTE-SKIPPED.
-- **W-M7-UTILIZATION-72H job LIVE** at 2026-09-16T03:41:28Z (recovery close · 4 bench iterations banked per host in first 3 minutes at ~650 TFLOPS bf16 matmul 8192 sustained per H200 GPU · 97-98% GPU util · report served at `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`).
+- **W-M7-UTILIZATION-72H job LIVE** at 2026-09-16T03:41:28Z (recovery close · 4 bench iterations banked per host in first 3 minutes at ~650 TFLOPS bf16 matmul 8192 sustained per H200 GPU · 97-98% GPU util · report served at `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`).
 
 ## §C · How much to go
 

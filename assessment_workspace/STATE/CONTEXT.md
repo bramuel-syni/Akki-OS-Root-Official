@@ -358,8 +358,8 @@ The three fixtures referenced by Build Order 01 — reference screenshot, `Akki_
 
 The two deliverables are served READ-ONLY through the pod template's FastAPI backend as **snapshots** (not a live mount of this workspace). Refresh discipline: after each material change to either document, re-copy from `/app/assessment_workspace/` to `/app/backend/deliverables/` and update the snapshot commit literal in the listing endpoint.
 
-- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/BUILD_STRATEGY.md`
-- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/REUSE_ASSESSMENT.md`
+- `https://pensive-goodall-6.preview.emergentagent.com/api/deliverables/BUILD_STRATEGY.md`
+- `https://pensive-goodall-6.preview.emergentagent.com/api/deliverables/REUSE_ASSESSMENT.md`
 - Listing at `/api/deliverables` returns snapshot commit + size + URL for each.
 
 ## Citation-drift root cause (Orchestrator Ruling A — retained record)
@@ -389,9 +389,9 @@ Context compaction / restart occurred ~2026-08-14T09:24Z. Recovery from disk + q
 
 The two deliverables are served READ-ONLY through the pod template's FastAPI backend as **snapshots of commit `42b241c`** (not a live mount of this workspace). Snapshot copies live at `/app/backend/deliverables/{BUILD_STRATEGY.md,REUSE_ASSESSMENT.md}`; served via `GET /api/deliverables/{filename}` with a two-name allowlist. Identity verified byte-for-byte via sha256 against the workspace originals at snapshot time.
 
-- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/BUILD_STRATEGY.md` — 244,199 bytes, sha256 `86af07ce…c820688`.
-- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/REUSE_ASSESSMENT.md` — 53,479 bytes, sha256 `36314268…d427327a`.
-- Listing endpoint: `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables` returns snapshot commit + size + URL for each.
+- `https://pensive-goodall-6.preview.emergentagent.com/api/deliverables/BUILD_STRATEGY.md` — 244,199 bytes, sha256 `86af07ce…c820688`.
+- `https://pensive-goodall-6.preview.emergentagent.com/api/deliverables/REUSE_ASSESSMENT.md` — 53,479 bytes, sha256 `36314268…d427327a`.
+- Listing endpoint: `https://pensive-goodall-6.preview.emergentagent.com/api/deliverables` returns snapshot commit + size + URL for each.
 
 **Refresh discipline.** If either working document is amended (e.g., after a new Ruling), re-copy the file from `/app/assessment_workspace/` to `/app/backend/deliverables/` and update the snapshot commit in `CONTEXT.md` and in the `/api/deliverables` listing endpoint literal. Do NOT symlink the workspace live — the snapshot boundary is deliberate.
 

@@ -23,7 +23,7 @@ _prior:_ Owner course-correction cycle CLOSED. Wizard rebuilt to the brief's 5-s
 
 1. **[HIGHEST · access-mechanism confirmation] Ratify the two-sentence access-mechanism proposal (NEXT.md).** IP-pinned; `SPINE_ALLOWED_IPS` env-var configured; every change is a ledger row; surface renders the current allowlist state as plain sentences.
 2. **[HIGHEST · FL-P2-09 disposition] Confirm whether `34.16.56.64` is the intended owner client `/32` (not pod egress), or direct a different value.** Pod egress has rotated to `34.170.12.145` (verified live); the strict `34.16.56.64` directive stands until owner rules otherwise.
-3. **VM bootstrap credentials via the WS-BUILD-CONNECT-GPU surface.** Owner enters at `https://akki-reuse-assess.preview.emergentagent.com/` → Admin tab → REGISTRY → Connect tile → GPU form. Blocked on owner's client-IP being on the allowlist (see #1 and #2 above).
+3. **VM bootstrap credentials via the WS-BUILD-CONNECT-GPU surface.** Owner enters at `https://pensive-goodall-6.preview.emergentagent.com/` → Admin tab → REGISTRY → Connect tile → GPU form. Blocked on owner's client-IP being on the allowlist (see #1 and #2 above).
 4. **Reference screenshot as file** — TRANSCRIPTION-GRADE currently IN FORCE (Q1(c) ruling). Re-open FL-P1-14 on file arrival if pixels contradict transcription.
 5. **Vendor confirmation on 4×H200 + ~30 TB HSS provisioning** — owner-side action, out of this workspace's scope per standing policy.
 

@@ -132,7 +132,7 @@
       "ingress_sample": [
         "proto=tcp port=3306-3306 remote=105.27.124.210/32",
         "proto=tcp port=3306-3306 remote=105.163.251.110/32",
-        "proto=None port=None-None remote=a6456cfb-696e-45c7-8147-13028a53dcea",
+        "proto=None port=None-None remote=pensive-goodall-6",
         "proto=tcp port=443-443 remote=0.0.0.0/0",
         "proto=tcp port=80-80 remote=0.0.0.0/0"
       ]
@@ -175,7 +175,7 @@
       "rule_count": 30,
       "ingress_3306": [
         "proto=tcp port=3306-3306 remote=0.0.0.0/0",
-        "proto=tcp port=3306-3306 remote=aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+        "proto=tcp port=3306-3306 remote=pensive-goodall-6",
         "proto=tcp port=3306-3306 remote=None",
         "proto=tcp port=3306-3306 remote=10.10.150.0/24"
       ],
@@ -194,7 +194,7 @@
         "proto=tcp port=22-22 remote=41.220.231.2/32",
         "proto=tcp port=22-22 remote=41.90.208.73/32",
         "proto=tcp port=3306-3306 remote=0.0.0.0/0",
-        "proto=tcp port=3306-3306 remote=aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+        "proto=tcp port=3306-3306 remote=pensive-goodall-6",
         "proto=None port=None-None remote=41.90.208.14/32"
       ]
     },
@@ -237,7 +237,7 @@
         "proto=tcp port=22-22 remote=0.0.0.0/0",
         "proto=tcp port=443-443 remote=0.0.0.0/0",
         "proto=tcp port=80-80 remote=0.0.0.0/0",
-        "proto=None port=None-None remote=803fb5f5-1f24-4d09-847d-e921a66b4e45"
+        "proto=None port=None-None remote=pensive-goodall-6"
       ]
     }
   }

@@ -225,4 +225,4 @@ Standing under all disciplines. No push. Local commits only:
 - Code (`App.js`, `test_wave_g_v8_shell_port.py`, `test_shaping_wizard_r3.py`, `baseline_failures.json`) on `programme/track-a` of `Extraction-Akki`.
 - STATE + notes + receipts + `tools/wave_g4_offline_visual_proof.js` on `master` of the workspace.
 
-**Awaiting owner re-eyeball on the live preview URL** (`https://akki-reuse-assess.preview.emergentagent.com/`). If ACCEPT: Wave G ratifies, resume the parked Reuse Audit (Cat 6–8). If REJECT: bank the residue as a new right-reason RED under the same file and iterate. SSH interrupt priority unchanged.
+**Awaiting owner re-eyeball on the live preview URL** (`https://pensive-goodall-6.preview.emergentagent.com/`). If ACCEPT: Wave G ratifies, resume the parked Reuse Audit (Cat 6–8). If REJECT: bank the residue as a new right-reason RED under the same file and iterate. SSH interrupt priority unchanged.

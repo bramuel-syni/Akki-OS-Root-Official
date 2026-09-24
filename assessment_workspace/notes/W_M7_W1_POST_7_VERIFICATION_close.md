@@ -101,7 +101,7 @@ All 5 (technically 6 rows) post-M5 modifications carry: (a) CP citation · (b) r
 - akki-vm: sampler_alive+workload_alive · 70 telemetry samples · 296 bench iters (ok=296) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 64 telemetry samples · 296 bench iters (ok=296) · peak 100% util per GPU · ~693 W · ~71°C.
 - 592 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 ---
 

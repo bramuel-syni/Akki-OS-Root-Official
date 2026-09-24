@@ -13,9 +13,9 @@ XFF = "127.0.0.1, pod-lb, cf-edge"
 def install_backend_url_rewrite(context):
     def handler(route, request):
         url = request.url
-        if url.startswith("https://akki-reuse-assess.preview.emergentagent.com"):
+        if url.startswith("https://pensive-goodall-6.preview.emergentagent.com"):
             new_url = url.replace(
-                "https://akki-reuse-assess.preview.emergentagent.com",
+                "https://pensive-goodall-6.preview.emergentagent.com",
                 "http://localhost:8001",
             )
             try:

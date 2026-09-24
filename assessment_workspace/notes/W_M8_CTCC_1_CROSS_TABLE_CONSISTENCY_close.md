@@ -91,7 +91,7 @@ Five primitives, all case-agnostic:
 - akki-vm: sampler_alive+workload_alive · bench iters 360 (ok=360) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 78 telemetry samples · bench iters 360 (ok=360) · peak 100% util per GPU · ~693 W · ~71°C.
 - 720 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 - Sampler PID `299351` (akki-vm) · start_utc `2026-09-16T03:41:28Z` · sample interval 300s · wall_clock 259200s.
 
 ---

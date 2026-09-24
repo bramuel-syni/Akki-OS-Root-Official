@@ -236,7 +236,7 @@ Executed as CP9 sub-task before the close report is finalized:
 
 1. Flip `/app/backend/.env` `ALLOWLIST_MODE=permissive` → `ALLOWLIST_MODE=strict` (owner IP 41.90.172.155 remains banked in OWNER_ALLOWLIST_IPS).
 2. `sudo supervisorctl restart backend frontend`; wait 5s.
-3. Curl-verify from allowlisted position: `curl -s -w "%{http_code}\n" -H "X-Forwarded-For: 41.90.172.155,<CF>,<GCP>" https://akki-reuse-assess.preview.emergentagent.com/api/deliverables` → expect **200**.
+3. Curl-verify from allowlisted position: `curl -s -w "%{http_code}\n" -H "X-Forwarded-For: 41.90.172.155,<CF>,<GCP>" https://pensive-goodall-6.preview.emergentagent.com/api/deliverables` → expect **200**.
 4. Curl-verify unknown position: `curl -s -w "%{http_code}\n" -H "X-Forwarded-For: 9.9.9.9,<CF>,<GCP>" https://.../api/deliverables` → expect **403** + body exactly `This surface answers allowlisted addresses only.`
 5. Bank a receipt to `phase0/drill_receipts/<ts>_w10_cp9_allowlist_flipback_verification.log` with the two curl responses.
 6. Log the flip as an owner ruling section in `STATE/DECISIONS.md` (verbatim: "flip back to strict complete · owner IP 41.90.172.155 admits · unknown IPs refused with exact sentence").

@@ -491,7 +491,7 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 10. **Scope discipline: S/M class.** One connection type on one existing tile — not a credentials manager, not a multi-provider abstraction. If it grows past M, STOP and say why.
 11. **Queue update.** Provisioning day reaches builder via the form's Deploy Date field, not a message. Bootstrap password now transits ONCE into the estate through this surface (secrecy assertions apply unchanged). Reference screenshot file still follows; transcription-grade holds.
 12. **Order of work:** WS-BUILD-CONNECT-GPU next (gates Phase-0); Phase-1 follow-on + seam continue in parallel; first report on this item is the built surface + gating tests green. Then owner enters credentials, Phase-0 completes end-to-end in one motion.
-13. **Orchestrator execution notes bind (see NEXT.md):** on programme/track-a AND spine app served at pod preview URL `https://akki-reuse-assess.preview.emergentagent.com`; behind spine auth (seeded owner account, strong generated password OR token) — that's an app login, not a console/VM credential; rate-limited + CSRF-protected. End-to-end drill against a local mock sshd on `127.0.0.1:2222` BEFORE any hand-off; drill distinguished by host identity, no drill-mode switch.
+13. **Orchestrator execution notes bind (see NEXT.md):** on programme/track-a AND spine app served at pod preview URL `https://pensive-goodall-6.preview.emergentagent.com`; behind spine auth (seeded owner account, strong generated password OR token) — that's an app login, not a console/VM credential; rate-limited + CSRF-protected. End-to-end drill against a local mock sshd on `127.0.0.1:2222` BEFORE any hand-off; drill distinguished by host identity, no drill-mode switch.
 
 
 
@@ -2591,7 +2591,7 @@ Landed same-session. Three parts:
 
 ### Live-pod verification (verbatim)
 
-Public URL (`https://akki-reuse-assess.preview.emergentagent.com`), CP-D0 post-fix:
+Public URL (`https://pensive-goodall-6.preview.emergentagent.com`), CP-D0 post-fix:
 
 ```
 POST /api/service_1/v2/dispatch  { output.form="model", ... }
@@ -4601,7 +4601,7 @@ Right-reason RED first (fidelity gates assert absence of overlays + bans on bann
 
 **Close report artifact:** `notes/waveG3_close_report_addendum.md` (§5 verdict verbatim · §6 per-slot substitution table · §7 banned-vocab assertion list · §8 double-green receipts · §8b runtime preview verification · §9 stop-and-report).
 
-**Position:** HOLD for owner re-eyeball on live preview URL `https://akki-reuse-assess.preview.emergentagent.com/`. Gate order: automated GREEN (done ×3), owner eyeball is the final gate. If ACCEPT: G3 ratifies, resume the parked Reuse Audit (Cat 6-8) per the pre-G-parked ledger. If REJECT: bank the residue as a new right-reason RED under the same file and iterate. SSH interrupt priority unchanged.
+**Position:** HOLD for owner re-eyeball on live preview URL `https://pensive-goodall-6.preview.emergentagent.com/`. Gate order: automated GREEN (done ×3), owner eyeball is the final gate. If ACCEPT: G3 ratifies, resume the parked Reuse Audit (Cat 6-8) per the pre-G-parked ledger. If REJECT: bank the residue as a new right-reason RED under the same file and iterate. SSH interrupt priority unchanged.
 
 
 ---
@@ -9686,8 +9686,8 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 **Action:** copied banked audit artefacts (not moved · sources unchanged) into `/app/frontend/public/audit/` so the CRA dev-server static path serves them under the preview URL. IPAllowlistMiddleware continues to gate — owner accesses from an allowlisted IP; the middleware config is untouched.
 
 **Public URLs (owner-side, allowlisted-IP required):**
-- `https://akki-reuse-assess.preview.emergentagent.com/audit/ESTATE_CONTACT_AUDIT_20260915.md`
-- `https://akki-reuse-assess.preview.emergentagent.com/audit/estate_contact_audit_20260915.json`
+- `https://pensive-goodall-6.preview.emergentagent.com/audit/ESTATE_CONTACT_AUDIT_20260915.md`
+- `https://pensive-goodall-6.preview.emergentagent.com/audit/estate_contact_audit_20260915.json`
 
 **Served-bytes verification (via internal loopback with SPINE-allowlisted XFF, no IP echoed):**
 - MD  · `HTTP 200` · `size=15991` · `sha256=5f4040a5f7755ce72420c95ec666e9e264a9d7d86ca4aa3e5596388c138e9ca9`
@@ -9797,8 +9797,8 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 - **Ratchet floor unchanged: 4112.** No tests amended. Not rebaselining.
 
 **External verification (owner-view path via preview ingress):**
-- `https://akki-reuse-assess.preview.emergentagent.com/audit/ESTATE_CONTACT_AUDIT_20260915.md` · `HTTP 200` · `size=15991` · `sha256=5f4040a5f7755ce72420c95ec666e9e264a9d7d86ca4aa3e5596388c138e9ca9`.
-- `https://akki-reuse-assess.preview.emergentagent.com/audit/estate_contact_audit_20260915.json` · `HTTP 200` · `size=54282` · `sha256=2559f6b8a66cc6e55f2402467a499803d1dc48aa3ce0036e76f89ed95e7f2c93` (matches banked JSON self-pin).
+- `https://pensive-goodall-6.preview.emergentagent.com/audit/ESTATE_CONTACT_AUDIT_20260915.md` · `HTTP 200` · `size=15991` · `sha256=5f4040a5f7755ce72420c95ec666e9e264a9d7d86ca4aa3e5596388c138e9ca9`.
+- `https://pensive-goodall-6.preview.emergentagent.com/audit/estate_contact_audit_20260915.json` · `HTTP 200` · `size=54282` · `sha256=2559f6b8a66cc6e55f2402467a499803d1dc48aa3ce0036e76f89ed95e7f2c93` (matches banked JSON self-pin).
 
 **RE-ENABLE — OWNER-DESK CARRY-FORWARD (do not silently persist):**
 > **OPEN item:** allowlist re-enable pending owner "restore" ruling. When owner rules restore: flip `/app/backend/.env` `ALLOWLIST_MODE=permissive` → `ALLOWLIST_MODE=strict`, restart backend + frontend, verify `test_strict_mode_default_still_blocks_unknown` semantics via loopback probe, bank restore in DECISIONS. This carry-forward is also pinned in NEXT.md so no fresh/compacted session misses it.
@@ -12041,7 +12041,7 @@ Public API added (9 new exports · combined module surface 19 exports): Commissi
 >    - **Workload selection** (mission-aligned, enumerate briefly then pick — owner wants it RUNNING, not deliberated): recommended pair (a) **Mtafiti GPU embeddings + deep-sweep** over already-censused weego/ussd data (M8 catch-all items pulled forward — real product value), and (b) **appliance benchmark suite** on both H200 boxes (discharges precondition (a) of the deliberately-unruled R-14 serving-engine admission — real governance value). NOT model training on estate audio — that stays inside deferred SW-10; do not cross that line.
 >    - **Persistence**: launch as detached processes on akki-vm / akki-vm-ii (nohup/tmux/systemd-run) so the run survives agent session boundaries. 72h wall-clock from launch timestamp.
 >    - **Telemetry**: sampler on each host every 5 minutes — nvidia-smi query (utilization.gpu, utilization.memory, memory.used, power.draw, temperature) per GPU → append-only JSONL on the host, synced back to workspace receipts at every check-in.
->    - **Owner-facing utilization report**: generate/refresh a report (MD + JSON) at each check-in — launch time, hours elapsed/remaining, per-host per-GPU average + peak utilization, jobs completed, receipts index — and SERVE it alongside the audit files (e.g., https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md). Reply with the exact URL once live.
+>    - **Owner-facing utilization report**: generate/refresh a report (MD + JSON) at each check-in — launch time, hours elapsed/remaining, per-host per-GPU average + peak utilization, jobs completed, receipts index — and SERVE it alongside the audit files (e.g., https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md). Reply with the exact URL once live.
 >    - **Governance**: everything in-perimeter (DB data transits JUMP→vm under the banked compute-to-data rulings); env-injection creds only (§E discipline); shape-only receipts; the SEC probe-halt does NOT block this job (owner's utilization order is the initiation authorization — bank that reading); position-redaction throughout.
 >    - **Check-in cadence**: snapshot utilization + sync receipts at every CP boundary of the M7 walk (and at least every few hours of session time). If a workload finishes early, chain the next mission-aligned workload (embeddings → deep-sweep → benchmark permutations) so utilization stays real, not idle-spin fakery — NEVER run synthetic burn loops; every GPU-hour must produce a banked artefact.
 > 4. Sequence: utilization job built + launched + URL reported → M7-open note + W0 brief → W0 walk with check-ins interleaved.
@@ -12206,7 +12206,7 @@ Utilization interleave continues at every CP boundary of POST-1 + POST-2.
 - akki-vm: `sampler_alive`+`workload_alive` · 48 telemetry samples · 202 bench iters (ok=202) · peak 100% GPU util · peak ~691 W · peak ~70°C.
 - akki-vm-ii: `sampler_alive`+`workload_alive` · 46 telemetry samples · 202 bench iters (ok=202) · peak 100% GPU util · peak ~693 W · peak ~71°C.
 - 404 total bench artefacts banked · zero synthetic burn · in-perimeter · env-injection creds · position-redaction preserved.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 
@@ -12261,7 +12261,7 @@ Utilization interleave continues at every CP boundary of POST-1 + POST-2.
 - akki-vm: sampler_alive+workload_alive · 52 telemetry samples · 224 bench iters (ok=224) · peak 100% util per GPU · peak ~691 W · peak ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 50 telemetry samples · 224 bench iters (ok=224) · peak 100% util per GPU · peak ~693 W · peak ~71°C.
 - 448 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 
@@ -12327,7 +12327,7 @@ Utilization interleave continues at every CP boundary of POST-1 + POST-2.
 - akki-vm: 54 telemetry samples · 242 bench iters (ok=242) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: 54 telemetry samples · 242 bench iters (ok=242) · peak 100% util per GPU · ~693 W · ~71°C.
 - 484 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 
@@ -12385,7 +12385,7 @@ Utilization interleave continues at every CP boundary of POST-1 + POST-2.
 - akki-vm: sampler_alive+workload_alive · 64 telemetry samples · 268 bench iters (ok=268) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 58 telemetry samples · 268 bench iters (ok=268) · peak 100% util per GPU · ~693 W · ~71°C.
 - 536 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 
@@ -12435,7 +12435,7 @@ Utilization interleave continues at every CP boundary of POST-1 + POST-2.
 - akki-vm: sampler_alive+workload_alive · 68 telemetry samples · 282 bench iters (ok=282) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 62 telemetry samples · 282 bench iters (ok=282) · peak 100% util per GPU · ~693 W · ~71°C.
 - 564 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 
@@ -12528,7 +12528,7 @@ All 5 meet SO §4.2 clause 6 criteria. M5 verification remains clean; M8 waves' 
 - akki-vm: sampler_alive+workload_alive · 70 telemetry samples · 296 bench iters (ok=296) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 64 telemetry samples · 296 bench iters (ok=296) · peak 100% util per GPU · ~693 W · ~71°C.
 - 592 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 
@@ -12572,7 +12572,7 @@ All 5 meet SO §4.2 clause 6 criteria. M5 verification remains clean; M8 waves' 
 - akki-vm: 72 telemetry samples · 306 bench iters (ok=306) · peak 100% util · ~691 W · ~70°C.
 - akki-vm-ii: 66 telemetry samples · 306 bench iters (ok=306) · peak 100% util · ~693 W · ~71°C.
 - 612 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 
@@ -12656,7 +12656,7 @@ All 5 meet SO §4.2 clause 6 criteria. M5 verification remains clean; M8 waves' 
 - akki-vm: sampler_alive+workload_alive · bench iters 360 (ok=360) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 78 telemetry samples · bench iters 360 (ok=360) · peak 100% util per GPU · ~693 W · ~71°C.
 - 720 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 **Effects banked:**
 1. **CP-M8-CTCC-1 SEALED** · +16 ratchet · Path α clean · case-agnostic preventive contract shipped.
@@ -13083,7 +13083,7 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 2. **W8 CHARTER 3/3 SATISFIED (up from 0/3)** — three tiers now have an admissibility path under Ruling #5.
 3. **W8 refusal-by-default surface unchanged** — the existing `services.audio_poc.release_gate` refusal-by-default surface is untouched; the lift is an ADDITIVE admissibility path.
 4. **Next slice per §A pre-declared walk**: CP-M7-W9-UPGRADE-1 (Path B `corpus_deliverable_v1` upgrade shape).
-5. **Owner-priority interleave discharged this-shift**: census-report served (URL banked · HTTP 200 · byte-identical curl vs source · owner-facing URL: `https://akki-reuse-assess.preview.emergentagent.com/audit/ITEM_3_CENSUS_RUN_20260915.md`). Credential-drop ingestion + Huawei research-first + probes commence after this seal completes.
+5. **Owner-priority interleave discharged this-shift**: census-report served (URL banked · HTTP 200 · byte-identical curl vs source · owner-facing URL: `https://pensive-goodall-6.preview.emergentagent.com/audit/ITEM_3_CENSUS_RUN_20260915.md`). Credential-drop ingestion + Huawei research-first + probes commence after this seal completes.
 
 ---
 
@@ -23198,7 +23198,7 @@ Scope owner verbatim: "every remaining specification — the entitlement service
 
 ### Frontend dispatch prerequisite · REPORT to owner (this-Commit banking)
 
-- **(a) /api/openapi.json responds on preview URL**: ✅ **CONFIRMED** — `curl -s https://akki-reuse-assess.preview.emergentagent.com/api/openapi.json` returns HTTP 200 · 190,484 bytes · title `"Akki · Extraction-Akki (programme/track-a)"` version `"w10-cp9"`. Backend supervisor process wired: `/etc/supervisor/conf.d/supervisord.conf` `[program:backend]` runs `/root/.venv/bin/uvicorn server:app --host 0.0.0.0 --port 8001 --workers 1 --reload` with `directory=/app/backend`. `/app/backend/server.py` is the SPINE BRIDGE that imports routers from `/app/assessment_workspace/repos/Extraction-Akki/backend/` (per module header comment "Spine bridge: WS-BUILD-CONNECT-GPU production code lives on programme/track-a in Extraction-Akki. /app/backend is the pod-shell that mounts the router. Access is source-IP allowlist per owner stop-order 2026-08-14"). Any new module I add to Extraction-Akki backend (e.g. `services.dap_lifecycle`) is available to the pod-shell subject to router wiring. No supervisor edit needed.
+- **(a) /api/openapi.json responds on preview URL**: ✅ **CONFIRMED** — `curl -s https://pensive-goodall-6.preview.emergentagent.com/api/openapi.json` returns HTTP 200 · 190,484 bytes · title `"Akki · Extraction-Akki (programme/track-a)"` version `"w10-cp9"`. Backend supervisor process wired: `/etc/supervisor/conf.d/supervisord.conf` `[program:backend]` runs `/root/.venv/bin/uvicorn server:app --host 0.0.0.0 --port 8001 --workers 1 --reload` with `directory=/app/backend`. `/app/backend/server.py` is the SPINE BRIDGE that imports routers from `/app/assessment_workspace/repos/Extraction-Akki/backend/` (per module header comment "Spine bridge: WS-BUILD-CONNECT-GPU production code lives on programme/track-a in Extraction-Akki. /app/backend is the pod-shell that mounts the router. Access is source-IP allowlist per owner stop-order 2026-08-14"). Any new module I add to Extraction-Akki backend (e.g. `services.dap_lifecycle`) is available to the pod-shell subject to router wiring. No supervisor edit needed.
 
 - **(b) On-disk paths of the four design sources + three frozen contract bundle pins**:
   - **Front End Integration Brief**: `/app/assessment_workspace/custody/owner_drops/20260920T0824Z/Front_End_Integration_Brief.md`

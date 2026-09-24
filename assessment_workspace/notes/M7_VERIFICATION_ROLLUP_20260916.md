@@ -102,7 +102,7 @@ Every receipt is machine-parseable JSON at the noted path. Every close-note is m
 - Elapsed 2.56 h · Remaining 69.44 h · both hosts sampler+workload alive throughout the 9-walk chain.
 - Peak GPU util 100% per H200 (all 4 GPUs) · peak power ~691-693 W · peak temp ~70-71 °C.
 - 612 total bench artefacts banked as of POST-8 seal.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 ---
 

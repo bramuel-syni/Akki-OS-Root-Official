@@ -81,7 +81,7 @@ Machine-readable receipt: `phase0/m7_w1_post_2_verification/verification_receipt
 - akki-vm-ii: sampler_alive + workload_alive · telemetry_samples=50 · bench_iterations=224 (ok=224) · per-GPU peak 100% util · peak ~693 W · peak ~71°C.
 - Elapsed: 1.88 h · Remaining: 70.12 h.
 - 448 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 ---
 

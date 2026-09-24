@@ -59,7 +59,7 @@ ROOT.mkdir(parents=True, exist_ok=True)
 
 FRONTEND_URL = "http://localhost:3000/"
 BACKEND_URL_LOCAL = "http://localhost:8001"
-BACKEND_URL_EXTERNAL = "https://akki-reuse-assess.preview.emergentagent.com"
+BACKEND_URL_EXTERNAL = "https://pensive-goodall-6.preview.emergentagent.com"
 
 XFF_ADMIT_HEADER = "127.0.0.1, pod-lb, cf-edge"
 

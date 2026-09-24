@@ -123,7 +123,7 @@ Earlier M8 CPs (CP-EXR1, CP-DASWR1/DDDR1, CP-CRO1/CRO2, CP-SW6-HYG-1) recorded t
 - akki-vm-ii: 82 telemetry samples · 380 bench iters (ok=380 · 2 GPUs).
 - Peak GPU util 100% per H200 (all 4 GPUs) · peak power ~691-693 W · peak temp ~70-71 °C throughout.
 - 760 total bench artefacts banked as of Commit-C fixup landing.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md` and `.json`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md` and `.json`.
 - Zero training kills · zero live-perturbation events · SO §5 zero-perturbation discipline preserved. W-Queue-Watchdog on-host portion (P5 remainder) explicitly DEFERRED-TO-POST-72H-CAMPAIGN.
 
 ---

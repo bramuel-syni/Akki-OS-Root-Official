@@ -84,7 +84,7 @@ Each CP boundary fires a GPU utilization interleave check-in per SO §5.
 - akki-vm-ii: 88 telemetry samples · 410 bench iters (ok=410 across 2 GPUs).
 - Peak GPU util 100% per H200 · peak power ~691-693W · peak temp ~70-71°C.
 - 820 total bench artefacts banked.
-- Report served at `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served at `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 ---
 

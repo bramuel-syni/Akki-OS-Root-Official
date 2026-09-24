@@ -91,7 +91,7 @@ Under **SO §4.2 wave-window commit enumeration** + **clause 6 cross-wave modifi
 - akki-vm: sampler_alive+workload_alive · 68 telemetry samples · 282 bench iters (ok=282) · peak 100% util per GPU · ~691 W · ~70°C.
 - akki-vm-ii: sampler_alive+workload_alive · 62 telemetry samples · 282 bench iters (ok=282) · peak 100% util per GPU · ~693 W · ~71°C.
 - 564 total bench artefacts banked · zero synthetic burn · in-perimeter.
-- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+- Report served: `https://pensive-goodall-6.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
 
 ---
 
