@@ -339,3 +339,46 @@ Filed post-INCIDENT-2026-09-22-01 during RMS CREDS 2 ingest (custody fold-in sub
 - **Blocks**: nothing.
 - **Continues**: Item 5.12 machinery.
 - **Priority**: **P2** (fork not hold · DEFAULT stands).
+
+## DQ-25 · FORK-COMPUTE-CORPUS-OUT-OF-PERIMETER · 12-language `google-transcripts` corpus location + Akki-side delivery mechanism
+
+- **Surfaced at**: CP-AIP-LANGUAGE-COGNITION functional-training order 2026-02-24T~xxZ (owner verbatim: "since you have a baseline now, why dont akki train the cognition model … system needs to now be functional").
+- **Fact**: The 12-language labelled corpus at `google-transcripts/datasets/{kik,ebu,swa,luo,kln,guz,mer,bxk,kam,mrg,lwg,mas}/{audio,transcript}` (per SO §6.9 LID RATIFICATION admission-gate spec) is NOT in the pod perimeter. Per Ruling (b) AKKI-RUNS-IT verbatim 2026-02-23 the labelled corpus MUST NEVER enter the pod as a data path; sealed `commission_language_cognition_training_run` at `services/audio_plane_v1/language_cognition_v1.py:401` structurally refuses `pod://*` and `/app/*` prefixed refs at every ref position. Sealed `PodAsDataPathRefused` inherits from sealed `PodIsNeverDataPathAtTrack4Error`.
+- **State at fork**: sealed corpus seam `language_cognition_corpus_seam_v1.py` binds `LANGUAGE_COGNITION_TARGET_LANGUAGES` Final 5-tuple + `CorpusChannelUnreachableHonestGap_v1` marker; Census Assistant confirmed-turn banked as A5.16 receipt 2026-02-24 (owner verbatim: "this owner order IS the confirmed turn"). Reachable-channel receipt banked 2026-09-24 (`FULL_ESTATE_read_capability_sweep` · Razuna+Newsvault+NAS all connected).
+- **Options**:
+  - **(a)** Corpus lives Akki-side already — owner points to the exact path in Akki's boundary where `google-transcripts/datasets/{kik,ebu,...}` is mounted. Wire seam produces `corpus_assembly_ref = "akki://google-transcripts/datasets/…"` handle; sealed commission callable proceeds.
+  - **(b)** Corpus lives at an external mirror (HuggingFace dataset repo / S3 bucket / other) — owner names the mirror ref. Akki (not the pod) pulls under the sealed `HuggingFacePullWrapperAntiToken_v1` (SO §6.9 clause 3 anti-token discipline) or the equivalent S3 pull, materializes inside Akki's boundary.
+  - **(c)** Owner authorizes a synthetic proof-of-pipeline LoRA on a reduced non-tenant public corpus (e.g., a subset of VoxLingua107 own labelled audio if licensable for this purpose) as commissioned-job receipt. NOTE: this proves pipeline plumbing, NOT language-cognition on RMS estate.
+- **Recommendation**: **(a)** if available (fastest), else **(b)** (via a specific mirror ref). **(c)** if neither (a) nor (b) is reachable within the completion window — with explicit surfacing that (c) yields a pipeline-passes receipt not a fact-level language distribution.
+- **Blocks**: emission of a `completed`-status `AutonomyEngineRunReceipt_v1` for the `training_runs` job kind. Blocks promotion of overlay→measure per B5.4 (which requires a MOAC-cleared trained artefact). Does NOT block delivery of the corrected OUTCOMES doc, the scorecard, the LID false-positive fix (all landed under Ruling 2 of this 2026-02-24 wave).
+- **Continues**: LID overlay abstention + estate-filter (Objective K MET at ratchet target 6420); Census Assistant confirmed-turn banking; every other sealed capability.
+- **Priority**: **P0** (functional-training gate).
+
+## DQ-26 · FORK-COMPUTE-GPU-CREDS-PENDING-OWNER-KEY-IN · resume WS-BUILD-CONNECT-GPU · aisca-gpu-01 real VM credentials
+
+- **Surfaced at**: CP-AIP-LANGUAGE-COGNITION functional-training order 2026-02-24T~xxZ. Owner directive verbatim: "check the GPU channel first (the H200 mapping that was live earlier via SSH keys / aisca-gpu-01 commissioning records)."
+- **Fact**: Every `commissioning_aisca-gpu-01_*.json` file at `phase0/commissioning_records/` carries `vm_host` of either `127.0.0.1` (pytest test-drill fixture; `receipt_path` under `/tmp/pytest-of-root/pytest-<n>/test_drill_host_produces_disti0/hardening_receipt.json`) or `203.0.113.42` / `203.0.113.5` — the latter two are in the TEST-NET-3 documentation range per RFC 5737 and are NOT routable public IPs. Pod-side probes confirm no reachable GPU (`nvidia-smi: command not found`; no torch/transformers/peft/speechbrain/opacus installed). Owner's own WS-BUILD-CONNECT-GPU ruling 2026-08-14 verbatim (DECISIONS.md line 384): "I will key the VM credentials into the app myself: Connect tile → GPU." Surface was built at Phase-0 gating (test_four_questions_topline_present green on the WS-BUILD-CONNECT-GPU tile); real credentials never keyed in.
+- **State at fork**: Track-4 wiring at `services/census_autonomy/track_4_autonomy_wiring_v1.py` sealed with `AutonomyEngineRunReceipt_v1` shape ready to emit a `completed`-status receipt when a real Akki-side dispatch returns.
+- **Options**:
+  - **(a)** Owner resumes WS-BUILD-CONNECT-GPU: keys real `aisca-gpu-01` VM credentials into the Connect → GPU tile per the 2026-08-14 verbatim plan. Track-4 `training_runs` job then dispatches to real H200 hardware inside Akki's boundary; commissioned-job receipt returns with status `completed` / `failed` per actual run outcome.
+  - **(b)** Owner points to a different GPU host by IP + SSH key path (recorded as an additive commissioning ref).
+  - **(c)** Continue in CPU-only mode (Fork DQ-25 (c) path) — pipeline-proof only.
+- **Recommendation**: **(a)** — resumes the pre-existing WS-BUILD-CONNECT-GPU ceremony verbatim; owner already committed to this in 2026-08-14 ruling; pod side is ready.
+- **Blocks**: real (non-mock) LoRA training pass on 4× H200 with NVLink per the 30 TB HSS-mounted acceptance record shape. Blocks emission of an authentic `completed`-status commissioned-job receipt.
+- **Continues**: everything DQ-25 continues; additionally, all Track-4 wiring registration paths continue to structurally refuse `pod://*` / `/app/*` refs.
+- **Priority**: **P0** (functional-training gate · downstream of DQ-25 corpus location).
+
+## DQ-27 · FORK-DP-SGD-TOOLING · opacus / DP toolchain runnability · owner opt-out recommendation banked
+
+- **Surfaced at**: CP-AIP-LANGUAGE-COGNITION functional-training order 2026-02-24T~xxZ. Owner verbatim: "If the DP-SGD toolchain is NOT runnable on available compute, file the fork to DESK_QUEUE with your recommendation (likely: owner opts out for this internal run, recorded) and surface it to me IMMEDIATELY."
+- **Fact**: `opacus` (DP-SGD Python library) not installed on pod. Torch/transformers/peft/speechbrain also absent (all >~500 MB combined). Pod is not the training host anyway (Ruling (b) verbatim); DP-SGD tooling lives at the training host, not in the pod.
+- **State at fork**: sealed `RmsCustodyRightsPosture_v1` carrier at `services/audio_plane_v1/language_cognition_v1.py` binds `dp_sgd_default = True`; `dp_opt_out_ref = None`. Existing DQ-24 already covers the DEFAULT-vs-opt-out fork at contract level. This entry (DQ-27) specifically covers the TOOLING runnability question the owner surfaced 2026-02-24.
+- **Options**:
+  - **(a)** Owner opts out for this internal run (per owner's own hedge "likely: owner opts out for this internal run, recorded"). Recorded at `STATE/OWNER_DROPS/language_cognition_dp_opt_out_20260224/DROP.md` with owner signature; `dp_opt_out_ref` gets pinned to that path. DP-SGD applies again structurally when a real training host + opacus tooling become available.
+  - **(b)** Wait for DQ-26 to close (real GPU host lands), then install opacus + tooling on that host and run DP-SGD default.
+  - **(c)** Owner defers ratification; DEFAULT DP-SGD stands meanwhile per DQ-24 (with a factual honest-gap noting the tooling isn't currently runnable).
+- **Recommendation**: **(a)** for this internal run (matches owner's own hedge verbatim). Re-enter DP-SGD structurally at the next training run against a real host.
+- **Blocks**: nothing on its own — DP-SGD is a training-run posture, not a wiring gate. DP-SGD toolchain runnability is downstream of DQ-25 (corpus) + DQ-26 (GPU).
+- **Continues**: everything DQ-25/DQ-26 continue.
+- **Priority**: **P1** (structural default stands · owner one-word ruling requested per 2026-02-24 owner directive verbatim "surface it to me IMMEDIATELY").
+

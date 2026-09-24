@@ -2,6 +2,72 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 
 
+## 2026-02-24T~03:55Z · Consolidated owner rulings on DATA/CENSUS track · DQ-17 reclass + LID false-positive fix + CP-AIP-LANGUAGE-COGNITION functional-training order · dashes not colons · UI-P0 stays blocked
+
+**Runs in PARALLEL with and independent of the UI-FIDELITY-P0 hold. UI rebuild remains blocked on owner GO for the 7 §7.9 ratification checkpoints. All bans binding · testing_agent BANNED · additive-only per SO §3.8 · terminal pytest only · Ruling (b) AKKI-RUNS-IT verbatim.**
+
+### Ruling 1 · DQ-17 reclassified as NOT a block (owner verbatim 2026-02-23T~19:xxZ)
+
+Owner verbatim (dashes preserved): *"i mentioned that nothing gets blocked because of credentials. Also give me outcomes meanwhile to report to the team. DQ-17 should not block, we will clean up post completion."* + *"the ONLY legitimate gap is a FACTUAL connection failure (a channel that genuinely will not authenticate with the credentials we already hold) — that is recorded as an honest-gap with the exact error, it is NOT a policy hold and NOT a reason to wait. 'We should rotate first' is a WITHDRAWN gate."*
+
+- DQ-17 (Weego/NAS/Razuna/Newsvault credential rotations) is NO LONGER a precondition for any work. Removed as blocking gate from CP-AIP-LANGUAGE-COGNITION corpus assembly + census waves. Owner cleanup happens POST-completion.
+- Legitimate gap: only a FACTUAL connection failure (channel that genuinely will not authenticate with credentials we already hold) — recorded as honest-gap with exact error, not policy hold.
+- na7p4* remains PARKED by explicit separate owner instruction 2026-02-23 verbatim (*"skip this for now"*) — owner decision about Huawei IAM `GetObject` grant (DQ-05), NOT a credential hold.
+
+**Measured evidence banked 2026-02-24T~03:38Z** — receipt `phase0/connectivity_receipts/20260924T033806Z_FULL_ESTATE_read_capability_sweep_freshcreds_20260921.json`:
+- JUMP `159.138.173.250` — reachable in 1.885 s.
+- 7 of 9 MySQL clusters via JUMP — AUTH-OK · read schemas per host banked in receipt.
+- **Razuna + Newsvault @ `159.138.173.58`** — MySQL AUTH-OK · `razuna` + `news_vault` databases readable end-to-end. **UNBLOCKED.**
+- NFS/CIFS at `/mnt/nfs-share` — 16 named channels present, all sampled readable (`FULL_16_CHANNELS_PRESENT_ALL_SAMPLED_READABLE`).
+- Huawei OBS carry-forward (2026-09-22 census-3 sweep) — 106 buckets · 950,791 objects · 161.76 TB.
+
+**Remaining factual gaps (not policy holds):**
+- Weego database — no credentials in the sheet for either candidate host (`HOST` placeholder + `159.138.162.146` with empty user field). Factual credential gap.
+- CAL Huawei account (viusasa transcoded-content · MUSIC / MUSIC-AUDIO) — OWNER-Q1 pending.
+
+### Ruling 2 · LID false-positive P0 fidelity defect · additive fix landed (owner verbatim 2026-02-24T~xxZ)
+
+Owner verbatim: *"there is no maori or arabic in the data you have so wrong findings … VERIFY the abstention rule is live: a window below the confidence threshold MUST record unmeasured, NEVER a label. If it isn't enforced, that is the bug — fix it (additive) with a RED-first pin. CONSTRAIN honestly: consider an estate-language allow-list prior (the 12 corpus languages + English/Sheng/Swahili — the languages actually present) so labels outside it are flagged low-confidence/unmeasured rather than asserted. Do NOT hard-suppress — record the raw model output but mark out-of-estate labels as suspected-false-positive."*
+
+- **Root cause (measured):** raw 2026-09-22 DIGICOW LID sweep receipt (`phase0/census_v3/duplication_v2/20260922T020300Z_DIGICOW_LANGID_AGGREGATE.json`) wrote raw model outputs (including sub-threshold and out-of-estate codes) into the aggregate. `LidAdmissionGate_v1.DEFAULT_THRESHOLD_PENDING = 0.90` was defined but not applied at the aggregate-writer boundary. VoxLingua107's 107-language output space had no estate-language prior constraint.
+- **False-positive language codes observed (verbatim):** `mi` (Maori · n=2), `ar` (Arabic · n=17), `la` (n=1), `nn` (n=7), `ro` (n=1), `ko` (n=3), `de` (n=1), `es` (n=2), `pt` (n=2), `cy` (n=1), `gu` (n=1), `el` (n=3), `nl` (n=1). All out of RMS estate.
+- **Containment posture (unchanged):** these labels lived only in a Wave-3 perception-pathway INFERRED overlay receipt · NEVER promoted to a measured figure. `OverlayLidDetection_v1.regime = "pre-admission"` at construction; `LidOverlayMustNotFlowIntoCountedMeasureError` refuses direct construction with `regime="post-admission"`; sealed `promote_lid_regime_by_receipted_act` requires owner signature per Canon 8 §4 W2. The sealed containment held — the false positives are the PROOF the overlay must not be trusted until the language-cognition model is trained and passes MOAC. Strengthens case for training; does not undermine platform.
+- **Additive fix (landed 2026-02-24T~03:47Z):** new additive module `backend/services/audio_plane_v1/lid_overlay_abstention_and_estate_filter_v1.py` (~180 lines) composing sealed `OverlayLidDetection_v1` + `LidAdmissionGate_v1` + `LID_TENANT_LABELS_RESOLVED_12_LANGUAGES` by identity (§1.2 no-redeclaration). `ESTATE_LANGUAGE_ALLOWLIST_v1` frozen 14-tuple `{kik, ebu, swa, luo, kln, guz, mer, bxk, kam, mrg, lwg, mas, en, sheng}`. `LID_ABSTENTION_REASONS` frozen 3-tuple `("ok", "below_confidence", "out_of_estate_suspected_false_positive")`. `LidOverlayFilteredSample_v1` frozen 4-field carrier `(overlay, raw_label, raw_confidence, abstention_reason)` — anti-loss discipline preserves raw model output alongside filtered result. `apply_abstention_and_estate_filter(...)` boundary callable is the single-writer path for LID overlay writes.
+- **Nine RED-first invariant pins** at `backend/tests/invariants/test_lid_overlay_abstention_and_estate_filter.py`. RED-first proof (2026-02-24T~03:45Z): authentic `ImportError` when module absent · right-reason failure. GREEN-post (2026-02-24T~03:47Z): 9/9 passed in 0.67 s.
+- **Re-aggregation receipt:** `phase0/census_v3/duplication_v2/lid_reaggregate_20260224/20260924T034805Z_LID_REAGGREGATE_ABSTENTION_ESTATE_FILTER.json` · sha256 `4fb7d9e0b29eb9e15e988d3610bf14106892e54d14c7056ba049c35f3aed977a`. Outcome — `mi` (raw n=2, raw_avg_conf=0.000) → `unmeasured` / `below_confidence`; `ar` (raw n=17, raw_avg_conf=0.524) → `unmeasured` / `below_confidence`. At aggregate representative-confidence granularity 1,470 raw samples abstain.
+- **Vendored-twin same-slice cure:** `tools/prod_vendor_sync.py` executed 2026-02-24T~03:54Z · `file_count 1070` · `files_written 1` (the new module) · new structural_sha256 `e636bbbbd1374a9368da58865504a51d123abab94539d1aec1f179c741f96485`.
+- **Ratchet:** 6411 → target 6420 (+9 canonical measured own new pins). Baseline sweep B (from `backend/` cwd per pytest.ini) in-flight; numbers bank at next ratchet-boundary commit.
+- **Sealed carriers UNCHANGED per SO §3.8 additive-only** (`lid_wave_overlay_and_admission_v1.py` + all prior sealed carriers untouched).
+
+### Ruling 3 · CP-AIP-LANGUAGE-COGNITION functional-training order · 3 forks filed to DESK_QUEUE (owner verbatim 2026-02-24T~xxZ)
+
+Owner verbatim: *"since you have a baseline now, why dont akki train the cognition model so it can properly identify language? system needs to now be functional, as you now claim to have built all the capability."* + *"if GPU is NOT reachable: run the smallest HONEST proof-of-pipeline LoRA on CPU on a reduced subset (real gradients, measured wall-time, even if slow) as commissioned-job receipt, and file the compute fork with measured cost estimate for the full run."* + *"If the DP-SGD toolchain is NOT runnable on available compute, file the fork to DESK_QUEUE with your recommendation (likely: owner opts out for this internal run, recorded) and surface it to me IMMEDIATELY."*
+
+**Corpus assembly under Census Assistant (owner verbatim: *"this owner order IS the confirmed turn"*):** BANKED as A5.16-receipted confirmed assistant turn per B5 discipline · CensusAssistantConfirmedTurn_v1 shape · `session_id="cp-aip-language-cognition-2026-02-24"` · `role="owner"` · `content_registry_ref="content_registry://cp-aip-lc-owner-training-order-2026-02-24"` · `confirmed_by_owner=True` · `confirmed_at_utc="2026-02-24T~xxZ"` · `a5_16_receipt_ref="a5_16://owner-training-order-2026-02-24"`. Satisfies CP-AIP-LANGUAGE-COGNITION MUST-DO §10 structurally.
+
+**Structural readiness (measured, MET):** sealed corpus seam (`language_cognition_corpus_seam_v1.py`) · sealed commission boundary (`commission_language_cognition_training_run` at `language_cognition_v1.py:401`) · sealed Track-4 wiring (`register_all_three_track_4_jobs` composing LID pass + census-three-waves + training-runs · `emit_autonomy_engine_run_receipt` producing `AutonomyEngineRunReceipt_v1`) · MOAC contract carrier (`LanguageCognitionMoacContract_v1` per-language ≥ 0.90 + code-switch-span ≥ 0.85 + no-speaker-ID pass + abstention reported).
+
+**Execution blockers (measured, this pod, this session):**
+- **`FORK-COMPUTE-CORPUS-OUT-OF-PERIMETER`** — 12-language `google-transcripts/datasets` labelled corpus is NOT in pod perimeter. Ruling (b) verbatim forbids pod as training host or data path (`pod://*` + `/app/*` refused at seat). Owner ruling needed on corpus location + Akki-side delivery mechanism.
+- **`FORK-COMPUTE-GPU-CREDS-PENDING-OWNER-KEY-IN`** — every `aisca-gpu-01` commissioning record at `phase0/commissioning_records/` carries `vm_host` of `127.0.0.1` (pytest drill fixture) or `203.0.113.42`/`203.0.113.5` (TEST-NET-3 documentation range per RFC 5737 · NOT routable public IPs). Owner WS-BUILD-CONNECT-GPU ruling 2026-08-14 verbatim: *"I will key the VM credentials into the app myself: Connect tile → GPU"* — surface built, fixture-grammar tests green, real GPU VM credentials never keyed in.
+- **`FORK-DP-SGD-TOOLING`** — opacus not installed on pod (~500 MB torch dep). Given pod not the training host anyway (Ruling (b)), this is downstream of Fork 2. **Recommendation banked per owner verbatim:** owner opts out for this internal run (recorded honest-gap on execution posture); DP-SGD applies structurally at contract level and re-enters when a real training host lands.
+- **In-pod CPU proof-of-pipeline (owner-authorized fallback):** cannot be honestly executed either — labelled corpus itself is not in-pod (Fork 1); running gradients on synthetic data produces a pipeline-passes receipt but NOT a language-cognition training. Filed under Fork 1.
+
+**Commissioned-job receipt (Ruling (b) verbatim · Akki runs it):** pending single-sentence owner ruling on whether to emit `AutonomyEngineRunReceipt_v1(status="refused", provenance_ref=<pointer-to-three-forks>)` this seal OR wait for one of the forks to close first.
+
+### Deliverables banked this ruling (byte-identical mirror at frontend deliverables endpoint)
+
+- `/app/assessment_workspace/CENSUS_OBJECTIVES_SCORECARD.md` · per-objective status (12 objectives A-L · MET/PARTIAL/NOT-MET/BLOCKED with measured evidence + honest gaps + citations).
+- `/app/assessment_workspace/OUTCOMES_TO_DATE.md` · team narrative · corrected (mi/ar reframed as unvalidated inferred signal · no longer presented as real findings · before/after LID discussion under §4).
+
+Both surfaced at `/deliverables/CENSUS_OBJECTIVES_SCORECARD.md` + `/deliverables/OUTCOMES_TO_DATE.md` via byte-identical copy into `/app/frontend/public/deliverables/`. sha256 verified · HTTP 200 verified via `${REACT_APP_BACKEND_URL}/deliverables/...`.
+
+### Ledger check
+
+This ruling implements three consolidated owner directives on the DATA/CENSUS track (2026-02-23 DQ-17 reclass · 2026-02-24 LID false-positive fix · 2026-02-24 functional-training order) and nothing else. UI-FIDELITY-P0 remains BLOCKED on owner GO for the 7 §7.9 ratification checkpoints (untouched). No sealed carrier edited. Additive-only per SO §3.8. `testing_agent` BANNED throughout. Zero push/fetch this session. 6 Standing Bans + 17 Standing Guards + SO §6.9 amendment + Ruling (b) AKKI-RUNS-IT verbatim + RUN-TO-COMPLETION mandate all honored. Corpus assembly banked as A5.16-receipted confirmed assistant turn per owner verbatim. Three forks filed to DESK_QUEUE per owner directive verbatim.
+
+---
+
 ## 2026-02-23T~17:20Z · CP-AIP-LANGUAGE-COGNITION State Commit-B · Item 5.12 of EXECUTION_ORDER.md · SPEC ENHANCEMENT · SEALED
 
 **Authority:** SO §6.8 standing authority · owner drop 2026-02-23T~16:07Z verbatim (`STATE/OWNER_DROPS/language_cognition_20260223/DROP.md`). No GO needed.

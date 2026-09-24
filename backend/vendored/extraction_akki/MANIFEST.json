@@ -1,5 +1,5 @@
 {
-  "file_count": 1069,
+  "file_count": 1070,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -812,6 +812,10 @@
     "services/audio_plane_v1/leakage_path_harness.py": {
       "sha256": "03ccdbf0683115f40bcc770f8f109acfdc50c2e241c23090529ab499b4bd4bd8",
       "size_bytes": 10167
+    },
+    "services/audio_plane_v1/lid_overlay_abstention_and_estate_filter_v1.py": {
+      "sha256": "1174e36264185484299ded1fe29cec93f82ee1da5f74399fc0e195855a0c8ace",
+      "size_bytes": 9099
     },
     "services/audio_plane_v1/lid_wave_overlay_and_admission_v1.py": {
       "sha256": "b043f65c98275af2a9447d9558e8bc33df5c03058a08316cf8a0b5533fcecd1f",
@@ -4278,7 +4282,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-23T16:51:29Z",
+  "generated_at_utc": "2026-09-24T03:54:05Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4292,7 +4296,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "cbf72f5c23aba93aa8ca54e725769d39c46eb890f4d799c586c9e4cc783c2f4e",
+  "structural_sha256": "e636bbbbd1374a9368da58865504a51d123abab94539d1aec1f179c741f96485",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }

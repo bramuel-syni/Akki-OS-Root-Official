@@ -1,0 +1,217 @@
+{
+  "abstention_reasons_enum": [
+    "ok",
+    "below_confidence",
+    "out_of_estate_suspected_false_positive"
+  ],
+  "estate_language_allowlist": [
+    "bxk",
+    "ebu",
+    "en",
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "mas",
+    "mer",
+    "mrg",
+    "sheng",
+    "swa"
+  ],
+  "filter_module": "backend.services.audio_plane_v1.lid_overlay_abstention_and_estate_filter_v1",
+  "filter_threshold": 0.9,
+  "harvested_at": "2026-09-24T03:48:05Z",
+  "owner_named_false_positives_20260224": {
+    "ar": {
+      "abstention_reason": "below_confidence",
+      "filtered_overlay_label": null,
+      "filtered_overlay_marker": "unmeasured",
+      "raw_avg_confidence": 0.5236960018382353,
+      "raw_output_preserved": {
+        "raw_confidence": 0.5236960018382353,
+        "raw_label": "ar"
+      },
+      "raw_total_samples_across_prior_labels": 17
+    },
+    "mi": {
+      "abstention_reason": "below_confidence",
+      "filtered_overlay_label": null,
+      "filtered_overlay_marker": "unmeasured",
+      "raw_avg_confidence": 0.0,
+      "raw_output_preserved": {
+        "raw_confidence": 0.0,
+        "raw_label": "mi"
+      },
+      "raw_total_samples_across_prior_labels": 2
+    }
+  },
+  "per_prior_label_breakdown": {
+    "DECODE_FAIL": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "en": 6,
+          "sw": 9
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "en": 6,
+        "sw": 9
+      }
+    },
+    "MOSTLY_SILENCE": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "cy": 1,
+          "en": 4,
+          "nl": 1,
+          "nn": 4
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "cy": 1,
+        "en": 4,
+        "nl": 1,
+        "nn": 4
+      }
+    },
+    "NO_AUDIO": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "en": 2
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "en": 2
+      }
+    },
+    "TOO_SHORT": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "el": 3,
+          "en": 3
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "el": 3,
+        "en": 3
+      }
+    },
+    "music": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "en": 1,
+          "nn": 1
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "en": 1,
+        "nn": 1
+      }
+    },
+    "music_or_noise": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "en": 1,
+          "gu": 1
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "en": 1,
+        "gu": 1
+      }
+    },
+    "music_probable": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "en": 2,
+          "nn": 1
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "en": 2,
+        "nn": 1
+      }
+    },
+    "speech": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "ar": 12,
+          "en": 11,
+          "es": 2,
+          "mi": 1,
+          "pt": 2,
+          "sw": 1106
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "ar": 12,
+        "en": 11,
+        "es": 2,
+        "mi": 1,
+        "pt": 2,
+        "sw": 1106
+      }
+    },
+    "speech_probable": {
+      "filtered_by_reason": {
+        "below_confidence": {
+          "ar": 5,
+          "de": 1,
+          "en": 36,
+          "ko": 3,
+          "la": 1,
+          "mi": 1,
+          "nn": 1,
+          "ro": 1,
+          "sw": 247
+        },
+        "ok_kept": {},
+        "out_of_estate_suspected_false_positive": {}
+      },
+      "raw_by_code": {
+        "ar": 5,
+        "de": 1,
+        "en": 36,
+        "ko": 3,
+        "la": 1,
+        "mi": 1,
+        "nn": 1,
+        "ro": 1,
+        "sw": 247
+      }
+    }
+  },
+  "posture_markers": [
+    "Owner correction 2026-02-24 verbatim: 'consider an estate-language allow-list prior (the 12 corpus languages + English/Sheng/Swahili \u2014 the languages actually present) so labels outside it are flagged low-confidence/unmeasured rather than asserted.' The prior is applied as a structural filter at the LID overlay writer boundary; raw model output is preserved alongside (anti-loss).",
+    "Owner correction 2026-02-24 verbatim: 'VERIFY the abstention rule is live: a window below the confidence threshold MUST record unmeasured, NEVER a label.' The abstention rule is enforced at the LID overlay writer boundary (apply_abstention_and_estate_filter) \u2014 the raw model output NEVER flows into the OverlayLidDetection_v1 label field unless it clears both threshold AND estate allow-list.",
+    "Owner correction 2026-02-24 verbatim: 'Do NOT hard-suppress \u2014 record the raw model output but mark out-of-estate labels as suspected-false-positive.' Anti-loss is guaranteed by LidOverlayFilteredSample_v1 carrying raw_label + raw_confidence on every filter output; the filtered sealed overlay + the raw output coexist on the frozen carrier."
+  ],
+  "raw_output_preserved_anti_loss": true,
+  "raw_receipt_path": "/app/assessment_workspace/phase0/census_v3/duplication_v2/20260922T020300Z_DIGICOW_LANGID_AGGREGATE.json",
+  "raw_receipt_sha256": "ce3f72cc3e05ea18ef6e84f2bc0a6e0036c91f216004d68884a738e8bf005e91",
+  "raw_sweep_id": "DIGICOW-S3-LANGID-FULL-20260922T010600Z",
+  "sweep_id": "LID-REAGGREGATE-ABSTENTION-ESTATE-FILTER-20260224T000000Z",
+  "totals": {
+    "abstained_below_confidence": 1470,
+    "abstained_out_of_estate_suspected_false_positive": 0,
+    "ok_kept_labels_in_estate_high_conf": 0
+  }
+}
