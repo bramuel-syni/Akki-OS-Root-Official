@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, createContext, useContext } fr
 import { NavLink, Outlet } from "react-router-dom";
 import {
   Database, Shield, FileText, LayoutDashboard, Link2,
-  ArrowDownToLine, ChevronRight, LogIn, LogOut, User
+  ArrowDownToLine, ChevronRight, LogIn, LogOut, User, Menu, X
 } from "lucide-react";
 import { login as apiLogin, refreshToken, fetchMe } from "@/lib/apiClient";
 
@@ -14,7 +14,8 @@ const NAV_GROUPS = [
   {
     label: "Overview",
     items: [
-      { to: "/dap", icon: LayoutDashboard, label: "Landing", end: true },
+      { to: "/dap", icon: LayoutDashboard, label: "Data Estates", end: true },
+      { to: "/dap/census", icon: Database, label: "Census records" },
     ],
   },
   {
@@ -78,9 +79,11 @@ export default function DAPLayout() {
   const [authLoading, setAuthLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [loginError, setLoginError] = useState(null);
+  const [navOpen, setNavOpen] = useState(false);
 
   // Try refreshing on mount (if a token is in storage)
   useEffect(() => {
+    const synchronize = () => {
     const token = sessionStorage.getItem("akki_access_token");
     if (token) {
       setAuthLoading(true);
@@ -91,7 +94,11 @@ export default function DAPLayout() {
           sessionStorage.removeItem("akki_refresh_token");
         })
         .finally(() => setAuthLoading(false));
-    }
+    } else { setUser(null); }
+    };
+    synchronize();
+    window.addEventListener("akki-session-changed", synchronize);
+    return () => window.removeEventListener("akki-session-changed", synchronize);
   }, []);
 
   const doLogin = useCallback(async (email, password) => {
@@ -102,6 +109,7 @@ export default function DAPLayout() {
       const me = await fetchMe();
       setUser(me);
       setLoginOpen(false);
+      window.dispatchEvent(new Event("akki-session-changed"));
     } catch (e) {
       setLoginError(e.message);
     } finally {
@@ -113,19 +121,26 @@ export default function DAPLayout() {
     sessionStorage.removeItem("akki_access_token");
     sessionStorage.removeItem("akki_refresh_token");
     setUser(null);
+    window.dispatchEvent(new Event("akki-session-changed"));
   }, []);
 
   return (
     <AuthCtx.Provider value={{ user, loading: authLoading, doLogin, doLogout }}>
     <div
       data-testid="dap-layout"
-      className="min-h-screen flex"
+      className="min-h-screen flex flex-col md:flex-row"
       style={{ background: "var(--paper, #f5f2ea)", fontFamily: "var(--body, Söhne, Helvetica Neue, Arial, sans-serif)" }}
     >
       {/* Sidebar */}
+      <button data-testid="dap-mobile-menu" aria-expanded={navOpen} aria-controls="dap-nav-panel"
+        onClick={() => setNavOpen(!navOpen)} className="md:hidden flex items-center justify-between gap-3 px-5 py-4 border-b text-sm"
+        style={{ background: "var(--surface, #f0ece1)", color: "var(--blue, #16274a)", borderColor: "var(--line, #e4dfd3)" }}>
+        Data Access Portal {navOpen ? <X size={18} /> : <Menu size={18} />}
+      </button>
       <aside
+        id="dap-nav-panel"
         data-testid="dap-sidebar"
-        className="w-64 flex-shrink-0 border-r overflow-y-auto"
+        className={`${navOpen ? "block" : "hidden"} md:block w-full md:w-64 flex-shrink-0 border-r overflow-y-auto`}
         style={{ borderColor: "var(--line, #e4dfd3)", background: "var(--surface, #f0ece1)" }}
       >
         <div className="px-5 py-6">
@@ -134,7 +149,7 @@ export default function DAPLayout() {
             className="text-sm font-semibold tracking-wide uppercase mb-6"
             style={{ color: "var(--blue, #16274a)", fontFamily: "var(--head, Iowan Old Style, Georgia, serif)" }}
           >
-            RMS · Data Access Portal
+            Data Access Portal
           </h1>
 
           <nav>
@@ -151,6 +166,7 @@ export default function DAPLayout() {
                     <li key={item.to}>
                       <NavLink
                         to={item.to}
+                        onClick={() => setNavOpen(false)}
                         end={item.end}
                         data-testid={`dap-nav-${item.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                         className={({ isActive }) =>
@@ -223,7 +239,6 @@ export default function DAPLayout() {
                     data-testid="dap-login-email"
                     className="w-full text-xs px-2 py-1.5 rounded border"
                     style={{ borderColor: "var(--hair)", background: "white" }}
-                    defaultValue="demo.master_admin@demo.rms.example.com"
                     required
                   />
                   <input
@@ -233,7 +248,6 @@ export default function DAPLayout() {
                     data-testid="dap-login-password"
                     className="w-full text-xs px-2 py-1.5 rounded border"
                     style={{ borderColor: "var(--hair)", background: "white" }}
-                    defaultValue="demo-master-admin-pw"
                     required
                   />
                   <button
@@ -259,18 +273,18 @@ export default function DAPLayout() {
         {/* Switch to OS link */}
         <div className="px-5 py-4 border-t mt-auto" style={{ borderColor: "var(--line, #e4dfd3)" }}>
           <NavLink
-            to="/"
+            to="/os/admin/estate"
             data-testid="dap-nav-os-prototype"
             className="text-xs hover:underline"
             style={{ color: "var(--ink3, #5b6270)" }}
           >
-            ← Akki OS Prototype
+            ← Akki OS
           </NavLink>
         </div>
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-y-auto min-h-screen">
+      <main className="flex-1 min-w-0 overflow-y-auto min-h-screen">
         <Outlet />
       </main>
     </div>

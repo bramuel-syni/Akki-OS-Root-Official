@@ -508,6 +508,10 @@ app.include_router(dap_buildskill_router.router)  # router path carries /api/dap
 for _wrfb_router in W_REGISTRY_FULL_BUILD_ROUTERS:
     app.include_router(_wrfb_router)
 
+# CP-CENSUS-OPERATIONAL-V1: additive composition over sealed route implementations.
+from routers.census_operational import install as install_operational_census
+install_operational_census(app)
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,

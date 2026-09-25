@@ -1,5 +1,9 @@
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+## CURRENT — 2026-09-25 CP-CENSUS-OPERATIONAL-V1
+
+Owner approved Item 7 census/registry activation with updated prototypes and compaction guards. Test criteria T01–T14 published and banked before code. Read `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md` and `notes/census_operational_v1/GROUNDING.md`. Application untouched at this checkpoint. Next: explicit tenant membership resolution for existing demo accounts (no inferred suffix/default tenant), RED tests, additive execution/read composition, frontend flow, verification including real T14. Full historical suite unavailable; no fabricated ratchet/seal. No pod data path.
+
 # ⛔ ANTI-COMPACTION PIN · READ FIRST EVERY TIME ⛔
 
 **If you are a compaction-restart of the main agent, your FIRST ACTION is:**

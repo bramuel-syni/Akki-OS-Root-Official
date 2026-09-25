@@ -42,8 +42,8 @@ from typing import Final
 # single-writer (Canon-9 §3) used through the engine's `run_bounded_census`.
 from services.census_autonomy.engine import (
     get_pending_scheduled_runs,
-    run_bounded_census,
 )
+from services.census_autonomy.operational_runner import run_bounded_census
 
 # Loop configuration (env-overridable, additive-only defaults).
 SLEEP_BETWEEN_POLLS_SECONDS: Final[int] = int(

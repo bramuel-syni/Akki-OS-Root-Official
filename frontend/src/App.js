@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 /* ── DAP Portal (Track 1) ─────────────────────────────── */
 import DAPLayout from "@/pages/dap/DAPLayout";
-import DAPLanding from "@/pages/dap/DAPLanding";
+import { CensusWorkspace } from "@/components/census/CensusWorkspace";
 import AvailableResources from "@/pages/dap/AvailableResources";
 import DataGovernance from "@/pages/dap/DataGovernance";
 import RequestLifecycle from "@/pages/dap/RequestLifecycle";
@@ -19,7 +19,6 @@ import CanonCountdown from "@/pages/dap/CanonCountdown";
  * a floating "Run census" launcher + running-card that polls the REAL
  * scheduler state endpoint. Never synthesizes progress (owner directive).
  */
-import CensusAutonomyDrawer from "@/components/portal/CensusAutonomyDrawer";
 import ResponseRequiredBadge from "@/components/portal/ResponseRequiredBadge";
 
 // v2 OS Prototype · Turn 4 sub-slice 4d GREEN · Frontend rebuild slice 2 ·
@@ -44,7 +43,7 @@ import ThinkLabClarity from "@/pages/os/ThinkLabClarity";
 import ThinkLabStrategy from "@/pages/os/ThinkLabStrategy";
 import ThinkLabHypothesis from "@/pages/os/ThinkLabHypothesis";
 import ThinkLabPerspective from "@/pages/os/ThinkLabPerspective";
-import AdminEstate from "@/pages/os/AdminEstate";
+import AdminEstate from "@/pages/os/CensusOSPage";
 import AdminGovern from "@/pages/os/AdminGovern";
 import AdminGreyMirror from "@/pages/os/AdminGreyMirror";
 import AdminSpendReq from "@/pages/os/AdminSpendReq";
@@ -1278,7 +1277,8 @@ function App() {
         <Routes>
           {/* Track 1 — DAP Portal */}
           <Route path="/dap" element={<DAPLayout />}>
-            <Route index element={<DAPLanding />} />
+            <Route index element={<CensusWorkspace />} />
+            <Route path="census" element={<CensusWorkspace initialTab="records" />} />
             <Route path="extract/:mode" element={<ExtractModes />} />
             <Route path="resources/:tab" element={<AvailableResources />} />
             <Route path="governance/:tab" element={<DataGovernance />} />
@@ -1286,7 +1286,7 @@ function App() {
             <Route path="requests" element={<RequestLifecycle />} />
             <Route path="entitlement" element={<Entitlement />} />
             <Route path="countdown" element={<CanonCountdown />} />
-            <Route path="estates/:estateId" element={<DataEstates />} />
+            <Route path="estates/:estateId" element={<CensusWorkspace />} />
             <Route path="*" element={<Navigate to="/dap" replace />} />
           </Route>
 
@@ -1356,7 +1356,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       {/* PHASE 3 continuation A'' · additive overlay above prototype iframe */}
-      <CensusAutonomyDrawer />
+      {/* Census controls now live in the tenant-scoped Registry surface; no tenant picker. */}
       {/* PHASE 3 continuation A'''-cont-B · response-required badge overlay */}
       <ResponseRequiredBadge />
     </div>

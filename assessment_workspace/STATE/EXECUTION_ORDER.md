@@ -389,4 +389,10 @@ If that line cannot be written truthfully, STOP and report before committing.
 
 ## Change log
 
+### Item 7 — CP-CENSUS-OPERATIONAL-V1 — IN PROGRESS (owner approved 2026-09-25)
+
+Scope: Akki-owned census execution and consistent OS/DAP registry views, required scoped reads, truthful completion/results, updated owner prototypes and necessary responsive improvements. Objective and tests: `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md`; grounding brief: `notes/census_operational_v1/GROUNDING.md`. This owner approval opens Item 7 despite historical ledger-complete notices above. Older items and seal claims are not rewritten.
+
+Order: bank scope/tests/prototype conflicts → RED evidence → additive implementation and route composition → local verification twice → autonomous bounded run via Akki only → per-test result report. T14 requires actual owned output, not fixture evidence. Park adjacent request/entitlement/skill/training changes. No new data authority or generated GPU identity.
+
 - 2026-02-23T04:15:00Z · file created · owner directive verbatim · items 1-6 approved · items 1 (5-commit seal + sweeps + ORCH_BOOT) already DONE 2026-02-23T~04:00Z · item 2 IN-PROGRESS (worktree already staged at 7f6d235).

@@ -1,5 +1,19 @@
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+## 2026-09-25 — CP-CENSUS-OPERATIONAL-V1 owner authorization (current)
+
+Owner verbatim: "Plan Approved. Proceed with it. Before you start, define the test cases you'll use to confirm that this section is activated and delivers what it promises, including clear pass/fail criteria for each. Then implement the fix, run it autonomously, and report results against every test case before marking the task complete."
+
+Owner prototype directive verbatim: "The attached HTML contains the updated prototype, with the real UI/UX for both the OS and the DAP. Review it and the experiences built into it, and follow the same user experience flow and architecture in your implementation. Where the prototype conflicts with the requirements, flag it explicitly rather than resolving it silently. Where there are obvious gaps that would break the experience, close them, keep the scope to what the prototype and requirements imply, and note every change you made so it can be reviewed."
+
+Approved recommendation: **Akki-owned census execution and consistent OS/DAP registry views—including required read controls and truthful completion/results.**
+
+Owner confirmation verbatim: "Great, aligned - Recommendation approved. Maintain guard rails especialy post compaction as per disk specification. Enhance UI where necessary."
+
+Active objective: STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md. Acceptance T01–T14 published before implementation. No authority to move estate data through this pod, invent completion or change tenant identity from prototype branding. Earlier audit-only posture is superseded for this bounded slice, not for adjacent skills/training/payment work.
+
+Boot limitation: canonical code directory is empty and has no own .git; state has no own .git; historical ratchet suite is absent. Keep its claimed floor historical/unverified. Do not synthesize baseline tests, ratchet increments, mirror equality or multi-repository seals. Current application snapshot supplies the available implementation. Prototype bytes pinned at canon/prototypes/20260925_owner_updated/intake.json.
+
 
 
 ## 2026-02-24T~03:55Z · Consolidated owner rulings on DATA/CENSUS track · DQ-17 reclass + LID false-positive fix + CP-AIP-LANGUAGE-COGNITION functional-training order · dashes not colons · UI-P0 stays blocked

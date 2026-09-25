@@ -1,5 +1,17 @@
 # Akki — continuity record
 
+## ACTIVE OWNER APPROVAL — 2026-09-25 census operational slice
+
+The owner approved **Akki-owned census execution + consistent OS/DAP registry, required read controls and truthful completion/results**, selected over starting the broader request-to-result flow first. Owner supplied updated OS and DAP HTML, requires prototype fidelity with explicit conflict reporting, tests defined before coding, autonomous execution and per-test results. Latest instruction: preserve disk/compaction guardrails; enhance UI where necessary.
+
+Current objective `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md`; progress/conflicts/tests `notes/census_operational_v1/GROUNDING.md`; EXECUTION_ORDER Item 7; RESUME and NEXT updated. Prototype originals/hash intake: `canon/prototypes/20260925_owner_updated/`. T01–T14 acceptance criteria sent to user before application edits. No app edits/test runs yet at this checkpoint.
+
+**Authorization approved:** owner replied "Approved." to explicit server-owned RMS membership for the existing four demo users, preserving their roles/passwords, operators launch and analyst read-only. No inference from email suffix or global operator access. Unbound identities remain denied. Census source lawful-basis receipt exists, distinct from principal membership. Bank membership application receipt and update test_credentials when applied.
+
+Prototype conflicts banked: Nexus/Digicow/Meridian illustrative identities not tenant authority; illustrative volumes/access numbers not live facts; random/timed census simulation must become real state; responsive enhancement required. Generated design-agent dark-dashboard recommendations conflict with supplied light prototypes and are rejected.
+
+Canonical repository directory exists but is EMPTY, without its own .git; historical baseline suite absent. Do not rewrite old baseline/claim full-suite seal. Backend remains vendored. Current trace corrects old audit assumption: census data_source_adapter has queue/writer delegation but no live read closure; real RMS placeholder raises. Existing scheduler is already supervisor-managed; compose actual source adapters and durable writer within Akki, never invent a pod extraction path. Bank real T14 activation separately from injected-executor unit tests.
+
 ## Mission and original requirements
 
 Operate and assess the governed Akki extraction platform against its on-disk Canon. The owner requires a deep, evidence-based account of what is actually implemented, wired, executed, incomplete, or unverified. No assumptions, invented data, or completion inferred from heartbeat/test counts.

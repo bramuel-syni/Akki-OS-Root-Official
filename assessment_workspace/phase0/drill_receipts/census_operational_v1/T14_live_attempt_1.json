@@ -1,0 +1,72 @@
+{
+  "test_id": "T14",
+  "at_utc": "2026-09-25T14:20:28.403399+00:00",
+  "method": "external preview API -> Akki control-plane dispatcher; no direct source connection from E1",
+  "submit_http": 202,
+  "submitted": {
+    "tenant_id": "RMS",
+    "census_run_id": "cr-a29e3b7b16ae",
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "source_ids": [
+      "rms_mysql"
+    ],
+    "status": "PENDING",
+    "stage": "queued",
+    "created_at": "2026-09-25T14:20:28.375629+00:00",
+    "outcomes": [],
+    "duplicate": false
+  },
+  "observations": [
+    {
+      "http": 200,
+      "body": {
+        "tenant_id": "RMS",
+        "census_run_id": "cr-a29e3b7b16ae",
+        "created_at": "2026-09-25T14:20:28.375629+00:00",
+        "deadline": 1790346118.3780372,
+        "outcomes": [],
+        "principal_id": "6ab56dd48894abb269135ca2",
+        "source_ids": [
+          "rms_mysql"
+        ],
+        "stage": "executing",
+        "started_at": "2026-09-25T14:20:28.379559+00:00",
+        "status": "PENDING"
+      }
+    },
+    {
+      "http": 200,
+      "body": {
+        "tenant_id": "RMS",
+        "census_run_id": "cr-a29e3b7b16ae",
+        "created_at": "2026-09-25T14:20:28.375629+00:00",
+        "deadline": 1790346118.3780372,
+        "finished_at": "2026-09-25T14:20:32.616665+00:00",
+        "outcomes": [
+          {
+            "census_run_id": "cr-a29e3b7b16ae",
+            "execution_location": "control_plane",
+            "observed_at": "2026-09-25T14:20:32.612327+00:00",
+            "protocol": "akki-census-aggregate-v1",
+            "reason_code": "AKKI_EXECUTION_CONNECTION_NOT_VERIFIED",
+            "source_id": "rms_mysql",
+            "source_rows_returned": 0,
+            "status": "blocked",
+            "tenant_id": "RMS",
+            "worker_receipt_id": null
+          }
+        ],
+        "principal_id": "6ab56dd48894abb269135ca2",
+        "proof_ref": "census_autonomy_state/results/20260925T142032Z_cr-a29e3b7b16ae_result.json",
+        "proof_sha256": "bda45090add88881907ef1c4d1dbfad3b989b8bf9db88bff078690f439df9916",
+        "source_ids": [
+          "rms_mysql"
+        ],
+        "stage": "blocked",
+        "started_at": "2026-09-25T14:20:28.379559+00:00",
+        "status": "REFUSED"
+      }
+    }
+  ],
+  "result": "BLOCKED"
+}
