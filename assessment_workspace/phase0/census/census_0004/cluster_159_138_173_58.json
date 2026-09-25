@@ -1,0 +1,5293 @@
+{
+  "cluster_host": "159.138.173.58",
+  "section": "NAS - ACESS",
+  "status_in_sheet": "NOT YET UHURU",
+  "user_prefix2": "br",
+  "status": "OK",
+  "databases": [
+    {
+      "database": "news_vault",
+      "tables": [
+        {
+          "table": "aired_news",
+          "row_count_est": 181,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "news_id",
+              "type": "bigint"
+            },
+            {
+              "name": "hour_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "audits",
+          "row_count_est": 481349,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_type",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "old_values",
+              "type": "text"
+            },
+            {
+              "name": "new_values",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "type": "text"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "varchar"
+            },
+            {
+              "name": "tags",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache",
+          "row_count_est": 39,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "value",
+              "type": "mediumtext"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache_locks",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "owner",
+              "type": "varchar"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "categories",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "correspondents",
+          "row_count_est": 131,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "mobile",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "hours",
+          "row_count_est": 365,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "time",
+              "type": "time"
+            },
+            {
+              "name": "station_id",
+              "type": "bigint"
+            },
+            {
+              "name": "type_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "queue",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "attempts",
+              "type": "tinyint"
+            },
+            {
+              "name": "reserved_at",
+              "type": "int"
+            },
+            {
+              "name": "available_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 70,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_permissions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_roles",
+          "row_count_est": 134,
+          "columns": [
+            {
+              "name": "role_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "news",
+          "row_count_est": 328,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "headline",
+              "type": "longtext"
+            },
+            {
+              "name": "body",
+              "type": "longtext"
+            },
+            {
+              "name": "category_id",
+              "type": "bigint"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "start_time",
+              "type": "datetime"
+            },
+            {
+              "name": "end_time",
+              "type": "datetime"
+            },
+            {
+              "name": "correspondent_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "news_stations",
+          "row_count_est": 379,
+          "columns": [
+            {
+              "name": "news_id",
+              "type": "bigint"
+            },
+            {
+              "name": "station_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "news_types",
+          "row_count_est": 502,
+          "columns": [
+            {
+              "name": "news_id",
+              "type": "bigint"
+            },
+            {
+              "name": "type_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "notices",
+          "row_count_est": 5,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "content",
+              "type": "longtext"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "start_time",
+              "type": "datetime"
+            },
+            {
+              "name": "end_time",
+              "type": "datetime"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "packages",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "price",
+              "type": "bigint"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_resets",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 60,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "display_name",
+              "type": "varchar"
+            },
+            {
+              "name": "group",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "role_has_permissions",
+          "row_count_est": 50,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "roles",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "rss_channels",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "link",
+              "type": "varchar"
+            },
+            {
+              "name": "last_build_date",
+              "type": "date"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "rss_feeds",
+          "row_count_est": 1465,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "feed_id",
+              "type": "varchar"
+            },
+            {
+              "name": "channel_id",
+              "type": "bigint"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "link",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "longtext"
+            },
+            {
+              "name": "pub_date",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "stations",
+          "row_count_est": 13,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "intro_id",
+              "type": "bigint"
+            },
+            {
+              "name": "outro_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "stories",
+          "row_count_est": 233527,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "script",
+              "type": "longtext"
+            },
+            {
+              "name": "correspondent_id",
+              "type": "bigint"
+            },
+            {
+              "name": "package_id",
+              "type": "bigint"
+            },
+            {
+              "name": "parent_id",
+              "type": "bigint"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "hour_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "types",
+          "row_count_est": 29,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "uploads",
+          "row_count_est": 137946,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "path",
+              "type": "varchar"
+            },
+            {
+              "name": "mime_type",
+              "type": "varchar"
+            },
+            {
+              "name": "size",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "user_stations",
+          "row_count_est": 103,
+          "columns": [
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "station_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 134,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "username",
+              "type": "varchar"
+            },
+            {
+              "name": "is_super_user",
+              "type": "tinyint"
+            },
+            {
+              "name": "stub_id",
+              "type": "bigint"
+            },
+            {
+              "name": "words_per_minute",
+              "type": "int"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 30,
+      "row_count_est_total": 856820
+    },
+    {
+      "database": "razuna",
+      "tables": [
+        {
+          "table": "cache",
+          "row_count_est": 55,
+          "columns": [
+            {
+              "name": "cache_token",
+              "type": "varchar"
+            },
+            {
+              "name": "cache_type",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ct_aliases",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "asset_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "folder_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ct_groups_permissions",
+          "row_count_est": 11,
+          "columns": [
+            {
+              "name": "CT_G_P_PER_ID",
+              "type": "int"
+            },
+            {
+              "name": "CT_G_P_GRP_ID",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ct_groups_users",
+          "row_count_est": 15,
+          "columns": [
+            {
+              "name": "CT_G_U_GRP_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "CT_G_U_USER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ct_labels",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "ct_label_id",
+              "type": "varchar"
+            },
+            {
+              "name": "ct_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "ct_type",
+              "type": "varchar"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ct_plugins_hosts",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "ct_pl_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "ct_host_id_r",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ct_users_hosts",
+          "row_count_est": 34,
+          "columns": [
+            {
+              "name": "CT_U_H_USER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "CT_U_H_HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ct_users_remoteusers",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "CT_U_RU_ID",
+              "type": "int"
+            },
+            {
+              "name": "CT_U_RU_USER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "CT_U_RU_REMOTE_URL",
+              "type": "text"
+            },
+            {
+              "name": "CT_U_RU_REMOTE_USER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "CT_U_RU_REMOTE_USER_NAME",
+              "type": "text"
+            },
+            {
+              "name": "CT_U_RU_REMOTE_USER_EMAIL",
+              "type": "text"
+            },
+            {
+              "name": "CT_U_RU_REMOTE_CONFIRMED",
+              "type": "int"
+            },
+            {
+              "name": "CT_U_RU_UUID",
+              "type": "text"
+            },
+            {
+              "name": "CT_U_RU_VALIDUNTIL",
+              "type": "date"
+            },
+            {
+              "name": "CT_U_RU_CONFIRMED",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "file_types",
+          "row_count_est": 103,
+          "columns": [
+            {
+              "name": "TYPE_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "TYPE_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "TYPE_MIMECONTENT",
+              "type": "varchar"
+            },
+            {
+              "name": "TYPE_MIMESUBCONTENT",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "groups",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "GRP_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "GRP_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "GRP_HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "GRP_MOD_ID",
+              "type": "int"
+            },
+            {
+              "name": "GRP_TRANSLATION_KEY",
+              "type": "varchar"
+            },
+            {
+              "name": "UPC_SIZE",
+              "type": "varchar"
+            },
+            {
+              "name": "UPC_FOLDER_FORMAT",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_SUBSCRIBE",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_REDIRECT",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "hosts",
+          "row_count_est": 5,
+          "columns": [
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "HOST_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_PATH",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "HOST_DB_PREFIX",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_LANG",
+              "type": "int"
+            },
+            {
+              "name": "HOST_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_SHARD_GROUP",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_NAME_CUSTOM",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "log_actions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "LOG_ACT_ID",
+              "type": "int"
+            },
+            {
+              "name": "LOG_ACT_TEXT",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "modules",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "MOD_ID",
+              "type": "int"
+            },
+            {
+              "name": "MOD_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "MOD_SHORT",
+              "type": "varchar"
+            },
+            {
+              "name": "MOD_HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "news",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "news_id",
+              "type": "varchar"
+            },
+            {
+              "name": "news_title",
+              "type": "varchar"
+            },
+            {
+              "name": "news_active",
+              "type": "varchar"
+            },
+            {
+              "name": "news_text",
+              "type": "text"
+            },
+            {
+              "name": "news_date",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "options",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "opt_id",
+              "type": "varchar"
+            },
+            {
+              "name": "opt_value",
+              "type": "text"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 11,
+          "columns": [
+            {
+              "name": "PER_ID",
+              "type": "int"
+            },
+            {
+              "name": "PER_KEY",
+              "type": "varchar"
+            },
+            {
+              "name": "PER_HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "PER_ACTIVE",
+              "type": "int"
+            },
+            {
+              "name": "PER_MOD_ID",
+              "type": "int"
+            },
+            {
+              "name": "PER_LEVEL",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 8514,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "char"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "plugins",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "p_id",
+              "type": "varchar"
+            },
+            {
+              "name": "p_path",
+              "type": "varchar"
+            },
+            {
+              "name": "p_active",
+              "type": "varchar"
+            },
+            {
+              "name": "p_name",
+              "type": "varchar"
+            },
+            {
+              "name": "p_url",
+              "type": "varchar"
+            },
+            {
+              "name": "p_version",
+              "type": "varchar"
+            },
+            {
+              "name": "p_author",
+              "type": "varchar"
+            },
+            {
+              "name": "p_author_url",
+              "type": "varchar"
+            },
+            {
+              "name": "p_description",
+              "type": "varchar"
+            },
+            {
+              "name": "p_license",
+              "type": "varchar"
+            },
+            {
+              "name": "p_cfc_list",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "plugins_actions",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "action",
+              "type": "varchar"
+            },
+            {
+              "name": "comp",
+              "type": "varchar"
+            },
+            {
+              "name": "func",
+              "type": "varchar"
+            },
+            {
+              "name": "args",
+              "type": "text"
+            },
+            {
+              "name": "p_id",
+              "type": "varchar"
+            },
+            {
+              "name": "p_remove",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_additional_versions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "av_id",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "folder_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "av_type",
+              "type": "varchar"
+            },
+            {
+              "name": "av_link_title",
+              "type": "varchar"
+            },
+            {
+              "name": "av_link_url",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "av_link",
+              "type": "varchar"
+            },
+            {
+              "name": "thesize",
+              "type": "varchar"
+            },
+            {
+              "name": "thewidth",
+              "type": "varchar"
+            },
+            {
+              "name": "theheight",
+              "type": "varchar"
+            },
+            {
+              "name": "hashtag",
+              "type": "varchar"
+            },
+            {
+              "name": "av_thumb_url",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_assets_temp",
+          "row_count_est": 1408,
+          "columns": [
+            {
+              "name": "TEMPID",
+              "type": "varchar"
+            },
+            {
+              "name": "FILENAME",
+              "type": "varchar"
+            },
+            {
+              "name": "EXTENSION",
+              "type": "varchar"
+            },
+            {
+              "name": "DATE_ADD",
+              "type": "timestamp"
+            },
+            {
+              "name": "FOLDER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "WHO",
+              "type": "varchar"
+            },
+            {
+              "name": "FILENAMENOEXT",
+              "type": "varchar"
+            },
+            {
+              "name": "PATH",
+              "type": "text"
+            },
+            {
+              "name": "MIMETYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "THESIZE",
+              "type": "varchar"
+            },
+            {
+              "name": "GROUPID",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_ACTION",
+              "type": "int"
+            },
+            {
+              "name": "SCHED_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_KIND",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "md5hash",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_audios",
+          "row_count_est": 100,
+          "columns": [
+            {
+              "name": "aud_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "aud_CREATE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "aud_CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "aud_CHANGE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "aud_OWNER",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_EXTENSION",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_NAME_NOEXT",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_CONTENTTYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_CONTENTSUBTYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_ONLINE",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_NAME_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_GROUP",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_size",
+              "type": "varchar"
+            },
+            {
+              "name": "LUCENE_KEY",
+              "type": "varchar"
+            },
+            {
+              "name": "SHARED",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_meta",
+              "type": "longtext"
+            },
+            {
+              "name": "LINK_KIND",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_PATH_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "PATH_TO_ASSET",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_2",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "HASHTAG",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_AVAILABLE",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_EXP",
+              "type": "int"
+            },
+            {
+              "name": "IN_TRASH",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_INDEXED",
+              "type": "varchar"
+            },
+            {
+              "name": "AUD_UPC_NUMBER",
+              "type": "varchar"
+            },
+            {
+              "name": "EXPIRY_DATE",
+              "type": "date"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_audios_text",
+          "row_count_est": 99,
+          "columns": [
+            {
+              "name": "id_inc",
+              "type": "varchar"
+            },
+            {
+              "name": "aud_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "LANG_ID_R",
+              "type": "int"
+            },
+            {
+              "name": "aud_DESCRIPTION",
+              "type": "text"
+            },
+            {
+              "name": "aud_KEYWORDS",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_cart",
+          "row_count_est": 53,
+          "columns": [
+            {
+              "name": "CART_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "CART_QUANTITY",
+              "type": "int"
+            },
+            {
+              "name": "CART_PRODUCT_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "CART_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "CART_CREATE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "CART_CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "CART_CHANGE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "CART_FILE_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "cart_order_email",
+              "type": "varchar"
+            },
+            {
+              "name": "cart_order_message",
+              "type": "varchar"
+            },
+            {
+              "name": "cart_order_done",
+              "type": "varchar"
+            },
+            {
+              "name": "cart_order_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "cart_order_user_r",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_collections",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "col_id",
+              "type": "varchar"
+            },
+            {
+              "name": "folder_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "col_owner",
+              "type": "varchar"
+            },
+            {
+              "name": "create_date",
+              "type": "date"
+            },
+            {
+              "name": "create_time",
+              "type": "timestamp"
+            },
+            {
+              "name": "change_date",
+              "type": "date"
+            },
+            {
+              "name": "change_time",
+              "type": "timestamp"
+            },
+            {
+              "name": "col_template",
+              "type": "varchar"
+            },
+            {
+              "name": "col_shared",
+              "type": "varchar"
+            },
+            {
+              "name": "col_name_shared",
+              "type": "varchar"
+            },
+            {
+              "name": "share_dl_org",
+              "type": "varchar"
+            },
+            {
+              "name": "share_dl_thumb",
+              "type": "varchar"
+            },
+            {
+              "name": "share_comments",
+              "type": "varchar"
+            },
+            {
+              "name": "share_upload",
+              "type": "varchar"
+            },
+            {
+              "name": "share_order",
+              "type": "varchar"
+            },
+            {
+              "name": "share_order_user",
+              "type": "varchar"
+            },
+            {
+              "name": "col_released",
+              "type": "varchar"
+            },
+            {
+              "name": "col_copied_from",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "IN_TRASH",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_collections_ct_files",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "COL_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "COL_FILE_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "COL_ITEM_ORDER",
+              "type": "int"
+            },
+            {
+              "name": "COL_FILE_FORMAT",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "IN_TRASH",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_collections_groups",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "COL_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "GRP_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "GRP_PERMISSION",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_collections_text",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "COL_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "LANG_ID_R",
+              "type": "int"
+            },
+            {
+              "name": "COL_DESC",
+              "type": "text"
+            },
+            {
+              "name": "COL_KEYWORDS",
+              "type": "text"
+            },
+            {
+              "name": "COL_NAME",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_comments",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "COM_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "ASSET_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "ASSET_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "COM_TEXT",
+              "type": "text"
+            },
+            {
+              "name": "COM_DATE",
+              "type": "timestamp"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_custom",
+          "row_count_est": 290,
+          "columns": [
+            {
+              "name": "custom_id",
+              "type": "varchar"
+            },
+            {
+              "name": "custom_value",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_custom_fields",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "cf_id",
+              "type": "varchar"
+            },
+            {
+              "name": "cf_type",
+              "type": "varchar"
+            },
+            {
+              "name": "cf_order",
+              "type": "int"
+            },
+            {
+              "name": "cf_enabled",
+              "type": "varchar"
+            },
+            {
+              "name": "cf_show",
+              "type": "varchar"
+            },
+            {
+              "name": "cf_group",
+              "type": "varchar"
+            },
+            {
+              "name": "cf_select_list",
+              "type": "text"
+            },
+            {
+              "name": "cf_in_form",
+              "type": "varchar"
+            },
+            {
+              "name": "cf_edit",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "cf_xmp_path",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_custom_fields_text",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "cf_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "lang_id_r",
+              "type": "int"
+            },
+            {
+              "name": "cf_text",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_custom_fields_values",
+          "row_count_est": 36656,
+          "columns": [
+            {
+              "name": "cf_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "cf_value",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_errors",
+          "row_count_est": 28276,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "err_header",
+              "type": "varchar"
+            },
+            {
+              "name": "err_text",
+              "type": "text"
+            },
+            {
+              "name": "err_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_export_template",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "exp_id",
+              "type": "varchar"
+            },
+            {
+              "name": "exp_field",
+              "type": "varchar"
+            },
+            {
+              "name": "exp_value",
+              "type": "varchar"
+            },
+            {
+              "name": "exp_timestamp",
+              "type": "timestamp"
+            },
+            {
+              "name": "user_id",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_files",
+          "row_count_est": 1105,
+          "columns": [
+            {
+              "name": "FILE_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "FILE_CREATE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "FILE_CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "FILE_CHANGE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "FILE_OWNER",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_EXTENSION",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_NAME_NOEXT",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_CONTENTTYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_CONTENTSUBTYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_REMARKS",
+              "type": "text"
+            },
+            {
+              "name": "FILE_ONLINE",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_NAME_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_SIZE",
+              "type": "varchar"
+            },
+            {
+              "name": "LUCENE_KEY",
+              "type": "varchar"
+            },
+            {
+              "name": "SHARED",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_KIND",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_PATH_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_META",
+              "type": "longtext"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "PATH_TO_ASSET",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "HASHTAG",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_AVAILABLE",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_EXP",
+              "type": "int"
+            },
+            {
+              "name": "IN_TRASH",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_INDEXED",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_UPC_NUMBER",
+              "type": "varchar"
+            },
+            {
+              "name": "EXPIRY_DATE",
+              "type": "date"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_files_desc",
+          "row_count_est": 68,
+          "columns": [
+            {
+              "name": "ID_INC",
+              "type": "varchar"
+            },
+            {
+              "name": "FILE_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "LANG_ID_R",
+              "type": "int"
+            },
+            {
+              "name": "FILE_DESC",
+              "type": "text"
+            },
+            {
+              "name": "FILE_KEYWORDS",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_files_xmp",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "asset_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "author",
+              "type": "varchar"
+            },
+            {
+              "name": "rights",
+              "type": "varchar"
+            },
+            {
+              "name": "authorsposition",
+              "type": "varchar"
+            },
+            {
+              "name": "captionwriter",
+              "type": "varchar"
+            },
+            {
+              "name": "webstatement",
+              "type": "varchar"
+            },
+            {
+              "name": "rightsmarked",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_folder_subscribe",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "fs_id",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "folder_id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "varchar"
+            },
+            {
+              "name": "mail_interval_in_hours",
+              "type": "int"
+            },
+            {
+              "name": "last_mail_notification_time",
+              "type": "timestamp"
+            },
+            {
+              "name": "asset_keywords",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_description",
+              "type": "varchar"
+            },
+            {
+              "name": "auto_entry",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_folder_subscribe_groups",
+          "row_count_est": 3,
+          "columns": [
+            {
+              "name": "folder_id",
+              "type": "varchar"
+            },
+            {
+              "name": "group_id",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_folders",
+          "row_count_est": 41355,
+          "columns": [
+            {
+              "name": "FOLDER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_LEVEL",
+              "type": "int"
+            },
+            {
+              "name": "FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_MAIN_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_OWNER",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "FOLDER_CREATE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "FOLDER_CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "FOLDER_CHANGE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "FOLDER_IS_IMG_FOLDER",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_IMG_PUB_ID",
+              "type": "int"
+            },
+            {
+              "name": "FOLDER_OF_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_IS_COLLECTION",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_IS_VID_FOLDER",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_VID_PUB_ID",
+              "type": "int"
+            },
+            {
+              "name": "FOLDER_AVAILABLE_DSC",
+              "type": "int"
+            },
+            {
+              "name": "FOLDER_SHARED",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_NAME_SHARED",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_PATH",
+              "type": "varchar"
+            },
+            {
+              "name": "share_dl_org",
+              "type": "varchar"
+            },
+            {
+              "name": "share_dl_thumb",
+              "type": "varchar"
+            },
+            {
+              "name": "share_comments",
+              "type": "varchar"
+            },
+            {
+              "name": "share_upload",
+              "type": "varchar"
+            },
+            {
+              "name": "share_order",
+              "type": "varchar"
+            },
+            {
+              "name": "share_order_user",
+              "type": "varchar"
+            },
+            {
+              "name": "share_inherit",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "IN_TRASH",
+              "type": "varchar"
+            },
+            {
+              "name": "in_search_selection",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_folders_desc",
+          "row_count_est": 25865,
+          "columns": [
+            {
+              "name": "FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "LANG_ID_R",
+              "type": "int"
+            },
+            {
+              "name": "FOLDER_DESC",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_folders_groups",
+          "row_count_est": 145684,
+          "columns": [
+            {
+              "name": "FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "GRP_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "GRP_PERMISSION",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_images",
+          "row_count_est": 6527,
+          "columns": [
+            {
+              "name": "IMG_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "METABLOB",
+              "type": "varchar"
+            },
+            {
+              "name": "METAEXIF",
+              "type": "varchar"
+            },
+            {
+              "name": "METAIPTC",
+              "type": "varchar"
+            },
+            {
+              "name": "METAXMP",
+              "type": "varchar"
+            },
+            {
+              "name": "IMAGE",
+              "type": "varchar"
+            },
+            {
+              "name": "THUMB",
+              "type": "varchar"
+            },
+            {
+              "name": "COMP",
+              "type": "varchar"
+            },
+            {
+              "name": "COMP_UW",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_GROUP",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_PUBLISHER",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_FILENAME",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_CUSTOM_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_ONLINE",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_OWNER",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "IMG_CREATE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "IMG_CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "IMG_CHANGE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "IMG_RANKING",
+              "type": "int"
+            },
+            {
+              "name": "IMG_SINGLE_SALE",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_IS_NEW",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_SELECTION",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_IN_PROGRESS",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_ALIGNMENT",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_LICENSE",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_DOMINANT_COLOR",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_COLOR_MODE",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_IMAGE_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_CATEGORY_ONE",
+              "type": "text"
+            },
+            {
+              "name": "IMG_REMARKS",
+              "type": "longtext"
+            },
+            {
+              "name": "IMG_EXTENSION",
+              "type": "varchar"
+            },
+            {
+              "name": "THUMB_EXTENSION",
+              "type": "varchar"
+            },
+            {
+              "name": "THUMB_WIDTH",
+              "type": "int"
+            },
+            {
+              "name": "THUMB_HEIGHT",
+              "type": "int"
+            },
+            {
+              "name": "IMG_FILENAME_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_WIDTH",
+              "type": "int"
+            },
+            {
+              "name": "IMG_HEIGHT",
+              "type": "int"
+            },
+            {
+              "name": "IMG_SIZE",
+              "type": "varchar"
+            },
+            {
+              "name": "THUMB_SIZE",
+              "type": "varchar"
+            },
+            {
+              "name": "LUCENE_KEY",
+              "type": "varchar"
+            },
+            {
+              "name": "SHARED",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_KIND",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_PATH_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_META",
+              "type": "longtext"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "PATH_TO_ASSET",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "HASHTAG",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_AVAILABLE",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_EXP",
+              "type": "int"
+            },
+            {
+              "name": "IN_TRASH",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_INDEXED",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_UPC_NUMBER",
+              "type": "varchar"
+            },
+            {
+              "name": "EXPIRY_DATE",
+              "type": "date"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_images_text",
+          "row_count_est": 8272,
+          "columns": [
+            {
+              "name": "ID_INC",
+              "type": "varchar"
+            },
+            {
+              "name": "IMG_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "LANG_ID_R",
+              "type": "int"
+            },
+            {
+              "name": "IMG_KEYWORDS",
+              "type": "text"
+            },
+            {
+              "name": "IMG_DESCRIPTION",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_import_templates",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "imp_temp_id",
+              "type": "varchar"
+            },
+            {
+              "name": "imp_date_create",
+              "type": "timestamp"
+            },
+            {
+              "name": "imp_date_update",
+              "type": "timestamp"
+            },
+            {
+              "name": "imp_who",
+              "type": "varchar"
+            },
+            {
+              "name": "imp_active",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "imp_name",
+              "type": "varchar"
+            },
+            {
+              "name": "imp_description",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_import_templates_val",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "imp_temp_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "imp_field",
+              "type": "varchar"
+            },
+            {
+              "name": "imp_map",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "imp_key",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_labels",
+          "row_count_est": 5,
+          "columns": [
+            {
+              "name": "label_id",
+              "type": "varchar"
+            },
+            {
+              "name": "label_text",
+              "type": "varchar"
+            },
+            {
+              "name": "label_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "user_id",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "label_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "label_path",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_languages",
+          "row_count_est": 6,
+          "columns": [
+            {
+              "name": "lang_id",
+              "type": "int"
+            },
+            {
+              "name": "lang_name",
+              "type": "varchar"
+            },
+            {
+              "name": "lang_active",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_log_assets",
+          "row_count_est": 282035,
+          "columns": [
+            {
+              "name": "LOG_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_ACTION",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_DATE",
+              "type": "date"
+            },
+            {
+              "name": "LOG_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "LOG_DESC",
+              "type": "text"
+            },
+            {
+              "name": "LOG_FILE_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_BROWSER",
+              "type": "text"
+            },
+            {
+              "name": "LOG_IP",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_TIMESTAMP",
+              "type": "timestamp"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "ASSET_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_ID",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_log_folders",
+          "row_count_est": 23051,
+          "columns": [
+            {
+              "name": "LOG_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_ACTION",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_DATE",
+              "type": "date"
+            },
+            {
+              "name": "LOG_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "LOG_DESC",
+              "type": "text"
+            },
+            {
+              "name": "LOG_BROWSER",
+              "type": "text"
+            },
+            {
+              "name": "LOG_IP",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_TIMESTAMP",
+              "type": "timestamp"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_log_search",
+          "row_count_est": 107138,
+          "columns": [
+            {
+              "name": "LOG_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_DATE",
+              "type": "date"
+            },
+            {
+              "name": "LOG_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "LOG_SEARCH_FOR",
+              "type": "text"
+            },
+            {
+              "name": "LOG_FOUNDITEMS",
+              "type": "int"
+            },
+            {
+              "name": "LOG_SEARCH_FROM",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_TIMESTAMP",
+              "type": "timestamp"
+            },
+            {
+              "name": "LOG_BROWSER",
+              "type": "text"
+            },
+            {
+              "name": "LOG_IP",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_log_users",
+          "row_count_est": 45494,
+          "columns": [
+            {
+              "name": "LOG_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_ACTION",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_DATE",
+              "type": "date"
+            },
+            {
+              "name": "LOG_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "LOG_DESC",
+              "type": "text"
+            },
+            {
+              "name": "LOG_BROWSER",
+              "type": "text"
+            },
+            {
+              "name": "LOG_IP",
+              "type": "varchar"
+            },
+            {
+              "name": "LOG_TIMESTAMP",
+              "type": "timestamp"
+            },
+            {
+              "name": "LOG_SECTION",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_metaform",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "mf_type",
+              "type": "varchar"
+            },
+            {
+              "name": "mf_value",
+              "type": "varchar"
+            },
+            {
+              "name": "mf_order",
+              "type": "int"
+            },
+            {
+              "name": "mf_cf",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_schedules",
+          "row_count_est": 6,
+          "columns": [
+            {
+              "name": "SCHED_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_ID_R",
+              "type": "int"
+            },
+            {
+              "name": "SCHED_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_STATUS",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_METHOD",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_ZIP_EXTRACT",
+              "type": "int"
+            },
+            {
+              "name": "SCHED_SERVER_FOLDER",
+              "type": "text"
+            },
+            {
+              "name": "SCHED_SERVER_RECURSE",
+              "type": "int"
+            },
+            {
+              "name": "SCHED_SERVER_FILES",
+              "type": "int"
+            },
+            {
+              "name": "SCHED_MAIL_POP",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_MAIL_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_MAIL_PASS",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_MAIL_SUBJECT",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_FTP_SERVER",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_FTP_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_FTP_PASS",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_FTP_PASSIVE",
+              "type": "int"
+            },
+            {
+              "name": "SCHED_FTP_FOLDER",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_INTERVAL",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_START_DATE",
+              "type": "date"
+            },
+            {
+              "name": "SCHED_START_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "SCHED_END_DATE",
+              "type": "date"
+            },
+            {
+              "name": "SCHED_END_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "SCHED_FTP_EMAIL",
+              "type": "varchar"
+            },
+            {
+              "name": "sched_upl_template",
+              "type": "varchar"
+            },
+            {
+              "name": "sched_ad_user_groups",
+              "type": "text"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_schedules_log",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "SCHED_LOG_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_LOG_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_LOG_ACTION",
+              "type": "varchar"
+            },
+            {
+              "name": "SCHED_LOG_DATE",
+              "type": "date"
+            },
+            {
+              "name": "SCHED_LOG_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "SCHED_LOG_DESC",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "NOTIFIED",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_settings",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "SET_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "SET_PREF",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_settings_2",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "SET2_ID",
+              "type": "int"
+            },
+            {
+              "name": "SET2_DATE_FORMAT",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_DATE_FORMAT_DEL",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_META_KEYWORDS",
+              "type": "text"
+            },
+            {
+              "name": "SET2_META_DESC",
+              "type": "text"
+            },
+            {
+              "name": "SET2_META_AUTHOR",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_META_PUBLISHER",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_META_COPYRIGHT",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_META_ROBOTS",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_META_REVISIT",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_META_CUSTOM",
+              "type": "text"
+            },
+            {
+              "name": "SET2_URL_SP_ORIGINAL",
+              "type": "text"
+            },
+            {
+              "name": "SET2_URL_SP_THUMB",
+              "type": "text"
+            },
+            {
+              "name": "SET2_URL_SP_COMP",
+              "type": "text"
+            },
+            {
+              "name": "SET2_URL_SP_COMP_UW",
+              "type": "text"
+            },
+            {
+              "name": "SET2_INTRANET_LOGO",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_URL_APP_SERVER",
+              "type": "text"
+            },
+            {
+              "name": "SET2_ORA_PATH_INTERNAL",
+              "type": "text"
+            },
+            {
+              "name": "SET2_CREATE_IMGFOLDERS_WHERE",
+              "type": "int"
+            },
+            {
+              "name": "SET2_IMG_FORMAT",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_IMG_THUMB_WIDTH",
+              "type": "int"
+            },
+            {
+              "name": "SET2_IMG_THUMB_HEIGTH",
+              "type": "int"
+            },
+            {
+              "name": "SET2_IMG_COMP_WIDTH",
+              "type": "int"
+            },
+            {
+              "name": "SET2_IMG_COMP_HEIGTH",
+              "type": "int"
+            },
+            {
+              "name": "SET2_IMG_DOWNLOAD_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_DOC_DOWNLOAD",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_INTRANET_REG_EMAILS",
+              "type": "text"
+            },
+            {
+              "name": "SET2_INTRANET_REG_EMAILS_SUB",
+              "type": "text"
+            },
+            {
+              "name": "SET2_INTRANET_GEN_DOWNLOAD",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CAT_WEB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CAT_INTRA",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_URL_WEBSITE",
+              "type": "text"
+            },
+            {
+              "name": "SET2_PAYMENT_PRE",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_PAYMENT_BILL",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_PAYMENT_POD",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_PAYMENT_CC",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_PAYMENT_CC_CARDS",
+              "type": "text"
+            },
+            {
+              "name": "SET2_PAYMENT_PAYPAL",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_PATH_IMAGEMAGICK",
+              "type": "text"
+            },
+            {
+              "name": "SET2_EMAIL_SERVER",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_EMAIL_FROM",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_EMAIL_SMTP_USER",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_EMAIL_SMTP_PASSWORD",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_EMAIL_SERVER_PORT",
+              "type": "int"
+            },
+            {
+              "name": "SET2_EMAIL_USE_SSL",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_EMAIL_USE_TLS",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_ORA_PATH_INCOMING",
+              "type": "text"
+            },
+            {
+              "name": "SET2_ORA_PATH_INCOMING_BATCH",
+              "type": "text"
+            },
+            {
+              "name": "SET2_ORA_PATH_OUTGOING",
+              "type": "text"
+            },
+            {
+              "name": "SET2_VID_PREVIEW_HEIGTH",
+              "type": "int"
+            },
+            {
+              "name": "SET2_VID_PREVIEW_WIDTH",
+              "type": "int"
+            },
+            {
+              "name": "SET2_PATH_FFMPEG",
+              "type": "text"
+            },
+            {
+              "name": "SET2_VID_PREVIEW_TIME",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_VID_PREVIEW_START",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_URL_SP_VIDEO",
+              "type": "text"
+            },
+            {
+              "name": "SET2_URL_SP_VIDEO_PREVIEW",
+              "type": "text"
+            },
+            {
+              "name": "SET2_VID_PREVIEW_AUTHOR",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_VID_PREVIEW_COPYRIGHT",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CAT_VID_WEB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CAT_VID_INTRA",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CAT_AUD_WEB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CAT_AUD_INTRA",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CREATE_VIDFOLDERS_WHERE",
+              "type": "int"
+            },
+            {
+              "name": "SET2_PATH_TO_ASSETS",
+              "type": "text"
+            },
+            {
+              "name": "SET2_PATH_TO_EXIFTOOL",
+              "type": "text"
+            },
+            {
+              "name": "SET2_NIRVANIX_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_NIRVANIX_PASS",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "SET2_AWS_BUCKET",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_LABELS_USERS",
+              "type": "text"
+            },
+            {
+              "name": "SET2_MD5CHECK",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_AKA_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_AKA_IMG",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_AKA_VID",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_AKA_AUD",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_AKA_DOC",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_COLORSPACE_RGB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_CUSTOM_FILE_EXT",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_RENDITION_METADATA",
+              "type": "varchar"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_UPC_ENABLED",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_NEW_USER_EMAIL_SUB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_NEW_USER_EMAIL_BODY",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_FOLDER_SUBSCRIBE_EMAIL_SUB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_FOLDER_SUBSCRIBE_EMAIL_BODY",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_ASSET_EXPIRY_EMAIL_SUB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_ASSET_EXPIRY_EMAIL_BODY",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_DUPLICATES_EMAIL_SUB",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_DUPLICATES_EMAIL_BODY",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_DUPLICATES_META",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_FOLDER_SUBSCRIBE_META",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_ASSET_EXPIRY_META",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_META_EXPORT",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_SAML_XMLPATH_EMAIL",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_SAML_XMLPATH_PASSWORD",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_SAML_HTTPREDIRECT",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_share_options",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "asset_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "group_asset_id",
+              "type": "varchar"
+            },
+            {
+              "name": "folder_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_type",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_format",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_dl",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_order",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_selected",
+              "type": "varchar"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_smart_folders",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "sf_id",
+              "type": "varchar"
+            },
+            {
+              "name": "sf_name",
+              "type": "varchar"
+            },
+            {
+              "name": "sf_date_create",
+              "type": "timestamp"
+            },
+            {
+              "name": "sf_date_update",
+              "type": "timestamp"
+            },
+            {
+              "name": "sf_type",
+              "type": "varchar"
+            },
+            {
+              "name": "sf_description",
+              "type": "varchar"
+            },
+            {
+              "name": "sf_who",
+              "type": "varchar"
+            },
+            {
+              "name": "sf_zipextract",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_smart_folders_prop",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "sf_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "sf_prop_id",
+              "type": "varchar"
+            },
+            {
+              "name": "sf_prop_value",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_temp",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "TMP_TOKEN",
+              "type": "varchar"
+            },
+            {
+              "name": "TMP_FILENAME",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_upload_templates",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "upl_temp_id",
+              "type": "varchar"
+            },
+            {
+              "name": "upl_date_create",
+              "type": "timestamp"
+            },
+            {
+              "name": "upl_date_update",
+              "type": "timestamp"
+            },
+            {
+              "name": "upl_who",
+              "type": "varchar"
+            },
+            {
+              "name": "upl_active",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "upl_name",
+              "type": "varchar"
+            },
+            {
+              "name": "upl_description",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_upload_templates_val",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "upl_temp_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "upl_temp_field",
+              "type": "varchar"
+            },
+            {
+              "name": "upl_temp_value",
+              "type": "varchar"
+            },
+            {
+              "name": "upl_temp_type",
+              "type": "varchar"
+            },
+            {
+              "name": "upl_temp_format",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_users_accounts",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "identifier",
+              "type": "varchar"
+            },
+            {
+              "name": "provider",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "jr_identifier",
+              "type": "varchar"
+            },
+            {
+              "name": "profile_pic_url",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_users_favorites",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "USER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "FAV_TYPE",
+              "type": "varchar"
+            },
+            {
+              "name": "FAV_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "FAV_KIND",
+              "type": "varchar"
+            },
+            {
+              "name": "FAV_ORDER",
+              "type": "int"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_versions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "asset_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "ver_version",
+              "type": "int"
+            },
+            {
+              "name": "ver_type",
+              "type": "varchar"
+            },
+            {
+              "name": "ver_date_add",
+              "type": "timestamp"
+            },
+            {
+              "name": "ver_who",
+              "type": "varchar"
+            },
+            {
+              "name": "ver_filename_org",
+              "type": "varchar"
+            },
+            {
+              "name": "ver_extension",
+              "type": "varchar"
+            },
+            {
+              "name": "thumb_width",
+              "type": "int"
+            },
+            {
+              "name": "thumb_height",
+              "type": "int"
+            },
+            {
+              "name": "img_width",
+              "type": "int"
+            },
+            {
+              "name": "img_height",
+              "type": "int"
+            },
+            {
+              "name": "img_size",
+              "type": "varchar"
+            },
+            {
+              "name": "thumb_size",
+              "type": "varchar"
+            },
+            {
+              "name": "vid_size",
+              "type": "varchar"
+            },
+            {
+              "name": "vid_width",
+              "type": "int"
+            },
+            {
+              "name": "vid_height",
+              "type": "int"
+            },
+            {
+              "name": "vid_name_image",
+              "type": "varchar"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "cloud_url_org",
+              "type": "varchar"
+            },
+            {
+              "name": "ver_thumbnail",
+              "type": "varchar"
+            },
+            {
+              "name": "meta_data",
+              "type": "longtext"
+            },
+            {
+              "name": "hashtag",
+              "type": "varchar"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "cloud_url_thumb",
+              "type": "varchar"
+            },
+            {
+              "name": "file_size",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_videos",
+          "row_count_est": 478938,
+          "columns": [
+            {
+              "name": "VID_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_FILENAME",
+              "type": "varchar"
+            },
+            {
+              "name": "FOLDER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_CUSTOM_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_ONLINE",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_OWNER",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "VID_CREATE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "VID_CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "VID_CHANGE_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "VID_RANKING",
+              "type": "int"
+            },
+            {
+              "name": "VID_SINGLE_SALE",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_IS_NEW",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_SELECTION",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_IN_PROGRESS",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_LICENSE",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_CATEGORY_ONE",
+              "type": "text"
+            },
+            {
+              "name": "VID_REMARKS",
+              "type": "longtext"
+            },
+            {
+              "name": "VID_WIDTH",
+              "type": "int"
+            },
+            {
+              "name": "VID_HEIGHT",
+              "type": "int"
+            },
+            {
+              "name": "VID_FRAMERESOLUTION",
+              "type": "int"
+            },
+            {
+              "name": "VID_FRAMERATE",
+              "type": "int"
+            },
+            {
+              "name": "VID_VIDEODURATION",
+              "type": "int"
+            },
+            {
+              "name": "VID_COMPRESSIONTYPE",
+              "type": "text"
+            },
+            {
+              "name": "VID_BITRATE",
+              "type": "int"
+            },
+            {
+              "name": "VID_EXTENSION",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_MIMETYPE",
+              "type": "text"
+            },
+            {
+              "name": "VID_PREVIEW_WIDTH",
+              "type": "int"
+            },
+            {
+              "name": "VID_PREVIEW_HEIGTH",
+              "type": "int"
+            },
+            {
+              "name": "VID_GROUP",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_PUBLISHER",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_NAME_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_NAME_IMAGE",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_NAME_PRE",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_NAME_PRE_IMG",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_SIZE",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_PREV_SIZE",
+              "type": "varchar"
+            },
+            {
+              "name": "LUCENE_KEY",
+              "type": "varchar"
+            },
+            {
+              "name": "SHARED",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_KIND",
+              "type": "varchar"
+            },
+            {
+              "name": "LINK_PATH_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_META",
+              "type": "longtext"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            },
+            {
+              "name": "PATH_TO_ASSET",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_ORG",
+              "type": "varchar"
+            },
+            {
+              "name": "HASHTAG",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_AVAILABLE",
+              "type": "varchar"
+            },
+            {
+              "name": "CLOUD_URL_EXP",
+              "type": "int"
+            },
+            {
+              "name": "IN_TRASH",
+              "type": "varchar"
+            },
+            {
+              "name": "IS_INDEXED",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_UPC_NUMBER",
+              "type": "varchar"
+            },
+            {
+              "name": "EXPIRY_DATE",
+              "type": "date"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_videos_text",
+          "row_count_est": 100620,
+          "columns": [
+            {
+              "name": "ID_INC",
+              "type": "varchar"
+            },
+            {
+              "name": "VID_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "LANG_ID_R",
+              "type": "int"
+            },
+            {
+              "name": "VID_KEYWORDS",
+              "type": "text"
+            },
+            {
+              "name": "VID_DESCRIPTION",
+              "type": "text"
+            },
+            {
+              "name": "VID_TITLE",
+              "type": "text"
+            },
+            {
+              "name": "HOST_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_widgets",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "widget_id",
+              "type": "varchar"
+            },
+            {
+              "name": "col_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "folder_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_name",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_description",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_permission",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_password",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_style",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_dl_org",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_dl_thumb",
+              "type": "varchar"
+            },
+            {
+              "name": "widget_uploading",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_wm_templates",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "wm_temp_id",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_name",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_active",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_wm_templates_val",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "wm_temp_id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_use_image",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_use_text",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_image_opacity",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_text_opacity",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_image_position",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_text_position",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_text_content",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_text_font",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_text_font_size",
+              "type": "varchar"
+            },
+            {
+              "name": "wm_image_path",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            },
+            {
+              "name": "rec_uuid",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "raz1_xmp",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id_r",
+              "type": "varchar"
+            },
+            {
+              "name": "asset_type",
+              "type": "varchar"
+            },
+            {
+              "name": "subjectcode",
+              "type": "varchar"
+            },
+            {
+              "name": "creator",
+              "type": "varchar"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "authorsposition",
+              "type": "varchar"
+            },
+            {
+              "name": "captionwriter",
+              "type": "varchar"
+            },
+            {
+              "name": "ciadrextadr",
+              "type": "varchar"
+            },
+            {
+              "name": "category",
+              "type": "varchar"
+            },
+            {
+              "name": "supplementalcategories",
+              "type": "text"
+            },
+            {
+              "name": "urgency",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "ciadrcity",
+              "type": "varchar"
+            },
+            {
+              "name": "ciadrctry",
+              "type": "varchar"
+            },
+            {
+              "name": "location",
+              "type": "varchar"
+            },
+            {
+              "name": "ciadrpcode",
+              "type": "varchar"
+            },
+            {
+              "name": "ciemailwork",
+              "type": "varchar"
+            },
+            {
+              "name": "ciurlwork",
+              "type": "varchar"
+            },
+            {
+              "name": "citelwork",
+              "type": "varchar"
+            },
+            {
+              "name": "intellectualgenre",
+              "type": "varchar"
+            },
+            {
+              "name": "instructions",
+              "type": "text"
+            },
+            {
+              "name": "source",
+              "type": "varchar"
+            },
+            {
+              "name": "usageterms",
+              "type": "text"
+            },
+            {
+              "name": "copyrightstatus",
+              "type": "text"
+            },
+            {
+              "name": "transmissionreference",
+              "type": "varchar"
+            },
+            {
+              "name": "webstatement",
+              "type": "text"
+            },
+            {
+              "name": "headline",
+              "type": "varchar"
+            },
+            {
+              "name": "datecreated",
+              "type": "varchar"
+            },
+            {
+              "name": "city",
+              "type": "varchar"
+            },
+            {
+              "name": "ciadrregion",
+              "type": "varchar"
+            },
+            {
+              "name": "country",
+              "type": "varchar"
+            },
+            {
+              "name": "countrycode",
+              "type": "varchar"
+            },
+            {
+              "name": "scene",
+              "type": "varchar"
+            },
+            {
+              "name": "state",
+              "type": "varchar"
+            },
+            {
+              "name": "credit",
+              "type": "varchar"
+            },
+            {
+              "name": "rights",
+              "type": "text"
+            },
+            {
+              "name": "colorspace",
+              "type": "varchar"
+            },
+            {
+              "name": "xres",
+              "type": "varchar"
+            },
+            {
+              "name": "yres",
+              "type": "varchar"
+            },
+            {
+              "name": "resunit",
+              "type": "varchar"
+            },
+            {
+              "name": "host_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "rfs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "rfs_id",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_active",
+              "type": "int"
+            },
+            {
+              "name": "rfs_server_name",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_imagemagick",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_ffmpeg",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_dcraw",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_exiftool",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_mp4box",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_location",
+              "type": "varchar"
+            },
+            {
+              "name": "rfs_date_add",
+              "type": "timestamp"
+            },
+            {
+              "name": "rfs_date_change",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "search_reindex",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "theid",
+              "type": "varchar"
+            },
+            {
+              "name": "thevalue",
+              "type": "int"
+            },
+            {
+              "name": "thehostid",
+              "type": "int"
+            },
+            {
+              "name": "datetime",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "tools",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "thetool",
+              "type": "varchar"
+            },
+            {
+              "name": "thepath",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 7,
+          "columns": [
+            {
+              "name": "USER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_LOGIN_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_EMAIL",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_FIRST_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_LAST_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_PASS",
+              "type": "text"
+            },
+            {
+              "name": "api_token",
+              "type": "text"
+            },
+            {
+              "name": "USER_COMPANY",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_STREET",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_STREET_NR",
+              "type": "int"
+            },
+            {
+              "name": "USER_STREET_2",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_STREET_NR_2",
+              "type": "int"
+            },
+            {
+              "name": "USER_ZIP",
+              "type": "int"
+            },
+            {
+              "name": "USER_CITY",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_COUNTRY",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_PHONE",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_PHONE_2",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_MOBILE",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_FAX",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "USER_CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "USER_ACTIVE",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_IN_ADMIN",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_IN_DAM",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_SALUTATION",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_IN_VP",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_NIRVANIX_NAME",
+              "type": "varchar"
+            },
+            {
+              "name": "SET2_NIRVANIX_PASS",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_API_KEY",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_EXPIRY_DATE",
+              "type": "date"
+            },
+            {
+              "name": "user_search_selection",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users_comments",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "USER_ID_R",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_COMMENT",
+              "type": "text"
+            },
+            {
+              "name": "CREATE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "CHANGE_DATE",
+              "type": "date"
+            },
+            {
+              "name": "USER_COMMENT_BY",
+              "type": "int"
+            },
+            {
+              "name": "USER_COMMENT_TITLE",
+              "type": "text"
+            },
+            {
+              "name": "COMMENT_ID",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users_login",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "USER_LOGIN_ID",
+              "type": "int"
+            },
+            {
+              "name": "USER_ID",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_LOGIN_DATE",
+              "type": "date"
+            },
+            {
+              "name": "USER_LOGIN_TIME",
+              "type": "timestamp"
+            },
+            {
+              "name": "USER_LOGIN_PROJECT",
+              "type": "int"
+            },
+            {
+              "name": "USER_LOGIN_SESSION",
+              "type": "varchar"
+            },
+            {
+              "name": "USER_LOGIN_DATESTAMP",
+              "type": "date"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "webservices",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "SESSIONTOKEN",
+              "type": "varchar"
+            },
+            {
+              "name": "TIMEOUT",
+              "type": "timestamp"
+            },
+            {
+              "name": "GROUPOFUSER",
+              "type": "varchar"
+            },
+            {
+              "name": "USERID",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "wisdom",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "WIS_ID",
+              "type": "int"
+            },
+            {
+              "name": "WIS_TEXT",
+              "type": "text"
+            },
+            {
+              "name": "WIS_AUTHOR",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 82,
+      "row_count_est_total": 1341823
+    }
+  ],
+  "database_count": 2,
+  "table_count": 112,
+  "row_count_est_total": 2198643,
+  "elapsed_s": 3.6,
+  "audit_trail": [
+    {
+      "sql_shape": "schemata_list",
+      "at_utc": "2026-09-25T01:59:33.306415+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "news_vault",
+      "at_utc": "2026-09-25T01:59:33.573130+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "news_vault",
+      "at_utc": "2026-09-25T01:59:33.841306+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "razuna",
+      "at_utc": "2026-09-25T01:59:34.108290+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "razuna",
+      "at_utc": "2026-09-25T01:59:34.648855+00:00"
+    }
+  ]
+}

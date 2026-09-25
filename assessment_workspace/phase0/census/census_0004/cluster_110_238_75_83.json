@@ -1,0 +1,2165 @@
+{
+  "cluster_host": "110.238.75.83",
+  "section": "MICROSERVICES",
+  "status_in_sheet": "NOT YET UHURU",
+  "user_prefix2": "br",
+  "status": "OK",
+  "databases": [
+    {
+      "database": "db_visitors",
+      "tables": [
+        {
+          "table": "approved_logs",
+          "row_count_est": 336176,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "request_id",
+              "type": "int"
+            },
+            {
+              "name": "approved_by",
+              "type": "varchar"
+            },
+            {
+              "name": "status_id",
+              "type": "int"
+            },
+            {
+              "name": "date_time",
+              "type": "varchar"
+            },
+            {
+              "name": "comments",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "audits",
+          "row_count_est": 216114,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_type",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "old_values",
+              "type": "text"
+            },
+            {
+              "name": "new_values",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "type": "text"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "varchar"
+            },
+            {
+              "name": "tags",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "check_ins",
+          "row_count_est": 137,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "visitation_request_id",
+              "type": "bigint"
+            },
+            {
+              "name": "car_plates",
+              "type": "varchar"
+            },
+            {
+              "name": "card_number",
+              "type": "varchar"
+            },
+            {
+              "name": "check_in_time",
+              "type": "datetime"
+            },
+            {
+              "name": "check_out_time",
+              "type": "datetime"
+            },
+            {
+              "name": "checked_in_by",
+              "type": "int"
+            },
+            {
+              "name": "checked_out_by",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ci_sessions",
+          "row_count_est": 56175,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "timestamp",
+              "type": "int"
+            },
+            {
+              "name": "data",
+              "type": "blob"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "departments",
+          "row_count_est": 219,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "external_id",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "head_id",
+              "type": "int"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "parent_id",
+              "type": "bigint"
+            },
+            {
+              "name": "enable_2fa_popup",
+              "type": "tinyint"
+            },
+            {
+              "name": "can_checkout_equipment",
+              "type": "tinyint"
+            },
+            {
+              "name": "approver_group_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "departments_c",
+          "row_count_est": 48,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "date_created",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "departments_heads",
+          "row_count_est": 55,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "department_id",
+              "type": "int"
+            },
+            {
+              "name": "user_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "dept_reports",
+          "row_count_est": 6470,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "path",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "tinyint"
+            },
+            {
+              "name": "recipient",
+              "type": "varchar"
+            },
+            {
+              "name": "department",
+              "type": "varchar"
+            },
+            {
+              "name": "updated_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "devices",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "device_id",
+              "type": "varchar"
+            },
+            {
+              "name": "device_name",
+              "type": "varchar"
+            },
+            {
+              "name": "direction",
+              "type": "enum"
+            },
+            {
+              "name": "door_id",
+              "type": "varchar"
+            },
+            {
+              "name": "door_name",
+              "type": "varchar"
+            },
+            {
+              "name": "group_id",
+              "type": "varchar"
+            },
+            {
+              "name": "group_name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "equipment",
+          "row_count_est": 854,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "type_id",
+              "type": "bigint"
+            },
+            {
+              "name": "unit_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model",
+              "type": "varchar"
+            },
+            {
+              "name": "serial_number",
+              "type": "varchar"
+            },
+            {
+              "name": "number",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "equipment_allocations",
+          "row_count_est": 723,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "equipment_id",
+              "type": "bigint"
+            },
+            {
+              "name": "staff_id",
+              "type": "int"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "return_date",
+              "type": "date"
+            },
+            {
+              "name": "return_condition",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "equipment_removal_line_items",
+          "row_count_est": 10517,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "equipment_removal_id",
+              "type": "bigint"
+            },
+            {
+              "name": "equipment_id",
+              "type": "bigint"
+            },
+            {
+              "name": "quantity",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "returned_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "remarks",
+              "type": "text"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "equipment_removals",
+          "row_count_est": 1321,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "int"
+            },
+            {
+              "name": "unit_id",
+              "type": "bigint"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "authorised_by",
+              "type": "int"
+            },
+            {
+              "name": "authorised_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "checked_out_by",
+              "type": "int"
+            },
+            {
+              "name": "checked_out_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "left_premises_by",
+              "type": "int"
+            },
+            {
+              "name": "left_premises_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "checked_in_by",
+              "type": "int"
+            },
+            {
+              "name": "checked_in_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "equipment_types",
+          "row_count_est": 55,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "has_serials",
+              "type": "tinyint"
+            },
+            {
+              "name": "has_models",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "event_logs",
+          "row_count_est": 2452608,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_log_id",
+              "type": "varchar"
+            },
+            {
+              "name": "timestamp_unix",
+              "type": "varchar"
+            },
+            {
+              "name": "timestamp",
+              "type": "timestamp"
+            },
+            {
+              "name": "staff_id",
+              "type": "varchar"
+            },
+            {
+              "name": "staff_name",
+              "type": "varchar"
+            },
+            {
+              "name": "device_name",
+              "type": "varchar"
+            },
+            {
+              "name": "biostar_device_id",
+              "type": "varchar"
+            },
+            {
+              "name": "device_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_type_id",
+              "type": "bigint"
+            },
+            {
+              "name": "meta",
+              "type": "json"
+            },
+            {
+              "name": "processed_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "event_types",
+          "row_count_est": 306,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "code",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "meta",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 832,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "form_types",
+          "row_count_est": 3,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "tinytext"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "group_permissions",
+          "row_count_est": 340,
+          "columns": [
+            {
+              "name": "group_id",
+              "type": "int"
+            },
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "groups",
+          "row_count_est": 11,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "login_activities",
+          "row_count_est": 10753,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "int"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "text"
+            },
+            {
+              "name": "login_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "logout_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "is_successful",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "media",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "collection_name",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "file_name",
+              "type": "varchar"
+            },
+            {
+              "name": "mime_type",
+              "type": "varchar"
+            },
+            {
+              "name": "disk",
+              "type": "varchar"
+            },
+            {
+              "name": "conversions_disk",
+              "type": "varchar"
+            },
+            {
+              "name": "size",
+              "type": "bigint"
+            },
+            {
+              "name": "manipulations",
+              "type": "json"
+            },
+            {
+              "name": "custom_properties",
+              "type": "json"
+            },
+            {
+              "name": "generated_conversions",
+              "type": "json"
+            },
+            {
+              "name": "responsive_images",
+              "type": "json"
+            },
+            {
+              "name": "order_column",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 73,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "offices",
+          "row_count_est": 3,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "tinytext"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_reset_tokens",
+          "row_count_est": 43,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 88,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "group",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "purpose",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "tinytext"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "push_subscriptions",
+          "row_count_est": 18,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "subscribable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "subscribable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "endpoint",
+              "type": "varchar"
+            },
+            {
+              "name": "public_key",
+              "type": "varchar"
+            },
+            {
+              "name": "auth_token",
+              "type": "varchar"
+            },
+            {
+              "name": "content_encoding",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "requests",
+          "row_count_est": 317938,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "guest_name",
+              "type": "varchar"
+            },
+            {
+              "name": "status_id",
+              "type": "int"
+            },
+            {
+              "name": "id_number",
+              "type": "varchar"
+            },
+            {
+              "name": "mobile_number",
+              "type": "bigint"
+            },
+            {
+              "name": "company",
+              "type": "varchar"
+            },
+            {
+              "name": "start_date",
+              "type": "date"
+            },
+            {
+              "name": "start_time",
+              "type": "time"
+            },
+            {
+              "name": "end_date",
+              "type": "datetime"
+            },
+            {
+              "name": "office_id",
+              "type": "int"
+            },
+            {
+              "name": "purpose_id",
+              "type": "int"
+            },
+            {
+              "name": "staff_id",
+              "type": "varchar"
+            },
+            {
+              "name": "form_id",
+              "type": "int"
+            },
+            {
+              "name": "show_prog",
+              "type": "varchar"
+            },
+            {
+              "name": "topic",
+              "type": "varchar"
+            },
+            {
+              "name": "station_head",
+              "type": "varchar"
+            },
+            {
+              "name": "cluster_manager",
+              "type": "varchar"
+            },
+            {
+              "name": "director",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "varchar"
+            },
+            {
+              "name": "is_commercial",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_production",
+              "type": "tinyint"
+            },
+            {
+              "name": "date_created",
+              "type": "datetime"
+            },
+            {
+              "name": "is_long_term",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_comm",
+              "type": "int"
+            },
+            {
+              "name": "department_id",
+              "type": "int"
+            },
+            {
+              "name": "requires_parking",
+              "type": "tinyint"
+            },
+            {
+              "name": "car_plates",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "requests_3_2_2022",
+          "row_count_est": 200210,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "guest_name",
+              "type": "varchar"
+            },
+            {
+              "name": "status_id",
+              "type": "int"
+            },
+            {
+              "name": "id_number",
+              "type": "varchar"
+            },
+            {
+              "name": "mobile_number",
+              "type": "bigint"
+            },
+            {
+              "name": "company",
+              "type": "varchar"
+            },
+            {
+              "name": "start_date",
+              "type": "date"
+            },
+            {
+              "name": "start_time",
+              "type": "time"
+            },
+            {
+              "name": "end_date",
+              "type": "datetime"
+            },
+            {
+              "name": "office_id",
+              "type": "int"
+            },
+            {
+              "name": "purpose_id",
+              "type": "int"
+            },
+            {
+              "name": "staff_id",
+              "type": "varchar"
+            },
+            {
+              "name": "form_id",
+              "type": "int"
+            },
+            {
+              "name": "show_prog",
+              "type": "varchar"
+            },
+            {
+              "name": "topic",
+              "type": "varchar"
+            },
+            {
+              "name": "station_head",
+              "type": "varchar"
+            },
+            {
+              "name": "cluster_manager",
+              "type": "varchar"
+            },
+            {
+              "name": "director",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "varchar"
+            },
+            {
+              "name": "is_commercial",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_production",
+              "type": "tinyint"
+            },
+            {
+              "name": "date_created",
+              "type": "datetime"
+            },
+            {
+              "name": "is_long_term",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_comm",
+              "type": "int"
+            },
+            {
+              "name": "department_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "requests_backup",
+          "row_count_est": 134127,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "guest_name",
+              "type": "varchar"
+            },
+            {
+              "name": "status_id",
+              "type": "int"
+            },
+            {
+              "name": "id_number",
+              "type": "varchar"
+            },
+            {
+              "name": "mobile_number",
+              "type": "bigint"
+            },
+            {
+              "name": "company",
+              "type": "varchar"
+            },
+            {
+              "name": "start_date",
+              "type": "date"
+            },
+            {
+              "name": "start_time",
+              "type": "time"
+            },
+            {
+              "name": "end_date",
+              "type": "datetime"
+            },
+            {
+              "name": "office_id",
+              "type": "int"
+            },
+            {
+              "name": "purpose_id",
+              "type": "int"
+            },
+            {
+              "name": "staff_id",
+              "type": "varchar"
+            },
+            {
+              "name": "form_id",
+              "type": "int"
+            },
+            {
+              "name": "show_prog",
+              "type": "varchar"
+            },
+            {
+              "name": "topic",
+              "type": "varchar"
+            },
+            {
+              "name": "station_head",
+              "type": "varchar"
+            },
+            {
+              "name": "cluster_manager",
+              "type": "varchar"
+            },
+            {
+              "name": "director",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "varchar"
+            },
+            {
+              "name": "is_commercial",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_production",
+              "type": "tinyint"
+            },
+            {
+              "name": "date_created",
+              "type": "datetime"
+            },
+            {
+              "name": "is_long_term",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_comm",
+              "type": "int"
+            },
+            {
+              "name": "department_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "security_incidents",
+          "row_count_est": 165,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "int"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "details",
+              "type": "text"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "occurred_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "staff",
+          "row_count_est": 1473,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "staff_id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_name",
+              "type": "varchar"
+            },
+            {
+              "name": "full_name",
+              "type": "varchar"
+            },
+            {
+              "name": "position",
+              "type": "varchar"
+            },
+            {
+              "name": "duty_station",
+              "type": "varchar"
+            },
+            {
+              "name": "gender",
+              "type": "enum"
+            },
+            {
+              "name": "manager_staff_id",
+              "type": "bigint"
+            },
+            {
+              "name": "reports_to_raw",
+              "type": "varchar"
+            },
+            {
+              "name": "department_id",
+              "type": "bigint"
+            },
+            {
+              "name": "division_id",
+              "type": "bigint"
+            },
+            {
+              "name": "unit_id",
+              "type": "bigint"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "staff_attendance",
+          "row_count_est": 394458,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "staff_id",
+              "type": "bigint"
+            },
+            {
+              "name": "time_in",
+              "type": "timestamp"
+            },
+            {
+              "name": "hours_worked",
+              "type": "decimal"
+            },
+            {
+              "name": "time_out",
+              "type": "timestamp"
+            },
+            {
+              "name": "is_flagged",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "stations",
+          "row_count_est": 17,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "tinytext"
+            },
+            {
+              "name": "office_id_fk",
+              "type": "int"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "status",
+          "row_count_est": 11,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "tinytext"
+            },
+            {
+              "name": "color_code",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "studio_guests",
+          "row_count_est": 77803,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "request_id",
+              "type": "int"
+            },
+            {
+              "name": "id_number",
+              "type": "varchar"
+            },
+            {
+              "name": "visits",
+              "type": "int"
+            },
+            {
+              "name": "phone_number",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "studio_orders",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "url",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "telescope_entries",
+          "row_count_est": 164127,
+          "columns": [
+            {
+              "name": "sequence",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "batch_id",
+              "type": "char"
+            },
+            {
+              "name": "family_hash",
+              "type": "varchar"
+            },
+            {
+              "name": "should_display_on_index",
+              "type": "tinyint"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "content",
+              "type": "longtext"
+            },
+            {
+              "name": "created_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "telescope_entries_tags",
+          "row_count_est": 42165,
+          "columns": [
+            {
+              "name": "entry_uuid",
+              "type": "char"
+            },
+            {
+              "name": "tag",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "telescope_monitoring",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "tag",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "user_groups",
+          "row_count_est": 3935,
+          "columns": [
+            {
+              "name": "user_id",
+              "type": "int"
+            },
+            {
+              "name": "group_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 4117,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "full_name",
+              "type": "varchar"
+            },
+            {
+              "name": "username",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "dept_id",
+              "type": "bigint"
+            },
+            {
+              "name": "unit_id",
+              "type": "bigint"
+            },
+            {
+              "name": "unit_confirmed_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "unit_source",
+              "type": "varchar"
+            },
+            {
+              "name": "msisdn",
+              "type": "varchar"
+            },
+            {
+              "name": "group_id",
+              "type": "int"
+            },
+            {
+              "name": "staff_ref_id",
+              "type": "bigint"
+            },
+            {
+              "name": "can_approve_production",
+              "type": "tinyint"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "station_id",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "two_factor_secret",
+              "type": "text"
+            },
+            {
+              "name": "two_factor_recovery_codes",
+              "type": "text"
+            },
+            {
+              "name": "two_factor_confirmed_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "two_factor_method",
+              "type": "varchar"
+            },
+            {
+              "name": "two_factor_otp",
+              "type": "varchar"
+            },
+            {
+              "name": "two_factor_otp_expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "two_factor_request_token",
+              "type": "varchar"
+            },
+            {
+              "name": "last_password_change_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "locked_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users_c",
+          "row_count_est": 1036,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "full_name",
+              "type": "varchar"
+            },
+            {
+              "name": "username",
+              "type": "varchar"
+            },
+            {
+              "name": "group_id",
+              "type": "int"
+            },
+            {
+              "name": "dept_id",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "visitation_request_guests",
+          "row_count_est": 75869,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "request_id",
+              "type": "bigint"
+            },
+            {
+              "name": "guest_id",
+              "type": "int"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            },
+            {
+              "name": "car_plates",
+              "type": "varchar"
+            },
+            {
+              "name": "card_number",
+              "type": "varchar"
+            },
+            {
+              "name": "check_in_time",
+              "type": "timestamp"
+            },
+            {
+              "name": "check_out_time",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "checked_in_by",
+              "type": "int"
+            },
+            {
+              "name": "checked_out_by",
+              "type": "int"
+            },
+            {
+              "name": "is_manual",
+              "type": "tinyint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "visitation_requests",
+          "row_count_est": 33283,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "office_id",
+              "type": "int"
+            },
+            {
+              "name": "type_id",
+              "type": "int"
+            },
+            {
+              "name": "status_id",
+              "type": "int"
+            },
+            {
+              "name": "station_id",
+              "type": "int"
+            },
+            {
+              "name": "is_production",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_breakfast_show",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_commercial",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_long_term",
+              "type": "tinyint"
+            },
+            {
+              "name": "requires_parking",
+              "type": "tinyint"
+            },
+            {
+              "name": "car_plates",
+              "type": "varchar"
+            },
+            {
+              "name": "show",
+              "type": "varchar"
+            },
+            {
+              "name": "topic",
+              "type": "varchar"
+            },
+            {
+              "name": "presenter_id",
+              "type": "int"
+            },
+            {
+              "name": "staff_id",
+              "type": "int"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "time",
+              "type": "time"
+            },
+            {
+              "name": "end_time",
+              "type": "datetime"
+            },
+            {
+              "name": "station_head_id",
+              "type": "int"
+            },
+            {
+              "name": "cluster_manager_id",
+              "type": "int"
+            },
+            {
+              "name": "director_id",
+              "type": "int"
+            },
+            {
+              "name": "description",
+              "type": "longtext"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 47,
+      "row_count_est_total": 4544684
+    }
+  ],
+  "database_count": 1,
+  "table_count": 47,
+  "row_count_est_total": 4544684,
+  "elapsed_s": 3.11,
+  "audit_trail": [
+    {
+      "sql_shape": "schemata_list",
+      "at_utc": "2026-09-25T01:59:33.343445+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "db_visitors",
+      "at_utc": "2026-09-25T01:59:33.618777+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "db_visitors",
+      "at_utc": "2026-09-25T01:59:34.166617+00:00"
+    }
+  ]
+}

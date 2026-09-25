@@ -1,0 +1,583 @@
+{
+  "cluster_host": "159.138.164.124",
+  "section": "MICROSERVICES",
+  "status_in_sheet": "NOT YET UHURU",
+  "user_prefix2": "br",
+  "status": "OK",
+  "databases": [
+    {
+      "database": "local",
+      "tables": [
+        {
+          "table": "audits",
+          "row_count_est": 473513,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_type",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "old_values",
+              "type": "text"
+            },
+            {
+              "name": "new_values",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "type": "text"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "varchar"
+            },
+            {
+              "name": "tags",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "bazuu",
+          "row_count_est": 180,
+          "columns": [
+            {
+              "name": "name",
+              "type": "text"
+            },
+            {
+              "name": "age",
+              "type": "int"
+            },
+            {
+              "name": "status",
+              "type": "tinyint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "csv-v2",
+          "row_count_est": 75,
+          "columns": [
+            {
+              "name": "folder",
+              "type": "varchar"
+            },
+            {
+              "name": "station",
+              "type": "varchar"
+            },
+            {
+              "name": "language",
+              "type": "varchar"
+            },
+            {
+              "name": "language_code",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 12,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "folder_languages",
+          "row_count_est": 55,
+          "columns": [
+            {
+              "name": "ID",
+              "type": "int"
+            },
+            {
+              "name": "Folder",
+              "type": "varchar"
+            },
+            {
+              "name": "station",
+              "type": "varchar"
+            },
+            {
+              "name": "Language",
+              "type": "varchar"
+            },
+            {
+              "name": "code",
+              "type": "varchar"
+            },
+            {
+              "name": "total_time",
+              "type": "int"
+            },
+            {
+              "name": "drive_folder_id",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "hours by station",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "Folder",
+              "type": "tinyint"
+            },
+            {
+              "name": "station",
+              "type": "tinyint"
+            },
+            {
+              "name": "Language",
+              "type": "tinyint"
+            },
+            {
+              "name": "Total Audio Hours",
+              "type": "tinyint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "hours_by_user",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "Folder",
+              "type": "tinyint"
+            },
+            {
+              "name": "Language",
+              "type": "tinyint"
+            },
+            {
+              "name": "Total Audio Hours",
+              "type": "tinyint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "queue",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "attempts",
+              "type": "tinyint"
+            },
+            {
+              "name": "reserved_at",
+              "type": "int"
+            },
+            {
+              "name": "available_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "language_groups",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "group_name",
+              "type": "tinyint"
+            },
+            {
+              "name": "language_id",
+              "type": "tinyint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 11,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "speakers",
+          "row_count_est": 83,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "gender",
+              "type": "varchar"
+            },
+            {
+              "name": "language_codes",
+              "type": "json"
+            },
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "total hours by language",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "Language",
+              "type": "tinyint"
+            },
+            {
+              "name": "Total Audio Hours",
+              "type": "tinyint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "total hours transcribed by language",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "Language",
+              "type": "tinyint"
+            },
+            {
+              "name": "Total Audio Hours",
+              "type": "tinyint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "transcripts",
+          "row_count_est": 433680,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "file_id",
+              "type": "int"
+            },
+            {
+              "name": "start_time",
+              "type": "time"
+            },
+            {
+              "name": "end_time",
+              "type": "time"
+            },
+            {
+              "name": "speaker_id",
+              "type": "bigint"
+            },
+            {
+              "name": "transcript",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "uploaded_files",
+          "row_count_est": 79759,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "user_id",
+              "type": "int"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "comments",
+              "type": "longtext"
+            },
+            {
+              "name": "text_file_path",
+              "type": "text"
+            },
+            {
+              "name": "language_id",
+              "type": "varchar"
+            },
+            {
+              "name": "original_url",
+              "type": "text"
+            },
+            {
+              "name": "converted_url",
+              "type": "text"
+            },
+            {
+              "name": "compressed_url",
+              "type": "text"
+            },
+            {
+              "name": "audio_length",
+              "type": "float"
+            },
+            {
+              "name": "time_processed",
+              "type": "timestamp"
+            },
+            {
+              "name": "transcribe_uploaded",
+              "type": "tinyint"
+            },
+            {
+              "name": "file_location",
+              "type": "varchar"
+            },
+            {
+              "name": "transcript_injected",
+              "type": "varchar"
+            },
+            {
+              "name": "timestamped_by",
+              "type": "int"
+            },
+            {
+              "name": "drive_folder_id",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 231,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "username",
+              "type": "varchar"
+            },
+            {
+              "name": "role",
+              "type": "varchar"
+            },
+            {
+              "name": "language_codes",
+              "type": "json"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 17,
+      "row_count_est_total": 987599
+    }
+  ],
+  "database_count": 1,
+  "table_count": 17,
+  "row_count_est_total": 987599,
+  "elapsed_s": 2.77,
+  "audit_trail": [
+    {
+      "sql_shape": "schemata_list",
+      "at_utc": "2026-09-25T01:59:33.288517+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "local",
+      "at_utc": "2026-09-25T01:59:33.553325+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "local",
+      "at_utc": "2026-09-25T01:59:33.818679+00:00"
+    }
+  ]
+}

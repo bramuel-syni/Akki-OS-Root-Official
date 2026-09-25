@@ -1,0 +1,5747 @@
+{
+  "cluster_host": "159.138.164.93",
+  "section": "MICROSERVICES",
+  "status_in_sheet": "OK",
+  "user_prefix2": "br",
+  "status": "OK",
+  "databases": [
+    {
+      "database": "kra_reports",
+      "tables": [
+        {
+          "table": "command_logs",
+          "row_count_est": 60751,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "command",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "started_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "finished_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "duration_seconds",
+              "type": "decimal"
+            },
+            {
+              "name": "exit_code",
+              "type": "int"
+            },
+            {
+              "name": "output",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "credit_note_items",
+          "row_count_est": 29,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "credit_note_id",
+              "type": "bigint"
+            },
+            {
+              "name": "item",
+              "type": "varchar"
+            },
+            {
+              "name": "quantity",
+              "type": "int"
+            },
+            {
+              "name": "cost",
+              "type": "decimal"
+            },
+            {
+              "name": "subtotal",
+              "type": "decimal"
+            },
+            {
+              "name": "tax_obligation",
+              "type": "varchar"
+            },
+            {
+              "name": "tax_percentage",
+              "type": "varchar"
+            },
+            {
+              "name": "hs_code",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "credit_notes",
+          "row_count_est": 16,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "custom_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "invoice_id",
+              "type": "bigint"
+            },
+            {
+              "name": "customer_id",
+              "type": "bigint"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "grand_total",
+              "type": "decimal"
+            },
+            {
+              "name": "net_subtotal",
+              "type": "decimal"
+            },
+            {
+              "name": "tax_total",
+              "type": "decimal"
+            },
+            {
+              "name": "tims_posting_status",
+              "type": "varchar"
+            },
+            {
+              "name": "cu_serial_number",
+              "type": "varchar"
+            },
+            {
+              "name": "cu_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "tims_verify_url",
+              "type": "longtext"
+            },
+            {
+              "name": "tims_return_description",
+              "type": "varchar"
+            },
+            {
+              "name": "tims_posted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "failure_log",
+              "type": "varchar"
+            },
+            {
+              "name": "recorded_by",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "customers",
+          "row_count_est": 32,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "building",
+              "type": "varchar"
+            },
+            {
+              "name": "floor",
+              "type": "varchar"
+            },
+            {
+              "name": "street",
+              "type": "varchar"
+            },
+            {
+              "name": "town",
+              "type": "varchar"
+            },
+            {
+              "name": "address",
+              "type": "varchar"
+            },
+            {
+              "name": "postal_code",
+              "type": "varchar"
+            },
+            {
+              "name": "city",
+              "type": "varchar"
+            },
+            {
+              "name": "country",
+              "type": "varchar"
+            },
+            {
+              "name": "payment_account",
+              "type": "varchar"
+            },
+            {
+              "name": "pin_number",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "external_credit_notes",
+          "row_count_est": 224547,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "batch_id",
+              "type": "varchar"
+            },
+            {
+              "name": "invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "custom_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "viusasa_posting_id",
+              "type": "bigint"
+            },
+            {
+              "name": "tag",
+              "type": "varchar"
+            },
+            {
+              "name": "invoice_date",
+              "type": "date"
+            },
+            {
+              "name": "old_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "old_cu_serial_number",
+              "type": "varchar"
+            },
+            {
+              "name": "old_cu_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "old_items_list",
+              "type": "longtext"
+            },
+            {
+              "name": "request",
+              "type": "json"
+            },
+            {
+              "name": "response",
+              "type": "json"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "grand_total",
+              "type": "decimal"
+            },
+            {
+              "name": "net_subtotal",
+              "type": "decimal"
+            },
+            {
+              "name": "tax_total",
+              "type": "decimal"
+            },
+            {
+              "name": "tims_posting_status",
+              "type": "varchar"
+            },
+            {
+              "name": "retry_count",
+              "type": "int"
+            },
+            {
+              "name": "last_retry_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "cu_serial_number",
+              "type": "varchar"
+            },
+            {
+              "name": "cu_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "tims_verify_url",
+              "type": "longtext"
+            },
+            {
+              "name": "tims_return_description",
+              "type": "varchar"
+            },
+            {
+              "name": "tims_posted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "callback_sent_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "callback_url",
+              "type": "varchar"
+            },
+            {
+              "name": "scanned_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "invoice_items",
+          "row_count_est": 847,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "invoice_id",
+              "type": "bigint"
+            },
+            {
+              "name": "item",
+              "type": "varchar"
+            },
+            {
+              "name": "quantity",
+              "type": "int"
+            },
+            {
+              "name": "cost",
+              "type": "decimal"
+            },
+            {
+              "name": "subtotal",
+              "type": "decimal"
+            },
+            {
+              "name": "tax_obligation",
+              "type": "varchar"
+            },
+            {
+              "name": "tax_percentage",
+              "type": "varchar"
+            },
+            {
+              "name": "hs_code",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "invoices",
+          "row_count_est": 591,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "custom_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "customer_id",
+              "type": "bigint"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "grand_total",
+              "type": "decimal"
+            },
+            {
+              "name": "net_subtotal",
+              "type": "decimal"
+            },
+            {
+              "name": "tax_total",
+              "type": "decimal"
+            },
+            {
+              "name": "tims_posting_status",
+              "type": "varchar"
+            },
+            {
+              "name": "cu_serial_number",
+              "type": "varchar"
+            },
+            {
+              "name": "cu_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "tims_verify_url",
+              "type": "longtext"
+            },
+            {
+              "name": "tims_return_description",
+              "type": "longtext"
+            },
+            {
+              "name": "tims_posted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "failure_log",
+              "type": "longtext"
+            },
+            {
+              "name": "recorded_by",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 40,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_permissions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_roles",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "role_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "scopes",
+              "type": "text"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_auth_codes",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "bigint"
+            },
+            {
+              "name": "scopes",
+              "type": "text"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "expires_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_clients",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "secret",
+              "type": "varchar"
+            },
+            {
+              "name": "provider",
+              "type": "varchar"
+            },
+            {
+              "name": "redirect",
+              "type": "text"
+            },
+            {
+              "name": "personal_access_client",
+              "type": "tinyint"
+            },
+            {
+              "name": "password_client",
+              "type": "tinyint"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_personal_access_clients",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_refresh_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "access_token_id",
+              "type": "varchar"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "expires_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_resets",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "role_has_permissions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "roles",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sessions",
+          "row_count_est": 12,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "text"
+            },
+            {
+              "name": "last_activity",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "team_invitations",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "team_id",
+              "type": "bigint"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "role",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "team_user",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "team_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "teams",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "personal_team",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "email_verified_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "password",
+              "type": "varchar"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "current_team_id",
+              "type": "bigint"
+            },
+            {
+              "name": "profile_photo_path",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "viusasa_postings",
+          "row_count_est": 535162,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "tag",
+              "type": "varchar"
+            },
+            {
+              "name": "amount_before_tax",
+              "type": "decimal"
+            },
+            {
+              "name": "amount_after_tax",
+              "type": "decimal"
+            },
+            {
+              "name": "tax_total",
+              "type": "decimal"
+            },
+            {
+              "name": "request",
+              "type": "json"
+            },
+            {
+              "name": "response",
+              "type": "json"
+            },
+            {
+              "name": "tims_posting_status",
+              "type": "varchar"
+            },
+            {
+              "name": "cu_serial_number",
+              "type": "varchar"
+            },
+            {
+              "name": "cu_invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "tims_verify_url",
+              "type": "longtext"
+            },
+            {
+              "name": "tims_return_description",
+              "type": "varchar"
+            },
+            {
+              "name": "retry_count",
+              "type": "int"
+            },
+            {
+              "name": "last_retried_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "error_message",
+              "type": "text"
+            },
+            {
+              "name": "tims_posted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "credited_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "callback_url",
+              "type": "longtext"
+            },
+            {
+              "name": "callback_sent_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "marked_duplicate_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 27,
+      "row_count_est_total": 822027
+    },
+    {
+      "database": "viupay",
+      "tables": [
+        {
+          "table": "cache",
+          "row_count_est": 48,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "value",
+              "type": "mediumtext"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache_locks",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "owner",
+              "type": "varchar"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "dpo_operations",
+          "row_count_est": 156,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "payment_request_id",
+              "type": "bigint"
+            },
+            {
+              "name": "transaction_reference",
+              "type": "varchar"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "int"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 2485,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "gateway_configs",
+          "row_count_est": 10,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "mode",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "reg_name",
+              "type": "varchar"
+            },
+            {
+              "name": "paybill_number",
+              "type": "bigint"
+            },
+            {
+              "name": "config",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "gateways",
+          "row_count_est": 204,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "enabled",
+              "type": "tinyint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "telco",
+              "type": "varchar"
+            },
+            {
+              "name": "params",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "iveri_operations",
+          "row_count_est": 618,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "payment_request_id",
+              "type": "bigint"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "int"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "queue",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "attempts",
+              "type": "tinyint"
+            },
+            {
+              "name": "reserved_at",
+              "type": "int"
+            },
+            {
+              "name": "available_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "merchants",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 40,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "mm_pay_instruments",
+          "row_count_est": 15958,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "pay_instrument_id",
+              "type": "bigint"
+            },
+            {
+              "name": "msisdn",
+              "type": "varchar"
+            },
+            {
+              "name": "telco",
+              "type": "varchar"
+            },
+            {
+              "name": "mobile_money_provider",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "mm_payment_transactions",
+          "row_count_est": 6072,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "payment_transaction_id",
+              "type": "bigint"
+            },
+            {
+              "name": "msisdn",
+              "type": "varchar"
+            },
+            {
+              "name": "telco",
+              "type": "varchar"
+            },
+            {
+              "name": "mobile_money_provider",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "mpesa_c2b_callbacks",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "TransactionType",
+              "type": "varchar"
+            },
+            {
+              "name": "TransID",
+              "type": "varchar"
+            },
+            {
+              "name": "TransTime",
+              "type": "varchar"
+            },
+            {
+              "name": "TransAmount",
+              "type": "double"
+            },
+            {
+              "name": "BusinessShortCode",
+              "type": "int"
+            },
+            {
+              "name": "BillRefNumber",
+              "type": "varchar"
+            },
+            {
+              "name": "InvoiceNumber",
+              "type": "varchar"
+            },
+            {
+              "name": "ThirdPartyTransID",
+              "type": "varchar"
+            },
+            {
+              "name": "OrgAccountBalance",
+              "type": "double"
+            },
+            {
+              "name": "MSISDN",
+              "type": "varchar"
+            },
+            {
+              "name": "FirstName",
+              "type": "varchar"
+            },
+            {
+              "name": "MiddleName",
+              "type": "varchar"
+            },
+            {
+              "name": "LastName",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "mpesa_stk_callbacks",
+          "row_count_est": 18308,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "MerchantRequestID",
+              "type": "varchar"
+            },
+            {
+              "name": "CheckoutRequestID",
+              "type": "varchar"
+            },
+            {
+              "name": "ResultCode",
+              "type": "int"
+            },
+            {
+              "name": "ResultDesc",
+              "type": "varchar"
+            },
+            {
+              "name": "Amount",
+              "type": "int"
+            },
+            {
+              "name": "MpesaReceiptNumber",
+              "type": "varchar"
+            },
+            {
+              "name": "Balance",
+              "type": "varchar"
+            },
+            {
+              "name": "TransactionDate",
+              "type": "varchar"
+            },
+            {
+              "name": "PhoneNumber",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "mpesa_stk_requests",
+          "row_count_est": 20478,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "payment_request_id",
+              "type": "bigint"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "int"
+            },
+            {
+              "name": "reference",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "complete",
+              "type": "tinyint"
+            },
+            {
+              "name": "MerchantRequestID",
+              "type": "varchar"
+            },
+            {
+              "name": "CheckoutRequestID",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "nitext_configs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "username",
+              "type": "varchar"
+            },
+            {
+              "name": "password",
+              "type": "varchar"
+            },
+            {
+              "name": "sender_id",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_access_tokens",
+          "row_count_est": 6694,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "char"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "scopes",
+              "type": "text"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_auth_codes",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "char"
+            },
+            {
+              "name": "scopes",
+              "type": "text"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "expires_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_clients",
+          "row_count_est": 11,
+          "columns": [
+            {
+              "name": "id",
+              "type": "char"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "secret",
+              "type": "varchar"
+            },
+            {
+              "name": "provider",
+              "type": "varchar"
+            },
+            {
+              "name": "redirect",
+              "type": "text"
+            },
+            {
+              "name": "personal_access_client",
+              "type": "tinyint"
+            },
+            {
+              "name": "password_client",
+              "type": "tinyint"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_personal_access_clients",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "char"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "oauth_refresh_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "access_token_id",
+              "type": "varchar"
+            },
+            {
+              "name": "revoked",
+              "type": "tinyint"
+            },
+            {
+              "name": "expires_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_resets",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "pay_instruments",
+          "row_count_est": 16038,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "customer_id",
+              "type": "bigint"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "usage",
+              "type": "enum"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "issuing_country",
+              "type": "varchar"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "meta",
+              "type": "json"
+            },
+            {
+              "name": "owner_email",
+              "type": "varchar"
+            },
+            {
+              "name": "owner_name",
+              "type": "varchar"
+            },
+            {
+              "name": "owner_phone",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "payment_requests",
+          "row_count_est": 24447,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "identifier",
+              "type": "varchar"
+            },
+            {
+              "name": "invoice_number",
+              "type": "varchar"
+            },
+            {
+              "name": "reference",
+              "type": "varchar"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "pay_instrument_id",
+              "type": "bigint"
+            },
+            {
+              "name": "payment_transaction_id",
+              "type": "bigint"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "bigint"
+            },
+            {
+              "name": "amount_refunded",
+              "type": "bigint"
+            },
+            {
+              "name": "billing",
+              "type": "enum"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "failure_code",
+              "type": "varchar"
+            },
+            {
+              "name": "failure_message",
+              "type": "varchar"
+            },
+            {
+              "name": "meta",
+              "type": "json"
+            },
+            {
+              "name": "paid",
+              "type": "tinyint"
+            },
+            {
+              "name": "refunded",
+              "type": "tinyint"
+            },
+            {
+              "name": "receipt_email",
+              "type": "varchar"
+            },
+            {
+              "name": "receipt_phone",
+              "type": "varchar"
+            },
+            {
+              "name": "receipt_number",
+              "type": "varchar"
+            },
+            {
+              "name": "statement_descriptor",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            },
+            {
+              "name": "attempt_count",
+              "type": "bigint"
+            },
+            {
+              "name": "attempted",
+              "type": "tinyint"
+            },
+            {
+              "name": "cancelled",
+              "type": "varchar"
+            },
+            {
+              "name": "redirect_url",
+              "type": "varchar"
+            },
+            {
+              "name": "hosted_payment_link",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "payment_transactions",
+          "row_count_est": 6279,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "identifier",
+              "type": "varchar"
+            },
+            {
+              "name": "transactionable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "transactionable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "payment_method_type",
+              "type": "varchar"
+            },
+            {
+              "name": "receipt_number",
+              "type": "varchar"
+            },
+            {
+              "name": "transaction_id",
+              "type": "varchar"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 6,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "role_user",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "roles",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "permissions",
+              "type": "json"
+            },
+            {
+              "name": "type",
+              "type": "enum"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sessions",
+          "row_count_est": 113,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "text"
+            },
+            {
+              "name": "last_activity",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sms",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "message",
+              "type": "longtext"
+            },
+            {
+              "name": "network",
+              "type": "varchar"
+            },
+            {
+              "name": "country_code",
+              "type": "varchar"
+            },
+            {
+              "name": "length",
+              "type": "int"
+            },
+            {
+              "name": "chunk",
+              "type": "int"
+            },
+            {
+              "name": "delivery_status",
+              "type": "varchar"
+            },
+            {
+              "name": "delivery_message",
+              "type": "longtext"
+            },
+            {
+              "name": "type",
+              "type": "enum"
+            },
+            {
+              "name": "api_message_id",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "stanbic_configs",
+          "row_count_est": 17,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "payment_request_id",
+              "type": "bigint"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "int"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "team_invitations",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "team_id",
+              "type": "bigint"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "role",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "team_user",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "team_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "teams",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "personal_team",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "email_verified_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "password",
+              "type": "varchar"
+            },
+            {
+              "name": "two_factor_secret",
+              "type": "text"
+            },
+            {
+              "name": "two_factor_recovery_codes",
+              "type": "text"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "current_team_id",
+              "type": "bigint"
+            },
+            {
+              "name": "profile_photo_path",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "webhook_send_logs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "webhook_id",
+              "type": "bigint"
+            },
+            {
+              "name": "webhook_url",
+              "type": "varchar"
+            },
+            {
+              "name": "receive_status",
+              "type": "tinyint"
+            },
+            {
+              "name": "received_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "webhook_urls",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "url",
+              "type": "varchar"
+            },
+            {
+              "name": "content_type",
+              "type": "varchar"
+            },
+            {
+              "name": "secret",
+              "type": "varchar"
+            },
+            {
+              "name": "insecure_ssl",
+              "type": "tinyint"
+            },
+            {
+              "name": "events",
+              "type": "json"
+            },
+            {
+              "name": "active",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "webhooks",
+          "row_count_est": 17621,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "identifier",
+              "type": "varchar"
+            },
+            {
+              "name": "webhook_url_id",
+              "type": "bigint"
+            },
+            {
+              "name": "webhookable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "webhookable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "merchant_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_name",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "text"
+            },
+            {
+              "name": "payload_format",
+              "type": "varchar"
+            },
+            {
+              "name": "try_count",
+              "type": "int"
+            },
+            {
+              "name": "last_tried_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "failed",
+              "type": "tinyint"
+            },
+            {
+              "name": "has_been_received",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 39,
+      "row_count_est_total": 135639
+    },
+    {
+      "database": "viutickets",
+      "tables": [
+        {
+          "table": "affiliates",
+          "row_count_est": 63,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "commission",
+              "type": "double"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "audits",
+          "row_count_est": 237225,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_type",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "old_values",
+              "type": "text"
+            },
+            {
+              "name": "new_values",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "type": "text"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "varchar"
+            },
+            {
+              "name": "tags",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "book_events",
+          "row_count_est": 683,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "business_name",
+              "type": "varchar"
+            },
+            {
+              "name": "phone_number",
+              "type": "varchar"
+            },
+            {
+              "name": "email_address",
+              "type": "varchar"
+            },
+            {
+              "name": "event_name",
+              "type": "varchar"
+            },
+            {
+              "name": "venue",
+              "type": "varchar"
+            },
+            {
+              "name": "start_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "end_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "booked_concessions",
+          "row_count_est": 21,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_booking_id",
+              "type": "int"
+            },
+            {
+              "name": "food_booking_id",
+              "type": "varchar"
+            },
+            {
+              "name": "booking_id",
+              "type": "varchar"
+            },
+            {
+              "name": "food_id",
+              "type": "varchar"
+            },
+            {
+              "name": "food_booking_name",
+              "type": "varchar"
+            },
+            {
+              "name": "food_booking_quantity",
+              "type": "int"
+            },
+            {
+              "name": "food_booking_price",
+              "type": "double"
+            },
+            {
+              "name": "food_booking_date_created",
+              "type": "datetime"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "bookings",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "first_name",
+              "type": "varchar"
+            },
+            {
+              "name": "last_name",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "payment_phone",
+              "type": "varchar"
+            },
+            {
+              "name": "payment_status",
+              "type": "varchar"
+            },
+            {
+              "name": "order_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "value",
+              "type": "mediumtext"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache_locks",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "owner",
+              "type": "varchar"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "categories",
+          "row_count_est": 24,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "complimentaries",
+          "row_count_est": 258,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "contact",
+              "type": "varchar"
+            },
+            {
+              "name": "ticket_type",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "concession_categories",
+          "row_count_est": 5,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "concessions",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "concession_category_id",
+              "type": "int"
+            },
+            {
+              "name": "food_id",
+              "type": "varchar"
+            },
+            {
+              "name": "food_category_id",
+              "type": "varchar"
+            },
+            {
+              "name": "food_name",
+              "type": "varchar"
+            },
+            {
+              "name": "image",
+              "type": "varchar"
+            },
+            {
+              "name": "food_price",
+              "type": "double"
+            },
+            {
+              "name": "food_type",
+              "type": "varchar"
+            },
+            {
+              "name": "food_status",
+              "type": "varchar"
+            },
+            {
+              "name": "food_date_created",
+              "type": "datetime"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "coupons",
+          "row_count_est": 1,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_id",
+              "type": "int"
+            },
+            {
+              "name": "movie_show_id",
+              "type": "int"
+            },
+            {
+              "name": "code",
+              "type": "varchar"
+            },
+            {
+              "name": "items_available",
+              "type": "int"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "double"
+            },
+            {
+              "name": "expires_at",
+              "type": "datetime"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "customers",
+          "row_count_est": 15825,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "event_affiliates",
+          "row_count_est": 62,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "affiliate_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "link",
+              "type": "varchar"
+            },
+            {
+              "name": "code",
+              "type": "varchar"
+            },
+            {
+              "name": "no_of_clicks",
+              "type": "bigint"
+            },
+            {
+              "name": "no_of_successful_clicks",
+              "type": "bigint"
+            },
+            {
+              "name": "total_amount",
+              "type": "double"
+            },
+            {
+              "name": "paid_amount",
+              "type": "double"
+            },
+            {
+              "name": "commission",
+              "type": "double"
+            },
+            {
+              "name": "paid_status",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "event_owners",
+          "row_count_est": 105,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "business_name",
+              "type": "varchar"
+            },
+            {
+              "name": "phone_number",
+              "type": "varchar"
+            },
+            {
+              "name": "email_address",
+              "type": "varchar"
+            },
+            {
+              "name": "commission",
+              "type": "decimal"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "event_seats",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "section",
+              "type": "varchar"
+            },
+            {
+              "name": "seat",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "ticket_sale_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "events",
+          "row_count_est": 471,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_owner_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "text"
+            },
+            {
+              "name": "previous_slugs",
+              "type": "json"
+            },
+            {
+              "name": "description",
+              "type": "longtext"
+            },
+            {
+              "name": "priority",
+              "type": "int"
+            },
+            {
+              "name": "slider_priority",
+              "type": "int"
+            },
+            {
+              "name": "start_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "end_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "start_time",
+              "type": "varchar"
+            },
+            {
+              "name": "end_time",
+              "type": "varchar"
+            },
+            {
+              "name": "event_status",
+              "type": "varchar"
+            },
+            {
+              "name": "category_id",
+              "type": "bigint"
+            },
+            {
+              "name": "venue_id",
+              "type": "bigint"
+            },
+            {
+              "name": "is_featured",
+              "type": "varchar"
+            },
+            {
+              "name": "with_seat_booking",
+              "type": "int"
+            },
+            {
+              "name": "no_action_event",
+              "type": "varchar"
+            },
+            {
+              "name": "ussd_code",
+              "type": "varchar"
+            },
+            {
+              "name": "paid_type",
+              "type": "varchar"
+            },
+            {
+              "name": "platform",
+              "type": "varchar"
+            },
+            {
+              "name": "is_owner_paid",
+              "type": "int"
+            },
+            {
+              "name": "unique_id",
+              "type": "bigint"
+            },
+            {
+              "name": "inactivate_unique_id",
+              "type": "bigint"
+            },
+            {
+              "name": "tags",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "gateways",
+          "row_count_est": 1,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "priority",
+              "type": "int"
+            },
+            {
+              "name": "redirect_url",
+              "type": "varchar"
+            },
+            {
+              "name": "image_url",
+              "type": "varchar"
+            },
+            {
+              "name": "params",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "queue",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "attempts",
+              "type": "tinyint"
+            },
+            {
+              "name": "reserved_at",
+              "type": "int"
+            },
+            {
+              "name": "available_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "media",
+          "row_count_est": 471553,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "collection_name",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "file_name",
+              "type": "varchar"
+            },
+            {
+              "name": "mime_type",
+              "type": "varchar"
+            },
+            {
+              "name": "disk",
+              "type": "varchar"
+            },
+            {
+              "name": "conversions_disk",
+              "type": "varchar"
+            },
+            {
+              "name": "size",
+              "type": "bigint"
+            },
+            {
+              "name": "manipulations",
+              "type": "json"
+            },
+            {
+              "name": "custom_properties",
+              "type": "json"
+            },
+            {
+              "name": "generated_conversions",
+              "type": "json"
+            },
+            {
+              "name": "responsive_images",
+              "type": "json"
+            },
+            {
+              "name": "order_column",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 115,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_permissions",
+          "row_count_est": 606,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_roles",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "role_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "movie_bookings",
+          "row_count_est": 81,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_id",
+              "type": "int"
+            },
+            {
+              "name": "movie_booking_id",
+              "type": "int"
+            },
+            {
+              "name": "booking_id",
+              "type": "varchar"
+            },
+            {
+              "name": "booking_admission",
+              "type": "int"
+            },
+            {
+              "name": "customer_id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "seats",
+              "type": "varchar"
+            },
+            {
+              "name": "ticket_id",
+              "type": "varchar"
+            },
+            {
+              "name": "show_id",
+              "type": "int"
+            },
+            {
+              "name": "show_date",
+              "type": "date"
+            },
+            {
+              "name": "show_time",
+              "type": "time"
+            },
+            {
+              "name": "amount",
+              "type": "double"
+            },
+            {
+              "name": "concession_total",
+              "type": "double"
+            },
+            {
+              "name": "total",
+              "type": "double"
+            },
+            {
+              "name": "coupon_id",
+              "type": "int"
+            },
+            {
+              "name": "coupon",
+              "type": "int"
+            },
+            {
+              "name": "coupon_value",
+              "type": "int"
+            },
+            {
+              "name": "commission",
+              "type": "double"
+            },
+            {
+              "name": "payment_method",
+              "type": "varchar"
+            },
+            {
+              "name": "mpesa_code",
+              "type": "int"
+            },
+            {
+              "name": "payment_status",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "paid_from",
+              "type": "varchar"
+            },
+            {
+              "name": "api_user",
+              "type": "int"
+            },
+            {
+              "name": "in_status",
+              "type": "varchar"
+            },
+            {
+              "name": "admin_id",
+              "type": "int"
+            },
+            {
+              "name": "order_id",
+              "type": "varchar"
+            },
+            {
+              "name": "cron_check",
+              "type": "varchar"
+            },
+            {
+              "name": "download_url",
+              "type": "varchar"
+            },
+            {
+              "name": "scanned",
+              "type": "int"
+            },
+            {
+              "name": "refunded_amount",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "movie_commissions",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_id",
+              "type": "int"
+            },
+            {
+              "name": "movie_show_id",
+              "type": "int"
+            },
+            {
+              "name": "commissions",
+              "type": "double"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "movie_complimentaries",
+          "row_count_est": 35,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_id",
+              "type": "int"
+            },
+            {
+              "name": "movie_show_id",
+              "type": "int"
+            },
+            {
+              "name": "customer_id",
+              "type": "int"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "show_id",
+              "type": "int"
+            },
+            {
+              "name": "show_date",
+              "type": "date"
+            },
+            {
+              "name": "show_time",
+              "type": "time"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "seats",
+              "type": "int"
+            },
+            {
+              "name": "cinema",
+              "type": "varchar"
+            },
+            {
+              "name": "download_url",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "movie_seats",
+          "row_count_est": 1157985,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "seat",
+              "type": "varchar"
+            },
+            {
+              "name": "available",
+              "type": "tinyint"
+            },
+            {
+              "name": "row",
+              "type": "int"
+            },
+            {
+              "name": "col",
+              "type": "int"
+            },
+            {
+              "name": "show_id",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "movie_shows",
+          "row_count_est": 24638,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "show_id",
+              "type": "int"
+            },
+            {
+              "name": "film_id",
+              "type": "varchar"
+            },
+            {
+              "name": "screen",
+              "type": "int"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "show_times",
+              "type": "time"
+            },
+            {
+              "name": "trailer_duration",
+              "type": "int"
+            },
+            {
+              "name": "clean_up",
+              "type": "varchar"
+            },
+            {
+              "name": "price_card_id",
+              "type": "varchar"
+            },
+            {
+              "name": "seating",
+              "type": "varchar"
+            },
+            {
+              "name": "comps",
+              "type": "varchar"
+            },
+            {
+              "name": "sales_via",
+              "type": "json"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "show_type",
+              "type": "varchar"
+            },
+            {
+              "name": "report_revenue",
+              "type": "varchar"
+            },
+            {
+              "name": "cinema",
+              "type": "varchar"
+            },
+            {
+              "name": "price",
+              "type": "int"
+            },
+            {
+              "name": "student_price",
+              "type": "int"
+            },
+            {
+              "name": "admin_id",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "movie_sliders",
+          "row_count_est": 94,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_id",
+              "type": "int"
+            },
+            {
+              "name": "event_id",
+              "type": "int"
+            },
+            {
+              "name": "link",
+              "type": "varchar"
+            },
+            {
+              "name": "end_date",
+              "type": "date"
+            },
+            {
+              "name": "priority",
+              "type": "int"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "movies",
+          "row_count_est": 8305,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "cinema",
+              "type": "varchar"
+            },
+            {
+              "name": "movie_id",
+              "type": "int"
+            },
+            {
+              "name": "film_id",
+              "type": "varchar"
+            },
+            {
+              "name": "synopsis",
+              "type": "longtext"
+            },
+            {
+              "name": "duration",
+              "type": "int"
+            },
+            {
+              "name": "genre",
+              "type": "varchar"
+            },
+            {
+              "name": "content",
+              "type": "varchar"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "film_trailer_url",
+              "type": "varchar"
+            },
+            {
+              "name": "poster",
+              "type": "varchar"
+            },
+            {
+              "name": "banner",
+              "type": "varchar"
+            },
+            {
+              "name": "tags",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "newsletter_customers",
+          "row_count_est": 883,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email_address",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "newsletter_statuses",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "newsletter_customer_id",
+              "type": "bigint"
+            },
+            {
+              "name": "newsletter_id",
+              "type": "bigint"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "info",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "newsletters",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "subject",
+              "type": "varchar"
+            },
+            {
+              "name": "message",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "order_details",
+          "row_count_est": 22065,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "order_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ticket_price_id",
+              "type": "bigint"
+            },
+            {
+              "name": "no_of_tickets",
+              "type": "int"
+            },
+            {
+              "name": "seasoned_days",
+              "type": "int"
+            },
+            {
+              "name": "scanned",
+              "type": "int"
+            },
+            {
+              "name": "group_count",
+              "type": "int"
+            },
+            {
+              "name": "group_scanned",
+              "type": "int"
+            },
+            {
+              "name": "download_url",
+              "type": "varchar"
+            },
+            {
+              "name": "refunded_amount",
+              "type": "double"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "orders",
+          "row_count_est": 31870,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "reference",
+              "type": "varchar"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "customer_id",
+              "type": "bigint"
+            },
+            {
+              "name": "payment_mode",
+              "type": "varchar"
+            },
+            {
+              "name": "mpesa_code",
+              "type": "varchar"
+            },
+            {
+              "name": "first_name",
+              "type": "varchar"
+            },
+            {
+              "name": "last_name",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "payment_phone",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "varchar"
+            },
+            {
+              "name": "payment_status",
+              "type": "varchar"
+            },
+            {
+              "name": "selected_seats",
+              "type": "json"
+            },
+            {
+              "name": "code",
+              "type": "varchar"
+            },
+            {
+              "name": "gender",
+              "type": "varchar"
+            },
+            {
+              "name": "age_group",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_resets",
+          "row_count_est": 15,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "payment_processings",
+          "row_count_est": 22243,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "order_id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_booking_id",
+              "type": "int"
+            },
+            {
+              "name": "gateway_id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "identifier",
+              "type": "varchar"
+            },
+            {
+              "name": "reference",
+              "type": "varchar"
+            },
+            {
+              "name": "pay_instrument",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "attempt_count",
+              "type": "int"
+            },
+            {
+              "name": "attempted",
+              "type": "tinyint"
+            },
+            {
+              "name": "cancelled",
+              "type": "tinyint"
+            },
+            {
+              "name": "amount",
+              "type": "double"
+            },
+            {
+              "name": "event",
+              "type": "varchar"
+            },
+            {
+              "name": "paid",
+              "type": "tinyint"
+            },
+            {
+              "name": "failure_code",
+              "type": "varchar"
+            },
+            {
+              "name": "failure_message",
+              "type": "varchar"
+            },
+            {
+              "name": "payment_transaction",
+              "type": "json"
+            },
+            {
+              "name": "payment_type",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "payments",
+          "row_count_est": 6919,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "order_id",
+              "type": "bigint"
+            },
+            {
+              "name": "movie_booking_id",
+              "type": "int"
+            },
+            {
+              "name": "payment_processing_id",
+              "type": "bigint"
+            },
+            {
+              "name": "provider",
+              "type": "varchar"
+            },
+            {
+              "name": "client_email",
+              "type": "varchar"
+            },
+            {
+              "name": "client_name",
+              "type": "varchar"
+            },
+            {
+              "name": "channel",
+              "type": "varchar"
+            },
+            {
+              "name": "receipt_no",
+              "type": "varchar"
+            },
+            {
+              "name": "invoice_no",
+              "type": "varchar"
+            },
+            {
+              "name": "currency",
+              "type": "varchar"
+            },
+            {
+              "name": "amount",
+              "type": "double"
+            },
+            {
+              "name": "source",
+              "type": "varchar"
+            },
+            {
+              "name": "customer_id",
+              "type": "bigint"
+            },
+            {
+              "name": "remarks",
+              "type": "text"
+            },
+            {
+              "name": "payment_type",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 73,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "display_name",
+              "type": "varchar"
+            },
+            {
+              "name": "group",
+              "type": "varchar"
+            },
+            {
+              "name": "scope",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "reserved_seats",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "int"
+            },
+            {
+              "name": "ticket_type",
+              "type": "varchar"
+            },
+            {
+              "name": "seat_no",
+              "type": "varchar"
+            },
+            {
+              "name": "end_time",
+              "type": "datetime"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "role_has_permissions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "roles",
+          "row_count_est": 6,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "display_name",
+              "type": "varchar"
+            },
+            {
+              "name": "group",
+              "type": "varchar"
+            },
+            {
+              "name": "scope",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "seat_areas",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "seat_bookings",
+          "row_count_est": 659,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "venue_id",
+              "type": "int"
+            },
+            {
+              "name": "seat_id",
+              "type": "bigint"
+            },
+            {
+              "name": "order_id",
+              "type": "bigint"
+            },
+            {
+              "name": "order_detail_id",
+              "type": "int"
+            },
+            {
+              "name": "ticket_type",
+              "type": "varchar"
+            },
+            {
+              "name": "seat_area_id",
+              "type": "int"
+            },
+            {
+              "name": "seat_no",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "seats",
+          "row_count_est": 1415,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "venue_id",
+              "type": "bigint"
+            },
+            {
+              "name": "block",
+              "type": "bigint"
+            },
+            {
+              "name": "seat_row",
+              "type": "bigint"
+            },
+            {
+              "name": "seat_column",
+              "type": "bigint"
+            },
+            {
+              "name": "seat_no",
+              "type": "varchar"
+            },
+            {
+              "name": "area",
+              "type": "varchar"
+            },
+            {
+              "name": "priority",
+              "type": "int"
+            },
+            {
+              "name": "block_space",
+              "type": "int"
+            },
+            {
+              "name": "seat_area_id",
+              "type": "int"
+            },
+            {
+              "name": "is_disabled",
+              "type": "int"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sessions",
+          "row_count_est": 615,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "last_activity",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "short_url_visits",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "short_url_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "operating_system",
+              "type": "varchar"
+            },
+            {
+              "name": "operating_system_version",
+              "type": "varchar"
+            },
+            {
+              "name": "browser",
+              "type": "varchar"
+            },
+            {
+              "name": "browser_version",
+              "type": "varchar"
+            },
+            {
+              "name": "referer_url",
+              "type": "varchar"
+            },
+            {
+              "name": "device_type",
+              "type": "varchar"
+            },
+            {
+              "name": "visited_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "short_urls",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "destination_url",
+              "type": "text"
+            },
+            {
+              "name": "url_key",
+              "type": "varchar"
+            },
+            {
+              "name": "default_short_url",
+              "type": "varchar"
+            },
+            {
+              "name": "single_use",
+              "type": "tinyint"
+            },
+            {
+              "name": "forward_query_params",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_visits",
+              "type": "tinyint"
+            },
+            {
+              "name": "redirect_status_code",
+              "type": "int"
+            },
+            {
+              "name": "track_ip_address",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_operating_system",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_operating_system_version",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_browser",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_browser_version",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_referer_url",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_device_type",
+              "type": "tinyint"
+            },
+            {
+              "name": "activated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deactivated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sms",
+          "row_count_est": 6890,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "message",
+              "type": "longtext"
+            },
+            {
+              "name": "network",
+              "type": "varchar"
+            },
+            {
+              "name": "country_code",
+              "type": "varchar"
+            },
+            {
+              "name": "broadcast_id",
+              "type": "int"
+            },
+            {
+              "name": "length",
+              "type": "int"
+            },
+            {
+              "name": "chunk",
+              "type": "int"
+            },
+            {
+              "name": "delivery_status",
+              "type": "varchar"
+            },
+            {
+              "name": "delivery_message",
+              "type": "longtext"
+            },
+            {
+              "name": "type",
+              "type": "enum"
+            },
+            {
+              "name": "api_message_id",
+              "type": "varchar"
+            },
+            {
+              "name": "customer_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_by",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ticket_price_categories",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ticket_prices",
+          "row_count_est": 913,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "tier",
+              "type": "varchar"
+            },
+            {
+              "name": "ticket_category_id",
+              "type": "bigint"
+            },
+            {
+              "name": "price",
+              "type": "int"
+            },
+            {
+              "name": "ticket_type",
+              "type": "varchar"
+            },
+            {
+              "name": "no_of_tickets",
+              "type": "int"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "is_seasoned_ticket",
+              "type": "int"
+            },
+            {
+              "name": "seasoned_ticket_days",
+              "type": "int"
+            },
+            {
+              "name": "starts_on",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_on",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ticket_sales",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "seat_id",
+              "type": "bigint"
+            },
+            {
+              "name": "attendee_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ticket_price_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 210,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "email_verified_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "password",
+              "type": "varchar"
+            },
+            {
+              "name": "user_type",
+              "type": "varchar"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "ussd_hits",
+          "row_count_est": 117102,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "hits",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "datetime"
+            },
+            {
+              "name": "updated_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "venues",
+          "row_count_est": 280,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "location",
+              "type": "varchar"
+            },
+            {
+              "name": "city",
+              "type": "varchar"
+            },
+            {
+              "name": "seat_management",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 57,
+      "row_count_est_total": 2130334
+    }
+  ],
+  "database_count": 3,
+  "table_count": 123,
+  "row_count_est_total": 3088000,
+  "elapsed_s": 3.92,
+  "audit_trail": [
+    {
+      "sql_shape": "schemata_list",
+      "at_utc": "2026-09-25T01:59:33.329687+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "kra_reports",
+      "at_utc": "2026-09-25T01:59:33.601026+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "kra_reports",
+      "at_utc": "2026-09-25T01:59:33.874605+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "viupay",
+      "at_utc": "2026-09-25T01:59:34.146275+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "viupay",
+      "at_utc": "2026-09-25T01:59:34.421349+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "viutickets",
+      "at_utc": "2026-09-25T01:59:34.692991+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "viutickets",
+      "at_utc": "2026-09-25T01:59:34.969776+00:00"
+    }
+  ]
+}

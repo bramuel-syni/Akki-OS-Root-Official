@@ -1,0 +1,40 @@
+{
+  "receipt_kind": "CENSUS_RUN",
+  "census_id": 4,
+  "wave_id": "CENSUS-3-C",
+  "at_utc": "20260925T020006Z",
+  "initiator": "owner (continue census from last run)",
+  "estate": "RMS MySQL · direct-connect",
+  "connection_path": "direct pymysql; JUMP bastion 159.138.173.250 unreachable from pod",
+  "gpu_required": false,
+  "rollup": {
+    "cluster_count_reachable_authed": 8,
+    "cluster_count_failed": 0,
+    "database_count": 41,
+    "table_count": 2642,
+    "total_row_count_est": 428786937
+  },
+  "clusters": [
+    {"host": "110.238.76.159", "tenant": "USSD", "dbs": 17, "tables": 1193, "rows_est": 179289626},
+    {"host": "203.123.86.10", "tenant": "VIUSASA", "dbs": 10, "tables": 630, "rows_est": 234408049},
+    {"host": "159.138.162.146", "tenant": "WEEGO", "dbs": 4, "tables": 443, "rows_est": 3688203},
+    {"host": "159.138.164.93", "tenant": "MICROSERVICES", "dbs": 3, "tables": 123, "rows_est": 3088000},
+    {"host": "203.123.83.144", "tenant": "Shikisha/citizen-pulse", "dbs": 3, "tables": 77, "rows_est": 582133},
+    {"host": "159.138.173.58", "tenant": "Razuna/Newsvault", "dbs": 2, "tables": 112, "rows_est": 2198643},
+    {"host": "110.238.75.83", "tenant": "Visitors", "dbs": 1, "tables": 47, "rows_est": 4544684},
+    {"host": "159.138.164.124", "tenant": "citizen-digital(local)", "dbs": 1, "tables": 17, "rows_est": 987599}
+  ],
+  "discipline": "aggregates-only chokepoint (owner ruling 2): schemata + table lists + information_schema.table_rows estimates + column {name,type}. No row values. No extrema.",
+  "correction_to_prior_belief": "Handoff assumed 5 of 7 MySQL clusters were firewalled and needed the JUMP bastion. Verified this pass: ALL 8 RMS MySQL hosts in RMS_CREDS_3.csv are directly reachable + authable from the pod, including hosts marked 'NOT YET UHURU' in the sheet. JUMP was NOT required.",
+  "honest_gaps": [
+    "per-column null_count DEFERRED this pass (bounded run)",
+    "Digicow RDS (digicow_live/ndume · census #1/#2 surface) not walked — db-restore-603-cluster.json connection record absent in this pod",
+    "NAS 10.10.55.55 (CIFS/NFS) not a MySQL surface — deferred"
+  ],
+  "artifacts": {
+    "manifest": "phase0/census/census_0004/manifest.json",
+    "per_cluster": "phase0/census/census_0004/cluster_<host>.json (x8)",
+    "summary_note": "STATE/notes/ESTATE_CENSUS_0004_20260925T020006Z.md",
+    "walker": "assessment_workspace/tools/estate_census_v3_direct.py"
+  }
+}

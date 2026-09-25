@@ -1,0 +1,3217 @@
+{
+  "cluster_host": "203.123.83.144",
+  "section": "MICROSERVICES",
+  "status_in_sheet": "NOT YET UHURU",
+  "user_prefix2": "br",
+  "status": "OK",
+  "databases": [
+    {
+      "database": "citizen-pulse",
+      "tables": [
+        {
+          "table": "audits",
+          "row_count_est": 112779,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_type",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "old_values",
+              "type": "text"
+            },
+            {
+              "name": "new_values",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "type": "text"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "varchar"
+            },
+            {
+              "name": "device_id",
+              "type": "varchar"
+            },
+            {
+              "name": "tags",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "value",
+              "type": "mediumtext"
+            },
+            {
+              "name": "expiration",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache_locks",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "owner",
+              "type": "varchar"
+            },
+            {
+              "name": "expiration",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "categories",
+          "row_count_est": 11,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "parent_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "priority",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "compliance_cases",
+          "row_count_est": 1,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "score_at_open",
+              "type": "smallint"
+            },
+            {
+              "name": "assigned_to",
+              "type": "bigint"
+            },
+            {
+              "name": "resolution_notes",
+              "type": "text"
+            },
+            {
+              "name": "resolved_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "closed_by",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "event_tag",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "tag_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "events",
+          "row_count_est": 6,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "title",
+              "type": "varchar"
+            },
+            {
+              "name": "type",
+              "type": "enum"
+            },
+            {
+              "name": "resolution_source",
+              "type": "varchar"
+            },
+            {
+              "name": "start_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "end_date",
+              "type": "timestamp"
+            },
+            {
+              "name": "total_liquidity",
+              "type": "decimal"
+            },
+            {
+              "name": "total_volume",
+              "type": "decimal"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            },
+            {
+              "name": "resolution_references",
+              "type": "text"
+            },
+            {
+              "name": "proposed_outcome",
+              "type": "varchar"
+            },
+            {
+              "name": "proposed_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "proposing_admin_id",
+              "type": "bigint"
+            },
+            {
+              "name": "dispute_pause_started_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "dispute_paused_seconds",
+              "type": "int"
+            },
+            {
+              "name": "finalization_started_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "featured_image_id",
+              "type": "bigint"
+            },
+            {
+              "name": "rules",
+              "type": "text"
+            },
+            {
+              "name": "market_context",
+              "type": "text"
+            },
+            {
+              "name": "category_id",
+              "type": "bigint"
+            },
+            {
+              "name": "is_featured",
+              "type": "tinyint"
+            },
+            {
+              "name": "activated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "suspended_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "locked_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "resolved_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "archived_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "refunded_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "dispute_bond",
+              "type": "decimal"
+            },
+            {
+              "name": "dispute_window_hours",
+              "type": "tinyint"
+            },
+            {
+              "name": "dispute_round",
+              "type": "tinyint"
+            },
+            {
+              "name": "finalization_grace_hours",
+              "type": "tinyint"
+            },
+            {
+              "name": "featured_rank",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 21,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "galleries",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "job_batches",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "total_jobs",
+              "type": "int"
+            },
+            {
+              "name": "pending_jobs",
+              "type": "int"
+            },
+            {
+              "name": "failed_jobs",
+              "type": "int"
+            },
+            {
+              "name": "failed_job_ids",
+              "type": "longtext"
+            },
+            {
+              "name": "options",
+              "type": "mediumtext"
+            },
+            {
+              "name": "cancelled_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            },
+            {
+              "name": "finished_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "queue",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "attempts",
+              "type": "tinyint"
+            },
+            {
+              "name": "reserved_at",
+              "type": "int"
+            },
+            {
+              "name": "available_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "leaderboard_snapshots",
+          "row_count_est": 24,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "board",
+              "type": "varchar"
+            },
+            {
+              "name": "period",
+              "type": "varchar"
+            },
+            {
+              "name": "sort",
+              "type": "varchar"
+            },
+            {
+              "name": "rank",
+              "type": "int"
+            },
+            {
+              "name": "pnl",
+              "type": "decimal"
+            },
+            {
+              "name": "volume",
+              "type": "decimal"
+            },
+            {
+              "name": "pulse_score",
+              "type": "int"
+            },
+            {
+              "name": "resolved_positions",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "market_disputes",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "market_id",
+              "type": "bigint"
+            },
+            {
+              "name": "resolution_root_type",
+              "type": "varchar"
+            },
+            {
+              "name": "resolution_root_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "reason",
+              "type": "text"
+            },
+            {
+              "name": "evidence_url",
+              "type": "text"
+            },
+            {
+              "name": "proposed_outcome",
+              "type": "varchar"
+            },
+            {
+              "name": "round",
+              "type": "tinyint"
+            },
+            {
+              "name": "first_admin_id",
+              "type": "bigint"
+            },
+            {
+              "name": "first_admin_decision",
+              "type": "varchar"
+            },
+            {
+              "name": "staged_outcome",
+              "type": "varchar"
+            },
+            {
+              "name": "first_decided_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            },
+            {
+              "name": "bond_amount_paid",
+              "type": "decimal"
+            },
+            {
+              "name": "resolved_by",
+              "type": "bigint"
+            },
+            {
+              "name": "resolved_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "market_price_histories",
+          "row_count_est": 18100,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "market_id",
+              "type": "bigint"
+            },
+            {
+              "name": "probability",
+              "type": "decimal"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "markets",
+          "row_count_est": 36,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "event_id",
+              "type": "bigint"
+            },
+            {
+              "name": "question",
+              "type": "varchar"
+            },
+            {
+              "name": "label",
+              "type": "varchar"
+            },
+            {
+              "name": "liquidity_b",
+              "type": "int"
+            },
+            {
+              "name": "current_probability",
+              "type": "decimal"
+            },
+            {
+              "name": "q_yes",
+              "type": "decimal"
+            },
+            {
+              "name": "q_no",
+              "type": "decimal"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            },
+            {
+              "name": "resolution_references",
+              "type": "text"
+            },
+            {
+              "name": "proposed_outcome",
+              "type": "varchar"
+            },
+            {
+              "name": "proposed_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "proposing_admin_id",
+              "type": "bigint"
+            },
+            {
+              "name": "dispute_pause_started_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "dispute_paused_seconds",
+              "type": "int"
+            },
+            {
+              "name": "finalization_started_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "dispute_round",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "featured_image_id",
+              "type": "bigint"
+            },
+            {
+              "name": "total_volume",
+              "type": "decimal"
+            },
+            {
+              "name": "floor_value",
+              "type": "decimal"
+            },
+            {
+              "name": "cap_value",
+              "type": "decimal"
+            },
+            {
+              "name": "threshold_value",
+              "type": "decimal"
+            },
+            {
+              "name": "final_value",
+              "type": "decimal"
+            },
+            {
+              "name": "activated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "suspended_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "locked_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "resolved_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "settled_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "refunded_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "is_featured",
+              "type": "tinyint"
+            },
+            {
+              "name": "featured_rank",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "media",
+          "row_count_est": 17,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "collection_name",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "file_name",
+              "type": "varchar"
+            },
+            {
+              "name": "mime_type",
+              "type": "varchar"
+            },
+            {
+              "name": "disk",
+              "type": "varchar"
+            },
+            {
+              "name": "conversions_disk",
+              "type": "varchar"
+            },
+            {
+              "name": "size",
+              "type": "bigint"
+            },
+            {
+              "name": "manipulations",
+              "type": "json"
+            },
+            {
+              "name": "custom_properties",
+              "type": "json"
+            },
+            {
+              "name": "generated_conversions",
+              "type": "json"
+            },
+            {
+              "name": "responsive_images",
+              "type": "json"
+            },
+            {
+              "name": "order_column",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 67,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_permissions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_roles",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "role_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "navigation_links",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "label",
+              "type": "varchar"
+            },
+            {
+              "name": "url_path",
+              "type": "varchar"
+            },
+            {
+              "name": "icon_class",
+              "type": "varchar"
+            },
+            {
+              "name": "priority",
+              "type": "int"
+            },
+            {
+              "name": "is_active",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "notification_preferences",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "channels",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "notifications",
+          "row_count_est": 31,
+          "columns": [
+            {
+              "name": "id",
+              "type": "char"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "notifiable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "notifiable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "data",
+              "type": "text"
+            },
+            {
+              "name": "read_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_reset_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 67,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "group",
+              "type": "varchar"
+            },
+            {
+              "name": "label",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "text"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "portfolio_snapshots",
+          "row_count_est": 1250,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "cash",
+              "type": "decimal"
+            },
+            {
+              "name": "market_value",
+              "type": "decimal"
+            },
+            {
+              "name": "total_equity",
+              "type": "decimal"
+            },
+            {
+              "name": "profit",
+              "type": "decimal"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "push_subscriptions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "subscribable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "subscribable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "endpoint",
+              "type": "varchar"
+            },
+            {
+              "name": "public_key",
+              "type": "varchar"
+            },
+            {
+              "name": "auth_token",
+              "type": "varchar"
+            },
+            {
+              "name": "content_encoding",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "risk_signals",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "compliance_case_id",
+              "type": "bigint"
+            },
+            {
+              "name": "rule_code",
+              "type": "varchar"
+            },
+            {
+              "name": "related_type",
+              "type": "varchar"
+            },
+            {
+              "name": "related_id",
+              "type": "bigint"
+            },
+            {
+              "name": "score_delta",
+              "type": "smallint"
+            },
+            {
+              "name": "metadata",
+              "type": "json"
+            },
+            {
+              "name": "dismissed_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "dismissed_by_id",
+              "type": "bigint"
+            },
+            {
+              "name": "dismissal_reason",
+              "type": "text"
+            },
+            {
+              "name": "detected_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "role_has_permissions",
+          "row_count_est": 91,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "roles",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sessions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "last_activity",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sms",
+          "row_count_est": 94,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "provider",
+              "type": "varchar"
+            },
+            {
+              "name": "to",
+              "type": "varchar"
+            },
+            {
+              "name": "message",
+              "type": "text"
+            },
+            {
+              "name": "message_id",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "delivery_status",
+              "type": "varchar"
+            },
+            {
+              "name": "delivery_message",
+              "type": "varchar"
+            },
+            {
+              "name": "metadata",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "tags",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "label",
+              "type": "varchar"
+            },
+            {
+              "name": "slug",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "trades",
+          "row_count_est": 13999,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "market_id",
+              "type": "bigint"
+            },
+            {
+              "name": "direction",
+              "type": "enum"
+            },
+            {
+              "name": "type",
+              "type": "enum"
+            },
+            {
+              "name": "shares_qty",
+              "type": "decimal"
+            },
+            {
+              "name": "price_per_share",
+              "type": "decimal"
+            },
+            {
+              "name": "net_cost",
+              "type": "decimal"
+            },
+            {
+              "name": "spend_cap",
+              "type": "decimal"
+            },
+            {
+              "name": "limit_price",
+              "type": "decimal"
+            },
+            {
+              "name": "total_cost",
+              "type": "decimal"
+            },
+            {
+              "name": "fee_amount",
+              "type": "decimal"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "transactions",
+          "row_count_est": 11191,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "market_id",
+              "type": "bigint"
+            },
+            {
+              "name": "amount",
+              "type": "decimal"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "held_until",
+              "type": "timestamp"
+            },
+            {
+              "name": "payment_method",
+              "type": "varchar"
+            },
+            {
+              "name": "provider_reference",
+              "type": "varchar"
+            },
+            {
+              "name": "metadata",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "user_daily_activity",
+          "row_count_est": 15,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "date",
+              "type": "date"
+            },
+            {
+              "name": "volume",
+              "type": "decimal"
+            },
+            {
+              "name": "positions_settled_count",
+              "type": "int"
+            },
+            {
+              "name": "brier_score_sum",
+              "type": "decimal"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "user_positions",
+          "row_count_est": 6,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "market_id",
+              "type": "bigint"
+            },
+            {
+              "name": "yes_shares",
+              "type": "decimal"
+            },
+            {
+              "name": "no_shares",
+              "type": "decimal"
+            },
+            {
+              "name": "status",
+              "type": "enum"
+            },
+            {
+              "name": "payout_received",
+              "type": "decimal"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "user_risk_profiles",
+          "row_count_est": 1,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "score",
+              "type": "smallint"
+            },
+            {
+              "name": "tier",
+              "type": "varchar"
+            },
+            {
+              "name": "override_tier",
+              "type": "varchar"
+            },
+            {
+              "name": "override_reason",
+              "type": "text"
+            },
+            {
+              "name": "overridden_by_id",
+              "type": "bigint"
+            },
+            {
+              "name": "overridden_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "last_scored_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 9,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "username",
+              "type": "varchar"
+            },
+            {
+              "name": "bio",
+              "type": "varchar"
+            },
+            {
+              "name": "avatar_url",
+              "type": "varchar"
+            },
+            {
+              "name": "two_factor_enabled",
+              "type": "tinyint"
+            },
+            {
+              "name": "two_factor_method",
+              "type": "varchar"
+            },
+            {
+              "name": "two_factor_secret",
+              "type": "varchar"
+            },
+            {
+              "name": "two_factor_recovery_codes",
+              "type": "text"
+            },
+            {
+              "name": "two_factor_confirmed_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "market_order_type",
+              "type": "varchar"
+            },
+            {
+              "name": "auto_redeem_wins",
+              "type": "tinyint"
+            },
+            {
+              "name": "exact_shares_on_limit_buys",
+              "type": "tinyint"
+            },
+            {
+              "name": "show_max_button",
+              "type": "tinyint"
+            },
+            {
+              "name": "show_resolved_lost_positions",
+              "type": "tinyint"
+            },
+            {
+              "name": "hide_decimal_prices",
+              "type": "tinyint"
+            },
+            {
+              "name": "in_app_order_fills",
+              "type": "tinyint"
+            },
+            {
+              "name": "in_app_hide_small_fills",
+              "type": "tinyint"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "email_verified_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "password",
+              "type": "varchar"
+            },
+            {
+              "name": "is_admin",
+              "type": "tinyint"
+            },
+            {
+              "name": "is_trader",
+              "type": "tinyint"
+            },
+            {
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "name": "withdrawals_enabled",
+              "type": "tinyint"
+            },
+            {
+              "name": "must_change_password",
+              "type": "tinyint"
+            },
+            {
+              "name": "balance",
+              "type": "decimal"
+            },
+            {
+              "name": "wallet_address",
+              "type": "varchar"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 39,
+      "row_count_est_total": 157828
+    },
+    {
+      "database": "correspondents",
+      "tables": [
+        {
+          "table": "cache",
+          "row_count_est": 2,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "value",
+              "type": "mediumtext"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "cache_locks",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "key",
+              "type": "varchar"
+            },
+            {
+              "name": "owner",
+              "type": "varchar"
+            },
+            {
+              "name": "expiration",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "job_batches",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "total_jobs",
+              "type": "int"
+            },
+            {
+              "name": "pending_jobs",
+              "type": "int"
+            },
+            {
+              "name": "failed_jobs",
+              "type": "int"
+            },
+            {
+              "name": "failed_job_ids",
+              "type": "longtext"
+            },
+            {
+              "name": "options",
+              "type": "mediumtext"
+            },
+            {
+              "name": "cancelled_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            },
+            {
+              "name": "finished_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "queue",
+              "type": "varchar"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "attempts",
+              "type": "tinyint"
+            },
+            {
+              "name": "reserved_at",
+              "type": "int"
+            },
+            {
+              "name": "available_at",
+              "type": "int"
+            },
+            {
+              "name": "created_at",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_reset_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "sessions",
+          "row_count_est": 15,
+          "columns": [
+            {
+              "name": "id",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "last_activity",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 36,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "email_verified_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 10,
+      "row_count_est_total": 57
+    },
+    {
+      "database": "saa",
+      "tables": [
+        {
+          "table": "answers",
+          "row_count_est": 202250,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "submission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "question_id",
+              "type": "bigint"
+            },
+            {
+              "name": "answer",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "audits",
+          "row_count_est": 192578,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_type",
+              "type": "varchar"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "event",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "auditable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "old_values",
+              "type": "text"
+            },
+            {
+              "name": "new_values",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "type": "text"
+            },
+            {
+              "name": "ip_address",
+              "type": "varchar"
+            },
+            {
+              "name": "user_agent",
+              "type": "varchar"
+            },
+            {
+              "name": "tags",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "booth_users",
+          "row_count_est": 12,
+          "columns": [
+            {
+              "name": "booth_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "booths",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "campaign_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "campaigns",
+          "row_count_est": 8,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "start_date",
+              "type": "date"
+            },
+            {
+              "name": "end_date",
+              "type": "date"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "features",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "check_ins",
+          "row_count_est": 305,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "submission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "booth_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "client_branches",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "location",
+              "type": "json"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "client_types",
+          "row_count_est": 3,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "clients",
+          "row_count_est": 5,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "type_id",
+              "type": "bigint"
+            },
+            {
+              "name": "postal_address",
+              "type": "text"
+            },
+            {
+              "name": "physical_address",
+              "type": "text"
+            },
+            {
+              "name": "email_address",
+              "type": "varchar"
+            },
+            {
+              "name": "phone_number",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "failed_jobs",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "varchar"
+            },
+            {
+              "name": "connection",
+              "type": "text"
+            },
+            {
+              "name": "queue",
+              "type": "text"
+            },
+            {
+              "name": "payload",
+              "type": "longtext"
+            },
+            {
+              "name": "exception",
+              "type": "longtext"
+            },
+            {
+              "name": "failed_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "feedback",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "questionnaire_id",
+              "type": "bigint"
+            },
+            {
+              "name": "message",
+              "type": "text"
+            },
+            {
+              "name": "schedule_for",
+              "type": "timestamp"
+            },
+            {
+              "name": "sent_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "migrations",
+          "row_count_est": 36,
+          "columns": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "migration",
+              "type": "varchar"
+            },
+            {
+              "name": "batch",
+              "type": "int"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_permissions",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "model_has_roles",
+          "row_count_est": 543,
+          "columns": [
+            {
+              "name": "role_id",
+              "type": "bigint"
+            },
+            {
+              "name": "model_type",
+              "type": "varchar"
+            },
+            {
+              "name": "model_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "password_reset_tokens",
+          "row_count_est": 213,
+          "columns": [
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "permissions",
+          "row_count_est": 55,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "group",
+              "type": "varchar"
+            },
+            {
+              "name": "label",
+              "type": "varchar"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "personal_access_tokens",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "tokenable_type",
+              "type": "varchar"
+            },
+            {
+              "name": "tokenable_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "token",
+              "type": "varchar"
+            },
+            {
+              "name": "abilities",
+              "type": "text"
+            },
+            {
+              "name": "last_used_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "expires_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "products",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "campaign_id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "quantity",
+              "type": "double"
+            },
+            {
+              "name": "unit",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "questionnaires",
+          "row_count_est": 19,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "description",
+              "type": "text"
+            },
+            {
+              "name": "capture_location",
+              "type": "tinyint"
+            },
+            {
+              "name": "track_user_queues",
+              "type": "tinyint"
+            },
+            {
+              "name": "requires_user_consent",
+              "type": "tinyint"
+            },
+            {
+              "name": "consent_text",
+              "type": "varchar"
+            },
+            {
+              "name": "avail_on_ussd",
+              "type": "tinyint"
+            },
+            {
+              "name": "requires_auth",
+              "type": "tinyint"
+            },
+            {
+              "name": "ussd_menu",
+              "type": "int"
+            },
+            {
+              "name": "ussd_variables",
+              "type": "json"
+            },
+            {
+              "name": "campaign_id",
+              "type": "bigint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "questions",
+          "row_count_est": 157,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "questionnaire_id",
+              "type": "bigint"
+            },
+            {
+              "name": "question",
+              "type": "text"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "allow_multi",
+              "type": "tinyint"
+            },
+            {
+              "name": "options",
+              "type": "json"
+            },
+            {
+              "name": "order",
+              "type": "int"
+            },
+            {
+              "name": "required",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "role_has_permissions",
+          "row_count_est": 94,
+          "columns": [
+            {
+              "name": "permission_id",
+              "type": "bigint"
+            },
+            {
+              "name": "role_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "roles",
+          "row_count_est": 4,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "guard_name",
+              "type": "varchar"
+            },
+            {
+              "name": "client_specific",
+              "type": "tinyint"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "submissions",
+          "row_count_est": 20159,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "questionnaire_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "user_consent",
+              "type": "tinyint"
+            },
+            {
+              "name": "channel",
+              "type": "varchar"
+            },
+            {
+              "name": "phone_number",
+              "type": "varchar"
+            },
+            {
+              "name": "position",
+              "type": "int"
+            },
+            {
+              "name": "latitude",
+              "type": "decimal"
+            },
+            {
+              "name": "longitude",
+              "type": "decimal"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "telescope_entries",
+          "row_count_est": 6503,
+          "columns": [
+            {
+              "name": "sequence",
+              "type": "bigint"
+            },
+            {
+              "name": "uuid",
+              "type": "char"
+            },
+            {
+              "name": "batch_id",
+              "type": "char"
+            },
+            {
+              "name": "family_hash",
+              "type": "varchar"
+            },
+            {
+              "name": "should_display_on_index",
+              "type": "tinyint"
+            },
+            {
+              "name": "type",
+              "type": "varchar"
+            },
+            {
+              "name": "content",
+              "type": "longtext"
+            },
+            {
+              "name": "created_at",
+              "type": "datetime"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "telescope_entries_tags",
+          "row_count_est": 512,
+          "columns": [
+            {
+              "name": "entry_uuid",
+              "type": "char"
+            },
+            {
+              "name": "tag",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "telescope_monitoring",
+          "row_count_est": 0,
+          "columns": [
+            {
+              "name": "tag",
+              "type": "varchar"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "user_clients",
+          "row_count_est": 244,
+          "columns": [
+            {
+              "name": "user_id",
+              "type": "bigint"
+            },
+            {
+              "name": "client_id",
+              "type": "bigint"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        },
+        {
+          "table": "users",
+          "row_count_est": 544,
+          "columns": [
+            {
+              "name": "id",
+              "type": "bigint"
+            },
+            {
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "name": "phone",
+              "type": "varchar"
+            },
+            {
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "name": "id_number",
+              "type": "varchar"
+            },
+            {
+              "name": "email_verified_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "password",
+              "type": "varchar"
+            },
+            {
+              "name": "force_password_reset",
+              "type": "tinyint"
+            },
+            {
+              "name": "remember_token",
+              "type": "varchar"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp"
+            },
+            {
+              "name": "deleted_at",
+              "type": "timestamp"
+            }
+          ],
+          "null_count": "DEFERRED_THIS_PASS"
+        }
+      ],
+      "table_count": 28,
+      "row_count_est_total": 424248
+    }
+  ],
+  "database_count": 3,
+  "table_count": 77,
+  "row_count_est_total": 582133,
+  "elapsed_s": 3.71,
+  "audit_trail": [
+    {
+      "sql_shape": "schemata_list",
+      "at_utc": "2026-09-25T01:59:33.228128+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "citizen-pulse",
+      "at_utc": "2026-09-25T01:59:33.483805+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "citizen-pulse",
+      "at_utc": "2026-09-25T01:59:33.742706+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "correspondents",
+      "at_utc": "2026-09-25T01:59:33.998343+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "correspondents",
+      "at_utc": "2026-09-25T01:59:34.253127+00:00"
+    },
+    {
+      "sql_shape": "tables_list_and_row_count",
+      "database": "saa",
+      "at_utc": "2026-09-25T01:59:34.508517+00:00"
+    },
+    {
+      "sql_shape": "columns_list",
+      "database": "saa",
+      "at_utc": "2026-09-25T01:59:34.765105+00:00"
+    }
+  ]
+}
