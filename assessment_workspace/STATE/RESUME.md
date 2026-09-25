@@ -2,6 +2,8 @@
 
 ## CURRENT OVERRIDE — 2026-09-25 CP-CENSUS-OPERATIONAL-V1 IN PROGRESS
 
+**LATEST REPORTING REQUIREMENT:** Owner requests named-component accountability before continuation (Solva/Mtafiti/etc). Read `notes/census_operational_v1/COMPONENT_WORK_LEDGER.md`. Current scope is Mtafiti census-evidence/registry link + Census Autonomy + compute/identity + OS/DAP consumers. Solva and broader engines NOT completed by this work. Show exact link, canonical owner, tests/live evidence, next gate and per-work-item denominator in updates. No global/component completion percentage inferred from the13/14 census checklist. Do not add a tracking dashboard or change prototypes without a separate request. This clarification performed no new recovery/source operations.
+
 **LATEST OWNER DECISION PENDING:** After "Proceed", continuation scope was surfaced; owner replied "Before i decide, surface for me the plan for the do does to achieve functionality and the % progress being made". Planning/progress report: `notes/census_operational_v1/FUNCTIONALITY_PLAN_AND_PROGRESS.md`. No new recovery/estate operation is authorized by this question. Hold execution pending decision. Never turn13/14 narrow checklist checks (92.9%, some test-only) into a whole-platform completion claim. Whole OS/DAP percentage not yet baselined; audit journey mapping still owed.
 
 The historical FINAL/HALT text below is preserved as history; the owner now approved Item 7, census execution + consistent OS/DAP registry, and the updated prototypes. Read STANDING_ORDERS in full, DECISIONS current entry, EXECUTION_ORDER Item 7, then `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md` and `notes/census_operational_v1/GROUNDING.md` before any write.
