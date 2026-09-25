@@ -2,7 +2,9 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## CURRENT — 2026-09-25 CP-CENSUS-OPERATIONAL-V1
 
-Owner approved Item 7 census/registry activation with updated prototypes and compaction guards. Test criteria T01–T14 published and banked before code. Read `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md` and `notes/census_operational_v1/GROUNDING.md`. Application untouched at this checkpoint. Next: explicit tenant membership resolution for existing demo accounts (no inferred suffix/default tenant), RED tests, additive execution/read composition, frontend flow, verification including real T14. Full historical suite unavailable; no fabricated ratchet/seal. No pod data path.
+Owner-approved membership and additive census adapters are implemented; prototype fidelity correction is VERIFIED and ready for owner review. Original markup—not the rejected dashboard—is the experience baseline. Read `notes/census_operational_v1/VERIFICATION_REPORT.md`:58 backend/source/live tests twice,4 renderer tests,42 layout checks; no scoped lint findings. No historical ratchet or separate-repo seal claim.
+
+Next P0: T14 real activation remains BLOCKED (cr-a29e3b7b16ae; both configured identities rejected authentication). Inspect sanctioned recovery and actual remote executor/custody configuration; no speculative new key, host weakening or direct pod source pull. UI approval is human review, not full operational acceptance. Broader Canon/journey and adjacent stubs remain backlog. Preserve failed observations and qualified fixture-only test evidence.
 
 # ⛔ ANTI-COMPACTION PIN · READ FIRST EVERY TIME ⛔
 

@@ -2,11 +2,15 @@
 
 ## CURRENT OVERRIDE — 2026-09-25 CP-CENSUS-OPERATIONAL-V1 IN PROGRESS
 
+**LATEST OWNER DECISION PENDING:** After "Proceed", continuation scope was surfaced; owner replied "Before i decide, surface for me the plan for the do does to achieve functionality and the % progress being made". Planning/progress report: `notes/census_operational_v1/FUNCTIONALITY_PLAN_AND_PROGRESS.md`. No new recovery/estate operation is authorized by this question. Hold execution pending decision. Never turn13/14 narrow checklist checks (92.9%, some test-only) into a whole-platform completion claim. Whole OS/DAP percentage not yet baselined; audit journey mapping still owed.
+
 The historical FINAL/HALT text below is preserved as history; the owner now approved Item 7, census execution + consistent OS/DAP registry, and the updated prototypes. Read STANDING_ORDERS in full, DECISIONS current entry, EXECUTION_ORDER Item 7, then `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md` and `notes/census_operational_v1/GROUNDING.md` before any write.
 
 Current verified baseline: **none** (historical 6411 floor retained; canonical test/repository tree absent). Last historical seal remains unchanged/unverified in this fork. Current runtime is vendored backend. No new seal claimed.
 
-NEXT ACTION: obtain owner tenant-binding clarification recorded in `notes/census_operational_v1/GROUNDING.md` (existing demo accounts have roles but no authoritative tenant membership; do NOT derive RMS from email suffix). Then author/run RED-first T01–T14 tests before app implementation, trace and compose actual in-perimeter executor and durable writer. No application code changed yet. Prototype originals and intake hashes: `canon/prototypes/20260925_owner_updated/`. No estate pulls, corpus or training in this pod; only Akki infrastructure executes. No new host keys or speculative password changes. Fake completion forbidden. T14 remains blocked/fail without actual output evidence.
+NEXT ACTION: **T14 ACTIVATION STILL BLOCKED; UI CORRECTION READY FOR OWNER REVIEW.** Read `notes/census_operational_v1/VERIFICATION_REPORT.md` first. Owner's original markup now rendered natively; rejected dashboards unrouted.58 slice tests passed twice;4 frontend render tests;42/42 layout checks at6widths. T12/F01–F08 pass within census scope after fixes; no claim wholeplatform/historicalbaseline green. Current UI: frontend/src/components/prototype plus OwnerOSPage/OwnerDAPLayout; originalHTML hashes immutable. Do not redesign after compaction. Data/persona/rights contradictions explicitly documented; never restore prototype fake values or random/timer success.
+
+Live cr-a29e3b7b16ae remains BLOCKED: both configured Akki identities reject authentication. No source data read, no GPU hardware diagnosis, no replacement keys. Inspect sanctioned recovery and actual remote worker/connector custody if proceeding; never route estate data through this pod. UI corrective pass made no further remote changes. Existing memberships applied with explicit owner authority; passwords/roles preserved. Old ratchet suite and separate code/state repositories still unavailable; no fabricated seal/ratchet increase.
 
 > ## ⚠️  COMPACTION-OVERRIDE NOTICE — READ FIRST, RE-READ EVERY SESSION ⚠️
 >

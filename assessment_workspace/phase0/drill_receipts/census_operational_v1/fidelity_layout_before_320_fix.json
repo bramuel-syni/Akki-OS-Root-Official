@@ -1,0 +1,392 @@
+{
+  "at_utc": "2026-09-25T15:13:32.814501+00:00",
+  "method": "headless browser geometry/interactions only; no screenshots or source operations",
+  "layout_checks": [
+    {
+      "width": 320,
+      "route": "/dap",
+      "pass": false,
+      "scroll": 344,
+      "offenders": [
+        {
+          "tag": "DIV",
+          "line": "41",
+          "text": "d",
+          "right": 343.59375
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/dap/census",
+      "pass": false,
+      "scroll": 344,
+      "offenders": [
+        {
+          "tag": "DIV",
+          "line": "41",
+          "text": "d",
+          "right": 343.59375
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/dap/census?record=census-4",
+      "pass": false,
+      "scroll": 344,
+      "offenders": [
+        {
+          "tag": "DIV",
+          "line": "41",
+          "text": "d",
+          "right": 343.59375
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/os",
+      "pass": true,
+      "scroll": 320,
+      "offenders": []
+    },
+    {
+      "width": 320,
+      "route": "/os/admin/estate",
+      "pass": false,
+      "scroll": 351,
+      "offenders": [
+        {
+          "tag": "SPAN",
+          "line": "189",
+          "text": "Shield report",
+          "right": 351.421875
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/os/admin/estate?view=history",
+      "pass": true,
+      "scroll": 320,
+      "offenders": []
+    },
+    {
+      "width": 320,
+      "route": "/os/admin/estate?view=history&record=cr-a29e3b7b16ae",
+      "pass": true,
+      "scroll": 320,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "route": "/dap",
+      "pass": true,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "route": "/dap/census",
+      "pass": true,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "route": "/dap/census?record=census-4",
+      "pass": true,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "route": "/os",
+      "pass": true,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "route": "/os/admin/estate",
+      "pass": true,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "route": "/os/admin/estate?view=history",
+      "pass": true,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "route": "/os/admin/estate?view=history&record=cr-a29e3b7b16ae",
+      "pass": true,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "route": "/dap",
+      "pass": true,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "route": "/dap/census",
+      "pass": true,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "route": "/dap/census?record=census-4",
+      "pass": true,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "route": "/os",
+      "pass": true,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "route": "/os/admin/estate",
+      "pass": true,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "route": "/os/admin/estate?view=history",
+      "pass": true,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "route": "/os/admin/estate?view=history&record=cr-a29e3b7b16ae",
+      "pass": true,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "route": "/dap",
+      "pass": true,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "route": "/dap/census",
+      "pass": true,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "route": "/dap/census?record=census-4",
+      "pass": true,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "route": "/os",
+      "pass": true,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "route": "/os/admin/estate",
+      "pass": true,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "route": "/os/admin/estate?view=history",
+      "pass": true,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "route": "/os/admin/estate?view=history&record=cr-a29e3b7b16ae",
+      "pass": true,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "route": "/dap",
+      "pass": true,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "route": "/dap/census",
+      "pass": true,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "route": "/dap/census?record=census-4",
+      "pass": true,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "route": "/os",
+      "pass": true,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "route": "/os/admin/estate",
+      "pass": true,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "route": "/os/admin/estate?view=history",
+      "pass": true,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "route": "/os/admin/estate?view=history&record=cr-a29e3b7b16ae",
+      "pass": true,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "route": "/dap",
+      "pass": true,
+      "scroll": 1920,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "route": "/dap/census",
+      "pass": true,
+      "scroll": 1920,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "route": "/dap/census?record=census-4",
+      "pass": true,
+      "scroll": 1920,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "route": "/os",
+      "pass": true,
+      "scroll": 1920,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "route": "/os/admin/estate",
+      "pass": true,
+      "scroll": 1920,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "route": "/os/admin/estate?view=history",
+      "pass": true,
+      "scroll": 1920,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "route": "/os/admin/estate?view=history&record=cr-a29e3b7b16ae",
+      "pass": true,
+      "scroll": 1920,
+      "offenders": []
+    }
+  ],
+  "failed_layouts": [
+    {
+      "width": 320,
+      "route": "/dap",
+      "pass": false,
+      "scroll": 344,
+      "offenders": [
+        {
+          "tag": "DIV",
+          "line": "41",
+          "text": "d",
+          "right": 343.59375
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/dap/census",
+      "pass": false,
+      "scroll": 344,
+      "offenders": [
+        {
+          "tag": "DIV",
+          "line": "41",
+          "text": "d",
+          "right": 343.59375
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/dap/census?record=census-4",
+      "pass": false,
+      "scroll": 344,
+      "offenders": [
+        {
+          "tag": "DIV",
+          "line": "41",
+          "text": "d",
+          "right": 343.59375
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/os/admin/estate",
+      "pass": false,
+      "scroll": 351,
+      "offenders": [
+        {
+          "tag": "SPAN",
+          "line": "189",
+          "text": "Shield report",
+          "right": 351.421875
+        }
+      ]
+    }
+  ],
+  "canonical_run_id_visible": true,
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "all_pass": false
+}

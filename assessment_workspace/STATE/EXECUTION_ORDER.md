@@ -391,6 +391,8 @@ If that line cannot be written truthfully, STOP and report before committing.
 
 ### Item 7 — CP-CENSUS-OPERATIONAL-V1 — IN PROGRESS (owner approved 2026-09-25)
 
+Current checkpoint: UI fidelity correction verified; original OS/DAP markup adopted, generic dashboard unrouted. See `notes/census_operational_v1/VERIFICATION_REPORT.md`. T14 is BLOCKED, so Item7 stays IN PROGRESS. Test evidence:58 scoped backend/source/live tests repeated,4 renderer tests,42 route-width checks. Historical test floor/seal NOT claimed. Next is authorized execution identity/custody recovery and actual activation verification; no pod data path.
+
 Scope: Akki-owned census execution and consistent OS/DAP registry views, required scoped reads, truthful completion/results, updated owner prototypes and necessary responsive improvements. Objective and tests: `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md`; grounding brief: `notes/census_operational_v1/GROUNDING.md`. This owner approval opens Item 7 despite historical ledger-complete notices above. Older items and seal claims are not rewritten.
 
 Order: bank scope/tests/prototype conflicts → RED evidence → additive implementation and route composition → local verification twice → autonomous bounded run via Akki only → per-test result report. T14 requires actual owned output, not fixture evidence. Park adjacent request/entitlement/skill/training changes. No new data authority or generated GPU identity.

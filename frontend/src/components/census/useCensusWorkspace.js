@@ -41,4 +41,8 @@ export function useCensusWorkspace() {
 }
 
 export const number = value => value == null ? 'Not measured' : new Intl.NumberFormat('en').format(value);
-export const date = value => !value ? 'Not recorded' : Number.isNaN(Date.parse(value)) ? value : new Date(value).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC' }) + ' UTC';
+export const date = value => {
+  if (!value) return 'Not recorded';
+  const normalized = value.replace(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/, '$1-$2-$3T$4:$5:$6Z');
+  return Number.isNaN(Date.parse(normalized)) ? 'Timestamp not verified' : new Date(normalized).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC' }) + ' UTC';
+};

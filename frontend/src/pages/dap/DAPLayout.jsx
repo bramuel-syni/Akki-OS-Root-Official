@@ -8,6 +8,7 @@ import { login as apiLogin, refreshToken, fetchMe } from "@/lib/apiClient";
 
 /* ── Auth context (shared across all DAP pages) ─────── */
 const AuthCtx = createContext({ user: null, loading: false, doLogin: async () => {}, doLogout: () => {} });
+export { AuthCtx };
 export function useAuth() { return useContext(AuthCtx); }
 
 const NAV_GROUPS = [

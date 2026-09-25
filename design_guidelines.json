@@ -1,108 +1,11 @@
 {
-  "project": "Akki OS & DAP Extension",
-  "archetype": "THE PERFORMANCE PRO (Tactical Precision & Operational Control)",
-  "context": "DASHBOARDS & ADMIN PANELS / DATA ACCESS PORTAL",
-  "theme": "Dark / Light Adaptive (Default: Dark Slate #0B0F17 with #111827 surfaces)",
-  "typography": {
-    "font_family_heading": "Outfit, Cabinet Grotesk, sans-serif",
-    "font_family_body": "IBM Plex Sans, Inter, sans-serif",
-    "font_family_mono": "JetBrains Mono, Source Code Pro, monospace",
-    "heading_rules": "Headings MUST use tight letter spacing (tracking-tight or tracking-tighter). Avoid default Inter for H1/H2.",
-    "hierarchy": {
-      "h1": "text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight",
-      "h2": "text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight",
-      "h3": "text-lg sm:text-xl font-semibold",
-      "body": "text-sm sm:text-base font-normal leading-relaxed",
-      "small_label": "text-xs font-mono uppercase tracking-widest text-slate-400"
-    }
-  },
-  "colors": {
-    "base_background": "#0B0F17",
-    "surface_card": "#111827",
-    "surface_card_border": "#1F2937",
-    "surface_hover": "#1E293B",
-    "text_primary": "#F9FAFB",
-    "text_secondary": "#9CA3AF",
-    "text_muted": "#6B7280",
-    "brand_primary": "#2563EB",
-    "brand_accent": "#38BDF8",
-    "status_measured": "#10B981",
-    "status_estimated": "#F59E0B",
-    "status_unmeasured": "#EF4444",
-    "status_deferred": "#8B5CF6",
-    "tinted_grey_rule": "Never use pure #000000 or flat #808080. Always tint neutrals with subtle blue-slate (#0B0F17, #1E293B) to feel cohesive and deep.",
-    "forbidden_colors": "Forbidden teal green (#1B93A4) for dashboards. Forbidden purple (#7351B7) for main AI background."
-  },
-  "visual_enhancers": {
-    "border_style": "1px solid #1F2937 with hover glow transitions",
-    "shadow_style": "shadow-[0_4px_20px_rgba(0,0,0,0.35)] for elevated cards",
-    "glassmorphism": "backdrop-blur-xl bg-slate-900/80 border border-slate-800/80",
-    "tracing_beam": "Active state animated 1px border or subtle left-border indicator for selected tenant/record",
-    "data_density": "High density data grids with strict tabular numbers (font-mono tabular-nums)"
-  },
-  "grids_and_layouts": {
-    "responsive_sidebar_fix": "Fix mobile 390px sidebar squeezing by transforming sidebar into a full overlay Sheet drawer on mobile (md:hidden) and sticky icon/expanded sidebar on desktop (hidden md:flex). Padding pt-16 or main padding adjusted to avoid header collision.",
-    "bento_grid_mode": "High Density Grid (Mode B for Dashboards & Analytics)",
-    "grid_classes": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6",
-    "container_padding": "p-4 sm:p-6 lg:p-8"
-  },
-  "components_and_architecture": {
-    "technology": "React JS (ES6/JSX), Tailwind CSS, Lucide React icons, Sonner for toasts, Shadcn UI primitives",
-    "key_components": [
-      {
-        "name": "DapCensus",
-        "path": "/app/frontend/src/components/DapCensus.jsx",
-        "role": "Census overview, execution controls, run history, and evidence-derived status (measured/estimated/unmeasured)."
-      },
-      {
-        "name": "Registry",
-        "path": "/app/frontend/src/components/Registry.jsx",
-        "role": "Consistent OS/DAP tenant-scoped estate registry view with read controls and verified completion state."
-      },
-      {
-        "name": "CensusAutonomyDrawer",
-        "path": "/app/frontend/src/components/portal/CensusAutonomyDrawer.jsx",
-        "role": "Interactive side drawer for triggering autonomous census sweeps and viewing detailed step proofs."
-      },
-      {
-        "name": "ResponseRequiredBadge",
-        "path": "/app/frontend/src/components/portal/ResponseRequiredBadge.jsx",
-        "role": "Visual indicator for deferred items and pending user/system authorizations."
-      }
-    ]
-  },
-  "motion": {
-    "hover_transitions": "transition-colors duration-200 ease-in-out, transition-transform duration-150 ease-out",
-    "click_effects": "active:scale-[0.98]",
-    "reduced_motion": "Respect prefers-reduced-motion media query by fallbacking to simple opacity transitions."
-  },
-  "accessibility_and_testing": {
-    "data_testid_rule": "ALL interactive buttons, tabs, tenant selectors, run triggers, input fields, badges, and status containers MUST include kebab-case data-testid attributes (e.g. data-testid=\"census-run-trigger-button\", data-testid=\"tenant-selector-dropdown\", data-testid=\"registry-record-item-123\").",
-    "apca_contrast": "Ensure text contrast ratio >= 4.5:1 on normal text and >= 3:1 on labels.",
-    "focus_states": "focus:ring-2 focus:ring-blue-500 focus:outline-none"
-  },
-  "3d_and_visuals": {
-    "canvas_background": "Subtle particle network or grid overlay in hero/dashboard header (TSParticles or CSS Grid background)",
-    "media": [
-      {
-        "category": "infrastructure",
-        "url": "https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODh8MHwxfHNlYXJjaHwyfHxkYXRhJTIwc2VydmVyJTIwZGF0YWNlbnRlciUyMGluZnJhc3RydWN0dXJlfGVufDB8fHx8MTc5MDM0NDY0MHww&ixlib=rb-4.1.0&q=85",
-        "description": "Server rack datacenter background asset"
-      }
-    ]
-  },
-  "instructions_to_main_agent": {
-    "1_tenant_scoping": "Ensure estate browsing and registry records strictly respect current tenant context with truthful, non-mocked data handling.",
-    "2_evidence_derived_values": "Clearly distinguish measured (direct evidence), estimated (modeled/extrapolated), and unmeasured asset metrics with distinct visual badges and tooltips.",
-    "3_execution_controls": "Provide explicit authorized run triggers for census execution, with real-time or polling status feedback and audit trail links.",
-    "4_mobile_responsiveness": "Ensure the layout on 390px mobile viewports does not squeeze or truncate data tables or sidebars; use responsive drawers and horizontal scrolling tables.",
-    "5_data_testid_coverage": "Verify every new or modified UI element includes a clear data-testid attribute for autonomous verification."
-  },
-  "UNIVERSAL GUIDELINES FOR MAIN AGENT": {
-    "no_ai_slop": "Do not build generic centered white cards or heavy default gradients. Use structured Bento grids with high contrast and dark slate theme tokens.",
-    "explicit_hover_text": "Always set hover text colors explicitly alongside hover background changes.",
-    "use_sonner_toasts": "Use sonner for user feedback toasts when triggering census runs or updating registry read controls.",
-    "js_file_target": "The project uses plain React .js/.jsx files. Do not create TypeScript .tsx files."
-  }
-},
-overwrite:true,path:
+  "status": "OWNER_PROTOTYPES_ARE_THE_BASELINE",
+  "owner_instruction": "this serve as baseline experience architecture nothing less only better if to be changed",
+  "source_directory": "/app/assessment_workspace/canon/prototypes/20260925_owner_updated",
+  "intake_hashes": "intake.json",
+  "implementation": "Literal markup extracted by compile_owner_prototypes.py; safe declarative React renderer. Original mock scripts are never executed.",
+  "preserve": ["original typography and palette", "navigation and content hierarchy", "DAP three-column composition and notes/usage rail", "OS portal tile launcher and preview", "Registry disclosure cards and census-intelligence rail", "in-place census history and evidence tabs"],
+  "allowed_changes": ["identity-bound real data and state", "explicit unknown/estimated values instead of fixtures", "necessary responsive and accessible controls", "explicitly documented Canon conflict corrections"],
+  "forbidden": ["replacement dashboard", "style-inspired redesign instead of original composition", "silent persona or tenant substitution", "invented metrics or entitlement", "timer/random mock execution", "generic dark theme", "unrelated stock images"],
+  "acceptance": "/app/assessment_workspace/notes/census_operational_v1/VERIFICATION_REPORT.md"
+}

@@ -1,0 +1,75 @@
+{
+  "summary": "Completed backend+frontend fidelity verification for owner-scoped census slice (F01-F08). Backend census suites pass against external BASE_URL; UI largely matches original architecture and journeys, but DAP has horizontal overflow at 320px and React runtime key warnings.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "test harness",
+        "issue": "backend/tests/census_operational/test_contract.py and test_execution.py require PYTHONPATH=/app/backend/vendored/extraction_akki/backend for imports (services.*) when run from /app."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Owner DAP layout",
+        "issue": "Horizontal overflow at width 320 on /dap and /dap/census (scrollWidth 344 > clientWidth 320).",
+        "selector": "#dap-body / #dap-nav composition",
+        "priority": "HIGH"
+      },
+      {
+        "component": "OwnerMarkup rendering",
+        "issue": "React runtime warning: 'Each child in a list should have a unique key prop' repeatedly logged.",
+        "selector": "OwnerMarkup list render paths",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "OS history blocked-run identification",
+        "issue": "Blocked state is visible, but full run id cr-a29e3b7b16ae is not surfaced verbatim in tested UI text (shown as shortened 'Run a29e3b7b16ae').",
+        "affected_selectors": [
+          "[data-proto-line=5639]",
+          "[data-proto-line=5677]"
+        ]
+      }
+    ],
+    "design_issues": [
+      {
+        "screen": "DAP/OS fidelity comparison",
+        "issues": [
+          "Desktop structural fidelity retained (nav/header/cards/rails proportions) and color anchors match originals (header rgb(15,27,51), card border rgb(228,223,211)).",
+          "Original OS registry and app OS registry both preserve tab + 4-card + disclosure + right-rail composition; content changed to truthful RMS census metadata as scoped."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_contract.py",
+    "/app/backend/tests/census_operational/test_execution.py",
+    "/app/backend/tests/census_operational/test_live_api_contract.py",
+    "/app/backend/tests/census_operational/test_prototype_fidelity.py",
+    "/app/test_reports/pytest/pytest_census_iteration3_full.xml"
+  ],
+  "action_items": [
+    "Fix DAP 320px overflow to satisfy F06 zero-overflow matrix requirement.",
+    "Resolve React key warning in OwnerMarkup list rendering paths (F08 runtime cleanliness).",
+    "Decide whether history detail should display full canonical run id with 'cr-' prefix for strict F07 evidence readability."
+  ],
+  "critical_code_review_comments": [
+    "frontend/src/App.js is 1300+ lines and exceeds the >700 line modularity threshold; split route/shell constants and historical blocks into focused modules.",
+    "Runtime React key warnings indicate unstable or duplicate keys in rendered prototype loops; this risks rerender inconsistencies and should be fixed before further fidelity sign-off."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_3.json"
+  ],
+  "success_rate": {
+    "backend": "100% (58/58 with external BASE_URL and correct PYTHONPATH)",
+    "frontend": "90% (core F02/F03/F04/F05/F07 flows pass; F06(320 overflow) and F08(runtime warning) fail)"
+  },
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Evidence screenshots captured in /app/test_reports: f02_original_dap_desktop_1920x800.jpeg, f03_original_os_registry_desktop_1920x800.jpeg, f03_app_dap_desktop_1920x800.jpeg, f03_app_os_registry_clean_desktop_1920x800.jpeg, f06_app_dap_mobile_390x844.jpeg, f06_app_os_history_mobile_390x844.jpeg. Overflow matrix showed only w320 DAP routes failing. Analyst run launch remains blocked with explicit notice; run dialog did not open for analyst.",
+  "rca of the issue": "RCA-1 (F06 overflow): At 320px, DAP layout still enforces combined nav/body minimum width behavior, producing horizontal scroll (344px content width). Likely from fixed paddings/widths in prototype.css mobile rules around #dap-body/#dap-nav. RCA-2 (F08 warning): OwnerMarkup render paths emit repeated list children without stable unique keys in some mapped branches/replace payloads, generating repeated React key warnings in console."
+}

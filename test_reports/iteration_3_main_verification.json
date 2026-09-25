@@ -1,0 +1,46 @@
+{
+  "at_utc": "2026-09-25T15:27:19.537058+00:00",
+  "case": "CP-CENSUS-OPERATIONAL-V1 UI fidelity correction",
+  "fidelity_cases": {
+    "F01": "PASS within documented census scope",
+    "F02": "PASS within documented census scope",
+    "F03": "PASS within documented census scope",
+    "F04": "PASS within documented census scope",
+    "F05": "PASS within documented census scope",
+    "F06": "PASS within documented census scope",
+    "F07": "PASS within documented census scope",
+    "F08": "PASS within documented census scope"
+  },
+  "activation_T14": "BLOCKED - AuthenticationException on both configured Akki execution identities; no source read",
+  "backend_repeated": {
+    "run1": "58 passed",
+    "run2": "58 passed",
+    "historical_full_suite": "NOT AVAILABLE / NOT CLAIMED"
+  },
+  "frontend_units": "4 passed",
+  "layout_checks": "42/42 passed",
+  "scoped_lint": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "test_doubles": "MOCKED executors only in isolated tests; not live activation evidence",
+  "report": "assessment_workspace/notes/census_operational_v1/VERIFICATION_REPORT.md",
+  "report_sha256": "683fa91f1821e5130496eea767390bc3ca29b67fab715dd374dc044263d57b5d",
+  "screenshots": [
+    {
+      "path": "assessment_workspace/phase0/drill_receipts/census_operational_v1/final-owner-dap-desktop.jpeg",
+      "sha256": "1d80a555e93994bbd323ab826c41045fdeeb989d4b796a1ab6255a04a81488f7"
+    },
+    {
+      "path": "assessment_workspace/phase0/drill_receipts/census_operational_v1/final-owner-os-desktop.jpeg",
+      "sha256": "1f2e4ca8523baf2c4e0241ed6d14d8aff3c2efb96ecaef366e63f1a5a84124d0"
+    },
+    {
+      "path": "assessment_workspace/phase0/drill_receipts/census_operational_v1/final-owner-os-mobile-evidence.jpeg",
+      "sha256": "1e68e85851df3479f111be33ff3e8c50cdc8ad469ddb40407ca3ae6ed8c921d8"
+    }
+  ],
+  "task_complete": false,
+  "ui_ready_for_owner_review": true,
+  "full_platform_ready": false
+}

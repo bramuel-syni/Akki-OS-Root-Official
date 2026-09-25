@@ -31,7 +31,26 @@ Approved recommendation: Akki-owned census execution and consistent OS/DAP regis
 - PC05: generated design_guidelines.json proposes a dark dashboard, non-prototype fonts and decorative assets. Rejected as inconsistent with owner HTML. Existing light paper/serif/nav treatment and supplied flow govern; no unsolicited redesign.
 
 ## D. Implementation change log
-No application changes yet. Append actual changes here with affected objective/test IDs.
+### 2026-09-25 implementation and owner correction
+- Added additive tenant-scoped census route composition, dynamic manifest projection, operational queue/executor/receipt validation, strict existing-host SSH dispatch, remote aggregate-only worker and source isolation. No sealed engine function bodies changed. Existing scheduler consumer points at the new executor.
+- Applied owner-approved RMS membership to four existing accounts; receipt `phase0/drill_receipts/census_operational_v1/membership_binding.json`; passwords/roles unchanged.
+- RED-first contract tests banked. Initial expanded slice and live read/role tests: 52 passing, report `test_reports/iteration_2.json`. Injected executor tests are MOCKED test doubles only.
+- Actual bounded run `cr-a29e3b7b16ae` tried both configured host identities via Akki and was BLOCKED by AuthenticationException on both. No estate read. T14 is BLOCKED, not passed. This does not establish GPU hardware failure.
+- The first UI implementation (`CensusWorkspace`/`CensusOSPage`) was a simplified redesign. Owner rejected its fidelity. **T12 is reopened/FAILED**, notwithstanding the prior testing report's functional-only PASS. Do not claim those screenshots match the supplied designs.
+- Owner correction: "Aligned. this serve as baseline experience architecture nothing less only better if to be changed. Proceed autonomous - let me know if ready to." Confirmation: "this covers it foe now". Approved corrective scope: preserve original supplied OS/DAP structure, navigation, hierarchy, drawers and flow; remove replacement dashboard; keep backend/tenant controls; limit deviations to real data/state, accessibility and responsive fixes; explicitly surface Canon conflicts.
+
+### Fidelity acceptance gates — defined before corrective implementation
+- F01: Original artifact hashes unchanged; operational markup mechanically derived from those originals with source-line provenance. No reinterpretation/replacement dashboard.
+- F02: DAP original navy identity header, collapsible grouped left navigation, central two-line estate headline/figure cards/composition and rights bars, right notes and usage rail retained in the original order and proportions.
+- F03: OS original portal tile launcher/preview, Registry back/header/tabs, four estate topline cards, four disclosure sections, census-intelligence rail and in-place history/detail hierarchy retained.
+- F04: Each visible datum is from scoped records or explicitly unavailable/estimated. No Nexus/Digicow persona, made-up usage, inferred rights, random deltas or timer completion leaks.
+- F05: Original browse/disclosure/history/detail/run actions are keyboard-accessible, use actual service state, and support browser back. A missing binding is an explicit refusal, never silent/no-op.
+- F06: Compare desktop at 1920x800 with the supplied original reference, preserving structure; at mobile390x844 preserve order/actions without original clipping. Also verify widths320/768/1024/1440 for overflow via non-screenshot layout checks. Fidelity PASS requires original comparison, not merely attractive output.
+- F07: Re-run scoped API/role/refusal tests; no backend regressions. T14 remains separate and blocked until actual live output exists.
+
+### Further explicit prototype conflicts
+- PC06: Registry prototype says every figure is measured, never estimated, and names J. Mwangi with fixed TB/PII/rights/opportunities. Actual census4 contains estimates and no identity/coverage/rights attestation. Keep exact containers and interactions, substitute truthful record text/unknowns; do not remove the sections.
+- PC07: Original DAP declares partner MER-1, open record entitlements, free browsing and 214GB received. Those grants, price and usage are not backed for the admitted RMS account. Preserve identity/badge/usage positions but show admitted actor and unestablished values rather than inventing licence or billing facts.
 
 ### Pre-implementation authorization finding
 
@@ -47,3 +66,6 @@ The canonical code directory is empty; separate code/state .git and historical b
 
 ## F. Verification and continuity
 Record RED and two repeatable GREEN logs under phase0/drill_receipts/census_operational_v1. Original prototype artifacts are read-only evidence at canon/prototypes/20260925_owner_updated with intake hashes. Application source changes are recorded by the environment; no fabricated separate branch commits/seals. Update RESUME/NEXT/PRD at boundaries. Live activation T14 is separate from injected-executor tests.
+
+## G. Final fidelity correction checkpoint
+`VERIFICATION_REPORT.md` is the per-case T01–T14/F01–F08 record and change ledger. UI ready for owner review; overall census activation remains NOT COMPLETE. Original markup compiled (not redesigned), mock scripts never run. Three reported defects fixed: 320px header overflow, React-node keys and abbreviated run IDs; additional compact timestamp issue fixed. Final 42/42 layout checks pass at six widths across seven routes; 58/58 backend/source/API tests pass twice; 4/4 rendering units pass. Historical full-suite baseline/seal not claimed. T14 remains BLOCKED for cr-a29e3b7b16ae, both configured host identities refused authentication. No fresh remote operation was attempted during the fidelity correction. Existing source receipts and failed test observations are retained, not rewritten.

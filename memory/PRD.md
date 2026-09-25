@@ -2,9 +2,18 @@
 
 ## ACTIVE OWNER APPROVAL — 2026-09-25 census operational slice
 
+### Latest decision checkpoint — progress requested before recovery approval
+Owner said "Before i decide, surface for me the plan for the do does to achieve functionality and the % progress being made" after a continuation-scope confirmation. **Do not start new recovery/estate operations while this decision is pending.** Current planning report: `notes/census_operational_v1/FUNCTIONALITY_PLAN_AND_PROGRESS.md`. Supported percentages:13/14 census checklist cases passed at specified test levels=92.9% (includes isolated MOCKED executor tests; NOT platform functionality);8/8 corrective UI engineering checks=100% of that narrow checklist;0/1 fresh activation gate=T14 not passed. Full OS/DAP completion is NOT YET MEASURED because the complete agreed journey denominator remains unfinished audit work. No arbitrary overall percentage or assumed partial credit. Recommended next deliverable after approval: fixed journey ledger plus one real Akki-owned census, without further redesign, then complete request-to-result. Last recorded AuthenticationException is historical test evidence, not a fresh assertion of host failure.
+
 The owner approved **Akki-owned census execution + consistent OS/DAP registry, required read controls and truthful completion/results**, selected over starting the broader request-to-result flow first. Owner supplied updated OS and DAP HTML, requires prototype fidelity with explicit conflict reporting, tests defined before coding, autonomous execution and per-test results. Latest instruction: preserve disk/compaction guardrails; enhance UI where necessary.
 
-Current objective `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md`; progress/conflicts/tests `notes/census_operational_v1/GROUNDING.md`; EXECUTION_ORDER Item 7; RESUME and NEXT updated. Prototype originals/hash intake: `canon/prototypes/20260925_owner_updated/`. T01–T14 acceptance criteria sent to user before application edits. No app edits/test runs yet at this checkpoint.
+Current objective `STATE/OBJECTIVES/CP_CENSUS_OPERATIONAL_V1.md`; progress/conflicts/tests `notes/census_operational_v1/GROUNDING.md`; EXECUTION_ORDER Item 7. Prototype originals/hash intake: `canon/prototypes/20260925_owner_updated/`. T01–T14 defined before coding. Backend adapters implemented and 52 slice tests passed; RMS memberships applied without password/role changes. Actual run cr-a29e3b7b16ae BLOCKED: both existing Akki hosts reject configured login (AuthenticationException), not evidence of broken GPUs. T14 not passed.
+
+**UI fidelity correction VERIFIED; ready for owner review.** The rejected CensusWorkspace/CensusOSPage dashboards are unrouted. Actual original markup is compiled by `assessment_workspace/tools/compile_owner_prototypes.py` into `frontend/src/components/prototype/generated/{os,dap}.json`, rendered natively by `OwnerMarkup.jsx` with scoped models—no original mock JS, iframe or eval. Routes `/os`, `/os/admin/estate`, `/dap`, `/dap/census` adopt the supplied architecture. `design_guidelines.json` now records owner authority, replacing the rejected generic guidance. Full per-case tests/deviations: `notes/census_operational_v1/VERIFICATION_REPORT.md`.
+
+T12/F01–F08 now pass within the census slice, after direct comparison with supplied HTML and corrections for CSS shorthand parsing,320px header overflow,React keys,full canonical run IDs,compact UTC timestamps. Final evidence: 58 backend/source/live-API tests passed twice (correct `REACT_APP_BACKEND_URL` env);4 rendering tests pass;42/42 non-screenshot layout checks across320/390/768/1024/1440/1920 and7routes pass, no unexpected console errors. Original iteration3 report retains old failures; final addendum/receipts document fixes. Owner visual acceptance is still pending human review; whole OS/DAP operational readiness is NOT claimed.
+
+**Next P0:** real census activation T14 remains BLOCKED: cr-a29e3b7b16ae, AuthenticationException from both configured Akki identities. No estate read, no source output. Verify authorized recovery/remote executor custody next, not a competing pod key or direct DB connection. No remote changes were attempted during the fidelity correction. Do not claim GPU hardware failure or remote authorized_keys mismatch from this result. All test fixtures injecting execution are MOCKED test-only; actual app shows blocked truthfully.
 
 **Authorization approved:** owner replied "Approved." to explicit server-owned RMS membership for the existing four demo users, preserving their roles/passwords, operators launch and analyst read-only. No inference from email suffix or global operator access. Unbound identities remain denied. Census source lawful-basis receipt exists, distinct from principal membership. Bank membership application receipt and update test_credentials when applied.
 
@@ -26,7 +35,7 @@ Operate and assess the governed Akki extraction platform against its on-disk Can
 - Primary rules, amendments, decisions, historical receipts, and build records are under `/app/assessment_workspace`.
 - Do not conflate a connected GPU, a reachable pod SSH identity, and a completed training job.
 
-## Current task — 2026-09-25
+## Historical audit checkpoint — before authorized implementation
 
 Owner approved read-only Canon-to-code review before GPU remediation. Audit scope: `/app/assessment_workspace/notes/canon_code_audit_20260925/SCOPE.md`.
 
@@ -47,7 +56,7 @@ Under `/app/assessment_workspace/notes/canon_code_audit_20260925/`:
 
 Audit-only extraction utility: `/app/assessment_workspace/tools/canon_code_audit_inventory_20260925.py`. It does not access estates. Generated corpora are documentary derivatives, not additional operational stores.
 
-## Verified findings / corrections
+## Historical audit findings / corrections (before the implemented slice above)
 
 1. GPUs: real key hardening and successful historical GPU work are evidenced. Current hardware failure or pod-key mismatch was NOT established; no GPU login/auth/key changes attempted. Real text-training receipt includes its historical owner-authorized build bypass; do not erase either the successful work or that limitation.
 2. Runtime inventory: 1,004 Python files, 130 immediate service directories (excluding `__pycache__`), 52 JSX page files. These counts are NOT capability-completion percentages. Helpers may execute through transitive consumers.
@@ -60,7 +69,7 @@ Audit-only extraction utility: `/app/assessment_workspace/tools/canon_code_audit
 9. Training has distinct paths: legacy LoRA passes None dependencies; campaign production trainer supplies real dependencies but its traced consumer is an older pod launch tool; language-cognition helper returns a commission handle rather than launching. No blanket “all training mocked” verdict.
 10. Real TCB/triad/classification, five-class Mtafiti inventory, Northena run records, Watch split, Targeta deterministic filtering, CIF proposal routing, audio provenance/clustering/calibration contracts exist. This is not proof of every broader end-to-end promise. Several older documentary “not built” conclusions are stale.
 
-No application features were added or bugs fixed. Existing gaps remain intentionally unchanged under the approved read-only scope.
+At that historical read-only checkpoint no application features were added or bugs fixed. This is superseded for the approved census/UI slice by the current implementation and verification record above; do not treat pre-fix census findings as current regressions.
 
 ## Priorities
 
@@ -68,7 +77,7 @@ No application features were added or bugs fixed. Existing gaps remain intention
 
 Owner requested the report in chat or as a download and an operational-readiness plan. The existing `/api/deliverables/{filename}` route only allowlists older Chunk-4 snapshots; no unverified download link was supplied and the route was not changed. Report findings are presented in chat.
 
-Proposed plan banked at `assessment_workspace/notes/canon_code_audit_20260925/OS_DAP_READINESS_PLAN.md`. It is **not approval to start implementation** and does not claim readiness. Sequence: close readiness-critical evidence map → shared identity/record boundaries → real Akki-owned census/registry → request-to-result vertical slice → OS/DAP surface completion in parallel → real skill/training services where enabled → operational acceptance. All applicable mandatory Canon controls remain release gates; optional functions may be unavailable only where permitted. No speculative GPU changes or new pod extraction path. No reliable calendar/cost estimate before the remaining paths are traced.
+Initial proposed plan banked at `assessment_workspace/notes/canon_code_audit_20260925/OS_DAP_READINESS_PLAN.md`. Owner subsequently approved implementation of the census slice and the prototype correction; current recovery continuation is paused pending the latest progress/decision checkpoint above. Sequence remains: evidence map → shared identity/record boundaries → real Akki-owned census/registry → request-to-result → OS/DAP completion → enabled skills/training → operational acceptance. All mandatory Canon controls remain release gates; optional deferral only where permitted. No speculative GPU changes or new pod extraction path. No reliable calendar/cost estimate before remaining paths are traced.
 
 - P0: Complete remaining Canon/amendment/Master Requirements Registry row mapping and authority reconciliation. Trace remaining Solva, memory, rule service, budget/model admission, universal handoffs and all UI paths. Do not relabel unreviewed areas “not built.” See report §13.
 - P1: Only after the audit, diagnose an evidenced GPU identity issue through Akki's existing pipeline; user authorized recovery, not speculative host changes. Then correct existing autonomous executor/descriptor and registry/portal joins against approved scope—no competing pod extraction path.

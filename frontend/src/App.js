@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 /* ── DAP Portal (Track 1) ─────────────────────────────── */
-import DAPLayout from "@/pages/dap/DAPLayout";
-import { CensusWorkspace } from "@/components/census/CensusWorkspace";
+import DAPLayout, { CensusPrototypeRoute } from "@/pages/dap/OwnerDAPLayout";
 import AvailableResources from "@/pages/dap/AvailableResources";
 import DataGovernance from "@/pages/dap/DataGovernance";
 import RequestLifecycle from "@/pages/dap/RequestLifecycle";
@@ -43,7 +42,7 @@ import ThinkLabClarity from "@/pages/os/ThinkLabClarity";
 import ThinkLabStrategy from "@/pages/os/ThinkLabStrategy";
 import ThinkLabHypothesis from "@/pages/os/ThinkLabHypothesis";
 import ThinkLabPerspective from "@/pages/os/ThinkLabPerspective";
-import AdminEstate from "@/pages/os/CensusOSPage";
+import AdminEstate from "@/pages/os/OwnerOSPage";
 import AdminGovern from "@/pages/os/AdminGovern";
 import AdminGreyMirror from "@/pages/os/AdminGreyMirror";
 import AdminSpendReq from "@/pages/os/AdminSpendReq";
@@ -1277,8 +1276,8 @@ function App() {
         <Routes>
           {/* Track 1 — DAP Portal */}
           <Route path="/dap" element={<DAPLayout />}>
-            <Route index element={<CensusWorkspace />} />
-            <Route path="census" element={<CensusWorkspace initialTab="records" />} />
+            <Route index element={<CensusPrototypeRoute />} />
+            <Route path="census" element={<CensusPrototypeRoute />} />
             <Route path="extract/:mode" element={<ExtractModes />} />
             <Route path="resources/:tab" element={<AvailableResources />} />
             <Route path="governance/:tab" element={<DataGovernance />} />
@@ -1286,7 +1285,7 @@ function App() {
             <Route path="requests" element={<RequestLifecycle />} />
             <Route path="entitlement" element={<Entitlement />} />
             <Route path="countdown" element={<CanonCountdown />} />
-            <Route path="estates/:estateId" element={<CensusWorkspace />} />
+            <Route path="estates/:estateId" element={<CensusPrototypeRoute />} />
             <Route path="*" element={<Navigate to="/dap" replace />} />
           </Route>
 
@@ -1295,6 +1294,7 @@ function App() {
              a tester can reach each native surface at ${REACT_APP_BACKEND_URL}/os/work/<leaf> or
              /os/monitor/<leaf>. Un-implemented leaves continue to fall through to the V8/PortalIframe
              render at "/" and "/*" until subsequent sub-slices (4e-4g) land more native surfaces. */}
+          <Route path="/os" element={<AdminEstate />} />
           <Route path="/os/work/chat" element={<WorkChat />} />
           <Route path="/os/work/analyze" element={<WorkAnalyze />} />
           <Route path="/os/work/documents" element={<WorkDocuments />} />
