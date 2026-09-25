@@ -1,0 +1,14 @@
+{
+  "census_run_id": "cr-89a010d93d0c",
+  "tenant_id": "AKKI-TEST",
+  "completed_at_utc": "20260925T014840Z",
+  "payload": {
+    "trigger": "on_demand_api",
+    "connect_source_descriptor": {
+      "kind": "estate_mysql",
+      "host": "usdd-proof",
+      "note": "CPU-only census smoke, no GPU"
+    },
+    "note": "Commit-A shape gate landed; data_source adapter fold-in + sealed asset_registry_writer wiring in Phase 3 continuation sub-slices per R-106 \u00a73."
+  }
+}

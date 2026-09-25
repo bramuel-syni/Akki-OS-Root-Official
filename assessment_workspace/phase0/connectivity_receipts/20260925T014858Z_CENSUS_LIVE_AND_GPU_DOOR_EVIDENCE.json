@@ -1,0 +1,43 @@
+{
+  "receipt_kind": "OPS_STATE_CHANGE_AND_CONNECTIVITY_EVIDENCE",
+  "at_utc": "20260925T014858Z",
+  "actor": "E1 (forked session · read-then-act)",
+  "summary": "census_scheduler registered in supervisord and started (P0 operational unblock); autonomous CPU-only census proven end-to-end with a smoke job. GPU lane still blocked host-side (publickey-only sshd; password refused for both credential sets).",
+
+  "census_scheduler": {
+    "action": "registered + started",
+    "conf_written": "/etc/supervisor/conf.d/census_scheduler.conf",
+    "prior_state": "unregistered; vendored conf pointed at non-existent /app/assessment_workspace/repos/Extraction-Akki/backend",
+    "repointed_to_vendored_twin": "/app/backend/vendored/extraction_akki/backend",
+    "entrypoint": "/root/.venv/bin/python -m services.census_autonomy.scheduler_program",
+    "state_dir": "/app/assessment_workspace/phase0/census_autonomy_state",
+    "runtime": "RUNNING pid 3505 · poll_interval=60s · job_max=3600s",
+    "startup_log": "2026-09-25 01:47:40,411 [census_scheduler] INFO census_scheduler starting",
+    "smoke_run": {
+      "census_run_id": "cr-89a010d93d0c",
+      "tenant_id": "AKKI-TEST",
+      "trigger": "on_demand_api",
+      "enqueued_via": "services.census_autonomy.engine.enqueue_on_demand_run",
+      "picked_up_at_utc": "20260925T014840Z",
+      "status": "COMPLETE",
+      "result_receipt": "phase0/census_autonomy_state/results/20260925T014840Z_cr-89a010d93d0c_result.json",
+      "gpu_required": false
+    },
+    "honest_gap": "run_bounded_census is at PHASE 3 Commit-A shape gate: lawful-basis + budget gates + receipt plumbing are LIVE; the real estate data_source adapter walk + sealed asset_registry_writer wiring are marked Phase-3 continuation sub-slices and are NOT wired in this vendored copy. Autonomous service is live; it is not yet walking real estate MySQL/NAS/OBS surfaces."
+  },
+
+  "gpu_door_evidence": {
+    "hosts": ["akki-vm (41.173.184.244)", "akki-vm-ii (41.173.184.247)"],
+    "egress": "OPEN — both hosts answer on tcp/22 with banner SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.19. No pod-side firewall/proxy/egress block.",
+    "auth_methods_advertised_by_host": ["publickey"],
+    "password_auth": "REFUSED by host sshd (PasswordAuthentication no). Tested BOTH the original GPU_CREDS.xlsx password and the rotated GPU_Creds_2.csv passwords; both hosts return BadAuthenticationType: allowed types: ['publickey'].",
+    "independent_confirmation": "Standard OpenSSH client returns 'Permission denied (publickey).' for both hosts — matches paramiko. Two independent clients, two credential sets, identical host-side refusal.",
+    "banked_key_status": "estate_keys/gpu_hosts/id_ed25519_akki_gpu (comment akki-gpu-hosts-seam-key-20260924T193015Z, minted by previous agent 2026-09-24) is NOT in either host's authorized_keys -> key auth returns 'Authentication failed'.",
+    "verdict": "Blocker is host-side sshd config, not any pod/workspace constraint. Two one-action unblocks require owner console access to the VMs.",
+    "unblock_paths": {
+      "path_A_enable_passwords": "On each VM: set PasswordAuthentication yes in /etc/ssh/sshd_config + restart ssh -> the rotated passwords then work.",
+      "path_B_authorize_key": "Add public key 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHX3Gprvz1HSej3d0GclxFnsLyATu67A4TO8G9ItcgZ akki-gpu-hosts-seam-key-20260924T193015Z' to ~ubuntu/.ssh/authorized_keys on both VMs."
+    },
+    "redaction": "No password values, no private-key material recorded in this receipt (RG-3 hygiene)."
+  }
+}
