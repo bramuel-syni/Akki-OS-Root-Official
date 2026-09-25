@@ -1,5 +1,17 @@
 # Execution recovery — COMPUTE-CENSUS-IDENTITY
 
+## Latest provider evidence — owner AISCA guide
+
+See `AISCA_ACCESS_GUIDE_FINDINGS.md` (19:19Z). Provider now identified as AISCA/Rafay. Owner guide's key field is **new-VM provisioning**, not existing-VM recovery; no explicit portal URL/admin credentials/serial-console procedure supplied. Official Rafay documentation supports VM serial console with gateway prerequisite, but AISCA installation/permissions not verified. Need actual portal URL and existing authorized console/admin route; do not recreate machines. No new key or remote action in this guide assessment; replacement remains authorized and pending installation access/custody.
+
+## Latest authority — replace existing identity
+
+Owner asked "Can you disconnect akki the reconnect akki from the compute". Clarified that replacing SSH authorization requires a working console/admin route, new-key verification before old-key revocation, and changes the prior restore-only instruction. Owner replied **"Yes, entirely replace. Start a new"**.
+
+Replacement is now authorized; earlier restore-only prohibitions below are historical. Fresh key must be staged in separate protected custody, existing active/old files preserved; enroll only public key through approved console/admin access; verify both existing server pins and new-key authentication before activation or fingerprint-specific old Akki key revocation. Preserve unrelated authorized keys and do not enable passwords, restart/wipe machines or change host pins. No new key or remote/configuration change has occurred under this ruling yet.
+
+Outstanding dependency: identify the existing compute-provider console or working administrator channel for the two admitted hosts, including how authorized access is available. Re-uploading SSH passwords cannot create this channel while both configured SSH accounts advertise publickey only. Do not solicit replacement approval again; ask only for the missing installation access. Plan for durable private-key custody/backup before activation so environment replacement cannot repeat the identity-loss failure.
+
 ## Live method verification after owner GPU workbook — 2026-09-25T18:57Z
 
 Owner supplied **Compute Creds.xlsx** as "GPU creds" after authorizing restoration of the existing identity. Downloaded to mode0600 custody at `/app/backend/estate_keys/gpu_hosts/Compute_Creds_20260925T184738671152Z.xlsx`; sha256 `397148b327e42be61035b06a0154f3280a495295890df85c5556782d513ebaf9`. No credential value printed, placed in a receipt, or added to application env. Workbook has eleven rows/one column; initial read lacked dimensions, safely recomputed within bounded unpacked/file size. Original diagnostic error retained in intake receipt. No formulas or PEM private-key material detected. Both supplied addresses/usernames match admitted inventory. Password values match values already in historical workbook, despite different workbook bytes/layout. That is not new private signing material or proof of working passwords.

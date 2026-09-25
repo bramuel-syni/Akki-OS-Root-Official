@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-25",
+  "kind": "real_portal_operational_verification",
+  "portal": "https://console.cpt.aiscafrica.org",
+  "portal_credentials": {"source": "Updated owner Compute Creds.xlsx, z8ka7rig artifact", "sha256": "49376d19fe4bc6510cffb1af907f2e5cb4a87ff1f272af72a9cbef6f2ab83299", "sign_in_attempts": 1, "sign_in_succeeded": true, "mfa_observed": false, "password_or_token_emitted": false},
+  "inventory": [{"name": "akki-vm", "workspace": "akki-workspace", "status": "Running"}, {"name": "akki-vm-ii", "workspace": "akki-workspace", "status": "Running"}],
+  "observed_list_actions": ["Edit Configuration", "View Metrics", "Delete"],
+  "console_checks": [
+    {"vm": "akki-vm-ii", "observed_at_utc": "2026-09-25T19:53Z", "opened_same_origin_tab": true, "console_xhr_status": 502, "terminal_available": false, "console_credentials_sent": false, "commands_executed": false},
+    {"vm": "akki-vm", "observed_at_utc": "2026-09-25T19:55Z", "opened_same_origin_tab": true, "console_xhr_status": 502, "terminal_available": false, "console_credentials_sent": false, "commands_executed": false}
+  ],
+  "existing_key_edit_check": {"vm": "akki-vm", "observed_at_utc": "2026-09-25T20:04Z", "network_settled": true, "storage_loading_absent": true, "ssh_public_key_field_disabled": true, "field_editable": false, "value_present": false, "expanded_viewer_checked_at_utc": "2026-09-25T20:06Z", "expanded_viewer_textarea_readonly": true, "fields_modified": false, "save_or_deploy_submitted": false, "other_vm_key_editor": "not separately verified"},
+  "attempts_not_to_misinterpret": ["One deep-link session restore returned to login; restoring cookies/localStorage through portal HOME succeeded without another login", "Button-role lookup for Edit timed out because actual element was LABEL; corrected without VM change", "Early disabled-field snapshots coincided with async loading; final assessment waited for readiness and inspected the expanded readonly editor"],
+  "root_cause": "UNVERIFIED: observed console launch/backend failure, not proof of missing gateway, broken hypervisor or GPU fault",
+  "new_ssh_key_generated": false,
+  "new_key_enrolled_or_activated": false,
+  "old_or_unrelated_key_revoked": false,
+  "vm_stopped_rebooted_deleted_recreated": false,
+  "source_or_estate_data_read": false,
+  "t14": "BLOCKED, 0/1 fresh successful source-output gate",
+  "mocked": false,
+  "app_code_changed_in_this_portal_slice": false,
+  "prior_unit_suite_rerun_in_this_slice": false,
+  "evidence_privacy": "First automatic post-login capture showed account identifier but no password/token. Subsequent screenshots redact identifiers/IPs and obscure input/terminal content. Restricted browser receipts/session in /tmp/akki_aisca_private, separate runtime from app pod.",
+  "required_next_action": "AISCA restore existing-VM console or provide approved in-place public-key enrollment/admin route. Preserve VMs, data, old/unrelated keys and host pins; verify new identity on both hosts before switching or revoking old Akki key."
+}

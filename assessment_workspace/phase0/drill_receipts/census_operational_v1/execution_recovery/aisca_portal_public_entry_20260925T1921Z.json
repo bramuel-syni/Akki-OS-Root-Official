@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-25",
+  "source": "Owner-supplied portal URL",
+  "portal_url": "https://console.cpt.aiscafrica.org",
+  "public_fetch": "Crawler failed; not treated as proof of outage or invalid URL",
+  "browser_verification": {
+    "http_status": 200,
+    "title": "AISCA",
+    "visible_entry": "Email input, Remember me checkbox, Continue button",
+    "viewport": {"width": 1920, "height": 800},
+    "screenshot_requested_path": "/app/test_reports/aisca_portal_public_login.jpeg"
+  },
+  "email_submitted": false,
+  "login_attempted": false,
+  "authenticated_session": false,
+  "vm_console_availability": "UNVERIFIED; behind authentication",
+  "compute_changes": false,
+  "credentials_emitted": false,
+  "next_input": "Authorized AISCA portal account/sign-in access or owner-operated authenticated console"
+}
