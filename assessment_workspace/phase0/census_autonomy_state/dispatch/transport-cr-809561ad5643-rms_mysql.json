@@ -1,0 +1,19 @@
+{
+  "census_run_id": "cr-809561ad5643",
+  "source_id": "rms_mysql",
+  "at_utc": "2026-09-25T17:08:48.729138+00:00",
+  "attempts": [
+    {
+      "host": "akki-vm",
+      "transport": "not_verified",
+      "error_type": "IdentityVerificationError",
+      "reason_code": "IDENTITY_PIN_MISMATCH"
+    },
+    {
+      "host": "akki-vm-ii",
+      "transport": "not_verified",
+      "error_type": "IdentityVerificationError",
+      "reason_code": "IDENTITY_PIN_MISMATCH"
+    }
+  ]
+}

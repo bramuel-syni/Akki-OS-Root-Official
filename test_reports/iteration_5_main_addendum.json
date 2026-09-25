@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-25",
+  "case_type": "execution identity safeguard; access recovery unresolved",
+  "main_agent_harness_fix": "Production custody/refusal tests now require explicit AKKI_RUN_IDENTITY_REFUSAL_DRILL=1 and a fresh fixture. No stale receipt authorizes a commission. Environment restored by monkeypatch; receipt filenames unique.",
+  "post_fix_verification": {
+    "explicit_drill_run_1": "82 passed",
+    "explicit_drill_run_2": "82 passed",
+    "default_production_drill": "2 skipped; no custody or production commission action",
+    "logs_directory": "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery",
+    "python_compilation": "passed"
+  },
+  "real_operational_state_created": {
+    "census_run_id": "cr-809561ad5643",
+    "status": "REFUSED",
+    "stage": "blocked",
+    "outcome_reason": "AKKI_EXECUTION_IDENTITY_NOT_VERIFIED",
+    "transport_reason_both_configured_hosts": "IDENTITY_PIN_MISMATCH",
+    "idempotency_replay": "same run",
+    "source_data_read": false,
+    "new_ssh_authentication_attempt": false,
+    "new_accounts": false
+  },
+  "remaining_blocker": "Restore already-admitted SSH private key via authorized custody/backup, or establish explicitly authorized existing recovery channel. Remote executor and connector custody remain unverified.",
+  "t14": "BLOCKED; 0/1 actual source-output gate",
+  "mocked": "Isolated test transports and temporary test keys ONLY. Real app refusal and retained-record APIs are not mocked.",
+  "documentary_progress": {
+    "os_markup_event_sites": 817,
+    "dap_markup_event_sites": 71,
+    "unique_site_ids": 888,
+    "functional_denominator_established": false
+  },
+  "configuration_changes": "Four non-secret identity receipt path/hash settings added. Backend and existing idle census scheduler restarted. No new worker or schedule. No SSH key, password, known_hosts, sealed auth body or frontend source modified."
+}

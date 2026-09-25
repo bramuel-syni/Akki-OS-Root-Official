@@ -1,3 +1,19 @@
+## CENSUS-IDENTITY-RESTORE-20260925 — current execution dependency
+
+18:57Z owner-workbook update: supplied GPU workbook privately inspected and matched to admitted host/user pairs. REAL pinned auth-none method queries on both hosts advertise **publickey only**, no authentication. No password/key sent or remote command executed. This freshly establishes that workbook passwords cannot recover the tested SSH channel, not which client key remains installed. Need original admitted private signing material from the authorized system/backup OR existing approved console/break-glass route. Restore permission already granted; no repeated permission request needed. Receipts under `execution_recovery/auth_none_owner_compute_workbook/`;23 diagnostic tests plus full103pass/2intentional-skip suite twice. T14 remains0/1. Do not run hardening/password retries or generate a key on the strength of this workbook.
+
+18:40Z update: owner selected **Restore**, stating access remains linked to one system. Permission to restore existing identity is granted. Remaining question: which system retains its signing identity and how its authorized access/backup is available. Local second estate key does not match; available GPU key Git history and configured SSH agent yielded no original identity. Metadata lookup receipt banked. No repeated permission request, no replacement key, no remote attempt.
+
+Owner continuation permits recovery, not speculative new keys/host weakening. Local actual private-key fingerprint differs from the admitted August28/September22 identity at the same custody path. Details and safe fingerprints: `notes/census_operational_v1/EXECUTION_RECOVERY.md`. Narrow custody directory search found no alternate private key; not an exhaustive backup search. No bootstrap password configured; historical password retirement intentional; generic hardening key paths are missing drill artifacts. Current remote authorized_keys contents and key-replacement causality remain unknown.
+
+Protected objective: restore an authenticated, admitted Akki execution path so real tenant census can run without moving source reads into E1.
+
+- Recommended: restore the already-admitted private key from approved backup/secure custody, or supply the authorized backup location for restoration.
+- If unavailable: identify an already-authorized console/break-glass access route; explicit replacement admission and receipted installation required before changing the identity pin. Do not re-enable password login or infer a credential from historical custody filenames.
+- Not acceptable: generate another key, change pins to match the current file merely to pass the guard, weaken known_hosts, repeat blind hardening, or query estate databases from E1.
+
+Safeguard8/8 verified;82 scoped tests twice. Real refusal cr-809561ad5643 is banked; T14 remains0/1. Independent action mapping proceeds:888 original-markup event sites inventoried; component/Canon/writer/test joins remain open. DAP request-to-result, rights/metering and downstream work stay on unchanged plan.
+
 # STATE/DESK_QUEUE.md
 
 Batched fork queue per Standing Order §6.8.2. The desk answers at milestone seals; an item in this queue is **NOT** a hold — the run continues on everything the fork does not block.

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="13" skipped="0" tests="13" time="0.340" timestamp="2026-09-25T18:52:42.050717+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_known_hosts_missing_returns_known_hosts_unavailable" time="0.001"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_missing_host_pin_refuses_without_socket" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_host_alias_selection[22-10.0.0.10]" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_host_alias_selection[2202-[10.0.0.10]:2202]" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_changed_host_key_refuses_before_auth_none" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_unsupported_pin_algorithm_does_not_auth" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_bad_auth_type_publickey_exposes_allowed_methods" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_password_advertised_does_not_attempt_password" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_successful_auth_none_no_channel_or_exec" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_exception_sanitized_and_timeout_applied" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_always_closes_socket_and_transport[True]" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_diagnose_always_closes_socket_and_transport[auth_effect1]" time="0.000"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase><testcase classname="tests.census_operational.test_auth_methods_probe" name="test_run_once_rejects_diagnostic_dir_outside_assessment_workspace" time="0.001"><failure message="Failed: RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet">No module named 'services.census_autonomy.auth_methods_probe'
+
+During handling of the above exception, another exception occurred:
+RED-expected missing-module: services.census_autonomy.auth_methods_probe is not implemented yet</failure></testcase></testsuite></testsuites>

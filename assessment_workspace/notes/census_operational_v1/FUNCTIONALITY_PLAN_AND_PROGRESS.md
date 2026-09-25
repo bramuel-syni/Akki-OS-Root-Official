@@ -4,7 +4,7 @@ Basis: last verified checkpoint, 2026-09-25. This is a planning/progress report,
 
 Owner request: "Before i decide, surface for me the plan for the do does to achieve functionality and the % progress being made".
 
-**Recovery continuation is paused for the owner's decision.** No new host recovery, credential change or estate operation was performed for this response.
+**Historical decision checkpoint below; continuation approved.** Owner subsequently reaffirmed the unchanged plan and said "You can pick it up". Current recovery evidence: `EXECUTION_RECOVERY.md`. Current safeguard R01–R08 is verified; real T14 remains blocked by admitted/current private-key mismatch. No host change or estate operation performed. Four non-secret receipt-pin settings were added; no credential material changed.
 
 ## Percentages that are supported
 
@@ -18,6 +18,8 @@ Owner request: "Before i decide, surface for me the plan for the do does to achi
 Supporting results:58 backend/source/API tests passed twice;4 rendering tests;42 route-width checks. These denominators overlap different checks and MUST NOT be combined into a platform completion percentage. Read VERIFICATION_REPORT.md for per-case limits.
 
 The missing whole-platform denominator is unfinished audit work. The plan must close it rather than substitute the narrow census checklist score.
+
+Continuation progress: 888 original-markup event sites inventoried with unique IDs/source hashes and conditional/list context (817 OS,71 DAP). This is an audit input, not 888 required journeys or completed mappings. Component/Canon/engine/writer/test reconciliation remains open. Current census suite:82 passed twice after opt-in refusal-drill correction, including MOCKED transport tests. Real refusal run cr-809561ad5643 is banked; live successful output remains 0/1. Safeguard acceptance R01–R08=8/8 does not raise whole-platform or Mtafiti completion.
 
 ## Ordered functionality work packages
 

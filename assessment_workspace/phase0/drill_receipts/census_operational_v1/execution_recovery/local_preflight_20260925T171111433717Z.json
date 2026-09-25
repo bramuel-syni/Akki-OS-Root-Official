@@ -1,0 +1,20 @@
+{
+  "timestamp_utc": "2026-09-25T17:11:11.433693+00:00",
+  "status": "PASS",
+  "safe_code": "LOCAL_IDENTITY_PREFLIGHT",
+  "host_count": 2,
+  "checks": [
+    {
+      "slot": 0,
+      "status": "refused",
+      "reason_code": "IDENTITY_PIN_MISMATCH",
+      "identity_receipt_ref": "20260828T162217Z_step1_keygen.json"
+    },
+    {
+      "slot": 1,
+      "status": "refused",
+      "reason_code": "IDENTITY_PIN_MISMATCH",
+      "identity_receipt_ref": "20260828T162217Z_step1_keygen.json"
+    }
+  ]
+}

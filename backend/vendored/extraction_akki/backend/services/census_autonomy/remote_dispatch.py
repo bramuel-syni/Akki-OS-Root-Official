@@ -9,22 +9,21 @@ from pathlib import Path
 from services.training_runner import ssh_seam
 from services.census_autonomy.operational_validation import PROTOCOL
 from services.census_autonomy import operational_store as store
+from services.census_autonomy import execution_identity
+from services.census_autonomy.execution_identity import IdentityVerificationError
 
 
 def _connect(host, timeout):
     import paramiko
     config = ssh_seam.get_host_config(host)
+    key = execution_identity.verify_identity(config)
     client = paramiko.SSHClient()
-    client.load_host_keys(os.environ["SSH_KNOWN_HOSTS_PATH"])
-    client.set_missing_host_key_policy(paramiko.RejectPolicy())
     options = dict(hostname=config.host, port=config.port, username=config.username,
                    timeout=timeout, auth_timeout=timeout, banner_timeout=timeout,
-                   allow_agent=False, look_for_keys=False)
-    if config.auth_method == "key":
-        options["key_filename"] = config.key_path
-    else:
-        options["password"] = ssh_seam._get_password_for(host)
+                   allow_agent=False, look_for_keys=False, pkey=key)
     try:
+        client.load_host_keys(os.environ["SSH_KNOWN_HOSTS_PATH"])
+        client.set_missing_host_key_policy(paramiko.RejectPolicy())
         client.connect(**options)
         return client, config
     except Exception:
@@ -85,17 +84,22 @@ def execute_source(run_id, tenant, source, lawful_hash, deadline):
             # Once a worker has run, do not retry its source on another host.
             return result
         except Exception as exc:
-            attempts.append({"host": host, "transport": "not_verified", "error_type": type(exc).__name__})
+            attempt = {"host": host, "transport": "not_verified", "error_type": type(exc).__name__}
+            if isinstance(exc, IdentityVerificationError):
+                attempt["reason_code"] = exc.reason_code
+            attempts.append(attempt)
             if dispatched:
                 break  # Outcome uncertain: never duplicate a possible read on a different host.
         finally:
             if client:
                 client.close()
     _bank_transport(run_id, source, attempts)
+    identity_refused = attempts and all("reason_code" in attempt for attempt in attempts)
     return {"protocol": PROTOCOL, "census_run_id": run_id, "tenant_id": tenant, "source_id": source,
             "execution_location": "control_plane", "observed_at": store.now(), "status": "blocked",
             "worker_receipt_id": None, "source_rows_returned": 0,
-            "reason_code": "AKKI_EXECUTION_CONNECTION_NOT_VERIFIED" if hosts else "AKKI_HOST_INVENTORY_MISSING"}
+            "reason_code": ("AKKI_EXECUTION_IDENTITY_NOT_VERIFIED" if identity_refused else
+                            "AKKI_EXECUTION_CONNECTION_NOT_VERIFIED" if hosts else "AKKI_HOST_INVENTORY_MISSING")}
 
 
 def _bank_transport(run_id, source, attempts):

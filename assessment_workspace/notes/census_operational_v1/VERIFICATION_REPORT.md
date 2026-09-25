@@ -2,6 +2,14 @@
 
 Date: 2026-09-25. **UI correction ready for owner review. Overall census activation NOT COMPLETE.**
 
+## Execution-recovery continuation addendum — 2026-09-25
+
+Latest owner-workbook follow-on: see `EXECUTION_RECOVERY.md` live method verification18:57Z. Both pinned server identities matched; configured accounts offered publickey only. Auth-none was rejected; neither authenticated and no password/key/command/source read occurred. Recovery remains blocked pending original signing identity/approved console access. Added diagnostic/receipt safeguard tests:23/23; current full scoped suite103 passed/2 intentionally skipped twice (`iteration_7.json`). Unit transports MOCKED; the two credential-free live method queries are real, not fresh source executions. T14 still0/1.
+
+`EXECUTION_RECOVERY.md` records the subsequent backend-only changes/tests. Added census identity-continuity guard and typed refusals; preserved sealed auth modules and prototype markup. Final expanded suite **82/82 twice** with explicitly opted-in production refusal drill; ordinary invocation skips the two production-custody drill tests. Tests use fresh preflight, not a stale receipt. Unit SSH transports are **MOCKED**.
+
+Real refusal run `cr-809561ad5643` confirms current key differs from admitted receipt on both configured hosts and is refused BEFORE network. No source rows read, no fresh inventory output, no restoration claim. Prior `cr-a29e3b7b16ae` AuthenticationException evidence remains historical and unchanged. **T14 remains BLOCKED / 0 of 1.** R01–R08=8/8 is only the narrow safeguard acceptance set. Full OS/DAP denominator remains unestablished; original-source action-site inventory is documentary progress only.
+
 ## Owner baseline and correction
 
 The owner rejected the first simplified UI and reaffirmed the supplied OS/DAP HTML as the baseline experience architecture. The corrected implementation uses markup mechanically extracted from those original artifacts, not another interpretation of their appearance. Their original bytes/hashes remain unchanged. The original simulated scripts, timers, random deltas and fixture entitlements are not executed.

@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-25",
+  "owner_action": "Uploaded Compute Creds.xlsx following explicit restore-existing-identity authorization",
+  "workbook_intake": "Restricted mode0600 custody; host/user pairs match existing inventory; password values match historical workbook; no private key material detected; no secret values emitted",
+  "tests": {"diagnostic_unit_tests": "23 passed; MOCKED transports", "full_scoped_suite_run1": "103 passed, 2 intentionally skipped", "full_scoped_suite_run2": "103 passed, 2 intentionally skipped"},
+  "real_diagnostic": {
+    "receipt_directory": "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/auth_none_owner_compute_workbook",
+    "requests": "One auth_none request per configured host, only after server-key pin match",
+    "akki-vm": {"pin_match": true, "allowed_methods": ["publickey"], "authenticated": false},
+    "akki-vm-ii": {"pin_match": true, "allowed_methods": ["publickey"], "authenticated": false},
+    "password_or_client_key_sent": false,
+    "commands_or_channels_opened": false,
+    "estate_source_data_read": false,
+    "host_or_authentication_policy_changed": false
+  },
+  "interpretation": "Workbook passwords cannot authenticate through the observed publickey-only SSH channel for the configured accounts. This does not identify which client key remains authorized or establish GPU/executor health.",
+  "restoration": "NOT ACHIEVED",
+  "t14": "BLOCKED; 0/1 fresh successful source-output gate",
+  "next_input": "Original signing identity from still-authorized system/approved backup, or existing approved console/break-glass recovery route",
+  "unchanged": "Owner UI/prototypes, sealed auth/hardening modules, application credentials, existing identity-pin configuration, nine-work-package plan"
+}

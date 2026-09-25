@@ -1,0 +1,122 @@
+{
+  "at_utc": "2026-09-25T18:48:36.422103+00:00",
+  "schema_only": true,
+  "rows": [
+    {
+      "row": 1,
+      "empty": false,
+      "recognized_prefix": "hostname",
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 2,
+      "empty": false,
+      "recognized_prefix": "username",
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 3,
+      "empty": false,
+      "recognized_prefix": "password",
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 4,
+      "empty": false,
+      "recognized_prefix": null,
+      "contains_ssh_command": false,
+      "contains_ip": true,
+      "matches_admitted_host_aliases": [
+        "akki-vm-ii"
+      ],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 5,
+      "empty": true,
+      "recognized_prefix": null,
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": false
+    },
+    {
+      "row": 6,
+      "empty": true,
+      "recognized_prefix": null,
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": false
+    },
+    {
+      "row": 7,
+      "empty": false,
+      "recognized_prefix": "hostname",
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 8,
+      "empty": false,
+      "recognized_prefix": "hostname",
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 9,
+      "empty": false,
+      "recognized_prefix": "username",
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 10,
+      "empty": false,
+      "recognized_prefix": "password",
+      "contains_ssh_command": false,
+      "contains_ip": false,
+      "matches_admitted_host_aliases": [],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    },
+    {
+      "row": 11,
+      "empty": false,
+      "recognized_prefix": null,
+      "contains_ssh_command": false,
+      "contains_ip": true,
+      "matches_admitted_host_aliases": [
+        "akki-vm"
+      ],
+      "equals_admitted_username": false,
+      "has_colon_or_equals": true
+    }
+  ],
+  "remote_attempts": 0,
+  "private_values_emitted": false
+}

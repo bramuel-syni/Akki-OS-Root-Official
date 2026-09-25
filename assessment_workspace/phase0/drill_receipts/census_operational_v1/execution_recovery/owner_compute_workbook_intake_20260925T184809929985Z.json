@@ -1,0 +1,24 @@
+{
+  "at_utc": "2026-09-25T18:48:09.929854+00:00",
+  "artifact_name": "Compute Creds.xlsx",
+  "custody_path": "/app/backend/estate_keys/gpu_hosts/Compute_Creds_20260925T184738671152Z.xlsx",
+  "sha256": "397148b327e42be61035b06a0154f3280a495295890df85c5556782d513ebaf9",
+  "bytes": 3919,
+  "mode": "0o600",
+  "workbook_structure": [
+    {
+      "sheet_index": 0,
+      "row_count": 11,
+      "column_count": 1,
+      "recognized_headers": [],
+      "unrecognized_first_row_cells": 1,
+      "formula_cells": 0,
+      "private_key_material_present": false
+    }
+  ],
+  "identical_bytes_to_existing_gpu_workbook": false,
+  "identical_logical_cells_to_existing_gpu_workbook": false,
+  "private_values_emitted": false,
+  "remote_attempts": 0,
+  "initial_inspection_error": "Workbook lacked dimension metadata; bounded recomputation used"
+}

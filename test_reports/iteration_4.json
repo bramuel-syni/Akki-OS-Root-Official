@@ -1,0 +1,56 @@
+{
+  "summary": "PRE-IMPLEMENTATION RED-FIRST backend-only pass completed for execution identity recovery scope. New suite test_execution_identity.py authored and executed with isolated tmp_path fake keys only. Result is intentional RED: missing proposed module plus transport integration gaps.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.census_autonomy.execution_identity",
+        "issue": "Module absent. R01-R05 cannot execute functional identity verification because import fails with ModuleNotFoundError.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.census_autonomy.remote_dispatch._connect",
+        "issue": "Does not verify identity before SSHClient construction and still uses key_filename instead of verified pkey object.",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "services.census_autonomy.remote_dispatch.execute_source",
+        "issue": "Identity-refusal path does not emit identity-specific blocked reason_code (returns AKKI_EXECUTION_CONNECTION_NOT_VERIFIED).",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_execution_identity.py",
+    "/app/test_reports/pytest/pytest_execution_identity_red.xml",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/RED_execution_identity_pytest.log",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/pytest_execution_identity_red.xml"
+  ],
+  "action_items": [
+    "Implement services.census_autonomy.execution_identity with IdentityVerificationError(reason_code) and verify_identity(config)->paramiko.PKey enforcing receipt/path/hash/fingerprint and strict key-file checks.",
+    "Compose execution_identity in remote_dispatch._connect before SSHClient creation; pass pkey (not key_filename/password), keep RejectPolicy + explicit known_hosts + allow_agent/look_for_keys false.",
+    "Update execute_source transport banking to preserve identity reason_code and blocked outcome without attempting network progress."
+  ],
+  "critical_code_review_comments": [
+    "Current _connect key auth path still accepts key path substitution risk because it passes filesystem path directly to paramiko (key_filename) without admitted-identity attestation.",
+    "Current blocked reason taxonomy collapses identity failures into generic connection-not-verified, reducing RCA fidelity for recovery operations."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_execution_identity.py",
+    "/app/test_reports/iteration_4.json"
+  ],
+  "success_rate": {
+    "backend": "7.7% (1/13 passed; intentional RED-first)",
+    "frontend": "N/A (skipped by request)"
+  },
+  "seed_data_creation": "None. TEST-ONLY fake SSH keys generated under pytest tmp_path only.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Run command used: PYTHONPATH=/app/backend/vendored/extraction_akki/backend pytest /app/backend/tests/census_operational/test_execution_identity.py -v --tb=short --junitxml=/app/test_reports/pytest/pytest_execution_identity_red.xml. RED evidence banked at /app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/. Preserve existing prior suites; no production key/host contact occurred.",
+  "rca of the issue": "Primary RED cause is expected pre-implementation absence of services.census_autonomy.execution_identity. Additional RED confirms current remote_dispatch path is not yet identity-attested: no verify_identity pre-check, key_filename path-based auth still used, and blocked reason_code remains connection-generic instead of identity-specific. Mitigation: implement proposed module and wire into _connect/execute_source exactly per EXECUTION_RECOVERY R01-R08. NOTE: transport and keys in this run are MOCKED only."
+}

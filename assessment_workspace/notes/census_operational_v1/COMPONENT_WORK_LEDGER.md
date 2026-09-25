@@ -1,8 +1,23 @@
 # Component-led work ledger — current scope and next links
 
+**Latest compute recovery checkpoint18:57Z:** owner GPU workbook is secured and matched to existing host/user pairs. Fresh pinned `auth_none` queries: both server pins MATCH, both accounts advertise publickey only, neither authenticated. Passwords NOT attempted; workbook contains no original private key. Additive operational diagnostic + exclusive receipt runner verified by23 MOCKED tests; full census scope103 passed/2 intentionally skipped twice. Two REAL method-query receipts banked separately. This confirms the recovery dependency, not connection restoration. Mtafiti fresh output/T14 remains0/1. Need original key from authorized system/backup or approved console route. Details `EXECUTION_RECOVERY.md`; no UI changes, no new component-completion percentage.
+
 Owner request: "before you continue, are you able to show which component you are tieing up, eg solva? mtaFITI?, ETC".
 
 This is a component ownership/status map, NOT a claim that every listed component is already integrated or verified. No new execution/recovery or application changes were made while answering. Report work through this ledger and progress updates; do not create a replacement dashboard or change the owner prototypes.
+
+## Current continuation — 2026-09-25 (supersedes the historical no-change checkpoint)
+
+Owner reaffirmed the original plan; current work remains compute identity → Census Autonomy → Mtafiti evidence → OS/DAP consumers.
+
+|Component / work item|Exact link advanced|Verified / acceptance|Still open|
+|---|---|---|---|
+|Akki compute — COMPUTE-CENSUS-IDENTITY|Banked admitted identity receipt → actual private-key verification → exact pkey used by census transport|R01–R08 **8/8 safeguard conditions**, 82 scoped tests twice; private-key mismatch stops before SSH; no password fallback or new key. Source: `execution_identity.py` + additive `remote_dispatch.py`; anchors SO §4.1, CP-CENSUS MUST DO 4 / T07.|Actual host access **BLOCKED**: current key differs from admitted August28/September22 pin. Restore admitted key/authorized recovery channel; hardening cannot install without authenticated recovery access.|
+|Census Autonomy — CENSUS-REFUSAL|Authenticated commission → existing queue/executor → typed identity refusal → durable result and idempotent replay|Real API run `cr-809561ad5643`, two `IDENTITY_PIN_MISMATCH` transport records; no source read. Existing sealed result writer reused. T08/T10 regression passes.|T14 **0/1**: no newly successful Akki source outcome. Remote worker/connector custody still unverified.|
+|Mtafiti — MTA-CENSUS-EVIDENCE|Same canonical receipt-class asset writer and tenant projections|Prior retained-record/regression evidence remains valid. No new source-result asset fabricated by refusal drill.|Fresh output → registration → durable OS/DAP result remains partial; no claim of full profiling/quality/semantics.|
+|OS/DAP — ACTION-TRACE|Original markup → source-hashed event-site inventory → component/journey reconciliation|`PROTOTYPE_ACTION_INVENTORY.json`: 817 OS +71 DAP sites, 888 unique IDs; original DOM/HTML/application UI unchanged.|Event-site inventory is NOT a journey denominator. Component/Canon/writer/test joins remain in progress. Whole-platform completion still NOT YET MEASURED.|
+
+Full scope, filenames, test levels, local-vs-live distinctions and remaining recovery exit: `EXECUTION_RECOVERY.md`. Unit transports are **MOCKED**; persisted API refusal is real, but is not successful execution.
 
 ## Current actual work
 

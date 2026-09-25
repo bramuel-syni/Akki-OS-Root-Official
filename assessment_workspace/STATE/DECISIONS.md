@@ -1,5 +1,11 @@
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+## Current owner continuation — 2026-09-25 · census operational recovery
+
+Owner verbatim: "Go ahead - dont change anything in your initial plan, mine was just to see how your plan ties up the requirements. Primary objective is to ensure requirements are met but they work. Akki OS and DAP have to be functional and deliver their promise". Latest confirmation: "You can pick it up".
+
+The nine-work-package plan and original prototype architecture remain unchanged. Named-component reporting is mandatory, not a redesign request. Local recovery investigation establishes current/admitted GPU key fingerprint mismatch, not remote authorized_keys contents or replacement causality. Findings and tests-first R01–R08 criteria banked at `notes/census_operational_v1/EXECUTION_RECOVERY.md`. No live source read, new key, password attempt or host change in this investigation. T14 remains blocked. Additive census dispatch guard protects admitted execution identity; original sealed auth/hardening bodies remain untouched. Credential restoration is distinct from this guard's completion. Historical pending-approval status is superseded by the continuation above.
+
 ## 2026-09-25 — CP-CENSUS-OPERATIONAL-V1 owner authorization (current)
 
 ### Current correction and verified checkpoint
