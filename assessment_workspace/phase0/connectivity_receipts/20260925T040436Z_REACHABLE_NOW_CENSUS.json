@@ -1,0 +1,130 @@
+{
+  "receipt_kind": "REACHABLE_NOW_CENSUS",
+  "at_utc": "20260925T040436Z",
+  "posture": "Canon-4 \u00a75.1 exhaustive-across-reachable + Doc-9 A5.4 first-class unmeasured",
+  "connected_surfaces": [
+    {
+      "host": "159.138.173.58",
+      "label": "Razuna/Newsvault",
+      "databases": [
+        {
+          "database": "razuna",
+          "table_count": 82,
+          "row_count_est": 1341823,
+          "column_count": 951
+        },
+        {
+          "database": "news_vault",
+          "table_count": 30,
+          "row_count_est": 856820,
+          "column_count": 188
+        }
+      ],
+      "status": "CONNECTED",
+      "totals": {
+        "databases": 2,
+        "tables": 112,
+        "columns": 1139,
+        "rows_est": 2198643
+      },
+      "column_role_signals": {
+        "password": 16,
+        "name_person": 41,
+        "email": 25,
+        "geo": 3,
+        "timestamp": 113,
+        "address": 12,
+        "phone": 6,
+        "ip": 1,
+        "amount": 2
+      },
+      "tables_without_timestamp": 60,
+      "top_tables_by_rows": [
+        {
+          "db": "news_vault",
+          "table": "audits",
+          "rows_est": 481349
+        },
+        {
+          "db": "razuna",
+          "table": "raz1_videos",
+          "rows_est": 478938
+        },
+        {
+          "db": "razuna",
+          "table": "raz1_log_assets",
+          "rows_est": 282035
+        },
+        {
+          "db": "news_vault",
+          "table": "stories",
+          "rows_est": 233527
+        },
+        {
+          "db": "razuna",
+          "table": "raz1_folders_groups",
+          "rows_est": 145684
+        },
+        {
+          "db": "news_vault",
+          "table": "uploads",
+          "rows_est": 137946
+        },
+        {
+          "db": "razuna",
+          "table": "raz1_log_search",
+          "rows_est": 107138
+        },
+        {
+          "db": "razuna",
+          "table": "raz1_videos_text",
+          "rows_est": 100620
+        },
+        {
+          "db": "razuna",
+          "table": "raz1_log_users",
+          "rows_est": 45494
+        },
+        {
+          "db": "razuna",
+          "table": "raz1_folders",
+          "rows_est": 41355
+        }
+      ]
+    },
+    {
+      "surface": "NAS //10.10.55.55/OFFAIRRECS/Record via JUMP CIFS mount",
+      "status": "CONNECTED",
+      "df": "//10.10.55.55/OFFAIRRECS/Record 53696024735744 47314671243264 6381353492480  89% /mnt/nfs-share",
+      "channel_dirs": "16",
+      "note": "structural census already banked: CENSUS-3-E 20260925T021101Z (47.3TB, 16 channels)"
+    }
+  ],
+  "unmeasured_register": [
+    {
+      "surface": "USSD 110.238.76.159 + WEEGO 159.138.162.146",
+      "reason": "TCP open but MySQL auth DENIED for bramuel@current-source-IP (credential rotated / grant not for this IP)",
+      "class": "credential"
+    },
+    {
+      "surface": "VIUSASA 203.123.86.10, MICROSERVICES 159.138.164.93, CD 159.138.164.124, visitors 110.238.75.83, Shikisha 203.123.83.144",
+      "reason": "TCP timeout \u2014 security-group does not allow this pod's ephemeral egress IP 35.193.209.116",
+      "class": "network_acl"
+    },
+    {
+      "surface": "citizen_digital 159.138.164.103 (Item-3 host)",
+      "reason": "TCP timeout via pod; SG not open for source IP",
+      "class": "network_acl"
+    },
+    {
+      "surface": "GPU hosts akki-vm / akki-vm-ii",
+      "reason": "SSH publickey-only; our key not authorized; password refused",
+      "class": "host_auth"
+    },
+    {
+      "surface": "Huawei OBS (106 buckets)",
+      "reason": "no OBS credentials present in this pod env; content also IAM-gated (GetObject 403 on 74/106)",
+      "class": "credential+iam"
+    }
+  ]
+}
