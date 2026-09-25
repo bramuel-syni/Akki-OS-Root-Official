@@ -1,0 +1,186 @@
+{
+  "receipt_kind": "NAS_CONTENT_CENSUS",
+  "wave_id": "CENSUS-3-E",
+  "at_utc": "20260925T021101Z",
+  "access_path": "existing CIFS mount on JUMP bastion \u00b7 //10.10.55.55/OFFAIRRECS/Record -> /mnt/nfs-share (username=bramuel)",
+  "df_raw": "//10.10.55.55/OFFAIRRECS/Record 53696024735744 47302744875008 6393279860736  89% /mnt/nfs-share",
+  "content_kind": "off-air broadcast recording \u00b7 16 channels \u00b7 YYYY_MM_DD day folders \u00b7 5-minute .mp4 segments (channelNN_YYYY_MM_DD_HH_MM_SS.mp4)",
+  "channels": [
+    {
+      "channel": "channel01",
+      "day_dir_count": 328,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 4931879091,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "channel02",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 4931968100,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "channel03",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359787111,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "channel04",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 61,
+      "sampled_day_bytes": 1337843942,
+      "sampled_day_ext_hist": "     61 mp4"
+    },
+    {
+      "channel": "channel05",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359780002,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "channel06",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 61,
+      "sampled_day_bytes": 1337849264,
+      "sampled_day_ext_hist": "     61 mp4"
+    },
+    {
+      "channel": "channel07",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 61,
+      "sampled_day_bytes": 1337851470,
+      "sampled_day_ext_hist": "     61 mp4"
+    },
+    {
+      "channel": "channel08",
+      "day_dir_count": 328,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359770111,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "Channel09",
+      "day_dir_count": 328,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359780729,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "Channel10",
+      "day_dir_count": 328,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359777419,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "Channel11",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 61,
+      "sampled_day_bytes": 1337874146,
+      "sampled_day_ext_hist": "     61 mp4"
+    },
+    {
+      "channel": "Channel12",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359745506,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "Channel13",
+      "day_dir_count": 143,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359777688,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "Channel14",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359769532,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "Channel15",
+      "day_dir_count": 329,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 1359744333,
+      "sampled_day_ext_hist": "     62 mp4"
+    },
+    {
+      "channel": "channel16",
+      "day_dir_count": 328,
+      "date_min": "2025_11_01",
+      "date_max": "2026_09_25",
+      "sampled_day": "2026_09_25",
+      "sampled_day_mp4_count": 62,
+      "sampled_day_bytes": 4931942467,
+      "sampled_day_ext_hist": "     62 mp4"
+    }
+  ],
+  "rollup": {
+    "channel_count": 16,
+    "total_day_dirs": 5073,
+    "date_range_min": "2025_11_01",
+    "date_range_max": "2026_09_25",
+    "estimated_total_bytes_from_daily_sample": 10387849559934,
+    "estimated_total_tb_from_daily_sample": 9.45,
+    "authoritative_used_from_df": "//10.10.55.55/OFFAIRRECS/Record 53696024735744 47302744875008 6393279860736  89% /mnt/nfs-share",
+    "authoritative_used_bytes": 47302744875008,
+    "authoritative_used_tb": 47.3,
+    "authoritative_used_tib": 43.02,
+    "sampled_day_is_in_progress": true,
+    "daily_sample_note": "Sampled day 2026_09_25 is TODAY and still recording (~62/288 segments), so estimated_total_from_daily_sample is a large UNDERSTATE. Use authoritative_used_* (df) as the real size: ~47.3 TB (~43 TiB)."
+  },
+  "discipline": "metadata-only \u00b7 no file bytes downloaded \u00b7 bounded (one sampled day per channel for size; day-dir counts + date ranges measured fully)",
+  "honest_gap": "Per-file du over 44TB deferred (bounded). df 'Used' = ~47.3 TB is authoritative. The daily-sample extrapolation is invalid this pass because the sampled day was in-progress; ignore it in favour of df."
+}
