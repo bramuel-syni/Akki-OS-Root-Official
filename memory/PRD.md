@@ -52,6 +52,12 @@ No application features were added or bugs fixed. Existing gaps remain intention
 
 ## Priorities
 
+### Follow-up: OS/DAP readiness plan requested (2026-09-25)
+
+Owner requested the report in chat or as a download and an operational-readiness plan. The existing `/api/deliverables/{filename}` route only allowlists older Chunk-4 snapshots; no unverified download link was supplied and the route was not changed. Report findings are presented in chat.
+
+Proposed plan banked at `assessment_workspace/notes/canon_code_audit_20260925/OS_DAP_READINESS_PLAN.md`. It is **not approval to start implementation** and does not claim readiness. Sequence: close readiness-critical evidence map → shared identity/record boundaries → real Akki-owned census/registry → request-to-result vertical slice → OS/DAP surface completion in parallel → real skill/training services where enabled → operational acceptance. All applicable mandatory Canon controls remain release gates; optional functions may be unavailable only where permitted. No speculative GPU changes or new pod extraction path. No reliable calendar/cost estimate before the remaining paths are traced.
+
 - P0: Complete remaining Canon/amendment/Master Requirements Registry row mapping and authority reconciliation. Trace remaining Solva, memory, rule service, budget/model admission, universal handoffs and all UI paths. Do not relabel unreviewed areas “not built.” See report §13.
 - P1: Only after the audit, diagnose an evidenced GPU identity issue through Akki's existing pipeline; user authorized recovery, not speculative host changes. Then correct existing autonomous executor/descriptor and registry/portal joins against approved scope—no competing pod extraction path.
 - P2: Actual content-quality/FK/dedup measures, language-cognition corpus/calibration/MOAC/admission, source-aligned regression suites and responsive defects. DQ-25/HF/location blockers from old notes are historical until freshly evidenced.
