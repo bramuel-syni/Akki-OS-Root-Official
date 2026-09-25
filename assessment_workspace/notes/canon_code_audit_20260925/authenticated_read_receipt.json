@@ -1,0 +1,111 @@
+{
+  "at_utc": "2026-09-25T11:04:30.693709+00:00",
+  "method": "existing seeded operator login, then read-only external preview GET; no jobs/approvals/skills submitted",
+  "login_status": "200",
+  "account": "demo.operator@demo.rms.example.com",
+  "responses": [
+    {
+      "path": "/api/portal/census/records",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "3ea313e4e55fba1153400e9315f43ed3e072ffd22b20dceebe946fbdc2b10fb0",
+      "saved": "auth_get_00.json",
+      "top_level_keys": [
+        "intro_copy",
+        "back_link_copy",
+        "records",
+        "count",
+        "authority",
+        "principal_id"
+      ],
+      "census_numbers": [
+        1,
+        2,
+        3
+      ],
+      "records_count": 3
+    },
+    {
+      "path": "/api/portal/census/records/4",
+      "http_status": "404",
+      "curl_exit": 0,
+      "body_sha256": "b1be2f0498860909075085564ab4d8ce055ef7279cbc8c994e62e2d227b2febe",
+      "saved": "auth_get_01.json",
+      "top_level_keys": [
+        "detail"
+      ]
+    },
+    {
+      "path": "/api/portal/requests",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "fc3903ba669c6effe5b0b68729dfa58d7f6c56c0e1477ad16d70b5dd53fdd512",
+      "saved": "auth_get_02.json",
+      "top_level_keys": [
+        "principal_id",
+        "rows",
+        "count",
+        "authority"
+      ],
+      "rows_count": 0
+    },
+    {
+      "path": "/api/portal/entitlement/licence",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "f574895c788c2d3937c9b4597b153c3d803cc87e42eef586bc0ef32fd6e7518b",
+      "saved": "auth_get_03.json",
+      "top_level_keys": [
+        "principal_id",
+        "licence",
+        "authority"
+      ],
+      "licence": null
+    },
+    {
+      "path": "/api/portal/entitlement/allowance",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "222d582d47470aaa1ce2458c1677645136e83a206e57acdc1fb9e9f237ed02d7",
+      "saved": "auth_get_04.json",
+      "top_level_keys": [
+        "principal_id",
+        "allowance_state",
+        "authority"
+      ],
+      "allowance_state": {
+        "licence_terms_id": "stub-6ab56dd48894abb269135ca2",
+        "period_iso": "2026-09",
+        "credits_debited": 0,
+        "credits_allowance": 0,
+        "credits_remaining": 0
+      }
+    },
+    {
+      "path": "/api/portal/entitlement/badges",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "5cfc3a76007eb6a60b649467cbfe6819e0afd609221f994ad2c2af7bc363fb44",
+      "saved": "auth_get_05.json",
+      "top_level_keys": [
+        "principal_id",
+        "badges",
+        "count",
+        "authority"
+      ]
+    },
+    {
+      "path": "/api/dap/buildskill/provisioning-records",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "35117a7eb2657c0ec813dc886ae9551615d1050f7e483107e05897c858c8f8fe",
+      "saved": "auth_get_06.json",
+      "top_level_keys": [
+        "records",
+        "count"
+      ],
+      "census_numbers": [],
+      "records_count": 0
+    }
+  ]
+}

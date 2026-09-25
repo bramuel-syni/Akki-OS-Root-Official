@@ -1,0 +1,146 @@
+{
+  "at_utc": "2026-09-25T10:53:43.059371+00:00",
+  "method": "external preview curl GET; no estate probe or extraction",
+  "responses": [
+    {
+      "method": "GET",
+      "path": "/api/",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "a5759911f3c834348667ca417f6c8bb4484b58f9af27e91e7c95b208e43761fa",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_00.json",
+      "top_level_keys": [
+        "message"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/openapi.json",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "7b8aff21ba7d6a4342bd7206ecd3299fe9e5d742c1022edfcd5465153b38fe70",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_01.json",
+      "top_level_keys": [
+        "openapi",
+        "info",
+        "paths",
+        "components"
+      ],
+      "path_count": 215,
+      "operation_count": 228
+    },
+    {
+      "method": "GET",
+      "path": "/api/deliverables",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "5a38c22a67ec4a4b3677e566be6b7efb704f804bb4eacb25bde4c675deaa824a",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_02.json",
+      "top_level_keys": [
+        "snapshot_commit",
+        "snapshot_source",
+        "items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/compute/estate",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "3ef2fcd307e65e96685e746020966a1bfc15b177ed9f9fc1e895c534e1294c03",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_03.json",
+      "top_level_keys": [
+        "hosts",
+        "rollup",
+        "reason"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/registry/facts",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "927c1df5652a4d8e1d3f6179d8c7fe7e3602dca15632b3e68640b49b32b8bd06",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_04.json",
+      "top_level_keys": [
+        "data_sources",
+        "compute",
+        "models",
+        "provenance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/census/latest",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "bd2eb71bb98af1196c03c774446ca044e9c8effb9316dbec4973cda3fbda023e",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_05.json",
+      "top_level_keys": [
+        "census",
+        "reason"
+      ],
+      "census_id": 4,
+      "rollup": {
+        "cluster_count_reachable_authed": 8,
+        "cluster_count_failed": 0,
+        "database_count": 41,
+        "table_count": 2642,
+        "total_row_count_est": 428786937
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/census/records",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "09db8953228cb208af4d58f565c84915abfc86db02f3f0e154c3ef5ea4d742d9",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_06.json",
+      "top_level_keys": [
+        "records",
+        "reason"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/portal/census/records",
+      "http_status": "401",
+      "curl_exit": 0,
+      "body_sha256": "9387a8959c0f4130fe55b7c141f43bc039871fc8f52c21e74d00717875f4d88c",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_07.json",
+      "top_level_keys": [
+        "reason",
+        "detail"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/portal/requests",
+      "http_status": "401",
+      "curl_exit": 0,
+      "body_sha256": "9387a8959c0f4130fe55b7c141f43bc039871fc8f52c21e74d00717875f4d88c",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_08.json",
+      "top_level_keys": [
+        "reason",
+        "detail"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/canon/rules/dap",
+      "http_status": "200",
+      "curl_exit": 0,
+      "body_sha256": "fed64b1342fe97c18cb59ab24fc0d4c541fc49abd19b3afab27978a2a598a019",
+      "saved": "/app/assessment_workspace/notes/canon_code_audit_20260925/get_09.json",
+      "top_level_keys": [
+        "rule_count",
+        "tier_a_count",
+        "tier_b_count",
+        "tier_a_srr_row_start",
+        "tier_a_srr_row_end",
+        "authority",
+        "rules"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "at_utc": "2026-09-25T11:15:24.943281+00:00",
+  "method": "bibliographic and artifact verification only; NOT application correctness testing",
+  "report_sha256": "e8c936918678e48c0ef2d9fecf6277e096c392b4116efa9f29ab8a09da3ed685",
+  "report_lines": 280,
+  "citations_checked": [
+    {
+      "citation": "C/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt:1-528",
+      "path": "/app/assessment_workspace/canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+      "exists": true,
+      "sha256": "5045336fcb61fd9dc855f266934eb1a3a5b3f53157344c406589a23467b25d09",
+      "line_count": 528,
+      "range_valid": true
+    },
+    {
+      "citation": "C/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+      "path": "/app/assessment_workspace/canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+      "exists": true,
+      "sha256": "3357f408a6797e8a341700396faf972535a3b8e56f000e272e3008900ad07f7b",
+      "line_count": 528
+    },
+    {
+      "citation": "C/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.txt:1-411",
+      "path": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.txt",
+      "exists": true,
+      "sha256": "95fd6a645e3397d1350718b2611e70c3b2bd776465d2eb7d3d408abd908547ae",
+      "line_count": 411,
+      "range_valid": true
+    },
+    {
+      "citation": "C/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt:1-132",
+      "path": "/app/assessment_workspace/canon/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt",
+      "exists": true,
+      "sha256": "ca7f87a34db8dbb18e14e99a3d7a190ee785c7ed5f5764a6736d99b9efd7bb27",
+      "line_count": 132,
+      "range_valid": true
+    },
+    {
+      "citation": "C/drops/20260910/extracted/text/Ratification_Record_v1.txt:1-73",
+      "path": "/app/assessment_workspace/canon/drops/20260910/extracted/text/Ratification_Record_v1.txt",
+      "exists": true,
+      "sha256": "f21daf5f959ee968869bdd8f28b12cb148bac6c6e41f9e907e8a20f9b3df4119",
+      "line_count": 73,
+      "range_valid": true
+    },
+    {
+      "citation": "C/drops/20260914_pull_seam/extracted/The_Pull_Seam.txt:1-123",
+      "path": "/app/assessment_workspace/canon/drops/20260914_pull_seam/extracted/The_Pull_Seam.txt",
+      "exists": true,
+      "sha256": "877a4eac6941351c3c30ebaee6e7b8269467d8944d09dbc8be68e6827e0a69a0",
+      "line_count": 123,
+      "range_valid": true
+    },
+    {
+      "citation": "C/text/Audio_Intelligence_Plane.md:1-432",
+      "path": "/app/assessment_workspace/canon/text/Audio_Intelligence_Plane.md",
+      "exists": true,
+      "sha256": "c8ee75ae756004af5dd68d48b94376f3b9005aaf5ee3f413ed456566d2da2c5e",
+      "line_count": 432,
+      "range_valid": true
+    },
+    {
+      "citation": "F/App.js:1250-1367",
+      "path": "/app/frontend/src/App.js",
+      "exists": true,
+      "sha256": "2a467ee503c406c25bc2da1718b8c30fceae4d4d0540d2d7702342407b05b72e",
+      "line_count": 1368,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/compute_seam/hardening.py:1-331",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/compute_seam/hardening.py",
+      "exists": true,
+      "sha256": "ddd70f6fc1dc1963c8e9f10754559e68a597dc753151b06651025ef5ab212fed",
+      "line_count": 332,
+      "range_valid": true
+    },
+    {
+      "citation": "B/routers/connect_gpu.py:1-63",
+      "path": "/app/backend/vendored/extraction_akki/backend/routers/connect_gpu.py",
+      "exists": true,
+      "sha256": "72c93852dc618cd214284aba77417c01265e03d9605a44f7885c391134c79f0e",
+      "line_count": 64,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/connect/gpu_submit.py:1-458",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/connect/gpu_submit.py",
+      "exists": true,
+      "sha256": "7a2ee3f4dd3043801c146faaa1169d2cec25f527236d66ea04166abdbd86a701",
+      "line_count": 459,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/training_runner/ssh_seam.py:1-240",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training_runner/ssh_seam.py",
+      "exists": true,
+      "sha256": "30472405f51cfdb44a5a32e74ac310884e3883db4c9e3cec0ae20eb649bdc319",
+      "line_count": 616,
+      "range_valid": true
+    },
+    {
+      "citation": "W/phase0/keypair_hardening_receipts/20260828T162822Z_step8_password_scrub_and_final_verify.json:1-22",
+      "path": "/app/assessment_workspace/phase0/keypair_hardening_receipts/20260828T162822Z_step8_password_scrub_and_final_verify.json",
+      "exists": true,
+      "sha256": "523fcc82292dcb95f949a273c40d3c0560d8488f7f9a2cb43c5b871065d06cfd",
+      "line_count": 22,
+      "range_valid": true
+    },
+    {
+      "citation": "W/phase0/gpu_probes/20260922T190000Z_GPU_LANE_REVERIFY_A_TRIPLE_PRIME.json:1-95",
+      "path": "/app/assessment_workspace/phase0/gpu_probes/20260922T190000Z_GPU_LANE_REVERIFY_A_TRIPLE_PRIME.json",
+      "exists": true,
+      "sha256": "be65b9bfa3d45831f591221087ede310aef036e7520b43928f51ba7741bbaf43",
+      "line_count": 95,
+      "range_valid": true
+    },
+    {
+      "citation": "W/phase0/gpu_probes/20260922T010600Z_GPU_LANGID_FULL_SWEEP_LAUNCH.json:1-78",
+      "path": "/app/assessment_workspace/phase0/gpu_probes/20260922T010600Z_GPU_LANGID_FULL_SWEEP_LAUNCH.json",
+      "exists": true,
+      "sha256": "f71a44679d0a62b75c6de853aef0851c041eb18940c5fd213afebba272ae18c4",
+      "line_count": 78,
+      "range_valid": true
+    },
+    {
+      "citation": "W/phase0/training_runner/runs/txttrain_20260831T193455Z_9594859a.json:51-84",
+      "path": "/app/assessment_workspace/phase0/training_runner/runs/txttrain_20260831T193455Z_9594859a.json",
+      "exists": true,
+      "sha256": "cb105224048ec0692fe368fa89ebdb3ed870307500b10c035e0cd5da39e62d35",
+      "line_count": 86,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/compute_estate/estate.py:1-186",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/compute_estate/estate.py",
+      "exists": true,
+      "sha256": "9dca1dc21641864217cea05661f4e5d8b913e4de6f83ba9201239a70c9400c78",
+      "line_count": 187,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/census_autonomy/data_source_adapter.py:1-343",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/data_source_adapter.py",
+      "exists": true,
+      "sha256": "b7c3a1f622c3d2b8cca7ff4d6d0d8c918a331e4de314756dc6c9e5978865b350",
+      "line_count": 344,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/census_engine/router.py:1-218",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/census_engine/router.py",
+      "exists": true,
+      "sha256": "2e779d30147f315f3a7737efb258dcc8b31faedae260b4580a22d8dc33fa17a3",
+      "line_count": 219,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/census_autonomy/engine.py:149-224",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/engine.py",
+      "exists": true,
+      "sha256": "faadf44bcb106eb008cf49a0f901e8fd282720fc82e097eacd7c7cb1a5912cf1",
+      "line_count": 256,
+      "range_valid": true
+    },
+    {
+      "citation": "W/phase0/census/census_0004/manifest.json",
+      "path": "/app/assessment_workspace/phase0/census/census_0004/manifest.json",
+      "exists": true,
+      "sha256": "f5b0f82aa0000cf71896ef2735b15fa1f3e8a704609a65504948e82aee748b74",
+      "line_count": 107
+    },
+    {
+      "citation": "F/components/Registry.jsx:49-98",
+      "path": "/app/frontend/src/components/Registry.jsx",
+      "exists": true,
+      "sha256": "fb5c812311728d59ce237a60e30f543fbd38d488f74682b62def5115e29117e2",
+      "line_count": 1062,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/registry_facts/router.py:1-21",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/registry_facts/router.py",
+      "exists": true,
+      "sha256": "034c28b2d6238a4ed05aeef029f13590a7aaf687180f8ac2d36182e110736bc1",
+      "line_count": 22,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/mtafiti/asset_inventory.py:34-100",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/asset_inventory.py",
+      "exists": true,
+      "sha256": "2c468fe235a89280d0050fcb73ac9bc9efddf5d4fa599f4eb8a068beffc32053",
+      "line_count": 119,
+      "range_valid": true
+    },
+    {
+      "citation": "B/routers/portal_census.py:101-129",
+      "path": "/app/backend/vendored/extraction_akki/backend/routers/portal_census.py",
+      "exists": true,
+      "sha256": "a46fd139011b80e79b691026929709088d63c4cedc20a126e9dd6c05ee9929a8",
+      "line_count": 326,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/mtafiti/census3_registry_hydrator.py:646-670",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census3_registry_hydrator.py",
+      "exists": true,
+      "sha256": "88416a6a00abb08173f8922399161d91e2e97cc598829ba633f275c207240045",
+      "line_count": 1645,
+      "range_valid": true
+    },
+    {
+      "citation": "B/routers/portal_census.py:26-31",
+      "path": "/app/backend/vendored/extraction_akki/backend/routers/portal_census.py",
+      "exists": true,
+      "sha256": "a46fd139011b80e79b691026929709088d63c4cedc20a126e9dd6c05ee9929a8",
+      "line_count": 326,
+      "range_valid": true
+    },
+    {
+      "citation": "F/pages/dap/RequestLifecycle.jsx:201-226",
+      "path": "/app/frontend/src/pages/dap/RequestLifecycle.jsx",
+      "exists": true,
+      "sha256": "2ff4804205e4c38e15d516e19cc63ee386c49e3fa48fa18305f2c052b6718e9b",
+      "line_count": 781,
+      "range_valid": true
+    },
+    {
+      "citation": "B/routers/portal_requests.py:140-177",
+      "path": "/app/backend/vendored/extraction_akki/backend/routers/portal_requests.py",
+      "exists": true,
+      "sha256": "31660668670ddfc35423fa729a77277492aba67a035cabca119a870283ce520d",
+      "line_count": 269,
+      "range_valid": true
+    },
+    {
+      "citation": "B/routers/portal_entitlement.py:59-80",
+      "path": "/app/backend/vendored/extraction_akki/backend/routers/portal_entitlement.py",
+      "exists": true,
+      "sha256": "9a10039248b35c182b2a29c7bdebd17af49b000856ced938cd1657bccde73143",
+      "line_count": 200,
+      "range_valid": true
+    },
+    {
+      "citation": "B/routers/transform_forms.py:51-76",
+      "path": "/app/backend/vendored/extraction_akki/backend/routers/transform_forms.py",
+      "exists": true,
+      "sha256": "7ae5382f5676406450f3c77e525140f08dda70ade5c03d7506e5ee9a95e0b099",
+      "line_count": 125,
+      "range_valid": true
+    },
+    {
+      "citation": "F/pages/dap/BuildSkill.jsx:107-110",
+      "path": "/app/frontend/src/pages/dap/BuildSkill.jsx",
+      "exists": true,
+      "sha256": "799abd79365ba60faa21824b04dc076a0196377b61529e222a1d5a3388b4bb9c",
+      "line_count": 307,
+      "range_valid": true
+    },
+    {
+      "citation": "F/hooks/useBuildSkillProvisioning.js:30-69",
+      "path": "/app/frontend/src/hooks/useBuildSkillProvisioning.js",
+      "exists": true,
+      "sha256": "39a899cb1f7afb90db265957d8906224357b12d3ef84419d937e95e6b46c8673",
+      "line_count": 102,
+      "range_valid": true
+    },
+    {
+      "citation": "F/lib/apiClient.js:45-57",
+      "path": "/app/frontend/src/lib/apiClient.js",
+      "exists": true,
+      "sha256": "2d1f79b80d22fb75d01c62890a09cd3923c43303bd5f17ca8920004af0fe0625",
+      "line_count": 151,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/training_runner/ssh_seam.py:552-565",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training_runner/ssh_seam.py",
+      "exists": true,
+      "sha256": "30472405f51cfdb44a5a32e74ac310884e3883db4c9e3cec0ae20eb649bdc319",
+      "line_count": 616,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/shield_train/pipeline.py:290-350",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/shield_train/pipeline.py",
+      "exists": true,
+      "sha256": "ad959d7eeb79431d1e95f1be2d0557f9731bc0b02b675aaa0027672b6667853c",
+      "line_count": 380,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/shield_train/pipeline.py:123-164",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/shield_train/pipeline.py",
+      "exists": true,
+      "sha256": "ad959d7eeb79431d1e95f1be2d0557f9731bc0b02b675aaa0027672b6667853c",
+      "line_count": 380,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/campaign_infra/production_trainer.py:266-381",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/campaign_infra/production_trainer.py",
+      "exists": true,
+      "sha256": "20b887137460c09a6be10c21d415463a72fdf839356e7c8a729eff1baa74070f",
+      "line_count": 382,
+      "range_valid": true
+    },
+    {
+      "citation": "W/tools/launch_campaign_run.py:97-120",
+      "path": "/app/assessment_workspace/tools/launch_campaign_run.py",
+      "exists": true,
+      "sha256": "32d0bfe99a43ee59e4e6a437272b47376078c701101aa7d835871d0d668ba3ef",
+      "line_count": 178,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/audio_plane_v1/language_cognition_v1.py:401-447",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/language_cognition_v1.py",
+      "exists": true,
+      "sha256": "037a2c3b837dd8b28baad6e8c3f59ca0601d2fc44918ab42b8fbcc70020f78c2",
+      "line_count": 448,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/chokepoint/llm.py",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "exists": true,
+      "sha256": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "line_count": 603
+    },
+    {
+      "citation": "B/services/watch/macho.py:1-178",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/macho.py",
+      "exists": true,
+      "sha256": "821f854e23f284646f3eebcbe638e03f10dea4be1be10f38d8f92f9e0f34bad3",
+      "line_count": 179,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/northena/ledger.py:1-176",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/ledger.py",
+      "exists": true,
+      "sha256": "816ffb91af426945b4a60b41b2f3b3d805233661677d87951bbea58a96cb39ac",
+      "line_count": 177,
+      "range_valid": true
+    },
+    {
+      "citation": "C/text/Akki_Canon_9_Mkondo_Charter.txt:7-29",
+      "path": "/app/assessment_workspace/canon/text/Akki_Canon_9_Mkondo_Charter.txt",
+      "exists": true,
+      "sha256": "87ae70281b4613ebb57606af5718e128ae294406ca4e30a70bbc83480d15b2ac",
+      "line_count": 74,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/targeta/core.py:22-78",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/core.py",
+      "exists": true,
+      "sha256": "39d57f641c29334cbbea743336d91bfaec12b08b0b2a7eeedae062d1c7b898ce",
+      "line_count": 79,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/cif/detection.py:52-112",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cif/detection.py",
+      "exists": true,
+      "sha256": "5f85b329ed9ee937f5a651f56b697ffd90d468b0b47dc39d5c8ec4724b9615a4",
+      "line_count": 113,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/doc0_attributes/tcb.py:26-106",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/doc0_attributes/tcb.py",
+      "exists": true,
+      "sha256": "55ef77bf85e20a32a41cb9ff2f25760ae5d13fe535179479caa58e988f95d0eb",
+      "line_count": 110,
+      "range_valid": true
+    },
+    {
+      "citation": "C/text/Audio_Intelligence_Plane.md:1-432",
+      "path": "/app/assessment_workspace/canon/text/Audio_Intelligence_Plane.md",
+      "exists": true,
+      "sha256": "c8ee75ae756004af5dd68d48b94376f3b9005aaf5ee3f413ed456566d2da2c5e",
+      "line_count": 432,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/audio_plane_v1/language_identifier.py:174-205",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/language_identifier.py",
+      "exists": true,
+      "sha256": "860d82f5fedaa4e7f795264889544312e8240ac442370ed0c8c28f1aea0a2556",
+      "line_count": 206,
+      "range_valid": true
+    },
+    {
+      "citation": "F/pages/dap/DAPLanding.jsx:1-196",
+      "path": "/app/frontend/src/pages/dap/DAPLanding.jsx",
+      "exists": true,
+      "sha256": "e07a06dcbcf88ed47c117a43425ab6df86cfb6664d78bb7a5e3bd4149c0ccd75",
+      "line_count": 196,
+      "range_valid": true
+    },
+    {
+      "citation": "F/components/Registry.jsx:49-98",
+      "path": "/app/frontend/src/components/Registry.jsx",
+      "exists": true,
+      "sha256": "fb5c812311728d59ce237a60e30f543fbd38d488f74682b62def5115e29117e2",
+      "line_count": 1062,
+      "range_valid": true
+    },
+    {
+      "citation": "F/pages/dap/BuildSkill.jsx:107-110",
+      "path": "/app/frontend/src/pages/dap/BuildSkill.jsx",
+      "exists": true,
+      "sha256": "799abd79365ba60faa21824b04dc076a0196377b61529e222a1d5a3388b4bb9c",
+      "line_count": 307,
+      "range_valid": true
+    },
+    {
+      "citation": "F/pages/os/WorkCommission.jsx:27-76",
+      "path": "/app/frontend/src/pages/os/WorkCommission.jsx",
+      "exists": true,
+      "sha256": "ddeda25788edd6bf2331489dc3f3fbf0ec8c70b1d9fcf5d1791c04c52f2b9544",
+      "line_count": 81,
+      "range_valid": true
+    },
+    {
+      "citation": "B/services/training/test_set_seal.py",
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training/test_set_seal.py",
+      "exists": true,
+      "sha256": "713f74bd8ebdaa792e21bab38d87b8881f11da5c019ab76ef52c13019ca88bb8",
+      "line_count": 264
+    }
+  ],
+  "invalid_citations": [],
+  "browser_artifacts": [
+    {
+      "file": "akki-audit-desktop.jpeg",
+      "sha256": "f4a0fa197d70c7182536b2dad46e49d535de74a100e4c42d712cc2136aeed026",
+      "dimensions": [
+        1920,
+        800
+      ]
+    },
+    {
+      "file": "akki-audit-mobile.jpeg",
+      "sha256": "c53c5486d7131f5048a93362d0755ecc0ced4c993c208654fd4b4809b96a183a",
+      "dimensions": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "console_20260925_105707.log",
+      "sha256": "b5f6615d03614f0c658515f3afc0872a95156dfa6fb986d9eea88e62f09fee52"
+    }
+  ],
+  "coordinate": "editor-visible source lines including terminal empty line; shorthand references not mechanically resolved"
+}
