@@ -1,0 +1,14 @@
+{
+  "census_run_id": "cr-a885c759f7f9",
+  "tenant_id": "track4-census_three_waves",
+  "completed_at_utc": "20260925T021740Z",
+  "payload": {
+    "trigger": "on_demand_api",
+    "connect_source_descriptor": {
+      "job_kind": "census_three_waves",
+      "descriptor_kind": "track_4_wired_registration",
+      "revive": "continue_from_20260923"
+    },
+    "note": "Commit-A shape gate landed; data_source adapter fold-in + sealed asset_registry_writer wiring in Phase 3 continuation sub-slices per R-106 \u00a73."
+  }
+}
