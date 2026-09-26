@@ -1,5 +1,20 @@
 # Akki — continuity record
 
+## Owner clarification — SSH engineer handoff, not portal support
+
+Owner clarified that the desired error report is what an engineer sees connecting
+directly, not portal502. Prepared `notes/census_operational_v1/
+AISCA_SSH_ENGINEER_HANDOFF.md` from recorded24–25Sep receipts: endpoints ubuntu@
+41.173.184.244/.247 port22 reachable, serverpinsmatched, publickey-only methods;
+earlierOpenSSH `Permission denied (publickey).` and Paramiko `Authentication failed`.
+Latest18:57method-only auth_none probes sent no passwords/keys, returned
+AUTH_NONE_REJECTED; do notmisrepresent asnewclient-keyfailure. Availableclient
+key fingerprintdtmt...differsfromadmittedM3Dr...; notserverhostfingerprints.
+Currentauthorized_keys contents NOT verified. Requestadminconfirmaccount/key
+fingerprints and provide approvedpublickey enrollment; preserveexistingkeys/VMs,
+do notenablepasswords. No newremoteattempt, fix ormessage sent. No SSH-error
+screenshot recovered; do notsubstituteportalimages orfabricateterminaloutput.
+
 ## GPU support-response preparation — no recovery action
 
 Owner asked for exact recorded errors/details to respond to GPU administrator.
