@@ -1,5 +1,11 @@
 # Engineer-to-engineer SSH handoff — recorded evidence, prepared not sent
 
+**26September2026 update:** this historical24–25Sep account is superseded for
+current authentication evidence by `CURRENT_KEY_AUTH_FINDINGS.md`. A newly
+authorized key-authentication-only test bypassed local client identity equality;
+both pinned servers returned `Authentication failed.` at10:34:17–10:34:21UTC.
+No remote command or configuration/key change occurred. No fix is claimed.
+
 ## Subject: SSH authentication failure on Akki GPU VMs — public-key identity recovery
 
 Hi,

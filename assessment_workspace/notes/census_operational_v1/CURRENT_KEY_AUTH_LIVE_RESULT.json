@@ -1,0 +1,45 @@
+{
+  "results": [
+    {
+      "host_alias": "akki-vm",
+      "expected_client_fingerprint": "SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A",
+      "available_client_fingerprint": "SHA256:dtmtQPKdrqRioj5sas2RCucpKpP97F5c0/0tPHTux2o",
+      "client_identity_matches_admission": false,
+      "started_at_utc": "2026-09-26T10:34:17.022078+00:00",
+      "tcp_connected": true,
+      "server_pin_matched": true,
+      "publickey_auth_attempts": 1,
+      "authenticated": false,
+      "remote_channels_opened": 0,
+      "remote_commands": 0,
+      "stage": "publickey_authentication",
+      "status": "AUTHENTICATION_REJECTED",
+      "server_key_fingerprint": "SHA256:bTjxxKDWKHhPUA4Zz/BIU3W4yK/quLUAfJrW6Vgy1Ec",
+      "error_type": "AuthenticationException",
+      "error_message": "Authentication failed.",
+      "finished_at_utc": "2026-09-26T10:34:19.042289+00:00"
+    },
+    {
+      "host_alias": "akki-vm-ii",
+      "expected_client_fingerprint": "SHA256:M3Dre1A1I1ZQFo0FDsfzbWPwn5z+oxmZ02y1eZwFy1A",
+      "available_client_fingerprint": "SHA256:dtmtQPKdrqRioj5sas2RCucpKpP97F5c0/0tPHTux2o",
+      "client_identity_matches_admission": false,
+      "started_at_utc": "2026-09-26T10:34:19.047138+00:00",
+      "tcp_connected": true,
+      "server_pin_matched": true,
+      "publickey_auth_attempts": 1,
+      "authenticated": false,
+      "remote_channels_opened": 0,
+      "remote_commands": 0,
+      "stage": "publickey_authentication",
+      "status": "AUTHENTICATION_REJECTED",
+      "server_key_fingerprint": "SHA256:iWF/y5j573opcH7cPiJYPrubp3OIEPi/xzIftPR9nJ0",
+      "error_type": "AuthenticationException",
+      "error_message": "Authentication failed.",
+      "finished_at_utc": "2026-09-26T10:34:21.049027+00:00"
+    }
+  ],
+  "application_and_env_unchanged": true,
+  "no_keys_generated_or_modified": true,
+  "no_remote_commands_or_channels": true
+}

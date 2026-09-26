@@ -1,5 +1,39 @@
 # Akki — continuity record
 
+## LATEST LIVE DIAGNOSTIC — owner-approved current-key SSH test, 2026-09-26
+
+Owner challenged self-created client-fingerprint guard and explicitly said
+“go ahead” to ONE real key-only auth attempt perGPUhost, bypassONLYlocalclient
+fingerprint equality, retainserverpins; no remotecommands/channels/queries or
+keys/config/VM changes. This limited authorization is now CONSUMED. Do not repeat
+SSH without new authorization and do not remove existing application guards.
+
+Actualresults10:34:17–10:34:21UTC: BOTH akki-vm/akki-vm-ii TCPconnectedtrue,
+serverpinmatchedtrue,1publickeyauth call each, authenticatedfalse,
+AuthenticationException `Authentication failed.`. Offeredclientfingerprintdtmt...
+remainsdifferentfromadmittedM3Dr.... Unlikeolderauth_noneprobe this REALLYoffered
+the existing configured key through `Transport.auth_publickey`. Zero channels/
+commands; app/.env/credentialfiles unchanged; no keys generated/modified.
+
+Conclusion: removing localclient-equality guard alone does NOT restoreSSH.
+Credential/account acceptance remainsunresolved; maystillbeourcustody/configuration,
+notprovedproviderfault. Serverauthorized_keys andGPUhealth remainuninspected.
+Next actualrecovery: authorizedprivate-key restoration or coordinatedapproved
+public-key enrollment, notblindpinreplacement orpasswordenablement.
+
+Assessment-onlyscript `assessment_workspace/tools/current_key_auth_once.py`.
+Durableexclusiveperhostintents/results under `phase0/drill_receipts/
+census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/`.
+CombinedREALreceipt andfindings in `notes/census_operational_v1/
+CURRENT_KEY_AUTH_LIVE_RESULT.json` and `CURRENT_KEY_AUTH_FINDINGS.md`.
+
+Independenttesting_agent report `test_reports/iteration_14.json`: verifiedsource/
+receipts OFFLINE without reconnecting;12passed1skipped becauseenvabsent inrunner.
+Mainfollowup same13tests withexistingdotenv andsocket.connect audit-hookblocked:
+13passed0skipped. TransportunitfixturesMOCKED; twoactualauthresultsREAL.
+Noappfixclaimed. Historicaladminhandofftop now points to freshresult; nosupport
+message sent. Requirementsgapreportwork remainsseparate andunfinished asrecorded.
+
 ## Owner clarification — SSH engineer handoff, not portal support
 
 Owner clarified that the desired error report is what an engineer sees connecting

@@ -1,0 +1,26 @@
+{
+  "scope": "OFFLINE verification of owner-authorized current-key auth diagnostic",
+  "network_calls": "NONE (socket/transport MOCKED in unit tests)",
+  "live_artifacts_reviewed": [
+    "/app/assessment_workspace/notes/census_operational_v1/CURRENT_KEY_AUTH_LIVE_RESULT.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm.intent.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm.result.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm-ii.intent.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm-ii.result.json"
+  ],
+  "source_hashes": {
+    "current_key_auth_once_py": "95507bee3a22505928808111856fc46d22fe82f2465937aeed1f9ff5c2c6ffa7",
+    "current_key_auth_live_result_json": "14f39acf14bd9e368b8996fb774b341ec0032e697d1108e5e585fb96ba60221f",
+    "akki_vm_intent_json": "6c17857201ff8b04d3b203c0414827c72c7016dd98572d19c3f3fa38dbd6fc97",
+    "akki_vm_result_json": "c33b070ce508763feaa225bf14a8b06eda859681b40fa5691476e800d56f5f7d",
+    "akki_vm_ii_intent_json": "91fee92d137c3c1a12bdb12830b03ffd8a431306bd2b3e3dc1bf934e25dd106b",
+    "akki_vm_ii_result_json": "97e4bae1edb55d3fba71c043995259fc7638d911772ff682da12ea2aabbb0f80"
+  },
+  "pytest": {
+    "command": "pytest -v /app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/test_current_key_auth_once_verification.py --tb=short --junitxml=/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/unittest_results.xml",
+    "result": "12 passed, 1 skipped, 0 failed",
+    "junit_xml": "/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/unittest_results.xml"
+  },
+  "skip_note": "One test that re-runs prepare(host) with live env was skipped because AKKI_GPU_HOSTS inventory is not populated in this offline runner shell.",
+  "conclusion": "LIVE receipts are REAL and consistent with owner summary; unit assertions confirm guard bypass is limited to local fingerprint equality while pinned-server verification and single publickey attempt logic remain enforced."
+}

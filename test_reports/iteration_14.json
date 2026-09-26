@@ -1,11 +1,11 @@
 {
-  "summary": "Completed read-only corrective evidence pass for REQ-445..REQ-471 and replaced unsupported NOT_IMPLEMENTED_CONFIRMED conclusions with row-specific evidence statuses.",
+  "summary": "Completed independent OFFLINE diagnostic verification for owner-authorized current-key SSH auth receipts and safety behavior (no live SSH attempt performed).",
   "backend_issues": {
     "critical": [],
     "minor": [
       {
-        "endpoint": "N/A",
-        "issue": "No runtime/API execution performed by contract; evidence is static source/code inspection only."
+        "endpoint": "N/A (offline verification)",
+        "issue": "Live prepare(host) replay test skipped in this shell because AKKI_GPU_HOSTS inventory env is not populated outside the original authorized run context."
       }
     ]
   },
@@ -15,29 +15,40 @@
     "design_issues": []
   },
   "test_report_links": [
-    "/app/assessment_workspace/notes/full_requirements_gap_20260926/correction_445_471.json"
+    "/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/test_current_key_auth_once_verification.py",
+    "/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/unittest_results.xml",
+    "/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/unittest_results_receipt.json",
+    "/app/assessment_workspace/notes/census_operational_v1/CURRENT_KEY_AUTH_LIVE_RESULT.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm.intent.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm.result.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm-ii.intent.json",
+    "/app/assessment_workspace/phase0/drill_receipts/census_operational_v1/execution_recovery/current_key_auth_owner_authorized_v1/akki-vm-ii.result.json"
   ],
   "action_items": [
-    "Review and merge correction_445_471.json into the assessment workflow.",
-    "Add targeted invariants/receipts for SEC-2/3/4/5/6/7, DET-2, FP-3, HR-6.",
-    "Handle TD-1/2/3 and BC-3/4 with documentary or governance-ruling evidence, not invented API gaps."
+    "Do not treat this as a credential fix: authentication with current key still fails on server side (AUTHENTICATION_REJECTED).",
+    "Main agent may optionally run the same offline suite in the exact authorized runtime env (with AKKI_GPU_HOSTS loaded) to unskip the local prepare(host) replay check.",
+    "Investigate credential/custody path (authorized_keys ownership/content/provider-side acceptance), since local fingerprint guard is not the sole blocker."
   ],
   "critical_code_review_comments": [
-    "ReviewerC row family reused unrelated agent-containment/pruning citations for SEC/DET/FP/TD/HR/BC rows; corrected file now cites directly related modules.",
-    "MOAC criteria governance/integrity and acceptance-path non-bypass evidence remain incomplete.",
-    "Trust-domain and disaster-recovery rows include architecture/hardware/governance scope that cannot be closed by backend callable checks alone."
+    "current_key_auth_once.py bypasses only client fingerprint equality and does NOT call execution_identity.verify_identity; it still enforces receipt hash/key-permission loading via _expected_fingerprint + _load_key.",
+    "Pinned server key verification is enforced before auth_publickey, and missing/mismatched pin paths prevent auth attempts.",
+    "Only one publickey attempt is performed per host in the diagnostic, with no remote channels or commands.",
+    "AuthenticationException message handling is allowlisted/sanitized; arbitrary provider strings are not surfaced.",
+    "Intent files are written exclusively before connection/auth and consume authorization on replay/orphan/race conditions without network retry."
   ],
   "updated_files": [
-    "/app/assessment_workspace/notes/full_requirements_gap_20260926/correction_445_471.json",
+    "/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/test_current_key_auth_once_verification.py",
+    "/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/unittest_results.xml",
+    "/app/assessment_workspace/notes/census_operational_v1/current_key_auth_verification/unittest_results_receipt.json",
     "/app/test_reports/iteration_14.json"
   ],
   "success_rate": {
-    "backend": "N/A",
-    "frontend": "N/A"
+    "backend": "92% (12 passed / 13 total, 1 skipped, 0 failed)",
+    "frontend": "N/A (not requested)"
   },
-  "seed_data_creation": "",
+  "seed_data_creation": "None",
   "retest_needed": true,
   "should_main_agent_self_test": true,
-  "context_for_next_testing_agent": "This pass was read-only corrective traceability, not runtime verification. Use correction_445_471.json as authoritative replacement for REQ445..471 and retain documentary-scope handling for TD/BC open rows.",
-  "rca of the issue": "Root cause of bad ReviewerC conclusions: family-wide template reuse from unrelated AC/pruning files plus absence-driven NOT_IMPLEMENTED_CONFIRMED labels. Mitigation applied: per-row source-text anchors + related code surfaces + scoped statuses (EVIDENCED_SCOPED/PARTIAL/UNVERIFIED/EXPLICIT_NONCLAIM)."
+  "context_for_next_testing_agent": "This run is strictly OFFLINE and MOCKED for transport/socket. LIVE receipts are REAL and matched owner summary fields: tcp_connected=true, server_pin_matched=true, publickey_auth_attempts=1, authenticated=false, AuthenticationException('Authentication failed.'), remote_channels_opened=0, remote_commands=0 for both hosts.",
+  "rca of the issue": "RCA from evidence+code path: local app fingerprint guard mismatch (M3Dr... vs dtmt...) was bypassed in this owner-authorized diagnostic, yet auth still failed after successful TCP connect and server pin verification. This shows local guard was not the sole blocker. Remaining failure locus is credential/custody acceptance on server side (e.g., authorized_keys/content/ownership/provider-side acceptance), but this diagnostic does not prove exact server root cause and does not modify credentials or infrastructure."
 }
