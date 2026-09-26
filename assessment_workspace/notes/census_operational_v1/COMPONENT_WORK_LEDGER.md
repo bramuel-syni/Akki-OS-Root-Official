@@ -92,3 +92,26 @@ is banked in `notes/dap_operational_v1/VERIFICATION_REPORT.md`.
 - Tests:146pass/2skip twice plus real API/browser/build, chain+payload verification;
   bank `phase0/drill_receipts/dap_operational_v1/`. No GPU/source queries, licence
   seeds, external execution, account changes or billing usage. User review pending.
+
+## 2026-09-26 enhancement-spec intake — analysis only
+
+Owner uploaded `files (17).zip` and requested thoughts/integration across all
+components.4files SHA-banked; EX1–15 +DQ1–15 +R36–40 +S34 mapped into36review rows
+and18affected component groups. Full report:
+`notes/enhancement_specs_20260926/INTEGRATION_REVIEW.md`.
+
+Incoming registry632doc/rule keys; QA602 misses exactly30EX/DQ rows. Original
+PROPOSED statuses preserved. Mtafiti should own pack-bound record assessment;
+Northena/Work Supervisor should compose EX task contracts/acceptance;
+Targeta/training/MOAC and Solva/output consumers enforce the resulting eligibility.
+Do not create a second registry/ledger writer or put E1 in the data path.
+
+These are proposed integration work items, not landed functions. Unmeasured versus
+four-stratum reconciliation, partial publication, repair/exception precedence,
+S34 sentinel strictness, R37 independence, R39/R40 numeric thresholds, and sealed
+MOAC/class vocabulary require explicit dispositions. Original GPU and runtime
+execution holds remain in force. Code-seam mapping is not an audit of every route.
+
+Separate verification: mechanical inventories/hashes passed; seeded20clause review
+17agree/3uncertain/0disagree. DQ9/EX10/EX7 uncertainties remain banked;16rows not in
+that sample. No app code, Canon ratification, credentials or DB records changed.

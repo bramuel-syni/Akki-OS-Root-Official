@@ -1,5 +1,44 @@
 # Akki — continuity record
 
+## LATEST OWNER SPEC REVIEW — 2026-09-26 (analysis only)
+
+User uploaded `files (17).zip` and asked to ingest enhancement specs, give thoughts,
+and explain integration; clarified **all components**. No application implementation
+was requested in this turn. Downloaded/extracted4files safely, SHA-banked originals
+under `assessment_workspace/custody/owner_drops/enhancement_specs_20260926/`.
+
+Documents: Execution_Standard_v1.docx (EX1–15); Data_Cleanliness_Spec_v1.docx
+(DQ1–15); updated Master Requirements Registry; Security Assurance Promise Set.
+S34 cleanliness is newly added; S33 Content Registry is retained unchanged versus
+SHA-verified20Sep v6. Five rulingsR36–40, with R37 owner-choice and others DEFAULT.
+
+Deliverables: `assessment_workspace/notes/enhancement_specs_20260926/` contains
+ordered DOCX/workbook extracts, DOCUMENT_MANIFEST, REGISTRY_RECONCILIATION,
+CLAUSE_IMPACT.csv (36rows), REVIEW_CONTRACT and INTEGRATION_REVIEW.md (18component
+groups). Incoming632unique(doc,rule) keys versus602QA keys; missing exactly30EX/DQ.
+Build Status619/Legend286/objective coverage stale or unreconciled. Two deck rows
+remain explicitly statement-unrecovered; SFP1–6 cells concatenate later rule text.
+No source corrections or PROPOSED→adopted status promotions were silently applied.
+
+Independent validation `test_reports/iteration_11.json`: rawcounts/hashes/registry
+deltas/36mappedIDs/38anchors verified; seeded20rowsemantic sample17agree,
+3uncertain(DQ9/EX10/EX7),0disagree. Uncertainties preserved;16rows outside sample.
+No runtime testing or appcode changes; no MOCKED APIs; no source/GPU/provider calls.
+Do not claim EX4 technical write-isolation or R37 different-family independence.
+
+Recommended integration: Mtafiti owns deterministic per-record check packs,
+bitmaps/strata/garbage registers; Northena/Work Supervisor own task contracts and
+reconciliation; Targeta/training/MOAC and Solva consume eligibility; existing
+Ledger/Mkondo/identity/custody/retention and prototype consumers carry references.
+Never duplicate authorities or treat Clean as truth, rights, or model admission.
+
+**Next review/build boundary (not new authorization):** settle adoption/status,
+unmeasured-vs-four-strata partition, partial-publication limits, repair/exception
+and sentinel precedence, sample-policy edges/R37, thresholdsR39/R40 and versioned
+MOAC/assertion mappings. Then pin EX-conformant subtask contracts for a named
+source vertical slice on Akki-owned infrastructure. Preserve prior DAP execution
+holds and parkedGPU. Future full-family/media rollout remains prospective.
+
 ## LATEST VERIFIED CONTINUATION — 2026-09-26 DAP control plane
 
 Owner explicitly approved P0 request/work/entitlement + conditional P1 continuation

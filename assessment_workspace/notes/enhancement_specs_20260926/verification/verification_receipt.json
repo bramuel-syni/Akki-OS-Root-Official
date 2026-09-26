@@ -1,0 +1,633 @@
+{
+  "checks": {
+    "owner_archive_members": {
+      "expected_count": 4,
+      "actual_count": 4,
+      "expected_members": [
+        "Data_Cleanliness_Spec_v1.docx",
+        "Execution_Standard_v1.docx",
+        "Master_Requirements_Registry.xlsx",
+        "Security_Assurance_Promise_Set.xlsx"
+      ],
+      "actual_members": [
+        "Data_Cleanliness_Spec_v1.docx",
+        "Execution_Standard_v1.docx",
+        "Master_Requirements_Registry.xlsx",
+        "Security_Assurance_Promise_Set.xlsx"
+      ],
+      "pass": true
+    },
+    "member_hashes": [
+      {
+        "name": "Data_Cleanliness_Spec_v1.docx",
+        "exists": true,
+        "bytes_expected": 18049,
+        "bytes_actual": 18049,
+        "sha_expected": "4acf8665805475ed78f67980b17d8bf1c5b0d1cf383195c85fc202aac40add7b",
+        "sha_actual": "4acf8665805475ed78f67980b17d8bf1c5b0d1cf383195c85fc202aac40add7b"
+      },
+      {
+        "name": "Execution_Standard_v1.docx",
+        "exists": true,
+        "bytes_expected": 15907,
+        "bytes_actual": 15907,
+        "sha_expected": "eb207127c3cb621634de3497c022a98269deba6270d3e13bb604c3330f93bca6",
+        "sha_actual": "eb207127c3cb621634de3497c022a98269deba6270d3e13bb604c3330f93bca6"
+      },
+      {
+        "name": "Master_Requirements_Registry.xlsx",
+        "exists": true,
+        "bytes_expected": 120387,
+        "bytes_actual": 120387,
+        "sha_expected": "2b2f927ac3ad1090f1b790327fc9e5b54793f2b2fb0159ffa8b30edf1ff38f88",
+        "sha_actual": "2b2f927ac3ad1090f1b790327fc9e5b54793f2b2fb0159ffa8b30edf1ff38f88"
+      },
+      {
+        "name": "Security_Assurance_Promise_Set.xlsx",
+        "exists": true,
+        "bytes_expected": 21798,
+        "bytes_actual": 21798,
+        "sha_expected": "6cdbbea18cf7d4371706cd6abb1a3c9d527d7090470ace6463bda3cd697ce0ef",
+        "sha_actual": "6cdbbea18cf7d4371706cd6abb1a3c9d527d7090470ace6463bda3cd697ce0ef"
+      }
+    ],
+    "archive_sha_matches_manifest": {
+      "archive_sha": "274130f649b430f3cddda70a2e73630fbc35c83b4fc377d4f2890a31fe81bcfa",
+      "contract_seed": "274130f649b430f3cddda70a2e73630fbc35c83b4fc377d4f2890a31fe81bcfa",
+      "pass": true
+    },
+    "registry_vs_qa": {
+      "registry_unique_doc_rule_keys": 632,
+      "qa_unique_doc_rule_keys": 602,
+      "missing_count": 30,
+      "missing_keys": [
+        [
+          "data_cleanliness_v1",
+          "DQ-1"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-10"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-11"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-12"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-13"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-14"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-15"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-2"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-3"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-4"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-5"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-6"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-7"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-8"
+        ],
+        [
+          "data_cleanliness_v1",
+          "DQ-9"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-1"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-10"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-11"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-12"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-13"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-14"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-15"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-2"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-3"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-4"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-5"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-6"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-7"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-8"
+        ],
+        [
+          "execution_standard_v1",
+          "EX-9"
+        ]
+      ],
+      "matches_expected_exdq_only": true,
+      "pass": true
+    },
+    "historical_baseline": {
+      "baseline_path": "/app/assessment_workspace/custody/owner_drops/enhancement_specs_20260926/comparison_baselines/Master_Requirements_Registry_v4.xlsx",
+      "baseline_rules_claim": 595,
+      "baseline_sha_claim": "72160287dcc4bddc5b921ab391d020bfda0f19e48dbffd122b70f45b6fead588",
+      "baseline_sha_actual": "72160287dcc4bddc5b921ab391d020bfda0f19e48dbffd122b70f45b6fead588",
+      "pass": true
+    },
+    "delta_counts": {
+      "added": 37,
+      "removed": 0,
+      "changed": 2,
+      "pass": true
+    },
+    "security_delta": {
+      "added_ids": [
+        "S-34"
+      ],
+      "removed_ids": [],
+      "changed_rows": [],
+      "pass": true
+    },
+    "clause_impact_ids": {
+      "row_count": 36,
+      "unique_count": 36,
+      "ids": [
+        "DQ-1",
+        "DQ-10",
+        "DQ-11",
+        "DQ-12",
+        "DQ-13",
+        "DQ-14",
+        "DQ-15",
+        "DQ-2",
+        "DQ-3",
+        "DQ-4",
+        "DQ-5",
+        "DQ-6",
+        "DQ-7",
+        "DQ-8",
+        "DQ-9",
+        "EX-1",
+        "EX-10",
+        "EX-11",
+        "EX-12",
+        "EX-13",
+        "EX-14",
+        "EX-15",
+        "EX-2",
+        "EX-3",
+        "EX-4",
+        "EX-5",
+        "EX-6",
+        "EX-7",
+        "EX-8",
+        "EX-9",
+        "R-36",
+        "R-37",
+        "R-38",
+        "R-39",
+        "R-40",
+        "S-34"
+      ],
+      "pass": true
+    },
+    "cited_paths_exist": {
+      "total_anchors": 38,
+      "missing_paths": [],
+      "pass": true
+    },
+    "sample": {
+      "seed": "274130f649b430f3cddda70a2e73630fbc35c83b4fc377d4f2890a31fe81bcfa",
+      "size": 20,
+      "sampled_ids": [
+        "DQ-10",
+        "DQ-11",
+        "DQ-13",
+        "DQ-14",
+        "DQ-15",
+        "DQ-5",
+        "DQ-6",
+        "DQ-7",
+        "DQ-9",
+        "EX-1",
+        "EX-10",
+        "EX-13",
+        "EX-3",
+        "EX-4",
+        "EX-7",
+        "EX-8",
+        "R-36",
+        "R-37",
+        "R-38",
+        "S-34"
+      ]
+    }
+  },
+  "sampled_rows_with_evidence": [
+    {
+      "id": "DQ-10",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B35",
+      "source_anchor_text": "DQ-10  Stratum assignment is a pure function of the bitmap and the pack. Two runs over the same record with the same pack version assign the same stratum. The pack is versioned; a pack change re-strata the source and the change is receipted.",
+      "assessment": "Existing quality_strata is a carrier not a four-state bitmap classifier",
+      "implementation_required": "Ratify precedence and classify purely from versioned pack and outcomes with change receipts",
+      "code_evidence": [
+        {
+          "anchor": "services/census_canon/stratum_measurement.py:41-59",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/census_canon/stratum_measurement.py",
+          "exists": true,
+          "snippet": "41:@dataclass(frozen=True)\n42:class SourceStratumMeasurement:\n43:    \"\"\"Eight per-stratum dimensions per Canon-4 \u00a74.1 P28 verbatim ordering.\n44:\n45:    Each dimension is a `Measurement | Unmeasured` (CP-C2 union). A stratum\n46:    where nothing has been measured yet is a valid instance \u2014 all eight\n47:    fields are `Unmeasured` with an explanatory reason. Partial strata\n48:    (some measured, some not) are also valid; this is the first-run\n49:    ordinary case per \u00a74.1 P29 ('Unmeasured is a first-class value').\n50:    \"\"\"\n51:\n52:    volume: DimensionValue\n53:    media_types: DimensionValue\n54:    languages: DimensionValue\n55:    era_distribution: DimensionValue\n56:    quality_strata: DimensionValue\n57:    verified_share: DimensionValue\n58:    pii_share: DimensionValue\n59:    licence_share: DimensionValue"
+        }
+      ]
+    },
+    {
+      "id": "DQ-11",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B37",
+      "source_anchor_text": "DQ-11  Every source has a garbage register per pack version: the count and share of each stratum; the list of records per stratum with the checks that placed each; the sentinel list; the duplicate lists by grade; the disagreement list; the repairs applied. It is the artefact of this specification, and every figure on any surface derives from it.",
+      "assessment": "Extended asset writer is explicitly an in-memory thin kernel; not sufficient durable DQ storage",
+      "implementation_required": "Publish protected versioned register artifacts through the existing canonical ownership boundary",
+      "code_evidence": [
+        {
+          "anchor": "services/mtafiti/asset_registry_writer.py:53-78",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/asset_registry_writer.py",
+          "exists": true,
+          "snippet": "53:# --- in-memory registry (thin-kernel) --------------------------------\n54:# NOT a persistence layer.  The registry write path this wave lands is\n55:# the deterministic-idempotent envelope; downstream persistence is a\n56:# later wave's concern.  Keys by asset_ref \u2192 last-written record.\n57:_REGISTRY: Dict[str, AssetRegistryRecord] = {}\n58:\n59:\n60:def _compute_receipt_id(record: AssetRegistryRecord) -> str:\n61:    \"\"\"Deterministic sha256-based receipt id.  Same record \u21d2 same id\n62:    \u21d2 idempotency.\"\"\"\n63:    payload = record.model_dump_json().encode(\"utf-8\")\n64:    return \"receipt_\" + hashlib.sha256(payload).hexdigest()[:24]\n65:\n66:\n67:def write_asset_record(record: AssetRegistryRecord) -> WriteReceipt:\n68:    \"\"\"Canonical write path for the extended asset registry.\n69:\n70:    Append-only (Canon-3 \u00a79.3).  Idempotent by record content.  R-C2\n71:    carrier: receipt.au_3b_defensible defaults to False.\n72:    \"\"\"\n73:    _REGISTRY[record.asset_ref] = record\n74:    return WriteReceipt(\n75:        receipt_id=_compute_receipt_id(record),\n76:        collection=ASSET_REGISTRY_COLLECTION,\n77:        au_3b_defensible=False,\n78:    )"
+        }
+      ]
+    },
+    {
+      "id": "DQ-13",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B39",
+      "source_anchor_text": "DQ-13  Accuracy \u2014 whether a value is true \u2014 is measured only where ground truth exists and is named. Where it does not, the register states accuracy: not measured. Validity, consistency, uniqueness, plausibility and provenance are never presented as accuracy.",
+      "assessment": "Method/population and unmeasured semantics are useful existing foundation",
+      "implementation_required": "Show accuracy not measured absent named ground truth and never relabel cleanliness accuracy",
+      "code_evidence": [
+        {
+          "anchor": "services/census_canon/stratum_measurement.py:7-13",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/census_canon/stratum_measurement.py",
+          "exists": true,
+          "snippet": "7:Each of the eight dimensions carries either a `Measurement` (CP-C2, a\n8:figure with its method + population + full-vs-sampled + census_run_id +\n9:run_date) or an `Unmeasured` (CP-C2, first-class sentinel per \u00a74.1 P29\n10:'A dimension not measured is recorded as unmeasured, never as zero,\n11:absent, or clean.'). The union type makes 'what has not been measured'\n12:explicit at the type level \u2014 a reader cannot mistake an unmeasured\n13:dimension for a measured-zero."
+        }
+      ]
+    },
+    {
+      "id": "DQ-14",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B41",
+      "source_anchor_text": "DQ-14  A training manifest cites only records in Clean or Repairable strata. A Suspect record enters a manifest only with an owner decision receipt naming the rule it failed and the reason it is admitted. A Junk record in a manifest is refused at commission. This is one MOAC criterion: every cited unit carries a passing bitmap at the pack version named in the manifest.  [Targeta; MOAC]",
+      "assessment": "Two fixed six-criterion shapes exist and neither is a per-unit cleanliness gate",
+      "implementation_required": "Versioned additive admission envelope or ratified card version with bitmap and exception receipts",
+      "code_evidence": [
+        {
+          "anchor": "services/training_runner/moac_emitter.py:32-42",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/training_runner/moac_emitter.py",
+          "exists": true,
+          "snippet": "32:CRITERION_NAMES: tuple = (\"M-a\", \"M-b\", \"M-c\", \"M-d\", \"M-e\", \"M-f\")\n33:\n34:\n35:@dataclass(frozen=True)\n36:class CriterionResult:\n37:    name: str\n38:    passed: bool\n39:    measured_value: float\n40:    threshold_note: str\n41:    uncurated_flag: bool = True   # D-7 doctrine - MUST be True to accept.\n42:    mocked: bool = True"
+        },
+        {
+          "anchor": "services/model_admission/ceremony.py:70-95",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/model_admission/ceremony.py",
+          "exists": true,
+          "snippet": "70:def _check_floors(card: ModelAcceptanceCard_v0) -> Optional[str]:\n71:    \"\"\"Return the name of the first criterion whose floor is missed,\n72:    or None if all pass (or no floor on record \u2014 honest gap).\"\"\"\n73:    criteria = {\n74:        \"accuracy_uncurated\": card.accuracy_uncurated,\n75:        \"coverage_strata\": card.coverage_strata,\n76:        \"refusal_behaviour\": card.refusal_behaviour,\n77:        \"provenance_integrity\": card.provenance_integrity,\n78:        \"cost_per_operation\": card.cost_per_operation,\n79:        \"time_to_answer_p95\": card.time_to_answer_p95,\n80:    }\n81:    for name, c in criteria.items():\n82:        # Cost/latency criteria: lower is better; floors are \"at most X\".\n83:        # Others: higher is better; floors are \"at least X\".\n84:        # For the v0 shape we honor a single semantic: measured_value <\n85:        # floor_value \u21d2 fail (higher-is-better default). Cost/latency\n86:        # floor-check inversion is a P1 refinement (owner ruling item).\n87:        if c.floor_value is None:\n88:            continue\n89:        if name in (\"cost_per_operation\", \"time_to_answer_p95\"):\n90:            if c.measured_value > c.floor_value:\n91:                return name\n92:        else:\n93:            if c.measured_value < c.floor_value:\n94:                return name\n95:    return None"
+        }
+      ]
+    },
+    {
+      "id": "DQ-15",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B42",
+      "source_anchor_text": "DQ-15  The same gate applies to any unit cited as fact in an answer: a Junk record is never the anchor of a fact-class claim; a Suspect record anchors at most an inference.  [Doc 4 A2; A5.5]",
+      "assessment": "Current thin class function returns non_factual or utterance without unit-class lookup",
+      "implementation_required": "Resolve grounded unit cleanliness externally and cap class without altering sealed signature silently",
+      "code_evidence": [
+        {
+          "anchor": "services/solva_v2/assertion_boundary.py:21-38",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/solva_v2/assertion_boundary.py",
+          "exists": true,
+          "snippet": "21:def compute_class(load_bearing: LoadBearingSet) -> AssertionClass:\n22:    \"\"\"Canon-4 \u00a723.1 parameterless class-computation.\n23:\n24:    Exactly one parameter \u2014 the load-bearing set.  No confidence, no\n25:    strength, no weight, no evidence, no score.  Return is the\n26:    AssertionClass floor.\n27:\n28:    Thin-kernel implementation: with zero units the class is\n29:    non_factual (Canon-4 \u00a74.1 unmeasured is a first-class value);\n30:    otherwise the floor is utterance (Canon-4 \u00a723 'the weakest\n31:    load-bearing unit sets the ceiling for the whole').  A future\n32:    wave binds this to real unit-class lookup through opaque handles\n33:    per Canon-4 \u00a723 'the floor and the class verdict are read-only;\n34:    Solva reads them, it never sets or relaxes them.'\n35:    \"\"\"\n36:    if not load_bearing.units:\n37:        return AssertionClass.NON_FACTUAL\n38:    return AssertionClass.UTTERANCE"
+        }
+      ]
+    },
+    {
+      "id": "DQ-5",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B25",
+      "source_anchor_text": "DQ-5  Every entity with a natural key in two or more sources is matched and compared field by field where fields are shared. The output is a disagreement list and a disagreement rate per field per source pair. The check records which source disagrees; it does not decide which is right.  [family 5]",
+      "assessment": "Relationship-signal module is a candidate reuse seam not proof of exhaustive joins",
+      "implementation_required": "Match authorized source pairs on governed keys and compare each shared field without choosing truth",
+      "code_evidence": [
+        {
+          "anchor": "services/mtafiti/relationship_signals.py",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/relationship_signals.py",
+          "exists": true,
+          "snippet": "1:\"\"\"Relationship-Signals Detector \u2014 CP6 kernel (name-based scaffold).\n2:\n3:Emits `DetectionSignal` for FK-candidate name matches within a schema:\n4:a column `<name>_id` in table `X` for which a table `<name>` exists in\n5:the same schema \u2192 emit `signal.fk_candidate` with source_ref pointing\n6:to `X.<name>_id \u2192 <name>.id` (candidate \u2014 never a verdict).\n7:\n8:Owner ruling verbatim:\n9:    \"The learned component produces detections, never verdicts.\"\n10:\n11:This is a NAME-BASED scaffold. GPU-embedding relationship signals are\n12:the follow-on when the GPU dispatcher lands (deferred per honest-limit).\n13:\"\"\"\n14:from __future__ import annotations\n15:\n16:import re\n17:from typing import Any, Dict, List\n18:\n19:from contracts.mtafiti_detection_signal import DetectionSignal, EvidenceClass\n20:\n21:\n22:_DETECTOR_VERSION = \"fk-candidate-v0.1\"\n23:\n24:\n25:def detect_relationship_signals(per_table: Dict[str, Dict[str, Any]]) -> List[DetectionSignal]:\n26:    \"\"\"Return DetectionSignal per FK-candidate found in the census.\n27:\n28:    per_table: {\"schema.table\": {columns: [{column_name, ...}, ...]}} \u2014 CP4 census output.\n29:    \"\"\"\n30:    # Build set of table basenames per schema for O(1) lookup.\n31:    tables_by_schema: Dict[str, set] = {}\n32:    for key in per_table:\n33:        sch, tbl = key.split(\".\", 1)\n34:        tables_by_schema.setdefault(sch, set()).add(tbl)\n35:\n36:    signals: List[DetectionSignal] = []\n37:    for key, info in per_table.items():\n38:        sch, tbl = key.split(\".\", 1)\n39:        peer_tables = tables_by_schema.get(sch, set())\n40:        for col in info.get(\"columns\", []):"
+        }
+      ]
+    },
+    {
+      "id": "DQ-6",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B27",
+      "source_anchor_text": "DQ-6  Values outside a physically or logically possible range fail; values beyond a ruled distance from the field's own distribution are flagged, not failed; distribution shift between census runs beyond what growth explains is flagged at the field. Flags are recorded in the bitmap as their own bit.  [family 6]",
+      "assessment": "Measured versus unmeasured carriers exist not this bitmap classifier",
+      "implementation_required": "Separate impossible-value failure from statistical flags and name baseline/window/range rules",
+      "code_evidence": [
+        {
+          "anchor": "services/census_canon/stratum_measurement.py:35-59",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/census_canon/stratum_measurement.py",
+          "exists": true,
+          "snippet": "35:# Union type for per-stratum dimensions \u2014 either a measured figure (with\n36:# method, population, full-vs-sampled, run link) or the first-class\n37:# unmeasured sentinel.\n38:DimensionValue = Union[Measurement, Unmeasured]\n39:\n40:\n41:@dataclass(frozen=True)\n42:class SourceStratumMeasurement:\n43:    \"\"\"Eight per-stratum dimensions per Canon-4 \u00a74.1 P28 verbatim ordering.\n44:\n45:    Each dimension is a `Measurement | Unmeasured` (CP-C2 union). A stratum\n46:    where nothing has been measured yet is a valid instance \u2014 all eight\n47:    fields are `Unmeasured` with an explanatory reason. Partial strata\n48:    (some measured, some not) are also valid; this is the first-run\n49:    ordinary case per \u00a74.1 P29 ('Unmeasured is a first-class value').\n50:    \"\"\"\n51:\n52:    volume: DimensionValue\n53:    media_types: DimensionValue\n54:    languages: DimensionValue\n55:    era_distribution: DimensionValue\n56:    quality_strata: DimensionValue\n57:    verified_share: DimensionValue\n58:    pii_share: DimensionValue\n59:    licence_share: DimensionValue"
+        }
+      ]
+    },
+    {
+      "id": "DQ-7",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B29",
+      "source_anchor_text": "DQ-7  Every record carries its source, its writing pipeline where known, and its write time where known. A record with none of the three is not failed; it is marked provenance-unknown, which caps its stratum at Suspect for any purpose requiring defensibility.  [family 7]",
+      "assessment": "Source identity carriers exist; record writer/time completeness is not established",
+      "implementation_required": "Carry record source pipeline/time availability and apply a purpose-aware provenance cap",
+      "code_evidence": [
+        {
+          "anchor": "services/census_canon/estate_enumerator.py:79-98",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/census_canon/estate_enumerator.py",
+          "exists": true,
+          "snippet": "79:@dataclass(frozen=True)\n80:class EstateTarget:\n81:    \"\"\"A single estate target the orchestrator walks.\n82:\n83:    Carriers (four; frozen; owner-ratified extension is a scope-expansion\n84:    event):\n85:      * ``source_reference`` \u2014 Canon-4 \u00a74 identity carrier (canonical\n86:        reference for the source).\n87:      * ``region`` \u2014 Canon-4 \u00a74 identity carrier.\n88:      * ``feed_identity`` \u2014 Canon-4 \u00a74 identity carrier \u00b7 \u00a75.1 declaration-\n89:        baseline lookup key.\n90:      * ``sample_ref`` \u2014 Optional caller-scoped hint the probe_fn uses to\n91:        select a representative sample file for \u00a74.1 probe measurement.\n92:        `None` when no sample is available for probing (Unmeasured path).\n93:    \"\"\"\n94:\n95:    source_reference: str\n96:    region: str\n97:    feed_identity: str\n98:    sample_ref: Optional[str]"
+        }
+      ]
+    },
+    {
+      "id": "DQ-9",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B34",
+      "source_anchor_text": "DQ-9  A repair is deterministic, named in the pack, and either reversible or applied with the original retained alongside. A repair that requires choosing between values is not a repair; it is a Suspect outcome for a human.",
+      "assessment": "Retention boundary must govern retained originals; no DQ repair engine evidenced",
+      "implementation_required": "Allow named reversible/original-retaining transformations then recheck and receipt versions",
+      "code_evidence": [
+        {
+          "anchor": "services/retention/authorized_deletion.py:69",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/retention/authorized_deletion.py",
+          "exists": true,
+          "snippet": "69:async def execute_authorized_deletion("
+        }
+      ]
+    },
+    {
+      "id": "EX-1",
+      "source_anchor": "Execution_Standard_v1.docx B16",
+      "source_anchor_text": "EX-1  Denominator. The input set is enumerated and its count pinned by hash before the procedure runs. Where the set cannot be enumerated, enumeration is the first subtask and no other subtask starts until it closes. \u201cAll the tables\u201d is not a denominator; a hashed list of tables with its count is.  [field 1]",
+      "assessment": "Generic scope exists but no enforced denominator contract",
+      "implementation_required": "Hash and pin exact member IDs and stable source snapshot before dispatch",
+      "code_evidence": [
+        {
+          "anchor": "services/work_supervisor/job_manifest.py:75-95",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+          "exists": true,
+          "snippet": "75:class JobManifest(BaseModel):\n76:    \"\"\"v0 JobManifest.\n77:\n78:    Registry lookup for `job_kind` happens at parse time (see\n79:    parse_job_manifest). Constructing a JobManifest directly bypasses\n80:    the registry check by design (unit tests may want to construct\n81:    manifests bypassing the registry \u2014 but the wire contract's admission\n82:    entry point is `parse_job_manifest`, which enforces it).\n83:    \"\"\"\n84:    model_config = {\"extra\": \"forbid\"}\n85:\n86:    manifest_version: int = Field(...)\n87:    job_id: str = Field(..., min_length=1)\n88:    job_kind: str = Field(..., min_length=1)\n89:    submitter: str = Field(..., min_length=1)\n90:    submitted_at_utc: str = Field(..., min_length=1)\n91:    scope: Dict[str, Any] = Field(...)\n92:    output_contract: Dict[str, Any] = Field(...)\n93:    depends_on: List[str] = Field(...)\n94:    dispatch_intent: str = Field(...)\n95:    precondition_seals: List[Dict[str, Any]] = Field(...)"
+        }
+      ]
+    },
+    {
+      "id": "EX-10",
+      "source_anchor": "Execution_Standard_v1.docx B27",
+      "source_anchor_text": "EX-10  Refused and unmeasured are outcomes, not failures. A task that reaches every member and records a reason for each one it could not process is complete. A task that reaches every member it could and says nothing about the rest is not.",
+      "assessment": "Per-source refused outcomes exist but are not record-level completeness",
+      "implementation_required": "Separate accounted-for work from processed success and usable output",
+      "code_evidence": [
+        {
+          "anchor": "services/census_autonomy/operational_runner.py:55-85",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/operational_runner.py",
+          "exists": true,
+          "snippet": "55:            outcomes, registry = [], []\n56:            for source in current[\"source_ids\"]:\n57:                if time.time() >= job_deadline:\n58:                    outcome = {\"source_id\": source, \"status\": \"blocked\", \"reason_code\": \"BUDGET_EXHAUSTED\"}\n59:                else:\n60:                    try:\n61:                        value = execute(run_id, tenant, source, admit_hash, job_deadline)\n62:                        outcome = validate_output(value, run_id, tenant, source)\n63:                        if outcome[\"status\"] == \"complete\":\n64:                            registry.append(register_outcome(outcome))\n65:                    except Exception as exc:\n66:                        outcome = {\"source_id\": source, \"status\": \"blocked\", \"reason_code\": \"EXECUTION_NOT_VERIFIED\",\n67:                                   \"error_type\": type(exc).__name__}\n68:                outcomes.append(outcome)\n69:                current = store.get(run_id, tenant) or current\n70:                current[\"outcomes\"] = outcomes\n71:                store.save(current)\n72:            payload = {\"protocol\": PROTOCOL, \"outcomes\": outcomes, \"registry_receipts\": registry,\n73:                       \"lawful_basis_sha256\": admit_hash, \"principal_id\": current[\"principal_id\"]}\n74:            outcome_class = classify_payload(payload)\n75:            # The same sealed census writer owns durable results; the cursor is not a second registry.\n76:            receipt = engine._write_result_receipt(run_id, tenant, payload)\n77:            with receipt.open(\"rb\") as persisted:\n78:                os.fsync(persisted.fileno())\n79:            if json.loads(receipt.read_text())[\"payload\"] != payload:\n80:                raise ValueError(\"Result persistence could not be verified.\")\n81:            current.update(status=\"COMPLETE\" if outcome_class == \"COMPLETE\" else \"REFUSED\",\n82:                           stage=outcome_class.lower(), finished_at=store.now(),\n83:                           proof_ref=f\"census_autonomy_state/results/{receipt.name}\",\n84:                           proof_sha256=hashlib.sha256(receipt.read_bytes()).hexdigest())\n85:            store.save(current)"
+        }
+      ]
+    },
+    {
+      "id": "EX-13",
+      "source_anchor": "Execution_Standard_v1.docx B34",
+      "source_anchor_text": "EX-13  Re-performance is mandatory for: every task whose artefact feeds a decision gate (a training manifest, a census figure that enters the measure, a registry mapping); every task that triggers the velocity detector; and any task the owner names. It is sampled, seeded, for all others.",
+      "assessment": "Decision-gate artifacts need a dedicated reperformance admission precondition",
+      "implementation_required": "Require reperformance for gate inputs velocity triggers and owner-named tasks",
+      "code_evidence": [
+        {
+          "anchor": "services/work_supervisor/job_manifest.py:91-95",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+          "exists": true,
+          "snippet": "91:    scope: Dict[str, Any] = Field(...)\n92:    output_contract: Dict[str, Any] = Field(...)\n93:    depends_on: List[str] = Field(...)\n94:    dispatch_intent: str = Field(...)\n95:    precondition_seals: List[Dict[str, Any]] = Field(...)"
+        }
+      ]
+    },
+    {
+      "id": "EX-3",
+      "source_anchor": "Execution_Standard_v1.docx B18",
+      "source_anchor_text": "EX-3  Artefact. Named, with a schema, one row per member of the denominator. Every row carries the member's identifier and its outcome: processed, refused, or unmeasured, with reason for the latter two. Any summary the task produces is regenerable from the artefact by a stated derivation.  [field 3]",
+      "assessment": "Durable request intent is not one outcome per work member",
+      "implementation_required": "Produce immutable member-level artifacts and deterministic summary derivations",
+      "code_evidence": [
+        {
+          "anchor": "services/northena/portal_work.py:45-70",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/northena/portal_work.py",
+          "exists": true,
+          "snippet": "45:async def submit(db, scope, body):\n46:    command_id = digest([scope[\"tenant_id\"], scope[\"principal_id\"], body.idempotency_key])\n47:    request_id = f\"req-{command_id[:32]}\"\n48:    body_hash = digest(body.model_dump(exclude={\"idempotency_key\"}))\n49:    now = datetime.now(timezone.utc).isoformat()\n50:    state = transition(RequestState.Compose, RequestState.Submitted)\n51:    state = transition(state, RequestState.Routing)\n52:    job = CommissionedJob(job_id=request_id, principal_id=scope[\"principal_id\"],\n53:                          objective=body.objective_text, operation=body.operation,\n54:                          estate_id=scope[\"tenant_id\"], frozen=True, commissioned_at_iso=now)\n55:    payload = {\n56:        \"request_id\": request_id, \"principal_id\": scope[\"principal_id\"],\n57:        \"objective_text\": job.objective,\n58:        \"objective_hash\": hashlib.sha256(job.objective.encode()).hexdigest(),\n59:        \"body_hash\": body_hash, \"units\": body.units, \"operation\": job.operation,\n60:        \"governing_engine\": _OPERATION_TO_ENGINE[job.operation], \"created_at\": now,\n61:        \"lifecycle_state\": state.value, \"reason_code\": \"ADMISSION_UNRESOLVED\",\n62:        \"history\": [\n63:            {\"at\": now, \"state\": \"submitted\", \"event\": \"commissioned\", \"reason_code\": \"\"},\n64:            {\"at\": now, \"state\": \"routing\", \"event\": \"execution_held\", \"reason_code\": \"ADMISSION_UNRESOLVED\"},\n65:        ],\n66:    }\n67:    event = await append_event(db, tenant_id=scope[\"tenant_id\"], run_id=request_id,\n68:                              actor_id=scope[\"principal_id\"], command_id=command_id,\n69:                              event_type=\"dap.request.commissioned\", resource_type=RESOURCE,\n70:                              decision=\"held\", reason_code=\"ADMISSION_UNRESOLVED\", payload=payload)"
+        }
+      ]
+    },
+    {
+      "id": "EX-4",
+      "source_anchor": "Execution_Standard_v1.docx B19",
+      "source_anchor_text": "EX-4  Acceptance script. Executable, written before the procedure runs, held outside the task's write scope so the task cannot edit it. Its first check is the reconciliation (EX-9). Its remaining checks are task-specific and named in the contract. Its output is recorded as evidence.  [field 4]",
+      "assessment": "Precondition seals are reusable but do not establish non-editable tests",
+      "implementation_required": "Pre-pin tests in a separately controlled read-only boundary",
+      "code_evidence": [
+        {
+          "anchor": "services/work_supervisor/job_manifest.py:91-95",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+          "exists": true,
+          "snippet": "91:    scope: Dict[str, Any] = Field(...)\n92:    output_contract: Dict[str, Any] = Field(...)\n93:    depends_on: List[str] = Field(...)\n94:    dispatch_intent: str = Field(...)\n95:    precondition_seals: List[Dict[str, Any]] = Field(...)"
+        }
+      ]
+    },
+    {
+      "id": "EX-7",
+      "source_anchor": "Execution_Standard_v1.docx B23",
+      "source_anchor_text": "EX-7  Every objective card decomposes into subtasks before the first RED test is written. Each subtask carries the six fields. The card's MUST-DO lines map to subtasks; a MUST-DO line with no subtask is a card defect and the card does not pin.  [SO \u00a76.2]",
+      "assessment": "Existing cards need prospective decomposition not retroactive claimed compliance",
+      "implementation_required": "Map each MUST-DO to a six-field subtask before the next RED wave",
+      "code_evidence": [
+        {
+          "anchor": "assessment_workspace/STATE/OBJECTIVES/CP_DAP_OPERATIONAL_V1.md",
+          "parsed": true,
+          "path": "/app/assessment_workspace/STATE/OBJECTIVES/CP_DAP_OPERATIONAL_V1.md",
+          "exists": true,
+          "snippet": "1:# CP-DAP-OPERATIONAL-V1 \u2014 autonomous continuation\n2:\n3:Owner direction verbatim: \"Skip this continue with the rest\", followed by \"going to bed, go autonomous to end?\" after the named-component continuation plan. Proceed independently through the original plan; park external prerequisites rather than request repetitive approvals or fabricate outcomes.\n4:\n5:## Fixed boundaries\n6:\n7:- **Compute recovery is PARKED.** No more AISCA login/console probes, key work or provider outreach in this continuation. T14 remains blocked and is not counted as done.\n8:- Preserve literal owner prototype markup/layout/DOM; bind its actual request, work, history, terms and approval controls. No redesign or replacement dashboard.\n9:- E1 is never the source-data execution path. No estate reads or pod fallback for blocked compute.\n10:- Reuse sealed contracts, lifecycle state transitions, canonical writer/emitter and governing engines through additive composition; sealed body changes are not authorized.\n11:- Persist control-plane records in configured Mongo, with banked assessment evidence. All scoped reads derive identity from existing JWT/account membership; no caller-asserted tenant/approver/grant.\n12:- No invented licence, pricing, allowance, approval, model admission or execution result. Missing authority/configuration remains visible and fail-closed.\n13:\n14:## Named links, in sequence\n15:\n16:1. **Northena + DAP lifecycle + OS/DAP:** frozen request \u2192 durable canonical event/history \u2192 governed state/actions \u2192 execution result/refusal; both products consume the SAME work identifier.\n17:2. **Entitlements/terms/metering:** stored owner-admitted licence/catalogue/rates + Ledger events \u2192 authoritative per-call reads; no cached balance, fake period, fabricated zero or free grant.\n18:3. **OS operational journeys + DAP outputs:** bind original Commission/Tasks/Board/approval/result controls to these records; eliminate callable-skill answer/class pass-through and use an admitted executor or explicit refusal.\n19:4. Continue independent engine integrations where their actual prerequisites are present; record unresolved external/admission dependencies by component, not a fabricated global percentage.\n20:\n21:## Initial inspected facts\n22:\n23:`portal_requests.py` acknowledges submission without a record, returns an empty list/404 detail, and simulates stop/retry without fetching a request. `portal_entitlement.py` returns empty/null stubs and a fixed2026-09/zero allowance. `transform_forms.py` accepts caller `answer_stub` and defaults class to provisioning floor. Existing lifecycle/entitlement contracts and pure guards exist, but persistence/consumer wiring is unfinished. App Mongo metadata inspection found no currently named licence/catalogue/principal/objective/ledger collections; this is a scoped inventory result, not proof all code is absent. Historical contracts include in-memory/DAP commission and legacy Northena assist stubs; do not silently promote them to verified execution.\n24:\n25:## Acceptance set \u2014 tests first\n26:\n27:|ID|Required verification|\n28:|---|---|\n29:|D01|Authenticated, principal/tenant-scoped create/list/detail; anonymous/spoofed/cross-scope reads/actions denied.|\n30:|D02|Submission persists a frozen objective, stable request/work ID, immutable scope/hash and banked event; same-key replay stable, changed-body conflict.|\n31:|D03|Concurrent commands cannot double-approve, fork history or overwrite a terminal; ledger unavailable means no successful unreceipted action.|\n32:|D04|Approvals use recorded authority; approver identity never enters party views; decisions permanent. Unknown authority/classification is not approved.|\n33:|D05|Stop and retry use ACTUAL stored state; request-only stop; retry restricted by existing rules, bounded3, identical objective/units, unexpired approval, all applicable gates rerun.|\n34:|D06|Real engine dispatch is gated; disabled/unadmitted compute/engine/terms produce explicit blocked/refused records, never sample output or pod extraction.|\n35:|D07|Result/retrieval is checksum/receipt/rights gated; report reopen is not rebilled; no client-supplied success/class/answer.|\n36:|D08|OS and DAP expose the same work records, progress/history and permitted actions inside the exact supplied prototypes.|\n37:|D09|Licence/terms/catalogue/allowance read authoritative stored records; absence is unknown/unadmitted, not free/zero; suspended/expired/dial-excluded cases enforce.|\n38:|D10|Usage derives from scoped immutable Ledger events with event-time rates; no invented rates, invoice lines or cached balance.|\n39:|D11|Inputs/controls/errors have unique test IDs; original assets/source hashes unchanged; no desktop/mobile overflow.|\n40:|D12|Repeated tests, reload/persistence/concurrency/negative cases and actual app API/UI flows banked. MOCKED executor tests remain explicitly distinct from live output.|"
+        }
+      ]
+    },
+    {
+      "id": "EX-8",
+      "source_anchor": "Execution_Standard_v1.docx B24",
+      "source_anchor_text": "EX-8  Subtasks are ordered by dependency and the order is stated. A subtask whose denominator depends on another subtask's artefact does not start until that artefact passes acceptance. Enumeration subtasks come first.",
+      "assessment": "Dependency and precondition fields already exist",
+      "implementation_required": "Require accepted upstream artifacts before dependent denominators or work can run",
+      "code_evidence": [
+        {
+          "anchor": "services/work_supervisor/job_manifest.py:92-95",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+          "exists": true,
+          "snippet": "92:    output_contract: Dict[str, Any] = Field(...)\n93:    depends_on: List[str] = Field(...)\n94:    dispatch_intent: str = Field(...)\n95:    precondition_seals: List[Dict[str, Any]] = Field(...)"
+        }
+      ]
+    },
+    {
+      "id": "R-36",
+      "source_anchor": "Execution_Standard_v1.docx B47",
+      "source_anchor_text": "R-36  Detector defaults: spot-check rows 20; velocity fraction one third; re-performance sample 5%, minimum 20; disagreement threshold 2%. DEFAULT-class; revised on evidence by ceremony.",
+      "assessment": "Existing default binding pattern can be reused; new values not enabled here",
+      "implementation_required": "Record defaults and clarify small populations spotcheck-versus-rate semantics and missing estimates",
+      "code_evidence": [
+        {
+          "anchor": "services/rules_service/ceremony.py:48-63",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/ceremony.py",
+          "exists": true,
+          "snippet": "48:# Bound to the ledger constant \u2014 silent divergence forbidden by test.\n49:SYSTEM_ORDINARY_COUNTDOWN_HOURS: Final[int] = (\n50:    _dcc.RULES_SERVICE_COUNTDOWN_SYSTEM_ORDINARY_HOURS\n51:)\n52:SYSTEM_TCB_COUNTDOWN_DAYS: Final[int] = (\n53:    _dcc.RULES_SERVICE_COUNTDOWN_SYSTEM_TCB_DAYS\n54:)\n55:\n56:\n57:# R-3 witness identity source (RATIFIED).\n58:WITNESS_IDENTITY_SOURCE: Final[str] = \"the_watch\"\n59:\n60:\n61:# R-2 second-signatory pending marker (OPEN owner-input).\n62:SECOND_SIGNATORY_ROLE_PENDING_OVERRIDE: Final[str] = \"PENDING-OVERRIDE\"\n63:"
+        }
+      ]
+    },
+    {
+      "id": "R-37",
+      "source_anchor": "Execution_Standard_v1.docx B48",
+      "source_anchor_text": "R-37  Whether re-performance under EX-11 must be a different model family from the first executor. Recommend: yes where available; recorded where not. Owner.",
+      "assessment": "Different model family is recommendation awaiting owner decision not a current proof",
+      "implementation_required": "Record family/version and unavailable-family exception explicitly; no new integration authorized",
+      "code_evidence": [
+        {
+          "anchor": "services/work_supervisor/job_manifest.py:87-95",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+          "exists": true,
+          "snippet": "87:    job_id: str = Field(..., min_length=1)\n88:    job_kind: str = Field(..., min_length=1)\n89:    submitter: str = Field(..., min_length=1)\n90:    submitted_at_utc: str = Field(..., min_length=1)\n91:    scope: Dict[str, Any] = Field(...)\n92:    output_contract: Dict[str, Any] = Field(...)\n93:    depends_on: List[str] = Field(...)\n94:    dispatch_intent: str = Field(...)\n95:    precondition_seals: List[Dict[str, Any]] = Field(...)"
+        }
+      ]
+    },
+    {
+      "id": "R-38",
+      "source_anchor": "Data_Cleanliness_Spec_v1.docx B60",
+      "source_anchor_text": "R-38  Sentinel candidate threshold: share of a field above which a single value is a candidate. Recommend 2% in fields with a role signal of identifier or timestamp; 20% elsewhere. DEFAULT-class.",
+      "assessment": "Proposed2percent/20percent thresholds are not admitted sentinel decisions",
+      "implementation_required": "Version candidate thresholds separately from per-source sentinel confirmations",
+      "code_evidence": [
+        {
+          "anchor": "services/mtafiti/quality_profiler.py:77-112",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/quality_profiler.py",
+          "exists": true,
+          "snippet": "77:def _profile_column_values(values: List[Any], role_names: List[str]) -> Dict[str, Any]:\n78:    \"\"\"Compute aggregate quality signals from a sampled column values list.\n79:\n80:    Returns {null_ratio, distinct_count, sample_n, format_conformance:{role_name: ratio}}.\n81:    Values themselves are NOT retained.\n82:    \"\"\"\n83:    n = len(values)\n84:    if n == 0:\n85:        return {\"null_ratio\": None, \"distinct_count\": 0, \"sample_n\": 0, \"format_conformance\": {}}\n86:    null_n = sum(1 for v in values if v is None)\n87:    non_null = [v for v in values if v is not None]\n88:    distinct = len({str(v) for v in non_null})\n89:    conformance: Dict[str, float] = {}\n90:    for role in role_names:\n91:        rx = _ROLE_TO_REGEX.get(role)\n92:        if rx is None:\n93:            continue\n94:        if not non_null:\n95:            conformance[role] = 0.0\n96:            continue\n97:        hits = 0\n98:        for v in non_null:\n99:            s = v if isinstance(v, str) else str(v)\n100:            m = rx.search(s)\n101:            if m is None:\n102:                continue\n103:            if role == \"role.credit_card\" and not _luhn_ok(m.group(0)):\n104:                continue\n105:            hits += 1\n106:        conformance[role] = hits / len(non_null)\n107:    return {\n108:        \"null_ratio\": null_n / n,\n109:        \"distinct_count\": distinct,\n110:        \"sample_n\": n,\n111:        \"format_conformance\": conformance,\n112:    }"
+        }
+      ]
+    },
+    {
+      "id": "S-34",
+      "source_anchor": "Security_Assurance_Promise_Set.xlsx Security Assurance Set row36",
+      "source_anchor_text": {
+        "row": 36,
+        "values": [
+          "S-34",
+          "DQ-1\u2013DQ-15 \u00b7 Data Cleanliness (data_cleanliness_v1, 26 Sep 2026)",
+          "The platform knows, per record, which checks it passed and which it failed; no figure about cleanliness is shown without its checks; nothing that failed structural validity or carries a sentinel enters training or anchors a fact; and every source's strata reconcile to its record count.",
+          "Document 9 B3/B5 census quality strata \u00b7 Targeta MOAC every-criterion rule \u00b7 Doc 4 A2/A5.5 assertion floor \u00b7 Execution Standard EX-9 reconciliation",
+          "Absent \u2192 new",
+          "R-38 (sentinel threshold), R-39 (fuzzy tolerance), R-40 (media thresholds) DEFAULT-class",
+          "data_cleanliness_v1: DQ-1\u20138 seven check families, deterministic; DQ-10 stratum a pure function of bitmap and pack; DQ-12 register reconciles or is not published; DQ-13 accuracy only against named ground truth; DQ-14 training gate as a MOAC criterion; DQ-15 Junk never anchors a fact",
+          "\u2022 Every bit maps to a named check in a versioned pack\n\u2022 No merge path exists in code; merges are human acts, receipted\n\u2022 Clean + Repairable + Suspect + Junk = record count, per source\n\u2022 A Junk record in a manifest is refused at commission",
+          "\u2022 User can (owner) read the garbage register per source and the checks that placed each record\n\u2022 User can (owner) admit a Suspect record to training only by a recorded decision\n\u2022 User can (auditor) re-derive any stratum from the bitmap and the pack version"
+        ]
+      },
+      "assessment": "New promise is not implemented by merely ingesting the workbook",
+      "implementation_required": "Discharge DQ rules plus custody and reconcile strict sentinel wording with repair/exception semantics",
+      "code_evidence": [
+        {
+          "anchor": "contracts/ledger_v1.py:29-46",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/contracts/ledger_v1.py",
+          "exists": true,
+          "snippet": "29:LEDGER_ROW_FIELDS: tuple[str, ...] = (\n30:    \"seq\",                        # 1: monotonic per-tenant sequence int\n31:    \"prev_hash\",                  # 2: 64-hex sha256 of prior row hash (or 64 zeros at genesis)\n32:    \"hash\",                       # 3: 64-hex sha256(prev_hash || canonical(row))\n33:    \"schema_version\",             # 4: str \u00b7 currently \"v1\"\n34:    \"tenant_id\",                  # 5: OPEN str\n35:    \"run_id\",                     # 6: OPEN str\n36:    \"task_id\",                    # 7: OPEN str\n37:    \"actor_id\",                   # 8: OPEN str\n38:    \"actor_type\",                 # 9: OPEN str \u00b7 e.g. \"principal\", \"service\", \"system\"\n39:    \"event_type\",                 # 10: OPEN str \u00b7 e.g. \"admit\", \"gate\", \"converge\", \"refuse\"\n40:    \"resource_type\",              # 11: OPEN str\n41:    \"resource_id\",                # 12: OPEN str\n42:    \"decision\",                   # 13: OPEN str \u00b7 e.g. \"admitted\", \"refused\", \"converged\"\n43:    \"reason_code\",                # 14: OPEN str \u00b7 refusal-family-registry code or empty\n44:    \"payload_ref\",                # 15: sha256 of the payload document \u00b7 str\n45:    \"at\",                         # 16: dict \u00b7 {\"epoch_s\": int, \"source\": str} \u00b7 reliable time source coupling\n46:    \"break_glass_session_id\",     # 17: OPEN str or None"
+        },
+        {
+          "anchor": "services/solva_v2/assertion_boundary.py:21-38",
+          "parsed": true,
+          "path": "/app/backend/vendored/extraction_akki/backend/services/solva_v2/assertion_boundary.py",
+          "exists": true,
+          "snippet": "21:def compute_class(load_bearing: LoadBearingSet) -> AssertionClass:\n22:    \"\"\"Canon-4 \u00a723.1 parameterless class-computation.\n23:\n24:    Exactly one parameter \u2014 the load-bearing set.  No confidence, no\n25:    strength, no weight, no evidence, no score.  Return is the\n26:    AssertionClass floor.\n27:\n28:    Thin-kernel implementation: with zero units the class is\n29:    non_factual (Canon-4 \u00a74.1 unmeasured is a first-class value);\n30:    otherwise the floor is utterance (Canon-4 \u00a723 'the weakest\n31:    load-bearing unit sets the ceiling for the whole').  A future\n32:    wave binds this to real unit-class lookup through opaque handles\n33:    per Canon-4 \u00a723 'the floor and the class verdict are read-only;\n34:    Solva reads them, it never sets or relaxes them.'\n35:    \"\"\"\n36:    if not load_bearing.units:\n37:        return AssertionClass.NON_FACTUAL\n38:    return AssertionClass.UTTERANCE"
+        }
+      ]
+    }
+  ]
+}

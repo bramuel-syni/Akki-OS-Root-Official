@@ -1,0 +1,740 @@
+{
+  "baseline": "assessment_workspace/custody/owner_drops/enhancement_specs_20260926/comparison_baselines/Master_Requirements_Registry_v4.xlsx",
+  "baseline_sha256": "72160287dcc4bddc5b921ab391d020bfda0f19e48dbffd122b70f45b6fead588",
+  "baseline_warning": "20 September v4 baseline re-fetched from the prior custody manifest URL and SHA-verified. Deltas are relative to that595-row file, not to an unlocated602-row intermediate workbook.",
+  "baseline_rules": 595,
+  "incoming_rules": 632,
+  "incoming_unique_doc_rule_keys": 632,
+  "incoming_qa_rows": 602,
+  "missing_qa_keys": [
+    [
+      "data_cleanliness_v1",
+      "DQ-1"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-10"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-11"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-12"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-13"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-14"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-15"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-2"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-3"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-4"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-5"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-6"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-7"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-8"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-9"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-1"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-10"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-11"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-12"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-13"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-14"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-15"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-2"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-3"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-4"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-5"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-6"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-7"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-8"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-9"
+    ]
+  ],
+  "extra_qa_keys": [],
+  "duplicate_rule_keys": [],
+  "added_since_available_baseline": [
+    {
+      "Rule ID": "DQ-1",
+      "Statement": "Every field parses to its declared type; every formatted field matches its format rule; encodings are valid — a field containing mojibake fails; every foreign key resolves to an existing row. The census foreign-key candidate graph is the input; the check is whether each candidate resolves.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 619
+    },
+    {
+      "Rule ID": "DQ-10",
+      "Statement": "Stratum assignment is a pure function of the bitmap and the pack. Two runs over the same record with the same pack version assign the same stratum. The pack is versioned; a pack change re-strata the source and the change is receipted.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 628
+    },
+    {
+      "Rule ID": "DQ-11",
+      "Statement": "Every source has a garbage register per pack version: the count and share of each stratum; the list of records per stratum with the checks that placed each; the sentinel list; the duplicate lists by grade; the disagreement list; the repairs applied. It is the artefact of this specification, and every figure on any surface derives from it.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 629
+    },
+    {
+      "Rule ID": "DQ-12",
+      "Statement": "The register reconciles: Clean + Repairable + Suspect + Junk = the source's record count, exactly, per pack version. A register that does not reconcile is not published.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 630
+    },
+    {
+      "Rule ID": "DQ-13",
+      "Statement": "Accuracy — whether a value is true — is measured only where ground truth exists and is named. Where it does not, the register states accuracy: not measured. Validity, consistency, uniqueness, plausibility and provenance are never presented as accuracy.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 631
+    },
+    {
+      "Rule ID": "DQ-14",
+      "Statement": "A training manifest cites only records in Clean or Repairable strata. A Suspect record enters a manifest only with an owner decision receipt naming the rule it failed and the reason it is admitted. A Junk record in a manifest is refused at commission. This is one MOAC criterion: every cited unit carries a passing bitmap at the pack version named in the manifest.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 632
+    },
+    {
+      "Rule ID": "DQ-15",
+      "Statement": "The same gate applies to any unit cited as fact in an answer: a Junk record is never the anchor of a fact-class claim; a Suspect record anchors at most an inference.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 633
+    },
+    {
+      "Rule ID": "DQ-2",
+      "Statement": "Every source carries a sentinel list, built from cardinality: a value appearing in a supposedly unique or high-cardinality field at a share above a ruled threshold (R-38) is a sentinel candidate; a candidate becomes a sentinel on the owner's confirmation. A record carrying a sentinel in a field fails that field's check. Sentinels are never silently nulled.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 620
+    },
+    {
+      "Rule ID": "DQ-3",
+      "Statement": "Cross-field rules a record must satisfy: ordered dates; totals equal to their parts; enumerations within their set; values inside the window another field defines. Rules come from the owner interview per source; a learned component may propose candidates from profiling, and a candidate is a rule only on confirmation.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 621
+    },
+    {
+      "Rule ID": "DQ-4",
+      "Statement": "Three grades, each producing a match list with tier and evidence: exact, by row hash; key-based, the same natural key on more than one row; fuzzy, normalised fields within a ruled tolerance (R-39). No grade merges. A merge is a human act recorded with the records it joined and the rule it applied.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 622
+    },
+    {
+      "Rule ID": "DQ-5",
+      "Statement": "Every entity with a natural key in two or more sources is matched and compared field by field where fields are shared. The output is a disagreement list and a disagreement rate per field per source pair. The check records which source disagrees; it does not decide which is right.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 623
+    },
+    {
+      "Rule ID": "DQ-6",
+      "Statement": "Values outside a physically or logically possible range fail; values beyond a ruled distance from the field's own distribution are flagged, not failed; distribution shift between census runs beyond what growth explains is flagged at the field. Flags are recorded in the bitmap as their own bit.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 624
+    },
+    {
+      "Rule ID": "DQ-7",
+      "Statement": "Every record carries its source, its writing pipeline where known, and its write time where known. A record with none of the three is not failed; it is marked provenance-unknown, which caps its stratum at Suspect for any purpose requiring defensibility.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 625
+    },
+    {
+      "Rule ID": "DQ-8",
+      "Statement": "For audio and video objects, the structural family includes: decodability; header duration against payload duration; sample rate against the channel's declared rate; clipping and silence ratio against ruled thresholds (R-40); duplicate detection by acoustic fingerprint as the fuzzy grade of DQ-4. None of these uses a learned model.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 626
+    },
+    {
+      "Rule ID": "DQ-9",
+      "Statement": "A repair is deterministic, named in the pack, and either reversible or applied with the original retained alongside. A repair that requires choosing between values is not a repair; it is a Suspect outcome for a human.",
+      "Objective": "O22 Data Cleanliness",
+      "Promise / Source Document": "data_cleanliness_v1",
+      "Doc": "data_cleanliness_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O22 Data Cleanliness",
+      "Source (file:line)": "Data_Cleanliness_Spec_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 627
+    },
+    {
+      "Rule ID": "EX-1",
+      "Statement": "Denominator. The input set is enumerated and its count pinned by hash before the procedure runs. Where the set cannot be enumerated, enumeration is the first subtask and no other subtask starts until it closes. “All the tables” is not a denominator; a hashed list of tables with its count is.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 604
+    },
+    {
+      "Rule ID": "EX-10",
+      "Statement": "Refused and unmeasured are outcomes, not failures. A task that reaches every member and records a reason for each one it could not process is complete. A task that reaches every member it could and says nothing about the rest is not.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 613
+    },
+    {
+      "Rule ID": "EX-11",
+      "Statement": "A second executor, holding only the task contract and the artefact — not the first executor's reasoning, notes, or report — re-performs a seeded sample of members (DEFAULT 5%, minimum 20) and records agreement or disagreement per member.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 614
+    },
+    {
+      "Rule ID": "EX-12",
+      "Statement": "Disagreements are recorded as disagreements. They are not averaged, arbitrated by the first executor, or resolved by a third opinion. A disagreement rate above a ruled threshold (DEFAULT 2%) returns the task to open with the disagreeing members listed.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 615
+    },
+    {
+      "Rule ID": "EX-13",
+      "Statement": "Re-performance is mandatory for: every task whose artefact feeds a decision gate (a training manifest, a census figure that enters the measure, a registry mapping); every task that triggers the velocity detector; and any task the owner names. It is sampled, seeded, for all others.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 616
+    },
+    {
+      "Rule ID": "EX-14",
+      "Statement": "Every statement by an executor that a task, wave, gate, or milestone is complete, sealed, or satisfied is a claim, recorded in a claim register with the evidence it cites. A claim with no evidence, or whose evidence fails the acceptance script, is recorded as unsupported. An unsupported claim about a Tier A rule or a gate is a finding of the same severity as the failure it concealed.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 617
+    },
+    {
+      "Rule ID": "EX-15",
+      "Statement": "The words complete, sealed, all, every, and full may appear in a report only where the reconciliation for the thing described holds. Their appearance without it is itself a detector trigger.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 618
+    },
+    {
+      "Rule ID": "EX-2",
+      "Statement": "Procedure. What is done to each member, in one paragraph, deterministic where canon requires it. The procedure names what it does with a member it cannot process: refuse with a reason, or record unmeasured with a reason. Silence about a member is not an option the procedure offers.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 605
+    },
+    {
+      "Rule ID": "EX-3",
+      "Statement": "Artefact. Named, with a schema, one row per member of the denominator. Every row carries the member's identifier and its outcome: processed, refused, or unmeasured, with reason for the latter two. Any summary the task produces is regenerable from the artefact by a stated derivation.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 606
+    },
+    {
+      "Rule ID": "EX-4",
+      "Statement": "Acceptance script. Executable, written before the procedure runs, held outside the task's write scope so the task cannot edit it. Its first check is the reconciliation (EX-9). Its remaining checks are task-specific and named in the contract. Its output is recorded as evidence.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 607
+    },
+    {
+      "Rule ID": "EX-5",
+      "Statement": "Shortcut list. Not fewer than three ways this specific task can appear complete without being complete, each with a detector the acceptance script runs. A task whose author cannot name three shortcuts has not understood the task.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 608
+    },
+    {
+      "Rule ID": "EX-6",
+      "Statement": "Evidence. The artefact's hash, the acceptance script's output, the receipts written during the procedure, and the re-performance record where EX-13 applies. Evidence is examined by the acceptance script and by any auditor; the executor's narrative report is not evidence.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 609
+    },
+    {
+      "Rule ID": "EX-7",
+      "Statement": "Every objective card decomposes into subtasks before the first RED test is written. Each subtask carries the six fields. The card's MUST-DO lines map to subtasks; a MUST-DO line with no subtask is a card defect and the card does not pin.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 610
+    },
+    {
+      "Rule ID": "EX-8",
+      "Statement": "Subtasks are ordered by dependency and the order is stated. A subtask whose denominator depends on another subtask's artefact does not start until that artefact passes acceptance. Enumeration subtasks come first.",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 611
+    },
+    {
+      "Rule ID": "EX-9",
+      "Statement": "A task is complete when, and only when: the acceptance script passes on the artefact; the reconciliation holds exactly; and the artefact's row count equals the denominator's count. A task the executor reports as complete with an open acceptance test is not complete, and the report is recorded as a claim (EX-14).",
+      "Objective": "O21 Execution Standard (SO §7)",
+      "Promise / Source Document": "execution_standard_v1",
+      "Doc": "execution_standard_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O21 Execution Standard",
+      "Source (file:line)": "Execution_Standard_v1.docx",
+      "Relationship": "Added at refresh 26 Sep 2026",
+      "Builder Status": null,
+      "_row": 612
+    },
+    {
+      "Rule ID": "SFP-1",
+      "Statement": "| Assertion Floor | Subjects: any principal requesting a composed answer. Objects: the claim being composed. Operations: assert, compose, refuse. Rule: no sentence enters a composed answer without a per-sentence anchor to material; an unanchorable sentence is refused, not weakened (Doc 4 A2, A5.5). | | **SFP-2** | Certainty-to-Evidence Binding | Subjects: the Watch's response function (Mkono). Objects: severance authority. Operations: unlock, withhold. Rule: severance unlocks only from the closed six-signal registry; no confidence score, however high, is an eligible input (Doc 3 A5.2). | | **SFP-3** | Acceptance Floor | Subjects: any training run. Objects: model output. Operations: accept, refuse. Rule: every stated criterion satisfied or the run is refused in full; no partial acceptance (Promise #22, MOAC). | | **SFP-4** | Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1–A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+      "Objective": "O14 Governance Architecture — G-9 closure",
+      "Promise / Source Document": "security_function_policies_v1",
+      "Doc": "security_function_policies_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O14 Governance Architecture",
+      "Source (file:line)": "Security_Function_Policies_v1.docx",
+      "Relationship": "Added at refresh 20 Sep 2026 (c) — surfaced by the audit-standards ID check",
+      "Builder Status": null,
+      "_row": 597
+    },
+    {
+      "Rule ID": "SFP-2",
+      "Statement": "| Certainty-to-Evidence Binding | Subjects: the Watch's response function (Mkono). Objects: severance authority. Operations: unlock, withhold. Rule: severance unlocks only from the closed six-signal registry; no confidence score, however high, is an eligible input (Doc 3 A5.2). | | **SFP-3** | Acceptance Floor | Subjects: any training run. Objects: model output. Operations: accept, refuse. Rule: every stated criterion satisfied or the run is refused in full; no partial acceptance (Promise #22, MOAC). | | **SFP-4** | Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1–A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+      "Objective": "O14 Governance Architecture — G-9 closure",
+      "Promise / Source Document": "security_function_policies_v1",
+      "Doc": "security_function_policies_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O14 Governance Architecture",
+      "Source (file:line)": "Security_Function_Policies_v1.docx",
+      "Relationship": "Added at refresh 20 Sep 2026 (c) — surfaced by the audit-standards ID check",
+      "Builder Status": null,
+      "_row": 598
+    },
+    {
+      "Rule ID": "SFP-3",
+      "Statement": "| Acceptance Floor | Subjects: any training run. Objects: model output. Operations: accept, refuse. Rule: every stated criterion satisfied or the run is refused in full; no partial acceptance (Promise #22, MOAC). | | **SFP-4** | Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1–A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+      "Objective": "O14 Governance Architecture — G-9 closure",
+      "Promise / Source Document": "security_function_policies_v1",
+      "Doc": "security_function_policies_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O14 Governance Architecture",
+      "Source (file:line)": "Security_Function_Policies_v1.docx",
+      "Relationship": "Added at refresh 20 Sep 2026 (c) — surfaced by the audit-standards ID check",
+      "Builder Status": null,
+      "_row": 599
+    },
+    {
+      "Rule ID": "SFP-4",
+      "Statement": "| Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1–A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+      "Objective": "O14 Governance Architecture — G-9 closure",
+      "Promise / Source Document": "security_function_policies_v1",
+      "Doc": "security_function_policies_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O14 Governance Architecture",
+      "Source (file:line)": "Security_Function_Policies_v1.docx",
+      "Relationship": "Added at refresh 20 Sep 2026 (c) — surfaced by the audit-standards ID check",
+      "Builder Status": null,
+      "_row": 600
+    },
+    {
+      "Rule ID": "SFP-5",
+      "Statement": "| Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+      "Objective": "O14 Governance Architecture — G-9 closure",
+      "Promise / Source Document": "security_function_policies_v1",
+      "Doc": "security_function_policies_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O14 Governance Architecture",
+      "Source (file:line)": "Security_Function_Policies_v1.docx",
+      "Relationship": "Added at refresh 20 Sep 2026 (c) — surfaced by the audit-standards ID check",
+      "Builder Status": null,
+      "_row": 601
+    },
+    {
+      "Rule ID": "SFP-6",
+      "Statement": "| Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+      "Objective": "O14 Governance Architecture — G-9 closure",
+      "Promise / Source Document": "security_function_policies_v1",
+      "Doc": "security_function_policies_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O14 Governance Architecture",
+      "Source (file:line)": "Security_Function_Policies_v1.docx",
+      "Relationship": "Added at refresh 20 Sep 2026 (c) — surfaced by the audit-standards ID check",
+      "Builder Status": null,
+      "_row": 602
+    },
+    {
+      "Rule ID": "SFP-7",
+      "Statement": "| Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+      "Objective": "O14 Governance Architecture — G-9 closure",
+      "Promise / Source Document": "security_function_policies_v1",
+      "Doc": "security_function_policies_v1",
+      "Status": "PROPOSED",
+      "Enforcement Class": null,
+      "Domain": "O14 Governance Architecture",
+      "Source (file:line)": "Security_Function_Policies_v1.docx",
+      "Relationship": "Added at refresh 20 Sep 2026 (c) — surfaced by the audit-standards ID check",
+      "Builder Status": null,
+      "_row": 603
+    }
+  ],
+  "removed_since_available_baseline": [],
+  "changed_since_available_baseline": [
+    {
+      "key": [
+        "Deck Engine spec",
+        "DR-R10"
+      ],
+      "columns": {
+        "Relationship": {
+          "previous": "Base canon",
+          "incoming": "RD-16 acknowledged 21 Sep 2026; awaiting source"
+        },
+        "Status": {
+          "previous": "OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable)",
+          "incoming": "OPEN — statement unrecovered"
+        },
+        "Statement": {
+          "previous": "–R11)",
+          "incoming": "STATEMENT UNRECOVERED — extraction artefact (RD-16). Source deck_engine.md is not on the ruling desk; text to be restored verbatim from source before this row is verified. Not to be read as the rule."
+        }
+      }
+    },
+    {
+      "key": [
+        "Deck Engine spec",
+        "DR-R13"
+      ],
+      "columns": {
+        "Relationship": {
+          "previous": "Base canon",
+          "incoming": "RD-16 acknowledged 21 Sep 2026; awaiting source"
+        },
+        "Status": {
+          "previous": "OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable)",
+          "incoming": "OPEN — statement unrecovered"
+        },
+        "Statement": {
+          "previous": ")",
+          "incoming": "STATEMENT UNRECOVERED — extraction artefact (RD-16). Source deck_engine.md is not on the ruling desk; text to be restored verbatim from source before this row is verified. Not to be read as the rule."
+        }
+      }
+    }
+  ],
+  "ex_rule_count": 15,
+  "dq_rule_count": 15,
+  "security_ids": [
+    "#6",
+    "S-1",
+    "S-2",
+    "S-3",
+    "S-4",
+    "S-5",
+    "S-6",
+    "S-7",
+    "S-8",
+    "S-9",
+    "S-10",
+    "S-11",
+    "S-12",
+    "S-13",
+    "S-14",
+    "S-15",
+    "S-16",
+    "S-17",
+    "S-18",
+    "S-19",
+    "S-20",
+    "S-21",
+    "S-22",
+    "S-23",
+    "S-24",
+    "S-25",
+    "S-26",
+    "S-27",
+    "S-28",
+    "S-29",
+    "S-30",
+    "S-31",
+    "S-32",
+    "S-33",
+    "S-34"
+  ],
+  "security_added_ids": [
+    "S-34"
+  ],
+  "security_removed_ids": [],
+  "security_changed_rows": []
+}

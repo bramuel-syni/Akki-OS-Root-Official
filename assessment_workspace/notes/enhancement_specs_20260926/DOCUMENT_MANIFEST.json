@@ -1,0 +1,49 @@
+{
+  "recorded_at": "2026-09-26T02:17:34.763174+00:00",
+  "archive_sha256": "274130f649b430f3cddda70a2e73630fbc35c83b4fc377d4f2890a31fe81bcfa",
+  "count": 4,
+  "documents": [
+    {
+      "name": "Data_Cleanliness_Spec_v1.docx",
+      "bytes": 18049,
+      "sha256": "4acf8665805475ed78f67980b17d8bf1c5b0d1cf383195c85fc202aac40add7b",
+      "outcome": "processed",
+      "nonempty_blocks": 63,
+      "tracked_insertions": 0,
+      "tracked_deletions": 0
+    },
+    {
+      "name": "Execution_Standard_v1.docx",
+      "bytes": 15907,
+      "sha256": "eb207127c3cb621634de3497c022a98269deba6270d3e13bb604c3330f93bca6",
+      "outcome": "processed",
+      "nonempty_blocks": 49,
+      "tracked_insertions": 0,
+      "tracked_deletions": 0
+    },
+    {
+      "name": "Master_Requirements_Registry.xlsx",
+      "bytes": 120387,
+      "sha256": "2b2f927ac3ad1090f1b790327fc9e5b54793f2b2fb0159ffa8b30edf1ff38f88",
+      "outcome": "processed",
+      "sheets": {
+        "Build Status": 45,
+        "QA Verification": 603,
+        "QA Legend": 10,
+        "System Rules Registry": 633,
+        "Objectives": 15,
+        "Legend": 8
+      }
+    },
+    {
+      "name": "Security_Assurance_Promise_Set.xlsx",
+      "bytes": 21798,
+      "sha256": "6cdbbea18cf7d4371706cd6abb1a3c9d527d7090470ace6463bda3cd697ce0ef",
+      "outcome": "processed",
+      "sheets": {
+        "Security Assurance Set": 36,
+        "Legend": 10
+      }
+    }
+  ]
+}

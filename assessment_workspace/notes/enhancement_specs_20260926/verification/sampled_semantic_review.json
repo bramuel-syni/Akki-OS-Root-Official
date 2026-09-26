@@ -1,0 +1,113 @@
+{
+  "question": "Does the assessment distinguish existing substrate from missing enforcement, and is placement reasonable in light of source?",
+  "seed": "274130f649b430f3cddda70a2e73630fbc35c83b4fc377d4f2890a31fe81bcfa",
+  "sample_size": 20,
+  "overall": {
+    "answer": "Mostly yes, with bounded uncertainty on a few anchors where sampled lines show schema carriers more than full behavioral enforcement proofs.",
+    "agree": 17,
+    "uncertain": 3,
+    "disagree": 0
+  },
+  "per_member": [
+    {
+      "id": "DQ-10",
+      "judgment": "agree",
+      "reason": "Anchor shows quality_strata as a dimension carrier, not a deterministic four-state bitmap classifier implementation."
+    },
+    {
+      "id": "DQ-11",
+      "judgment": "agree",
+      "reason": "Anchor explicitly labels in-memory thin-kernel registry and says persistence is later-wave, matching missing enforcement claim."
+    },
+    {
+      "id": "DQ-13",
+      "judgment": "agree",
+      "reason": "Anchor codifies measured vs unmeasured semantics; this is substrate consistent with the assessment's 'foundation exists, enforcement still needed'."
+    },
+    {
+      "id": "DQ-14",
+      "judgment": "agree",
+      "reason": "MOAC criteria scaffold exists, but sampled code does not show per-unit cleanliness bitmap gate at manifest admission."
+    },
+    {
+      "id": "DQ-15",
+      "judgment": "agree",
+      "reason": "Assertion boundary is a thin class floor and comments defer real unit-class lookup; consistent with missing DQ gate enforcement."
+    },
+    {
+      "id": "DQ-5",
+      "judgment": "agree",
+      "reason": "Anchor is a relationship signal detector/candidate path, not exhaustive cross-source agreement adjudication."
+    },
+    {
+      "id": "DQ-6",
+      "judgment": "agree",
+      "reason": "Sampled lines define measurement/unmeasured carriers; no explicit impossible-vs-flagged plausibility bitmap logic shown."
+    },
+    {
+      "id": "DQ-7",
+      "judgment": "agree",
+      "reason": "Anchor shows identity carriers but not full writer/time provenance completeness and purpose-aware cap enforcement."
+    },
+    {
+      "id": "DQ-9",
+      "judgment": "uncertain",
+      "reason": "Anchor is retention deletion behavior; supports retention boundary relevance, but alone does not fully prove absence of a separate DQ repair engine."
+    },
+    {
+      "id": "EX-1",
+      "judgment": "agree",
+      "reason": "Manifest schema has generic scope but no explicit pinned hashed denominator/member identity contract in sampled lines."
+    },
+    {
+      "id": "EX-10",
+      "judgment": "uncertain",
+      "reason": "Runner snippet does record per-source blocked/completed outcomes; missing completeness/reconciliation guarantees may exist elsewhere beyond sampled lines."
+    },
+    {
+      "id": "EX-13",
+      "judgment": "agree",
+      "reason": "Sampled manifest fields show no explicit re-performance admission precondition fields or required records."
+    },
+    {
+      "id": "EX-3",
+      "judgment": "agree",
+      "reason": "Commission payload captures request metadata/history but not a one-row-per-denominator-member outcome artefact pattern."
+    },
+    {
+      "id": "EX-4",
+      "judgment": "agree",
+      "reason": "Precondition seals/fields exist, but sampled anchor does not evidence separate immutable acceptance script boundary enforcement."
+    },
+    {
+      "id": "EX-7",
+      "judgment": "uncertain",
+      "reason": "Objective card includes fixed boundaries and acceptance checks; sampled content does not directly expose six-field subtask decomposition mapping completeness."
+    },
+    {
+      "id": "EX-8",
+      "judgment": "agree",
+      "reason": "Dependency/precondition fields exist in schema, consistent with assessment that substrate exists but strict dependency acceptance enforcement is additional."
+    },
+    {
+      "id": "R-36",
+      "judgment": "agree",
+      "reason": "Rules ceremony has default-binding constants pattern; sampled lines do not show these specific R-36 detector defaults enabled here."
+    },
+    {
+      "id": "R-37",
+      "judgment": "agree",
+      "reason": "Sampled schema has no model-family recording/enforcement for reperformance, aligning with recommendation-not-proof framing."
+    },
+    {
+      "id": "R-38",
+      "judgment": "agree",
+      "reason": "Quality profiler shows profiling/conformance signals, not owner-confirmed sentinel threshold adoption lifecycle semantics."
+    },
+    {
+      "id": "S-34",
+      "judgment": "agree",
+      "reason": "Security row marks new promise absent→new; sampled ledger/assertion anchors do not by themselves implement DQ-1..15 enforcement, so ingestion alone is insufficient."
+    }
+  ]
+}

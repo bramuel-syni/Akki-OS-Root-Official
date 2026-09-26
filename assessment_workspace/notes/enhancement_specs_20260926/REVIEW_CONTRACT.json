@@ -1,0 +1,38 @@
+{
+  "task": "Owner-requested ingestion and all-affected-component integration assessment; no application implementation",
+  "inputs": "Immutable owner archive and four hashed source documents in custody/owner_drops/enhancement_specs_20260926; recovered comparison baselines must match previously banked hashes",
+  "denominators": {
+    "documents": 4,
+    "registry_rows": 632,
+    "qa_rows": 602,
+    "enhancement_clause_mapping": {"EX": 15, "DQ": 15, "R": 5, "S": 1, "total": 36},
+    "component_groups": 18
+  },
+  "procedure": "Read the four owner documents, extract ordered DOCX blocks and workbook cells without executing content, verify historical comparison hashes, reconcile workbook inventories, map each enhancement clause to existing code seams and separately label missing enforcement and needed rulings. Scope of code reading is integration seams, not a fresh audit of every platform function or historic632 requirements.",
+  "artifacts": ["DOCUMENT_MANIFEST.json", "REGISTRY_RECONCILIATION.json", "CLAUSE_IMPACT.csv", "INTEGRATION_REVIEW.md"],
+  "anchor_root_convention": "services/ and contracts/ references resolve below /app/backend/vendored/extraction_akki/backend/. assessment_workspace/ and frontend/ resolve below /app/. DOCX B<n> anchors are ordered body blocks in the banked extraction, with R<n> for table rows.",
+  "acceptance_checks": [
+    "Original archive has exactly the four named members and every recorded source hash matches bytes",
+    "Exactly632 unique doc+rule keys;602 unique QA keys; difference exactlyEX1..15 andDQ1..15",
+    "Historical v4 has595 rows; incoming adds37 and removes0; onlyS34 added to security v6 and other promise rows unchanged",
+    "Exactly36 distinct mapped enhancement IDs; every row names source owner evidence and disposition; processed36 refused0 unmeasured0 refers to review coverage not runtime implementation",
+    "Evidence file paths exist; quoted code claims independently readable at their anchors",
+    "Original workbook statuses and source files unchanged; no new Canon ratification or runtime integration claimed"
+  ],
+  "shortcuts": [
+    {"name": "Summary instead of source inventory", "detector": "Reopen archive/workbooks and compare identity sets and counts, not prose totals"},
+    {"name": "Existing scaffolds called completed features", "detector": "Re-read sampled code anchors and check each assessment distinguishes foundation from enforcement"},
+    {"name": "Proposed spec silently treated as adopted", "detector": "Verify EX/DQ registry status remains PROPOSED and application/Canon source hashes unchanged"},
+    {"name": "Renumbering or merging away missing QA rows", "detector": "Compare exact document+rule keys and preserve the30-row missing list"},
+    {"name": "Record sample represented as estate completion", "detector": "Review must identify bounded profiler defaults and distinguish DQ full-population checks"}
+  ],
+  "independent_check": {
+    "requested": true,
+    "sample_seed": "274130f649b430f3cddda70a2e73630fbc35c83b4fc377d4f2890a31fe81bcfa",
+    "sample_size": 20,
+    "source_access": "Second checker may read contract, mapped artifact, raw documents and cited source; do not supply first-review reasoning or narrative report",
+    "model_family": "Not established; no R37 different-family compliance claim",
+    "write_scope_isolation": "Shared workspace tooling is not a separately enforced read-only acceptance boundary; EX4 operational compliance is NOT claimed",
+    "chronology": "Extraction/enumeration preceded this review contract. Do not retroactively claim this ingestion already complied with every EX task-start requirement. No build card was pinned."
+  }
+}
