@@ -1,0 +1,64 @@
+{
+  "evidence_date": "2026-09-25",
+  "evidence_type": "Recorded real browser observations; no fresh connection/retest",
+  "portal": "https://console.cpt.aiscafrica.org",
+  "workspace": "akki-workspace",
+  "sign_in_succeeded": true,
+  "vm_inventory": [
+    {
+      "name": "akki-vm",
+      "workspace": "akki-workspace",
+      "status": "Running"
+    },
+    {
+      "name": "akki-vm-ii",
+      "workspace": "akki-workspace",
+      "status": "Running"
+    }
+  ],
+  "console_checks": [
+    {
+      "vm": "akki-vm-ii",
+      "observed_at_utc": "2026-09-25T19:53Z",
+      "opened_same_origin_tab": true,
+      "console_xhr_status": 502,
+      "terminal_available": false,
+      "console_credentials_sent": false,
+      "commands_executed": false
+    },
+    {
+      "vm": "akki-vm",
+      "observed_at_utc": "2026-09-25T19:55Z",
+      "opened_same_origin_tab": true,
+      "console_xhr_status": 502,
+      "terminal_available": false,
+      "console_credentials_sent": false,
+      "commands_executed": false
+    }
+  ],
+  "key_edit_check": {
+    "vm": "akki-vm",
+    "observed_at_utc": "2026-09-25T20:04Z",
+    "network_settled": true,
+    "storage_loading_absent": true,
+    "ssh_public_key_field_disabled": true,
+    "field_editable": false,
+    "value_present": false,
+    "expanded_viewer_checked_at_utc": "2026-09-25T20:06Z",
+    "expanded_viewer_textarea_readonly": true,
+    "fields_modified": false,
+    "save_or_deploy_submitted": false,
+    "other_vm_key_editor": "not separately verified"
+  },
+  "root_cause": "Not established from client observation",
+  "safe_local_Akki_codes": [
+    "AKKI_EXECUTION_IDENTITY_NOT_VERIFIED",
+    "IDENTITY_PIN_MISMATCH"
+  ],
+  "local_code_caveat": "Application safeguards, not provider-generated errors; local identity refusal occurs before SSH",
+  "screenshots_caveat": "Parent portal pages and key viewer captured; network observation, not screenshot text, establishes HTTP502",
+  "source_receipt_sha256": "e8e5842fd71f9ec481bba915c17ba5214a01351861a9835c64753fa4d73d48f1",
+  "new_remote_attempts": 0,
+  "remediation_performed": false,
+  "support_message_sent": false
+}

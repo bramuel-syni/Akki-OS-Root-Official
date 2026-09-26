@@ -1,5 +1,19 @@
 # Akki — continuity record
 
+## GPU support-response preparation — no recovery action
+
+Owner asked for exact recorded errors/details to respond to GPU administrator.
+Read historical25Sep receipts and original screenshots; no new provider login,
+SSH attempt, application change or remediation. Prepared
+`assessment_workspace/notes/census_operational_v1/AISCA_ADMIN_RESPONSE.md` plus
+support_evidence copies/manifest. Portal login worked; both VM consoleXHRs returned
+HTTP502at19:53/19:55UTC before terminal. akki-vm keyfield and expandedviewer were
+disabled/readOnly afterload20:04–20:06; do not generalize that UI check to VMii.
+Separate localAkki codes IDENTITY_PIN_MISMATCH / AKKI_EXECUTION_IDENTITY_NOT_VERIFIED
+refuse beforeSSH; not AISCA-generated errors. Originalimages showparentcontrols,
+notvisible502page; networkreceipt is the502evidence. No fabricatedscreenshots,
+no message sent, no fix claimed. GPU staysparked pending provider route/owner action.
+
 ## LATEST USER TASK — full promise/requirements gap analysis (2026-09-26)
 
 Owner: “i want you to do the same thing you have done for this additional specs
