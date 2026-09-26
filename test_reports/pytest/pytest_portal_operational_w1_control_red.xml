@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="14" time="1.120" timestamp="2026-09-26T17:59:21.704070+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_w1_member_source_hashes_are_frozen_before_any_production_change" time="0.004" /><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_sealed_modules_and_prototype_assets_are_byte_unchanged" time="0.004" /><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_raw_read_events_repro_accepts_broken_prev_link_when_row_hashes_self_validate" time="0.001" /><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_real_emitter_writer_verifier_functions_are_usable_for_contract_rows" time="0.000" /><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_producer_and_consumer_imports_are_migrated_to_principal_control_module" time="0.001"><failure message="assert 'from services.ledger_writer.principal_control import append_event, read_events' in '&quot;&quot;&quot;Northena\'s durable DAP control-plane record; no extraction execution here.&quot;&quot;&quot;\nimport hashlib\nfrom datetime import datetime, timezone\nfrom fastapi import HTTPException\nfrom services.dap.commission import _OPERATION_TO_ENGINE, CommissionedJob\nfrom services.dap_lifecycle.state_machine import RequestState, transition\nfrom services.ledger_writer.mongo_control import append_event, digest, read_events\nfrom services.portal_operational.models import HistoryEntry, WorkView\n\nRESOURCE = &quot;dap_request&quot;\nREASONS = {\n    &quot;ADMISSION_UNRESOLVED&quot;: &quot;Execution is held: operation rights, approval authority, terms and an admitted executor are not established.&quot;,\n    &quot;REQUEST_STOPPED&quot;: &quot;This request was stopped. No party-wide halt was issued.&quot;,\n}\n\n\nasync def events_for(db, scope, request_id=None):\n    query = {&quot;row.tenant_id&quot;: scope[&quot;tenant_id&quot;], &quot;row.resource_type&quot;: RESOURCE,\n             &quot;payload.principal_id&quot;: scope[&quot;principal_id&quot;]}\n    if request_id is not None:\n        query[&quot;row.run_id&quot;] = request_id\n    return await read_events(db, query)\n\n\ndef project(events):\n    first, last = events[0][&quot;payload&quot;], events[-1][&quot;payload&quot;]\n    state = last[&quot;lifecycle_state&quot;]\n    publi...mmissioned&quot;, &quot;reason_code&quot;: &quot;&quot;},\n            {&quot;at&quot;: now, &quot;state&quot;: &quot;routing&quot;, &quot;event&quot;: &quot;execution_held&quot;, &quot;reason_code&quot;: &quot;ADMISSION_UNRESOLVED&quot;},\n        ],\n    }\n    event = await append_event(db, tenant_id=scope[&quot;tenant_id&quot;], run_id=request_id,\n                              actor_id=scope[&quot;principal_id&quot;], command_id=command_id,\n                              event_type=&quot;dap.request.commissioned&quot;, resource_type=RESOURCE,\n                              decision=&quot;held&quot;, reason_code=&quot;ADMISSION_UNRESOLVED&quot;, payload=payload)\n    if event[&quot;payload&quot;][&quot;body_hash&quot;] != body_hash:\n        raise HTTPException(409, &quot;This idempotency key already belongs to a different frozen request.&quot;)\n    return project(await events_for(db, scope, request_id))\n\n\nasync def detail(db, scope, request_id):\n    events = await events_for(db, scope, request_id)\n    if not events:\n        raise HTTPException(404, &quot;Request not found.&quot;)\n    return project(events)\n\n\nasync def listing(db, scope):\n    grouped = {}\n    for event in await events_for(db, scope):\n        grouped.setdefault(event[&quot;row&quot;][&quot;run_id&quot;], []).append(event)\n    return [project(events) for events in reversed(list(grouped.values()))]'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:276: in test_producer_and_consumer_imports_are_migrated_to_principal_control_module
+    assert "from services.ledger_writer.principal_control import append_event, read_events" in portal_work_src
+E   assert 'from services.ledger_writer.principal_control import append_event, read_events' in '"""Northena\'s durable DAP control-plane record; no extraction execution here."""\nimport hashlib\nfrom datetime import datetime, timezone\nfrom fastapi import HTTPException\nfrom services.dap.commission import _OPERATION_TO_ENGINE, CommissionedJob\nfrom services.dap_lifecycle.state_machine import RequestState, transition\nfrom services.ledger_writer.mongo_control import append_event, digest, read_events\nfrom services.portal_operational.models import HistoryEntry, WorkView\n\nRESOURCE = "dap_request"\nREASONS = {\n    "ADMISSION_UNRESOLVED": "Execution is held: operation rights, approval authority, terms and an admitted executor are not established.",\n    "REQUEST_STOPPED": "This request was stopped. No party-wide halt was issued.",\n}\n\n\nasync def events_for(db, scope, request_id=None):\n    query = {"row.tenant_id": scope["tenant_id"], "row.resource_type": RESOURCE,\n             "payload.principal_id": scope["principal_id"]}\n    if request_id is not None:\n        query["row.run_id"] = request_id\n    return await read_events(db, query)\n\n\ndef project(events):\n    first, last = events[0]["payload"], events[-1]["payload"]\n    state = last["lifecycle_state"]\n    publi...mmissioned", "reason_code": ""},\n            {"at": now, "state": "routing", "event": "execution_held", "reason_code": "ADMISSION_UNRESOLVED"},\n        ],\n    }\n    event = await append_event(db, tenant_id=scope["tenant_id"], run_id=request_id,\n                              actor_id=scope["principal_id"], command_id=command_id,\n                              event_type="dap.request.commissioned", resource_type=RESOURCE,\n                              decision="held", reason_code="ADMISSION_UNRESOLVED", payload=payload)\n    if event["payload"]["body_hash"] != body_hash:\n        raise HTTPException(409, "This idempotency key already belongs to a different frozen request.")\n    return project(await events_for(db, scope, request_id))\n\n\nasync def detail(db, scope, request_id):\n    events = await events_for(db, scope, request_id)\n    if not events:\n        raise HTTPException(404, "Request not found.")\n    return project(events)\n\n\nasync def listing(db, scope):\n    grouped = {}\n    for event in await events_for(db, scope):\n        grouped.setdefault(event["row"]["run_id"], []).append(event)\n    return [project(events) for events in reversed(list(grouped.values()))]'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_control_scope_contract_surface_exists_and_returns_frozen_scope_shape" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:282: in test_control_scope_contract_surface_exists_and_returns_frozen_scope_shape
+    mod = _load_control_scope_module()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_control_scope_refuses_absent_malformed_or_substituted_scope_before_writes" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:296: in test_control_scope_refuses_absent_malformed_or_substituted_scope_before_writes
+    mod = _load_control_scope_module()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_control_scope_nested_same_scope_restores_and_changed_actor_or_tenant_refuses" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:313: in test_control_scope_nested_same_scope_restores_and_changed_actor_or_tenant_refuses
+    mod = _load_control_scope_module()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_control_scope_copied_child_context_refuses_after_outer_exit" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:328: in test_control_scope_copied_child_context_refuses_after_outer_exit
+    mod = _load_control_scope_module()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_control_scope_async_concurrency_isolates_distinct_requests" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:339: in test_control_scope_async_concurrency_isolates_distinct_requests
+    mod = _load_control_scope_module()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_principal_control_append_signature_reuses_existing_kwargs_except_actor_id" time="0.000"><failure message="Failed: Missing expected RED target module services.ledger_writer.principal_control: No module named 'services.ledger_writer.principal_control'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:136: in _load_principal_control_module
+    return import_module("services.ledger_writer.principal_control")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.ledger_writer.principal_control'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:359: in test_principal_control_append_signature_reuses_existing_kwargs_except_actor_id
+    mod = _load_principal_control_module()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:138: in _load_principal_control_module
+    pytest.fail(f"Missing expected RED target module services.ledger_writer.principal_control: {exc}")
+E   Failed: Missing expected RED target module services.ledger_writer.principal_control: No module named 'services.ledger_writer.principal_control'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_principal_control_append_refuses_payload_actor_tenant_mismatch_before_db_access" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:369: in test_principal_control_append_refuses_payload_actor_tenant_mismatch_before_db_access
+    control_scope = _load_control_scope_module()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_principal_control_append_deep_copies_payload_and_rejects_metadata_id_tamper_conflict" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:392: in test_principal_control_append_deep_copies_payload_and_rejects_metadata_id_tamper_conflict
+    control_scope = _load_control_scope_module()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase><testcase classname="tests.portal_operational.test_w1_control_record_contract_red" name="test_guarded_read_events_fail_closed_on_corrupt_prefix_but_supports_legacy_rows_without_command_metadata" time="0.000"><failure message="Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'">backend/tests/portal_operational/test_w1_control_record_contract_red.py:129: in _load_control_scope_module
+    return import_module("services.enforce.control_scope")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.enforce.control_scope'
+
+During handling of the above exception, another exception occurred:
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:439: in test_guarded_read_events_fail_closed_on_corrupt_prefix_but_supports_legacy_rows_without_command_metadata
+    control_scope = _load_control_scope_module()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/portal_operational/test_w1_control_record_contract_red.py:131: in _load_control_scope_module
+    pytest.fail(f"Missing expected RED target module services.enforce.control_scope: {exc}")
+E   Failed: Missing expected RED target module services.enforce.control_scope: No module named 'services.enforce.control_scope'</failure></testcase></testsuite></testsuites>

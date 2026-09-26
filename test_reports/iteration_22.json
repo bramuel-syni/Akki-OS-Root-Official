@@ -1,0 +1,58 @@
+{
+  "summary": "Corrected one RED harness contradiction before production edits: banked immutable pre-change source snapshot for the 4 authorized W1 denominator members, and updated only the member-freeze test to validate banked snapshot bytes/hash integrity (not current mutable implementation bytes).",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.enforce.control_scope",
+        "issue": "Module still missing; scope contract tests remain RED by design.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.ledger_writer.principal_control",
+        "issue": "Module still missing; actorless guarded append/read contract tests remain RED by design.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.portal_work / services.portal_operational.skill_query / services.portal_operational.entitlements",
+        "issue": "Imports not yet migrated to principal_control; migration assertion remains RED.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_w1_control_record_contract_red.py",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/w1_verification/w1_control_member_source_baseline_prechange_20260926.json",
+    "/app/test_reports/pytest/pytest_portal_operational_w1_control_red.xml",
+    "/app/test_reports/pytest/pytest_portal_operational_w1_control_red_iteration22.xml"
+  ],
+  "action_items": [
+    "Proceed with planned production implementation for W1 authorized targets (submit/refuse_unadmitted/events_for/read_view) without current-byte pin blockage.",
+    "Keep sealed/prototype byte-pin test unchanged and passing.",
+    "After implementation, rerun this RED suite and then tighten/advance GREEN expectations."
+  ],
+  "critical_code_review_comments": [
+    "Root contradiction fixed: pre-change evidence must be immutable baseline artifact, not an always-current source pin that blocks authorized refactors.",
+    "Exact denominator enforcement retained: exactly 4 members are required in baseline.",
+    "Prior RED JUnit/report retained; new run emitted as separate iteration22 XML."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_w1_control_record_contract_red.py",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/w1_verification/w1_control_member_source_baseline_prechange_20260926.json",
+    "/app/test_reports/iteration_22.json"
+  ],
+  "success_rate": {
+    "backend": "29% (4/14 passing; 10 RED)",
+    "frontend": "N/A"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Harness correction completed before implementation. New RED count remains 10/14 (unchanged from prior intent). The corrected test now validates immutable banked pre-change snapshot bytes/hash and exact four-member denominator rather than pinning mutable current sources.",
+  "rca of the issue": "RCA: The original test conflated two concerns — evidence preservation and mutable implementation gating. By asserting CURRENT source hashes against pre-change pins for the same four explicitly authorized migration targets, it created a false blocker for intended W1 edits (submit/refuse_unadmitted actorless signature migration). Mitigation: bank exact pre-change source strings + sha256 in immutable baseline JSON first, then assert baseline internal integrity + exact denominator only. New RED count: 10. Banked hashes: submit=de13c14d37717e1f6d7a402977faacda9c5fc6d1776b655bfe26207592fd63b2, refuse_unadmitted=b6cde6fa2c284760fedd18d5197d2f43a78a0682ea021346744a7bc96775120c, events_for=15b85145940961c4db5bb422c026059938c9bd3a765a95db4838dfdf26b7ce94, read_view=f20199e3f4b4afbb88775f4348cdf295d2fbe98013c3eefcb3229192e437880d."
+}

@@ -1,0 +1,47 @@
+{
+  "timestamp_utc": "2026-09-26T15:12:19.979103+00:00",
+  "scope": "Offline planning-document correction recheck only; no app tests, APIs, DB, source, provider, model or GPU calls",
+  "prior_report": "/app/test_reports/iteration_20.json",
+  "corrections": [
+    "Expanded every cited backend seam to an explicit repository-relative path; removed brace shorthand.",
+    "Clarified that 24 source-bounded cases comprise clauses/statements, not 24 missing documents.",
+    "Made W5b an explicit conditional prerequisite of W3 where the selected operation consumes quality-qualified material.",
+    "Expanded W9b whole-platform prerequisite list so graph checks cannot misread a range as only its endpoints.",
+    "Made R24 reseller-only scope and W9a/W9b concrete-work headings explicit. Prior receipt retained its false lexical flags; no operational finding was silently promoted."
+  ],
+  "checks": {
+    "families_exact": true,
+    "family_count": 56,
+    "requirement_row_total": 648,
+    "assurance_ids_exact": true,
+    "assurance_count": 35,
+    "dap_counts": {"Verified": 4, "Partial": 7, "Open": 1},
+    "gate_count": 14,
+    "acyclic_with_conditional_edges": true,
+    "topological_order": ["W0", "W9a", "W1", "W5a", "W6a", "W7a", "W6b", "W2", "W5b", "W3", "W7b", "W4", "W8", "W9b"],
+    "w3_quality_prerequisite_explicit_when_applicable": true,
+    "w9b_all_whole_platform_prerequisites_explicit": true,
+    "ex_dq_decisions": 12,
+    "cc_decisions": 12,
+    "explicit_path_count": 22,
+    "missing_paths": [],
+    "reseller_only_r24_explicit": true,
+    "w9a_w9b_concrete_work_explicit": true,
+    "coverage_file_unchanged_since_checker": true
+  },
+  "hashes_sha256": {
+    "PLAN.md": "09822cd05908e98b7115079bd9c1c1d1650431d1a06fd06a947c8d668b059edf",
+    "COVERAGE.md": "13f86d330b067cfe0a1b5a67f52e193600b69d2731f0b9da3b32604995eecb17",
+    "DECISION_AND_BLOCKER_REGISTER.md": "c70b0f24cc5077f002b945ebe44e2e363f4e978cf50e70dc9ec31299bd01c2c6",
+    "offline_validation_receipt.json": "975b89c16cccb0106e32ecc40046cb9d5f9cc7d1bdbcc2b616abfea427dec34f",
+    "offline_validation_summary.json": "3529701bf49159d75728c7844e2e38600721ecff21a87a8b6e4172ecda99b863"
+  },
+  "receipt_integrity_note": "Hashes above identify the actual prior receipt bytes externally. Do not treat the earlier receipt's embedded self-hash as an independently verifiable self-seal. Original checker artifacts remain unchanged.",
+  "limitations": [
+    "Planning allocation is not exact row-level semantic closure or delivered functionality.",
+    "509 semantic links and 24 source-bounded cases remain open.",
+    "No hardened EX4 write isolation or R37 different-model-family independence is established by this check.",
+    "No application runtime regression, source-success, model, performance or GPU test was authorized or performed.",
+    "Conditional graph edges were included for acyclicity checking; their applicability still requires the selected objective's authoritative contract."
+  ]
+}

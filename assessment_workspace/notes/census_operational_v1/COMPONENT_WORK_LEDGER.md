@@ -1,5 +1,58 @@
 # Component-led work ledger — current scope and next links
 
+## Latest autonomous authorization and W1 scoped result — 2026-09-26
+
+Owner: “This works, go autonomous” after reviewing the consolidated plan. This
+supersedes the planning-only task entry below, but not held policy choices or GPU
+parking. No new decision needed to start; continue independent authoritative work.
+
+Verified two control producers (Northena held commission, skill-executor refusal)
+and two read families (request/work, entitlement): propagated actor and immutable
+request-lifetime scope; insert guard; full tenant chain/payload checks; hash-bound
+new command identity; no historical mutation. Canonical emitter/writer/verifier,
+raw Mongo writer, sealed principal modules/schema/prototypes unchanged. See
+`notes/consolidated_fix_plan_20260926/W1_CONTROL_RECORD_RESULT.md` and
+`w1_verification/FINAL_BOUNDED_RESULT.json` for denominator and exact limits.
+
+Evidence: RED4/10 before implementation; final77/77 portal operational tests and
+desktop/mobile flows. MOCKED fault/positive entitlement/skill fixtures distinct
+from real held submissions. Modal-close/navigation recheck390px passed with no
+overflow; no frontend changes. No new admission, licence, credential, approval,
+executor or source/provider/model/GPU activity. No component declared globally
+complete; DAP4verified/7partial/1open and CensusT14blocked retained.
+
+Next: W0 exact authority/acceptance links and W1 wider producers, principal owner
+admission, custody/handoffs/effective governance writes; then early W5a/W6a/W7a,
+W9a. Independent-head witnessing/full rollback detection and measured performance
+remain W6b/W9 work; raw legacy reader is intentionally still a counterexample,
+while migrated production read families use the guarded reader.
+
+## Current owner clarification — 2026-09-26 consolidated PLAN ONLY
+
+The latest owner clarification quotes the approved scope verbatim: formulate a
+consolidated fix plan, **not implement it yet**. Prior autonomous implementation
+entries below are historical and do not override this current task boundary.
+No new component link, governing effect or source-success gate was advanced here.
+
+Plan: `notes/consolidated_fix_plan_20260926/PLAN.md`; family/promise/DAP routing in
+`COVERAGE.md`; all EX/DQ/CC and inherited decisions/external holds in
+`DECISION_AND_BLOCKER_REGISTER.md`. W0 source/authority → W1 admitted identity,
+custody, Mkondo and effective Ledger writes → early W5a entitlement/W6a security/
+W7a lineage prerequisites → W2 real Census/Mtafiti → W3 real Northena/DAP result.
+DQ W5b precedes any quality-dependent operation and W4 grounded context. W6b
+operational breadth can proceed independently; W7b training/serving, W8 media/
+skills/rendering and W9b full surfaces/release follow their prerequisites.
+W9a protects benchmark/journey/measurement inputs early, before model tuning.
+
+Offline plan verification: `test_reports/iteration_20.json` plus final main
+recheck under the plan's `verification/`. Planning inventory covers56families/
+648rows/S1–35/D01–12; this is not finished row-specific semantic traceability or
+runtime proof.509semantic links and24source-bounded cases remain open. Existing
+DAP status4verified/7partial/1open and CensusT14blocked unchanged. No app/Canon,
+DB, UI, credentials, source/provider/model/GPU operations. Await implementation
+authorization; GPU remains parked pending administrator response and explicit
+reopening. Do not infer provider fault or whole-platform progress.
+
 ## Current owner-directed work — compute parked; autonomous continuation
 
 Owner explicitly said skip compute recovery and continue, then authorized autonomous work while away. Current link is **Northena + DAP lifecycle + OS/DAP shared work records**, followed by **entitlements/terms/metering** and remaining operational/output journeys. D01–D12 acceptance in `STATE/OBJECTIVES/CP_DAP_OPERATIONAL_V1.md`. No additional AISCA/key operations or provider outreach. Compute/T14 stays blocked; original prototype architecture and full functionality plan unchanged. All earlier recovery entries below are historical, not resumed work.

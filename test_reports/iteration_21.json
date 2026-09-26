@@ -1,0 +1,61 @@
+{
+  "summary": "Authored RED-first immutable acceptance tests for W1 control-record contract slice under backend/tests/portal_operational; verified hash pins and recorded expected failures for missing control-scope/principal-control implementation and unmigrated imports.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.enforce.control_scope",
+        "issue": "Expected module missing (bind_control_scope/require_control_scope contract not implemented); all context-scope refusal/concurrency tests fail in RED.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.ledger_writer.principal_control",
+        "issue": "Expected guarded writer/reader module missing (append_event/read_events/CommandConflict contract absent).",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.portal_work / services.portal_operational.skill_query / services.portal_operational.entitlements",
+        "issue": "Imports not migrated to services.ledger_writer.principal_control; still referencing mongo_control.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "services.ledger_writer.mongo_control.read_events",
+        "issue": "Reproduced legacy behavior: accepts rows with broken prev_hash linkage when each row/payload self-validates; chain break only detected by verifier, not raw reader."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_w1_control_record_contract_red.py",
+    "/app/test_reports/pytest/pytest_portal_operational_w1_control_red.xml"
+  ],
+  "action_items": [
+    "Implement services.enforce.control_scope with frozen request-lifetime scope carrier enforcing principal_context match/refusal semantics.",
+    "Implement services.ledger_writer.principal_control (append_event/read_events/CommandConflict) per contract: actor from scope, full-prefix verification, payload deep-copy, command fingerprinting, legacy replay compatibility.",
+    "Migrate producer/consumer imports to principal_control while keeping local append_event symbol compatibility for monkeypatch-based tests.",
+    "Wire malformed-prefix ValueError -> existing portal_scope 503 and command conflicts -> 409 mapping path."
+  ],
+  "critical_code_review_comments": [
+    "Hash pins are now banked for four enumerated source members and sealed module/prototype assets; these should remain unchanged except approved additive files.",
+    "Test boundary intentionally excludes owner-admission/global sandbox claims and live ledger mutation; FAKE/MOCKED DB only in mutation/fault contract tests.",
+    "No production code edited in this run; failures are expected RED contract gaps, not harness defects."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_w1_control_record_contract_red.py",
+    "/app/test_reports/iteration_21.json"
+  ],
+  "success_rate": {
+    "backend": "29% (4/14 passing; 10 expected RED failures)",
+    "frontend": "N/A (not requested for this RED-first backend contract slice)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Run: pytest -v --tb=short /app/backend/tests/portal_operational/test_w1_control_record_contract_red.py --junitxml=/app/test_reports/pytest/pytest_portal_operational_w1_control_red.xml. Passing invariants currently: member hash pins, sealed/prototype byte pins, raw broken-link reproduction, emitter/writer/verifier sanity. Remaining failures are module/import contract targets for GREEN implementation.",
+  "rca of the issue": "Primary RED causes are intentional contract gaps: missing new modules (control_scope, principal_control) and non-migrated imports. Additional reproduced legacy risk: raw mongo_control.read_events verifies per-row hash/payload integrity but does not enforce full chain-prefix linkage."
+}

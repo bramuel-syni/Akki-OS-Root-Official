@@ -12,7 +12,7 @@ from services.entitlement_service_v1.licence import Licence
 from services.entitlement_service_v1.catalog import CatalogRow
 from services.entitlement_service_v1.allowance import LicenceAllowanceState, derive_allowance_remaining
 from services.entitlement_service_v1.chokepoint_resolver import _dial_admits_access_class
-from services.ledger_writer.mongo_control import read_events
+from services.ledger_writer.principal_control import read_events
 
 
 class LicencePortalView(BaseModel):

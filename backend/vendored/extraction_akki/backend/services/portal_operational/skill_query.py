@@ -2,7 +2,7 @@
 import hashlib
 import uuid
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from services.ledger_writer.mongo_control import append_event
+from services.ledger_writer.principal_control import append_event
 
 
 class SkillQuery(BaseModel):
@@ -20,7 +20,7 @@ class SkillQuery(BaseModel):
 async def refuse_unadmitted(db, scope, skill_id, query):
     run_id = f"skill-query-{uuid.uuid4().hex}"
     event = await append_event(
-        db, tenant_id=scope["tenant_id"], run_id=run_id, actor_id=scope["principal_id"],
+        db, tenant_id=scope["tenant_id"], run_id=run_id,
         command_id=run_id, event_type="skill.query.refused", resource_type="skill_query",
         decision="refused", reason_code="SKILL_EXECUTOR_UNADMITTED",
         payload={"skill_id": skill_id, "principal_id": scope["principal_id"],

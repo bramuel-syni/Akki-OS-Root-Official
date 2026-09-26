@@ -4,7 +4,8 @@ from datetime import datetime, timezone
 from fastapi import HTTPException
 from services.dap.commission import _OPERATION_TO_ENGINE, CommissionedJob
 from services.dap_lifecycle.state_machine import RequestState, transition
-from services.ledger_writer.mongo_control import append_event, digest, read_events
+from services.ledger_writer.principal_control import append_event, read_events
+from services.ledger_writer.mongo_control import digest
 from services.portal_operational.models import HistoryEntry, WorkView
 
 RESOURCE = "dap_request"
@@ -65,7 +66,7 @@ async def submit(db, scope, body):
         ],
     }
     event = await append_event(db, tenant_id=scope["tenant_id"], run_id=request_id,
-                              actor_id=scope["principal_id"], command_id=command_id,
+                              command_id=command_id,
                               event_type="dap.request.commissioned", resource_type=RESOURCE,
                               decision="held", reason_code="ADMISSION_UNRESOLVED", payload=payload)
     if event["payload"]["body_hash"] != body_hash:

@@ -1,5 +1,101 @@
 # Akki — continuity record
 
+## CURRENT OWNER AUTHORIZATION — autonomous programme, 2026-09-26
+
+Owner approved the surfaced consolidated plan: “This works, go autonomous, ill be
+stepping away and may not be in a position to respond. is ther a decion youd need
+from me except for the one you have listed above?” Implementation may now proceed
+within that plan. No extra decision is needed to START; use already-recorded
+rulings/default protocols, leave unresolved policy/external branches held, and
+continue independent work. Do not infer answers to decision register or reopen
+AISCA/GPU. No blanket grant of admission, commercial terms, sealed edits or egress.
+
+First scoped card: `notes/consolidated_fix_plan_20260926/
+W1_CONTROL_RECORD_CONTRACT.md`. Two control-record producers (held DAP commission,
+skill refusal) and two read families; derive actor from immutable existing request
+context and verify canonical chain/payload before authority use. Tests C01–C12
+defined before code. Full principal/organisation admission remains separate W1.
+Auth-context integration guidance obtained; sealed carrier/adapter/kernel unchanged.
+Prior plan-only entries below are historical, superseded by this explicit approval.
+
+### First autonomous W1 bounded result — verified, 2026-09-26
+
+Implemented additive `services/enforce/control_scope.py` and
+`services/ledger_writer/{principal_control,control_commands,control_integrity,
+control_insert_guard}.py`; wired `portal_operational/access.py`, Northena submit,
+skill refusal and request/entitlement read imports. Actor is derived from existing
+propagated principal, with immutable tenant/request-lifetime guard. Full canonical
+tenant prefix checked before these consumers and new writes; new command identity
+is payload-hash-bound; historical rows remain unchanged; conflicts409/failures503.
+No new owner admission, grants, pricing, executor or credential changes. E1 never
+read an estate source. No GPU/SSH/provider/model calls or frontend changes.
+
+Evidence: `notes/consolidated_fix_plan_20260926/W1_CONTROL_RECORD_RESULT.md` and
+`w1_verification/FINAL_BOUNDED_RESULT.json`. RED4pass/10fail before code; final
+portal_operational suite77pass/0fail/0skip (`test_reports/iteration_23.json`, JUnit).
+Fault/positive entitlement and admitted-skill fixtures **MOCKED**; real API/UI
+tests proved held commissioning/replay/concurrency/refusals/shared histories and
+honest unresolved entitlement, NOT successful execution. Sealed kernels/schema/
+raw Mongo writer and original prototype hashes unchanged. Scope: two producers,
+two read families; not all W1/S32 or full backend regression.
+
+Checker's mobile-overlay concern is original modal behavior, not broken nav:
+main keyboard close→mobile nav recheck passed390px with OVERFLOW=[]; no redesign.
+One extra browser check had transient bundle503; HTTP200+browser retry passed
+without app changes. No availability/RCA claim. Corrected checker receipt's
+pre-change hashes/outcome semantics additively in FINAL_BOUNDED_RESULT; retained
+original artifacts. No new auth credentials; test_credentials.md unchanged.
+
+Next P0: remaining W0 exact source/acceptance mapping; extend W1 producer inventory,
+actual principal/organisation admission, credential/handoff/custody/effective-rule
+boundaries using existing authority. Then W5a/W6a/W7a and W9a prerequisites. W2/T14
+real source and W3 real executor outcome remain held; AISCA parked. P1/P2 follow
+reviewed PLAN.md. Existing 509trace links/24source cases and DAP4/7/1 unchanged.
+Enhancement later: receipt-linked unmet prerequisites in the existing request drawer.
+
+## CURRENT OWNER CLARIFICATION — consolidated plan ONLY, 2026-09-26
+
+Owner supplied the exact prior exchange: approval “Works. Proceed” answered
+“formulate a consolidated fix plan—not implement it yet”. The fork handoff's
+instruction to implement Step 1 was incorrect. **Do not implement based on that
+approval.** Current task is the consolidated dependency-ordered plan for all
+flagged areas plus original DAP/request–work–result work; surface it for review.
+
+Plan bank: `assessment_workspace/notes/consolidated_fix_plan_20260926/`:
+`PLAN.md`, `COVERAGE.md`, `DECISION_AND_BLOCKER_REGISTER.md`. Retains W0–W9,
+splitting W5a commercial, W6a security and W7a lineage prerequisites before real
+operations; W5b DQ eligibility precedes W4 grounded answers; W9a protects the
+measurement/held-out protocol before training. W0 remains source/authority and
+exact acceptance closure, not a claim that 509 links/24 sources are resolved.
+Coverage index routes 56 families/648 rows, S1–35, D01–12 and report areas A–L;
+family routing is not completed row-specific semantic mapping. Decisions retain
+all 12 EX/DQ + 12 CC questions plus inherited source/owner/external boundaries.
+
+No app/Canon/DB/credential/config/UI changes or live API/source/provider/model/GPU
+calls are authorized or made by this planning task. No implementation status is
+advanced. AISCA remains parked pending administrator response and explicit
+reopening; matched server pins + rejected key do not prove provider fault.
+Original prototypes, sealed contracts and E1-not-data-path remain mandatory.
+
+Plan verification: `test_reports/iteration_20.json` checked documents OFFLINE:
+56-family/648-row counts, 35 assurance IDs, D01–D12 status preservation, A–L routing,
+acyclic work gates and all 24 EX/DQ/CC decision rows. Corrected shorthand backend
+path citations; clarified source cases versus documents, W3 conditional DQ gate,
+W9b explicit dependencies and two lexical-check discrepancies. Final main
+recheck `notes/consolidated_fix_plan_20260926/verification/FINAL_MAIN_RECHECK.json`:
+22 explicit file paths exist; final document hashes banked; graph/set checks pass.
+Original checker receipt remains unchanged, including its initial flags. This is
+not runtime validation, all-Canon closure, or hardened EX4/R37 independence.
+
+Next: present verified plan; await implementation authorization. Proposed P0:
+W0(scope) → W1 → W5a/W6a/W7a (+ early W9a) → actual W2 when admitted access exists
+→ W3 complete DAP outcome (W5b first if quality-qualified material is consumed).
+P1: W5b before W4, W6b operational breadth in parallel.
+P2: W7b real training/serving/withdrawal, W8 media/skills/rendering, W9b complete
+surfaces/measured release. Mandatory gates are never postponed by priority label.
+Potential enhancement later: receipt-linked unmet prerequisites in the existing
+request drawer, using authoritative producers without redesign or inferred status.
+
 ## LATEST LIVE DIAGNOSTIC — owner-approved current-key SSH test, 2026-09-26
 
 Owner challenged self-created client-fingerprint guard and explicitly said

@@ -1,0 +1,362 @@
+{
+  "timestamp_utc": "2026-09-26T15:10:16.627156Z",
+  "scope": "offline planning-document consistency and coverage checks only",
+  "results": {
+    "families": {
+      "coverage_count": 56,
+      "json_count": 56,
+      "coverage_duplicates": [],
+      "json_duplicates": [],
+      "missing_in_coverage": [],
+      "extra_in_coverage": [],
+      "coverage_total_rows": 648,
+      "json_total_rows": 648
+    },
+    "promises": {
+      "count": 35,
+      "duplicates": [],
+      "missing": [],
+      "extra": []
+    },
+    "d_status": {
+      "rows": [
+        [
+          "D01",
+          "Verified scoped slice"
+        ],
+        [
+          "D02",
+          "Verified"
+        ],
+        [
+          "D03",
+          "Partial"
+        ],
+        [
+          "D04",
+          "Open"
+        ],
+        [
+          "D05",
+          "Partial"
+        ],
+        [
+          "D06",
+          "Partial"
+        ],
+        [
+          "D07",
+          "Partial"
+        ],
+        [
+          "D08",
+          "Partial"
+        ],
+        [
+          "D09",
+          "Partial"
+        ],
+        [
+          "D10",
+          "Partial"
+        ],
+        [
+          "D11",
+          "Verified changed views"
+        ],
+        [
+          "D12",
+          "Verified scoped slice"
+        ]
+      ],
+      "counts": {
+        "Verified": 4,
+        "Partial": 7,
+        "Open": 1
+      }
+    },
+    "A_L": {
+      "count": 12,
+      "missing": [],
+      "duplicates": []
+    },
+    "gates": {
+      "nodes": {
+        "W0": [],
+        "W9a": [
+          "W0"
+        ],
+        "W1": [
+          "W0"
+        ],
+        "W5a": [
+          "W1",
+          "W0"
+        ],
+        "W6a": [
+          "W1",
+          "W0"
+        ],
+        "W7a": [
+          "W1",
+          "W0"
+        ],
+        "W2": [
+          "W1",
+          "W5a",
+          "W6a",
+          "W7a",
+          "W0"
+        ],
+        "W3": [
+          "W2",
+          "W5a",
+          "W6a",
+          "W7a",
+          "W0"
+        ],
+        "W5b": [
+          "W2",
+          "W1",
+          "W0"
+        ],
+        "W4": [
+          "W3",
+          "W5b",
+          "W7a",
+          "W0"
+        ],
+        "W6b": [
+          "W6a",
+          "W1",
+          "W0"
+        ],
+        "W7b": [
+          "W2",
+          "W5a",
+          "W5b",
+          "W6a",
+          "W7a",
+          "W9a",
+          "W0"
+        ],
+        "W8": [
+          "W3",
+          "W4",
+          "W5b",
+          "W7a",
+          "W0",
+          "W7b"
+        ],
+        "W9b": [
+          "W1",
+          "W8",
+          "W9a"
+        ]
+      },
+      "missing_nodes": [],
+      "extra_nodes": [],
+      "cycles": []
+    },
+    "gate_prereq_checks": {
+      "W2_has_W5a_W6a_W7a": true,
+      "W3_has_W5a_W6a_W7a": true,
+      "W4_has_W5b_and_W7a": true,
+      "W8_conditional_W7b_text": true,
+      "W9a_pre_training_text": true
+    },
+    "decision_rows": {
+      "ex_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E10",
+        "E11",
+        "E12"
+      ],
+      "ex_missing": [],
+      "ex_dupes": [],
+      "cc_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "cc_missing": [],
+      "cc_dupes": []
+    },
+    "semantic_checks": {
+      "EP1_4_adoption_vs_EP5_nonclaim": true,
+      "missing_sv_roc_deck_sources": true,
+      "rpo_site_loss": true,
+      "r32_already_ruled": true,
+      "confirmed_revocation_semantics": true,
+      "reseller_only_r24_scope": false
+    },
+    "work_package_structure": {
+      "W0": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W1": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W5a": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W6a": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W7a": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W2": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W3": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W5b": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W4": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W6b": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W7b": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W8": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": true,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      },
+      "W9a / W9b": {
+        "present": true,
+        "has_owner": true,
+        "has_concrete_work": false,
+        "has_acceptance": true,
+        "has_boundary": true,
+        "mentions_negative_or_failure": true
+      }
+    },
+    "preservation_checks": {
+      "plan_only_authorization": true,
+      "no_canon_ratification_claim": true,
+      "trace_509_unresolved": true,
+      "source_24_unresolved": true,
+      "mocks_not_real": true,
+      "no_invented_percentage": true,
+      "aisca_parked_no_new_ssh": true,
+      "no_provider_blame": true,
+      "e1_never_data_path": true,
+      "prototype_sealed_contract_ledger": true
+    },
+    "path_existence": {
+      "checked": 19,
+      "missing": [
+        "/app/services/chokepoint/llm.py",
+        "/app/services/enforce/census_identity.py",
+        "/app/services/ledger_writer/mongo_control.py",
+        "/app/services/ledger_emitter/emit_intent.py",
+        "/app/services/mkondo/registry.py",
+        "/app/services/rules_service/ceremony.py",
+        "/app/contracts/ledger_v1.py",
+        "/app/services/northena/portal_work.py",
+        "/app/services/portal_operational/{access,actions,entitlements,models,skill_query}.py",
+        "/app/routers/portal_requests.py",
+        "/app/routers/portal_entitlement.py"
+      ]
+    }
+  },
+  "input_hashes_sha256": {
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/PLAN.md": "5dd118aad45c948db8a502c863bc43d8e403e4eeaa073faac93ad693631c74b9",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/COVERAGE.md": "13f86d330b067cfe0a1b5a67f52e193600b69d2731f0b9da3b32604995eecb17",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/DECISION_AND_BLOCKER_REGISTER.md": "daa811c7061df969daa732fdc1b83f2a98b9b7fba60c41ae605d9f37d55a2320",
+    "/app/assessment_workspace/notes/full_requirements_gap_20260926/FAMILY_COVERAGE_56.json": "3a92adae024027f74cbd5db7bdb8d8f98d76ac06fd1a3ac31225347e4b14487c",
+    "/app/assessment_workspace/notes/dap_operational_v1/VERIFICATION_REPORT.md": "0f75192e6c200e636bcfc084de5e9d551c2c0814b4cf01c32210a5d5740caebd",
+    "/app/assessment_workspace/notes/enhancement_specs_20260926/INTEGRATION_REVIEW.md": "6200cfb6c8340a6c29bf4948e91e5ebf4d5a17533163e36b73f564dc034ccf40",
+    "/app/assessment_workspace/notes/full_requirements_gap_20260926/REPORT.md": "675d4d0268722cfa68fa4d7585c09739118271d7c1e71393f82d002ad2d3d14b",
+    "/app/assessment_workspace/STATE/OBJECTIVES/CP_DAP_OPERATIONAL_V1.md": "f8424934bc4d42c504f82c3569a320d6d302e6da7b91e223ab73c7665a61f9a8",
+    "/app/assessment_workspace/notes/census_operational_v1/COMPONENT_WORK_LEDGER.md": "0b01a6c1bf3c836bd027a14a4d074b178faa1dd1c0dd5c271958ebc9bd86e5a1",
+    "/app/memory/PRD.md": "ac104b836029b8f8d6f36e8ac587d76fbf16ab3a39cc8aed719768564cf64e45",
+    "/app/test_reports/iteration_13.json": "327f835c924ff329de1e8534355c57d4fe2335c6c96eca160632b36cdc5357b3"
+  },
+  "output_hashes_sha256": {
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/verification/offline_validation_receipt.json": "a2ace573877211525922116853b1c291332141ead46c2f984b9b5e067c649944",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/verification/offline_validation_summary.json": "3529701bf49159d75728c7844e2e38600721ecff21a87a8b6e4172ecda99b863"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "summary": "Executed bounded W1 control-plane regression: full portal_operational suite, added supplemental mocked-DB contract coverage, and ran real desktop/mobile held-request/work/entitlement UI/API flows on preview URL.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Mobile request detail overlay",
+        "issue": "After submit, request-detail overlay can hide left-nav/menu path until explicit close (×), making follow-on navigation appear blocked in automation.",
+        "selector": "text='×' (overlay close), data-testid='prototype-mobile-nav'",
+        "priority": "MEDIUM"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_w1_control_record_contract_red.py",
+    "/app/backend/tests/portal_operational/test_w1_control_record_contract_supplemental.py",
+    "/app/backend/tests/portal_operational/test_request_api.py",
+    "/app/backend/tests/portal_operational/test_request_api_expanded.py",
+    "/app/backend/tests/portal_operational/test_callable_skill_query_safety.py",
+    "/app/test_reports/pytest/pytest_portal_operational_iteration23.xml",
+    "/app/test_reports/pytest/pytest_w1_supplemental_iteration23.xml",
+    "/app/test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/w1_verification/w1_control_member_verification_iteration23.json"
+  ],
+  "action_items": [
+    "If desired, harden mobile UX by making overlay close affordance explicit for keyboard/automation and preserving a deterministic menu path after submit.",
+    "Keep using new supplemental suite for regression on C01-C12 negative paths and durable-prefix guard behavior."
+  ],
+  "critical_code_review_comments": [
+    "No production-code changes were made by this checker. Contract-sensitive sealed files/hash pins remained unchanged and passing.",
+    "Supplemental tests now cover previously under-tested context lifetime, malformed scope refusal surfaces, marker tamper/conflict paths, prefix corruption rejection, and acknowledgement durability checks."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_w1_control_record_contract_supplemental.py",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/w1_verification/w1_control_member_verification_iteration23.json",
+    "/app/test_reports/iteration_23.json"
+  ],
+  "success_rate": {
+    "backend": "100% (77/77 portal_operational tests passed; includes supplemental 20/20)",
+    "frontend": "95% (desktop and mobile held/work/entitlement flows passed; one transient mobile navigation block due open detail overlay)"
+  },
+  "seed_data_creation": "Created real HELD control requests via allowed operator UI/API flows only; no approvals/grants/licences/users/admissions/lifecycle completion actions executed.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Run /app/backend/tests/portal_operational as primary bounded regression. Supplemental contract coverage is in test_w1_control_record_contract_supplemental.py and currently GREEN. Four-member verification bank is recorded in w1_control_member_verification_iteration23.json with count reconciliation and evidence refs.",
+  "rca of the issue": "Only observed UI friction was mobile post-submit overlay state: automation initially failed when trying nav while detail sheet was still open. Repro: submit mobile held request then click menu-dependent nav without closing sheet. Mitigation: close with × before continuing or implement deterministic post-submit focus/nav behavior."
+}

@@ -1,0 +1,70 @@
+{
+  "date": "2026-09-26",
+  "scope": "Two prospective held/refusal control producers and two control read families; engineering verification, NOT real estate execution or complete W1",
+  "count_reconciliation": {"denominator": 4, "processed": 4, "refused": 0, "unmeasured": 0},
+  "outcome_semantics": "processed means the enumerated code member was wired and its scoped acceptance exercised. It does NOT mean its business operation executed. Skill execution remains refused; fixtures are explicitly marked.",
+  "source_hash_method": "sha256(inspect.getsource(callable).encode()) matching the original RED baseline method; imports are separately covered by migration assertions",
+  "member_rows": [
+    {
+      "member_id": "services.northena.portal_work.submit",
+      "outcome": "processed",
+      "reason": "Producer now derives writer actor from active propagated context; legitimate real HELD requests, duplicate replay, changed-body conflict and concurrency passed.",
+      "prechange_source_sha256": "de13c14d37717e1f6d7a402977faacda9c5fc6d1776b655bfe26207592fd63b2",
+      "postchange_source_sha256": "0c9184110bd88b0681388353b321258640017c5234c13f6668fdb0a2f09a434f",
+      "runtime_outcome": "real_held_commission_only",
+      "evidence_refs": ["backend/tests/portal_operational/test_request_api.py", "backend/tests/portal_operational/test_request_api_expanded.py", "test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"]
+    },
+    {
+      "member_id": "services.portal_operational.skill_query.refuse_unadmitted",
+      "outcome": "processed",
+      "reason": "Caller actor removed and guarded writer bound. Refusal producer tested with MOCKED gate/DB fixtures; real endpoint auth/unknown-skill denials passed. No real admitted-skill executor or successful skill result.",
+      "prechange_source_sha256": "b6cde6fa2c284760fedd18d5197d2f43a78a0682ea021346744a7bc96775120c",
+      "postchange_source_sha256": "8dc21166d94747a7e5e2a0152985738a0a80d0259eabf85101f67ed9aaeeee6d",
+      "runtime_outcome": "MOCKED admitted-gate refusal; real anonymous/unknown-skill denial",
+      "evidence_refs": ["backend/tests/portal_operational/test_callable_skill_query_safety.py", "backend/tests/portal_operational/test_w1_control_record_contract_red.py", "test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"]
+    },
+    {
+      "member_id": "services.northena.portal_work.events_for",
+      "outcome": "processed",
+      "reason": "Function body preserved; imported reader now verifies complete tenant prefix before principal/run/resource filtering. Real DAP/OS held history parity and MOCKED corrupt-prefix refusals passed.",
+      "prechange_source_sha256": "15b85145940961c4db5bb422c026059938c9bd3a765a95db4838dfdf26b7ce94",
+      "postchange_source_sha256": "15b85145940961c4db5bb422c026059938c9bd3a765a95db4838dfdf26b7ce94",
+      "runtime_outcome": "real_held_history_projection",
+      "evidence_refs": ["backend/tests/portal_operational/test_request_api.py", "backend/tests/portal_operational/test_w1_control_record_contract_supplemental.py", "test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"]
+    },
+    {
+      "member_id": "services.portal_operational.entitlements.read_view",
+      "outcome": "processed",
+      "reason": "Function body preserved; imported reader verifies prefix before entitlement projection. Actual unresolved state remains honest; positive entitlement and invalid record fixtures are MOCKED, not real grants.",
+      "prechange_source_sha256": "f20199e3f4b4afbb88775f4348cdf295d2fbe98013c3eefcb3229192e437880d",
+      "postchange_source_sha256": "f20199e3f4b4afbb88775f4348cdf295d2fbe98013c3eefcb3229192e437880d",
+      "runtime_outcome": "real_unresolved_entitlement_projection",
+      "evidence_refs": ["backend/tests/portal_operational/test_portal_unit_faults_and_entitlements.py", "backend/tests/portal_operational/test_request_api.py", "test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"]
+    }
+  ],
+  "validation": {
+    "red_first": "iteration21: 4 pass/10 fail; baseline-only harness correction before runtime edits in iteration22 retained 4 pass/10 fail",
+    "green": "iteration23: 77 tests, 0 failures, 0 errors, 0 skipped; JUnit independently parsed",
+    "protected_byte_pins": "sealed context/adapter, canonical emitter/writer/Mongo writer/verifier, 17-field schema and original prototypes unchanged",
+    "browser": "Checker verified desktop and mobile held/request/work/entitlement flows. Main verified keyboard close of existing mobile modal and immediate nav availability at390x844; OVERFLOW=[]",
+    "transient_browser_failure": "Extra main check first received503 for static/js/bundle.js. Subsequent bundle and portal HTTP200 plus repeated browser check passed without app/config/cache changes. No persistent root cause claimed.",
+    "ui_finding_disposition": "Iteration23 open detail overlay is original prototype modal backdrop (generated dap lines800–811). Existing explicit close is keyboard accessible; main recheck passed. Retain intentional modal behavior, no frontend changes."
+  },
+  "evidence_hashes_sha256": {
+    "backend/tests/portal_operational/test_w1_control_record_contract_red.py": "d09877d27d8bc5adbad1883cc54532ba0d72714ba63f6fb42cc526788d0a1b7e",
+    "backend/tests/portal_operational/test_w1_control_record_contract_supplemental.py": "3e4c8981138988b5eefcbe077077fc9fbeb5b12294c3223d8cf5c7fc9ea4da36",
+    "test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml": "7a8c164718246dcd91f95d1fed37e78689d7561a892d037d234155148ba53604",
+    "w1_control_member_source_baseline_prechange_20260926.json": "e34b5fbefe751aff9bfd8a42092c1eb118c496e731c640ffc5cdb56800142a4d"
+  },
+  "historical_receipt_correction": "iteration23 member_hashes were pre-change baseline hashes, not post-change hashes. Its outcomes mixed code-processing and runtime refusal. Original evidence retained; this additive receipt supplies distinct pre/post hashes and explicit outcome semantics.",
+  "limitations": [
+    "No new principals, credentials, grants, licences, prices, operation approvals or executor authority.",
+    "Existing account membership remains held-work scope, not full owner organisation admission.",
+    "Legacy raw reader counterexample remains intentionally reproducible; migrated consumers use guarded prefix reader. Global writer and invoker coverage remains W1 work.",
+    "No external trusted-head witness or self-consistent truncation/chain replacement detection; W6b remains open.",
+    "Full-prefix verification is uncached; throughput and CC floors unmeasured.",
+    "No estate/source/GPU/SSH/provider/model calls. CensusT14 and real request execution remain blocked/held.",
+    "No full audit closure, EX4 protected isolation or R37 independent-model compliance asserted. 509 semantic links and24 source-bounded cases remain open.",
+    "No whole-W1/S32/35-promise/platform-completion claim. Training/evaluation MOCKED paths remain outside this slice."
+  ]
+}

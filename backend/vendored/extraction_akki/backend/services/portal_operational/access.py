@@ -4,6 +4,8 @@ from fastapi import HTTPException
 from pymongo.errors import PyMongoError
 from services.enforce.census_identity import census_identity
 from services.enforce.principal_context_adapter import principal_context
+from services.enforce.control_scope import bind_control_scope
+from services.ledger_writer.principal_control import CommandConflict
 from services.census_autonomy.operational_scope import SOURCE_TENANTS
 
 
@@ -14,7 +16,10 @@ async def portal_scope(request, *, write=False):
         if write and not {"operator", "master_admin"}.intersection(scope["roles"]):
             raise HTTPException(403, "An admitted operator is required to commission or change work.")
         with principal_context(scope["principal_id"]):
-            yield scope
+            with bind_control_scope(scope):
+                yield scope
+    except CommandConflict as exc:
+        raise HTTPException(409, "This request key already belongs to a different frozen command.") from exc
     except (PyMongoError, ValueError, RuntimeError) as exc:
         raise HTTPException(503, "The authoritative record could not be verified. Retry with the same request key.") from exc
 

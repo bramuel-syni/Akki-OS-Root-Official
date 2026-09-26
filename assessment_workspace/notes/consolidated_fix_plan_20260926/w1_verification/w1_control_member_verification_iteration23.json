@@ -1,0 +1,60 @@
+{
+  "count_reconciliation": {
+    "total_members": 4,
+    "processed": 3,
+    "refused": 1,
+    "unmeasured": 0
+  },
+  "member_rows": [
+    {
+      "member_id": "services.northena.portal_work.submit",
+      "outcome": "processed",
+      "reason": "Held commissioning producer wiring verified by local+live contract tests (idempotent 202/replay, changed-body 409, durable request/work parity).",
+      "evidence_refs": [
+        "/app/backend/tests/portal_operational/test_request_api.py",
+        "/app/backend/tests/portal_operational/test_request_api_expanded.py",
+        "/app/test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"
+      ]
+    },
+    {
+      "member_id": "services.portal_operational.skill_query.refuse_unadmitted",
+      "outcome": "refused",
+      "reason": "Refusal payload/receipt path verified with MOCKED admitted-gate fixture and live auth/unknown-skill guard checks; no real executor admission introduced.",
+      "evidence_refs": [
+        "/app/backend/tests/portal_operational/test_callable_skill_query_safety.py",
+        "/app/test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"
+      ]
+    },
+    {
+      "member_id": "services.northena.portal_work.events_for",
+      "outcome": "processed",
+      "reason": "Request/work read family verified for principal scoping and DAP/OS parity under held lifecycle with replay-safe history retrieval.",
+      "evidence_refs": [
+        "/app/backend/tests/portal_operational/test_request_api.py",
+        "/app/backend/tests/portal_operational/test_request_api_expanded.py",
+        "/app/test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"
+      ]
+    },
+    {
+      "member_id": "services.portal_operational.entitlements.read_view",
+      "outcome": "processed",
+      "reason": "Entitlement projection read path verified for honest unresolved state and fail-closed invalid-record handling in MOCKED/local fixtures plus live unresolved allowance reads.",
+      "evidence_refs": [
+        "/app/backend/tests/portal_operational/test_portal_unit_faults_and_entitlements.py",
+        "/app/backend/tests/portal_operational/test_request_api.py",
+        "/app/test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"
+      ]
+    }
+  ],
+  "member_hashes": {
+    "services.northena.portal_work.submit": "de13c14d37717e1f6d7a402977faacda9c5fc6d1776b655bfe26207592fd63b2",
+    "services.portal_operational.skill_query.refuse_unadmitted": "b6cde6fa2c284760fedd18d5197d2f43a78a0682ea021346744a7bc96775120c",
+    "services.northena.portal_work.events_for": "15b85145940961c4db5bb422c026059938c9bd3a765a95db4838dfdf26b7ce94",
+    "services.portal_operational.entitlements.read_view": "f20199e3f4b4afbb88775f4348cdf295d2fbe98013c3eefcb3229192e437880d"
+  },
+  "receipts": [
+    "/app/test_reports/pytest/pytest_portal_operational_iteration23.xml",
+    "/app/test_reports/pytest/pytest_w1_supplemental_iteration23.xml",
+    "/app/test_reports/pytest/pytest_portal_operational_with_supplemental_iteration23.xml"
+  ]
+}
