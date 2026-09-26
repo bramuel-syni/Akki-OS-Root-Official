@@ -1,0 +1,44 @@
+{
+  "summary": "Completed read-only surgical correction for REQ-314..REQ-407 (94 rows) and produced source/body-grounded correction file.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "N/A (read-only assessment)",
+        "issue": "No runtime/API verification executed in this task scope."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/assessment_workspace/notes/full_requirements_gap_20260926/correction_314_407.json"
+  ],
+  "action_items": [
+    "Review and accept correction_314_407.json as replacement for reviewer-B generic gaps in REQ-314..407.",
+    "If needed, run separate runtime validation wave for dispatch/approval/metered-operation wiring and publication artifacts."
+  ],
+  "critical_code_review_comments": [
+    "DAP-18 durable commissioning + idempotent ledger path is real and credited.",
+    "DAP-19 currently records governing_engine label but does not prove executor dispatch wiring.",
+    "DAP-21 metering contract exists; accepted-operation metering cannot be claimed while lifecycle remains held.",
+    "DAP-29 refusal-on-ledger-write-failure is explicitly coded in scoped lifecycle paths.",
+    "G-1 and G-4 baseline claims are historically stale/partial due newer TCB and assessment-classification artifacts."
+  ],
+  "updated_files": [
+    "/app/assessment_workspace/notes/full_requirements_gap_20260926/correction_314_407.json",
+    "/app/test_reports/iteration_17.json"
+  ],
+  "success_rate": {
+    "backend": "N/A",
+    "frontend": "N/A"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "This run was documentation/evidence correction only (no runtime tests). correction_314_407.json includes 94 entries with source block+line and code line-hash evidence, plus prior reviewer raw preservation.",
+  "rca of the issue": "Reviewer-B entries in this range were over-generic and sometimes stale against current source/code. Correction switched to source-body anchors and scoped behavior evidence without changing app runtime."
+}

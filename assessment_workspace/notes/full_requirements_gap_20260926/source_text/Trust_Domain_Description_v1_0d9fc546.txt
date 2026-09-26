@@ -1,0 +1,47 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  6 OF 9
+
+[B2] Trust Domain Description
+
+[B3] trust_domains_v1 — Draft for owner ratification · Closes Document 0 G-12
+
+[B4R1] Requirement answered | CC ADV_ARC.1's domain-separation property, generalised from dap_backend_spec_v1's DAP-5 (specified for external parties only) to the whole platform. NIST SC-2/3/7.
+
+[B4R2] R-5, resolved | Dedicated infrastructure per tenant. Grounded directly in Akki_Appliance_Assembly_Spec_RevA, already ratified: “a sealed computer, installed inside a customer's own server room or field site, that runs Syni.ai's Akki software platform locally so that customer data never leaves the customer's premises,” with per-unit serials in the signed test record. The deployment model was already decided; this document is the first to state it as the answer to R-5.
+
+[B4R3] Date | 9 September 2026
+
+[B5] 1   R-5, Resolved by Cross-Reference
+
+[B6] Document 0 posed R-5 as open: shared infrastructure with tenant separation, dedicated infrastructure per tenant, or both. The appliance programme, ratified separately and earlier in this canon's own history, already answers it. The appliance is one sealed unit per customer, with its own serial, its own tamper seals, its own signed test record. There is no shared substrate between tenants to separate — each tenant's Akki instance is a physically distinct machine.
+
+[B7] This resolves the deployment question but does not eliminate the domain-separation question — it relocates it. Where a shared-infrastructure design would need to separate tenant from tenant, a dedicated-appliance design needs to separate the estate's own domain from every external party that reaches it, which is exactly DAP-5's existing scope. The general trust-domain description below has three domains, not the two a shared-infrastructure model would have needed.
+
+[B8] 2   The Three Domains
+
+[B9] TD-1  The Platform Domain — the appliance's own governed core: the six engines, the Watch, the Ledger, the Rules Service, running inside the sealed unit. Bounded by the appliance's own physical and network perimeter (Akki_Appliance_Assembly_Spec_RevA CR-1: dual-port ESTATE/WAN separation; B-5: front panel exposes only PORT-A, PORT-B, power, status — nothing else).
+
+[B10] TD-2  The Tenant's Estate Domain — the customer's own data and systems, reached only through PORT-A (ESTATE), never through the appliance's WAN-facing side. This domain is, by the appliance's physical design, not shared with any other tenant — there is no code path for it to be, since there is no other tenant's data on the same unit.
+
+[B11] TD-3  The External-Party Domain — any AI lab, research institution, or buyer reaching the estate through DAP, over PORT-B (WAN). This is the domain DAP-5 already governs: no shared identifier resolution, store, or credential with the estate's own domain. Multiple external parties may share this domain's outer boundary (the appliance's WAN port) while remaining mutually isolated within it, per DAP-1 through DAP-5's own principal and coalition structure.
+
+[B12] 3   Managed Interfaces at Each Boundary
+
+[B13R1] Boundary | Managed interface
+
+[B13R2] Platform ↔ Tenant's Estate | PORT-A (ESTATE), colour-keyed, the only path by which the platform reads or writes tenant data. Governed by SyniSense's chokepoint (SFP-4, Custody Floor) on every crossing in either direction.
+
+[B13R3] Platform ↔ External Party | PORT-B (WAN), colour-keyed, the only path by which an external party reaches the platform. Governed by the full DAP surface — admission (DAP-1, DAP-12), the crossing profiles (DAP §4), and the release budget (SFP-6) as the outer bound on everything that crosses it.
+
+[B13R4] Platform ↔ the Watch's own domain | The verdict interface (A2) — the sole point at which the Watch's response half receives input from and issues decisions to the engines it observes. Not a network port; a software seam with the same separation discipline.
+
+[B13R5] Tenant's Estate ↔ External Party | None, directly. This is the boundary the whole architecture exists to prevent — an external party never has a path to the estate that does not pass through the Platform Domain's own governance.
+
+[B14] The fourth row is the one worth stating explicitly rather than leaving implicit: there is no managed interface between the Tenant's Estate Domain and the External-Party Domain because there must be no interface at all. Every legitimate crossing between them is mediated by the Platform Domain; a direct path would be exactly the side door Promise #26's single-crossing doctrine forbids.
+
+[B15] 4   Multi-Estate Tenants
+
+[B16] Where one customer operates more than one estate — RMS's own case, given DigiCow and the broadcast archive are already distinct estates on record — each estate is its own instance of the Tenant's Estate Domain, on its own appliance or its own logical partition of one, per the appliance programme's own per-unit model. Nothing in this document assumes a customer has exactly one estate; TD-2 is stated per estate, not per customer.
+
+[B17] 5   Standing
+
+[B18] This description supersedes DAP-5 as the general statement of trust domains; DAP-5 remains correct and is now read as this document's instance for the External-Party Domain specifically, not a separate rule. A future domain — should one be added — is added here with its own managed interfaces stated, on the same pattern.

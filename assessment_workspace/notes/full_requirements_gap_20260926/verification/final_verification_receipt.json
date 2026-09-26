@@ -1,0 +1,654 @@
+{
+  "task": "final_read_only_assessment_verification",
+  "mechanical_pass": true,
+  "semantic_status": "incomplete_audit_with_preserved_uncertainty",
+  "contract_hash_checks": {
+    "master_exists": true,
+    "promise_exists": true,
+    "master_sha256_actual": "2d5d32501d113f201ebf32f7d6733c3a178fcbd806a8d459d9a72b08acd92d64",
+    "master_sha256_expected": "2d5d32501d113f201ebf32f7d6733c3a178fcbd806a8d459d9a72b08acd92d64",
+    "promise_sha256_actual": "004aa66932432ee313b48e5024821a4b13d9edba8e2ddd2088c983847fe430a7",
+    "promise_sha256_expected": "004aa66932432ee313b48e5024821a4b13d9edba8e2ddd2088c983847fe430a7",
+    "master_hash_match": true,
+    "promise_hash_match": true
+  },
+  "xlsx_alignment": {
+    "master_rows_count": 648,
+    "requirement_rows_count": 648,
+    "missing_in_requirements": [],
+    "extra_in_requirements": [],
+    "duplicate_composite_ids_in_requirements": [],
+    "duplicate_composite_ids_in_xlsx": [],
+    "statement_or_workbook_row_mismatches": [],
+    "promise_rows_count": 35,
+    "promise_gap_rows_count": 35,
+    "missing_promises": [],
+    "extra_promises": [],
+    "duplicate_promise_ids": [],
+    "promise_literal_mismatches": []
+  },
+  "rendered_cards": {
+    "requirements_line_by_line": 648,
+    "promises_line_by_line": 35
+  },
+  "status_counts": {
+    "expected": {
+      "PARTIAL": 475,
+      "UNVERIFIED": 128,
+      "SOURCE_UNRESOLVED": 24,
+      "SPEC_DECISION_REQUIRED": 7,
+      "EXPLICIT_NONCLAIM": 1,
+      "EVIDENCED_SCOPED": 13
+    },
+    "actual_from_requirements": {
+      "PARTIAL": 475,
+      "UNVERIFIED": 128,
+      "SOURCE_UNRESOLVED": 24,
+      "SPEC_DECISION_REQUIRED": 7,
+      "EXPLICIT_NONCLAIM": 1,
+      "EVIDENCED_SCOPED": 13
+    },
+    "coverage_receipt": {
+      "PARTIAL": 475,
+      "UNVERIFIED": 128,
+      "SOURCE_UNRESOLVED": 24,
+      "SPEC_DECISION_REQUIRED": 7,
+      "EXPLICIT_NONCLAIM": 1,
+      "EVIDENCED_SCOPED": 13
+    },
+    "note": "13 EVIDENCED_SCOPED rows are scoped evidence only, not full delivered promises."
+  },
+  "code_evidence_integrity": {
+    "issues_count": 0,
+    "issues_sample": []
+  },
+  "supplemental_848_reconciliation": {
+    "rows": 848,
+    "classification_counts_actual": {
+      "REGISTERED_OBLIGATION_OVERLAP": 214,
+      "RULING_OR_AUTHORITY_DEPENDENCY": 64,
+      "SOURCE_CONTEXT_REQUIRES_TRACE": 191,
+      "HISTORICAL_DIAGNOSIS_NOT_CURRENT_VERDICT": 1,
+      "SOURCE_VERSION_DUPLICATE": 26,
+      "EXPLICIT_LIMIT_OR_NONCLAIM": 34,
+      "FOUNDATIONAL_CANON_TRACE_PENDING": 318
+    },
+    "classification_counts_expected": {
+      "REGISTERED_OBLIGATION_OVERLAP": 214,
+      "RULING_OR_AUTHORITY_DEPENDENCY": 64,
+      "EXPLICIT_LIMIT_OR_NONCLAIM": 34,
+      "SOURCE_VERSION_DUPLICATE": 26,
+      "HISTORICAL_DIAGNOSIS_NOT_CURRENT_VERDICT": 1,
+      "SOURCE_CONTEXT_REQUIRES_TRACE": 191,
+      "FOUNDATIONAL_CANON_TRACE_PENDING": 318
+    },
+    "missing_text_count": 0,
+    "missing_source_sha_count": 0,
+    "source_hash_path_issues_count": 0,
+    "source_hash_path_issues_sample": [],
+    "509_trace_pending_confirmed": true
+  },
+  "crosswalk_checks": {
+    "unmapped_product_promises": [
+      "P-05",
+      "P-28",
+      "P-29"
+    ],
+    "expected_unmapped": [
+      "P-05",
+      "P-28",
+      "P-29"
+    ],
+    "pass": true
+  },
+  "semantic_policy_checks": {
+    "s10_status": "PARTIAL",
+    "s11_status": "PARTIAL",
+    "bcr_rpo_site_loss_rows": [
+      {
+        "review_id": "REQ-469",
+        "statement": "Ledger continuity is itself attested on a standing cadence, independent of any incident — proposed quarterly, DEFAULT-class, revisable on evidence. This is a routine health check, not a response to failure; its purpose is confirming the RTO would hold if tested, before it has to be.",
+        "delivery_status": "PARTIAL"
+      },
+      {
+        "review_id": "REQ-471",
+        "statement": "Disaster scenarios beyond single-component failure — total site loss, where the appliance itself (Akki_Appliance_Assembly_Spec_RevA) is destroyed or inaccessible — are not addressed by S-10 or S-11, both of which assume the Ledger writer is recoverable in place. Given the appliance's own dedicated, per-site deployment model (trust_domains_v1 §1), a total site loss scenario has no ruled answer: whether there is an off-site backup, and if so its own RPO/RTO, is unaddressed.",
+        "delivery_status": "SPEC_DECISION_REQUIRED"
+      },
+      {
+        "review_id": "REQ-472",
+        "statement": "A fine-tuned artefact MAY be pruned — magnitude pruning or an equivalent structural reduction — between MOAC acceptance and DAP-31's distance gate, as a ruled optional step. Pruning is a second, empirical reduction in memorisation surface on top of DAP-36's differentially private training; it is never a substitute for it, and this document does not present it as one. A pruned artefact MUST re-pass MOAC's acceptance criteria — pruning can degrade performance below the accepted bar, and acceptance is re-evaluated, not assumed to survive the change. A pruned artefact's hash differs from its pre-pruning hash; it is a new artefact for every purpose DAP-10 and DAP-31 govern, including a fresh pass through the distance gate at the ruled threshold. Pruning ratio and method are ruled values, ratified alongside DAP-31's own probe parameters.",
+        "delivery_status": "PARTIAL"
+      },
+      {
+        "review_id": "REQ-483",
+        "statement": "Every registered artefact carries a capability-class register: the enumerated set of action and output classes it is admitted to exercise. The register is seeded at admission with the minimum its stated purpose requires (AC-2's narrow start), grows only through RBM-8's ceremony, and is versioned with the artefact — a new artefact hash inherits no admissions; its register is re-ratified with the version.",
+        "delivery_status": "PARTIAL"
+      },
+      {
+        "review_id": "REQ-575",
+        "statement": "An objective is mandatory on every entry. An entry whose objective cannot be stated in one sentence is refused at ceremony — a string nobody can say the purpose of is a string nobody can say is still right.",
+        "delivery_status": "PARTIAL"
+      },
+      {
+        "review_id": "REQ-624",
+        "statement": "Every record carries its source, its writing pipeline where known, and its write time where known. A record with none of the three is not failed; it is marked provenance-unknown, which caps its stratum at Suspect for any purpose requiring defensibility.",
+        "delivery_status": "UNVERIFIED"
+      }
+    ],
+    "ep_rows": [
+      {
+        "review_id": "REQ-249",
+        "rule_id": "EP-1",
+        "delivery_status": "SPEC_DECISION_REQUIRED",
+        "statement": "Build the register first — cheapest piece, and it immediately hardens the custody-recall and Model Acceptance sites above"
+      },
+      {
+        "review_id": "REQ-250",
+        "rule_id": "EP-2",
+        "delivery_status": "SPEC_DECISION_REQUIRED",
+        "statement": "Dual-judge scoring (A-2) applies at every named site in §19B.4, plus any future site where a judgement call becomes a published number"
+      },
+      {
+        "review_id": "REQ-251",
+        "rule_id": "EP-3",
+        "delivery_status": "SPEC_DECISION_REQUIRED",
+        "statement": "A-4 (claims validation) rides inside this capability, scoped explicitly as validation, never a build gate — its real experiments require real material and naturally seque"
+      },
+      {
+        "review_id": "REQ-252",
+        "rule_id": "EP-4",
+        "delivery_status": "SPEC_DECISION_REQUIRED",
+        "statement": "Hard ordering constraint, stated by the original proposal: the evidence register and dual-judge protocol must exist before the terminal test runs, or that test's verdict "
+      },
+      {
+        "review_id": "REQ-253",
+        "rule_id": "EP-5",
+        "delivery_status": "EXPLICIT_NONCLAIM",
+        "statement": "Explicitly not adopted, per the same proposal: the source spec's “insurance telemetry” aside (serves a goal never named) and its internal reduction-skill mandate (process"
+      }
+    ],
+    "r32_state_decision_reference_present": true,
+    "report_language_checks": {
+      "mentions_509_trace_closure_needed": true,
+      "mentions_24_source_cases_unresolved": true,
+      "says_not_fully_closed_canon": true,
+      "no_platform_percentage_claim": true,
+      "mentions_old_146_tests_narrow_scope": true,
+      "mentions_mocked": true,
+      "contains_percent_symbol": false,
+      "contains_unsupported_platform_percent_phrase": false
+    }
+  },
+  "generic_repetition_scan": {
+    "top_repeated_exact_gap_entries": [
+      {
+        "text": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+        "count": 12
+      },
+      {
+        "text": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+        "count": 12
+      },
+      {
+        "text": "Deck source text is not recovered in this workspace; current evidence is contract/seed scaffolding, not full renderer proof.",
+        "count": 12
+      },
+      {
+        "text": "Rules Service paths are largely local append/in-memory flows; ceremony/check/audit semantics are partially encoded but not durably proven end-to-end across all RBM and invariant requirements.",
+        "count": 26
+      },
+      {
+        "text": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+        "count": 41
+      },
+      {
+        "text": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+        "count": 20
+      },
+      {
+        "text": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+        "count": 12
+      }
+    ],
+    "top_repeated_closure_entries": [
+      {
+        "text": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+        "count": 12
+      }
+    ]
+  },
+  "authority_status_distribution": {
+    "CANON": {
+      "PARTIAL": 100,
+      "UNVERIFIED": 42
+    },
+    "PROPOSED": {
+      "UNVERIFIED": 61,
+      "PARTIAL": 279,
+      "SOURCE_UNRESOLVED": 9,
+      "SPEC_DECISION_REQUIRED": 4,
+      "EXPLICIT_NONCLAIM": 1,
+      "EVIDENCED_SCOPED": 12
+    },
+    "—": {
+      "UNVERIFIED": 12,
+      "PARTIAL": 15
+    },
+    "RULED": {
+      "UNVERIFIED": 12,
+      "PARTIAL": 4
+    },
+    "DETERMINED": {
+      "PARTIAL": 1
+    },
+    "DEFAULT (draft; R2 open)": {
+      "PARTIAL": 18
+    },
+    "OPEN": {
+      "PARTIAL": 18,
+      "SOURCE_UNRESOLVED": 2,
+      "SPEC_DECISION_REQUIRED": 3,
+      "UNVERIFIED": 1,
+      "EVIDENCED_SCOPED": 1
+    },
+    "— (see heading)": {
+      "PARTIAL": 3
+    },
+    "OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable)": {
+      "PARTIAL": 12
+    },
+    "OPEN — statement unrecovered": {
+      "SOURCE_UNRESOLVED": 2
+    },
+    "PROPOSED (pending ratification)": {
+      "SOURCE_UNRESOLVED": 11
+    },
+    "See xlsx": {
+      "PARTIAL": 25
+    }
+  },
+  "sample_33": {
+    "seed": "2d5d32501d113f201ebf32f7d6733c3a178fcbd806a8d459d9a72b08acd92d64",
+    "sample_size": 33,
+    "verdict_counts": {
+      "agree": 31,
+      "uncertain": 2
+    },
+    "rows": [
+      {
+        "review_id": "REQ-017",
+        "composite_id": "Doc 1::B5.3",
+        "workbook_row": 18,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 0,
+        "source_overlap_score": 2,
+        "code_snippet_preview": "class FrozenArtifact:\n    \"\"\"Immutable dict wrapper.\n\n    Doc 05 §B5.1 · A changed intent is a NEW admission, never an edit.\n    Structurally: __setitem__ / __delitem__ raise TypeError.\n    \"\"\"\n\n    __slots__ = (\"_data\",)\n\n    def __init__(self, data: Dict[str"
+      },
+      {
+        "review_id": "REQ-039",
+        "composite_id": "Doc 3::A5.6",
+        "workbook_row": 40,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 0,
+        "source_overlap_score": 1,
+        "code_snippet_preview": "def score_input_seat(\n    purpose: str,\n    custody_class: str,\n    tenant_id: str,\n    provider: str,\n) -> Tuple[str, str, str]:\n    \"\"\"Lango's hostility + provenance scoring → graded verdict.\n\n    Canon 3 §13.1: 'every payload bound for a model is scored for"
+      },
+      {
+        "review_id": "REQ-045",
+        "composite_id": "Doc 3::B5.3",
+        "workbook_row": 46,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 1,
+        "source_overlap_score": 2,
+        "code_snippet_preview": "def mint_mark(\n    *,\n    mark_id: str,\n    verdict_ref: str,\n    action_ref: str,\n    identity: str,\n    credentials: str,\n    session_id: str,\n    device_fingerprint: str,\n    behavioural_signature: str,\n    content_hashes: List[str],\n    minted_at: str,\n) -"
+      },
+      {
+        "review_id": "REQ-091",
+        "composite_id": "Doc 8::B5.3",
+        "workbook_row": 92,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 2,
+        "source_overlap_score": 5,
+        "code_snippet_preview": "def test_t04_records_and_latest_agree_for_census4(operator_headers):\n    \"\"\"/records and /latest expose tenant-scoped real census data including census4.\"\"\"\n    records_response = requests.get(f\"{BASE_URL}/api/portal/census/records\", headers=operator_headers, "
+      },
+      {
+        "review_id": "REQ-118",
+        "composite_id": "Doc 12::A5.3",
+        "workbook_row": 119,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 1,
+        "source_overlap_score": 6,
+        "code_snippet_preview": "async def upsert_compute_integration(*, repo: Repository, doc: Mapping[str, Any]) -> Any:\n    cls = getattr(_m9, 'ComputeIntegrationEntity', None)\n    if cls is not None:\n        _ = cls(**doc)\n    return await repo.update_one({\"id\": doc[\"id\"]}, {\"$set\": dict("
+      },
+      {
+        "review_id": "REQ-124",
+        "composite_id": "Doc 12::B5.5",
+        "workbook_row": 125,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 3,
+        "source_overlap_score": 5,
+        "code_snippet_preview": "def build_cost_receipt(\n    *,\n    composition_path: Path,\n    stratified_path: Path,\n    quality_path: Path,\n    huawei_egress_rate_usd_per_gb: float = _HUAWEI_EGRESS_RATE_USD_PER_GB,\n    billing_basis: str = \"cassava_lease · $0 marginal on idle capacity (ban"
+      },
+      {
+        "review_id": "REQ-125",
+        "composite_id": "Doc 12::B5.6",
+        "workbook_row": 126,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 1,
+        "source_overlap_score": 6,
+        "code_snippet_preview": "HEAVY_FINETUNE_DEFERRED_TO_COMMISSIONED_JOB_POSTURE: Final[str] = (\n    \"CP-AIP-10-TRAINING-RUNS · §11.6 verbatim: 'quoted before start' + \"\n    \"§1.4 verbatim: measure-don't-assert measured-cost-receipt \"\n    \"discipline. Heavy fine-tune runs are DEFERRED to "
+      },
+      {
+        "review_id": "REQ-150",
+        "composite_id": "Doc 13::A5.3",
+        "workbook_row": 151,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 2,
+        "source_overlap_score": 5,
+        "code_snippet_preview": "    task: str,\n    domain: str,\n    population: str,\n    acceptance: Mapping[str, Mapping[str, float]],\n    gate_policy: str,\n    test_set_ref: str,\n    constraints: Mapping[str, Any],\n) -> TargetOutcome_v0:\n    \"\"\"§8.4 compile-time rejection surface for Targe"
+      },
+      {
+        "review_id": "REQ-169",
+        "composite_id": "WPW spec::WPW-2",
+        "workbook_row": 170,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 2,
+        "source_overlap_score": 3,
+        "code_snippet_preview": "# WPW spec §5 · Evidence Classes verbatim:\n#   \"Three classes carry through every tier: measured (a number from\n#    the run's own instrumentation), estimated (a projection, marked\n#    with its basis), observed (an event that occurred, with no causal\n#    rea"
+      },
+      {
+        "review_id": "REQ-195",
+        "composite_id": "Doc 17::A17.2",
+        "workbook_row": 196,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 2,
+        "source_overlap_score": 3,
+        "code_snippet_preview": "\"\"\"TrainingParamsV0 · Doc 17 §A17.3-A17.4 · training_params@v0 recipe seat.\n\nOwner-verbatim spec anchors (from notes/waveB_grounding_brief.md):\n\n    A17.3 [CANON] Lineage extends to configuration.\n    Every trained model's registry entry MUST cite the recipe_v"
+      },
+      {
+        "review_id": "REQ-259",
+        "composite_id": "Deck Engine spec::DR-R14",
+        "workbook_row": 260,
+        "verdict": "uncertain",
+        "reason": "Anchor exists but lexical/semantic linkage to statement is weak in sampled slice.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 0,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "DR_R4_SOURCE_RESTORE_HONEST_GAP: Final[str] = (\n    \"DR-R4 source spec 'deck_engine.md' is UNRECOVERED at build-open. \"\n    \"The Master Requirements Registry (Master_Requirements_Registry.md) \"\n    \"carries the DR-R4 line with visible mid-sentence truncation a"
+      },
+      {
+        "review_id": "REQ-298",
+        "composite_id": "Rules Service spec::RBM-12",
+        "workbook_row": 299,
+        "verdict": "uncertain",
+        "reason": "Closure/gap text repetition suggests template reuse; needs row-specific semantic validation.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 1,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "    \"pending_override\",\n)\n\n\nclass RegistryAppendOnly(RuntimeError):\n    \"\"\"Raised on any attempt to modify or delete a registered rule.\"\"\"\n\n\nclass RuleIdCollision(ValueError):\n    \"\"\"Raised when an id is re-appended.  Canon-3 §22 supersession\n    requires a NE"
+      },
+      {
+        "review_id": "REQ-325",
+        "composite_id": "DAP Backend spec::DAP-12",
+        "workbook_row": 326,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 5,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "    if not admitting_authority_id.strip():\n        raise AdmissionRefused(\n            \"DAP-12: admission requires the estate owner's named authority; \"\n            \"self-admission is refused.\"\n        )"
+      },
+      {
+        "review_id": "REQ-341",
+        "composite_id": "DAP Backend spec::DAP-28",
+        "workbook_row": 342,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 3,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "    # DAP-28 item 1 — approval service reachable + says True\n    try:\n        approved = approval_probe(\n            party_id=party_id, estate_id=estate_id, operation=operation,\n        )\n    except Exception as exc:\n        raise FailedClosed(\n            f\"D"
+      },
+      {
+        "review_id": "REQ-345",
+        "composite_id": "Amendment W-2::A5.16",
+        "workbook_row": 346,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 2,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "DAP_31_SRR_ROW: Final[int] = 349\nDAP_31_STATEMENT: Final[str] = \"Artefact egress distance gate — no weights/skill file leaves without passing a reproduction probe\"\n\nDAP_32_SRR_ROW: Final[int] = 350\nDAP_32_STATEMENT: Final[str] = \"Admission integrity for enteri"
+      },
+      {
+        "review_id": "REQ-349",
+        "composite_id": "Amendment T-2::DAP-32",
+        "workbook_row": 350,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 10,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "DAP_31_SRR_ROW: Final[int] = 349\nDAP_31_STATEMENT: Final[str] = \"Artefact egress distance gate — no weights/skill file leaves without passing a reproduction probe\"\n\nDAP_32_SRR_ROW: Final[int] = 350\nDAP_32_STATEMENT: Final[str] = \"Admission integrity for enteri"
+      },
+      {
+        "review_id": "REQ-396",
+        "composite_id": "Governance Architecture — gap register::G-2",
+        "workbook_row": 397,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 2,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "@router.get(\"/api/governance/state\")\nasync def get_governance_state() -> Dict[str, Any]:\n    ap = _approvals_dir()\n    ru = _rules_update_dir()\n    requests_dir = ap / \"requests\"\n    decisions_dir = ap / \"decisions\"\n\n    requests = _load_dir(requests_dir, [\"re"
+      },
+      {
+        "review_id": "REQ-461",
+        "composite_id": "handoff_registry_v1::HR-1",
+        "workbook_row": 462,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 4,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "def admit_handoff(payload: Dict[str, Any]) -> HandoffContract_v0:\n    \"\"\"Admit a HandoffContract_v0 through the Mkondo registry.\n\n    Order of operations:\n    1. Construct the pydantic model (shape drift → pydantic ValidationError).\n    2. Refuse dual-hatted c"
+      },
+      {
+        "review_id": "REQ-474",
+        "composite_id": "serving_integrity_v1::A20.15",
+        "workbook_row": 475,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 5,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "def is_sfp_8_conforming(ctx: ServingPathContext) -> bool:\n    \"\"\"Return True iff every named checkpoint holds.\n\n    Fail-closed: any missing property yields False.  This is a pure\n    predicate — never raises.\n    \"\"\"\n    return bool(\n        ctx.signed\n      "
+      },
+      {
+        "review_id": "REQ-480",
+        "composite_id": "watch_learning_v1::A5.21",
+        "workbook_row": 481,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 1,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "_R15_SEED: Tuple[CertificateRequirement, ...] = (\n    CertificateRequirement(\n        requirement_id=\"DAP32_CANARY_TOUCH\",\n        behaviour_asserted=\"probe.canary_touched\",\n        required_data_points=(\"dp.canary_hash\", \"dp.access_time\", \"dp.principal_id\"),\n"
+      },
+      {
+        "review_id": "REQ-483",
+        "composite_id": "watch_learning_v1::A20.16",
+        "workbook_row": 484,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 3,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "class CapabilityRegister(BaseModel):\n    model_config = ConfigDict(frozen=True, extra=\"forbid\")\n\n    artefact_id: str = Field(min_length=1)\n    classes: Tuple[CapabilityClass, ...] = ()\n\n\ndef propose_capability(\n    *,\n    proposer_id: str,\n    proposer_role: "
+      },
+      {
+        "review_id": "REQ-499",
+        "composite_id": "entitlement_service_v1::ENT-8",
+        "workbook_row": 500,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 7,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "class Licence(BaseModel):\n    \"\"\"ENT-5/6 · Licence object on exactly one organisation principal.\n\n    Attached to a single `PrincipalV1` of `PrincipalKind.organisation`\n    (sealed principal_v1 contract). All ENT-6 required fields present or\n    the licence do"
+      },
+      {
+        "review_id": "REQ-514",
+        "composite_id": "entitlement_service_v1::ENT-23",
+        "workbook_row": 515,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 3,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "        debited = 0\n        for event in events:\n            p = event[\"payload\"]\n            if event[\"row\"][\"resource_type\"] != \"metered_event\" or p.get(\"organisation_principal_id\") != org:\n                continue\n            usage = MeteredEvent.model_vali"
+      },
+      {
+        "review_id": "REQ-524",
+        "composite_id": "entitlement_service_v1::ENT-33",
+        "workbook_row": 525,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 3,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "def resolve(\n    *,\n    principal: PrincipalV1,\n    licence: Licence,\n    catalog_row: CatalogRow,\n    allowance_state: Optional[LicenceAllowanceState],\n) -> None:\n    \"\"\"ENT-16..19 · Pure resolution function called BEFORE dispatch.\n\n    Arguments are ENT-17 v"
+      },
+      {
+        "review_id": "REQ-538",
+        "composite_id": "entitlement_service_v1::ENT-47",
+        "workbook_row": 539,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 3,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "class CatalogRow(BaseModel):\n    \"\"\"ENT-9 · One catalog row per model.\n\n    Fields verbatim from ENT-9:\n      · model identifier (a registry reference, hash-pinned per Doc 20)\n      · access class\n      · status ∈ {listed, paused, retired}\n      · residency\n  "
+      },
+      {
+        "review_id": "REQ-552",
+        "composite_id": "principal_model_v1::PRIN-1",
+        "workbook_row": 553,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 18,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "class PrincipalKind(str, Enum):\n    \"\"\"PRIN-1 verbatim: 'three principal kinds ... organisation ... individual\n    ... agent'. Ordering preserved from spec §2 paragraph 1.\n    \"\"\"\n\n    ORGANISATION = \"organisation\"\n    INDIVIDUAL = \"individual\"\n    AGENT = \"ag"
+      },
+      {
+        "review_id": "REQ-576",
+        "composite_id": "content_registry_v1::CON-12",
+        "workbook_row": 577,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 41,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "# ── CON-12 · SRR row 577 · \"Rendering is a pure function of (entry, entry\n# version, dependency values). For Fixed and Templated entries it returns\n# the string. For Generated entries it returns a generation request\n# carrying the prompt version, the class ce"
+      },
+      {
+        "review_id": "REQ-581",
+        "composite_id": "content_registry_v1::CON-17",
+        "workbook_row": 582,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 18,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "# ── CON-17 · SRR row 582 · \"An ineligible candidate — any dependency\n# null — is never the hook while an eligible candidate exists in any\n# class. If no candidate is eligible, the slot renders the honest-gap\n# variant of the first-listed candidate. A gap is n"
+      },
+      {
+        "review_id": "REQ-589",
+        "composite_id": "content_registry_v1::CON-25",
+        "workbook_row": 590,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 22,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "# ── CON-25 · SRR row 590 · \"A Templated string is not stored as text.\n# Its content receipt records template version and dependency values\n# by reference; the string is re-derived on demand (CON-12). Storing\n# the text would create a second copy that can disa"
+      },
+      {
+        "review_id": "REQ-594",
+        "composite_id": "content_registry_v1::CON-30",
+        "workbook_row": 595,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 12,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "# ── CON-30 · SRR row 595 · \"A schedule exists only for an entry with\n# a dependency that emits no event. The schedule and its interval are\n# recorded on the entry. A scheduled entry displays its as-of time.\"\n\n#: CON-30 · schedule exists ONLY for entries with "
+      },
+      {
+        "review_id": "REQ-597",
+        "composite_id": "security_function_policies_v1::SFP-2",
+        "workbook_row": 598,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 23,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "# SFP-2 · Certainty-to-Evidence Binding · SRR row 598\n# Rule: \"severance unlocks only from the closed six-signal registry; no\n#        confidence score, however high, is an eligible input.\"\n# ════════════════════════════════════════════════════════════════════"
+      },
+      {
+        "review_id": "REQ-603",
+        "composite_id": "execution_standard_v1::EX-1",
+        "workbook_row": 604,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 2,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "class JobManifest(BaseModel):\n    \"\"\"v0 JobManifest.\n\n    Registry lookup for `job_kind` happens at parse time (see\n    parse_job_manifest). Constructing a JobManifest directly bypasses\n    the registry check by design (unit tests may want to construct\n    man"
+      },
+      {
+        "review_id": "REQ-621",
+        "composite_id": "data_cleanliness_v1::DQ-4",
+        "workbook_row": 622,
+        "verdict": "agree",
+        "reason": "Code/source anchors are present and semantically aligned at scoped level.",
+        "codeproof_scope_vs_broad_promise_test": "Scoped static citation can prove inspected shape only; not full end-to-end promise delivery.",
+        "keyword_overlap_score": 3,
+        "source_overlap_score": 0,
+        "code_snippet_preview": "def dedup_with_condition_awareness(\n    *,\n    items: Sequence[DedupInputItem],\n) -> List[DedupItem]:\n    \"\"\"Dedup items by `text_ref` while preserving distinct condition\n    variants per §4.5 P071 verbatim.\n\n    Per §4.5 P071:\n      - one canonical extraction"
+      }
+    ]
+  },
+  "conclusion": {
+    "mechanical_verification": "pass",
+    "semantic_uncertainty": "preserved",
+    "incomplete_overall_canon_audit": true,
+    "notes": [
+      "This verifies accounting/integrity and scoped semantic sampling only.",
+      "It does not claim full all-Canon semantic closure or runtime delivery proof.",
+      "509 source blocks remain analyst trace closure work; 24 source-unresolved primary cases remain."
+    ]
+  }
+}

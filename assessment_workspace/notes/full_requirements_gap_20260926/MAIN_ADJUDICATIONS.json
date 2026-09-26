@@ -1,0 +1,42 @@
+[
+  {
+    "review_id": "REQ-417",
+    "delivery_status": "PARTIAL",
+    "reason": "S10 timed restoration is not established by a deadline constant or helper. Independent real recovery evidence is missing from this review."
+  },
+  {
+    "review_id": "REQ-418",
+    "delivery_status": "PARTIAL",
+    "reason": "S11 timed notification is not established by the72-hour constant. Qualifying-incident and actual recipient delivery proof remain open."
+  },
+  {
+    "review_id": "REQ-249",
+    "delivery_status": "SPEC_DECISION_REQUIRED",
+    "reason": "Evidence Protocol remains a proposal; pin adoption/placement before treating a proposed register-first ordering as binding. Not an explicit exclusion."
+  },
+  {
+    "review_id": "REQ-250",
+    "delivery_status": "SPEC_DECISION_REQUIRED",
+    "reason": "Dual-judge Evidence Protocol adoption and named sites remain a decision/proof obligation, not an explicit nonclaim."
+  },
+  {
+    "review_id": "REQ-251",
+    "delivery_status": "SPEC_DECISION_REQUIRED",
+    "reason": "A4 is validation, not a gate. Retain that constraint while resolving proposal adoption; do not implement new gating authority."
+  },
+  {
+    "review_id": "REQ-252",
+    "delivery_status": "SPEC_DECISION_REQUIRED",
+    "reason": "Proposed ordering needs an adoption disposition and evidence. Do not classify a positive proposed obligation as a nonclaim."
+  },
+  {
+    "review_id": "REQ-470",
+    "delivery_status": "SPEC_DECISION_REQUIRED",
+    "reason": "BC3 explicitly identifies an unruled RPO. Owner must choose permitted committed-data loss before a recovery design can close it."
+  },
+  {
+    "review_id": "REQ-471",
+    "delivery_status": "SPEC_DECISION_REQUIRED",
+    "reason": "BC4 explicitly identifies unruled site-loss handling. Define off-site custody and RPO/RTO rather than infer protection from local writer recovery."
+  }
+]

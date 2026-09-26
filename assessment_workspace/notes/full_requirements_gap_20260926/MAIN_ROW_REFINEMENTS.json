@@ -1,0 +1,16 @@
+{
+  "REQ-259": {
+    "intended_outcome": "Deck backend work can proceed alongside fidelity work without changing or conflicting with the owner frontend/prototype workstream.",
+    "exact_gap": "The prior assessment wrongly substituted deterministic-renderer proof for the backend-only/parallel-safe build constraint. Inspected DeckSpec/seed artifacts do not prove change-scope isolation. This is a workflow/isolation evidence gap, not a requirement to invent another renderer feature.",
+    "required_action": "Recover the authoritative DR-R14 build boundary and bind the deck work card to an explicit backend-only path set. Preserve frontend/generated-prototype hashes and isolate generated artifacts/dependencies from the concurrent fidelity workstream; receipt any required exception rather than editing shared surfaces silently.",
+    "closure_demonstration": "Run the approved backend deck work and fidelity work concurrently in an isolated development exercise. The deck change manifest contains no frontend/prototype files, baseline prototype hashes remain unchanged, generated outputs use nonconflicting paths and neither workstream overwrites the other. Output-hash determinism alone does not satisfy this clause.",
+    "evidence_limit": "Scope evidence only. No concurrent build exercise was performed; the registry states the constraint while its original deck_engine.md source remains unrecovered."
+  },
+  "REQ-298": {
+    "intended_outcome": "Amending an in-force rule creates a separately identifiable successor through the full applicable ceremony while preserving the prior version and history.",
+    "exact_gap": "RuleRegistry.append rejects duplicate IDs and remove/replace are denied, but its in-process RuleRecord holds rule_id/source_citation/scope/enforcement_class, with no explicit predecessor/version/history binding. The inspected ceremony append does not establish durable successor lineage and complete tier-ceremony evidence across restart. Append-only methods are a foundation, not the whole amendment promise.",
+    "required_action": "Bind each amendment to a durable prior-version reference and a new version/identity through the existing full tier ceremony, using a ratified additive version envelope where the base RuleRecord is sealed. Retain both immutable versions and their ceremony histories; expose the current effective version without overwriting prior records. Coordinate effective-state atomicity with RBM10.",
+    "closure_demonstration": "Amend V1 into V2: early application before required countdown/countersigns refuses; successful ceremony retains queryable V1 and V2 with predecessor and receipts after restart; an attempt to reuse V1 ID with changed content refuses. Competing successors cannot create two conflicting effective versions; the rejected attempt remains recorded.",
+    "evidence_limit": "Specific static shape/mutator and ceremony inspection. No live durable amendment or restart demonstration was performed."
+  }
+}

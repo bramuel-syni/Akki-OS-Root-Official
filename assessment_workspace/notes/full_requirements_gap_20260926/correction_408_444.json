@@ -1,0 +1,1788 @@
+[
+  {
+    "review_id": "REQ-408",
+    "composite_id": "Security Assurance Set::S-1",
+    "workbook_row": 409,
+    "intended_outcome": "S-1 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 3,
+      "quote": "S-1 Promise: The system will observe every actor, input, and action across the estate and the AI it runs, with no path by which any of the three reaches the estate or a model outside that observation. | Bound / Ruling: Structural — held by two independent proofs (static, runtime), not a numeric bound"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-1 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-1 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-1, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-1 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-1 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-409",
+    "composite_id": "Security Assurance Set::S-2",
+    "workbook_row": 410,
+    "intended_outcome": "S-2 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 4,
+      "quote": "S-2 Promise: The system will detect the machine-speed attack, the slow play beneath every threshold, and the authorised attack that never breaks a rule — each by a distinct, named mechanism. | Bound / Ruling: Unruled — detection latency per shape not confirmed to a value"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-2 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-2 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-2, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-2 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-2 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-410",
+    "composite_id": "Security Assurance Set::S-3",
+    "workbook_row": 411,
+    "intended_outcome": "S-3 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 5,
+      "quote": "S-3 Promise: The system will route probabilistic suspicion to friction, a narrowed envelope, or the mirage, and will convict only once the actor's own conduct converts suspicion into certainty. | Bound / Ruling: Ruled mechanism — mirage entry threshold is baseline-period-deferred (Doc 3 Rulings)"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-3 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-3 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-3, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-3 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-3 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-411",
+    "composite_id": "Security Assurance Set::S-4",
+    "workbook_row": 412,
+    "intended_outcome": "S-4 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 6,
+      "quote": "S-4 Promise: The system will act on a four-rung ladder — annotate, shape, contain, sever — bounded by a blast budget per window and a friction budget on legitimate work. | Bound / Ruling: Ruled mechanism, values unruled — blast-budget share and friction ceiling named, not set"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-4 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-4 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-4, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-4 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-4 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-412",
+    "composite_id": "Security Assurance Set::S-5",
+    "workbook_row": 413,
+    "intended_outcome": "S-5 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 7,
+      "quote": "S-5 Promise: The system will make every autonomous act reversible, bounded, and witnessed — a time-to-live on every action, atomic act-and-attest, peer-countersigned. | Bound / Ruling: Unruled — action time-to-live named, no value confirmed"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-5 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-5 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-5, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-5 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-5 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-413",
+    "composite_id": "Security Assurance Set::S-6",
+    "workbook_row": 414,
+    "intended_outcome": "S-6 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 8,
+      "quote": "S-6 Promise: The system will write every verdict, action, attestation, and mark to the one authoritative record before the next gate is crossed, including its own mistakes. | Bound / Ruling: Structural; timing qualitative — “before the next gate,” no numeric latency confirmed"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-6 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-6 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-6, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-6 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-6 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-414",
+    "composite_id": "Security Assurance Set::S-7",
+    "workbook_row": 415,
+    "intended_outcome": "S-7 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 9,
+      "quote": "S-7 Promise: SPECIFICATION GAP — no mechanism specified. Doc 3's plain-language promise states the platform “learns from every attack it defeats”; every A5 clause on learning (A5.7, A5.8, A5.12) constrains what may NOT happen. None specifies what does update, on what evidence, at what layer. | Bound / Ruling: Closed by Watch Learning Amendment L-2, L-4. R-15 (initial library) and R-16 (ratifier, cadence) open."
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-7 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "Historical S-7 spec gap is partially superseded by Watch Learning (L-2/L-4) mechanisms, but distributed learning loop proof remains incomplete (producer wiring, ratified cadence, end-to-end receipts).",
+    "concrete_action": "Add rule-specific integration receipts for S-7, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-7 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-7 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-415",
+    "composite_id": "Security Assurance Set::S-8",
+    "workbook_row": 416,
+    "intended_outcome": "S-8 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 10,
+      "quote": "S-8 Promise: The system will exercise every response rail on a standing drill cadence — full loop, both engines, latencies measured — and a rail not demonstrated firing is not in force. | Bound / Ruling: Ruled mechanism, cadence value unruled"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-8 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "Standing-drill plumbing/fitness counters are present, but this assessment did not execute drills; exercise evidence for every rail remains unproven in this run.",
+    "concrete_action": "Add rule-specific integration receipts for S-8, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-8 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-8 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-416",
+    "composite_id": "Security Assurance Set::S-9",
+    "workbook_row": 417,
+    "intended_outcome": "S-9 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 11,
+      "quote": "S-9 Promise: The system will, on release from the mirage, replay the actor's mirage-period work against the real platform, or tell them plainly it did not land. | Bound / Ruling: Ruled mechanism — reconciliation mode is baseline-period-deferred"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-9 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-9 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-9, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-9 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-9 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-417",
+    "composite_id": "Security Assurance Set::S-10",
+    "workbook_row": 418,
+    "intended_outcome": "S-10 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 12,
+      "quote": "S-10 Promise: The system will restore Ledger continuity within 3,600 seconds, under independent countersign, following any continuity-affecting incident. | Bound / Ruling: Ruled — CA1-N5, RTO 3,600s, DEFAULT-class, revisable on incident evidence"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/business_continuity/anchors.py",
+        "start_line": 33,
+        "end_line": 166,
+        "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+        "behavior": "S-10 is pinned with explicit canonical constants and drift assertions."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/continuity.py",
+        "start_line": 74,
+        "end_line": 112,
+        "sha256": "8027af095d5b9f7a5e6c95e8ff2d6b496fb7be6114c0cf8adc5b0175879fc180",
+        "behavior": "Continuity attestation writing is implemented with owner-pending refusal semantics."
+      }
+    ],
+    "exact_gap": "CA1-N5 continuity anchoring evidences 3,600-second restoration target (RTO) and independent countersign checks, but does not establish a separate RPO guarantee.",
+    "concrete_action": "Add rule-specific integration receipts for S-10, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-10 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "EVIDENCED_SCOPED",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "RULED_IN_BCA_ANCHOR",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "authority_status": "RULED_IN_BCA_ANCHOR",
+      "exact_gap": "S-10 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-418",
+    "composite_id": "Security Assurance Set::S-11",
+    "workbook_row": 419,
+    "intended_outcome": "S-11 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 13,
+      "quote": "S-11 Promise: The system will issue breach notification within 72 hours of a qualifying incident, to the parties and authorities the incident requires. | Bound / Ruling: Ruled — CA1-N2, 72-hour duty"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/business_continuity/anchors.py",
+        "start_line": 33,
+        "end_line": 166,
+        "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+        "behavior": "S-11 is pinned with explicit canonical constants and drift assertions."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/continuity.py",
+        "start_line": 74,
+        "end_line": 112,
+        "sha256": "8027af095d5b9f7a5e6c95e8ff2d6b496fb7be6114c0cf8adc5b0175879fc180",
+        "behavior": "Continuity attestation writing is implemented with owner-pending refusal semantics."
+      }
+    ],
+    "exact_gap": "S-11 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-11, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-11 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "EVIDENCED_SCOPED",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "RULED_IN_BCA_ANCHOR",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "authority_status": "RULED_IN_BCA_ANCHOR",
+      "exact_gap": "S-11 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-419",
+    "composite_id": "Security Assurance Set::S-12",
+    "workbook_row": 420,
+    "intended_outcome": "S-12 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 14,
+      "quote": "S-12 Promise: The system will fail closed independent of the Watch — custody gates fail closed on their own, with or without the Watch above them. | Bound / Ruling: Structural"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-12 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-12 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-12, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-12 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-12 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-420",
+    "composite_id": "Security Assurance Set::S-13",
+    "workbook_row": 421,
+    "intended_outcome": "S-13 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 15,
+      "quote": "S-13 Promise: The system will never let detection hold power to act, or response hold judgement to interpret — Macho asserts facts only; Mkono executes signed policy only; one verdict is the sole interface. | Bound / Ruling: Structural"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-13 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-13 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-13, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-13 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-13 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-421",
+    "composite_id": "Security Assurance Set::S-14",
+    "workbook_row": 422,
+    "intended_outcome": "S-14 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 16,
+      "quote": "S-14 Promise: The system will never unlock its maximum autonomous force from a signal an outsider could fabricate — only from a closed, six-member registry of unfakeable signals. | Bound / Ruling: Structural; registry membership is baseline-period-deferred"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-14 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-14 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-14, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-14 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-14 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-422",
+    "composite_id": "Security Assurance Set::S-15",
+    "workbook_row": 423,
+    "intended_outcome": "S-15 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 17,
+      "quote": "S-15 Promise: The system will never let loss of behavioural conformance alone convict an actor — the worst it can do to an innocent actor is return them to baseline verification. | Bound / Ruling: Structural, constitutional per A5.7 — not tunable"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-15 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-15 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-15, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-15 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-15 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-423",
+    "composite_id": "Security Assurance Set::S-16",
+    "workbook_row": 424,
+    "intended_outcome": "S-16 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 18,
+      "quote": "S-16 Promise: The system will hold a ruled, deterministic floor beneath every adaptive layer, moved only by a delayed, two-signature ceremony that is itself a monitored tripwire. | Bound / Ruling: Structural — floor values are the conservative defaults during the baseline period"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-16 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-16 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-16, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-16 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-16 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-424",
+    "composite_id": "Security Assurance Set::S-17",
+    "workbook_row": 425,
+    "intended_outcome": "S-17 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 19,
+      "quote": "S-17 Promise: The system will never delete — the Watch can stop anything and erase nothing; destruction remains solely the separately-authorised act specified elsewhere. | Bound / Ruling: Structural"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-17 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "Watch modules enforce no-delete posture, yet this does not prohibit separately-authorized erasure paths; separate deletion authority and controls still require explicit proof linkage.",
+    "concrete_action": "Add rule-specific integration receipts for S-17, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-17 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-17 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-425",
+    "composite_id": "Security Assurance Set::S-18",
+    "workbook_row": 426,
+    "intended_outcome": "S-18 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 20,
+      "quote": "S-18 Promise: The system will hold behavioural-conformance profiles as non-exportable, tenant-keyed, purpose-bound armoury — never rendered to any surface, export, or analytic, including the Watch's own console. | Bound / Ruling: Structural; retention posture is baseline-period-deferred"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-18 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-18 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-18, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-18 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-18 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-426",
+    "composite_id": "Security Assurance Set::S-19",
+    "workbook_row": 427,
+    "intended_outcome": "S-19 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 21,
+      "quote": "S-19 Promise: The system will have its own liveness attested by a component holding no Watch credentials, will treat Watch silence itself as an alarm, and will subject its own records to a standing break-in test that must fail. | Bound / Ruling: Structural; break-in test cadence unruled"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-19 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-19 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-19, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-19 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-19 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-427",
+    "composite_id": "Security Assurance Set::S-20",
+    "workbook_row": 428,
+    "intended_outcome": "S-20 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 22,
+      "quote": "S-20 Promise: The system will execute every task under exactly one authority's identity and scope — a task that could see like security and decide like governance is unrepresentable, not merely forbidden. | Bound / Ruling: Structural — unrepresentable, not policy-enforced"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-20 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-20 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-20, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-20 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-20 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-428",
+    "composite_id": "Security Assurance Set::S-21",
+    "workbook_row": 429,
+    "intended_outcome": "S-21 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 23,
+      "quote": "S-21 Promise: The system will let the mirage deceive outward only — every mirage interaction writes truthfully marked records, and mirage state shares no store with production. | Bound / Ruling: Structural — mirage entry threshold is baseline-period-deferred (cross-ref S-3)"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/router.py",
+        "start_line": 99,
+        "end_line": 135,
+        "sha256": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+        "behavior": "S-21 maps to watch-state evidence surface and read-path rollups."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/sever_signals.py",
+        "start_line": 47,
+        "end_line": 85,
+        "sha256": "ee808730e3c0b7417e2ceed1df14ca8f85bb1a6d1b230199749abb7fa0700086",
+        "behavior": "Closed six-signal persistence path exists; broader operational guarantees remain receipt-dependent."
+      }
+    ],
+    "exact_gap": "S-21 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-21, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-21 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-21 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-429",
+    "composite_id": "Security Assurance Set::S-22",
+    "workbook_row": 430,
+    "intended_outcome": "S-22 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 24,
+      "quote": "S-22 Promise: The system will inspect what leaves, not only who sends it — every output leaving a component boundary is checked for controlled-unit content and tagged ADVISORY where it recommends, ranks, proposes, or evaluates an action. | Bound / Ruling: Ruled — reproduction threshold and probe design are R-8 (DEFAULT-class, conservative, revised on evidence)"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/coalition.py",
+        "start_line": 1,
+        "end_line": 217,
+        "sha256": "309bf1011db1de12ae1ed1007aa508e7eb3109dc71ef5a281796b4ee11e3b4ad",
+        "behavior": "S-22 aligns with coalition/release-budget mechanics and open ruling markers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/boundary.py",
+        "start_line": 50,
+        "end_line": 180,
+        "sha256": "9daf16166571121857366916ecd3c69bca2987e4b0b5825b15f6c59b7cf219ae",
+        "behavior": "Output/egress gate behavior exists but no full estate-scale runtime receipt was run in this assessment."
+      }
+    ],
+    "exact_gap": "S-22 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-22, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-22 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-22 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-430",
+    "composite_id": "Security Assurance Set::S-23",
+    "workbook_row": 431,
+    "intended_outcome": "S-23 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 25,
+      "quote": "S-23 Promise: The system will treat a coalition as one actor — cumulative conduct across principals sharing a party, a mandate lineage, or a detected coordination signature is evaluated jointly, not per principal. | Bound / Ruling: Structural for shared-party and shared-lineage membership; coordination-signature threshold is R-11 — inferred, friction-only under A5.2"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/coalition.py",
+        "start_line": 1,
+        "end_line": 217,
+        "sha256": "309bf1011db1de12ae1ed1007aa508e7eb3109dc71ef5a281796b4ee11e3b4ad",
+        "behavior": "S-23 aligns with coalition/release-budget mechanics and open ruling markers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/boundary.py",
+        "start_line": 50,
+        "end_line": 180,
+        "sha256": "9daf16166571121857366916ecd3c69bca2987e4b0b5825b15f6c59b7cf219ae",
+        "behavior": "Output/egress gate behavior exists but no full estate-scale runtime receipt was run in this assessment."
+      }
+    ],
+    "exact_gap": "S-23 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-23, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-23 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-23 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-431",
+    "composite_id": "Security Assurance Set::S-24",
+    "workbook_row": 432,
+    "intended_outcome": "S-24 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 26,
+      "quote": "S-24 Promise: The system will hold the raiser of a finding to the same conformance as its target — a finding is conduct; the friction it causes is charged to the raiser's budget, not the target's; a finding not borne out accrues drift on the raiser; and no agent-raised finding, at any count, is an input to severance. | Bound / Ruling: Structural — A5.2's registry unchanged; friction debit follows A5.14's existing budget"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/coalition.py",
+        "start_line": 1,
+        "end_line": 217,
+        "sha256": "309bf1011db1de12ae1ed1007aa508e7eb3109dc71ef5a281796b4ee11e3b4ad",
+        "behavior": "S-24 aligns with coalition/release-budget mechanics and open ruling markers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/boundary.py",
+        "start_line": 50,
+        "end_line": 180,
+        "sha256": "9daf16166571121857366916ecd3c69bca2987e4b0b5825b15f6c59b7cf219ae",
+        "behavior": "Output/egress gate behavior exists but no full estate-scale runtime receipt was run in this assessment."
+      }
+    ],
+    "exact_gap": "S-24 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-24, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-24 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-24 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-432",
+    "composite_id": "Security Assurance Set::S-25",
+    "workbook_row": 433,
+    "intended_outcome": "S-25 corrected with promise-text + bound/ruling trace, code evidence, and closure limits.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_PROMISES_35.json",
+      "line": 27,
+      "quote": "S-25 Promise: The system will bound what the estate releases in total — across all parties, all operations, all time — so that no combination of parties can reconstruct what none of them is entitled to. Breaching the bound is a floor violation, severance-eligible without inference. | Bound / Ruling: Ruled — the budget itself is R-7; per-run (ε, δ) is R-9. The floor never learns (A5.8)"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/coalition.py",
+        "start_line": 1,
+        "end_line": 217,
+        "sha256": "309bf1011db1de12ae1ed1007aa508e7eb3109dc71ef5a281796b4ee11e3b4ad",
+        "behavior": "S-25 aligns with coalition/release-budget mechanics and open ruling markers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/boundary.py",
+        "start_line": 50,
+        "end_line": 180,
+        "sha256": "9daf16166571121857366916ecd3c69bca2987e4b0b5825b15f6c59b7cf219ae",
+        "behavior": "Output/egress gate behavior exists but no full estate-scale runtime receipt was run in this assessment."
+      }
+    ],
+    "exact_gap": "S-25 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs.",
+    "concrete_action": "Add rule-specific integration receipts for S-25, including refusal and race paths, and bind them to immutable evidence records rather than in-memory-only state.",
+    "unique_closure_demo": "Exercise S-25 happy-path + boundary-path; PASS=deterministic outcome and cited evidence row, FAIL=inconsistent outcome, RACE=concurrent calls diverge from declared invariant.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "See xlsx",
+      "prior_authority": "See xlsx",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Assessment is static/read-only by contract: no runtime/API/DB/provider/model execution; conclusions are scoped to inspected code and recovered-source artifacts only.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "See xlsx",
+      "exact_gap": "S-25 has scoped implementation signals, but closure evidence for full promise ('See Security_Assurance_Promise_Set.xlsx for full text') is incomplete without integration receipts and authority-bound operational proofs."
+    }
+  },
+  {
+    "review_id": "REQ-433",
+    "composite_id": "Agent Containment spec::AC-1",
+    "workbook_row": 434,
+    "intended_outcome": "AC-1 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 434,
+      "quote": "AC-1 Statement: Four fixed capability ceilings: no self-replication, no unauthorised resource acquisition, no unauthorised credential escalation, no self-access to oversight | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-1 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-434",
+    "composite_id": "Agent Containment spec::AC-2",
+    "workbook_row": 435,
+    "intended_outcome": "AC-2 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 435,
+      "quote": "AC-2 Statement: Task-scope starts minimal, expands only via observed conduct plus independent-party ratification — never self- or operator-declared | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-2 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-435",
+    "composite_id": "Agent Containment spec::AC-3",
+    "workbook_row": 436,
+    "intended_outcome": "AC-3 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 436,
+      "quote": "AC-3 Statement: Every scope expansion logged as a growing, reviewable capability history | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-3 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-436",
+    "composite_id": "Agent Containment spec::AC-4",
+    "workbook_row": 437,
+    "intended_outcome": "AC-4 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 437,
+      "quote": "AC-4 Statement: Novel-but-in-scope actions route to graduated response, never binary allow/block on one suspicion score | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-4 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-437",
+    "composite_id": "Agent Containment spec::AC-5",
+    "workbook_row": 438,
+    "intended_outcome": "AC-5 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 438,
+      "quote": "AC-5 Statement: Bounded sample of novel actions reviewed, not full volume — review load doesn't scale with action volume | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-5 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-438",
+    "composite_id": "Agent Containment spec::AC-6",
+    "workbook_row": 439,
+    "intended_outcome": "AC-6 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 439,
+      "quote": "AC-6 Statement: Ambiguous actions route to a second, independently-scoped evaluator where available | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-6 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-439",
+    "composite_id": "Agent Containment spec::AC-7",
+    "workbook_row": 440,
+    "intended_outcome": "AC-7 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 440,
+      "quote": "AC-7 Statement: Oversight runs structurally separate from the agent; zero write path to its own record or the intervention mechanism | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-7 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-440",
+    "composite_id": "Agent Containment spec::AC-8",
+    "workbook_row": 441,
+    "intended_outcome": "AC-8 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 441,
+      "quote": "AC-8 Statement: Oversight liveness attested by a component holding no credentials over it — verified for Akki's six engines, unconfirmed for general external agents | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-8 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-441",
+    "composite_id": "Agent Containment spec::AC-9",
+    "workbook_row": 442,
+    "intended_outcome": "AC-9 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 442,
+      "quote": "AC-9 Statement: Intervention takes effect without requiring the agent's cooperation or consent | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-9 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-442",
+    "composite_id": "Agent Containment spec::AC-10",
+    "workbook_row": 443,
+    "intended_outcome": "AC-10 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 443,
+      "quote": "AC-10 Statement: Hard ceiling on aggregate coalition action/effect, bounded regardless of whether coordination is ever detected | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-10 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-443",
+    "composite_id": "Agent Containment spec::AC-11",
+    "workbook_row": 444,
+    "intended_outcome": "AC-11 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 444,
+      "quote": "AC-11 Statement: Graduated action ladder, reversible/time-limited actions, blast budget per window | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-11 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  },
+  {
+    "review_id": "REQ-444",
+    "composite_id": "Agent Containment spec::AC-12",
+    "workbook_row": 445,
+    "intended_outcome": "AC-12 corrected with source/code evidence and explicit closure path.",
+    "source_evidence": {
+      "file": "assessment_workspace/notes/full_requirements_gap_20260926/BASELINE_648.json",
+      "line": 445,
+      "quote": "AC-12 Statement: Every containment event append-only recorded before the action completes; contained agent state preserved, never deleted | Source: Agent_Swarm_Containment_Governance_Model_v1.docx"
+    },
+    "code_evidence": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/agent_containment/ceilings.py",
+        "start_line": 21,
+        "end_line": 95,
+        "sha256": "50c31b3b7fa8b968fb677e022096c8908a67a4b832ce167c2915f455fe39af6d",
+        "behavior": "AC-1..12 ceiling vocabulary, narrow-start admission, and invariant checks exist as executable helpers."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54",
+        "behavior": "AC-4/6 unsure-case routing enforces CIF→Solva→human order and reclassification counters."
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+        "start_line": 302,
+        "end_line": 313,
+        "sha256": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+        "behavior": "AC-1..12 seeded in rule registry, but seed rows alone are not delivery proof for full production paths."
+      }
+    ],
+    "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end.",
+    "concrete_action": "Wire containment decisions to canonical single-writer ledger (append-before-effect), prove external-witness liveness path, and add non-cooperation intervention plus coalition-cap tests with refusal-first assertions.",
+    "unique_closure_demo": "PASS=AC-12 deterministic check and receipt/trace generated; REFUSAL=missing precondition closes gate with explicit reason; RACE=concurrent invocations keep invariant; FAILURE=any bypass/default path or unverifiable evidence.",
+    "status_scope_confidence": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source slice",
+      "confidence": "medium"
+    },
+    "authority": {
+      "source_status": "PROPOSED",
+      "prior_authority": "PROPOSED",
+      "note": "Status/authority preserved from baseline + prior review; no implicit ratification uplift claimed."
+    },
+    "nonclaim_limits": "Read-only contractual assessment only: static source/code/test inspection in this run; no runtime/API/DB/provider/model execution performed; findings are scoped to cited files and previously banked receipts/tests.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "authority_status": "PROPOSED",
+      "exact_gap": "Containment scaffolding exists, but coalition ceilings, append-before-action ledger durability, independent external oversight liveness, and aggregate blast-budget controls are not fully proven end-to-end."
+    }
+  }
+]

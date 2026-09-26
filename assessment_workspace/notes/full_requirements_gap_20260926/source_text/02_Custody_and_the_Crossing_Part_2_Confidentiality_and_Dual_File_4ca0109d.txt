@@ -1,0 +1,165 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Custody & the Crossing — Part 2: Confidentiality Authoring & the Dual-File Contract
+
+[B3] Document 2 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Custody & the Crossing
+
+[B5] Promises held in this document: #2 (user-editable confidentiality list) · #4 (dual-file record — the question as asked, and the extracted data before redaction, sent as a two-item context)
+
+[B6] This document is a standalone statement of what must be true. It does not depend on any other document to be understood. Shared mechanisms are named and their governing document (Document 16, Cross-Cutting Orchestration) cited, but each requirement is stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] ruled by the owner during specification · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] a genuine question for the owner, with a recommended default stated but not settled.
+
+[B8] The service that powers both promises is SyniSense, the boundary governor, together with the platform's rule-and-declaration machinery for the authoring half. Surface name "Shield" noted once for orientation; this document specifies the engine and the backend workflow, not any screen.
+
+[B9] Scope boundary for this document [RULED]: this specification covers backend capability only. Where a promise involves a person acting (the DPO authoring a confidentiality declaration), the document specifies the backend states, the operations that move between them, and the data contracts of each operation — the shape of the workflow — not its screen design, layout, or visual treatment. What the person experiences is described generally, as the owner directed, so the requirement is complete; how it is rendered is out of scope.
+
+[B11] PART A — PROMISE #2: THE USER-EDITABLE CONFIDENTIALITY LIST
+
+[B12] A1 · The promise, in plain language
+
+[B13] The organisation decides what counts as confidential, and can change that decision without engineering help. Beyond the identifiers the platform already recognises by law, the Data Protection Officer can declare additional categories, terms, or specific values as confidential — a project codename, a client list, an unreleased financial figure, a proprietary formula — and once declared and approved, the platform treats those declarations with the same removal-and-restoration discipline it applies to legal identifiers at the crossing. The list is living: things can be added when they become sensitive and retired when they no longer are, through a governed process.
+
+[B14] A2 · The service that powers it
+
+[B15] Two services acting together:
+
+[B16] SyniSense's tenant entity resolution — the mechanism that, at the crossing, recognises the specific entities and terms that must be de-identified for this organisation. The confidentiality list is the authored extension of this entity set. (The crossing-time behaviour is specified in Document 1 §A5.4; this document specifies how the set is authored and governed.)
+
+[B17] The platform's rule-and-declaration machinery — the same governed authoring, counter-signature, and change-ceremony apparatus that governs every consequential change in the platform. The confidentiality list is not a special-purpose store; it is a managed governed value under that apparatus.
+
+[B18] A3 · Definition of the promise
+
+[B19] "User-editable" is defined precisely:
+
+[B20] The editor is the DPO or the compliance function, not an engineer and not an end user. Authoring confidentiality is an act of governance, held by the office accountable for it.
+
+[B21] Declarations may be expressed at three levels of specificity: - Exact values — a specific string, number, or identifier that must never cross (a named individual's account number; a specific codename). - Patterns — a described shape that matches a family of values (an internal project-reference format; an employee-ID pattern). This is the "regex" capability in the owner's framing: a rule that matches by form, not only by literal. - Categories — a named class of information the organisation treats as confidential (for example "unreleased pricing," "M&A working material"), which the platform then recognises through the reasoning layer, not only by literal or pattern match.
+
+[B22] "Editable" means governed-editable, not freely mutable. Adding a declaration and removing a declaration are not symmetric operations, because they carry different risk — see A5.4. A living list does not mean an unguarded one.
+
+[B23] A4 · Delivery experience expectations
+
+[B24] Per the owner's ruling, the DPO authors confidentiality through a conversational workflow with objective-shaping capability — the DPO states what they want to protect in their own words, and the platform helps shape that statement into a precise, testable declaration, iterating until the declaration actually expresses the DPO's intent. The workflow exposes five governed operations, each a defined state transition on a confidentiality declaration:
+
+[B25] Generate — the DPO describes what should be confidential; the platform produces a candidate declaration (exact value, pattern, or category) that captures it, together with a plain statement of what that declaration would and would not match, so the DPO can see its reach before adopting it.
+
+[B26] Review — the platform shows the DPO the consequence of the candidate: what it would catch, and — where computable against the measured estate — examples of what it would newly redact, so the reach is concrete rather than abstract.
+
+[B27] Edit / contribute — the DPO refines the candidate in dialogue (narrow it, broaden it, add an exception), and the platform reshapes the declaration accordingly. This is the objective-shaping loop: it continues until the declaration matches the DPO's actual intent.
+
+[B28] Adopt — the DPO accepts the shaped declaration as the one they want. Adopt places the declaration into the pending state; it is not yet live.
+
+[B29] Approve — the declaration is committed into force through the governed change ceremony (A5.4). Approval is the act that makes it binding at the crossing.
+
+[B30] What the DPO produces: a precise, governed confidentiality declaration, recorded with who authored it, who approved it, when, and exactly what it matches — added to the living confidentiality list.
+
+[B31] What a consuming system experiences: from the moment a declaration is in force, the de-identifier at the crossing recognises and removes matching material on every subsequent call, with no per-call action by anyone.
+
+[B32] [RULED] no front-end in this workflow: the five operations above are specified as backend states and transitions. Their rendering — how the chat interface looks, how the buttons are laid out — is deliberately not specified here.
+
+[B33] A5 · Technical and behavioural requirements
+
+[B34] A5.1 · The list extends the tenant entity set consumed at the crossing [CANON] An approved declaration becomes part of the tenant-scoped entity set that SyniSense's de-identifier consults on every crossing (Document 1 §A5.4). There is exactly one such set per tenant, and the confidentiality list is its authored portion. A declaration that is adopted but not approved is not in that set and does not affect any crossing.
+
+[B35] A5.2 · The objective-shaping loop produces a testable declaration [PROPOSED] The Generate/Edit dialogue must resolve to a declaration that is mechanically testable — an exact value, a pattern with defined match semantics, or a category bound to a reasoning-layer recogniser — never a free-text instruction that only a human could interpret. The point of the shaping loop is to convert the DPO's natural-language intent into something the de-identifier can actually enforce. A declaration that cannot be tested against a payload cannot be enforced and must not be adoptable.
+
+[B36] A5.3 · Review shows reach against measured material only [CANON-adjacent] Where the Review step shows examples of what a candidate declaration would redact, those examples are drawn from the portion of the estate that has been measured, and anything not yet measured is stated as such rather than implied to be clean. The DPO is never shown a false picture of completeness. (This honesty-about-the-unmeasured discipline is platform-wide; Document 16 §2.)
+
+[B37] A5.4 · Adding and removing are asymmetric, by governed ceremony [CANON]
+
+[B38] Adding a declaration takes effect through approval and is, relative to removal, the safe direction — it protects more, not less.
+
+[B39] Removing a declaration — that is, ceasing to treat something as confidential — is the consequential direction, because it exposes at the crossing what was previously withheld. Removal therefore requires counter-signature and runs the governed change ceremony: proposed → second signature → visible countdown during which it can be cancelled → applied → re-verified. This is the same ceremony that governs every consequential governance change platform-wide; it is not re-implemented for confidentiality. (The ceremony is specified in full in Document 14; it is named here because removal from the confidentiality list is one of its cases.)
+
+[B40] A5.5 · The whole list is itself a governed record [CANON] Every declaration carries its authoring provenance — who generated it, who edited it, who approved it, when each occurred, and every prior version of the declaration. Nothing is deleted from this history; a retired declaration keeps its place in the record, marked retired. There is one authoritative record of the confidentiality list (Document 16 §5).
+
+[B41] A6 · What must be true for the service to deliver as intended
+
+[B42] The shaping loop reliably converts intent into an enforceable declaration. If the DPO believes they have protected "all unreleased pricing" but the adopted declaration only matches one format of it, the promise is silently false. The Review step's honest statement of reach (A5.2, A5.3) is what guards against this and is therefore load-bearing.
+
+[B43] Approval, not adoption, is the gate to enforcement. If an adopted-but- unapproved declaration ever affected a crossing, the governance boundary between "the DPO is drafting" and "the organisation has decided" would be erased.
+
+[B44] Removal genuinely runs the ceremony. If a declaration could be removed without counter-signature and countdown, a single person could quietly expose previously protected material, and the promise would depend on trust rather than structure.
+
+[B45] The list and the crossing consume the same entity set. If the authored list and the set the de-identifier actually reads are two stores, they can diverge, and a declaration the DPO believes is live may not be. One set, one source.
+
+[B47] PART B — PROMISE #4: THE DUAL-FILE RECORD
+
+[B48] B1 · The promise, in plain language
+
+[B49] When the platform sends a question to an external model, it does not send one merged blob. It sends two separate items: the question exactly as the user asked it, and the extracted data that question needs answered — as two distinct files. Inside the crossing these two files are treated as unrelated — each is assessed on its own, neither aware of the other — so that the assessment of one cannot be weakened or confused by the other. After the crossing's processing, the two are re-associated as one, and the external model receives them together as a two-item context for a single query.
+
+[B50] B2 · The service that powers it
+
+[B51] SyniSense at the crossing, extended with a two-file handling contract: a splitting-and-independent-assessment stage before the model call, and a re-association stage that assembles the two-item context for the call itself.
+
+[B52] B3 · Definition of the promise
+
+[B53] The two files are defined distinctly:
+
+[B54] File 1 — the question as asked. The user's actual question, verbatim in intent and form. This is what the model must understand in order to know what is being asked of it.
+
+[B55] File 2 — the extracted data before redaction. The material the platform has determined is needed to answer the question — the evidence, the records, the context — as extracted, prior to the redaction step being applied to it.
+
+[B56] "Treated as unrelated in SyniSense, then linked again post-processing" is the load-bearing mechanic, and it is the owner's explicit ruling. It means:
+
+[B57] Each file enters the crossing and is assessed independently — its own de-identification, its own governance checks — with no cross-reference to the other file during that assessment. The assessment of File 1 does not consult File 2, and vice versa.
+
+[B58] After each file has been independently processed, the two are re-associated into a single two-item context.
+
+[B59] That two-item context is what crosses to the model for one query. The model receives two items and answers the single question they jointly pose.
+
+[B60] B4 · Delivery experience expectations
+
+[B61] What the organisation experiences: nothing additional and nothing visible — this is an internal mechanic of how the crossing handles a question that needs data. The benefit is indirect: the model receives the question and its supporting data as two clean, independently-governed items, which produces a better-grounded answer than a single pre-merged payload while preserving the independence of each item's governance.
+
+[B62] What the external model receives: a two-item context — item one, the governed question; item two, the governed data — presented together as the input to a single query. The model does not receive, and cannot reconstruct, the pre-redaction content of either item; it receives each item in its post-crossing (de-identified) state.
+
+[B63] What is produced and retained: the two files are retained under their own custody terms (B5.4), distinct from the per-request de-identification mapping envelope, which — as Document 1 §A5.3 requires — still dies with the call.
+
+[B64] B5 · Technical and behavioural requirements
+
+[B65] B5.1 · Two items, split before assessment [RULED] A question-with-data request is represented as two distinct files from the point of splitting onward — not one payload that is notionally divided. File 1 (question as asked) and File 2 (extracted data pre-redaction) are separate objects.
+
+[B66] B5.2 · Independent assessment, no cross-consultation [RULED] Each file is de-identified and governance-checked on its own. During a file's assessment, the other file is not an input. This independence is the promise's core: it prevents the content of one file from influencing how the other is assessed — for example, it prevents identifying material in the data file from being treated as benign because the question file appeared to authorise it, or vice versa. Each stands on its own governance.
+
+[B67] B5.3 · Re-association is a defined, guarded seam [PROPOSED, per Document 16 §7 discipline] After both files are independently processed, they are re-associated into the two-item context. This re-association is a named seam, and it is exactly the kind of place a load-bearing marker can be silently dropped — so the platform's "mark twice, at write and at consumption" discipline applies here: any governance marking carried on either file (for example, a marker that a file still contains something that may not cross) must be re-checked at the re-association seam, not trusted from the original assessment alone. If either file fails its check at the seam, the two-item context is not formed and the request yields a defined refusal. (The mark-twice discipline is platform-wide; Document 16 §7.)
+
+[B68] B5.4 · The two files' custody class is distinct from the mapping envelope [RULED, reconciled in Document 16 §3] The two retained files are governed by their own custody class. This is explicitly not the per-request de-identification mapping envelope of Document 1 §A5.3, which holds the token-to-value mapping and must be destroyed when the call completes. The two files and the mapping envelope are different objects with different lifespans, and neither invariant weakens the other:
+
+[B69] the mapping envelope dies with the call, always;
+
+[B70] the two files are retained under the terms stated for this promise.
+
+[B71] [RULED] Both files retained in full — governed at every subsequent read, not only at write. File 1 (the question) and File 2 (the extracted data before redaction) are both kept standing, in full, matching how the two-item context is actually used and referenced afterward — reducing either to a hash or reference would break the ability to see, later, exactly what was asked against exactly what data. This is deliberately not the recommended default this document originally proposed (reference-reduction of File 2); the owner's ruling was that both files stay whole. The condition that makes this safe rather than a standing exposure: File 2's full retention does not mean it is freely readable. Any consumption of the retained record after the original call — an auditor opening an old answer, a compliance review, any read path at all — passes through the same masking discipline as a live crossing (Document 1 §A5.2) before the content is shown to anyone. Full retention is a write-time decision; full governance is a permanent, read-time one. The two together are what keep this ruling from recreating the exposure the crossing exists to prevent.
+
+[B72] B5.5 · The single-query guarantee [RULED] The re-associated two-item context is the input to exactly one model query. The promise is not that two separate queries are made; it is that one query is made whose context has two items. The model answers the single question File 1 poses using the data File 2 provides.
+
+[B73] B5.6 · Cumulative disclosure across the two items [RULED] Two items that are each independently clean can, in principle, jointly reveal something neither reveals alone — the same class of risk the platform's cumulative-disclosure arm handles across repeated exports (that arm is specified for the sale/egress path elsewhere in canon). At the re-association seam, the platform checks that the combination of File 1 and File 2 does not jointly disclose what each independently withheld — specifically, the material preservation and intent captured are checked for the potential to re-identify when paired, even where each file passed independently.
+
+[B74] [RULED] Yes, minimal check, at the re-association seam: does the question plus the data together re-identify an individual that each alone did not. This is the minimal necessary check, not a full session-level cumulative-disclosure budget — it is a required check in B5.3's seam, and a failure here refuses the re-association rather than forming the two-item context.
+
+[B75] B6 · What must be true for the service to deliver as intended
+
+[B76] Independence during assessment is real, not nominal. If either file's assessment can read the other, the promise's core property is lost. The two assessments must be genuinely separate passes with no shared context.
+
+[B77] The re-association seam re-checks, and can refuse. If the seam trusts the original per-file assessments blindly and cannot itself refuse, then a marker dropped between assessment and re-association goes uncaught, and a file that should not have crossed does. The seam must be able to stop the request.
+
+[B78] The two files' retention is ruled and enforced (B5.4). Until the retention terms are ruled, the promise is incompletely specified; once ruled, the retention must actually match the ruling, and in particular must not quietly retain the pre-redaction data file in a way that recreates the exposure the crossing prevents.
+
+[B79] The two-item context is one query, not two. If the implementation makes two calls, the grounding and cost accounting for the single logical question fragment, and the promise's meaning is lost.
+
+[B80] Joint re-identification is addressed at the seam (pending B5.6). If the owner accepts the recommended check, it must actually run at re-association; if declined, the residual risk is documented and accepted rather than unnoticed.
+
+[B82] RULINGS APPLIED TO THIS DOCUMENT
+
+[B83] B5.4 [RULED] — Retention: both files kept in full, matching how the two-item context is actually used; governed by full masking at every subsequent read, not only at write. Recorded in Document 16 §3.
+
+[B84] B5.6 [RULED] — The re-association seam checks the two files' combination for joint re-identification. Minimal check, settled.
+
+[B85] Both items were matters of governance strictness, not of the core mechanic, which is fully ruled: two files, assessed independently, re-paired after processing, sent as a two-item context for one query.
+
+[B87] End of Document 2 of 16 — Custody & the Crossing, Part 2: Confidentiality Authoring & the Dual-File Contract.

@@ -1,0 +1,143 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION
+
+[B2] White Paper Publishing Wizard
+
+[B3] whitepaper_wizard_spec_v1 — Draft for owner ratification
+
+[B4R1] Fulfils | Doc 14 · Promise #25 — “When a training run produces exceptional results, the platform keeps what was learned in a form that can become a published white paper — evidence intact, confidential material protected.”
+
+[B4R2] Status | Draft v1 — normative on ratification. Two owner rulings parked (§7); two DEFAULT-class values revisable on ratification.
+
+[B4R3] Anchors | Doc 5 (Ledger writer, append-only record) · Doc 14 Promises #22–25 · cif_spec_v1 (ratified 23 Jul 2026) · training_techniques_spec_v1 · Documents suite
+
+[B4R4] Date | 31 August 2026
+
+[B5] 1   Purpose & Scope
+
+[B6] The wizard is a research observer bound to every training run. It documents the full training and learning journey contemporaneously — the trainer's governed ideation (CIF), the humans' contributions, and the measured results — at the standard a top university or research lab would hold its own record to. Its output is tiered: a lab notebook on every run, a technical report on every settled run, and a white paper when — and only when — the run's record earns one.
+
+[B7] The wizard is a stenographer of creativity, not a source of it. Creativity in training belongs to CIF and to the humans in the loop; the wizard's obligation is to capture both with an evidence chain intact, so that when a new approach emerges, the claim of new knowledge traces to record, not to narrative.
+
+[B8] 2   Definitions
+
+[B9R1] Term | Meaning
+
+[B9R2] Run | A training job from commissioning (objective-shaping commit, Promise #23) through settled acceptance or refusal (Promise #22).
+
+[B9R3] Notebook (Tier 1) | The contemporaneous, event-driven research record of a run. Exists for every run.
+
+[B9R4] Technical report (Tier 2) | The structured internal research document drafted when a run settles. Never crosses the outer gate.
+
+[B9R5] White paper (Tier 3) | The publishable contribution. Eligibility is mechanical; publication is a governed egress crossing.
+
+[B9R6] Ideation event | A CIF-recorded idea, correction, or reframe — with its conditions and adoption status — per cif_spec_v1.
+
+[B9R7] Contribution event | A recorded human decision or intervention in the run: actor, state before, the change, what moved after.
+
+[B9R8] Exceptional threshold | The numeric bar for Tier 3 eligibility. Owner-ruled value; no manual tagging (Promise #25).
+
+[B9R9] Novelty gate | The evidence test any “new approach / new knowledge” claim must pass before appearing as a contribution.
+
+[B10] 3   Position in the Architecture
+
+[B11] The wizard attaches at commissioning and observes; it never participates. Its notebook is written as a governed run artefact on the Doc 5 append-only Ledger-writer pattern, carrying the same retention and evidentiary class as the run's acceptance numbers. Drafting lands in Documents. Publication is not a wizard capability at all — it is a separate outer-gate egress crossing, governed like any other.
+
+[B12] Single-experiment compliance (cif_spec_v1): the capability exists on every run without opt-in, demonstration, or trial. The tier gates in this spec bind what an artefact may claim — never whether the capability exists.
+
+[B13] 4   Normative Requirements
+
+[B14] Lifecycle & observation
+
+[B15] WPW-1  The wizard MUST attach to every training run at commissioning. There is no per-run opt-in and no manual activation.
+
+[B16] WPW-2  The wizard MUST be read-only with respect to the run. It MUST NOT alter training state, schedule, parameters, or outcomes. Build acceptance includes a zero-influence check (§8).
+
+[B17] WPW-3  Capture MUST be event-driven, not polled. Minimum event set: commissioning reflection; baseline selection record (Promise #24); checkpoints; each acceptance-criterion transition; every CIF ideation event; every human contribution event; anomalies; cost checkpoints against estimate.
+
+[B18] Tier 1 — the lab notebook
+
+[B19] WPW-4  Every notebook entry MUST be timestamped, linked to the run artefact it derives from, and classed — measured, estimated, or observed. The notebook is append-only and hash-chained on the Doc 5 pattern.
+
+[B20] WPW-5  Human contribution events MUST record: actor (role and internal identity), the state before, the change made, and the measured movement after. Correlation MUST be recorded as correlation. A causal reading MUST NOT appear in the notebook.
+
+[B21] WPW-6  CIF ideation events MUST be mirrored by reference, never copied: the idea, its conditions, its adoption status. The wizard MUST NOT paraphrase an ideation record.
+
+[B22] WPW-7  The notebook MUST be retained for every run, including refused runs — a rejection's record is part of the research record (Promise #22).
+
+[B23] Tier 2 — the technical report
+
+[B24] WPW-8  A technical report MUST be drafted automatically when a run settles — accepted or refused. Fixed section skeleton: problem & objective (from the commissioning reflection); data statement at datasheet level, classification-driven; baseline record; method, including adopted ideation events; setup & reproducibility (hardware, duration, cost actual-against-estimate, seeds where applicable); results on held-out material with all six acceptance criteria and their numbers; ablations where run; limitations; negative results.
+
+[B25] WPW-9  Every figure in a report MUST carry its evidence class and a receipt line resolving to a run artefact. A figure that does not resolve MUST NOT render.
+
+[B26] WPW-10  Technical reports are internal. They MUST NOT cross the outer gate.
+
+[B27] Tier 3 — the white paper
+
+[B28] WPW-11  Tier 3 eligibility MUST be mechanical: the exceptional threshold met (numeric, owner-ruled — §7 R1) AND at least one claim passing WPW-12. No human may confer eligibility. A human MAY decline to publish an eligible run.  [EXTENDS #25]
+
+[B29] Promise #25's own text conditions eligibility on “exceptional results” alone — it doesn't require a novelty claim. The AND-novelty-claim clause is this spec's addition, made to serve the innovation objective directly, not a restatement of ratified canon. It's carried in R3 for explicit ratification, not assumed settled.
+
+[B30] WPW-12  Novelty gate: a claim of a new approach or new knowledge MUST trace end-to-end — a recorded ideation or contribution event → its adoption into the run → a measured delta on held-out material against the baseline or counterfactual path. A claim missing any link in that chain MUST be stated as an observation, never as a contribution.
+
+[B31] WPW-13  Assembly MUST draw exclusively from Tier 1 and Tier 2 artefacts and the run's own record. Post-hoc narrative reconstruction MUST NOT occur. Where the record is silent, the paper says the record is silent.
+
+[B32] WPW-14  The redaction pass is a gate, not a prompt. Disclosure depth per section MUST derive from each source's classification: methods, hyperparameters, and metrics publishable; data described at aggregate/datasheet level; personal data never; confidential content described statistically only. The pass runs under the same disciplines as any sale or egress crossing (Promise #25).
+
+[B33] WPW-15  The Tier 3 draft lands in Documents and is internal at that moment. External release is a separate governed egress crossing requiring named sign-off (§7 R2), and writes an evidence record.
+
+[B34] Attribution & authorship
+
+[B35] WPW-16  Internal tiers name contributors. Any artefact crossing the outer gate attributes contributions by role, unless the named person has given written consent to be named.  [DEFAULT]
+
+[B36] WPW-17  Authors are humans. The wizard is credited as instrument — named in the reproducibility statement, never on the author line.  [DEFAULT]
+
+[B37] Economics
+
+[B38] WPW-18  Observation cost MUST appear as a budget line on the run's estimate and in cost-against-estimate reporting. Event capture MUST NOT exceed its budgeted share without surfacing as an anomaly in its own notebook.
+
+[B39] 5   Evidence Classes & Honesty Grammar
+
+[B40] Three classes carry through every tier: measured (a number from the run's own instrumentation), estimated (a projection, marked with its basis), observed (an event that occurred, with no causal reading attached). The wizard inherits the platform's refusal grammar: where evidence is absent, the artefact says so — it does not fill the gap. The phrase “the record is silent on this” is a permitted, expected sentence in all three tiers.
+
+[B41] 6   Dependencies
+
+[B42R1] Dependency | What the wizard takes from it
+
+[B42R2] cif_spec_v1 (ratified 23 Jul 2026) | Ideation event records — the machine half of the creativity account. The novelty gate reads these; it never infers innovation from metrics alone.
+
+[B42R3] training_techniques_spec_v1 | Named for the methods vocabulary a report's method section should describe against. Flagged: cited here by name and status only — its content hasn't been reviewed for this spec.
+
+[B42R4] Promise #24 baseline registry | The licence-verified baseline record every report cites.
+
+[B42R5] Promise #22 acceptance | The six criteria and their numbers; refused runs stay on record.
+
+[B42R6] Doc 5 Ledger writer | The append-only, hash-chained record class the notebook is written on.
+
+[B42R7] Documents suite | The drafting destination for Tiers 2 and 3.
+
+[B43] 7   Owner Rulings — Parked
+
+[B44] R1  The exceptional threshold: a numeric definition of an exceptional run (e.g., margin above baseline on held-out, or percentile against the run history). Value required before Tier 3 can fire.
+
+[B45] R2  External-release signatory: the named human authority whose sign-off an outer-gate publication crossing requires.
+
+[B46] R3  Ratification of the two DEFAULT-class values (WPW-16, WPW-17), the three-tier structure, and WPW-11's added novelty-claim condition beyond Promise #25's literal text.
+
+[B47] Nothing in this spec is blocked by the parked rulings except Tier 3's final firing condition (R1) and the release ceremony (R2). Tiers 1 and 2 are fully specified and buildable as written.
+
+[B48] 8   Build Acceptance Criteria
+
+[B49R1] # | Test | Pass criterion
+
+[B49R2] A1 | Notebook completeness: scripted run replay with a known event sequence | Every event in the script appears, classed and source-linked; none invented
+
+[B49R3] A2 | Zero-influence: identical run executed with wizard attached and detached | Bit-identical training outcomes; wizard presence unobservable to the run
+
+[B49R4] A3 | Redaction gate: seeded confidential and personal markers in run sources | Zero markers survive into any Tier 3 draft; each redaction logged
+
+[B49R5] A4 | Traceability: every figure in a generated Tier 2 report | 100% resolve to a run artefact; unresolvable figures refuse to render
+
+[B49R6] A5 | Eligibility mechanics: runs at, above, and below threshold; claims with complete and broken evidence chains | Tier 3 fires only on threshold + complete chain; broken chains demote to observation
+
+[B49R7] A6 | Refused-run record: a run failing acceptance | Notebook retained; Tier 2 report drafted with the refusal and its numbers

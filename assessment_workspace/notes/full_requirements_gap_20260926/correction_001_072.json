@@ -1,0 +1,2234 @@
+[
+  {
+    "review_id": "REQ-001",
+    "composite_id": "Doc 1::A5.1",
+    "workbook_row": 2,
+    "intended_outcome": "Truthful core promise delivery for The single chokepoint under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B35",
+      "interpretation": "Single invoke seat is required for all outbound model calls."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "269-603",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "invoke() is the active LLM invocation seat."
+    },
+    "exact_gap": "Repo-wide negative-scan proof is not banked in inspected tests.",
+    "required_action": "Add AST invariant refusing any LLM SDK usage outside chokepoint/llm.py.",
+    "closure_demonstration": "Create temp module importing LlmChat; CI must fail.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The single chokepoint' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The single chokepoint' directly, then bind them to this composite id (Doc 1::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-002",
+    "composite_id": "Doc 1::A5.2",
+    "workbook_row": 3,
+    "intended_outcome": "Truthful core promise delivery for The custody sequence under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B36",
+      "interpretation": "Custody sequence must enforce ordered custody steps."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "348-469",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "Current order is deidentify->invoke->reidentify."
+    },
+    "exact_gap": "Pre-redaction objective extraction step is absent.",
+    "required_action": "Insert extract-intent stage before deidentify and assert call ordering in tests.",
+    "closure_demonstration": "If invoke occurs before extraction, test should fail.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The custody sequence' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The custody sequence' directly, then bind them to this composite id (Doc 1::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-003",
+    "composite_id": "Doc 1::A5.3",
+    "workbook_row": 4,
+    "intended_outcome": "Truthful core promise delivery for The per-request envelope does not outlive the call under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B40",
+      "interpretation": "Per-request envelope must not outlive call."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/deidentifier.py",
+      "lines": "639-687",
+      "hash": "6da2f511898a56e1b78c08e3a2619d9c239aa7287060e00b5988ce677e7f5657",
+      "actualbehavior": "token_map is in-memory and passed to reidentifier."
+    },
+    "exact_gap": "No explicit zeroization/log-safety proof for exception paths.",
+    "required_action": "Use request-scoped envelope object with finally-clear and log redaction assertions.",
+    "closure_demonstration": "Force reidentifier exception; token values must not persist.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The per-request envelope does not outlive the call' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The per-request envelope does not outlive the call' directly, then bind them to this composite id (Doc 1::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-004",
+    "composite_id": "Doc 1::A5.4",
+    "workbook_row": 5,
+    "intended_outcome": "Truthful core promise delivery for Tenant-scoped entity resolution under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B42",
+      "interpretation": "Tenant-specific entity set must drive de-identification."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/tenant_entities.py",
+      "lines": "48-98",
+      "hash": "fcc126b07f627de4085875f650ce950e9d65b03694fd9f5a3b66b27714e6cef5",
+      "actualbehavior": "Lookup is tenant-keyed and isolated by tenant_id."
+    },
+    "exact_gap": "No governed declaration approval link to tenant entity catalogue is shown.",
+    "required_action": "Project approved confidentiality declarations into tenant catalogue before crossing use.",
+    "closure_demonstration": "Approved codename absent from catalogue must refuse crossing.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Tenant-scoped entity resolution' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Tenant-scoped entity resolution' directly, then bind them to this composite id (Doc 1::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-005",
+    "composite_id": "Doc 1::A5.5",
+    "workbook_row": 6,
+    "intended_outcome": "Truthful core promise delivery for The outbound network is closed except at the crossing under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B43-B45",
+      "interpretation": "Outbound network must be closed except crossing boundary."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm_endpoint_allowlist.py",
+      "lines": "66-139",
+      "hash": "d873321a30ffe1fec35bc7afe8d19e1017329dab5eafbaf8b748c5726540b3b7",
+      "actualbehavior": "Provider endpoint allowlist/refusal is enforced for llm crossing."
+    },
+    "exact_gap": "No complete codebase proof that all other modules lack outbound capability.",
+    "required_action": "Add global outbound static gate + runtime deny-by-default egress.",
+    "closure_demonstration": "A new requests.post outside chokepoint must fail build.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The outbound network is closed except at the crossing' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The outbound network is closed except at the crossing' directly, then bind them to this composite id (Doc 1::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-006",
+    "composite_id": "Doc 1::A5.6",
+    "workbook_row": 7,
+    "intended_outcome": "Truthful core promise delivery for Structural impossibility, not policed prohibition under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B46",
+      "interpretation": "Prohibition must be structural, not procedural."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/__init__.py",
+      "lines": "96-156",
+      "hash": "f6a6b2056b5b5fd422e886c393b7c9a2b4c03119fb5bc7bf51c0ecadb889eae9",
+      "actualbehavior": "register_crossing enforces admission checks when called."
+    },
+    "exact_gap": "Structural impossibility across all outbound primitives is not fully proven.",
+    "required_action": "Add invariants forbidding direct network clients and requiring crossing wrappers.",
+    "closure_demonstration": "Raw socket outbound in non-crossing module must fail CI.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Structural impossibility, not policed prohibition' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Structural impossibility, not policed prohibition' directly, then bind them to this composite id (Doc 1::A5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-007",
+    "composite_id": "Doc 1::A5.7",
+    "workbook_row": 8,
+    "intended_outcome": "Truthful core promise delivery for The trust receipt under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B47-B51",
+      "interpretation": "Trust receipt must be signed and tenant-bound without secrets."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/__init__.py",
+      "lines": "69-185",
+      "hash": "f6a6b2056b5b5fd422e886c393b7c9a2b4c03119fb5bc7bf51c0ecadb889eae9",
+      "actualbehavior": "Receipt excludes credential fields and is persisted per call."
+    },
+    "exact_gap": "No cryptographic signature/tenant attestation field exists.",
+    "required_action": "Add receipt signature verification path and tenant-bound attestation.",
+    "closure_demonstration": "Tampered receipt host must fail verification.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The trust receipt' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The trust receipt' directly, then bind them to this composite id (Doc 1::A5.7)."
+    }
+  },
+  {
+    "review_id": "REQ-008",
+    "composite_id": "Doc 1::A5.8",
+    "workbook_row": 9,
+    "intended_outcome": "Truthful core promise delivery for Two custody pathways, both receipted, neither bypassing the other under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B52",
+      "interpretation": "Text and perception pathways both need receipted custody."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "474-554",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "Synthesis/text path emits crossing receipts."
+    },
+    "exact_gap": "Perception-path parity implementation was not found.",
+    "required_action": "Implement perception routing through register_crossing with same refusal semantics.",
+    "closure_demonstration": "Audio inference should emit perception_* receipt or refuse.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Two custody pathways, both receipted, neither bypassing the other' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Two custody pathways, both receipted, neither bypassing the other' directly, then bind them to this composite id (Doc 1::A5.8)."
+    }
+  },
+  {
+    "review_id": "REQ-009",
+    "composite_id": "Doc 1::A5.9",
+    "workbook_row": 10,
+    "intended_outcome": "Truthful core promise delivery for Grounding failure is a refusal, not a degraded answer under #1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B53",
+      "interpretation": "Ungrounded output must refuse instead of degrade."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "308-353",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Synthesis emits paragraph without sentence-anchor checks."
+    },
+    "exact_gap": "No grounding gate/per-sentence anchor enforcement in live path.",
+    "required_action": "Add grounding validator and refusal envelope for unanchored sentences.",
+    "closure_demonstration": "One unanchored sentence should block response.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Grounding failure is a refusal, not a degraded answer' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Grounding failure is a refusal, not a degraded answer' directly, then bind them to this composite id (Doc 1::A5.9)."
+    }
+  },
+  {
+    "review_id": "REQ-010",
+    "composite_id": "Doc 2::A5.1",
+    "workbook_row": 11,
+    "intended_outcome": "Truthful core promise delivery for The list extends the tenant entity set consumed at the crossing under #2 — THE USER-EDITABLE CONFIDENTIALITY LIST.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B34",
+      "interpretation": "Approved confidentiality list should extend crossing entity set."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/tenant_entities.py",
+      "lines": "37-62",
+      "hash": "fcc126b07f627de4085875f650ce950e9d65b03694fd9f5a3b66b27714e6cef5",
+      "actualbehavior": "Crossing consumes tenant catalogue entries."
+    },
+    "exact_gap": "No demonstrated ingestion from approved DPO declarations.",
+    "required_action": "Implement approval-gated declaration projection into tenant catalogue.",
+    "closure_demonstration": "Pending declaration must not affect lookup; approved must.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The list extends the tenant entity set consumed at the crossing' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The list extends the tenant entity set consumed at the crossing' directly, then bind them to this composite id (Doc 2::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-011",
+    "composite_id": "Doc 2::A5.2",
+    "workbook_row": 12,
+    "intended_outcome": "Truthful core promise delivery for The objective-shaping loop produces a testable declaration under #2 — THE USER-EDITABLE CONFIDENTIALITY LIST.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B35",
+      "interpretation": "Objective-shaping loop must end in testable declaration grammar."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/routers/compliance.py",
+      "lines": "430-507",
+      "hash": "b1b8a495917b04df0d68dbf138ec3d89f1795162c825d69a72201861152e3b0d",
+      "actualbehavior": "Compliance router validates rulebook payload shapes for some classes."
+    },
+    "exact_gap": "Generate/review/edit/adopt declaration loop is absent.",
+    "required_action": "Build declaration lifecycle state machine with exact/pattern/category outcomes.",
+    "closure_demonstration": "Non-testable free-text declaration must be non-adoptable.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'The objective-shaping loop produces a testable declaration' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 2::A5.2 (PROPOSED) first, then define implementation/test closure criteria for 'The objective-shaping loop produces a testable declaration'."
+    }
+  },
+  {
+    "review_id": "REQ-012",
+    "composite_id": "Doc 2::A5.3",
+    "workbook_row": 13,
+    "intended_outcome": "Truthful core promise delivery for Review shows reach against measured material only [CANON-adjacent] under #2 — THE USER-EDITABLE CONFIDENTIALITY LIST.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B36",
+      "interpretation": "Review must show measured reach and unmeasured disclaimer."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audit_trail/overview.py",
+      "lines": "153-202",
+      "hash": "b1314f6cec00569809c86919ad0ad5e77fe13c03196789b6932af55cd93ca099",
+      "actualbehavior": "Overview reports aggregate available vs served counts."
+    },
+    "exact_gap": "No candidate declaration review endpoint with unmeasured honesty is implemented.",
+    "required_action": "Add review endpoint for candidate declaration reach over measured subset with explicit unknowns.",
+    "closure_demonstration": "When 3/5 sources unmeasured, response must state unmeasured_count=3.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Review shows reach against measured material only [CANON-adjacent]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 2::A5.3 (—) first, then define implementation/test closure criteria for 'Review shows reach against measured material only [CANON-adjacent]'."
+    }
+  },
+  {
+    "review_id": "REQ-013",
+    "composite_id": "Doc 2::A5.4",
+    "workbook_row": 14,
+    "intended_outcome": "Truthful core promise delivery for Adding and removing are asymmetric, by governed ceremony under #2 — THE USER-EDITABLE CONFIDENTIALITY LIST.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B37-B39",
+      "interpretation": "Removal needs dual-signature countdown ceremony."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/compliance/rulebook_writes.py",
+      "lines": "50-106",
+      "hash": "cf2a6ae95992873893a18891ac7980329f9949855f8ffd3d10beb535626afff8",
+      "actualbehavior": "Writes route through checker and ledger metadata emission."
+    },
+    "exact_gap": "Confidentiality-specific remove asymmetry flow is not banked.",
+    "required_action": "Implement remove-declaration path with countersign, countdown, cancel, apply, reverify.",
+    "closure_demonstration": "Single-signer removal should remain non-effective.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Adding and removing are asymmetric, by governed ceremony' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Adding and removing are asymmetric, by governed ceremony' directly, then bind them to this composite id (Doc 2::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-014",
+    "composite_id": "Doc 2::A5.5",
+    "workbook_row": 15,
+    "intended_outcome": "Truthful core promise delivery for The whole list is itself a governed record under #2 — THE USER-EDITABLE CONFIDENTIALITY LIST.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B40",
+      "interpretation": "Whole confidentiality list needs immutable provenance history."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/compliance/rulebook_writes.py",
+      "lines": "64-105",
+      "hash": "cf2a6ae95992873893a18891ac7980329f9949855f8ffd3d10beb535626afff8",
+      "actualbehavior": "Rulebook writes emit consequence class in stamp audit."
+    },
+    "exact_gap": "No append-only declaration history with author/edit/approve/retire lineage found.",
+    "required_action": "Add dedicated confidentiality ledger preserving full version history and retirement states.",
+    "closure_demonstration": "Retired declaration must remain readable with prior versions.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The whole list is itself a governed record' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The whole list is itself a governed record' directly, then bind them to this composite id (Doc 2::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-015",
+    "composite_id": "Doc 1::B5.1",
+    "workbook_row": 16,
+    "intended_outcome": "Truthful core promise delivery for Extraction precedes de-identification in the fixed sequence under #3 — INTENT, MEANING & QUESTION OBJECTIVE EXTRACTED BEFORE REDACTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B82",
+      "interpretation": "Extraction must precede de-identification for question-bearing requests."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "348-359",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "Flow starts with deidentify; no extraction stage exists."
+    },
+    "exact_gap": "Required pre-redaction extraction stage missing.",
+    "required_action": "Insert extraction before deidentify and persist objective artifact reference.",
+    "closure_demonstration": "Objective artifact should exist before first token replacement.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Extraction precedes de-identification in the fixed sequence' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Extraction precedes de-identification in the fixed sequence' directly, then bind them to this composite id (Doc 1::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-016",
+    "composite_id": "Doc 1::B5.2",
+    "workbook_row": 17,
+    "intended_outcome": "Truthful core promise delivery for The extraction reads meaning, not just surface tokens [CANON-adjacent] under #3 — INTENT, MEANING & QUESTION OBJECTIVE EXTRACTED BEFORE REDACTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B83",
+      "interpretation": "Extraction should capture semantic meaning robust to redaction."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "128-191",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Frame audit logic exists but is not crossing-time extraction."
+    },
+    "exact_gap": "No crossing semantic extraction output fields are produced.",
+    "required_action": "Add Solva-backed intent/meaning extractor consumed by crossing pipeline.",
+    "closure_demonstration": "Paraphrases should map to same meaning class.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The extraction reads meaning, not just surface tokens [CANON-adjacent]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 1::B5.2 (—) first, then define implementation/test closure criteria for 'The extraction reads meaning, not just surface tokens [CANON-adjacent]'."
+    }
+  },
+  {
+    "review_id": "REQ-017",
+    "composite_id": "Doc 1::B5.3",
+    "workbook_row": 18,
+    "intended_outcome": "Truthful core promise delivery for The captured objective is frozen, not editable under #3 — INTENT, MEANING & QUESTION OBJECTIVE EXTRACTED BEFORE REDACTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B84",
+      "interpretation": "Captured objective must freeze immutably for request lifetime."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/admit.py",
+      "lines": "98-127",
+      "hash": "690fda7337022112748ce4a036dba0b7a8faefda1c9c214481164bbd8fbe0cec",
+      "actualbehavior": "Northena FrozenArtifact enforces immutability for admitted runs."
+    },
+    "exact_gap": "Crossing calls do not create/link this frozen objective artifact.",
+    "required_action": "Create crossing objective artifact and enforce no in-run edits.",
+    "closure_demonstration": "Mid-run objective edit must return new_request_required.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The captured objective is frozen, not editable' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The captured objective is frozen, not editable' directly, then bind them to this composite id (Doc 1::B5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-018",
+    "composite_id": "Doc 1::B5.4",
+    "workbook_row": 19,
+    "intended_outcome": "Truthful core promise delivery for Declared and demonstrated intent are both recorded under #3 — INTENT, MEANING & QUESTION OBJECTIVE EXTRACTED BEFORE REDACTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B85",
+      "interpretation": "Declared and demonstrated intent both need recording and divergence tracking."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "315-399",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "Crossing captures purpose/custody/watch verdict only."
+    },
+    "exact_gap": "No declared-vs-demonstrated intent fields/tracker in crossing records.",
+    "required_action": "Extend crossing record model with declared_intent, demonstrated_intent, divergence_flag.",
+    "closure_demonstration": "Summary request that tries identifier extraction should flag divergence.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Declared and demonstrated intent are both recorded' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Declared and demonstrated intent are both recorded' directly, then bind them to this composite id (Doc 1::B5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-019",
+    "composite_id": "Doc 1::B5.5",
+    "workbook_row": 20,
+    "intended_outcome": "Truthful core promise delivery for Extraction failure is handled explicitly under #3 — INTENT, MEANING & QUESTION OBJECTIVE EXTRACTED BEFORE REDACTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx",
+      "anchor": "B86-B87",
+      "interpretation": "Extraction failure must refuse/ask; never fabricate objective."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "315-359",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "No extraction confidence or failure branch is implemented."
+    },
+    "exact_gap": "Refuse/clarify branch for extraction failure is absent.",
+    "required_action": "Add confidence threshold and clarify/refusal envelope with zero invoke on failure.",
+    "closure_demonstration": "Contradictory question should return objective_unresolved refusal.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Extraction failure is handled explicitly' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Extraction failure is handled explicitly' directly, then bind them to this composite id (Doc 1::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-020",
+    "composite_id": "Doc 2::B5.1",
+    "workbook_row": 21,
+    "intended_outcome": "Truthful core promise delivery for Two items, split before assessment under #4 — THE DUAL-FILE RECORD.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B65",
+      "interpretation": "Request must split into File1+File2 before assessment."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "348-435",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "Single prompt string path only."
+    },
+    "exact_gap": "Dual-file split contract is not implemented.",
+    "required_action": "Introduce splitter producing distinct file objects and IDs pre-assessment.",
+    "closure_demonstration": "Question+data request should store two object refs.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Two items, split before assessment' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Two items, split before assessment' directly, then bind them to this composite id (Doc 2::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-021",
+    "composite_id": "Doc 2::B5.2",
+    "workbook_row": 22,
+    "intended_outcome": "Truthful core promise delivery for Independent assessment, no cross-consultation under #4 — THE DUAL-FILE RECORD.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B66",
+      "interpretation": "File assessments must run independently with no cross-input."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "348-435",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "One combined de-id assessment is used."
+    },
+    "exact_gap": "Independent per-file assessment logic absent.",
+    "required_action": "Run separate governance/de-id passes and block cross-consultation state.",
+    "closure_demonstration": "File2 failure should refuse final context even if File1 passes.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Independent assessment, no cross-consultation' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Independent assessment, no cross-consultation' directly, then bind them to this composite id (Doc 2::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-022",
+    "composite_id": "Doc 2::B5.3",
+    "workbook_row": 23,
+    "intended_outcome": "Truthful core promise delivery for Re-association is a defined, guarded seam [PROPOSED, per Document 16 §7 discipline] under #4 — THE DUAL-FILE RECORD.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B67",
+      "interpretation": "Re-association seam must re-check governance markers and refuse on fail."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audit_trail/overview.py",
+      "lines": "33-43",
+      "hash": "b1314f6cec00569809c86919ad0ad5e77fe13c03196789b6932af55cd93ca099",
+      "actualbehavior": "Canon mention exists in overview prose only."
+    },
+    "exact_gap": "No executable seam guard implementation found in crossing flow.",
+    "required_action": "Add re-association seam validator with mandatory marker re-checks.",
+    "closure_demonstration": "Dropped marker between steps must refuse request.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Re-association is a defined, guarded seam [PROPOSED, per Document 16 §7 discipline]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 2::B5.3 (—) first, then define implementation/test closure criteria for 'Re-association is a defined, guarded seam [PROPOSED, per Document 16 §7 discipline]'."
+    }
+  },
+  {
+    "review_id": "REQ-023",
+    "composite_id": "Doc 2::B5.4",
+    "workbook_row": 24,
+    "intended_outcome": "Truthful core promise delivery for The two files under #4 — THE DUAL-FILE RECORD.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B68-B71",
+      "interpretation": "Retained files custody class must differ from ephemeral mapping envelope."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/deidentifier.py",
+      "lines": "639-687",
+      "hash": "6da2f511898a56e1b78c08e3a2619d9c239aa7287060e00b5988ce677e7f5657",
+      "actualbehavior": "Ephemeral token_map exists; retained two-file class absent."
+    },
+    "exact_gap": "No retained File1/File2 governed-read model is implemented.",
+    "required_action": "Add retained dual-file record class with read-time masking governance; keep token map ephemeral.",
+    "closure_demonstration": "After completion token_map unavailable while governed file records remain.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The two files' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 2::B5.4 (—) first, then define implementation/test closure criteria for 'The two files'."
+    }
+  },
+  {
+    "review_id": "REQ-024",
+    "composite_id": "Doc 2::B5.5",
+    "workbook_row": 25,
+    "intended_outcome": "Truthful core promise delivery for The single-query guarantee under #4 — THE DUAL-FILE RECORD.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B72",
+      "interpretation": "Dual-file context must be sent as exactly one query."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "432-436",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "Exactly one query exists, but for single prompt not two-item context."
+    },
+    "exact_gap": "Two-item single-query guarantee cannot be proven until dual-file path exists.",
+    "required_action": "Implement two-item context assembler and assert one outbound call.",
+    "closure_demonstration": "Dual-file request should generate one receipt only.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The single-query guarantee' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The single-query guarantee' directly, then bind them to this composite id (Doc 2::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-025",
+    "composite_id": "Doc 2::B5.6",
+    "workbook_row": 26,
+    "intended_outcome": "Truthful core promise delivery for Cumulative disclosure across the two items under #4 — THE DUAL-FILE RECORD.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/02_Custody_and_the_Crossing_Part_2_Confidentiality_and_Dual_File.docx",
+      "anchor": "B73-B74",
+      "interpretation": "Pairwise cumulative re-identification check required at re-association seam."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/v2_gate/cumulative.py",
+      "lines": "64-97",
+      "hash": "b53705f54513d7f438ef979f807d0eca5f732454cea073b265b16cb93fc7bc49",
+      "actualbehavior": "Cumulative checker exists for egress but not integrated with dual-file seam in inspected path."
+    },
+    "exact_gap": "Seam-level pairwise check is not wired into current crossing flow.",
+    "required_action": "Call cumulative checker on File1+File2 pair before join; refuse on threshold breach.",
+    "closure_demonstration": "Two files individually clean but jointly identifying must refuse.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Cumulative disclosure across the two items' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Cumulative disclosure across the two items' directly, then bind them to this composite id (Doc 2::B5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-026",
+    "composite_id": "Doc 15::A5.1",
+    "workbook_row": 27,
+    "intended_outcome": "Truthful core promise delivery for The determination, stated under #26 — UNIVERSAL CONTAINMENT, AND THE ONE EXCEPTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/15_Platform_Orchestration_and_Governance_Ceremony.docx",
+      "anchor": "B29-B33",
+      "interpretation": "Watch exception should be delivered via four self-containment disciplines."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mkondo/registry.py",
+      "lines": "48-97",
+      "hash": "7c84d010ed1a5766852ecaefd9e9bdb16bf4b9cd6f6b1d08bb9e0e9041d2ba23",
+      "actualbehavior": "Identity separation and governed handoff admission are implemented."
+    },
+    "exact_gap": "No unified contract proving all four disciplines together is banked.",
+    "required_action": "Publish self-containment status contract linking identity/record/ceremony/witness proofs.",
+    "closure_demonstration": "If witness proof missing, status should fail.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The determination, stated' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 15::A5.1 (—) first, then define implementation/test closure criteria for 'The determination, stated'."
+    }
+  },
+  {
+    "review_id": "REQ-027",
+    "composite_id": "Doc 15::A5.2",
+    "workbook_row": 28,
+    "intended_outcome": "Truthful core promise delivery for Why this is sufficient, and why it is not a contradiction under #26 — UNIVERSAL CONTAINMENT, AND THE ONE EXCEPTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/15_Platform_Orchestration_and_Governance_Ceremony.docx",
+      "anchor": "B34",
+      "interpretation": "Need proof exception remains narrow and non-contradictory."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/witness.py",
+      "lines": "155-227",
+      "hash": "ff487e969f3a9dd9fc34b0c4f039c6d4d080877b2f10560d1a7e281fd8fb4963",
+      "actualbehavior": "Witness mechanics exist for registration/attestation/alarm records."
+    },
+    "exact_gap": "Composite invariant proving no broadened exemption surface was not found.",
+    "required_action": "Add invariant that watch exception cannot bypass custody crossing or governance record laws.",
+    "closure_demonstration": "Synthetic watch side-door path should be detected and refused.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Why this is sufficient, and why it is not a contradiction' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 15::A5.2 (—) first, then define implementation/test closure criteria for 'Why this is sufficient, and why it is not a contradiction'."
+    }
+  },
+  {
+    "review_id": "REQ-028",
+    "composite_id": "Doc 15::A5.3",
+    "workbook_row": 29,
+    "intended_outcome": "Truthful core promise delivery for What must remain true for the determination to hold under #26 — UNIVERSAL CONTAINMENT, AND THE ONE EXCEPTION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/15_Platform_Orchestration_and_Governance_Ceremony.docx",
+      "anchor": "B35-B40",
+      "interpretation": "Determination preconditions must be continuously enforced."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/task_identity.py",
+      "lines": "24-103",
+      "hash": "7a26b02d41a6515ee1c8b543bf495b0d88659d12f9c28c1829b814eb50e8adec",
+      "actualbehavior": "Thin task register encodes one-authority identities for limited tasks."
+    },
+    "exact_gap": "Coverage is partial and does not enforce all determination preconditions estate-wide.",
+    "required_action": "Expand and enforce full task identity register + countdown/witness precondition checks.",
+    "closure_demonstration": "Unregistered dual-authority task must refuse at dispatch.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'What must remain true for the determination to hold' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'What must remain true for the determination to hold' directly, then bind them to this composite id (Doc 15::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-029",
+    "composite_id": "Doc 3::A5.1",
+    "workbook_row": 30,
+    "intended_outcome": "Truthful core promise delivery for The eyes never act; the hand never judges under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B39",
+      "interpretation": "Eyes must not act and hand must not judge via single seam."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/verdict_interface.py",
+      "lines": "62-87",
+      "hash": "346037c7f2bd76fc0d84e3b5e017c965268147869937a19aa77da3c31bae9f4b",
+      "actualbehavior": "Learned verdicts are blocked; deterministic gate required before action."
+    },
+    "exact_gap": "No explicit cross-import boundary tests were found for Macho/Mkono isolation.",
+    "required_action": "Add forbidden-import invariants between detection and action modules.",
+    "closure_demonstration": "Macho importing action writer should fail CI.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The eyes never act; the hand never judges' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.1 (—) first, then define implementation/test closure criteria for 'The eyes never act; the hand never judges'."
+    }
+  },
+  {
+    "review_id": "REQ-030",
+    "composite_id": "Doc 3::A5.10",
+    "workbook_row": 31,
+    "intended_outcome": "Truthful core promise delivery for One task, one identity under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B48",
+      "interpretation": "One task, one identity must be structurally enforced at runtime."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/task_identity.py",
+      "lines": "14-103",
+      "hash": "7a26b02d41a6515ee1c8b543bf495b0d88659d12f9c28c1829b814eb50e8adec",
+      "actualbehavior": "Single-authority task identities are modeled in thin register."
+    },
+    "exact_gap": "Not all runtime task paths are proven to enforce registration.",
+    "required_action": "Require task_id registration check in central dispatcher for all tasks.",
+    "closure_demonstration": "Unknown task_id should fail before execution.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'One task, one identity' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.10 (—) first, then define implementation/test closure criteria for 'One task, one identity'."
+    }
+  },
+  {
+    "review_id": "REQ-031",
+    "composite_id": "Doc 3::A5.11",
+    "workbook_row": 32,
+    "intended_outcome": "Truthful core promise delivery for Peer, not subordinate under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B49",
+      "interpretation": "Watch and governance should remain peer authorities."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mkondo/registry.py",
+      "lines": "64-72",
+      "hash": "7c84d010ed1a5766852ecaefd9e9bdb16bf4b9cd6f6b1d08bb9e0e9041d2ba23",
+      "actualbehavior": "Dual-hat actor handoffs are structurally refused."
+    },
+    "exact_gap": "No full policy ownership ACL proving non-subordination was found.",
+    "required_action": "Enforce authority-owned policy writers with cross-authority edit refusal.",
+    "closure_demonstration": "Governance edit to watch policy should return authority_mismatch.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Peer, not subordinate' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.11 (—) first, then define implementation/test closure criteria for 'Peer, not subordinate'."
+    }
+  },
+  {
+    "review_id": "REQ-032",
+    "composite_id": "Doc 3::A5.12",
+    "workbook_row": 33,
+    "intended_outcome": "Truthful core promise delivery for The profile is armory, not inventory under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B50",
+      "interpretation": "Behavioural profile must remain armory and non-exportable."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/router.py",
+      "lines": "118-136",
+      "hash": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+      "actualbehavior": "Watch state surface omits behavioural profile internals."
+    },
+    "exact_gap": "Dedicated non-exportable profile store controls are not evidenced in inspected modules.",
+    "required_action": "Implement profile store with purpose-bound internal access and no external read/export APIs.",
+    "closure_demonstration": "Attempt profile export endpoint should refuse/not exist.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The profile is armory, not inventory' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.12 (—) first, then define implementation/test closure criteria for 'The profile is armory, not inventory'."
+    }
+  },
+  {
+    "review_id": "REQ-033",
+    "composite_id": "Doc 3::A5.13",
+    "workbook_row": 34,
+    "intended_outcome": "Truthful core promise delivery for Self-proving, or not in force under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B51",
+      "interpretation": "Watch rails must self-prove on cadence or be not-in-force."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/router.py",
+      "lines": "99-115",
+      "hash": "d90a6298394943b52882d971d19e93ad689b4f65bc092e2f81f56073d047d057",
+      "actualbehavior": "Fitness summary reports drill artifact counts."
+    },
+    "exact_gap": "No enforcement toggles rail authority off when cadence proof is stale/missing.",
+    "required_action": "Add in-force gate tied to recent successful drill receipts.",
+    "closure_demonstration": "Expired drill window should set rail_in_force=false.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Self-proving, or not in force' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.13 (—) first, then define implementation/test closure criteria for 'Self-proving, or not in force'."
+    }
+  },
+  {
+    "review_id": "REQ-034",
+    "composite_id": "Doc 3::A5.14",
+    "workbook_row": 35,
+    "intended_outcome": "Truthful core promise delivery for The action ladder and its two ceilings under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B52-B56",
+      "interpretation": "Action ladder must include blast/friction budget ceilings."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/verdict_interface.py",
+      "lines": "20-59",
+      "hash": "346037c7f2bd76fc0d84e3b5e017c965268147869937a19aa77da3c31bae9f4b",
+      "actualbehavior": "Four-rung ladder vocabulary is enforced."
+    },
+    "exact_gap": "Budget ceilings (blast/friction) are not implemented in inspected action path.",
+    "required_action": "Implement rolling-window ceilings before contain/sever execution.",
+    "closure_demonstration": "Beyond blast budget, actions should queue for human release.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The action ladder and its two ceilings' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.14 (—) first, then define implementation/test closure criteria for 'The action ladder and its two ceilings'."
+    }
+  },
+  {
+    "review_id": "REQ-035",
+    "composite_id": "Doc 3::A5.2",
+    "workbook_row": 36,
+    "intended_outcome": "Truthful core promise delivery for Certainty never exceeds evidence under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B40",
+      "interpretation": "Certainty class should never be raised by steerable confidence signals."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/schema_verdict.py",
+      "lines": "106-123",
+      "hash": "49dd296e63f82409aa59f1baca50919ddf662ef467c8fa0887022a1d3c7f29bf",
+      "actualbehavior": "sever requires severance_signal_ref by schema."
+    },
+    "exact_gap": "End-to-end runtime proof that score/confidence cannot unlock sever is incomplete.",
+    "required_action": "Add runtime precondition checker binding sever to closed-signal evidence chain.",
+    "closure_demonstration": "High score without signal should never produce sever.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Certainty never exceeds evidence' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.2 (—) first, then define implementation/test closure criteria for 'Certainty never exceeds evidence'."
+    }
+  },
+  {
+    "review_id": "REQ-036",
+    "composite_id": "Doc 3::A5.3",
+    "workbook_row": 37,
+    "intended_outcome": "Truthful core promise delivery for Every autonomous act is reversible, bounded, and witnessed under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B41",
+      "interpretation": "Autonomous actions must be reversible, bounded, witnessed."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/containment.py",
+      "lines": "48-99",
+      "hash": "795c7bb336538e9aa99e2afdc06bb11c459b6b91ba6fd0e4a157ccb4dd7d2a7c",
+      "actualbehavior": "Containment start/reconcile records are append-only and linked to verdicts."
+    },
+    "exact_gap": "TTL/budget/countersign witness linkage is not fully demonstrated.",
+    "required_action": "Require TTL, budget checks, and witness attestation links for autonomous actions.",
+    "closure_demonstration": "Containment payload missing ttl should refuse.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Every autonomous act is reversible, bounded, and witnessed' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.3 (—) first, then define implementation/test closure criteria for 'Every autonomous act is reversible, bounded, and witnessed'."
+    }
+  },
+  {
+    "review_id": "REQ-037",
+    "composite_id": "Doc 3::A5.4",
+    "workbook_row": 38,
+    "intended_outcome": "Truthful core promise delivery for Deployed in force, never in shadow under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B42",
+      "interpretation": "Watch should deploy in force, not perpetual shadow mode."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/input_seat.py",
+      "lines": "180-218",
+      "hash": "5a7bb6d7857df73e818f6aa5c1a7299e7f973321a15a716ccb1625004ba2fd7c",
+      "actualbehavior": "Current scoring returns honest-empty low/pass placeholder."
+    },
+    "exact_gap": "No activation guard prevents prolonged non-acting shadow posture.",
+    "required_action": "Add policy that rejects prolonged shadow mode without activation cutover.",
+    "closure_demonstration": "observe-only mode beyond grace period should fail startup.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Deployed in force, never in shadow' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.4 (—) first, then define implementation/test closure criteria for 'Deployed in force, never in shadow'."
+    }
+  },
+  {
+    "review_id": "REQ-038",
+    "composite_id": "Doc 3::A5.5",
+    "workbook_row": 39,
+    "intended_outcome": "Truthful core promise delivery for One record, two readings under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B43",
+      "interpretation": "One record must support assurance and defence readings."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/persistence.py",
+      "lines": "43-122",
+      "hash": "86912998a495d23f4a98d54251b88414418d66ace81444452e32b1feb4a7337c",
+      "actualbehavior": "Single write-once verdict/action record surfaces exist."
+    },
+    "exact_gap": "Role-scoped dual reading projections are not explicitly implemented.",
+    "required_action": "Add role-based read projections over same records with field-level controls.",
+    "closure_demonstration": "Compliance/security readers should share row ids but differ in visible fields.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "low"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'One record, two readings' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.5 (—) first, then define implementation/test closure criteria for 'One record, two readings'."
+    }
+  },
+  {
+    "review_id": "REQ-039",
+    "composite_id": "Doc 3::A5.6",
+    "workbook_row": 40,
+    "intended_outcome": "Truthful core promise delivery for Suspicion is refined, not accumulated under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B44",
+      "interpretation": "Suspicion should refine into conditions, not accumulate to conviction directly."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/input_seat.py",
+      "lines": "180-218",
+      "hash": "5a7bb6d7857df73e818f6aa5c1a7299e7f973321a15a716ccb1625004ba2fd7c",
+      "actualbehavior": "No adaptive hostility refinement; fixed low/pass output currently used."
+    },
+    "exact_gap": "Refinement ladder (friction/contain/mirage to certainty) is absent in active scorer.",
+    "required_action": "Implement staged escalation with reversible steps before sever class.",
+    "closure_demonstration": "Medium suspicion without hard signal should cap below sever.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Suspicion is refined, not accumulated' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.6 (—) first, then define implementation/test closure criteria for 'Suspicion is refined, not accumulated'."
+    }
+  },
+  {
+    "review_id": "REQ-040",
+    "composite_id": "Doc 3::A5.7",
+    "workbook_row": 41,
+    "intended_outcome": "Truthful core promise delivery for Conformance grants trust; non-conformance never convicts under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B45",
+      "interpretation": "Conformance grants trust; non-conformance alone never convicts."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/verdict_interface.py",
+      "lines": "62-87",
+      "hash": "346037c7f2bd76fc0d84e3b5e017c965268147869937a19aa77da3c31bae9f4b",
+      "actualbehavior": "Direct learned findings cannot act without deterministic gate."
+    },
+    "exact_gap": "No trust-discount/conformance model or explicit non-conviction policy path is implemented.",
+    "required_action": "Implement conformance-driven friction discount while preserving no-conviction-from-drift rule.",
+    "closure_demonstration": "Loss of conformance should return to baseline checks only.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'Conformance grants trust; non-conformance never convicts' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.7 (—) first, then define implementation/test closure criteria for 'Conformance grants trust; non-conformance never convicts'."
+    }
+  },
+  {
+    "review_id": "REQ-041",
+    "composite_id": "Doc 3::A5.8",
+    "workbook_row": 42,
+    "intended_outcome": "Truthful core promise delivery for The floor never learns under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B46",
+      "interpretation": "Deterministic floor should not learn and should move only via ceremony."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/verdict_interface.py",
+      "lines": "20-23",
+      "hash": "346037c7f2bd76fc0d84e3b5e017c965268147869937a19aa77da3c31bae9f4b",
+      "actualbehavior": "Fixed action rung vocabulary is deterministic."
+    },
+    "exact_gap": "No explicit floor artifact/change ceremony controls for watch floor movement found.",
+    "required_action": "Create floor table with ceremony-gated updates and monitored change tripwire.",
+    "closure_demonstration": "Runtime attempt to mutate floor should alarm and refuse.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The floor never learns' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.8 (—) first, then define implementation/test closure criteria for 'The floor never learns'."
+    }
+  },
+  {
+    "review_id": "REQ-042",
+    "composite_id": "Doc 3::A5.9",
+    "workbook_row": 43,
+    "intended_outcome": "Truthful core promise delivery for The watcher is watched from outside under #6 — THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B47",
+      "interpretation": "Watcher must be watched externally; silence itself alarms."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/witness.py",
+      "lines": "51-108",
+      "hash": "ff487e969f3a9dd9fc34b0c4f039c6d4d080877b2f10560d1a7e281fd8fb4963",
+      "actualbehavior": "Witness note validation enforces independence language and no watch creds."
+    },
+    "exact_gap": "Independent runtime silence-watchdog heartbeat flow is not evidenced here.",
+    "required_action": "Add external heartbeat monitor and automatic silence alarm rows.",
+    "closure_demonstration": "Watch worker silence beyond bound should emit tamper alarm.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is —, so 'The watcher is watched from outside' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 3::A5.9 (—) first, then define implementation/test closure criteria for 'The watcher is watched from outside'."
+    }
+  },
+  {
+    "review_id": "REQ-043",
+    "composite_id": "Doc 3::B5.1",
+    "workbook_row": 44,
+    "intended_outcome": "Truthful core promise delivery for No actor enters undeclared under #7 — INTENT MEASURED ACROSS LAYERS (Security Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B92",
+      "interpretation": "No actor should operate undeclared; mandate frozen at admission."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/admit.py",
+      "lines": "158-176",
+      "hash": "690fda7337022112748ce4a036dba0b7a8faefda1c9c214481164bbd8fbe0cec",
+      "actualbehavior": "Admission validates required fields/lawful basis before proceed."
+    },
+    "exact_gap": "Estate-wide actor mandate enforcement across watch paths is not proven.",
+    "required_action": "Require actor mandate record check before actionable operations.",
+    "closure_demonstration": "Actor without mandate should get restrictive envelope refusal.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'No actor enters undeclared' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'No actor enters undeclared' directly, then bind them to this composite id (Doc 3::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-044",
+    "composite_id": "Doc 3::B5.2",
+    "workbook_row": 45,
+    "intended_outcome": "Truthful core promise delivery for The signature reads two ways from one model under #7 — INTENT MEASURED ACROSS LAYERS (Security Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B93",
+      "interpretation": "One model should output both drift and conformance readings."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/signature_primitive.py",
+      "lines": "46-95",
+      "hash": "6dd089f6ec9fabfb669ebbffbf6734c74f6ff2c7f32dcec64f96012b67670e80",
+      "actualbehavior": "Only cryptographic signing primitive exists; behavioural model is absent."
+    },
+    "exact_gap": "Dual-reading behavioural signature model is not implemented in inspected path.",
+    "required_action": "Implement shared behavioural model emitting drift and conformance from same state.",
+    "closure_demonstration": "Same event window should emit both readings with same model version.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The signature reads two ways from one model' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The signature reads two ways from one model' directly, then bind them to this composite id (Doc 3::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-045",
+    "composite_id": "Doc 3::B5.3",
+    "workbook_row": 46,
+    "intended_outcome": "Truthful core promise delivery for The mark is universal and structurally checked under #7 — INTENT MEASURED ACROSS LAYERS (Security Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B94",
+      "interpretation": "Mark must be universal with structural gate checks everywhere."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/mark.py",
+      "lines": "67-156",
+      "hash": "b5a766d343d2a520797bafde9d206d12da3877cf9061dc07316a63ca4a58b3f0",
+      "actualbehavior": "Mark minting and hash-hit detection are implemented."
+    },
+    "exact_gap": "No inventory-wide assertion that every gate checks mark state each pass.",
+    "required_action": "Add gate inventory + mandatory mark-check middleware assertion tests.",
+    "closure_demonstration": "New gate lacking mark check should fail invariant.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The mark is universal and structurally checked' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The mark is universal and structurally checked' directly, then bind them to this composite id (Doc 3::B5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-046",
+    "composite_id": "Doc 3::B5.4",
+    "workbook_row": 47,
+    "intended_outcome": "Truthful core promise delivery for Declared and demonstrated intent are both recorded, divergence tracked under #7 — INTENT MEASURED ACROSS LAYERS (Security Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B95",
+      "interpretation": "Declared/demonstrated intent must both be recorded with divergence tracking."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/persistence.py",
+      "lines": "43-118",
+      "hash": "86912998a495d23f4a98d54251b88414418d66ace81444452e32b1feb4a7337c",
+      "actualbehavior": "Stored watch rows do not carry declared/demonstrated intent fields."
+    },
+    "exact_gap": "Continuous divergence tracker is missing from watch record schema.",
+    "required_action": "Extend watch row contracts with intent fields and divergence updates.",
+    "closure_demonstration": "Divergent actor session should increment divergence severity over time.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Declared and demonstrated intent are both recorded, divergence tracked' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Declared and demonstrated intent are both recorded, divergence tracked' directly, then bind them to this composite id (Doc 3::B5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-047",
+    "composite_id": "Doc 3::B5.5",
+    "workbook_row": 48,
+    "intended_outcome": "Truthful core promise delivery for Non-conformance never convicts alone under #7 — INTENT MEASURED ACROSS LAYERS (Security Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx",
+      "anchor": "B96",
+      "interpretation": "Behavioural non-conformance must not convict alone."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/watch/verdict_interface.py",
+      "lines": "65-80",
+      "hash": "346037c7f2bd76fc0d84e3b5e017c965268147869937a19aa77da3c31bae9f4b",
+      "actualbehavior": "Learned-source direct action is refused by deterministic gate."
+    },
+    "exact_gap": "Need explicit sever precondition check for all action paths to guarantee this invariant.",
+    "required_action": "Enforce sever only with closed-signal evidence; drift-only maxes at friction/contain.",
+    "closure_demonstration": "Extreme drift without closed signal should never sever.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Non-conformance never convicts alone' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Non-conformance never convicts alone' directly, then bind them to this composite id (Doc 3::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-048",
+    "composite_id": "Doc 4::B5.1",
+    "workbook_row": 49,
+    "intended_outcome": "Truthful core promise delivery for The audit opens the session and is sustained, not one-shot under #7 — INTENT MEASURED WITHIN A REASONING SESSION (Reasoning Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B63",
+      "interpretation": "Intent audit must be sustained across whole reasoning session."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "390-433",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Pipeline stages run sequentially and persist final run snapshot."
+    },
+    "exact_gap": "No sustained declared-vs-demonstrated audit state object is tracked.",
+    "required_action": "Add session audit context updated at each stage and persisted incrementally.",
+    "closure_demonstration": "Session drift appearing at stage3 must be reflected in audit timeline.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The audit opens the session and is sustained, not one-shot' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The audit opens the session and is sustained, not one-shot' directly, then bind them to this composite id (Doc 4::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-049",
+    "composite_id": "Doc 4::B5.2",
+    "workbook_row": 50,
+    "intended_outcome": "Truthful core promise delivery for Divergence is a second synthesis-gate trigger under #7 — INTENT MEASURED WITHIN A REASONING SESSION (Reasoning Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B64",
+      "interpretation": "Divergence should be synthesis gate trigger alongside thin evidence."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "308-353",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Synthesis executes without divergence gate input."
+    },
+    "exact_gap": "Second gate on unresolved divergence is absent.",
+    "required_action": "Add divergence gate and refusal/flag semantics before synthesis release.",
+    "closure_demonstration": "Unresolved divergence should force refusal or flagged synthesis output.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Divergence is a second synthesis-gate trigger' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Divergence is a second synthesis-gate trigger' directly, then bind them to this composite id (Doc 4::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-050",
+    "composite_id": "Doc 4::B5.3",
+    "workbook_row": 51,
+    "intended_outcome": "Truthful core promise delivery for Solva reasons on divergence; the Watch enforces under #7 — INTENT MEASURED WITHIN A REASONING SESSION (Reasoning Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B65",
+      "interpretation": "Solva reasons on divergence; Watch enforces via emitted signal."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "390-433",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "No emission to Watch from Solva divergence logic is present."
+    },
+    "exact_gap": "Boundary handoff for divergence events to Watch is not implemented.",
+    "required_action": "Emit divergence event record consumed by watch authority without Solva enforcement.",
+    "closure_demonstration": "Divergence event should appear in watch stream while Solva remains read-only authority.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Solva reasons on divergence; the Watch enforces' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Solva reasons on divergence; the Watch enforces' directly, then bind them to this composite id (Doc 4::B5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-051",
+    "composite_id": "Doc 4::C5.1",
+    "workbook_row": 52,
+    "intended_outcome": "Truthful core promise delivery for Two faculties, one-way seam, enforced by import assertion under #31 — THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B91",
+      "interpretation": "Two faculties + one-way seam must be import-asserted structurally."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "1-120",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Single module mixes reasoning and output composition with no boundary import assertions."
+    },
+    "exact_gap": "One-way seam contract is not structurally enforced.",
+    "required_action": "Split boundary module and add bidirectional forbidden-import assertions.",
+    "closure_demonstration": "If boundary imports confidence signal, invariant must fail.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Two faculties, one-way seam, enforced by import assertion' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Two faculties, one-way seam, enforced by import assertion' directly, then bind them to this composite id (Doc 4::C5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-052",
+    "composite_id": "Doc 4::C5.2",
+    "workbook_row": 53,
+    "intended_outcome": "Truthful core promise delivery for Tension surfaces contested material, never averages it under #31 — THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B92",
+      "interpretation": "Contested material must surface explicitly, never averaged away."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "454-520",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Triangulation/tension helpers exist but are not wired in run_full_pipeline."
+    },
+    "exact_gap": "Active path omits contested-material surfacing stage.",
+    "required_action": "Wire contested-material stage and persist opposing evidence pairs in trace.",
+    "closure_demonstration": "Claim+retraction should both appear as contested in trace.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Tension surfaces contested material, never averages it' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Tension surfaces contested material, never averages it' directly, then bind them to this composite id (Doc 4::C5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-053",
+    "composite_id": "Doc 4::C5.3",
+    "workbook_row": 54,
+    "intended_outcome": "Truthful core promise delivery for Load-bearing identification returns unit references only under #31 — THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B93",
+      "interpretation": "Load-bearing selector should output unit refs only, no class verdict."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "198-230",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Parser outputs candidate descriptions, not load-bearing unit references."
+    },
+    "exact_gap": "No dedicated load-bearing reference selector is present.",
+    "required_action": "Add selector returning unit_ids; compute class only in separate boundary module.",
+    "closure_demonstration": "Selector output must exclude any class/confidence fields.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Load-bearing identification returns unit references only' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Load-bearing identification returns unit references only' directly, then bind them to this composite id (Doc 4::C5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-054",
+    "composite_id": "Doc 4::C5.4",
+    "workbook_row": 55,
+    "intended_outcome": "Truthful core promise delivery for Construction order: the boundary is built first under #31 — THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B94",
+      "interpretation": "Boundary-first construction order must be guaranteed."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "1-40",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "No boundary-first build-order guard exists in current initialization path."
+    },
+    "exact_gap": "Construction-order invariant is unbanked.",
+    "required_action": "Add startup check refusing run when assertion boundary contract missing/unready.",
+    "closure_demonstration": "Removing boundary artifact should block service startup.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Construction order: the boundary is built first' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Construction order: the boundary is built first' directly, then bind them to this composite id (Doc 4::C5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-055",
+    "composite_id": "Doc 4::C5.5",
+    "workbook_row": 56,
+    "intended_outcome": "Truthful core promise delivery for The floor and class verdict are read-only to Solva under #31 — THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B95",
+      "interpretation": "Floor/class verdict must be read-only to Solva."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/admit.py",
+      "lines": "186-207",
+      "hash": "690fda7337022112748ce4a036dba0b7a8faefda1c9c214481164bbd8fbe0cec",
+      "actualbehavior": "Admit records floor/depth provenance into frozen artifact."
+    },
+    "exact_gap": "No read-only handle enforcement is shown at Solva consumption boundary.",
+    "required_action": "Pass immutable floor/class handles into reasoning APIs and forbid mutation methods.",
+    "closure_demonstration": "Attempted floor mutation from reasoner should raise immutable error.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The floor and class verdict are read-only to Solva' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The floor and class verdict are read-only to Solva' directly, then bind them to this composite id (Doc 4::C5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-056",
+    "composite_id": "Doc 4::C5.6",
+    "workbook_row": 57,
+    "intended_outcome": "Truthful core promise delivery for The trace exists from the first commit under #31 — THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B96",
+      "interpretation": "Trace must exist from first commit onward."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "372-387",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Run persisted only after full pipeline completes."
+    },
+    "exact_gap": "Mid-pipeline failures can lose early-stage trace evidence.",
+    "required_action": "Persist trace incrementally from stage entry onward.",
+    "closure_demonstration": "Crash after frame audit should still leave stage1 trace row.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The trace exists from the first commit' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The trace exists from the first commit' directly, then bind them to this composite id (Doc 4::C5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-057",
+    "composite_id": "Doc 4::C5.7",
+    "workbook_row": 58,
+    "intended_outcome": "Truthful core promise delivery for Solva governs depth only under #31 — THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B97",
+      "interpretation": "Solva should govern depth only; axis separation must be enforced."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "24-29",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Current imports do not show direct watch enforcement calls."
+    },
+    "exact_gap": "No explicit invariant preventing future cross-axis imports was found.",
+    "required_action": "Add forbidden-import checks preventing Solva from extraction primitives/enforcement actuators.",
+    "closure_demonstration": "Importing watch.mkono from Solva should fail CI.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Solva governs depth only' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Solva governs depth only' directly, then bind them to this composite id (Doc 4::C5.7)."
+    }
+  },
+  {
+    "review_id": "REQ-058",
+    "composite_id": "Doc 4::A5.1",
+    "workbook_row": 59,
+    "intended_outcome": "Truthful core promise delivery for Grounding enforced per sentence under #8 — GUARDS AGAINST HALLUCINATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B32",
+      "interpretation": "Grounding must be enforced per sentence with anchor map."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "348-353",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Synthesis returns plain paragraph text."
+    },
+    "exact_gap": "Sentence-level anchor map is absent.",
+    "required_action": "Return structured sentence+anchor_refs and reject unanchored output.",
+    "closure_demonstration": "Any sentence lacking anchor refs should refuse response.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Grounding enforced per sentence' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Grounding enforced per sentence' directly, then bind them to this composite id (Doc 4::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-059",
+    "composite_id": "Doc 4::A5.2",
+    "workbook_row": 60,
+    "intended_outcome": "Truthful core promise delivery for The lower-rung fallback, preserved byte-identical under #8 — GUARDS AGAINST HALLUCINATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B33",
+      "interpretation": "Lower-rung fallback must be present and byte-identical."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "390-433",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "No fallback artifact/hash in pipeline output."
+    },
+    "exact_gap": "Fallback floor guarantee is unimplemented.",
+    "required_action": "Add mechanical fallback output with stored hash identity and response linkage.",
+    "closure_demonstration": "On model failure, fallback hash should equal recorded baseline.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The lower-rung fallback, preserved byte-identical' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The lower-rung fallback, preserved byte-identical' directly, then bind them to this composite id (Doc 4::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-060",
+    "composite_id": "Doc 4::A5.3",
+    "workbook_row": 61,
+    "intended_outcome": "Truthful core promise delivery for The assertion boundary is parameterless under #8 — GUARDS AGAINST HALLUCINATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B34",
+      "interpretation": "Assertion boundary must stay parameterless."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "91-103",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Current helpers are not the evidence-class assertion boundary."
+    },
+    "exact_gap": "Parameterless boundary computation function is missing in active flow.",
+    "required_action": "Implement boundary API that accepts only load-bearing units and enforce signature tests.",
+    "closure_demonstration": "Passing confidence arg should raise TypeError.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The assertion boundary is parameterless' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The assertion boundary is parameterless' directly, then bind them to this composite id (Doc 4::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-061",
+    "composite_id": "Doc 4::A5.4",
+    "workbook_row": 62,
+    "intended_outcome": "Truthful core promise delivery for Qualification is a partition, not a read-time filter under #8 — GUARDS AGAINST HALLUCINATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B35",
+      "interpretation": "Qualification should partition inputs before reasoning consumption."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "243-291",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Candidate generation consumes model output directly after parsing."
+    },
+    "exact_gap": "No qualified/unqualified partition mechanism is visible.",
+    "required_action": "Build qualification partition and allow reasoning over qualified partition only.",
+    "closure_demonstration": "Degraded unit marked unqualified must not appear in candidate input set.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Qualification is a partition, not a read-time filter' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Qualification is a partition, not a read-time filter' directly, then bind them to this composite id (Doc 4::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-062",
+    "composite_id": "Doc 4::A5.5",
+    "workbook_row": 63,
+    "intended_outcome": "Truthful core promise delivery for Refusal is visible and actionable, never a silent downgrade under #8 — GUARDS AGAINST HALLUCINATION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/04_Reasoning_Grounding_and_the_Solver.docx",
+      "anchor": "B36",
+      "interpretation": "Refusal must be visible and actionable with explicit options."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/solva/reasoning.py",
+      "lines": "164-175",
+      "hash": "5fa532dee0a3b5b6f1bfa5e6d61f8536adc90ed6ba84594e89656a7df1e88eb0",
+      "actualbehavior": "Refusal exposes plain reason text only."
+    },
+    "exact_gap": "Structured actionable refusal envelope is absent.",
+    "required_action": "Adopt refusal schema carrying asked/support_class/three actions.",
+    "closure_demonstration": "Unsupported floor should return exactly three action options.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Refusal is visible and actionable, never a silent downgrade' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Refusal is visible and actionable, never a silent downgrade' directly, then bind them to this composite id (Doc 4::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-063",
+    "composite_id": "Doc 5::A5.1",
+    "workbook_row": 64,
+    "intended_outcome": "Truthful core promise delivery for Deterministic by construction, enforced structurally under #16 — FOCUS MAINTAINED UNDER MASSIVE CONTEXT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B34",
+      "interpretation": "Northena determinism should be structurally enforced by import assertion."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/admit.py",
+      "lines": "1-19",
+      "hash": "690fda7337022112748ce4a036dba0b7a8faefda1c9c214481164bbd8fbe0cec",
+      "actualbehavior": "Deterministic posture is documented and current code is deterministic."
+    },
+    "exact_gap": "No active CI import assertion artifact was inspected for northena modules.",
+    "required_action": "Add northena deterministic import-scan test forbidding ML/LLM libs.",
+    "closure_demonstration": "Inject sklearn import into gate.py fixture; scan must fail.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Deterministic by construction, enforced structurally' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Deterministic by construction, enforced structurally' directly, then bind them to this composite id (Doc 5::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-064",
+    "composite_id": "Doc 5::A5.2",
+    "workbook_row": 65,
+    "intended_outcome": "Truthful core promise delivery for The accountability standard under #16 — FOCUS MAINTAINED UNDER MASSIVE CONTEXT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B35",
+      "interpretation": "Accountability requires deterministic admit/gate/converge reasoning trace."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/gate.py",
+      "lines": "40-68",
+      "hash": "858a64bb80ddf822a4208bdda043c8cbd174c2d5b06b5b90810affa3edc72c3a",
+      "actualbehavior": "Gate emits explicit decision/reason rows."
+    },
+    "exact_gap": "Automated assertion suite for mandatory reason fields across all stages not banked.",
+    "required_action": "Add tests for non-empty reason and deterministic replay for identical inputs.",
+    "closure_demonstration": "Repeated identical gate inputs should output same decision+reason.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The accountability standard' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The accountability standard' directly, then bind them to this composite id (Doc 5::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-065",
+    "composite_id": "Doc 5::A5.3",
+    "workbook_row": 66,
+    "intended_outcome": "Truthful core promise delivery for Admit freezes; judgement is borrowed, never performed under #16 — FOCUS MAINTAINED UNDER MASSIVE CONTEXT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B36",
+      "interpretation": "Admit should borrow judgement via opaque Solva handle and freeze result."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/admit_assist_stub.py",
+      "lines": "42-70",
+      "hash": "98342f621c98f0f9054be3e13f10202899f21d6394608ccd6ca5115c8cb69d70",
+      "actualbehavior": "Stub returns scope/floor/depth with stub_awaiting_solva provenance."
+    },
+    "exact_gap": "Opaque Solva handle is not integrated; stub remains active.",
+    "required_action": "Replace stub with Solva handle and preserve provenance reference fields.",
+    "closure_demonstration": "Ambiguous scope should include real solva_run_ref instead of stub marker.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Admit freezes; judgement is borrowed, never performed' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Admit freezes; judgement is borrowed, never performed' directly, then bind them to this composite id (Doc 5::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-066",
+    "composite_id": "Doc 5::A5.4",
+    "workbook_row": 67,
+    "intended_outcome": "Truthful core promise delivery for Gate is strict set-membership, with no inferential path under #16 — FOCUS MAINTAINED UNDER MASSIVE CONTEXT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B37",
+      "interpretation": "Gate must be strict set-membership without inference."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/gate.py",
+      "lines": "34-59",
+      "hash": "858a64bb80ddf822a4208bdda043c8cbd174c2d5b06b5b90810affa3edc72c3a",
+      "actualbehavior": "Exact membership determines refused/warm/fresh routing."
+    },
+    "exact_gap": "Mechanism aligns but negative test proof for near-match ambiguity is missing.",
+    "required_action": "Add tests for prefix/adjacent terms refusing out_of_scope.",
+    "closure_demonstration": "scope=[\"topic-A\"], sub_objective=\"topic-A-plus\" must refuse.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Gate is strict set-membership, with no inferential path' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Gate is strict set-membership, with no inferential path' directly, then bind them to this composite id (Doc 5::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-067",
+    "composite_id": "Doc 5::A5.5",
+    "workbook_row": 68,
+    "intended_outcome": "Truthful core promise delivery for Converge owns the halt on fixed conditions under #16 — FOCUS MAINTAINED UNDER MASSIVE CONTEXT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B38",
+      "interpretation": "Converge should be sole halt owner using fixed thresholds."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/converge.py",
+      "lines": "31-58",
+      "hash": "0362dcaf3af5094d22dc1cf4110b01a2b825f282d88a25691ad453719a4e72a2",
+      "actualbehavior": "Converge computes terminate_success/terminate_budget/continue deterministically."
+    },
+    "exact_gap": "No invariant proving no alternate terminal writers outside converge.",
+    "required_action": "Restrict terminal decision writes to converge API and assert via invariant tests.",
+    "closure_demonstration": "Non-converge module writing terminate row should be rejected.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Converge owns the halt on fixed conditions' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Converge owns the halt on fixed conditions' directly, then bind them to this composite id (Doc 5::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-068",
+    "composite_id": "Doc 5::A5.6",
+    "workbook_row": 69,
+    "intended_outcome": "Truthful core promise delivery for The budget is a hard stop under #16 — FOCUS MAINTAINED UNDER MASSIVE CONTEXT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B39",
+      "interpretation": "Budget exhaustion must hard-stop run and further billable work."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/converge.py",
+      "lines": "45-58",
+      "hash": "0362dcaf3af5094d22dc1cf4110b01a2b825f282d88a25691ad453719a4e72a2",
+      "actualbehavior": "Budget_exhausted maps to terminate_budget decision row."
+    },
+    "exact_gap": "Link to executor stop/billing cutoff not shown in inspected code.",
+    "required_action": "Bind terminate_budget to execution halt and reject post-stop stage writes.",
+    "closure_demonstration": "Rows after terminate_budget for same run should fail append.",
+    "deliverystatus": {
+      "status": "PARTIAL",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The budget is a hard stop' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The budget is a hard stop' directly, then bind them to this composite id (Doc 5::A5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-069",
+    "composite_id": "Doc 6::A5.1",
+    "workbook_row": 70,
+    "intended_outcome": "Truthful core promise delivery for Minimal-sufficient assembly is the default for every consumer under #17 — PROGRESSIVE DISCLOSURE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/06_Direction_Scope_and_Focus_Part_2_Progressive_Disclosure.docx",
+      "anchor": "B34",
+      "interpretation": "Minimal-sufficient context should be default disclosure for every consumer."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audit_trail/overview.py",
+      "lines": "39-43",
+      "hash": "b1314f6cec00569809c86919ad0ad5e77fe13c03196789b6932af55cd93ca099",
+      "actualbehavior": "Overview references minimal-sufficient canon text."
+    },
+    "exact_gap": "No serving planner implementing minimal-first assembly was inspected.",
+    "required_action": "Implement minimal-sufficient planner at admit/serve path with explicit exception recording.",
+    "closure_demonstration": "Default step should disclose bounded subset, not full corpus.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Minimal-sufficient assembly is the default for every consumer' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 6::A5.1 (PROPOSED) first, then define implementation/test closure criteria for 'Minimal-sufficient assembly is the default for every consumer'."
+    }
+  },
+  {
+    "review_id": "REQ-070",
+    "composite_id": "Doc 6::A5.2",
+    "workbook_row": 71,
+    "intended_outcome": "Truthful core promise delivery for Expansion is an explicit, governed request under #17 — PROGRESSIVE DISCLOSURE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/06_Direction_Scope_and_Focus_Part_2_Progressive_Disclosure.docx",
+      "anchor": "B35",
+      "interpretation": "Expansion must be explicit, governed, bounded increment request."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audit_trail/overview.py",
+      "lines": "153-202",
+      "hash": "b1314f6cec00569809c86919ad0ad5e77fe13c03196789b6932af55cd93ca099",
+      "actualbehavior": "Current reporting is aggregate and post-hoc."
+    },
+    "exact_gap": "No governed expansion request API/limits are implemented.",
+    "required_action": "Add expansion contract with increment caps and scope/custody enforcement.",
+    "closure_demonstration": "Single expansion asking full estate should be capped/refused.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Expansion is an explicit, governed request' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 6::A5.2 (PROPOSED) first, then define implementation/test closure criteria for 'Expansion is an explicit, governed request'."
+    }
+  },
+  {
+    "review_id": "REQ-071",
+    "composite_id": "Doc 6::A5.3",
+    "workbook_row": 72,
+    "intended_outcome": "Truthful core promise delivery for The discipline is consumer-agnostic — no human-absent bypass under #17 — PROGRESSIVE DISCLOSURE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/06_Direction_Scope_and_Focus_Part_2_Progressive_Disclosure.docx",
+      "anchor": "B36",
+      "interpretation": "Rule must apply equally when no human is present."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+      "lines": "348-357",
+      "hash": "6ae45682537476c7f784e3599b5430ff9894b9af14aaa870c936c062b5d17561",
+      "actualbehavior": "Crossing de-identification is caller-agnostic but not a progressive disclosure control."
+    },
+    "exact_gap": "No consumer-agnostic progressive-disclosure middleware was found.",
+    "required_action": "Apply same minimal-first policy layer to autonomous and human-in-loop consumers.",
+    "closure_demonstration": "Autonomous background step requesting full context should be denied.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "medium"
+    },
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The discipline is consumer-agnostic — no human-absent bypass' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The discipline is consumer-agnostic — no human-absent bypass' directly, then bind them to this composite id (Doc 6::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-072",
+    "composite_id": "Doc 6::A5.4",
+    "workbook_row": 73,
+    "intended_outcome": "Truthful core promise delivery for Disclosure breadth is recorded and attributable under #17 — PROGRESSIVE DISCLOSURE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/06_Direction_Scope_and_Focus_Part_2_Progressive_Disclosure.docx",
+      "anchor": "B37",
+      "interpretation": "Disclosure breadth per step must be recorded and attributable."
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audit_trail/overview.py",
+      "lines": "205-239",
+      "hash": "b1314f6cec00569809c86919ad0ad5e77fe13c03196789b6932af55cd93ca099",
+      "actualbehavior": "Only aggregate units-served/densification metrics are produced."
+    },
+    "exact_gap": "Per-step disclosure and expansion lineage records are absent.",
+    "required_action": "Create disclosure ledger rows per step with initial slice and each expansion event.",
+    "closure_demonstration": "Run query should show exact step_id disclosure trail end-to-end.",
+    "deliverystatus": {
+      "status": "MISSING",
+      "scope": "Codebody inspection only (no runtime execution).",
+      "confidence": "high"
+    },
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Disclosure breadth is recorded and attributable' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 6::A5.4 (PROPOSED) first, then define implementation/test closure criteria for 'Disclosure breadth is recorded and attributable'."
+    }
+  }
+]

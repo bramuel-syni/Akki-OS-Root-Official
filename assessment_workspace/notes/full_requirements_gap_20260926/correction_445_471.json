@@ -1,0 +1,742 @@
+[
+  {
+    "review_id": "REQ-445",
+    "composite_id": "security_architecture_v1::SEC-1",
+    "source_evidence": {
+      "file": "source_text/Security_Architecture_Description_v1_2d41f600.txt",
+      "line": 31,
+      "quote": "SEC-1 ... custody-sequence policy and network allowlist MUST be integrity-verified at load"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/chokepoint/policy_integrity.py",
+        "start_line": 74,
+        "end_line": 118,
+        "sha256": "1330c6c97636df60ef3b74b3e12af6b6189b3ede5b5178480775bee6fb067dcc",
+        "behavior": "Verifies policy + companion sha256 and raises closed-gate refusal on missing/mismatch."
+      },
+      {
+        "path": "backend/services/chokepoint/llm_endpoint_allowlist.py",
+        "start_line": 54,
+        "end_line": 60,
+        "sha256": "d873321a30ffe1fec35bc7afe8d19e1017329dab5eafbaf8b748c5726540b3b7",
+        "behavior": "Runtime loads allowlist through integrity-checked loader before use."
+      }
+    ],
+    "exact_gap": "Integrity enforcement is evidenced for chokepoint policy files, but full custody-sequence policy coverage outside wired allowlist surfaces is not proven in this slice.",
+    "required_action": "Map every SyniSense custody-sequence policy file to the same integrity-loader path and add one inventory assertion proving no policy file is loaded bypassing integrity checks.",
+    "closure_demonstration": "Scenario SEC-1: modify llm_endpoint_allowlist.v0.json without updating .sha256; first outbound crossing load must refuse before any egress call.",
+    "delivery_status": "EVIDENCED_SCOPED",
+    "confidence": "high"
+  },
+  {
+    "review_id": "REQ-446",
+    "composite_id": "security_architecture_v1::SEC-2",
+    "source_evidence": {
+      "file": "source_text/Security_Architecture_Description_v1_2d41f600.txt",
+      "line": 85,
+      "quote": "SEC-2 ... MOAC acceptance criteria MUST be held in versioned, Rules-Service-governed configuration ... integrity verified at load"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/model_admission/ceremony.py",
+        "start_line": 70,
+        "end_line": 95,
+        "sha256": "3fdc2f782c1c7e553999ae4cadbd107801cba9d17dcd1c7d5cc6e186e0919846",
+        "behavior": "Evaluates criterion floors from payload/card fields, not from a signed/versioned rules config."
+      },
+      {
+        "path": "backend/services/training_runner/moac_emitter.py",
+        "start_line": 20,
+        "end_line": 22,
+        "sha256": "9108596b3d1242325f554e08f9bc2e8235a5501e56b7708f9dd0f4c3cbe56b14",
+        "behavior": "Emitter explicitly states mocked outputs at CP8; no rules-service integrity load path."
+      }
+    ],
+    "exact_gap": "MOAC criteria are not sourced from Rules-Service-governed, load-time-integrity-verified configuration.",
+    "required_action": "Externalize MOAC criteria into versioned governed config with hash/signature verification and bind ceremony to that immutable snapshot.",
+    "closure_demonstration": "Scenario SEC-2: mutate MOAC criteria file without hash update; admission ceremony must refuse and emit configuration-integrity refusal.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-447",
+    "composite_id": "security_architecture_v1::SEC-3",
+    "source_evidence": {
+      "file": "source_text/Security_Architecture_Description_v1_2d41f600.txt",
+      "line": 87,
+      "quote": "SEC-3 ... MOAC operates entirely within Targeta's boundary ... does not query Solva, Mtafiti, or any other engine"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/training_runner/moac_emitter.py",
+        "start_line": 45,
+        "end_line": 133,
+        "sha256": "9108596b3d1242325f554e08f9bc2e8235a5501e56b7708f9dd0f4c3cbe56b14",
+        "behavior": "MOAC card generation lives in training_runner seam and is mocked; no explicit Targeta-boundary enforcement contract found here."
+      },
+      {
+        "path": "backend/services/targeta/plan.py",
+        "start_line": 39,
+        "end_line": 74,
+        "sha256": "0ccf0136c776d36243648ba1afb4b9f18bd79c4e66c78b16d61f1d6cda14427c",
+        "behavior": "Targeta plan assembly is present, but no MOAC-only-artifact intake guard was found in this module."
+      }
+    ],
+    "exact_gap": "No explicit, evidenced boundary gate proving MOAC consumes only Targeta artefacts and cannot query other engines.",
+    "required_action": "Add a strict MOAC input contract that accepts only Targeta-produced run artefact references and test-fails any Solva/Mtafiti dependency wiring.",
+    "closure_demonstration": "Scenario SEC-3: inject a mock Solva/Mtafiti call path into MOAC evaluation request; boundary guard must refuse before evaluation.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-448",
+    "composite_id": "security_architecture_v1::SEC-4",
+    "source_evidence": {
+      "file": "source_text/Security_Architecture_Description_v1_2d41f600.txt",
+      "line": 89,
+      "quote": "SEC-4 ... MOAC MUST refuse ... if criteria configuration is unset or fails integrity verification at load"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/targeta/gate.py",
+        "start_line": 59,
+        "end_line": 68,
+        "sha256": "88bd4432dd94872a353a395d3dd7458f5fcacc57cb03729f9ee689d8f59dad7e",
+        "behavior": "Shows fail-closed behavior when thresholds are missing, but this is Targeta yield gate, not MOAC criteria integrity verification."
+      },
+      {
+        "path": "backend/services/model_admission/ceremony.py",
+        "start_line": 184,
+        "end_line": 200,
+        "sha256": "3fdc2f782c1c7e553999ae4cadbd107801cba9d17dcd1c7d5cc6e186e0919846",
+        "behavior": "Admission checks criteria values but has no load-time criteria config integrity verification step."
+      }
+    ],
+    "exact_gap": "MOAC refusal-on-unset/integrity-fail is not wired to governed criteria configuration loading.",
+    "required_action": "Insert explicit MOAC criteria configuration loader with integrity refusal class; block evaluation when unset/malformed/hash-mismatched.",
+    "closure_demonstration": "Scenario SEC-4: start MOAC with missing criteria config path; evaluation must return refusal, not default-accept or skip.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-449",
+    "composite_id": "security_architecture_v1::SEC-5",
+    "source_evidence": {
+      "file": "source_text/Security_Architecture_Description_v1_2d41f600.txt",
+      "line": 91,
+      "quote": "SEC-5 ... every acceptance path enumerated and shown to pass through MOAC evaluation in build-time test"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/model_admission/ceremony.py",
+        "start_line": 126,
+        "end_line": 139,
+        "sha256": "3fdc2f782c1c7e553999ae4cadbd107801cba9d17dcd1c7d5cc6e186e0919846",
+        "behavior": "Single ceremony path exists, but no acceptance-path inventory or bypass-scan test surface was found in inspected scope."
+      }
+    ],
+    "exact_gap": "No evidence of build-time exhaustive enumeration proving all effective acceptance paths route through MOAC.",
+    "required_action": "Create acceptance-path map test that fails if any model-serving admission route avoids MOAC ceremony.",
+    "closure_demonstration": "Scenario SEC-5: introduce alternate 'accept' route in code; path-enumeration test must fail immediately.",
+    "delivery_status": "UNVERIFIED",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-450",
+    "composite_id": "security_architecture_v1::SEC-6",
+    "source_evidence": {
+      "file": "source_text/Security_Architecture_Description_v1_2d41f600.txt",
+      "line": 109,
+      "quote": "SEC-6 ... DAP-31 probe MUST refuse to run ... if reproduction threshold/sample size/probe design unset"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/dap/gates.py",
+        "start_line": 42,
+        "end_line": 104,
+        "sha256": "c8a6f5b8da51d304085f206812021de97c2e8cdffc216791cf575777aa1e8bf9",
+        "behavior": "General fail-closed gate composer exists for approvals/terms/ceiling/metering, but SEC-6-specific DAP-31 probe parameter completeness checks were not found here."
+      }
+    ],
+    "exact_gap": "Platform has generic fail-closed patterns, but explicit DAP-31 unset-parameter refusal proof is not clearly bound to reproduction-threshold/sample/probe-design fields.",
+    "required_action": "Add dedicated DAP-31 parameter schema + refuse-on-missing checks and assert egress default-deny when unset.",
+    "closure_demonstration": "Scenario SEC-6: run DAP-31 with sample_size unset; probe must refuse and egress must remain blocked.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-451",
+    "composite_id": "security_architecture_v1::SEC-7",
+    "source_evidence": {
+      "file": "source_text/Security_Architecture_Description_v1_2d41f600.txt",
+      "line": 127,
+      "quote": "SEC-7 ... DAP-32 battery MUST refuse to admit model if composition or deviation thresholds unset"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/model_admission/ceremony.py",
+        "start_line": 87,
+        "end_line": 95,
+        "sha256": "3fdc2f782c1c7e553999ae4cadbd107801cba9d17dcd1c7d5cc6e186e0919846",
+        "behavior": "Criteria with floor_value=None are skipped rather than causing refusal; unset threshold does not automatically fail admission."
+      }
+    ],
+    "exact_gap": "Unset threshold behavior currently permits criterion omission instead of mandatory refusal.",
+    "required_action": "Treat absent DAP-32 battery composition/deviation thresholds as hard refusal in admission gate.",
+    "closure_demonstration": "Scenario SEC-7: submit admission card with one required threshold missing; model admission must refuse by default.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-452",
+    "composite_id": "determinism_inventory_v1::DET-1",
+    "source_evidence": {
+      "file": "source_text/Determinism_Inventory_v1_344ebf74.txt",
+      "line": 87,
+      "quote": "DET-1 ... halt mechanism for CIF independent of halting the Targeta run it feeds"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/cif/halt.py",
+        "start_line": 3,
+        "end_line": 8,
+        "sha256": "f4bd40bff75c49fae1100e03934f653c1dc67aedeba268477f5cfd96a7976f8a",
+        "behavior": "Module explicitly states zero Targeta import and own halt-state surface."
+      },
+      {
+        "path": "backend/services/cif/halt.py",
+        "start_line": 53,
+        "end_line": 63,
+        "sha256": "f4bd40bff75c49fae1100e03934f653c1dc67aedeba268477f5cfd96a7976f8a",
+        "behavior": "is_halted() depends only on CIF-owned journal length, not external halt signals."
+      }
+    ],
+    "exact_gap": "Static evidence is strong for independent CIF halt state; runtime integrated drill evidence was not executed in this read-only pass.",
+    "required_action": "Preserve invariant tests proving CIF halt independence and maintain no-import rule against Targeta in this module.",
+    "closure_demonstration": "Scenario DET-1: call cif.halt('reason') while Targeta planning still executes; CIF is_halted() flips true without requiring Targeta stop.",
+    "delivery_status": "EVIDENCED_SCOPED",
+    "confidence": "high"
+  },
+  {
+    "review_id": "REQ-453",
+    "composite_id": "determinism_inventory_v1::DET-2",
+    "source_evidence": {
+      "file": "source_text/Determinism_Inventory_v1_344ebf74.txt",
+      "line": 89,
+      "quote": "DET-2 ... AI-assisted classification in Mtafiti names deterministic confirmation step before shipping"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/doc0_attributes/determinism.py",
+        "start_line": 18,
+        "end_line": 28,
+        "sha256": "29949800bb6a82025b518bdedcfa15273478aad6c8a15a529294dfabe6c34c16",
+        "behavior": "Contains deterministic/learned classification map, including CIF and MOAC tags."
+      },
+      {
+        "path": "backend/services/mtafiti/registry.py",
+        "start_line": 83,
+        "end_line": 101,
+        "sha256": "134bfbd05708f74e1a2455e124e78785480adfc81697c9d26dfb9225f57ba919",
+        "behavior": "Mtafiti composition pipeline present, but explicit pre-ship deterministic confirmation gate for AI-assisted classifications was not identified in this module."
+      }
+    ],
+    "exact_gap": "Classification taxonomy exists, but a named deterministic pre-ship confirmation seam for AI-assisted Mtafiti classification is not clearly wired.",
+    "required_action": "Define and bind a deterministic confirmation check in Mtafiti release/admission path before shipping learned-assisted classifications.",
+    "closure_demonstration": "Scenario DET-2: AI-assisted class emits 'fact'; deterministic checker must independently confirm or block ship before release state changes.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-454",
+    "composite_id": "failure_posture_v1::FP-1",
+    "source_evidence": {
+      "file": "source_text/Failure_Posture_Enumeration_v1_589ebb6d.txt",
+      "line": 17,
+      "quote": "FP-1 ... Trusted Computing Base fails closed by default"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/chokepoint/policy_integrity.py",
+        "start_line": 80,
+        "end_line": 108,
+        "sha256": "1330c6c97636df60ef3b74b3e12af6b6189b3ede5b5178480775bee6fb067dcc",
+        "behavior": "Closed-gate refusal implemented for missing/malformed/drifted policy integrity."
+      },
+      {
+        "path": "backend/services/dap/gates.py",
+        "start_line": 42,
+        "end_line": 104,
+        "sha256": "c8a6f5b8da51d304085f206812021de97c2e8cdffc216791cf575777aa1e8bf9",
+        "behavior": "Gate composer refuses operation when approval/terms/ceiling/metering checks fail."
+      }
+    ],
+    "exact_gap": "Strong fail-closed implementation exists in several components, but universal TCB-wide proof is incomplete in the inspected evidence slice.",
+    "required_action": "Publish component-level fail-posture matrix for all TCB entries and enforce with invariant tests for each refusal condition.",
+    "closure_demonstration": "Scenario FP-1: break a governing dependency for each TCB component; operation each component governs must refuse, never proceed degraded.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-455",
+    "composite_id": "failure_posture_v1::FP-2",
+    "source_evidence": {
+      "file": "source_text/Failure_Posture_Enumeration_v1_589ebb6d.txt",
+      "line": 19,
+      "quote": "FP-2 ... unconfigured gate is a closed gate, platform-wide"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/chokepoint/policy_integrity.py",
+        "start_line": 85,
+        "end_line": 99,
+        "sha256": "1330c6c97636df60ef3b74b3e12af6b6189b3ede5b5178480775bee6fb067dcc",
+        "behavior": "Missing companion hash is refused as closed gate."
+      },
+      {
+        "path": "backend/services/targeta/gate.py",
+        "start_line": 59,
+        "end_line": 63,
+        "sha256": "88bd4432dd94872a353a395d3dd7458f5fcacc57cb03729f9ee689d8f59dad7e",
+        "behavior": "Missing thresholds yields not-admitted core-only fallback (closed seam)."
+      }
+    ],
+    "exact_gap": "Pattern is present across multiple modules, but no platform-wide enforcement proof that every governed gate refuses on unset/unverifiable config.",
+    "required_action": "Enumerate governed gates and assert fail-closed-on-unset in a single regression suite; block additions without default-closed checks.",
+    "closure_demonstration": "Scenario FP-2: unset each gate's config one-by-one; every gate must return refusal outcome and never pass-by-default.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-456",
+    "composite_id": "failure_posture_v1::FP-3",
+    "source_evidence": {
+      "file": "source_text/Failure_Posture_Enumeration_v1_589ebb6d.txt",
+      "line": 55,
+      "quote": "FP-3 ... Mtafiti read path fails safe-open ... serve stale marked data"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/mtafiti/registry.py",
+        "start_line": 122,
+        "end_line": 139,
+        "sha256": "134bfbd05708f74e1a2455e124e78785480adfc81697c9d26dfb9225f57ba919",
+        "behavior": "Write and read operations exist, but explicit safe-open-on-write-failure read fallback semantics are not stated here."
+      }
+    ],
+    "exact_gap": "No direct evidence in inspected code that write failures preserve read availability with explicit stale-marking behavior.",
+    "required_action": "Implement/verify read-path policy: if write/update fails, previously committed registry snapshot remains queryable with freshness-stale marker.",
+    "closure_demonstration": "Scenario FP-3: force write failure then perform read_all/read_by_source_ref; reads must still return prior committed records flagged stale.",
+    "delivery_status": "UNVERIFIED",
+    "confidence": "low"
+  },
+  {
+    "review_id": "REQ-457",
+    "composite_id": "failure_posture_v1::FP-4",
+    "source_evidence": {
+      "file": "source_text/Failure_Posture_Enumeration_v1_589ebb6d.txt",
+      "line": 57,
+      "quote": "FP-4 ... already-active containments persist through Watch outage"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/watch/containment.py",
+        "start_line": 48,
+        "end_line": 77,
+        "sha256": "795c7bb336538e9aa99e2afdc06bb11c459b6b91ba6fd0e4a157ccb4dd7d2a7c",
+        "behavior": "Containments are recorded append-only on disk and reloadable via load_containments()."
+      },
+      {
+        "path": "backend/services/watch/persistence.py",
+        "start_line": 81,
+        "end_line": 88,
+        "sha256": "86912998a495d23f4a98d54251b88414418d66ace81444452e32b1feb4a7337c",
+        "behavior": "Watch action/verdict writes are write-once; persistent files support post-outage state continuity."
+      }
+    ],
+    "exact_gap": "Persistence primitives support continuity, but explicit outage-restart procedure proving active containment remains enforced (and not silently lapsed) is not shown here.",
+    "required_action": "Add outage-recovery scenario asserting pre-outage containment remains active after Watch service restart until reconciliation event.",
+    "closure_demonstration": "Scenario FP-4: create containment, simulate Watch process outage/restart, verify containment record still governs actor until explicit reconciliation.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-458",
+    "composite_id": "trust_domains_v1::TD-1",
+    "source_evidence": {
+      "file": "source_text/Trust_Domain_Description_v1_0d9fc546.txt",
+      "line": 21,
+      "quote": "TD-1 ... platform domain bounded by appliance physical/network perimeter (dual-port separation, front panel constraints)"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/trust_domain/boundary.py",
+        "start_line": 38,
+        "end_line": 55,
+        "sha256": "0cfc865234bb050f51d7383f18373ea797ee98996ba2bc89bfbb3b8ec318aa8f",
+        "behavior": "Software trust-domain refusal boundary exists for identifier crossing, but hardware/appliance perimeter proof is out of code scope."
+      }
+    ],
+    "exact_gap": "This requirement is primarily architectural/hardware perimeter evidence; callable backend code cannot fully prove appliance physical boundary claims.",
+    "required_action": "Bind documentary evidence (assembly spec CR-1/B-5, deployment attestations, network topology proofs) to this row; keep software boundary evidence as supporting only.",
+    "closure_demonstration": "Scenario TD-1: documentary audit confirms appliance has only PORT-A/PORT-B/power/status and enforced ESTATE/WAN split; code evidence is supplementary.",
+    "delivery_status": "UNVERIFIED",
+    "confidence": "low"
+  },
+  {
+    "review_id": "REQ-459",
+    "composite_id": "trust_domains_v1::TD-2",
+    "source_evidence": {
+      "file": "source_text/Trust_Domain_Description_v1_0d9fc546.txt",
+      "line": 23,
+      "quote": "TD-2 ... tenant estate reachable only via PORT-A, not WAN side"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/contracts/principal_v1.py",
+        "start_line": 62,
+        "end_line": 69,
+        "sha256": "4769c643157bac3a9595ff7124f3d0dd16368576143ae7445e1a8d02a872efe3",
+        "behavior": "Contract carries trust_domain_identifier field and intent for boundary separation in principal identity model."
+      }
+    ],
+    "exact_gap": "Port-level network segregation and single-tenant physical topology are not provable from backend code alone in inspected scope.",
+    "required_action": "Attach network/device deployment attestations showing ESTATE-only ingress path via PORT-A and no WAN crossover for tenant estate domain.",
+    "closure_demonstration": "Scenario TD-2: infrastructure evidence shows estate traffic reachable only on ESTATE interface; WAN path attempts cannot reach estate domain.",
+    "delivery_status": "UNVERIFIED",
+    "confidence": "low"
+  },
+  {
+    "review_id": "REQ-460",
+    "composite_id": "trust_domains_v1::TD-3",
+    "source_evidence": {
+      "file": "source_text/Trust_Domain_Description_v1_0d9fc546.txt",
+      "line": 25,
+      "quote": "TD-3 ... external-party domain over PORT-B with isolation (DAP-1..DAP-5 principal structure)"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/trust_domain/boundary.py",
+        "start_line": 58,
+        "end_line": 82,
+        "sha256": "0cfc865234bb050f51d7383f18373ea797ee98996ba2bc89bfbb3b8ec318aa8f",
+        "behavior": "Refuses writes without resolvable trust-domain identifier; no defaulting to estate domain."
+      },
+      {
+        "path": "backend/services/principal_store/store.py",
+        "start_line": 193,
+        "end_line": 243,
+        "sha256": "ad9fa30690e762c662a849e4fcd8daaacb0e09d64160a71239efffa8088572fa",
+        "behavior": "Individuals/agents inherit organisation trust-domain identifiers and admission constraints."
+      }
+    ],
+    "exact_gap": "Software-level principal/trust-domain controls exist, but WAN-port boundary and multi-external-party isolation proofs need operational/network evidence.",
+    "required_action": "Supplement with DAP runtime isolation receipts showing no shared identifier store/credential across external parties and estate domain over WAN boundary.",
+    "closure_demonstration": "Scenario TD-3: two external principals on WAN attempt cross-resolution; boundary must refuse shared identifier/store/credential access.",
+    "delivery_status": "PARTIAL",
+    "confidence": "low"
+  },
+  {
+    "review_id": "REQ-461",
+    "composite_id": "handoff_registry_v1::HR-1",
+    "source_evidence": {
+      "file": "source_text/Handoff_Generalisation_v1_d89bbba0.txt",
+      "line": 17,
+      "quote": "HR-1 ... every inter-subsystem job writes registry entry before receiver acts"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/mkondo/registry.py",
+        "start_line": 48,
+        "end_line": 76,
+        "sha256": "7c84d010ed1a5766852ecaefd9e9bdb16bf4b9cd6f6b1d08bb9e0e9041d2ba23",
+        "behavior": "Mkondo admits handoff by validating contract then persisting via register_handoff before returning/continuing."
+      }
+    ],
+    "exact_gap": "Registry-first ordering is implemented for Mkondo admission path, but estate-wide proof that all subsystem crossings use this path is not shown.",
+    "required_action": "Enumerate all subsystem handoff call sites and force them through mkondo.admit_handoff/register_handoff.",
+    "closure_demonstration": "Scenario HR-1: receiver attempts to process job with missing handoff_id; path must refuse until registry entry exists.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-462",
+    "composite_id": "handoff_registry_v1::HR-2",
+    "source_evidence": {
+      "file": "source_text/Handoff_Generalisation_v1_d89bbba0.txt",
+      "line": 19,
+      "quote": "HR-2 ... entry carries source/destination identities, frozen objective, handoff shape, reliable time, receipt"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/contracts/handoff_contract.py",
+        "start_line": 57,
+        "end_line": 98,
+        "sha256": "c60d51c4aead4e8d9c003439f2496f30866abe948fb4970a7cc9a6bd32634ee4",
+        "behavior": "Captures what/shape/source/destination/receipt/authored_at fields in closed contract."
+      },
+      {
+        "path": "backend/services/reliable_time_source/clock.py",
+        "start_line": 107,
+        "end_line": 112,
+        "sha256": "667d8fb9666efe5518ad5eec7533a54cd6dcb8f3e496484c1ca366ea2be192af",
+        "behavior": "Reliable time source surface exists, but contract authored_at is not enforced to come from this source."
+      }
+    ],
+    "exact_gap": "Contract includes fields, but explicit freeze-objective binding and reliable-time-source enforcement in handoff write path are not strict/mechanically bound.",
+    "required_action": "Bind authored_at to reliable_time_source stamp and include explicit frozen_objective_ref field with invariant check.",
+    "closure_demonstration": "Scenario HR-2: attempt handoff with malformed/untrusted timestamp source; registry must refuse until defensible time stamp is supplied.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-463",
+    "composite_id": "handoff_registry_v1::HR-3",
+    "source_evidence": {
+      "file": "source_text/Handoff_Generalisation_v1_d89bbba0.txt",
+      "line": 21,
+      "quote": "HR-3 ... receiver MUST refuse to act on hand-off with no registry entry"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/handoff/contracts.py",
+        "start_line": 53,
+        "end_line": 63,
+        "sha256": "070185793610c3b2578f5192a102e286df853114f865c26412c72d8f488ff404",
+        "behavior": "attest_handoff hard-fails when handoff_id is not on record."
+      }
+    ],
+    "exact_gap": "Receiver-refusal primitive exists; adoption breadth across all receiving subsystems remains to be evidenced.",
+    "required_action": "Require attest_handoff() check in every receiving subsystem boundary before execution.",
+    "closure_demonstration": "Scenario HR-3: call receiving subsystem with unknown handoff_id; subsystem must refuse with missing-registry-entry reason.",
+    "delivery_status": "EVIDENCED_SCOPED",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-464",
+    "composite_id": "handoff_registry_v1::HR-4",
+    "source_evidence": {
+      "file": "source_text/Handoff_Generalisation_v1_d89bbba0.txt",
+      "line": 23,
+      "quote": "HR-4 ... no-dual-hatted-task enforced at registration"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/mkondo/registry.py",
+        "start_line": 64,
+        "end_line": 72,
+        "sha256": "7c84d010ed1a5766852ecaefd9e9bdb16bf4b9cd6f6b1d08bb9e0e9041d2ba23",
+        "behavior": "Refuses handoff where source and destination actor_id are equal (role-separation refusal)."
+      }
+    ],
+    "exact_gap": "Registration-level dual-hat check is present for actor_id equality; broader duplicate-open-job semantics across different actor ids are not shown.",
+    "required_action": "Add job-level uniqueness check so same open job cannot be registered to a different receiving subsystem.",
+    "closure_demonstration": "Scenario HR-4: register same open job under second receiver; registry must refuse as dual-hatted job conflict.",
+    "delivery_status": "EVIDENCED_SCOPED",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-465",
+    "composite_id": "handoff_registry_v1::HR-5",
+    "source_evidence": {
+      "file": "source_text/Handoff_Generalisation_v1_d89bbba0.txt",
+      "line": 25,
+      "quote": "HR-5 ... objective freeze applies at registration; receiver cannot widen scope"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/contracts/handoff_contract.py",
+        "start_line": 57,
+        "end_line": 69,
+        "sha256": "c60d51c4aead4e8d9c003439f2496f30866abe948fb4970a7cc9a6bd32634ee4",
+        "behavior": "Includes 'what' and 'shape' fields but no dedicated immutable objective field semantics."
+      },
+      {
+        "path": "backend/services/principal_store/store.py",
+        "start_line": 81,
+        "end_line": 89,
+        "sha256": "ad9fa30690e762c662a849e4fcd8daaacb0e09d64160a71239efffa8088572fa",
+        "behavior": "Immutability doctrine exists for principal mandate, but not directly enforced for handoff objective widening in Mkondo path."
+      }
+    ],
+    "exact_gap": "Objective-freeze doctrine exists in related models, but handoff registry does not explicitly enforce non-widening objective semantics post-registration.",
+    "required_action": "Add explicit frozen_objective hash/ref in handoff contract and refuse receiver-side action if scope differs from registered objective.",
+    "closure_demonstration": "Scenario HR-5: receiver attempts broader scope than registered objective; processing must refuse due to scope widening.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-466",
+    "composite_id": "handoff_registry_v1::HR-6",
+    "source_evidence": {
+      "file": "source_text/Handoff_Generalisation_v1_d89bbba0.txt",
+      "line": 27,
+      "quote": "HR-6 ... queryable by either end, by job, by subsystem pair, by time range"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/handoff/contracts.py",
+        "start_line": 43,
+        "end_line": 50,
+        "sha256": "070185793610c3b2578f5192a102e286df853114f865c26412c72d8f488ff404",
+        "behavior": "Provides bulk load_handoffs only; no explicit indexed query helpers by actor pair/job/time-range in inspected module."
+      }
+    ],
+    "exact_gap": "Queryable-interface requirements (by party pair/job/time) are not explicitly implemented as first-class query surfaces.",
+    "required_action": "Add query APIs/helpers for handoff_id, source actor, destination actor, pair, and authored_at range.",
+    "closure_demonstration": "Scenario HR-6: ask 'what did subsystem A hand subsystem B last 7 days'; registry must answer directly without reconstructing engine logs.",
+    "delivery_status": "UNVERIFIED",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-467",
+    "composite_id": "handoff_registry_v1::HR-7",
+    "source_evidence": {
+      "file": "source_text/Handoff_Generalisation_v1_d89bbba0.txt",
+      "line": 31,
+      "quote": "HR-7 ... handoff write failure leaves job un-commissioned on receiving side (fail-closed)"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/mkondo/registry.py",
+        "start_line": 74,
+        "end_line": 77,
+        "sha256": "7c84d010ed1a5766852ecaefd9e9bdb16bf4b9cd6f6b1d08bb9e0e9041d2ba23",
+        "behavior": "Persistence call occurs before ledger emit/return; failures in register_handoff propagate and block completion."
+      },
+      {
+        "path": "backend/services/handoff/contracts.py",
+        "start_line": 33,
+        "end_line": 39,
+        "sha256": "070185793610c3b2578f5192a102e286df853114f865c26412c72d8f488ff404",
+        "behavior": "Duplicate/overwrite attempts are refused, preserving fail-closed write semantics."
+      }
+    ],
+    "exact_gap": "Fail-closed write sequencing is present, but explicit receiver-side commissioning rollback/guard proof across all consumers is not shown.",
+    "required_action": "Enforce receiver execution precondition on persisted handoff state and record failed attempts distinctly.",
+    "closure_demonstration": "Scenario HR-7: force handoff write IO failure; receiving subsystem must not treat job as commissioned.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-468",
+    "composite_id": "business_continuity_v1::BC-1",
+    "source_evidence": {
+      "file": "source_text/Business_Continuity_Annex_v1_cf5b1f34.txt",
+      "line": 21,
+      "quote": "BC-1 ... restoration countersigned by party independent of ledger writer infrastructure"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/watch/continuity.py",
+        "start_line": 53,
+        "end_line": 71,
+        "sha256": "8027af095d5b9f7a5e6c95e8ff2d6b496fb7be6114c0cf8adc5b0175879fc180",
+        "behavior": "Countersigner must be on record and marked independent_of_authorities=True."
+      },
+      {
+        "path": "backend/services/business_continuity/anchors.py",
+        "start_line": 128,
+        "end_line": 141,
+        "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+        "behavior": "Anchor assertion binds BC-1 to continuity witness independence check."
+      }
+    ],
+    "exact_gap": "Independence checks are implemented; external infrastructure-independence proof of countersigner environment remains operational/documentary.",
+    "required_action": "Attach operational evidence showing countersigner access path remains available when primary writer infrastructure is down.",
+    "closure_demonstration": "Scenario BC-1: simulate writer infra outage; continuity attestation must still be countersigned by independent witness path.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-469",
+    "composite_id": "business_continuity_v1::BC-2",
+    "source_evidence": {
+      "file": "source_text/Business_Continuity_Annex_v1_cf5b1f34.txt",
+      "line": 23,
+      "quote": "BC-2 ... continuity attested on standing cadence (proposed quarterly, default-class)"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/business_continuity/anchors.py",
+        "start_line": 70,
+        "end_line": 72,
+        "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+        "behavior": "BC-2 cadence constants set to quarterly/default and asserted against continuity policy."
+      },
+      {
+        "path": "backend/services/business_continuity/anchors.py",
+        "start_line": 144,
+        "end_line": 156,
+        "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+        "behavior": "Mechanical assertion checks continuity policy cadence and class alignment."
+      }
+    ],
+    "exact_gap": "Cadence anchor is coded, but execution evidence for repeated standing attestation runs (quarterly receipts history) is not shown in this read-only pass.",
+    "required_action": "Produce periodic attestation run receipts and verify non-incident cadence execution over time.",
+    "closure_demonstration": "Scenario BC-2: schedule quarterly continuity attestation run; verify receipts exist independent of active incidents.",
+    "delivery_status": "PARTIAL",
+    "confidence": "medium"
+  },
+  {
+    "review_id": "REQ-470",
+    "composite_id": "business_continuity_v1::BC-3",
+    "source_evidence": {
+      "file": "source_text/Business_Continuity_Annex_v1_cf5b1f34.txt",
+      "line": 41,
+      "quote": "BC-3 ... RPO is not ruled anywhere in canon (genuine gap)"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/business_continuity/anchors.py",
+        "start_line": 91,
+        "end_line": 93,
+        "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+        "behavior": "BC_3_PENDING_OVERRIDE marker explicitly preserved as DEFAULT-PENDING-OVERRIDE."
+      },
+      {
+        "path": "backend/services/dap/m3_block_completion.py",
+        "start_line": 148,
+        "end_line": 155,
+        "sha256": "4ecb90b8d3b63b68ad0bda630408451a8b4576925d5e6a4c6e92a43ffe9651ea",
+        "behavior": "Composite pin asserts BC-3 marker not silently flipped."
+      }
+    ],
+    "exact_gap": "Requirement itself is an acknowledged unresolved policy gap (RPO not canon-ruled); code correctly preserves 'pending override' status.",
+    "required_action": "Obtain governance ruling defining RPO target and replication strategy; then replace marker with ratified policy constants/mechanism.",
+    "closure_demonstration": "Scenario BC-3: governance decision ratifies explicit RPO (e.g., max data-loss bound); marker transitions from pending to ruled with enforcement tests.",
+    "delivery_status": "EXPLICIT_NONCLAIM",
+    "confidence": "high"
+  },
+  {
+    "review_id": "REQ-471",
+    "composite_id": "business_continuity_v1::BC-4",
+    "source_evidence": {
+      "file": "source_text/Business_Continuity_Annex_v1_cf5b1f34.txt",
+      "line": 45,
+      "quote": "BC-4 ... total site-loss/off-site backup RPO/RTO is unaddressed"
+    },
+    "code_evidence": [
+      {
+        "path": "backend/services/business_continuity/anchors.py",
+        "start_line": 92,
+        "end_line": 93,
+        "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+        "behavior": "BC_4_PENDING_OVERRIDE marker preserved as unresolved state."
+      },
+      {
+        "path": "backend/services/dap/m3_block_completion.py",
+        "start_line": 156,
+        "end_line": 159,
+        "sha256": "4ecb90b8d3b63b68ad0bda630408451a8b4576925d5e6a4c6e92a43ffe9651ea",
+        "behavior": "Asserts BC-4 unresolved marker has not been silently changed."
+      }
+    ],
+    "exact_gap": "This row is an explicit open disaster-recovery policy gap, not a missing backend callable function.",
+    "required_action": "Ratify total-site-loss DR model (off-site backup topology, RPO/RTO commitments, restore authority and drill cadence).",
+    "closure_demonstration": "Scenario BC-4: documented DR exercise for total appliance loss proves restore path and bounded RPO/RTO from off-site capability.",
+    "delivery_status": "EXPLICIT_NONCLAIM",
+    "confidence": "high"
+  }
+]

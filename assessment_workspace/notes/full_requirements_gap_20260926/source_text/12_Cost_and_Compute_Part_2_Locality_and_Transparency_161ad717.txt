@@ -1,0 +1,147 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Cost & Compute Economics — Part 2: Compute Locality & Cost Transparency
+
+[B3] Document 12 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Cost & Compute Economics
+
+[B5] Promises held in this document: #10 (the "pull seam" — connects to compute capacity and processes workflow without moving data out of the system) · #11 (cost provided at the point of reflection, before commits are made)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The services that power these promises are the platform's deployment topology (which keeps compute inside the perimeter), the perception execution seam and fleet allocation (which apportion compute without exposing hardware), and the shaping-and-freeze economics (which quote cost before anything commits).
+
+[B10] PART A — PROMISE #10: THE PULL SEAM — COMPUTE WITHOUT MOVING DATA OUT
+
+[B11] A1 · The promise, in plain language
+
+[B12] The platform connects to compute power — GPUs and other accelerators — and runs its work on that compute without the data leaving the platform to get there. The compute is brought to the data, not the data to the compute. Whether the work runs on the organisation's own hardware or on capacity the platform allocates, it runs inside the organisation's perimeter, and the estate never egresses to be processed.
+
+[B13] A2 · The service that powers it
+
+[B14] The deployment topology (Document 1 §6) — the platform installs inside the organisation's perimeter, and compute does not leave it.
+
+[B15] The perception execution seam (Document 9) — the same pipeline runs on general-purpose or accelerated hardware behind one seam, attributable per result, without changing the result contract.
+
+[B16] Fleet allocation — a versioned policy that apportions capacity across workloads, managed at the control surface.
+
+[B17] A3 · Definition of the promise
+
+[B18] Compute runs inside the perimeter. Models the organisation hosts, and GPU capacity the platform allocates, both run inside the organisation's own infrastructure and network boundary. Data is processed where it lives.
+
+[B19] The data does not move to reach compute. Connecting compute does not create a path by which estate data leaves the perimeter. The only path that leaves the perimeter is the custody boundary (the external-model crossing); compute connection is not such a path.
+
+[B20] Hardware is invisible to the consumer. Which hardware ran a piece of work is recorded (so a mixed fleet is attributable) but is never surfaced to the requester and never changes the shape of what the work returns. The requester sees delivery time, not hardware.
+
+[B21] A4 · Delivery experience expectations
+
+[B22] What the organisation experiences (human-facing):
+
+[B23] The organisation connects compute — its own, or capacity the platform allocates — and its data stays inside its perimeter throughout processing. It never faces a choice between using accelerated compute and keeping custody of its data; it gets both. It sees delivery time as the capacity signal, never raw hardware numbers.
+
+[B24] What a consuming system experiences (machine-facing):
+
+[B25] Work executes against connected compute through one seam; the result records which execution mode ran it, and the result contract is identical regardless of hardware — so no downstream consumer needs to know about hardware, and a mixed fleet is attributable rather than ambiguous.
+
+[B26] What is produced and retained:
+
+[B27] Per result, the execution-mode attribution (which hardware class ran it); and, at the control surface, the fleet-allocation policy (versioned) that apportions capacity.
+
+[B28] A5 · Technical and behavioural requirements
+
+[B29] A5.1 · Compute does not leave the perimeter [CANON]. The platform installs inside the organisation's data centre, private cloud, or own cloud tenancy. Models the organisation hosts, and GPU capacity the platform allocates, run inside the perimeter. Exactly one path leaves the perimeter — the custody boundary — and compute connection is not that path.
+
+[B30] A5.2 · The execution seam keeps the result contract hardware-independent [CANON]. The same pipeline runs on general-purpose or accelerated hardware behind one seam; each result records which. The result contract is unchanged by execution mode — hardware is an implementation fact, and if it changed the shape of what work returns, every downstream consumer would have to know about hardware, which the seam exists to prevent.
+
+[B31] A5.3 · Fleet allocation is versioned configuration, managed live [CANON]. A versioned policy apportions capacity across workloads (mining, transforms, the live path), set at the control surface and managed live by the operator. Delivery time is the capacity signal a requester sees; hardware numbers are never surfaced to them.
+
+[B32] A5.4 · The pull-not-push property is explicit [RULED]. The owner's "pull seam" framing names a property the topology implies but does not state in these words: compute is pulled to the data, never the data pushed to the compute. The requirement is that no execution path moves estate data out of the perimeter to reach compute — the workload is dispatched to where the data is governed, and the result returns, without the underlying data crossing the perimeter at any point in the compute cycle.
+
+[B33] [RULED] Adopted as an explicit, testable statement — it is the exact property the promise names, and it makes the guarantee auditable: an audit can verify that a compute cycle moved no estate data across the perimeter, rather than inferring it from the topology.
+
+[B34] A6 · What must be true for the service to deliver as intended
+
+[B35] No compute path egresses estate data. If connecting compute could move data outside the perimeter to be processed, the custody guarantee (Document 1) is breached by the compute layer, and the promise is false.
+
+[B36] The result contract is genuinely hardware-independent. If hardware changed the result shape, consumers would couple to hardware and the seam's purpose is lost.
+
+[B37] Hardware is never surfaced to requesters. Delivery time is the capacity signal; exposing hardware numbers would leak an implementation fact the seam exists to hide and would invite requesters to reason about the wrong thing.
+
+[B39] PART B — PROMISE #11: COST AT THE POINT OF REFLECTION, BEFORE COMMIT
+
+[B40] B1 · The promise, in plain language
+
+[B41] Before the platform commits to doing a piece of work, it tells you what that work will cost — at the moment you are deciding whether to proceed, not after the fact. When the platform reflects your objective back to you for confirmation, the cost of that objective is part of what it reflects, so no commitment is ever made, and no charge ever raised, without the cost having been shown first and the exposure bounded by a number you set.
+
+[B42] B2 · The service that powers it
+
+[B43] The shaping-and-freeze flow — the objective is shaped with the requester, and at freeze (commit) the feasibility verdict, the cost, and the budget are presented before the objective is committed.
+
+[B44] The budget ceiling (Document 5) — a hard stop enforced by the governor, so exposure is bounded at commit by a number the requester set.
+
+[B45] Sampling — a first-class narrow objective that converts an unknown-cost case into measured evidence before the full commit.
+
+[B46] B3 · Definition of the promise
+
+[B47] Cost is shown at the point of commit, before commit. At the freeze step — the reflection where the objective is confirmed — the requester sees the feasibility verdict, the cost, the budget, and the lawful basis, and only then commits. Nothing is committed or charged before this.
+
+[B48] Exposure is bounded by a number the requester set. The budget is a hard stop: a run halts at its ceiling and nothing past it is billed. This is what makes an open-ended run commissionable — the requester's own ceiling bounds the exposure, enforced by the governor rather than the executor.
+
+[B49] Every extension re-quotes. Extending a running objective generates a new quote for the addition rather than folding silently into the existing commitment, because one commitment covering two different scopes cannot be reconciled afterward.
+
+[B50] Where cost is genuinely unknown, it is converted to evidence, not guessed. Feasibility honestly returns unknown on un-censused reach; a sample — a first-class narrow objective — converts that unknown into observed volume, class distribution, and per-hour cost before the full objective is committed. A sample result is evidence, not a promise.
+
+[B51] B4 · Delivery experience expectations
+
+[B52] What the organisation experiences (human-facing):
+
+[B53] At the moment of deciding whether to run an objective, the requester sees its cost and sets its budget — the reflection that confirms the objective also prices it. They are never surprised by a charge after the fact. Where the cost cannot be known in advance (the reach is un-censused), they can run a bounded sample first and see real numbers before committing the full run, with the sample's own cost shown drawing against the budget.
+
+[B54] A commissioned run cannot exceed the budget the requester set; it halts at the ceiling. Extending it produces a fresh quote, never a silent addition.
+
+[B55] What a consuming system experiences (machine-facing):
+
+[B56] A commission returns a feasibility verdict and a quote (stamping the price-model version) before it is frozen; the frozen commitment carries the budget ceiling the governor enforces. A learning-phase quote is structurally non-precedent — an exploratory, time-boxed price that cannot be pointed to later as a commitment.
+
+[B57] What is produced and retained:
+
+[B58] The commit envelope — feasibility verdict, cost, budget, lawful basis, price-model version, and whether the objective was sample-grounded or estimate-grounded; and, for a sample, the sample result recorded beside the availability snapshot.
+
+[B59] B5 · Technical and behavioural requirements
+
+[B60] B5.1 · Cost and feasibility are presented at freeze, before commit [CANON]. At the freeze step the requester sees the feasibility verdict ("floor feasible — n% of in-scope estate meets your standard"), the grounding marker (sample-grounded or estimate-grounded), the envelope (lawful basis, budget, commissioner, scope ceiling), and only then commits. Frozen is immutable — a changed intent is a new objective.
+
+[B61] B5.2 · The budget is a hard stop enforced by the governor [CANON]. A run halts at its ceiling and nothing past it is billed, enforced by the direction governor (Document 5), not by the executor that could be tempted to continue. Exposure is bounded at commit by the number the requester set.
+
+[B62] B5.3 · Every extension re-quotes [CANON]. Extending a running objective generates a new quote for the addition. A record showing one commitment covering two different scopes cannot be reconciled afterward, so silent folding is prohibited.
+
+[B63] B5.4 · Cost is measured; price is configuration; quotes stamp their version [CANON]. Cost figures come from instrumented runs on real material (Document 11 Part A); price is versioned configuration swapped at the control surface, and every quote stamps the price-model version that produced it. A learning-phase quote is structurally non-precedent.
+
+[B64] B5.5 · Sampling converts unknown cost to evidence [CANON]. A sample is a first-class narrow-reach objective whose results ground the full commit; it exists because full extraction carries a real resource commitment and because feasibility honestly returns unknown on un-censused reach. The sample's cost draws the objective's budget and is shown doing so. A sample result grounds an estimate; it does not guarantee the full run's eventual yield.
+
+[B65] B5.6 · "Point of reflection" generalises to every compute-related commit [RULED]. The owner's "point of reflection" is the reflection-before-commit moment, and it applies to every compute-consuming commit-type action — not the extraction path alone, and not every commit type indiscriminately. Extraction and training (Document 13) both reflect their cost before they commit, by the same discipline, because both are genuinely compute-heavy. A rule change, a deletion request, or another governance action that does not itself consume compute does not carry this reflection step — cost-at-reflection is scoped to what actually has a cost, not applied as a blanket requirement on every governed action.
+
+[B66] [RULED] Generalised to compute-related commits (extraction, training), not to every commit type. This keeps the discipline meaningful — a rule change genuinely has no compute cost to reflect — while still closing the gap that would have left training uncosted at commit.
+
+[B67] B6 · What must be true for the service to deliver as intended
+
+[B68] No commit or charge precedes the cost reflection. If any path commits or charges before showing cost, the promise is false on that path.
+
+[B69] The budget ceiling is enforced by the governor, not the executor. An executor enforcing its own ceiling can be tempted past it; the governor cannot.
+
+[B70] Extensions always re-quote. A silent extension produces an unreconcilable record of one commitment over two scopes.
+
+[B71] Unknown cost is sampled, never guessed. A fabricated availability figure on un-censused reach would be exactly the invented number the platform forbids (Document 11 A5.3).
+
+[B72] The reflection-before-commit discipline covers every commit type (B5.6). If only extraction reflects cost, a training commission (or any future commit action) could commit uncosted — the generalisation is what makes the promise whole.
+
+[B74] RULINGS APPLIED TO THIS DOCUMENT
+
+[B75] A5.4 [RULED] — Explicit statement of the pull-not-push property (no compute cycle moves estate data across the perimeter), making the guarantee testable. Settled.
+
+[B76] B5.6 [RULED] — "Cost at the point of reflection" generalised to every compute-related commit-type action (extraction, training) — not to every commit type indiscriminately; a rule change or deletion carries no compute cost to reflect. Document 13 carries the training half.
+
+[B78] End of Document 12 of 16 — Cost & Compute Economics, Part 2: Compute Locality & Cost Transparency.

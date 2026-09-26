@@ -1,0 +1,38 @@
+{
+  "summary": "Completed read-only surgical correction for REQ-217..REQ-313 (97 rows) into correction_217_313.json with per-rule source/body and code evidence mapping.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/assessment_workspace/notes/full_requirements_gap_20260926/correction_217_313.json"
+  ],
+  "action_items": [
+    "Merge correction_217_313.json into final matrix and verify citations.",
+    "Recover missing normative sources: Streaming_Voice_Training_Capacity.docx, deck_engine.md, rule_criteria_spec_v1.",
+    "Retain RBM-10 as unresolved atomicity gap until durable effective-apply receipt model is implemented."
+  ],
+  "critical_code_review_comments": [
+    "Doc 18 skill query path currently refuses unadmitted calls and does not produce admitted skill output path; positive skill behavior remains unproven.",
+    "Rules Service ceremony and lifecycle writes are non-transactional append flows; RBM-10 atomic effective apply is not evidenced.",
+    "Append-only ledger semantics prohibit destructive rollback narratives; aborted attempts must be receipted while prior in-force state stays authoritative."
+  ],
+  "updated_files": [
+    "/app/assessment_workspace/notes/full_requirements_gap_20260926/correction_217_313.json",
+    "/app/test_reports/iteration_16.json"
+  ],
+  "success_rate": {
+    "backend": "N/A",
+    "frontend": "N/A"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Assessment-only pass; no runtime tests executed by contract. Verify merge integrity and unresolved source recoveries.",
+  "rca of the issue": "Primary deficiencies were generic unresolved labels and non-specific closure demos. Correction replaced them with rule-specific source/body evidence, code behavior, and requirement-edge closure criteria while preserving unresolved statuses where source text is unavailable."
+}

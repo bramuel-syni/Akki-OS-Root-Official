@@ -1,0 +1,185 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Targeting, Training & Model Development — Part 2: The Model Ecosystem
+
+[B3] Document 14 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Targeting, Training & Model Development
+
+[B5] Promises held in this document: #24 (a registry of powerfully pretrained open models for specific tasks, to serve as baselines for training) · #25 (retained learning data from exceptional training runs, usable to publish white papers) · #30 (connects to all available LLMs including locally-hosted open-weight models, under a single license)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] A note on this document's weight of PROPOSED content. This is the most forward-leaning document in the set, and deliberately so. The canon fully specifies the model registry as a governed dependency (every model with its hash and licence) and training acceptance. But three things the promises name reach past what the canon states: a curated baseline library (#24 is more than the registry — it is a chosen set of strong models per task), a white-paper pipeline (#25 is a publication path the canon does not describe), and a single-license commercial construct (#30 is as much a licensing and commercial mechanism as a technical one). Each is developed here in full and marked clearly, so the owner can rule on genuinely new ground rather than have it presented as settled.
+
+[B10] PART A — PROMISE #24: THE PRETRAINED-MODEL BASELINE REGISTRY
+
+[B11] A1 · The promise, in plain language
+
+[B12] The platform holds a curated set of the strongest openly-available pretrained models, organised by the task each is good at, so that when the platform trains its own model for a task, it starts from the best available baseline rather than from scratch or from an arbitrary choice — and so that a user can see, per task, what the strong starting points are.
+
+[B13] A2 · The service that powers it
+
+[B14] The model registry (canon) — where every model is registered with its hash and licence — extended with a curation layer that selects and organises strong pretrained models per task class as training baselines.
+
+[B15] A3 · Definition of the promise
+
+[B16] The registry already governs every model as a dependency [CANON]. Every model that runs is registered with its hash and its licence; a model is a versioned dependency with a rights posture, not a configuration value; a model whose licence has not been verified does not run; entries are additive.
+
+[B17] The baseline library is a curated view over that registry [PROPOSED]. #24 is more than the registry: it is a chosen set of strong pretrained models, organised by task class, designated as baselines for training. Curation — which model is a recommended baseline for which task — is the added capability.
+
+[B18] Baselines are chosen on measured evidence, not reputation [PROPOSED]. Consistent with the platform's rule that adoption decisions are made on measured evidence from the platform's own material (a published result at large-scale pretraining does not transfer automatically to adapter fine-tuning on an enterprise estate), a model is designated a baseline for a task on the basis of measured performance as a starting point for that task on real material — never on published benchmark reputation alone.
+
+[B19] A4 · Delivery experience expectations
+
+[B20] What the user experiences (human-facing):
+
+[B21] When commissioning a training job (Document 13 Part 1), the user sees, per task, the recommended strong baseline(s) to start from — a curated shortlist with the evidence for each, not an undifferentiated model list. They start from a strong, justified baseline rather than choosing blind.
+
+[B22] What a consuming system experiences (machine-facing):
+
+[B23] The training flow reads the baseline library to select a starting model for a task; each baseline carries its hash, licence, and the measured evidence for its designation.
+
+[B24] What is produced and retained:
+
+[B25] The curated baseline library — per task class, the designated strong pretrained models with their hashes, licences, and designation evidence — maintained as a governed view over the registry.
+
+[B26] A5 · Technical and behavioural requirements
+
+[B27] A5.1 · Every baseline is a licence-verified registry entry [CANON]. A baseline is a registered model with its hash and verified licence; an unverified model cannot be a baseline because it cannot run. Rights posture is carried, because a model trained from a baseline inherits rights considerations from it.
+
+[B28] A5.2 · Curation is evidence-bound and governed [PROPOSED]. A model's designation as a baseline for a task carries the measured evidence that justifies it, and the designation is a governed, versioned decision (a baseline added or changed writes a record), not an informal list. Recommended so the baseline library carries the same evidence discipline as every other adoption decision on the platform.
+
+[B29] A5.3 · The baseline library never overrides acceptance [PROPOSED]. Starting from a designated baseline does not shortcut acceptance: a model trained from any baseline still faces the full six-criterion acceptance (Document 13 Part 1) on uncurated held-out material. A strong baseline improves the starting point; it never lowers the bar to enter service.
+
+[B30] A6 · What must be true
+
+[B31] Every baseline is licence-verified. An unverified baseline is a rights exposure inherited by everything trained from it.
+
+[B32] Designation is evidence-bound. A baseline chosen on reputation rather than measured fit misleads every training job that starts from it.
+
+[B33] Acceptance is never shortcut by a good baseline. The baseline improves the start; the six criteria still gate the finish.
+
+[B35] PART B — PROMISE #25: RETAINED LEARNING DATA & THE WHITE-PAPER PIPELINE
+
+[B36] B1 · The promise, in plain language
+
+[B37] When a training run produces exceptional results, the platform keeps what was learned — the data, the configuration, the measured outcomes — in a form that can be turned into a published white paper, so that genuine advances the platform achieves can be written up and shared, with the evidence intact and the confidential material protected.
+
+[B38] B2 · The service that powers it
+
+[B39] The training run's own artefacts (canon) — every run already produces complete lineage, the recipe version, the six acceptance artefacts, the evaluation card, and blinded-comparison results.
+
+[B40] A publication path [PROPOSED] — a governed mechanism that assembles those artefacts into a shareable white-paper form, through the custody and outer-gate disciplines that protect confidential material on egress.
+
+[B41] B3 · Definition of the promise
+
+[B42] The evidence already exists [CANON]. An exceptional run's artefacts — lineage, recipe, acceptance numbers on uncurated held-out material, blinded comparison, evaluation card — are produced by the run itself. #25 does not require new measurement; it requires retention and assembly of what the run already produced.
+
+[B43] Retention of exceptional runs is deliberate [PROPOSED]. A run whose results clear an exceptional bar has its artefacts retained as a candidate for publication, tagged as such, rather than being left to ordinary lifecycle expiry.
+
+[B44] Publication crosses the outer gate [PROPOSED]. Anything drawn from the estate into a published white paper must cross the same irreversibility and rights disciplines any sale/egress crosses (the outer gate): confidential and personal material is protected, rights are validated, and cumulative disclosure across publications is guarded — because a white paper is an egress like any other, and the perimeter is the product.
+
+[B45] B4 · Delivery experience expectations
+
+[B46] What the organisation experiences (human-facing):
+
+[B47] When a run achieves something notable, the organisation can produce a white paper from it — the measured results, the method (at the depth that can be safely disclosed), the evaluation — assembled from artefacts that already exist, with confidential material already protected by the egress disciplines. They do not reconstruct the evidence after the fact; it was retained.
+
+[B48] What a consuming system / reader experiences (machine-facing):
+
+[B49] A published white paper carries the measured results and the method to the depth disclosure permits, with provenance intact and nothing that breaches custody or rights — a shareable artefact that is still governed.
+
+[B50] What is produced and retained:
+
+[B51] Retained exceptional-run artefacts (lineage, recipe, acceptance numbers, evaluation card), tagged for publication candidacy; and the white-paper artefact itself, produced through the outer gate.
+
+[B52] B5 · Technical and behavioural requirements
+
+[B53] B5.1 · Exceptional-run artefacts are retained, tagged, and lineage-complete [RULED — tightened beyond the original proposal]. A run clearing the exceptional bar has its already-produced artefacts retained beyond ordinary expiry and tagged as a publication candidate. No new measurement is fabricated for publication; the published evidence is the run's own uncurated acceptance evidence.
+
+[B54] [RULED] "Exceptional" must be objectively defined — no grey areas, no manual/subjective tagging. Consistent with the ruling on A5.1/A5.5 elsewhere in this cluster (Document 13 §A5.1): the platform is built against known variables, known success conditions, known operating conditions throughout, and a publication bar is no exception. "Exceptional" is a numeric threshold on a declared stratum — e.g. "beats baseline by X% on stratum Y, on uncurated material" — set in advance, the same discipline as any acceptance criterion. Until that numeric bar is defined, no run is tagged as a publication candidate — not manually, not by case-by-case judgment. This replaces the original recommendation (manual-tag until set), which left room for exactly the subjective, explainability-qualified judgment call the owner has ruled against everywhere else in this program. Once the bar is defined, tagging is a mechanical check against it, nothing more.
+
+[B55] B5.2 · Publication crosses the outer gate [PROPOSED]. A white paper drawn from the estate crosses the outer gate: irreversibility for any confidential or personal material, rights validation, and cumulative- disclosure guarding across successive publications. A white paper is an egress; it is governed as one. Recommended as the mechanism that lets #25 be delivered without breaching the custody promise (#1).
+
+[B56] B5.3 · The method is disclosed only to the depth rights and custody permit [PROPOSED]. What a white paper may state about method and data is bounded by what can be safely and lawfully disclosed — the outer gate decides, not the author's preference. Recommended so publication cannot become a back-door egress of confidential technique or data.
+
+[B57] B6 · What must be true
+
+[B58] Published evidence is retained real evidence, never reconstructed. A white paper built from post-hoc numbers rather than the run's own uncurated acceptance evidence would misrepresent the result.
+
+[B59] Publication is governed as an egress. If a white paper could bypass the outer gate, #25 would become a hole in #1 — the custody promise — for the sake of publication.
+
+[B60] The exceptional bar is owner-ruled and nothing auto-publishes. Until the bar is set, retention is by manual tag, so publication is always a deliberate act.
+
+[B62] PART C — PROMISE #30: ALL LLMs, INCLUDING OPEN-WEIGHT, UNDER A SINGLE LICENSE
+
+[B63] C1 · The promise, in plain language
+
+[B64] The platform can connect to any available large language model — commercial frontier models and locally-hosted open-weight models alike — and an organisation reaches all of them under one license with the platform, rather than negotiating and managing a separate arrangement for each. The platform is the single governed gateway to the whole model market, and the commercial relationship is one, not many.
+
+[B65] C2 · The service that powers it
+
+[B66] The boundary governor's single crossing (Document 1) — every model call, to any model, transits one governed chokepoint, which is what makes "all models, one gateway" technically true.
+
+[B67] The model registry (canon) — every model, commercial or open-weight, registered with its hash and licence.
+
+[B68] A single-license commercial construct [PROPOSED] — the mechanism by which one agreement with the platform grants governed access across the connected model market.
+
+[B69] C3 · Definition of the promise
+
+[B70] This promise has two halves that must not be confused — one technical, one commercial:
+
+[B71] Technical connectivity [CANON]. Every model — frontier or locally-hosted open-weight — is reached through the one crossing, registered with its hash and licence, and governed identically. A model whose licence is unverified does not run. Locally-hosted open-weight models run inside the perimeter (Document 12); frontier models are reached through the single external crossing.
+
+[B72] The single-license construct [PROPOSED]. The commercial promise — one license to reach all of them — is a construct the platform provides: the organisation's agreement is with the platform, and the platform mediates access to the connected models. This is a licensing and commercial mechanism, not merely a technical one, and it is the genuinely new ground in this promise.
+
+[B73] Per-model rights are still honoured underneath the single license [PROPOSED]. A single commercial license to the platform does not erase the individual models' own licences: each model's rights posture is still carried in the registry and honoured (an open-weight model's licence terms, a frontier provider's usage terms). The single license is the organisation's relationship with the platform; it composes with, and never overrides, each model's own terms.
+
+[B74] C4 · Delivery experience expectations
+
+[B75] What the organisation experiences (human-facing):
+
+[B76] The organisation reaches the whole connected model market through the platform under one agreement — it does not separately contract, key-manage, and govern each model. It sees, in the registry, which models are answering, what each costs, and each one's rights posture; it reaches all of them through one governed gateway.
+
+[B77] What a consuming system experiences (machine-facing):
+
+[B78] A call is routed to the appropriate model (the ladder, Document 11) through the one crossing; the model's registry entry (hash, licence, rights) governs the call; the single-license construct is what authorises the organisation's access to that model through the platform.
+
+[B79] What is produced and retained:
+
+[B80] The connected-model registry (every model, hash, licence, rights posture, cost); and the single-license record — the organisation's one agreement under which it reaches the connected market.
+
+[B81] C5 · Technical and behavioural requirements
+
+[B82] C5.1 · Every model is reached through the one crossing and registered [CANON]. No model — frontier or open-weight — is reached except through the single crossing (Document 1), and none runs without a verified licence in the registry. Open-weight models run inside the perimeter (Document 12); the external crossing governs frontier calls.
+
+[B83] C5.2 · The single-license construct: resell for open-weight/hosted, gateway-only for frontier [RULED]. The single commercial license is the organisation's agreement with the platform for governed access to the connected market. It composes with each model's own licence and rights posture and never overrides them: an open-weight model's terms and a frontier provider's terms are still carried and honoured per model.
+
+[B84] [RULED — the most consequential commercial ruling in this document.] (a) Resell, for open-weight and platform-hosted models. These run inside the customer's own perimeter (Document 12); the platform is not reselling access to anyone else's model, it is licensing its own orchestration and governance software over models the customer already controls. A genuine single license is honest here. (b) Gateway-only, for frontier providers. OpenAI, Anthropic, and Google's own commercial terms generally require either a formal reseller agreement or the customer holding their own account — asserting a single umbrella license over their access without that relationship in place is not achievable, and claiming otherwise is exactly the kind of thing that surfaces badly in diligence. For frontier calls, the license is the governed gateway; the underlying access is under that provider's own terms. Stated honestly per model in the registry (Document 9's Registry, C5.3 below), so "single license" is true where it is true and the frontier exception is visible, not implied away. The customer-facing experience can still present one governed gateway across all models — this ruling concerns the underlying contractual relationship, not the product surface. Recommended before this goes further into investor or customer materials: legal counsel review of the frontier-provider half, since existing materials already lean on "single license" as a claim and the (a)/(b) split should be reflected there precisely.
+
+[B85] C5.3 · Cost and rights are visible per model [CANON]. The registry shows, per model, cost, refusal rate, acceptance state, and rights posture — so an organisation reaching the market under one license still sees what each model costs and what its terms are, rather than a single opaque bundle.
+
+[B86] C6 · What must be true
+
+[B87] Every model is reached only through the one crossing, licence-verified. A model reachable outside the crossing, or running unlicensed, breaks both the custody promise and the single-gateway claim.
+
+[B88] The single license composes with, never overrides, per-model rights. A single license that silently ignored an individual model's terms would breach those terms on the organisation's behalf.
+
+[B89] The construct's shape is owner-ruled and honestly stated per model. "Single license" must be true where claimed; where a provider requires a direct relationship, that is visible, not implied away.
+
+[B91] RULINGS APPLIED TO THIS DOCUMENT
+
+[B92] A5.2 / A5.3 [PROPOSED, unchanged] — The curated baseline library as an evidence-bound, governed view over the registry, never shortcutting acceptance. Not part of this ruling round; stands as proposed.
+
+[B93] B5.1 [RULED] — "Exceptional" must be an objectively defined numeric threshold on a declared stratum, set in advance. No run is tagged until that bar exists — no manual or case-by-case judgment. Settled, and tightened beyond the original recommendation.
+
+[B94] B5.2 / B5.3 [PROPOSED, unchanged] — Publication crosses the outer gate; method disclosed only to the depth rights and custody permit. Not part of this ruling round; stands as proposed.
+
+[B95] C5.2 [RULED] — Resell for open-weight and platform-hosted models, gateway-only for frontier providers, stated honestly per model in the registry. Legal counsel review recommended before this enters investor or customer-facing materials.
+
+[B96] This document's PROPOSED weight reflects that #24, #25, and #30 reach past the canon into curation, publication, and commercial licensing respectively. Each is developed in full; none is asserted as settled; the four rulings above are the new ground the owner must walk.
+
+[B98] End of Document 14 of 16 — Targeting, Training & Model Development, Part 2: The Model Ecosystem.

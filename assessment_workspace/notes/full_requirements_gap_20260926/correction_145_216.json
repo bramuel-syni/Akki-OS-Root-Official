@@ -1,0 +1,2594 @@
+[
+  {
+    "review_id": "REQ-145",
+    "composite_id": "Doc 13::B5.4",
+    "workbook_row": 146,
+    "intended_outcome": "The recipe seat is governed and evidence-bound",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B67",
+      "interpretation": "The recipe seat is governed and evidence-bound"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training/recipe_seat.py",
+      "lines": "16-52",
+      "hash": "5b01cda963d36240819e095766fe5c1d7cc02a369ba27448eed2dca43c58af7d",
+      "actualbehavior": "Recipe seat persists TrainingParamsV0 rows and enforces write-once version sequence gated by adopted comparison; no blind-arm identity artifact in seat rows."
+    },
+    "exact_gap": "B5.4 requires evidence-bound + blinded comparison lifecycle; seat is governed, but blinded-arm proof is not persisted.",
+    "required_action": "Persist comparison blinding receipt (arm-id masking proof + reveal ceremony ref) on seat append.",
+    "closure_demonstration": "PASS when seat row stores blinded comparison ref and refusal on missing reveal artifact; BOUNDARY: concurrent seat writes must reject duplicates.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The recipe seat is governed and evidence-bound' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The recipe seat is governed and evidence-bound' directly, then bind them to this composite id (Doc 13::B5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-146",
+    "composite_id": "Doc 13::B5.5",
+    "workbook_row": 147,
+    "intended_outcome": "Candidate comparison is blinded",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B68",
+      "interpretation": "Candidate comparison is blinded"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training/recipe_seat.py",
+      "lines": "16-52",
+      "hash": "5b01cda963d36240819e095766fe5c1d7cc02a369ba27448eed2dca43c58af7d",
+      "actualbehavior": "Recipe seat persists TrainingParamsV0 rows and enforces write-once version sequence gated by adopted comparison; no blind-arm identity artifact in seat rows."
+    },
+    "exact_gap": "B5.5 requires evidence-bound + blinded comparison lifecycle; seat is governed, but blinded-arm proof is not persisted.",
+    "required_action": "Persist comparison blinding receipt (arm-id masking proof + reveal ceremony ref) on seat append.",
+    "closure_demonstration": "PASS when seat row stores blinded comparison ref and refusal on missing reveal artifact; BOUNDARY: concurrent seat writes must reject duplicates.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Candidate comparison is blinded' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Candidate comparison is blinded' directly, then bind them to this composite id (Doc 13::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-147",
+    "composite_id": "Doc 13::B5.6",
+    "workbook_row": 148,
+    "intended_outcome": "Retained learning data from exceptional runs [RULED \u2014 see Document 14]",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B69",
+      "interpretation": "Retained learning data from exceptional runs [RULED \u2014 see Document 14]"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/whitepapers/draft.py",
+      "lines": "14-80",
+      "hash": "2b48c1d04413a075097f63f492576044d46dddf0ba84b3b1450bf95625cb0b2b",
+      "actualbehavior": "Draft retention exists only for whitepaper records; no training-data retention contract ties exceptional run material to retained learning corpus."
+    },
+    "exact_gap": "Exceptional-run retained learning data path is not implemented as a governed training artifact; only narrative whitepaper rows exist.",
+    "required_action": "Add retained-learning-data contract with source-unit refs, rights horizon, and reuse gate linked to run_id.",
+    "closure_demonstration": "PASS when retained units can be enumerated by run and refused on missing rights scope; FAULT: stale retained refs after rights revocation.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "RULE_TEXT_PRESENT_STATUS_UNSET",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014, so 'Retained learning data from exceptional runs [RULED \u2014 see Document 14]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 13::B5.6 (\u2014) first, then define implementation/test closure criteria for 'Retained learning data from exceptional runs [RULED \u2014 see Document 14]'."
+    }
+  },
+  {
+    "review_id": "REQ-148",
+    "composite_id": "Doc 13::A5.1",
+    "workbook_row": 149,
+    "intended_outcome": "Mandatory fields are asked, never pre-filled [CANON + RULED]",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B30-B31",
+      "interpretation": "Mandatory fields are asked, never pre-filled [CANON + RULED]"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wizard/objective_compile.py",
+      "lines": "54-146",
+      "hash": "012d931066dd344f92d72c454ab17ab242a6f5a4d95c0678cf0d545a52032a0c",
+      "actualbehavior": "Compiler enforces closed objective tiers and derives objective statements from submitted dimensions; no turn-by-turn read receipts or immutable freeze record are written."
+    },
+    "exact_gap": "Objective compiler validates payload shape but does not provide full dialogue-grounded read receipts and immutable freeze ledger required by shaping doctrine.",
+    "required_action": "Emit objective-shaping dialogue receipts (turn read source, reflected mission text, pre-commit cost snapshot, freeze stamp).",
+    "closure_demonstration": "PASS when objective_id has immutable freeze hash and pre-commit cost receipt; RACE: freeze vs edit must serialize with conflict refusal.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULE_TEXT_PRESENT_STATUS_UNSET",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014, so 'Mandatory fields are asked, never pre-filled [CANON + RULED]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 13::A5.1 (\u2014) first, then define implementation/test closure criteria for 'Mandatory fields are asked, never pre-filled [CANON + RULED]'."
+    }
+  },
+  {
+    "review_id": "REQ-149",
+    "composite_id": "Doc 13::A5.2",
+    "workbook_row": 150,
+    "intended_outcome": "Every turn is grounded in a real read; no fabricated availability",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B32",
+      "interpretation": "Every turn is grounded in a real read; no fabricated availability"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wizard/objective_compile.py",
+      "lines": "54-146",
+      "hash": "012d931066dd344f92d72c454ab17ab242a6f5a4d95c0678cf0d545a52032a0c",
+      "actualbehavior": "Compiler enforces closed objective tiers and derives objective statements from submitted dimensions; no turn-by-turn read receipts or immutable freeze record are written."
+    },
+    "exact_gap": "Objective compiler validates payload shape but does not provide full dialogue-grounded read receipts and immutable freeze ledger required by shaping doctrine.",
+    "required_action": "Emit objective-shaping dialogue receipts (turn read source, reflected mission text, pre-commit cost snapshot, freeze stamp).",
+    "closure_demonstration": "PASS when objective_id has immutable freeze hash and pre-commit cost receipt; RACE: freeze vs edit must serialize with conflict refusal.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Every turn is grounded in a real read; no fabricated availability' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every turn is grounded in a real read; no fabricated availability' directly, then bind them to this composite id (Doc 13::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-150",
+    "composite_id": "Doc 13::A5.3",
+    "workbook_row": 151,
+    "intended_outcome": "The mission is reflected, then frozen; frozen is immutable",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B33",
+      "interpretation": "The mission is reflected, then frozen; frozen is immutable"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wizard/objective_compile.py",
+      "lines": "54-146",
+      "hash": "012d931066dd344f92d72c454ab17ab242a6f5a4d95c0678cf0d545a52032a0c",
+      "actualbehavior": "Compiler enforces closed objective tiers and derives objective statements from submitted dimensions; no turn-by-turn read receipts or immutable freeze record are written."
+    },
+    "exact_gap": "Objective compiler validates payload shape but does not provide full dialogue-grounded read receipts and immutable freeze ledger required by shaping doctrine.",
+    "required_action": "Emit objective-shaping dialogue receipts (turn read source, reflected mission text, pre-commit cost snapshot, freeze stamp).",
+    "closure_demonstration": "PASS when objective_id has immutable freeze hash and pre-commit cost receipt; RACE: freeze vs edit must serialize with conflict refusal.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The mission is reflected, then frozen; frozen is immutable' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The mission is reflected, then frozen; frozen is immutable' directly, then bind them to this composite id (Doc 13::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-151",
+    "composite_id": "Doc 13::A5.4",
+    "workbook_row": 152,
+    "intended_outcome": "Cost is presented at the reflection, before commit [CANON + Document 12]",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B34",
+      "interpretation": "Cost is presented at the reflection, before commit [CANON + Document 12]"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wizard/objective_compile.py",
+      "lines": "54-146",
+      "hash": "012d931066dd344f92d72c454ab17ab242a6f5a4d95c0678cf0d545a52032a0c",
+      "actualbehavior": "Compiler enforces closed objective tiers and derives objective statements from submitted dimensions; no turn-by-turn read receipts or immutable freeze record are written."
+    },
+    "exact_gap": "Objective compiler validates payload shape but does not provide full dialogue-grounded read receipts and immutable freeze ledger required by shaping doctrine.",
+    "required_action": "Emit objective-shaping dialogue receipts (turn read source, reflected mission text, pre-commit cost snapshot, freeze stamp).",
+    "closure_demonstration": "PASS when objective_id has immutable freeze hash and pre-commit cost receipt; RACE: freeze vs edit must serialize with conflict refusal.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULE_TEXT_PRESENT_STATUS_UNSET",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014, so 'Cost is presented at the reflection, before commit [CANON + Document 12]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 13::A5.4 (\u2014) first, then define implementation/test closure criteria for 'Cost is presented at the reflection, before commit [CANON + Document 12]'."
+    }
+  },
+  {
+    "review_id": "REQ-152",
+    "composite_id": "Doc 13::A5.5",
+    "workbook_row": 153,
+    "intended_outcome": "\"Any output dimension\" is bounded by the pre-committed done-condition, never by a defensibility judgment",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B35-B36",
+      "interpretation": "\"Any output dimension\" is bounded by the pre-committed done-condition, never by a defensibility judgment"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wizard/objective_compile.py",
+      "lines": "54-146",
+      "hash": "012d931066dd344f92d72c454ab17ab242a6f5a4d95c0678cf0d545a52032a0c",
+      "actualbehavior": "Compiler enforces closed objective tiers and derives objective statements from submitted dimensions; no turn-by-turn read receipts or immutable freeze record are written."
+    },
+    "exact_gap": "Objective compiler validates payload shape but does not provide full dialogue-grounded read receipts and immutable freeze ledger required by shaping doctrine.",
+    "required_action": "Emit objective-shaping dialogue receipts (turn read source, reflected mission text, pre-commit cost snapshot, freeze stamp).",
+    "closure_demonstration": "PASS when objective_id has immutable freeze hash and pre-commit cost receipt; RACE: freeze vs edit must serialize with conflict refusal.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves '\"Any output dimension\" is bounded by the pre-committed done-condition, never by a defensibility judgment' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert '\"Any output dimension\" is bounded by the pre-committed done-condition, never by a defensibility judgment' directly, then bind them to this composite id (Doc 13::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-153",
+    "composite_id": "Doc 14::A5.1",
+    "workbook_row": 154,
+    "intended_outcome": "Every baseline is a licence-verified registry entry",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B27",
+      "interpretation": "Every baseline is a licence-verified registry entry"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "9c493c6df570bda62c3f1949eb3cc80de44e5af16bc030f479825f79f01ccb4f",
+      "actualbehavior": "Baseline candidate rows include provider/license metadata and open/perimeter posture; no executable rights-verification ceremony stamps rows before use."
+    },
+    "exact_gap": "Baseline-selection rules are represented as metadata, but no enforced verification receipt binds claims to usable state transitions.",
+    "required_action": "Add candidate-rights verification ceremony requiring verification_receipt_ref before a baseline can be selected.",
+    "closure_demonstration": "PASS when baseline selection refuses rows missing valid verification receipt; BOUNDARY: licence change invalidates stale receipt.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Every baseline is a licence-verified registry entry' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every baseline is a licence-verified registry entry' directly, then bind them to this composite id (Doc 14::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-154",
+    "composite_id": "Doc 14::A5.2",
+    "workbook_row": 155,
+    "intended_outcome": "Curation is evidence-bound and governed",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B28",
+      "interpretation": "Curation is evidence-bound and governed"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "9c493c6df570bda62c3f1949eb3cc80de44e5af16bc030f479825f79f01ccb4f",
+      "actualbehavior": "Baseline candidate rows include provider/license metadata and open/perimeter posture; no executable rights-verification ceremony stamps rows before use."
+    },
+    "exact_gap": "Baseline-selection rules are represented as metadata, but no enforced verification receipt binds claims to usable state transitions.",
+    "required_action": "Add candidate-rights verification ceremony requiring verification_receipt_ref before a baseline can be selected.",
+    "closure_demonstration": "PASS when baseline selection refuses rows missing valid verification receipt; BOUNDARY: licence change invalidates stale receipt.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Curation is evidence-bound and governed' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 14::A5.2 (PROPOSED) first, then define implementation/test closure criteria for 'Curation is evidence-bound and governed'."
+    }
+  },
+  {
+    "review_id": "REQ-155",
+    "composite_id": "Doc 14::A5.3",
+    "workbook_row": 156,
+    "intended_outcome": "The baseline library never overrides acceptance",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B29",
+      "interpretation": "The baseline library never overrides acceptance"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "9c493c6df570bda62c3f1949eb3cc80de44e5af16bc030f479825f79f01ccb4f",
+      "actualbehavior": "Baseline candidate rows include provider/license metadata and open/perimeter posture; no executable rights-verification ceremony stamps rows before use."
+    },
+    "exact_gap": "Baseline-selection rules are represented as metadata, but no enforced verification receipt binds claims to usable state transitions.",
+    "required_action": "Add candidate-rights verification ceremony requiring verification_receipt_ref before a baseline can be selected.",
+    "closure_demonstration": "PASS when baseline selection refuses rows missing valid verification receipt; BOUNDARY: licence change invalidates stale receipt.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'The baseline library never overrides acceptance' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 14::A5.3 (PROPOSED) first, then define implementation/test closure criteria for 'The baseline library never overrides acceptance'."
+    }
+  },
+  {
+    "review_id": "REQ-156",
+    "composite_id": "Doc 14::B5.1",
+    "workbook_row": 157,
+    "intended_outcome": "Exceptional-run artefacts are retained, tagged, and lineage-complete [RULED \u2014 tightened beyond the original proposal]",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B53-B54",
+      "interpretation": "Exceptional-run artefacts are retained, tagged, and lineage-complete [RULED \u2014 tightened beyond the original proposal]"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/whitepapers/router.py",
+      "lines": "39-66",
+      "hash": "cc3ff4bcafa1a14233a3718115db8821fcb265a0190df795491c051170b7c77c",
+      "actualbehavior": "Whitepaper internal/release listing exists; no hard gate enforces retained-learning-data legality/quarantine before release eligibility."
+    },
+    "exact_gap": "Promise #25 retention/publication controls are not mechanically enforced in publish-facing surfaces.",
+    "required_action": "Insert retained-data quarantine + legality gate before any release-eligible whitepaper transition.",
+    "closure_demonstration": "PASS when publish path refuses quarantined or unverifiable retained-data claims; RACE: quarantine updates during publish must fail closed.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULE_TEXT_PRESENT_STATUS_UNSET",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014, so 'Exceptional-run artefacts are retained, tagged, and lineage-complete [RULED \u2014 tightened beyond the original proposal]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 14::B5.1 (\u2014) first, then define implementation/test closure criteria for 'Exceptional-run artefacts are retained, tagged, and lineage-complete [RULED \u2014 tightened beyond the original proposal]'."
+    }
+  },
+  {
+    "review_id": "REQ-157",
+    "composite_id": "Doc 14::B5.2",
+    "workbook_row": 158,
+    "intended_outcome": "Publication crosses the outer gate",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B55",
+      "interpretation": "Publication crosses the outer gate"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/whitepapers/router.py",
+      "lines": "39-66",
+      "hash": "cc3ff4bcafa1a14233a3718115db8821fcb265a0190df795491c051170b7c77c",
+      "actualbehavior": "Whitepaper internal/release listing exists; no hard gate enforces retained-learning-data legality/quarantine before release eligibility."
+    },
+    "exact_gap": "Promise #25 retention/publication controls are not mechanically enforced in publish-facing surfaces.",
+    "required_action": "Insert retained-data quarantine + legality gate before any release-eligible whitepaper transition.",
+    "closure_demonstration": "PASS when publish path refuses quarantined or unverifiable retained-data claims; RACE: quarantine updates during publish must fail closed.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Publication crosses the outer gate' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 14::B5.2 (PROPOSED) first, then define implementation/test closure criteria for 'Publication crosses the outer gate'."
+    }
+  },
+  {
+    "review_id": "REQ-158",
+    "composite_id": "Doc 14::B5.3",
+    "workbook_row": 159,
+    "intended_outcome": "The method is disclosed only to the depth rights and custody permit",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B56",
+      "interpretation": "The method is disclosed only to the depth rights and custody permit"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/whitepapers/router.py",
+      "lines": "39-66",
+      "hash": "cc3ff4bcafa1a14233a3718115db8821fcb265a0190df795491c051170b7c77c",
+      "actualbehavior": "Whitepaper internal/release listing exists; no hard gate enforces retained-learning-data legality/quarantine before release eligibility."
+    },
+    "exact_gap": "Promise #25 retention/publication controls are not mechanically enforced in publish-facing surfaces.",
+    "required_action": "Insert retained-data quarantine + legality gate before any release-eligible whitepaper transition.",
+    "closure_demonstration": "PASS when publish path refuses quarantined or unverifiable retained-data claims; RACE: quarantine updates during publish must fail closed.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'The method is disclosed only to the depth rights and custody permit' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 14::B5.3 (PROPOSED) first, then define implementation/test closure criteria for 'The method is disclosed only to the depth rights and custody permit'."
+    }
+  },
+  {
+    "review_id": "REQ-159",
+    "composite_id": "WPW spec::WPW-1",
+    "workbook_row": 160,
+    "intended_outcome": "The wizard MUST attach to every training run at commissioning",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B15",
+      "interpretation": "The wizard MUST attach to every training run at commissioning"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier1_notebook.py",
+      "lines": "40-421",
+      "hash": "050dcf4870f747efe0b1e98138da6197f015433c19b01b33e96314a203464766",
+      "actualbehavior": "Tier-1 notebook enforces append-only event records, CIF references, evidence classes, and contradiction tracking; mandatory attach/read-only zero-influence proof is not hard-gated at runner boundary."
+    },
+    "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+    "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization.",
+    "closure_demonstration": "PASS when run open/close refuses missing WPW packet or missing zero-influence attestation; BOUNDARY: retried events remain hash-chain consistent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'The wizard MUST attach to every training run at commissioning' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-1 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'The wizard MUST attach to every training run at commissioning'."
+    }
+  },
+  {
+    "review_id": "REQ-160",
+    "composite_id": "WPW spec::WPW-10",
+    "workbook_row": 161,
+    "intended_outcome": "Technical reports are internal",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B26",
+      "interpretation": "Technical reports are internal"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 report generation includes readiness, criteria snapshots, and unresolved-issue narration; outer-gate isolation and figure-to-receipt hard refusal are not fully proven in this slice."
+    },
+    "exact_gap": "Tier-2 generation exists, but receipt-resolution and outer-gate refusal paths need explicit enforced checks for every rendered figure/report release.",
+    "required_action": "Add render-time receipt resolver gate and technical-report outer-gate refusal enforcement with immutable refusal reasons.",
+    "closure_demonstration": "PASS when unresolved figure receipt blocks render and technical report export beyond internal scope is refused; FAULT: silent fallback figure rendering.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Technical reports are internal' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-10 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Technical reports are internal'."
+    }
+  },
+  {
+    "review_id": "REQ-161",
+    "composite_id": "WPW spec::WPW-11",
+    "workbook_row": 162,
+    "intended_outcome": "Tier 3 eligibility MUST be mechanical: the exceptional threshold met (numeric, owner-ruled \u2014 \u00a77 R1) AND at least one claim passing WPW-12",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B28-B29",
+      "interpretation": "Tier 3 eligibility MUST be mechanical: the exceptional threshold met (numeric, owner-ruled \u2014 \u00a77 R1) AND at least one claim passing WPW-12"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Tier 3 eligibility MUST be mechanical: the exceptional threshold met (numeric, owner-ruled \u2014 \u00a77 R1) AND at least one claim passing WPW-12' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-11 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Tier 3 eligibility MUST be mechanical: the exceptional threshold met (numeric, owner-ruled \u2014 \u00a77 R1) AND at least one claim passing WPW-12'."
+    }
+  },
+  {
+    "review_id": "REQ-162",
+    "composite_id": "WPW spec::WPW-12",
+    "workbook_row": 163,
+    "intended_outcome": "Novelty gate: a claim of a new approach or new knowledge MUST trace end-to-end \u2014 a recorded ideation or contribution event \u2192 its adoption into the run \u2192 a measured delta ",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B30",
+      "interpretation": "Novelty gate: a claim of a new approach or new knowledge MUST trace end-to-end \u2014 a recorded ideation or contribution event \u2192 its adoption into the run \u2192 a measured delta "
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Novelty gate: a claim of a new approach or new knowledge MUST trace end-to-end \u2014 a recorded ideation or contribution event \u2192 its adoption into the run \u2192 a measured delta ' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-12 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Novelty gate: a claim of a new approach or new knowledge MUST trace end-to-end \u2014 a recorded ideation or contribution event \u2192 its adoption into the run \u2192 a measured delta '."
+    }
+  },
+  {
+    "review_id": "REQ-163",
+    "composite_id": "WPW spec::WPW-13",
+    "workbook_row": 164,
+    "intended_outcome": "Assembly MUST draw exclusively from Tier 1 and Tier 2 artefacts and the run's own record",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B31",
+      "interpretation": "Assembly MUST draw exclusively from Tier 1 and Tier 2 artefacts and the run's own record"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Assembly MUST draw exclusively from Tier 1 and Tier 2 artefacts and the run's own record' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-13 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Assembly MUST draw exclusively from Tier 1 and Tier 2 artefacts and the run's own record'."
+    }
+  },
+  {
+    "review_id": "REQ-164",
+    "composite_id": "WPW spec::WPW-14",
+    "workbook_row": 165,
+    "intended_outcome": "The redaction pass is a gate, not a prompt",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B32",
+      "interpretation": "The redaction pass is a gate, not a prompt"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'The redaction pass is a gate, not a prompt' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-14 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'The redaction pass is a gate, not a prompt'."
+    }
+  },
+  {
+    "review_id": "REQ-165",
+    "composite_id": "WPW spec::WPW-15",
+    "workbook_row": 166,
+    "intended_outcome": "The Tier 3 draft lands in Documents and is internal at that moment",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B33",
+      "interpretation": "The Tier 3 draft lands in Documents and is internal at that moment"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'The Tier 3 draft lands in Documents and is internal at that moment' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-15 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'The Tier 3 draft lands in Documents and is internal at that moment'."
+    }
+  },
+  {
+    "review_id": "REQ-166",
+    "composite_id": "WPW spec::WPW-16",
+    "workbook_row": 167,
+    "intended_outcome": "Internal tiers name contributors",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B35",
+      "interpretation": "Internal tiers name contributors"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Internal tiers name contributors' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-16 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Internal tiers name contributors'."
+    }
+  },
+  {
+    "review_id": "REQ-167",
+    "composite_id": "WPW spec::WPW-17",
+    "workbook_row": 168,
+    "intended_outcome": "Authors are humans",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B36",
+      "interpretation": "Authors are humans"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Authors are humans' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-17 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Authors are humans'."
+    }
+  },
+  {
+    "review_id": "REQ-168",
+    "composite_id": "WPW spec::WPW-18",
+    "workbook_row": 169,
+    "intended_outcome": "Observation cost MUST appear as a budget line on the run's estimate and in cost-against-estimate reporting",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B38",
+      "interpretation": "Observation cost MUST appear as a budget line on the run's estimate and in cost-against-estimate reporting"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 scaffolding exists; tier-3 novelty chain, governed egress signoff, authorship policy, and observation-cost enforcement remain incomplete/indirect."
+    },
+    "exact_gap": "Tier-3 publication gates are not fully codified as executable contracts despite draft/report scaffolding.",
+    "required_action": "Implement tier-3 eligibility/signoff/attribution/economics contracts and bind them to release transition checks.",
+    "closure_demonstration": "PASS when tier-3 release refuses missing novelty-chain links, signoff receipts, attribution policy checks, or observation-cost lines; RACE: signoff revocation invalidates release token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Observation cost MUST appear as a budget line on the run's estimate and in cost-against-estimate reporting' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-18 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Observation cost MUST appear as a budget line on the run's estimate and in cost-against-estimate reporting'."
+    }
+  },
+  {
+    "review_id": "REQ-169",
+    "composite_id": "WPW spec::WPW-2",
+    "workbook_row": 170,
+    "intended_outcome": "The wizard MUST be read-only with respect to the run",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B16",
+      "interpretation": "The wizard MUST be read-only with respect to the run"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier1_notebook.py",
+      "lines": "40-421",
+      "hash": "050dcf4870f747efe0b1e98138da6197f015433c19b01b33e96314a203464766",
+      "actualbehavior": "Tier-1 notebook enforces append-only event records, CIF references, evidence classes, and contradiction tracking; mandatory attach/read-only zero-influence proof is not hard-gated at runner boundary."
+    },
+    "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+    "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization.",
+    "closure_demonstration": "PASS when run open/close refuses missing WPW packet or missing zero-influence attestation; BOUNDARY: retried events remain hash-chain consistent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'The wizard MUST be read-only with respect to the run' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-2 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'The wizard MUST be read-only with respect to the run'."
+    }
+  },
+  {
+    "review_id": "REQ-170",
+    "composite_id": "WPW spec::WPW-3",
+    "workbook_row": 171,
+    "intended_outcome": "Capture MUST be event-driven, not polled",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B17",
+      "interpretation": "Capture MUST be event-driven, not polled"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier1_notebook.py",
+      "lines": "40-421",
+      "hash": "050dcf4870f747efe0b1e98138da6197f015433c19b01b33e96314a203464766",
+      "actualbehavior": "Tier-1 notebook enforces append-only event records, CIF references, evidence classes, and contradiction tracking; mandatory attach/read-only zero-influence proof is not hard-gated at runner boundary."
+    },
+    "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+    "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization.",
+    "closure_demonstration": "PASS when run open/close refuses missing WPW packet or missing zero-influence attestation; BOUNDARY: retried events remain hash-chain consistent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Capture MUST be event-driven, not polled' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-3 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Capture MUST be event-driven, not polled'."
+    }
+  },
+  {
+    "review_id": "REQ-171",
+    "composite_id": "WPW spec::WPW-4",
+    "workbook_row": 172,
+    "intended_outcome": "Every notebook entry MUST be timestamped, linked to the run artefact it derives from, and classed \u2014 measured, estimated, or observed",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B19",
+      "interpretation": "Every notebook entry MUST be timestamped, linked to the run artefact it derives from, and classed \u2014 measured, estimated, or observed"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier1_notebook.py",
+      "lines": "40-421",
+      "hash": "050dcf4870f747efe0b1e98138da6197f015433c19b01b33e96314a203464766",
+      "actualbehavior": "Tier-1 notebook enforces append-only event records, CIF references, evidence classes, and contradiction tracking; mandatory attach/read-only zero-influence proof is not hard-gated at runner boundary."
+    },
+    "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+    "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization.",
+    "closure_demonstration": "PASS when run open/close refuses missing WPW packet or missing zero-influence attestation; BOUNDARY: retried events remain hash-chain consistent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Every notebook entry MUST be timestamped, linked to the run artefact it derives from, and classed \u2014 measured, estimated, or observed' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-4 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Every notebook entry MUST be timestamped, linked to the run artefact it derives from, and classed \u2014 measured, estimated, or observed'."
+    }
+  },
+  {
+    "review_id": "REQ-172",
+    "composite_id": "WPW spec::WPW-5",
+    "workbook_row": 173,
+    "intended_outcome": "Human contribution events MUST record: actor (role and internal identity), the state before, the change made, and the measured movement after",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B20",
+      "interpretation": "Human contribution events MUST record: actor (role and internal identity), the state before, the change made, and the measured movement after"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier1_notebook.py",
+      "lines": "40-421",
+      "hash": "050dcf4870f747efe0b1e98138da6197f015433c19b01b33e96314a203464766",
+      "actualbehavior": "Tier-1 notebook enforces append-only event records, CIF references, evidence classes, and contradiction tracking; mandatory attach/read-only zero-influence proof is not hard-gated at runner boundary."
+    },
+    "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+    "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization.",
+    "closure_demonstration": "PASS when run open/close refuses missing WPW packet or missing zero-influence attestation; BOUNDARY: retried events remain hash-chain consistent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Human contribution events MUST record: actor (role and internal identity), the state before, the change made, and the measured movement after' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-5 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Human contribution events MUST record: actor (role and internal identity), the state before, the change made, and the measured movement after'."
+    }
+  },
+  {
+    "review_id": "REQ-173",
+    "composite_id": "WPW spec::WPW-6",
+    "workbook_row": 174,
+    "intended_outcome": "CIF ideation events MUST be mirrored by reference, never copied: the idea, its conditions, its adoption status",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B21",
+      "interpretation": "CIF ideation events MUST be mirrored by reference, never copied: the idea, its conditions, its adoption status"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier1_notebook.py",
+      "lines": "40-421",
+      "hash": "050dcf4870f747efe0b1e98138da6197f015433c19b01b33e96314a203464766",
+      "actualbehavior": "Tier-1 notebook enforces append-only event records, CIF references, evidence classes, and contradiction tracking; mandatory attach/read-only zero-influence proof is not hard-gated at runner boundary."
+    },
+    "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+    "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization.",
+    "closure_demonstration": "PASS when run open/close refuses missing WPW packet or missing zero-influence attestation; BOUNDARY: retried events remain hash-chain consistent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'CIF ideation events MUST be mirrored by reference, never copied: the idea, its conditions, its adoption status' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-6 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'CIF ideation events MUST be mirrored by reference, never copied: the idea, its conditions, its adoption status'."
+    }
+  },
+  {
+    "review_id": "REQ-174",
+    "composite_id": "WPW spec::WPW-7",
+    "workbook_row": 175,
+    "intended_outcome": "The notebook MUST be retained for every run, including refused runs \u2014 a rejection's record is part of the research record (Promise #22)",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B22",
+      "interpretation": "The notebook MUST be retained for every run, including refused runs \u2014 a rejection's record is part of the research record (Promise #22)"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier1_notebook.py",
+      "lines": "40-421",
+      "hash": "050dcf4870f747efe0b1e98138da6197f015433c19b01b33e96314a203464766",
+      "actualbehavior": "Tier-1 notebook enforces append-only event records, CIF references, evidence classes, and contradiction tracking; mandatory attach/read-only zero-influence proof is not hard-gated at runner boundary."
+    },
+    "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+    "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization.",
+    "closure_demonstration": "PASS when run open/close refuses missing WPW packet or missing zero-influence attestation; BOUNDARY: retried events remain hash-chain consistent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'The notebook MUST be retained for every run, including refused runs \u2014 a rejection's record is part of the research record (Promise #22)' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-7 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'The notebook MUST be retained for every run, including refused runs \u2014 a rejection's record is part of the research record (Promise #22)'."
+    }
+  },
+  {
+    "review_id": "REQ-175",
+    "composite_id": "WPW spec::WPW-8",
+    "workbook_row": 176,
+    "intended_outcome": "A technical report MUST be drafted automatically when a run settles \u2014 accepted or refused",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B24",
+      "interpretation": "A technical report MUST be drafted automatically when a run settles \u2014 accepted or refused"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 report generation includes readiness, criteria snapshots, and unresolved-issue narration; outer-gate isolation and figure-to-receipt hard refusal are not fully proven in this slice."
+    },
+    "exact_gap": "Tier-2 generation exists, but receipt-resolution and outer-gate refusal paths need explicit enforced checks for every rendered figure/report release.",
+    "required_action": "Add render-time receipt resolver gate and technical-report outer-gate refusal enforcement with immutable refusal reasons.",
+    "closure_demonstration": "PASS when unresolved figure receipt blocks render and technical report export beyond internal scope is refused; FAULT: silent fallback figure rendering.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'A technical report MUST be drafted automatically when a run settles \u2014 accepted or refused' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-8 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'A technical report MUST be drafted automatically when a run settles \u2014 accepted or refused'."
+    }
+  },
+  {
+    "review_id": "REQ-176",
+    "composite_id": "WPW spec::WPW-9",
+    "workbook_row": 177,
+    "intended_outcome": "Every figure in a report MUST carry its evidence class and a receipt line resolving to a run artefact",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "anchor": "B25",
+      "interpretation": "Every figure in a report MUST carry its evidence class and a receipt line resolving to a run artefact"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/wpw/tier2_report.py",
+      "lines": "62-493",
+      "hash": "f6e266963b1841ffa5c18099a9bce75221a1f2de3f3946dded788ada12860db2",
+      "actualbehavior": "Tier-2 report generation includes readiness, criteria snapshots, and unresolved-issue narration; outer-gate isolation and figure-to-receipt hard refusal are not fully proven in this slice."
+    },
+    "exact_gap": "Tier-2 generation exists, but receipt-resolution and outer-gate refusal paths need explicit enforced checks for every rendered figure/report release.",
+    "required_action": "Add render-time receipt resolver gate and technical-report outer-gate refusal enforcement with immutable refusal reasons.",
+    "closure_demonstration": "PASS when unresolved figure receipt blocks render and technical report export beyond internal scope is refused; FAULT: silent fallback figure rendering.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "DEFAULT (draft; R2 open)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is DEFAULT (draft; R2 open), so 'Every figure in a report MUST carry its evidence class and a receipt line resolving to a run artefact' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for WPW spec::WPW-9 (DEFAULT (draft; R2 open)) first, then define implementation/test closure criteria for 'Every figure in a report MUST carry its evidence class and a receipt line resolving to a run artefact'."
+    }
+  },
+  {
+    "review_id": "REQ-177",
+    "composite_id": "Doc 14::C5.1",
+    "workbook_row": 178,
+    "intended_outcome": "Every model is reached through the one crossing and registered",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B82",
+      "interpretation": "Every model is reached through the one crossing and registered"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/model_registry/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "b499f0b4713c4c5f5dc8fbe3833c41076ce57cc15f02e3dab7dea962b7b2ed59",
+      "actualbehavior": "Registry holds model hash/licence/provider fields and local/open-weight posture; no single crossing enforcement object ensures every model access is mediated via chokepoint contract."
+    },
+    "exact_gap": "Registry data exists but crossing-only reachability is not proven inside this module set (depends on external chokepoint controls).",
+    "required_action": "Bind model-access APIs to mandatory crossing receipt validation before serving model handles.",
+    "closure_demonstration": "PASS when direct model lookup without crossing receipt is refused; BOUNDARY: cached handles must expire on receipt revocation.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Every model is reached through the one crossing and registered' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every model is reached through the one crossing and registered' directly, then bind them to this composite id (Doc 14::C5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-178",
+    "composite_id": "Doc 14::C5.2",
+    "workbook_row": 179,
+    "intended_outcome": "The single-license construct: resell for open-weight/hosted, gateway-only for frontier",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B83-B84",
+      "interpretation": "The single-license construct: resell for open-weight/hosted, gateway-only for frontier"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/model_registry/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "b499f0b4713c4c5f5dc8fbe3833c41076ce57cc15f02e3dab7dea962b7b2ed59",
+      "actualbehavior": "Registry holds model hash/licence/provider fields and local/open-weight posture; no single crossing enforcement object ensures every model access is mediated via chokepoint contract."
+    },
+    "exact_gap": "Registry data exists but crossing-only reachability is not proven inside this module set (depends on external chokepoint controls).",
+    "required_action": "Bind model-access APIs to mandatory crossing receipt validation before serving model handles.",
+    "closure_demonstration": "PASS when direct model lookup without crossing receipt is refused; BOUNDARY: cached handles must expire on receipt revocation.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The single-license construct: resell for open-weight/hosted, gateway-only for frontier' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The single-license construct: resell for open-weight/hosted, gateway-only for frontier' directly, then bind them to this composite id (Doc 14::C5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-179",
+    "composite_id": "Doc 14::C5.3",
+    "workbook_row": 180,
+    "intended_outcome": "Cost and rights are visible per model",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/14_Targeting_Training_Part_2_Model_Ecosystem.docx",
+      "anchor": "B85",
+      "interpretation": "Cost and rights are visible per model"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/model_registry/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "b499f0b4713c4c5f5dc8fbe3833c41076ce57cc15f02e3dab7dea962b7b2ed59",
+      "actualbehavior": "Registry holds model hash/licence/provider fields and local/open-weight posture; no single crossing enforcement object ensures every model access is mediated via chokepoint contract."
+    },
+    "exact_gap": "Registry data exists but crossing-only reachability is not proven inside this module set (depends on external chokepoint controls).",
+    "required_action": "Bind model-access APIs to mandatory crossing receipt validation before serving model handles.",
+    "closure_demonstration": "PASS when direct model lookup without crossing receipt is refused; BOUNDARY: cached handles must expire on receipt revocation.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Cost and rights are visible per model' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Cost and rights are visible per model' directly, then bind them to this composite id (Doc 14::C5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-180",
+    "composite_id": "Doc 17::A17.1",
+    "workbook_row": 181,
+    "intended_outcome": "Configuration lives outside code",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B98-B99",
+      "interpretation": "Configuration lives outside code"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/training_params_v0.py",
+      "lines": "1-111",
+      "hash": "8e32c99cbb08e18e8343f92f076ea473d8aed54ffb1d75f98ae5d1b40fdd630b",
+      "actualbehavior": "Training params contract externalizes configuration and stores strata/target/floor metadata; does not itself ensure full autonomous objective-shaping workflow completion."
+    },
+    "exact_gap": "Configuration-outside-code is present, but automation envelope still relies on upstream orchestration not fully closed in this package.",
+    "required_action": "Require objective-freeze receipt and training-plan receipt refs as mandatory TrainingParamsV0 fields.",
+    "closure_demonstration": "PASS when params creation refuses missing freeze/plan refs; FAULT: stale refs after objective edits.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Configuration lives outside code' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Configuration lives outside code' directly, then bind them to this composite id (Doc 17::A17.1)."
+    }
+  },
+  {
+    "review_id": "REQ-181",
+    "composite_id": "Doc 17::A17.10",
+    "workbook_row": 182,
+    "intended_outcome": "A CI fixture exists; production is a different, later question",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B117-B126",
+      "interpretation": "A CI fixture exists; production is a different, later question"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "9c493c6df570bda62c3f1949eb3cc80de44e5af16bc030f479825f79f01ccb4f",
+      "actualbehavior": "CI fixture and production-candidate rows are represented as metadata labels only; no deployment-time promotion ceremony encoded here."
+    },
+    "exact_gap": "Separation is documented in registry rows but lacks executable promotion controls between fixture and production tiers.",
+    "required_action": "Add promotion ceremony that requires owner ratification and measured receipts before changing candidate class.",
+    "closure_demonstration": "PASS when fixture rows cannot be promoted without ratification_receipt; BOUNDARY: duplicate promotions must be idempotent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'A CI fixture exists; production is a different, later question' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'A CI fixture exists; production is a different, later question' directly, then bind them to this composite id (Doc 17::A17.10)."
+    }
+  },
+  {
+    "review_id": "REQ-182",
+    "composite_id": "Doc 17::A17.11",
+    "workbook_row": 183,
+    "intended_outcome": "Production selection is named after the census, not before it",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B127-B129",
+      "interpretation": "Production selection is named after the census, not before it"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "9c493c6df570bda62c3f1949eb3cc80de44e5af16bc030f479825f79f01ccb4f",
+      "actualbehavior": "CI fixture and production-candidate rows are represented as metadata labels only; no deployment-time promotion ceremony encoded here."
+    },
+    "exact_gap": "Separation is documented in registry rows but lacks executable promotion controls between fixture and production tiers.",
+    "required_action": "Add promotion ceremony that requires owner ratification and measured receipts before changing candidate class.",
+    "closure_demonstration": "PASS when fixture rows cannot be promoted without ratification_receipt; BOUNDARY: duplicate promotions must be idempotent.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Production selection is named after the census, not before it' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Production selection is named after the census, not before it' directly, then bind them to this composite id (Doc 17::A17.11)."
+    }
+  },
+  {
+    "review_id": "REQ-183",
+    "composite_id": "Doc 17::A17.12",
+    "workbook_row": 184,
+    "intended_outcome": "No runner exists in any modality",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B131-B132",
+      "interpretation": "No runner exists in any modality"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training_runner/runner.py",
+      "lines": "88-481",
+      "hash": "50429834ed8eef19d1d7f5d58e6e37244e70cb17d83d62815acb031374070b84",
+      "actualbehavior": "Runner module exists with mocked compute phases and deterministic placeholders; source statement saying no runner existed is outdated, but real-capacity execution remains intentionally absent."
+    },
+    "exact_gap": "Code now has a runner scaffold; however it does not execute real training capacity and remains honesty-stubbed.",
+    "required_action": "Keep honest-gap markers and add explicit capability-state enum (stubbed/simulated/real) persisted per run.",
+    "closure_demonstration": "PASS when run receipt states capability_state and tests refuse claiming real execution from stub mode; FAULT: false-positive capacity claims.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "OPEN",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is OPEN, so 'No runner exists in any modality' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.12 (OPEN) first, then define implementation/test closure criteria for 'No runner exists in any modality'."
+    }
+  },
+  {
+    "review_id": "REQ-184",
+    "composite_id": "Doc 17::A17.13",
+    "workbook_row": 185,
+    "intended_outcome": "Model Admission shows a capability with nothing running behind it",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B133-B134",
+      "interpretation": "Model Admission shows a capability with nothing running behind it"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training_runner/moac_emitter.py",
+      "lines": "22-133",
+      "hash": "9108596b3d1242325f554e08f9bc2e8235a5501e56b7708f9dd0f4c3cbe56b14",
+      "actualbehavior": "MOAC emitter writes criterion cards from supplied metadata/booleans; it does not derive from actual weight artifacts or execute model scoring itself."
+    },
+    "exact_gap": "Admission card generation is wired but still metadata-driven, creating risk of claiming capability without weight-backed measurements.",
+    "required_action": "Require immutable weight artifact refs + scoring trace refs in emitter inputs and refuse bool-only cards for admitted verdicts.",
+    "closure_demonstration": "PASS when admit path rejects MOAC card lacking weight_trace_ref per criterion; BOUNDARY: mixed bool+numeric payload coercion must fail closed.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "OPEN",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is OPEN, so 'Model Admission shows a capability with nothing running behind it' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.13 (OPEN) first, then define implementation/test closure criteria for 'Model Admission shows a capability with nothing running behind it'."
+    }
+  },
+  {
+    "review_id": "REQ-185",
+    "composite_id": "Doc 17::A17.14",
+    "workbook_row": 186,
+    "intended_outcome": "GPU host is reachable; authentication is not configured",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B135-B136",
+      "interpretation": "GPU host is reachable; authentication is not configured"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training_runner/ssh_seam.py",
+      "lines": "16-616",
+      "hash": "30472405f51cfdb44a5a32e74ac310884e3883db4c9e3cec0ae20eb649bdc319",
+      "actualbehavior": "SSH seam supports key/password and host-key policy options with refusal classes; not connected to active trainer execution in this workspace evidence."
+    },
+    "exact_gap": "Host reachability/auth seam exists but no closure proof shows live trainer handshake drives training run state transitions.",
+    "required_action": "Bind ssh handshake receipt into runner state machine and refuse run launch without verified remote execution target.",
+    "closure_demonstration": "PASS when run cannot enter running state before ssh_receipt; RACE: host key rollover during launch must revalidate.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "OPEN",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is OPEN, so 'GPU host is reachable; authentication is not configured' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.14 (OPEN) first, then define implementation/test closure criteria for 'GPU host is reachable; authentication is not configured'."
+    }
+  },
+  {
+    "review_id": "REQ-186",
+    "composite_id": "Doc 17::A17.15",
+    "workbook_row": 187,
+    "intended_outcome": "No corpus with an owner-signed rights declaration exists",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B137-B138",
+      "interpretation": "No corpus with an owner-signed rights declaration exists"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/training_material_admit_v0.py",
+      "lines": "28-85",
+      "hash": "f872aa7b386f20907eda15fd754dfcb96281c6b671fea6c337826f9d354fb85c",
+      "actualbehavior": "Contract enforces deduped/vad_cleaned/qualified booleans and extraction_pipeline_ref; rights declaration remains coarse and not owner-signed declaration envelope."
+    },
+    "exact_gap": "Admit contract checks qualification bits but lacks explicit rights-declaration artifact proving corpus legal basis at declaration granularity.",
+    "required_action": "Add rights_declaration_ref + declaration_hash fields and validate against rights registry before admit append.",
+    "closure_demonstration": "PASS when admit refuses missing/expired rights declaration; FAULT: declaration replaced after admit without version pin.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "OPEN",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is OPEN, so 'No corpus with an owner-signed rights declaration exists' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.15 (OPEN) first, then define implementation/test closure criteria for 'No corpus with an owner-signed rights declaration exists'."
+    }
+  },
+  {
+    "review_id": "REQ-187",
+    "composite_id": "Doc 17::A17.16",
+    "workbook_row": 188,
+    "intended_outcome": "The ingredient-manifest guarantee is ACCEPTED",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B139-B140",
+      "interpretation": "The ingredient-manifest guarantee is ACCEPTED"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/training_material_admit_v0.py",
+      "lines": "38-68",
+      "hash": "f872aa7b386f20907eda15fd754dfcb96281c6b671fea6c337826f9d354fb85c",
+      "actualbehavior": "Each admit carries unit_manifest_ref and unit_count, giving scaffold for ingredient-manifest traceability."
+    },
+    "exact_gap": "Manifest reference exists but no boundary test here proves tamper-evident manifest hashing and immutable witness chain.",
+    "required_action": "Require manifest_sha256 and witness_receipt_ref on admit row and verify against write-once manifest store.",
+    "closure_demonstration": "PASS when manifest hash mismatch blocks run start; BOUNDARY: parallel manifest rewrites must fail with write-once violation.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The ingredient-manifest guarantee is ACCEPTED' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The ingredient-manifest guarantee is ACCEPTED' directly, then bind them to this composite id (Doc 17::A17.16)."
+    }
+  },
+  {
+    "review_id": "REQ-188",
+    "composite_id": "Doc 17::A17.17",
+    "workbook_row": 189,
+    "intended_outcome": "CUDA/PyTorch is installed \u2014 RESOLVED",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B141-B142",
+      "interpretation": "CUDA/PyTorch is installed \u2014 RESOLVED"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/gpu_execution/cuda_runtime.py",
+      "lines": "26-43",
+      "hash": "b6cd14c95bcf41226350342207ccd08275e8008733529351fc5206bf3ebac313",
+      "actualbehavior": "GPU/CPU mode is explicit env-gated with import-time refusal on unset/invalid mode."
+    },
+    "exact_gap": "Execution-mode gate is implemented, but installed-cuda/toolkit compatibility proof is outside this code surface in current receipts.",
+    "required_action": "Add startup capability probe receipt (driver/toolkit/version) linked to run envelope before gpu mode acceptance.",
+    "closure_demonstration": "PASS when gpu mode refuses missing probe receipt; BOUNDARY: probe stale after node migration must invalidate mode.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'CUDA/PyTorch is installed \u2014 RESOLVED' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'CUDA/PyTorch is installed \u2014 RESOLVED' directly, then bind them to this composite id (Doc 17::A17.17)."
+    }
+  },
+  {
+    "review_id": "REQ-189",
+    "composite_id": "Doc 17::A17.18",
+    "workbook_row": 190,
+    "intended_outcome": "Codec choice \u2014 RESOLVED, not open",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B143-B144",
+      "interpretation": "Codec choice \u2014 RESOLVED, not open"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/audio_codec/pretraining_contract_v1.py",
+      "lines": "49-115",
+      "hash": "1ea8b293bc003060b849e6b4a186a6dcf4e82f51c5b99d1675649a27eb1cec19",
+      "actualbehavior": "Codec path is explicitly honest-gap with fail-closed posture and deferred codec choice."
+    },
+    "exact_gap": "Doc claim says codec choice unresolved; code keeps this as intentional honest gap, so capability remains unlanded by design.",
+    "required_action": "Keep deferred marker but add governance ticket id + target close criteria in registry row for traceable unresolved state.",
+    "closure_demonstration": "PASS when unresolved codec rows carry defer_ticket and cannot be marked production-ready; FAULT: unresolved rows accidentally promoted.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "\u2014 (see heading)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014 (see heading), so 'Codec choice \u2014 RESOLVED, not open' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.18 (\u2014 (see heading)) first, then define implementation/test closure criteria for 'Codec choice \u2014 RESOLVED, not open'."
+    }
+  },
+  {
+    "review_id": "REQ-190",
+    "composite_id": "Doc 17::A17.19",
+    "workbook_row": 191,
+    "intended_outcome": "Owner-level decisions \u2014 three ruled, one still open",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B145-B153",
+      "interpretation": "Owner-level decisions \u2014 three ruled, one still open"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/character_register_write_boundary_v1.py",
+      "lines": "220-315",
+      "hash": "d33ceec8093226ac4fe39cce4cfc2a51dd708f010a01c6f2796bcc5fdf94f553",
+      "actualbehavior": "Named-cluster write boundary blocks biometric leakage paths and enforces learned/group constraints; owner-rule-specific sub-decisions are spread across modules without single signed ruling bundle."
+    },
+    "exact_gap": "Cluster decision seams exist, but consolidated owner-decision artifact and explicit distance-witness proof for protected-voice egress are not evidenced in this row set.",
+    "required_action": "Create owner_decision_bundle contract tying each A17.19(a-d) decision to executable checks and distance-witness receipts.",
+    "closure_demonstration": "PASS when cluster commit requires complete decision bundle + distance witness; BOUNDARY: conflicting owner rulings must refuse merge.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "\u2014 (see heading)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014 (see heading), so 'Owner-level decisions \u2014 three ruled, one still open' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.19 (\u2014 (see heading)) first, then define implementation/test closure criteria for 'Owner-level decisions \u2014 three ruled, one still open'."
+    }
+  },
+  {
+    "review_id": "REQ-191",
+    "composite_id": "Doc 17::A17.19a",
+    "workbook_row": 192,
+    "intended_outcome": "Minimum group size N (\u00a76.2): inherits the platform",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B146-B147",
+      "interpretation": "Minimum group size N (\u00a76.2): inherits the platform"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/character_register_write_boundary_v1.py",
+      "lines": "220-315",
+      "hash": "d33ceec8093226ac4fe39cce4cfc2a51dd708f010a01c6f2796bcc5fdf94f553",
+      "actualbehavior": "Named-cluster write boundary blocks biometric leakage paths and enforces learned/group constraints; owner-rule-specific sub-decisions are spread across modules without single signed ruling bundle."
+    },
+    "exact_gap": "Cluster decision seams exist, but consolidated owner-decision artifact and explicit distance-witness proof for protected-voice egress are not evidenced in this row set.",
+    "required_action": "Create owner_decision_bundle contract tying each A17.19(a-d) decision to executable checks and distance-witness receipts.",
+    "closure_demonstration": "PASS when cluster commit requires complete decision bundle + distance witness; BOUNDARY: conflicting owner rulings must refuse merge.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Minimum group size N (\u00a76.2): inherits the platform' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Minimum group size N (\u00a76.2): inherits the platform' directly, then bind them to this composite id (Doc 17::A17.19a)."
+    }
+  },
+  {
+    "review_id": "REQ-192",
+    "composite_id": "Doc 17::A17.19b",
+    "workbook_row": 193,
+    "intended_outcome": "Default gate_policy: GATES release",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B148-B149",
+      "interpretation": "Default gate_policy: GATES release"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/character_register_write_boundary_v1.py",
+      "lines": "220-315",
+      "hash": "d33ceec8093226ac4fe39cce4cfc2a51dd708f010a01c6f2796bcc5fdf94f553",
+      "actualbehavior": "Named-cluster write boundary blocks biometric leakage paths and enforces learned/group constraints; owner-rule-specific sub-decisions are spread across modules without single signed ruling bundle."
+    },
+    "exact_gap": "Cluster decision seams exist, but consolidated owner-decision artifact and explicit distance-witness proof for protected-voice egress are not evidenced in this row set.",
+    "required_action": "Create owner_decision_bundle contract tying each A17.19(a-d) decision to executable checks and distance-witness receipts.",
+    "closure_demonstration": "PASS when cluster commit requires complete decision bundle + distance witness; BOUNDARY: conflicting owner rulings must refuse merge.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Default gate_policy: GATES release' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Default gate_policy: GATES release' directly, then bind them to this composite id (Doc 17::A17.19b)."
+    }
+  },
+  {
+    "review_id": "REQ-193",
+    "composite_id": "Doc 17::A17.19c",
+    "workbook_row": 194,
+    "intended_outcome": "Cluster naming validation: internal by default, external escalation for ambiguous or sensitive clusters",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B150-B151",
+      "interpretation": "Cluster naming validation: internal by default, external escalation for ambiguous or sensitive clusters"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/character_register_write_boundary_v1.py",
+      "lines": "220-315",
+      "hash": "d33ceec8093226ac4fe39cce4cfc2a51dd708f010a01c6f2796bcc5fdf94f553",
+      "actualbehavior": "Named-cluster write boundary blocks biometric leakage paths and enforces learned/group constraints; owner-rule-specific sub-decisions are spread across modules without single signed ruling bundle."
+    },
+    "exact_gap": "Cluster decision seams exist, but consolidated owner-decision artifact and explicit distance-witness proof for protected-voice egress are not evidenced in this row set.",
+    "required_action": "Create owner_decision_bundle contract tying each A17.19(a-d) decision to executable checks and distance-witness receipts.",
+    "closure_demonstration": "PASS when cluster commit requires complete decision bundle + distance witness; BOUNDARY: conflicting owner rulings must refuse merge.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Cluster naming validation: internal by default, external escalation for ambiguous or sensitive clusters' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Cluster naming validation: internal by default, external escalation for ambiguous or sensitive clusters' directly, then bind them to this composite id (Doc 17::A17.19c)."
+    }
+  },
+  {
+    "review_id": "REQ-194",
+    "composite_id": "Doc 17::A17.19d",
+    "workbook_row": 195,
+    "intended_outcome": "Baseline-tier contents (\u00a79.2) remain open \u2014 not part of this ruling round",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B152-B153",
+      "interpretation": "Baseline-tier contents (\u00a79.2) remain open \u2014 not part of this ruling round"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/character_register_write_boundary_v1.py",
+      "lines": "220-315",
+      "hash": "d33ceec8093226ac4fe39cce4cfc2a51dd708f010a01c6f2796bcc5fdf94f553",
+      "actualbehavior": "Named-cluster write boundary blocks biometric leakage paths and enforces learned/group constraints; owner-rule-specific sub-decisions are spread across modules without single signed ruling bundle."
+    },
+    "exact_gap": "Cluster decision seams exist, but consolidated owner-decision artifact and explicit distance-witness proof for protected-voice egress are not evidenced in this row set.",
+    "required_action": "Create owner_decision_bundle contract tying each A17.19(a-d) decision to executable checks and distance-witness receipts.",
+    "closure_demonstration": "PASS when cluster commit requires complete decision bundle + distance witness; BOUNDARY: conflicting owner rulings must refuse merge.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "OPEN",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is OPEN, so 'Baseline-tier contents (\u00a79.2) remain open \u2014 not part of this ruling round' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.19d (OPEN) first, then define implementation/test closure criteria for 'Baseline-tier contents (\u00a79.2) remain open \u2014 not part of this ruling round'."
+    }
+  },
+  {
+    "review_id": "REQ-195",
+    "composite_id": "Doc 17::A17.2",
+    "workbook_row": 196,
+    "intended_outcome": "The seat ships empty",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B101-B102",
+      "interpretation": "The seat ships empty"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/training_params_v0.py",
+      "lines": "1-111",
+      "hash": "8e32c99cbb08e18e8343f92f076ea473d8aed54ffb1d75f98ae5d1b40fdd630b",
+      "actualbehavior": "Training params contract externalizes configuration and stores strata/target/floor metadata; does not itself ensure full autonomous objective-shaping workflow completion."
+    },
+    "exact_gap": "Configuration-outside-code is present, but automation envelope still relies on upstream orchestration not fully closed in this package.",
+    "required_action": "Require objective-freeze receipt and training-plan receipt refs as mandatory TrainingParamsV0 fields.",
+    "closure_demonstration": "PASS when params creation refuses missing freeze/plan refs; FAULT: stale refs after objective edits.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The seat ships empty' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The seat ships empty' directly, then bind them to this composite id (Doc 17::A17.2)."
+    }
+  },
+  {
+    "review_id": "REQ-196",
+    "composite_id": "Doc 17::A17.20",
+    "workbook_row": 197,
+    "intended_outcome": "Build sequence, ordered by dependency and cost of deferral \u2014 not by size",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B154-B179",
+      "interpretation": "Build sequence, ordered by dependency and cost of deferral \u2014 not by size"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "70-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Build sequence appears as seeded rule ids with pending_override class; executable dependency scheduler for sequence enforcement not shown here."
+    },
+    "exact_gap": "Sequence is represented declaratively only; dependency-ordered execution guard is not demonstrated in inspected code.",
+    "required_action": "Add sequence planner that enforces prerequisite completion receipts before unlocking downstream build steps.",
+    "closure_demonstration": "PASS when later-stage step refuses without prerequisite receipt chain; RACE: simultaneous unlock attempts must serialize.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "\u2014 (see heading)",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014 (see heading), so 'Build sequence, ordered by dependency and cost of deferral \u2014 not by size' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 17::A17.20 (\u2014 (see heading)) first, then define implementation/test closure criteria for 'Build sequence, ordered by dependency and cost of deferral \u2014 not by size'."
+    }
+  },
+  {
+    "review_id": "REQ-197",
+    "composite_id": "Doc 17::A17.3",
+    "workbook_row": 198,
+    "intended_outcome": "Lineage extends to configuration",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B103-B104",
+      "interpretation": "Lineage extends to configuration"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/training_params_v0.py",
+      "lines": "1-111",
+      "hash": "8e32c99cbb08e18e8343f92f076ea473d8aed54ffb1d75f98ae5d1b40fdd630b",
+      "actualbehavior": "Training params contract externalizes configuration and stores strata/target/floor metadata; does not itself ensure full autonomous objective-shaping workflow completion."
+    },
+    "exact_gap": "Configuration-outside-code is present, but automation envelope still relies on upstream orchestration not fully closed in this package.",
+    "required_action": "Require objective-freeze receipt and training-plan receipt refs as mandatory TrainingParamsV0 fields.",
+    "closure_demonstration": "PASS when params creation refuses missing freeze/plan refs; FAULT: stale refs after objective edits.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Lineage extends to configuration' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Lineage extends to configuration' directly, then bind them to this composite id (Doc 17::A17.3)."
+    }
+  },
+  {
+    "review_id": "REQ-198",
+    "composite_id": "Doc 17::A17.4",
+    "workbook_row": 199,
+    "intended_outcome": "Revision is DEFAULT-class, but never unevidenced",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B105-B106",
+      "interpretation": "Revision is DEFAULT-class, but never unevidenced"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/training_params_v0.py",
+      "lines": "1-111",
+      "hash": "8e32c99cbb08e18e8343f92f076ea473d8aed54ffb1d75f98ae5d1b40fdd630b",
+      "actualbehavior": "Training params contract externalizes configuration and stores strata/target/floor metadata; does not itself ensure full autonomous objective-shaping workflow completion."
+    },
+    "exact_gap": "Configuration-outside-code is present, but automation envelope still relies on upstream orchestration not fully closed in this package.",
+    "required_action": "Require objective-freeze receipt and training-plan receipt refs as mandatory TrainingParamsV0 fields.",
+    "closure_demonstration": "PASS when params creation refuses missing freeze/plan refs; FAULT: stale refs after objective edits.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Revision is DEFAULT-class, but never unevidenced' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Revision is DEFAULT-class, but never unevidenced' directly, then bind them to this composite id (Doc 17::A17.4)."
+    }
+  },
+  {
+    "review_id": "REQ-199",
+    "composite_id": "Doc 17::A17.5\u2013A17.6",
+    "workbook_row": 200,
+    "intended_outcome": "The optimizer-selection protocol: two arms, identical conditions, parity mandatory",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B107-B108",
+      "interpretation": "The optimizer-selection protocol: two arms, identical conditions, parity mandatory"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training/optimizer_harness.py",
+      "lines": "124-230",
+      "hash": "c2f9c875bebd31da0b452e3742852a35d52a362d3678c706e18c4ad1207dee36",
+      "actualbehavior": "Two-arm harness records baseline/muon metrics and blocks adoption on quality-parity breach; emits adopted verdict for recipe fill."
+    },
+    "exact_gap": "Harness exists, but closure receipts proving production-run parity on real workloads are not included in this evidence slice.",
+    "required_action": "Attach real-run metric provenance refs to every arm measurement and expose mismatch refusals in run receipts.",
+    "closure_demonstration": "PASS when adopted verdict requires both arm provenance refs + uncurated flags true; BOUNDARY: replayed arm payload must be rejected.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The optimizer-selection protocol: two arms, identical conditions, parity mandatory' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The optimizer-selection protocol: two arms, identical conditions, parity mandatory' directly, then bind them to this composite id (Doc 17::A17.5\u2013A17.6)."
+    }
+  },
+  {
+    "review_id": "REQ-200",
+    "composite_id": "Doc 17::A17.7",
+    "workbook_row": 201,
+    "intended_outcome": "Ensemble critics detect; they never decide",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B109-B110",
+      "interpretation": "Ensemble critics detect; they never decide"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/training_runner/runner.py",
+      "lines": "309-430",
+      "hash": "50429834ed8eef19d1d7f5d58e6e37244e70cb17d83d62815acb031374070b84",
+      "actualbehavior": "Runner computes skeleton phase receipts and closes with status transitions but does not invoke external heavy training backend."
+    },
+    "exact_gap": "Ensemble policy is represented at schema level but not bound to actual multi-model execution outcomes in this module.",
+    "required_action": "Add ensemble execution receipt schema and require per-ensemble-member outcome refs before completion.",
+    "closure_demonstration": "PASS when completion refuses missing ensemble_member_receipts; RACE: member late-arrival after close must invalidate close token.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Ensemble critics detect; they never decide' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Ensemble critics detect; they never decide' directly, then bind them to this composite id (Doc 17::A17.7)."
+    }
+  },
+  {
+    "review_id": "REQ-201",
+    "composite_id": "Doc 17::A17.8",
+    "workbook_row": 202,
+    "intended_outcome": "Cascade offload builds only against a measured shortfall, never speculatively",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B111-B112",
+      "interpretation": "Cascade offload builds only against a measured shortfall, never speculatively"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/gate.py",
+      "lines": "83-110",
+      "hash": "88bd4432dd94872a353a395d3dd7458f5fcacc57cb03729f9ee689d8f59dad7e",
+      "actualbehavior": "Yield gate enforces candidate set invariance and returns deterministic gate version marker."
+    },
+    "exact_gap": "Recipe-yield guard exists, but measured shortfall triggers and rollback orchestration are not evidenced in current module set.",
+    "required_action": "Add shortfall detector tied to objective floor breaches with auto-halt + rollback receipt.",
+    "closure_demonstration": "PASS when floor breach creates shortfall receipt and blocks publish path; BOUNDARY: duplicate breach events should dedupe by run.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Cascade offload builds only against a measured shortfall, never speculatively' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Cascade offload builds only against a measured shortfall, never speculatively' directly, then bind them to this composite id (Doc 17::A17.8)."
+    }
+  },
+  {
+    "review_id": "REQ-202",
+    "composite_id": "Doc 17::A17.9",
+    "workbook_row": 203,
+    "intended_outcome": "Execution mode is explicit or the process refuses to start",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B113-B114",
+      "interpretation": "Execution mode is explicit or the process refuses to start"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/model_admission/ceremony.py",
+      "lines": "126-233",
+      "hash": "3fdc2f782c1c7e553999ae4cadbd107801cba9d17dcd1c7d5cc6e186e0919846",
+      "actualbehavior": "Admission ceremony validates card lineage/floors and writes refusal/admit records; registry write performed on pass."
+    },
+    "exact_gap": "Implementation exists, but statement-level \u201cstill open\u201d policy markers and owner closure evidence are not bundled in one trace artifact.",
+    "required_action": "Emit admission closure receipt linking policy version, card hash, and registry version bump in one immutable record.",
+    "closure_demonstration": "PASS when each admit has closure_receipt_id resolvable to policy version; BOUNDARY: policy version drift between validate and write must refuse.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Execution mode is explicit or the process refuses to start' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Execution mode is explicit or the process refuses to start' directly, then bind them to this composite id (Doc 17::A17.9)."
+    }
+  },
+  {
+    "review_id": "REQ-203",
+    "composite_id": "Doc 20::A20.1",
+    "workbook_row": 204,
+    "intended_outcome": "Qwen3 / Qwen3.5 (Alibaba) \u2014 Apache 2.0, text generation candidate",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B358",
+      "interpretation": "Qwen3 / Qwen3.5 (Alibaba) \u2014 Apache 2.0, text generation candidate"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "9c493c6df570bda62c3f1949eb3cc80de44e5af16bc030f479825f79f01ccb4f",
+      "actualbehavior": "Registry already lists open-weight candidates with provider/license metadata."
+    },
+    "exact_gap": "Candidate listing exists but not bound to customer-facing policy gates by capability class in this module alone.",
+    "required_action": "Add capability-class field and enforce downstream selection policy to keep rows non-user-facing until admitted.",
+    "closure_demonstration": "PASS when unadmitted candidate cannot appear in objective compile options; FAULT: direct API bypass exposes candidate.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Qwen3 / Qwen3.5 (Alibaba) \u2014 Apache 2.0, text generation candidate' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Qwen3 / Qwen3.5 (Alibaba) \u2014 Apache 2.0, text generation candidate' directly, then bind them to this composite id (Doc 20::A20.1)."
+    }
+  },
+  {
+    "review_id": "REQ-204",
+    "composite_id": "Doc 20::A20.10",
+    "workbook_row": 205,
+    "intended_outcome": "Pixtral 12B (Mistral) \u2014 Apache 2.0. Smaller and cheaper to serve than the 70B-class options above; the right candidate where the task's constraints (\u00a710.1) cap latency or",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B369",
+      "interpretation": "Pixtral 12B (Mistral) \u2014 Apache 2.0. Smaller and cheaper to serve than the 70B-class options above; the right candidate where the task's constraints (\u00a710.1) cap latency or"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Pixtral 12B (Mistral) \u2014 Apache 2.0. Smaller and cheaper to serve than the 70B-class options above; the right candidate where the task's constraints (\u00a710.1) cap latency or' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.10 (PROPOSED) first, then define implementation/test closure criteria for 'Pixtral 12B (Mistral) \u2014 Apache 2.0. Smaller and cheaper to serve than the 70B-class options above; the right candidate where the task's constraints (\u00a710.1) cap latency or'."
+    }
+  },
+  {
+    "review_id": "REQ-205",
+    "composite_id": "Doc 20::A20.11",
+    "workbook_row": 206,
+    "intended_outcome": "Audio's resolution rule is not this document's to set. Document 17 A17.10\u2013A17.11 already rules it: whisper-tiny is CI-fixture-only; production selection lands additively ",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B371",
+      "interpretation": "Audio's resolution rule is not this document's to set. Document 17 A17.10\u2013A17.11 already rules it: whisper-tiny is CI-fixture-only; production selection lands additively "
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Audio's resolution rule is not this document's to set. Document 17 A17.10\u2013A17.11 already rules it: whisper-tiny is CI-fixture-only; production selection lands additively ' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Audio's resolution rule is not this document's to set. Document 17 A17.10\u2013A17.11 already rules it: whisper-tiny is CI-fixture-only; production selection lands additively ' directly, then bind them to this composite id (Doc 20::A20.11)."
+    }
+  },
+  {
+    "review_id": "REQ-206",
+    "composite_id": "Doc 20::A20.12",
+    "workbook_row": 207,
+    "intended_outcome": "A stated objective resolves to exactly one dimension at wizard compile time, on the same deterministic basis TargetOutcome's population resolves to register strata. An ob",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B373",
+      "interpretation": "A stated objective resolves to exactly one dimension at wizard compile time, on the same deterministic basis TargetOutcome's population resolves to register strata. An ob"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'A stated objective resolves to exactly one dimension at wizard compile time, on the same deterministic basis TargetOutcome's population resolves to register strata. An ob' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.12 (PROPOSED) first, then define implementation/test closure criteria for 'A stated objective resolves to exactly one dimension at wizard compile time, on the same deterministic basis TargetOutcome's population resolves to register strata. An ob'."
+    }
+  },
+  {
+    "review_id": "REQ-207",
+    "composite_id": "Doc 20::A20.13",
+    "workbook_row": 208,
+    "intended_outcome": "Where a dimension holds one eligible license-verified candidate, it is used. Where it holds more than one (as document and vision now do), calibration's mandatory first s",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B374",
+      "interpretation": "Where a dimension holds one eligible license-verified candidate, it is used. Where it holds more than one (as document and vision now do), calibration's mandatory first s"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Where a dimension holds one eligible license-verified candidate, it is used. Where it holds more than one (as document and vision now do), calibration's mandatory first s' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.13 (PROPOSED) first, then define implementation/test closure criteria for 'Where a dimension holds one eligible license-verified candidate, it is used. Where it holds more than one (as document and vision now do), calibration's mandatory first s'."
+    }
+  },
+  {
+    "review_id": "REQ-208",
+    "composite_id": "Doc 20::A20.14",
+    "workbook_row": 209,
+    "intended_outcome": "No candidate is ever surfaced as a user-facing choice, at any point in the wizard flow. This is a compile-time discipline, structurally identical to \u00a717.4d's rule that a ",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B375",
+      "interpretation": "No candidate is ever surfaced as a user-facing choice, at any point in the wizard flow. This is a compile-time discipline, structurally identical to \u00a717.4d's rule that a "
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'No candidate is ever surfaced as a user-facing choice, at any point in the wizard flow. This is a compile-time discipline, structurally identical to \u00a717.4d's rule that a ' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.14 (PROPOSED) first, then define implementation/test closure criteria for 'No candidate is ever surfaced as a user-facing choice, at any point in the wizard flow. This is a compile-time discipline, structurally identical to \u00a717.4d's rule that a '."
+    }
+  },
+  {
+    "review_id": "REQ-209",
+    "composite_id": "Doc 20::A20.2",
+    "workbook_row": 210,
+    "intended_outcome": "Llama (Meta) \u2014 comparison arm; commercial-use gated, license verified and checksummed at acquisition, not at registration",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B359",
+      "interpretation": "Llama (Meta) \u2014 comparison arm; commercial-use gated, license verified and checksummed at acquisition, not at registration"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/models_registry.v0.json",
+      "lines": "1-69",
+      "hash": "9c493c6df570bda62c3f1949eb3cc80de44e5af16bc030f479825f79f01ccb4f",
+      "actualbehavior": "Registry already lists open-weight candidates with provider/license metadata."
+    },
+    "exact_gap": "Candidate listing exists but not bound to customer-facing policy gates by capability class in this module alone.",
+    "required_action": "Add capability-class field and enforce downstream selection policy to keep rows non-user-facing until admitted.",
+    "closure_demonstration": "PASS when unadmitted candidate cannot appear in objective compile options; FAULT: direct API bypass exposes candidate.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: review used docx-derived source_text block anchors + repository code/receipts only; no runtime/API/DB/provider/GPU execution.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Llama (Meta) \u2014 comparison arm; commercial-use gated, license verified and checksummed at acquisition, not at registration' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Llama (Meta) \u2014 comparison arm; commercial-use gated, license verified and checksummed at acquisition, not at registration' directly, then bind them to this composite id (Doc 20::A20.2)."
+    }
+  },
+  {
+    "review_id": "REQ-210",
+    "composite_id": "Doc 20::A20.3",
+    "workbook_row": 211,
+    "intended_outcome": "Qwen2.5-VL / Qwen3-VL (Alibaba) \u2014 Apache 2.0 at 7B/32B. Mixed OCR and document understanding in one model \u2014 text, tables, charts, formulas, handwriting \u2014 at roughly GPT-4",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B361",
+      "interpretation": "Qwen2.5-VL / Qwen3-VL (Alibaba) \u2014 Apache 2.0 at 7B/32B. Mixed OCR and document understanding in one model \u2014 text, tables, charts, formulas, handwriting \u2014 at roughly GPT-4"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Qwen2.5-VL / Qwen3-VL (Alibaba) \u2014 Apache 2.0 at 7B/32B. Mixed OCR and document understanding in one model \u2014 text, tables, charts, formulas, handwriting \u2014 at roughly GPT-4' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.3 (PROPOSED) first, then define implementation/test closure criteria for 'Qwen2.5-VL / Qwen3-VL (Alibaba) \u2014 Apache 2.0 at 7B/32B. Mixed OCR and document understanding in one model \u2014 text, tables, charts, formulas, handwriting \u2014 at roughly GPT-4'."
+    }
+  },
+  {
+    "review_id": "REQ-211",
+    "composite_id": "Doc 20::A20.4",
+    "workbook_row": 212,
+    "intended_outcome": "GOT-OCR2 (StepFun) \u2014 Apache 2.0, 580M parameters. The leading dedicated pure-OCR model \u2014 plain text, formatted text, tables, and math formulas \u2014 where a lighter, cheaper ",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B362",
+      "interpretation": "GOT-OCR2 (StepFun) \u2014 Apache 2.0, 580M parameters. The leading dedicated pure-OCR model \u2014 plain text, formatted text, tables, and math formulas \u2014 where a lighter, cheaper "
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'GOT-OCR2 (StepFun) \u2014 Apache 2.0, 580M parameters. The leading dedicated pure-OCR model \u2014 plain text, formatted text, tables, and math formulas \u2014 where a lighter, cheaper ' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.4 (PROPOSED) first, then define implementation/test closure criteria for 'GOT-OCR2 (StepFun) \u2014 Apache 2.0, 580M parameters. The leading dedicated pure-OCR model \u2014 plain text, formatted text, tables, and math formulas \u2014 where a lighter, cheaper '."
+    }
+  },
+  {
+    "review_id": "REQ-212",
+    "composite_id": "Doc 20::A20.5",
+    "workbook_row": 213,
+    "intended_outcome": "PaddleOCR-VL \u2014 Apache 2.0. Strongest multilingual coverage found (100+ languages), mature table and layout recognition, the most production-battle-tested open OCR pipelin",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B363",
+      "interpretation": "PaddleOCR-VL \u2014 Apache 2.0. Strongest multilingual coverage found (100+ languages), mature table and layout recognition, the most production-battle-tested open OCR pipelin"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'PaddleOCR-VL \u2014 Apache 2.0. Strongest multilingual coverage found (100+ languages), mature table and layout recognition, the most production-battle-tested open OCR pipelin' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.5 (PROPOSED) first, then define implementation/test closure criteria for 'PaddleOCR-VL \u2014 Apache 2.0. Strongest multilingual coverage found (100+ languages), mature table and layout recognition, the most production-battle-tested open OCR pipelin'."
+    }
+  },
+  {
+    "review_id": "REQ-213",
+    "composite_id": "Doc 20::A20.6",
+    "workbook_row": 214,
+    "intended_outcome": "ColPali v1.3 \u2014 MIT. Not OCR at all: embeds document pages directly for retrieval, bypassing text extraction entirely. Named as a candidate for the document dimension's re",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B364",
+      "interpretation": "ColPali v1.3 \u2014 MIT. Not OCR at all: embeds document pages directly for retrieval, bypassing text extraction entirely. Named as a candidate for the document dimension's re"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'ColPali v1.3 \u2014 MIT. Not OCR at all: embeds document pages directly for retrieval, bypassing text extraction entirely. Named as a candidate for the document dimension's re' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.6 (PROPOSED) first, then define implementation/test closure criteria for 'ColPali v1.3 \u2014 MIT. Not OCR at all: embeds document pages directly for retrieval, bypassing text extraction entirely. Named as a candidate for the document dimension's re'."
+    }
+  },
+  {
+    "review_id": "REQ-214",
+    "composite_id": "Doc 20::A20.7",
+    "workbook_row": 215,
+    "intended_outcome": "Qwen2.5-VL-72B \u2014 Apache 2.0. Leads open-weight vision benchmarks generally (\u2248888 OCRBench); the largest-scale option in the family already trusted for A20.1 and A20.3",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B366",
+      "interpretation": "Qwen2.5-VL-72B \u2014 Apache 2.0. Leads open-weight vision benchmarks generally (\u2248888 OCRBench); the largest-scale option in the family already trusted for A20.1 and A20.3"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Qwen2.5-VL-72B \u2014 Apache 2.0. Leads open-weight vision benchmarks generally (\u2248888 OCRBench); the largest-scale option in the family already trusted for A20.1 and A20.3' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.7 (PROPOSED) first, then define implementation/test closure criteria for 'Qwen2.5-VL-72B \u2014 Apache 2.0. Leads open-weight vision benchmarks generally (\u2248888 OCRBench); the largest-scale option in the family already trusted for A20.1 and A20.3'."
+    }
+  },
+  {
+    "review_id": "REQ-215",
+    "composite_id": "Doc 20::A20.8",
+    "workbook_row": 216,
+    "intended_outcome": "InternVL3-78B (Shanghai AI Lab) \u2014 MIT. The strongest permissively-licensed alternative where Qwen's Apache terms are for any reason insufficient \u2014 \u224872% MMMU, no commercia",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B367",
+      "interpretation": "InternVL3-78B (Shanghai AI Lab) \u2014 MIT. The strongest permissively-licensed alternative where Qwen's Apache terms are for any reason insufficient \u2014 \u224872% MMMU, no commercia"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'InternVL3-78B (Shanghai AI Lab) \u2014 MIT. The strongest permissively-licensed alternative where Qwen's Apache terms are for any reason insufficient \u2014 \u224872% MMMU, no commercia' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.8 (PROPOSED) first, then define implementation/test closure criteria for 'InternVL3-78B (Shanghai AI Lab) \u2014 MIT. The strongest permissively-licensed alternative where Qwen's Apache terms are for any reason insufficient \u2014 \u224872% MMMU, no commercia'."
+    }
+  },
+  {
+    "review_id": "REQ-216",
+    "composite_id": "Doc 20::A20.9",
+    "workbook_row": 217,
+    "intended_outcome": "Llama 4 multimodal, Maverick and Scout (Meta) \u2014 Llama Community License, commercial-use gated same as A20.2. Leads MMMU outright (\u224873.4%) among the candidates found; the ",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx",
+      "anchor": "B368",
+      "interpretation": "Llama 4 multimodal, Maverick and Scout (Meta) \u2014 Llama Community License, commercial-use gated same as A20.2. Leads MMMU outright (\u224873.4%) among the candidates found; the "
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/rules_service/rule_book_seed.jsonl",
+      "lines": "81-94",
+      "hash": "cac3a5266dd9cf44cd81c4d3aac05d79d69aae8b72279a9b509c8afd7e9bef8c",
+      "actualbehavior": "Doc20 rules are seeded as pending_override identifiers only; no executable candidate-evaluation pipeline by rule dimension is present here."
+    },
+    "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+    "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state.",
+    "closure_demonstration": "PASS when each A20.x rule has executable test producing measured receipt and registry state transition; FAULT: metadata-only rows treated as proven.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/code/test/receipt inspection only (no runtime/API/DB/provider/GPU calls).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "Base canon"
+    },
+    "evidence_limit": "SOURCElimitsbounded: Doc20 rows cite current-web-research candidate statements, but this repo slice includes only seed metadata (no measured candidate evidence pack).",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Llama 4 multimodal, Maverick and Scout (Meta) \u2014 Llama Community License, commercial-use gated same as A20.2. Leads MMMU outright (\u224873.4%) among the candidates found; the ' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 20::A20.9 (PROPOSED) first, then define implementation/test closure criteria for 'Llama 4 multimodal, Maverick and Scout (Meta) \u2014 Llama Community License, commercial-use gated same as A20.2. Leads MMMU outright (\u224873.4%) among the candidates found; the '."
+    }
+  }
+]

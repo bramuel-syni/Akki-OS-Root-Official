@@ -1,0 +1,2594 @@
+[
+  {
+    "review_id": "REQ-073",
+    "composite_id": "Doc 6::A5.5",
+    "workbook_row": 74,
+    "intended_outcome": "Truthful core promise delivery for Minimal-sufficient is defined per task type, not guessed per call under #17 \u2014 PROGRESSIVE DISCLOSURE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/06_Direction_Scope_and_Focus_Part_2_Progressive_Disclosure.docx",
+      "anchor": "B39-B40",
+      "interpretation": "Minimal-sufficient is defined per task type, not guessed per call"
+    },
+    "code_evidence": {
+      "path": "/app/backend/tests/census_operational/test_live_api_contract.py",
+      "lines": "106-146",
+      "hash": "7e914f5fb3c1293ab64d3c3ba9438bdeee2d39f8a8eac8e9c5de7832b1cba65c",
+      "actualbehavior": "Live tests cover aggregate census outputs; no minimal-sufficient freeze check."
+    },
+    "exact_gap": "No executable admit-time computation stores a minimal-sufficient disclosure set per task type.",
+    "required_action": "Add a disclosure planner seat that computes and freezes minimal-sufficient set at Admit and records bounded expansions.",
+    "closure_demonstration": "PASS when same task/scope yields same frozen initial slice; FAIL on per-call drift; RACE: parallel expansions must serialize.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Minimal-sufficient is defined per task type, not guessed per call' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Minimal-sufficient is defined per task type, not guessed per call' directly, then bind them to this composite id (Doc 6::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-074",
+    "composite_id": "Doc 5::B5.1",
+    "workbook_row": 75,
+    "intended_outcome": "Truthful core promise delivery for The freeze is atomic; the artifact is immutable for the run under #18 \u2014 OBJECTIVE PRESERVATION (Direction Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B64",
+      "interpretation": "The freeze is atomic; the artifact is immutable for the run"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/canon_doc5_northena/northena_b5_ledger.py",
+      "lines": "90-320",
+      "hash": "16be0194683f6ce565113596a096b61cfab4060c94ae2649c43430f64266e7df",
+      "actualbehavior": "Rule semantics are encoded as constants/scanners, not runtime gate checks."
+    },
+    "exact_gap": "Most B5 guarantees are declarative constants; runtime admit/freeze checks are incomplete.",
+    "required_action": "Bind B5 invariants to executable validators for both external and work-order admission paths.",
+    "closure_demonstration": "PASS on lawful-basis pre-check + immutable frozen artifact + append-only rows; FAIL on mutable live admission; RACE: idempotent retries must not fork artifacts.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The freeze is atomic; the artifact is immutable for the run' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The freeze is atomic; the artifact is immutable for the run' directly, then bind them to this composite id (Doc 5::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-075",
+    "composite_id": "Doc 5::B5.2",
+    "workbook_row": 76,
+    "intended_outcome": "Truthful core promise delivery for Lawful basis is enforced at Admit, before any extraction under #18 \u2014 OBJECTIVE PRESERVATION (Direction Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B65",
+      "interpretation": "Lawful basis is enforced at Admit, before any extraction"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/canon_doc5_northena/northena_b5_ledger.py",
+      "lines": "90-320",
+      "hash": "16be0194683f6ce565113596a096b61cfab4060c94ae2649c43430f64266e7df",
+      "actualbehavior": "Rule semantics are encoded as constants/scanners, not runtime gate checks."
+    },
+    "exact_gap": "Most B5 guarantees are declarative constants; runtime admit/freeze checks are incomplete.",
+    "required_action": "Bind B5 invariants to executable validators for both external and work-order admission paths.",
+    "closure_demonstration": "PASS on lawful-basis pre-check + immutable frozen artifact + append-only rows; FAIL on mutable live admission; RACE: idempotent retries must not fork artifacts.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Lawful basis is enforced at Admit, before any extraction' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Lawful basis is enforced at Admit, before any extraction' directly, then bind them to this composite id (Doc 5::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-076",
+    "composite_id": "Doc 5::B5.3",
+    "workbook_row": 77,
+    "intended_outcome": "Truthful core promise delivery for Two admission paths, both freezing the same way under #18 \u2014 OBJECTIVE PRESERVATION (Direction Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B66",
+      "interpretation": "Two admission paths, both freezing the same way"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/canon_doc5_northena/northena_b5_ledger.py",
+      "lines": "90-320",
+      "hash": "16be0194683f6ce565113596a096b61cfab4060c94ae2649c43430f64266e7df",
+      "actualbehavior": "Rule semantics are encoded as constants/scanners, not runtime gate checks."
+    },
+    "exact_gap": "Most B5 guarantees are declarative constants; runtime admit/freeze checks are incomplete.",
+    "required_action": "Bind B5 invariants to executable validators for both external and work-order admission paths.",
+    "closure_demonstration": "PASS on lawful-basis pre-check + immutable frozen artifact + append-only rows; FAIL on mutable live admission; RACE: idempotent retries must not fork artifacts.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Two admission paths, both freezing the same way' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Two admission paths, both freezing the same way' directly, then bind them to this composite id (Doc 5::B5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-077",
+    "composite_id": "Doc 5::B5.4",
+    "workbook_row": 78,
+    "intended_outcome": "Truthful core promise delivery for The Ledger writer exposes append only under #18 \u2014 OBJECTIVE PRESERVATION (Direction Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B67",
+      "interpretation": "The Ledger writer exposes append only"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/ledger.py",
+      "lines": "56-113",
+      "hash": "816ffb91af426945b4a60b41b2f3b3d805233661677d87951bbea58a96cb39ac",
+      "actualbehavior": "record() appends and refuses overwrite; no update/delete API."
+    },
+    "exact_gap": "Most B5 guarantees are declarative constants; runtime admit/freeze checks are incomplete.",
+    "required_action": "Bind B5 invariants to executable validators for both external and work-order admission paths.",
+    "closure_demonstration": "PASS on lawful-basis pre-check + immutable frozen artifact + append-only rows; FAIL on mutable live admission; RACE: idempotent retries must not fork artifacts.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The Ledger writer exposes append only' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The Ledger writer exposes append only' directly, then bind them to this composite id (Doc 5::B5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-078",
+    "composite_id": "Doc 5::B5.5",
+    "workbook_row": 79,
+    "intended_outcome": "Truthful core promise delivery for The stamp-audit side-channel is deliberately permissive under #18 \u2014 OBJECTIVE PRESERVATION (Direction Half).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx",
+      "anchor": "B68",
+      "interpretation": "The stamp-audit side-channel is deliberately permissive"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/canon_doc5_northena/northena_b5_ledger.py",
+      "lines": "90-320",
+      "hash": "16be0194683f6ce565113596a096b61cfab4060c94ae2649c43430f64266e7df",
+      "actualbehavior": "Rule semantics are encoded as constants/scanners, not runtime gate checks."
+    },
+    "exact_gap": "Most B5 guarantees are declarative constants; runtime admit/freeze checks are incomplete.",
+    "required_action": "Bind B5 invariants to executable validators for both external and work-order admission paths.",
+    "closure_demonstration": "PASS on lawful-basis pre-check + immutable frozen artifact + append-only rows; FAIL on mutable live admission; RACE: idempotent retries must not fork artifacts.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The stamp-audit side-channel is deliberately permissive' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The stamp-audit side-channel is deliberately permissive' directly, then bind them to this composite id (Doc 5::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-079",
+    "composite_id": "Doc 7::A5.1",
+    "workbook_row": 80,
+    "intended_outcome": "Truthful core promise delivery for The five-ring unit is a frozen contract under #19 \u2014 SHRINKAGE \u2014 CONTEXT PRESERVATION UNDER MASSIVE ESTATES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/07_Context_Preservation_Part_1_Shrinkage.docx",
+      "anchor": "B32",
+      "interpretation": "The five-ring unit is a frozen contract"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/five_rings.py",
+      "lines": "11-31,197-270,276-309",
+      "hash": "5d59da2a077d55f777d88df9ae09bd1ee0f21481fd0d6af3bd5ed9b76fd3c01e",
+      "actualbehavior": "Five-ring and re-extraction/defensibility contracts are defined at schema level."
+    },
+    "exact_gap": "Context-preservation promises are only partially enforced: ring contract exists, but partition/trace-faithfulness/runtime guards are incomplete.",
+    "required_action": "Add invariant tests for full ring presence, source-position handles, unqualified partitioning, and execution-trace fidelity.",
+    "closure_demonstration": "PASS when every served unit has 5 rings + resolvable handle + executed trace; FAIL on narrative trace or missing ring; RACE: unit/trace identity join must remain stable.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The five-ring unit is a frozen contract' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The five-ring unit is a frozen contract' directly, then bind them to this composite id (Doc 7::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-080",
+    "composite_id": "Doc 7::A5.2",
+    "workbook_row": 81,
+    "intended_outcome": "Truthful core promise delivery for Every unit carries a re-extraction handle under #19 \u2014 SHRINKAGE \u2014 CONTEXT PRESERVATION UNDER MASSIVE ESTATES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/07_Context_Preservation_Part_1_Shrinkage.docx",
+      "anchor": "B33",
+      "interpretation": "Every unit carries a re-extraction handle"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/five_rings.py",
+      "lines": "11-31,197-270,276-309",
+      "hash": "5d59da2a077d55f777d88df9ae09bd1ee0f21481fd0d6af3bd5ed9b76fd3c01e",
+      "actualbehavior": "Five-ring and re-extraction/defensibility contracts are defined at schema level."
+    },
+    "exact_gap": "Context-preservation promises are only partially enforced: ring contract exists, but partition/trace-faithfulness/runtime guards are incomplete.",
+    "required_action": "Add invariant tests for full ring presence, source-position handles, unqualified partitioning, and execution-trace fidelity.",
+    "closure_demonstration": "PASS when every served unit has 5 rings + resolvable handle + executed trace; FAIL on narrative trace or missing ring; RACE: unit/trace identity join must remain stable.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Every unit carries a re-extraction handle' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every unit carries a re-extraction handle' directly, then bind them to this composite id (Doc 7::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-081",
+    "composite_id": "Doc 7::A5.3",
+    "workbook_row": 82,
+    "intended_outcome": "Truthful core promise delivery for Qualification partitions degraded material out under #19 \u2014 SHRINKAGE \u2014 CONTEXT PRESERVATION UNDER MASSIVE ESTATES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/07_Context_Preservation_Part_1_Shrinkage.docx",
+      "anchor": "B34",
+      "interpretation": "Qualification partitions degraded material out"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/service.py",
+      "lines": "170-257",
+      "hash": "4a453e30a05f3d840ac7ff54d4a387db6f6f7252ad70358edcd1a9b5299c17f8",
+      "actualbehavior": "Service 1 emits admit/gate/converge rows but no full execution-trace payload."
+    },
+    "exact_gap": "Context-preservation promises are only partially enforced: ring contract exists, but partition/trace-faithfulness/runtime guards are incomplete.",
+    "required_action": "Add invariant tests for full ring presence, source-position handles, unqualified partitioning, and execution-trace fidelity.",
+    "closure_demonstration": "PASS when every served unit has 5 rings + resolvable handle + executed trace; FAIL on narrative trace or missing ring; RACE: unit/trace identity join must remain stable.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Qualification partitions degraded material out' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Qualification partitions degraded material out' directly, then bind them to this composite id (Doc 7::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-082",
+    "composite_id": "Doc 7::A5.4",
+    "workbook_row": 83,
+    "intended_outcome": "Truthful core promise delivery for The trace exists from the first commit and joins to the record under #19 \u2014 SHRINKAGE \u2014 CONTEXT PRESERVATION UNDER MASSIVE ESTATES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/07_Context_Preservation_Part_1_Shrinkage.docx",
+      "anchor": "B35",
+      "interpretation": "The trace exists from the first commit and joins to the record"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/service.py",
+      "lines": "170-257",
+      "hash": "4a453e30a05f3d840ac7ff54d4a387db6f6f7252ad70358edcd1a9b5299c17f8",
+      "actualbehavior": "Service 1 emits admit/gate/converge rows but no full execution-trace payload."
+    },
+    "exact_gap": "Context-preservation promises are only partially enforced: ring contract exists, but partition/trace-faithfulness/runtime guards are incomplete.",
+    "required_action": "Add invariant tests for full ring presence, source-position handles, unqualified partitioning, and execution-trace fidelity.",
+    "closure_demonstration": "PASS when every served unit has 5 rings + resolvable handle + executed trace; FAIL on narrative trace or missing ring; RACE: unit/trace identity join must remain stable.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The trace exists from the first commit and joins to the record' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The trace exists from the first commit and joins to the record' directly, then bind them to this composite id (Doc 7::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-083",
+    "composite_id": "Doc 7::A5.5",
+    "workbook_row": 84,
+    "intended_outcome": "Truthful core promise delivery for The trace is the executed reasoning, never a post-hoc narrative under #19 \u2014 SHRINKAGE \u2014 CONTEXT PRESERVATION UNDER MASSIVE ESTATES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/07_Context_Preservation_Part_1_Shrinkage.docx",
+      "anchor": "B36",
+      "interpretation": "The trace is the executed reasoning, never a post-hoc narrative"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/five_rings.py",
+      "lines": "11-31,197-270,276-309",
+      "hash": "5d59da2a077d55f777d88df9ae09bd1ee0f21481fd0d6af3bd5ed9b76fd3c01e",
+      "actualbehavior": "Five-ring and re-extraction/defensibility contracts are defined at schema level."
+    },
+    "exact_gap": "Context-preservation promises are only partially enforced: ring contract exists, but partition/trace-faithfulness/runtime guards are incomplete.",
+    "required_action": "Add invariant tests for full ring presence, source-position handles, unqualified partitioning, and execution-trace fidelity.",
+    "closure_demonstration": "PASS when every served unit has 5 rings + resolvable handle + executed trace; FAIL on narrative trace or missing ring; RACE: unit/trace identity join must remain stable.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The trace is the executed reasoning, never a post-hoc narrative' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The trace is the executed reasoning, never a post-hoc narrative' directly, then bind them to this composite id (Doc 7::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-084",
+    "composite_id": "Doc 7::A5.6",
+    "workbook_row": 85,
+    "intended_outcome": "Truthful core promise delivery for The transform reads stored intelligence, never a running tail under #19 \u2014 SHRINKAGE \u2014 CONTEXT PRESERVATION UNDER MASSIVE ESTATES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/07_Context_Preservation_Part_1_Shrinkage.docx",
+      "anchor": "B38",
+      "interpretation": "The transform reads stored intelligence, never a running tail"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census.py",
+      "lines": "61-75",
+      "hash": "53110a1dd178d5201542d04f2627dbc38f46c00c1aa6d548c72b000fb61d19aa",
+      "actualbehavior": "Transform path iterates stable input units; no live-tail reader in function."
+    },
+    "exact_gap": "Context-preservation promises are only partially enforced: ring contract exists, but partition/trace-faithfulness/runtime guards are incomplete.",
+    "required_action": "Add invariant tests for full ring presence, source-position handles, unqualified partitioning, and execution-trace fidelity.",
+    "closure_demonstration": "PASS when every served unit has 5 rings + resolvable handle + executed trace; FAIL on narrative trace or missing ring; RACE: unit/trace identity join must remain stable.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The transform reads stored intelligence, never a running tail' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The transform reads stored intelligence, never a running tail' directly, then bind them to this composite id (Doc 7::A5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-085",
+    "composite_id": "Doc 8::A5.1",
+    "workbook_row": 86,
+    "intended_outcome": "Truthful core promise delivery for One path by which a unit comes to exist under #20 \u2014 THE SMALL MEMORY SERVICE THE MODEL READS FROM.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B29",
+      "interpretation": "One path by which a unit comes to exist"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/service.py",
+      "lines": "178-237",
+      "hash": "4a453e30a05f3d840ac7ff54d4a387db6f6f7252ad70358edcd1a9b5299c17f8",
+      "actualbehavior": "Unit creation in inspected flow goes through compose_record+upsert."
+    },
+    "exact_gap": "Core memory-service shape exists but lacks estate-wide no-second-writer and densification outcome proofs.",
+    "required_action": "Add CI scan for unauthorized unit writers and KPI checks for warm-memory densification after answered objectives.",
+    "closure_demonstration": "PASS when only one writer path exists and warm-serve coverage monotonically increases; FAIL on reader-side writes; RACE: duplicate contribution ids must be rejected.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'One path by which a unit comes to exist' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'One path by which a unit comes to exist' directly, then bind them to this composite id (Doc 8::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-086",
+    "composite_id": "Doc 8::A5.2",
+    "workbook_row": 87,
+    "intended_outcome": "Truthful core promise delivery for The unit is the frozen seam between the two services under #20 \u2014 THE SMALL MEMORY SERVICE THE MODEL READS FROM.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B30",
+      "interpretation": "The unit is the frozen seam between the two services"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/contracts/five_rings.py",
+      "lines": "276-309",
+      "hash": "5d59da2a077d55f777d88df9ae09bd1ee0f21481fd0d6af3bd5ed9b76fd3c01e",
+      "actualbehavior": "NormalizedUnit is explicit frozen seam between builder and server."
+    },
+    "exact_gap": "Core memory-service shape exists but lacks estate-wide no-second-writer and densification outcome proofs.",
+    "required_action": "Add CI scan for unauthorized unit writers and KPI checks for warm-memory densification after answered objectives.",
+    "closure_demonstration": "PASS when only one writer path exists and warm-serve coverage monotonically increases; FAIL on reader-side writes; RACE: duplicate contribution ids must be rejected.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The unit is the frozen seam between the two services' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The unit is the frozen seam between the two services' directly, then bind them to this composite id (Doc 8::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-087",
+    "composite_id": "Doc 8::A5.3",
+    "workbook_row": 88,
+    "intended_outcome": "Truthful core promise delivery for The transform reads stored intelligence, never a running tail under #20 \u2014 THE SMALL MEMORY SERVICE THE MODEL READS FROM.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B31",
+      "interpretation": "The transform reads stored intelligence, never a running tail"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census.py",
+      "lines": "61-75",
+      "hash": "53110a1dd178d5201542d04f2627dbc38f46c00c1aa6d548c72b000fb61d19aa",
+      "actualbehavior": "Serve path reads stored unit list, not an active tail stream."
+    },
+    "exact_gap": "Core memory-service shape exists but lacks estate-wide no-second-writer and densification outcome proofs.",
+    "required_action": "Add CI scan for unauthorized unit writers and KPI checks for warm-memory densification after answered objectives.",
+    "closure_demonstration": "PASS when only one writer path exists and warm-serve coverage monotonically increases; FAIL on reader-side writes; RACE: duplicate contribution ids must be rejected.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The transform reads stored intelligence, never a running tail' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The transform reads stored intelligence, never a running tail' directly, then bind them to this composite id (Doc 8::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-088",
+    "composite_id": "Doc 8::A5.4",
+    "workbook_row": 89,
+    "intended_outcome": "Truthful core promise delivery for Each answered objective densifies the memory under #20 \u2014 THE SMALL MEMORY SERVICE THE MODEL READS FROM.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B32",
+      "interpretation": "Each answered objective densifies the memory"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/memory/ledger.py",
+      "lines": "73-171",
+      "hash": "a9b31617a2182236c6537fcd17e0276aba4796b0048a83f9955a9847d5ba4b94",
+      "actualbehavior": "Contribution/publication events are appended to memory ledger classes."
+    },
+    "exact_gap": "Core memory-service shape exists but lacks estate-wide no-second-writer and densification outcome proofs.",
+    "required_action": "Add CI scan for unauthorized unit writers and KPI checks for warm-memory densification after answered objectives.",
+    "closure_demonstration": "PASS when only one writer path exists and warm-serve coverage monotonically increases; FAIL on reader-side writes; RACE: duplicate contribution ids must be rejected.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Each answered objective densifies the memory' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Each answered objective densifies the memory' directly, then bind them to this composite id (Doc 8::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-089",
+    "composite_id": "Doc 8::B5.1",
+    "workbook_row": 90,
+    "intended_outcome": "Truthful core promise delivery for The fork is made once, at the boundary, and never re-derived under #21 \u2014 THE TRAFFIC CONTROLLER \u2014 ON-DEMAND FETCH WITHOUT RE-RUNNING THE ESTATE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B58",
+      "interpretation": "The fork is made once, at the boundary, and never re-derived"
+    },
+    "code_evidence": {
+      "path": "/app/backend/tests/census_operational/test_live_api_contract.py",
+      "lines": "171-183",
+      "hash": "7e914f5fb3c1293ab64d3c3ba9438bdeee2d39f8a8eac8e9c5de7832b1cba65c",
+      "actualbehavior": "Blocked/unverified states are truthfully surfaced, not forced COMPLETE."
+    },
+    "exact_gap": "Traffic-controller guarantees are only partially implemented; fork-once immutability and targeted fresh-slice execution are not fully evidenced.",
+    "required_action": "Persist immutable warm/fresh/refuse decision id and add targeted fresh-fetch + async-delivery content-minimization tests.",
+    "closure_demonstration": "PASS when one boundary decision is honored end-to-end and async notify carries IDs/status only; FAIL on downstream re-derivation or content push; RACE: duplicate fresh requests must collapse.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The fork is made once, at the boundary, and never re-derived' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The fork is made once, at the boundary, and never re-derived' directly, then bind them to this composite id (Doc 8::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-090",
+    "composite_id": "Doc 8::B5.2",
+    "workbook_row": 91,
+    "intended_outcome": "Truthful core promise delivery for Fresh fetch calls the one build path for only the unconverged slice under #21 \u2014 THE TRAFFIC CONTROLLER \u2014 ON-DEMAND FETCH WITHOUT RE-RUNNING THE ESTATE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B59",
+      "interpretation": "Fresh fetch calls the one build path for only the unconverged slice"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/service.py",
+      "lines": "178-237",
+      "hash": "4a453e30a05f3d840ac7ff54d4a387db6f6f7252ad70358edcd1a9b5299c17f8",
+      "actualbehavior": "Fresh path reuses standard compose pipeline; no explicit unconverged-slice extractor."
+    },
+    "exact_gap": "Traffic-controller guarantees are only partially implemented; fork-once immutability and targeted fresh-slice execution are not fully evidenced.",
+    "required_action": "Persist immutable warm/fresh/refuse decision id and add targeted fresh-fetch + async-delivery content-minimization tests.",
+    "closure_demonstration": "PASS when one boundary decision is honored end-to-end and async notify carries IDs/status only; FAIL on downstream re-derivation or content push; RACE: duplicate fresh requests must collapse.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Fresh fetch calls the one build path for only the unconverged slice' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Fresh fetch calls the one build path for only the unconverged slice' directly, then bind them to this composite id (Doc 8::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-091",
+    "composite_id": "Doc 8::B5.3",
+    "workbook_row": 92,
+    "intended_outcome": "Truthful core promise delivery for The async contract governs the fresh case under #21 \u2014 THE TRAFFIC CONTROLLER \u2014 ON-DEMAND FETCH WITHOUT RE-RUNNING THE ESTATE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B60",
+      "interpretation": "The async contract governs the fresh case"
+    },
+    "code_evidence": {
+      "path": "/app/backend/tests/census_operational/test_live_api_contract.py",
+      "lines": "106-126",
+      "hash": "7e914f5fb3c1293ab64d3c3ba9438bdeee2d39f8a8eac8e9c5de7832b1cba65c",
+      "actualbehavior": "records/latest parity is tested; async contract fields are only partly asserted."
+    },
+    "exact_gap": "Traffic-controller guarantees are only partially implemented; fork-once immutability and targeted fresh-slice execution are not fully evidenced.",
+    "required_action": "Persist immutable warm/fresh/refuse decision id and add targeted fresh-fetch + async-delivery content-minimization tests.",
+    "closure_demonstration": "PASS when one boundary decision is honored end-to-end and async notify carries IDs/status only; FAIL on downstream re-derivation or content push; RACE: duplicate fresh requests must collapse.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The async contract governs the fresh case' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The async contract governs the fresh case' directly, then bind them to this composite id (Doc 8::B5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-092",
+    "composite_id": "Doc 8::B5.4",
+    "workbook_row": 93,
+    "intended_outcome": "Truthful core promise delivery for The fetch is scope- and custody-governed under #21 \u2014 THE TRAFFIC CONTROLLER \u2014 ON-DEMAND FETCH WITHOUT RE-RUNNING THE ESTATE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B61",
+      "interpretation": "The fetch is scope- and custody-governed"
+    },
+    "code_evidence": {
+      "path": "/app/backend/tests/census_operational/test_contract.py",
+      "lines": "76-94",
+      "hash": "a87dceeafa83e2a7de5126f69b8c03825f0e7e6b845ee84f7a434e1364630c73",
+      "actualbehavior": "tenant/scope/body governance validation is explicit in tests."
+    },
+    "exact_gap": "Traffic-controller guarantees are only partially implemented; fork-once immutability and targeted fresh-slice execution are not fully evidenced.",
+    "required_action": "Persist immutable warm/fresh/refuse decision id and add targeted fresh-fetch + async-delivery content-minimization tests.",
+    "closure_demonstration": "PASS when one boundary decision is honored end-to-end and async notify carries IDs/status only; FAIL on downstream re-derivation or content push; RACE: duplicate fresh requests must collapse.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The fetch is scope- and custody-governed' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The fetch is scope- and custody-governed' directly, then bind them to this composite id (Doc 8::B5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-093",
+    "composite_id": "Doc 8::B5.5",
+    "workbook_row": 94,
+    "intended_outcome": "Truthful core promise delivery for Result delivery never becomes an ungoverned egress under #21 \u2014 THE TRAFFIC CONTROLLER \u2014 ON-DEMAND FETCH WITHOUT RE-RUNNING THE ESTATE.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/08_Context_Preservation_Part_2_Memory_and_Retrieval.docx",
+      "anchor": "B62",
+      "interpretation": "Result delivery never becomes an ungoverned egress"
+    },
+    "code_evidence": {
+      "path": "/app/backend/tests/census_operational/test_contract.py",
+      "lines": "96-122",
+      "hash": "a87dceeafa83e2a7de5126f69b8c03825f0e7e6b845ee84f7a434e1364630c73",
+      "actualbehavior": "UNVERIFIED/PARTIAL classifiers prevent false completion."
+    },
+    "exact_gap": "Traffic-controller guarantees are only partially implemented; fork-once immutability and targeted fresh-slice execution are not fully evidenced.",
+    "required_action": "Persist immutable warm/fresh/refuse decision id and add targeted fresh-fetch + async-delivery content-minimization tests.",
+    "closure_demonstration": "PASS when one boundary decision is honored end-to-end and async notify carries IDs/status only; FAIL on downstream re-derivation or content push; RACE: duplicate fresh requests must collapse.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Result delivery never becomes an ungoverned egress' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Result delivery never becomes an ungoverned egress' directly, then bind them to this composite id (Doc 8::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-094",
+    "composite_id": "Doc 9::A5.1",
+    "workbook_row": 95,
+    "intended_outcome": "Truthful core promise delivery for One intake contract, no second path under #12 \u2014 CONNECTS TO ALL DATABASE TYPES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B29",
+      "interpretation": "One intake contract, no second path"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census.py",
+      "lines": "61-75",
+      "hash": "53110a1dd178d5201542d04f2627dbc38f46c00c1aa6d548c72b000fb61d19aa",
+      "actualbehavior": "Single candidate contract used for enumerated units."
+    },
+    "exact_gap": "Connector path is governed, but estate-wide enforcement that new connector types cannot bypass gap-accounting is not complete.",
+    "required_action": "Require new connectors to register via connection_test + ledger gap row before any census admission.",
+    "closure_demonstration": "PASS when unsupported types surface HARD_GAP/unmeasured not silent omission; FAIL on silent skip; RACE: concurrent connector updates cannot overwrite evidence.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'One intake contract, no second path' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'One intake contract, no second path' directly, then bind them to this composite id (Doc 9::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-095",
+    "composite_id": "Doc 9::A5.2",
+    "workbook_row": 96,
+    "intended_outcome": "Truthful core promise delivery for Connection is inside the perimeter under #12 \u2014 CONNECTS TO ALL DATABASE TYPES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B30",
+      "interpretation": "Connection is inside the perimeter"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/source_plane/connector_ledger.py",
+      "lines": "85-260",
+      "hash": "c27276199e72fd7622d1b4bb6eb24f0d640ee338d8e95da146214e29e94eba25",
+      "actualbehavior": "Connector reachability and rights-at-setup are explicitly recorded."
+    },
+    "exact_gap": "Connector path is governed, but estate-wide enforcement that new connector types cannot bypass gap-accounting is not complete.",
+    "required_action": "Require new connectors to register via connection_test + ledger gap row before any census admission.",
+    "closure_demonstration": "PASS when unsupported types surface HARD_GAP/unmeasured not silent omission; FAIL on silent skip; RACE: concurrent connector updates cannot overwrite evidence.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Connection is inside the perimeter' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Connection is inside the perimeter' directly, then bind them to this composite id (Doc 9::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-096",
+    "composite_id": "Doc 9::A5.3",
+    "workbook_row": 97,
+    "intended_outcome": "Truthful core promise delivery for Connection is a governed, recorded operation under #12 \u2014 CONNECTS TO ALL DATABASE TYPES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B31",
+      "interpretation": "Connection is a governed, recorded operation"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/platform_control_plane/connection_test.py",
+      "lines": "110-149",
+      "hash": "1d97e4f727b8fc45af37c204ac689887c2aa34530961dcac5b225f259ba4852b",
+      "actualbehavior": "Connection test enforces reachability/auth/scope and forbids content read."
+    },
+    "exact_gap": "Connector path is governed, but estate-wide enforcement that new connector types cannot bypass gap-accounting is not complete.",
+    "required_action": "Require new connectors to register via connection_test + ledger gap row before any census admission.",
+    "closure_demonstration": "PASS when unsupported types surface HARD_GAP/unmeasured not silent omission; FAIL on silent skip; RACE: concurrent connector updates cannot overwrite evidence.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Connection is a governed, recorded operation' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Connection is a governed, recorded operation' directly, then bind them to this composite id (Doc 9::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-097",
+    "composite_id": "Doc 9::A5.4",
+    "workbook_row": 98,
+    "intended_outcome": "Truthful core promise delivery for The completeness claim is honest about connector gaps under #12 \u2014 CONNECTS TO ALL DATABASE TYPES.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B32",
+      "interpretation": "The completeness claim is honest about connector gaps"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/source_plane/connector_ledger.py",
+      "lines": "99-229",
+      "hash": "c27276199e72fd7622d1b4bb6eb24f0d640ee338d8e95da146214e29e94eba25",
+      "actualbehavior": "Unsupported connectors are carried as HARD_GAP with missing_bind_detail."
+    },
+    "exact_gap": "Connector path is governed, but estate-wide enforcement that new connector types cannot bypass gap-accounting is not complete.",
+    "required_action": "Require new connectors to register via connection_test + ledger gap row before any census admission.",
+    "closure_demonstration": "PASS when unsupported types surface HARD_GAP/unmeasured not silent omission; FAIL on silent skip; RACE: concurrent connector updates cannot overwrite evidence.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'The completeness claim is honest about connector gaps' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 9::A5.4 (PROPOSED) first, then define implementation/test closure criteria for 'The completeness claim is honest about connector gaps'."
+    }
+  },
+  {
+    "review_id": "REQ-098",
+    "composite_id": "Doc 9::B5.1",
+    "workbook_row": 99,
+    "intended_outcome": "Truthful core promise delivery for The census is exhaustive and objective-blind; one measure serves all under #13 \u2014 THE CENSUS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B57",
+      "interpretation": "The census is exhaustive and objective-blind; one measure serves all"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census.py",
+      "lines": "61-75",
+      "hash": "53110a1dd178d5201542d04f2627dbc38f46c00c1aa6d548c72b000fb61d19aa",
+      "actualbehavior": "Objective-blind census by signature over provided units."
+    },
+    "exact_gap": "Census mechanics exist, but full-surface consistency and caller integration (freshness/inference separation/entitlement binding) remain incomplete.",
+    "required_action": "Expand live tests to assert unmeasured/method fields on all surfaces and enforce matrix-vs-inference separation in CI.",
+    "closure_demonstration": "PASS when all figures carry method/date/full-vs-sampled and stale remeasure is scoped; FAIL on fabricated clean/zero; RACE: simultaneous deltas must not miss stale refs.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'The census is exhaustive and objective-blind; one measure serves all' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The census is exhaustive and objective-blind; one measure serves all' directly, then bind them to this composite id (Doc 9::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-099",
+    "composite_id": "Doc 9::B5.2",
+    "workbook_row": 100,
+    "intended_outcome": "Truthful core promise delivery for Unmeasured is recorded as unmeasured under #13 \u2014 THE CENSUS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B58",
+      "interpretation": "Unmeasured is recorded as unmeasured"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census_projection.py",
+      "lines": "45-54",
+      "hash": "9b5eb5dfdadb74a2ae64e4f925f33da3c2fd0e0d26c71a7b18886f0cee1338fd",
+      "actualbehavior": "Projection emits None + limitations for unmeasured dimensions."
+    },
+    "exact_gap": "Census mechanics exist, but full-surface consistency and caller integration (freshness/inference separation/entitlement binding) remain incomplete.",
+    "required_action": "Expand live tests to assert unmeasured/method fields on all surfaces and enforce matrix-vs-inference separation in CI.",
+    "closure_demonstration": "PASS when all figures carry method/date/full-vs-sampled and stale remeasure is scoped; FAIL on fabricated clean/zero; RACE: simultaneous deltas must not miss stale refs.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Unmeasured is recorded as unmeasured' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Unmeasured is recorded as unmeasured' directly, then bind them to this composite id (Doc 9::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-100",
+    "composite_id": "Doc 9::B5.3",
+    "workbook_row": 101,
+    "intended_outcome": "Truthful core promise delivery for Every figure resolves to its method under #13 \u2014 THE CENSUS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B59",
+      "interpretation": "Every figure resolves to its method"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census_projection.py",
+      "lines": "49-51",
+      "hash": "9b5eb5dfdadb74a2ae64e4f925f33da3c2fd0e0d26c71a7b18886f0cee1338fd",
+      "actualbehavior": "Rows carry proof_ref and proof_sha256 method trail."
+    },
+    "exact_gap": "Census mechanics exist, but full-surface consistency and caller integration (freshness/inference separation/entitlement binding) remain incomplete.",
+    "required_action": "Expand live tests to assert unmeasured/method fields on all surfaces and enforce matrix-vs-inference separation in CI.",
+    "closure_demonstration": "PASS when all figures carry method/date/full-vs-sampled and stale remeasure is scoped; FAIL on fabricated clean/zero; RACE: simultaneous deltas must not miss stale refs.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Every figure resolves to its method' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every figure resolves to its method' directly, then bind them to this composite id (Doc 9::B5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-101",
+    "composite_id": "Doc 9::B5.4",
+    "workbook_row": 102,
+    "intended_outcome": "Truthful core promise delivery for The two-layer measure scales without per-item labelling under #13 \u2014 THE CENSUS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B60",
+      "interpretation": "The two-layer measure scales without per-item labelling"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/registry.py",
+      "lines": "79-119",
+      "hash": "134bfbd05708f74e1a2455e124e78785480adfc81697c9d26dfb9225f57ba919",
+      "actualbehavior": "Declaration baseline + overlay admission compose defensibility measure."
+    },
+    "exact_gap": "Census mechanics exist, but full-surface consistency and caller integration (freshness/inference separation/entitlement binding) remain incomplete.",
+    "required_action": "Expand live tests to assert unmeasured/method fields on all surfaces and enforce matrix-vs-inference separation in CI.",
+    "closure_demonstration": "PASS when all figures carry method/date/full-vs-sampled and stale remeasure is scoped; FAIL on fabricated clean/zero; RACE: simultaneous deltas must not miss stale refs.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'The two-layer measure scales without per-item labelling' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The two-layer measure scales without per-item labelling' directly, then bind them to this composite id (Doc 9::B5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-102",
+    "composite_id": "Doc 9::B5.5",
+    "workbook_row": 103,
+    "intended_outcome": "Truthful core promise delivery for The defensibility verdict is a deterministic matrix lookup carrying its rule reference under #13 \u2014 THE CENSUS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B61",
+      "interpretation": "The defensibility verdict is a deterministic matrix lookup carrying its rule reference"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/verdict.py",
+      "lines": "31-50",
+      "hash": "ec174d6afab448ceb04b31fcdf1adfad86f147d2c5034e71585d55d78aeb8e9f",
+      "actualbehavior": "Deterministic matrix lookup returns defensibility class + rule ref."
+    },
+    "exact_gap": "Census mechanics exist, but full-surface consistency and caller integration (freshness/inference separation/entitlement binding) remain incomplete.",
+    "required_action": "Expand live tests to assert unmeasured/method fields on all surfaces and enforce matrix-vs-inference separation in CI.",
+    "closure_demonstration": "PASS when all figures carry method/date/full-vs-sampled and stale remeasure is scoped; FAIL on fabricated clean/zero; RACE: simultaneous deltas must not miss stale refs.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'The defensibility verdict is a deterministic matrix lookup carrying its rule reference' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The defensibility verdict is a deterministic matrix lookup carrying its rule reference' directly, then bind them to this composite id (Doc 9::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-103",
+    "composite_id": "Doc 9::B5.6",
+    "workbook_row": 104,
+    "intended_outcome": "Truthful core promise delivery for Freshness is a mechanism, not a schedule under #13 \u2014 THE CENSUS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B62",
+      "interpretation": "Freshness is a mechanism, not a schedule"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/registry.py",
+      "lines": "142-166",
+      "hash": "134bfbd05708f74e1a2455e124e78785480adfc81697c9d26dfb9225f57ba919",
+      "actualbehavior": "Freshness check computes stale refs by L1/L2 delta only."
+    },
+    "exact_gap": "Census mechanics exist, but full-surface consistency and caller integration (freshness/inference separation/entitlement binding) remain incomplete.",
+    "required_action": "Expand live tests to assert unmeasured/method fields on all surfaces and enforce matrix-vs-inference separation in CI.",
+    "closure_demonstration": "PASS when all figures carry method/date/full-vs-sampled and stale remeasure is scoped; FAIL on fabricated clean/zero; RACE: simultaneous deltas must not miss stale refs.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Freshness is a mechanism, not a schedule' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Freshness is a mechanism, not a schedule' directly, then bind them to this composite id (Doc 9::B5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-104",
+    "composite_id": "Doc 9::B5.7",
+    "workbook_row": 105,
+    "intended_outcome": "Truthful core promise delivery for Sensitivity classification is the single entitlement attribute under #13 \u2014 THE CENSUS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B63",
+      "interpretation": "Sensitivity classification is the single entitlement attribute"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census.py",
+      "lines": "28-37",
+      "hash": "53110a1dd178d5201542d04f2627dbc38f46c00c1aa6d548c72b000fb61d19aa",
+      "actualbehavior": "Sensitivity is deterministically classified during census."
+    },
+    "exact_gap": "Census mechanics exist, but full-surface consistency and caller integration (freshness/inference separation/entitlement binding) remain incomplete.",
+    "required_action": "Expand live tests to assert unmeasured/method fields on all surfaces and enforce matrix-vs-inference separation in CI.",
+    "closure_demonstration": "PASS when all figures carry method/date/full-vs-sampled and stale remeasure is scoped; FAIL on fabricated clean/zero; RACE: simultaneous deltas must not miss stale refs.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Sensitivity classification is the single entitlement attribute' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Sensitivity classification is the single entitlement attribute' directly, then bind them to this composite id (Doc 9::B5.7)."
+    }
+  },
+  {
+    "review_id": "REQ-105",
+    "composite_id": "Doc 10::A5.1",
+    "workbook_row": 106,
+    "intended_outcome": "Truthful core promise delivery for Every field resolves to its census method under #14 \u2014 THE COMPREHENSIVE REGISTRY.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/10_Estate_Registry_Part_2_Comprehensive_Registry.docx",
+      "anchor": "B35",
+      "interpretation": "Every field resolves to its census method"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/census_canon/registry_write.py",
+      "lines": "173-267",
+      "hash": "046e34253c1ebc85fca930c895526d00089208913e0fc4de9efcc09369394dcc",
+      "actualbehavior": "Record IDs are deterministic from measurement tuple and supersession link."
+    },
+    "exact_gap": "Comprehensive-registry promises are fragmented across disjoint stores and partially literal read models.",
+    "required_action": "Unify registry write/read model, expose linkage carriers (evidence/confidence/type), and eliminate literal condition placeholders.",
+    "closure_demonstration": "PASS when one registry record shape is rendered everywhere with per-field method links; FAIL on disconnected stores or literal substitutions; RACE: concurrent writes must preserve supersession chain.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Every field resolves to its census method' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every field resolves to its census method' directly, then bind them to this composite id (Doc 10::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-106",
+    "composite_id": "Doc 10::A5.2",
+    "workbook_row": 107,
+    "intended_outcome": "Truthful core promise delivery for Opportunity Briefs are advisory and grounded under #14 \u2014 THE COMPREHENSIVE REGISTRY.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/10_Estate_Registry_Part_2_Comprehensive_Registry.docx",
+      "anchor": "B36",
+      "interpretation": "Opportunity Briefs are advisory and grounded"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/census_result_adapter.py",
+      "lines": "7-25",
+      "hash": "e63854e83edfeb5061d155bdd795872ad5cd7dc815e92a10bf7ebd2292225066",
+      "actualbehavior": "Outcome registration writes advisory receipt carrier."
+    },
+    "exact_gap": "Comprehensive-registry promises are fragmented across disjoint stores and partially literal read models.",
+    "required_action": "Unify registry write/read model, expose linkage carriers (evidence/confidence/type), and eliminate literal condition placeholders.",
+    "closure_demonstration": "PASS when one registry record shape is rendered everywhere with per-field method links; FAIL on disconnected stores or literal substitutions; RACE: concurrent writes must preserve supersession chain.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Opportunity Briefs are advisory and grounded' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Opportunity Briefs are advisory and grounded' directly, then bind them to this composite id (Doc 10::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-107",
+    "composite_id": "Doc 10::A5.3",
+    "workbook_row": 108,
+    "intended_outcome": "Truthful core promise delivery for Cleanliness and duplication [CANON, assembled + RULED] under #14 \u2014 THE COMPREHENSIVE REGISTRY.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/10_Estate_Registry_Part_2_Comprehensive_Registry.docx",
+      "anchor": "B37-B38",
+      "interpretation": "Cleanliness and duplication [CANON, assembled + RULED]"
+    },
+    "code_evidence": {
+      "path": "/app/assessment_workspace/notes/REGISTRY_MODULE_AUDIT_20260925.md",
+      "lines": "145-165",
+      "hash": "2915fd1d47b3ea4586d58bb4e68248be39762fec06c3d656f71cab6dd1be6632",
+      "actualbehavior": "Audit shows landing mixes measured and literal fields."
+    },
+    "exact_gap": "Comprehensive-registry promises are fragmented across disjoint stores and partially literal read models.",
+    "required_action": "Unify registry write/read model, expose linkage carriers (evidence/confidence/type), and eliminate literal condition placeholders.",
+    "closure_demonstration": "PASS when one registry record shape is rendered everywhere with per-field method links; FAIL on disconnected stores or literal substitutions; RACE: concurrent writes must preserve supersession chain.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "\u2014",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014, so 'Cleanliness and duplication [CANON, assembled + RULED]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 10::A5.3 (\u2014) first, then define implementation/test closure criteria for 'Cleanliness and duplication [CANON, assembled + RULED]'."
+    }
+  },
+  {
+    "review_id": "REQ-108",
+    "composite_id": "Doc 10::A5.4",
+    "workbook_row": 109,
+    "intended_outcome": "Truthful core promise delivery for Linkage to other datasets [RULED \u2014 the one field with no canon home, now specified] under #14 \u2014 THE COMPREHENSIVE REGISTRY.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/10_Estate_Registry_Part_2_Comprehensive_Registry.docx",
+      "anchor": "B39-B40",
+      "interpretation": "Linkage to other datasets [RULED \u2014 the one field with no canon home, now specified]"
+    },
+    "code_evidence": {
+      "path": "/app/assessment_workspace/notes/full_requirements_gap_20260926/source_text/10_Estate_Registry_Part_2_Comprehensive_Registry_44307b9a.txt",
+      "lines": "75-90",
+      "hash": "77990496deda19f6ba02698df33452d372e12a0a6c6cb5add6dded98561d93ae",
+      "actualbehavior": "Source rules linkage field semantics, but backend field set lacks full linkage carriers."
+    },
+    "exact_gap": "Comprehensive-registry promises are fragmented across disjoint stores and partially literal read models.",
+    "required_action": "Unify registry write/read model, expose linkage carriers (evidence/confidence/type), and eliminate literal condition placeholders.",
+    "closure_demonstration": "PASS when one registry record shape is rendered everywhere with per-field method links; FAIL on disconnected stores or literal substitutions; RACE: concurrent writes must preserve supersession chain.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "\u2014",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is \u2014, so 'Linkage to other datasets [RULED \u2014 the one field with no canon home, now specified]' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 10::A5.4 (\u2014) first, then define implementation/test closure criteria for 'Linkage to other datasets [RULED \u2014 the one field with no canon home, now specified]'."
+    }
+  },
+  {
+    "review_id": "REQ-109",
+    "composite_id": "Doc 10::A5.5",
+    "workbook_row": 110,
+    "intended_outcome": "Truthful core promise delivery for The Registry is one record, read by many under #14 \u2014 THE COMPREHENSIVE REGISTRY.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/10_Estate_Registry_Part_2_Comprehensive_Registry.docx",
+      "anchor": "B41",
+      "interpretation": "The Registry is one record, read by many"
+    },
+    "code_evidence": {
+      "path": "/app/assessment_workspace/notes/REGISTRY_MODULE_AUDIT_20260925.md",
+      "lines": "13-42",
+      "hash": "2915fd1d47b3ea4586d58bb4e68248be39762fec06c3d656f71cab6dd1be6632",
+      "actualbehavior": "Audit identifies four disjoint registries instead of one shared record."
+    },
+    "exact_gap": "Comprehensive-registry promises are fragmented across disjoint stores and partially literal read models.",
+    "required_action": "Unify registry write/read model, expose linkage carriers (evidence/confidence/type), and eliminate literal condition placeholders.",
+    "closure_demonstration": "PASS when one registry record shape is rendered everywhere with per-field method links; FAIL on disconnected stores or literal substitutions; RACE: concurrent writes must preserve supersession chain.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'The Registry is one record, read by many' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The Registry is one record, read by many' directly, then bind them to this composite id (Doc 10::A5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-110",
+    "composite_id": "Doc 9::C5.1",
+    "workbook_row": 111,
+    "intended_outcome": "Truthful core promise delivery for The pipeline is modality-uniform under #15 \u2014 READS ANY DATA TYPE, INCLUDING AUDIO.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B88",
+      "interpretation": "The pipeline is modality-uniform"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/perception_router.py",
+      "lines": "99-147",
+      "hash": "e85fa7e95f01530c5f959c4fbf3b767d69c184771a6b741074cd7ced05937e4e",
+      "actualbehavior": "Perception pipeline currently returns synthetic_plumbing_only stubs."
+    },
+    "exact_gap": "Audio/data-type promise is blocked by stubbed provider path and missing live GPU/mixed-mode proofs.",
+    "required_action": "Wire real ASR/vision provider path and add e2e tests for grounding resolution, licence gate, and execution-mode invariance.",
+    "closure_demonstration": "PASS when real perception run yields grounded markers + model registry entry + unchanged contract across CPU/GPU; FAIL on synthetic-only path in production; RACE: registry bumps must keep historic results interpretable.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'The pipeline is modality-uniform' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The pipeline is modality-uniform' directly, then bind them to this composite id (Doc 9::C5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-111",
+    "composite_id": "Doc 9::C5.2",
+    "workbook_row": 112,
+    "intended_outcome": "Truthful core promise delivery for Perception crosses as a frozen job, returns as a frozen result under #15 \u2014 READS ANY DATA TYPE, INCLUDING AUDIO.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B89",
+      "interpretation": "Perception crosses as a frozen job, returns as a frozen result"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/perception_router.py",
+      "lines": "79-123",
+      "hash": "e85fa7e95f01530c5f959c4fbf3b767d69c184771a6b741074cd7ced05937e4e",
+      "actualbehavior": "Frozen-shaped job/result and trust receipt exist at seam level."
+    },
+    "exact_gap": "Audio/data-type promise is blocked by stubbed provider path and missing live GPU/mixed-mode proofs.",
+    "required_action": "Wire real ASR/vision provider path and add e2e tests for grounding resolution, licence gate, and execution-mode invariance.",
+    "closure_demonstration": "PASS when real perception run yields grounded markers + model registry entry + unchanged contract across CPU/GPU; FAIL on synthetic-only path in production; RACE: registry bumps must keep historic results interpretable.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Perception crosses as a frozen job, returns as a frozen result' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Perception crosses as a frozen job, returns as a frozen result' directly, then bind them to this composite id (Doc 9::C5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-112",
+    "composite_id": "Doc 9::C5.3",
+    "workbook_row": 113,
+    "intended_outcome": "Truthful core promise delivery for Grounding markers resolve to source position under #15 \u2014 READS ANY DATA TYPE, INCLUDING AUDIO.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B90",
+      "interpretation": "Grounding markers resolve to source position"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/perception_router.py",
+      "lines": "75-85,171-174",
+      "hash": "e85fa7e95f01530c5f959c4fbf3b767d69c184771a6b741074cd7ced05937e4e",
+      "actualbehavior": "Grounding markers include timestamp span carriers."
+    },
+    "exact_gap": "Audio/data-type promise is blocked by stubbed provider path and missing live GPU/mixed-mode proofs.",
+    "required_action": "Wire real ASR/vision provider path and add e2e tests for grounding resolution, licence gate, and execution-mode invariance.",
+    "closure_demonstration": "PASS when real perception run yields grounded markers + model registry entry + unchanged contract across CPU/GPU; FAIL on synthetic-only path in production; RACE: registry bumps must keep historic results interpretable.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Grounding markers resolve to source position' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Grounding markers resolve to source position' directly, then bind them to this composite id (Doc 9::C5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-113",
+    "composite_id": "Doc 9::C5.4",
+    "workbook_row": 114,
+    "intended_outcome": "Truthful core promise delivery for Every perception model is registered with hash and licence under #15 \u2014 READS ANY DATA TYPE, INCLUDING AUDIO.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B91",
+      "interpretation": "Every perception model is registered with hash and licence"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/perception/model_registry.py",
+      "lines": "63-113",
+      "hash": "6a6292539ab05a8660ad699c3412e577ca9f95e00eab65986c951524a6ec07d7",
+      "actualbehavior": "Model run requires registry attestation and additive versioned entries."
+    },
+    "exact_gap": "Audio/data-type promise is blocked by stubbed provider path and missing live GPU/mixed-mode proofs.",
+    "required_action": "Wire real ASR/vision provider path and add e2e tests for grounding resolution, licence gate, and execution-mode invariance.",
+    "closure_demonstration": "PASS when real perception run yields grounded markers + model registry entry + unchanged contract across CPU/GPU; FAIL on synthetic-only path in production; RACE: registry bumps must keep historic results interpretable.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Every perception model is registered with hash and licence' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every perception model is registered with hash and licence' directly, then bind them to this composite id (Doc 9::C5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-114",
+    "composite_id": "Doc 9::C5.5",
+    "workbook_row": 115,
+    "intended_outcome": "Truthful core promise delivery for Perception calls route through the boundary governor under #15 \u2014 READS ANY DATA TYPE, INCLUDING AUDIO.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B92",
+      "interpretation": "Perception calls route through the boundary governor"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/perception_router.py",
+      "lines": "31-60",
+      "hash": "e85fa7e95f01530c5f959c4fbf3b767d69c184771a6b741074cd7ced05937e4e",
+      "actualbehavior": "Perception traffic is signed via shield trust receipt seam."
+    },
+    "exact_gap": "Audio/data-type promise is blocked by stubbed provider path and missing live GPU/mixed-mode proofs.",
+    "required_action": "Wire real ASR/vision provider path and add e2e tests for grounding resolution, licence gate, and execution-mode invariance.",
+    "closure_demonstration": "PASS when real perception run yields grounded markers + model registry entry + unchanged contract across CPU/GPU; FAIL on synthetic-only path in production; RACE: registry bumps must keep historic results interpretable.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'Perception calls route through the boundary governor' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Perception calls route through the boundary governor' directly, then bind them to this composite id (Doc 9::C5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-115",
+    "composite_id": "Doc 9::C5.6",
+    "workbook_row": 116,
+    "intended_outcome": "Truthful core promise delivery for The execution seam keeps hardware invisible to consumers under #15 \u2014 READS ANY DATA TYPE, INCLUDING AUDIO.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/09_Estate_Registry_Part_1_Connection_and_Census.docx",
+      "anchor": "B93",
+      "interpretation": "The execution seam keeps hardware invisible to consumers"
+    },
+    "code_evidence": {
+      "path": "/app/assessment_workspace/STATE/notes/ESTATE_CENSUS_v2_20260921T200021Z.md",
+      "lines": "8-14",
+      "hash": "199ed7e5765c4f57efc1f1bca8d8ae7515d6165afd3e5333a12600d4157a9fd3",
+      "actualbehavior": "Operational note confirms CPU-only run; no NVIDIA GPU in container."
+    },
+    "exact_gap": "Audio/data-type promise is blocked by stubbed provider path and missing live GPU/mixed-mode proofs.",
+    "required_action": "Wire real ASR/vision provider path and add e2e tests for grounding resolution, licence gate, and execution-mode invariance.",
+    "closure_demonstration": "PASS when real perception run yields grounded markers + model registry entry + unchanged contract across CPU/GPU; FAIL on synthetic-only path in production; RACE: registry bumps must keep historic results interpretable.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "EVIDENCED_SCOPED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Scoped evidence exists for 'The execution seam keeps hardware invisible to consumers' in mounted routes/tests, but proof remains bounded to inspected files and prior narrow runs; full runtime/property guarantee is still unverified in this read-only pass.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The execution seam keeps hardware invisible to consumers' directly, then bind them to this composite id (Doc 9::C5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-116",
+    "composite_id": "Doc 12::A5.1",
+    "workbook_row": 117,
+    "intended_outcome": "Truthful core promise delivery for Compute does not leave the perimeter under #10 \u2014 THE PULL SEAM \u2014 COMPUTE WITHOUT MOVING DATA OUT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B29",
+      "interpretation": "Compute does not leave the perimeter"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/training_run_boundary_v1.py",
+      "lines": "64-73,275-303",
+      "hash": "0d39009cff5b17f3070ce55faecb9601c8fb7bc1e5e514fa6be0efce291475a7",
+      "actualbehavior": "Boundary refuses pod:// and /app/ refs for training host/data path."
+    },
+    "exact_gap": "Perimeter/pull-seam guarantees are posture-coded but contradicted by current direct pod-side census execution evidence.",
+    "required_action": "Route census compute through external execution seam only, and emit boundary-host receipts for every run.",
+    "closure_demonstration": "PASS when no estate query executes in pod and receipts show remote compute near data; FAIL on direct pod queries; RACE: fallback must not silently switch to pod-local path.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Compute does not leave the perimeter' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Compute does not leave the perimeter' directly, then bind them to this composite id (Doc 12::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-117",
+    "composite_id": "Doc 12::A5.2",
+    "workbook_row": 118,
+    "intended_outcome": "Truthful core promise delivery for The execution seam keeps the result contract hardware-independent under #10 \u2014 THE PULL SEAM \u2014 COMPUTE WITHOUT MOVING DATA OUT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B30",
+      "interpretation": "The execution seam keeps the result contract hardware-independent"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/synisense/shield/perception_router.py",
+      "lines": "118-147",
+      "hash": "e85fa7e95f01530c5f959c4fbf3b767d69c184771a6b741074cd7ced05937e4e",
+      "actualbehavior": "Result contract remains stable while recording execution metadata."
+    },
+    "exact_gap": "Perimeter/pull-seam guarantees are posture-coded but contradicted by current direct pod-side census execution evidence.",
+    "required_action": "Route census compute through external execution seam only, and emit boundary-host receipts for every run.",
+    "closure_demonstration": "PASS when no estate query executes in pod and receipts show remote compute near data; FAIL on direct pod queries; RACE: fallback must not silently switch to pod-local path.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The execution seam keeps the result contract hardware-independent' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The execution seam keeps the result contract hardware-independent' directly, then bind them to this composite id (Doc 12::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-118",
+    "composite_id": "Doc 12::A5.3",
+    "workbook_row": 119,
+    "intended_outcome": "Truthful core promise delivery for Fleet allocation is versioned configuration, managed live under #10 \u2014 THE PULL SEAM \u2014 COMPUTE WITHOUT MOVING DATA OUT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B31",
+      "interpretation": "Fleet allocation is versioned configuration, managed live"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/enforce/compute_integration_gate.py",
+      "lines": "16-21",
+      "hash": "2c2431c2a5d91d8e29a2b26e3d8770f80313d081fa68113ee9b21a3b3c2d9a1f",
+      "actualbehavior": "Compute integration is versioned via repository upsert gate."
+    },
+    "exact_gap": "Perimeter/pull-seam guarantees are posture-coded but contradicted by current direct pod-side census execution evidence.",
+    "required_action": "Route census compute through external execution seam only, and emit boundary-host receipts for every run.",
+    "closure_demonstration": "PASS when no estate query executes in pod and receipts show remote compute near data; FAIL on direct pod queries; RACE: fallback must not silently switch to pod-local path.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Fleet allocation is versioned configuration, managed live' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Fleet allocation is versioned configuration, managed live' directly, then bind them to this composite id (Doc 12::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-119",
+    "composite_id": "Doc 12::A5.4",
+    "workbook_row": 120,
+    "intended_outcome": "Truthful core promise delivery for The pull-not-push property is explicit under #10 \u2014 THE PULL SEAM \u2014 COMPUTE WITHOUT MOVING DATA OUT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B32",
+      "interpretation": "The pull-not-push property is explicit"
+    },
+    "code_evidence": {
+      "path": "/app/assessment_workspace/STATE/notes/ESTATE_CENSUS_0004_20260925T020006Z.md",
+      "lines": "3-17",
+      "hash": "ab1391b2fda290e9f033a8c37d026cfe913ab660cd116bea68b7f1e9dc4863f7",
+      "actualbehavior": "Census #4 ran direct pymysql from pod, contradicting strict pull-to-data boundary."
+    },
+    "exact_gap": "Perimeter/pull-seam guarantees are posture-coded but contradicted by current direct pod-side census execution evidence.",
+    "required_action": "Route census compute through external execution seam only, and emit boundary-host receipts for every run.",
+    "closure_demonstration": "PASS when no estate query executes in pod and receipts show remote compute near data; FAIL on direct pod queries; RACE: fallback must not silently switch to pod-local path.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The pull-not-push property is explicit' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The pull-not-push property is explicit' directly, then bind them to this composite id (Doc 12::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-120",
+    "composite_id": "Doc 12::B5.1",
+    "workbook_row": 121,
+    "intended_outcome": "Truthful core promise delivery for Cost and feasibility are presented at freeze, before commit under #11 \u2014 COST AT THE POINT OF REFLECTION, BEFORE COMMIT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B60",
+      "interpretation": "Cost and feasibility are presented at freeze, before commit"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "226-307",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Cost ledger is built post-receipt; not a mandatory pre-commit reflection gate."
+    },
+    "exact_gap": "Reflection-before-commit discipline is not fully enforced as a hard pre-commit contract across compute commits.",
+    "required_action": "Implement pre-commit quote/budget envelope enforcement with governor-side hard stop and extension requote IDs.",
+    "closure_demonstration": "PASS when commit without reflected quote is refused and over-budget runs terminate; FAIL on post-hoc pricing; RACE: parallel extensions must generate distinct quote versions.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Cost and feasibility are presented at freeze, before commit' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Cost and feasibility are presented at freeze, before commit' directly, then bind them to this composite id (Doc 12::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-121",
+    "composite_id": "Doc 12::B5.2",
+    "workbook_row": 122,
+    "intended_outcome": "Truthful core promise delivery for The budget is a hard stop enforced by the governor under #11 \u2014 COST AT THE POINT OF REFLECTION, BEFORE COMMIT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B61",
+      "interpretation": "The budget is a hard stop enforced by the governor"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/northena/ledger.py",
+      "lines": "56-113",
+      "hash": "816ffb91af426945b4a60b41b2f3b3d805233661677d87951bbea58a96cb39ac",
+      "actualbehavior": "Append-only logging exists; no budget hard-stop execution circuit in module."
+    },
+    "exact_gap": "Reflection-before-commit discipline is not fully enforced as a hard pre-commit contract across compute commits.",
+    "required_action": "Implement pre-commit quote/budget envelope enforcement with governor-side hard stop and extension requote IDs.",
+    "closure_demonstration": "PASS when commit without reflected quote is refused and over-budget runs terminate; FAIL on post-hoc pricing; RACE: parallel extensions must generate distinct quote versions.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The budget is a hard stop enforced by the governor' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The budget is a hard stop enforced by the governor' directly, then bind them to this composite id (Doc 12::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-122",
+    "composite_id": "Doc 12::B5.3",
+    "workbook_row": 123,
+    "intended_outcome": "Truthful core promise delivery for Every extension re-quotes under #11 \u2014 COST AT THE POINT OF REFLECTION, BEFORE COMMIT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B62",
+      "interpretation": "Every extension re-quotes"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "109-145",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Route savings computed; extension requote workflow not explicit."
+    },
+    "exact_gap": "Reflection-before-commit discipline is not fully enforced as a hard pre-commit contract across compute commits.",
+    "required_action": "Implement pre-commit quote/budget envelope enforcement with governor-side hard stop and extension requote IDs.",
+    "closure_demonstration": "PASS when commit without reflected quote is refused and over-budget runs terminate; FAIL on post-hoc pricing; RACE: parallel extensions must generate distinct quote versions.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Every extension re-quotes' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Every extension re-quotes' directly, then bind them to this composite id (Doc 12::B5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-123",
+    "composite_id": "Doc 12::B5.4",
+    "workbook_row": 124,
+    "intended_outcome": "Truthful core promise delivery for Cost is measured; price is configuration; quotes stamp their version under #11 \u2014 COST AT THE POINT OF REFLECTION, BEFORE COMMIT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B63",
+      "interpretation": "Cost is measured; price is configuration; quotes stamp their version"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "173-203",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Measured cost is used and missing rates are surfaced honestly."
+    },
+    "exact_gap": "Reflection-before-commit discipline is not fully enforced as a hard pre-commit contract across compute commits.",
+    "required_action": "Implement pre-commit quote/budget envelope enforcement with governor-side hard stop and extension requote IDs.",
+    "closure_demonstration": "PASS when commit without reflected quote is refused and over-budget runs terminate; FAIL on post-hoc pricing; RACE: parallel extensions must generate distinct quote versions.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Cost is measured; price is configuration; quotes stamp their version' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Cost is measured; price is configuration; quotes stamp their version' directly, then bind them to this composite id (Doc 12::B5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-124",
+    "composite_id": "Doc 12::B5.5",
+    "workbook_row": 125,
+    "intended_outcome": "Truthful core promise delivery for Sampling converts unknown cost to evidence under #11 \u2014 COST AT THE POINT OF REFLECTION, BEFORE COMMIT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B64",
+      "interpretation": "Sampling converts unknown cost to evidence"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/cost_receipt.py",
+      "lines": "47-113",
+      "hash": "1c38b35d4044aeb7c5a73ccc316e6f16c358f1571f5f67a9402999a0a93e8a4b",
+      "actualbehavior": "Unknown cost is converted to sampled evidence receipts."
+    },
+    "exact_gap": "Reflection-before-commit discipline is not fully enforced as a hard pre-commit contract across compute commits.",
+    "required_action": "Implement pre-commit quote/budget envelope enforcement with governor-side hard stop and extension requote IDs.",
+    "closure_demonstration": "PASS when commit without reflected quote is refused and over-budget runs terminate; FAIL on post-hoc pricing; RACE: parallel extensions must generate distinct quote versions.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Sampling converts unknown cost to evidence' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Sampling converts unknown cost to evidence' directly, then bind them to this composite id (Doc 12::B5.5)."
+    }
+  },
+  {
+    "review_id": "REQ-125",
+    "composite_id": "Doc 12::B5.6",
+    "workbook_row": 126,
+    "intended_outcome": "Truthful core promise delivery for \"Point of reflection\" generalises to every compute-related commit under #11 \u2014 COST AT THE POINT OF REFLECTION, BEFORE COMMIT.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/12_Cost_and_Compute_Part_2_Locality_and_Transparency.docx",
+      "anchor": "B65-B66",
+      "interpretation": "\"Point of reflection\" generalises to every compute-related commit"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/training_run_boundary_v1.py",
+      "lines": "51-61",
+      "hash": "0d39009cff5b17f3070ce55faecb9601c8fb7bc1e5e514fa6be0efce291475a7",
+      "actualbehavior": "Training cost reflection is declared as deferred commissioned-job posture."
+    },
+    "exact_gap": "Reflection-before-commit discipline is not fully enforced as a hard pre-commit contract across compute commits.",
+    "required_action": "Implement pre-commit quote/budget envelope enforcement with governor-side hard stop and extension requote IDs.",
+    "closure_demonstration": "PASS when commit without reflected quote is refused and over-budget runs terminate; FAIL on post-hoc pricing; RACE: parallel extensions must generate distinct quote versions.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "CANON/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves '\"Point of reflection\" generalises to every compute-related commit' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert '\"Point of reflection\" generalises to every compute-related commit' directly, then bind them to this composite id (Doc 12::B5.6)."
+    }
+  },
+  {
+    "review_id": "REQ-126",
+    "composite_id": "Doc 11::A5.1",
+    "workbook_row": 127,
+    "intended_outcome": "Truthful core promise delivery for The ladder's selection rule is the lowest rung that meets the promise under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B35",
+      "interpretation": "The ladder's selection rule is the lowest rung that meets the promise"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/core.py",
+      "lines": "39-78",
+      "hash": "39d57f641c29334cbbea743336d91bfaec12b08b0b2a7eeedae062d1c7b898ce",
+      "actualbehavior": "Core applies deterministic floor filter + ordering; lowest-sufficient rung idea is partial."
+    },
+    "exact_gap": "Local-first ladder and cascade promises are only partially landed; class router/deflation/cascade retire logic are incomplete.",
+    "required_action": "Add rung registry field, measured class benchmarks, and cascade trigger/retire loop with telemetry thresholds set from evidence.",
+    "closure_demonstration": "PASS when class routing chooses lowest passing rung and cascade retires when net-negative; FAIL on fixed assumptions; RACE: routing policy updates must be versioned.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The ladder's selection rule is the lowest rung that meets the promise' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The ladder's selection rule is the lowest rung that meets the promise' directly, then bind them to this composite id (Doc 11::A5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-127",
+    "composite_id": "Doc 11::A5.2",
+    "workbook_row": 128,
+    "intended_outcome": "Truthful core promise delivery for The deflation law is built, not hoped under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B36",
+      "interpretation": "The deflation law is built, not hoped"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/yield_layer.py",
+      "lines": "1-37",
+      "hash": "31a165238e9a6f119443b2de70f868ab41a46dd836f9046b00f0d4cb1be35ccb",
+      "actualbehavior": "Learned layer stays dark by default; deflation flywheel not active."
+    },
+    "exact_gap": "Local-first ladder and cascade promises are only partially landed; class router/deflation/cascade retire logic are incomplete.",
+    "required_action": "Add rung registry field, measured class benchmarks, and cascade trigger/retire loop with telemetry thresholds set from evidence.",
+    "closure_demonstration": "PASS when class routing chooses lowest passing rung and cascade retires when net-negative; FAIL on fixed assumptions; RACE: routing policy updates must be versioned.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The deflation law is built, not hoped' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The deflation law is built, not hoped' directly, then bind them to this composite id (Doc 11::A5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-128",
+    "composite_id": "Doc 11::A5.3",
+    "workbook_row": 129,
+    "intended_outcome": "Truthful core promise delivery for Cost is measured, never simulated; price is separate under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B37",
+      "interpretation": "Cost is measured, never simulated; price is separate"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "148-203",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Cost rows are measured from receipts, no simulation fallback."
+    },
+    "exact_gap": "Local-first ladder and cascade promises are only partially landed; class router/deflation/cascade retire logic are incomplete.",
+    "required_action": "Add rung registry field, measured class benchmarks, and cascade trigger/retire loop with telemetry thresholds set from evidence.",
+    "closure_demonstration": "PASS when class routing chooses lowest passing rung and cascade retires when net-negative; FAIL on fixed assumptions; RACE: routing policy updates must be versioned.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Cost is measured, never simulated; price is separate' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Cost is measured, never simulated; price is separate' directly, then bind them to this composite id (Doc 11::A5.3)."
+    }
+  },
+  {
+    "review_id": "REQ-129",
+    "composite_id": "Doc 11::A5.4",
+    "workbook_row": 130,
+    "intended_outcome": "Truthful core promise delivery for Local-cascade offload builds only against demonstrated cost pressure under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B38",
+      "interpretation": "Local-cascade offload builds only against demonstrated cost pressure"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "109-145",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Route lever exists; cascade pressure/retire controls are not implemented."
+    },
+    "exact_gap": "Local-first ladder and cascade promises are only partially landed; class router/deflation/cascade retire logic are incomplete.",
+    "required_action": "Add rung registry field, measured class benchmarks, and cascade trigger/retire loop with telemetry thresholds set from evidence.",
+    "closure_demonstration": "PASS when class routing chooses lowest passing rung and cascade retires when net-negative; FAIL on fixed assumptions; RACE: routing policy updates must be versioned.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Local-cascade offload builds only against demonstrated cost pressure' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Local-cascade offload builds only against demonstrated cost pressure' directly, then bind them to this composite id (Doc 11::A5.4)."
+    }
+  },
+  {
+    "review_id": "REQ-130",
+    "composite_id": "Doc 11::A5.5",
+    "workbook_row": 131,
+    "intended_outcome": "Truthful core promise delivery for \"Swarms or single agents locally first\" maps to the ladder and cascade under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B39-B40",
+      "interpretation": "\"Swarms or single agents locally first\" maps to the ladder and cascade"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/interface.py",
+      "lines": "80-97",
+      "hash": "f1e16e34bc8ee76763824e253779502d84cb3c56be82b792c3de2a23623385df",
+      "actualbehavior": "Local-first boundary preserves permutation and rejects narrowing/removal."
+    },
+    "exact_gap": "Local-first ladder and cascade promises are only partially landed; class router/deflation/cascade retire logic are incomplete.",
+    "required_action": "Add rung registry field, measured class benchmarks, and cascade trigger/retire loop with telemetry thresholds set from evidence.",
+    "closure_demonstration": "PASS when class routing chooses lowest passing rung and cascade retires when net-negative; FAIL on fixed assumptions; RACE: routing policy updates must be versioned.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "CANON/PROPOSED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so '\"Swarms or single agents locally first\" maps to the ladder and cascade' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::A5.5 (PROPOSED) first, then define implementation/test closure criteria for '\"Swarms or single agents locally first\" maps to the ladder and cascade'."
+    }
+  },
+  {
+    "review_id": "REQ-131",
+    "composite_id": "Doc 11::B1.1",
+    "workbook_row": 132,
+    "intended_outcome": "Truthful core promise delivery for LC-1 serves a cached result only where the question, its frozen objective, its scope, and its governing rules are identical to the prior \u2014 a match on the govern under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B55",
+      "interpretation": "LC-1 serves a cached result only where the question, its frozen objective, its scope, and its governing rules are identical to the prior \u2014 a match on the govern"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "35-37,100-107",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Lever order is declared; no governed request-cache engine implementation."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'LC-1 serves a cached result only where the question, its frozen objective, its scope, and its governing rules are identical to the prior \u2014 a match on the govern' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B1.1 (PROPOSED) first, then define implementation/test closure criteria for 'LC-1 serves a cached result only where the question, its frozen objective, its scope, and its governing rules are identical to the prior \u2014 a match on the govern'."
+    }
+  },
+  {
+    "review_id": "REQ-132",
+    "composite_id": "Doc 11::B1.2",
+    "workbook_row": 133,
+    "intended_outcome": "Truthful core promise delivery for LC-1 is distinct from warm-serving (Document 8) under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B56",
+      "interpretation": "LC-1 is distinct from warm-serving (Document 8)"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/registry.py",
+      "lines": "63-119",
+      "hash": "134bfbd05708f74e1a2455e124e78785480adfc81697c9d26dfb9225f57ba919",
+      "actualbehavior": "Warm-serving path exists; LC-1 cache identity seam is absent."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'LC-1 is distinct from warm-serving (Document 8)' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B1.2 (PROPOSED) first, then define implementation/test closure criteria for 'LC-1 is distinct from warm-serving (Document 8)'."
+    }
+  },
+  {
+    "review_id": "REQ-133",
+    "composite_id": "Doc 11::B1.3",
+    "workbook_row": 134,
+    "intended_outcome": "Truthful core promise delivery for LC-1 fails transparent: a cache failure produces a fresh computation, never a wrong or refused answer under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B57",
+      "interpretation": "LC-1 fails transparent: a cache failure produces a fresh computation, never a wrong or refused answer"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "226-251",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Missing lever data does not block answers (transparent failure posture)."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'LC-1 fails transparent: a cache failure produces a fresh computation, never a wrong or refused answer' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B1.3 (PROPOSED) first, then define implementation/test closure criteria for 'LC-1 fails transparent: a cache failure produces a fresh computation, never a wrong or refused answer'."
+    }
+  },
+  {
+    "review_id": "REQ-134",
+    "composite_id": "Doc 11::B1.4",
+    "workbook_row": 135,
+    "intended_outcome": "Truthful core promise delivery for Cache invalidation follows the estate's own freshness (Document 9): when a region's measure changes (a retraction, a re-census), any cached result depending on  under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B58",
+      "interpretation": "Cache invalidation follows the estate's own freshness (Document 9): when a region's measure changes (a retraction, a re-census), any cached result depending on "
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/mtafiti/registry.py",
+      "lines": "142-166",
+      "hash": "134bfbd05708f74e1a2455e124e78785480adfc81697c9d26dfb9225f57ba919",
+      "actualbehavior": "Freshness delta helper exists but not bound to query-cache invalidation."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'Cache invalidation follows the estate's own freshness (Document 9): when a region's measure changes (a retraction, a re-census), any cached result depending on ' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B1.4 (PROPOSED) first, then define implementation/test closure criteria for 'Cache invalidation follows the estate's own freshness (Document 9): when a region's measure changes (a retraction, a re-census), any cached result depending on '."
+    }
+  },
+  {
+    "review_id": "REQ-135",
+    "composite_id": "Doc 11::B2.1",
+    "workbook_row": 136,
+    "intended_outcome": "Truthful core promise delivery for LC-2 is the ladder's selection rule (A5.1) applied at the granularity of task class: each class routes to the lowest rung that meets its promise, and the placem under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B62",
+      "interpretation": "LC-2 is the ladder's selection rule (A5.1) applied at the granularity of task class: each class routes to the lowest rung that meets its promise, and the placem"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "109-145",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Route lever savings attribution exists; task-class router seat missing."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'LC-2 is the ladder's selection rule (A5.1) applied at the granularity of task class: each class routes to the lowest rung that meets its promise, and the placem' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B2.1 (PROPOSED) first, then define implementation/test closure criteria for 'LC-2 is the ladder's selection rule (A5.1) applied at the granularity of task class: each class routes to the lowest rung that meets its promise, and the placem'."
+    }
+  },
+  {
+    "review_id": "REQ-136",
+    "composite_id": "Doc 11::B2.2",
+    "workbook_row": 137,
+    "intended_outcome": "Truthful core promise delivery for The routing decision is governed by measured performance of each rung on each task class on real material \u2014 not by a fixed assumption about which model suits wh under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B63",
+      "interpretation": "The routing decision is governed by measured performance of each rung on each task class on real material \u2014 not by a fixed assumption about which model suits wh"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/core.py",
+      "lines": "27-49",
+      "hash": "39d57f641c29334cbbea743336d91bfaec12b08b0b2a7eeedae062d1c7b898ce",
+      "actualbehavior": "Deterministic relevance heuristic is used, not measured class benchmarks."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'The routing decision is governed by measured performance of each rung on each task class on real material \u2014 not by a fixed assumption about which model suits wh' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B2.2 (PROPOSED) first, then define implementation/test closure criteria for 'The routing decision is governed by measured performance of each rung on each task class on real material \u2014 not by a fixed assumption about which model suits wh'."
+    }
+  },
+  {
+    "review_id": "REQ-137",
+    "composite_id": "Doc 11::B2.3",
+    "workbook_row": 138,
+    "intended_outcome": "Truthful core promise delivery for LC-2 fails transparent and upward: if the routed rung cannot meet the standard on a given item, the item escalates to a higher rung (the cascade shape, A5.4), n under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B64",
+      "interpretation": "LC-2 fails transparent and upward: if the routed rung cannot meet the standard on a given item, the item escalates to a higher rung (the cascade shape, A5.4), n"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/interface.py",
+      "lines": "80-97",
+      "hash": "f1e16e34bc8ee76763824e253779502d84cb3c56be82b792c3de2a23623385df",
+      "actualbehavior": "Permutation guard enforces set equality; explicit upward-escalation contract absent."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'LC-2 fails transparent and upward: if the routed rung cannot meet the standard on a given item, the item escalates to a higher rung (the cascade shape, A5.4), n' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B2.3 (PROPOSED) first, then define implementation/test closure criteria for 'LC-2 fails transparent and upward: if the routed rung cannot meet the standard on a given item, the item escalates to a higher rung (the cascade shape, A5.4), n'."
+    }
+  },
+  {
+    "review_id": "REQ-138",
+    "composite_id": "Doc 11::B3.1",
+    "workbook_row": 139,
+    "intended_outcome": "Truthful core promise delivery for LC-3 is the same discipline as progressive disclosure (Document 6) and the memory layer's on-demand fetch (Document 8): minimal-sufficient context first, expand under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B68",
+      "interpretation": "LC-3 is the same discipline as progressive disclosure (Document 6) and the memory layer's on-demand fetch (Document 8): minimal-sufficient context first, expand"
+    },
+    "code_evidence": {
+      "path": "/app/backend/tests/census_operational/test_contract.py",
+      "lines": "46-53",
+      "hash": "a87dceeafa83e2a7de5126f69b8c03825f0e7e6b845ee84f7a434e1364630c73",
+      "actualbehavior": "Current tests validate tenant-scoped lists; no shared LC-3/progressive/on-demand mechanism proof."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'LC-3 is the same discipline as progressive disclosure (Document 6) and the memory layer's on-demand fetch (Document 8): minimal-sufficient context first, expand' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'LC-3 is the same discipline as progressive disclosure (Document 6) and the memory layer's on-demand fetch (Document 8): minimal-sufficient context first, expand' directly, then bind them to this composite id (Doc 11::B3.1)."
+    }
+  },
+  {
+    "review_id": "REQ-139",
+    "composite_id": "Doc 11::B3.2",
+    "workbook_row": 140,
+    "intended_outcome": "Truthful core promise delivery for LC-3 narrows within scope and custody: narrowing never drops material the objective requires to be correct (that would change the answer, forbidden by B0), and  under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B69",
+      "interpretation": "LC-3 narrows within scope and custody: narrowing never drops material the objective requires to be correct (that would change the answer, forbidden by B0), and "
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/core.py",
+      "lines": "39-58",
+      "hash": "39d57f641c29334cbbea743336d91bfaec12b08b0b2a7eeedae062d1c7b898ce",
+      "actualbehavior": "Narrowing-like sort is present but no explicit custody-aware retriever module."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'LC-3 narrows within scope and custody: narrowing never drops material the objective requires to be correct (that would change the answer, forbidden by B0), and ' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B3.2 (PROPOSED) first, then define implementation/test closure criteria for 'LC-3 narrows within scope and custody: narrowing never drops material the objective requires to be correct (that would change the answer, forbidden by B0), and '."
+    }
+  },
+  {
+    "review_id": "REQ-140",
+    "composite_id": "Doc 11::B4.1",
+    "workbook_row": 141,
+    "intended_outcome": "Truthful core promise delivery for The Cost Ledger's one job is to show that tokens-per-answer falls under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B72",
+      "interpretation": "The Cost Ledger's one job is to show that tokens-per-answer falls"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "254-307",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Ledger aggregates measured token/gpu totals."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "PROPOSED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "SPEC_DECISION_REQUIRED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "Row status is PROPOSED, so 'The Cost Ledger's one job is to show that tokens-per-answer falls' is not ratified as a mandatory delivered behavior yet; implementation cannot be closed without governance decision and canonical promotion path.",
+      "required_action": "Resolve governance status for Doc 11::B4.1 (PROPOSED) first, then define implementation/test closure criteria for 'The Cost Ledger's one job is to show that tokens-per-answer falls'."
+    }
+  },
+  {
+    "review_id": "REQ-141",
+    "composite_id": "Doc 11::B4.2",
+    "workbook_row": 142,
+    "intended_outcome": "Truthful core promise delivery for The priority order among cost mechanisms, where several could apply, is: cache (LC-1) \u2192 route by task class (LC-2) \u2192 narrow retrieval (LC-3) \u2192 cascade/compressi under #9 \u2014 LOCAL-FIRST PROCESSING & THE CONSUMPTION LEVERS (Part B: consumption levers).",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/11_Cost_and_Compute_Part_1_Local_First_and_Levers.docx",
+      "anchor": "B73",
+      "interpretation": "The priority order among cost mechanisms, where several could apply, is: cache (LC-1) \u2192 route by task class (LC-2) \u2192 narrow retrieval (LC-3) \u2192 cascade/compressi"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/cost_ledger/ledger.py",
+      "lines": "35-37",
+      "hash": "f5161dd64308d1dab79a0c418d71f5af26de735ec4cd5915924c68bf2b75a63e",
+      "actualbehavior": "Priority constant cache\u2192route\u2192narrow\u2192cascade\u2192waste is present."
+    },
+    "exact_gap": "LC-1/2/3 operational seats and their composition are incompletely implemented beyond constants/helpers.",
+    "required_action": "Implement governed cache key+invalidation, measured task-class router, and shared LC-3 serving module reused by progressive disclosure/on-demand fetch.",
+    "closure_demonstration": "PASS when repeated governed query hits LC-1 and freshness/rule changes invalidate correctly while lever order is recorded. FAIL on stale cache hit or semantic answer change. RACE: invalidation/read races must prefer miss.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "RULED",
+      "rule_authority": "PROPOSED/RULED"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "UNVERIFIED",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The priority order among cost mechanisms, where several could apply, is: cache (LC-1) \u2192 route by task class (LC-2) \u2192 narrow retrieval (LC-3) \u2192 cascade/compressi' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The priority order among cost mechanisms, where several could apply, is: cache (LC-1) \u2192 route by task class (LC-2) \u2192 narrow retrieval (LC-3) \u2192 cascade/compressi' directly, then bind them to this composite id (Doc 11::B4.2)."
+    }
+  },
+  {
+    "review_id": "REQ-142",
+    "composite_id": "Doc 13::B5.1",
+    "workbook_row": 143,
+    "intended_outcome": "Truthful core promise delivery for The six acceptance criteria are structural, with no human in the path under #22 \u2014 AUTONOMOUS TRAINING, ANY OUTPUT DIMENSION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B64",
+      "interpretation": "The six acceptance criteria are structural, with no human in the path"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/training_run_boundary_v1.py",
+      "lines": "132-183",
+      "hash": "0d39009cff5b17f3070ce55faecb9601c8fb7bc1e5e514fa6be0efce291475a7",
+      "actualbehavior": "Certificate and failed-strata visibility checks exist; six-criteria aggregate gate not complete."
+    },
+    "exact_gap": "Autonomous training controls are partially present; full six-criteria deploy gate and fixed-foundation assertions are incomplete.",
+    "required_action": "Add unified 6/6 acceptance gate artifact that blocks registry entry/deploy on any failed criterion and stamps lineage inputs.",
+    "closure_demonstration": "PASS when any failed criterion blocks deploy and accepted model stores complete lineage/artefacts. FAIL on partial acceptance. RACE: concurrent candidate evaluations must not bypass gate.",
+    "delivery_status": {
+      "status": "MISSING",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "high"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'The six acceptance criteria are structural, with no human in the path' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'The six acceptance criteria are structural, with no human in the path' directly, then bind them to this composite id (Doc 13::B5.1)."
+    }
+  },
+  {
+    "review_id": "REQ-143",
+    "composite_id": "Doc 13::B5.2",
+    "workbook_row": 144,
+    "intended_outcome": "Truthful core promise delivery for Targeta learns yield but never narrows reach under #22 \u2014 AUTONOMOUS TRAINING, ANY OUTPUT DIMENSION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B65",
+      "interpretation": "Targeta learns yield but never narrows reach"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/targeta/interface.py",
+      "lines": "80-97",
+      "hash": "f1e16e34bc8ee76763824e253779502d84cb3c56be82b792c3de2a23623385df",
+      "actualbehavior": "Yield output must be exact permutation; starvation by removal is refused."
+    },
+    "exact_gap": "Autonomous training controls are partially present; full six-criteria deploy gate and fixed-foundation assertions are incomplete.",
+    "required_action": "Add unified 6/6 acceptance gate artifact that blocks registry entry/deploy on any failed criterion and stamps lineage inputs.",
+    "closure_demonstration": "PASS when any failed criterion blocks deploy and accepted model stores complete lineage/artefacts. FAIL on partial acceptance. RACE: concurrent candidate evaluations must not bypass gate.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Targeta learns yield but never narrows reach' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Targeta learns yield but never narrows reach' directly, then bind them to this composite id (Doc 13::B5.2)."
+    }
+  },
+  {
+    "review_id": "REQ-144",
+    "composite_id": "Doc 13::B5.3",
+    "workbook_row": 145,
+    "intended_outcome": "Truthful core promise delivery for Foundation methods and material are fixed under #22 \u2014 AUTONOMOUS TRAINING, ANY OUTPUT DIMENSION.",
+    "source_evidence": {
+      "source": "/app/assessment_workspace/fixtures/files_9_extracted/13_Targeting_Training_Part_1_Autonomous_Training_and_Shaping.docx",
+      "anchor": "B66",
+      "interpretation": "Foundation methods and material are fixed"
+    },
+    "code_evidence": {
+      "path": "/app/backend/vendored/extraction_akki/backend/services/audio_plane_v1/training_run_boundary_v1.py",
+      "lines": "190-247",
+      "hash": "0d39009cff5b17f3070ce55faecb9601c8fb7bc1e5e514fa6be0efce291475a7",
+      "actualbehavior": "Manifest enforces per-example provenance and rights-lapse impact enumeration."
+    },
+    "exact_gap": "Autonomous training controls are partially present; full six-criteria deploy gate and fixed-foundation assertions are incomplete.",
+    "required_action": "Add unified 6/6 acceptance gate artifact that blocks registry entry/deploy on any failed criterion and stamps lineage inputs.",
+    "closure_demonstration": "PASS when any failed criterion blocks deploy and accepted model stores complete lineage/artefacts. FAIL on partial acceptance. RACE: concurrent candidate evaluations must not bypass gate.",
+    "delivery_status": {
+      "status": "PARTIAL",
+      "scope": "Read-only source/test/receipt inspection only (no runtime/API/DB/provider/GPU execution in this correction).",
+      "confidence": "medium"
+    },
+    "authority_status": {
+      "source_status": "CANON",
+      "rule_authority": "CANON"
+    },
+    "evidence_limit": "Current source profiler is sample-weighted; sparse/unknown evidence is preserved as unresolved instead of inferred as global absence.",
+    "prior_review_raw": {
+      "delivery_status": "PARTIAL",
+      "review_outcome": "SOURCE_UNRESOLVED",
+      "exact_gap": "No row-level executable assertion was found that proves 'Foundation methods and material are fixed' end-to-end at runtime; available evidence is interface/contract-level and does not fully demonstrate the promised guarantee.",
+      "required_action": "Add/locate rule-specific executable tests and receipts that assert 'Foundation methods and material are fixed' directly, then bind them to this composite id (Doc 13::B5.3)."
+    }
+  }
+]

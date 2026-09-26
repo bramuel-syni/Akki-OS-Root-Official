@@ -1,0 +1,207 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Reasoning, Grounding & the Solver
+
+[B3] Document 4 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Reasoning, Grounding & the Solver
+
+[B5] Promises held in this document: #7 (intent measured — the reasoning half; the security half is in Document 3) · #8 (guards against hallucination) · #31 (the sophisticated reasoning tool — standalone or embedded, mimicking a human mind's way of working, to preserve, audit, defend, or innovate)
+
+[B6] Standalone statement of what must be true. Shared mechanisms are named and Document 16 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] genuine question for the owner, recommended default stated, not settled.
+
+[B8] The service that powers all three promises is Solva, the depth governor — the one engine on the platform that genuinely reasons. Solva has no separate end-user surface name; it operates inside the answering path and the extraction path. This document specifies the engine and its behaviour.
+
+[B9] The organising fact of this document: Solva is the component that could do the most damage, precisely because it is the one that reasons — a system launders a claim exactly when its strongest reasoning pushes against a defensibility ceiling. Every requirement below exists to let a component reason while making the laundering case unrepresentable rather than merely policed.
+
+[B11] PART A — PROMISE #8: GUARDS AGAINST HALLUCINATION
+
+[B12] A1 · The promise, in plain language
+
+[B13] The platform does not state as fact things it cannot support from real material. When an AI model returns something that cannot be anchored to evidence the platform actually holds, the platform does not pass it on as an answer — a sentence that cannot be grounded is refused, not served as a weaker sentence. And when material genuinely supports only a weak claim ("this was stated" rather than "this is true"), the platform asserts only the weak claim, no matter how confident the model or the reasoning behind it appears. The result is that an answer from the platform can be trusted to sit within what its evidence actually supports.
+
+[B14] A2 · The service that powers it
+
+[B15] Solva, through its assertion boundary — a mechanical rule set that computes what a conclusion may claim from the governed classes of the units the conclusion rests on, and nothing else. Supported by:
+
+[B16] the model ladder and grounding requirement — every model-reaching composition carries a per-sentence anchor map and a lower-rung fallback;
+
+[B17] qualification — degraded material is recorded as unqualified and never enters the evidence it would otherwise corrupt.
+
+[B18] A3 · Definition of the promise
+
+[B19] "Guards against hallucination" is defined as three concrete guarantees:
+
+[B20] Grounding is proven, not asserted. A sentence that cannot be anchored to material is not a weaker sentence — it is a refusal. Composed output carries a per-sentence anchor map, and the gate enforces it.
+
+[B21] The claim never exceeds the evidence class. A conclusion inherits the floor of its load-bearing units' classes: if any load-bearing unit is utterance-class (someone said it), the conclusion is utterance-class and is asserted as "was stated," never as fact — however overwhelming the evidence behind it is judged to be. Reasoning strength is not an input to this computation.
+
+[B22] Degraded material cannot reach consumption. A unit that cannot meet the evidence standard is recorded as unqualified and never enters an evidence partition. Garbage in produces refusal out, not a confident wrong number — and this is architectural, following from qualification, not from anyone noticing a source was degraded.
+
+[B23] A4 · Delivery experience expectations
+
+[B24] What the organisation experiences (human-facing):
+
+[B25] Answers that state facts state facts the platform can stand behind; answers resting on weaker material say so in their own wording ("X was stated" rather than "X is true"). The user is never handed a confident-sounding claim the evidence does not support.
+
+[B26] Where an answer cannot be supported at the standard asked, the user receives a refusal with a structured reason — what was asked, the class actually supported, and what would raise it — together with the three things they can actually do about it: accept the result as a recorded statement, narrow the objective, or lower the standard. Nothing else is offered, because nothing else can be delivered.
+
+[B27] What a consuming system experiences (machine-facing):
+
+[B28] A composed answer arrives with a per-sentence anchor map; a sentence without an anchor is not in the answer. A calling system receives either a grounded answer or a defined refusal, never an ungrounded assertion dressed as an answer.
+
+[B29] What is produced and retained:
+
+[B30] A trace for every extraction-time judgement (Part C), carrying the reasoning path, the load-bearing units, the class computed, and the conclusion — the record that makes the guard auditable.
+
+[B31] A5 · Technical and behavioural requirements
+
+[B32] A5.1 · Grounding enforced per sentence [CANON]. Every model-reaching composition carries a per-sentence anchor map, and the gate enforces it. A sentence that cannot be anchored to material is refused. Advisory outputs are marked twice — at write time by the producing service and at render time by the surface — because a marker enforced only at write can be dropped by a renderer that never knew it was load-bearing. (Mark-twice discipline is platform-wide; Document 16 §7.)
+
+[B33] A5.2 · The lower-rung fallback, preserved byte-identical [CANON]. Every model-reaching composition carries a lower-rung fallback — the mechanical composer preserved byte-identical as that fallback — because a system whose highest rung has no floor beneath it has a single point at which output quality becomes unbounded. The floor beneath the ladder is always present.
+
+[B34] A5.3 · The assertion boundary is parameterless [CANON]. The computation of what a conclusion may claim takes the load-bearing units and nothing else — no confidence, no reasoning strength, no evidence weight. "The evidence is overwhelming, assert the utterance as fact" cannot be expressed, because the function computing the class has no parameter through which reasoning strength could enter. The laundering case is not caught at runtime; it is unrepresentable. A signature assertion in the test suite is what keeps it so.
+
+[B35] A5.4 · Qualification is a partition, not a read-time filter [CANON]. A unit that cannot meet the evidence standard is recorded as unqualified and never enters an evidence partition — not filtered at read time (which some path could skip), but excluded from the partition in the first place. This is the mechanism by which degraded material fails to reach consumption.
+
+[B36] A5.5 · Refusal is visible and actionable, never a silent downgrade [CANON]. A conclusion whose computed class falls below the objective's floor is refused with a structured reason stating what was asked, the supported class, and what would raise it — refused visibly, never silently downgraded and served. The refusal offers exactly the three actions a person can take (accept as recorded statement, narrow the objective, lower the standard).
+
+[B37] A6 · What must be true for the service to deliver as intended
+
+[B38] The anchor map is complete and enforced. If a composition can reach a consumer with an unanchored sentence, hallucination has passed the guard.
+
+[B39] The assertion boundary's signature stays parameterless. If any change ever adds a confidence or strength parameter to the class computation, the laundering case becomes representable again — the signature assertion test is therefore load-bearing and must run on every build.
+
+[B40] The fallback is genuinely byte-identical and always present. A ladder rung without its floor is an unbounded-quality point.
+
+[B41] Qualification actually partitions. If unqualified units can reach an evidence partition by any path, "garbage in, refusal out" becomes "garbage in, confident wrong answer out."
+
+[B43] PART B — PROMISE #7 (REASONING HALF): INTENT MEASURED WITHIN A REASONING SESSION
+
+[B44] B1 · The promise, in plain language
+
+[B45] When the platform reasons toward an answer, it does not take the asker's stated purpose at face value and stop there. It records what the asker declared they were doing, and — as the reasoning session unfolds — watches whether the asker's own conduct matches that declaration. A declared search for clarity whose every turn rejects all candidates but the one the asker arrived with is demonstrating confirmation, not inquiry — and the platform tracks that divergence rather than assuming it away. The answer never exceeds the audited intent, and an answer produced under unresolved divergence says so in its own trace.
+
+[B46] Scope note. This is the reasoning half of Promise #7 — Solva reading declared-versus-demonstrated intent inside a single reasoning run. The security half — the Watch reconciling an actor's conduct against their frozen mandate across the estate — is in Document 3. The two are distinct: different scope (one run vs. an actor's whole presence), different consequence (reasoning discipline vs. enforcement). Whether they share one divergence-tracking mechanism is held in Document 16 §6.
+
+[B47] B2 · The service that powers it
+
+[B48] Solva's intent audit — the opening act of a reasoning session, sustained across its stages: it records the situation class the asker declared and reconciles it against the situation class the asker's conduct demonstrates, tracking divergence as the session unfolds.
+
+[B49] B3 · Definition of the promise
+
+[B50] The declaration is treated as a declaration, never as a truth. Solva's opening audit records what the asker said the situation is; it does not assume that is what the situation is.
+
+[B51] Declared and demonstrated intent are both fields of the audit record. Divergence between them is tracked as the session unfolds — not judged once at entry and then forgotten.
+
+[B52] The synthesis never exceeds the audited intent. Sustained declared-versus-demonstrated divergence is a trigger on the synthesis gate, beside thin evidence: the surface may reframe honestly in-session, and a synthesis produced under unresolved divergence carries that fact in its trace.
+
+[B53] Solva acts on divergence only as reasoning discipline, never as enforcement. Where the asker's admission-time declaration and their demonstrated conduct part ways, that divergence is an emission the Watch reads (Document 3); Solva itself never enforces — it only reasons more carefully.
+
+[B54] B4 · Delivery experience expectations
+
+[B55] What the organisation experiences:
+
+[B56] The asker experiences an answer that stays honest to what they actually asked — the platform does not let a confirmation-seeking line of questioning masquerade as open inquiry and produce an over-strong synthesis. Where divergence is unresolved, the answer itself is honest about it rather than quietly overreaching.
+
+[B57] What a consuming system experiences:
+
+[B58] A synthesis produced under unresolved divergence carries that marker in its trace, so any downstream consumer of the synthesis can see the condition it was produced under.
+
+[B59] The divergence, where it concerns the actor's admission-time mandate, is emitted for the Watch to read — the two authorities share the fact, each acting in its own domain.
+
+[B60] What is produced and retained:
+
+[B61] The intent-audit record — declared class, demonstrated class, divergence tracked over the session — carried in the reasoning trace (Part C).
+
+[B62] B5 · Technical and behavioural requirements
+
+[B63] B5.1 · The audit opens the session and is sustained, not one-shot [CANON]. The intent audit is Solva's opening act and runs across the layers that follow; divergence is tracked as the session unfolds, never judged once at entry.
+
+[B64] B5.2 · Divergence is a second synthesis-gate trigger [CANON]. Sustained declared-versus-demonstrated divergence triggers the synthesis gate alongside thin evidence. A synthesis produced under unresolved divergence states so in its trace.
+
+[B65] B5.3 · Solva reasons on divergence; the Watch enforces [CANON]. Where admission-time declaration (Document 3) and demonstrated conduct part ways, the divergence is an emission the Watch reads and acts on. Solva applies it only as reasoning discipline. The boundary is firm: reasoning quality is Solva's; enforcement is the Watch's; neither performs the other's function.
+
+[B66] B6 · What must be true for the service to deliver as intended
+
+[B67] The audit genuinely tracks across the session. A one-shot check at entry would miss exactly the drift the promise exists to catch — a session that starts open and narrows to confirmation.
+
+[B68] Divergence actually constrains the synthesis. If divergence is recorded but does not gate the synthesis, the audit is decorative.
+
+[B69] The Solva/Watch boundary holds both ways. Solva must not enforce (it would become a second security authority); the Watch must receive the emission (or the actor-level picture is blind to session-level conduct). Document 16 §6 holds whether the two divergence mechanisms unify.
+
+[B71] PART C — PROMISE #31: THE SOPHISTICATED REASONING TOOL (SOLVA ITSELF)
+
+[B72] C1 · The promise, in plain language
+
+[B73] The platform holds a genuine reasoning capability — not a pattern-matcher, but a component that reasons the way a careful human mind does: framing a question, weighing candidates, surfacing what contradicts rather than averaging it away, reflecting on what a conclusion actually rests on, and stating a conclusion only as strongly as its grounds allow. This capability can operate on its own or inside another engine's work, and it is applied wherever the system must preserve (keep meaning intact), audit (show why a conclusion holds), defend (justify a conclusion under challenge), or innovate (reason toward something new). It is the seat of judgement in the platform.
+
+[B74] C2 · The service that powers it
+
+[B75] Solva, the depth governor, in full — its two faculties, its reasoning stages, its assertion boundary, and its trace. Solva "issues operations, interprets results, and governs depth"; it never extracts and never reaches into the operator primitives that do (those belong to Mtafiti, Document 8).
+
+[B76] C3 · Definition of the promise
+
+[B77] Solva is two faculties joined by a one-way seam:
+
+[B78] The reasoning faculty — where genuine judgement happens, through real stages no governed artifact could substitute for (a matrix cannot tell you whether an inference is sound): - Framing — reasoning begins from a declared frame (the intent audit, Part B). - Candidates and Tension — contested material is surfaced, not resolved by averaging: a claim and its retraction, a fact and its correction, are held in view together, because averaging them would produce a conclusion no evidence supports and no reader could trace. - Reflection — produces the load-bearing set: the units the conclusion actually rests on. Identifying which units are load-bearing is itself a genuine reasoning judgement.
+
+[B79] The assertion boundary — a purely mechanical rule set (Part A) that reads the governed classes of the load-bearing units and nothing else.
+
+[B80] The seam is one-way and is a dependency rule, not a convention: the reasoning faculty informs the composition freely, but its strength — how confident, how well-evidenced it judges its own conclusion — is never an input to the assertion boundary. Reasoning shapes the composition; it can never raise the ceiling on what that composition may claim. Both directions are enforced by import assertion: the assertion module does not import the reasoning faculty's confidence; the reasoning module does not import the class computation.
+
+[B81] "Standalone or embedded" [CANON + PROPOSED]: Solva operates at two bars, set by where it operates, both governed by the identical two-faculty structure — only the target differs. This is the canonical basis for the promise's "standalone or as part of another engine" claim: the same reasoning structure applies whether Solva is reasoning toward a delivered answer or judging preservation depth inside extraction.
+
+[B82] [RULED] on "innovate." Canon establishes Solva reasoning to preserve, audit, and defend (its stages, its trace, its enforcement are all specified). "Innovate" is Solva's reasoning faculty applied under CIF's governance, not a fourth mode of Solva — the promise's innovate clause is delivered jointly by Solva (the reasoning) and CIF (the governance of ideation), and the CIF interface is specified where CIF's own promises are held.
+
+[B83] C4 · Delivery experience expectations
+
+[B84] What the organisation experiences:
+
+[B85] Where a person uses the platform to think through something hard — an analysis, a defensible position, a genuinely new idea — they experience a counterpart that reasons transparently: it shows what it weighed, holds contradictions in view rather than smoothing them, and states its conclusion at exactly the strength the grounds allow. They can see why it concluded what it did.
+
+[B86] What a consuming system / another engine experiences:
+
+[B87] An engine that embeds Solva issues a reasoning request and receives an interpreted result plus a trace — never Solva reaching into that engine's own primitives, and never the engine reading Solva's internal confidence past the one-way seam.
+
+[B88] What is produced and retained:
+
+[B89] The trace (C5) — the auditable record of the reasoning, present from the first commit.
+
+[B90] C5 · Technical and behavioural requirements
+
+[B91] C5.1 · Two faculties, one-way seam, enforced by import assertion [CANON]. Solva is a free reasoning faculty and a bound assertion boundary. The seam is a dependency rule enforced by import assertion in both directions, not a runtime convention.
+
+[B92] C5.2 · Tension surfaces contested material, never averages it [CANON]. Contested material — a claim and its retraction, a fact and its correction — is held in view together. Averaging is prohibited because it produces a conclusion no evidence supports and no reader could trace.
+
+[B93] C5.3 · Load-bearing identification returns unit references only [CANON]. The load-bearing function returns unit references and carries no class decision. A load-bearing function that returned a class would collapse the two faculties into one. Solva chooses the units; it does not choose what those units imply.
+
+[B94] C5.4 · Construction order: the boundary is built first [CANON]. The assertion boundary is built first, with its parameterless signature, before the reasoning faculty is bound to it. Building the reasoner first and adding the boundary afterward would make the boundary a filter some path could route around.
+
+[B95] C5.5 · The floor and class verdict are read-only to Solva [CANON]. At extraction time Solva enforces the objective's defensibility floor and the governed class, both read through read-only handles — Solva reads them, never sets or relaxes them.
+
+[B96] C5.6 · The trace exists from the first commit [CANON]. Every extraction-time judgement produces a trace: the reasoning path across its stages, the units found load-bearing, the class computed at the boundary, and the conclusion. The trace is not instrumentation added later — it is the auditability that justifies letting a component reason at all. It carries a trace identifier joining it to the unit-level intelligence and to the record.
+
+[B97] C5.7 · Solva governs depth only [CANON]. Direction is Northena (Document 5); boundary is SyniSense (Document 1); depth is Solva. The three axes never collapse into one another — a governor performing another's function would create a single point at which a run could be admitted, bounded, and asserted by the same logic, with no separate check to catch it.
+
+[B98] C6 · What must be true for the service to deliver as intended
+
+[B99] The one-way seam holds under every change. The single most important property: if reasoning strength ever becomes an input to the assertion boundary, the whole guard against laundering (and against hallucination, Part A) falls. The import assertions are load-bearing tests.
+
+[B100] Tension genuinely surfaces rather than resolves. If contested material is averaged anywhere, conclusions become untraceable and unsupported.
+
+[B101] The trace is complete and joined to the record. A reasoning capability without a faithful trace is exactly the thing that cannot be allowed to reason — the trace is the permission.
+
+[B102] Solva stays in its axis. If Solva ever extracts, or reaches into operator primitives, or enforces (Part B), the axis separation collapses and a single point of compromise appears.
+
+[B103] The innovate clause's division with CIF is ruled (C3). Until confirmed, the generative application of Solva is specified only in principle; once ruled, the Solva/CIF interface must be explicit so neither duplicates the other.
+
+[B105] RULINGS APPLIED TO THIS DOCUMENT
+
+[B106] C3 [RULED] — "Innovate" delivered jointly by Solva's reasoning faculty under CIF's governance, not a fourth Solva mode. Settled.
+
+[B107] Document 16 §6 [RULED] — Solva's session-level intent audit (Part B) and the Watch's actor-level reconciliation (Document 3) remain two deliberately separate mechanisms — different authorities, no shared mechanism permitted. See Document 16 §6.
+
+[B109] End of Document 4 of 16 — Reasoning, Grounding & the Solver.

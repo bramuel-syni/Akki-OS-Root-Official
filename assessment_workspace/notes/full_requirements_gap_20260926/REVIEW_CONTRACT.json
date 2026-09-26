@@ -1,0 +1,37 @@
+{
+  "owner_request": "i want you to do the same thing you have done for this additional specs for the entire requirements list and develop a gap analysis with what we need to do to deliver on the promises of Akki. be surgical, ensure you covered everything line by line. surafce the report here befor taking any action.",
+  "approved_scope": "Read-only gap analysis of latest648requirements plusS1-S35 and directly referenced Canon obligations/limitations/rulings. Assessment files only. Present findings in chat before implementation; no app/Canon changes, DB writes, live source pulls, provider/model/GPU calls or automatic repairs.",
+  "baseline": {
+    "registry": "assessment_workspace/custody/owner_drops/enhancement_specs_18_20260926/Master_Requirements_Registry.xlsx",
+    "registry_sha256": "2d5d32501d113f201ebf32f7d6733c3a178fcbd806a8d459d9a72b08acd92d64",
+    "promises": "assessment_workspace/custody/owner_drops/enhancement_specs_18_20260926/Security_Assurance_Promise_Set.xlsx",
+    "promises_sha256": "004aa66932432ee313b48e5024821a4b13d9edba8e2ddd2088c983847fe430a7",
+    "primary_rows": 648,
+    "assurance_promises": 35,
+    "primary_key": "source_doc + rule_id, retaining original workbook row; neverRuleIDalone",
+    "supplemental_denominator": "Enumerated from directly resolved source documents and Canon1-9 in SOURCE_INVENTORY/SUPPLEMENTAL_INVENTORY; open source/version gaps must be counted and disclosed, not replaced by guessed text"
+  },
+  "procedure": [
+    "Freeze source hashes and preserve every original row/authority status; prior BUILT fields are claims, not proof",
+    "For each row record intended outcome, source authority, inspected implementation/evidence, exact gap, required change or validation, closure demonstration, dependencies and confidence",
+    "Judge the stated promise, not invented perfection; preserve explicit nonclaims and distinguish product promise #n from assurance S-n",
+    "Separate specification ambiguity, source/custody gaps, implementation gaps, integration gaps, external blockers and absent operational proof",
+    "Read-only source/test/receipt inspection; no test execution that might alter services or data; previous runtime evidence date/scope explicitly bounded",
+    "No delivered status from function names, imports, schema existence, in-memory state, stub results or test-name matches",
+    "Reconcile every baseline key, every promise and supplemental item; surface source-unresolved or unverified rather than claim complete substantive review",
+    "Publish concise promise-first report in chat and detailed row-by-row assessment artifacts before any implementation"
+  ],
+  "delivery_statuses": ["EVIDENCED_SCOPED", "PARTIAL", "NOT_IMPLEMENTED_CONFIRMED", "BLOCKED", "UNVERIFIED", "SOURCE_UNRESOLVED", "SPEC_DECISION_REQUIRED", "EXPLICIT_NONCLAIM"],
+  "review_outcomes": ["ASSESSED", "SOURCE_UNRESOLVED", "EVIDENCE_INSUFFICIENT"],
+  "acceptance": [
+    "648unique composite keys appear exactly once in final matrix; no extras/no omissions",
+    "35assurance promises retain original text and map to outcome-critical closure obligations",
+    "Each source/evidence citation resolves and has a content hash; unresolved citations explicitly labelled",
+    "Every row has nonempty outcome/gap/action/closure fields; repeated boilerplate cannot substitute for rule-specific reasoning",
+    "Partial/mocked/blocked paths stay labelled; no whole-platform delivery percentage from coverage counts",
+    "Applicable limitation/ruling/source status retained; new registry PROPOSED rows not silently ratified",
+    "Final counts distinguish assessment coverage, source availability, semantic confidence and runtime delivery proof"
+  ],
+  "shortcut_detectors": ["Composite-ID exact-set and row-count comparison", "Reject whole-family verdict copied to every row without rule-specific action", "Require callable implementation/receipt evidence instead of keyword hits", "Preserve contradictory/old claim evidence with dates", "No completion rollup from historic297BUILT claims", "Explicit source and supplemental coverage limits"],
+  "independence_limits": "Source/evidence review is not runtime or hardened EX4 compliance. Independent reviewers' uncertainty must be preserved; no assumption of different model family. No fresh security or deployment certification is claimed."
+}

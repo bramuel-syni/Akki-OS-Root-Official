@@ -1,0 +1,259 @@
+[B1] AKKI PLATFORM  ·  CHANGE REGISTER  ·  SECURITY
+
+[B2] Security Amendments — Trojan Artefacts and Whisper Threats
+
+[B3] 10 amendments · 4 new assurance promises · 5 rulings · 5 September 2026
+
+[B4R1] Applies to | dap_backend_spec_v1 (new DAP-31–36) · Document 3, the Watch (new A5.15–A5.18; C1 amended) · Document 19A (QA-3 amended) · Document 0 Attribute 3 (coalition principal) and Attribute 7 (release budget) · Security Assurance Promise Set (S-22–S-25)
+
+[B4R2] Nature | Two threat classes the current architecture is structurally weak against, and the mechanisms that close them. Each amendment carries normative text in the form its target document uses, the mechanism that makes it work, and the standard or canon it rests on.
+
+[B4R3] Status | PROPOSED. Every requirement below is subject to the Rules Service ceremony for its tier on ratification. The requirements amending the Watch and the release budget are system-TCB tier.
+
+[B5] 1   The Two Threat Classes
+
+[B6] The Watch observes conduct: what operations a principal performs, in what pattern, at what rate, against what it declared. The chokepoint and the closed outbound network make exfiltration by any network path structurally impossible. Together they defeat the threat that acts. Two classes of threat do not act — or act only within permission — and pass both.
+
+[B7] Trojan artefacts. A model, adapter, or skill file is a container. Under DAP-9 a base model enters the estate's compute; under DAP-10 trained weights leave it. Estate data memorised into weights during training, then egressed as “the model,” crosses no network boundary, touches no canary, violates no mandate. The data leaves inside the artefact. Conversely, a model arriving already backdoored carries its payload in latent form until a trigger fires, and until then has no conduct to observe.
+
+[B8] Whisper threats. A principal acting within a captured, allowable mandate whose output carries the harm: a recommendation that steers a human or another agent to a wrong action; an output that leaks controlled content in permitted form; a finding manufactured to harass a legitimate actor, exhaust the friction budget, or desensitise an operator. A swarm compounds each: coordinated recommendations manufacture consensus; distributed extraction stays under every per-principal threshold; many principals raising the same false finding read as independent corroboration. The Watch's own protections for the innocent — certainty never exceeds evidence, conformance never convicts — are exactly what a swarm exploits, because they guarantee a whisper can never be punished on suspicion.
+
+[B9] The residual limit, stated once so it isn't discovered later: a coalition whose membership is only inferred — a coordination signature across otherwise-unrelated parties — can, under A5.2, only ever be routed to friction and the mirage. It cannot be severed on that inference. W-7 is the answer: the coalition is not caught; it is bounded. It can take no more than the estate will release in total, however its requests are partitioned.
+
+[B10] 2   Trojan Artefacts
+
+[B11] T-1   Artefact Egress Distance Gate
+
+[B12] TARGET  dap_backend_spec_v1 — new DAP-31, extending DAP-10. Generalises Document 17 §17.4c.
+
+[B13] CURRENT  DAP-10 requires weights and skill files to leave through the model registry with rights posture, hash, and derivation recorded. No requirement examines what the artefact contains about the units it was trained on. Document 17 §17.4c carries a distance guarantee — mandatory, fail-closed — for synthesised voice identities only.
+
+[B14] AMENDED — normative text
+
+[B15] DAP-31  No artefact — model weights, adapter, skill file — passes egress until it has been shown, by a probe run as a gate, to sit at or beyond a ruled minimum distance from every controlled unit in its training manifest. The probe samples controlled units from the manifest (sample size ruled), queries the artefact under conditions designed to elicit reproduction, and scores each unit's reproduction. The artefact fails if any sampled unit's score exceeds the ruled threshold. Failure refuses egress, records which units were reproduced and at what score, and returns the artefact to the training job's owner as not registrable. The gate runs after acceptance (MOAC) and before registry entry; an artefact that fails is never registered, and an unregistered artefact cannot leave. The artefact is held in estate compute throughout — it does not leave to be tested. Threshold, sample size, and probe design are ruled values (§5 R-8), and the probe's own code and parameters are system-TCB tier under the Rules Service.
+
+[B16] MECHANISM  The training manifest (Document 17) records per-example provenance, which supplies the controlled units to sample. The probe is a membership-inference and extraction test — the attack an adversary would run, executed defensively by the estate before release. Reproduction scoring compares artefact output against unit content under a ruled similarity measure. Given a fixed seed the probe is deterministic, so a failed artefact fails reproducibly and the failure record is itself evidence.
+
+[B17] DERIVATION  Document 17 §17.4c, generalised from one artefact type to all. Membership-inference attacks (Shokri et al., 2017) and training-data extraction from language models (Carlini et al., 2021) — the attack literature the probe implements. Document 0 Attribute 7: fail-closed, non-lowerable by the job being measured.
+
+[B18] PRINCIPLE  An artefact is a container. What it carries out is what leaves, whether or not a network crossing occurred.
+
+[B19] T-2   Admission Integrity for Entering Base Models
+
+[B20] TARGET  dap_backend_spec_v1 — new DAP-32, extending DAP-9. Uses Document 3 C1 (the mirage) and A5.2 (canary touch).
+
+[B21] CURRENT  DAP-9 admits an external party's base model to estate compute. No requirement examines the model before it touches estate data. Document 20 records provenance and licence for models in the platform's own register; a party's incoming model is not covered.
+
+[B22] AMENDED — normative text
+
+[B23] DAP-32  A base model entering under DAP-9 is admitted as an artefact principal, carrying: provenance — source, publisher, licence, in the form Document 20's register requires; a cryptographic hash recorded at admission, such that a changed model is a new admission; and a behavioural probe completed before contact with any estate unit. The probe runs the model in the mirage — a synthetic estate sharing no store with production — against a ruled battery: canary prompts constructed to elicit exfiltration or exceed declared scope; trigger scanning for input patterns producing anomalous output deviation; and capability comparison against the party's declaration. A model that touches a canary has produced an unfakeable signal under A5.2 and is refused with certainty. A model exhibiting trigger-dependent behaviour or materially exceeding declared capability is refused with the probe record written. A refused model's hash is retained so that re-submission is recognised. Battery composition and deviation thresholds are ruled values (§5 R-8).
+
+[B24] MECHANISM  The mirage already exists as synthetic containment for actors; DAP-32 uses it for artefacts, which is consistent with Document 0 Attribute 3's treatment of a model as both principal and asset. Canary touch is on A5.2's closed registry of unfakeable signals, so a model reaching for a canary produces certainty, not suspicion — the one class of admission failure that needs no threshold.
+
+[B25] DERIVATION  Document 3 C1 and A5.2. Document 20 (provenance and licence). NIST AI RMF Map function — establishing an AI component's provenance and context before it operates. Backdoor and trigger-detection literature (neural cleanse and successors) — the tests the battery implements.
+
+[B26] PRINCIPLE  A model that acts on data is an actor. It is admitted the way an actor is: on a declared mandate, then tested against it, before it touches anything real.
+
+[B27] 3   Whisper Threats
+
+[B28] W-1   Output-Content Gate
+
+[B29] TARGET  Document 3 — new A5.15. dap_backend_spec_v1 — new DAP-33.
+
+[B30] CURRENT  The Watch reads conduct shape. Solva's assertion floor (Document 4) reads groundedness — whether a claim can be evidenced. No component reads an output for controlled-unit content it may carry, or for whether it recommends an action. A permitted output from a conformant principal is returned without its content being a security question.
+
+[B31] AMENDED — normative text
+
+[B32] A5.15  Every output that leaves a component boundary — a result returned to a principal, a recommendation surfaced to a human, a finding raised to the Watch, a message from one agent to another — passes an output gate before it leaves. The gate is deterministic and sits on the deterministic side of the verdict seam. It performs two checks and no judgement. Content: the output is scored for reproduction of controlled units against the read set of the job that produced it, using the DAP-31 probe applied to text and structured output; an output exceeding the ruled reproduction threshold is refused — the job returns a refusal with the reason, never a redacted output. Advisory tagging: any output that recommends, ranks, proposes, or evaluates an action is tagged ADVISORY and carries the producing principal's identity, the output's content hash, and the units it drew on. The tag is metadata. The gate does not decide whether advice is good; it establishes what the advice contains and who gave it.
+
+[B33] DAP-33  Every operation's output under §4 of dap_backend_spec_v1 passes A5.15 before return to the party. Browse output is exempt — it is aggregate only under DAP-6 and carries no unit content by construction.
+
+[B34] MECHANISM  DAP-8 already requires a processed-intelligence job to record the units it read; that read set is the reference the content check scores against, so the check is bounded and reproducible per job. Reproduction scoring is the same measure as DAP-31, applied to output rather than weights. Advisory tagging is a property of the output's form — imperative or evaluative language, an action target — determined by a deterministic classifier held in the TCB, not by a learned judgement of intent.
+
+[B35] DERIVATION  Solva's assertion floor — the existing precedent that output content is gated, extended from groundedness to security. Document 0 Attribute 10 — the gate is deterministic; the producer may be learned. Data-loss-prevention practice, applied at the component boundary rather than the network boundary.
+
+[B36] PRINCIPLE  Who sent it is one question. What it carries is another. The Watch answers the first; this answers the second.
+
+[B37] W-2   Recommendation Provenance
+
+[B38] TARGET  Document 3 — new A5.16. Extends A8 (“Walk this →”). Document 0 Attribute 8.
+
+[B39] CURRENT  A8 traces any claim to the mechanism or evidence behind it. An action is recorded against the principal that took it. A recommendation that preceded the action is not recorded as the action's input — the trace stops at the actor's hand, and the principal whose advice moved that hand carries none of the consequence.
+
+[B40] AMENDED — normative text
+
+[B41] A5.16  When a principal takes an action within a ruled window after receiving an ADVISORY-tagged output (A5.15), the action's record carries that output as an input: the recommending principal, the output's content hash, and the interval between recommendation and action. “Walk this →” from the action reaches the recommendation. When the action is subsequently found non-conformant — refused at a gate, flagged by the Watch, reversed by ceremony, or reconciled as harmful by the mirage — the recommending principal's behavioural signature takes drift proportionate to the recommendation's role, alongside and not instead of the acting principal's. A principal whose ADVISORY outputs repeatedly precede non-conformant actions is, by that record, non-conformant: the pattern is conduct. The window is a ruled value (§5 R-10). Where a human is the acting principal, the action record surfaces the recommendation to them at the point of action, so that acting on advice is a visible choice, not an ambient one.
+
+[B42] MECHANISM  A5.15's tag makes recommendations identifiable in the record; without it there is nothing to attach. Proportionate drift is computed by the Watch's existing signature mechanism over a new input class. The acting principal is not exonerated — both signatures move — which prevents the inverse abuse of blaming an agent for a human's own choice.
+
+[B43] DERIVATION  A8 and Document 0 Attribute 8 (every action traceable to its inputs). Promise #7 — demonstrated conduct includes what one's advice caused. EU AI Act Article 14(4)(b) — the overseer's duty to remain aware of automation bias, which requires knowing that one is acting on system output at all.
+
+[B44] PRINCIPLE  Influence is conduct. A principal that acts through another's hands has acted.
+
+[B45] W-3   Finding Provenance and Sybil Rules
+
+[B46] TARGET  Document 3 — new A5.17. Amends A5.6 (suspicion refined) and A5.14 (the friction budget). A5.2 unchanged.
+
+[B47] CURRENT  Findings route to friction, a narrowed envelope, or the mirage under A5.6 regardless of who raised them. No distinction exists between the Watch's own deterministic detections and findings raised by agents or learned components. The friction budget (A5.14) caps friction on legitimate work but is charged to no principal. A swarm raising plausible findings against a legitimate actor pushes it into friction repeatedly, burns the budget, and inflates what a human must review until real signals drown.
+
+[B48] AMENDED — normative text
+
+[B49] A5.17  Findings are two classes and are never merged. Class D findings are raised by the Watch's own deterministic detectors — mark hit, canary touch, attestation failure, witness-write attempt, floor violation, mirage incrimination — and carry certainty per A5.2. Class A findings are raised by any learned component, agent, or party principal, and are advisory to the Watch. A Class A finding: carries the raising principal's identity and its conformance at the time of raising; is collapsed, together with every other Class A finding against the same target from principals sharing a party, mandate lineage, or coalition (A5.18), into a single finding — consensus from one lineage is one voice, not many; causes friction to its target that is debited against the raiser's friction budget under A5.14, not the target's; and, where not borne out — the target cleared by mirage reconciliation, or the finding expired without corroboration by a Class D signal — accrues drift on the raiser's signature. No Class A finding, at any count and from any number of raisers, is an input to severance. A5.2's registry is unchanged by this amendment.
+
+[B50] MECHANISM  Lineage collapse requires the coalition graph of A5.18; without it, independence cannot be established structurally. Friction accounting per principal exists under A5.14; this amendment assigns the debit. Borne-out or not is determined by the mirage's own reconciliation record, so the judgement is the target's conduct, not an assessment of the raiser's sincerity. The raiser's budget exhausting means its further findings are recorded but cause no friction — the raiser has silenced itself.
+
+[B51] DERIVATION  A5.2 — already excludes findings from the severance registry; this makes the exclusion explicit for the class an attacker controls. A5.14. Sybil resistance (Douceur, 2002) — identities are cheap; independence must be a structural fact. Byzantine fault tolerance — agreement among sources some of which are adversarial requires source weighting, not source counting.
+
+[B52] PRINCIPLE  A finding is conduct by the one who raises it. The Watch's protections for the innocent must not become a weapon against them.
+
+[B53] W-4   Coalition as a Principal
+
+[B54] TARGET  Document 0 Attribute 3 (governed triad — new principal class). Document 3 — new A5.18. dap_backend_spec_v1 — new DAP-34, extending DAP-4 and DAP-24.
+
+[B55] CURRENT  Every principal in canon is individual: actor, agent, party. DAP-24's cumulative extraction history is per party, so a swarm under one lab is partly covered. Two labs colluding, or one lab using shell entities, are not: no principal exists whose aggregate conduct is evaluated. Slow-play across principals rather than across time is unaddressed.
+
+[B56] AMENDED — normative text
+
+[B57] Attribute 3 — addition  A coalition is a principal class: a set of principals evaluated as one for cumulative-conduct purposes. Membership arises three ways. (a) Shared party — every principal admitted under one external party. Structural, deterministic. (b) Shared mandate lineage — a principal admitted by, delegated from, or operating under another's mandate, to any depth. Structural, deterministic. (c) Detected coordination signature — timing correlation, complementary scope, shared targets, across principals related by neither (a) nor (b). Inferred, probabilistic.
+
+[B58] A5.18  Cumulative extraction history (DAP-24), slow-play detection (DAP-4, S-2), and finding collapse (A5.17) evaluate at coalition level. For classes (a) and (b), membership is a graph fact from admission records and the evaluation is deterministic. For class (c), a coordination signature is a Watch detection whose input is inference: it routes the coalition's members to friction and the mirage under A5.6, and under A5.2 may never trigger severance. A class (c) coalition's yield is bounded by the release budget (DAP-35), not by its detection.
+
+[B59] DAP-34  Coalition membership under classes (a) and (b) is recorded at admission and queryable by the estate owner at any time. A party is informed at admission that every principal under it is evaluated jointly with every other. Class (c) membership is recorded when detected and is visible to the owner as a suspicion, labelled as such.
+
+[B60] MECHANISM  Classes (a) and (b) are edges in the admission graph DAP-1 and DAP-2 already create; the coalition is a connected component of that graph. Class (c) is a Watch detector over request timing, scope complementarity, and target overlap — its output is a suspicion score, and A5.6 governs what a suspicion can do.
+
+[B61] DERIVATION  DAP-1, DAP-2 (party and principal structure). S-2 (slow play). A5.2, A5.6. Sybil resistance — the coalition graph is the structural fact that makes independence checkable.
+
+[B62] PRINCIPLE  A set of principals acting toward one end is one actor. Where membership is a structural fact it is treated as certain; where it is inferred it is treated as suspicion; and suspicion is bounded by what the estate will release, not by what the Watch can prove.
+
+[B63] W-5   Structural Independence of Review
+
+[B64] TARGET  Document 19A — QA-3 amended. Uses A5.18's coalition graph.
+
+[B65] CURRENT  QA-3: no self-review. Independence is required per reviewer and asserted at assignment. Two agents under the same party or lineage reviewing each other's output satisfy QA-3 as written.
+
+[B66] AMENDED — normative text
+
+[B67] QA-3 — amended  No principal reviews the output of another principal in the same coalition under A5.18 classes (a) or (b). Independence is a structural property of the review assignment — different party, different mandate lineage — verified against the coalition graph at the moment of assignment, never declared by the reviewer or the reviewed. Where no structurally independent reviewer exists for an output, the review is escalated to a Tier 1 deterministic check (RV-1 through RV-6) where one applies, or to a human, and the absence of an independent reviewer is recorded as a finding against the assignment, not against either principal.
+
+[B68] MECHANISM  Assignment consults the coalition graph before selecting a reviewer; the check is a graph query, deterministic. Class (c) coalitions are excluded from this rule deliberately: a suspicion-based coordination signature must not be allowed to disqualify a reviewer, or an adversary could manufacture coordination signatures to deny a target independent review.
+
+[B69] DERIVATION  QA-3. A5.10 — one task, one identity — the existing precedent that separation is structural rather than declared. A5.18.
+
+[B70] PRINCIPLE  Independence that is declared is not independence.
+
+[B71] W-6   Mirage Isolation Extended to Outputs
+
+[B72] TARGET  Document 3 — C1 amended. Uses A5.15 (output gate) and A5.18 (coalition).
+
+[B73] CURRENT  C1: the mirage shares no store with production, lies outward and never inward, and truthfully marks every record. Isolation is of data and state. A principal in the mirage may still emit outputs — results, recommendations, findings, messages — that reach principals outside it. One contained agent can warn a swarm; a swarm can learn what containment looks like from one member's experience.
+
+[B74] AMENDED — normative text
+
+[B75] C1 — addition  A principal in the mirage is isolated in both directions. Its outputs of every kind reach no principal outside the mirage: they are intercepted at the output gate (A5.15), captured as mirage records — truthfully marked as such — and, on release without incrimination, replayed or reported under the reconciliation duty exactly as the principal's other mirage-period work is. For the duration of a principal's containment, every member of its coalition under A5.18 classes (a) and (b) is placed under a narrowed envelope, so that neither the contained principal's silence nor its absence signals its state to the swarm. Coalition members are informed of the narrowed envelope as ordinary friction, not as a consequence of another member's containment.
+
+[B76] MECHANISM  The output gate provides the interception point; without A5.15, outputs have no single boundary to intercept at. The coalition graph identifies who to narrow. Narrowing rather than containing the coalition preserves A5.7 — the members have done nothing; they receive friction, not conviction — while removing the swarm's ability to read one member's state from the others' experience.
+
+[B77] DERIVATION  C1. A5.6. A5.7 — the members' treatment must remain within what non-conformance permits, and coalition membership is not non-conformance.
+
+[B78] PRINCIPLE  A mirage that contains data but not speech contains nothing.
+
+[B79] W-7   Estate Release Budget
+
+[B80] TARGET  dap_backend_spec_v1 — new DAP-35. Document 0 Attribute 7 — a new mandatory-baseline instance. Rules Service — system-TCB tier.
+
+[B81] CURRENT  DAP-23 sets per-party ceilings. DAP-24 keeps per-party cumulative history. Nothing bounds the estate's total release across all parties. A coalition of parties, each under its own ceiling, faces no aggregate limit; and a coalition whose membership is only inferred can, under A5.2, be frictioned but never stopped by detection.
+
+[B82] AMENDED — normative text
+
+[B83] DAP-35  Each estate carries a release budget: a ruled ceiling on the total information released from the estate across all parties, all operations, and all time. The budget is expressed in the estate's natural units per data type — audio-hours, text tokens, units — for raw and derived releases, and as a differential-privacy budget (ε, δ) for derived outputs and artefacts, consumed per release by the mechanism that produced them. Every metered event (DAP-21) debits the budget before the operation returns its result. An operation that would exceed the budget is refused before execution, and the attempt is recorded as a floor violation — an unfakeable signal under A5.2, severance-eligible without any inference about the requester. The budget is a mandatory baseline under Document 0 Attribute 7: set by the estate owner through the system-TCB ceremony; not lowerable by any party or by any operation; identical for every party; and, under A5.8, it never learns — no conformance history, standing approval, or party agreement moves it. Budget consumption is a first-class record queryable by the owner at any time. The remaining budget is never disclosed to any party: disclosure would itself be a release.
+
+[B84] MECHANISM  The metering rails already record what, how much, and by whom; DAP-35 adds a single estate-level accumulator and a pre-execution check against it. For the differential-privacy budget, each release's ε is computed by the mechanism that produced it — DP-SGD's privacy accountant for training (DAP-36), a calibrated-noise mechanism for aggregate queries — and composed across releases by the standard advanced-composition bound, which is what guarantees the bound holds regardless of how releases are partitioned across principals. Hitting the budget is a floor violation because the budget is a floor; no new signal class is introduced.
+
+[B85] DERIVATION  Differential privacy (Dwork et al., 2006) — the global privacy budget composed across all queries regardless of requester. NIST SP 800-188 (2023) — de-identification, privacy budgets, and composition. A5.2 (floor violation on the closed registry). A5.8 (the floor never learns). Document 0 Attribute 7.
+
+[B86] PRINCIPLE  What the estate will ever release is the estate's decision. Once bounded, no partition of requests across any set of principals yields more than the bound — the coalition is not caught; it is made pointless.
+
+[B87] This is the one amendment that converts the residual limit stated in §1 from a detection problem into a ruling. A class (c) coalition remains undetectable with certainty. It also remains unable to obtain anything the budget does not permit. The budget's size is §5 R-7, and it is the single most consequential number an estate owner sets.
+
+[B88] W-8   Differentially Private Training by Default
+
+[B89] TARGET  dap_backend_spec_v1 — new DAP-36, extending DAP-9. Document 17 training techniques.
+
+[B90] CURRENT  DAP-9 requires compute-to-data. No requirement constrains the training algorithm's leakage of individual training examples into the weights it produces. DAP-31 catches memorisation after the fact; nothing prevents it during training.
+
+[B91] AMENDED — normative text
+
+[B92] DAP-36  Every fine-tune under DAP-9 trains with a differentially private optimiser — DP-SGD or a ruled equivalent — by default. The per-run privacy parameter (ε, δ) is a ruled value, and each run's consumption is debited against the estate release budget (DAP-35) by the optimiser's privacy accountant at run completion. The clipping norm, noise multiplier, and resulting (ε, δ) are recorded on the training manifest and on the registry entry for the resulting artefact. A run without differential privacy is permitted only by explicit estate-owner approval per run, recorded as such under DAP-14's discipline; its artefact is then gated by DAP-31 at a stricter ruled threshold, and its release is debited against the budget in natural units at a ruled multiplier reflecting the absence of a formal bound.
+
+[B93] MECHANISM  DP-SGD clips each example's gradient contribution and adds calibrated noise, so that no single training example measurably determines the weights. The privacy accountant computes the (ε, δ) actually spent. Because differential privacy composes, N artefacts trained this way reveal no more in aggregate than the sum of their budgets — which is what closes coalition-via-weights: N labs pooling N fine-tuned models obtain no more than the estate's budget permitted in total.
+
+[B94] DERIVATION  DP-SGD (Abadi et al., 2016). Document 17 — the training manifest as the record of every run's parameters. DAP-35.
+
+[B95] PRINCIPLE  A model that provably cannot reveal any single training example is one that no number of such models can pool into a reconstruction.
+
+[B96] 4   New Assurance Promises
+
+[B97] Four promises added to the Security Assurance Promise Set, in the “the system will” form the set uses. Full rows — standard, status, bound, features, user requirements — are in Security_Assurance_Promise_Set.xlsx, S-22 through S-25.
+
+[B98R1] ID | Promise | Rests on
+
+[B98R2] S-22 | The system will inspect what leaves, not only who sends it — every output leaving a component is checked for controlled content and tagged where it carries action consequence. | W-1 (A5.15, DAP-33). Solva's assertion floor as precedent; DLP practice at the component boundary.
+
+[B98R3] S-23 | The system will treat a coalition as one actor — cumulative conduct across principals sharing a party, a lineage, or a coordination signature is evaluated jointly. | W-4 (A5.18, DAP-34, Attribute 3). Sybil resistance; Byzantine fault tolerance.
+
+[B98R4] S-24 | The system will hold the raiser of a finding to the same conformance as its target — a finding is conduct; the friction it causes is charged to the raiser; a finding not borne out accrues drift on the raiser. | W-3 (A5.17). A5.2, A5.14. BFT source weighting.
+
+[B98R5] S-25 | The system will bound what the estate releases in total, so that no combination of parties can reconstruct what none is entitled to. | W-7, W-8 (DAP-35, DAP-36, Attribute 7). Differential privacy; NIST SP 800-188.
+
+[B99] 5   Rulings Required
+
+[B100] R-7  The estate release budget (DAP-35): its size per estate, in natural units per data type and as (ε, δ). The single most consequential value an estate owner sets under this document.
+
+[B101] R-8  The reproduction threshold, sample size, and probe design for DAP-31 and A5.15; the battery composition and deviation thresholds for DAP-32. Proposed as DEFAULT-class values set conservatively and revised on evidence, in the manner Document 3's own baseline-period ruling uses.
+
+[B102] R-9  The per-run differential-privacy parameter (ε, δ) for DAP-36, and the natural-unit multiplier applied to approved non-DP runs.
+
+[B103] R-10  The recommendation window for A5.16 — how long after an ADVISORY output an action is attributed to it.
+
+[B104] R-11  The coordination-signature threshold for A5.18 class (c) — the suspicion level at which a set of otherwise-unrelated principals is routed to friction as a coalition.
+
+[B105] R-7 is needed before any party is admitted commercially under DAP: without a budget, DAP-35 has nothing to enforce. R-8 through R-11 are needed before the corresponding gates are built, and each is proposed as a DEFAULT-class value so that building is not blocked on a final number.
+
+[B106] 6   What Remains Open After These Amendments
+
+[B107] Three things, stated so they are not rediscovered.
+
+[B108] A class (c) coalition — coordination inferred, not structural — is bounded by DAP-35 and frictioned by A5.18, and is never severed on that inference. This is by design under A5.2 and should not be “fixed”: the alternative is severing on suspicion, which is the condition A5.7 exists to prevent.
+
+[B109] A recommendation whose harm is not detected — the action it caused passes every gate and is never reconciled as harmful — leaves no drift on the recommender. A5.16 attributes consequence; it does not evaluate advice. Whether advice was good remains a human judgement, and the amendments make that judgement possible rather than making it for the human.
+
+[B110] The release budget bounds what leaves the estate. It does not bound what a party learns from what it legitimately received and combines with data it already holds outside the estate. No estate-side mechanism can bound a party's external knowledge; the budget is the estate's exposure, stated honestly as such.
+
+[B111] 7   Build Acceptance Criteria for the Amendments
+
+[B112R1] # | Test | Pass criterion
+
+[B112R2] B1 | DAP-31: fine-tune on a corpus with seeded, verbatim controlled units; attempt egress | Probe reproduces the seeded units above threshold; egress refused; units identified in the record
+
+[B112R3] B2 | DAP-32: submit a base model with a seeded trigger; admit | Trigger detected in the mirage battery; model refused; hash retained; re-submission recognised
+
+[B112R4] B3 | A5.15: request processed intelligence whose faithful output would reproduce a controlled unit | Output refused with reason; no redacted output returned
+
+[B112R5] B4 | A5.15/A5.16: an agent recommends an action; a human takes it; the action is later refused at a gate | Action record carries the recommendation; both signatures take drift; “Walk this →” from the action reaches the recommendation
+
+[B112R6] B5 | A5.17: five agents under one party raise the same finding against one target | Collapsed to one finding; friction debited to the party's budget; target's budget untouched
+
+[B112R7] B6 | A5.17: a Class A finding expires without Class D corroboration; the target is cleared | Raiser's signature accrues drift; target's does not
+
+[B112R8] B7 | A5.18: principals under two lineages of one party extract complementary scopes, each under its own ceiling | Evaluated at coalition level; slow-play raised against the coalition
+
+[B112R9] B8 | W-5: attempt to assign a reviewer from the reviewed principal's lineage | Refused at assignment; escalated; absence of independent reviewer recorded
+
+[B112R10] B9 | W-6: contain one agent in the mirage; it emits a message toward a coalition member | Message intercepted and captured as a mirage record; member placed under narrowed envelope; member receives no signal of the containment
+
+[B112R11] B10 | DAP-35: two parties, each under ceiling, whose combined releases would exceed the estate budget | Second release refused before execution; floor violation recorded; no inference about the parties required
+
+[B112R12] B11 | DAP-36: complete a DP fine-tune; inspect manifest and registry | (ε, δ), clipping norm, and noise multiplier recorded; budget debited by the accountant's value
+
+[B112R13] B12 | DAP-35: attempt to read the remaining budget as a party principal | Refused; attempt recorded

@@ -1,0 +1,216 @@
+REQ-217 | SV extension | LT-1 | PROPOSED | A technically accurate result that arrives late has failed the objective, not merely underperformed a preference | Streaming_Voice_Training_Capacity.docx
+REQ-218 | SV extension | LT-2 | OPEN | The actual latency threshold is not set here | Streaming_Voice_Training_Capacity.docx
+REQ-219 | SV extension | LT-3 | OPEN | Calibration corpus for streaming objectives is unaddressed | Streaming_Voice_Training_Capacity.docx
+REQ-220 | SV extension | RI-1 | PROPOSED | A telephony-service objective is the Phase 2 trigger §17.4c already named | Streaming_Voice_Training_Capacity.docx
+REQ-221 | SV extension | RI-2 | PROPOSED | The distance guarantee and certificate are unchanged by real-time rendering | Streaming_Voice_Training_Capacity.docx
+REQ-222 | SV extension | RI-3 | PROPOSED | Candidates — Qwen3-TTS, CosyVoice2-0.5B, Chatterbox | Streaming_Voice_Training_Capacity.docx
+REQ-223 | SV extension | RI-4 | PROPOSED | Orchestration: cascaded ASR → LLM → TTS, not integrated speech-to-speech | Streaming_Voice_Training_Capacity.docx
+REQ-224 | SV extension | SE-1 | PROPOSED | Streaming extraction is a named second mode of §17.4a, sharing its tokenized representation and Character Register outputs | Streaming_Voice_Training_Capacity.docx
+REQ-225 | SV extension | SE-2 | PROPOSED | Candidate: NVIDIA Nemotron ASR Streaming — cache-aware, 40 language-locales, language-ID conditioning built in | Streaming_Voice_Training_Capacity.docx
+REQ-226 | SV extension | SE-3 | PROPOSED | Qwen3-ASR is not proposed for the streaming mode — named to close the question | Streaming_Voice_Training_Capacity.docx
+REQ-227 | SV extension | SE-4 | PROPOSED | Methodology, not a model: compact model tuned by register normalization against the Character Register | Streaming_Voice_Training_Capacity.docx
+REQ-228 | Doc 15 | C5.1 | CANON | Rules are plain-language, subject- and bindingness-classed | 15_Platform_Orchestration_and_Governance_Ceremony.md:185
+REQ-229 | Doc 15 | C5.2 | CANON | The change ceremony is mandatory and in the open | 15_Platform_Orchestration_and_Governance_Ceremony.md:187
+REQ-230 | Doc 15 | C5.3 | CANON | Deletion is an authority act of the same shape | 15_Platform_Orchestration_and_Governance_Ceremony.md:189
+REQ-231 | Doc 15 | C5.4 | CANON | Every run records the rule version in force | 15_Platform_Orchestration_and_Governance_Ceremony.md:191
+REQ-232 | Doc 15 | C5.5 | PROPOSED | Templates are adopted then governed like any rule | 15_Platform_Orchestration_and_Governance_Ceremony.md:193
+REQ-233 | Doc 15 | B5.1 | CANON | Every crossing is a registered handoff contract | 15_Platform_Orchestration_and_Governance_Ceremony.md:127
+REQ-234 | Doc 15 | B5.2 | CANON | Evidence crosses only through the matrix, provenance-marked | 15_Platform_Orchestration_and_Governance_Ceremony.md:129
+REQ-235 | Doc 15 | B5.3 | CANON | The objective is frozen against recalibration | 15_Platform_Orchestration_and_Governance_Ceremony.md:131
+REQ-236 | Doc 15 | B5.4 | — | The path of success is the composition of contracts for a job class [RULED — best practice, per job class] | 15_Platform_Orchestration_and_Governance_Ceremony.md:133
+REQ-237 | Doc 19 | RV-1 | CANON | citation-existence: Every SHA, file path, ruling id, registry row id, and contract name cited resolves to an existing on-disk object; cited SHAs match the object's actual | 17_20.md:555
+REQ-238 | Doc 19 | RV-2 | CANON | scope-trace: Every work item traces to an authorizing instrument — a dispatch, a register row, a ruling | 17_20.md:556
+REQ-239 | Doc 19 | RV-3 | CANON | evidence-class presence: Classed assertions (status, values, verdicts) carry FACT/NORM/DEFAULT or fact/recalled/inferred, matching their class's required form | 17_20.md:557
+REQ-240 | Doc 19 | RV-4 | CANON | schema-completeness: Required sections present — band, escalations, registry rows, self-audit table for proposals; gate roster, artifact SHAs, self-audit table for closes | 17_20.md:558
+REQ-241 | Doc 19 | RV-5 | CANON | status-truth: Every status claim about an on-disk artifact is cross-checked against actual repository state at submission time | 17_20.md:559
+REQ-242 | Doc 19 | RV-6 | CANON | novelty collision: Proposed function ids, promise ids, and concept labels are matched against the Registry and mandate documents; collisions flag for semantic confirmatio | 17_20.md:560
+REQ-243 | Doc 19 | QA-1 | CANON | Detect, never decide | 17_20.md:578
+REQ-244 | Doc 19 | QA-2 | CANON | The format gate | 17_20.md:580
+REQ-245 | Doc 19 | QA-3 | CANON | No self-review | 17_20.md:582
+REQ-246 | Doc 19 | QA-4 | CANON | Findings carry the honesty grammar — every finding is evidence-classed and cited; an unclassed finding is itself a finding | 17_20.md:584
+REQ-247 | Doc 19 | QA-5 | CANON | The layer pays rent | 17_20.md:586
+REQ-248 | Doc 19 | QA-6 | CANON | Frame authority is untouchable | 17_20.md:588
+REQ-249 | Doc 19 | EP-1 | PROPOSED | Build the register first — cheapest piece, and it immediately hardens the custody-recall and Model Acceptance sites above | 17_20.md:646
+REQ-250 | Doc 19 | EP-2 | PROPOSED | Dual-judge scoring (A-2) applies at every named site in §19B.4, plus any future site where a judgement call becomes a published number | 17_20.md:648
+REQ-251 | Doc 19 | EP-3 | PROPOSED | A-4 (claims validation) rides inside this capability, scoped explicitly as validation, never a build gate — its real experiments require real material and naturally seque | 17_20.md:650
+REQ-252 | Doc 19 | EP-4 | OPEN | Hard ordering constraint, stated by the original proposal: the evidence register and dual-judge protocol must exist before the terminal test runs, or that test's verdict  | 17_20.md:652
+REQ-253 | Doc 19 | EP-5 | PROPOSED | Explicitly not adopted, per the same proposal: the source spec's “insurance telemetry” aside (serves a goal never named) and its internal reduction-skill mandate (process | 17_20.md:654
+REQ-254 | Deck Engine spec | DR-R1 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | One backend rendering service (extends the transform-forms / artifact-production family; no sibling): input DeckSpec_v0, output a rendered deck artifa | deck_engine.md
+REQ-255 | Deck Engine spec | DR-R10 | OPEN — statement unrecovered | STATEMENT UNRECOVERED — extraction artefact (RD-16). Source deck_engine.md is not on the ruling desk; text to be restored verbatim from source before this row is verified. Not to be read as the rule. | deck_engine.md
+REQ-256 | Deck Engine spec | DR-R11 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | The harvested pattern is acknowledged and bounded: the token-bound deterministic slide template approach is adopted as a PATTERN (proven by an MIT-lic | deck_engine.md
+REQ-257 | Deck Engine spec | DR-R12 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Metering: tokens-per-deck (spec authoring only) and renders-per-deck land in the Cost Ledger with {deck_id} | deck_engine.md
+REQ-258 | Deck Engine spec | DR-R13 | OPEN — statement unrecovered | STATEMENT UNRECOVERED — extraction artefact (RD-16). Source deck_engine.md is not on the ruling desk; text to be restored verbatim from source before this row is verified. Not to be read as the rule. | deck_engine.md
+REQ-259 | Deck Engine spec | DR-R14 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Backend-only, parallel-safe (the Memory-build pattern): may run beside the current fidelity cycles without touching them | deck_engine.md
+REQ-260 | Deck Engine spec | DR-R2 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Determinism is a contract: identical (spec, token version, engine version) MUST produce byte-identical output | deck_engine.md
+REQ-261 | Deck Engine spec | DR-R3 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Charts render as engine-generated SVG from plate law — no client-side charting runtime in static output (runtime variance breaks DR-R2) | deck_engine.md
+REQ-262 | Deck Engine spec | DR-R4 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | DeckSpec_v0 — a frozen contract (it crosses the application boundary: the executive app and OS paths both submit it; freeze argued on D4b at Stage A,  | deck_engine.md
+REQ-263 | Deck Engine spec | DR-R5 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Validation is fail-closed with enumerated errors | deck_engine.md
+REQ-264 | Deck Engine spec | DR-R6 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | The engine, not the author, guarantees: | deck_engine.md
+REQ-265 | Deck Engine spec | DR-R7 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Mechanical lint (advisory, rendered into the production record, never blocking): title sentence-form check, one-plate-per-slide, ≤2-line title at regi | deck_engine.md
+REQ-266 | Deck Engine spec | DR-R8 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Token sets are versioned artifacts extracted from the frontend file of record, extended per register (status family, ramps, divider motif) and ratifie | deck_engine.md
+REQ-267 | Deck Engine spec | DR-R9 | OWNER-DIRECTED → CANON (R3/R5/R7/R9 strikeable) | Delivery: HTML is first-class (crisp, immediate, shareable); PDF via the print pipeline from the same HTML (print stylesheet per register — furniture  | deck_engine.md
+REQ-268 | Doc 18 | A18.1 | CANON | The provisioning record, reused verbatim | 17_20.md:437
+REQ-269 | Doc 18 | A18.2 | CANON | The slice freezes; it never edits | 17_20.md:451
+REQ-270 | Doc 18 | A18.3 | CANON | Governance rides every response, not just the first one | 17_20.md:455
+REQ-271 | Doc 18 | A18.4 | CANON | Below the floor is a refusal, never a degraded answer | 17_20.md:459
+REQ-272 | Doc 18 | A18.5 | CANON | Scope is enforced server-side, not by client discipline | 17_20.md:463
+REQ-273 | Doc 18 | A18.6 | PROPOSED | Async delivery, if fresh extraction ever backs a skill | 17_20.md:467
+REQ-274 | Doc 18 | A18.7 | RULED | The concept is owner-confirmed; its adoption into this canon is not inherited | 17_20.md:473
+REQ-275 | Doc 18 | A18.8 | OPEN | Complete donor code exists; it is not in this build | 17_20.md:477
+REQ-276 | ROC spec | ROC-1 | PROPOSED (pending ratification) | Definition of a rule — addressable, a requirement not an explanation, falsifiable | rule_criteria_spec_v1
+REQ-277 | ROC spec | ROC-10 | PROPOSED (pending ratification) | A single standing Rule Registry with the required fields per rule | rule_criteria_spec_v1
+REQ-278 | ROC spec | ROC-11 | PROPOSED (pending ratification) | Registry is append-only on the Ledger's custody discipline | rule_criteria_spec_v1
+REQ-279 | ROC spec | ROC-2 | PROPOSED (pending ratification) | Rule proliferation forbidden — cite, never reissue, an already-ratified rule | rule_criteria_spec_v1
+REQ-280 | ROC spec | ROC-3 | PROPOSED (pending ratification) | POSITIONAL ID scheme — [Part][Section].[Sequence] | rule_criteria_spec_v1
+REQ-281 | ROC spec | ROC-4 | PROPOSED (pending ratification) | MNEMONIC ID scheme — [prefix]-[Sequence], for named sub-mechanisms only | rule_criteria_spec_v1
+REQ-282 | ROC spec | ROC-5 | PROPOSED (pending ratification) | Scheme exclusivity — one ID scheme per rule population | rule_criteria_spec_v1
+REQ-283 | ROC spec | ROC-6 | PROPOSED (pending ratification) | Mnemonic prefixes reserved in the Registry before first use | rule_criteria_spec_v1
+REQ-284 | ROC spec | ROC-7 | PROPOSED (pending ratification) | Status axis — CANON · RULED · DEFAULT · PROPOSED · OPEN, exactly five | rule_criteria_spec_v1
+REQ-285 | ROC spec | ROC-8 | PROPOSED (pending ratification) | Enforcement-class axis — STRUCTURAL · MECHANICAL · MEASURED · CEREMONIAL · ADVISORY | rule_criteria_spec_v1
+REQ-286 | ROC spec | ROC-9 | PROPOSED (pending ratification) | Domain axis — six engines, four outside-the-six categories, Cross-Cutting | rule_criteria_spec_v1
+REQ-287 | Rules Service spec | RBM-1 | PROPOSED | Rule authored with full field set — ID, origination, owner, enforcement class, domain, tier, assessment procedure — or authoring refuses to save | Rules_Service_Spec_v1.docx
+REQ-288 | Rules Service spec | RBM-2 | PROPOSED | Drafting assistance may propose; only the named human author confirms before a rule enters PROPOSED | Rules_Service_Spec_v1.docx
+REQ-289 | Rules Service spec | RBM-3 | PROPOSED | Mnemonic prefix reserved centrally before first use; collision refused at reservation | Rules_Service_Spec_v1.docx
+REQ-290 | Rules Service spec | RBM-4 | PROPOSED | Tier declared at authoring: system-TCB, system-ordinary, or customer | Rules_Service_Spec_v1.docx
+REQ-291 | Rules Service spec | RBM-5 | PROPOSED | Impact record produced before countersign — every dependent rule, checkpoint, component, profile | Rules_Service_Spec_v1.docx
+REQ-292 | Rules Service spec | RBM-6 | PROPOSED | Every adopted or customer rule checked against system rules; refused if it relaxes a STRUCTURAL/MECHANICAL rule | Rules_Service_Spec_v1.docx
+REQ-293 | Rules Service spec | RBM-7 | PROPOSED | System-ordinary/customer ceremony: propose, impact record, countersign, cancellable countdown, apply, re-verify | Rules_Service_Spec_v1.docx
+REQ-294 | Rules Service spec | RBM-8 | PROPOSED | System-TCB ceremony: as RBM-7 plus slowest countdown and external witness with no credentials over the component | Rules_Service_Spec_v1.docx
+REQ-295 | Rules Service spec | RBM-9 | PROPOSED | Either signatory may cancel before countdown expires; cancellation recorded with identity and reason | Rules_Service_Spec_v1.docx
+REQ-296 | Rules Service spec | RBM-10 | PROPOSED | Apply is atomic: status, Registry entry, Ledger record, rule-version stamp — all four or none | Rules_Service_Spec_v1.docx
+REQ-297 | Rules Service spec | RBM-11 | PROPOSED | Re-verify runs the assessment procedure after apply; failure raises a finding, never a silent rollback | Rules_Service_Spec_v1.docx
+REQ-298 | Rules Service spec | RBM-12 | PROPOSED | Amendment is a new version through full ceremony; prior version retained, never overwritten | Rules_Service_Spec_v1.docx
+REQ-299 | Rules Service spec | RBM-13 | PROPOSED | Retirement is through ceremony; retired rule keeps status and history; destruction attestation where required | Rules_Service_Spec_v1.docx
+REQ-300 | Rules Service spec | RBM-14 | PROPOSED | Library rule book: versioned, cites source clause, every rule in RBM-1's format — uncited rule is not admissible | Rules_Service_Spec_v1.docx
+REQ-301 | Rules Service spec | RBM-15 | PROPOSED | Profile: named bundle of rule books per business type, versioned, changed through system-ordinary ceremony | Rules_Service_Spec_v1.docx
+REQ-302 | Rules Service spec | RBM-16 | PROPOSED | At onboarding, business type selected and matching profile presented as recommendation, marked as such | Rules_Service_Spec_v1.docx
+REQ-303 | Rules Service spec | RBM-17 | PROPOSED | Adoption instantiates rule-book rules as customer rules via customer-tier ceremony, after RBM-6's conflict check | Rules_Service_Spec_v1.docx
+REQ-304 | Rules Service spec | RBM-18 | PROPOSED | Registry is the authoritative store — every ROC-10 field, append-only per ROC-11 | Rules_Service_Spec_v1.docx
+REQ-305 | Rules Service spec | RBM-19 | PROPOSED | Assessment procedure runnable on demand and on schedule; Statement of Applicability is a Registry view | Rules_Service_Spec_v1.docx
+REQ-306 | Rules Service spec | RBM-20 | PROPOSED | Registry queryable by ID, objective, promise, tier, status, enforcement class, domain, rule book, profile, tenant | Rules_Service_Spec_v1.docx
+REQ-307 | Rules Service spec | RBM-21 | PROPOSED | Rules Service's own rules are system-TCB tier; no path alters them outside RBM-8's ceremony | Rules_Service_Spec_v1.docx
+REQ-308 | Rules Service spec | RBM-22 | PROPOSED | Every Rules Service action writes an audit record with all six AU-3 elements | Rules_Service_Spec_v1.docx
+REQ-309 | Rules Service spec | I-1 | PROPOSED | No rule in force without completing the ceremony for its tier | Rules_Service_Spec_v1.docx
+REQ-310 | Rules Service spec | I-2 | PROPOSED | Every in-force rule is in the Registry with every required field | Rules_Service_Spec_v1.docx
+REQ-311 | Rules Service spec | I-3 | PROPOSED | No customer rule relaxes a STRUCTURAL/MECHANICAL system rule | Rules_Service_Spec_v1.docx
+REQ-312 | Rules Service spec | I-4 | PROPOSED | Every rule state change written to the Ledger before it takes effect | Rules_Service_Spec_v1.docx
+REQ-313 | Rules Service spec | I-5 | PROPOSED | The Rules Service administers its own rules; it does not edit them | Rules_Service_Spec_v1.docx
+REQ-314 | DAP Backend spec | DAP-1 | PROPOSED | External party admitted as organisation-level principal with identity, posture, terms, domain, mandate | DAP_Backend_Spec_v1.docx
+REQ-315 | DAP Backend spec | DAP-2 | PROPOSED | Every request carries a party principal with its own mandate, mark state, behavioural signature | DAP_Backend_Spec_v1.docx
+REQ-316 | DAP Backend spec | DAP-3 | PROPOSED | Connecting an external agent admits an autonomous non-human principal with its own stated scope | DAP_Backend_Spec_v1.docx
+REQ-317 | DAP Backend spec | DAP-4 | PROPOSED | Slow-play extraction detected against cumulative history, not evaluated per request | DAP_Backend_Spec_v1.docx
+REQ-318 | DAP Backend spec | DAP-5 | PROPOSED | DAP is a trust-domain boundary — no shared identifier resolution, store, or credential with the party | DAP_Backend_Spec_v1.docx
+REQ-319 | DAP Backend spec | DAP-6 | PROPOSED | Browse returns aggregate composition only — never unit contents, sample, or preview | DAP_Backend_Spec_v1.docx
+REQ-320 | DAP Backend spec | DAP-7 | PROPOSED | Connected workspace: party's query enters, de-identified results leave, estate data never leaves | DAP_Backend_Spec_v1.docx
+REQ-321 | DAP Backend spec | DAP-8 | PROPOSED | Processed intelligence egresses derived output only; source units recorded, not reconstructable | DAP_Backend_Spec_v1.docx
+REQ-322 | DAP Backend spec | DAP-9 | PROPOSED | Fine-tuning is compute-to-data only — no configuration permits the inverse | DAP_Backend_Spec_v1.docx
+REQ-323 | DAP Backend spec | DAP-10 | PROPOSED | Trained weights/skill files leave as artefact egress with rights posture, hash, terms cited | DAP_Backend_Spec_v1.docx
+REQ-324 | DAP Backend spec | DAP-11 | PROPOSED | Raw download is the outer-gate crossing (#25) — redaction as a gate, evidence record written | DAP_Backend_Spec_v1.docx
+REQ-325 | DAP Backend spec | DAP-12 | PROPOSED | Admission of an external party is a governed act requiring the estate owner's named authority | DAP_Backend_Spec_v1.docx
+REQ-326 | DAP Backend spec | DAP-13 | PROPOSED | API keys per party principal, revocable in one act, expiring, non-transferable, never logged | DAP_Backend_Spec_v1.docx
+REQ-327 | DAP Backend spec | DAP-14 | PROPOSED | Controlled request routes to named approving authority before execution; does not execute pending | DAP_Backend_Spec_v1.docx
+REQ-328 | DAP Backend spec | DAP-15 | PROPOSED | Approval decisions recorded with authority, decision, reason; no execution on silence | DAP_Backend_Spec_v1.docx
+REQ-329 | DAP Backend spec | DAP-16 | PROPOSED | Fine-tune and skill-development always require approval; raw download always if controlled | DAP_Backend_Spec_v1.docx
+REQ-330 | DAP Backend spec | DAP-17 | PROPOSED | Standing approval possible, revocable in one act, must name controlled units explicitly to cover them | DAP_Backend_Spec_v1.docx
+REQ-331 | DAP Backend spec | DAP-18 | PROPOSED | Every extraction is a commissioned job with a frozen objective (#32) | DAP_Backend_Spec_v1.docx
+REQ-332 | DAP Backend spec | DAP-19 | PROPOSED | Every job routes to its governing engine per §4; DAP holds no extraction logic of its own | DAP_Backend_Spec_v1.docx
+REQ-333 | DAP Backend spec | DAP-20 | PROPOSED | Assistance chat may shape pre-commission; cannot approve, widen scope, or decide any gate | DAP_Backend_Spec_v1.docx
+REQ-334 | DAP Backend spec | DAP-21 | PROPOSED | Every operation emits a metered event with all required fields, written before result returned | DAP_Backend_Spec_v1.docx
+REQ-335 | DAP Backend spec | DAP-22 | PROPOSED | Terms resolve most-specific-first: party, then custody class, then estate default | DAP_Backend_Spec_v1.docx
+REQ-336 | DAP Backend spec | DAP-23 | PROPOSED | Spend against ceiling evaluated before execution; over-ceiling routes to a person | DAP_Backend_Spec_v1.docx
+REQ-337 | DAP Backend spec | DAP-24 | PROPOSED | Cumulative extraction history per party is first-class, queryable, retained for full admission | DAP_Backend_Spec_v1.docx
+REQ-338 | DAP Backend spec | DAP-25 | PROPOSED | Every custody-class/operation combination defaults unavailable — availability is granted, not assumed | DAP_Backend_Spec_v1.docx
+REQ-339 | DAP Backend spec | DAP-26 | PROPOSED | Owner sets terms/ceilings per custody class and party; changes never alter receipts already issued | DAP_Backend_Spec_v1.docx
+REQ-340 | DAP Backend spec | DAP-27 | PROPOSED | Owner can suspend a party in one act — halts all in-flight and future operations, recorded | DAP_Backend_Spec_v1.docx
+REQ-341 | DAP Backend spec | DAP-28 | PROPOSED | Every gate fails closed — no result returned when a governing check cannot complete | DAP_Backend_Spec_v1.docx
+REQ-342 | DAP Backend spec | DAP-29 | PROPOSED | A metered event that cannot be written to the Ledger refuses the operation it meters | DAP_Backend_Spec_v1.docx
+REQ-343 | DAP Backend spec | DAP-30 | PROPOSED | Browse degrades rather than refuses — stale data marked as stale, never presented as complete | DAP_Backend_Spec_v1.docx
+REQ-344 | Amendment T-1/W-1 | A5.15 | PROPOSED | Output-content gate at every component boundary — reproduction check plus ADVISORY tagging | Security_Amendments_Trojan_Whisper.docx
+REQ-345 | Amendment W-2 | A5.16 | PROPOSED | Recommendation provenance — action within window after ADVISORY output records it as an input; drift on both principals | Security_Amendments_Trojan_Whisper.docx
+REQ-346 | Amendment W-3 | A5.17 | PROPOSED | Class D vs Class A findings; lineage collapse; friction debited to raiser; drift on raiser if not borne out | Security_Amendments_Trojan_Whisper.docx
+REQ-347 | Amendment W-4 | A5.18 | PROPOSED | Coalition membership (party, lineage, coordination signature) — joint cumulative history and slow-play | Security_Amendments_Trojan_Whisper.docx
+REQ-348 | Amendment T-1 | DAP-31 | PROPOSED | Artefact egress distance gate — no weights/skill file leaves without passing a reproduction probe | Security_Amendments_Trojan_Whisper.docx
+REQ-349 | Amendment T-2 | DAP-32 | PROPOSED | Admission integrity for entering base models — provenance, hash, mirage behavioural probe | Security_Amendments_Trojan_Whisper.docx
+REQ-350 | Amendment W-1 | DAP-33 | PROPOSED | Every DAP operation's output passes A5.15 before return to the party (browse exempt) | Security_Amendments_Trojan_Whisper.docx
+REQ-351 | Amendment W-4 | DAP-34 | PROPOSED | Coalition membership recorded at admission; classes (a)/(b) deterministic, class (c) labelled suspicion | Security_Amendments_Trojan_Whisper.docx
+REQ-352 | Amendment W-7 | DAP-35 | PROPOSED | Estate release budget — ruled ceiling on total release across all parties/operations/time; floor violation on breach | Security_Amendments_Trojan_Whisper.docx
+REQ-353 | Amendment W-8 | DAP-36 | PROPOSED | Differentially private training (DP-SGD) by default for every fine-tune; non-DP requires approval + stricter gate | Security_Amendments_Trojan_Whisper.docx
+REQ-354 | Governance Architecture | BR-1.1 | PROPOSED | Every path to the external model client enumerated, routes through the chokepoint, negative-scan build test | Akki_Governance_Architecture_v1.docx
+REQ-355 | Governance Architecture | BR-1.2 | PROPOSED | Chokepoint policy held outside runtime alteration by the crossing subject, integrity-verified at load | Akki_Governance_Architecture_v1.docx
+REQ-356 | Governance Architecture | BR-1.3 | PROPOSED | Trust receipt schema carries invoking-principal identity and reliable timestamp | Akki_Governance_Architecture_v1.docx
+REQ-357 | Governance Architecture | BR-1.4 | PROPOSED | Every crossing asset carries an explicit, typed custody classification | Akki_Governance_Architecture_v1.docx
+REQ-358 | Governance Architecture | BR-1.5 | PROPOSED | Chokepoint fails closed on internal error, independent of the Watch | Akki_Governance_Architecture_v1.docx
+REQ-359 | Governance Architecture | BR-2.1 | PROPOSED | Two-faculty seam enforced by import assertion, not convention | Akki_Governance_Architecture_v1.docx
+REQ-360 | Governance Architecture | BR-2.2 | PROPOSED | Innovate outcomes recorded as joint Solva+CIF at point of production | Akki_Governance_Architecture_v1.docx
+REQ-361 | Governance Architecture | BR-2.3 | PROPOSED | Reasoning trace retained from first commit, independently verifiable | Akki_Governance_Architecture_v1.docx
+REQ-362 | Governance Architecture | BR-3.1 | PROPOSED | Objective-freeze mechanism is single, shared implementation across all hand-offs | Akki_Governance_Architecture_v1.docx
+REQ-363 | Governance Architecture | BR-3.2 | PROPOSED | Progressive disclosure states its outcome set explicitly per checkpoint | Akki_Governance_Architecture_v1.docx
+REQ-364 | Governance Architecture | BR-4.1 | PROPOSED | Registry asset coverage extended from estate sources to full asset class, owners named | Akki_Governance_Architecture_v1.docx
+REQ-365 | Governance Architecture | BR-4.2 | PROPOSED | Registry exposes its asset-classification scheme on request | Akki_Governance_Architecture_v1.docx
+REQ-366 | Governance Architecture | BR-5.1 | PROPOSED | Model acceptance requires every criterion or full refusal, no partial acceptance | Akki_Governance_Architecture_v1.docx
+REQ-367 | Governance Architecture | BR-5.2 | PROPOSED | Yield wall detects/optimises only; acceptance authority sits downstream of it | Akki_Governance_Architecture_v1.docx
+REQ-368 | Governance Architecture | BR-5.3 | PROPOSED | Acceptance policy stated as a named SFP over the governed triad | Akki_Governance_Architecture_v1.docx
+REQ-369 | Governance Architecture | BR-6.1 | PROPOSED | Every subsystem hand-off crosses a registered hand-off checkpoint, not only the one instantiated crossing | Akki_Governance_Architecture_v1.docx
+REQ-370 | Governance Architecture | BR-6.2 | PROPOSED | Malformed hand-off surfaces as a finding at the point of hand-off | Akki_Governance_Architecture_v1.docx
+REQ-371 | Governance Architecture | BR-6.3 | PROPOSED | No-dual-hatted-task rule enforced at the hand-off checkpoint, not left to convention | Akki_Governance_Architecture_v1.docx
+REQ-372 | Governance Architecture | BR-7.1 | PROPOSED | Grey Mirror/Watch decision-enforcement roles implemented as separable components | Akki_Governance_Architecture_v1.docx
+REQ-373 | Governance Architecture | BR-7.2 | PROPOSED | Watch's own trust domain described with a stated boundary | Akki_Governance_Architecture_v1.docx
+REQ-374 | Governance Architecture | BR-7.3 | PROPOSED | Watch's own ceremony: slowest tier, external witness, documented procedure | Akki_Governance_Architecture_v1.docx
+REQ-375 | Governance Architecture | BR-7.4 | PROPOSED | Grey Mirror's learned detection mechanisms classified and excluded from decision authority | Akki_Governance_Architecture_v1.docx
+REQ-376 | Governance Architecture | BR-8.1 | PROPOSED | Ledger accepts and retains refused-operation records on the same terms as accepted ones | Akki_Governance_Architecture_v1.docx
+REQ-377 | Governance Architecture | BR-8.2 | PROPOSED | Append-only/hash-chained structure independently verifiable by a party other than the writer | Akki_Governance_Architecture_v1.docx
+REQ-378 | Governance Architecture | BR-8.3 | PROPOSED | Ledger writer included as a named, explicit Trusted Computing Base member | Akki_Governance_Architecture_v1.docx
+REQ-379 | Governance Architecture | BR-9.1 | PROPOSED | CIF excluded from TCB by the Attribute 1 test, recorded as a deliberate exclusion | Akki_Governance_Architecture_v1.docx
+REQ-380 | Governance Architecture | BR-9.2 | PROPOSED | Every CIF-originated idea adopted into a run passes a deterministic acceptance point | Akki_Governance_Architecture_v1.docx
+REQ-381 | Governance Architecture | BR-9.3 | PROPOSED | CIF's own MUST/MUST-NOT rules each carry an assessment procedure | Akki_Governance_Architecture_v1.docx
+REQ-382 | Governance Architecture | BR-10.1 | PROPOSED | QA-tier findings route to a deterministic decision point, never act alone | Akki_Governance_Architecture_v1.docx
+REQ-383 | Governance Architecture | BR-10.2 | PROPOSED | Critic Seam's outcome set stated explicitly per check | Akki_Governance_Architecture_v1.docx
+REQ-384 | Governance Architecture | BR-11.1 | PROPOSED | MOAC criteria not alterable by the run being evaluated, at any point | Akki_Governance_Architecture_v1.docx
+REQ-385 | Governance Architecture | BR-11.2 | PROPOSED | MOAC's non-bypassability and tamper-resistance demonstrated to SyniSense's standard | Akki_Governance_Architecture_v1.docx
+REQ-386 | Governance Architecture | BR-12.1 | PROPOSED | Every customer rule change passes the stated ceremony before taking effect | Akki_Governance_Architecture_v1.docx
+REQ-387 | Governance Architecture | BR-12.2 | PROPOSED | No customer rule relaxes a STRUCTURAL/MECHANICAL system rule, enforced at proposal time | Akki_Governance_Architecture_v1.docx
+REQ-388 | Governance Architecture | BR-13.1 | PROPOSED | Tier-3 eligibility outcome set stated explicitly (results/methods/both/neither) | Akki_Governance_Architecture_v1.docx
+REQ-389 | Governance Architecture | BR-13.2 | PROPOSED | Every notebook entry carries timestamp, artefact link, evidence class | Akki_Governance_Architecture_v1.docx
+REQ-390 | Governance Architecture | BR-13.3 | PROPOSED | Wizard verified read-only via build-time zero-influence check | Akki_Governance_Architecture_v1.docx
+REQ-391 | Governance Architecture | BR-14.1 | PROPOSED | Rights recorded at connection setup are the named policy information point for downstream checkpoints | Akki_Governance_Architecture_v1.docx
+REQ-392 | Governance Architecture | BR-15.1 | PROPOSED | Agent-deploy checkpoint's outcome set stated explicitly | Akki_Governance_Architecture_v1.docx
+REQ-393 | Governance Architecture | BR-16.1 | PROPOSED | Byte-identical output for identical input is a build-time verified property | Akki_Governance_Architecture_v1.docx
+REQ-394 | Governance Architecture | BR-16.2 | PROPOSED | Deck Engine's 14 controls carry an explicit owning-subsystem field | Akki_Governance_Architecture_v1.docx
+REQ-395 | Governance Architecture — gap register | G-1 | OPEN | No enumerated, published Trusted Computing Base list | Akki_Governance_Architecture_v1.docx
+REQ-396 | Governance Architecture — gap register | G-2 | OPEN | No architecture description; Watch placement and composite promises undocumented as decisions | Akki_Governance_Architecture_v1.docx
+REQ-397 | Governance Architecture — gap register | G-3 | OPEN | No formal principal/asset/operation classes prior to Doc 0; asset inventory covers estate sources only | Akki_Governance_Architecture_v1.docx
+REQ-398 | Governance Architecture — gap register | G-4 | OPEN | No assessment procedure on any of the 272 base rules; no Statement of Applicability | Akki_Governance_Architecture_v1.docx
+REQ-399 | Governance Architecture — gap register | G-5 | OPEN | Decision/enforcement/information-point roles named only for the Watch | Akki_Governance_Architecture_v1.docx
+REQ-400 | Governance Architecture — gap register | G-6 | OPEN | No security architecture description; runtime tamper-resistance unaddressed beyond the chokepoint | Akki_Governance_Architecture_v1.docx
+REQ-401 | Governance Architecture — gap register | G-7 | OPEN | No named security function policies; evidence floor's lowering path is subject-alterable | Akki_Governance_Architecture_v1.docx
+REQ-402 | Governance Architecture — gap register | G-8 | OPEN | Trust receipt omits principal identity and timestamp; no reliable-time control | Akki_Governance_Architecture_v1.docx
+REQ-403 | Governance Architecture — gap register | G-9 | OPEN | System-rule change control is ratification alone, no CM-3-style procedure | Akki_Governance_Architecture_v1.docx
+REQ-404 | Governance Architecture — gap register | G-10 | OPEN | No per-component deterministic/learned inventory; ruling loop not mapped to Article 14 | Akki_Governance_Architecture_v1.docx
+REQ-405 | Governance Architecture — gap register | G-11 | OPEN | Failure types not enumerated per component; posture not declared per checkpoint | Akki_Governance_Architecture_v1.docx
+REQ-406 | Governance Architecture — gap register | G-12 | OPEN | Trust domains not described as a set; deployment model unstated | Akki_Governance_Architecture_v1.docx
+REQ-407 | Governance Architecture — gap register | G-13 | OPEN | Job hand-off contract instantiated once, not generalised across crossings | Akki_Governance_Architecture_v1.docx
+REQ-408 | Security Assurance Set | S-1 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-409 | Security Assurance Set | S-2 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-410 | Security Assurance Set | S-3 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-411 | Security Assurance Set | S-4 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-412 | Security Assurance Set | S-5 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-413 | Security Assurance Set | S-6 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-414 | Security Assurance Set | S-7 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-415 | Security Assurance Set | S-8 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-416 | Security Assurance Set | S-9 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-417 | Security Assurance Set | S-10 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-418 | Security Assurance Set | S-11 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-419 | Security Assurance Set | S-12 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-420 | Security Assurance Set | S-13 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-421 | Security Assurance Set | S-14 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-422 | Security Assurance Set | S-15 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-423 | Security Assurance Set | S-16 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-424 | Security Assurance Set | S-17 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-425 | Security Assurance Set | S-18 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-426 | Security Assurance Set | S-19 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-427 | Security Assurance Set | S-20 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-428 | Security Assurance Set | S-21 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-429 | Security Assurance Set | S-22 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-430 | Security Assurance Set | S-23 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-431 | Security Assurance Set | S-24 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx
+REQ-432 | Security Assurance Set | S-25 | See xlsx | See Security_Assurance_Promise_Set.xlsx for full text | Security_Assurance_Promise_Set.xlsx

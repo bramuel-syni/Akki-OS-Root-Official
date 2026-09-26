@@ -1,0 +1,101 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Estate Registry & Census — Part 2: The Comprehensive Registry
+
+[B3] Document 10 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Estate Registry & Census
+
+[B5] Promise held in this document: #14 (a comprehensive registry — naming and context, status, linkage to other datasets, cleanliness, rating, use-case/opportunity — surfacing what data estate a company carries: clean usable data, duplicate data, and the rest)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The service that powers this promise is Mtafiti (the census and measure of Document 9) presenting its results as the Registry — the organisation's authoritative account of what it holds — together with the Opportunity Briefs mechanism that turns that account into stated use-cases. This document specifies the comprehensive field set the Registry must carry and the one field that has no home in the current canon.
+
+[B9] The organising fact of this document. The platform "is fundamentally" inventory management for the data estate — the Registry is the estate manager's account of the warehouse floor. Everything the census measured (Document 9) becomes, here, a per-source record a person and a system can both read: what each source is, what condition it is in, how it relates to the rest, and what it could be used for.
+
+[B11] PART A — THE PROMISE
+
+[B12] A1 · The promise, in plain language
+
+[B13] The organisation gets one comprehensive, trustworthy account of everything it holds — every source named and put in context, with its status, its relationships to other datasets, how clean it is, how defensibly it can be relied upon, and what it could be used for. It shows plainly what is clean and usable, what is duplicated, and what has not been measured — so that for the first time the organisation can see its whole data estate as a single managed inventory rather than a scattering of stores nobody has counted.
+
+[B14] A2 · The service that powers it
+
+[B15] Mtafiti's Registry — one record per source carrying existence, sensitivity, the defensibility measure, and freshness (Document 9), extended here with the full descriptive field set.
+
+[B16] Opportunity Briefs — a consumer of the census that proposes, advisorily, what the estate could be used for, grounded in census facts and real-world precedent.
+
+[B17] A3 · Definition of the promise
+
+[B18] The Registry carries, per source, a defined field set. Each field is named here with its source:
+
+[B19] Naming and context (CANON) — the source reference and its region, plus its media types, languages, and era distribution: what the source is and where it sits.
+
+[B20] Status / condition (CANON) — quality strata, the share already verified, freshness (last measured), and the share already extracted: what condition the source is in and how far it has been worked.
+
+[B21] Sensitivity and rights (CANON) — the deterministically classified sensitivity, the share carrying personal data, and the share licensed for external use: what may be done with the source and for whom.
+
+[B22] Defensibility rating (CANON) — the two-layer defensibility measure (Document 9), carrying which regime produced it: how strongly the source can be relied upon.
+
+[B23] Cleanliness, including duplication (CANON, assembled) — the "clean usable versus duplicate versus degraded" picture the promise names, assembled from the quality strata, the share verified, and a duplication signal — see A5.3, where duplication is specified as the one cleanliness sub-field needing explicit treatment.
+
+[B24] Use-case / opportunity (CANON) — Opportunity Briefs, advisory, each figure linked to its own measurement: what the estate could be used for.
+
+[B25] Linkage to other datasets (PROPOSED — no canon home) — how a source relates to other sources in the estate. See A5.4; this is the one field in the promise that the current canon does not specify, and it is developed here for the owner's ruling.
+
+[B26] A4 · Delivery experience expectations
+
+[B27] What the organisation experiences (human-facing):
+
+[B28] The estate manager reads one account of the whole estate: topline highlights about the holding, each with a note and a link to how it was measured; a composition view beside a plain statement of what that composition supports; and an estate table — source, data type, volume, languages, rights, condition, last measured, share extracted — where any row opens to that source's own profile.
+
+[B29] Alongside the inventory, the manager sees standing Opportunity Briefs ("what this estate can do"), coverage-to-objective bars for live objectives, and what is extracting now — the inventory is not just a static count but a live picture of what the estate holds, how it is being used, and what it could do next. Opportunity Briefs are always advisory, never a governed claim.
+
+[B30] What a consuming system experiences (machine-facing):
+
+[B31] A system reads one Registry record per source carrying the full field set, each figure resolving to its census method and date, unmeasured fields marked unmeasured.
+
+[B32] What is produced and retained:
+
+[B33] The Registry — the comprehensive per-source account — and the Opportunity Briefs derived from it, refreshed as the census grows.
+
+[B34] A5 · Technical and behavioural requirements
+
+[B35] A5.1 · Every field resolves to its census method [CANON]. Each figure in the Registry resolves to the census run that produced it, its date, the population measured, and full-versus-sampled (Document 9). Unmeasured fields are marked unmeasured, never zero or clean. The comprehensive account is only as trustworthy as this per-field honesty.
+
+[B36] A5.2 · Opportunity Briefs are advisory and grounded [CANON]. Opportunity Briefs propose what the estate could be used for, grounded in census facts and real-world precedent, each figure linked to its own measurement, and marked advisory throughout — never a governed claim. They refresh as the census grows. (The distinction matters: the Registry states what is; Opportunity Briefs suggest what could be, and the two must never be confused on the record.)
+
+[B37] A5.3 · Cleanliness and duplication [CANON, assembled + RULED]. The promise's "clean usable versus duplicate" picture is assembled from census outputs already specified — quality strata and the share verified give cleanliness — plus a duplication signal. Duplication detection across sources is consistent with the census's relational work but is not named as its own output in the current canon.
+
+[B38] [RULED] Duplication as a named census output, flag only. Duplication is computed during the census as a relational signal between sources (and within a source), recorded per source as a duplication measure with its method, and surfaced in the Registry's condition picture. It fails toward caution like every other measure — flagging suspected duplication for human confirmation, never silently merging or deleting, because deletion is an authority act (Document 14) and never a census side-effect.
+
+[B39] A5.4 · Linkage to other datasets [RULED — the one field with no canon home, now specified]. The promise requires the Registry to show how a source links to other datasets. The current canon specifies the unit's relational edges ring (edges between units of intelligence, Document 7) but not source-to-source linkage at the Registry level. This was a genuine gap; it is now specified in full:
+
+[B40] [RULED] Source linkage as a Registry field. The census records, per source, its relationships to other sources — all four types: shared subjects or keys (two sources describing the same entities), derivation (one source extracted or derived from another), overlap (duplicative or complementary coverage), and reference (one source citing or depending on another). Each linkage carries its basis (what evidence establishes it) and its confidence, and — like every census output — fails toward caution: an asserted linkage is evidence-backed, and an uncertain one is marked uncertain rather than stated. Linkage is descriptive, not a governance control, confirmed: it informs the estate manager and targeting, but it never by itself grants or denies access — access remains governed by sensitivity and entitlement (Document 9, and the entitlement rules). This keeps a new descriptive field from silently becoming a new access-control surface. Linkage is available to targeting (Document 11's ordering) as a prior — a source strongly linked to a high-value source is worth considering — but, consistent with the learning-detects-never-decides rule, linkage informs ordering and never floors or certifies defensibility, and never enters the defensibility measure.
+
+[B41] A5.5 · The Registry is one record, read by many [CANON]. There is one Registry record per source, written by the census and read by targeting, convergence, entitlement, and the estate manager alike. Surfaces render it; they never re-shape it (a different shape is a new objective, not a re-cut of the record) — which is what prevents the account from drifting as it is displayed in different places.
+
+[B42] A6 · What must be true for the service to deliver as intended
+
+[B43] Every field carries its method and honours unmeasured. A comprehensive account whose fields do not resolve to their measurement is comprehensive in appearance only.
+
+[B44] Opportunity Briefs stay advisory and grounded. If an advisory opportunity is ever recorded or read as a governed claim, the line between what the estate is and what it could be collapses.
+
+[B45] Duplication flags, never silently acts (A5.3). Duplication detection that merged or deleted without an authority act would make the census a mutation surface.
+
+[B46] Linkage stays descriptive and evidence-backed (A5.4). If linkage silently became an access-control surface, or entered the defensibility measure, a descriptive convenience would have quietly changed the governance and the truth-measure of the estate.
+
+[B47] One record, rendered but never re-shaped. If a surface can re-shape the Registry, the estate's single account drifts into several.
+
+[B49] RULINGS APPLIED TO THIS DOCUMENT
+
+[B50] A5.3 [RULED] — Duplication as a named census output, flag for human confirmation, never silently merged or deleted. Settled.
+
+[B51] A5.4 [RULED] — Source-to-source linkage as a Registry field, the one promise field with no canon home: all four linkage types detected; descriptive only, available to targeting as a prior, never an access control, never entering the defensibility measure. Settled.
+
+[B52] These were the substantive open items of the whole Registry cluster: the census mechanics (Document 9) were always canon-determinate; duplication and linkage — the two descriptive fields the promise required beyond canon — are now fully specified above.
+
+[B54] End of Document 10 of 16 — Estate Registry & Census, Part 2: The Comprehensive Registry.

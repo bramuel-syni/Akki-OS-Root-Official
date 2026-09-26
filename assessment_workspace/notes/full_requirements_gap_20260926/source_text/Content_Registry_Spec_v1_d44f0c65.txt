@@ -1,0 +1,171 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  INTEGRATION LAYER
+
+[B2] The Content Registry
+
+[B3] content_registry_v1 — Draft for owner ratification · what a surface may say, and which thing it says first
+
+[B4R1] Problem | Every surface in the platform carries prose — headlines, quick notes, notification bodies, chat answers, recommendations. As surfaces multiply, the volume of generated text rises with them. Left ungoverned, that text becomes fluent, plausible, and unanchored: slop. Two failures follow. A line is right today and nobody owns why it will still be right tomorrow. And a surface with several true things to say picks the wrong one to say first.
+
+[B4R2] What exists | Fixed strings bound to rendered DOM by substitution rules, RED when a rule matches nothing (FE brief §0.2). Numbers derived only from verified fields, or rendered “not yet measured” (FE brief §2.1). Solva's per-sentence classing and anchor requirement for composed answers (Doc 4). The output-content gate every output passes (A5.15). Recommendation provenance (A5.16). The Ledger receipt on every output. Each governs its own piece; none records what a line is for, what it depends on, when it must change, or why it — rather than a neighbour — was shown first.
+
+[B4R3] What this adds | A registry of every surface string by class; a deterministic resolver that renders a string from its entry and current data; and salience — a rule-ranked choice of which eligible line a slot shows first. Nothing in this document is an editorial workflow, a draft-and-publish lifecycle, or a second store of rendered text.
+
+[B4R4] Principle | Fixed is contract. Templated is derivation. Generated is classed. Salience is rule. A model may write prose and may propose what to say; it never decides what is true, and it never decides what comes first.
+
+[B4R5] Date | 20 September 2026
+
+[B5] 1   Definitions
+
+[B6] Each term has exactly one meaning in this document.
+
+[B7] Content entry  one registry row governing one string, or one family of strings produced by one template, on a surface.
+
+[B8] Class  one of Fixed, Templated, Generated. Every entry has exactly one.
+
+[B9] Fixed  a string whose text is binding copy. Rendered verbatim. Changed only by ceremony.
+
+[B10] Templated  a string rendered deterministically from a versioned template and named verified fields. Re-derivable: the same template version and the same field values produce the same string, always.
+
+[B11] Generated  a string a learned component drafts under a versioned prompt, classed inference or advisory, anchored, and gated before display.
+
+[B12] Slot  a named position on a surface that shows exactly one entry at a time, chosen from a candidate list.
+
+[B13] Candidate  an entry listed on a slot as one of the things the slot may show.
+
+[B14] Eligible  a candidate all of whose dependencies resolve to measured values at render time.
+
+[B15] Salience class  one of four ordered classes assigned to a candidate by rule (§5). Lower number, higher salience.
+
+[B16] Hook  the eligible candidate a slot shows first, chosen by the ranking rule.
+
+[B17] Honest-gap variant  the Templated string rendered when a dependency is null. Every Templated entry has one.
+
+[B18] Trigger  the condition that causes an entry to re-render: a change in a dependency, or a schedule where no event exists.
+
+[B19] Resolver  the deterministic function that takes an entry and current data and returns a rendered string, an honest-gap variant, or a classed generation request.
+
+[B20] Content receipt  the Ledger record written when a Generated string is displayed or when a hook is chosen: entry, version, inputs by reference, class, and — for a hook — the salience trace.
+
+[B21] 2   The Three Classes
+
+[B22] CON-1  Every string that reaches a surface belongs to exactly one content entry and exactly one class. A string with no entry does not render. Improvised copy — a component composing text outside the registry — is a build failure, enforced by the same DOM-bound negative scan that already binds fixed strings.  [FE brief §0.2]
+
+[B23] CON-2  Fixed entries render their text verbatim. The text is a contract; changing it is a contract-version change through the Rules Service ceremony at the ordinary tier.  [T-b regime; RBM-8]
+
+[B24] CON-3  Templated entries render only from named dependencies that resolve to verified fields. A Templated string contains no value that is not a dependency. The template is versioned; a version change is a ceremony.  [FE brief §2.1]
+
+[B25] CON-4  Every Templated entry carries an honest-gap variant for each dependency that may be null. When a dependency is null, the variant renders. The template MUST NOT estimate, default, or infer a missing value.  [A5.5; FE brief §2.1]
+
+[B26] CON-5  Generated entries carry a class ceiling of inference or advisory and never fact. Every sentence in a Generated string anchors to material by provenance reference; an unanchored sentence is refused by Solva's existing floor before the gate, and the string passes A5.15 before display.  [Doc 4 A2, A5.5; A5.15]
+
+[B27] CON-6  A number on any surface comes from a Templated dependency or a Fixed string. A Generated string MUST NOT introduce a number the surface does not already carry as a verified field. Prose may wrap a number; it never supplies one.  [CON-3; FE brief §2.1]
+
+[B28] CON-7  Which surfaces may carry Generated entries at all is a ruled list (R-32). A surface not on the list has no Generated entries, and a generation request from it is refused.
+
+[B29] 3   The Registry
+
+[B30] CON-8  A content entry carries: entry identifier; surface; class; objective — one sentence stating what the string is for; template version or prompt version; dependencies, as named verified fields; honest-gap variants (Templated only); class ceiling and required anchors (Generated only); trigger; canon_ref where the string states or implies a governed fact; owner role.  [R-18 effect 2]
+
+[B31] CON-9  A slot entry carries: slot identifier; surface; ordered candidate list; ranking rule version; hold rule (§5). A slot with an empty candidate list renders nothing.
+
+[B32] CON-10  The registry is read-only to every component except the ceremony engine. Templates, prompt versions, candidate lists, and ranking rule versions change only through ceremony. A model, a wizard, or a surface never writes an entry.  [RBM-5; CON-13]
+
+[B33] CON-11  An objective is mandatory on every entry. An entry whose objective cannot be stated in one sentence is refused at ceremony — a string nobody can say the purpose of is a string nobody can say is still right.
+
+[B34] 4   The Resolver
+
+[B35] CON-12  Rendering is a pure function of (entry, entry version, dependency values). For Fixed and Templated entries it returns the string. For Generated entries it returns a generation request carrying the prompt version, the class ceiling, the required anchors, and the dependencies the prose may reference — and the drafting component's output re-enters the resolver for classing and gating before it becomes a string. No parameter exists through which a learned component's output can alter what a Fixed or Templated entry renders.  [Attribute 10; A5.2 pattern]
+
+[B36] CON-13  A learned component MAY propose a new template, a new candidate, or a re-ordering, through the research queue. The proposal is ratified by ceremony or it is nothing. Proposals never take effect on proposal.  [A5.22; AC-18]
+
+[B37] CON-14  The resolver fails closed. A missing dependency renders the honest-gap variant; a missing entry renders nothing; a Generated string that fails classing or the gate is refused with the platform's one refusal card. Nothing is improvised to fill a space.  [FP-2; FE brief §2.2]
+
+[B38] 5   Salience — Best Hook First
+
+[B39] A slot with several true things to say shows the most useful one first. Usefulness is decided by rule, from measured fields, and the reason is recorded. It is never decided by a model's judgement and never by what a reader tends to click.
+
+[B40] CON-15  Every candidate on a slot is assigned one salience class at render time, by the ranking rule, from its dependencies: Class 1 — a decision is required now (a job stopped at a limit, an approval pending on the reader, a ceiling or threshold crossed, a refusal the reader has not seen); Class 2 — something changed since the reader last saw this surface (a delta on a dependency, a status transition); Class 3 — an opportunity or capacity the reader can act on (room for more work, allowance available, resources idle); Class 4 — steady state (nothing pending, nothing changed, nothing to claim). The definitions are ruled (R-33) and versioned.  [§1 Salience class]
+
+[B41] CON-16  The hook is the eligible candidate with the lowest salience class. Ties resolve by the candidate list's order, which is fixed in the slot entry. The ranking is deterministic: the same dependency values produce the same hook.
+
+[B42] CON-17  An ineligible candidate — any dependency null — is never the hook while an eligible candidate exists in any class. If no candidate is eligible, the slot renders the honest-gap variant of the first-listed candidate. A gap is never headlined over a fact.
+
+[B43] CON-18  No engagement measure — views, dwell, clicks, replies — and no learned signal enters the ranking rule. The rule reads verified fields only. Salience is about what the reader must know to decide, not what the reader is likely to look at.  [A5.16; W-class threat]
+
+[B44] CON-19  A hook holds until a candidate of a lower class becomes eligible or the hook's own dependencies change. A slot does not flap between candidates of equal class on unrelated updates. Hold values are ruled (R-34).
+
+[B45] CON-20  Choosing a hook writes a content receipt carrying the salience trace: every candidate, its class, its eligibility, and the rule version. The surface exposes the trace on demand — “why this first” — so a reader or overseer can see what the slot chose not to lead with.  [EU AI Act Art. 14(c); A5.16]
+
+[B46] CON-21  A hook is advisory. It directs attention; it never gates an action, and a component MUST NOT treat the hook's class as an input to any decision the platform makes.  [A5.15 ADVISORY; A5.16]
+
+[B47] Worked example — the compute-connected quick note
+
+[B48] Slot: budget_headline on the Compute Connected surface. Candidates, in listed order: (a) stopped_at_limit — depends on jobs_stopped_at_limit; (b) threshold_crossed — depends on budget_used_ratio and the seat soft-limit; (c) room_for_jobs — depends on budget_remaining and average_job_cost; (d) steady — no dependencies. Today's fields: one job stopped at the limit; budget used 43%; remaining £3,890; average job cost measured.
+
+[B49] Ranking under CON-15: (a) is Class 1 and eligible; (c) is Class 3 and eligible; (b) is Class 4 (threshold not crossed); (d) is Class 4. The hook is (a): “One job stopped at the limit — the complaints OCR pass. You were not charged past it.” The line the prototype currently leads with, “You have room for about four more jobs this month,” is (c): true, eligible, and second. If average_job_cost were not measured, (c) would be ineligible and its honest-gap variant would never outrank (a). When the stopped job is resolved, (a) leaves Class 1, and (c) becomes the hook — with (a)'s resolution surfacing as Class 2 on the next view. The trace records all of it.
+
+[B50] 6   Generated Content: Chat, Recommendations, Notifications
+
+[B51] CON-22  A chat answer, a recommendation body, or a notification body is a Generated entry on a surface R-32 permits. It passes Solva's classing, the A5.15 gate, and — where it recommends an action — carries A5.16 provenance. Within it, findings are ordered by the same salience classes as §5, applied by the resolver to the anchored findings before the drafting component composes prose around them. The model writes the sentences; it does not choose the order.  [A5.15; A5.16; CON-15]
+
+[B52] CON-23  A displayed Generated string is stored as an artefact by hash with: class, anchors, prompt version, model identity and version (A5.7+, V-4), the content receipt. It is retrievable by hash for as long as the retention rule holds (R-35). A reader may see the anchors of any Generated string on demand.
+
+[B53] CON-24  A Generated string that would state a fact the anchors do not support is refused before display, not softened. Softening — hedging an unsupported claim into plausibility — is the slop this document exists to prevent, and A5.5 already forbids the silent downgrade it amounts to.  [A5.5]
+
+[B54] 7   Logging, Storage, Retention
+
+[B55] CON-25  A Templated string is not stored as text. Its content receipt records template version and dependency values by reference; the string is re-derived on demand (CON-12). Storing the text would create a second copy that can disagree with its own inputs.
+
+[B56] CON-26  A Generated string is stored per CON-23. A Fixed string is stored once, as the contract. A hook choice is stored as its trace (CON-20).
+
+[B57] CON-27  Erasure reaches Generated artefacts. When a unit's rights are withdrawn, every Generated artefact whose anchors cite it is found by provenance and recalled or re-derived without it, on the mechanism DAP-38 and MEM-9 already define.  [DAP-38; MEM-9]
+
+[B58] CON-28  Retention of Generated artefacts follows a ruled default (R-35) and is subject to erasure precedence, on MEM-9's rule.
+
+[B59] 8   Triggers and Cadence
+
+[B60] CON-29  A Templated entry re-renders when any dependency changes. Dependency changes are the Ledger's own events — metered events, status transitions, receipts — so a surface is current to the record without a scheduler for any dependency that emits an event.
+
+[B61] CON-30  A schedule exists only for an entry with a dependency that emits no event. The schedule and its interval are recorded on the entry. A scheduled entry displays its as-of time.
+
+[B62] CON-31  If a trigger source is unreachable, the last rendered string displays with a visible stale marker and its as-of time. It is never silently held as current — the one degradation this platform permits, marked as the Browse census already is.  [DAP-30; FP-3]
+
+[B63] 9   Placement in the Standing Enumerations
+
+[B64R1] Document | Entry
+
+[B64R2] tcb_enumeration_v1 | IN: the resolver (CON-12, CON-14) and the ranking rule (CON-15–19) — deterministic, and their failure falsifies S-33. OUT: the drafting component for Generated entries — learned; it proposes prose and decides nothing. Same wall-not-the-run split as the Watch and Targeta.
+
+[B64R3] determinism_inventory_v1 | Content registry: Hybrid. Resolver, ranking, triggers, receipts Deterministic; drafting Learned. Article 14(c): the salience trace is how an overseer sees what a surface chose not to lead with.
+
+[B64R4] failure_posture_v1 | Missing dependency → honest-gap variant. Missing entry → nothing rendered. Generated string fails classing or gate → refusal card. Trigger source unreachable → last string with stale marker (CON-31). Content receipt unwritable → a Generated string does not display; a Templated string displays and the receipt is written at recovery, since the string is re-derivable and the receipt carries no decision.
+
+[B64R5] Master Requirements Registry | CON-1 through CON-31 and S-33 at this refresh.
+
+[B65] 10   New Promise
+
+[B66R1] ID | Promise | Rests on
+
+[B66R2] S-33 | Nothing a surface says is improvised: every string has a stated purpose and a class; every number comes from a measured field; generated prose is anchored and gated; and where a surface has several true things to say, the one it says first is chosen by rule, and the reason is on record. | CON-1 through CON-31. Bounds: R-32 (Generated surfaces), R-33 (salience classes), R-34 (hold), R-35 (retention). Scope edge: the registry governs what a surface says, not whether a reader reads it.
+
+[B67] 11   What This Does Not Claim
+
+[B68] LIM-1  It does not judge quality of prose. A Generated string can be anchored, classed, gated, and dull. Style is the drafting component's; truth and order are the platform's.
+
+[B69] LIM-2  It does not optimise for attention. CON-18 forbids it. A surface that leads with the decision the reader must make is doing its job whether or not the reader lingers.
+
+[B70] LIM-3  It is not a content management system. There is no draft state, no approval queue, no publish step, and no store of rendered Templated text. Adding any of these is leaving the specification.
+
+[B71] LIM-4  It does not define the salience classes in every domain in advance. R-33 ratifies v1; domain-specific candidates arrive through the research queue and ceremony, not through a model deciding what matters.
+
+[B72] 12   Rulings
+
+[B73] R-32  Which surfaces may carry Generated entries. Recommend: chat answer surfaces, recommendation bodies, notification bodies — and no headline, quick-note, budget, status, or governance surface. Product decision; owner.
+
+[B74] R-33  Salience classes v1 (CON-15) and the fixed tie order. Recommend: ratify as written; additions by ceremony. DEFAULT-class.
+
+[B75] R-34  Hold rule values (CON-19): minimum time a hook holds against equal-class challengers. Recommend baseline-period approach on observed surfaces. DEFAULT-class.
+
+[B76] R-35  Retention of Generated artefacts (CON-23, CON-28). Recommend: the tenant's default retention, erasure precedence applying. DEFAULT-class.
+
+[B77] Design note. The obvious build is to hand each surface a prompt and let a model fill it. That is fast, reads well on the first day, and is exactly the failure this document prevents: nobody owns why the line is right, and the surface leads with whatever the model found fluent. The registry costs one table and one function. What it buys is that every line on every surface can answer two questions — what are you for, and why are you first — and that the answers are on record.

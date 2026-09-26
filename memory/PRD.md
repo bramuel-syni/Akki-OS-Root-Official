@@ -1,5 +1,56 @@
 # Akki — continuity record
 
+## LATEST USER TASK — full promise/requirements gap analysis (2026-09-26)
+
+Owner: “i want you to do the same thing you have done for this additional specs
+for the entire requirements list and develop a gap analysis with what we need to
+do to deliver on the promises of Akki. be surgical, ensure you covered everything
+line by line. surafce the report here befor taking any action.” Approved648latest
+rows+S1–S35+referencedCanon/limits/rulings, read-only assessment. NO implementation,
+Canon ratification, DBwrites, runtime tests, live source/provider/model/GPUcalls.
+
+Bank: `assessment_workspace/notes/full_requirements_gap_20260926/`.
+`REPORT.md` is the owner-facing synthesis; `REQUIREMENT_GAPS_648.json/.csv` and
+`REQUIREMENTS_LINE_BY_LINE.md` preserve648uniqueDoc+RuleID+literalstatement rows;
+`PROMISE_GAPS_35.json`/`PROMISES_LINE_BY_LINE.md` retain35literalassurances/bounds.
+Code/source hashes and prior/raw reviewer drafts retained;9correctionpacks replaced
+generic/incorrect first-pass absence claims. Main refinements correctedS10/S11
+constants-vs-timed-proof, EPpositiveproposals-vsnonclaims, BCRPO/site-loss rulings,
+and DR-R14build-isolation/RBM12versioned-amendment row-specific acceptance.
+
+**Accounting:**475PARTIAL,128UNVERIFIED,24SOURCE_UNRESOLVED,7SPEC_DECISION_REQUIRED,
+1EXPLICIT_NONCLAIM,13EVIDENCED_SCOPED. These are NOT implementation percentages
+or13fulfilledplatformpromises. No fresh runtime proof; prior146tests only support
+their narrower dated slice, with some positive fixtures explicitlyMOCKED.
+
+**Important incompleteness:**50sourcebodies,848candidateobligation/limit/ruling
+blocks inventoried.214explicitprimaryoverlap,64authority,34limits,26duplicates,
+1historicaldiagnosis; **191source-context+318foundational=509semantictrace links
+remain open**. These are analystwork, NOT509missingfeatures or509ownerdecisions.
+Product#5/#28/#29lack literalhashcrossrefs inregistry—not evidence theyareabsent.
+24source-bounded cases =11streamingextension+11ROC+DR-R10/DR-R13. Further
+rule-specific refinement needed where reviewerfamilies repeatedgenericgaptext.
+DO NOT claimall-Canonorfullysurgicalline-bylineanalysisclosed.
+
+**Validation:**`test_reports/iteration_13.json` and assessment/verification/
+final_verification_receipt.json: rawXLSXhashes/648keys/literaltext/35bounds/rendered
+cards/848sourceIDs/filehashes checked. Deterministic33rowsemantic sample31agree,
+2uncertain(DR-R14/RBM12),0disagree. Main reread and sharpenedthose2; preserve
+sampleuncertainty, do notrewriteas33passes. Somegenerictextclustersstillflagged.
+
+**Next within approved scope:** finish509sourceparagraphsemanticlinkage; resolve
+24sourceauthoritycases; expand/refine genericfamiliesagainstactualsourceclauses;
+completeproductpromise#crosswalk; independentlyverifyaffectedrows. Report findings
+here beforeanyimplementation. ExistingR32ratificationalreadyrecorded at
+STATE/DECISIONS.md26004–26006—do NOT askowner torepeat. Principaloffline revoke
+is refused untilconfirmed perrecoveredfailureposture; don'tinventanunconditional
+logicalcontradictionwithCCcachewithoutreadingthis. GPUwork stays PARKED.
+
+**Core delivery finding:** sizable frozenkernel/vocabulary/helper foundations,
+but promiseclosure needs admittedinputs→effectivegate→realoperation→durable
+receipt→truthfulconsumer. ProposedW0–W9deliveryprogram inREPORT is NOT permission
+toimplement. Ownerfeedback onreport pending.
+
 ## LATEST REPORT EXTENSION — 2026-09-26 files18 (analysis only)
 
 User uploaded `files (18).zip`: “Before i react add these th the report”, then

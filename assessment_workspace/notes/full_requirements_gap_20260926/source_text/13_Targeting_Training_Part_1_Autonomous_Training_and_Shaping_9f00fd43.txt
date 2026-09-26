@@ -1,0 +1,153 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Targeting, Training & Model Development — Part 1: Autonomous Training & the Objective-Shaping Dialogue
+
+[B3] Document 13 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Targeting, Training & Model Development
+
+[B5] Promises held in this document: #22 (autonomous training, any output dimension) · #23 (the objective-shaping tool — co-works with the user to frame, shape, state/define and reflect the mission back, iterated to convergence before committing the training job)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The services that power these promises are Targeta (which decides where to mine and in what order, and whose learning is walled from what an objective may reach), the training discipline (acceptance criteria, the recipe seat), and the shaping-and-freeze flow (the objective envelope filled in dialogue and frozen by the direction governor). Training happens against the qualified intelligence the rest of the platform produces; this document specifies how a training job is shaped, committed, and accepted.
+
+[B9] The organising fact of this document. A trained model enters the platform only through acceptance that is automatic and non-negotiable — six criteria, all of them artefacts the training run itself already produces, checked as a set over files that already exist. No person sits in that acceptance path. "Autonomous training" therefore does not mean ungoverned training; it means training whose governance is structural — the model proves itself or it does not enter, and no human waves it through.
+
+[B11] PART A — PROMISE #23: THE OBJECTIVE-SHAPING DIALOGUE (specified first, because it precedes the job)
+
+[B12] A1 · The promise, in plain language
+
+[B13] Before the platform commits to a training job, it works with the user to get the objective right. The user states what they want the model to do; the platform helps frame it, shape it, state it precisely, and reflects the finished mission back to the user for confirmation — and this continues, collaboratively, until the objective is genuinely what the user intended. Only then is the job committed. The user never finds that a training job ran on a half-understood or mis-stated objective, because the objective was shaped to convergence and reflected back before anything committed.
+
+[B14] A2 · The service that powers it
+
+[B15] The shaping-and-freeze flow — a dialogue that fills a training objective envelope, presents it for confirmation, and freezes it through the direction governor (Document 5), which is where a changed intent becomes a new objective rather than an edit of a live one. This is the same shaping-and-freeze discipline used to commission an extraction objective, applied to a training objective.
+
+[B16] A3 · Definition of the promise
+
+[B17] The dialogue co-works, and does not pre-fill the mandatory set. The user states intent; the platform asks for the mandatory fields and never proposes on them. Preference fields may carry recommendations; the mandatory fields never do — because a mandatory field the platform filled is a decision the user did not actually make.
+
+[B18] The mission is reflected back before commit. Before the job freezes, the platform presents the finished objective — what the user supplied, what (if anything) the platform assumed and needs confirmed, the feasibility, and the cost — and the user confirms. Reflection-before-commit is the moment the user sees exactly what will run.
+
+[B19] Shaping iterates to convergence. The frame/shape/state/reflect loop continues until the objective expresses the user's actual intent. There is no commit on a not-yet-converged objective.
+
+[B20] Cost is shown at this reflection (Document 12). Consistent with the platform-wide reflection-before-commit discipline, the training objective's cost is presented at its reflection step, before commit — a training job is a commit-type action and prices itself before it runs.
+
+[B21] A4 · Delivery experience expectations
+
+[B22] What the user experiences (human-facing):
+
+[B23] The user has a genuine working conversation about the objective: they state what they want, the platform draws out the fields it must have (and never guesses them), and the objective takes shape in front of them. When it is right, the platform reflects the whole mission back — objective, feasibility, cost, budget, lawful basis — and the user commits. Where the platform had to assume anything, it is shown flagged for the user to confirm or change, never buried.
+
+[B24] The user can shape and re-shape until it is right; committing is a deliberate act on a converged, reflected objective, not a side-effect of the conversation.
+
+[B25] What a consuming system experiences (machine-facing):
+
+[B26] The shaping flow emits a training objective envelope; the direction governor checks and freezes it. The frozen training objective carries its identity, scope, done-condition/acceptance target, budget, and lawful basis — the same frozen-artifact contract every governed run carries.
+
+[B27] What is produced and retained:
+
+[B28] The frozen training objective envelope and the commit record (user-supplied values, assumed-and-confirmed values, feasibility, cost, budget, price-model version) — the permanent account of exactly what was commissioned.
+
+[B29] A5 · Technical and behavioural requirements
+
+[B30] A5.1 · Mandatory fields are asked, never pre-filled [CANON + RULED]. The mandatory set for a commissioned objective — reach/target, the output definition, done-condition/acceptance target, budget, lawful basis — is asked and never pre-filled. Preference fields may carry recommendations; the mandatory set never does.
+
+[B31] [RULED — strengthens the mandatory set for training specifically.] The done-condition/acceptance target must be expressed in numeric or structural terms — never a qualitative standard. "The output should be good" or "the output should be defensible" are not acceptable done-conditions; "beats baseline by X% on stratum Y," or an equivalent measurable target, is. This is a ruling, not a preference: the platform is built against known variables, known success conditions, known operating conditions throughout — a training commission is refused at shaping if its done-condition cannot be stated measurably, rather than allowed through on a vague target that later requires a subjective judgment call to check. This is what makes A5.5's bound below mechanical rather than qualified by explainability.
+
+[B32] A5.2 · Every turn is grounded in a real read; no fabricated availability [CANON]. The shaping dialogue is grounded in a real read of the estate (and, for training, of the available qualified units and base models) before any feasibility-dependent question is asked. No fabricated availability, ever, under any circumstance.
+
+[B33] A5.3 · The mission is reflected, then frozen; frozen is immutable [CANON]. At the reflection step the user sees the supplied values, the assumed values flagged for confirmation, the feasibility verdict, the grounding marker (sample-grounded or estimate-grounded), and the envelope; on confirmation the objective freezes. Frozen is immutable — a changed intent is a new objective.
+
+[B34] A5.4 · Cost is presented at the reflection, before commit [CANON + Document 12]. The training objective's cost is shown at its reflection-before-commit step, consistent with the platform-wide discipline (Document 12 B5.6). A training job does not commit uncosted.
+
+[B35] A5.5 · "Any output dimension" is bounded by the pre-committed done-condition, never by a defensibility judgment [RULED]. The promise's "any output dimension" — the user can define what the trained model produces — is expressed as the output definition in the shaping envelope. Any output dimension is permitted provided A5.1's numeric or structural done-condition can be stated for it — the boundary is not "can we defend this output," which is exactly the kind of soft, explainability-qualified gate that invites hallucination or fabrication dressed as quality. The boundary is concrete and set before the run: if a measurable done-condition cannot be written for the requested output, shaping refuses, with a path forward, never discovered at execution.
+
+[B36] [RULED] This replaces the original framing ("any output the platform can produce and defend at the declared standard"), which left the gate open to subjective judgment. The corrected version: the objective-shaping dialogue requires a measurable success definition up front (A5.1); the six acceptance criteria (Document 14) then perform a purely mechanical check against that pre-committed target — never a post-hoc judgment about whether the output "is defensible." The quality gate is never subjective or qualified by explainability.
+
+[B37] A6 · What must be true for the shaping dialogue to deliver as intended
+
+[B38] The mandatory set is never pre-filled. A guessed mandatory field is a decision the user did not make, and the job would run on an objective the user never actually set.
+
+[B39] Every turn is grounded in a real read. A fabricated availability figure would let a user commit a training job that cannot be delivered.
+
+[B40] Commit follows a reflected, converged objective. If a job can commit on a not-yet-reflected or not-yet-converged objective, the promise's core — shaped to convergence and reflected before commit — is false.
+
+[B41] Cost is shown before commit. A training job that commits uncosted breaks the platform-wide reflection-before-commit discipline.
+
+[B43] PART B — PROMISE #22: AUTONOMOUS TRAINING, ANY OUTPUT DIMENSION
+
+[B44] B1 · The promise, in plain language
+
+[B45] The platform can train models on its own — running the training job through to a finished, usable model without a person having to shepherd each step — and the model it produces is trustworthy because it had to prove itself against a fixed bar to exist at all. The autonomy is safe because the acceptance test is automatic and cannot be waved through: the model meets every criterion, on uncurated held-out material, or it does not enter service.
+
+[B46] B2 · The service that powers it
+
+[B47] Targeta — which selects, from the estate, what to train on and in what order, with its learning walled from what the objective may reach.
+
+[B48] The training discipline — the six-criterion acceptance, the recipe seat, and the foundation methods fixed as canon.
+
+[B49] Blinded comparison — where two candidates compete, scored blind to prevent identity leaking through form.
+
+[B50] B3 · Definition of the promise
+
+[B51] Acceptance is automatic and non-negotiable — six criteria, no person in the path. A trained model is accepted into the registry, deployed into extraction, or delivered to a customer only when all six criteria hold: it beats its base on the target stratum, damages nothing else beyond a bound, evaluates on held-out uncurated material, carries complete lineage with inherited rights, calibrates, and ships with an evaluation card. None is a review meeting; all six are artefacts the training run itself produces. A run that cannot produce them was not a governed training run.
+
+[B52] Base weights do not change; adaptation is bounded and versioned per instance. This lets capability replicate across instances without forking a core that would then need parallel maintenance forever.
+
+[B53] Lineage is visible, including failure. A rejected version stays on the shelf permanently with its reason; resubmission creates the next version in the same lineage and re-runs every check — surfacing failure is what makes an accepted version's numbers mean anything.
+
+[B54] Training material is qualified, de-duplicated, and rights-clean. Training draws exclusively from de-duplicated, cleaned, qualified units (Documents 7, 9, 10), and every base model is registered with its hash and licence.
+
+[B55] B4 · Delivery experience expectations
+
+[B56] What the user/analyst experiences (human-facing):
+
+[B57] The analyst watches a training run as staged progress with the current stage live, the candidate's error against its base as checkpoints land, and each acceptance check moving from pending to measuring to settled with its real number attached — a training batch that trips a rail holds inline, visibly, rather than behind a spinner. They see lineage, including what failed and why.
+
+[B58] The user does not have to manually judge or approve the model into service — acceptance is the six criteria, automatically. What they get is a model that provably cleared the bar, or a recorded rejection with its numbers.
+
+[B59] What a consuming system experiences (machine-facing):
+
+[B60] A model enters the registry only with its six acceptance artefacts and its lineage (recipe version, base model, rights). A result produced under a given model records the registry entry it ran under, so it stays interpretable as the registry grows.
+
+[B61] What is produced and retained:
+
+[B62] The accepted model with its six acceptance artefacts, evaluation card, and lineage; rejected candidates retained permanently with their reasons; and the recipe version that trained each.
+
+[B63] B5 · Technical and behavioural requirements
+
+[B64] B5.1 · The six acceptance criteria are structural, with no human in the path [CANON]. All six hold or the model does not enter the registry, is not deployed, and is not delivered. They are checked as a set of cells over files the training run already produced; no person sits in that path.
+
+[B65] B5.2 · Targeta learns yield but never narrows reach [CANON]. Targeta is the one component permitted to learn, and its yield layer is structurally confined: it receives only the floor-passing eligible set, outputs a permutation of exactly that set (none added, none removed — a non-permutation raises), and never receives the floor value, the raw measure, or the eligibility logic. Improving efficiency by starving a class fails Targeta's admission gate regardless of the efficiency gained — the veto exists precisely because the most effective way for a learned ranker to cut work is to stop visiting classes that pay off rarely, which is the silent narrowing the design forbids. On gate failure, Targeta runs on its deterministic core alone.
+
+[B66] B5.3 · Foundation methods and material are fixed [CANON]. Adapter methods on registered open base models; training material drawn exclusively from de-duplicated, cleaned, qualified units; acceptance exclusively through the six criteria on uncurated held-out sets. Base weights do not change; adaptation is bounded and versioned per instance.
+
+[B67] B5.4 · The recipe seat is governed and evidence-bound [CANON]. All training configuration lives in a versioned, ledgered configuration object; the seat ships empty, with no default recipe until the first real run fills it. Every trained model's registry entry cites the recipe version that trained it. Recipe revisions carry no approval ceremony but must attach the measured comparison that justifies them and write a ledger row — a revision with no evidence is a defect, not a shortcut.
+
+[B68] B5.5 · Candidate comparison is blinded [CANON]. Where two candidates are compared, the comparison is scored blind: arm identity concealed at scoring, outputs in randomised order normalised to remove identifying artefacts, identity unsealed only after scores are fixed, and a leakage check run before unsealing — because identity leaks through form, ordering, and length as readily as through a name.
+
+[B69] B5.6 · Retained learning data from exceptional runs [RULED — see Document 14]. The promise-set's #25 (retained learning data usable for white papers) draws on the lineage and evaluation artefacts every run already produces. It is specified in Document 14 (the model ecosystem), not here — see Document 14 §B5.1 for the ruling; noted so the acceptance artefacts are understood as the source it draws from.
+
+[B70] B6 · What must be true for autonomous training to deliver as intended
+
+[B71] The six criteria genuinely gate, with no human bypass. If any path can deploy a model without all six, "autonomous" becomes "unaccountable," and the trust in owned models collapses.
+
+[B72] Targeta's yield layer cannot narrow reach. If the learned layer could see the floor or the eligibility logic, or output a non-permutation, it could silently starve classes — the exact failure the type guard and the veto exist to prevent.
+
+[B73] Rejected candidates are retained with reasons. Without visible failure, an accepted model's numbers mean nothing.
+
+[B74] Training material is qualified and rights-clean. Training on unqualified or unlicensed material would poison the owned model and its rights posture at the source.
+
+[B76] RULINGS APPLIED TO THIS DOCUMENT
+
+[B77] A5.1 / A5.5 [RULED] — "Any output dimension" is bounded by a pre-committed, numeric-or-structural done-condition (A5.1), never by a post-hoc defensibility judgment. The six criteria then check mechanically against that target. Settled — this is a real strengthening of the original proposal, not a confirmation of it.
+
+[B78] B5.6 → Document 14 [RULED] — retained learning data for white papers (#25) draws on acceptance artefacts; the exceptional-run bar is ruled in Document 14 §B5.1 to the same objective-criteria standard as A5.1/A5.5 here.
+
+[B79] Cost at reflection (Document 12 B5.6) [RULED] — training's reflection-before-commit cost display is confirmed, scoped to compute-related commits (extraction and training), not every commit type.
+
+[B81] End of Document 13 of 16 — Targeting, Training & Model Development, Part 1: Autonomous Training & the Objective-Shaping Dialogue.

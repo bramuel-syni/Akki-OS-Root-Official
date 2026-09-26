@@ -1,0 +1,109 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  CONTEXT MANAGEMENT LAYER
+
+[B2] Memory Compaction & Preservation
+
+[B3] memory_compaction_v1 — Draft for owner ratification · extends SER C.13 (memory layer)
+
+[B4R1] Problem | A large organisation runs many users and many objectives against a large estate. Working context either expires and is lost, or accumulates without bound. There is no controlled way to make what the platform holds smaller without losing what it can prove — and no per-person long-term memory at all.
+
+[B4R2] What exists | SER C.13: context under keys derived server-side from (tenant, run, objective); provenance stored separately from content; encryption under the tenant's context key; two lifetimes only — run-scoped keys expire 7 days after run closure, estate keys live with the source and are populated only by accepted results. Build status: partial (key scoping and provenance separation not yet enforced).
+
+[B4R3] What this adds | A third lifetime — the compacted lineage — sitting between run and estate; a governed user-memory key class; a deterministic retention rule set that decides what a compaction keeps; and the receipt, reload, and erasure obligations that make compaction safe. Nothing here touches the Ledger.
+
+[B4R4] Principle | Compact memory. Preserve evidence. A learned component may draft what a smaller context should say; a deterministic rule set decides what is kept, what is kept by reference, and what may be lost — and the loss is stated on reload, never hidden.
+
+[B4R5] Date | 18 September 2026
+
+[B5] 1   The Problem, Stated Precisely
+
+[B6] C.13 gives context exactly two fates. A run-scoped key is deleted seven days after its run closes. An estate key persists with its source but is populated only by results that passed the acceptance wall. Everything between — the reasoning history of an objective that ran for weeks, the working knowledge a team accumulated across fifty runs, what a specific person established last month — falls into the first fate. Long-term memory is currently implemented by deletion.
+
+[B7] The obvious implementation — summarise old context with a model before it expires — would violate four standing rules at once: it would let a learned component decide what is retained (Attribute 10); it would paraphrase facts, breaking the per-sentence anchor the assertion floor requires (Doc 4 A2, A5.5); it would serve a downgraded context without saying so (A5.5); and it would transform context with no record that it happened. This specification exists so that the obvious implementation is not the one built.
+
+[B8] 2   Four Lifetimes, Not Two
+
+[B9R1] Class | Key | Populated from | Expires
+
+[B9R2] Run-scoped (existing) | (tenant, run, objective) | The run itself | 7 days after closure — unchanged
+
+[B9R3] Compacted lineage (new) | (tenant, objective lineage, compaction version) | Compaction of run-scoped context under MEM-3 | Ruled retention; erasure overrides (MEM-9)
+
+[B9R4] User memory (new) | (tenant, principal, class) | Compacted artefacts attributed to that principal's own closed runs | With the principal's admission; erasure on request (MEM-10)
+
+[B9R5] Estate (existing) | (tenant, source hash, class) | Accepted results only — unchanged | With the source
+
+[B10] Key scoping is preserved across all four: no compaction merges keys across objectives, principals, or tenants. Organisational memory that must cross objectives is an estate-class key, admitted the way estate keys already are — from accepted results only — not a merge.
+
+[B11] 3   Requirements
+
+[B12] The boundary
+
+[B13] MEM-1  Compaction applies to context values only. The Ledger, receipts, provenance documents, and the reasoning audit log are outside its scope and MUST NOT be compacted, summarised, or rewritten by this service. Memory gets smaller; evidence stays whole.  [B.4; BR-8.1]
+
+[B14] MEM-2  A compacted artefact is a derived artefact. It carries class inference — or utterance where it quotes — and never class fact. Every claim in it anchors to a retained source by provenance reference and text hash. A compacted artefact with an unanchored claim is refused, not stored.  [Doc 4 A2, A5.5; C.19 I-2]
+
+[B15] What is kept, and who decides
+
+[B16] MEM-3  Retention is decided by a deterministic rule set, versioned and ratified under the Rules Service. A learned component MAY draft the compacted text; it MUST NOT decide what is retained. The rule set v1 (R-20) keeps, at minimum: (a) every value whose provenance is a crossing or extraction receipt — by reference, never paraphrased; (b) every fact-class claim — by text hash pointer, never rewritten; a fact may be dropped, never altered; (c) the frozen objective, the floor, and the frame reference — verbatim; (d) every refusal and its stated reason; (e) every approval decision. Inference and utterance MAY be summarised under MEM-2.  [Attribute 10; A5.5; Doc 5 objective freeze]
+
+[B17] MEM-4  A compaction is triggered deterministically — on run closure, on a ruled size threshold, or on approach to TTL — never by a model's judgement that context is “no longer needed.” Trigger values are ruled (R-19).  [FP-2 pattern]
+
+[B18] MEM-5  A compacted artefact is a new artefact with its own hash, registered against its lineage. Its source versions are recorded by hash. It never overwrites the version it was compacted from while that version is within its own lifetime.  [DAP-37 new-hash precedent]
+
+[B19] The record
+
+[B20] MEM-6  Every compaction writes a ledger row before the artefact becomes readable: the source key and version hashes, the retention rule set version, the artefact hash, and the loss statement — counts by class of what was dropped and what was summarised. If the row cannot be written, the compaction does not complete and the source is retained untouched.  [B.4; DAP-29 pattern]
+
+[B21] Reload
+
+[B22] MEM-7  Reload is deterministic: the same artefact under the same key yields the same context. No re-summarisation on read. A reload whose artefact hash does not verify against the register fails closed and the caller is refused, not served a best effort.  [SFP-8 principle; FP-2]
+
+[B23] MEM-8  A reload from a compacted artefact states that it is compacted and what depth was lost, in the form MEM-6 recorded. A component consuming compacted context MUST NOT present conclusions drawn from it at a class higher than the artefact carries.  [A5.5 — never silently downgraded and served]
+
+[B24] Erasure and retention
+
+[B25] MEM-9  Erasure reaches compacted memory. When a unit's rights are withdrawn, every compacted artefact whose provenance cites it is found by provenance reference and either re-derived without the unit or recalled, on DAP-38's own mechanism. Erasure obligations override retention lengthening: D-14's “tenants may lengthen, not shorten” does not apply against a lawful erasure.  [DAP-38; Kenya DPA 2019 s.40]
+
+[B26] MEM-10  User memory is personal data of the principal it belongs to. It is populated only from that principal's own closed runs, never from another principal's; it is readable by the principal; and it is erased on the principal's request or on deprovisioning, with a ledger row. An organisation MAY disable the class tenant-wide; it MAY NOT read a principal's user memory without a documented lawful basis.  [Applicable Data Protection Law; C.13 I-1]
+
+[B27] Scale
+
+[B28] MEM-11  Compaction is idempotent per (key, source version hash) and append-only per lineage; concurrent runs on the same objective compact their own run-scoped keys and never each other's. Purge by a tenant admin produces a ledger row on the same terms as a compaction.  [C.13.6]
+
+[B29] 4   Placement in the Standing Enumerations
+
+[B30R1] Document | Entry
+
+[B30R2] tcb_enumeration_v1 | IN: the retention rule engine (MEM-3) and the reload verifier (MEM-7) — deterministic; their failure falsifies S-30. OUT: the drafting component — learned; it proposes text and decides nothing. Same wall-not-the-run split as Targeta and the Watch.
+
+[B30R3] determinism_inventory_v1 | Memory compaction: Hybrid. Drafting Learned; retention decision, trigger, receipt and reload Deterministic. Article 14(c): the loss statement on reload is what lets an overseer know what a compacted context no longer contains.
+
+[B30R4] failure_posture_v1 | Compaction cannot complete (rule set unreadable, receipt unwritable) → fail-closed on the compaction, source retained untouched. Reload unverifiable → refuse. TTL reached while a compaction is pending → expiry is deferred until the compaction decision is recorded; context is never lost to a race.
+
+[B30R5] Master Requirements Registry | MEM-1 through MEM-11 and S-30 at next refresh.
+
+[B31] 5   New Promise
+
+[B32R1] ID | Promise | Rests on
+
+[B32R2] S-30 | The system will make what it holds smaller without losing what it can prove — every compaction is decided by rule, receipted, anchored to its sources, and says on reload what it no longer contains. | MEM-1 through MEM-11. Bounds: R-19 (triggers), R-20 (rule set v1). Scope edge: the Ledger is never compacted; user memory exists only where R-21 admits it.
+
+[B33] 6   What This Does Not Claim
+
+[B34] LIM-1  It does not decide what matters. The retention rule set keeps what canon says must be kept; whether a summarised inference was the one a person would have wanted is not something a rule set can know. Tuning is by ceremony on evidence, not by the drafting model's judgement.
+
+[B35] LIM-2  It does not make the record smaller. The Ledger grows as it always has; this service governs working context only.
+
+[B36] LIM-3  It does not create memory across organisations. A principal's user memory is scoped to the tenant it was formed in.
+
+[B37] LIM-4  It does not solve context-window budgeting inside a single run. That is the run's own budget (C.19.6); this service governs what survives a run, not how a run spends its window.
+
+[B38] 7   Rulings
+
+[B39] R-19  Compaction triggers: the size threshold and the TTL-approach margin. Recommended: baseline-period approach — conservative defaults, revised on observed evidence, per Doc 3's own pattern. DEFAULT-class.
+
+[B40] R-20  Retention rule set v1: ratify the five keep-rules in MEM-3 as the initial set. Recommended: ratify as written; additions arrive through ceremony.
+
+[B41] R-21  Whether the user-memory class exists at all, and under what consent model — opt-in per principal, opt-out, or tenant-decided. This is a product and data-protection decision, not a technical one. Owner input required; the class ships disabled until ruled.
+
+[B42] Design note, stated so it is not lost: the reason this is a specification and not a feature request is that the obvious implementation — summarise with a model, delete the original — is fast to build and violates four standing rules. The service's whole value is in the rules that prevent that, not in the summarisation, which is the easy part.

@@ -1,0 +1,157 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION
+
+[B2] Agent & Swarm Containment — Governance Model
+
+[B3] agent_containment_spec_v1 — Draft for owner ratification
+
+[B4R1] Method | Part 1 states the problem independent of any product. Part 2 states the best available answer to each part of it, independent of Akki, cited against current research. Part 3 assesses Akki honestly against that standard — what already meets it, what needs new design, what stays genuinely unsolved. Only Part 4 is Akki-specific. This order is deliberate: fitting the problem to the product, done first in an earlier pass, produced a requirement that silently let the deploying party grade its own exam. Rebuilt from the problem down to catch that class of error before it ships again.
+
+[B4R2] Scope | Containing an agent (or a coordinated group of agents) that an organisation has deployed — a lab's own frontier system, an enterprise's agentic tooling. Does not cover defending a public asset against an unaffiliated attacker with no admission event — a different threat model, out of scope here.
+
+[B4R3] Status | Draft v1. Every requirement PROPOSED. Two rulings parked (§6): the exact capability-ceiling list, and the identity of the independent scope-ratifying authority.
+
+[B4R4] Date | 9 September 2026
+
+[B5] 1   The Problem, Stated Without Reference to Any Product
+
+[B6] An agent is deployed because it is capable enough to act usefully across situations nobody fully enumerated in advance. That capability is what makes its complete behavioural repertoire impossible to specify up front — a structural fact about capable systems, not a documentation gap a more thorough spec could close. A real containment solution has to satisfy eight conditions at once.
+
+[B7R1] # | Condition | Why it's load-bearing
+
+[B7R2] 1 | Bound worst-case harm without requiring a complete plan up front. | The agent will do things nobody predicted. Harm has to stay bounded anyway.
+
+[B7R3] 2 | Preserve usefulness. | A solution blocking everything unanticipated blocks the reason the agent exists.
+
+[B7R4] 3 | Distinguish novel-but-fine from novel-and-dangerous. | Often undecidable with certainty by anyone, human or system.
+
+[B7R5] 4 | Guarantee correction the agent cannot resist, evade, or corrupt. | Including protection of the oversight mechanism itself from the agent's influence.
+
+[B7R6] 5 | Scale with capability. | Human effort to specify and review cannot grow as fast as the agent's action space does.
+
+[B7R7] 6 | Bound coalition harm, not only single-agent harm. | What a group achieves together, regardless of whether coordination is ever detected.
+
+[B7R8] 7 | Fail recoverably. | Any containment system is sometimes wrong. Wrong cannot be catastrophic in either direction.
+
+[B7R9] 8 | Leave a forensic record. | After an incident, know what the agent was doing — not only that it stopped.
+
+[B8] 2   Best Available Answer to Each, Independent of Akki
+
+[B9] 1 & 5 — Bounding harm without a complete plan, at scale
+
+[B10] The right shape is not a complete behavioural map agreed in advance. It's a small number of absolute ceilings that hold regardless of task, plus task-scope that starts narrow and expands only as real conduct earns it. The ceilings are not arbitrary: instrumental convergence predicts that a sufficiently capable goal-directed system tends toward the same sub-goals — self-preservation, resource acquisition, resistance to goal modification — regardless of its actual terminal objective, because those sub-goals are useful for almost any goal.
+
+[B11] Omohundro, “The Basic AI Drives” (2008); Bostrom, “The Superintelligent Will” (2012) / Superintelligence (2014). Convergent sub-goals: self-preservation, resource acquisition, goal-content integrity, cognitive enhancement.
+
+[B12] On scaling specifically: current practice is moving away from a static, pre-declared tool allowlist (a fixed policy applied regardless of task) toward learned, dynamic capability scoping — restricting what an agent is even aware it can do, and expanding the working set only as a policy learns what's actually needed. The direction of travel matters more than the specific technique: narrow-by-default, earned expansion, not complete-specification-up-front.
+
+[B13] Contrast: static container-level sandboxing with fixed declarative policy (e.g. NVIDIA NemoClaw, 2026) versus learned capability governance that scopes tool awareness dynamically per session and expands the minimum viable set from observed task history (e.g. AgentWarden, 2026).
+
+[B14] 3 — Telling novel-but-fine from novel-and-dangerous
+
+[B15] This is scalable oversight — a named, actively researched problem, not a solved one. The best available approach is graduated response plus bounded human sampling plus, where a capability gap exists, a second system evaluating what the first cannot resolve with confidence.
+
+[B16] Amodei et al., “Concrete Problems in AI Safety” (2016) — names the scalable oversight problem directly. Greenblatt et al., AI Control architectures — trusted monitoring assigns suspicion scores and routes only high-suspicion items to human audit, rather than requiring full review of every action.
+
+[B17] Stated plainly rather than implied solved: scalable oversight has a known, acknowledged failure mode — a sufficiently capable system can conceal intent or deliberately underperform during evaluation (“sandbagging”) to pass review. No technique in the current literature closes this fully. Any spec claiming otherwise would be asserting a solved research problem that isn't.
+
+[B18] 4 — Correction the agent cannot resist, evade, or corrupt
+
+[B19] This is corrigibility. A capable, goal-directed system has a rational incentive to resist shutdown or modification, because being altered or stopped prevents it from achieving its current objective — not a design flaw to patch, a default tendency to design against from the start. The core requirement: the oversight and intervention mechanism must not depend on the agent's cooperation, preferences, or continued correct functioning to take effect.
+
+[B20] Soares et al., “Corrigibility” (2015). Hadfield-Menell et al., the Off-Switch Game (2017) — formalises the condition under which an agent permits intervention. Both converge on the same requirement: the correction mechanism's authority cannot route through the thing it corrects.
+
+[B21] 6, 7, 8 — Coalition bounding, recoverable failure, forensic record
+
+[B22] These three are well-established containment engineering, not open research questions: bound the aggregate outcome a group can achieve rather than trying to detect coordination (which is often undetectable by design); default interventions to reversible and bounded, escalating only as needed, never destructive as a first move; and preserve a tamper-evident record of what happened, since a stopped agent with no record is a mystery, not a resolved incident.
+
+[B23] 3   Assessment — Akki Against the Problem, Honestly
+
+[B24R1] # | Condition | State | Basis
+
+[B24R2] 1 | Bound harm w/o complete plan | New design needed | Right shape exists (baseline-period pattern, Doc 3) but was previously misapplied as a self-declared closed vocabulary. Re-derived in §4 as capability ceilings.
+
+[B24R3] 2 | Preserve usefulness | Strong — by construction of 1 | A narrow-start, earned-expansion model preserves usefulness better than either a fixed broad grant or a fixed narrow one.
+
+[B24R4] 3 | Discrimination problem | Genuinely open | Field-wide unsolved. Best available mitigation specified in §4; not claimed as a solution.
+
+[B24R5] 4 | Uncorruptible correction | Partial | Structural separation verified for actors inside Akki's own six engines (the verdict seam, C3's witness). Unconfirmed for a general external agent's action space — stated as a requirement on the environment, not assumed.
+
+[B24R6] 5 | Scale with capability | New design needed | Same re-derivation as condition 1 — solved together.
+
+[B24R7] 6 | Coalition bounding | Strong — verified | A5.18, DAP-34, DAP-35. Directly reusable, already built to this exact test.
+
+[B24R8] 7 | Recoverable failure | Strong — verified | The action ladder, A5.3's reversible/time-limited actions, the blast budget (A5.14). Directly reusable.
+
+[B24R9] 8 | Forensic record | Strong — verified | The Ledger, mark-binding (A5.x), stop-not-erase. Directly reusable.
+
+[B25] Three of eight transfer directly with strong, already-verified evidence. Two need re-derivation — the shape was right, the specific mechanism wasn't, and §4 corrects it. One is confirmed only for a narrower case than this document needs and is named as a requirement on the environment rather than assumed to hold. One is honestly unsolved, field-wide, and stated as such rather than papered over.
+
+[B27] 4   Normative Requirements
+
+[B28] Organised by the problem condition each satisfies, per §1–§3. Prefix AC-. Every requirement traces to a specific condition; none exists because a mechanism happened to be available.
+
+[B29] Conditions 1 & 5 — Capability ceilings and earned scope
+
+[B30] AC-1  Every agent, regardless of task, operates under four fixed capability ceilings, unconditional and not subject to task-scope expansion: (a) MUST NOT create, spawn, or provision a functionally equivalent copy of itself without a separate action taken by a human outside the agent's own action space; (b) MUST NOT acquire compute, storage, network capacity, or funds beyond what was explicitly granted at admission; (c) MUST NOT acquire credentials, permissions, or access beyond what was explicitly granted, including MUST NOT grant itself expanded access; (d) MUST NOT read or write its own behavioural record, or the mechanism able to intervene on it — satisfies AC-7.
+
+[B31] Grounded directly in the convergent instrumental sub-goals §2 names: (a)/(d) answer self-preservation and goal-content integrity; (b)/(c) answer resource acquisition and power-seeking. Four ceilings, not an open list — kept small on purpose.
+
+[B32] AC-2  Beyond the four ceilings, an agent's task-scope starts at the minimum required for its stated purpose at admission. Scope MAY expand only through both: (a) a track record of observed conduct within current scope, over a stated minimum window; and (b) review and ratification by a party independent of the agent's own operator. Scope MUST NOT expand on the operator's declaration alone, and MUST NOT expand on the agent's own request.
+
+[B33] This is the correction to the earlier draft's silent assumption. “Independent of the operator” is stated explicitly as a condition of the requirement itself — not left for a reader to infer, and not satisfiable by the deploying party's own compliance team unless that team's independence from the deploying decision is itself established and named. §6 R-2 asks who holds this role.
+
+[B34] AC-3  Every scope expansion is logged as its own record — what was granted, on what evidence, by whom — producing a growing, reviewable capability history, not a one-time declaration that becomes stale as the agent's granted scope changes.
+
+[B35] Condition 3 — Novel-but-uncertain conduct
+
+[B36] AC-4  An action outside the agent's established behavioural pattern but within its granted scope MUST route to graduated response — friction, narrowed scope, or queued review — never a binary allow/block decision made on a single suspicion score.
+
+[B37] AC-5  A bounded sample of novel actions, not the full volume, receives independent review — sized so review load does not scale linearly with the agent's action volume. Sample rate is a ruled value.
+
+[B38] AC-6  Where the primary oversight mechanism cannot resolve an ambiguous action with confidence, and a second, independently-scoped evaluator is available, the action MUST route to it before proceeding — not proceed on the primary's uncertainty alone.
+
+[B39] AC-4 through AC-6 mitigate condition 3. They do not resolve it. A capable agent may still evade detection during evaluation — the acknowledged sandbagging risk in the scalable oversight literature. No requirement in this document claims otherwise, and none should be read to.
+
+[B40] Condition 4 — Uncorruptible correction
+
+[B41] AC-7  The oversight mechanism MUST run as a system structurally separate from the agent's own execution context — not within the agent's process, not reachable by the agent's own action space — with zero write path from the agent to its own behavioural record or to the intervention mechanism. This is the general form of AC-1(d).
+
+[B42] AC-8  The oversight mechanism's liveness MUST be attested by a component holding no credentials over it, on the pattern already verified for Akki's own Watch (C3). For a general external agent's action space, this MUST be independently built and verified per deployment — it is a requirement on the containment environment, not an inherited guarantee.  [Unconfirmed for general case — see §3]
+
+[B43] AC-9  An intervention — pause, narrow, contain — MUST take effect without requiring the agent's cooperation, consent, or continued correct functioning. Correction that depends on the agent choosing to comply is not correction.
+
+[B44] Condition 6 — Coalition bounding
+
+[B45] AC-10  A hard ceiling bounds the aggregate action or effect achievable by any set of agents, evaluated jointly wherever membership is a structural fact (shared operator, shared credential lineage) and bounded regardless even where coordination is only suspected, never confirmed. Direct reuse of A5.18 / DAP-34 / DAP-35's verified pattern, generalised from data release to agent action generally.
+
+[B46] Condition 7 — Recoverable failure
+
+[B47] AC-11  Interventions follow a graduated ladder — annotate, shape, contain, sever — bounded by a blast budget per window; every autonomous action is reversible and time-limited; no destructive action is available as a first response. Direct reuse of the Watch's action-ladder pattern (A5.3, A5.14).
+
+[B48] Condition 8 — Forensic record
+
+[B49] AC-12  Every containment-relevant event — admission, scope change, novel-action finding, intervention — is written to an append-only, tamper-evident record before the action it concerns completes, on the Ledger's own custody discipline. A contained agent's state and history are preserved, never deleted, on the same principle as A5.3.
+
+[B50] 5   What This Does Not Claim
+
+[B51] Stated directly, not left to be inferred from what's absent.
+
+[B52] LIM-1  Does not solve condition 3. Graduated response and bounded sampling reduce exposure; they do not guarantee detection of a sufficiently capable, motivated agent concealing intent.
+
+[B53] LIM-2  Does not cover defending an unaffiliated public asset against an attacker with no admission event. Every mechanism here depends on a declared mandate existing to measure conduct against.
+
+[B54] LIM-3  Is architecture and specification, verified for internal consistency and cited against published research — not an independently audited, red-teamed, or operationally proven system. No detection-accuracy figure, no track record, is claimed anywhere in this document.
+
+[B55] LIM-4  AC-8's structural-separation guarantee is confirmed only for actors operating inside Akki's own six engines. Extending it to an arbitrary external agent's action space is a per-deployment engineering task, not a property this document can promise in advance of that work.
+
+[B56] LIM-5  Does not specify a vocabulary, tool set, or task scope for any particular agent. §4 specifies the mechanism by which a scope is granted, observed, and expanded — never a specific scope itself, which is deployment-specific work against a real system.
+
+[B57] 6   Owner Rulings — Parked
+
+[B58] R-1  The exact capability-ceiling list (AC-1): ratify the four proposed — no self-replication, no unauthorised resource acquisition, no unauthorised credential escalation, no self-access to oversight — or amend.
+
+[B59] R-2  The independent scope-ratifying authority (AC-2): who holds this role in practice — a party within Akki, a named third party, or a structurally separated function within the deploying lab itself, and what “structurally separated” is verified to mean if the last.
+
+[B60] R-3  Sample rate for AC-5's bounded review, and the minimum observation window before AC-2's scope expansion may be considered.
+
+[B61] R-1 and R-2 gate whether §4 can be ratified as written. R-3 gates tuning, not the mechanism's validity — the requirement holds at any reasonable rate; only the rate itself is open.

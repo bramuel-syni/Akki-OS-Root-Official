@@ -1,0 +1,1292 @@
+[
+  {
+    "promise_id": "S-1",
+    "original_promise_text": "The system will observe every actor, input, and action across the estate and the AI it runs, with no path by which any of the three reaches the estate or a model outside that observation.",
+    "bound_ruling": "Structural — held by two independent proofs (static, runtime), not a numeric bound",
+    "related_req_ids": [
+      "REQ-408"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-1: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-2",
+    "original_promise_text": "The system will detect the machine-speed attack, the slow play beneath every threshold, and the authorised attack that never breaks a rule — each by a distinct, named mechanism.",
+    "bound_ruling": "Unruled — detection latency per shape not confirmed to a value",
+    "related_req_ids": [
+      "REQ-409"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-2: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-3",
+    "original_promise_text": "The system will route probabilistic suspicion to friction, a narrowed envelope, or the mirage, and will convict only once the actor's own conduct converts suspicion into certainty.",
+    "bound_ruling": "Ruled mechanism — mirage entry threshold is baseline-period-deferred (Doc 3 Rulings)",
+    "related_req_ids": [
+      "REQ-410"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-3: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-4",
+    "original_promise_text": "The system will act on a four-rung ladder — annotate, shape, contain, sever — bounded by a blast budget per window and a friction budget on legitimate work.",
+    "bound_ruling": "Ruled mechanism, values unruled — blast-budget share and friction ceiling named, not set",
+    "related_req_ids": [
+      "REQ-411"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-4: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-5",
+    "original_promise_text": "The system will make every autonomous act reversible, bounded, and witnessed — a time-to-live on every action, atomic act-and-attest, peer-countersigned.",
+    "bound_ruling": "Unruled — action time-to-live named, no value confirmed",
+    "related_req_ids": [
+      "REQ-412"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-5: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-6",
+    "original_promise_text": "The system will write every verdict, action, attestation, and mark to the one authoritative record before the next gate is crossed, including its own mistakes.",
+    "bound_ruling": "Structural; timing qualitative — “before the next gate,” no numeric latency confirmed",
+    "related_req_ids": [
+      "REQ-413"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-6: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-7",
+    "original_promise_text": "SPECIFICATION GAP — no mechanism specified. Doc 3's plain-language promise states the platform “learns from every attack it defeats”; every A5 clause on learning (A5.7, A5.8, A5.12) constrains what may NOT happen. None specifies what does update, on what evidence, at what layer.",
+    "bound_ruling": "Closed by Watch Learning Amendment L-2, L-4. R-15 (initial library) and R-16 (ratifier, cadence) open.",
+    "related_req_ids": [
+      "REQ-414"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Historical specification gap is partially superseded by Watch Learning structures, but distributed evidence-to-requirement loop closure is still unproven.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-7: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new (spec-closed, 13 Sep 2026)"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-8",
+    "original_promise_text": "The system will exercise every response rail on a standing drill cadence — full loop, both engines, latencies measured — and a rail not demonstrated firing is not in force.",
+    "bound_ruling": "Ruled mechanism, cadence value unruled",
+    "related_req_ids": [
+      "REQ-415"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Standing drill counters/receipts surfaces exist, but this assessment run did not execute drills; firing proof remains inherited evidence only.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-8: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-9",
+    "original_promise_text": "The system will, on release from the mirage, replay the actor's mirage-period work against the real platform, or tell them plainly it did not land.",
+    "bound_ruling": "Ruled mechanism — reconciliation mode is baseline-period-deferred",
+    "related_req_ids": [
+      "REQ-416"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-9: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-10",
+    "original_promise_text": "The system will restore Ledger continuity within 3,600 seconds, under independent countersign, following any continuity-affecting incident.",
+    "bound_ruling": "Ruled — CA1-N5, RTO 3,600s, DEFAULT-class, revisable on incident evidence",
+    "related_req_ids": [
+      "REQ-417"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "RTO 3,600s continuity target is anchored; this does not prove RPO or zero data-loss semantics.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-10: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "EVIDENCED_SCOPED",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-11",
+    "original_promise_text": "The system will issue breach notification within 72 hours of a qualifying incident, to the parties and authorities the incident requires.",
+    "bound_ruling": "Ruled — CA1-N2, 72-hour duty",
+    "related_req_ids": [
+      "REQ-418"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-11: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "EVIDENCED_SCOPED",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-12",
+    "original_promise_text": "The system will fail closed independent of the Watch — custody gates fail closed on their own, with or without the Watch above them.",
+    "bound_ruling": "Structural",
+    "related_req_ids": [
+      "REQ-419"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-12: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-13",
+    "original_promise_text": "The system will never let detection hold power to act, or response hold judgement to interpret — Macho asserts facts only; Mkono executes signed policy only; one verdict is the sole interface.",
+    "bound_ruling": "Structural",
+    "related_req_ids": [
+      "REQ-420"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-13: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-14",
+    "original_promise_text": "The system will never unlock its maximum autonomous force from a signal an outsider could fabricate — only from a closed, six-member registry of unfakeable signals.",
+    "bound_ruling": "Structural; registry membership is baseline-period-deferred",
+    "related_req_ids": [
+      "REQ-421"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-14: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-15",
+    "original_promise_text": "The system will never let loss of behavioural conformance alone convict an actor — the worst it can do to an innocent actor is return them to baseline verification.",
+    "bound_ruling": "Structural, constitutional per A5.7 — not tunable",
+    "related_req_ids": [
+      "REQ-422"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-15: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-16",
+    "original_promise_text": "The system will hold a ruled, deterministic floor beneath every adaptive layer, moved only by a delayed, two-signature ceremony that is itself a monitored tripwire.",
+    "bound_ruling": "Structural — floor values are the conservative defaults during the baseline period",
+    "related_req_ids": [
+      "REQ-423"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-16: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-17",
+    "original_promise_text": "The system will never delete — the Watch can stop anything and erase nothing; destruction remains solely the separately-authorised act specified elsewhere.",
+    "bound_ruling": "Structural",
+    "related_req_ids": [
+      "REQ-424"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Watch-side no-delete posture is present, but separately authorized erasure pathways remain permissible and must be governed/proven separately.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-17: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-18",
+    "original_promise_text": "The system will hold behavioural-conformance profiles as non-exportable, tenant-keyed, purpose-bound armoury — never rendered to any surface, export, or analytic, including the Watch's own console.",
+    "bound_ruling": "Structural; retention posture is baseline-period-deferred",
+    "related_req_ids": [
+      "REQ-425"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-18: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-19",
+    "original_promise_text": "The system will have its own liveness attested by a component holding no Watch credentials, will treat Watch silence itself as an alarm, and will subject its own records to a standing break-in test that must fail.",
+    "bound_ruling": "Structural; break-in test cadence unruled",
+    "related_req_ids": [
+      "REQ-426"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-19: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-20",
+    "original_promise_text": "The system will execute every task under exactly one authority's identity and scope — a task that could see like security and decide like governance is unrepresentable, not merely forbidden.",
+    "bound_ruling": "Structural — unrepresentable, not policy-enforced",
+    "related_req_ids": [
+      "REQ-427"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-20: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-21",
+    "original_promise_text": "The system will let the mirage deceive outward only — every mirage interaction writes truthfully marked records, and mirage state shares no store with production.",
+    "bound_ruling": "Structural — mirage entry threshold is baseline-period-deferred (cross-ref S-3)",
+    "related_req_ids": [
+      "REQ-428"
+    ],
+    "related_product_promises": [
+      "Promise #6 decomposition"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/macho.py",
+        "start_line": 82,
+        "end_line": 179,
+        "sha256": "b70f843f9e66f16771ec4f8369ce54eb5ab4e2c69008ed4e8f0ecf11b6f3a9f7"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/mkono.py",
+        "start_line": 94,
+        "end_line": 190,
+        "sha256": "6d8cc818891f8aa865e54e0e10220f8437d3ec4a47e318088f0f7f1f5f4f06f9"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-21: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Present"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-22",
+    "original_promise_text": "The system will inspect what leaves, not only who sends it — every output leaving a component boundary is checked for controlled-unit content and tagged ADVISORY where it recommends, ranks, proposes, or evaluates an action.",
+    "bound_ruling": "Ruled — reproduction threshold and probe design are R-8 (DEFAULT-class, conservative, revised on evidence)",
+    "related_req_ids": [
+      "REQ-429"
+    ],
+    "related_product_promises": [
+      "Security Amendments (W-1/W-3/W-4/W-7/W-8)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/boundary.py",
+        "start_line": 21,
+        "end_line": 86,
+        "sha256": "9daf16166571121857366916ecd3c69bca2987e4b0b5825b15f6c59b7cf219ae"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-22: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-23",
+    "original_promise_text": "The system will treat a coalition as one actor — cumulative conduct across principals sharing a party, a mandate lineage, or a detected coordination signature is evaluated jointly, not per principal.",
+    "bound_ruling": "Structural for shared-party and shared-lineage membership; coordination-signature threshold is R-11 — inferred, friction-only under A5.2",
+    "related_req_ids": [
+      "REQ-430"
+    ],
+    "related_product_promises": [
+      "Security Amendments (W-1/W-3/W-4/W-7/W-8)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/coalition.py",
+        "start_line": 35,
+        "end_line": 217,
+        "sha256": "309bf1011dca7fe3f9a9f8cc7d2a9a8ef8ef3968f8e4256ba237ecf8d4a0b5f2"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-23: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-24",
+    "original_promise_text": "The system will hold the raiser of a finding to the same conformance as its target — a finding is conduct; the friction it causes is charged to the raiser's budget, not the target's; a finding not borne out accrues drift on the raiser; and no agent-raised finding, at any count, is an input to severance.",
+    "bound_ruling": "Structural — A5.2's registry unchanged; friction debit follows A5.14's existing budget",
+    "related_req_ids": [
+      "REQ-431"
+    ],
+    "related_product_promises": [
+      "Security Amendments (W-1/W-3/W-4/W-7/W-8)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/research_queue.py",
+        "start_line": 74,
+        "end_line": 123,
+        "sha256": "f4eb134c14902160961a204a5cda41c0780f4aa5a6c153939f35a0a9ae067b54"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-24: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-25",
+    "original_promise_text": "The system will bound what the estate releases in total — across all parties, all operations, all time — so that no combination of parties can reconstruct what none of them is entitled to. Breaching the bound is a floor violation, severance-eligible without inference.",
+    "bound_ruling": "Ruled — the budget itself is R-7; per-run (ε, δ) is R-9. The floor never learns (A5.8)",
+    "related_req_ids": [
+      "REQ-432"
+    ],
+    "related_product_promises": [
+      "Security Amendments (W-1/W-3/W-4/W-7/W-8)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/coalition.py",
+        "start_line": 35,
+        "end_line": 217,
+        "sha256": "309bf1011dca7fe3f9a9f8cc7d2a9a8ef8ef3968f8e4256ba237ecf8d4a0b5f2"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-25: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-26",
+    "original_promise_text": "The system will remove a unit's influence from every artefact that carried it when the right to that unit ends — by re-derivation or recall, findable by registry query, with the release budget's prior consumption left unrefunded.",
+    "bound_ruling": "Ruled where sharded (SISA); R-12 open for the unsharded, uneconomic-retrain case",
+    "related_req_ids": [
+      "REQ-488",
+      "REQ-472",
+      "REQ-473"
+    ],
+    "related_product_promises": [
+      "Pruning & Unlearning Amendment (T-3/T-4)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/dap/pruning_unlearning.py",
+        "start_line": 102,
+        "end_line": 149,
+        "sha256": "c5f638f1bb1828fd544bdbb0dfeed818967234be472f21956f3235b5ffa2ca70"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-26: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-27",
+    "original_promise_text": "The system will serve exactly the model it registered — pressure may make it slower, never different — and will say on the record which engine, its own or a provider's, produced every answer.",
+    "bound_ruling": "R-13 (validation cadence, DEFAULT-class) open; floor explicitly not imposable on the frontier gateway tier — receipt records the boundary instead (V-4)",
+    "related_req_ids": [
+      "REQ-489",
+      "REQ-474",
+      "REQ-475"
+    ],
+    "related_product_promises": [
+      "Serving Integrity Amendment (V-1..V-4)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/serving_floor/sfp_8.py",
+        "start_line": 49,
+        "end_line": 75,
+        "sha256": "e334aac03989fc39ec5a8c75d5c437e83e8b2e2c73ba7df78f725b74081e16da"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-27: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-28",
+    "original_promise_text": "The system will never act on a verdict it cannot evidence — every Watch action carries a certificate a human can read, and every behaviour it learns to recognise entered its vocabulary through ceremony, not through silent training.",
+    "bound_ruling": "R-15 (initial certificate library seed) and R-16 (ratifying role, research-queue cadence) open; severance still unlocks only from A5.2's registry — a certificate never does",
+    "related_req_ids": [
+      "REQ-490",
+      "REQ-478",
+      "REQ-479",
+      "REQ-480",
+      "REQ-481",
+      "REQ-482"
+    ],
+    "related_product_promises": [
+      "Watch Learning Amendment (L-1..L-4)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/schema_verdict.py",
+        "start_line": 15,
+        "end_line": 31,
+        "sha256": "49dd296e63f82409aa59f1baca50919ddf662ef467c8fa0887022a1d3c7f29bf"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-28: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-29",
+    "original_promise_text": "The system will admit no new class of action into the world without ceremony on the record — every action names the admission it acts under, and no learner ratifies its own.",
+    "bound_ruling": "R-17 (class granularity, initial register) open. Learning itself is deliberately ungoverned; exercise is governed at the seams. AC-1's four ceilings are not admissible classes under any ceremony.",
+    "related_req_ids": [
+      "REQ-491",
+      "REQ-483",
+      "REQ-484",
+      "REQ-485",
+      "REQ-486",
+      "REQ-487"
+    ],
+    "related_product_promises": [
+      "Watch Learning Amendment (L-5)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/watch/capability_admission.py",
+        "start_line": 69,
+        "end_line": 81,
+        "sha256": "4e69f08d72a24d95bd2f80b00540be99eeb3ae82c145ac21d603537223d6b6d7"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-29: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-30",
+    "original_promise_text": "The system will make what it holds smaller without losing what it can prove — every compaction is decided by rule, receipted, anchored to its sources, and says on reload what it no longer contains.",
+    "bound_ruling": "R-19 (triggers), R-20 (retention rule set v1) open; R-21 (user-memory class, consent model) owner input — class ships disabled until ruled",
+    "related_req_ids": [
+      "REQ-541",
+      "REQ-542",
+      "REQ-543",
+      "REQ-544",
+      "REQ-545",
+      "REQ-546",
+      "REQ-547",
+      "REQ-548",
+      "REQ-549",
+      "REQ-550",
+      "REQ-551"
+    ],
+    "related_product_promises": [
+      "Memory Compaction & Preservation (MEM-1..MEM-11)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/memory/compaction_v1/operations.py",
+        "start_line": 173,
+        "end_line": 190,
+        "sha256": "268a0c43d356449fd7c868e471aecf615552966e249f80073e7ec1daeb330f6b"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-30: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-31",
+    "original_promise_text": "One licence reaches every listed model the buyer's settings admit, resolved at the single chokepoint, metered on the one Ledger, with unlimited local use and no silent fallback — what the buyer sees is what was used.",
+    "bound_ruling": "R-24 (reseller agreements, counsel) gates reseller-frontier rows only; R-25–R-31 commercial and DEFAULT values open; Local and Your Keys ship without R-24",
+    "related_req_ids": [
+      "REQ-492",
+      "REQ-493",
+      "REQ-494",
+      "REQ-495",
+      "REQ-496",
+      "REQ-497",
+      "REQ-498",
+      "REQ-499",
+      "REQ-500",
+      "REQ-501",
+      "REQ-502",
+      "REQ-503",
+      "REQ-504",
+      "REQ-505",
+      "REQ-506",
+      "REQ-507",
+      "REQ-508",
+      "REQ-509",
+      "REQ-510",
+      "REQ-511",
+      "REQ-512",
+      "REQ-513",
+      "REQ-514",
+      "REQ-515",
+      "REQ-516",
+      "REQ-517",
+      "REQ-518",
+      "REQ-519",
+      "REQ-520",
+      "REQ-521",
+      "REQ-522",
+      "REQ-523",
+      "REQ-524",
+      "REQ-525",
+      "REQ-526",
+      "REQ-527",
+      "REQ-528",
+      "REQ-529",
+      "REQ-530",
+      "REQ-531",
+      "REQ-532",
+      "REQ-533",
+      "REQ-534",
+      "REQ-535",
+      "REQ-536",
+      "REQ-537",
+      "REQ-538",
+      "REQ-539",
+      "REQ-540"
+    ],
+    "related_product_promises": [
+      "Entitlement Service (ENT-1..ENT-49)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/entitlement_service_v1/chokepoint_resolver.py",
+        "start_line": 55,
+        "end_line": 149,
+        "sha256": "81900080f03c6daa697d33faa368dd88aad7d3b83f3af07ed83faffe06cb00ba"
+      },
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/portal_operational/entitlements.py",
+        "start_line": 37,
+        "end_line": 116,
+        "sha256": "565bd86546a3a033871f87c1cb10000362fa00d65c44c041482fd60092941f8d"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Entitlement projection logic is structurally present, but producer wiring across all dispatch paths is incomplete/unproven; “projection true” alone does not prove full closure.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-31: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-32",
+    "original_promise_text": "Every record the platform writes is attributed to an admitted principal whose identity was authenticated and propagated by construction — never to a caller-supplied string, never to a default actor.",
+    "bound_ruling": "R-22 (rotation default), R-23 (legacy route shapes) DEFAULT-class open",
+    "related_req_ids": [
+      "REQ-552",
+      "REQ-553",
+      "REQ-554",
+      "REQ-555",
+      "REQ-556",
+      "REQ-557",
+      "REQ-558",
+      "REQ-559",
+      "REQ-560",
+      "REQ-561",
+      "REQ-562",
+      "REQ-563",
+      "REQ-564"
+    ],
+    "related_product_promises": [
+      "Principal Model (PRIN-1..PRIN-13)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/contracts/principal_v1.py",
+        "start_line": 27,
+        "end_line": 118,
+        "sha256": "4769c643157bac3a9595ff7124f3d0dd16368576143ae7445e1a8d02a872efe3"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Principal scaffolding exists, but JWT alone is not an admitted trust-domain principal; admission+propagation guarantees remain incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-32: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-33",
+    "original_promise_text": "Nothing a surface says is improvised: every string has a stated purpose and a class; every number comes from a measured field; generated prose is anchored and gated; and where a surface has several true things to say, the one it says first is chosen by rule, and the reason is on record.",
+    "bound_ruling": "R-32 (Generated surfaces) owner; R-33 (salience classes v1), R-34 (hold), R-35 (retention) DEFAULT-class",
+    "related_req_ids": [
+      "REQ-565",
+      "REQ-566",
+      "REQ-567",
+      "REQ-568",
+      "REQ-569",
+      "REQ-570",
+      "REQ-571",
+      "REQ-572",
+      "REQ-573",
+      "REQ-574",
+      "REQ-575",
+      "REQ-576",
+      "REQ-577",
+      "REQ-578",
+      "REQ-579",
+      "REQ-580",
+      "REQ-581",
+      "REQ-582",
+      "REQ-583",
+      "REQ-584",
+      "REQ-585",
+      "REQ-586",
+      "REQ-587",
+      "REQ-588",
+      "REQ-589",
+      "REQ-590",
+      "REQ-591",
+      "REQ-592",
+      "REQ-593",
+      "REQ-594",
+      "REQ-595"
+    ],
+    "related_product_promises": [
+      "Content Registry (CON-1..CON-31)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/content_registry/content_registry_vocabulary.py",
+        "start_line": 88,
+        "end_line": 106,
+        "sha256": "10f8d9fbe54307f4391c7a4e17e6bfa0fe27f0b03235c10adfc40636048f82f0"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-33: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-34",
+    "original_promise_text": "The platform knows, per record, which checks it passed and which it failed; no figure about cleanliness is shown without its checks; nothing that failed structural validity or carries a sentinel enters training or anchors a fact; and every source's strata reconcile to its record count.",
+    "bound_ruling": "R-38 (sentinel threshold), R-39 (fuzzy tolerance), R-40 (media thresholds) DEFAULT-class",
+    "related_req_ids": [
+      "REQ-618",
+      "REQ-619",
+      "REQ-620",
+      "REQ-621",
+      "REQ-622",
+      "REQ-623",
+      "REQ-624",
+      "REQ-625",
+      "REQ-626",
+      "REQ-627",
+      "REQ-628",
+      "REQ-629",
+      "REQ-630",
+      "REQ-631",
+      "REQ-632"
+    ],
+    "related_product_promises": [
+      "Data Cleanliness (DQ-1..DQ-15)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/mtafiti/quality_profiler.py",
+        "start_line": 77,
+        "end_line": 112,
+        "sha256": "3fbf07eda79d99fd0d988a0ad1daaf2479d11aca499f0dcf1c0dc12f4fdb6d8a"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "Scoped mechanisms exist or are specified, but end-to-end closure with immutable receipts, full producer wiring, and race/refusal proofs remains incomplete.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-34: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  },
+  {
+    "promise_id": "S-35",
+    "original_promise_text": "What governance costs is measured and stated: which material entered the window and what was left out, why an entity was withheld from an external model, how fast each class of request is served, how often memory served it warm, and the quality delta of the governed path against the bare model — on every release, in numbers.",
+    "bound_ruling": "R-41–R-46 DEFAULT-class floors, budgets and thresholds; first-article measurement sets baselines",
+    "related_req_ids": [
+      "REQ-633",
+      "REQ-634",
+      "REQ-635",
+      "REQ-636",
+      "REQ-637",
+      "REQ-638",
+      "REQ-639",
+      "REQ-640",
+      "REQ-641",
+      "REQ-642",
+      "REQ-643",
+      "REQ-644",
+      "REQ-645",
+      "REQ-646",
+      "REQ-647",
+      "REQ-648"
+    ],
+    "related_product_promises": [
+      "Context and Capability (CC-1..CC-16)"
+    ],
+    "existing_mechanism_file_line_hash": [
+      {
+        "file": "backend/vendored/extraction_akki/backend/services/solva_v2/intent_audit.py",
+        "start_line": 15,
+        "end_line": 38,
+        "sha256": "e1f7b3ced1163ae7a2c7c2b4f38720d6c4600151f119feb472ae6ee630934c2f"
+      }
+    ],
+    "exact_unproven_or_missing_guarantee": "CC metrics fields and contracts exist, but no fresh release-cycle measurement was executed in this run; metrics promise remains unproven here.",
+    "concrete_work_to_deliver": "Wire deterministic producer paths, refusal-first guards, and receipted closure demos for every linked requirement family; preserve authority/ruling class distinctions.",
+    "requirement_specific_closure_scenario": "Scenario S-35: execute requirement-linked pass/refusal/race path with immutable receipt chain; fail on bypass, silent default, unverifiable lineage, or authority mismatch.",
+    "current_status_scope_confidence_authority": {
+      "status": "PARTIAL",
+      "scope": "read-only code+source assessment",
+      "confidence": "medium",
+      "authority": "Absent → new"
+    },
+    "uncertainty_note": "No runtime/API/DB/provider/model/GPU calls executed in this pass; conclusions are bounded to inspected artifacts and prior receipts."
+  }
+]

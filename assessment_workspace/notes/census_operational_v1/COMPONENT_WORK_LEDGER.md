@@ -138,3 +138,23 @@ No runtime or Canon modifications. GPU parked; wait for owner's report reaction.
 
 `iteration_12.json`: rawdocument/hashes/cells/deltas verified;23new mappings checked
 21agree/2uncertain(CC2/R44)/0disagree. Prior3uncertain(DQ9/EX10/EX7) retained.
+
+## 2026-09-26 all-requirements assessment — no implementation
+
+Owner approved surgical648row+35promise+referencedCanon gap analysis, report first.
+Bank/report `notes/full_requirements_gap_20260926/REPORT.md`; full literal rows,
+gap/action/closure cards and evidence JSON/CSV/Markdown available.648keys and35
+promise bounds mechanically verified; no newruntimecalls orappchanges.
+
+Primarydispositions475PARTIAL/128UNVERIFIED/24SOURCE_UNRESOLVED/7decision/
+1nonclaim/13scoped-evidenced are notplatformdeliverypercentages. Supplemental
+848inventory includes509source-context/foundational links still needingsemantic
+closure; report MUST remain explicit that widerall-Canon audit is incomplete.
+Somegenericreviewfamiliesneedfurtherrow-specificrefinement.33rowsample31agree/
+2uncertain(DR-R14/RBM12); exactclauserefined bymainreviewer,notretroactivepass.
+
+Delivery closure proposal: authoritativeidentity/custody/receipts spine → real
+boundedsource registry → DAPapprovedoperation/result → qualifiedanswer/memory
+→DQ/ENToperationalgates →Watch/governancedrills →realmodel/audiooutputs →all
+prototypejourneys andmeasuredreleaseevidence. Reusekernels; no redundantauthority.
+This is a proposal, NOT a build directive; GPUremainsparked.

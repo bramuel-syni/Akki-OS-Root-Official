@@ -1,0 +1,137 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Context Preservation & the Memory Layer — Part 2: The Memory Service & On-Demand Retrieval
+
+[B3] Document 8 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Context Preservation & the Memory Layer
+
+[B5] Promises held in this document: #20 (a small memory service the LLM reads from, rather than the whole database) · #21 (the "traffic controller" — fetch specific information on demand, for an authorized user, without re-running the whole database per query)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The services that power these promises are the platform's two-service architecture — an asset-building service (census and extraction, ending in a frozen unit) and an objective-serving service (which answers an objective against what the first has built) — connected by the warm/fresh fork made once at the boundary. The owner's terms "memory service" and "traffic controller" map onto these canonical mechanisms; this document specifies them and states plainly where the owner's framing adds a requirement the canon does not yet name.
+
+[B9] The organising fact of this document. Most questions, against an estate that has been mined for any length of time, are answered warm — served synchronously from qualified intelligence the platform already built on an earlier pass — and the model reads from that small, distilled, qualified body, never from the whole raw estate. Fresh extraction, which re-runs the machinery against source, is the exception path, taken precisely where no qualified intelligence yet answers the question. This is the difference between a platform that accumulates and one that re-processes everything on every query.
+
+[B11] PART A — PROMISE #20: THE SMALL MEMORY SERVICE THE MODEL READS FROM
+
+[B12] A1 · The promise, in plain language
+
+[B13] The AI model does not read the whole database to answer a question. It reads from a small, distilled body of qualified intelligence the platform has already built — a memory of what the estate contains that is far smaller than the estate itself, fast to read, and made of material that has already been extracted, checked, and made trustworthy. The heavy raw estate stays where it is; what the model sees is the memory, not the mass.
+
+[B14] A2 · The service that powers it
+
+[B15] The objective-serving service — which answers an objective by reading qualified intelligence (the units of Document 7), never by re-implementing census or extraction of its own.
+
+[B16] The unit store — the body of qualified, self-describing units the asset-building service has produced, which is what "the memory" is made of.
+
+[B17] A3 · Definition of the promise
+
+[B18] The model reads qualified intelligence, not raw source. What is served to a model-reaching composition is drawn from qualified units — material that has already passed extraction and qualification — not from the raw estate.
+
+[B19] The memory is far smaller than the estate. The distilled body of qualified intelligence is a fraction of the raw material it was drawn from, which is what makes it fast to read and cheap to serve. Shrinking the estate into this memory is the subject of Document 7; serving from it is the subject here.
+
+[B20] The memory is built once and read many times. Each answered objective densifies what the next question can be served from. The asset-building service writes units and advances no further; the objective-serving service reads them and never writes them. There is exactly one path by which a unit comes to exist.
+
+[B21] A4 · Delivery experience expectations
+
+[B22] What a consuming system / model call experiences:
+
+[B23] A model-reaching composition is assembled from qualified units relevant to the objective — a small, sufficient, self-describing body — rather than from the raw estate. The model reads a memory, not a database dump.
+
+[B24] What the organisation experiences (human-facing):
+
+[B25] Questions against a well-mined estate return quickly and cheaply, because they are answered from memory rather than by re-processing source. The user does not experience the estate's raw size on every query.
+
+[B26] What is produced and retained:
+
+[B27] The unit store (the memory), continuously densified as objectives are answered; and, per answer, the record of which units the answer was composed from (joined to the trace and the record).
+
+[B28] A5 · Technical and behavioural requirements
+
+[B29] A5.1 · One path by which a unit comes to exist [CANON]. The asset-building service writes the unit and advances no further; the objective-serving service reads it and never writes it. Where an objective needs material not yet converged, the serving service calls the asset-building service's own machinery to produce it — it does not re-implement census or extraction. A second, faster extraction path for the case where the first was merely slow would give the platform two ways to build a unit and violate single-owner-per-value before anyone noticed.
+
+[B30] A5.2 · The unit is the frozen seam between the two services [CANON]. The five-ring normalised unit (Document 7) is the one artifact both services depend on absolutely — written by one, read by the other, never written by the reader. This is what makes the memory a stable, shared body rather than two divergent stores.
+
+[B31] A5.3 · The transform reads stored intelligence, never a running tail [CANON]. Composing an answer reads stored qualified intelligence, never the live tail of a mining run — so what the model reads is stable material whose composition does not depend on when it was taken.
+
+[B32] A5.4 · Each answered objective densifies the memory [CANON]. Warm-serving is not merely a cache of answers; it is the accumulation of qualified units such that the next objective has more to be served warm from. The memory grows denser with use.
+
+[B33] A6 · What must be true for the service to deliver as intended
+
+[B34] There is exactly one path to a unit's existence. Two build paths would split the memory and break single-owner-per-value.
+
+[B35] The serving service never writes units. If the reader can write, the seam drifts and the two services stop sharing one memory.
+
+[B36] The model genuinely reads qualified units, not raw source. If any model-reaching path reads the raw estate directly, the promise is false on that path and the estate's size is back in the query.
+
+[B38] PART B — PROMISE #21: THE TRAFFIC CONTROLLER — ON-DEMAND FETCH WITHOUT RE-RUNNING THE ESTATE
+
+[B39] B1 · The promise, in plain language
+
+[B40] When a question needs something more specific than what the memory already holds, the platform fetches exactly that — for a user permitted to ask it — without re-running the entire database. It does not reprocess the whole estate to answer one more specific question; it either serves the more specific thing from what it already has, or it runs a bounded, targeted extraction for just that thing. The decision between those two — serve what we have, or go get more — is made once, cleanly, at the boundary, and never re-guessed downstream.
+
+[B41] B2 · The service that powers it
+
+[B42] The warm/fresh fork at Northena's Gate (Document 5) — the single decision, made once at the boundary, that routes an objective (or sub-objective) to warm-serve, fresh extraction, or refusal.
+
+[B43] The objective-serving service, which serves warm where possible and calls the asset-building machinery for only the specific slice not yet converged.
+
+[B44] The owner's term "traffic controller" maps onto this fork-and-route mechanism: the thing that directs each request to the cheapest sufficient source and fetches more only for the specific gap.
+
+[B45] B3 · Definition of the promise
+
+[B46] The decision is warm, fresh, or refused — made once at the boundary. For any objective or sub-objective, a single determination routes it: served warm from qualified intelligence already held; sent for fresh extraction where the material has not been converged; or refused. This is a membership test against a frozen scope plus a convergence check — never a probabilistic re-derivation, and never re-made downstream.
+
+[B47] Fresh fetch is targeted, not a whole-estate re-run. Where fresh extraction is needed, it runs for the specific sub-objective's gap, not the whole database. The platform fetches the missing slice, not everything.
+
+[B48] The fetch is governed by who may ask. On-demand retrieval is available to an authorized user — the request is subject to the same admission, scope, and custody governance as any other (Documents 1, 5). "On demand" does not mean "ungoverned"; it means the specific thing is fetched when asked for, by someone permitted to ask.
+
+[B49] B4 · Delivery experience expectations
+
+[B50] What a consuming system / authorized user experiences:
+
+[B51] A request for something more specific than the memory holds is answered by fetching just that thing — the user does not wait for, or pay for, a whole-estate re-run. Where the thing is already held, it is served warm (synchronously, in full); where it must be extracted fresh, the request returns the async contract carrying the objective identity, status, a delivery estimate, and a quote where one applies.
+
+[B52] The user never sees the platform's internal pipeline stages (mining, transforming) as states — they see warm-and-done, or accepted-and-coming, or a governed refusal. Exposing internal sub-stages would couple every consumer to the platform's internals.
+
+[B53] What the organisation experiences (human-facing):
+
+[B54] The cost and speed of a specific follow-up question are proportional to that question, not to the size of the estate — because the platform fetched the gap, not the whole.
+
+[B55] What is produced and retained:
+
+[B56] The routing decision for each objective (warm / fresh / refused) and its reason, recorded in the direction record (Document 5); and, for a fresh fetch, the async contract and its terms.
+
+[B57] B5 · Technical and behavioural requirements
+
+[B58] B5.1 · The fork is made once, at the boundary, and never re-derived [CANON]. (Shared pattern — decide-once-at-the-boundary; Document 16 §4.) The warm/fresh determination is the same fork the objective's execution branches on, made once by a membership test against a frozen set and a convergence check. Everything downstream honours it rather than re-deriving it, because a second derivation could disagree with the first and the consumer would have been told one thing and given another.
+
+[B59] B5.2 · Fresh fetch calls the one build path for only the unconverged slice [CANON]. Where material is not yet converged, the serving service calls the asset-building service's own machinery to produce the specific slice — it does not re-run census or extraction over the whole estate, and it does not implement a shortcut path of its own.
+
+[B60] B5.3 · The async contract governs the fresh case [CANON]. Warm returns a synchronous, full response. Fresh returns an accepted acknowledgement carrying the objective identity, the status, a delivery estimate, and a quote where one applies. Late refusal is a first-class terminal outcome: a run admitted and later found inadmissible (the estate changed, a rule changed, reasoning could not reach the floor) is rendered as a governed refusal, never as a failure. Sub-stages are deliberately not exposed as states.
+
+[B61] B5.4 · The fetch is scope- and custody-governed [CANON]. On-demand retrieval runs under the same admission, frozen scope (Document 5), and crossing (Document 1) as any other request. An authorized user's specific fetch is governed exactly as a full objective is; there is no lightweight ungoverned retrieval path.
+
+[B62] B5.5 · Result delivery never becomes an ungoverned egress [CANON]. Where a fresh result is delivered asynchronously, the notification carries only the event, the objective identity, the trace identity, and the status — never claim content. The result is fetched over the application's own authenticated key with scope enforced server-side. Pushing content to a configured URL would be an egress the gates do not control; the notification says something is ready, and the gate decides whether the requester may actually have it.
+
+[B63] B6 · What must be true for the service to deliver as intended
+
+[B64] The fork is genuinely made once and honoured everywhere. If any downstream step re-derives warm-vs-fresh, it can disagree with the boundary decision, and the requester is told one thing and given another.
+
+[B65] Fresh fetch is genuinely targeted. If a fresh case re-runs the whole estate rather than the specific unconverged slice, the promise — specific fetch without re-running the database — is false.
+
+[B66] On-demand retrieval is fully governed. If a lightweight retrieval path exists that skips scope or the crossing, on-demand becomes a hole in the governance guarantees.
+
+[B67] This serving discipline is the same one progressive disclosure uses. The on-demand fetch here and the minimal-first, expand-on-demand discipline of Document 6 must be one underlying serving mechanism, not two — or a consumer protected on one path is unprotected on the other. Document 16 holds this composition explicitly.
+
+[B69] OPEN RULINGS SURFACED BY THIS DOCUMENT
+
+[B70] Document 16 (composition, with Document 6) — the on-demand fetch (#21) and progressive disclosure's expand-on-demand (#17) must be specified as one shared serving discipline. Recorded here and in Document 6 so they are not built as two divergent mechanisms.
+
+[B71] No new open ruling of substance — the warm/fresh architecture is fully determinate in canon. The owner's terms "memory service" and "traffic controller" are confirmed as naming existing mechanisms, not requesting new ones, with the single composition dependency above.
+
+[B73] End of Document 8 of 16 — Context Preservation & the Memory Layer, Part 2: The Memory Service & On-Demand Retrieval.

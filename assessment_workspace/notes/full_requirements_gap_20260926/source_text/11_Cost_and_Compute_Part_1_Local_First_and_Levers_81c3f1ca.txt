@@ -1,0 +1,165 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Cost & Compute Economics — Part 1: Local-First Processing & the Consumption Levers
+
+[B3] Document 11 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Cost & Compute Economics
+
+[B5] Promise held in this document: #9 (operating AI in the platform saves cost — swarms or single agents perform tasks locally first, and only relevant tasks reach external LLMs)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling (LC-1/2/3 ruled in for development now) · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The services that power this promise are the platform's model ladder, its deflation law, its sequencing harness, and its local-cascade offload — together with the consumption levers the owner ruled in for development (response cache, model routing by task class, retrieval narrowing). This document specifies all of these as one cost-reduction system and states plainly where the owner's lever framing adds structure the canon does not yet name.
+
+[B9] The organising fact of this document. Cost reduction on this platform is not a single trick; it is a system with a governing rule: the lowest rung that meets the promise. Cheap, local, deterministic work runs first; expensive external model calls are the exception, taken only for what cheaper work cannot satisfy — and the same flywheel that improves quality is the one that deflates cost, by design rather than by hope. Critically, every cost claim is measured on real material, never asserted — because a cost saving that does not hold under measurement would undermine the trust that is the platform's differentiator.
+
+[B11] PART A — THE PROMISE
+
+[B12] A1 · The promise, in plain language
+
+[B13] Running AI inside the platform costs less than sending everything to an external model. The platform does as much as it can locally and cheaply first — with lightweight local models or agents handling what they can — and only the work that genuinely needs a frontier model reaches one. The result is that an organisation pays for expensive external calls only where they add value that cheaper work could not, and the platform's cost per unit of work falls over time rather than staying flat.
+
+[B14] A2 · The service that powers it
+
+[B15] Five mechanisms composing into one cost-reduction system:
+
+[B16] The model ladder — four rungs ordered by cost; the selection rule is the lowest rung that meets the promise.
+
+[B17] The deflation law — training on the estate migrates expensive work down to cheaper rungs over time.
+
+[B18] The sequencing harness — measures the cheapest correct order to run work, replacing sequencing judgement with sequencing measurement.
+
+[B19] Local-cascade offload — a local model drafts; the frontier model handles only what the local model cannot.
+
+[B20] The consumption levers (LC-1/2/3) — response cache, model routing by task class, and retrieval narrowing, ruled in for development, specified in Part B.
+
+[B21] A3 · Definition of the promise
+
+[B22] "Saves cost" is defined as four guarantees, each measured, never asserted:
+
+[B23] The lowest sufficient rung is always chosen. For any piece of work, the platform uses the cheapest mechanism that meets the required standard — a deterministic check before a model call, a local model before a frontier one — and the choice is inspectable.
+
+[B24] Frontier calls are the exception, not the default. Expensive external model calls are reserved for work that genuinely needs them. Every frontier consumer carries a cheaper fallback beneath it, so the expensive rung is architecturally optional everywhere it appears.
+
+[B25] Cost per unit falls over time. Each training cycle on the estate produces owned models that move expensive work down to cheaper rungs, and cheaper findings that harden into the cheapest deterministic checks. The mechanism that improves quality is the same one that deflates cost.
+
+[B26] Every cost figure is measured on real material. Throughput, unit yield, and cost per unit come from instrumented runs on real material. No invented figure ships as though it were real, and no cost saving is claimed that has not been measured — because an unmet cost claim destroys the trust the platform sells.
+
+[B27] A4 · Delivery experience expectations
+
+[B28] What a consuming system experiences (machine-facing):
+
+[B29] Work is routed to the cheapest sufficient mechanism automatically. A calling system does not choose the rung; it receives the result, and the platform has already used the least expensive path that met the standard.
+
+[B30] What the organisation experiences (human-facing):
+
+[B31] The organisation sees delivery time as the capacity signal, never raw hardware numbers. It experiences two honest cost classes: work served from intelligence already held is fast (and priced low); work requiring fresh extraction is queued, slower, and priced accordingly higher. Over time, it sees the cost of comparable work fall as the platform's owned models take over more of it.
+
+[B32] What is produced and retained:
+
+[B33] Per unit of work, the ladder-rung placement (inspectable in the registry); and, across the platform, the measured cost instrumentation (throughput, unit yield, cost per qualified unit) that grounds every cost claim.
+
+[B34] A5 · Technical and behavioural requirements
+
+[B35] A5.1 · The ladder's selection rule is the lowest rung that meets the promise [CANON]. Four rungs, ordered by cost. The registry's ladder-rung field makes every placement inspectable. The expensive rung is architecturally optional everywhere it appears — grounding checks are byte-mechanical (explicitly rejecting semantic scoring), and every frontier-model consumer carries a mechanical fallback arm beneath it.
+
+[B36] A5.2 · The deflation law is built, not hoped [CANON]. Every training cycle on the estate produces owned models that migrate higher-rung work down to lower rungs, and lower-rung findings that harden into the cheapest deterministic checks. This is a required property of the architecture — the quality flywheel and the cost-deflation flywheel are the same flywheel — not an aspiration.
+
+[B37] A5.3 · Cost is measured, never simulated; price is separate [CANON]. Throughput, unit yield, and cost per qualified unit come from instrumented runs on real material. The sequencing harness measures real cost in candidate orderings — a deterministic gate is run, not simulated — and back-fills every unknown cost field in the registry as it goes. Cost (measured) and price (shaped, configuration not code) are never confused; every quote stamps the price-model version that produced it.
+
+[B38] A5.4 · Local-cascade offload builds only against demonstrated cost pressure [CANON]. Where a metered frontier model carries workload a cheaper local model could filter, a cascade reduces spend — but a cascade carries a documented failure mode: when too many items escalate, each escalated item pays twice and the cascade becomes net-negative. Therefore no cascade scaffolding, draft-model, or routing machinery is built before metered telemetry on a named seam shows spend exceeding a threshold set at that time; no threshold is defined in advance of the evidence. Once built, a local model drafts, a deterministic acceptance check (rung-one machinery, not a second model's judgement) decides, and the frontier model is invoked only on rejects. The cascade emits its double-pay rate from its first run and retires if escalation makes it net-negative against the pre-cascade baseline.
+
+[B39] A5.5 · "Swarms or single agents locally first" maps to the ladder and cascade [PROPOSED]. The owner's framing — swarms or single agents performing tasks locally before anything reaches an LLM — is delivered by the ladder (local/deterministic rungs before frontier rungs) and the cascade (local draft, frontier only on reject). Where a task genuinely benefits from multiple local agents rather than one, that is a local-execution shape beneath the ladder; consistent with the platform's rule that detection may ensemble but decision may not (multiple local reviewers may surface findings; no collection of models holds decision authority), a local swarm may divide or draft work but never holds a decision a single governed mechanism should own.
+
+[B40] [RULED] the local-swarm shape. A local multi-agent shape is permitted for drafting, division, and parallel independent work beneath the ladder, governed by the same "detection-not-decision" boundary — it reduces what reaches the frontier rung but never becomes an unwalled decision-maker. This keeps "swarms locally first" from quietly introducing a collective decision authority the platform's design forbids.
+
+[B41] A6 · What must be true for the service to deliver as intended
+
+[B42] Every frontier consumer genuinely has a cheaper fallback. If any expensive-rung consumer lacks its fallback arm, the expensive rung stops being optional and cost is unbounded at that point.
+
+[B43] Cost claims are always measured. A single cost saving asserted but not measured, later found false, damages the trust the platform sells — the measurement discipline is load-bearing for the promise's credibility, not just its accuracy.
+
+[B44] The deflation flywheel actually runs. If training does not migrate work down the rungs, cost stays flat and the "falls over time" guarantee fails.
+
+[B45] Cascades and swarms never become net-negative or unwalled. A cascade that escalates too much, or a local swarm that acquires decision authority, defeats its own purpose — the retire-if-net-negative rule and the detection-not-decision boundary are both required.
+
+[B47] PART B — THE CONSUMPTION LEVERS (LC-1/2/3), RULED IN
+
+[B48] [RULED] status. The owner ruled the consumption levers in for development now. They are specified here as required capabilities. They are classed as economizers, which behave differently from custody controls in one defining way (B0 below).
+
+[B49] B0 · The governing distinction: economizers fail transparent; custody fails closed
+
+[B50] A custody control (the crossing, Document 1) fails closed — if it cannot do its job, the operation does not happen, because the risk of proceeding is exposure. An economizer fails transparent — if it cannot do its job, the operation still happens, just more expensively, because the risk of a lever failing is only cost, never correctness or exposure. This distinction is constitutional for the levers: no lever may ever change what an answer is, only what it costs to produce. A lever that could alter correctness would have crossed from economizer into a decision-maker, which it must never be.
+
+[B51] Underneath all three levers sits the token-preservation invariant: the de-identification placeholder tokens (Document 1) pass through every lever verbatim. A lever that mutated a placeholder token would breach custody; the build fails on any such mutation.
+
+[B52] B1 · LC-1 — The Response Cache
+
+[B53] Definition. Identical governed questions are common, and today every repeat would burn a full frontier call. LC-1 serves an identical, in-scope, still-valid governed question from a recorded prior result at zero external-token cost.
+
+[B54] Requirements:
+
+[B55] B1.1 [PROPOSED]. LC-1 serves a cached result only where the question, its frozen objective, its scope, and its governing rules are identical to the prior — a match on the governed request, not merely on surface text. A different scope, a changed rule, or a staler estate is a cache miss, not a stale hit.
+
+[B56] B1.2 [PROPOSED]. LC-1 is distinct from warm-serving (Document 8). Warm/fresh is estate-level — has this data been mined. LC-1 is query-level — has this exact governed question been answered. They compose (a warm-served answer may still be cache-served on identical repeat) and must not be built as one mechanism. (Recorded in Document 16 as a composition, so the two are not conflated.)
+
+[B57] B1.3 [PROPOSED]. LC-1 fails transparent: a cache failure produces a fresh computation, never a wrong or refused answer.
+
+[B58] B1.4 [PROPOSED]. Cache invalidation follows the estate's own freshness (Document 9): when a region's measure changes (a retraction, a re-census), any cached result depending on that region is invalidated, because a cached answer that outlived the truth it rested on would be a correctness failure, not a saving.
+
+[B59] B2 · LC-2 — Model Routing by Task Class
+
+[B60] Definition. Different task classes need different model power; routing each task class to the least powerful model that meets its standard reduces cost without lowering quality.
+
+[B61] Requirements:
+
+[B62] B2.1 [PROPOSED]. LC-2 is the ladder's selection rule (A5.1) applied at the granularity of task class: each class routes to the lowest rung that meets its promise, and the placement is inspectable in the registry.
+
+[B63] B2.2 [PROPOSED]. The routing decision is governed by measured performance of each rung on each task class on real material — not by a fixed assumption about which model suits which task. A rung is used for a class only where it has been measured to meet that class's standard.
+
+[B64] B2.3 [PROPOSED]. LC-2 fails transparent and upward: if the routed rung cannot meet the standard on a given item, the item escalates to a higher rung (the cascade shape, A5.4), never returns a sub-standard answer.
+
+[B65] B3 · LC-3 — Retrieval Narrowing
+
+[B66] Definition. Sending a model only the material it needs, rather than everything available, reduces token cost and improves focus.
+
+[B67] Requirements:
+
+[B68] B3.1 [RULED, = Document 6]. LC-3 is the same discipline as progressive disclosure (Document 6) and the memory layer's on-demand fetch (Document 8): minimal-sufficient context first, expanded on demand. It is not a separate mechanism — it is the cost-facing name for the serving discipline those documents specify. This is recorded explicitly in Document 16 so retrieval narrowing, progressive disclosure, and on-demand fetch are built as one serving discipline, never three.
+
+[B69] B3.2 [PROPOSED]. LC-3 narrows within scope and custody: narrowing never drops material the objective requires to be correct (that would change the answer, forbidden by B0), and never reaches material the frozen scope does not admit.
+
+[B70] B4 · The Cost Ledger
+
+[B71] Definition. The levers need one accountable measure of whether they are working.
+
+[B72] B4.1 [PROPOSED]. The Cost Ledger's one job is to show that tokens-per-answer falls. It records, per answer, the external-token cost incurred and the cost that would have been incurred without the levers, so the saving is measured, not asserted — consistent with A5.3 (cost is always measured). A lever that cannot demonstrate a saving in the Cost Ledger is a lever to reconsider, not a capability to assume.
+
+[B73] B4.2 [RULED]. The priority order among cost mechanisms, where several could apply, is: cache (LC-1) → route by task class (LC-2) → narrow retrieval (LC-3) → cascade/compression → waste report. Cache is checked first because it is free to check. Routing precedes narrowing because narrowing can be more precise once the model tier is known — a weaker model may need more spelled out, a frontier model less, so route-then-narrow is model-aware rather than one-size-fits-all. Cascade follows narrowing because canon already gates it to "demonstrated cost pressure only" — the specialised mechanism earns its place after the general levers have done what they can. Waste report is last because it is not a lever at all: it is the post-call measurement step that feeds back into tuning the other four.
+
+[B74] B5 · What must be true for the levers to deliver as intended
+
+[B75] No lever ever changes an answer (B0). The single constitutional property: a lever alters cost, never correctness or exposure. A lever that could change an answer has become a decision-maker and must be removed or re-classed.
+
+[B76] The token-preservation invariant holds across every lever. A lever that mutated a de-identification token would breach custody; the build must fail on it.
+
+[B77] Every lever's saving is measured in the Cost Ledger. A lever assumed to save but not measured is exactly the unmet cost claim that damages trust.
+
+[B78] LC-3, progressive disclosure, and on-demand fetch are one mechanism. If built as three, a consumer narrowed on one path is unprotected on another, and three divergent implementations drift. Document 16 §9 holds this.
+
+[B79] LC-1 invalidates on estate freshness. A cached answer that outlives the truth it rested on is a correctness failure wearing a saving's clothes.
+
+[B81] RULINGS APPLIED TO THIS DOCUMENT
+
+[B82] A5.5 [RULED] — The local-swarm shape: permitted for drafting/division beneath the ladder, governed by detection-not-decision. Settled.
+
+[B83] B4.2 [RULED] — Lever priority order confirmed: cache → route → narrow → cascade → waste report, with reasoning at B4.2 above. Settled.
+
+[B84] Document 16 §§9–10 (composition) — LC-1 vs. warm-serving (distinct, composed); LC-3 = progressive disclosure = on-demand fetch (one mechanism). Both recorded there so the levers are neither conflated with, nor duplicated against, the serving mechanisms.
+
+[B85] The levers are ruled in and specified in full; the open items are confirmations of shape and ordering, not questions of whether the levers exist.
+
+[B87] End of Document 11 of 16 — Cost & Compute Economics, Part 1: Local-First Processing & the Consumption Levers.

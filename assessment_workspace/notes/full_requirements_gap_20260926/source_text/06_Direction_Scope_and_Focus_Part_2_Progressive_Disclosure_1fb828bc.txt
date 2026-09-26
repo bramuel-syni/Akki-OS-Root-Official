@@ -1,0 +1,99 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Direction, Scope & Focus — Part 2: Progressive Disclosure
+
+[B3] Document 6 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Direction, Scope & Focus
+
+[B5] Promise held in this document: #17 (progressive disclosure)
+
+[B6] Standalone statement of what must be true. Shared mechanisms are named and Document 16 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling during specification · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The framing that governs this entire document [RULED]. Progressive disclosure is a backend capability before it is anything a person sees. The failure it prevents happens to agents and processing steps, and it happens before a human ever asks a question: an engine, model call, or processing step handed the whole estate — or the whole context accumulated so far — degrades the same way a person shown everything at once would, except nothing catches it, because there is no human judgement in that step to notice the confusion. This document specifies that backend discipline. Any human-facing consequence of it is downstream of this mechanism, not its source.
+
+[B9] The services that power this promise are the platform's direction governor (Northena, Document 5) and its memory/serving layer (Document 8) acting together, plus a disclosure discipline stated here as its own requirement set.
+
+[B11] PART A — THE PROMISE
+
+[B12] A1 · The promise, in plain language
+
+[B13] No agent, model call, or processing step is ever handed more context than it needs to do the specific thing in front of it. The platform serves the minimal-sufficient slice of material for the task at hand and expands it only on demand, so that a step doing a bounded job is not confused, diluted, or derailed by the mass of everything else the estate holds. This protection operates whether or not any human is involved — it protects the machine consumers of context first, because they are the ones who encounter the data before a person asks anything, and they are the ones who cannot notice when too much has buried the signal.
+
+[B14] A2 · The service that powers it
+
+[B15] Three mechanisms acting together:
+
+[B16] Northena's scope discipline (Document 5) — the frozen scope set that already bounds what a run may touch. Progressive disclosure operates within an in-scope run: even material that is in scope is not all handed to a step at once.
+
+[B17] The memory/serving layer (Document 8) — which serves distilled, qualified intelligence rather than raw estate, and can fetch more specific material on demand (the "traffic controller"). Progressive disclosure is the discipline that governs how much it serves to any one consumer at a time.
+
+[B18] The disclosure discipline (this document) — the requirement that context be assembled minimal-first and expanded on demand, with the expansion itself governed.
+
+[B19] A3 · Definition of the promise
+
+[B20] "Progressive disclosure" as a backend capability is defined as four guarantees:
+
+[B21] Minimal-sufficient first. For any task handed to an agent, model call, or processing step, the context assembled for it is the smallest set of material sufficient to do that task — not everything in scope, not everything related, not everything accumulated so far.
+
+[B22] Expansion is on demand and bounded. Where a step genuinely needs more — it cannot complete the task on the minimal slice — it requests more, and the platform serves the next increment. Expansion is a governed request, not an unbounded pour: a step cannot silently pull the whole estate by asking once.
+
+[B23] The consumer is protected whether or not a human is present. The discipline applies to autonomous steps exactly as it would to a person. An agent chain, a reasoning run, a model call, an extraction worker — each is served minimally and expands on demand. There is no "no human here, so give it everything" path.
+
+[B24] Disclosure state is attributable. What was disclosed to a given step, and what it subsequently requested, is recorded — so that an over-broad disclosure, or a step that requested far more than its task warranted, is visible after the fact rather than silent.
+
+[B25] A4 · Delivery experience expectations
+
+[B26] What a consuming system / agent experiences (the primary consumer):
+
+[B27] An agent or processing step receives exactly the context its task requires, assembled to be sufficient and no larger. It does its job on a clean, bounded input rather than sifting the whole estate. Where it needs more, it asks and receives the next increment — the experience is of a system that hands it what it needs when it needs it, not one that buries it up front.
+
+[B28] A reasoning run (Solva, Document 4) receives its load-bearing material progressively, which is part of what keeps its reasoning tractable and its trace legible — a conclusion that rests on a bounded, disclosed set is auditable in a way a conclusion drawn from an undifferentiated mass is not.
+
+[B29] What the organisation experiences (downstream, human-facing):
+
+[B30] The human-facing benefit is a consequence of the backend discipline, not a separate feature: because agents and steps were kept focused, the answers and intelligence that reach people are sharper and better-grounded, and the system is less prone to the confident wandering that an over-fed model produces. If a human-facing progressive-disclosure surface is ever built, it draws on this same mechanism; it does not replace it and is out of scope here.
+
+[B31] What is produced and retained:
+
+[B32] A disclosure record per step: what minimal slice was served, what expansions were requested and served, joined to the run's record — so disclosure breadth is auditable.
+
+[B33] A5 · Technical and behavioural requirements
+
+[B34] A5.1 · Minimal-sufficient assembly is the default for every consumer [PROPOSED]. Every task handed to an agent, model call, or processing step is served a context assembled to be minimal-sufficient for that task. There is no default path that assembles the full in-scope material for a step; the full-context assembly, where it is ever genuinely required, is an explicit, recorded exception, not the default.
+
+[B35] A5.2 · Expansion is an explicit, governed request [PROPOSED]. A step that cannot complete on its minimal slice issues an explicit request for more. The platform serves the next increment, governed by the same scope and custody rules the original disclosure was — expansion never reaches material the run's frozen scope (Document 5) does not admit, and never bypasses the crossing (Document 1). A step cannot acquire the whole estate through a single expansion request; increments are bounded.
+
+[B36] A5.3 · The discipline is consumer-agnostic — no human-absent bypass [RULED]. The minimal-first, expand-on-demand discipline applies identically whether a human is in the loop or not. Specifically, there is no code path that reasons "this is an autonomous step with no human watching, therefore hand it everything." The absence of a human is precisely the condition under which the discipline matters most, because there is no human judgement present to notice that too much context has buried the signal.
+
+[B37] A5.4 · Disclosure breadth is recorded and attributable [PROPOSED]. For each step, the minimal slice served and every expansion requested and served are recorded, joined to the run's record (Document 5's Ledger and Document 16 §5's record matrix). An over-broad disclosure or an anomalous expansion pattern is therefore visible after the fact.
+
+[B38] Interaction with the Watch (Document 3). A step requesting far more context than its declared task warrants is a behavioural signal — the same class of declared-versus-demonstrated divergence the Watch reconciles. The disclosure record is an emission the Watch may read. This is noted, not re-specified; Document 16 §6 holds whether disclosure-breadth anomaly detection is part of the shared divergence mechanism.
+
+[B39] A5.5 · Minimal-sufficient is defined per task type, not guessed per call [RULED]. What counts as "minimal-sufficient" for a task is determined by the task's type and its frozen objective (Document 5), not inferred fresh and inconsistently on every call. This keeps disclosure predictable and auditable: two runs of the same task type against the same scope disclose comparably, and a change in what a task type discloses is a governed change, not a silent drift.
+
+[B40] [RULED] Computed by the reasoner and frozen at Admit — the depth governor (Solva) judges the minimal-sufficient set for each objective at Admit and freezes it, the same way it resolves ambiguous scope. This adapts to the specific objective rather than a coarse task-type default, and reuses the existing Admit-freeze mechanism: the minimal-sufficient set is another value the reasoner resolves and Northena freezes, inspectable for the run.
+
+[B41] A6 · What must be true for the service to deliver as intended
+
+[B42] Minimal-first is genuinely the default, with no human-absent bypass. If any path hands a step the full context because no human is watching, the promise is false exactly where it matters most.
+
+[B43] Expansion cannot escape scope or custody. If an expansion request can reach material the frozen scope does not admit, or bypass the crossing, progressive disclosure becomes a hole in both the direction and custody guarantees.
+
+[B44] Minimal-sufficient is determined consistently, not guessed per call. Until the determination approach is ruled (A5.5) and implemented, disclosure breadth is unpredictable and un-auditable. Once ruled, two runs of the same task must disclose comparably.
+
+[B45] Disclosure breadth is recorded. If what was disclosed to a step is not recorded, an over-broad disclosure — the exact failure the promise prevents — is invisible, and the promise cannot be shown to hold.
+
+[B46] The mechanism is one mechanism, shared with serving. Progressive disclosure and the memory layer's on-demand fetch (Document 8) must be the same underlying serving discipline, not two — or a consumer served by one path is unprotected on the other. Document 16 §9 holds this composition.
+
+[B48] RULINGS APPLIED TO THIS DOCUMENT
+
+[B49] A5.5 [RULED] — "Minimal-sufficient" is computed and frozen at Admit by the reasoner. Settled.
+
+[B50] Document 16 §6 [RULED] — Disclosure-breadth anomaly is not part of a shared Watch/Solva mechanism — the Watch's and Solva's divergence tracking stay separate (different authorities); a disclosure-breadth signal, where it exists, is its own emission, not folded into either.
+
+[B51] Document 16 §9 (composition) — progressive disclosure and the memory layer's on-demand retrieval (Document 8) are one shared serving discipline; recorded there so the two are not built as two.
+
+[B53] End of Document 6 of 16 — Direction, Scope & Focus, Part 2: Progressive Disclosure.

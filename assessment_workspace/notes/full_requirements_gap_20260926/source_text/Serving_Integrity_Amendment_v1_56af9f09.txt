@@ -1,0 +1,107 @@
+[B1] AKKI PLATFORM  ·  CHANGE REGISTER  ·  SERVING LAYER
+
+[B2] Serving Integrity Amendment
+
+[B3] serving_integrity_v1 · 4 amendments · 1 new promise · 2 rulings · 13 September 2026
+
+[B4R1] Applies to | Doc 20 (new A20.15) · security_function_policies_v1 (new SFP-8) · dap_backend_spec_v1 (DAP-31, DAP-32 conformance clauses) · Targeta's evaluation path · agent_containment_spec_v1 (new AC-13, AC-14) · the trust receipt (Doc 1 A5.7, as amended by Security_Promise_Set_Amendments Amendment 3 — not Doc 3's A5.7) · tcb_enumeration_v1 and failure_posture_v1, one entry each (§6)
+
+[B4R2] What this closes | An unnamed gap: no rule anywhere governs the serving path between the registry and the gates. A5.8 forbids silent recalibration of rules; the registry hashes artefacts; MOAC accepts a specific model — nothing requires that the model served is, semantically, the model registered. An engine that quietly quantises, truncates context, or substitutes a smaller artefact under memory pressure would violate the spirit of everything while breaking no written rule. DAP-31's “deterministic given a fixed seed” silently assumes engine determinism nothing requires.
+
+[B4R3] Origin | Identified while evaluating the Colibri inference engine (JustVugg/colibri, Apache 2.0), whose stated invariant — placement decides speed, never semantics — named the gap. The invariant is adopted as platform doctrine. The engine itself is NOT adopted by this amendment; R-14 gates that separately, and this amendment stands whether or not that adoption ever happens.
+
+[B4R4] Honesty condition stated up front | This amendment governs Akki-controlled serving paths only. The frontier tier (Doc 14's gateway-only class: OpenAI, Anthropic, Google) runs on engines outside the platform's control; the floor cannot be imposed there. V-4 makes the receipt record which side of that boundary served every answer, so the floor's edge is on the record rather than blurred.
+
+[B5] V-1   The Serving Floor
+
+[B6] TARGET  Doc 20 — new A20.15, the next free clause after the register's existing fourteen. security_function_policies_v1 — new SFP-8, the eighth named policy.
+
+[B7] CURRENT  The register governs which model may serve (A20.1's ratified candidates; every trained artefact an adapter over a registered base). Nothing governs how it is served: precision, routing semantics, and context handling under resource pressure are unspecified anywhere in canon.
+
+[B8] AMENDED — normative text
+
+[B9] A20.15  A registered artefact MUST be served semantics-stable: identical input, identical seed, identical sampling parameters produce identical output from the identical registered artefact, regardless of memory placement, hardware tier, concurrent load, or storage medium. Resource pressure MAY reduce speed — time-to-first-token, tokens per second — and MUST NOT alter precision, truncate context, substitute a different artefact, or change routing semantics. A serving path that cannot uphold this refuses to serve rather than serving a semantically different model. Verification at load: the serving stack verifies the artefact's hash against the register before the first token. Verification in operation: a token-exact reproduction check against a reference path is runnable on demand and on a standing schedule (cadence: ruled, R-13). A merged-adapter checkpoint is a distinct artefact with its own hash and its own register entry — it passes the gates as itself, on DAP-37's own new-hash precedent.
+
+[B10] SFP-8  The Serving Floor. Subjects: any serving path executing a registered artefact. Objects: the artefact's semantics — precision, routing behaviour, context window, sampling. Operations: serve, degrade, refuse. Rule: degradation affects latency only, never semantics; a path that cannot verify its semantic integrity refuses to serve.
+
+[B11] MECHANISM  Hash verification at load is the same discipline SEC-1 and SEC-2 already apply to SyniSense's custody policy and MOAC's criteria configuration, extended to the artefact–engine pairing. Token-exact validation against a reference implementation is established practice in the engine that named this invariant — validated against a reference oracle, with bit-identical CPU and GPU paths — and is adopted here as the operational check, not as that engine.
+
+[B12] DERIVATION  Colibri's design rule (“insufficient fast memory may reduce speed; it must not quietly redefine the model”), generalised from one engine's internal discipline into a platform floor. A5.8 — the same no-silent-recalibration ethos, at the rules layer. Doc 20 governs which model; this clause governs how it is served.
+
+[B13] PRINCIPLE  “We tested the model” is only worth something if the tested model is the one running. Pressure may make it slower, never different.
+
+[B14] V-2   Gate Verdicts Inherit the Path That Computed Them
+
+[B15] TARGET  dap_backend_spec_v1 DAP-31 and DAP-32; Targeta's acceptance evaluations (MOAC, the yield wall's per-stratum accuracy).
+
+[B16] CURRENT  DAP-31 states its probe is “deterministic given a fixed seed” — assuming, without requiring, that the engine underneath is deterministic. DAP-32 attributes behavioural deviation in the mirage to the model under test — valid only if the engine contributes no deviation of its own. MOAC's “every criterion met” is computed from inference results whose serving conditions no rule constrains.
+
+[B17] AMENDED — normative text
+
+[B18] DAP-31+  The reproduction probe MUST execute on an SFP-8-conforming serving path. A probe result computed on a non-conforming path is not a valid gate decision.
+
+[B19] DAP-32+  Battery results are valid only from an SFP-8-conforming path — deviation observed in the mirage is attributable to the model under test because the engine is required to contribute none.
+
+[B20] TGT+  Acceptance evaluations — MOAC's verdict, the yield wall's per-stratum measurements — run on SFP-8-conforming serving only.
+
+[B21] MECHANISM  Each gate's runner asserts the serving path's conformance — load-time hash check passed, reference validation current — before treating its own output as a decision. The posture on failure is FP-2's platform default: an unverifiable gate is a closed gate.
+
+[B22] DERIVATION  FP-2 (unconfigured gate refuses, platform-wide); SEC-4, SEC-6, SEC-7's refuse-if-unset pattern, extended from configuration to the serving substrate.
+
+[B23] PRINCIPLE  A gate's verdict inherits the integrity of the path that computed it.
+
+[B24] V-3   Containment Freeze, and Serving the Contained Agent
+
+[B25] TARGET  agent_containment_spec_v1 — new AC-13 and AC-14, extending AC-11 (the graduated ladder) and AC-12 (the record).
+
+[B26] CURRENT  AC-11 requires interventions be reversible and time-limited; A5.3 establishes stop-without-destroy. No mechanism is named for pausing a running agent session without losing its work. Separately, detection's behavioural baseline for a contained agent implicitly assumes the serving engine adds no behavioural drift of its own — assumed, not required.
+
+[B27] AMENDED — normative text
+
+[B28] AC-13  “Contain” for a running agent session MAY be implemented as session freeze: the agent's inference state (prefix or recurrent-state checkpoint) is persisted, the session halts, and resumption restores the deepest surviving checkpoint. Stop without destroy — the frozen state is preserved for the record (AC-12) and for resumption on release, under the Ledger's custody discipline for containment-relevant events.
+
+[B29] AC-14  A contained agent's model MUST be served on an SFP-8-conforming path, so that behavioural deviation measured by detection is attributable to the agent, never to engine drift. A containment trigger computed from a non-conforming path is a finding, not a verdict — it routes to review rather than acting alone.
+
+[B30] MECHANISM  Prefix and recurrent-state session checkpointing as implemented in current MoE serving engines — agent sessions restore from the deepest surviving checkpoint. Conformance assertion as in V-2.
+
+[B31] DERIVATION  A5.3 (“destroy does not exist in the Watch”); AC-11, AC-12; the checkpoint mechanism observed in the evaluated engine, adopted as a mechanism option, not as the engine.
+
+[B32] PRINCIPLE  Containing an agent means freezing its world, not burning it.
+
+[B33] V-4   The Frontier Boundary, On the Record
+
+[B34] TARGET  The trust receipt — Doc 1's A5.7, as already amended once (principal identity and timestamp, Security_Promise_Set_Amendments Amendment 3). Doc 14's gateway-only class.
+
+[B35] CURRENT  The receipt evidences that a crossing happened, its custody status, its signature, its principal, its timestamp. It does not record which provider or which provider-stated model version served the answer — and for gateway-only crossings, that engine is one this platform cannot hold to SFP-8.
+
+[B36] AMENDED — normative text
+
+[B37] A5.7+  Every frontier crossing's receipt MUST additionally record the provider and the provider-stated model version that served the response. SFP-8 is explicitly not imposable on gateway-only serving; the receipt records which side of the boundary an answer came from, so a downstream consumer can weigh it accordingly.
+
+[B38] MECHANISM  Provider and model-version fields read from the API response envelope and written into the existing receipt structure — an extension of fields, not a new record.
+
+[B39] DERIVATION  Doc 14 C5.1/C5.2 (the gateway-only licence class, providers named); this amendment's own honesty condition.
+
+[B40] PRINCIPLE  A control honest about its edge is worth more than one that pretends to reach everywhere.
+
+[B41] 5   New Promise
+
+[B42R1] ID | Promise | Rests on
+
+[B42R2] S-27 | The system will serve exactly the model it registered — pressure may make it slower, never different — and will say on the record which engine, its own or a provider's, produced every answer. | V-1 (A20.15, SFP-8), V-2, V-4. A5.8's no-silent-recalibration ethos. Bound: R-13 (validation cadence). Scope edge: the floor stops at the gateway; the receipt does not.
+
+[B43] 6   Placement in the Standing Enumerations
+
+[B44R1] Document | Addition
+
+[B44R2] tcb_enumeration_v1 | IN: the serving-integrity gate — load-time hash verification plus conformance assertion. Deterministic; its failure falsifies S-27. OUT: the serving engine's bulk (scheduler, cache, placement logic) — deterministic, but its correctness is what the gate verifies, on the same wall-not-the-run split applied to Targeta's training process.
+
+[B44R3] failure_posture_v1 | Serving path, semantic integrity unverifiable (hash mismatch; reference validation stale or failed) → fail-closed: refuse to serve. Preserved state: the artefact untouched, the refusal reason, the failed validation record.
+
+[B45] 7   Rulings
+
+[B46] R-13  The reference-validation cadence for A20.15's operational check. Recommended default: on every engine version change and every artefact version change, plus a standing monthly run. DEFAULT-class — revisable on evidence, on Doc 3's own baseline-period pattern.
+
+[B47] R-14  Whether the Colibri engine itself is admitted as the local rung's serving infrastructure. Not ruled here, and deliberately so: admission is gated on (a) the appliance benchmark — the smallest registered-family candidate on actual appliance hardware, per Doc 20's own measure-first rule; (b) standard entering-artefact discipline — provenance, hash, validation; and (c) a Doc 20 register entry, through ceremony, for any model family it would serve that is not already ratified. This amendment stands on its own regardless of R-14's outcome — the gap it closes exists whichever engine serves.
+
+[B48] What this amendment does not do, stated rather than implied: it does not adopt any engine (R-14 gates that). It does not impose the floor on frontier serving (V-4 records the boundary instead). It does not make serving fast — the floor governs integrity, not performance, and no performance figure is asserted anywhere in this document. Registry rows for A20.15, SFP-8, AC-13, AC-14, and S-27 enter the Master Requirements Registry at its next refresh.

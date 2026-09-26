@@ -1,0 +1,251 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  INTEGRATION LAYER
+
+[B2] The Entitlement Service
+
+[B3] entitlement_service_v1 — Draft for owner ratification · one licence, every model, two dials
+
+[B4R1] Positioning | Every model. One licence. The models come to your context; your context never goes to the models. The product is expressed to the buyer in models — the thing buyers already understand — and governance is present as features that ride on every licence, never as the pitch.
+
+[B4R2] Problem | Model access is sold per provider, per key, per invoice. A buyer who wants every model manages every relationship. A buyer who already holds provider keys gets nothing on top of them. Nobody sells unlimited local inference, because nobody else runs the models where the data is.
+
+[B4R3] What exists | The principal model (principal_model_v1) — who is licensed. The chokepoint (Doc 1 A5.1, sealed) — the single route to any model. The model registry (Doc 20) — what a model is. The local-first cascade (Doc 11 A5.4, D-16) — how a job reaches a model. The Ledger and metered event (DAP-21) — what was used. Terms resolution and ceilings (DAP-22, DAP-23, DAP-26) — what applies. The credential plane (PRIN-5–8) — how a key is held. Honest-gap display (FE brief §2) — how a number is shown.
+
+[B4R4] What this adds | A licence object; a catalog with access classes and one price knob per frontier model; a deterministic resolution step at the chokepoint; credits; two buyer dials; and the rules under which “unlimited” and “every model” are true. Nothing in this document is a second identity system, a second metering path, or a second bill.
+
+[B4R5] Principle | Three numbers to manage, one catalog to edit, one ledger to bill from. Everything the buyer sees is a model; everything that holds is already built.
+
+[B4R6] Date | 20 September 2026
+
+[B5] 1   Definitions
+
+[B6] Each term below has exactly one meaning in this document. A clause that uses one of these words means this and nothing wider.
+
+[B7] Licence  a terms object attached to one organisation principal (PRIN-1), resolved at the per-party-agreement level of DAP-22. Carries: plan, seat count, the two dials, credits per seat per period, pooled-credits flag, ceilings, period, renewal date, status.
+
+[B8] Seat  one individual principal (PRIN-1) or one agent principal acting under the licensed organisation. Seats are counted; the licence states how many.
+
+[B9] Dial  one of two buyer-set settings on a licence: the Compute dial (Managed or Yours) and the Frontier dial (Managed or Your Keys).
+
+[B10] Catalog  the platform's list of models available under any licence. One row per model.
+
+[B11] Access class  the source of a catalog row: local-served (a registered open-weight base served on platform or connected-tier compute), reseller-frontier (frontier capacity supplied through a provider reseller channel), customer-key (a frontier model reached under the buyer's own provider credential), or customer-model (a registered artefact the buyer brought or trained).
+
+[B12] Credit  the unit in which frontier usage is expressed to the buyer. Every reseller-frontier row carries one credit rate. Credits are a presentation of metered tokens, never a separate ledger.
+
+[B13] Allowance  the credits a seat, or a pooled organisation, holds for the current period.
+
+[B14] Pool  the organisation-level allowance when the pooled-credits flag is set; seats draw on it subject to per-seat soft limits.
+
+[B15] Ceiling  a hard limit that refuses further use in the period: a seat ceiling, an organisation ceiling, or a fairness ceiling. A soft limit warns; a ceiling refuses.
+
+[B16] Fairness ceiling  a concurrency or priority limit on local-served use. Never a token cap.
+
+[B17] Period  the licence's billing interval. Default: one calendar month.
+
+[B18] Unlimited  local-served use with no token cap in the period. Bounded only by a fairness ceiling. The word is used on a surface only where this definition holds.
+
+[B19] 2   Positioning Rules
+
+[B20] ENT-1  The licence is expressed to buyers and users in models: what is listed, what is included, what costs credits, what runs on their key. No surface names governance as the thing being sold.  [Positioning]
+
+[B21] ENT-2  Every governing mechanism that the licence relies on is presented as a feature included with every licence — the feature services in §12 — and no feature service is withheld by plan. Withholding a receipt, a ledger entry, or the shield from a cheaper plan would make governance a tier; it is a property.  [Attribute 4; A5.5]
+
+[B22] ENT-3  “Every model” on a surface means every catalog row with status listed whose access class the licence's dials admit. The phrase is never used to imply a model the dials exclude.  [ENT-1]
+
+[B23] ENT-4  “Unlimited” on a surface is used only for local-served use under the definition in §1. Frontier use is never described as unlimited.  [§1]
+
+[B24] 3   The Licence Object
+
+[B25] ENT-5  A licence is a terms object on exactly one organisation principal. It is created by the estate owner's admission act (PRIN-2) and resolves at DAP-22's first level, per-party agreement, ahead of custody-class and estate defaults.  [PRIN-1, PRIN-2, DAP-22]
+
+[B26] ENT-6  A licence carries, as required fields: plan identifier; seat count; Compute dial; Frontier dial; credits per seat per period; pooled-credits flag; seat soft limit; organisation ceiling; period; renewal date; status ∈ {active, suspended, expired}. A licence missing any required field does not resolve, and a call under it refuses.  [FP-2]
+
+[B27] ENT-7  A change to any licence field takes effect through the Rules Service ceremony at the ordinary tier and applies prospectively only. It MUST NOT alter the terms identifier cited on any receipt already issued.  [DAP-26, RBM-8]
+
+[B28] ENT-8  Suspension is a status on the licence, set by the estate owner in one act, refusing every subsequent call under it immediately. Suspension does not touch receipts, credits already recorded, or the catalog.  [DAP-27]
+
+[B29] 4   The Catalog
+
+[B30] ENT-9  Every catalog row carries: model identifier (a registry reference, hash-pinned per Doc 20); access class; status ∈ {listed, paused, retired}; residency; and, for reseller-frontier rows only, one credit rate. No other pricing field exists on a row.  [Doc 20; ENT-1]
+
+[B31] ENT-10  Adding a model is two acts: admission to the registry under Doc 20's base-registration rule and the DAP-32 admission battery where the model is an entering artefact; then a catalog row at the ordinary ceremony tier. Neither act alone lists a model.  [Doc 20; DAP-32; RBM-8]
+
+[B32] ENT-11  Retiring a model is a status change to retired. Calls to a retired row refuse with a fixed reason. Receipts citing the row are unaffected; the row is never deleted.  [B.4; DAP-26]
+
+[B33] ENT-12  Re-rating a reseller-frontier row changes one number through the ordinary ceremony tier, prospectively. A credit rate is never applied to usage metered before the change took effect.  [DAP-26]
+
+[B34] ENT-13  The catalog is read-only to every component except the ceremony engine. No surface, wizard, or assistant writes a catalog row.  [RBM-5]
+
+[B35] 5   The Two Dials
+
+[B36R1] Dial | Managed | Yours / Your Keys
+
+[B36R2] Compute | Local-served rows run on platform compute. Unlimited under a fairness ceiling. Priced into the seat. | Local-served rows run on the buyer's connected-tier compute (D-18). Unlimited by construction. Lower seat price (R-25).
+
+[B36R3] Frontier | Reseller-frontier rows available, metered in credits against the seat's allowance or the pool. | Customer-key rows available under the buyer's own provider credentials held in the credential plane. No credits consumed. Lower seat price (R-25).
+
+[B37] ENT-14  The dials are the only plan-level variation. There is one licence SKU; a dial setting is a field on it, not a separate product.  [ENT-6]
+
+[B38] ENT-15  Setting the Frontier dial to Your Keys does not remove reseller-frontier rows from the catalog; it removes them from what the licence admits (ENT-3). A buyer may hold both: reseller-frontier for models they have no key for, customer-key for those they do, resolved per row (ENT-19).
+
+[B39] 6   Resolution at the Chokepoint
+
+[B40] Every call to any model already passes through exactly one function (A5.1, sealed at M12; PRIN-11 propagation). Entitlement resolution is a step inside that function, before dispatch. It is deterministic, and it fails closed.
+
+[B41] ENT-16  Before dispatch, the chokepoint resolves, in order: the calling principal (from propagated context, PRIN-11); its organisation's licence (ENT-5); the licence status (ENT-6); the catalog row for the requested or cascade-selected model (ENT-9); whether the row's access class is admitted by the licence's dials (ENT-3); and, for reseller-frontier rows, whether allowance remains (ENT-22). Any link that does not resolve refuses the call. No default licence, default row, or default allowance exists.  [A5.1; PRIN-11; FP-2]
+
+[B42] ENT-17  Resolution is a pure function of (principal, licence, catalog row, allowance state) with no parameter through which any learned component's output can enter. The cascade (D-16) may select the model; it cannot alter what the licence admits.  [Attribute 10; A5.2 pattern]
+
+[B43] ENT-18  There is no second path by which a model is reached under a licence. The existing negative-scan test (A5.1) is the proof; this document adds no new route and permits none.  [A5.1]
+
+[B44] ENT-19  Where a model is reachable under more than one access class for the same licence — reseller-frontier and customer-key — the customer-key row is selected. The buyer's own key is preferred over platform capacity whenever both exist.
+
+[B45] 7   Metering and the Bill
+
+[B46] ENT-20  Every call under a licence emits the metered event DAP-21 already specifies, with the licence identifier as the terms identifier in force. No entitlement-specific event type exists.  [DAP-21]
+
+[B47] ENT-21  The bill for a period is a query over the Ledger's metered events for the licence. There is no second billing store. An invoice line that cannot be derived from a receipted event does not exist.  [B.4; DAP-29]
+
+[B48] ENT-22  Credits are debited by computing metered tokens × the row's credit rate at the time of the event, from the Ledger. Allowance remaining is a derived value, recomputed from events, never a stored counter that can drift from them.
+
+[B49] ENT-23  Quantities always display; money displays only when measured. A reseller or provider that does not report cost yields cost_total null, rendered as the fixed string “cost · not yet measured”. Credits, being derived from tokens and a known rate, are always measured and always display.  [FE brief §2.1]
+
+[B50] 8   Credits, Limits, and Exhaustion
+
+[B51] ENT-24  A seat's allowance is credits per seat per period. With the pooled flag set, seats draw on the organisation pool subject to the seat soft limit; without it, each seat's allowance is its own.
+
+[B52] ENT-25  A seat soft limit warns the seat and its organisation admin at a ruled threshold (R-27) and does not refuse. An organisation ceiling refuses. Reaching a ceiling is a refusal, and a refusal is a first-class response, never an error (FE brief §2.2).  [DAP-23]
+
+[B53] ENT-26  When allowance is exhausted, the cascade (D-16) stops escalating to reseller-frontier rows and serves the job on a local-served row. The response carries the fixed string “Frontier allowance used · served locally”. It MUST NOT serve locally without the string, and it MUST NOT refuse the job when a local-served row can serve it.  [A5.5; D-16]
+
+[B54] ENT-27  Top-up is a purchase recorded as a prospective terms delta through the ordinary ceremony tier (ENT-7). Allowance is never extended by any component other than the ceremony engine.
+
+[B55] ENT-28  Unused allowance rolls over for exactly one period and then lapses (R-26, DEFAULT-class). Rolled-over credits are consumed before the current period's.
+
+[B56] 9   Unlimited Local
+
+[B57] ENT-29  Local-served rows carry no token cap in any period, under either Compute dial. The only limits are fairness ceilings: concurrent requests per seat and queue priority by plan, at ruled values (R-28).  [§1 Unlimited]
+
+[B58] ENT-30  On the Yours Compute dial, no platform-side fairness ceiling applies; the connected-tier data plane's own capacity is the only bound.  [D-18]
+
+[B59] ENT-31  Local-served rows are registered open-weight bases under Doc 20 or customer-model rows. The platform serves nothing under “unlimited” that it does not hold the right to serve without per-use cost.  [Doc 20]
+
+[B60] 10   Managed Frontier Through Reseller Channels
+
+[B61] ENT-32  Reseller-frontier capacity is supplied only under a written reseller or marketplace agreement with the provider, reviewed by counsel (R-24). A reseller-frontier row MUST NOT be set to listed before the agreement covering its provider is on record.  [D-17]
+
+[B62] ENT-33  The chokepoint is the only caller of any reseller channel. The crossing receipt records provider and model version (A5.7+, V-4). Capacity is pooled across licences on the platform side; attribution to a licence is by the metered event, never by a per-licence provider account.  [A5.7; V-4]
+
+[B63] ENT-34  A reseller channel that is unreachable or refuses is a closed gate for that row. The cascade serves the job on a local-served row with the fixed string “Frontier unavailable · served locally”, or refuses if no local-served row can serve it. It never retries silently on a different provider.  [FP-2; A5.5]
+
+[B64] 11   Bring Your Own
+
+[B65] Your keys
+
+[B66] ENT-35  A provider credential the buyer supplies is held by the credential plane under envelope encryption, bound to the buyer's trust-domain identifier, usable by the chokepoint and by nothing else, never displayable after entry, and revocable in one act. Rotation replaces it; recovery does not exist.  [PRIN-5, PRIN-6, PRIN-7]
+
+[B67] ENT-36  Keys are held at organisation scope by default; a seat-scoped key is permitted and takes precedence for that seat (R-29).
+
+[B68] ENT-37  Every call under a customer key passes the custody sequence — masking before send, re-identification only inside — exactly as a call under platform capacity does. The buyer's key changes who is billed by the provider; it changes nothing about what leaves.  [DAP-7; A5.1]
+
+[B69] ENT-38  Calls under a customer key are metered for quantities (DAP-21). cost_total is null unless the provider reports it; no platform estimate is substituted.  [ENT-23]
+
+[B70] Your models and compute
+
+[B71] ENT-39  A model the buyer brings or trains enters the catalog as a customer-model row only through registry admission: hash pin, the DAP-32 admission battery, and serving under the SFP-8 floor. It is listed only for the buyer's own licence unless separately admitted for wider listing.  [Doc 20; DAP-32; SFP-8]
+
+[B72] ENT-40  Compute consumed by a customer-model row on the Managed Compute dial is metered in GPU-seconds and drawn against a compute allowance on the licence (R-30). On the Yours dial it is the buyer's own compute and is not metered against the licence.
+
+[B73] 12   Feature Services Included With Every Licence
+
+[B74] These are the mechanisms the licence stands on, presented to the buyer as what they are worth. Each cites the component that provides it. Per ENT-2, none is withheld by plan.
+
+[B75R1] Feature | Provided by
+
+[B75R2] Auto routing | The local-first cascade: local drafts, deterministic check, frontier only where it earns it (Doc 11 A5.4, D-16). The user never chooses a model unless they open the picker.
+
+[B75R3] One ledger across every key | DAP-21 metered events with licence terms identifier, whether the call ran on platform capacity or the buyer's key; tokens by model, by seat, by period (ENT-20, ENT-23).
+
+[B75R4] Shield before send | The custody sequence at the chokepoint on every call regardless of key or class (DAP-7, ENT-37).
+
+[B75R5] Key management | The credential plane: add, rotate, revoke in one act, never displayable (ENT-35).
+
+[B75R6] Receipts and audit | The crossing receipt on every call, provider and version recorded (A5.7, V-4); every refusal states why (DAP-15 pattern).
+
+[B75R7] Spend controls | Seat soft limits, organisation ceilings, alerts (ENT-24, ENT-25).
+
+[B76] 13   Seats, Organisations, Agents
+
+[B77] ENT-41  A seat is an individual or agent principal under the licensed organisation (PRIN-1). Seat count is a licence field; admitting a seat beyond the count refuses.  [PRIN-1, PRIN-2]
+
+[B78] ENT-42  An agent occupies a seat unless the licence carries an agent count as a separate field (R-31). An agent's use is metered to the agent principal, attributable to the organisation, under the agent's own mandate and containment (AC-1 ceilings apply irrespective of licence).  [DAP-3; AC-1]
+
+[B79] 14   Surfaces
+
+[B80] ENT-43  The model picker lists every catalog row admitted by the licence with one badge per row — Included · Local, Credits · Frontier, or Your key — and Auto at the top. Paused and retired rows do not appear. Rows the dials exclude do not appear.  [ENT-3; FE brief §2]
+
+[B81] ENT-44  The usage surface shows credits remaining, tokens by model, and the fixed strings in ENT-23, ENT-26, and ENT-34 verbatim where they apply. It never renders a number that is not derived from the Ledger.  [ENT-21, ENT-22]
+
+[B82] ENT-45  The organisation admin surface manages seats, keys, pool, soft limits, and ceilings. It cannot edit the catalog or a credit rate (ENT-13).  [ENT-13]
+
+[B83] ENT-46  Every refusal on these surfaces routes through the platform's one refusal card with its binding copy. No entitlement-specific refusal component exists.  [FE brief §2.2]
+
+[B84] 15   Managing the Catalog
+
+[B85] The operating burden on the platform side is deliberately small, and this section fixes it so it stays small.
+
+[B86] ENT-47  Three numbers govern pricing across the whole scheme: seat price per period (by dial combination, R-25), credits per seat per period, and credit price. No model-specific plan, bundle, or exception exists.
+
+[B87] ENT-48  The operations on the catalog are exactly: add (ENT-10), pause, retire (ENT-11), re-rate (ENT-12). Each is a ceremony at the ordinary tier and each is receipted.
+
+[B88] ENT-49  No component of this service stores state that is not either a licence field, a catalog row, a credential in the plane, or a Ledger event. Any proposed store outside those four is out of spec.
+
+[B89] 16   Placement in the Standing Enumerations
+
+[B90R1] Document | Entry
+
+[B90R2] tcb_enumeration_v1 | IN: the resolution function (ENT-16, ENT-17), the credit debit computation (ENT-22), the exhaustion switch in the cascade (ENT-26), and the credential plane's use path (ENT-35). Each deterministic; each falsifies S-31 on failure. OUT: the picker, the usage surface, the admin surface — presentation over TCB-derived values.
+
+[B90R3] determinism_inventory_v1 | Entitlement: Deterministic. No learned component participates. Model selection by the cascade is upstream and already inventoried as Hybrid.
+
+[B90R4] failure_posture_v1 | Licence unresolvable → refuse (ENT-16). Reseller channel unreachable → local with the fixed string, or refuse (ENT-34). Ledger write for the metered event fails → the call does not proceed (DAP-29 pattern). Credential plane unreachable → refuse customer-key rows; reseller-frontier and local rows unaffected.
+
+[B90R5] Master Requirements Registry | ENT-1 through ENT-49 and S-31 at this refresh.
+
+[B91] 17   New Promise
+
+[B92R1] ID | Promise | Rests on
+
+[B92R2] S-31 | One licence reaches every listed model the buyer's settings admit, resolved at the single chokepoint, metered on the one Ledger, with unlimited local use and no silent fallback — what the buyer sees is what was used. | ENT-3, ENT-16 to ENT-23, ENT-26, ENT-29, ENT-34. Bounds: R-24 (reseller agreements), R-26 to R-30 (values). Scope edge: frontier availability is the provider's; the platform promises visible fallback, not frontier uptime.
+
+[B93] 18   What This Does Not Claim
+
+[B94] LIM-1  It is not a payment processor. It produces a bill from the Ledger; collecting payment is conventional and outside this document.
+
+[B95] LIM-2  It does not set prices. R-25 to R-30 are commercial values; this document fixes where they apply and how they are changed, not what they are.
+
+[B96] LIM-3  It does not clear provider terms. ENT-32 makes listing conditional on an agreement counsel has reviewed; it does not assert what any provider permits.
+
+[B97] LIM-4  It does not guarantee frontier availability. It guarantees that unavailability is visible and that local service continues (ENT-34).
+
+[B98] LIM-5  “Unlimited” is bounded by fairness ceilings on Managed Compute. That is stated in §1 and on every surface that uses the word; it is not a hidden cap.
+
+[B99] 19   Rulings
+
+[B100] R-24  Reseller and marketplace agreements with frontier providers. Gates every reseller-frontier row (ENT-32). Counsel; owner signature. Nothing else in this document waits on it — Local and Your Keys ship without it.
+
+[B101] R-25  Seat price per period by dial combination, and the discount for Yours Compute and Your Keys. Commercial. Candidate answer to R-6.
+
+[B102] R-26  Rollover: recommend one period. DEFAULT-class.
+
+[B103] R-27  Seat soft-limit threshold: recommend 80% of allowance. DEFAULT-class.
+
+[B104] R-28  Fairness ceiling values on Managed Compute: concurrent requests per seat and priority tiers. Recommend baseline-period approach on measured load. DEFAULT-class.
+
+[B105] R-29  Key scope: recommend organisation by default, seat-scoped permitted with precedence (ENT-36). DEFAULT-class.
+
+[B106] R-30  Compute allowance for customer-model rows on Managed Compute, in GPU-seconds per seat per period. DEFAULT-class, baseline-period approach.
+
+[B107] R-31  Whether agents count as seats or carry a separate count. Product decision. Recommend: seats by default; separate count available at organisation size.
+
+[B108] Design note. The service is small on purpose. Its entire state is four things that already exist or are trivially bounded — a licence, a catalog row, a credential, a Ledger event — and its only decision is a pure function at a point every call already passes through. If a build of this service grows a queue, a cache of balances, a second event type, or a route around the chokepoint, it has left the specification.

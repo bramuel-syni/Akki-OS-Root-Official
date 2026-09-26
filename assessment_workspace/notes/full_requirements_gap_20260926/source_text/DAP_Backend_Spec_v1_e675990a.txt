@@ -1,0 +1,239 @@
+[B1] AKKI PLATFORM  ·  APPLICATION SPECIFICATION  ·  BACK END
+
+[B2] RMS Data Access Portal
+
+[B3] dap_backend_spec_v1 — Draft for owner ratification
+
+[B4R1] What this is | The back-end specification for the RMS Data Access Portal (DAP) — the surface through which an external party acquires data, intelligence, trained models, or skills from a governed estate. DAP is the first instance of a generic Data & Intelligence Acquisition Platform; nothing in this document is RMS-specific except where stated.
+
+[B4R2] Position | A composition, not an engine. DAP owns no invariant of its own: it composes SyniSense, Mtafiti, Targeta, Solva, Mkondo, the Watch, the Ledger, and the Rules Service, and adds one thing none of them has — an external-party principal and the trust boundary around it.
+
+[B4R3] Not in this document | The three-panel layout, navigation tree, per-screen content, and the right-panel chat's interaction design. Those are the front-end specification, which depends on this one.
+
+[B4R4] Prefix | DAP — reserved under rule_criteria_spec_v1 ROC-6 on ratification.
+
+[B4R5] Status | Draft v1. Every requirement PROPOSED until ratified. Six rulings parked (§10); none block §5–§6.
+
+[B4R6] Date | 5 September 2026
+
+[B5] 1   Purpose & Scope
+
+[B6] DAP is how an estate owner monetises a governed estate without surrendering control of it, and how an external party — an AI lab, a research institution, a commercial buyer — acquires what it needs from that estate under terms the owner sets and the platform enforces.
+
+[B7] Six operations are in scope: browse an estate's composition; connect an external workspace by API key; extract processed intelligence; fine-tune a model on estate data; develop skills against estate data; and download raw data. These are not six variants of one action. They are six distinct crossings with six different governance profiles, and §4 states each one separately because collapsing them would defeat every guarantee the platform makes.
+
+[B8] Two sides are in scope: the external-party side (a party acquiring) and the estate-owner side (an owner configuring what is available, on what terms, and approving what requires approval). The external-party side is built first; the owner side reuses Manage Rules and Spend Requests where they already exist.
+
+[B9] 2   Definitions
+
+[B10R1] Term | Meaning
+
+[B10R2] External party | An organisation admitted to DAP to acquire from an estate it does not own. The highest-risk principal class the platform admits.
+
+[B10R3] Party principal | A named individual or autonomous agent acting under an external party's mandate. Every request has one.
+
+[B10R4] Estate owner | The organisation that owns the estate and sets what is available, to whom, on what terms. RMS, for this instance.
+
+[B10R5] Controlled unit | A unit whose custody class is personal data, declared-confidential (Promise #2's list), rights-encumbered for the requested use (Doc 17 A17.15), or a sensitive category. §10 R-1 ratifies this definition.
+
+[B10R6] Controlled request | Any request containing at least one controlled unit. Requires per-request approval (DAP-14).
+
+[B10R7] Crossing profile | The governance treatment of one operation: what enters, what leaves, which gate governs, whether approval is required, what is receipted.
+
+[B10R8] Terms | The commercial and rights conditions in force for an operation — attached at estate, custody-class, or party level. DAP specifies how terms attach and meter; it does not set prices (§10 R-6).
+
+[B10R9] Metered event | The record of a chargeable or countable operation: what, how much, under which terms, by which principal, when.
+
+[B10R10] Artefact egress | The governed departure of a derived artefact — model weights, a skill file — as distinct from the departure of estate data.
+
+[B11] 3   The External-Party Principal
+
+[B12] The governed triad (Document 0, Attribute 3) has no class for a party outside the estate owner's own organisation. DAP adds one, because every requirement below is stated over it.
+
+[B13] DAP-1  An external party is admitted as an organisation-level principal carrying: legal identity; a declared governance posture; the terms it is admitted under; its trust domain identifier; and an admission-time mandate stating what it came to do. Individuals and agents act under it, never beside it.
+
+[B14] DAP-2  Every request carries a party principal — a named individual or a registered agent — with its own mandate, mark state, and behavioural signature under the Watch. An agent's mandate is separate from its operator's and is admitted separately.  [Doc 3 #7]
+
+[B15] DAP-3  Connecting an external agent admits an autonomous non-human principal. It MUST be admitted as its own principal under DAP-2, MUST carry a stated scope of autonomy, and is subject to the Watch's machine-speed attack shape from its first request.
+
+[B16] DAP-4  Slow-play extraction — a sequence of individually-permitted requests whose aggregate would reconstruct material the party is not entitled to — MUST be detected as a distinct attack shape against the party's cumulative extraction history, not evaluated per request.  [S-2]
+
+[B17] DAP-4 is the reason cumulative extraction history is a first-class record (DAP-24) rather than a reporting convenience. Every individual request in a slow-play sequence is legitimate; only the aggregate is not.
+
+[B18] DAP-5  DAP is a trust-domain boundary. The external party's domain and the estate's domain share no identifier resolution, no store, and no credential. A unit identifier meaningful inside the estate MUST NOT resolve to anything in the party's domain except through an operation §4 permits.  [Attribute 12]
+
+[B19] 4   The Six Crossing Profiles
+
+[B20] Each operation is governed differently. This table is the spine of the specification: every requirement in §5 and §6 implements a row of it, and no operation may be added to DAP without a row stating its profile.
+
+[B21R1] Operation | What enters | What leaves | Governing gate | Approval | Receipted
+
+[B21R2] Browse estate | Nothing | Aggregates only — never unit contents | Mtafiti census; progressive disclosure (#17) | None — standing terms | Access event only
+
+[B21R3] Connect workspace (API key) | The party's query | Query results, de-identified | SyniSense chokepoint; the pull seam (#10) | None for uncontrolled; per-request if controlled | Every query, every result
+
+[B21R4] Processed intelligence | The party's objective | Derived output only — never source units | SyniSense chokepoint; Solva's assertion floor | None for uncontrolled; per-request if controlled | Objective, output, units read
+
+[B21R5] Fine-tune model | The party's base model, into estate compute | Model weights, via the registry with rights posture stamped | Targeta; artefact egress (#24, #30) | Always — artefact egress | Training manifest, weights hash, terms
+
+[B21R6] Develop skills | The party's skill objective | Skill file, via artefact egress | Doc 18 callable skill files; artefact egress | Always — artefact egress | Skill file hash, units read, terms
+
+[B21R7] Download raw data | Nothing | Estate data itself | Outer gate (#25) — not the ordinary crossing | Always for controlled; owner-configurable otherwise | Every unit, redaction log, sign-off
+
+[B22] What the profiles mean in practice
+
+[B23] DAP-6  Browse MUST return aggregate composition only — volume, type, language, period, counts per type — and MUST NOT return, sample, or preview unit contents. Browsing an estate is not a crossing and MUST NOT be recorded as one.  [Mtafiti]
+
+[B24] DAP-7  A connected workspace's queries execute inside the estate's perimeter. The party's query enters; de-identified results leave. Estate data MUST NOT leave under this operation, and no code path may make it do so.  [Promise #10, the pull seam]
+
+[B25] DAP-8  Processed intelligence egresses derived output only. The source units read to produce it MUST be recorded in the receipt and MUST NOT be reconstructable from the output. Where an objective cannot be served without exposing source, the operation is refused, not degraded.  [Attribute 7]
+
+[B26] DAP-9  Fine-tuning is compute-to-data only. The party's base model is admitted to estate compute; estate data MUST NOT be transferred to compute outside the estate's perimeter under any configuration. There is no permitted inverse of this operation.  [Owner ruling, 5 Sep 2026]
+
+[B27] DAP-10  Trained weights and skill files leave as artefact egress: through the model registry, with a rights posture stamped, a hash recorded, and the terms in force cited. Weights derived from controlled units carry the derivation on the registry entry.  [#24, #30]
+
+[B28] DAP-11  Raw download is the outer-gate crossing of Promise #25, not the ordinary chokepoint crossing. Disclosure depth is bounded by rights and custody; the redaction pass runs as a gate, not a prompt; and the operation writes an evidence record. Every unit released is individually recorded.  [#25]
+
+[B29] DAP-9 states a prohibition with no exception clause because the compute-to-data direction is the platform's sovereignty guarantee. A configuration flag permitting the inverse would make the guarantee a preference.
+
+[B30] 5   Back-End Services
+
+[B31] Admission & keys
+
+[B32] DAP-12  Admission of an external party is a governed act producing: the organisation principal (DAP-1), its trust domain, its terms, and its mandate. Admission MUST be recorded and MUST require the estate owner's named authority. A party is never self-admitting.
+
+[B33] DAP-13  API keys are issued per party principal, never per organisation, and carry the principal's mandate. A key MUST be revocable in a single act with immediate effect, MUST expire on a stated lifetime (§10 R-4), and MUST NOT be transferable between principals. Key material is never written to any record, including receipts.  [A5.7]
+
+[B34] Approval
+
+[B35] DAP-14  A request containing at least one controlled unit MUST route to the estate owner's named approving authority before execution, carrying: the requesting principal, the objective, the units or scope in question, why each is controlled, and the terms that would apply. The request does not execute while pending.
+
+[B36] DAP-15  Approval decisions are recorded with the deciding authority's identity, the decision, and its stated reason. A refusal states why. Neither approval nor refusal may be inferred from silence — an unanswered request expires unexecuted rather than proceeding by default.  [fail-closed]
+
+[B37] DAP-16  Fine-tune and skill-development requests always require approval, controlled or not, because both produce artefact egress (DAP-10). Raw download always requires approval where the request is controlled; the estate owner configures whether uncontrolled raw download requires it (DAP-22).
+
+[B38] DAP-17  An estate owner MAY grant a standing approval for a named party, a named scope, and a stated window — replacing per-request approval within it. A standing approval is itself an approved act under DAP-14's discipline, is revocable in one act, and MUST NOT cover controlled units unless it names them explicitly.
+
+[B39] Extraction
+
+[B40] DAP-18  Every extraction is a commissioned job with a frozen objective. Objective freeze applies at commission: after commission, no path — including the portal's own assistance chat — may widen the job's scope. A wider scope is a new job.  [#32, Northena]
+
+[B41] DAP-19  Every job routes to the engine that governs its operation per §4 and MUST NOT execute through any other path. DAP holds no extraction logic of its own; it composes.
+
+[B42] DAP-20  The portal's assistance chat MAY help a party shape an objective, identify relevant scope, or understand terms, before commission. It MUST NOT approve, widen scope after commission, or decide any gate. It proposes; the gates decide.  [Attribute 10]
+
+[B43] Metering & receipts
+
+[B44] DAP-21  Every operation in §4 emits a metered event carrying: operation type; what was accessed (unit identifiers, or the aggregate scope where units are not individually released); quantity in the unit natural to the operation — audio-hours, tokens, compute-seconds, units, queries; the terms identifier in force; the party principal; and the timestamp from the platform's reliable time source. Metered events are written to the Ledger before the operation's result is returned.  [AU-3]
+
+[B45] DAP-22  Terms attach at three levels, resolved most-specific-first: per party agreement, then per custody class, then estate default. Every receipt cites the terms identifier actually applied, not the level it came from.
+
+[B46] DAP-23  Spend against a party's ceiling is evaluated before execution. An operation that would exceed the ceiling routes to a person as a spend request rather than failing silently or executing over-budget.  [#11]
+
+[B47] DAP-24  Cumulative extraction history per party is a first-class, queryable record — what has been taken, in what quantity, under which terms, over what period — retained for the party's full admission, and readable by the estate owner at any time.  [supports DAP-4]
+
+[B48] DAP-21 through DAP-24 are the pricing rails, not a pricing model. Whatever tariff is later ruled — per audio-hour, per token, per compute-hour, subscription, or revenue share — every event required to compute it is already on the Ledger, attributed and timestamped. §10 R-6 carries the tariff as a named dependency.
+
+[B49] Estate-owner configuration
+
+[B50] DAP-25  An estate owner configures, per custody class and per operation, whether that operation is available at all, available on approval, or available under standing terms. The default for every combination is unavailable — availability is granted, never assumed.  [fail-closed]
+
+[B51] DAP-26  An estate owner sets default terms per custody class, per-party overrides, and per-party ceilings. Changes take effect through the Rules Service ceremony for the estate's own rules and MUST NOT retroactively alter the terms cited on receipts already issued.
+
+[B52] DAP-27  An estate owner MUST be able to suspend a party — halting every in-flight and future operation for that party in one act — and to revoke its admission. Suspension is immediate; in-flight jobs stop and are recorded as stopped, not silently completed.  [Doc 3 A5.3 — stop, never delete]
+
+[B53] 6   Failure Posture
+
+[B54] DAP-28  Every gate in DAP fails closed. An approval service that cannot be reached, a metering write that cannot complete, a terms resolution that returns nothing, a ceiling check that errors — each refuses the operation. No path returns estate data, an artefact, or a query result when a governing check could not complete.  [FPT_FLS.1]
+
+[B55] DAP-29  A metered event that cannot be written to the Ledger refuses the operation it meters. An unrecorded extraction is not permitted to have happened.  [I-4 pattern]
+
+[B56] DAP-30  Browse degrades rather than refuses: where the census is stale or partially unavailable, DAP returns what it has, marked as stale with its as-of time, and never silently presents an incomplete estate as complete.  [honesty grammar]
+
+[B57] 7   Composition Map
+
+[B58] DAP owns no invariant of its own. Every guarantee it makes is a guarantee of a component it composes, exercised through this surface. This map is what makes the claim checkable.
+
+[B59R1] Component | What DAP composes it for
+
+[B59R2] Mtafiti — the Registry | Estate composition for browse (DAP-6): volume, types, languages, period, per-type counts. The landing surface is a census view.
+
+[B59R3] SyniSense — the crossing | The chokepoint every connect and processed-intelligence operation passes through, and the receipt each emits.
+
+[B59R4] Targeta — training | Fine-tuning inside the estate's compute; acceptance criteria before a trained result is a result; the registry and rights posture on egress.
+
+[B59R5] Solva — reasoning | Processed intelligence, held to the assertion floor — what the platform will state as established from the estate, and no more.
+
+[B59R6] Northena — direction | Objective freeze on every commissioned job (DAP-18).
+
+[B59R7] Mkondo — orchestration | Job hand-off between DAP and the executing engine, and compute allocation for fine-tune jobs.
+
+[B59R8] The Watch | Every party principal's mark, mandate reconciliation, and the slow-play detection DAP-4 requires.
+
+[B59R9] The Ledger | Every metered event, receipt, approval decision, and artefact egress record.
+
+[B59R10] The Rules Service | The estate's rule books, which determine what is controlled and therefore what DAP-14 routes for approval.
+
+[B59R11] Doc 18 — callable skill files | The artefact form a develop-skills job produces.
+
+[B59R12] Docs 11–12 — cost & compute | Ceiling evaluation, spend requests, and the locality guarantee that keeps fine-tune compute inside the perimeter.
+
+[B60] 8   Dependencies & Their Status
+
+[B61R1] Dependency | Status | Consequence for DAP
+
+[B61R2] Rules Service (rulebook_engine_spec_v1) | Specified, not built | DAP-14's controlled-unit determination reads the estate's rule books. Until the Rules Service is built, controlled status is determined by custody class alone.
+
+[B61R3] Reliable time source | Gap — Document 0 G-8 | DAP-21 requires it for every metered event. DAP cannot meter defensibly until it exists.
+
+[B61R4] External-party principal class | New in this document | Feeds back into Document 0 Attribute 3 and the Watch's mandate model on ratification.
+
+[B61R5] Licensing & pricing model | Does not exist | DAP specifies the rails (DAP-21–24) and no tariff. §10 R-6.
+
+[B61R6] TCB enumeration | Gap — Document 0 G-1 | Determines the ceremony tier for DAP's own rules under the Rules Service.
+
+[B62] 9   Build Acceptance Criteria
+
+[B63R1] # | Test | Pass criterion
+
+[B63R2] A1 | Compute-to-data: attempt, by every available configuration, to move estate data to compute outside the perimeter for a fine-tune job | No configuration permits it; every attempt refused and recorded
+
+[B63R3] A2 | Browse boundary: request unit contents through every browse path, including malformed and crafted requests | Aggregates only returned; no path yields a unit's contents or a sample
+
+[B63R4] A3 | Approval gate: submit a controlled request; make the approval service unreachable mid-flight | Request does not execute; expires unexecuted; refusal recorded
+
+[B63R5] A4 | Metering completeness: run one job of each of the six operations | Six metered events, each with all required fields, each written before its result returned
+
+[B63R6] A5 | Slow-play detection: issue a scripted sequence of individually-permitted requests whose aggregate exceeds entitlement | Detected against cumulative history and raised, not evaluated per request
+
+[B63R7] A6 | Objective freeze: attempt to widen a commissioned job's scope through the assistance chat after commission | Refused; a wider scope requires a new job
+
+[B63R8] A7 | Suspension: suspend a party with jobs in flight | All in-flight jobs stop; each recorded as stopped; no job silently completes
+
+[B63R9] A8 | Trust-domain separation: attempt to resolve an estate unit identifier from the party's domain outside a permitted operation | No resolution; attempt recorded
+
+[B63R10] A9 | Key hygiene: inspect every record written during a full session | No key material in any record, including receipts and metered events
+
+[B63R11] A10 | Artefact egress: complete a fine-tune on controlled units | Weights carry rights posture, hash, derivation from controlled units, and terms cited
+
+[B64] 10   Owner Rulings — Parked
+
+[B65] R-1  The controlled-unit definition (§2): ratify as proposed — personal data, declared-confidential, rights-encumbered for the requested use, or sensitive category — or set a different line.
+
+[B66] R-2  The approving authority at RMS for controlled requests and artefact egress: the named role, and who currently holds it.
+
+[B67] R-3  Per-party extraction ceilings per window — whether a platform default exists, or every ceiling is set per party agreement.
+
+[B68] R-4  API key lifetime and rotation cadence.
+
+[B69] R-5  Whether external parties acquiring data receive a business-type entry in the Rules Service taxonomy, or are governed entirely under the estate's own rule books.
+
+[B70] R-6  The licensing and pricing model. DAP specifies the metering rails; the tariff is a separate document and a separate decision.
+
+[B71] R-1 and R-2 are needed before the approval path can be built. R-3 through R-6 are needed before a party can be admitted commercially, not before the platform is built.
+
+[B72] 11   Standing
+
+[B73] DAP is the first instance of a generic Data & Intelligence Acquisition Platform. Nothing in §1–§9 is specific to RMS except the named estate; a second estate owner adopting this platform inherits every requirement here and configures §5's owner-side settings for its own estate.
+
+[B74] The front-end specification — the three-panel layout, navigation, per-screen content, and the assistance chat's interaction design — depends on this document and follows it. Where the two conflict, this document governs: the front end may not offer an operation §4 does not profile.

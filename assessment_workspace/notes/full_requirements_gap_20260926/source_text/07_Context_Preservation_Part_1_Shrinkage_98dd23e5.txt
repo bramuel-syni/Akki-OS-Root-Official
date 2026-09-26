@@ -1,0 +1,93 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Context Preservation & the Memory Layer — Part 1: Preservation on Shrinkage
+
+[B3] Document 7 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Context Preservation & the Memory Layer
+
+[B5] Promise held in this document: #19 (context richness preservation on shrinkage — meaning and objective survive when data volume is reduced after extraction)
+
+[B6] Standalone statement of what must be true. Shared mechanisms are named and Document 16 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The services that power this promise are Solva (the depth governor, whose trace makes an extracted artifact self-describing) and the platform's two-service architecture — an asset-building service and an objective-serving service — whose boundary is the normalised unit. This document specifies how richness is preserved when the estate is distilled from raw material into the much smaller body of qualified intelligence the platform actually serves from.
+
+[B9] The organising fact of this document. Extraction is a shrinking operation: a large raw estate becomes a much smaller body of qualified intelligence. The promise is that this shrink is bounded, not lossy — that what survives the shrink still carries enough of its meaning, its provenance, and the objective it was extracted under that it can be understood, trusted, and re-interpreted later, rather than being a compressed residue whose context has been thrown away. The mechanism that makes the shrink bounded rather than lossy is that every surviving artifact describes itself.
+
+[B11] PART A — THE PROMISE
+
+[B12] A1 · The promise, in plain language
+
+[B13] When the platform reduces a large body of data down to the intelligence it actually needs — which it must, because reasoning over the whole raw estate on every question is neither affordable nor focused — the meaning does not leak out in the reduction. What survives carries with it what it is, how good it is, what it was drawn from, and what question it was answering, so that a later reader — human or machine — can trust it, trace it back, and re-use it for a new question without having to re-process the entire original source. Shrinking the data does not shrink the context; the context travels with the intelligence.
+
+[B14] A2 · The service that powers it
+
+[B15] Solva's trace and the normalised unit's five rings — every extracted unit carries content, provenance, relational edges, context, and defensibility, and every extraction-time judgement carries a trace. Together these are what make a shrunken artifact self-describing.
+
+[B16] The re-extraction handle — carried by every unit, this is what turns provenance from a label into a live capability: a unit can be regenerated from its source and compared against what is currently held.
+
+[B17] A3 · Definition of the promise
+
+[B18] "Context richness preservation on shrinkage" is defined as four guarantees:
+
+[B19] Every surviving unit is self-describing. A unit of qualified intelligence carries five rings — content, provenance, relational edges, context, and defensibility — so that the unit alone tells a reader what it is, where it came from, how it relates to other units, the circumstances it was extracted under, and how strongly it may be relied upon. Nothing essential about the unit lives only in the discarded raw source.
+
+[B20] Every judgement is traceable. Every extraction-time judgement produces a trace: the reasoning path, the units found load-bearing, the class computed, and the conclusion. The trace is what lets a reader see why a conclusion was reached and why it was asserted at the strength it was — the reasoning survives the shrink, not just the result.
+
+[B21] Provenance is a live handle, not a dead label. Every unit carries a re-extraction handle that resolves to the exact position in the source it came from — a timestamp span in audio, a page and region in a document — so that the unit can be regenerated from its source and compared against what is held. Provenance you can act on is what makes the shrink reversible where it needs to be.
+
+[B22] What could not be preserved at standard is refused, not silently degraded. A unit that cannot meet the evidence standard is recorded as unqualified and never enters an evidence partition. The shrink never produces a confident-looking unit whose context was actually lost — such material is marked unqualified rather than admitted at a guessed strength.
+
+[B23] A4 · Delivery experience expectations
+
+[B24] What a consuming system / later run experiences (the primary consumer):
+
+[B25] A later run answering a new question against already-extracted intelligence receives units that are self-describing — it does not need the original raw source to understand what it has, because each unit carries its own content, provenance, context, and defensibility. This is what makes the small, distilled body of intelligence genuinely re-usable rather than a lossy summary.
+
+[B26] Where a later run needs to verify or refresh a unit, it uses the re-extraction handle to regenerate that unit from source and compare — it does not re-process the whole estate to check one thing.
+
+[B27] What the organisation experiences (human-facing):
+
+[B28] An auditor or analyst examining a conclusion can see the trace behind it — the reasoning path, the load-bearing units, the class computed — and can follow any unit back to the precise place in the source it came from. The richness that justifies trusting the conclusion is present and inspectable, even though the raw source is no longer being carried in working context.
+
+[B29] What is produced and retained:
+
+[B30] Self-describing units (five rings each, with re-extraction handles) and traces (one per extraction-time judgement), joined by a shared trace identifier to the record. These are the durable, richness-preserving artifacts the shrink produces.
+
+[B31] A5 · Technical and behavioural requirements
+
+[B32] A5.1 · The five-ring unit is a frozen contract [CANON]. The normalised unit carries five rings — content, provenance, relational edges, context, and defensibility — and admits structured sources exactly as it admits perceived ones: a structured record becomes a unit carrying a text modality and a free locator, with no second intake contract anywhere in the platform. The unit is the frozen interface between the asset-building service and the objective-serving service.
+
+[B33] A5.2 · Every unit carries a re-extraction handle [CANON]. Without it, provenance is a label; with it, a unit can be regenerated from its source and compared against what is currently held. For non-text material the handle resolves to a position in the source — a timestamp span in audio, a page and region in a document — which is what makes provenance real for perceived material rather than a pointer to the file the unit lives in.
+
+[B34] A5.3 · Qualification partitions degraded material out [CANON]. A unit that cannot meet the evidence standard is recorded as unqualified and never enters an evidence partition — not a read-time filter some path could skip, but a partition the material never enters. This is what prevents the shrink from producing confident residue whose context was lost: garbage does not become a confident unit; it becomes an unqualified one.
+
+[B35] A5.4 · The trace exists from the first commit and joins to the record [CANON]. Every extraction-time judgement produces a trace carrying its reasoning path, its load-bearing units, and its computed class. The trace is not instrumentation added later — it is the auditability that justifies letting a component reason at all — and it carries a trace identifier joining it to the unit-level intelligence and to the record (Document 4, Document 5). Unit and audit stay in separate envelopes with separate lifecycles, joined by identity rather than embedded, so a unit and its trace can be retained, exported, and expired independently.
+
+[B36] A5.5 · The trace is the executed reasoning, never a post-hoc narrative [RULED]. The trace must record the reasoning stages that were actually executed — the frame, the candidates, the tension surfaced, the reflection, the load-bearing set — not a summary written about the reasoning after the fact. The moment a trace becomes a narrative composed to describe a conclusion rather than the executed path that produced it, context preservation becomes context fabrication: the artifact would appear self-describing while describing something that did not happen. This is a genuine engineering constraint on how the trace is produced, and it is load-bearing for the promise's honesty.
+
+[B37] [RULED] Adopted, as an explicit statement of a property the canon trace implies but did not state in these words. The promise ("richness preserved") is only true if the preserved richness is faithful; a fabricated trace satisfies the letter of "self-describing" while defeating its purpose.
+
+[B38] A5.6 · The transform reads stored intelligence, never a running tail [CANON]. Transformation into a delivered output reads stored qualified intelligence, never the live tail of a mining run — because transforming from a running tail would produce an output whose composition depends on exactly when it was taken, which is not a property any deliverable should have. The shrink's product is stable material, not a moving one.
+
+[B39] A6 · What must be true for the service to deliver as intended
+
+[B40] Every unit genuinely carries all five rings. A unit missing its context or defensibility ring is not self-describing, and the shrink has lost exactly what the promise says it preserves.
+
+[B41] The re-extraction handle genuinely resolves to source position. A handle that points only to a file, not a position within it, cannot regenerate the specific unit — provenance is back to being a label, and the shrink is no longer reversible where it needs to be.
+
+[B42] Qualification actually partitions. If degraded material can enter an evidence partition, the shrink produces confident units whose context was lost — the precise failure the promise forbids.
+
+[B43] The trace is faithful to executed reasoning (A5.5). If the trace can be a post-hoc narrative, self-description becomes fabrication, and the richness is preserved in appearance only. This is the single most important honesty condition for the promise.
+
+[B44] Unit and trace remain separately lifecycled but identity-joined. If they are embedded rather than joined, they cannot be retained, exported, or expired independently, and the separation of output from audit trail is lost.
+
+[B46] RULINGS APPLIED TO THIS DOCUMENT
+
+[B47] A5.5 [RULED] — The trace-faithfulness constraint is adopted as a load-bearing honesty requirement. Settled.
+
+[B48] Cross-reference to Document 8 — the economics of preservation (that a later objective can be served near-free from already-extracted, self-describing intelligence rather than re-extracted) is the subject of Document 8. This document specifies that the surviving intelligence is rich enough to be re-used; Document 8 specifies the serving mechanism that re-uses it. The two must compose; noted here so the seam is deliberate.
+
+[B50] End of Document 7 of 16 — Context Preservation & the Memory Layer, Part 1: Preservation on Shrinkage.

@@ -1,0 +1,149 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Direction, Scope & Focus — Part 1: The Direction Governor
+
+[B3] Document 5 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Direction, Scope & Focus
+
+[B5] Promises held in this document: #16 (focus maintained under massive context) · #18 (objective preservation — the direction half; the ideation/judgement-retention half belongs to CIF and is noted, not folded in)
+
+[B6] Standalone statement of what must be true. Shared mechanisms are named and Document 16 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The service that powers both promises is Northena, the direction governor. Northena has no separate end-user surface name; it operates beneath the answering and extraction paths. This document specifies the engine.
+
+[B9] The organising fact of this document: Northena is deterministic by construction — no model, no learned weights, no adaptive behaviour. It is trustworthy as a governor precisely because it cannot be otherwise. Its behaviour varies enormously run to run, but every part of that variation is driven by a frozen governing artifact it reads, never by Northena adapting. It is dynamic the way a thermostat is dynamic: behaviour changes completely as the setpoint changes, while the mechanism neither learns nor infers.
+
+[B11] PART A — PROMISE #16: FOCUS MAINTAINED UNDER MASSIVE CONTEXT
+
+[B12] A1 · The promise, in plain language
+
+[B13] The platform stays on the question it was actually asked, no matter how much data surrounds that question. It does not wander, does not get pulled off-objective by the sheer volume of material available, and does not quietly substitute a different, easier, or larger question for the one it was given. Every run is kept on its objective, brought to a defined stop, and can be shown afterwards to have stayed in scope the whole way — because the thing it was meant to do was fixed before it began and checked at every step against that fixed thing.
+
+[B14] A2 · The service that powers it
+
+[B15] Northena, through its four-stage loop:
+
+[B16] Admit — compiles, validates, and freezes the objective before the run begins.
+
+[B17] Gate — tests, at every step, whether a sub-objective falls within the frozen scope, and routes on the result.
+
+[B18] Converge — brings the run to a defined stop on conditions fixed in the frozen artifact.
+
+[B19] The Ledger — the durable, audit-grade record of how the run was directed.
+
+[B20] A3 · Definition of the promise
+
+[B21] "Focus maintained under massive context" is defined as three guarantees:
+
+[B22] The objective is fixed before the run starts. What the run is meant to achieve — its scope, its stopping condition, its budget, its lawful basis — is compiled and frozen at Admit. Nothing in the volume of surrounding data can change what the run is for, because what it is for was decided and locked before any material was touched.
+
+[B23] Every step is checked against the fixed objective. Gate tests scope membership at every routing decision — it checks whether a sub-objective is in the declared scope set, and nothing else. Material outside scope is logged and dropped, not followed. This is what keeps a large context from dragging the run outward: being adjacent and available is not being in scope.
+
+[B24] The run stops on a fixed condition, never on a learned one. Converge terminates on the done-condition or the budget, both threshold checks fixed in the frozen artifact. There is no learned stopping — the run does not continue because a model judged there was more interesting material nearby.
+
+[B25] A4 · Delivery experience expectations
+
+[B26] What the organisation experiences (human-facing):
+
+[B27] A person asks a bounded question of a large estate and gets an answer to that question — not a sprawling survey of everything nearby, not a subtly different question the system found easier against the available data. The focus is invisible in the ordinary case: the answer is simply on-point.
+
+[B28] Where a run reaches its budget before its done-condition, the person is told the run stopped on budget — a defined, honest stop — rather than being handed a run that quietly kept going past what was commissioned.
+
+[B29] What a consuming system experiences (machine-facing):
+
+[B30] A commissioned run returns bounded by exactly the scope and budget it was admitted under. A calling system can rely on the run not having exceeded its commission, because the governor — not the executor — enforces the ceiling.
+
+[B31] What is produced and retained:
+
+[B32] The Ledger record for the run: admission and its outcome, every Gate routing and its reason, every refusal or drop, and the convergence decision — a closed, append-only, audit-grade record. A run with no closed record is an invalid run.
+
+[B33] A5 · Technical and behavioural requirements
+
+[B34] A5.1 · Deterministic by construction, enforced structurally [CANON]. No Northena module imports a machine-learning library or a learned component, and an import assertion enforcing this runs in continuous integration. Determinism is checked structurally, not by review. The moment a direction governor adjusts gating from past runs, or infers scope probabilistically, it stops being auditable — and auditability is its entire reason to exist.
+
+[B35] A5.2 · The accountability standard [CANON]. Every run must be answerable deterministically: admitted because these fields were valid; gated in because scope membership held; stopped because this condition was met; refused because this rule fired. "Admitted because the model scored it highly enough" is the unauditable outcome this standard exists to prevent.
+
+[B36] A5.3 · Admit freezes; judgement is borrowed, never performed [CANON]. Admit compiles, validates, and freezes. Where compilation genuinely needs judgement — resolving an ambiguous scope, setting a preservation depth or a floor — Admit invokes the depth governor (Solva, Document 4) through an opaque handle and freezes the value it returns. The judgement is the reasoner's; the freeze is Northena's alone. Northena never reads that governor's internals and never performs inference itself.
+
+[B37] A5.4 · Gate is strict set-membership, with no inferential path [CANON]. Gate tests whether a sub-objective falls within the scope the frozen artifact declares — membership against a defined set, and nothing else. Ambiguous membership is a compilation defect resolved at Admit by the reasoner, never a Gate-time judgement. No inferential path exists in Gate. This is the specific mechanism by which a massive context cannot pull the run off-objective: scope is a frozen set, and adjacency is not membership.
+
+[B38] A5.5 · Converge owns the halt on fixed conditions [CANON]. Converge decides termination on two conditions fixed in the frozen artifact, both threshold checks: done-condition met terminates as success; budget exhausted terminates on budget; neither continues. There is no learned stopping. The depth governor may report it cannot reason further soundly — that report is an input Converge acts on, but the stop decision and its record belong to Northena alone, because a component that could stop a run without Northena recording why would put a termination outside the audit surface entirely.
+
+[B39] A5.6 · The budget is a hard stop [CANON]. A run halts at its ceiling and nothing past it is billed. This is what makes an open-ended run commissionable at all: exposure is bounded at commit, by a number the commissioner set, enforced by the governor rather than by the executor that could be tempted to keep going.
+
+[B40] A6 · What must be true for the service to deliver as intended
+
+[B41] The determinism import-assertion runs on every build. If Northena could import a learned component, it could adapt its gating, and the accountability standard would silently fail. The assertion is load-bearing.
+
+[B42] Ambiguity is resolved at Admit, never at Gate. If Gate ever decides membership by inference, the frozen scope stops being the thing that bounds the run, and a large context can pull it outward again.
+
+[B43] Converge is the sole owner of the halt. If anything else can stop a run without Northena recording why, a run can end outside the audit surface.
+
+[B44] The budget ceiling is enforced by the governor, not the executor. An executor that enforces its own ceiling can be tempted past it; the governor cannot.
+
+[B46] PART B — PROMISE #18 (DIRECTION HALF): OBJECTIVE PRESERVATION
+
+[B47] B1 · The promise, in plain language
+
+[B48] What a run was asked to do cannot be quietly changed into something else while the run is happening. The objective is frozen before the run begins and is immutable for the life of the run; if the intent genuinely changes, that is a new run with a new frozen objective, never an edit of a live one. This means the thing a run's result is judged against is the same thing the run was commissioned to do — nobody can move the target after the fact to match whatever came back.
+
+[B49] Scope note. Promise #18 has two halves. This document specifies the direction half — Northena freezing and preserving a run's objective. The judgement-retention half — CIF governing how the system's own judgements are retained and improved across the build loop, the training path, planning, and proposal generation — belongs to CIF and is specified where CIF's promises are held. The two are distinct: one preserves a single run's objective; the other preserves and improves the system's accumulated judgement. They are not folded together here.
+
+[B50] B2 · The service that powers it
+
+[B51] Northena's Admit stage and its freeze, together with the append-only Ledger that makes the frozen objective and every decision against it a permanent, inspectable record.
+
+[B52] B3 · Definition of the promise
+
+[B53] The freeze is atomic and the artifact immutable for the run. At Admit, the governing artifact is frozen. It carries its type and identity, its version, the scope set Gate will test membership against, the defensibility floor, the done-condition, the budget, and the lawful basis. Once frozen, none of these can change for the run.
+
+[B54] A changed intent is a new admission, never an edit. If what is being pursued changes, a new artifact is admitted and frozen. There is no path that edits a live objective, because such a path would let the target move mid-run.
+
+[B55] The record is a contract, not a log. The Ledger is frozen, versioned, append-only, and closed on every run. A correction is a new entry referencing what it corrects, never an edit of what was written. Refusals and drops are recorded exactly as successes are — a system that drops what it declined cannot show what it declined.
+
+[B56] B4 · Delivery experience expectations
+
+[B57] What the organisation experiences:
+
+[B58] A commissioned run's purpose is stable: the person who commissioned it, and an auditor later, both see the same fixed objective and can confirm the result addresses it. Where the need changed partway, they see a clean new run, not a silently mutated old one.
+
+[B59] What a consuming system experiences:
+
+[B60] An external request arrives complete or is refused; a request missing any required field is refused with the validation envelope, and it carries an idempotency key so a retried submission neither double-commissions nor double-charges. The frozen objective the run executes under is the same one referenced in the record.
+
+[B61] What is produced and retained:
+
+[B62] The frozen governing artifact and the closed Ledger record — together, the permanent proof of what the run was for and how it was directed.
+
+[B63] B5 · Technical and behavioural requirements
+
+[B64] B5.1 · The freeze is atomic; the artifact is immutable for the run [CANON]. A changed intent is a new admission, never an edit of a live one. The frozen artifact carries type and identity, version, scope set, defensibility floor, done-condition, budget, and lawful basis.
+
+[B65] B5.2 · Lawful basis is enforced at Admit, before any extraction [CANON]. Purpose limitation is an admission property, not a downstream filter — a run with no lawful basis never starts, so no material is ever touched under an unstated basis. Five deterministic validity checks run in order at Admit, each with its own refusal reason; a failure at any point refuses the admission and writes the reason, and no downstream stage runs.
+
+[B66] B5.3 · Two admission paths, both freezing the same way [CANON]. An external request is checked and frozen at Admit having arrived complete; a work order cannot freeze until the shaping conversation completes the objective envelope — the shaping dialogue is where the envelope is filled, Admit is where it is checked and frozen. Both paths write a Ledger row carrying the artifact reference and the lawful-basis reference. (The shaping dialogue for commissioning work — including training work — is specified in Document 12; its output is an envelope Admit freezes.)
+
+[B67] B5.4 · The Ledger writer exposes append only [CANON]. No update path and no delete path exists within the retention window. A correction is a new entry referencing what it corrects. This is enforced as code: the ledger writer exposes append and nothing else, checked by import assertion. Out-of-scope and refused items are recorded, never silently dropped.
+
+[B68] B5.5 · The stamp-audit side-channel is deliberately permissive [CANON]. The Ledger absorbs untyped side-channel entries from other engines — boundary emissions, measurement stamps, trace correlation, gate receipts, refusal envelopes — without mutating the frozen row contract. Typing it would harden it into a mutation surface; the permissiveness is guarded by a snapshot test so the decision cannot be quietly reversed. Unit and audit stay in separate envelopes with separate lifecycles, joined by identity rather than embedded.
+
+[B69] B6 · What must be true for the service to deliver as intended
+
+[B70] No edit path to a frozen artifact exists. If a live objective can be edited, the target can be moved to match the result, and the run's record proves nothing.
+
+[B71] The append-only property is enforced as code, not policy. If the ledger writer exposes any update or delete path, corrections become indistinguishable from rewrites of history.
+
+[B72] Refusals and drops are recorded. A record that shows only successes cannot demonstrate what was declined, which is a substantial part of what the record is for.
+
+[B73] The direction half and the CIF judgement-retention half stay distinct. Objective preservation for a run (here) and judgement retention for the system (CIF) must not be conflated, or one engine's guarantees get incorrectly assumed of the other.
+
+[B75] OPEN RULINGS SURFACED BY THIS DOCUMENT
+
+[B76] Document 16 §5 — the Ledger is one class in the platform's one-record matrix; its writer/reader ownership is held there. Noted so the record ownership is consistent across documents.
+
+[B77] No new open ruling is introduced by this document. Northena's canon is fully determinate; the only cross-references are to the shaping dialogue (Document 12) whose output Admit freezes, and to CIF for the non-direction half of #18.
+
+[B79] End of Document 5 of 16 — Direction, Scope & Focus, Part 1: The Direction Governor.

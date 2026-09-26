@@ -1,0 +1,551 @@
+[L1] # SOURCE FILE: Akki_Canon_7_Integration_and_Quality.docx
+
+[L3] AKKI CANON  ·  DOCUMENT 7 OF 9
+
+[L4] Akki Integration Service and Quality Rulebook
+
+[L5] The contract every application meets, entitlement enforcement, the memory layer, the Function & Promise Registry, the Critic Seam, and the discipline the build itself is held to
+
+[L6] PART I
+
+[L8] The Integration Chain
+
+[L9] [Heading 1] 1  Scope
+
+[L10] This document specifies how governed intelligence reaches the people and systems that consume it, and the discipline the build itself is held to while producing it. It covers the answering service, the async delivery contract, the memory layer, the applications specified fully enough to demonstrate the platform’s contract, the Function & Promise Registry, the Critic Seam, and the defect classes and process rules that bind anyone — owner, builder, or system — working on the platform itself.
+
+[L11] Integration is accountable for one thing: that intelligence reaches its consumers under the rights and masking in force, and that consumption returns value the organisation can account for. Failure looks like capability that exists but nothing consumes, consumption that escapes its rights envelope, or value that leaves unmetered.
+
+[L12] [Heading 1] 2  The Standard the Chain Holds
+
+[L13] Governance travels inline, everywhere. No response shape separates a claim from its class — on the synchronous path, on the async path, and in every artefact handed over.
+
+[L14] [List Paragraph] A refusal is a governed outcome, not an error. It is distinguished by a discriminator in the body, never by a status code, and an infrastructure fault is never rendered as a refusal.
+
+[L15] [List Paragraph] Rules are derived from one place. Where a rule is enforced at two points — admission and shaping, for instance — both import the same module. A negative scan prevents reimplementation, because a rule implemented twice is a rule that will eventually disagree with itself.
+
+[L16] [List Paragraph] Nothing partial egresses, including on cancellation. A cancelled run is still recorded.
+
+[L17] PART II
+
+[L19] The Answering Service
+
+[L20] [Heading 1] 3  What It Is
+
+[L21] The answering service is where a question becomes an answer or a named refusal. It carries admission, composition, grounding, the async lifecycle, cancellation, and the refusal machinery. It is the surface every integrated application meets, and the surface the platform’s own reference application sits on.
+
+[L22] [Heading 1] 4  Admission and the Fork
+
+[L23] A request is checked for completeness, admissibility, and entitlement before anything else happens. An external request missing any required field is refused with the validation envelope; a shaped work order arrives already complete, because the wizard could not have frozen it otherwise. Entitlement is the third check: whether the requester’s own attributes satisfy the rules governing the content the request would need to draw on, specified in Document 3 §22.1. It runs alongside completeness, not after it — an incomplete request that is also unentitled is refused for both reasons together, not one at a time.
+
+[L24] Declaration is checked in the same breath. Every calling application, and every agent acting through one, carries the declaration Document 3 §6.1 requires — the standing objective, capabilities, and risks it was admitted under — and a request from an actor whose declaration is missing or stale refuses with its own named reason. The declaration is what the Watch reconciles conduct against, per Document 8; admission is where it is checked, because a baseline verified anywhere later is a baseline some path skips.
+
+[L25] The warm/fresh fork happens here, once. An ask servable from qualified intelligence already held is answered synchronously. One requiring fresh extraction returns the async contract. The determination comes from the feasibility query against the Registry — a membership and convergence test, never an estimate — and everything downstream honours it rather than re-deriving it, because a second derivation could disagree with the first and the consumer would have been told one thing and given another.
+
+[L26] [Heading 1] 5  Admission Refusal
+
+[L27] Refusal reasons are enumerated and versioned. The reason sets are files, versioned in sequence, with the highest version in force — a refusal issued under an earlier version stays interpretable after the set grows, because the version it was issued under is always recoverable.
+
+[L28] The taxonomy is closed. Every refusal resolves to a named reason in the set. No ad-hoc refusal path exists, and no module composes a refusal string of its own.
+
+[L29] The Watch's refusals join this taxonomy the way every family joins it: a versioned addition to the reason registry, never a parallel grammar. A hold at the input seat, a containment, a mark-gated denial — each resolves to a named reason, renders through the identical envelope, and offers only actions its reader can actually take. A Watch fault, like any fault, is never dressed as a refusal.
+
+[L30] [Heading 2] 5.1  Actor-appropriate paths forward
+
+[L31] A refusal offers only what its reader can actually do. Where a conclusion falls below an objective’s floor, the three available actions are exactly: accept it as a recorded statement, narrow the objective, or lower the standard. Offering an approval route where none exists, or an action this actor cannot perform, converts a refusal into a dead end dressed as a door.
+
+[L32] Every refusal cell carries a non-empty path forward, including cells unreachable from live dispatch today. An unreachable cell that is ever reached should still speak properly, and a standing test asserts that none is empty.
+
+[L33] [Heading 2] 5.2  Entitlement refusal
+
+[L34] An entitlement refusal is a distinct named reason in the closed taxonomy, never folded into an evidence-floor refusal and never sharing its wording. The two mean entirely different things: evidence-floor says the material cannot support the claim; entitlement says this requester specifically may not receive it, regardless of how well the material supports it for someone else.
+
+[L35] The three evidence-floor actions do not apply here and are never offered. Accepting, narrowing, or lowering the standard makes no sense against a rule about who is asking. An escalatable entitlement rule offers exactly one action — request access from the authority the rule names. An absolute entitlement rule offers none, identically to any other absolute refusal.
+
+[L36] The refusal names the rule in the compliance owner’s own words, exactly as any other refusal does — never a generic "access denied," because a generic message teaches a requester nothing about whether asking a different way, or asking someone else, would help.
+
+[L37] [Heading 1] 6  The Shared-Derivation Pattern
+
+[L38] Where a rule is enforced at more than one point, one module owns it and every caller imports that module — a structural pattern rather than a convention, with a negative scan preventing reimplementation elsewhere.
+
+[L39] Shipping a shaping surface that can freeze an objective the transform layer must later refuse produces execution-time discovery — the objective is committed, priced, and run before anyone learns it cannot deliver what it promised. A single derivation shared by the shaping surface and the admission surface is what makes that impossible rather than merely unlikely.
+
+[L40] [Heading 1] 7  Grain and Form Compatibility
+
+[L41] Not every grain is available for every output form, and the matrix is explicit rather than discovered by trial. Qualified data supports per-claim and aggregated grains, never synthesized-whole — that combination is a composed conclusion, a different form entirely. A composed conclusion is synthesized-whole only. A knowledge artifact supports per-claim and aggregated. A callable skill answers per-claim or synthesized-whole depending on the query it receives.
+
+[L42] An incompatible combination is refused at the point it is chosen, with a path forward naming the form that does support the grain the requester actually wants.
+
+[L43] [Heading 1] 8  Provenance Preservation
+
+[L44] Each output form declares the minimum standard its transform can preserve, and the rule table stating this is declarative — the shaping wizard evaluates it in conversation without running anything.
+
+[L45] A below-floor combination refuses during shaping, never at execution. This is what allows a refusal to arrive while a user is still shaping their request, rather than after they have already committed to it.
+
+[L46] [Heading 1] 9  Licence Class
+
+[L47] Licence classes are configuration, versioned rather than frozen — class names, commissioner mappings, and per-feed attributes live in versioned files, with the highest version in force winning. This is deliberate: a licence taxonomy must be able to grow as an organisation’s own agreements change, and freezing it would turn every commercial change into a contract event.
+
+[L48] Selection is single-source. Class derivation, the selection filter, and every per-feed standing attribute are read from one place, consumed identically by the packaging path, the standing declaration table, and the outer gate’s own generalisation. Distributed copies of this logic were consolidated precisely because they had already begun to disagree.
+
+[L49] [Heading 1] 10  Composition
+
+[L50] Two composition paths, matching two forms.
+
+[L51] [List Paragraph] Qualified data is packaged. Selection by reach, a standard filter, and licence class, then packaging, then export through the outer gate. Per-claim provenance stays intact end to end, and below-floor units never enter the deliverable at all — the standard is an input filter, not a downstream check.
+
+[L52] [List Paragraph] A composed conclusion is reasoned. Five-stage composition over selected units, the load-bearing set identified, and the conclusion’s class computed as the floor over that set. The trace is mandatory, and the class travels inline with the answer.
+
+[L54] Every composition that reaches for a model carries a deterministic fallback beneath it. The mechanical composer is preserved byte-identical as that fallback, so a system whose highest rung is unavailable degrades to a knowable output rather than an unbounded one.
+
+[L55] [Heading 1] 11  Grounding
+
+[L56] Grounding is proven, not asserted. A sentence that cannot be anchored to material is not a weaker sentence — it is a refusal.
+
+[L57] Composed output carries a per-sentence anchor map, and a gate enforces it, protected by its own cell suite including a cell that asserts the failure path itself: that an ungrounded composition refuses rather than degrading. A gate whose failure path has never been tested is a gate that has never actually been shown to close. Class honesty is bounded structurally beneath this — a negative scan over the whole answering service prevents a composition from ever misstating the class it is answering at.
+
+[L58] [Heading 1] 12  Telemetry
+
+[L59] Every model-reaching composition emits a sidecar record carrying the mode, the metering, and the outcome — separately from the answer itself, so telemetry can be retained and analysed on its own lifecycle without ever touching the answer’s own envelope.
+
+[L60] PART III
+
+[L62] Delivery
+
+[L63] [Heading 1] 13  The Async Contract
+
+[L64] The fork made at admission determines the contract entirely. Warm returns a synchronous, full response. Fresh returns an accepted acknowledgement carrying the objective identity, the status, a delivery estimate, and a quote where one applies.
+
+[L65] [Heading 2] 13.1  States
+
+[L66] Late refusal is a first-class outcome. Accepted, then refused, is a normal terminal state, never a failure. A run admitted and later found inadmissible — because the estate changed, because a rule changed, because reasoning could not reach the floor — has not failed; it has been governed, and integrating applications render it as exactly that: a governed refusal.
+
+[L67] Sub-stages are deliberately not states. Exposing mining and transforming as distinct states would make every application’s own state machine depend on the platform’s internal pipeline — and a pipeline change would then be a breaking change for every consumer of it, which is a coupling this contract exists to prevent.
+
+[L68] [Heading 1] 14  Thin Webhook, Governed Fetch
+
+[L69] The webhook payload carries the event, the objective identity, the trace identity, and the status. It never carries claim content. The result is fetched over the application’s own authenticated key, where scope is enforced server-side; polling the objective endpoint is the fallback wherever a webhook cannot be received.
+
+[L70] Pushing claims to an application-configured URL would be an egress path the gates do not control. The webhook is thin for that reason and no other — a future convenience that put content in the payload would move an egress outside the perimeter, and the perimeter is the product. The webhook tells an application that something is ready; the gate decides whether that application may actually have it.
+
+[L71] [Heading 1] 15  Idempotency
+
+[L72] An idempotency key is required on every external submission. A retried request must not double-commission or double-charge — the same key resolves to the same objective, and a duplicate submission returns the existing state rather than creating a second one.
+
+[L73] Idempotency runs at the boundary, never in the worker. A worker-level guard would still admit two objectives and reconcile afterward — a reconciliation problem rather than a prevention, and reconciling after a charge has already been raised is a commercial problem wearing a technical one’s clothes.
+
+[L74] [Heading 1] 16  Cancellation
+
+[L75] Cancellation requires no reason. It references the terms already agreed at commission, halts queued work, and retains whatever has already completed.
+
+[L76] Nothing partial egresses on cancellation, and the cancelled run is still recorded. A cancelled run that left no record would be a run the system performed and cannot account for; partial egress on cancellation would make the perimeter probabilistic rather than absolute.
+
+[L77] [Heading 1] 17  Versioning and Sandbox
+
+[L78] Envelopes are frozen and additive. A field is added; a shape is never mutated. A breaking change is a new path version, so an application built against the current contract keeps working indefinitely.
+
+[L79] Sandbox is a key mode set at registration, served entirely from fixture estate. An engineer exercises the full contract — including every refusal shape and the whole async lifecycle — before any real material ever moves. A sandbox that behaved differently from production would teach the wrong contract, so the only difference between them is the estate behind it, and nothing else.
+
+[L80] PART IV
+
+[L82] The Memory Layer
+
+[L83] [Heading 1] 18  The Promise
+
+[L84] The integration surface extends from query access to a full memory service. Every integrated application receives a durable, governed memory plane that grows in proportion to its own use.
+
+[L85] To the integrating builder: the application arrives stateless and becomes knowledgeable. What it reads, contributes, and repeatedly needs persists for it, under the same governance as everything else on the platform, with zero memory infrastructure built on the application’s own side. To the estate holder: every application’s memory is visible, receipted, rights-bound, and revocable — integration deepens without governance ever thinning to accommodate it.
+
+[L86] The platform knows the objective and does not know the application — not what it renders, not what it does with what it receives, not who its users are. This is what allows a thousand integrations to exist without any one of them shaping the platform’s own surface.
+
+[L87] [Heading 1] 19  The Plane
+
+[L88] Every integration key is issued with exactly one memory plane: a durable, instance-scoped, key-scoped partition, created at commissioning and existing for the key’s entire lifetime.
+
+[L89] [Heading 2] 19.1  Isolation
+
+[L90] Plane isolation is by construction. The persistence layer refuses any read or write not scoped to a key’s own plane — the identical scoped-accessor pattern that enforces instance isolation. A cross-plane read does not exist as an operation to be permitted or denied; it cannot be expressed at all.
+
+[L91] Sharing happens only through the Registry, by rights-bound publication. There is no direct path from one plane to another, and no aggregate view across planes that any application can reach.
+
+[L92] [Heading 2] 19.2  Ledger-reconstructible
+
+[L93] Every plane operation writes a ledger row — read, write, retention change, revocation. A plane can be reconstructed entirely from the ledger, which is what makes a question about what an application knew at a particular point in time answerable rather than merely asserted.
+
+[L94] [Heading 2] 19.3  Revocation and deletion
+
+[L95] Key revocation freezes the plane: no reads, no writes. Freezing is immediate and does not require the deletion ceremony, because it removes access without destroying evidence. Plane deletion, when it happens, follows the instance’s own deletion ceremony — two-person approval, the single authorised path, a destruction attestation.
+
+[L96] A revoked application’s contributed units survive in the Registry if and only if they were published. Unpublished contributions delete with the plane, because they were never the estate’s material — they were the application’s own working material, held under the estate’s governance in the meantime.
+
+[L97] [Heading 1] 20  Two Memories, Separated by Provenance
+
+[L98] What may be reused across keys and what may not is decided by where material came from, and it is decided when the material is written rather than when it is later read. Deciding at read time makes the boundary a policy every reader must apply correctly, forever; deciding at write time makes it a property of the store itself.
+
+[L99] Where provenance is mixed or unclear, the material stays in the plane. A derivation shaped partly by estate material and partly by a customer’s own framing is not split by judgement call — the estate may take the fact stripped of its framing, and the framing never travels. Failing closed toward the customer’s own thinking is the only defensible default while the law around this remains unsettled.
+
+[L100] The consequence in practice: one key never learns that another asked, what it asked, or the shape of its inquiry — even where its own answers later improve because extraction the other key’s questions provoked has enriched the shared estate underneath.
+
+[L101] [Heading 1] 21  The Write-Back Contract
+
+[L102] An application may contribute derived context, corrections, and conclusions back to its own plane. This is what turns a query surface into an actual memory service: the application’s own work accumulates rather than evaporating between calls.
+
+[L103] [Heading 2] 21.1  Shape
+
+[L104] Every contribution lands as a qualified unit in the five-ring shape. No free-form blobs. Content, provenance — the application, its key, and the calls it derived from — defensibility class, context, and a re-derivation handle are all required at write.
+
+[L105] An incomplete contribution rejects at the API boundary — not stored and flagged, rejected outright. A store that accepts malformed units accumulates material that cannot later be reasoned over, and the cost of that surfaces long after the write, when it is far more expensive to unwind.
+
+[L106] [Heading 2] 21.2  Class and rights at birth
+
+[L107] Contributed units carry a distinct class and inherit internal-only rights at birth. Rights default closed — a contribution is not exportable until something explicitly makes it so.
+
+[L108] Defensibility is capped at what the cited sources support. An application citing inferred material cannot mint corroborated fact from it — the assertion boundary’s own principle, applied identically at the write boundary: reasoning done outside the platform cannot raise a class any more than reasoning done inside it can.
+
+[L109] [Heading 2] 21.3  Visibility and setting
+
+[L110] Contributions are plane-local by default: visible only to the contributing application, invisible to the reference application, to briefs, and to every other consumer. Write-back is a commissioning choice — on, with a per-cycle volume ceiling, or off — and the setting is visible to the compliance officer either way, as is the volume actually written under it.
+
+[L111] [Heading 1] 22  Publication
+
+[L112] Promoting a contributed unit from plane-local to Registry-visible is a separate act, and it is never automatic. Publication passes the quality gates of its output class, carries its rights, and — where the instance’s own governance values require it — passes release review.
+
+[L113] This is the boundary between an application’s working material and the organisation’s estate. An automatic promotion would mean anything an application merely inferred became estate material by the act of writing it, which would let an integration author the estate’s own record from outside it entirely.
+
+[L114] [Heading 1] 23  Usage-Proportional Persistence
+
+[L115] The working set grows from observed use, never from anticipation. Units and partitions an application reads repeatedly are retained hot; query shapes it repeats gain precomputed results; strata it never touches are never replicated into its plane in the first place.
+
+[L116] The working set holds references and derived read-structures — never copies that would escape rights binding. Evicting an entry loses nothing, because the Registry remains the source of record throughout. A copy sitting in a plane would be material whose rights posture could quietly drift from its source’s.
+
+[L117] Memory growth reports per plane per cycle — units retained, precomputes held, storage consumed — to the application on its own dashboard, and to the compliance record simultaneously.
+
+[L118] [Heading 1] 24  The Integration Wizard
+
+[L119] Integrating an application is commissioning a standing objective with a memory plane attached: one flow, one ledgered act, running the platform’s standard objective-shaping steps with three memory-specific additions.
+
+[L120] The first call lands in the compliance record like every call after it. There is no warm-up period in which an integration runs unobserved.
+
+[L121] Re-scoping is asymmetric. Widening retrieval scope or raising a ceiling re-enters the wizard at the scope step and re-commissions; tightening applies without ceremony. Scope changes are ledger events either way — the asymmetry lives in the ceremony, never in the record.
+
+[L122] [Heading 1] 25  Governance Visibility
+
+[L123] The compliance record gains a per-application view, in the same table shape as the estate’s own governance classes: each plane’s scope, rights ceiling, write-back setting and volumes, storage growth, call activity, and every scope change with its ledger receipt.
+
+[L124] Contributed-unit volumes and publication events are line items, and a publication that passed release review cites its review record directly. Plane freeze and deletion appear as ceremony records. Nothing about an application’s memory is invisible to the estate holder, ever.
+
+[L125] [Heading 1] 26  Quality Treatment of Contributed Units
+
+[L126] Contributed units are a transformation output class and carry their own quality row exactly as any other class does. Publication is where the row binds: plane-local contributions are the application’s own working material and are sampled rather than gated, but nothing enters the Registry without passing the row first.
+
+[L127] [Heading 1] 27  The Seam Contract
+
+[L128] One surface, identical for every consumer, settling three things at once.
+
+[L129] [List Paragraph] Every field that crosses is named, typed, and classed. An undocumented seam changes without notice, which is precisely what this discipline exists to prevent.
+
+[L130] [List Paragraph] Latency classes are declared per operation, with bounds. One promise across operations of genuinely different shape guarantees a broken promise.
+
+[L131] [List Paragraph] Identity enforcement sits at the seam itself, never downstream of it. Aggregate promises are void if identifying material can cross alongside them regardless.
+
+[L133] It runs on identical terms to internal use. There is no lighter-weight path for machines — the same governance applies to a call from an application as to a query from a person, because a lighter machine path is exactly the path anything wanting less governance would take first.
+
+[L134] Scope is enforced server-side, on every call. A key’s reach is a property of the key as the platform itself holds it, never a parameter the caller supplies. A client-supplied scope is a client-controlled boundary, which is not a boundary at all.
+
+[L135] One further seam is contract-grade from its first day: the verdict seam between the Watch's two engines, and the record classes both authorities write, are named, typed, and classed rows in the matrix of Document 9 — consumed here identically to every other contract. An integration never sees the Watch's interior; it sees, at most, a governed refusal that a mark or a hold produced, indistinguishable in shape from any other.
+
+[L136] PART V
+
+[L138] Applications on the Platform
+
+[L139] [Heading 1] 28  What a Reference Application Is
+
+[L140] These are not platform surfaces. They are applications, specified fully because they demonstrate the platform’s own contract for every future application to follow. Each consumes the platform through an Integration-Console-issued key, on identical terms to any third party — including a third party built by Syni itself.
+
+[L141] [Heading 1] 29  The Developer Surface
+
+[L142] Contract-forward, in three steps. The engineer’s promise: integrate governed intelligence fast, with governance travelling inline and impossible to strip, and administer the whole integration from one place.
+
+[L143] [Heading 2] 29.1  Register
+
+[L144] The application, its objective, and the class of intelligence it reads. Key grants are stated plainly rather than as scopes to be decoded — what this key may reach, in the same words the wizard used to scope it. A webhook URL and a sandbox toggle are set here.
+
+[L145] [Heading 2] 29.2  First call
+
+[L146] The response contract with governance inline: class travelling with every claim, the refusal envelope visible in its own shape, and the trace identity resolvable to the same record the compliance audit reads.
+
+[L147] Sandbox serves from fixture estate, so the full contract — including every refusal shape and the async lifecycle — is exercised before real material ever moves. An engineer who has never seen a refusal in development handles the first one in production badly.
+
+[L148] [Heading 2] 29.3  Administer
+
+[L149] Applications, keys, usage, refusal health, and the objective lifecycle, in one place. Refusal health is a first-class view rather than an error log: a rising refusal rate against one key is a signal about that integration’s own objective — its scope may be too wide, or its floor too high for what the estate actually holds — and it is read as information, never suppressed as noise.
+
+[L150] [Heading 1] 30  The Reference Application
+
+[L151] One plain question, and an answer the reader can act on and defend. Its output is preset — a composed conclusion, for a person, synthesized whole, at their floor. There is no output picker, because choosing an output form is a commissioning act, and this surface is not for commissioning.
+
+[L152] Refusal classes render distinctly. Not-extracted-yet, evidence-cannot-support, and something-broke are three visually distinct states, and the third shares nothing with the first two — not components, not colour, not layout.
+
+[L153] Export is a rendering of the same artefact with class markings intact. It is not a second product and not a re-shaping — a different form or grain is a new objective, full stop.
+
+[L154] [Heading 1] 31  The Buyer Path
+
+[L155] The buyer’s promise: know what you are buying, acquire it lawfully, and use it with confidence. The friction of acquisition is what renders as the assurance that makes the data theirs.
+
+[L156] [Heading 2] 31.1  Shaping within offerability
+
+[L157] The shaping agent works within offerability — owned estate only, licence class, disclosure limits — and may propose, because steering a buyer toward a cheaper feasible shape is sales rather than laundering. This is the one place the shaping agent’s posture differs from its operator variant, which asks and never proposes.
+
+[L158] A shape outside offerability is refused with the reason. The buyer never sets lawful basis; use-purpose drives licence class instead. Price and delivery time compute live and move as the shape moves, so the trade-off between what is wanted and what it costs stays visible while it can still be changed.
+
+[L159] [Heading 2] 31.2  Acquisition
+
+[L160] The outer gate’s five checks are the acquisition — rights, irreversibility, cumulative disclosure, licence issue, and receipt — rendered as assurance rather than as obstacles. Nothing partial egresses here either.
+
+[L161] [Heading 2] 31.3  The deliverable
+
+[L162] Per-claim class on every item, and a receipt that resolves publicly by trace identity — the same record any audit sees. The receipt renders the fact and the fingerprint of the transform only, never anything that could aid reversal.
+
+[L163] [Heading 1] 32  The Customer Portal
+
+[L164] An external party that has purchased intelligence needs to receive it, integrate against it, see what they have consumed, and manage their account — without the platform exposing anything beyond what they actually bought.
+
+[L165] Scope is enforced at the persistence layer. A query outside the customer’s own account does not execute. Enforcement at the interface layer would make the boundary a convention any new code path could eventually bypass.
+
+[L166] Purchased intelligence carries its licence label and its quality card — what was bought, at what standard, under what terms to use it. Consumption is metered at the boundary, because unmetered consumption is unpriceable consumption, and value that leaves without a meter cannot be accounted for afterward.
+
+[L167] PART VI
+
+[L169] Traces and Failure
+
+[L170] [Heading 1] 33  Three Traces, End to End
+
+[L171] [Heading 2] 33.1  A call arrives and is answered
+
+[L172] The key resolves to its objective version, its memory plane, and its rights envelope. Admission checks completeness and consults feasibility: the ask is servable from qualified intelligence, so it forks warm. Retrieval draws from the evidence partitions within the plane’s own retrieval scope — never the raw estate, and never material the plane cannot reach. Where composition reaches a model, the call transits the boundary chokepoint: de-identified, invoked, re-identified, receipted. The grounding gate enforces the anchor map. The assertion boundary computes the class as the floor over the load-bearing units. The answer returns with its class inline and its trace identity resolvable, and the Ledger records the call.
+
+[L173] Where it can go otherwise: the material has not been extracted, and a not-extracted-yet refusal offers to file the work; the evidence cannot support the claim, and the refusal names the specific reason; the composition cannot be grounded, and it refuses rather than degrading; retrieval times out, and a fault surfaces on the fault channel — never dressed as either kind of refusal.
+
+[L174] [Heading 2] 33.2  A fresh objective is delivered
+
+[L175] Admission forks fresh and returns an accepted acknowledgement with an objective identity, a delivery estimate, and a quote. Work dispatches. The application receives a thin webhook carrying the event, the objective identity, the trace identity, and the status — no content. It fetches the result over its own authenticated key, where scope is enforced server-side. The outer gate runs its five checks before anything leaves, and mints a receipt. The deliverable carries per-claim class; the receipt resolves publicly by trace identity.
+
+[L176] Where it can go otherwise: the run is cancelled, and nothing partial egresses while the cancellation is still recorded; the run is refused after acceptance, and the same refusal envelope returns as a governed terminal state; the request is retried, and the idempotency key resolves it to the existing objective rather than a second one.
+
+[L177] [Heading 2] 33.3  An application contributes and later publishes
+
+[L178] The application writes a derived conclusion back to its plane. The API boundary checks the five-ring shape: content, provenance including the calls it derived from, class, context, and a re-derivation handle. The class is capped at what the cited sources support. The unit lands plane-local, carrying internal-only rights, invisible to every other consumer, and the write lands in the Ledger and in the per-application view of the compliance record. Later, the organisation elects to publish it: the unit passes the quality row for its output class, carries its rights, and — where governance values require — passes release review. Only then does it become Registry-visible.
+
+[L179] Where it can go otherwise: the contribution is incomplete, and it rejects at the boundary rather than being stored and flagged; the cited sources cannot support the asserted class, and the class is capped rather than the write being accepted at face value; the volume ceiling is reached, and further writes refuse for the cycle; the key is revoked, and the plane freezes with unpublished contributions deleting alongside it.
+
+[L180] [Heading 1] 34  Failure
+
+[L181] A fault is distinct from a refusal everywhere in this contract, and the distinction is never blurred for convenience. A refusal is the system working correctly and declining; a fault is the system failing to evaluate a request at all. The reference application’s three visually distinct refusal-adjacent states — not-extracted-yet, evidence-cannot-support, something-broke — make this legible even to a person who has never read this document: the third state shares nothing with the first two, because what it means to the reader is entirely different.
+
+[L182] A retried request after a fault is safe by construction, everywhere idempotency applies. A caller that retries on fault and receives a refusal instead has learned something real — the request was in fact evaluated between the retry and the response — rather than having triggered a second attempt at the same operation.
+
+[L183] PART VII
+
+[L185] The Function & Promise Registry
+
+[L186] [Heading 1] 35  What It Is
+
+[L187] One canonical, versioned artefact registers every named function in the platform — a gate, an engine behaviour, a worker obligation, a console guarantee — with the promise it protects and its full accounting. It begins as a governed document and, on dispatch, graduates to a machine-readable artefact. It is the single source every standing query runs against, the input the sequencing harness optimises over, and the operating context a model worker itself receives.
+
+[L188] Every function belongs to one of the six engines, to the Watch, or to a named surface for an interface-level guarantee. No new top-level category is added without explicit ratification.
+
+[L189] [Heading 1] 36  Schema — One Row Per Function
+
+[L190] All fields are mandatory. A row missing any of them is not a registered function.
+
+[L191] <<TABLE>>
+
+[L192] Field | Definition and discipline
+
+[L193] function_id | A stable identifier, namespaced under its owning engine or surface. Never reused.
+
+[L194] governor | The owning authority — one of the six engines, the Watch, or a named surface. No new top-level category without ratification.
+
+[L195] mandate | "Built to …" — one sentence, active voice, testable. What the function does, never how.
+
+[L196] promise | "Why this matters …" — the promise protected, phrased so its breach is observable. Many functions may cite one promise; no function may cite zero.
+
+[L197] service_trace | The service sentence and journey step this promise secures. An empty or invalid trace is an orphan.
+
+[L198] surface | Where it acts — module path, route, contract, console element.
+
+[L199] enforcement | The mechanism class: byte-identity lock, structural walk, negative scan, runtime check, end-to-end cell, type-level wall, or constraint architecture. Natural-language-only is not a legal value.
+
+[L200] cost | Execution time class, maintenance burden, false-positive rate where known. Unknown is a legal initial value, replaced by measurement the first time the sequencing harness exercises the function.
+
+[L201] dependencies | Functions or data this one requires ordered-before it. The input to sequencing.
+
+[L202] ladder_rung | The implementing rung. A written justification is required for any placement above the cheapest plausible one.
+
+[L203] owner | The change authority for this row.
+
+[L204] <<END TABLE>>
+
+[L205] [Heading 1] 37  Derivation Rules
+
+[L206] Binding on every function in the registry, without exception.
+
+[L207] [List Paragraph] No gate without a promise. A function whose promise field cannot be honestly filled is not refactored into legitimacy; it is retired.
+
+[L208] [List Paragraph] No promise without a service trace. A promise serving no journey step of any service sentence is either mis-stated or evidence of drift — escalated, never papered over.
+
+[L209] [List Paragraph] No journey step without enforcement. Every step of every service journey resolves to at least one registered function protecting it. An unprotected step is reported as an exposed liability, never assumed safe.
+
+[L210] [List Paragraph] New functions register before they land. Any proposal introducing a gate or a worker obligation includes its registry row as part of its own ruling surface, not as a follow-up.
+
+[L211] [Heading 1] 38  The Three Standing Queries
+
+[L212] Run on every registry change, and on a standing cadence besides. Results are reports; retiring or merging a function executes through the platform’s own ruling process, never automatically.
+
+[L213] <<TABLE>>
+
+[L214] Query | What it finds
+
+[L215] Redundancy | Two or more functions sharing the same promise and the same surface — merge or retire candidates, ranked by cost.
+
+[L216] Orphans | A function with an empty or invalid promise or service trace — a retirement candidate on sight.
+
+[L217] Gaps | A promise or journey step with no function enforcing it — an exposed-liability report, surfaced before an incident finds it instead.
+
+[L218] <<END TABLE>>
+
+[L219] [Heading 1] 39  Population Is Archaeology, Not Authorship
+
+[L220] The registry populates by extraction from what already exists — engine mandate documents, the rulings record, close-report gate rosters. It invents nothing: where extraction finds a gate whose promise cannot be recovered, that is an orphan finding, never an invitation to write one in.
+
+[L221] [Heading 1] 40  The Registry Pays Rent
+
+[L222] The registry is subject to its own law. Its rent is the three standing queries — if it stops retiring functions, finding gaps, or cheapening sequences over a sustained period, it is itself restructured. One artefact, one schema; a second layer above it is a defect on sight.
+
+[L223] PART VIII
+
+[L225] The Critic Seam
+
+[L226] [Heading 1] 41  What It Is
+
+[L227] Every intelligent worker in the build produces output whose quality would otherwise be assured by exactly one mechanism: a person reading it and catching errors by hand. This layer mechanises the half of that catching which is mechanisable — verification of worker output against the on-disk record. It deliberately does not attempt the other half.
+
+[L228] [Heading 2] 41.1  The mechanisable split
+
+[L229] Every catch this layer makes is a verification: the truth already existed on disk, and the worker diverged from it. Verifications mechanise. Frame changes do not — a decision that rewrites what the product is, what a service means, or what standard applies is a change to canon, not a divergence from it, and no layer that verifies against canon can ever catch a correction to canon. Frame authority sits permanently outside this layer’s scope.
+
+[L230] [Heading 1] 42  Design Principles
+
+[L231] [List Paragraph] Detect, never decide. The layer emits findings; every consequence is a ruling made elsewhere. A quality layer with veto power over workers would be a governor nobody actually mandated.
+
+[L232] [List Paragraph] Canon is the oracle. All deterministic verification resolves against the on-disk record — never against a summary, a context window, or another model’s recollection of what the record says.
+
+[L233] [List Paragraph] Zero loop drag. The layer adds no turns and never blocks execution mid-flight: deterministic checks run as cells at submission boundaries, the critic runs asynchronously between turns, and findings arrive with the artefacts they review, never before them.
+
+[L234] [List Paragraph] Halving, not zeroing — stated honestly. A critic sharing a worker’s blind spot misses exactly what both cannot see. The claim made is that it catches the record-verifiable half and measurably shrinks what remains, never that it catches everything.
+
+[L235] [List Paragraph] The critic is calibrated like a model, because it is one. Catch rate and false-alarm rate per worker class are versioned, measured numbers, maintained by human sampling on an ongoing basis.
+
+[L236] [List Paragraph] The layer pays rent. Its own catch-and-false-alarm ledger stands exactly as any function’s does — if it stops catching and starts noising, it shrinks or retires by ruling. No layer sits above it, ever.
+
+[L237] [Heading 1] 43  Tier One — Deterministic Record Verification
+
+[L238] Six check families, all mechanical, all resolving against the repository, running as cells at both submission boundaries and on ruling documents at landing time. Each emits a pass or a finding row.
+
+[L239] Acceptance requires all six families to run at both boundaries; a run without them is incomplete. Findings are cross-referenced and never duplicated, and the checks themselves register in the Function & Promise Registry with their own rows — they are functions, and they pay rent like every other one.
+
+[L240] The residual is conceded openly: Tier One verifies form and existence, not pertinence — an artefact written to the letter of its schema can still cite real hashes for irrelevant objects. Pertinence is exactly the second tier’s rubric, and the two tiers are designed as a deliberate pair; adopting Tier One alone buys the cheap half of the guarantee while advertising the whole of it.
+
+[L241] [Heading 1] 44  Tier Two — The Critic Pass
+
+[L242] An independent model instance reviews each proposal and close report against a fixed rubric, asynchronously, after landing. Its output is a findings report — classed, cited, never blocking, never editing.
+
+[L243] [Heading 2] 44.1  Independence
+
+[L244] The critic never shares the worker’s conversation. Its context is exactly the artefact under review, the canon set, the authorising instrument, and the rubric — never the worker’s own reasoning, drafts, or self-justification. A critic reading the author’s rationale inherits the author’s frame, which is the blind-spot-sharing failure this whole design exists to avoid.
+
+[L245] No worker critics its own output. Where both instances share a base model, independence is held by context isolation alone, and seeded audits measure whether that isolation is actually sufficient. The critic runs at the cheapest sufficient rung, one review per artefact rather than per token, with cost per review held as a standing metric throughout.
+
+[L246] Findings carry the platform’s own honesty grammar: a finding states what it checked, what it found, at what confidence class, with citations. An unclassed finding is itself a finding.
+
+[L247] [Heading 2] 44.2  Three failure modes, answered structurally
+
+[L248] <<TABLE>>
+
+[L249] Failure mode | Structural answer
+
+[L250] Rubber-stamping | A critic that finds nothing is indistinguishable from a critic that looked at nothing. Answered by seeded-defect audits: found-nothing is credible only from a critic whose detection is measured against known positives.
+
+[L251] Noise | A critic rewarded for finding things drowns rulings in trivia. Answered by the false-alarm ledger: a critic whose findings are repeatedly ruled non-findings has its rubric tightened, or its scope shrunk, by ruling.
+
+[L252] Infinite regress | Who reviews the reviewer? Stopped by construction — the critic’s own findings are subject to deterministic checks and human sampling only. There is no critic of the critic, and proposing one is itself a finding.
+
+[L253] <<END TABLE>>
+
+[L254] [Heading 1] 45  Tier Three — Human Calibration
+
+[L255] The reviewing role compresses under this design; it does not disappear. Three lightweight instruments, all producing versioned numbers: the matrix’s own stratified human samples double as the critic’s calibration — catch rate and false-alarm rate per output class, versioned, staleness-marked.
+
+[L256] A critic whose calibration has gone stale past its window has its findings marked uncalibrated at render — the identical honesty rule the platform applies to model confidence anywhere else. A stale quality layer says so, visibly, rather than continuing to speak with unearned authority.
+
+[L257] One calibration mechanism serves three consumers throughout the platform: fact-confidence calibration, the build-time critic’s ledger, and the production critic’s per-class ledger are the same versioned, staleness-marked form, used three times over. A second, parallel calibration mechanism anywhere is a defect on sight.
+
+[L258] [Heading 1] 46  What This Layer Is Not
+
+[L259] [List Paragraph] Not a governor. It holds no mandate, asserts nothing about the estate, and gates nothing but form. A proposal for veto authority is rejected in advance, not debated on arrival.
+
+[L260] [List Paragraph] Not a replacement for the human seat. Frame changes are constitutionally outside a canon-verifying layer’s reach. The largest course corrections any build undergoes are frame changes, and this layer would catch none of them — by design, not by oversight.
+
+[L261] [List Paragraph] Not inline. Nothing here adds a synchronous step to any serving path, or a turn to any loop.
+
+[L262] [List Paragraph] Not a new meta-artefact class. It reuses the platform’s own standing machinery — query patterns, registry rows, the calibration-ledger form — rather than inventing its own.
+
+[L263] [List Paragraph] Not a zero-residual claim. It halves the residual, measurably and repeatedly. Its own dashboard is built to show its misses, not to hide them.
+
+[L264] PART IX
+
+[L266] Discipline
+
+[L267] [Heading 1] 47  Defect Classes
+
+[L268] Named, and reportable on sight by anyone — owner, builder, or system — working on the platform.
+
+[L269] <<TABLE>>
+
+[L270] Class | Definition
+
+[L271] D1 · Orphan gate | A function with no honest promise, or no service trace.
+
+[L272] D2 · NL-only enforcement | A rule whose only enforcement is prose interpretation, with no machine-checked twin.
+
+[L273] D3 · Curated verdict | Any selection of validation material by favourability rather than measured composition.
+
+[L274] D4 · Rung inflation | Model-ladder placement above cheapest-sufficient, with no written justification on record.
+
+[L275] D5 · Meta-spiral | A second governance layer above one that already exists; a governance artefact that has stopped paying rent.
+
+[L276] D6 · Service conflation | A platform function optimised for an end-user persona rather than for a service sentence — the wrong job, done well.
+
+[L277] D7 · Invented schedule or scope | Sequencing, deferral, or workstreams introduced without explicit instruction — binding on the ruling authority and the builder alike, with no exception for either.
+
+[L278] D8 · Dual-identity execution | A task holding, or a code path permitting, more than one authority's identity or scope within a single execution — including any evidence crossing between the authorities outside the matrix of Document 9.
+
+[L279] <<END TABLE>>
+
+[L280] [Heading 1] 48  Canon Before Ruling
+
+[L281] No decision proceeds from memory or summary where the governing document exists. Unread canon is read before ruling — binding on the ruling authority and the builder alike, with no exception for either.
+
+[L282] This is the same doctrine stated in Document 1, applied here to its most concrete case: a builder characterising what an engine does, what a spec requires, or what was already decided must read the document rather than recall it. A recollection presented as fact, where the written record exists and was simply not consulted, is the exact failure this rule exists to prevent — and it is a failure this specification’s own construction encountered and corrected before landing.
+
+[L283] [Heading 1] 49  Every Phase Closes on Disk
+
+[L284] A phase opens with a proposal written to disk and closes with a close report carrying its gate roster with results, its artefact hashes, its registry attestation, a conformance table, and a self-audit. A phase with no on-disk close report is not closed, whatever a conversation about it concluded.
+
+[L285] A self-audit row whose evidence is "reviewed" or "checked manually" is not evidence. The evidence column names a test identifier, a gate result, or an artefact hash — something another reader could go and verify independently.
+
+[L286] Every ruling taken lands the same day as a file citing what it rules on. A ruling that exists only in conversation does not exist. Every new function registers its row before it lands, as part of the same ruling surface rather than as a follow-up task. And the build journal carries no undocumented window — a gap is closed by a reconciliation entry enumerating every change landed within it, with citations; an undocumented window is a violation in itself, independent of what happened inside it.
+
+[L287] [Heading 1] 50  What This Specification Comes Down To
+
+[L288] A request is answered warm or forked fresh, once, at the boundary, and every consumer downstream honours that fork rather than re-deriving it. A refusal is a governed outcome carrying a named reason and an action the reader can actually take — never an error, and never a dead end dressed as a door. An application’s memory grows from what it actually uses, stays isolated by construction rather than by discipline, and is visible to the estate holder in full. Every function in the platform can state the promise it protects and the journey step that promise secures, or it is retired. And nothing about how the platform was built is trusted to memory where the record already exists to be read instead.

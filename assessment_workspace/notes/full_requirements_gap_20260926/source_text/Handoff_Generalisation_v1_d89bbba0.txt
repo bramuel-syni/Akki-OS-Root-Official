@@ -1,0 +1,39 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  7 OF 9
+
+[B2] Hand-Off Generalisation
+
+[B3] handoff_registry_v1 — Draft for owner ratification · Closes Document 0 G-13
+
+[B4R1] Problem | Promise #32's guarantee — clean hand-offs, no dropped context, no silently recalibrated objective — is instantiated exactly once: ThinkLab handing a completed reasoning session to Task Manager. Every other subsystem-to-subsystem hand-off has no registered contract at all, per BR-6.1 and the Security Amendments' G-13 finding.
+
+[B4R2] What already exists to build on | Two ingredients, both already shared mechanisms: Northena's objective-freeze (BR-3.1, “a single, shared implementation invoked identically by every subsystem that hands off a job”) and the registered-handoff-contract shape the one working instance already uses — what was commissioned, its shape, the identity of both ends, a receipt.
+
+[B4R3] What this document adds | The missing half: a hand-off registry every crossing writes to and every receiving subsystem checks, owned by Mkondo, generalising the one instance to all of them.
+
+[B4R4] Date | 9 September 2026
+
+[B5] 1   The Registry
+
+[B6] HR-1  Mkondo owns a hand-off registry. Every job passed from one subsystem to another — not only ThinkLab to Task Manager — writes an entry before the receiving subsystem may act on it.
+
+[B7] HR-2  A hand-off entry carries: the commissioning subsystem's identity; the receiving subsystem's identity; the job's frozen objective, from Northena's existing mechanism (BR-3.1); the shape of what is being handed off (a reasoning session, a training commission, an extraction request, a rule proposal — whatever the job class); a timestamp from the platform's reliable time source; and a receipt once the receiving subsystem acknowledges.
+
+[B8] HR-3  A receiving subsystem MUST refuse to act on a hand-off that has no registry entry. This is the generalisation of the one existing guarantee (Promise #32: a malformed hand-off surfaces as a finding at the point of hand-off) to every crossing, not only the instantiated one.
+
+[B9] HR-4  The no-dual-hatted-task rule (Promise #32) is enforced at registration: a hand-off entry naming a job already open under a different receiving subsystem is refused, not merely discouraged. This moves the rule from convention (as BR-6.3 found it) to a registry-level check.
+
+[B10] HR-5  Objective freeze applies at the point of registration, not at the point of eventual action — a receiving subsystem inherits the frozen scope Northena set at hand-off, and cannot itself widen it. This is the same discipline DAP-18 already applies to commissioned jobs, generalised to every internal hand-off, not only DAP's external-facing ones.
+
+[B11] HR-6  The registry is queryable by either end of a hand-off, by job, by subsystem pair, or by time range — so “what did we hand this subsystem, and when” has an answer without reconstructing it from each engine's own logs.
+
+[B12] 2   Failure Posture
+
+[B13] HR-7  A hand-off registry write that fails leaves the job un-commissioned on the receiving side — fail-closed, consistent with failure_posture_v1's platform default and its own treatment of Mkondo's registry (“neither side treats the hand-off as complete; the attempt is recorded as failed, not silently retried as success”).
+
+[B14] 3   What This Does Not Change
+
+[B15] ThinkLab's hand-off to Task Manager is not re-specified — it already meets HR-1 through HR-6 by construction, having been the pattern this document generalises from. No existing behaviour changes for that one crossing; every other crossing now has to meet the same bar it already does.
+
+[B16] 4   Standing
+
+[B17] A new subsystem, or a new job class passed between existing ones, registers its hand-off shape here at the point it is built — not discovered later as a second uninstantiated guarantee the way this one was.

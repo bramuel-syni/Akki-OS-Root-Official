@@ -1,0 +1,103 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  PLATFORM FOUNDATION
+
+[B2] The Principal Model
+
+[B3] principal_model_v1 — Draft for owner ratification · elevates DAP-1–5 to a platform capability
+
+[B4R1] Origin | DAP-1 through DAP-5 specify an external-party principal as an addition to the governed triad. Implementation review (DAP Backend Engineering Brief §4, 20 Sep 2026) found the platform has no principal model of any kind — no authentication, no authorisation, no session, no tenancy; every request reaches every handler as the same anonymous caller behind a single source-IP allow-list. Twelve of thirteen unimplemented DAP requirements are downstream of this one gap. This document is that review's own recommendation, formalised: the principal is not a DAP feature, built as one and rebuilt when the second consumer arrives. It is a platform capability, specified once.
+
+[B4R2] Scope | A principal store; a credential plane; request-context propagation carrying principal identity to every downstream write; the trust-domain boundary DAP-5 requires. Not in scope: DAP's own admission ceremony, approval routing, or metering — those consume this capability and are specified in dap_backend_spec_v1 (canon, sha `e675990a…`, confirmed 20 Sep 2026).
+
+[B4R3] Status | Draft v1. Every requirement PROPOSED. Grounding brief for a build wave, per standing orders §2.5 — every requirement below is quotable verbatim in an invariant docstring.
+
+[B4R4] Date | 20 September 2026
+
+[B5] 1   Why This Sits Beneath DAP, Not Inside It
+
+[B6] DAP-1: “An external party is admitted as an organisation-level principal carrying: legal identity; a declared governance posture; the terms it is admitted under; its trust domain identifier; and an admission-time mandate stating what it came to do. Individuals and agents act under it, never beside it.” That sentence presumes a store to admit into, a way to issue and check credentials, and a way for every later action to say which principal it belongs to. None of the three exists. Building them as DAP's own internal state would mean rebuilding them for the next consumer — an internal operator surface, a future agent-hosting product — exactly as canon's own composition doctrine warns against (DAP-19: DAP holds no extraction logic of its own; it composes). The principal store is the same kind of thing: infrastructure other components compose, not a feature of the component that happened to need it first.
+
+[B7] 2   The Principal Store
+
+[B8] PRIN-1  The store holds three principal kinds, each with its own mandate: organisation (DAP-1's fields — legal identity, governance posture, terms, trust-domain identifier, admission-time mandate); individual (a named person acting under an organisation, with a mandate scoped by that organisation); and agent (an autonomous non-human principal, admitted separately from its operator, carrying its own stated scope of autonomy). An individual or agent MUST reference the organisation it acts under; it MUST NOT exist without one.  [DAP-1, DAP-2, DAP-3]
+
+[B9] PRIN-2  Admission of any principal is a governed act. An organisation is admitted only by the estate owner's named authority. An individual or agent is admitted only by a principal already holding authority to admit under its own organisation's terms. No principal self-admits.  [DAP-1]
+
+[B10] PRIN-3  Every principal carries a behavioural-signature state under the Watch, present from its first request — an agent's machine-speed attack shape applies from admission, not from some later point at which it is judged to need watching.  [DAP-2, DAP-3]
+
+[B11] PRIN-4  Mandate is immutable once frozen at admission, on Northena's existing objective-freeze mechanism (Promise #32). Changing what a principal is admitted to do is a new admission event, not an edit to the old one.
+
+[B12] 3   The Credential Plane
+
+[B13] PRIN-5  Credentials are issued per principal, never per organisation — an organisation with five individuals has five credentials, each independently revocable in one act, none of which reveals or touches the others.  [DAP-13]
+
+[B14] PRIN-6  Credential material is never persisted in a form any component can read back. The plane issues and can revoke; it cannot recover or display a previously issued credential. A credential shown once and lost is reissued, never recovered.
+
+[B15] PRIN-7  A credential is bound to exactly one trust-domain identifier (§4) at issuance. It cannot be presented to resolve identity outside that domain.
+
+[B16] PRIN-8  Rotation default: 90 days, DEFAULT-class, per the existing platform convention for API key lifetime. Revocation is unconditional and immediate on the estate owner's act, regardless of rotation schedule.  [DAP R-4 precedent]
+
+[B17] 4   The Trust-Domain Boundary
+
+[B18] PRIN-9  The principal's domain and the estate's domain share no identifier resolution, no store, and no credential — verbatim DAP-5. A unit identifier meaningful inside the estate MUST NOT resolve to anything in the principal's domain except through an operation the consuming component's own spec permits.  [DAP-5, Attribute 12]
+
+[B19] PRIN-10  Every record the platform writes on a principal's behalf carries that principal's trust-domain identifier. A write with no resolvable trust-domain identifier is refused, not defaulted to the estate's own domain.
+
+[B20] 5   Request-Context Propagation
+
+[B21] This is the piece the engineering review named precisely: the Ledger's existing entries carry an `actor` string with no principal semantics behind it — a label, not an identity that was authenticated and admitted. Fixing this is what makes every downstream metering and attribution requirement (DAP-21 through DAP-27) actually attributable, rather than attributed to a string nothing verified.
+
+[B22] PRIN-11  Every request entering the platform on behalf of a principal carries that principal's identity through to every service it touches, by construction — not by convention, not by a caller choosing to pass it along. A downstream write with no principal in its calling context fails closed rather than writing under a default or empty actor.
+
+[B23] PRIN-12  The Ledger's `actor` field is populated only from propagated principal context, never from a caller-supplied string. Existing entries written before this component exists are not retroactively altered — the fix is prospective, consistent with how every other prospective-only correction in this canon has been handled.
+
+[B24] PRIN-13  Principal context is read-only once it enters propagation for a given request. A service receiving it cannot widen, narrow, or substitute the principal it was given — the same discipline Northena's objective freeze already applies to scope.
+
+[B25] 6   What This Unblocks
+
+[B26] Named directly in the engineering review, restated here as the acceptance list for this wave:
+
+[B27R1] Requirement | Unblocked by
+
+[B27R2] DAP-13 (keys per principal) | §3 credential plane
+
+[B27R3] DAP-14 (controlled request routing) | §2 principal store + §5 propagation
+
+[B27R4] DAP-21 (metered event, party principal field) | §5 propagation, PRIN-12 specifically
+
+[B27R5] DAP-22 (terms resolved per party agreement) | §2 principal store
+
+[B27R6] DAP-23 (per-party ceiling) | §2 + §5
+
+[B27R7] DAP-24 (cumulative extraction history) | §2 + §5
+
+[B27R8] DAP-25 (owner configuration per party) | §2 principal store
+
+[B27R9] DAP-27 (suspend a party) | §2 — suspension is a state on the principal store
+
+[B28] DAP-4's slow-play detection depends on cumulative history (above) but per the DAP Backend Engineering Brief's own D-3 finding, three further parameters are missing beyond what this wave provides. This wave makes slow-play detection possible; it does not complete it. Track separately.
+
+[B29] 7   Placement in the Standing Enumerations
+
+[B30R1] Document | Entry
+
+[B30R2] tcb_enumeration_v1 | IN: admission (PRIN-2), the credential plane's issue/revoke decision (PRIN-5, PRIN-6), and propagation's fail-closed check (PRIN-11) — each deterministic, each falsifying a guarantee on failure. OUT: nothing learned exists in this component; there is no drafting half to exclude.
+
+[B30R3] failure_posture_v1 | Propagation context absent → fail-closed, no default actor (PRIN-11). Credential plane unreachable → fail-closed on issue and on revoke — revoke fail-closed means the credential is treated as still valid only until revocation is confirmed, never silently treated as already revoked.
+
+[B30R4] Master Requirements Registry | PRIN-1 through PRIN-13 at next refresh.
+
+[B31] 8   What This Does Not Claim
+
+[B32] LIM-1  Does not complete DAP-4's slow-play detector — D-3's missing parameters are separate work.
+
+[B33] LIM-2  Does not decide the reliable-time-source gap (D-16). Metering attribution becomes principal-correct under this wave; metering becomes defensible only once a reliable time source exists.
+
+[B34] LIM-3  Does not build DAP's own admission ceremony, approval routing, or crossing profiles. Those are dap_backend_spec_v1's, consuming this.
+
+[B35] LIM-4  Is a specification, not a build. Sealing this wave means the tests above pass double-green and byte-match — it does not mean the wave has been independently audited or operated at scale.
+
+[B36] 9   Rulings
+
+[B37] R-22  Credential rotation default (PRIN-8): recommend 90 days, consistent with the existing API-key convention. DEFAULT-class.
+
+[B38] R-23  Which existing route shapes, if any, are retired once the principal store lands — the engineering review names `/api/team/access_register` and `/api/team/constitutional_seats` as reference shapes, not a foundation to extend. Recommend: kept as read views over the new store, not retired outright, so nothing consuming them breaks. Confirm or amend.

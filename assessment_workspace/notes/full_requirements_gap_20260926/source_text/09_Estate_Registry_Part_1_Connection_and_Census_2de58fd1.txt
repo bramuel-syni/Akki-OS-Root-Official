@@ -1,0 +1,197 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Estate Registry & Census — Part 1: Universal Connection & the Census
+
+[B3] Document 9 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Estate Registry & Census
+
+[B5] Promises held in this document: #12 (connects to all database types) · #13 (runs a census on connected data) · #15 (reads any data type, including audio)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap · [OPEN] genuine question, recommended default stated, not settled.
+
+[B8] The service that powers these promises is Mtafiti, the measurement engine. Mtafiti censuses the estate exhaustively and writes the Registry: what exists, at what sensitivity, and how defensibly each source can be relied upon. It discovers and measures; it does not extract, target, or govern. Its surface-layer name is "Registry" (the inventory a user reads); noted once, and this document specifies the engine and its census.
+
+[B9] The organising fact of this document. The census is exhaustive and objective-blind: it measures the estate as it is, without reference to any particular objective, so that targeting and convergence both read one measure that serves every objective equally. A measure computed per objective would have to be recomputed per objective — and two objectives could then disagree about the same source, a disagreement the platform cannot afford to have unresolved.
+
+[B11] PART A — PROMISE #12: CONNECTS TO ALL DATABASE TYPES
+
+[B12] A1 · The promise, in plain language
+
+[B13] The platform can connect to whatever an organisation holds its data in — any database type, any store — and bring it under measurement and governance without the organisation first having to migrate, restructure, or normalise it into some single warehouse. What the organisation already has, where it already has it, is what the platform connects to.
+
+[B14] A2 · The service that powers it
+
+[B15] Mtafiti's census and connection layer, feeding the normalised unit contract — the single intake contract through which any source, whatever its native form, becomes measurable and (later) extractable material.
+
+[B16] A3 · Definition of the promise
+
+[B17] Connection is to the source in place. The platform connects to the organisation's stores where they are, inside the organisation's perimeter (Document 1). It does not require the data to be moved into a platform-owned store first.
+
+[B18] One intake contract admits every source type. A structured record and a perceived source (audio, document, image) both resolve to the same normalised unit — the structured record becomes a unit carrying a text modality and a free locator, without perception. No second intake contract exists anywhere in the platform. This is what makes "all database types" a single mechanism rather than a proliferation of special cases.
+
+[B19] "All types" is a completeness claim held honestly. Where a genuinely new source type is not yet supported by a connector, that is a connector gap to close, stated as such — not a silent failure that leaves part of the estate unmeasured while the instrument reads as complete.
+
+[B20] A4 · Delivery experience expectations
+
+[B21] What the organisation experiences (human-facing):
+
+[B22] Connecting a source is a governed operation that names what is being connected and how it should be reached, attempts the connection for real, and reports plainly whether it succeeded and, if not, at which step it failed — confirming that nothing crossed on a failed attempt.
+
+[B23] The organisation does not undertake a migration or warehouse-building project as a precondition. The estate is connected as it stands.
+
+[B24] What a consuming system experiences (machine-facing):
+
+[B25] Once connected, a source is enumerated into candidate source records and made available to measurement and extraction through the one unit contract, regardless of its native store type.
+
+[B26] What is produced and retained:
+
+[B27] Per connected source, a candidate source record carrying the source reference, its region, the feed identity that keys its declaration baseline, and a deterministically classified sensitivity.
+
+[B28] A5 · Technical and behavioural requirements
+
+[B29] A5.1 · One intake contract, no second path [CANON]. The normalised unit admits structured sources exactly as it admits perceived ones; a structured record becomes a unit carrying a text modality and a free locator. No second intake contract exists anywhere in the platform. A new source type is a new connector feeding the same contract, never a parallel intake path.
+
+[B30] A5.2 · Connection is inside the perimeter [CANON]. Sources are connected within the organisation's own infrastructure and network boundary (Document 1 §6). Connection does not move data outside the perimeter; the only path that leaves the perimeter is the custody boundary.
+
+[B31] A5.3 · Connection is a governed, recorded operation [CANON]. Adding a source names what is connected and how it is reached, attempts the connection for real, and records the outcome. A failed attempt reports the failing step and confirms nothing crossed. (The connection operation's authoring is the same governed-operation discipline used throughout; Document 16 §5 holds the record.)
+
+[B32] A5.4 · The completeness claim is honest about connector gaps [PROPOSED]. Where a source type has no connector yet, the estate's unmeasured portion attributable to it is recorded as unmeasured (A-B below), and the missing connector is a stated gap. The instrument never reads "all connected" while a connectable source type is silently unsupported.
+
+[B33] A6 · What must be true for the service to deliver as intended
+
+[B34] Every source type resolves to the one unit contract. If any source type requires a second intake path, single-owner-per-value and the uniformity of measurement both begin to fracture.
+
+[B35] Connection never moves data out of the perimeter. A connection path that egressed data would breach the custody guarantee before measurement even began.
+
+[B36] Connector gaps are visible, not silent. An unsupported source type that reads as "nothing there" makes the whole census dishonest.
+
+[B38] PART B — PROMISE #13: THE CENSUS
+
+[B39] B1 · The promise, in plain language
+
+[B40] The platform walks the entire connected estate and produces an honest, dated, method-carrying account of what is actually there — how much, of what kinds, in what languages, how much carries personal data, how much is licensed for external use, how defensibly each source can be relied upon, and — explicitly — what has not yet been measured. It counts what exists rather than estimating it, and it never presents a gap as a clean result.
+
+[B41] B2 · The service that powers it
+
+[B42] Mtafiti's census — the exhaustive, objective-blind walk that enumerates and classifies every source — together with the two-layer defensibility measure (a deterministic declaration baseline and an admission-gated inference overlay) and the freshness mechanism that keeps the account current.
+
+[B43] B3 · Definition of the promise
+
+[B44] Exhaustive and objective-blind. The census walks the estate as it is, producing one candidate source record per discovered source, consulting no objective during the walk. One census serves every objective.
+
+[B45] It produces, per source and per stratum: volume, media types, languages, era distribution, quality strata, the share already verified, the share carrying personal data, the share licensed for external use — and, explicitly, what has not been measured.
+
+[B46] Unmeasured is a first-class value. A dimension not measured is recorded as unmeasured — never as zero, absent, or clean. A blank that reads as clean makes the whole instrument dishonest.
+
+[B47] Every figure carries its method. Any figure resolves to the census run that produced it, its date, the population measured, and whether it was full or sampled. A sampled measurement is never presented as a full-population one.
+
+[B48] A defensibility measure per source. The census measures how defensibly a source can be relied upon — set by claim genre, source standing, corroboration, recency, and contested status — but it never judges whether a claim is true, and it fails toward caution, never making a source look more defensible than it can be defended.
+
+[B49] B4 · Delivery experience expectations
+
+[B50] What the organisation experiences (human-facing):
+
+[B51] The organisation reads a true account of its estate: real counts, real composition, real defensibility, with the unmeasured portion shown as unmeasured. Every figure can be traced to the census run, date, population, and method that produced it. The account is dated and refreshes as the estate changes.
+
+[B52] What a consuming system experiences (machine-facing):
+
+[B53] Targeting and convergence read one Registry record per source carrying existence, sensitivity, the defensibility measure, and a freshness stamp. A stale or un-censused region returns unknown to a feasibility query — never a fabricated distribution — so no objective ever freezes against an estate the system has not measured.
+
+[B54] What is produced and retained:
+
+[B55] The Registry: one record per source (existence, sensitivity, defensibility measure, freshness stamp), plus the estate- and stratum-level census figures, each carrying its method and date.
+
+[B56] B5 · Technical and behavioural requirements
+
+[B57] B5.1 · The census is exhaustive and objective-blind; one measure serves all [CANON]. It enumerates and classifies every source; measurement follows separately. No objective is consulted during the walk. One census serves every objective, so two objectives can never disagree about the same source.
+
+[B58] B5.2 · Unmeasured is recorded as unmeasured [CANON]. A dimension not measured is never recorded as zero, absent, or clean. This is the instrument's core honesty property.
+
+[B59] B5.3 · Every figure resolves to its method [CANON]. Date, population measured, and full-versus-sampled are carried with every figure; a sampled measurement is never presented as full-population.
+
+[B60] B5.4 · The two-layer measure scales without per-item labelling [CANON]. The defensibility measure is a deterministic, feed-level declaration baseline (the certain floor, never assigned per item, undeclared feeds resolving to the conservative unknown) composed with an inference overlay that emits detections only — and the overlay influences the measure only after its admission gate proves its detection accuracy on real material. Until then the baseline stands alone, and the Registry records which regime produced a given measure. Learning detects; the governed matrix decides; the declaration baseline floors; the admission gate admits.
+
+[B61] B5.5 · The defensibility verdict is a deterministic matrix lookup carrying its rule reference [CANON]. The verdict returns the defensibility class (fact, utterance, or non-factual) and the reference of the matrix rule that produced it. The matrix contains no model and is read through an opaque handle — which is what lets a verdict issued a year ago be re-derived and explained today exactly as reached. The inference module never imports the verdict module and never assigns a class, enforced by import assertion.
+
+[B62] B5.6 · Freshness is a mechanism, not a schedule [CANON]. A logged date and a structural-delta check drive scoped re-discovery of only the affected region and re-run the measure for that region alone. A retraction changes contested status, so a region's measure changes exactly when the estate's own record of a claim changes. A stale or un-censused region returns unknown, never a fabricated distribution.
+
+[B63] B5.7 · Sensitivity classification is the single entitlement attribute [CANON]. The sensitivity classification the census assigns is the resource attribute that entitlement rules match a requester's attributes against. No second classification exists for that purpose; entitlement reads this one.
+
+[B64] B6 · What must be true for the service to deliver as intended
+
+[B65] The census is genuinely exhaustive and objective-blind. A census that skipped regions, or measured per objective, would let two objectives disagree about one source and would leave parts of the estate silently unmeasured.
+
+[B66] Unmeasured is never rendered as clean. The single property whose failure makes the whole instrument dishonest.
+
+[B67] Every figure carries its method. A figure without its date, population, and full-vs-sampled cannot be trusted or reproduced.
+
+[B68] The measure fails toward caution. A measure that could overstate a source's defensibility would let a claim be asserted above what it can bear.
+
+[B69] Freshness actually re-measures on change. A Registry that goes stale without re-measuring lets objectives freeze against an estate that no longer looks as recorded.
+
+[B71] PART C — PROMISE #15: READS ANY DATA TYPE, INCLUDING AUDIO
+
+[B72] C1 · The promise, in plain language
+
+[B73] The platform can read and work with any kind of data the estate holds — not only neat structured records, but documents, images, and audio — bringing all of it under the same measurement, the same governance, and the same extraction. Audio in particular is a first-class citizen: a recording is read, transcribed, attributed, and made into the same kind of governed intelligence as any text, with provenance that points back to the exact second it came from.
+
+[B74] C2 · The service that powers it
+
+[B75] Mtafiti's census (which records media types per source) and the perception pathway — the frozen job/result contract through which perceived material (audio, images) is read, always crossing the boundary governor's perception router so that material crossing a model boundary is receipted whatever its modality.
+
+[B76] C3 · Definition of the promise
+
+[B77] One pipeline across all modalities. The extraction pipeline is the same whichever data dimensionality the material belongs to — audio, documents, structured records, images, or any other modality the estate holds. The layers, the unit contract, and qualification apply identically across all of them.
+
+[B78] Perceived material returns grounded to source position. Perception work crosses as a frozen job and returns as a frozen result carrying what was read, the confidence distribution, the execution mode, and grounding markers that resolve to a position in the source — a timestamp span in audio, a page and region in a document.
+
+[B79] Every perception model is governed like a dependency. Every model that runs is registered with its hash and its licence; a model whose licence has not been verified does not run, and the registry entry a result was produced under is recorded with the result.
+
+[B80] C4 · Delivery experience expectations
+
+[B81] What the organisation experiences (human-facing):
+
+[B82] Audio and other perceived material that previously sat unusable becomes searchable, attributable governed intelligence — a claim drawn from a recording points back to the exact second of audio it came from, not merely to the file. The organisation's whole estate, not just its structured portion, is under measurement and available for governed use.
+
+[B83] What a consuming system experiences (machine-facing):
+
+[B84] A perception job returns a frozen result with grounding markers and the model registry entry it ran under, so a result produced under one model version remains fully interpretable after the registry has grown past it. Execution mode (general-purpose or accelerated hardware) is recorded per result without changing the result contract.
+
+[B85] What is produced and retained:
+
+[B86] Units derived from perceived material, each carrying a re-extraction handle that resolves to source position; and the perception result records (what was read, confidence distribution, execution mode, grounding markers, model registry entry).
+
+[B87] C5 · Technical and behavioural requirements
+
+[B88] C5.1 · The pipeline is modality-uniform [CANON]. The extraction layers, the unit contract, and qualification apply identically across audio, documents, structured records, images, and any other modality. A structured record becomes a unit without perception; a perceived source becomes a unit through the perception pathway; both are the same unit contract afterward.
+
+[B89] C5.2 · Perception crosses as a frozen job, returns as a frozen result [CANON]. The job carries what to read, at what standard, under which model registry entry. The result carries what was read, the confidence distribution, the execution mode, and the grounding markers.
+
+[B90] C5.3 · Grounding markers resolve to source position [CANON]. A unit derived from a transcript points to the second of audio it actually came from — which is what makes the re-extraction handle (Document 7) real for non-text material.
+
+[B91] C5.4 · Every perception model is registered with hash and licence [CANON]. A model is a versioned dependency with a rights posture, not a configuration value; a model whose licence has not been verified does not run. Registry entries are additive, and the entry a given result was produced under is recorded with the result.
+
+[B92] C5.5 · Perception calls route through the boundary governor [CANON]. Speech and vision providers are consumed through the boundary governor's perception router (Document 1), so material crossing a model boundary is receipted whatever its modality. This is the second custody pathway named in Document 1 §A5.8; it does not bypass the synthesis pathway and is not bypassed by it.
+
+[B93] C5.6 · The execution seam keeps hardware invisible to consumers [CANON]. The same perception pipeline runs on general-purpose or accelerated hardware behind one seam; each result records which, so a mixed fleet is attributable rather than ambiguous. The result contract is unchanged by execution mode — hardware is an implementation fact, and if it changed the shape of what perception returns, every downstream consumer would have to know about hardware, which the seam exists to prevent.
+
+[B94] C6 · What must be true for the service to deliver as intended
+
+[B95] The pipeline is genuinely uniform across modalities. If audio takes a different path that diverges from the unit contract or qualification, the promise of one governed treatment for all data types fails.
+
+[B96] Grounding markers genuinely resolve to source position. Audio provenance that points only to a file, not a timestamp span, cannot be re-extracted or verified at the unit level.
+
+[B97] Every perception model is licence-verified before it runs. An unverified model is a rights exposure the moment it processes estate material.
+
+[B98] Perception crosses only through the boundary governor. A perception path that reached a provider outside the router would be an ungoverned, unreceipted egress — a hole in the custody guarantee for exactly the modalities the promise highlights.
+
+[B100] OPEN RULINGS SURFACED BY THIS DOCUMENT
+
+[B101] A5.4 [PROPOSED] — Explicit statement that connector gaps are recorded as unmeasured and stated as gaps, so "all database types" is an honest completeness claim. Recommended for adoption. Owner to confirm.
+
+[B102] No canonical open ruling — Mtafiti's census, the two-layer measure, and the perception pathway are fully determinate in canon. The comprehensive registry's field set (naming, linkage, cleanliness rating, opportunity) — including the one field with no canon home, dataset linkage — is the subject of Document 10 (Part 2), where its open ruling is raised.
+
+[B104] End of Document 9 of 16 — Estate Registry & Census, Part 1: Universal Connection & the Census.

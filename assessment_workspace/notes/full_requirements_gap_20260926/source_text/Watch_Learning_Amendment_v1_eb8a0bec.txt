@@ -1,0 +1,147 @@
+[B1] AKKI PLATFORM  ·  CHANGE REGISTER  ·  SECURITY  ·  THE WATCH
+
+[B2] Watch Learning Amendment
+
+[B3] watch_learning_v1 · 5 amendments · S-7 closed, S-28 and S-29 new · 3 rulings · 13 September 2026
+
+[B4R1] Applies to | Doc 3 — the A2 verdict interface (enriched, not replaced) and new A5.19–A5.22 · rulebook_engine_spec_v1 — new RBM-23 · dap_backend_spec_v1 — DAP-32 extended · Doc 20 — new A20.16 · agent_containment_spec_v1 — new AC-15 through AC-18 · Security Assurance Promise Set — S-7 closed, S-28 and S-29 new
+
+[B4R2] What this closes | S-7, on record as a specification gap: Doc 3 promises the Watch “learns from every attack it defeats,” and every clause on learning constrains what must not change (A5.7, A5.8, A5.12) — none says what updates, on what evidence, at what layer, under what ceremony. This amendment answers all four.
+
+[B4R3] The foundation, untouched | Grey Mirror asserts facts and “cannot block, throttle, mark, reroute, or notify” (A2). Mkono is a deterministic mapping from verdict to action, “small enough to verify exhaustively” (A2). The action ladder is fixed. Severance unlocks only from A5.2's closed signal registry, through “a function with no parameter through which a detector's confidence can enter.” Nothing below changes any of these. Intelligence gets smarter; action never does.
+
+[B4R4] Design | The two-faculty seam — Solva's own discipline, where a learned faculty proposes and a deterministic seam decides what may be asserted — placed on the one interface Macho and Mkono share. What grows is the evidence vocabulary: the set of ratified certificate requirements a verdict must satisfy. The detector proposes; the certificate decides whether it is evidenced; the hand acts.
+
+[B4R5] Honesty condition stated up front | Certificates cover the known. A behaviour never before seen in this environment has no certificate, and a verdict about it is handled by the untouched foundation: reversible friction, and severance only from unfakeable signals. Research converts unknown into known over time. Condition 3 of the containment problem — telling novel-and-fine from novel-and-dangerous in real time — remains unsolved by anyone, and LIM-1 stands as written.
+
+[B5] L-1   The Certificate on the Verdict
+
+[B6] TARGET  Doc 3 A2 — the single verdict interface, enriched with required content. New A5.19.
+
+[B7] CURRENT  A verdict is “signed, replayable” and Mkono maps its properties to actions. What a verdict must contain to be valid for a given behaviour is unspecified. Nothing structurally prevents a verdict from carrying, in effect, a confidence — only A5.2's severance function is guaranteed parameterless.
+
+[B8] AMENDED — normative text
+
+[B9] A5.19  Every verdict Grey Mirror passes to Mkono MUST carry a certificate: the set of observed data points that satisfy a ratified certificate requirement (A5.20) for the behaviour asserted, with the requirement's ID and references to the observation records. A certificate contains evidence only. It MUST NOT contain a confidence, score, strength, or probability, and the verdict schema has no field for one — enforced by a signature-as-guard test on CP-S2's precedent. A verdict carrying no certificate is a foundation verdict: it MAY unlock only the reversible ladder — annotate, shape, contain — and severance remains reachable solely from A5.2's registry, unchanged. Mkono's action on a certified verdict is evidenced by that certificate, written to the Ledger with the action. A certificate is legible by construction: it states what was seen, never how worried the detector was.
+
+[B10] MECHANISM  Schema-level: certificate = {requirement_id, data_points[], observation_refs[]}. The runtime check is a deterministic satisfaction test — do the data points cover the requirement's named set — a lookup, not reasoning, so Mkono stays at machine speed. The seam sits at the verdict interface exactly as Solva's seam sits at its own output.
+
+[B11] DERIVATION  Doc 3 A2 (one interface, signed and replayable) and A5.2 (no parameter for confidence). Doc 4 A2 and A5.5 (the assertion floor: no claim without anchors). CP-S2's signature-as-guard, already built. Article 14(c): a verdict a human can read.
+
+[B12] PRINCIPLE  The detector proposes; the certificate decides whether it is evidenced; the hand acts.
+
+[B13] L-2   Certificate Requirements as a Rule Class
+
+[B14] TARGET  Doc 3 — new A5.20. rulebook_engine_spec_v1 — new RBM-23.
+
+[B15] CURRENT  No rule class exists for verdict evidence. A5.8 says the floor never learns; A5.12 protects profiles; S-7 records that no update path is specified anywhere. An unspecified learning path is itself an attack surface — poisoning the detector is the obvious move against a learning monitor.
+
+[B16] AMENDED — normative text
+
+[B17] A5.20  A certificate requirement is a deterministic gate: the named set of data points that must be observed for a verdict to assert a named behaviour. Requirements are formed from data points collected in this environment — live, or in the mirage (A5.21) — and are formed under Solva's assertion floor: every data point in a requirement anchors to an observation record, and a requirement that cannot anchor is not proposed. Formation happens offline, never in the hot path. Grey Mirror's own model MAY be retrained — intelligence smarter — and this is safe precisely because its outputs are certificate-gated; retraining is a change to a Watch component and follows A5.12 and the Watch's ceremony like any other.
+
+[B18] RBM-23  Certificate requirements are a named rule class of tier system-TCB — they determine Mkono's inputs. Each is authored with RBM-1's full field set, enters force only through RBM-8's ceremony (the platform's slowest countdown; an external witness holding no credentials over the Watch), and is amended or retired only through RBM-12 and RBM-13. Every requirement carries its provenance — the Ledger references of the incidents it was formed from — and the library is queryable under RBM-20.
+
+[B19] MECHANISM  Rule-class registration in the Registry; requirement versioning; provenance links to the Ledger entries each requirement was derived from. The ceremony is the existing one — BR-7.3's precedent for any change to the Watch.
+
+[B20] DERIVATION  A5.8 (the floor never learns — satisfied: action stays fixed, the evidence vocabulary grows). A5.12 (profile protection). RBM-4 and RBM-8 (tiering and ceremony). rule_criteria_spec_v1: these are EXTENSION-class rules extending A2. BR-7.3.
+
+[B21] PRINCIPLE  Poisoning the watcher becomes a ceremony violation, not a training-data problem.
+
+[B22] S-7's four questions, answered: what updates — the requirement library; on what evidence — data points collected in this environment, each anchored to an observation record; at what layer — deterministic gates at the verdict interface, not detector weights; under what ceremony — the Watch's own, RBM-8. S-7 moves from gap to spec-closed.
+
+[B23] L-3   The Mirage as Certificate Ground
+
+[B24] TARGET  Doc 3 C1 (the mirage) — new A5.21. dap_backend_spec_v1 DAP-32 — extended. agent_containment_spec_v1 — new AC-15.
+
+[B25] CURRENT  C1's mirage converts suspicion into certainty through the actor's own conduct. DAP-32's admission battery tests entering models for trojans — canary touch, trigger scan. AC-2 grants agent scope on observed track record only: trust is earned by watching. There is no stage at which a model or agent is deliberately provoked before exposure.
+
+[B26] AMENDED — normative text
+
+[B27] A5.21  The mirage is the certificate ground: a controlled environment in which a behaviour with a ratified requirement can be provoked and its data points collected without exposure to real estate data. Data points collected in the mirage are admissible for requirement formation (A5.20) and for admission evidence on the same terms as live observation.
+
+[B28] DAP-32+  The admission battery includes, for every ratified certificate requirement applicable to entering models, the provocation scenario that would produce its data points. An entering model that produces a certified behaviour fails admission. The battery grows with the library.
+
+[B29] AC-15  Before an agent receives any scope beyond admission, it runs the certificate ground for the four ceilings (AC-1 a–d) and every applicable ratified requirement. A certified failure withholds scope. AC-2's track-record path grants; AC-15 withholds. Both are required; neither alone suffices.
+
+[B30] MECHANISM  Mirage scenarios registered per requirement; the same certificate schema as L-1; results written to the Ledger as admission evidence. Generalises DAP-32's existing battery from one behaviour class (hidden backdoors) to the whole library.
+
+[B31] DERIVATION  Doc 3 C1. DAP-32. AC-1, AC-2. The pre-deployment capability-elicitation practice already cited in agent_containment_spec_v1's research base.
+
+[B32] PRINCIPLE  Prove you cannot be provoked before you are let in; earn more by conduct after.
+
+[B33] L-4   The Research Loop
+
+[B34] TARGET  Doc 3 — new A5.22. agent_containment_spec_v1 AC-4 and AC-6 — new AC-16.
+
+[B35] CURRENT  AC-4 routes novel-but-uncertain actions to graduated response; AC-6 routes them to a second evaluator where available. An unsure case ends in review with no defined path beyond it. The authorised attack that never breaks a rule — Doc 3's third attack shape — has no single wrong action, so no per-action requirement can ever capture it.
+
+[B36] AMENDED — normative text
+
+[B37] A5.22  Every unsure case — a verdict with no applicable requirement, or an action routed under AC-4 — enters the research queue with its full observation record. The loop has three roles and one order: CIF proposes what the pattern means — a candidate requirement, or a candidate benign pattern — under its single-experiment principle (BR-9.2: every CIF-originated idea passes a deterministic acceptance point before affecting anything). Solva grounds the proposal — every data point anchored, and a whole-pattern intent audit against the behaviour's objective, which is where the authorised attack that never breaks a rule receives a whole-pattern requirement rather than a per-action one. A human ratifies through RBM-8. The output is a new or amended certificate requirement, or a ratified benign pattern so identical conduct is not re-queued. Research runs outside the hot path; the live case receives graduated response meanwhile, exactly as before.
+
+[B38] AC-16  The containment environment feeds AC-4 and AC-6 unsure cases to the research queue. A ratified outcome re-classes prior identical cases in the record — the classification, never the actions taken, which stand as taken.
+
+[B39] MECHANISM  A research queue keyed to Ledger references; CIF proposal → Solva grounding → ceremony; a benign-pattern registry alongside the requirement library.
+
+[B40] DERIVATION  CIF's single-experiment principle (BR-9.1, BR-9.2). Doc 4 A2, A5.5, and Solva V2's intent audit (CP-S1–S8). Doc 3's third attack shape. AC-4, AC-6. RBM-8.
+
+[B41] PRINCIPLE  Unsure is a queue, not a dead end.
+
+[B42] This does not solve condition 3 in real time. No system does. What it changes is that every unsure case now has somewhere to go, and the vocabulary grows from exactly the cases the system could not yet read. LIM-1 stands as written.
+
+[B43] L-5   Capability Admission — Certify Exercise, Not Learning
+
+[B44] TARGET  Doc 20 — new A20.16. agent_containment_spec_v1 — new AC-17, AC-18. Applies to any self-improving or retrained model and any hosted agent.
+
+[B45] CURRENT  Self-improvement at the weights level is already gated: a model that updates itself produces a new artefact with a new hash (DAP-37's rule) and re-passes MOAC and DAP-31 as itself. CIF's ideas pass a deterministic acceptance point before affecting anything (BR-9.2). AC-1 fixes four ceilings; AC-2 grants scope on track record with independent ratification. What is missing is the grain between “this version is acceptable overall” and “this action is within what was admitted”: no enumerated record of which capability classes a model or agent may exercise, and no requirement that an action name the admission it acts under. Certifying learning itself would be the wrong seam — weights change continuously, a capability is not an object with a hash, and neither the model nor its operator can enumerate the skills a checkpoint contains.
+
+[B46] AMENDED — normative text
+
+[B47] A20.16  Every registered artefact carries a capability-class register: the enumerated set of action and output classes it is admitted to exercise. The register is seeded at admission with the minimum its stated purpose requires (AC-2's narrow start), grows only through RBM-8's ceremony, and is versioned with the artefact — a new artefact hash inherits no admissions; its register is re-ratified with the version.
+
+[B48] AC-17  Every action or output an agent produces MUST cite the admitted capability class it exercises, carrying a certificate on A5.19's schema evidencing that the action is within the class's admitted conditions. An action citing no admitted class is a first exercise: it is handled by the foundation floor — reversible ladder only, never severance on that ground alone — its data points are collected, and it enters the research queue (A5.22) as a candidate class. Once a class is admitted, actions within it cite it by lookup. Ceremony is per class, once — never per action.
+
+[B49] AC-18  A model or agent MAY propose admission of a capability class for itself. It MUST NOT ratify one. A proposal enters the research loop (A5.22): Solva grounds it, a human ratifies through RBM-8. No path exists by which a learner admits its own capability. AC-1's four ceilings are not capability classes and cannot be admitted by any ceremony.
+
+[B50] MECHANISM  The register is stored with the artefact's registry entry. Per-action citation is the register's requirement ID plus an A5.19 certificate. First exercise is detected at the seams the system already controls — the closed action vocabulary, the tool surface, the output-content gate (A5.15) — where a new kind of action is visible even when the skill inside is not. Weights leaving is itself an exercise; DAP-31 remains that gate.
+
+[B51] DERIVATION  DAP-37 (a new hash is a new artefact). BR-9.2 (CIF's acceptance point). AC-1, AC-2, AC-3. A5.15. A5.19's schema; A5.22's loop. RBM-2 (a proposal is not a ratification). Instrumental convergence: capability acquisition is the convergent drive, so the gate sits on exercise, where it is observable, rather than on acquisition, where it is not.
+
+[B52] PRINCIPLE  Learning is free. Using what was learned is admitted, on the record, once per class — and never by the learner.
+
+[B53] This does not stop a model from having dangerous knowledge, and a capability exercised covertly inside an already-admitted class remains the authorised-attack case — research queue and whole-pattern requirement, not a real-time verdict. LIM-1 stands. What is guaranteed is narrower and real: no new class of action reaches the world through this system without having been admitted on the record, and every action names the admission it acts under. A20.16 also answers the earlier open question of who defines an agent's action vocabulary — nobody defines it up front; it is a register grown by ceremony, proposed by anyone, ratified independently.
+
+[B54] 5   Promises
+
+[B55R1] ID | Promise | Status / rests on
+
+[B55R2] S-7 | The system will learn from every attack it defeats. | Gap → spec-closed. Mechanism: L-2 (the requirement library, under ceremony) and L-4 (the research loop). Not built.
+
+[B55R3] S-28 | The system will never act on a verdict it cannot evidence — every Watch action carries a certificate a human can read, and every behaviour it learns to recognise entered its vocabulary through ceremony, not through silent training. | New. L-1 through L-4. Article 14(c) moves from “evidenced by design, not tested” to structurally evidenced: the verdict states what it saw.
+
+[B55R4] S-29 | The system will admit no new class of action into the world without ceremony on the record — every action names the admission it acts under, and no learner ratifies its own. | New. L-5 (A20.16, AC-17, AC-18). Learning is ungoverned by design; exercise is governed at the seams. Bound: R-17.
+
+[B56] 6   Placement in the Standing Enumerations
+
+[B57R1] Document | Addition
+
+[B57R2] tcb_enumeration_v1 | IN: the certificate gate at the verdict interface — deterministic; its failure falsifies S-28. The certificate library is TCB-tier configuration, on the same footing as Mkono's policy tables. Grey Mirror stays OUT, as before.
+
+[B57R3] determinism_inventory_v1 | Certificate gate: Deterministic. Research loop: CIF proposes (Learned); Solva's grounding seam decides (Deterministic); a human ratifies. Article 14(c) verdict updated per S-28.
+
+[B57R4] failure_posture_v1 | Certificate check cannot complete (library unreadable; requirement unresolvable) → fail-closed for certified actions: only the foundation floor remains — the reversible ladder, and severance from A5.2's signals alone. Preserved: the verdict, the failed-check record. The same posture applies to the capability register: an action whose class cannot be resolved is a first exercise, not an admitted one.
+
+[B57R5] Capability admission (L-5) | tcb_enumeration_v1: the capability register is TCB-tier configuration; the per-action citation check is IN — a deterministic lookup. determinism_inventory_v1: the learner proposes (Learned); Solva's seam grounds (Deterministic); a human ratifies.
+
+[B57R6] Master Requirements Registry | A5.19–A5.22, RBM-23, A20.16, AC-15–AC-18, S-28, S-29 at next refresh.
+
+[B58] 7   Rulings
+
+[B59] R-15  The initial certificate library. Recommended: seed it from behaviours canon already names — DAP-32's canary-touch and trigger classes, and the four AC-1 ceilings (self-replication, resource acquisition, credential escalation, oversight tampering) — each entering through RBM-8 as its own requirement. DEFAULT-class initial set; everything after arrives through the research loop.
+
+[B60] R-16  The ratifying human for certificate requirements, and the research-queue review cadence. Recommended: the Watch's existing external witness (C3) as the witness role, per the Rules Service's own R-3 recommendation; the ratifier is a named role — owner input required. Cadence: baseline-period approach, DEFAULT-class.
+
+[B61] R-17  Capability-class granularity, and each deployment's initial register. Recommended: seed a deployment's register from the action vocabulary and tool surface it already declares at admission — one class per tool or output type — and never define a class finer than a seam can actually observe. DEFAULT-class; refined per deployment through ceremony, not by editing.
+
+[B62] What this amendment does not do: it does not make Grey Mirror deterministic — it stays learned, and stays out of the TCB. It does not let a certificate unlock severance — A5.2's registry alone does that, unchanged. It does not claim to read a behaviour it has never seen. It does not touch the ladder. The foundation is the same document it was this morning; what changed is that the Watch now has a way to know more than it did yesterday, through the same ceremony that governs everything else it is allowed to know.

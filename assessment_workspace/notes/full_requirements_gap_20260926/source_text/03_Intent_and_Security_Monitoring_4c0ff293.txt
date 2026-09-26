@@ -1,0 +1,217 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Intent & Security Monitoring
+
+[B3] Document 3 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Intent & Security Monitoring
+
+[B5] Promises held in this document: #6 (adaptive detection, logging and response security agent, intent-measuring) · #7 (intent measured — the security/behavioural half; the reasoning half of #7 is held in Document 4)
+
+[B6] Standalone statement of what must be true. Shared mechanisms are named and Document 16 (Cross-Cutting Orchestration) cited; each requirement is stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling during specification · [PROPOSED] synthesised to close a gap, binding once accepted · [OPEN] genuine question for the owner, recommended default stated but not settled.
+
+[B8] The service that powers these promises is the Watch — the platform's security authority, a peer to the governing engines and subordinate to none. Its end-user-facing surface name is "Grey Mirror"; noted once, not used again. This document specifies the authority and its backend behaviour, not any screen.
+
+[B9] The Watch is composed of two engines and one verdict between them: Macho (the eyes — senses and asserts, holds no power) and Mkono (the hand — acts on signed policy, holds no judgement). Both names are internal and are used here because this is the engineering statement; neither ever renders on a surface.
+
+[B11] PART A — PROMISE #6: THE ADAPTIVE, INTENT-MEASURING SECURITY AGENT
+
+[B12] A1 · The promise, in plain language
+
+[B13] The platform continuously watches everything happening across the estate and the AI it runs — every actor, every input, every action — and asks a question no permission check can answer: not "was this allowed," but "was this actually intended, and is this actor, input, and action what it claims to be?" It detects misuse at machine speed, contains it before a human could wake, learns from every attack it defeats, records everything it does as it does it (including its own mistakes), and proves it still works on a standing schedule without anyone having to check. It is invisible to honest work — the people doing legitimate work never feel it — and it can stop anything while being able to erase nothing.
+
+[B14] A2 · The service that powers it
+
+[B15] The Watch, through its two engines:
+
+[B16] Macho (the eyes) — observes, scores, and asserts facts. It cannot block, throttle, mark, reroute, or notify. Its sole output is a verdict.
+
+[B17] Mkono (the hand) — executes signed policy tables against verdicts. It contains no model, no content parsing, no reasoning — a deterministic mapping from verdict properties to actions, small enough to verify exhaustively.
+
+[B18] The two meet at exactly one interface: a signed, replayable verdict. The hand never reaches behind that seam to inspect raw behaviour; everything it needs is in the verdict.
+
+[B19] A3 · Definition of the promise
+
+[B20] The promise decomposes into properties, each of which is separately required:
+
+[B21] Totality of sight. No path exists by which an actor, input, or action reaches the estate or a model outside the Watch's observed surface. Every detection claim is meaningless if an unobserved path exists, so this is the first property, not an aspiration.
+
+[B22] Detection of the three attack shapes the governors cannot catch: - the machine-speed attack, over before a human wakes — answered by autonomy made safe by construction; - the slow play, drifting beneath every threshold — answered by a stack of constraints (Part IV of this document); - the authorised attack, which never breaks a rule — answered by declared intent reconciled against realised conduct. This is the intent-measuring core and the direct link to Promise #7.
+
+[B23] Response at machine speed, safe by construction. The Watch acts autonomously, but every autonomous act is reversible, bounded, and witnessed — so speed does not mean danger.
+
+[B24] Invisibility to legitimate use, as a measured number. The share of legitimate actions that experience any Watch friction has a hard ceiling. Invisibility is not an aesthetic claim; it is a budget.
+
+[B25] Self-proof on a standing cadence. Every response mechanism demonstrates itself firing on a schedule — full loop, both engines, latencies measured, results as receipts — and a mechanism not demonstrated firing is not in force, whatever any inventory claims.
+
+[B26] Records everything, erases nothing. The Watch can stop anything and delete nothing; every action it takes is on the record as it happens, its own mistakes included.
+
+[B27] A4 · Delivery experience expectations
+
+[B28] What the organisation experiences (human-facing):
+
+[B29] The people doing legitimate work do not notice the Watch at all — this is the defining experience, and it is enforced by the friction budget. A conforming actor moves through the platform with lighter verification, not heavier, because their behavioural signature earns them a trust discount.
+
+[B30] The security officer (the human accountable for the estate's defence) experiences the Watch as a small number of things genuinely requiring a person: a decision panel of conflicts to resolve, each presented with the evidence and the defined choices. Everything the Watch can safely handle itself, it has already handled — what reaches the person is only what a person must decide.
+
+[B31] Where an actor is wrongly caught, they experience an ordinary delay at worst, and — if they were routed into the mirage (Part V) and did work that did not land — they are told plainly that the work did not land, never left to believe a success that did not happen.
+
+[B32] What a consuming system experiences (machine-facing):
+
+[B33] Every actor, input, and action is observed and, where relevant, carries a verdict. A downstream gate evaluating an actor's standing receives that actor's mark state (Part IV) as a structural fact to check on every pass.
+
+[B34] What is produced and retained:
+
+[B35] Verdicts (signed, replayable), actions (each citing the policy row that fired), attestations, and marks — all written to the one authoritative record. The Watch mints the first account of its own events and a second account of nobody else's (Document 16 §5).
+
+[B36] Standing drill receipts — the self-proof dataset, assembled without human effort, which is what "auditable without much human intervention" means in practice.
+
+[B37] A5 · Technical and behavioural requirements
+
+[B38] These are the Watch's doctrines and invariants, stated as binding requirements. All are [CANON] unless marked otherwise.
+
+[B39] A5.1 · The eyes never act; the hand never judges. Detection asserts facts; response executes policy; one verdict is the only interface between them. A detector that knows what action follows its verdict is tuned defensively and detection quality silently degrades — the documented death of most security operations. Therefore Macho holds no powers whatsoever, and Mkono holds no judgement — a deterministic mapping from verdict properties to actions. This is the platform's standing rule (learning may detect, it may never decide) applied to security whole.
+
+[B40] A5.2 · Certainty never exceeds evidence. The Watch's maximum autonomous force (severance) may be unlocked only by signals an outsider cannot fabricate — a closed registry: canary touch, attestation failure, mark hit, witness-write attempt, floor violation, mirage incrimination. A content score or behavioural pattern, however confident, is a signal an attacker can shape; a system whose maximum power can be triggered from outside is a weapon handed to whoever learns to trigger it. The certainty computation is a function with no parameter through which a detector's confidence can enter — the same assertion-boundary discipline Solva uses (Document 4), transplanted here. Everything externally steerable caps at reversible containment, whatever its score.
+
+[B41] A5.3 · Every autonomous act is reversible, bounded, and witnessed. A time-to-live on every action; a blast budget on every window; act-and-attest atomically, peer-countersigned. Destroy does not exist in the Watch — deletion remains solely the authority act specified in Document 14. An action that expires unless renewed converts a false positive from a harm into a delay; a budget converts the autoimmune attack (tricking the immune system into suspending the business) from an outage into a bounded cost.
+
+[B42] A5.4 · Deployed in force, never in shadow. Every Watch mechanism ships with defined conditions of success and runs at full authority from first deployment. An observe-first ("watching only") mode spends the entire value — response speed — to buy nothing, and is prohibited by doctrine. A mechanism whose parameters are undefined is a specification gap to close, never a reason to run tentatively.
+
+[B43] A5.5 · One record, two readings. The Watch maintains no account of anything but its own events. The compliance owner reads those records as assurance; the security officer reads them as defence; the auditor and the defender can never disagree, because there is one set of facts under both readings. The deception the mirage shows an attacker is a rendering shown outward; the record never lies inward.
+
+[B44] A5.6 · Suspicion is refined, not accumulated. Probabilistic detection routes to conditions — friction, narrowed envelopes, the mirage — where the actor's own conduct converts suspicion into certainty or innocence. The Watch does not convict on statistics. Suspicion at eighty percent becomes caught touching a planted credential — zero false positives by construction — and only then does maximum force apply.
+
+[B45] A5.7 · Conformance grants trust; non-conformance never convicts. An actor's behavioural signature buys legitimate actors invisibility. Losing conformance returns an actor to baseline verification and nothing more; deviation combines with other signals and is never sole grounds past friction. The worst the signature can ever do to an innocent is make their day ordinary. This asymmetry is constitutional, not tunable.
+
+[B46] A5.8 · The floor never learns. Beneath every adaptive layer stands a ruled, deterministic floor, moved only by visible, delayed, two-signature ceremony — and the ceremony is itself a monitored tripwire. What learns can be taught; the slow play boils a learned profile one degree at a time. What is ruled cannot be taught, and an attacker who needs the floor moved must request it in daylight, on a countdown, under two names, with the Watch among the observers.
+
+[B47] A5.9 · The watcher is watched from outside. Watch liveness is attested by a component holding no Watch credentials; Watch silence is itself an alarm; the platform's fail-closed posture is independent of the Watch entirely. The service whose compromise would mean going unobserved must be incapable of unobserved existence — and equally incapable of failing anything open. (Custody gates fail closed on their own, per Document 1, with or without the Watch above them.)
+
+[B48] A5.10 · One task, one identity. Every task executes under exactly one authority's identity and scope. A task that could see like security and decide like governance must not exist to be compromised. This dual-identity surface is unrepresentable in the task register (Document 16 §5), not merely policed.
+
+[B49] A5.11 · Peer, not subordinate. Neither authority commands the other or writes the other's law. A security function that reported to the thing it must be able to contain would lose exactly the fight that is the product — the clean receipt with the wrong intent. The Watch authors its own policy; the rules service administers the ceremony of changing it without editorial power, and symmetrically, governance rules bind the Watch's workers like anyone's.
+
+[B50] A5.12 · The profile is armory, not inventory. Behavioural-conformance parameters are per-actor, tenant-keyed, non-exportable, purpose-bound to the Watch alone, and renderable to no surface, export, or analytic — ever, including the Watch's own console. A trust mark that leaked into scoring, pricing, or management visibility would become surveillance, and surveillance destroys the trust the product sells. This store holds learned parameters, never the raw action history that trained them.
+
+[B51] A5.13 · Self-proving, or not in force. Every response rail demonstrates itself firing on a standing drill cadence — full loop, both engines, latencies measured, results as receipts. A rail not demonstrated firing is not in force. The drill receipts are the audit: when anyone asks whether the Watch works, the answer is a standing dataset requiring no human assembly.
+
+[B52] A5.14 · The action ladder and its two ceilings. Mkono's actions form four classes and there is no fifth:
+
+[B53] annotate — mark the record, change nothing;
+
+[B54] shape — friction: throttle, stricter masking, step-up verification, a single output held;
+
+[B55] contain — suspend capability, preserve state, always with a time-to-live;
+
+[B56] sever — cut access or trust, hold rather than expire. Two ceilings bound the whole ladder: the blast budget (autonomous action may touch at most its ruled share of active actors per rolling window; beyond it, actions queue for human release) and the friction budget (the share of legitimate actions experiencing any Watch friction has a hard ceiling).
+
+[B57] A6 · What must be true for the service to deliver as intended
+
+[B58] The Watch's ten structural truth-conditions — any one false, the promise is false:
+
+[B59] Totality of sight — no path reaches the estate or a model outside the Watch's observed surface; held by two independent proofs, static and runtime.
+
+[B60] Verdict replayability — every verdict re-derives identically from the record plus its pinned detector version.
+
+[B61] Response determinism — same verdicts, same table version, same actions, every time; no learned component holds response authority.
+
+[B62] The certainty signature — the certainty computation has no parameter through which a detector's confidence can raise the class.
+
+[B63] Mark universality — every gate in the ratified inventory evaluates mark state on every pass, and the inventory's completeness is itself structurally verified.
+
+[B64] Attestation continuity — no Watch-worker interval exists unattested beyond its bound; a gap is an incident, never a logging miss.
+
+[B65] Single identity — no credential scope spans both authorities.
+
+[B66] Mirage isolation — synthetic state shares no store with production.
+
+[B67] Profile custody — non-exportability is a property of the store; no read path renders profile internals to any surface.
+
+[B68] Independent time — ordering authority does not come from the services being watched.
+
+[B70] PART B — PROMISE #7 (SECURITY HALF): INTENT MEASURED ACROSS LAYERS
+
+[B71] B1 · The promise, in plain language
+
+[B72] The platform does not merely check permissions; it measures whether what an actor is actually doing matches what that actor said they came to do — and it does this continuously, across the whole life of the actor's presence, not once at the door. Intent is not inferred from a single moment or a single signal; it is read across layers — a declared mandate frozen at entry, behaviour reconciled against it over time, and a stack of constraints each catching what the others miss — so that an attack which never breaks a rule but is not what it claims to be is still caught.
+
+[B73] Scope note. Promise #7 has two halves. This document specifies the security/behavioural half — the Watch measuring realised conduct against declared mandate. The reasoning half — Solva reading declared-vs- demonstrated intent inside a reasoning session — is specified in Document 4. The two are deliberately distinct: one watches an actor across the estate; the other watches the conduct of a single reasoning run. Whether they should share one divergence-tracking mechanism is the open question held in Document 16 §6.
+
+[B74] B2 · The service that powers it
+
+[B75] The Watch, specifically its behavioural strata (Part IV of this document's canon basis): the declared mandate frozen at admission, and the four-layer constraint stack that reconciles conduct against it — the signature, the mark, and the ruled floor beneath the adaptive layers.
+
+[B76] B3 · Definition of the promise
+
+[B77] "Intent measured across layers" means four distinct reconciliation mechanisms operate together, each defined:
+
+[B78] The declared mandate. Every actor — person and agent alike — arrives with a declared mandate: for an agent, an objective with capabilities and risks; for a person, a role and interests. This mandate is frozen at admission and is the baseline every later question of intent is measured against. Intent divergence is undefined without declared intent — the declaration is what makes divergence measurable at all.
+
+[B79] The behavioural signature. Every actor accrues a signature over a closed action vocabulary — sequence habits, timing microstructure, navigation order, characteristic depth. Agents, being more regular than people, carry the sharpest signatures: the population hardest to protect with credentials is the easiest to protect with behaviour. The same substrate reads two ways — as drift (feeding detection) and as conformance (funding the trust discount).
+
+[B80] The mark. On conviction, a mark binds every observable dimension — identity, credentials, session and device fingerprint, the behavioural signature, and the content hashes of everything touched in the mirage — so the loot itself is dyed and its resurfacing anywhere, ever, is a structural detection. The mark survives the attacker shedding any one dimension.
+
+[B81] The ruled floor. Beneath every adaptive layer, a deterministic floor that cannot be taught — so the slow play cannot boil it one degree at a time.
+
+[B82] B4 · Delivery experience expectations
+
+[B83] What the organisation experiences:
+
+[B84] Honest actors experience the conformance side of the signature: the more their behaviour matches their established pattern, the lighter their verification burden. They never see "intent measurement" as a feature; they experience it as the platform simply not getting in their way.
+
+[B85] Declared change is a non-event: an actor whose role or objective genuinely changes re-declares through the same admission path, and nothing flags. Only undeclared drift is a signal.
+
+[B86] What a consuming system experiences:
+
+[B87] Every gate evaluates mark state on every pass. An actor carrying a mark is resolved as marked at admission, invocation, egress, and authentication alike.
+
+[B88] What is produced and retained:
+
+[B89] The frozen declared mandate (immutable for the actor's admitted presence).
+
+[B90] Declared and demonstrated conduct, both as fields of the record, with divergence tracked as the actor acts — not judged once at entry.
+
+[B91] B5 · Technical and behavioural requirements
+
+[B92] B5.1 · No actor enters undeclared [CANON]. Every actor arrives with a declared mandate, frozen at admission, reconciled against for as long as the actor acts. The undeclared actor operates under the default-restrictive envelope until characterised. Re-declaration through the same admission path is the legitimate exit from honest change.
+
+[B93] B5.2 · The signature reads two ways from one model [CANON]. One behavioural model produces both readings — drift (to detection) and conformance (to the trust discount) — and the two can never disagree about what the actor did, because they are one model. Against the profile's own corruption: a drift-rate ceiling (movement beyond it freezes learning and flags, never adapts); anchor dimensions on a slow clock; and learning pauses on any window under review, so an investigation never teaches the model the attacker's habits.
+
+[B94] B5.3 · The mark is universal and structurally checked [CANON]. Every gate in the ratified inventory evaluates mark state on every pass, verified structurally, because a mark not checked everywhere is a mark routed around. Minting and propagation are the hand's; a mark hit read back is the eyes'; de-marking is a human, dual-control act, always — removing protection is never autonomous.
+
+[B95] B5.4 · Declared and demonstrated intent are both recorded, divergence tracked [CANON]. The declaration is treated as a declaration, never as a truth. Realised conduct is reconciled against it continuously; divergence is tracked as the actor acts. This reconciliation is the security half of intent measurement, and it is the mechanism that catches the authorised attack — the one that never breaks a rule.
+
+[B96] B5.5 · Non-conformance never convicts alone [CANON]. Deviation from signature combines with other signals and is never sole grounds for anything past friction. Conviction — the unlocking of severance — comes only from the closed registry of unfakeable signals (A5.2), never from a behavioural score, however extreme.
+
+[B97] B6 · What must be true for the service to deliver as intended
+
+[B98] The declaration is genuinely frozen and genuinely the baseline. If the mandate can be edited after admission, or if reconciliation runs against something other than the frozen declaration, intent divergence becomes unmeasurable or gameable.
+
+[B99] The signature model cannot be taught the attacker's habits. The drift ceiling, slow-clock anchors, and learning-pause-under-review are the guards; if any is absent, the slow play defeats the signature.
+
+[B100] The mark is checked at every gate, provably. A single gate that does not evaluate mark state is a route around every mark.
+
+[B101] Behavioural signals never convict alone. If a behavioural score could unlock severance, an attacker who learned to shape behaviour could trigger the platform's maximum force — the exact weapon A5.2 exists to prevent.
+
+[B102] The security half and the reasoning half of #7 stay coherent. The Watch's actor-level reconciliation and Solva's session-level reconciliation (Document 4) must not contradict each other's verdicts on the same conduct; Document 16 §6 holds whether they unify.
+
+[B104] PART C — THE MIRAGE, THE VERDICT SEAM, AND THE WITNESS (SHARED MECHANISMS)
+
+[B105] These three mechanisms are required by both promises above and are stated here in full so no downstream document re-derives them.
+
+[B106] C1 · The mirage (the refinery) [CANON]. Above the containment threshold and below certainty, a suspect is not blocked but rerouted into a synthetic continuation of the platform where everything appears to succeed — queries return plausible synthetic data, writes appear to land, exfiltration appears to work. Three things actually happen: containment (nothing touched is real), observation (every action inside is intelligence at zero risk), and conviction (the decoy touch, the permission probe, the exfiltration attempt are structural findings that mint the mark and unlock severance with no human latency). The mirage lies outward, never inward: every mirage interaction writes truthfully marked records, and mirage state shares no store with production — bleed is unrepresentable, not filtered. Three duties protect the innocent inside it: an entry threshold above containment's (ruled by the owner, because deception is costlier); a short expiry with automatic release on zero incrimination; and a reconciliation duty on release — the released actor's mirage-period work is replayed against the real platform, or they are told plainly it did not land. Silent success-that-wasn't is never an acceptable exit.
+
+[B107] C2 · The verdict seam [CANON]. The two engines meet at exactly one interface: a contract-grade verdict row, externally versioned and closed, signed and replayable. Everything the hand needs is in the verdict; the hand never reaches behind the seam to inspect raw behaviour. That single constraint is what makes each half separately auditable — and what bounds a corrupted eye: a compromised detector can lie, but a lie in a steerable signal class can summon at most a containment with an expiry.
+
+[B108] C3 · The witness [CANON]. One function belongs to neither authority. Watch workers attest each other's action digests within their bound; a watchdog that alarms on Watch silence holds no Watch credentials and lives in neither authority's deployment; and a standing break-in test attempts, on schedule, to modify the Watch's own records with the Watch's own production credentials — and must fail. Immutability that has never been attacked is an assertion; this one is a measurement.
+
+[B110] RULINGS APPLIED TO THIS DOCUMENT
+
+[B111] The five ruled values — [RULED]: set by evidence after a defined baseline period, not invented in advance. The profile drift ceiling; the profile retention posture; the mirage entry threshold; the reconciliation mode on innocent mirage release; and the sever-certainty registry's membership are not set to specific numbers now. This is deliberate, consistent with the platform's own standing discipline elsewhere (local-cascade offload builds only against demonstrated cost pressure; quality thresholds are set at activation from real material, never invented in advance) — the same rule applied here: don't set numbers before you have a baseline to set them from. The mechanism, ruled: the Watch runs on the conservative structural default (tightest ceiling, shortest retention, highest entry bar, notify posture, the six-member registry as written) for a defined baseline period — a bounded stretch of real operation, or a minimum volume of real signal, whichever the owner anchors it to when the system goes live. At the end of that period, all five values are set from what was actually observed, through the same governed ceremony as any other rule change. This closes the gap in the original canon text, which said "conservative default until set" without a mechanism that guarantees the setting actually happens — the baseline period is that mechanism, so the defaults don't quietly become permanent by inattention.
+
+[B112] Document 16 §6 — [RULED]. The Watch's actor-level intent reconciliation (B5.4) and Solva's session-level intent audit (Document 4) remain two deliberately separate mechanisms. Reason, as ruled: the Watch is a peer authority, structurally outside the six governing engines including Solva — no credential or mechanism is permitted to span both authorities, the same rule that makes dual task-identity unrepresentable. See Document 16 §6 for the ruling in full.
+
+[B114] End of Document 3 of 16 — Intent & Security Monitoring.

@@ -1,0 +1,215 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Platform Orchestration & Governance Ceremony
+
+[B3] Document 15 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Platform Orchestration & Governance Ceremony
+
+[B5] Promises held in this document: #26 (no application on the platform operates above the governance architecture — with Grey Mirror the sole exception, achieved by replicating the containment architecture within itself) · #32 (a workload-orchestration service that defines the path of success for a job, ensuring clean hand-offs without context spillage or objective recalibration in the delivery cycle) · #27 (rule books and templates written, adopted, and edited — with changes made only through a governed ceremony)
+
+[B6] Standalone statement of what must be true. Shared mechanisms named and Document 15 (the cross-cutting capstone) cited; each requirement stated in full here.
+
+[B7] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap · [OPEN] genuine question, recommended default stated, not settled · [DETERMINED] a decision the owner instructed the author to make and record here, presented for the owner's sign-off.
+
+[B8] The services that power these promises are Mkondo (the orchestration charter — the record matrix, the task-identity register, and the handoff contracts), Northena (whose objective freeze is the no-recalibration guarantee), the governance-change ceremony (propose → counter-sign → countdown → apply → re-verify), and the single-crossing invariant that no path routes around governance.
+
+[B10] PART A — PROMISE #26: UNIVERSAL CONTAINMENT, AND THE ONE EXCEPTION
+
+[B11] A1 · The promise, in plain language
+
+[B12] No application running on the platform can operate above the governance architecture — every app, every agent, every workload built on the platform reaches data and models only through the same governed rails, and none can put itself outside them. There is exactly one exception, and it is deliberate: the security service (Grey Mirror / the Watch) must not be contained by the very architecture it is monitoring, because a monitor trapped inside what it watches is blinded the moment that thing is compromised. The Watch achieves its exception not by escaping governance, but by replicating the same containment architecture within itself — so it is held to the same discipline, by its own instance of that discipline, rather than by the shared one it must be able to watch.
+
+[B13] A2 · The service that powers it
+
+[B14] The single-crossing invariant and the no-side-door rule (Documents 1, 5) — every model call transits one chokepoint; every app-layer construct reaches data and models only through the governed plane; no orchestrator path is authorised to skip governance.
+
+[B15] Mkondo (the orchestration charter) — which assigns every task an identity under exactly one authority and holds the record and handoff contracts, including the machinery that lets the Watch stand as a separate authority on the same substrate.
+
+[B16] A3 · Definition of the promise
+
+[B17] No app operates above the architecture [CANON]. Every construct built on the platform — a prebuilt app, a build-your-own application, an agent — reaches data and models only through the governed plane, with no side door. This is enforced structurally: custody is at the invocation itself, not at an orchestrator a new path could bypass, and the build fails if any module acquires a way around it.
+
+[B18] The Watch is the sole exception, by design [CANON + RULED]. The security authority is a peer standing beside the governing authority, subordinate to none. It must not be contained by the governance architecture it monitors, because a security service that reports to — or is trapped inside — the thing it must be able to contain loses exactly the fight that is the product: the clean receipt with the wrong intent.
+
+[B19] The exception is achieved by internal replication, not by escape [RULED + DETERMINED]. The Watch does not sit outside discipline; it holds its own instance of the same containment architecture. It is contained — by itself — rather than by the shared architecture. Section A5 sets out, as a determination the owner instructed the author to make, exactly what "replicating the containment architecture within itself" requires, grounded in the Mkondo and Watch canon.
+
+[B20] A4 · Delivery experience expectations
+
+[B21] What a consuming system / builder experiences (machine-facing):
+
+[B22] Anything built on the platform inherits the governed rails automatically — "approve the layer once and everything built on it inherits the approval." A builder cannot construct an app that reaches data or a model outside the plane; the attempt does not compile or does not run.
+
+[B23] What the organisation experiences (human-facing):
+
+[B24] The organisation can host many applications on the platform and trust that all of them are held to the same governance — there is no app that is "special" and exempt, except the security service, whose exemption is itself visibly disciplined (it is watched from outside, proves itself on a cadence, and can erase nothing).
+
+[B25] What is produced and retained:
+
+[B26] The task-identity assignments (every task under one authority), the handoff contracts, and the record matrix — the Mkondo registers that make containment and the one exception both structural and auditable.
+
+[B27] A5 · The determination on Grey Mirror's self-containment [RULED — CONFIRMED BY OWNER]
+
+[B28] The owner instructed the author to assess and decide how Grey Mirror achieves its exception, using Mkondo's separate-identity and separate-record-class machinery as the evidence base. This section is that decision, presented for the owner's sign-off. It is built entirely on mechanisms the canon already establishes; what is decided is that these mechanisms, taken together, are the "containment architecture replicated within itself," and that they are sufficient.
+
+[B29] A5.1 · The determination, stated. Grey Mirror is not contained by the shared governance architecture; it is contained by its own instance of the same four disciplines that contain every other actor on the platform. Those four disciplines, and the canon machinery that supplies each for the Watch specifically, are:
+
+[B30] Its own identity boundary — separate task identity. Mkondo's task-identity register maps every task to exactly one authority's identity and scope, and no credential scope spans both authorities — a blended-privilege task (one that could see like security and decide like governance) is unrepresentable, not policed. This is the Watch's version of the single-crossing containment: it cannot reach across into the governing authority's scope, and the governing authority cannot reach into its, because the crossing between them is a registered handoff, not a shared credential.
+
+[B31] Its own record boundary — separate record classes with one-writer law. Mkondo's record matrix gives the Watch its own record classes, which it alone writes and which are read under the reading-discipline rule (the compliance owner sees that the Watch acted and why at the record level, never its thresholds or placements; the watch officer sees run-record facts, never governance's deliberations). This is the Watch's version of the one-record law applied to itself: it mints the first account of its own events and a second account of nobody else's — its internal state is contained within its own record classes exactly as every service's is.
+
+[B32] Its own governed-value ceremony — it authors its own policy, changed only by ceremony. The Watch authors its own policy tables (Registries-class governed values); the rules service administers the ceremony of changing them but holds no editorial power over their content, and symmetrically governance rules bind the Watch's workers like anyone's. This is the Watch's version of the governance-change discipline applied to itself: its own rules change only through the same propose/counter-sign/countdown/re-verify ceremony (Part C), on the longest countdown, with the Watch itself among the observers — it does not get to change its own constraints faster or more quietly than anyone else.
+
+[B33] Its own external witness — it is watched from outside itself. The witness belongs to neither authority: a watchdog holding no Watch credentials alarms on Watch silence, and a standing break-in test tries, on schedule, to modify the Watch's own records with the Watch's own production credentials — and must fail. This is the decisive piece: the Watch's containment is not self-attested. It replicates the "watched from outside" property by being watched from outside *itself* — the monitor is itself monitored by something it does not control, so its exception from the shared architecture does not make it the one unwatched thing on the platform.
+
+[B34] A5.2 · Why this is sufficient, and why it is not a contradiction. The apparent paradox — "everything is contained, except the thing that isn't" — dissolves because the Watch's exception is narrow and structural. It is exempt from being contained by the shared architecture it monitors (so a compromise of that architecture cannot blind it), but it is not exempt from containment as such: it is contained by its own separate-identity, separate-record, own-ceremony, and external-witness instances of the identical disciplines. The Watch can stop anything and erase nothing (destroy does not exist in it); it fails nothing open; it proves itself on a cadence. An exception achieved this way adds no unwatched, uncontained surface to the platform — it moves the Watch's containment from the shared instance to its own instance, and no further.
+
+[B35] A5.3 · What must remain true for the determination to hold [DETERMINED].
+
+[B36] No credential scope spans both authorities (Mkondo task-identity register; structurally enforced, defect-class-unrepresentable).
+
+[B37] The Watch's record classes are its own, one-writer, read under the cross-reading discipline (Mkondo record matrix).
+
+[B38] The Watch's own policy changes run the full ceremony on the slowest countdown, Watch among the observers.
+
+[B39] The external witness holds no Watch credentials, alarms on silence, and the standing break-in test against the Watch's own records must fail.
+
+[B40] The Watch adds no path that reaches data or a model outside the single crossing — its exception is from being contained by the shared architecture, never from the custody crossing itself.
+
+[B41] [RULED — confirmed by the owner, in the owner's own framing.] Grey Mirror's self-containment is "not a subset [of the system it secures], but [operating on] the same foundation" — exactly what the four disciplines above encode: it does not live inside the governance architecture it watches (own identity, own record classes, own change ceremony, own outside witness), but every one of those four is built from the identical mechanism everyone else on the platform uses — the same task-identity register, the same record-matrix law, the same propose-countersign-countdown ceremony — run as Grey Mirror's own separate instance rather than shared. Confirmed as stated; no further build (no literal second internal crossing) is intended.
+
+[B42] A6 · What must be true for the promise to deliver as intended
+
+[B43] No app-layer construct reaches data or a model outside the plane. A single side door makes "no app operates above the architecture" false.
+
+[B44] The Watch's exception is the narrow, structural one determined in A5. If the Watch's exemption ever broadened into "unwatched" or "uncontained as such," the one deliberate exception would become the platform's single blind spot.
+
+[B45] The four internal-replication disciplines all hold (A5.3). The exception is safe only while the Watch is contained by its own instances of identity, record, ceremony, and external witness — remove any one and the exception stops being disciplined.
+
+[B47] PART B — PROMISE #32: WORKLOAD ORCHESTRATION — THE PATH OF SUCCESS FOR A JOB
+
+[B48] B1 · The promise, in plain language
+
+[B49] The platform defines, for any job, a clear path of success — the sequence of hand-offs that carries the job from start to finished result — and guarantees that work crossing between stages or between services does so cleanly: no context leaks or is lost at a hand-off, and the job's objective is never quietly changed partway through the delivery cycle. A job arrives, moves through defined hands, and is delivered as what it was commissioned to be, with every crossing accounted for.
+
+[B50] B2 · The service that powers it
+
+[B51] Mkondo (the orchestration charter) — the record matrix, the task-identity register, and the handoff contracts: the single place where who writes, who reads, and who is acting is never ambiguous.
+
+[B52] Northena (Document 5) — whose frozen objective is the guarantee that the job's objective cannot be recalibrated mid-delivery.
+
+[B53] B3 · Definition of the promise
+
+[B54] Every crossing is a registered contract [CANON]. Every crossing between services or authorities is a registered handoff contract stating what crosses, in what shape, under whose identity, and with what receipt. An unregistered handoff is a finding — not a tolerated informal path.
+
+[B55] No context spillage at a hand-off [CANON + PROPOSED]. Because each handoff is a contract specifying exactly what crosses and in what shape, context does not leak sideways: evidence crosses between authorities only through the matrix, provenance-marked with the identity that produced it, never sideways through a dual-hatted task. What is not in the contract does not cross — which is the structural form of "no context spillage."
+
+[B56] No objective recalibration in the delivery cycle [CANON]. The job's objective is frozen (Northena, Document 5): a changed intent is a new admission, never an edit of a live one. Nothing in the delivery cycle can silently redefine what the job is for, because what it is for is immutable for the run.
+
+[B57] The path of success is defined, not emergent [PROPOSED]. A job's path — the ordered stages and the handoff contract at each crossing — is defined such that the job's progress is a sequence of contracted hand-offs, each accountable, rather than an emergent flow nobody specified. Mkondo holds the contracts; the path is the composition of them for that job class.
+
+[B58] B4 · Delivery experience expectations
+
+[B59] What a consuming system experiences (machine-facing):
+
+[B60] A job moves through defined stages; at each crossing, exactly the contracted material crosses, under the contracted identity, with a receipt. A calling system can rely on the job not having leaked context at a hand-off and not having had its objective changed mid-flight — both are structural, not best-effort.
+
+[B61] What the organisation experiences (human-facing):
+
+[B62] The organisation commissions a job and receives what it commissioned — the delivery cycle does not drift the objective, and nothing is silently lost or added as the job passes through stages. Where a crossing is unregistered or a hand-off is malformed, it surfaces as a finding rather than passing silently.
+
+[B63] What is produced and retained:
+
+[B64] The handoff contracts exercised for the job (what crossed, in what shape, under whose identity, with what receipt) and the frozen objective it ran under — together, the account of the job's path of success.
+
+[B65] B5 · Technical and behavioural requirements
+
+[B66] B5.1 · Every crossing is a registered handoff contract [CANON]. What crosses, in what shape, under whose identity, with what receipt. An unregistered handoff is a finding. This is Mkondo's handoff-contract discipline, and it is the mechanism of "clean hand-offs."
+
+[B67] B5.2 · Evidence crosses only through the matrix, provenance-marked [CANON]. Evidence crosses between authorities only through the record matrix, provenance-marked with the identity that produced it, never sideways through a dual-hatted task. Workers serve authorities across time and never within a task. This is the mechanism of "no context spillage."
+
+[B68] B5.3 · The objective is frozen against recalibration [CANON]. The job runs under a frozen objective (Northena, Document 5); a changed intent is a new admission. This is the mechanism of "no objective recalibration in the delivery cycle."
+
+[B69] B5.4 · The path of success is the composition of contracts for a job class [RULED — best practice, per job class]. A job class's path of success is defined as the ordered set of stages and the handoff contract governing each crossing between them. The path is explicit — held as the composition of Mkondo contracts for that job class — so that "the path of success for a job" is a specified, auditable object, not an emergent behaviour.
+
+[B70] [RULED] Per job class, not per individual job — the handoff contracts are properties of the service crossings, which are the same for every job of a class; a per-job path would re-specify the same crossings repeatedly. Per-job refinement can be added later where a specific job genuinely needs a non-standard path.
+
+[B71] B6 · What must be true for the promise to deliver as intended
+
+[B72] Every crossing is genuinely a registered contract. An unregistered handoff that is tolerated rather than flagged is exactly the context-spillage path the promise forbids.
+
+[B73] No dual-hatted task exists to leak context sideways. If a task could act under two identities, evidence could cross outside the matrix and context would spill — the single-identity rule (Part A, Mkondo) is what prevents it.
+
+[B74] The objective is genuinely immutable for the run. If the objective could be edited mid-delivery, recalibration would be possible and the promise false.
+
+[B75] The path of success is a specified object (B5.4). If the path is emergent rather than the defined composition of contracts, "defines the path of success" is not actually delivered.
+
+[B77] PART C — PROMISE #27: RULE BOOKS AND TEMPLATES, WRITTEN AND CHANGED BY CEREMONY
+
+[B78] C1 · The promise, in plain language
+
+[B79] The rules that govern the estate can be written, adopted from templates, and edited in plain human language by the people accountable for them — and any change to a rule happens only in the open, through a defined ceremony: someone proposes it, a second person signs off, a visible countdown runs during which it can still be cancelled, then it applies and is re-verified. Rules never change quietly or on one person's say-so, and the rules that protect the security service itself change on the slowest, most-watched ceremony of all.
+
+[B80] C2 · The service that powers it
+
+[B81] The rule-and-declaration machinery — rules authored in plain language, sorted by subject and by how binding they are.
+
+[B82] The governance-change ceremony — propose → counter-sign → visible countdown → apply → re-verify — the same shape as the authorised-deletion act, because a rule change and a deletion are both consequential changes to a governance value.
+
+[B83] C3 · Definition of the promise
+
+[B84] Rules are plain language, authored and template-adoptable [CANON]. Rules read as plain sentences ("Business Development Officers may not see payroll data"), each showing who set it, who approved it, and when; sorted by subject and by bindingness (a hard line that can never be switched off; an ordinary rule that changes only through approval; a permission rule; a managed list where adding is immediate but removing needs sign-off). Templates (external rulebooks and frameworks the estate is held to) can be adopted and then edited in the same plain language.
+
+[B85] Changes run the ceremony, in the open [CANON]. A rule changes only by: proposal → a second signature → a visible countdown ("takes effect in N hours — you can still cancel") → application → re-verification. Hard lines have no change path at all. Any change to the security service's own rules runs on the longest countdown and is flagged for watching the moment it is raised.
+
+[B86] The ceremony is the same shape as authorised deletion [CANON]. Deletion — the most consequential change a governance value can undergo — carries dual control and a waiting period during which it can be cancelled, ending in a destruction attestation generated from the record. A rule change and a deletion share this shape deliberately: both are governed changes to governance values.
+
+[B87] C4 · Delivery experience expectations
+
+[B88] What the accountable person experiences (human-facing) [RULED — backend states, not screen design]:
+
+[B89] The Data Protection Officer authors and edits rules in plain language and adopts templates, working through defined operations: propose a change, which enters it into the ceremony; a second authorised person signs off; a countdown runs, cancellable; the change applies; it is re-verified. Each operation is a defined state transition on a rule. (Consistent with the backend-only scope of this requirements pass, these are specified as states and transitions, not as screen layouts.)
+
+[B90] The person sees the whole change on the record: the old wording and the new side by side, both signatures, the countdown as it ran, when it applied, and the re-verification result.
+
+[B91] What a consuming system experiences (machine-facing):
+
+[B92] A rule's state (in force / proposed / counting down / applied / re-verified / cancelled) is a defined, recorded state; every gate that enforces the rule reads the version in force, and every run records which rule version was in force at the time — so "was this term protected on a given date" always has an answer.
+
+[B93] What is produced and retained:
+
+[B94] The rule in force with its full version history; the change record for every ceremony (both signatures, countdown, application, re-verification); and, for a deletion, the destruction attestation generated from the record.
+
+[B95] C5 · Technical and behavioural requirements
+
+[B96] C5.1 · Rules are plain-language, subject- and bindingness-classed [CANON]. Every rule reads as a plain sentence with its provenance; rules are sorted by subject and by bindingness; bindingness class is derived from the taxonomy, never hand-set, because a typed-in class would make the honesty claim itself unverifiable.
+
+[B97] C5.2 · The change ceremony is mandatory and in the open [CANON]. Propose → counter-sign → visible countdown (cancellable) → apply → re-verify. Hard lines have no change path. The security service's own rules run the longest countdown and are flagged for watching when raised. A rail that cannot be demonstrated firing after a change is not in force — verification packs run at commissioning and again after every rule change.
+
+[B98] C5.3 · Deletion is an authority act of the same shape [CANON]. Deletion names scope and reason, carries dual control, runs a cancellable waiting period, and ends in a destruction attestation generated from the record. Retention holds bar deletion absolutely; a hold is released only where it was created, never lifted from inside the system. Deletion events are recorded as entries, preserving append-only even as material leaves.
+
+[B99] C5.4 · Every run records the rule version in force [CANON]. Without it, "was this term protected on a given date" has no answer — and that is exactly the question an audit asks. The rule version in force is stamped on the record.
+
+[B100] C5.5 · Templates are adopted then governed like any rule [PROPOSED]. An adopted template (an external rulebook or framework) becomes a set of rules held to the same plain-language, bindingness-classed, ceremony-changed discipline as any authored rule. Adopting a template is a governed act; editing an adopted template runs the ceremony. Recommended so "templates adopted, edited" (the promise) inherits the full change discipline rather than being a bulk import that sits outside it.
+
+[B101] C6 · What must be true for the promise to deliver as intended
+
+[B102] No rule changes outside the ceremony. A change path that skips counter-signature or the countdown lets a rule change quietly or on one person's say-so — the exact thing the promise forbids.
+
+[B103] Hard lines have no change path. If a hard line could be changed, "can never be switched off" is false.
+
+[B104] The security service's own rules run the slowest, watched ceremony. If the Watch's rules could change quietly, the one exception of Part A would become a way to weaken the monitor unobserved.
+
+[B105] Every run records the rule version in force. Without it, the audit question the whole record exists to answer has no answer.
+
+[B106] Adopted templates inherit the ceremony (C5.5). A template imported outside the change discipline would be a set of rules nobody could change in the open.
+
+[B108] RULINGS APPLIED TO THIS DOCUMENT
+
+[B109] A5 [RULED — confirmed by owner] — Grey Mirror's self-containment is the four-discipline internal replication (separate identity, separate record classes, own ceremony, external witness), confirmed in the owner's own framing: not a subset of what it secures, but the same foundation. Settled.
+
+[B110] B5.4 [RULED] — Path-of-success granularity: per job class. Settled.
+
+[B111] C5.5 [PROPOSED, unchanged] — Adopted templates inherit the full change ceremony. Not part of this ruling round; stands as proposed.
+
+[B113] End of Document 15 of 16 — Platform Orchestration & Governance Ceremony.

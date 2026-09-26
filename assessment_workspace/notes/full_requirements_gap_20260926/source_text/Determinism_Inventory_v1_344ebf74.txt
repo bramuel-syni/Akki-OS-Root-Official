@@ -1,0 +1,91 @@
+[B1] AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  3 OF 9
+
+[B2] The Determinism Inventory
+
+[B3] determinism_inventory_v1 — Draft for owner ratification · Closes Document 0 G-10
+
+[B4R1] Scope | Every component on the platform — broader than tcb_enumeration_v1, which asks a narrower, conjunctive question (deterministic AND protection-critical). This document asks one question only — deterministic, or learned — of everything, whether or not it's protection-critical.
+
+[B4R2] Basis | Attribute 10's own rule, verified: decision authority is held only by deterministic components; a learned component may detect, score, rank, propose, or draft, never decide.
+
+[B4R3] Second half | Maps the platform's existing ruling loop — the pattern of proposal, scrutiny, and explicit ratification this entire canon runs on — against EU AI Act Article 14's five human-oversight capabilities, verified verbatim, rather than asserting “a human is in the loop” as if that were one thing.
+
+[B4R4] Reuses | tcb_enumeration_v1's classification work directly — the two questions share almost all their evidence. Not re-derived from scratch.
+
+[B4R5] Date | 9 September 2026
+
+[B5] 1   Classification
+
+[B6] Deterministic: given the same input and state, the same output, reasoned about exhaustively. Learned: statistically characterised, not exhaustively reasoned about, whatever its accuracy. A component is one or the other; where a named subsystem contains both, it is split, consistent with tcb_enumeration_v1's treatment of Solva, Targeta, and the Watch.
+
+[B7R1] Component | Class | Structural mechanism denying decision authority (if Learned)
+
+[B7R2] SyniSense — chokepoint, custody sequence | Deterministic | — holds decision authority directly
+
+[B7R3] Solva — assertion-boundary seam | Deterministic | — holds decision authority over what may be asserted
+
+[B7R4] Solva — reasoning / generation | Learned | The assertion-boundary seam refuses anything the reasoning produces that isn't independently evidenced. The seam decides; Solva proposes.
+
+[B7R5] Northena — objective-freeze mechanism | Deterministic | —
+
+[B7R6] Mtafiti — registry storage/query | Deterministic | —
+
+[B7R7] Mtafiti — any AI-assisted classification suggestion (if present) | Learned | Not confirmed as existing in canon. If built, it proposes a classification; a deterministic confirmation step (undefined — flagged) would need to decide.
+
+[B7R8] Targeta — yield wall / MOAC | Deterministic | — holds acceptance authority directly
+
+[B7R9] Targeta — the model being trained | Learned | Cannot accept or refuse its own output. MOAC, downstream and deterministic, decides.
+
+[B7R10] Mkondo — hand-off registry | Deterministic | —
+
+[B7R11] The Watch — Mkono (response) | Deterministic | — holds containment authority directly
+
+[B7R12] The Watch — Grey Mirror (detection) | Learned | Mkono acts only on a signed verdict Grey Mirror cannot itself produce authority over — Grey Mirror asserts facts; Mkono decides (A2, verified verbatim).
+
+[B7R13] The Ledger — writer | Deterministic | —
+
+[B7R14] CIF — ideation faculty | Learned | Single-experiment principle: existence unconditional, but every adopted idea passes a deterministic acceptance point before affecting a run (BR-9.2, already on record).
+
+[B7R15] Critic Seam — RV-tier | Deterministic | —
+
+[B7R16] Critic Seam — QA-tier | Learned | QA-1's own rule: findings route to RV-tier or a human; a QA finding cannot block execution on its own.
+
+[B7R17] Rules Service — ceremony engine | Deterministic | —
+
+[B7R18] Rules Service — AI-assisted drafting | Learned | RBM-2: proposes; the named human author confirms before a rule enters PROPOSED. The confirmation is the deterministic decision point.
+
+[B7R19] Whitepaper Wizard — eligibility gate | Deterministic | —
+
+[B7R20] Whitepaper Wizard — prose assembly | Learned | Draws only on Tier 1/2 artefacts (WPW-13); the eligibility gate, not the prose engine, decides whether a paper may publish.
+
+[B7R21] DAP — release budget, distance gate, output-content gate | Deterministic | — each holds its own admit/refuse authority directly
+
+[B7R22] DAP — admission-probe trigger scan (backdoor detection half) | Mixed — flagged | Where the technique is statistical, it informs; the canary-touch half of the same probe (on A5.2's closed registry) is what actually decides admission.
+
+[B7R23] Deck Rendering Engine | Deterministic | — not a decision authority in the governance sense; included for completeness
+
+[B8] 2   Human Oversight Against Article 14
+
+[B9] Where a human, not a deterministic component, is the check on a learned component's output, Article 14 names five distinct capabilities. The platform's own ruling loop — every decision recorded across this programme, from the four owner rulings at the start through every parked ruling since — is mapped against each separately, because a loop that serves one well does not thereby serve all five.
+
+[B10R1] Capability | State | Evidence
+
+[B10R2] (a) Understand & monitor | Partially evidenced | STATE/NEXT.md-style tracking and the Rules Registry (once built) give an overseer a current, queryable view. Not confirmed as designed for this specific purpose — it was built for change-control, and happens to serve oversight.
+
+[B10R3] (b) Aware of automation bias | Directly addressed | A5.16 (recommendation provenance) exists specifically because a human acting on an agent's advice without knowing it was advice is the automation-bias failure mode. The action record surfaces the recommendation at the point of action — not after.
+
+[B10R4] (c) Correctly interpret output | Evidenced by design, not tested | Every claim traces to evidence in one step (A8, “Walk this →”). Whether a given overseer actually interprets correctly, given that trace, has never been tested with a real reviewer.
+
+[B10R5] (d) Override, disregard, reverse | Strongly evidenced | The best-evidenced capability on this list. Every ruling in this canon's own history is an instance of exactly this — including several that reversed or corrected a prior proposal, this document's own predecessors among them.
+
+[B10R6] (e) Halt to a safe state | Partially evidenced, one confirmed gap | The Watch can stop anything (A5.3, “destroy does not exist in the Watch”). Whether CIF's ideation can be halted independently of halting the Targeta run it feeds — named as unconfirmed when W-3 through W-8 were drafted — remains unconfirmed here too.
+
+[B11] 3   Findings
+
+[B12] Sixteen components classified without ambiguity. One genuinely mixed case — the DAP-32 trigger scan — carried forward from the amendment that created it rather than forced to a single verdict here. Of Article 14's five capabilities, one (override) is strongly evidenced by this canon's own working method; one (automation bias) is directly and deliberately addressed by a named requirement; two (understand-and-monitor, correct interpretation) are plausible but unconfirmed by design intent or by test; and one (halt-to-safe-state) has a specific, named, still-open question — whether CIF can be stopped independent of the run it feeds.
+
+[B13] DET-1  Confirm or build a halt mechanism for CIF independent of halting the Targeta run it feeds — closing capability (e) fully rather than leaving it partially evidenced.
+
+[B14] DET-2  Where an AI-assisted classification capability is built into Mtafiti, name the deterministic confirmation step before it ships — not after, per this inventory's own method for every other learned component.
+
+[B15] This inventory itself should be re-run, not assumed permanent, whenever a new component is added to the platform — consistent with tcb_enumeration_v1's own standing clause. The two share a maintenance obligation because they share almost all their evidence.

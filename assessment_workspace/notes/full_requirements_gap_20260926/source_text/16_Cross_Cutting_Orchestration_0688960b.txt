@@ -1,0 +1,269 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Cross-Cutting Orchestration — The Shared Mechanisms
+
+[B3] Document 16 of 16 · Canonical statement of requirements · The capstone
+
+[B4] What this document holds: the mechanisms, doctrines, and composition rules that belong to no single promise because they are shared across many — stated once here, so the other fourteen documents reference them by name rather than re-deriving them. It also carries the two composite positioning claims (#5, #29) that are true of the whole platform rather than delivered by any one service.
+
+[B5] Standalone statement of what must be true. This document is the one place the other fourteen point to; it points back to them by section where a mechanism's full local statement lives.
+
+[B6] Source marking: [CANON] established in architectural canon · [RULED] owner ruling · [PROPOSED] synthesised to close a gap · [OPEN] genuine question, recommended default stated, not settled · [DETERMINED] a decision the owner instructed the author to make.
+
+[B7] Why this document exists. Fourteen self-contained documents, each holding its own promise cluster, create one structural risk: a mechanism used by several of them either gets re-derived inconsistently in each, or — worse for a Markdown document set — dissolves entirely, because content that belongs to no single section tends to flatten out. This capstone is the deliberate home for exactly that content. Every item below is either a doctrine every document obeys, a mechanism several documents share, a composition rule binding two mechanisms together, or a whole-platform claim no single service owns.
+
+[B9] §1 · THE COMPOSITE CLAIMS (#5, #29)
+
+[B10] These two promises are not delivered by any single service. They are true — or false — as a consequence of many services each holding their own guarantee. They are stated here, in the one document whose job is the whole rather than a part, so they are neither given a false single owner nor lost.
+
+[B11] §1.1 · Promise #5 — "All data in Akki is safe"
+
+[B12] The claim. Every piece of data in the platform is safe — from leakage, from misuse, and from loss.
+
+[B13] Why it has no single owner [RULED — composite claim]. "All data is safe" is true only if three independent guarantees all hold simultaneously, each owned by a different authority:
+
+[B14] Nothing leaks — the custody crossing (Document 1): no data reaches an external model unmasked, unrecorded, or unpriced.
+
+[B15] Nothing is misused — the Watch (Document 3): no actor, input, or action operates as something other than what it declared, undetected.
+
+[B16] Nothing is lost or silently altered — the append-only record and authorised deletion (Documents 5, 14): nothing leaves the record except by a witnessed authority act, and corrections are new entries.
+
+[B17] What must be true. #5 holds if and only if all three hold. It is not a feature to build; it is the standing consequence of Documents 1, 3, 5, and 14 each delivering. If any one fails, #5 is false regardless of the other two — which is why the platform states the three guarantees separately and never collapses them into a single "safe" checkbox that could read green while one underneath had failed.
+
+[B18] §1.2 · Promise #29 — "Adaptive, superintelligent, yet contained"
+
+[B19] The claim. The platform is powerful and adaptive, even superintelligent in capability, yet contained — because some of its engines remain deterministic.
+
+[B20] Why it has no single owner [RULED — composite claim]. This is a positioning claim that resolves into properties owned across the platform:
+
+[B21] Adaptive — the learning that is permitted: Targeta's yield layer, Mtafiti's inference overlay, Solva's reasoning faculty, the Watch's behavioural signature, the deflation flywheel (Documents 4, 9, 11, 13).
+
+[B22] Superintelligent in reach — the breadth of what the platform can reason over, train, and orchestrate across a whole estate (Documents 4, 8, 13).
+
+[B23] Yet contained — the deterministic governors and structural boundaries: Northena's determinism, the parameterless assertion boundary, the walled yield layer, the single crossing, and the rule that learning may detect but never decide (Documents 1, 4, 5, 14).
+
+[B24] What must be true. #29 holds because the same system that is adaptive is contained by construction — the containment is not a limit bolted onto the adaptation, it is the architecture the adaptation runs inside. The one-line form: every learned component on the platform has the thing it could corrupt placed structurally out of its reach. #29 is true exactly as long as that remains so.
+
+[B26] §2 · THE STRUCTURAL-IMPOSSIBILITY DOCTRINE
+
+[B27] [CANON] Stated once; obeyed everywhere.
+
+[B28] A prohibition enforced by review is eventually violated. A prohibition enforced by a function signature, a type, or a schema cannot be violated without the violation failing to compile or failing to persist. Every guarantee in this requirement set that can be made structural is made structural, not procedural.
+
+[B29] The platform's sharpest instances, each specified in full in its home document:
+
+[B30] the function computing what an answer may claim has no parameter through which a model's confidence can enter (Document 4);
+
+[B31] the register that could hold identification biometrics has no field in which such a value could be placed (Document 1);
+
+[B32] Targeta's yield layer receives a type it cannot turn into a non-permutation without raising (Document 13);
+
+[B33] the single crossing is the only module that invokes the model client, enforced by negative-scan (Document 1);
+
+[B34] Northena imports no learned component, enforced by import assertion (Document 5);
+
+[B35] dual authority identity is unrepresentable in the task register, not policed (Documents 3, 14).
+
+[B36] The doctrine as a requirement. When any document says a thing "cannot" happen, the correct implementation makes it structurally impossible — unrepresentable, non-compiling, or non-persisting — never merely forbidden and checked. A guarantee downgraded from structural to procedural during implementation is a defect against this doctrine, whatever else it does correctly.
+
+[B37] Its honest companion — the unmeasured is never hidden [CANON]. The same honesty that makes impossibility structural makes gaps visible: anything not measured is recorded as unmeasured, never as zero, absent, or clean (Documents 9, 10). A blank that reads as clean makes the whole instrument dishonest. Structural impossibility and honest-about-the-unmeasured are the two halves of the platform's truthfulness: it cannot do what it says it cannot, and it never claims to know what it has not measured.
+
+[B39] §3 · THE SHARED-CUSTODY RULING (retention lifecycles across documents)
+
+[B40] [RULED] The reconciliation of the custody lifecycles the documents raise.
+
+[B41] Three different objects carry three different lifespans, and they must never be collapsed into one another:
+
+[B42] The per-request de-identification envelope (Document 1 §A5.3) — holds the token-to-value mapping; dies with the call, always. Retaining it would reconstitute exactly what the crossing protects.
+
+[B43] The two files of the dual-file record (Document 2, Promise #4) — the question as asked and the extracted data before redaction; retained under their own custody class, distinct from the envelope.
+
+[B44] The append-only record (Documents 5, 14) — the permanent audit account; nothing leaves it except by authorised deletion.
+
+[B45] The ruling. These three lifecycles coexist without contradiction: the envelope dies with the call; the record lives indefinitely; the two files sit between — both retained in full, matching how they are actually used (a two-item context tied to one query, the same way an uploaded pair of context files stays attached to the request that referenced them). No document's invariant weakens another's, because the mechanism that keeps full retention from recreating the envelope's exposure is not reduction — it is governed read access: any consumption of the retained files after the original call, by anyone, for any reason, passes through the same masking discipline as a live crossing (Document 1 §A5.2). Full retention is a write-time decision; full governance is a permanent, read-time one. Together they are what let both files stay whole without recreating the standing exposure the crossing exists to prevent.
+
+[B46] [RULED] Both files retained in full. Read-time re-masking on every subsequent access. Recorded here as the single shared-custody decision; Documents 1 and 2 both resolve to this.
+
+[B48] §4 · THE DECIDE-ONCE-AT-THE-BOUNDARY PATTERN
+
+[B49] [CANON] One pattern, three instances — named here so it is understood as one.
+
+[B50] A determination that could disagree with itself if re-derived downstream is made exactly once, at a boundary, against a frozen input, and honoured everywhere after — because a second derivation could disagree with the first, and the consumer would have been told one thing and given another. The three instances:
+
+[B51] The warm/fresh fork (Documents 5 §7, 8 §B5.1) — served-from-memory vs. fresh-extraction, decided once at Northena's Gate by a membership test against a frozen set plus a convergence check, never re-derived.
+
+[B52] The objective freeze (Documents 5 §6.2, 14 §B5.3) — what a run is for, frozen at Admit; a changed intent is a new admission, never an edit of a live one.
+
+[B53] The task-identity mapping (Documents 3, 14, §5 below) — which authority a task acts under, mapped once before execution; an unmapped task class does not run.
+
+[B54] The pattern as a requirement [RULED — recognised as one discipline, three implementations]. Each instance is specified in full in its home document. Recognising them as one pattern matters for implementation: the same discipline (decide once, freeze the input, forbid re-derivation) governs each, and a fourth boundary decision added later follows the same shape rather than inventing a new one.
+
+[B55] [RULED] Three separate implementations of one shared discipline, not one shared code primitive — the inputs and frozen sets genuinely differ, and a shared primitive would risk coupling three boundaries that should be able to change independently. The discipline is shared; the code is not. This item has no product, security, or business consequence either way — it is a build detail the engineering team can apply directly from this ruling without further owner involvement.
+
+[B57] §5 · THE ONE-RECORD LAW AND THE RECORD MATRIX
+
+[B58] [CANON] The single most-referenced shared mechanism (5 documents).
+
+[B59] There is exactly one record, and nothing maintains a second. What the law forbids is a second, competing account of the same events; what it requires is one authoritative account per record class, with a single writing authority and named readers. This is the Mkondo charter (Document 14's Part A basis), and it is the home of every "who writes / who reads / who acts" question the other documents raise.
+
+[B60] The three registers, stated once:
+
+[B61] The record matrix — every record class, its single writer, its named readers. A second writer to any class is a defect on sight; a reader not listed does not read.
+
+[B62] The task-identity register — every task class maps to exactly one authority's identity and scope before it executes; an unmapped task class does not run; no credential scope spans two authorities.
+
+[B63] The handoff contracts — every crossing between services or authorities states what crosses, in what shape, under whose identity, with what receipt; an unregistered handoff is a finding.
+
+[B64] What the documents delegate here. The Ledger's ownership (Document 5), the Watch's own record classes (Documents 3, 14), the dual-file record's account (Document 2), the disclosure record (Document 6), and the cost/trace records (Documents 4, 11) are all classes in this one matrix. Where any document asked "who owns this record," the answer is: one writer per class, named here, never answered from memory and never differently in two places.
+
+[B66] §6 · DECLARED-VS-DEMONSTRATED DIVERGENCE — TWO MECHANISMS, NEVER ONE
+
+[B67] [RULED] Resolved on the platform's own authority-separation doctrine — this turned out to be the sharper of the two arguments available.
+
+[B68] The platform reconciles what an actor declared against what its conduct demonstrates in two places:
+
+[B69] The Watch (Document 3 §B5.4) — reconciles an actor's realised behaviour against its frozen mandate, across the actor's whole presence on the estate; divergence is a security emission that can drive containment.
+
+[B70] Solva (Document 4 §B) — reconciles an asker's demonstrated conduct against its declared frame, within a single reasoning session; divergence is a reasoning-discipline signal that constrains the synthesis and is emitted for the Watch to read.
+
+[B71] A third, smaller instance was raised in Document 6: a processing step requesting far more context than its declared task warrants is the same shape of signal (disclosure-breadth divergence) — this stays its own emission, not folded into either of the two below.
+
+[B72] The ruling, and the real reason. These are two mechanisms, never one — not primarily because they differ in scope, clock, and consequence (true, but not the load-bearing reason), but because the Watch and Solva are different authorities, and no mechanism is permitted to span both. Solva is one of the six engines that make up the governing authority (Document 1 §7.1). The Watch is the second, peer authority, standing beside the six, subordinate to none (Document 3, Document 1 §7.1). This is the identical rule that makes dual task-identity unrepresentable in Mkondo's register (Document 15 §5, "no credential scope exists that spans both authorities") — a mechanism shared between the Watch's divergence-tracking and Solva's would be exactly that kind of cross-authority span, just implemented as shared logic instead of a shared credential. If the two authorities shared this mechanism, a compromise or change on one side could quietly alter the other's judgment — the same failure the credential-separation rule exists to prevent, recreated one layer up.
+
+[B73] What is shared, and what is not. The vocabulary and record shape — "declared class, demonstrated class, divergence tracked over time" — is common to both, so an auditor reads divergence the same way wherever it appears. The mechanism itself is not shared: the Watch's tracking and Solva's tracking are built, run, and owned separately, exactly as the platform's peer-authority architecture already requires everywhere else. The Solva→Watch emission (already specified) is the seam that keeps the two coherent without merging them.
+
+[B75] §7 · THE MARK-TWICE-AT-SEAMS DISCIPLINE
+
+[B76] [CANON] A discipline that must be applied wherever a marked artifact crosses a seam.
+
+[B77] A load-bearing marker enforced only at the point it is written can be dropped by a downstream step that never knew it was load-bearing. Therefore an advisory or governance marker is enforced twice: at write time by the producing service, and again at the point of consumption (render, re-association, or hand-off) by the consuming step.
+
+[B78] Its instances across the documents:
+
+[B79] Advisory outputs are marked at write time and again at render time (Document 4 §A5.1).
+
+[B80] The dual-file re-association seam re-checks each file's markers rather than trusting the original per-file assessment (Document 2 §B5.3).
+
+[B81] A handoff contract carries provenance marks that the receiving side reads, not assumes (Documents 14, §5 above).
+
+[B82] The discipline as a requirement [PROPOSED — that it is applied uniformly]. Wherever this requirement set specifies a marker that governs behaviour, that marker is re-verified at every seam it crosses, never trusted from its origin alone. A seam that trusts an upstream marker blindly is where the marker silently dies — and the re-association seam of Promise #4 is the sharpest example, because two independently-cleared files meeting there is exactly where a dropped "still-contains-something" marker would let material through.
+
+[B84] §8 · THE CLOSED REFUSAL TAXONOMY
+
+[B85] [CANON] Referenced as shared platform-wide in Document 1; given its proper home here.
+
+[B86] A refusal is a defined, first-class outcome across the platform, never an error, a timeout, or a silent degradation. It is drawn from a closed vocabulary — no ad-hoc refusal path exists anywhere, enforced structurally rather than by review.
+
+[B87] Its instances across the documents:
+
+[B88] The custody crossing refuses a request that cannot be safely served, with a plain reason and the options actually available (Document 1).
+
+[B89] Solva's assertion boundary refuses a conclusion below the objective's defensibility floor, visibly, with the three actions the requester can take — never silently downgraded and served (Document 4).
+
+[B90] Late refusal is a first-class terminal state: a run admitted and later found inadmissible has not failed, it has been governed, and is rendered as a governed refusal (Document 8, Document 12).
+
+[B91] Hard-line rules have no change path and refuse absolutely; a held item under a retention hold produces an absolute refusal naming the hold instrument (Document 15).
+
+[B92] Refusals and drops are recorded exactly as successes are — a system that drops what it declined cannot show what it declined (Document 5).
+
+[B93] What must be true. The vocabulary of refusal reasons is closed and consistent wherever it is rendered — a caller sees the same shape of refusal whether it originated at the crossing, at the assertion boundary, or at a governance hold. No document, service, or surface introduces a refusal shape outside this closed set; a new refusal reason is a governed addition to the taxonomy, never a local invention.
+
+[B95] §9 · THE SERVING-DISCIPLINE UNIFICATION (LC-3 = progressive disclosure = on-demand fetch)
+
+[B96] [RULED] Three names, one mechanism — the most important composition in the set.
+
+[B97] Three documents describe what is, and must be built as, one serving discipline:
+
+[B98] Progressive disclosure (Document 6, #17) — minimal-sufficient context served to any processing agent first, expanded on demand, protecting agents from confusion before a human asks.
+
+[B99] On-demand fetch / the traffic controller (Document 8, #21) — fetching the specific thing needed without re-running the estate.
+
+[B100] Retrieval narrowing / LC-3 (Document 11, #9) — the cost-facing name for sending a model only what it needs.
+
+[B101] The ruling. These are not three mechanisms. They are one serving discipline seen from three angles: focus (Document 6), specificity (Document 8), and cost (Document 11). It is built once and referenced by all three. A consumer served by one path is served by all, because there is one path.
+
+[B102] What must be true. If built as three, a consumer narrowed for cost might not be narrowed for focus, an agent protected from confusion might still pull the whole estate for a specific fetch, and three implementations drift apart. The requirement is one implemented serving discipline with three documented consequences.
+
+[B104] §10 · THE LC-1-VS-WARM-SERVE COMPOSITION (distinct, composed, not merged)
+
+[B105] [RULED] Two mechanisms that look alike and must not be merged.
+
+[B106] Warm-serving (Document 8) is estate-level: has this data been mined into qualified intelligence already?
+
+[B107] LC-1, the response cache (Document 11) is query-level: has this exact governed question been answered already?
+
+[B108] The ruling. They compose — an answer served warm from qualified intelligence can also be response-cached on an identical repeat, saving even the warm composition — but they are distinct mechanisms answering distinct questions, and building them as one would break both: a query-cache that thought it was an estate-memory would serve stale answers when the estate changed; an estate-memory that thought it was a query-cache would re-mine on every rephrasing. LC-1 invalidates on estate freshness (Document 11 §B1.4) — the seam that keeps the two coherent: when the estate changes, the query cache built on it is invalidated, so the faster mechanism never outlives the truth the slower one holds.
+
+[B110] §11 · THE THINGS THAT MUST STAY IN THEIR AXIS
+
+[B111] [CANON] The separation-of-authority summary, collected.
+
+[B112] Several documents each state that their engine does one thing and never another. Collected here, because the set of separations is itself a platform property: no single point may admit, bound, and assert a run by the same logic, or there is no separate check left to catch it.
+
+[B113] Northena governs direction only — never reasons, never extracts (Document 5).
+
+[B114] SyniSense governs the boundary only — the crossing, not the reasoning (Document 1).
+
+[B115] Solva governs depth only — reasons, never extracts, never enforces (Document 4).
+
+[B116] Mtafiti measures only — never extracts, targets, or governs (Document 9).
+
+[B117] Targeta targets only — learns yield, never touches the floor or eligibility (Document 13).
+
+[B118] CIF governs ideation/judgement across the others' walls — peer, subordinate to none (referenced where CIF's promises are held).
+
+[B119] The Watch is the security authority — detects and contains, never governs a governance verdict; and it is contained by its own instance of the disciplines, not the shared one (Documents 3, 14 §A5).
+
+[B120] Mkondo governs structure only — admits nothing, judges nothing, detects nothing (Documents 14, §5 above).
+
+[B121] The requirement. A change that lets any one of these perform another's function is a defect against the platform's core safety property, however locally convenient. The axes never collapse.
+
+[B123] §12 · WHAT THE CAPSTONE COMES DOWN TO
+
+[B124] The fifteen documents each hold a promise and its service. This document holds what binds them: two claims true of the whole and no part (#5, #29); one doctrine every guarantee obeys (structural impossibility, with its honest companion); one custody reconciliation across three lifecycles; one boundary-decision pattern in three places; one record law with its three registers; the ruling that closed the set's one genuinely open architectural question (declared-vs-demonstrated: two mechanisms, never one — different authorities, never a shared span); one mark-twice discipline; the closed refusal taxonomy; two compositions that must not be merged (the serving discipline; LC-1 vs. warm-serve); and one collected separation-of-authority that is itself a platform property. Where any of the fifteen names one of these, it names it here — once, so it is never re-derived differently in two places, and never flattened out of a document that had no room for it.
+
+[B126] RULING LOG — ALL TWENTY, RESOLVED
+
+[B127] This section was "OPEN RULINGS CONSOLIDATED FROM THE WHOLE SET." All twenty are now ruled. The section is kept — not deleted — because the record only grows; retitled to show what it now is.
+
+[B128] Doc 1 §B5.5 [RULED] — Failed objective extraction: refuse/ask.
+
+[B129] Doc 2 §B5.4 / §3 here [RULED] — Both dual-files retained in full; governed by full masking at every subsequent read, not reduced to a reference. Departs from this document's original recommendation.
+
+[B130] Doc 2 §B5.6 [RULED] — The re-association seam checks the files' combination for joint re-identification. Minimal check.
+
+[B131] Doc 3 [RULED] — The five Watch values are not set now. The system runs on the conservative default for a defined baseline period; at the end of that period, all five are set from real evidence through the standard change ceremony. Strengthens the original "default until set" language with an actual mechanism that guarantees the setting happens.
+
+[B132] Doc 4 §C3 [RULED] — "Innovate" delivered jointly by Solva under CIF's governance.
+
+[B133] Doc 6 §A5.5 [RULED] — Minimal-sufficient is computed and frozen at Admit by the reasoner.
+
+[B134] Doc 7 §A5.5 [RULED] — The trace-faithfulness constraint is adopted.
+
+[B135] Doc 10 §A5.3 [RULED] — Duplication is a named census output; flag for human confirmation, never auto-merge or delete.
+
+[B136] Doc 10 §A5.4 [RULED] — Source-to-source linkage: all four types (shared-subject, derivation, overlap, reference); descriptive only, never an access control, never entering the defensibility measure.
+
+[B137] Doc 11 §A5.5 [RULED] — Local-swarm shape: drafting/division only, governed by detection-not-decision.
+
+[B138] Doc 11 §B4.2 [RULED] — Lever priority order confirmed: cache → route → narrow → cascade → waste report, with engineering reasoning recorded at Doc 11 §B4.2.
+
+[B139] Doc 12 §A5.4 [RULED] — The pull-not-push property is explicit and testable.
+
+[B140] Doc 12 §B5.6 [RULED] — Cost-at-reflection generalises to every compute-related commit (extraction, training) — not to every commit type. A rule change or deletion has no compute cost to reflect.
+
+[B141] Doc 13 §A5.1 / §A5.5 [RULED] — "Any output dimension" is bounded by a pre-committed, numeric-or-structural done-condition, never by a post-hoc defensibility judgment. The objective-shaping dialogue's mandatory field is strengthened accordingly. This is a real tightening beyond the original proposal, not a confirmation of it — the original framing ("can we defend this output") was itself the soft, explainability-qualified gate the owner flagged as prone to fabrication.
+
+[B142] Doc 14 §B5.1 [RULED] — "Exceptional," for white-paper candidacy, must be an objectively defined numeric threshold on a declared stratum, set in advance. No run is tagged until that bar exists — no manual or case-by-case judgment. Same tightening as #14, applied consistently.
+
+[B143] Doc 14 §C5.2 [RULED] — Resell for open-weight and platform-hosted models; gateway-only for frontier providers, whose own commercial terms require a direct relationship the platform cannot license away. Stated honestly per model in the registry. Recommended: legal counsel review before this enters further investor or customer materials, which already lean on "single license" as a claim.
+
+[B144] Doc 15 §A5 [RULED — confirmed by owner] — Grey Mirror's self-containment is the four-discipline internal replication (own identity, own record classes, own ceremony, own external witness) — confirmed in the owner's own framing: not a subset of what it secures, but the same foundation. No further build intended.
+
+[B145] Doc 15 §B5.4 [RULED] — Path-of-success granularity: per job class.
+
+[B146] §4 here [RULED] — The three decide-once instances stay three separate implementations of one shared discipline, not one shared code primitive. No product or security consequence either way; delegated to the engineering team to apply directly.
+
+[B147] §6 here [RULED] — Declared-vs-demonstrated divergence: two mechanisms, never one. Resolved on the platform's own authority-separation doctrine, not merely on differing scope/clock: the Watch and Solva are different authorities, and no mechanism — credential or logic — is permitted to span both, the same rule that makes dual task-identity unrepresentable. Vocabulary and record shape are shared; the mechanism itself is not. This was the set's one genuinely open architectural question, and it closed on a sharper argument than this document originally offered.
+
+[B149] End of Document 16 of 16 — Cross-Cutting Orchestration. End of the requirements set.

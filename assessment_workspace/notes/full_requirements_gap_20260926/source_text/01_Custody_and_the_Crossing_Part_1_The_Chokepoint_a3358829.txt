@@ -1,0 +1,191 @@
+[B1] AKKI · PRODUCT & ENGINEERING REQUIREMENTS
+
+[B2] Custody & the Crossing — Part 1: The Chokepoint
+
+[B3] Document 1 of 16 · Canonical statement of requirements
+
+[B4] Cluster: Custody & the Crossing
+
+[B5] Promises held in this document: #1 (no leakage of confidential information) · #3 (intent, meaning and question objective extracted before redaction)
+
+[B6] This document is a standalone statement of what must be true. It does not depend on any other document to be understood. Where a mechanism defined here is also used by another service, that shared mechanism is named and its governing document (Document 16, Cross-Cutting Orchestration) is cited — but the requirement itself is stated in full here, not deferred.
+
+[B7] Source marking used throughout:
+
+[B8] [CANON] — established in the platform's architectural canon; carried here as binding.
+
+[B9] [RULED] — ruled by the product owner in the course of specification; binding.
+
+[B10] [PROPOSED] — synthesised to close a requirement gap; binding once the owner accepts, flagged where it awaits a decision.
+
+[B11] [OPEN] — a genuine question the owner must decide before build; the recommended default is stated but not treated as settled.
+
+[B12] The service that powers both promises in this document is SyniSense, the boundary governor. Its surface-layer name in end-user-facing material is "Shield"; that name is noted here once for orientation and not used again — this document specifies the engine, not any screen.
+
+[B14] PART A — PROMISE #1: NO LEAKAGE OF CONFIDENTIAL INFORMATION
+
+[B15] A1 · The promise, in plain language
+
+[B16] Confidential information does not leave the organisation's control. When the platform uses an external AI model to answer a question, nothing that identifies a person, or that the organisation has declared confidential, reaches that external model in a form that could expose it. The organisation can state, and prove afterwards, that this held for every single call — not most calls, not calls that passed review, every call.
+
+[B17] A2 · The service that powers it
+
+[B18] SyniSense, the boundary governor. SyniSense governs one thing and only one thing: whether data may cross an access point, and in what transformed state it crosses. It is the single point through which every outbound model call passes. It is not a monitor that watches calls and raises alarms; it is the mechanism through which the call is physically made, such that a call not transiting SyniSense cannot reach a model at all.
+
+[B19] A3 · Definition of the promise
+
+[B20] "No leakage" is defined precisely, because a vague definition cannot be engineered against:
+
+[B21] Identifiers are removed before crossing. Any value by which a specific person could be recognised — a name, a national ID number, a phone number, an account number, a biometric template, or any combination that resolves to an individual — is replaced with a placeholder token before the payload reaches the external model, and restored only after the model's answer returns inside the perimeter.
+
+[B22] Declared-confidential material is removed before crossing. Beyond legal identifiers, the organisation may declare categories or specific terms as confidential (Promise #2, Document 2). Anything matching those declarations is treated with the same removal-and-restoration discipline.
+
+[B23] The removal is enforced structurally, not by policy. It is not possible to make an outbound model call that skips the removal step, because there is no code path to the model that does not pass through the removal step. This is the difference between a rule people are asked to follow and a rule the system cannot violate.
+
+[B24] Every crossing is provable after the fact. For each call, the organisation holds evidence that the call occurred, that removal was applied, and under what custody — without that evidence itself exposing the confidential material or the credential used.
+
+[B25] A4 · Delivery experience expectations
+
+[B26] What the organisation experiences (human-facing):
+
+[B27] A person or agent inside the organisation asks a question of the platform in the ordinary way. They are not asked to redact anything themselves, not asked to approve a security posture per call, and not asked to route their question specially. The protection is invisible to honest use — the question is asked, the answer comes back complete and re-identified, and the person need never know a placeholder ever stood in for a real name.
+
+[B28] Where a request cannot be safely served — because what it asks for cannot be answered without exposing something that may not cross — the person receives a refusal that states plainly why, and what they can do instead. A refusal is a defined, first-class outcome, not an error or a timeout. (The refusal vocabulary is closed and shared platform-wide; see Document 16 §8.)
+
+[B29] What a consuming system experiences (machine-facing):
+
+[B30] A service calling the platform's answering interface receives either a complete answer with its identifiers restored, or one of the defined refusal shapes — never a partial answer in which some identifiers were restored and others silently were not.
+
+[B31] The external model, on the far side of the crossing, receives a payload in which confidential values are placeholder tokens. It never receives the mapping between token and real value; that mapping does not leave the perimeter and does not outlive the individual call.
+
+[B32] What is produced and retained:
+
+[B33] Per crossing, a trust receipt: evidence that the call happened, under what custody, without exposing the credential itself. What the receipt must contain is specified in A5.7 below.
+
+[B34] A5 · Technical and behavioural requirements
+
+[B35] A5.1 · The single chokepoint [CANON] There is exactly one function in the entire codebase that invokes the external model client. Every outbound model call — from any engine, any application, any task — is made through that one function. This is not a convention that developers are asked to honour; it is enforced by an automated negative-scan test that fails the build if any module other than the chokepoint function imports or invokes the model client. The guarantee is placed at the narrowest point in the system rather than the most convenient, because custody enforced at an orchestrator is custody a new call path can miss, whereas custody enforced at the sole invocation cannot be missed — there is no other invocation through which to miss it.
+
+[B36] A5.2 · The custody sequence [CANON] Every model invocation transits three steps in fixed order, and no path is authorised to skip any of them:
+
+[B37] De-identify. The inbound payload passes through the de-identifier, which replaces identifiers and declared-confidential values with placeholder tokens and records the token-to-value mapping in a per-request custody envelope.
+
+[B38] Invoke. The de-identified payload is sent to the external model through the chokepoint function.
+
+[B39] Re-identify. The model's returned answer passes back through the mapping, which restores the real values in place of the placeholder tokens, producing the complete answer for the internal consumer.
+
+[B40] A5.3 · The per-request envelope does not outlive the call [CANON] The token-to-value mapping is held in a custody envelope scoped to that single request. It is created when the request enters the crossing and destroyed when the answer is returned. It is never persisted to disk as a standing record, never shared between requests, and never available to any consumer after the call completes. This is a load-bearing invariant: the mapping is the one thing that, if retained, would reconstitute exactly what the crossing exists to protect.
+
+[B41] Interaction with Promise #4 (Document 2): Promise #4 requires that two files — the question as asked, and the extracted data before redaction — be retained and passed to the model as a two-item context. Those retained files are governed by a different custody class than this per-request mapping envelope, and the distinction is deliberate and must not be collapsed: the mapping envelope dies with the call; the Promise #4 files are retained under their own stated terms. Document 2 specifies those terms in full. Neither document may weaken the other's invariant; Document 16 §3 holds the reconciliation as a shared-custody ruling.
+
+[B42] A5.4 · Tenant-scoped entity resolution [CANON] De-identification is not limited to what a general-purpose identifier recogniser happens to detect. Each tenant supplies the set of entities that must be recognised for their instance — the specific people, accounts, and terms that matter in their estate — so that de-identification catches organisation-specific identifiers a generic recogniser would miss. This tenant entity set is the same mechanism Promise #2 (Document 2) allows the DPO to extend with declared-confidential terms; it is named here and specified for authoring in Document 2.
+
+[B43] A5.5 · The outbound network is closed except at the crossing [CANON] Exactly one path leaves the organisation's perimeter, and it is the custody boundary. No other module in the platform holds outbound network capability. This is enforced two ways at once:
+
+[B44] a network-layer allowlist that refuses outbound connections originating from anywhere except the crossing, and
+
+[B45] a static-analysis build gate that fails the build if any module other than the crossing acquires outbound network capability. Compute does not leave the perimeter either: models the organisation hosts, and GPU capacity the platform allocates, run inside the perimeter. Only where an external frontier model is genuinely required does the custody boundary govern that single crossing. (The perimeter-bound compute guarantee is stated in full for Promise #10, Document 11; it is named here because it is part of why "no leakage" holds — there is nowhere else for data to go.)
+
+[B46] A5.6 · Structural impossibility, not policed prohibition [CANON] The platform's enforcement doctrine is that a prohibition enforced by review is eventually violated, whereas a prohibition enforced by a function signature, a type, or a schema cannot be violated without the violation failing to compile or failing to persist. This promise is built to that doctrine: the chokepoint's sole-invocation property, the fixed custody sequence, and the closed outbound network are all structural, not procedural. (This doctrine is platform-wide and is stated once in Document 16 §2; it is applied here.)
+
+[B47] A5.7 · The trust receipt [CANON] A trust receipt is emitted per invocation. It is the key-custody envelope: evidence that the call happened and under what custody, constructed so that:
+
+[B48] the credential used to reach the model is never logged or included; its presence is surfaced only as a boolean probe at module load (present → live path; absent → sandbox fixture path), and nothing downstream branches on the credential's actual value;
+
+[B49] the receipt records that de-identification was applied and re-identification completed;
+
+[B50] the receipt is signed and bound to the organisation alone, such that it cannot be reproduced or forged elsewhere;
+
+[B51] the receipt is written to the one authoritative record (there is exactly one record; Document 16 §5 holds the record-ownership matrix).
+
+[B52] A5.8 · Two custody pathways, both receipted, neither bypassing the other [CANON] The platform has two custody pathways: the synthesis path through the chokepoint (text and structured payloads to a language model), and the perception path through the perception router (for example, audio reaching a model that reads it). Both emit receipts. Neither pathway is a way around the other. A promise of "no leakage" that held only for the text path while audio crossed ungoverned would be false; both paths carry the same custody obligation. (The perception path's ingestion is specified for Promise #15, Document 9; its custody obligation is stated here because it is part of this promise.)
+
+[B53] A5.9 · Grounding failure is a refusal, not a degraded answer [CANON] Where the model returns something that cannot be grounded in permitted material, the correct behaviour is refusal, not a weaker answer offered anyway. This is stated in full for Promise #8 (Document 4); it is named here because it bounds what "a complete answer" in A4 means — a complete answer is one that is both re-identified and grounded, and the absence of either yields a defined refusal, never a silent partial.
+
+[B54] A6 · What must be true for the service to deliver as intended
+
+[B55] The negative-scan test exists and runs on every build. If the test that enforces sole-invocation is absent, disabled, or not run, the entire promise degrades from structural to procedural. The test is itself a load-bearing component, not a convenience.
+
+[B56] The de-identifier's recogniser plus the tenant entity set together cover the identifiers that actually occur in the estate. A structurally perfect chokepoint still leaks if the de-identifier fails to recognise an identifier as one. This is why tenant-scoped entity resolution (A5.4) is required and not optional: the completeness of recognition is as load-bearing as the completeness of the crossing.
+
+[B57] The per-request envelope is genuinely destroyed, verifiably. There must be no path — log, cache, trace, debug dump, error handler — through which the mapping survives the call. An error thrown mid-crossing must not spill the envelope into a stack trace or a retained error object.
+
+[B58] The outbound allowlist and the build gate are both active. Either alone is insufficient: the build gate stops new outbound capability being written; the network allowlist stops outbound traffic from anything that somehow acquired it anyway. Defence is the pair, not either half.
+
+[B59] The credential is never the thing that varies behaviour. Nothing downstream of the boolean load-time probe may read, log, or branch on the credential value — otherwise the credential's absence or presence becomes a side channel.
+
+[B60] Both custody pathways are held to this standard simultaneously. A new model modality added later (video, for example) must acquire a governed pathway before it acquires the ability to make a call, or it becomes an ungoverned fourth path and the promise silently becomes false.
+
+[B62] PART B — PROMISE #3: INTENT, MEANING & QUESTION OBJECTIVE EXTRACTED BEFORE REDACTION
+
+[B63] B1 · The promise, in plain language
+
+[B64] When a question is stripped of its confidential and identifying content before being sent to an external model, the purpose of the question is not stripped with it. The platform captures what the question is actually trying to achieve — its intent, its meaning, and the objective it is pursuing — before redaction removes the sensitive specifics, so that the redacted question sent outward still carries enough of its purpose to be answered usefully, and the platform retains a faithful record of what was being asked and why.
+
+[B65] B2 · The service that powers it
+
+[B66] SyniSense at the crossing, performing an intent-and-objective extraction step that runs before the de-identify step of the custody sequence. This step draws on the platform's reasoning capability (Solva, Document 3) for the semantic reading of the question, and on the objective-freezing discipline (Northena, Document 5) for how a captured objective is recorded immutably. Both are named here and specified in their own documents; the requirement that the extraction happen, and happen before redaction, is stated in full here.
+
+[B67] B3 · Definition of the promise
+
+[B68] Three things are extracted, and the distinction between them is not cosmetic:
+
+[B69] Intent — what the asker is trying to do (decide, verify, compare, summarise, discover). Intent is the action shape of the request.
+
+[B70] Meaning — what the question is actually about, semantically, independent of the specific sensitive tokens it happens to contain. Meaning is what survives when "has patient Jane Wanjiru's creatinine trend worsened" becomes "has this individual's creatinine trend worsened" — the clinical question is intact; the identity is gone.
+
+[B71] Question objective — the specific, bounded thing that would count as the question being answered. The objective is what lets the platform later judge whether the returned answer actually addressed the ask, or drifted.
+
+[B72] "Before redaction" is the load-bearing phrase. If intent were inferred after redaction, from the already-stripped payload, some of the purpose would be irrecoverable — the redaction would have destroyed context the intent depended on. Extracting first means the platform reads the question while it is still whole, captures its purpose faithfully, and only then removes the sensitive specifics.
+
+[B73] B4 · Delivery experience expectations
+
+[B74] What the organisation experiences (human-facing):
+
+[B75] Nothing additional is asked of the person. They ask their whole question naturally; the extraction is automatic and internal. The visible benefit is that answers to sensitive questions come back on-target rather than generic — because the purpose survived the redaction — and that the organisation can later see, for any past call, a faithful statement of what was being asked and to what end.
+
+[B76] What a consuming system experiences (machine-facing):
+
+[B77] The external model receives a redacted payload that nonetheless carries the extracted intent and meaning, so it can answer the real question rather than a hollowed-out version of it.
+
+[B78] Downstream governance (the objective-scope check, the grounding check) receives the captured question objective as the frozen thing the answer will be judged against.
+
+[B79] What is produced and retained:
+
+[B80] A captured objective artifact for the request — the intent, the meaning, and the bounded objective — recorded immutably for the life of the request and its audit trail. How this artifact is frozen and why it cannot be edited mid-flight is specified for Promise #16/#18 (Document 5); its creation at this point in the crossing is the requirement here.
+
+[B81] B5 · Technical and behavioural requirements
+
+[B82] B5.1 · Extraction precedes de-identification in the fixed sequence [RULED] The custody sequence of A5.2 is refined: for any request carrying a question (as opposed to a raw data payload), the ordered steps are extract-intent → de-identify → invoke → re-identify. The extraction step reads the whole, un-redacted question, produces the objective artifact, and only then hands the payload to the de-identifier. No path performs de-identification before extraction for a question-bearing request.
+
+[B83] B5.2 · The extraction reads meaning, not just surface tokens [CANON-adjacent] The meaning extracted must be robust to the removal of the sensitive tokens — that is, it must capture the question at a level of abstraction that survives de-identification. This is why the step uses the platform's reasoning capability (Solva) rather than a pattern match: recognising that a question is "a renal-function trend enquiry about one individual" requires reading it, not scanning it.
+
+[B84] B5.3 · The captured objective is frozen, not editable [CANON] Once captured, the objective artifact is immutable for the life of the request. A change in what is being asked is a new request with a new artifact, never an edit of a live one. This is the same freezing discipline Northena applies to every admitted objective (Document 5); it is required here so that the thing the answer is judged against cannot be quietly moved after the fact to match whatever came back.
+
+[B85] B5.4 · Declared and demonstrated intent are both recorded [CANON] The extracted intent is recorded as declared intent — what the question presents itself as trying to do. The platform separately observes, across the handling of the request, whether the conduct matches that declaration (for example, a request that declares "summarise" but is structured to extract identifiers behaves differently than it declared). Declared intent and demonstrated intent are both fields of the record, and divergence between them is tracked rather than assumed absent. (This declared-vs-demonstrated reconciliation is a pattern shared with the Watch's behavioural monitoring, Promise #6/#7, Document 3; Document 16 §6 holds the question of whether the two share one mechanism. Here, the requirement is that this crossing records both.)
+
+[B86] B5.5 · Extraction failure is handled explicitly [RULED] Where the platform cannot confidently extract a coherent objective from a question — the question is malformed, internally contradictory, or too vague to bound — the request does not proceed to the model on a guessed objective. Instead it yields a defined outcome: either a request for the asker to clarify (where a human is in the loop), or a defined refusal shape (where a system is calling). The platform does not fabricate an objective in order to have one.
+
+[B87] [RULED] Refuse or ask, never proceed on a best-effort guess — a fabricated objective defeats the grounding check downstream that depends on the objective being real.
+
+[B88] B6 · What must be true for the service to deliver as intended
+
+[B89] The extraction genuinely runs before de-identification, always, for question-bearing requests. If any path de-identifies first, the promise is false on that path — the purpose was destroyed before it was captured.
+
+[B90] The extracted meaning is abstract enough to survive redaction but specific enough to be answerable. Too abstract and the outward question is useless; too concrete and it smuggles the sensitive specifics back in. This is a genuine quality bar on the extraction, measurable on the organisation's own material.
+
+[B91] The captured objective is the same object the downstream grounding and scope checks consume. If the objective captured at the crossing and the objective the answer is judged against are two different records, they can disagree, and the audit becomes a story rather than a proof. There must be one objective artifact, created here, consumed downstream.
+
+[B92] The freeze is real. If the objective artifact can be edited after capture, then "what was being asked" can be rewritten to match what came back, and the record no longer proves anything.
+
+[B93] Extraction failure has a defined, non-fabricating outcome. The system must never invent an objective to keep a request moving; the failure path must exist and be exercised.
+
+[B95] RULINGS APPLIED TO THIS DOCUMENT
+
+[B96] B5.5 [RULED] — On failed objective extraction: refuse/ask. Settled.
+
+[B97] Cross-reference to Document 2 — The Promise #4 retained-file custody class is reconciled with the per-request envelope invariant (A5.3): both files retained in full, but re-governed through full masking at every subsequent read, never just at write. See Document 2 §B5.4 and Document 16 §3 for the ruling in full.
+
+[B98] Cross-reference to Document 16 §6 — Ruled: the declared-vs-demonstrated divergence tracking at this crossing (B5.4) and the Watch's behavioural reconciliation remain two deliberately separate mechanisms — Solva and the Watch are different authorities, and no mechanism spans both. See Document 16 §6.
+
+[B100] End of Document 1 of 16 — Custody & the Crossing, Part 1: The Chokepoint.
