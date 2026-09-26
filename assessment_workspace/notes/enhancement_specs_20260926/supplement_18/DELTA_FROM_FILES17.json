@@ -1,0 +1,441 @@
+{
+  "registry_rows": 648,
+  "registry_unique_keys": 648,
+  "qa_rows": 602,
+  "qa_unique_keys": 602,
+  "missing_qa": [
+    [
+      "context_and_capability_v1",
+      "CC-1"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-10"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-11"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-12"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-13"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-14"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-15"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-16"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-2"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-3"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-4"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-5"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-6"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-7"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-8"
+    ],
+    [
+      "context_and_capability_v1",
+      "CC-9"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-1"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-10"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-11"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-12"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-13"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-14"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-15"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-2"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-3"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-4"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-5"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-6"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-7"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-8"
+    ],
+    [
+      "data_cleanliness_v1",
+      "DQ-9"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-1"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-10"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-11"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-12"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-13"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-14"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-15"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-2"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-3"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-4"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-5"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-6"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-7"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-8"
+    ],
+    [
+      "execution_standard_v1",
+      "EX-9"
+    ]
+  ],
+  "extra_qa": [],
+  "registry_delta": {
+    "added": [
+      {
+        "Rule ID": "CC-1",
+        "Statement": "The intent extractor (Document 1) classes every objective as entity-knowledge or not, from the extracted intent, before de-identification. The class is recorded on the frozen objective and is not revisable downstream.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 634
+      },
+      {
+        "Rule ID": "CC-10",
+        "Statement": "The Rules Service, the Ledger writer, and the credential plane each carry an availability target (R-45) and a stated resilience form: the Rules Service serves its last-verified rule set from a signed local copy when its store is unreachable, with changes refused until reconnection; the Ledger writer runs active-standby with a mirrored Ledger device on tiers that have one, and failover is a receipted event; the credential plane refuses issue and revoke when unreachable but continues to *verify* presented credentials from its sealed cache, so existing sessions continue and no new credential is minted blind.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 643
+      },
+      {
+        "Rule ID": "CC-11",
+        "Statement": "Unavailability of a gate service is surfaced on the tenant's operations surface as such, with the fixed string for the affected request classes. It is never presented as a request failure attributable to the requester.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 644
+      },
+      {
+        "Rule ID": "CC-12",
+        "Statement": "A fixed task set of not fewer than 200 tasks across four classes — retrieval, synthesis, multi-step reasoning, entity-heavy — with reference answers, held under the estate owner's custody and never used for training. Each task runs through the governed path and the bare path on the same model and seed. Quality is scored by a deterministic rubric per class against the references; latency is measured end to end. The delta per class, quality and latency, is reported per release.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 645
+      },
+      {
+        "Rule ID": "CC-13",
+        "Statement": "A quality delta beyond R-46 in any class is a release finding: the release ships only with the delta stated on the release note and a named cause — masking, window assembly, cascade routing, or refusal — each of which has a lever in this amendment. A delta with no named cause does not ship.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 646
+      },
+      {
+        "Rule ID": "CC-14",
+        "Statement": "The benchmark runs under the Execution Standard: denominator the task set, artefact one row per task per path, acceptance the reconciliation and the rubric scripts, re-performance by a second instance on a seeded sample. The report is the artefact, and the release note cites its hash.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 647
+      },
+      {
+        "Rule ID": "CC-15",
+        "Statement": "memory_compaction_v1 is amended to state that the unit it compacts is Document 7's five-ring normalised unit; that facts kept by hash pointer are kept by the unit's re-extraction handle; and that a compacted lineage is a derived artefact over units, never a parallel representation of them. MEM-1 through MEM-11 are unchanged in effect; the citation is added.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 648
+      },
+      {
+        "Rule ID": "CC-16",
+        "Statement": "Four named checks are added to the audit's surface list (Audit Standards v2 §6), verified as functional demonstrations by a party holding no builder credential: (a) shrink a unit and regenerate it from its re-extraction handle — identical content ring; (b) submit degraded material and show it lands unqualified, never in an evidence partition; (c) serve a warm objective and show it returned synchronous and full within the budget; (d) submit an objective containing a controlled entity and show the extracted meaning crossed with the entity masked and re-identified inside — or, if entity-knowledge, that CC-2 routed it.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 649
+      },
+      {
+        "Rule ID": "CC-2",
+        "Statement": "An entity-knowledge objective on a controlled entity routes to the Local catalog by requirement, not by cascade preference. It crosses to a frontier model only under an owner approval recorded against the entity's custody class (DAP-14 pattern), and then crosses with the entity unmasked for that call only, receipted as such. Absent the approval, the objective is served locally or refused with the reason stated — never served by a frontier model with the entity masked and the result presented as complete.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 635
+      },
+      {
+        "Rule ID": "CC-3",
+        "Statement": "Where an entity-knowledge objective is served locally and the local model's knowledge of the entity is insufficient, the answer states that the entity was withheld from external models by custody class, in a fixed string from the Content Registry. The reader learns why the answer is bounded; the platform does not guess to fill it.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 636
+      },
+      {
+        "Rule ID": "CC-4",
+        "Statement": "Assembly is a deterministic ranking of the qualified units for the frozen objective, in this order: units the objective's frame names as load-bearing; then by defensibility class, highest first; then by relational proximity to the objective's named entities and scope (the unit's relational-edges ring); then by recency of the unit's source position. Ties break by unit identifier. The same objective and the same qualified set produce the same window.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 637
+      },
+      {
+        "Rule ID": "CC-5",
+        "Statement": "When units are left out, the window carries a loss statement: counts of excluded units by defensibility class, and the re-extraction handles of the ten highest-ranked exclusions. The statement travels with the trace. An answer composed from a window with a loss statement states that material was excluded and by what rule — in the same fixed-string form compaction uses on reload.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 638
+      },
+      {
+        "Rule ID": "CC-6",
+        "Statement": "No learned component reorders or filters the window after assembly. The drafting model reads what assembly produced. A retrieval or reranking model may propose a ranking rule change through the research queue; it never ranks live.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 639
+      },
+      {
+        "Rule ID": "CC-7",
+        "Statement": "Ledger writer throughput floor. Per tenant, the writer sustains not fewer than R-41 receipts per second at a per-receipt latency not exceeding R-42, measured under load on the deployed hardware before the tenant is opened to users, and re-measured at every image release. A measured figure below the floor is a release blocker for that tier. The figure is on the tenant's operations surface.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 640
+      },
+      {
+        "Rule ID": "CC-8",
+        "Statement": "Latency budget per request class. Warm: end-to-end, gates engaged, not exceeding R-43. Fresh: acknowledgement within R-44, with the delivery estimate the async contract already requires (Doc 8 B5.3). Controlled: the time to the approving authority's queue not exceeding R-43; the decision time is the human's and is reported, not budgeted. Budgets are measured on the governed path at the 95th percentile and reported per tenant per period.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 641
+      },
+      {
+        "Rule ID": "CC-9",
+        "Statement": "Warm-serve ratio. The share of requests served from stored qualified intelligence without a fresh fetch, per tenant per period, on the usage surface next to the latency figures. It is the number that says whether Document 8's promise is being kept; a falling ratio is investigated, not explained away.",
+        "Objective": "O23 Context and Capability",
+        "Promise / Source Document": "context_and_capability_v1",
+        "Doc": "context_and_capability_v1",
+        "Status": "PROPOSED",
+        "Enforcement Class": null,
+        "Domain": "O23 Context and Capability",
+        "Source (file:line)": "Context_and_Capability_v1.docx",
+        "Relationship": "Added at refresh 27 Sep 2026",
+        "Builder Status": null,
+        "_row": 642
+      }
+    ],
+    "removed": [],
+    "changed": []
+  },
+  "security_delta": {
+    "added": [
+      {
+        "#": "S-35",
+        "Doc": "CC-1–CC-16 · Context and Capability (context_and_capability_v1, 27 Sep 2026)",
+        "Promise": "What governance costs is measured and stated: which material entered the window and what was left out, why an entity was withheld from an external model, how fast each class of request is served, how often memory served it warm, and the quality delta of the governed path against the bare model — on every release, in numbers.",
+        "Standard": "Doc 1 custody sequence · Doc 7 A5.1–A5.5 five-ring unit and trace · Doc 8 A5.1–A5.4, B5.1–B5.5 memory and retrieval · Doc 11 A5.4 cascade · B.4 Ledger · Execution Standard EX-1–15",
+        "Implementation\nStatus": "Absent → new",
+        "Bound / Ruling": "R-41–R-46 DEFAULT-class floors, budgets and thresholds; first-article measurement sets baselines",
+        "Where It Lives / Notes": "context_and_capability_v1: CC-2 entity-knowledge objectives local by requirement or approved unmasked crossing; CC-4/5 deterministic window assembly with loss statement; CC-7–9 throughput floor, latency budget, warm ratio as reported figures; CC-10 gate-service resilience forms; CC-12–14 standing benchmark under the Execution Standard; CC-16 four audit demonstrations",
+        "System Features": "• No learned component ranks or filters the window after assembly\n• A window with exclusions carries a loss statement in the trace\n• A release with a quality delta beyond threshold ships only with a named cause\n• Gate-service unavailability is never presented as requester failure",
+        "User Requirements — User can...": "• User can (owner) see per-period latency by request class and the warm-serve ratio\n• User can (reader) learn why an entity was withheld from an external model\n• User can (auditor) re-derive any window from the objective and the qualified set",
+        "_row": 37
+      }
+    ],
+    "removed": [],
+    "changed": []
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "recorded_at": "2026-09-26T02:47:24.286454+00:00",
+  "source_document_date": "2026-09-27 as printed; custody date is separate",
+  "archive_sha256": "93eadfe65685470901fa18b47dddb2c1c7ff1f76f5fcd253548c15cdd8ce4272",
+  "documents": [
+    {
+      "name": "Context_and_Capability_v1.docx",
+      "bytes": 16778,
+      "sha256": "63c4b62d86b6268b48bf328510d3faa1c2f0521aae7e2664a5704c62f176d46e",
+      "outcome": "processed",
+      "nonempty_blocks": 53,
+      "tracked_insertions": 0,
+      "tracked_deletions": 0
+    },
+    {
+      "name": "Master_Requirements_Registry.xlsx",
+      "bytes": 123780,
+      "sha256": "2d5d32501d113f201ebf32f7d6733c3a178fcbd806a8d459d9a72b08acd92d64",
+      "outcome": "processed",
+      "nonempty_rows_per_sheet": {
+        "Build Status": 45,
+        "QA Verification": 603,
+        "QA Legend": 10,
+        "System Rules Registry": 649,
+        "Objectives": 15,
+        "Legend": 8
+      }
+    },
+    {
+      "name": "Security_Assurance_Promise_Set.xlsx",
+      "bytes": 22427,
+      "sha256": "004aa66932432ee313b48e5024821a4b13d9edba8e2ddd2088c983847fe430a7",
+      "outcome": "processed",
+      "nonempty_rows_per_sheet": {
+        "Security Assurance Set": 37,
+        "Legend": 10
+      }
+    }
+  ],
+  "previous_report_snapshot_sha256": "db03f1603cba603efc63ad4b495b12b6384af90f0c4a75397880a3453877f94f"
+}

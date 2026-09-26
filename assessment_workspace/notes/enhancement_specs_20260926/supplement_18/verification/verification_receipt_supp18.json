@@ -1,0 +1,1158 @@
+{
+  "generated_at": "2026-09-26T02:54:36.260098Z",
+  "scope": "supplement_18 document-artifact verification only (read-only)",
+  "contract_anchor_root": "/app/backend/vendored/extraction_akki/backend",
+  "checks": {
+    "incoming_members_count": 4,
+    "archive_present": true,
+    "archive_sha256_actual": "93eadfe65685470901fa18b47dddb2c1c7ff1f76f5fcd253548c15cdd8ce4272",
+    "archive_sha256_manifest": "93eadfe65685470901fa18b47dddb2c1c7ff1f76f5fcd253548c15cdd8ce4272",
+    "archive_sha_match": true,
+    "archive_member_count": 3,
+    "archive_members": [
+      "Context_and_Capability_v1.docx",
+      "Master_Requirements_Registry.xlsx",
+      "Security_Assurance_Promise_Set.xlsx"
+    ],
+    "manifest_hash_match_all": true,
+    "manifest_member_matches": [
+      {
+        "name": "Context_and_Capability_v1.docx",
+        "in_manifest_documents": true,
+        "bytes_match": true,
+        "sha_match": true
+      },
+      {
+        "name": "Master_Requirements_Registry.xlsx",
+        "in_manifest_documents": true,
+        "bytes_match": true,
+        "sha_match": true
+      },
+      {
+        "name": "Security_Assurance_Promise_Set.xlsx",
+        "in_manifest_documents": true,
+        "bytes_match": true,
+        "sha_match": true
+      },
+      {
+        "name": "files_18.zip",
+        "in_manifest_documents": false,
+        "bytes_match": false,
+        "sha_match": false
+      }
+    ],
+    "docx_extraction_exact": true,
+    "xlsx_extraction_exact": {
+      "Master_Requirements_Registry": {
+        "Build Status": {
+          "exact": true,
+          "note": "ok"
+        },
+        "QA Verification": {
+          "exact": true,
+          "note": "ok"
+        },
+        "QA Legend": {
+          "exact": true,
+          "note": "ok"
+        },
+        "System Rules Registry": {
+          "exact": true,
+          "note": "ok"
+        },
+        "Objectives": {
+          "exact": true,
+          "note": "ok"
+        },
+        "Legend": {
+          "exact": true,
+          "note": "ok"
+        }
+      },
+      "Security_Assurance_Promise_Set": {
+        "Security Assurance Set": {
+          "exact": true,
+          "note": "ok"
+        },
+        "Legend": {
+          "exact": true,
+          "note": "ok"
+        }
+      }
+    },
+    "registry_unique_doc_rule_keys": 648,
+    "qa_unique_doc_rule_keys": 602,
+    "missing_qa_count": 46,
+    "missing_qa_keys": [
+      [
+        "context_and_capability_v1",
+        "CC-1"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-10"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-11"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-12"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-13"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-14"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-15"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-16"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-2"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-3"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-4"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-5"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-6"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-7"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-8"
+      ],
+      [
+        "context_and_capability_v1",
+        "CC-9"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-1"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-10"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-11"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-12"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-13"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-14"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-15"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-2"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-3"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-4"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-5"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-6"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-7"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-8"
+      ],
+      [
+        "data_cleanliness_v1",
+        "DQ-9"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-1"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-10"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-11"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-12"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-13"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-14"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-15"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-2"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-3"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-4"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-5"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-6"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-7"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-8"
+      ],
+      [
+        "execution_standard_v1",
+        "EX-9"
+      ]
+    ],
+    "new_ids_added_count": 16,
+    "new_ids_added": [
+      "CC-1",
+      "CC-10",
+      "CC-11",
+      "CC-12",
+      "CC-13",
+      "CC-14",
+      "CC-15",
+      "CC-16",
+      "CC-2",
+      "CC-3",
+      "CC-4",
+      "CC-5",
+      "CC-6",
+      "CC-7",
+      "CC-8",
+      "CC-9"
+    ],
+    "removed_old_ids_count": 0,
+    "removed_old_ids": [],
+    "changed_old_ids_count": 0,
+    "changed_old_ids": [],
+    "security_added": [
+      "S-35"
+    ],
+    "security_removed": [],
+    "combined_csv_row_count": 59,
+    "combined_csv_unique_ids": 59,
+    "combined_new23_count": 23,
+    "combined_new23_ids": [
+      "CC-1",
+      "CC-10",
+      "CC-11",
+      "CC-12",
+      "CC-13",
+      "CC-14",
+      "CC-15",
+      "CC-16",
+      "CC-2",
+      "CC-3",
+      "CC-4",
+      "CC-5",
+      "CC-6",
+      "CC-7",
+      "CC-8",
+      "CC-9",
+      "R-41",
+      "R-42",
+      "R-43",
+      "R-44",
+      "R-45",
+      "R-46",
+      "S-35"
+    ],
+    "combined_preserved_count": 36,
+    "combined_has_duplicates": false,
+    "combined_cited_code_refs_total": 74,
+    "combined_missing_code_refs": [],
+    "doc_date_raw": "27 September 2026",
+    "custody_file_dates": [
+      "2026-09-26"
+    ],
+    "doc_date_distinct_from_custody_date": true,
+    "numeric_r41_r46_blocks": {
+      "B47": "R-41  Ledger writer throughput floor, receipts per second per tenant. Recommend 500 on Start, 5,000 on Grow, from first-article measurement. DEFAULT-class.",
+      "B48": "R-42  Per-receipt write latency ceiling. Recommend 10 ms at the 95th percentile. DEFAULT-class.",
+      "B49": "R-43  Warm end-to-end budget and controlled time-to-queue. Recommend 2 s at the 95th percentile on Start; 1 s on Grow. DEFAULT-class.",
+      "B50": "R-44  Fresh acknowledgement budget. Recommend 500 ms. DEFAULT-class.",
+      "B51": "R-45  Gate-service availability target. Recommend 99.9% measured monthly per tenant, with the resilience forms in CC-10 as the mechanism. DEFAULT-class.",
+      "B52": "R-46  Capability delta threshold per class before a release is a finding. Recommend 3 points on a 100-point rubric for retrieval and synthesis, 5 for reasoning and entity-heavy. DEFAULT-class until the first three benchmark runs set a baseline."
+    }
+  },
+  "semantic_review_new23": {
+    "agree": 21,
+    "uncertain": 2,
+    "disagree": 0,
+    "rows": [
+      {
+        "id": "CC-1",
+        "source_anchor": "Context_and_Capability_v1.docx B14",
+        "source_clause_excerpt": "CC-1  The intent extractor (Document 1) classes every objective as entity-knowledge or not, from the extracted intent, before de-identification. The class is recorded on the frozen objective and is not revisable downstream.  [Doc 1; Doc 5 freeze]",
+        "assessment": "Declared situation class is not the new immutable entity-knowledge classification",
+        "implementation_required": "Pin governed classification before masking using a versioned objective binding and authority rules",
+        "code_evidence": [
+          {
+            "ref": "services/solva_v2/intent_audit.py:15-38",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/solva_v2/intent_audit.py",
+            "line_count": 38,
+            "range": [
+              15,
+              38
+            ],
+            "snippet_sha256": "cbdd9c8cb2e0434ff0740e39d5db71864afe57664bc0c6fa1767924d136a348a",
+            "snippet_preview": "def open_intent_audit(*, session_id: str,\n                       declared_situation_class: str) -> IntentAuditRecord:\n    return IntentAuditRecord(\n        session_id=session_id,\n        declared_situation_class=declared_situation_class,\n        demonstrated_observations=(),\n    )\n\n\ndef update_intent_audit_demonstrated(\n    record: IntentAuditRecord,\n    demonstrated_observation: str,\n) -> IntentAuditRecord:\n    \"\"\"Append-only: returns a new record; the input record stays\n    unchanged (Canon-3 §9.3 spirit: no update path within the retention\n    window).\"\"\"\n    return IntentAuditRecord(\n     "
+          },
+          {
+            "ref": "contracts/objective_request_v2.py:151-166",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/contracts/objective_request_v2.py",
+            "line_count": 237,
+            "range": [
+              151,
+              166
+            ],
+            "snippet_sha256": "4993245ad39cb7f5d87ffe2dac1de116e5be10ec8fdd1220a944dd9272e6ce62",
+            "snippet_preview": "class Envelope(BaseModel):\n    \"\"\"v3 §3.2 envelope block. See module HAZARD-STOP-NOTES on scalar-type\n    fields (`budget`, `scope_ceiling`) and open-shape fields\n    (`availability_snapshot`, `floor_feasibility`).\n    \"\"\"\n\n    model_config = ConfigDict(extra=\"forbid\")\n\n    lawful_basis: str = Field(..., min_length=1)\n    done_condition: str = Field(..., min_length=1)\n    budget: str = Field(..., min_length=1)\n    scope_ceiling: str = Field(..., min_length=1)\n    availability_snapshot: Dict[str, Any] = Field(default_factory=dict)\n    floor_feasibility: Dict[str, Any] = Field(default_factory=di"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-2",
+        "source_anchor": "Context_and_Capability_v1.docx B15",
+        "source_clause_excerpt": "CC-2  An entity-knowledge objective on a controlled entity routes to the Local catalog by requirement, not by cascade preference. It crosses to a frontier model only under an owner approval recorded against the entity's custody class (DAP-14 pattern), and then crosses with the entity unmasked for that call only, receipted as such. Absent the approval, the objective is served locally or refused with the reason stated — never served by a frontier model with the entity masked and the result presented as complete.  [Doc 11 A5.4; DAP-7; A5.5]",
+        "assessment": "Existing cascade prefers customer keys and chokepoint always runs custody; neither inspected interface carries the scoped exception",
+        "implementation_required": "Apply custody eligibility before cascade preference; version one-call approved disclosure without bypassing the sole chokepoint",
+        "code_evidence": [
+          {
+            "ref": "services/entitlement_service_v1/cascade_selector.py:113-149",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/entitlement_service_v1/cascade_selector.py",
+            "line_count": 150,
+            "range": [
+              113,
+              149
+            ],
+            "snippet_sha256": "058dd0148693595ed6043ba9b452cbb8e260ed9a990122cc09819b7b82fb6385",
+            "snippet_preview": "    # Rule 1 · ENT-19 customer-key preference\n    customer_key_rows = [r for r in candidate_rows if r.access_class == \"customer_key\"]\n    if customer_key_rows and licence.frontier_dial == \"your_keys\":\n        return customer_key_rows[0], None\n\n    # Rule 2 · ENT-26 exhaustion cascade to local-served\n    reseller_rows = [r for r in candidate_rows if r.access_class == \"reseller_frontier\"]\n    local_rows = [r for r in candidate_rows if r.access_class == \"local_served\"]\n    if reseller_rows and allowance_exhausted:\n        if not local_rows:\n            raise CascadeRefusal(\n                \"ENT-2"
+          },
+          {
+            "ref": "services/chokepoint/llm.py:287-299",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              287,
+              299
+            ],
+            "snippet_sha256": "44206e9c98f32b449c4b6397001eb30927be7105add6eeea79a005027ab8e50f",
+            "snippet_preview": "    M12-W1d (2026-09-18) · Option D per Owner R-25:\n      * `tenant_id` is REQUIRED (no Optional, no default). An empty\n        tenant_id refuses per FP-2 (unresolvable gate refuses).\n      * `custody_class` is REQUIRED. Accepted values: `\"tenant_estate\"`\n        (real estate work) and `\"synthetic\"` (connectivity self-check;\n        payload carries no estate content). Any other value refuses.\n      * No bypass parameter exists. No conditional guards the custody\n        call. The custody sequence ALWAYS runs; for synthetic payloads\n        it runs as a verified no-op.\n      * The Watch input-se"
+          }
+        ],
+        "judgement": "uncertain",
+        "reason": "Anchor and excerpt exist, but excerpt slice alone cannot fully confirm semantic claim breadth."
+      },
+      {
+        "id": "CC-3",
+        "source_anchor": "Context_and_Capability_v1.docx B16",
+        "source_clause_excerpt": "CC-3  Where an entity-knowledge objective is served locally and the local model's knowledge of the entity is insufficient, the answer states that the entity was withheld from external models by custody class, in a fixed string from the Content Registry. The reader learns why the answer is bounded; the platform does not guess to fill it.  [CON-2; A5.5]",
+        "assessment": "Fixed-string governance foundation exists; no verified CC3 registered literal",
+        "implementation_required": "Approve fixed bounded-answer copy without treating a model self-report as a measured competence guarantee",
+        "code_evidence": [
+          {
+            "ref": "services/content_registry/content_registry_vocabulary.py:21-48",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/content_registry/content_registry_vocabulary.py",
+            "line_count": 969,
+            "range": [
+              21,
+              48
+            ],
+            "snippet_sha256": "61839045f6de531bfaf77a554051e666be6a8ef55b589cdd3355b83d874217aa",
+            "snippet_preview": "- **CON-1** · Every string that reaches a surface belongs to exactly one content entry and exactly one class.\n  - `CONTENT_CLASSES: Final[tuple[str, ...]] = (\"Fixed\", \"Templated\", \"Generated\")` — the three-class enumeration.\n  - `IMPROVISED_COPY_REFUSED: Final[bool] = True` — a component composing text outside the registry is refused by the resolver.\n  - `STRING_WITHOUT_ENTRY_DOES_NOT_RENDER: Final[bool] = True` — no entry means no render.\n\n- **CON-2** · Fixed entries render their text verbatim.\n  - `FIXED_RENDER_VERBATIM: Final[bool] = True`.\n  - `FIXED_TEXT_CHANGE_REQUIRES_CEREMONY: Final[bo"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-4",
+        "source_anchor": "Context_and_Capability_v1.docx B19",
+        "source_clause_excerpt": "CC-4  Assembly is a deterministic ranking of the qualified units for the frozen objective, in this order: units the objective's frame names as load-bearing; then by defensibility class, highest first; then by relational proximity to the objective's named entities and scope (the unit's relational-edges ring); then by recency of the unit's source position. Ties break by unit identifier. The same objective and the same qualified set produce the same window.  [Doc 7 A5.1; Doc 8 A5.3]",
+        "assessment": "Unit edges/handles and load-bearing hook exist; hook currently returns all candidates and is not window assembly",
+        "implementation_required": "Pin qualified set and objective plus deterministic budget/tokenizer/proximity/recency/tie rules; preserve whole units",
+        "code_evidence": [
+          {
+            "ref": "contracts/five_rings.py:169-218",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/contracts/five_rings.py",
+            "line_count": 308,
+            "range": [
+              169,
+              218
+            ],
+            "snippet_sha256": "bdcac761657d3429a2abd5e255f8badf3f9e0c1993d6af6b1cbf73c3a31fec34",
+            "snippet_preview": "class RelationalEdge(BaseModel):\n    \"\"\"One edge in the Relational ring graph. Spec §5.4.\"\"\"\n\n    model_config = ConfigDict(extra=\"forbid\")\n\n    type: RelationType\n    target_unit_ref: str = Field(\n        ..., description=\"unit_id of the related NormalizedUnit.\"\n    )\n    evidence_ref: Optional[str] = Field(\n        default=None,\n        description=\"Optional pointer to the evidence that grounds this edge.\",\n    )\n\n\nclass RelationalRing(BaseModel):\n    \"\"\"Spec §5.4: edges between units.\n\n    A unit may have zero edges (e.g. an isolated utterance). Empty\n    Relational ring is valid and expect"
+          },
+          {
+            "ref": "services/solva_depth/load_bearing.py:23-39",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/solva_depth/load_bearing.py",
+            "line_count": 39,
+            "range": [
+              23,
+              39
+            ],
+            "snippet_sha256": "9022c1bb03fb8ac229b84811dadbc3881235a34ae013d399469ce9cad8e4431f",
+            "snippet_preview": "def load_bearing(conclusion_text: str, candidates: Sequence[NormalizedUnit]) -> List[NormalizedUnit]:\n    \"\"\"Identify units the conclusion actually rests on.\n\n    G3 v0: returns the non-empty candidate set unchanged. When the\n    reasoning faculty binds an LLM-based reflection judgment (a\n    G3+ implementation choice), this function will consult the\n    Reflection-stage output. Meanwhile, an honest default: every\n    candidate is treated as load-bearing.\n\n    Contract: NO `DefensibilityClass` construction here; that's the\n    boundary's job. See `test_reasoning_faculty_isolation`.\n    \"\"\"\n   "
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-5",
+        "source_anchor": "Context_and_Capability_v1.docx B20",
+        "source_clause_excerpt": "CC-5  When units are left out, the window carries a loss statement: counts of excluded units by defensibility class, and the re-extraction handles of the ten highest-ranked exclusions. The statement travels with the trace. An answer composed from a window with a loss statement states that material was excluded and by what rule — in the same fixed-string form compaction uses on reload.  [MEM-8; Doc 7 A5.4]",
+        "assessment": "Compaction counts8claim classes; new exclusions count qualified units and cannot reuse that denominator blindly",
+        "implementation_required": "Bind selected/excluded unit sets class counts and top10available exclusion handles to trace and disclosed loss copy",
+        "code_evidence": [
+          {
+            "ref": "services/memory/compaction_v1/operations.py:142-179",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/memory/compaction_v1/operations.py",
+            "line_count": 232,
+            "range": [
+              142,
+              179
+            ],
+            "snippet_sha256": "3e98961754c00f90cdbda87e520bc574b0be118be00e60985f362192d03fbb41",
+            "snippet_preview": "    retained, dropped = engine.decide(ctx=ctx)\n\n    # Loss statement counts-by-class (MEM-R-014) · deterministic.\n    loss_statement: dict[str, int] = {cls: 0 for cls in _ALLOWED_CLASSES}\n    for d in dropped:\n        loss_statement[d.class_] = loss_statement.get(d.class_, 0) + 1\n    total_drops = sum(loss_statement.values())\n\n    # Deterministic artefact body + hash.\n    artefact_body = _canonical_artefact_body(key=ctx.key, retained=retained)\n    artefact_hash = hashlib.sha256(artefact_body).hexdigest()\n\n    # Class anchors (MEM-R-005 · pointer-by-hash for ALL retained claims).\n    class_anch"
+          },
+          {
+            "ref": "services/memory/compaction_v1/carriers.py:29-42",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/memory/compaction_v1/carriers.py",
+            "line_count": 168,
+            "range": [
+              29,
+              42
+            ],
+            "snippet_sha256": "155d0d18c1e0d746374b097d6d7c4e123e7e05aeb11a6febe568679bbccc6c99",
+            "snippet_preview": "# Class-taxonomy allowed values (MEM-R-014 · loss statement class taxonomy\n# verbatim · closed at 8 classes per spec).  Enforced at Claim construction\n# via a regex-narrowed OPEN str (matches SO §3.10 Option alpha · no\n# enum.Enum subclass).\n_ALLOWED_CLASSES: tuple[str, ...] = (\n    \"fact\",\n    \"inference\",\n    \"utterance\",\n    \"receipt_ref\",\n    \"refusal\",\n    \"approval\",\n    \"objective\",\n    \"floor\",\n)"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-6",
+        "source_anchor": "Context_and_Capability_v1.docx B21",
+        "source_clause_excerpt": "CC-6  No learned component reorders or filters the window after assembly. The drafting model reads what assembly produced. A retrieval or reranking model may propose a ranking rule change through the research queue; it never ranks live.  [Attribute 10; A5.22]",
+        "assessment": "Existing reasoning judgement is not proof that a committed window is never reranked",
+        "implementation_required": "Hash the committed window and prevent post-assembly model filtering or reordering; only propose policy changes through research",
+        "code_evidence": [
+          {
+            "ref": "services/solva_depth/load_bearing.py:1-14",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/solva_depth/load_bearing.py",
+            "line_count": 39,
+            "range": [
+              1,
+              14
+            ],
+            "snippet_sha256": "9fb452c27b668c277cffd5f2eb2d7c8d545239f95b882049d0bcd1ec013685c3",
+            "snippet_preview": "\"\"\"Solva load-bearing — a reasoning judgment.\n\nSource: `docs/mandates/RMS_Solva_Specification.md` §9.\n\nIdentifying which units are load-bearing is a genuine reasoning judgment\nand belongs to the reasoning faculty. It is NOT the class computation;\nit is the input to it. This separation is what keeps the assertion\nboundary mechanical.\n\nFree — no governed artifact dictates this. Returns unit refs only;\ncarries NO class decision.\n\nCousin chain (mandate-forced): source §9 declares this net-new; no\nin-pod ancestor."
+          },
+          {
+            "ref": "services/chokepoint/llm.py:408-435",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              408,
+              435
+            ],
+            "snippet_sha256": "037ee830b613a3cc4fd6280e333e9e04fa80e8289f4d7e1ec0a4c7144d1417d8",
+            "snippet_preview": "    # 5. Instantiate client (test-injectable via _client_factory).\n    session = session_id or f\"sid-{uuid.uuid4().hex[:12]}\"\n    sysmsg = system_message or (\n        \"You are Akki — a governed reasoning faculty. Answer directly, \"\n        \"cite the receipt kind, refuse when evidence is thin.\"\n    )\n    api_key = _emergent_api_key() if provider == \"emergent\" else _byo_provider_key(provider)\n\n    t_start = time.perf_counter()\n    client = _client_factory(\n        api_key=api_key,\n        session_id=session,\n        system_message=sysmsg,\n        model=model,\n        provider=provider,\n    )\n   "
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-7",
+        "source_anchor": "Context_and_Capability_v1.docx B23",
+        "source_clause_excerpt": "CC-7  Ledger writer throughput floor. Per tenant, the writer sustains not fewer than R-41 receipts per second at a per-receipt latency not exceeding R-42, measured under load on the deployed hardware before the tenant is opened to users, and re-measured at every image release. A measured figure below the floor is a release blocker for that tier. The figure is on the tenant's operations surface.  [B.4; DAP-21]",
+        "assessment": "Atomic insert and unique-index retries exist; no measured deployed-tier throughput claim follows",
+        "implementation_required": "Benchmark actual durable commit path under pinned tenant load and hardware; publish receipts and block below-floor tier release",
+        "code_evidence": [
+          {
+            "ref": "services/ledger_writer/mongo_control.py:39-71",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py",
+            "line_count": 76,
+            "range": [
+              39,
+              71
+            ],
+            "snippet_sha256": "40b7f2958e074c7997c02837e0e7cfb2d5e3e6cb36c1ad8a10c4c62702cd1907",
+            "snippet_preview": "async def ensure_indexes(db):\n    coll = db[COLLECTION]\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"row.seq\", ASCENDING)], unique=True)\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"command_id\", ASCENDING)], unique=True)\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"row.run_id\", ASCENDING)])\n\n\nasync def append_event(db, *, tenant_id, run_id, actor_id, command_id, event_type,\n                       resource_type, decision, reason_code, payload):\n    await ensure_indexes(db)\n    coll = db[COLLECTION]\n    for _ in range(64):\n        existing = await "
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-8",
+        "source_anchor": "Context_and_Capability_v1.docx B24",
+        "source_clause_excerpt": "CC-8  Latency budget per request class. Warm: end-to-end, gates engaged, not exceeding R-43. Fresh: acknowledgement within R-44, with the delivery estimate the async contract already requires (Doc 8 B5.3). Controlled: the time to the approving authority's queue not exceeding R-43; the decision time is the human's and is reported, not budgeted. Budgets are measured on the governed path at the 95th percentile and reported per tenant per period.  [Doc 8 B5.3]",
+        "assessment": "Warm packaging paths exist; model latency starts after earlier gates and is not full request latency",
+        "implementation_required": "Measure request-boundary-to-completion/ack/queue separately with tenant period class and error denominators",
+        "code_evidence": [
+          {
+            "ref": "services/service_1/dispatch.py:366-405",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/dispatch.py",
+            "line_count": 510,
+            "range": [
+              366,
+              405
+            ],
+            "snippet_sha256": "4eb511c672e0d61057117217c18a31baac62ea01a95d19c67e6685bf7d925685",
+            "snippet_preview": "    # entry == EXTERNAL_REQUEST — admission-time warm/fresh fork.\n    feasibility = await compute_feasibility(request.reach)\n\n    # Gate 1: UNKNOWN freshness → FRESH path, never warm.\n    if feasibility.freshness == Freshness.UNKNOWN:\n        fork = \"fresh\"\n        floor_result: Optional[Dict[str, Any]] = None\n    else:\n        # class_distribution is non-None for FRESH/STALE per\n        # FeasibilityResult_v0 honesty contract.\n        assert feasibility.class_distribution is not None\n        floor_result = derive_floor_feasibility(\n            feasibility.class_distribution,\n            reque"
+          },
+          {
+            "ref": "services/chokepoint/llm.py:416-462",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              416,
+              462
+            ],
+            "snippet_sha256": "8e78c7bbdfc8cc055daff4094f30de71dab90e26bf47da807fc09863160d83a9",
+            "snippet_preview": "    t_start = time.perf_counter()\n    client = _client_factory(\n        api_key=api_key,\n        session_id=session,\n        system_message=sysmsg,\n        model=model,\n        provider=provider,\n    )\n    # Optional model selection — emergentintegrations LlmChat exposes .with_model()\n    if hasattr(client, \"with_model\") and provider and model:\n        try:\n            client = client.with_model(provider, model)\n        except Exception:  # noqa: BLE001\n            # If provider/model combo is not selectable, fall back to defaults.\n            pass\n\n    # 6. Send + measure.  The prompt sent is"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-9",
+        "source_anchor": "Context_and_Capability_v1.docx B25",
+        "source_clause_excerpt": "CC-9  Warm-serve ratio. The share of requests served from stored qualified intelligence without a fresh fetch, per tenant per period, on the usage surface next to the latency figures. It is the number that says whether Document 8's promise is being kept; a falling ratio is investigated, not explained away.  [Doc 8 A5.4]",
+        "assessment": "Warm routing label is not proof that every unit was served from stored qualified intelligence",
+        "implementation_required": "Derive warm-share from actual delivery/fetch receipts with governed denominator and explicit mixed/controlled policy",
+        "code_evidence": [
+          {
+            "ref": "services/northena/gate.py:55-68",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/northena/gate.py",
+            "line_count": 68,
+            "range": [
+              55,
+              68
+            ],
+            "snippet_sha256": "8ce6a13618d8b0977c72d67643d05a9ad61e90537aec70ea27788629940bf7b7",
+            "snippet_preview": "    if sub_objective in warm_set:\n        decision, reason = \"warm\", \"in_scope_warm_serve\"\n    else:\n        decision, reason = \"fresh\", \"in_scope_fresh_extraction\"\n\n    row = LedgerRow.new(\n        run_id=run_id, trace_id=trace_id,\n        stage=\"gate\", decision=decision, reason=reason,\n        artifact_ref=artifact_ref,\n        lawful_basis_ref=lawful_basis_ref,\n        stamp_audit=None,\n    )\n    await ledger_record(row)\n    return {\"decision\": decision, \"ledger_row\": row.to_json(), \"reason\": reason}"
+          },
+          {
+            "ref": "services/service_1/dispatch.py:366-405",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/dispatch.py",
+            "line_count": 510,
+            "range": [
+              366,
+              405
+            ],
+            "snippet_sha256": "4eb511c672e0d61057117217c18a31baac62ea01a95d19c67e6685bf7d925685",
+            "snippet_preview": "    # entry == EXTERNAL_REQUEST — admission-time warm/fresh fork.\n    feasibility = await compute_feasibility(request.reach)\n\n    # Gate 1: UNKNOWN freshness → FRESH path, never warm.\n    if feasibility.freshness == Freshness.UNKNOWN:\n        fork = \"fresh\"\n        floor_result: Optional[Dict[str, Any]] = None\n    else:\n        # class_distribution is non-None for FRESH/STALE per\n        # FeasibilityResult_v0 honesty contract.\n        assert feasibility.class_distribution is not None\n        floor_result = derive_floor_feasibility(\n            feasibility.class_distribution,\n            reque"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-10",
+        "source_anchor": "Context_and_Capability_v1.docx B28",
+        "source_clause_excerpt": "CC-10  The Rules Service, the Ledger writer, and the credential plane each carry an availability target (R-45) and a stated resilience form: the Rules Service serves its last-verified rule set from a signed local copy when its store is unreachable, with changes refused until reconnection; the Ledger writer runs active-standby with a mirrored Ledger device on tiers that have one, and failover is a receipted event; the credential plane refuses issue and revoke when unreachable but continues to *verify* presented credentials from its sealed cache, so existing sessions continue and no new credential is minted blind.  [FP-1; D-19; PB-15]",
+        "assessment": "In-memory credential registry is not a sealed durable cache; Mongo append logic does not prove standby fencing",
+        "implementation_required": "Specify signed-rule version/freshness bounds; exclusive fenced writer failover; sealed credential verification with revocation-outage ruling",
+        "code_evidence": [
+          {
+            "ref": "services/credential_plane/plane.py:116-121",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/credential_plane/plane.py",
+            "line_count": 218,
+            "range": [
+              116,
+              121
+            ],
+            "snippet_sha256": "2edffbbc189205d90de1c6241aad670b3c7a6d96bfa6dceab06e1efe366e0600",
+            "snippet_preview": "# Internal registry: {key_id: {digest, principal_id, org_id, td_id, revoked}}\n# CRITICAL PRIN-6 discipline: the raw credential material is NEVER stored\n# here; only its SHA-256 digest is retained.  The digest is one-way and\n# cannot reveal the credential to any component with registry access.\n_ISSUED: Dict[str, Dict[str, object]] = {}\n_LOCK = threading.Lock()"
+          },
+          {
+            "ref": "services/credential_plane/plane.py:167-218",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/credential_plane/plane.py",
+            "line_count": 218,
+            "range": [
+              167,
+              218
+            ],
+            "snippet_sha256": "190b03e6b9364d95ba03671ac3379d26d51ebb1465fc9ab0377fed312bfe9947",
+            "snippet_preview": "def revoke_credential(key_id: str, by: Optional[str] = None) -> None:\n    \"\"\"PRIN-5 + PRIN-8 verbatim: 'each independently revocable in one\n    act, none of which reveals or touches the others' + 'Revocation is\n    unconditional and immediate on the estate owner's act, regardless\n    of rotation schedule.'\n    \"\"\"\n\n    with _LOCK:\n        entry = _ISSUED.get(key_id)\n        if entry is None:\n            # PRIN-8 fail-closed on revoke: unknown key_id is a refusal,\n            # never silently treated as already revoked (failure_posture_v1\n            # verbatim from spec §7).\n            raise "
+          },
+          {
+            "ref": "services/ledger_writer/mongo_control.py:39-71",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py",
+            "line_count": 76,
+            "range": [
+              39,
+              71
+            ],
+            "snippet_sha256": "40b7f2958e074c7997c02837e0e7cfb2d5e3e6cb36c1ad8a10c4c62702cd1907",
+            "snippet_preview": "async def ensure_indexes(db):\n    coll = db[COLLECTION]\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"row.seq\", ASCENDING)], unique=True)\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"command_id\", ASCENDING)], unique=True)\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"row.run_id\", ASCENDING)])\n\n\nasync def append_event(db, *, tenant_id, run_id, actor_id, command_id, event_type,\n                       resource_type, decision, reason_code, payload):\n    await ensure_indexes(db)\n    coll = db[COLLECTION]\n    for _ in range(64):\n        existing = await "
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-11",
+        "source_anchor": "Context_and_Capability_v1.docx B29",
+        "source_clause_excerpt": "CC-11  Unavailability of a gate service is surfaced on the tenant's operations surface as such, with the fixed string for the affected request classes. It is never presented as a request failure attributable to the requester.  [A5.5; CON-2]",
+        "assessment": "Generic authoritative-record503 exists but is not per-service per-class health evidence",
+        "implementation_required": "Record typed infrastructure cause and affected classes; no requester-blame or invented uptime",
+        "code_evidence": [
+          {
+            "ref": "services/portal_operational/access.py:10-21",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/portal_operational/access.py",
+            "line_count": 24,
+            "range": [
+              10,
+              21
+            ],
+            "snippet_sha256": "783eda0ef13451f40683be61d3fe84ceac44f74c8877c863d8fcff57a2eb0bed",
+            "snippet_preview": "@asynccontextmanager\nasync def portal_scope(request, *, write=False):\n    try:\n        scope = await census_identity(request)\n        if write and not {\"operator\", \"master_admin\"}.intersection(scope[\"roles\"]):\n            raise HTTPException(403, \"An admitted operator is required to commission or change work.\")\n        with principal_context(scope[\"principal_id\"]):\n            yield scope\n    except (PyMongoError, ValueError, RuntimeError) as exc:\n        raise HTTPException(503, \"The authoritative record could not be verified. Retry with the same request key.\") from exc\n\n"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-12",
+        "source_anchor": "Context_and_Capability_v1.docx B32",
+        "source_clause_excerpt": "CC-12  A fixed task set of not fewer than 200 tasks across four classes — retrieval, synthesis, multi-step reasoning, entity-heavy — with reference answers, held under the estate owner's custody and never used for training. Each task runs through the governed path and the bare path on the same model and seed. Quality is scored by a deterministic rubric per class against the references; latency is measured end to end. The delta per class, quality and latency, is reported per release.  [standing card]",
+        "assessment": "Invoke has no seed argument and selected-model fallback is possible; bare path conflicts with unconditional live custody",
+        "implementation_required": "Pin200or more held-out tasks and at least400task-path outcomes; ratify isolated baseline custody and verify actual model/seed/parameters",
+        "code_evidence": [
+          {
+            "ref": "services/chokepoint/llm.py:269-299",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              269,
+              299
+            ],
+            "snippet_sha256": "09448efb506f2ab0c946957702ebabd788606279fdac5838654a1172c4e8460c",
+            "snippet_preview": "async def invoke(\n    *,\n    purpose: str,\n    prompt: str,\n    masking_tier: str,\n    actor: str,\n    model: str,\n    provider: str,\n    tenant_id: str,\n    custody_class: str,\n    system_message: Optional[str] = None,\n    session_id: Optional[str] = None,\n) -> LLMResponse:\n    \"\"\"The one function that invokes an external model client.\n\n    Doc 01 §A5.1 · exactly one function invokes the external model client.\n    Doc 01 §A5.6 · structural impossibility, not policed prohibition.\n\n    M12-W1d (2026-09-18) · Option D per Owner R-25:\n      * `tenant_id` is REQUIRED (no Optional, no default). An "
+          },
+          {
+            "ref": "services/chokepoint/llm.py:416-435",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              416,
+              435
+            ],
+            "snippet_sha256": "e1d71b8361df621a8edfec2253a40caf20176e9785433f48bfe6fa8dea843b30",
+            "snippet_preview": "    t_start = time.perf_counter()\n    client = _client_factory(\n        api_key=api_key,\n        session_id=session,\n        system_message=sysmsg,\n        model=model,\n        provider=provider,\n    )\n    # Optional model selection — emergentintegrations LlmChat exposes .with_model()\n    if hasattr(client, \"with_model\") and provider and model:\n        try:\n            client = client.with_model(provider, model)\n        except Exception:  # noqa: BLE001\n            # If provider/model combo is not selectable, fall back to defaults.\n            pass\n\n    # 6. Send + measure.  The prompt sent is"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-13",
+        "source_anchor": "Context_and_Capability_v1.docx B33",
+        "source_clause_excerpt": "CC-13  A quality delta beyond R-46 in any class is a release finding: the release ships only with the delta stated on the release note and a named cause — masking, window assembly, cascade routing, or refusal — each of which has a lever in this amendment. A delta with no named cause does not ship.",
+        "assessment": "Generic precondition seals are a carrier not CC13 release enforcement",
+        "implementation_required": "Bind benchmark hash per-class delta threshold and evidence-supported named cause; unresolved cause holds release",
+        "code_evidence": [
+          {
+            "ref": "services/work_supervisor/job_manifest.py:91-95",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+            "line_count": 169,
+            "range": [
+              91,
+              95
+            ],
+            "snippet_sha256": "5299e8a077b560781ec505f7e0c25bdec873ccbc3cb895c4d55eaf02f2d3e458",
+            "snippet_preview": "    scope: Dict[str, Any] = Field(...)\n    output_contract: Dict[str, Any] = Field(...)\n    depends_on: List[str] = Field(...)\n    dispatch_intent: str = Field(...)\n    precondition_seals: List[Dict[str, Any]] = Field(...)"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-14",
+        "source_anchor": "Context_and_Capability_v1.docx B34",
+        "source_clause_excerpt": "CC-14  The benchmark runs under the Execution Standard: denominator the task set, artefact one row per task per path, acceptance the reconciliation and the rubric scripts, re-performance by a second instance on a seeded sample. The report is the artefact, and the release note cites its hash.  [EX-1 to EX-15]",
+        "assessment": "Existing manifest and ledger fields do not implement benchmark reconciliation",
+        "implementation_required": "Pin task-by-path population rubric identity and seeded second-instance results; release note cites immutable report hash",
+        "code_evidence": [
+          {
+            "ref": "services/work_supervisor/job_manifest.py:91-95",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+            "line_count": 169,
+            "range": [
+              91,
+              95
+            ],
+            "snippet_sha256": "5299e8a077b560781ec505f7e0c25bdec873ccbc3cb895c4d55eaf02f2d3e458",
+            "snippet_preview": "    scope: Dict[str, Any] = Field(...)\n    output_contract: Dict[str, Any] = Field(...)\n    depends_on: List[str] = Field(...)\n    dispatch_intent: str = Field(...)\n    precondition_seals: List[Dict[str, Any]] = Field(...)"
+          },
+          {
+            "ref": "contracts/ledger_v1.py:29-46",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/contracts/ledger_v1.py",
+            "line_count": 202,
+            "range": [
+              29,
+              46
+            ],
+            "snippet_sha256": "56cc3b2df5a1f700ff3d1cb214e9216127c9995440fe55d5a3d052dafa9b1761",
+            "snippet_preview": "LEDGER_ROW_FIELDS: tuple[str, ...] = (\n    \"seq\",                        # 1: monotonic per-tenant sequence int\n    \"prev_hash\",                  # 2: 64-hex sha256 of prior row hash (or 64 zeros at genesis)\n    \"hash\",                       # 3: 64-hex sha256(prev_hash || canonical(row))\n    \"schema_version\",             # 4: str · currently \"v1\"\n    \"tenant_id\",                  # 5: OPEN str\n    \"run_id\",                     # 6: OPEN str\n    \"task_id\",                    # 7: OPEN str\n    \"actor_id\",                   # 8: OPEN str\n    \"actor_type\",                 # 9: OPEN str · e.g. \"pr"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-15",
+        "source_anchor": "Context_and_Capability_v1.docx B36",
+        "source_clause_excerpt": "CC-15  memory_compaction_v1 is amended to state that the unit it compacts is Document 7's five-ring normalised unit; that facts kept by hash pointer are kept by the unit's re-extraction handle; and that a compacted lineage is a derived artefact over units, never a parallel representation of them. MEM-1 through MEM-11 are unchanged in effect; the citation is added.  [Doc 7 A5.1, A5.2]",
+        "assessment": "Claim provenance_ref is a free-form string not proof of a resolvable five-ring re-extraction handle",
+        "implementation_required": "Provide validated reference adapter and existing-unit lineage; no parallel fact store or silent frozen-shape extension",
+        "code_evidence": [
+          {
+            "ref": "services/memory/compaction_v1/carriers.py:58-72",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/memory/compaction_v1/carriers.py",
+            "line_count": 168,
+            "range": [
+              58,
+              72
+            ],
+            "snippet_sha256": "d7139a609f58401a4c9d04a1e8df53be3f0cbc624313dd34189d8e4ee9d33c6e",
+            "snippet_preview": "class Claim(BaseModel):\n    \"\"\"MEM-2 · a single claim entering compaction.\n\n    Frozen · closed shape · class-taxonomy narrowed to the 8 allowed\n    values per MEM-R-014.  text_hash MUST be a 64-hex sha256 digest of\n    text bytes; provenance_ref is an OPEN string carrying the unit\n    identity (URI-shaped by convention: 'unit:<id>' or free-form).\n    \"\"\"\n\n    model_config = ConfigDict(frozen=True, extra=\"forbid\")\n\n    class_: str = Field(pattern=r\"^(fact|inference|utterance|receipt_ref|refusal|approval|objective|floor)$\")\n    text: str\n    text_hash: str = Field(pattern=r\"^[0-9a-f]{64}$\")\n   "
+          },
+          {
+            "ref": "contracts/five_rings.py:199-218",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/contracts/five_rings.py",
+            "line_count": 308,
+            "range": [
+              199,
+              218
+            ],
+            "snippet_sha256": "9bf0509294a2afb9e11d6d2cb582d58f07fdf86525bf8e909edfeff833402c53",
+            "snippet_preview": "class ReextractionHandleRing(BaseModel):\n    \"\"\"Spec §5.5: deterministic re-extraction handle.\n\n    Carries enough information to re-run perception against the same raw\n    bytes with the same model + params, byte-for-byte reproducible.\n    \"\"\"\n\n    # `model_id` / `model_version` collide with Pydantic's `model_` protected\n    # namespace; we silence the warning because the doctrine names carry\n    # domain meaning we will not rename.\n    model_config = ConfigDict(extra=\"forbid\", protected_namespaces=())\n\n    raw_pointer: str = Field(\n        ..., description=\"Stable storage key for the raw byt"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "CC-16",
+        "source_anchor": "Context_and_Capability_v1.docx B37",
+        "source_clause_excerpt": "CC-16  Four named checks are added to the audit's surface list (Audit Standards v2 §6), verified as functional demonstrations by a party holding no builder credential: (a) shrink a unit and regenerate it from its re-extraction handle — identical content ring; (b) submit degraded material and show it lands unqualified, never in an evidence partition; (c) serve a warm objective and show it returned synchronous and full within the budget; (d) submit an objective containing a controlled entity and show the extracted meaning crossed with the entity masked and re-identified inside — or, if entity-knowledge, that CC-2 routed it.  [Audit Standards v2]",
+        "assessment": "Shapes and callsites are foundations; no four-demonstration runtime acceptance was performed here",
+        "implementation_required": "Run four receipted demonstrations with a non-builder identity on actual admitted Akki infrastructure",
+        "code_evidence": [
+          {
+            "ref": "contracts/five_rings.py:199-218",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/contracts/five_rings.py",
+            "line_count": 308,
+            "range": [
+              199,
+              218
+            ],
+            "snippet_sha256": "9bf0509294a2afb9e11d6d2cb582d58f07fdf86525bf8e909edfeff833402c53",
+            "snippet_preview": "class ReextractionHandleRing(BaseModel):\n    \"\"\"Spec §5.5: deterministic re-extraction handle.\n\n    Carries enough information to re-run perception against the same raw\n    bytes with the same model + params, byte-for-byte reproducible.\n    \"\"\"\n\n    # `model_id` / `model_version` collide with Pydantic's `model_` protected\n    # namespace; we silence the warning because the doctrine names carry\n    # domain meaning we will not rename.\n    model_config = ConfigDict(extra=\"forbid\", protected_namespaces=())\n\n    raw_pointer: str = Field(\n        ..., description=\"Stable storage key for the raw byt"
+          },
+          {
+            "ref": "services/service_1/dispatch.py:392-405",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/dispatch.py",
+            "line_count": 510,
+            "range": [
+              392,
+              405
+            ],
+            "snippet_sha256": "0d7576e44979e897e170dacce553cfd2a5544b8fc759551db5eb82689f6be74e",
+            "snippet_preview": "    # Phase 4a §6.1 live-path: WARM + qualified_data → package and\n    # return QualifiedDataPayload (or AdmissionRefusal_v0 for the two\n    # packaging-time refusal cases). Otherwise fall through to\n    # placeholder emission.\n    if fork == \"warm\" and form == OutputForm.QUALIFIED_DATA:\n        return await package_qualified_data(request, trace_id)\n\n    # Phase 4b §6.2 live-path: WARM + composed_conclusion → package\n    # via Solva-boundary threading and return ComposedConclusion_v0\n    # (or AdmissionRefusal_v0 for standard/license refusals, or raise\n    # ComposedConclusionRefusal (Service1"
+          },
+          {
+            "ref": "services/chokepoint/llm.py:432-468",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              432,
+              468
+            ],
+            "snippet_sha256": "7533f8f84345a6aada6f3343d5fa3424532760aea27830d5a2430c4cd3dd4fc5",
+            "snippet_preview": "    # 6. Send + measure.  The prompt sent is the REDACTED prompt — raw\n    # estate content never leaves under a query (DAP-7).\n    try:\n        response_text = await client.send_message(UserMessage(text=redacted_prompt))\n    except Exception as exc:  # noqa: BLE001\n        latency_ms = int((time.perf_counter() - t_start) * 1000)\n        log.warning(\n            \"chokepoint.llm.invoke failed (%s) after %d ms\",\n            type(exc).__name__,\n            latency_ms,\n        )\n        # Register a REFUSED-crossing receipt so the failure is on record.\n        _register_llm_crossing(\n            k"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "R-41",
+        "source_anchor": "Context_and_Capability_v1.docx B47",
+        "source_clause_excerpt": "R-41  Ledger writer throughput floor, receipts per second per tenant. Recommend 500 on Start, 5,000 on Grow, from first-article measurement. DEFAULT-class.",
+        "assessment": "500Start/5000Grow are recommendations not measured production capacities",
+        "implementation_required": "Pin tier hardware workload duration concurrency and committed-receipt definition before load acceptance",
+        "code_evidence": [
+          {
+            "ref": "services/ledger_writer/mongo_control.py:39-71",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py",
+            "line_count": 76,
+            "range": [
+              39,
+              71
+            ],
+            "snippet_sha256": "40b7f2958e074c7997c02837e0e7cfb2d5e3e6cb36c1ad8a10c4c62702cd1907",
+            "snippet_preview": "async def ensure_indexes(db):\n    coll = db[COLLECTION]\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"row.seq\", ASCENDING)], unique=True)\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"command_id\", ASCENDING)], unique=True)\n    await coll.create_index([(\"row.tenant_id\", ASCENDING), (\"row.run_id\", ASCENDING)])\n\n\nasync def append_event(db, *, tenant_id, run_id, actor_id, command_id, event_type,\n                       resource_type, decision, reason_code, payload):\n    await ensure_indexes(db)\n    coll = db[COLLECTION]\n    for _ in range(64):\n        existing = await "
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "R-42",
+        "source_anchor": "Context_and_Capability_v1.docx B48",
+        "source_clause_excerpt": "R-42  Per-receipt write latency ceiling. Recommend 10 ms at the 95th percentile. DEFAULT-class.",
+        "assessment": "10msP95 is proposed ceiling; append correctness does not establish commit-latency distribution",
+        "implementation_required": "Measure queue-to-durable-ack latency with defined clock boundary and failure treatment",
+        "code_evidence": [
+          {
+            "ref": "services/ledger_writer/mongo_control.py:46-71",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py",
+            "line_count": 76,
+            "range": [
+              46,
+              71
+            ],
+            "snippet_sha256": "5cbb21a437de36967c443555bf8e6bd14fd95034adab4b24577efbce3fc28723",
+            "snippet_preview": "async def append_event(db, *, tenant_id, run_id, actor_id, command_id, event_type,\n                       resource_type, decision, reason_code, payload):\n    await ensure_indexes(db)\n    coll = db[COLLECTION]\n    for _ in range(64):\n        existing = await coll.find_one({\"row.tenant_id\": tenant_id, \"command_id\": command_id}, {\"_id\": 0})\n        if existing:\n            return verify_event(existing)\n        head = await coll.find_one({\"row.tenant_id\": tenant_id}, {\"_id\": 0}, sort=[(\"row.seq\", DESCENDING)])\n        if head:\n            verify_event(head)\n        prev = decode_row(head[\"row\"]) i"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "R-43",
+        "source_anchor": "Context_and_Capability_v1.docx B49",
+        "source_clause_excerpt": "R-43  Warm end-to-end budget and controlled time-to-queue. Recommend 2 s at the 95th percentile on Start; 1 s on Grow. DEFAULT-class.",
+        "assessment": "2sStart/1sGrowP95 applies to full warm or queue admission not just model timing",
+        "implementation_required": "Version tier budgets and queue/full-response boundaries; human decision time stays outside budget",
+        "code_evidence": [
+          {
+            "ref": "services/service_1/dispatch.py:392-405",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/dispatch.py",
+            "line_count": 510,
+            "range": [
+              392,
+              405
+            ],
+            "snippet_sha256": "0d7576e44979e897e170dacce553cfd2a5544b8fc759551db5eb82689f6be74e",
+            "snippet_preview": "    # Phase 4a §6.1 live-path: WARM + qualified_data → package and\n    # return QualifiedDataPayload (or AdmissionRefusal_v0 for the two\n    # packaging-time refusal cases). Otherwise fall through to\n    # placeholder emission.\n    if fork == \"warm\" and form == OutputForm.QUALIFIED_DATA:\n        return await package_qualified_data(request, trace_id)\n\n    # Phase 4b §6.2 live-path: WARM + composed_conclusion → package\n    # via Solva-boundary threading and return ComposedConclusion_v0\n    # (or AdmissionRefusal_v0 for standard/license refusals, or raise\n    # ComposedConclusionRefusal (Service1"
+          },
+          {
+            "ref": "services/chokepoint/llm.py:416-462",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              416,
+              462
+            ],
+            "snippet_sha256": "8e78c7bbdfc8cc055daff4094f30de71dab90e26bf47da807fc09863160d83a9",
+            "snippet_preview": "    t_start = time.perf_counter()\n    client = _client_factory(\n        api_key=api_key,\n        session_id=session,\n        system_message=sysmsg,\n        model=model,\n        provider=provider,\n    )\n    # Optional model selection — emergentintegrations LlmChat exposes .with_model()\n    if hasattr(client, \"with_model\") and provider and model:\n        try:\n            client = client.with_model(provider, model)\n        except Exception:  # noqa: BLE001\n            # If provider/model combo is not selectable, fall back to defaults.\n            pass\n\n    # 6. Send + measure.  The prompt sent is"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "R-44",
+        "source_anchor": "Context_and_Capability_v1.docx B50",
+        "source_clause_excerpt": "R-44  Fresh acknowledgement budget. Recommend 500 ms. DEFAULT-class.",
+        "assessment": "Async202path exists but no500msP95measurement was made",
+        "implementation_required": "Measure durable accepted acknowledgement including quote and enqueue gates; separate delivery estimate",
+        "code_evidence": [
+          {
+            "ref": "services/service_1/dispatch.py:441-491",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/service_1/dispatch.py",
+            "line_count": 510,
+            "range": [
+              441,
+              491
+            ],
+            "snippet_sha256": "4b18d9640c121b774f28ff8858296d91c9b05ed0d5a4d7253116be8328d887cd",
+            "snippet_preview": "        # New objective — allocate ids + persist accepted state + enqueue.\n        objective_id = _async_state.new_id(\"obj\")\n        async_trace_id = _async_state.new_id(\"trc\")\n        accepted_at = _async_state.now_iso()\n        delivery_estimate = \"PT5M\"\n        # Phase 6 — mint a QuoteEnvelope_v0 for this fresh-fork\n        # admission. Governance refusals from the quote service (fleet\n        # zero / tier locked / config expired / form not quotable) are\n        # returned as AdmissionRefusal_v0 (@422) directly; only a\n        # successful mint proceeds to enqueue.\n        quote_or_refusal"
+          }
+        ],
+        "judgement": "uncertain",
+        "reason": "Anchor and excerpt exist, but excerpt slice alone cannot fully confirm semantic claim breadth."
+      },
+      {
+        "id": "R-45",
+        "source_anchor": "Context_and_Capability_v1.docx B51",
+        "source_clause_excerpt": "R-45  Gate-service availability target. Recommend 99.9% measured monthly per tenant, with the resilience forms in CC-10 as the mechanism. DEFAULT-class.",
+        "assessment": "99.9percentmonthlypertenant is a target not an observed figure",
+        "implementation_required": "Define service-specific availability probes outage periods valid-cache service and tenant reporting",
+        "code_evidence": [
+          {
+            "ref": "services/credential_plane/plane.py:116-121",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/credential_plane/plane.py",
+            "line_count": 218,
+            "range": [
+              116,
+              121
+            ],
+            "snippet_sha256": "2edffbbc189205d90de1c6241aad670b3c7a6d96bfa6dceab06e1efe366e0600",
+            "snippet_preview": "# Internal registry: {key_id: {digest, principal_id, org_id, td_id, revoked}}\n# CRITICAL PRIN-6 discipline: the raw credential material is NEVER stored\n# here; only its SHA-256 digest is retained.  The digest is one-way and\n# cannot reveal the credential to any component with registry access.\n_ISSUED: Dict[str, Dict[str, object]] = {}\n_LOCK = threading.Lock()"
+          },
+          {
+            "ref": "services/ledger_writer/mongo_control.py:46-71",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py",
+            "line_count": 76,
+            "range": [
+              46,
+              71
+            ],
+            "snippet_sha256": "5cbb21a437de36967c443555bf8e6bd14fd95034adab4b24577efbce3fc28723",
+            "snippet_preview": "async def append_event(db, *, tenant_id, run_id, actor_id, command_id, event_type,\n                       resource_type, decision, reason_code, payload):\n    await ensure_indexes(db)\n    coll = db[COLLECTION]\n    for _ in range(64):\n        existing = await coll.find_one({\"row.tenant_id\": tenant_id, \"command_id\": command_id}, {\"_id\": 0})\n        if existing:\n            return verify_event(existing)\n        head = await coll.find_one({\"row.tenant_id\": tenant_id}, {\"_id\": 0}, sort=[(\"row.seq\", DESCENDING)])\n        if head:\n            verify_event(head)\n        prev = decode_row(head[\"row\"]) i"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "R-46",
+        "source_anchor": "Context_and_Capability_v1.docx B52",
+        "source_clause_excerpt": "R-46  Capability delta threshold per class before a release is a finding. Recommend 3 points on a 100-point rubric for retrieval and synthesis, 5 for reasoning and entity-heavy. DEFAULT-class until the first three benchmark runs set a baseline.",
+        "assessment": "3points/5points thresholds and first3runs baseline are proposed not measured",
+        "implementation_required": "Define signed quality delta direction deterministic class rubrics attribution evidence and threshold versioning",
+        "code_evidence": [
+          {
+            "ref": "services/work_supervisor/job_manifest.py:91-95",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/work_supervisor/job_manifest.py",
+            "line_count": 169,
+            "range": [
+              91,
+              95
+            ],
+            "snippet_sha256": "5299e8a077b560781ec505f7e0c25bdec873ccbc3cb895c4d55eaf02f2d3e458",
+            "snippet_preview": "    scope: Dict[str, Any] = Field(...)\n    output_contract: Dict[str, Any] = Field(...)\n    depends_on: List[str] = Field(...)\n    dispatch_intent: str = Field(...)\n    precondition_seals: List[Dict[str, Any]] = Field(...)"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      },
+      {
+        "id": "S-35",
+        "source_anchor": "Security_Assurance_Promise_Set.xlsx Security Assurance Set row37",
+        "source_clause_excerpt": "S-35 | CC-1–CC-16 · Context and Capability (context_and_capability_v1, 27 Sep 2026) | What governance costs is measured and stated: which material entered the window and what was left out, why an entity was withheld from an external model, how fast each class of request is served, how often memory served it warm, and the quality delta of the governed path against the bare model — on every release, in numbers. | Doc 1 custody sequence · Doc 7 A5.1–A5.5 five-ring unit and trace · Doc 8 A5.1–A5.4, B5.1–B5.5 memory and retrieval · Doc 11 A5.4 cascade · B.4 Ledger · Execution Standard EX-1–15 | Absent → new | R-41–R-46 DEFAULT-class floors, budgets and thresholds; first-article measurement sets baselines | context_and_capability_v1: CC-2 entity-knowledge objectives local by requirement or approved unmasked crossing; CC-4/5 deterministic window assembly with loss statement; CC-7–9 throughput f",
+        "assessment": "Existing latency/loss hooks do not discharge the new per-release measurable capability promise",
+        "implementation_required": "Connect CC1to16 including actual tier measurements and governed benchmark; never substitute fixtures for operational proof",
+        "code_evidence": [
+          {
+            "ref": "services/chokepoint/llm.py:416-462",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/chokepoint/llm.py",
+            "line_count": 602,
+            "range": [
+              416,
+              462
+            ],
+            "snippet_sha256": "8e78c7bbdfc8cc055daff4094f30de71dab90e26bf47da807fc09863160d83a9",
+            "snippet_preview": "    t_start = time.perf_counter()\n    client = _client_factory(\n        api_key=api_key,\n        session_id=session,\n        system_message=sysmsg,\n        model=model,\n        provider=provider,\n    )\n    # Optional model selection — emergentintegrations LlmChat exposes .with_model()\n    if hasattr(client, \"with_model\") and provider and model:\n        try:\n            client = client.with_model(provider, model)\n        except Exception:  # noqa: BLE001\n            # If provider/model combo is not selectable, fall back to defaults.\n            pass\n\n    # 6. Send + measure.  The prompt sent is"
+          },
+          {
+            "ref": "services/memory/compaction_v1/operations.py:142-179",
+            "exists": true,
+            "path": "/app/backend/vendored/extraction_akki/backend/services/memory/compaction_v1/operations.py",
+            "line_count": 232,
+            "range": [
+              142,
+              179
+            ],
+            "snippet_sha256": "3e98961754c00f90cdbda87e520bc574b0be118be00e60985f362192d03fbb41",
+            "snippet_preview": "    retained, dropped = engine.decide(ctx=ctx)\n\n    # Loss statement counts-by-class (MEM-R-014) · deterministic.\n    loss_statement: dict[str, int] = {cls: 0 for cls in _ALLOWED_CLASSES}\n    for d in dropped:\n        loss_statement[d.class_] = loss_statement.get(d.class_, 0) + 1\n    total_drops = sum(loss_statement.values())\n\n    # Deterministic artefact body + hash.\n    artefact_body = _canonical_artefact_body(key=ctx.key, retained=retained)\n    artefact_hash = hashlib.sha256(artefact_body).hexdigest()\n\n    # Class anchors (MEM-R-005 · pointer-by-hash for ALL retained claims).\n    class_anch"
+          }
+        ],
+        "judgement": "agree",
+        "reason": "Assessment is conservative (non-proof/absence framing) and matches inspected anchor excerpt scope."
+      }
+    ]
+  },
+  "raw_custody_members": [
+    {
+      "name": "Context_and_Capability_v1.docx",
+      "bytes": 16778,
+      "sha256": "63c4b62d86b6268b48bf328510d3faa1c2f0521aae7e2664a5704c62f176d46e",
+      "mtime": "2026-09-26T02:45:56.075198",
+      "zip_member_count": 24,
+      "zip_members_preview": [
+        "[Content_Types].xml",
+        "_rels/",
+        "_rels/.rels",
+        "docProps/",
+        "docProps/app.xml",
+        "docProps/core.xml",
+        "docProps/custom.xml",
+        "word/",
+        "word/_rels/",
+        "word/_rels/comments.xml.rels",
+        "word/_rels/document.xml.rels",
+        "word/_rels/endnotes.xml.rels"
+      ]
+    },
+    {
+      "name": "Master_Requirements_Registry.xlsx",
+      "bytes": 123780,
+      "sha256": "2d5d32501d113f201ebf32f7d6733c3a178fcbd806a8d459d9a72b08acd92d64",
+      "mtime": "2026-09-26T02:45:56.077198",
+      "zip_member_count": 14,
+      "zip_members_preview": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "docProps/app.xml",
+        "docProps/core.xml",
+        "xl/_rels/workbook.xml.rels",
+        "xl/styles.xml",
+        "xl/theme/theme1.xml",
+        "xl/workbook.xml",
+        "xl/worksheets/sheet1.xml",
+        "xl/worksheets/sheet2.xml",
+        "xl/worksheets/sheet3.xml",
+        "xl/worksheets/sheet4.xml"
+      ]
+    },
+    {
+      "name": "Security_Assurance_Promise_Set.xlsx",
+      "bytes": 22427,
+      "sha256": "004aa66932432ee313b48e5024821a4b13d9edba8e2ddd2088c983847fe430a7",
+      "mtime": "2026-09-26T02:45:56.076198",
+      "zip_member_count": 10,
+      "zip_members_preview": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "docProps/app.xml",
+        "docProps/core.xml",
+        "xl/_rels/workbook.xml.rels",
+        "xl/styles.xml",
+        "xl/theme/theme1.xml",
+        "xl/workbook.xml",
+        "xl/worksheets/sheet1.xml",
+        "xl/worksheets/sheet2.xml"
+      ]
+    },
+    {
+      "name": "files_18.zip",
+      "bytes": 155848,
+      "sha256": "93eadfe65685470901fa18b47dddb2c1c7ff1f76f5fcd253548c15cdd8ce4272",
+      "mtime": "2026-09-26T02:45:44.554198"
+    }
+  ],
+  "notes": [
+    "Used openpyxl for raw workbook reopening and zipfile for raw OOXML archive inspection.",
+    "No app/module runtime execution; no DB/provider/LLM/API calls."
+  ]
+}

@@ -1,0 +1,594 @@
+{
+  "Security Assurance Set": [
+    {
+      "row": 1,
+      "values": [
+        "#",
+        "Doc",
+        "Promise",
+        "Standard",
+        "Implementation\nStatus",
+        "Bound / Ruling",
+        "Where It Lives / Notes",
+        "System Features",
+        "User Requirements — User can..."
+      ]
+    },
+    {
+      "row": 2,
+      "values": [
+        "#6",
+        "Doc 3",
+        "“The platform continuously watches everything happening across the estate and the AI it runs…” — composite, true iff S-1 through S-21 all hold; false if any one fails, regardless of the others.",
+        "— (composite; see S-1–S-21 for standards)",
+        "By design",
+        "—",
+        "No dedicated surface per source document. Grounded in S-1–S-21, all Doc 3.",
+        "Composite — see S-1 through S-21.",
+        "Composite claim — delivered through S-1–S-21; no dedicated delivery-experience text of its own."
+      ]
+    },
+    {
+      "row": 3,
+      "values": [
+        "S-1",
+        "Doc 3",
+        "The system will observe every actor, input, and action across the estate and the AI it runs, with no path by which any of the three reaches the estate or a model outside that observation.",
+        "NIST SP 800-53 SI-4 (System Monitoring) · CSF 2.0 DE.CM-01/09",
+        "Present",
+        "Structural — held by two independent proofs (static, runtime), not a numeric bound",
+        "A3 “Totality of sight”; A6 truth-condition 1",
+        "• Macho (the eyes): observes, scores, asserts facts — no power to act\n• Totality held by static + runtime proof, independently",
+        "• User can (security officer) treat “nothing reaches the estate unobserved” as a proven structural fact, not an inventory claim taken on faith"
+      ]
+    },
+    {
+      "row": 4,
+      "values": [
+        "S-2",
+        "Doc 3",
+        "The system will detect the machine-speed attack, the slow play beneath every threshold, and the authorised attack that never breaks a rule — each by a distinct, named mechanism.",
+        "CC FAU_SAA.2 (profile-based anomaly detection) · NIST SI-4(24) · CSF DE.CM-09",
+        "Present",
+        "Unruled — detection latency per shape not confirmed to a value",
+        "A3, second property; direct link named to Promise #7",
+        "• Three distinct detection paths, one per attack shape\n• Intent reconciliation answers the authorised-attack shape, cross-referencing #7",
+        "• User can (security officer) trust a technically-permitted action is still caught if intent doesn't match what was declared"
+      ]
+    },
+    {
+      "row": 5,
+      "values": [
+        "S-3",
+        "Doc 3",
+        "The system will route probabilistic suspicion to friction, a narrowed envelope, or the mirage, and will convict only once the actor's own conduct converts suspicion into certainty.",
+        "CC FAU_ARP.1 (calibrated automated response) · due-process analogues in automated-decision regimes",
+        "Present",
+        "Ruled mechanism — mirage entry threshold is baseline-period-deferred (Doc 3 Rulings)",
+        "A5.6; C1 (the mirage)",
+        "• Friction / narrowed envelope / mirage as the three refinement paths\n• Mirage's three functions: containment, observation, conviction",
+        "• User can, if wrongly suspected, expect their own later conduct — not a score — to clear or convict them, zero false positives by construction"
+      ]
+    },
+    {
+      "row": 6,
+      "values": [
+        "S-4",
+        "Doc 3",
+        "The system will act on a four-rung ladder — annotate, shape, contain, sever — bounded by a blast budget per window and a friction budget on legitimate work.",
+        "CC FAU_ARP.1 · NIST IR-4 (Incident Handling) · CSF RS.MA",
+        "Present",
+        "Ruled mechanism, values unruled — blast-budget share and friction ceiling named, not set",
+        "A5.14",
+        "• Four-rung action ladder: annotate / shape / contain / sever\n• Two ceilings: blast budget, friction budget\n• Over-budget actions queue for human release",
+        "• User can (security officer) see only the small number of things genuinely requiring a person, each with evidence and defined choices"
+      ]
+    },
+    {
+      "row": 7,
+      "values": [
+        "S-5",
+        "Doc 3",
+        "The system will make every autonomous act reversible, bounded, and witnessed — a time-to-live on every action, atomic act-and-attest, peer-countersigned.",
+        "NIST IR-4 · CC FPT_RCV (recovery, analogous)",
+        "Present",
+        "Unruled — action time-to-live named, no value confirmed",
+        "A5.3",
+        "• TTL on every action\n• Atomic act-and-attest, peer countersignature\n• No “destroy” capability anywhere in the Watch",
+        "• User can, if wrongly caught, experience a bounded delay that expires on its own — never unbounded or irreversible harm"
+      ]
+    },
+    {
+      "row": 8,
+      "values": [
+        "S-6",
+        "Doc 3",
+        "The system will write every verdict, action, attestation, and mark to the one authoritative record before the next gate is crossed, including its own mistakes.",
+        "NIST AU-2, AU-3 · CC FAU_GEN.1 · ISO/IEC 27001:2022 8.15",
+        "Present",
+        "Structural; timing qualitative — “before the next gate,” no numeric latency confirmed",
+        "A3; A5.5 “one record, two readings”",
+        "• Verdicts (signed, replayable), actions (citing the firing policy row), attestations, marks\n• Watch mints its own first-party account and a second-party account of nobody else's",
+        "• User can (auditor) read the compliance record and the defence record as the same facts under two readings — they can never disagree"
+      ]
+    },
+    {
+      "row": 9,
+      "values": [
+        "S-7",
+        "Doc 3",
+        "SPECIFICATION GAP — no mechanism specified. Doc 3's plain-language promise states the platform “learns from every attack it defeats”; every A5 clause on learning (A5.7, A5.8, A5.12) constrains what may NOT happen. None specifies what does update, on what evidence, at what layer.",
+        "CC FAU_SAA (would require a specified mechanism) · ISO 27001 5.27 (learning from incidents) · CSF 2.0 improvement functions",
+        "Absent → new (spec-closed, 13 Sep 2026)",
+        "Closed by Watch Learning Amendment L-2, L-4. R-15 (initial library) and R-16 (ratifier, cadence) open.",
+        "Gap between A1 (plain-language promise) and A5 (constrains learning, never specifies it)  CLOSED AT SPEC LEVEL: what updates — the certificate-requirement library; on what evidence — in-environment data points, each anchored; at what layer — deterministic gates at the verdict interface, not detector weights; under what ceremony — the Watch's own (RBM-8). Not built.",
+        "• None specified",
+        "• Not yet answerable — no mechanism exists for a user-facing guarantee"
+      ]
+    },
+    {
+      "row": 10,
+      "values": [
+        "S-8",
+        "Doc 3",
+        "The system will exercise every response rail on a standing drill cadence — full loop, both engines, latencies measured — and a rail not demonstrated firing is not in force.",
+        "NIST CA-7 (Continuous Monitoring) · ISO 27001 8.16 · CC ATE (independent testing, analogous)",
+        "Present",
+        "Ruled mechanism, cadence value unruled",
+        "A5.13; A3 “self-proof on a standing cadence”",
+        "• Full-loop drills, both engines, measured latencies\n• Results as receipts, assembled without human effort",
+        "• User can pull standing drill receipts proving each response mechanism actually fires, with nothing assembled by hand"
+      ]
+    },
+    {
+      "row": 11,
+      "values": [
+        "S-9",
+        "Doc 3",
+        "The system will, on release from the mirage, replay the actor's mirage-period work against the real platform, or tell them plainly it did not land.",
+        "No direct security-standard analogue — nearest is adverse-action notice in automated-decision regimes (GDPR Art. 22; Kenya DPA 2019 s.35)",
+        "Present",
+        "Ruled mechanism — reconciliation mode is baseline-period-deferred",
+        "C1, “reconciliation duty”",
+        "• Automatic replay or plain notice on release\n• Short expiry with automatic release on zero incrimination",
+        "• User can, if wrongly caught and routed to the mirage, be told plainly whether their work landed — never left believing a false success"
+      ]
+    },
+    {
+      "row": 12,
+      "values": [
+        "S-10",
+        "Wave E · CA1-N5 (no document home yet — proposed Doc 3 Part D)",
+        "The system will restore Ledger continuity within 3,600 seconds, under independent countersign, following any continuity-affecting incident.",
+        "NIST CP-10 / IR-4 (Recovery) · ISO 27001 5.29/5.30 · CSF 2.0 RC.RP",
+        "Absent → new",
+        "Ruled — CA1-N5, RTO 3,600s, DEFAULT-class, revisable on incident evidence",
+        "Wave E ruling CA1-N5; not yet written into Doc 3 as a Watch/Ledger promise",
+        "• 3,600-second RTO\n• Independent countersign on restoration",
+        "• User can trust any continuity-affecting incident is bounded to a known, ruled recovery window, not an open-ended outage"
+      ]
+    },
+    {
+      "row": 13,
+      "values": [
+        "S-11",
+        "Wave E · CA1-N2 (no document home yet — proposed Doc 3 Part D)",
+        "The system will issue breach notification within 72 hours of a qualifying incident, to the parties and authorities the incident requires.",
+        "NIST IR-6 · ISO 27001 5.26 · Kenya Data Protection Act 2019 (breach notification duty) · GDPR Art. 33 (international analogue)",
+        "Absent → new",
+        "Ruled — CA1-N2, 72-hour duty",
+        "Wave E ruling CA1-N2; not yet written into Doc 3",
+        "• 72-hour notification clock\n• Tied to the incident classes S-2 / S-4 detect and contain",
+        "• User can (compliance owner) trust a qualifying breach triggers notification on a ruled clock, not a judgement call made under pressure"
+      ]
+    },
+    {
+      "row": 14,
+      "values": [
+        "S-12",
+        "Doc 3",
+        "The system will fail closed independent of the Watch — custody gates fail closed on their own, with or without the Watch above them.",
+        "CC FPT_FLS.1 · NIST SC-24 · IEC 61508 (safe state)",
+        "Present",
+        "Structural",
+        "A5.9, parenthetical: “Custody gates fail closed on their own, per Document 1, with or without the Watch above them”",
+        "• Custody-gate fail-closed independent of Watch liveness\n• Watch silence is itself an alarm, not a fail-open trigger",
+        "• User can trust a compromised or silent Watch cannot cause a custody gate to fail open — the two failure modes are structurally independent"
+      ]
+    },
+    {
+      "row": 15,
+      "values": [
+        "S-13",
+        "Doc 3",
+        "The system will never let detection hold power to act, or response hold judgement to interpret — Macho asserts facts only; Mkono executes signed policy only; one verdict is the sole interface.",
+        "CC FAU_ARP (separation of detection/response) · platform-wide “detect, never decide” doctrine",
+        "Present",
+        "Structural",
+        "A5.1; C2 (verdict seam)",
+        "• Macho / Mkono split\n• Single signed, replayable, externally-versioned verdict interface",
+        "• User can (auditor) confirm detection quality was never silently tuned defensively — the detector never knew what action would follow its own verdict"
+      ]
+    },
+    {
+      "row": 16,
+      "values": [
+        "S-14",
+        "Doc 3",
+        "The system will never unlock its maximum autonomous force from a signal an outsider could fabricate — only from a closed, six-member registry of unfakeable signals.",
+        "No direct security-standard analogue — borrows the assertion-boundary discipline of Solva (Doc 4), an internal cross-reference",
+        "Present",
+        "Structural; registry membership is baseline-period-deferred",
+        "A5.2",
+        "• Closed six-signal registry (canary touch, attestation failure, mark hit, witness-write attempt, floor violation, mirage incrimination)\n• Certainty computation has no parameter a detector's confidence can enter",
+        "• User can trust no confidence score, however high, can trigger severance alone — only an unfakeable structural signal can"
+      ]
+    },
+    {
+      "row": 17,
+      "values": [
+        "S-15",
+        "Doc 3",
+        "The system will never let loss of behavioural conformance alone convict an actor — the worst it can do to an innocent actor is return them to baseline verification.",
+        "GDPR Art. 22 · Kenya Data Protection Act 2019 s.35 — legal analogues, not security-conformance standards",
+        "Present",
+        "Structural, constitutional per A5.7 — not tunable",
+        "A5.7",
+        "• Conformance grants a trust discount\n• Non-conformance returns to baseline only, never sole grounds past friction",
+        "• User can lose their trust discount without ever being convicted by that loss alone — the asymmetry is fixed, not configurable"
+      ]
+    },
+    {
+      "row": 18,
+      "values": [
+        "S-16",
+        "Doc 3",
+        "The system will hold a ruled, deterministic floor beneath every adaptive layer, moved only by a delayed, two-signature ceremony that is itself a monitored tripwire.",
+        "NIST AC-3 (mandatory enforcement) · CC FDP_ACF · Document 0 Attribute 7 (mandatory baseline)",
+        "Present",
+        "Structural — floor values are the conservative defaults during the baseline period",
+        "A5.8",
+        "• Deterministic floor beneath adaptive layers\n• Two-signature, delayed-countdown ceremony to move it\n• Ceremony itself monitored as a tripwire",
+        "• User can trust the floor cannot be “boiled” one degree at a time — only moved in daylight, under two names, on a countdown, with the Watch watching"
+      ]
+    },
+    {
+      "row": 19,
+      "values": [
+        "S-17",
+        "Doc 3",
+        "The system will never delete — the Watch can stop anything and erase nothing; destruction remains solely the separately-authorised act specified elsewhere.",
+        "NIST AU-9 (protection of audit information) · CC FAU_STG.1",
+        "Present",
+        "Structural",
+        "A3; A5.3 “destroy does not exist in the Watch”",
+        "• No destroy capability anywhere in the Watch\n• Deletion authority lives in a separate, named document/act only (Document 14)",
+        "• User can trust nothing is ever erased by the Watch's response to a threat — only a separately-authorised act can delete anything"
+      ]
+    },
+    {
+      "row": 20,
+      "values": [
+        "S-18",
+        "Doc 3",
+        "The system will hold behavioural-conformance profiles as non-exportable, tenant-keyed, purpose-bound armoury — never rendered to any surface, export, or analytic, including the Watch's own console.",
+        "NIST SC-28 (protection of information at rest, analogous) — no direct standard for “never render to own console”",
+        "Present",
+        "Structural; retention posture is baseline-period-deferred",
+        "A5.12",
+        "• Per-actor, tenant-keyed, non-exportable profile store\n• Holds learned parameters only, never raw action history",
+        "• User can trust their own behavioural profile is never visible to scoring, pricing, or management surfaces — including to the Watch's own operators"
+      ]
+    },
+    {
+      "row": 21,
+      "values": [
+        "S-19",
+        "Doc 3",
+        "The system will have its own liveness attested by a component holding no Watch credentials, will treat Watch silence itself as an alarm, and will subject its own records to a standing break-in test that must fail.",
+        "CC ADV_ARC.1 self-protection (verified, Document 0 Attribute 6) · NIST SI-4 · reference-monitor tamper-resistance generally",
+        "Present",
+        "Structural; break-in test cadence unruled",
+        "A5.9; C3 (the witness)",
+        "• External liveness attestation (no Watch credentials)\n• Silence-as-alarm\n• Standing break-in test against own production credentials, must fail",
+        "• User can (auditor) confirm the Watch's own tamper-resistance is measured, not asserted — a standing test actively tries to beat it and is expected to fail"
+      ]
+    },
+    {
+      "row": 22,
+      "values": [
+        "S-20",
+        "Doc 3",
+        "The system will execute every task under exactly one authority's identity and scope — a task that could see like security and decide like governance is unrepresentable, not merely forbidden.",
+        "NIST AC-6 (least privilege / separation of duties, analogous) · CC FDP_ACC (separation of security policies)",
+        "Present",
+        "Structural — unrepresentable, not policy-enforced",
+        "A5.10; A5.11 “peer, not subordinate”; cross-referenced to #26's single-crossing/no-side-door doctrine",
+        "• One-task-one-identity, structurally unrepresentable dual-hatting\n• Watch authors its own policy; rules service administers ceremony without editorial power",
+        "• User can (auditor) confirm no credential spans both the Watch's authority and governance's authority — the surface doesn't exist to be compromised"
+      ]
+    },
+    {
+      "row": 23,
+      "values": [
+        "S-21",
+        "Doc 3",
+        "The system will let the mirage deceive outward only — every mirage interaction writes truthfully marked records, and mirage state shares no store with production.",
+        "MITRE Engage (deception framework, closest analogue, no formal conformance standard) · NIST SI-4 deception guidance (informal)",
+        "Present",
+        "Structural — mirage entry threshold is baseline-period-deferred (cross-ref S-3)",
+        "A5.5 “the record never lies inward”; C1 (the mirage)",
+        "• Mirage renders outward deception only\n• Truthfully-marked records regardless of what's shown to the suspect\n• No shared store with production — bleed unrepresentable",
+        "• User can (auditor) trust the platform's deliberate deception layer never corrupts its own truthful record — the lie never reaches inward"
+      ]
+    },
+    {
+      "row": 24,
+      "values": [
+        "S-22",
+        "Doc 3 (proposed A5.15) · DAP-33",
+        "The system will inspect what leaves, not only who sends it — every output leaving a component boundary is checked for controlled-unit content and tagged ADVISORY where it recommends, ranks, proposes, or evaluates an action.",
+        "Solva assertion floor (Doc 4) as internal precedent for output gating · DLP practice at the component boundary — no direct security-conformance standard for output-content gating as a security function",
+        "Absent → new",
+        "Ruled — reproduction threshold and probe design are R-8 (DEFAULT-class, conservative, revised on evidence)",
+        "Security Amendments W-1; gate sits on the deterministic side of the verdict seam",
+        "• Deterministic output gate at every component boundary\n• Reproduction probe against the producing job's read set\n• ADVISORY tag carrying producer identity, content hash, units drawn on\n• Refusal with reason, never a redacted output",
+        "• User can (auditor) confirm no permitted output carried controlled content past the boundary\n• User can (human recipient) see that what they received is advice, from whom, drawing on what — before acting on it"
+      ]
+    },
+    {
+      "row": 25,
+      "values": [
+        "S-23",
+        "Document 0 Attribute 3 · Doc 3 (proposed A5.18) · DAP-34",
+        "The system will treat a coalition as one actor — cumulative conduct across principals sharing a party, a mandate lineage, or a detected coordination signature is evaluated jointly, not per principal.",
+        "Sybil resistance (Douceur 2002) · Byzantine fault tolerance — established distributed-systems frames; no security-conformance standard names coalition-as-principal",
+        "Absent → new",
+        "Structural for shared-party and shared-lineage membership; coordination-signature threshold is R-11 — inferred, friction-only under A5.2",
+        "Security Amendments W-4; coalition is a connected component of the admission graph",
+        "• Coalition graph from DAP-1/DAP-2 admission records\n• Joint cumulative history and slow-play evaluation\n• Three membership classes: party, lineage (structural), coordination signature (inferred)",
+        "• User can (estate owner) see every principal evaluated jointly with a given party, and every inferred coalition labelled as suspicion\n• User can (external party) know at admission that its principals are evaluated jointly"
+      ]
+    },
+    {
+      "row": 26,
+      "values": [
+        "S-24",
+        "Doc 3 (proposed A5.17)",
+        "The system will hold the raiser of a finding to the same conformance as its target — a finding is conduct; the friction it causes is charged to the raiser's budget, not the target's; a finding not borne out accrues drift on the raiser; and no agent-raised finding, at any count, is an input to severance.",
+        "A5.2 (findings already excluded from the severance registry) · A5.14 (friction budget) · BFT source weighting — no direct conformance standard",
+        "Absent → new",
+        "Structural — A5.2's registry unchanged; friction debit follows A5.14's existing budget",
+        "Security Amendments W-3; two finding classes, D (deterministic) and A (advisory), never merged",
+        "• Class D vs Class A findings\n• Lineage collapse — N findings from one coalition count as one\n• Friction debited to raiser\n• Drift on raiser when a finding is not borne out",
+        "• User can (legitimate actor) not be harassed into friction by manufactured findings without the raiser paying for it\n• User can (auditor) see who raised what, what it cost, and whether it was borne out"
+      ]
+    },
+    {
+      "row": 27,
+      "values": [
+        "S-25",
+        "DAP-35, DAP-36 · Document 0 Attribute 7 (new mandatory baseline)",
+        "The system will bound what the estate releases in total — across all parties, all operations, all time — so that no combination of parties can reconstruct what none of them is entitled to. Breaching the bound is a floor violation, severance-eligible without inference.",
+        "Differential privacy (Dwork et al. 2006) · NIST SP 800-188 (2023) — de-identification, privacy budgets, composition · DP-SGD (Abadi et al. 2016) for training",
+        "Absent → new",
+        "Ruled — the budget itself is R-7; per-run (ε, δ) is R-9. The floor never learns (A5.8)",
+        "Security Amendments W-7, W-8; the amendment that converts coalition prevention from detection into a ruling",
+        "• Estate-level release accumulator, debited per metered event before return\n• Differential-privacy budget composed across releases\n• DP-SGD default for every fine-tune\n• Floor violation on breach — one of the six unfakeable signals\n• Remaining budget never disclosed to parties",
+        "• User can (estate owner) set and see the estate's total exposure as a single number, and see consumption against it\n• User can (external party) know that the estate's releases are bounded — and never see the remaining budget"
+      ]
+    },
+    {
+      "row": 28,
+      "values": [
+        "S-26",
+        "DAP-37, DAP-38 · Pruning & Unlearning Amendment (9 Sep 2026)",
+        "The system will remove a unit's influence from every artefact that carried it when the right to that unit ends — by re-derivation or recall, findable by registry query, with the release budget's prior consumption left unrefunded.",
+        "SISA (Bourtoule et al. 2021) · Certified Data Removal (Guo et al. 2020) · Kenya DPA 2019 s.40 · GDPR Art. 17 — extends CA1-N3's already-ruled model-flagging answer to DAP-governed artefacts",
+        "Absent → new",
+        "Ruled where sharded (SISA); R-12 open for the unsharded, uneconomic-retrain case",
+        "Pruning & Unlearning Amendment T-3, T-4; generalises CA1-N3 (already ruled) to artefacts DAP now governs",
+        "• Registry query finds every artefact citing a withdrawn unit (RBM-20)\n• Re-derivation excludes the unit, re-passes MOAC and DAP-31 as a new artefact\n• Recall withdraws the registry entry and notifies the receiving party\n• Release-budget consumption is not refunded on unlearning",
+        "• User can (contributor) trust that withdrawing consent reaches every artefact trained on their data, not only the source record\n• User can (external party) be notified if an artefact they hold is recalled, rather than silently invalidated"
+      ]
+    },
+    {
+      "row": 29,
+      "values": [
+        "S-27",
+        "V-1–V-4 · Serving Integrity Amendment (13 Sep 2026)",
+        "The system will serve exactly the model it registered — pressure may make it slower, never different — and will say on the record which engine, its own or a provider's, produced every answer.",
+        "A5.8 (no silent recalibration, rules layer) · SEC-1/SEC-2 load-time integrity pattern · FDP_ACC.1 form (SFP-8) · invariant generalised from the Colibri engine's stated design rule (Apache 2.0)",
+        "Absent → new",
+        "R-13 (validation cadence, DEFAULT-class) open; floor explicitly not imposable on the frontier gateway tier — receipt records the boundary instead (V-4)",
+        "Serving Integrity Amendment V-1 (A20.15, SFP-8), V-2 (gate conformance), V-4 (receipt fields); TCB entry and failure-posture row per its §6",
+        "• Artefact hash verified against the register before first token\n• Token-exact reproduction check, on demand and on schedule\n• Gates (DAP-31/32, MOAC) assert path conformance before their verdict counts\n• Non-conforming path refuses to serve — fail-closed",
+        "• User can (estate owner) trust that the model tested is the model running, under any load\n• User can (any consumer) see on the receipt whether an answer came from the platform's own serving or a frontier provider's"
+      ]
+    },
+    {
+      "row": 30,
+      "values": [
+        "S-28",
+        "L-1–L-4 · Watch Learning Amendment (13 Sep 2026)",
+        "The system will never act on a verdict it cannot evidence — every Watch action carries a certificate a human can read, and every behaviour it learns to recognise entered its vocabulary through ceremony, not through silent training.",
+        "Doc 3 A2, A5.2 (no confidence parameter) · Doc 4 A2/A5.5 assertion floor, applied to verdicts · RBM-8 (system-TCB ceremony) · CIF single-experiment principle (BR-9.2) · EU AI Act Art. 14(c), now structurally evidenced",
+        "Absent → new",
+        "R-15 (initial certificate library seed) and R-16 (ratifying role, research-queue cadence) open; severance still unlocks only from A5.2's registry — a certificate never does",
+        "Watch Learning Amendment L-1 (A5.19 certificate on the verdict), L-2 (A5.20 + RBM-23 requirements as TCB-tier rules), L-3 (A5.21 + DAP-32+ + AC-15 mirage as certificate ground), L-4 (A5.22 + AC-16 research loop)",
+        "• Every verdict carries {requirement_id, data_points, observation_refs}; schema has no confidence field\n• Requirements enter force only through the Watch's ceremony; provenance links to originating incidents\n• Mirage provokes certified behaviours pre-admission; failure withholds scope\n• Unsure cases enter a research queue: CIF proposes, Solva grounds, a human ratifies",
+        "• User can (overseer) read what a verdict saw, not just how sure the detector was\n• User can (owner) see exactly which incidents taught the Watch each behaviour it now recognises\n• User can (contained party) know that no action was taken against it without evidence on the record"
+      ]
+    },
+    {
+      "row": 31,
+      "values": [
+        "S-29",
+        "L-5 · Watch Learning Amendment (13 Sep 2026)",
+        "The system will admit no new class of action into the world without ceremony on the record — every action names the admission it acts under, and no learner ratifies its own.",
+        "DAP-37 (new hash = new artefact) · BR-9.2 (CIF acceptance point) · AC-1/AC-2 · RBM-2/RBM-8 · Instrumental convergence (Omohundro 2008, Bostrom 2012): gate exercise where observable, not acquisition where it isn't",
+        "Absent → new",
+        "R-17 (class granularity, initial register) open. Learning itself is deliberately ungoverned; exercise is governed at the seams. AC-1's four ceilings are not admissible classes under any ceremony.",
+        "Watch Learning Amendment L-5: A20.16 (capability-class register, versioned with the artefact), AC-17 (per-action citation + certificate; first exercise = foundation floor + research queue), AC-18 (learner proposes, never ratifies)",
+        "• Register stored with the artefact's registry entry; new hash inherits no admissions\n• Every action cites its admitted class by lookup; ceremony once per class, never per action\n• Uncited action = first exercise: reversible ladder only, data points collected, research queue\n• Proposal path exists for the learner; ratification path does not",
+        "• User can (overseer) see every class of action a model or agent is admitted to, and which ceremony admitted it\n• User can (owner) know a retrained version starts with no inherited admissions\n• User can (deploying lab) request new capability for an agent without being able to grant it"
+      ]
+    },
+    {
+      "row": 32,
+      "values": [
+        "S-30",
+        "MEM-1–MEM-11 · Memory Compaction & Preservation (memory_compaction_v1, 18 Sep 2026)",
+        "The system will make what it holds smaller without losing what it can prove — every compaction is decided by rule, receipted, anchored to its sources, and says on reload what it no longer contains.",
+        "Attribute 10 (learned proposes, deterministic decides) · Doc 4 A2/A5.5 assertion floor · B.4 Ledger standard · DAP-37 new-hash, DAP-38 erasure · SFP-8 deterministic reload · Kenya DPA 2019 s.40",
+        "Absent → new",
+        "R-19 (triggers), R-20 (retention rule set v1) open; R-21 (user-memory class, consent model) owner input — class ships disabled until ruled",
+        "memory_compaction_v1: MEM-3 retention by deterministic rule set; MEM-6 receipted compaction with loss statement; MEM-7/8 deterministic reload that states depth lost; MEM-9 erasure overrides retention; MEM-10 user memory as personal data",
+        "• Facts kept by text-hash pointer, never rewritten; receipts and refusals kept by reference\n• Ledger row before the artefact is readable; source untouched if the row fails\n• Reload verifies the artefact hash; refuses rather than serves best-effort\n• Withdrawn units found by provenance; artefact re-derived or recalled",
+        "• User can (overseer) see exactly what a compacted context no longer contains\n• User can (principal) read their own user memory and have it erased\n• User can (owner) know the record was never made smaller"
+      ]
+    },
+    {
+      "row": 33,
+      "values": [
+        "S-31",
+        "ENT-1–ENT-49 · The Entitlement Service (entitlement_service_v1, 20 Sep 2026)",
+        "One licence reaches every listed model the buyer's settings admit, resolved at the single chokepoint, metered on the one Ledger, with unlimited local use and no silent fallback — what the buyer sees is what was used.",
+        "A5.1 single chokepoint · DAP-21/22/23/26 metering, terms, ceilings · Doc 11 A5.4 / D-16 cascade · Doc 20 registry · PRIN-5–8 credential plane · D-17 provider posture · FE brief §2 honest display",
+        "Absent → new",
+        "R-24 (reseller agreements, counsel) gates reseller-frontier rows only; R-25–R-31 commercial and DEFAULT values open; Local and Your Keys ship without R-24",
+        "entitlement_service_v1: ENT-16/17 deterministic resolution, fail-closed; ENT-20–22 bill derived from Ledger events only; ENT-26/34 visible fallback with fixed strings; ENT-29 no token cap on local; ENT-35 keys never displayable; ENT-49 no state outside licence/row/credential/event",
+        "• Every call resolves principal → licence → row → dial → allowance before dispatch; any missing link refuses\n• Allowance is recomputed from events, never a stored counter\n• Exhaustion serves locally with the fixed string, never silently\n• Reseller row cannot be listed before its agreement is on record",
+        "• User can see credits remaining and tokens by model, derived from the Ledger\n• User can (admin) add, rotate, revoke a key in one act and never see it again\n• User can (owner) change any price or rate only through ceremony, prospectively"
+      ]
+    },
+    {
+      "row": 34,
+      "values": [
+        "S-32",
+        "PRIN-1–PRIN-13 · The Principal Model (principal_model_v1, 20 Sep 2026)",
+        "Every record the platform writes is attributed to an admitted principal whose identity was authenticated and propagated by construction — never to a caller-supplied string, never to a default actor.",
+        "DAP-1–5 external-party principal · DAP-13 keys per principal · DAP-21 metering attribution · Attribute 12 trust domain · Promise #32 objective freeze (mandate)",
+        "Absent → new",
+        "R-22 (rotation default), R-23 (legacy route shapes) DEFAULT-class open",
+        "principal_model_v1: PRIN-2 no self-admission; PRIN-6 credential material never readable back; PRIN-9/10 trust-domain identifier on every record, refused if absent; PRIN-11/12 actor populated only from propagated context, fail-closed on absence; PRIN-13 context read-only in flight",
+        "• A write with no principal in calling context fails closed\n• The Ledger actor field is never caller-supplied\n• A credential is bound to one trust domain at issuance\n• Mandate is frozen at admission; change is a new admission",
+        "• User can (owner) see who did what, by admitted identity, on every record\n• User can (principal) hold a credential that nobody — including the platform — can display\n• User can (owner) revoke any principal in one act"
+      ]
+    },
+    {
+      "row": 35,
+      "values": [
+        "S-33",
+        "CON-1–CON-31 · The Content Registry (content_registry_v1, 20 Sep 2026)",
+        "Nothing a surface says is improvised: every string has a stated purpose and a class; every number comes from a measured field; generated prose is anchored and gated; and where a surface has several true things to say, the one it says first is chosen by rule, and the reason is on record.",
+        "FE brief §0.2 DOM-bound substitution rules · FE brief §2.1 measured numbers · Doc 4 A2/A5.5 assertion floor · A5.15 output gate · A5.16 recommendation provenance · DAP-38/MEM-9 erasure · EU AI Act Art. 14(c)",
+        "Absent → new",
+        "R-32 (Generated surfaces) owner; R-33 (salience classes v1), R-34 (hold), R-35 (retention) DEFAULT-class",
+        "content_registry_v1: CON-1 no string without an entry; CON-4 honest-gap variant mandatory; CON-6 prose never supplies a number; CON-12 resolver pure, no learned parameter; CON-15–18 rule-ranked hook, no engagement signal; CON-20 salience trace receipted; CON-24 unsupported claims refused not softened; CON-25 templated text re-derived, never stored",
+        "• A number reaches a surface only as a verified dependency\n• An ineligible candidate is never the hook while any eligible one exists\n• No engagement or learned signal enters ranking\n• A generated string that fails classing or the gate is refused, not hedged",
+        "• User can ask any slot “why this first” and see what it chose not to lead with\n• User can see the anchors of any generated line\n• User can (owner) change any template, prompt, or ranking only through ceremony"
+      ]
+    },
+    {
+      "row": 36,
+      "values": [
+        "S-34",
+        "DQ-1–DQ-15 · Data Cleanliness (data_cleanliness_v1, 26 Sep 2026)",
+        "The platform knows, per record, which checks it passed and which it failed; no figure about cleanliness is shown without its checks; nothing that failed structural validity or carries a sentinel enters training or anchors a fact; and every source's strata reconcile to its record count.",
+        "Document 9 B3/B5 census quality strata · Targeta MOAC every-criterion rule · Doc 4 A2/A5.5 assertion floor · Execution Standard EX-9 reconciliation",
+        "Absent → new",
+        "R-38 (sentinel threshold), R-39 (fuzzy tolerance), R-40 (media thresholds) DEFAULT-class",
+        "data_cleanliness_v1: DQ-1–8 seven check families, deterministic; DQ-10 stratum a pure function of bitmap and pack; DQ-12 register reconciles or is not published; DQ-13 accuracy only against named ground truth; DQ-14 training gate as a MOAC criterion; DQ-15 Junk never anchors a fact",
+        "• Every bit maps to a named check in a versioned pack\n• No merge path exists in code; merges are human acts, receipted\n• Clean + Repairable + Suspect + Junk = record count, per source\n• A Junk record in a manifest is refused at commission",
+        "• User can (owner) read the garbage register per source and the checks that placed each record\n• User can (owner) admit a Suspect record to training only by a recorded decision\n• User can (auditor) re-derive any stratum from the bitmap and the pack version"
+      ]
+    },
+    {
+      "row": 37,
+      "values": [
+        "S-35",
+        "CC-1–CC-16 · Context and Capability (context_and_capability_v1, 27 Sep 2026)",
+        "What governance costs is measured and stated: which material entered the window and what was left out, why an entity was withheld from an external model, how fast each class of request is served, how often memory served it warm, and the quality delta of the governed path against the bare model — on every release, in numbers.",
+        "Doc 1 custody sequence · Doc 7 A5.1–A5.5 five-ring unit and trace · Doc 8 A5.1–A5.4, B5.1–B5.5 memory and retrieval · Doc 11 A5.4 cascade · B.4 Ledger · Execution Standard EX-1–15",
+        "Absent → new",
+        "R-41–R-46 DEFAULT-class floors, budgets and thresholds; first-article measurement sets baselines",
+        "context_and_capability_v1: CC-2 entity-knowledge objectives local by requirement or approved unmasked crossing; CC-4/5 deterministic window assembly with loss statement; CC-7–9 throughput floor, latency budget, warm ratio as reported figures; CC-10 gate-service resilience forms; CC-12–14 standing benchmark under the Execution Standard; CC-16 four audit demonstrations",
+        "• No learned component ranks or filters the window after assembly\n• A window with exclusions carries a loss statement in the trace\n• A release with a quality delta beyond threshold ships only with a named cause\n• Gate-service unavailability is never presented as requester failure",
+        "• User can (owner) see per-period latency by request class and the warm-serve ratio\n• User can (reader) learn why an entity was withheld from an external model\n• User can (auditor) re-derive any window from the objective and the qualified set"
+      ]
+    }
+  ],
+  "Legend": [
+    {
+      "row": 1,
+      "values": [
+        "Security Assurance Promise Set — Legend",
+        null
+      ]
+    },
+    {
+      "row": 3,
+      "values": [
+        "Scope of this set",
+        "S-1–S-35 are entirely scoped to Document 3 (the Watch). They do not cover SyniSense's Document 1 domain — stated explicitly because of the finding immediately below."
+      ]
+    },
+    {
+      "row": 5,
+      "values": [
+        "“A5.7” — a citation warning, not an error",
+        "Positional IDs (rule_criteria_spec_v1 ROC-3) are document-scoped by design: Document 1 has its own A5.7 (the trust receipt — custody status, signature, organisation-binding) and Document 3 has a separate, unrelated A5.7 (non-conformance ceiling, S-15 in this set, “never convict on non-conformance”). Both are correct within their own document. Citing “A5.7” without naming the document is how the two get conflated — caught here on a direct re-check while updating this file, not before."
+      ]
+    },
+    {
+      "row": 7,
+      "values": [
+        "G-8 and G-9 — why neither has a row here",
+        "Document 0's G-8 (Governance Architecture) concerns Document 1's A5.7, the trust receipt — outside this set's scope. Its fix lives in Security_Promise_Set_Amendments.docx, Amendment 3, and in akki_governance_architecture_v1's own G-8 entry, not as an S-row. G-9 (system-rule change control) is a Rules Service / Attribute 9 matter, not a Watch conduct promise, and likewise has no natural S-row. Neither omission is an oversight; both are stated here so the absence reads as scoped, not missed."
+      ]
+    },
+    {
+      "row": 9,
+      "values": [
+        "Scope",
+        "Decomposes Promise #6 (Doc 3) into 21 assurance statements (S-1–S-21), plus S-22–S-25 added by the Security Amendments — Trojan Artefacts and Whisper Threats (5 Sep 2026). S-10, S-11 are sourced from Wave E rulings with no document home yet. Promises #7 and #26 are unchanged and cited, not reproduced."
+      ]
+    },
+    {
+      "row": 11,
+      "values": [
+        "Standard column",
+        "The clause each promise answers to. [V]/[K]/[P] confidence not marked per-cell here; treat citations as [K] (established knowledge, stable clause reference) unless a document says otherwise."
+      ]
+    },
+    {
+      "row": 13,
+      "values": [
+        "Bound / Ruling column",
+        "Structural = no numeric bound applies. Ruled = a specific value is set (cites the ruling). Baseline-period-deferred = Doc 3's own mechanism: conservative default until a defined observation period, then set by evidence. Unruled = a bound is named in A5 text with no value confirmed — a real gap, not a placeholder."
+      ]
+    },
+    {
+      "row": 15,
+      "values": [
+        "Status colours",
+        "Green = Present, built and grounded in canon text. Blue = Absent → new, a ruled value with no document promise yet. Amber = Absent → gap, no mechanism specified anywhere. Grey = By design, composite/umbrella row."
+      ]
+    },
+    {
+      "row": 17,
+      "values": [
+        "S-7",
+        "The one promise in this set marked as a specification gap rather than asserted. Doc 3 constrains learning in three places (A5.7, A5.8, A5.12) and specifies a learning mechanism in none. See amendments document, Item 1."
+      ]
+    },
+    {
+      "row": 19,
+      "values": [
+        "Removed from this set",
+        "“Never run in shadow” (A5.4) — deployment doctrine, not runtime assurance. Relocated to Document 0, Attribute 9 build requirements. See amendments document, Item 3."
+      ]
+    }
+  ]
+}

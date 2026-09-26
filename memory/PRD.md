@@ -1,5 +1,47 @@
 # Akki — continuity record
 
+## LATEST REPORT EXTENSION — 2026-09-26 files18 (analysis only)
+
+User uploaded `files (18).zip`: “Before i react add these th the report”, then
+approved extending the same all-component report without app/Canon changes.
+3members SHA-banked under `assessment_workspace/custody/owner_drops/
+enhancement_specs_18_20260926/`: Context_and_Capability_v1.docx plus updated
+Master/Security workbooks. Document prints27September; custody date26September.
+
+Current consolidated report remains `assessment_workspace/notes/
+enhancement_specs_20260926/INTEGRATION_REVIEW.md` (revision2). Prior version saved
+in `supplement_18/INTEGRATION_REVIEW_FILES17_SNAPSHOT.md`. New extracts/delta/
+23rowmap/verification are in supplement_18; rootCLAUSE_IMPACT_COMBINED.csv has
+**59rows =36preserved+23new**. Report now19component groups, making Context Manager/
+qualified-intelligence Service1 explicit. Existing component architecture preserved.
+
+Raw files17→18delta:16CC1–16rules added,0old632rules changed/removed; onlyS35added,
+S1–34unchanged. Registry now648distinctDoc+RuleID,QA602,missing46exactly15EX15DQ16CC;
+Build Status635/Legend286/objectivecoverage still unreconciled. New CC statuses
+PROPOSED. Adds6DEFAULT recommendationsR41–46, not measured service guarantees.
+
+Integrated assessment: EXaccounts for work; DQqualifies material; CCpreserves
+context and measures governance cost. New required work: frozen entity-knowledge
+classification/local custody routing, deterministic window/loss receipts, genuine
+end-to-end latency and warm-share measurements, signed-rule/cache/fenced-writer
+resilience, five-ring compaction handle mapping,200or more held-out task paired
+benchmark and4non-builder audit demonstrations. No execution of any of these here.
+
+**Open decisions before implementation:** all earlier12EX/DQ questions PLUS scoped
+unmasking versus sole-chokepoint no-bypass, credential-cache continuity versus
+immediate revocation, signed-rule staleness, fenced failover, window budgets/
+graph/tokenizer/oversize behavior, full warm versus exclusions, exact requestclass/
+ratio denominators, isolated bare-path benchmark custody and same-model/seed
+comparability, release finding versus blocking/no-measurement semantics.
+
+Verification `test_reports/iteration_12.json`: rawZIP/DOCX/XLSX extraction/hashes/
+counts/deltas pass; all23new semantic mappings21agree/2uncertain(CC2/R44)/0disagree.
+Prior sample17agree/3uncertain unchanged; combined43of59checked38agree5uncertain.
+No runtime tests/appcode/Canon/DB/credentials changes; no mocked integrations or
+new provider/GPU/model calls. Existing runtime holds and parkedGPU preserved.
+**Next action: owner reacts to consolidated report; do not treat review approval
+as implementation or rule-ratification authorization.**
+
 ## LATEST OWNER SPEC REVIEW — 2026-09-26 (analysis only)
 
 User uploaded `files (17).zip` and asked to ingest enhancement specs, give thoughts,

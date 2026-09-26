@@ -115,3 +115,26 @@ execution holds remain in force. Code-seam mapping is not an audit of every rout
 Separate verification: mechanical inventories/hashes passed; seeded20clause review
 17agree/3uncertain/0disagree. DQ9/EX10/EX7 uncertainties remain banked;16rows not in
 that sample. No app code, Canon ratification, credentials or DB records changed.
+
+## 2026-09-26 second enhancement drop — consolidated report revision2
+
+Owner: “Before i react add these th the report”; approved report-only extension.
+`files (18).zip` adds Context and Capability v1 plus revised Master/Security
+workbooks (3members). Incoming source document prints27Sep; custody date26Sep
+is recorded separately. Raw delta: **+16CC rules, +S35;0prior rule/promise changes**.
+Current registry648keys,QA602,46missing(EX15+DQ15+CC16); prior632counts historical.
+
+Same `INTEGRATION_REVIEW.md` now covers **19component groups and59clause/ruling/
+promise mappings**. Prior report snapshot and36row map preserved. New scope
+adds mandatory entity-knowledge custody routing, deterministic qualified-unit
+window/loss, measured writer/request/availability targets, cache/failover
+requirements, five-ring memory linkage and paired held-out capability benchmark.
+
+Proposed values are NOT measured guarantees. Important open conflicts: one-call
+unmasking/no-bypass, cache verification/immediate revocation, protected experimental
+bare path/sole invoker, full warm response/window exclusions, exact assembly inputs
+and mixed request-class denominators. All prior EX/DQ questions remain open.
+No runtime or Canon modifications. GPU parked; wait for owner's report reaction.
+
+`iteration_12.json`: rawdocument/hashes/cells/deltas verified;23new mappings checked
+21agree/2uncertain(CC2/R44)/0disagree. Prior3uncertain(DQ9/EX10/EX7) retained.

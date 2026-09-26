@@ -1,0 +1,20 @@
+{
+  "scope": "Owner-approved report extension only: add files18 to the same all-component assessment; preserve files17 originals and findings",
+  "denominators": {"incoming_files": 3, "current_registry_keys": 648, "qa_keys": 602, "new_CC_rules": 16, "new_rulings": 6, "new_promise": 1, "new_clause_rows": 23, "combined_clause_rows": 59, "combined_component_groups": 19},
+  "sources": "Raw files18 archive and three members in assessment_workspace/custody/owner_drops/enhancement_specs_18_20260926; files17 custody is comparison baseline",
+  "procedure": "Extract complete ordered DOCX blocks and every populated workbook cell; compare exact document-rule keys/fields and promise rows with files17; inspect referenced implementation seams read-only; revise canonical report while retaining its prior snapshot",
+  "artifacts": ["DOCUMENT_MANIFEST.json", "DELTA_FROM_FILES17.json", "CLAUSE_IMPACT_CC.csv", "../CLAUSE_IMPACT_COMBINED.csv", "../INTEGRATION_REVIEW.md"],
+  "acceptance": [
+    "Archive has3members; extracted bytes and recorded hashes exactly match",
+    "Direct raw workbook comparison:16CC additions;0old rule removals/changes; onlyS35added;S1to34unchanged",
+    "648unique doc-rule keys and602unique QA keys; missing46exactlyEX1to15/DQ1to15/CC1to16",
+    "New16CC statuses remain PROPOSED; no runtime guarantees or adoption inferred",
+    "23unique new mapped clauses plus preserved36prior rows equals59; all source/code anchors exist",
+    "Six numeric defaults accurately recorded with units tier/percentile and proposed-versus-measured distinction",
+    "Report preserves existing12open design decisions and3prior semantic uncertainties; adds custody/cache/window/benchmark conflicts without claiming implementation",
+    "No application/Canon/credentials/database changes or performance/provider calls"
+  ],
+  "shortcuts": ["Use older632rule count as current", "Treat existing timing or compaction hooks as CC-compliant metrics", "Interpret bare benchmark as authorization to bypass production custody", "Claim caching is safe without revocation/freshness policy", "Treat thresholds as measured service guarantees"],
+  "anchor_root": "services/ and contracts/ beneath /app/backend/vendored/extraction_akki/backend; source B identifiers are ordered DOCX body blocks; sheet rows use raw workbook row numbers",
+  "verification": {"all23new_clauses": "Check mechanically and semantically against actual source anchors; allow uncertain outcomes", "no_runtime_claim": true, "no_EX4_isolation_or_R37_family_claim": true}
+}
