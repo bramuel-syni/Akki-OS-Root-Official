@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export async function censusRequest(path, options = {}) {
   const token = sessionStorage.getItem('akki_access_token');
@@ -19,16 +19,30 @@ export function useCensusWorkspace() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const pendingRead = useRef(null);
   const reload = useCallback(async () => {
+    pendingRead.current?.abort();
+    const controller = new AbortController();
+    pendingRead.current = controller;
+    const token = sessionStorage.getItem('akki_access_token');
+    if (!token) {
+      setData(null);
+      setError(Object.assign(new Error('Sign in to view your admitted estate.'), { status: 401 }));
+      setLoading(false);
+      return;
+    }
+    const current = () => !controller.signal.aborted && sessionStorage.getItem('akki_access_token') === token;
     setLoading(true);
-    try { setData(await censusRequest('/overview')); setError(null); }
-    catch (e) { setError(e); setData(null); }
-    finally { setLoading(false); }
+    try {
+      const overview = await censusRequest('/overview', { signal: controller.signal });
+      if (current()) { setData(overview); setError(null); }
+    } catch (e) { if (current()) { setError(e); setData(null); } }
+    finally { if (current()) setLoading(false); }
   }, []);
   useEffect(() => {
     reload();
     window.addEventListener('akki-session-changed', reload);
-    return () => window.removeEventListener('akki-session-changed', reload);
+    return () => { pendingRead.current?.abort(); window.removeEventListener('akki-session-changed', reload); };
   }, [reload]);
   // Read-only polling of actual in-flight work, never a timer-driven completion.
   const pending = data?.runs?.some(r => r.status === 'PENDING');

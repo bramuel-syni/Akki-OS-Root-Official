@@ -48,3 +48,17 @@ def emit_intent(*, intent: LedgerIntent) -> LedgerIntent:
     if not intent.run_id:
         raise ValueError("LEDGER-EMIT-002: run_id required")
     return intent
+
+
+def emit_control_intent(*, tenant_id: str, run_id: str, actor_id: str,
+                        event_type: str, resource_type: str, resource_id: str,
+                        decision: str, reason_code: str, payload_ref: str,
+                        epoch_s: int) -> LedgerIntent:
+    """Additive control-plane producer; construction stays at the sole emitter."""
+    return emit_intent(intent=LedgerIntent(
+        tenant_id=tenant_id, run_id=run_id, task_id=run_id,
+        actor_id=actor_id, actor_type="principal", event_type=event_type,
+        resource_type=resource_type, resource_id=resource_id, decision=decision,
+        reason_code=reason_code, payload_ref=payload_ref,
+        at=LedgerRowAt(epoch_s=epoch_s, source="wall_clock"),
+    ))

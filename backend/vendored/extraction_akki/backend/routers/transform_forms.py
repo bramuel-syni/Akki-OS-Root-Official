@@ -15,12 +15,9 @@ from typing import Any, Dict
 from fastapi import APIRouter, Body, Request
 from fastapi.responses import JSONResponse
 
-from services.transform_forms.callable_skill_gate import (
-    BelowFloorError,
-    below_floor_refusal_envelope,
-    ensure_response_carries_class,
-    require_governed_skill_query,
-)
+from services.transform_forms.callable_skill_gate import require_governed_skill_query
+from services.portal_operational.skill_query import SkillQuery, refuse_unadmitted
+from services.portal_operational.access import portal_scope
 from services.transform_forms.callable_skill_persistence import provision_skill
 from services.transform_forms.knowledge_artifact import build_knowledge_artifact
 from core import db
@@ -80,45 +77,17 @@ async def provision_callable_skill(body: Dict[str, Any] = Body(...)):
 async def query_callable_skill(
     skill_id: str,
     request: Request,
-    body: Dict[str, Any] = Body(...),
+    body: SkillQuery,
 ):
-    """TF-R2 + Owner Tier-1 line: per-call inner gate + response class inline.
+    """TF-E4 gate first. No fabricated answer or caller-asserted defensibility.
 
-    Inner gate (TF-E4 (a) α) fires FIRST — identity + scope + floor. On
-    pass, the query proceeds; response is mutated to carry
-    `defensibility.class` inline (Owner-verbatim: 'every response
-    carries class inline'). Below-floor → refusal envelope.
+    A future admitted executor must supply its own evidence-derived class to
+    ensure_response_carries_class. No executor is wired here yet; refusal is
+    first-class and receipted, not a pretend floor-level answer.
     """
     gate_result = await require_governed_skill_query(request, skill_id, db)
     if isinstance(gate_result, JSONResponse):
         return gate_result
-    provisioning = gate_result
-
-    # Skill-body path: for this baseline landing, the query is a
-    # pass-through (real skill invocation lives at the LLM router; the
-    # inner gate is what makes the surface governed). We attach class
-    # inline; a below-floor result raises the refusal envelope.
-    raw_response = {
-        "skill_id": skill_id,
-        "query": body.get("query", ""),
-        "answer": body.get("answer_stub", "governed"),
-    }
-    # Class-inline mutation. The response builder (upstream skill logic)
-    # is responsible for supplying its own class label; here we default
-    # to the provisioning floor to preserve honesty grammar.
-    class_label = body.get("class_label", provisioning.floor)
-
-    try:
-        mutated = ensure_response_carries_class(
-            raw_response,
-            class_label=class_label,
-            floor=provisioning.floor,
-        )
-    except BelowFloorError:
-        return JSONResponse(
-            status_code=200,
-            content=below_floor_refusal_envelope(
-                class_label=class_label, floor=provisioning.floor
-            ),
-        )
-    return mutated
+    async with portal_scope(request) as scope:
+        refusal = await refuse_unadmitted(db, scope, skill_id, body)
+        return JSONResponse(status_code=409, content=refusal)

@@ -1,0 +1,41 @@
+{
+  "summary": "Backend-only incremental verification completed for callable-skill safety and entitlement corrections after iteration 9. Added targeted callable-skill safety tests (MOCKED unit gates + live auth/status checks), then ran full portal_operational + census_operational suites twice with REACT_APP_BACKEND_URL exported and AKKI_RUN_IDENTITY_REFUSAL_DRILL unset.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_callable_skill_query_safety.py",
+    "/app/backend/tests/portal_operational/test_portal_unit_faults_and_entitlements.py",
+    "/app/test_reports/pytest/pytest_portal_census_iteration10_run1.xml",
+    "/app/test_reports/pytest/pytest_portal_census_iteration10_run2.xml",
+    "/app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/portal_census_iteration10_run1.log",
+    "/app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/portal_census_iteration10_run2.log"
+  ],
+  "action_items": [
+    "No blocking defects found in this backend-only verification slice.",
+    "Keep new callable-skill safety tests in regression for strict payload gate and refusal path behavior."
+  ],
+  "critical_code_review_comments": [
+    "No source-code edits were made in app runtime modules during this pass; only test coverage was added.",
+    "Callable-skill query safety behavior validated as refusal-first (no admitted executor), with strict SkillQuery payload boundary and no answer/class pass-through in tested paths."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_callable_skill_query_safety.py",
+    "/app/test_reports/iteration_10.json"
+  ],
+  "success_rate": {
+    "backend": "100% pass on executed tests (run1: 146 passed, 2 skipped; run2: 146 passed, 2 skipped)",
+    "frontend": "N/A (not in scope)"
+  },
+  "seed_data_creation": "None. No live skill/admission/grant/tenant fixtures created. Unit fixtures are explicitly MOCKED.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Executed full suites: /app/backend/tests/portal_operational and /app/backend/tests/census_operational twice with AKKI_RUN_IDENTITY_REFUSAL_DRILL unset. Added callable-skill tests cover: strict field rejection, mocked gate refusal propagation with query_sha256 and no answer/class, ledger outage fail-closed, live anonymous 401, authenticated missing skill 404, and forged answer_stub/class_label 422. Existing entitlement tests including new seat-vs-pool/event-rate/org-ownership/expired/dial-retirement cases passed.",
+  "rca of the issue": "No failing issue reproduced in this iteration. Prior auth-transition 401 was not in this backend scope and did not reappear in these backend suite runs."
+}

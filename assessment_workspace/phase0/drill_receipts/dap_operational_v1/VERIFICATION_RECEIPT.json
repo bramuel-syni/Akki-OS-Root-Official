@@ -1,0 +1,65 @@
+{
+  "recorded_at": "2026-09-26T01:18:24.666543+00:00",
+  "scope": "Control-plane metadata only. No source estate, GPU, provider or model execution.",
+  "canonical_chain_verification": [
+    {
+      "tenant_id": "RMS",
+      "head_seq": 92,
+      "head_hash": "7fc109f076808890d8527e743fc1c0a69752f0cc547b4eae94c463fa0084170c",
+      "break_at_seq": null,
+      "rows_walked": 92
+    }
+  ],
+  "all_payload_hashes_verified": true,
+  "canonical_row_field_counts": [
+    17
+  ],
+  "original_source_proofs": [
+    {
+      "path": "frontend/src/components/prototype/generated/dap.json",
+      "sha256": "3f3a181ee7aa1c920b81d2620b218f24add779366a151b4e7fc29660bc7b6dc0",
+      "unchanged_from_head": true
+    },
+    {
+      "path": "frontend/src/components/prototype/generated/os.json",
+      "sha256": "04fc85f2febc1846ed40ea58b3cc394746fb61fe78a59a07e7b8e1c43f634b4c",
+      "unchanged_from_head": true
+    },
+    {
+      "path": "frontend/src/components/prototype/OwnerMarkup.jsx",
+      "sha256": "e96a0775099400e127bbb4f317d29b88df59ca2575975688b35f4f1d9814fecc",
+      "unchanged_from_head": true
+    }
+  ],
+  "test_runs": {
+    "run1": {
+      "passed": 146,
+      "skipped": 2
+    },
+    "run2": {
+      "passed": 146,
+      "skipped": 2
+    }
+  },
+  "browser_assertions": {
+    "auth_transitions": "operator -> signed-out -> analyst: overview 200 x4, overview401 x0; analyst disabled/no operator rows",
+    "worst_case_mobile": "390px: long objective scrollWidth337/clientWidth337/height622, overflow-wrap anywhere; menu absent while drawer open",
+    "desktop": "1920px: loaded history, OVERFLOW[]",
+    "close": "20260926_011615: named close control hides drawer, mobile navigation visible again",
+    "corrected_harness_issues": "Initial screenshot captured loading; retaken after drawer visible. Case-sensitive uppercase label assertion and wrong prototype close locator corrected; final interactions PASS."
+  },
+  "mocked_test_boundaries": [
+    "isolated fault injection",
+    "entitlement/admission event fixtures",
+    "skill prerequisite gate/refusal fixtures",
+    "existing census transport units"
+  ],
+  "not_proven": [
+    "approved extraction",
+    "real skill answer",
+    "live entitlement grant",
+    "executor stop/retry",
+    "verified result retrieval",
+    "full platform completeness"
+  ]
+}

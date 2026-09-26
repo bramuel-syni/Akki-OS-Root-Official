@@ -440,6 +440,7 @@ app.include_router(canon_rules_registry_router.router)
 # curative (2026-09-21T~09:10Z) additive-only.
 from routers import portal_requests as portal_requests_router  # noqa: E402
 app.include_router(portal_requests_router.router)
+app.include_router(portal_requests_router.work_router)
 
 # R-100 · CP-PORTAL-WRITE-SURFACE · portal entitlement reads (JWT-gated).
 # Router already carries prefix="/api/portal/entitlement" · 4 endpoints

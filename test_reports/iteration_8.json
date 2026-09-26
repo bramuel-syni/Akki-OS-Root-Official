@@ -1,0 +1,88 @@
+{
+  "summary": "Backend-only RED-first contract run completed for portal operational request/work/entitlement and strict SubmitRequest model. New tests were authored and executed against the public URL; failures confirm current STUBBED portal behavior and missing portal_operational model module.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.portal_operational.models.SubmitRequest",
+        "issue": "Module/class missing (ModuleNotFoundError: services.portal_operational.models); strict SubmitRequest contract cannot run.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "/api/portal/requests",
+        "issue": "POST 202 response lacks required durable fields request_id/work_id/objective_hash/state; returns stub envelope only.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "/api/os/work and /api/os/work/{id}",
+        "issue": "OS consumer endpoints absent (404), so same-record contract with portal request cannot be verified.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "/api/portal/requests/{id}/stop",
+        "issue": "Nonexistent request returns 200 Stopped instead of 404; fake terminal transition risk.",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "/api/portal/entitlement/allowance",
+        "issue": "Without licence, response returns fixed period/zero allowance_state instead of explicit unresolved status with allowance_state=null.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "/api/portal/requests",
+        "issue": "Extra caller fields principal_id/tenant_id/approver_id/answer_stub/class_label are not refused (expects 422)."
+      },
+      {
+        "endpoint": "/api/portal/requests",
+        "issue": "Unknown/cross-tenant units (e.g., digicow_mysql) accepted with 202 instead of 403/422 refusal."
+      },
+      {
+        "endpoint": "/api/portal/requests idempotency",
+        "issue": "Same-key replay and key-collision semantics cannot be validated because response has no request_id and no conflict path implemented."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/conftest.py",
+    "/app/backend/tests/portal_operational/test_request_api.py",
+    "/app/backend/tests/portal_operational/test_submit_request_model.py",
+    "/app/test_reports/pytest/pytest_portal_operational_red.xml",
+    "/app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/RED_portal_operational_pytest.log"
+  ],
+  "action_items": [
+    "Implement services.portal_operational.models.SubmitRequest with strict constraints: objective_text required, operation in canonical six, units distinct size 1..50, idempotency_key length 8..128, extra forbidden.",
+    "Implement durable portal request persistence and identity-scoped list/detail with same request_id/work_id, objective_hash, state, and history redaction.",
+    "Add /api/os/work and /api/os/work/{id} as same-record consumer over persisted request/work store.",
+    "Enforce idempotency: same body+key returns same ID; same key+different body returns 409.",
+    "Refuse forged identity/approval/result fields and cross-tenant/unknown units with 422/403.",
+    "Fix stop/retry semantics: nonexistent -> 404, stop only from actual Executing state, no synthetic stop success.",
+    "Change entitlement allowance no-licence behavior to explicit unresolved and null allowance_state (no fixed period/zero fabrication)."
+  ],
+  "critical_code_review_comments": [
+    "portal_requests router currently returns hardcoded acceptance envelope and never writes/reads durable records, causing contract drift across ID/state/history paths.",
+    "portal_requests stop/retry handlers do not load request state by id+principal and therefore can emit synthetic outcomes for nonexistent records.",
+    "portal_entitlement allowance handler uses hardcoded period and zero credits in stub derivation, violating unresolved/no-fabrication expectation when licence is absent.",
+    "Current portal request payload is untyped dict without strict schema validation; caller-injected identity/approval fields pass through unchecked."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/conftest.py",
+    "/app/backend/tests/portal_operational/test_request_api.py",
+    "/app/backend/tests/portal_operational/test_submit_request_model.py",
+    "/app/test_reports/iteration_8.json"
+  ],
+  "success_rate": {
+    "backend": "5.9% (1/17 passed)",
+    "frontend": "N/A (skipped by request)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Run used public URL from frontend/.env (https://pensive-goodall-6.preview.emergentagent.com). Suite path: /app/backend/tests/portal_operational. RED receipt banked at /app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/RED_portal_operational_pytest.log. Since >50% tests failed (expected RED-first), stop at this point and retest after implementation.",
+  "rca of the issue": "Root cause is intentional/unresolved stub implementation: portal request endpoints are acknowledgement stubs without persistence/ID/state contracts; OS work routes are not mounted; stop/retry do not validate record existence/state and can return synthetic success; entitlement allowance returns fabricated zero-period state instead of unresolved. Repro: pytest /app/backend/tests/portal_operational -v --tb=short --junitxml=/app/test_reports/pytest/pytest_portal_operational_red.xml"
+}

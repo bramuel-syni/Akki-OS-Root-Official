@@ -1,5 +1,74 @@
 # Akki — continuity record
 
+## LATEST VERIFIED CONTINUATION — 2026-09-26 DAP control plane
+
+Owner explicitly approved P0 request/work/entitlement + conditional P1 continuation
+via ask_human in this fork. **GPU/AISCA stays PARKED. User review still pending.**
+
+### Implemented and verified
+- Replaced acknowledgement-only request routes with strict frozen intent,
+  same-key replay/conflict, principal/tenant-scoped durable list/detail and shared
+  `/api/os/work` projection. New Northena composition uses sealed canonical v1
+  emitter/writer with one insert-only Mongo envelope (`ledger_v1_control_events`)
+  containing exact17-field row and hash-bound payload; unique tenant sequence and
+  command IDs. Legacy Northena sealed best-effort writer left untouched.
+- Reused DAP Compose→Submitted→Routing, with banked ADMISSION_UNRESOLVED hold.
+  Unknown/ineligible stop/retry/result now404/409, not false success. NO approval,
+  executor cancellation/retry, execution or output/retrieval implementation claimed.
+- Read-only entitlement projection over Ledger membership/licence/catalog/metered
+  events; no default licence/period/zero balance. Correct seat vs pool, event-time
+  rates (even distinct models under one terms ID), org/period filtering, expiry,
+  suspension, dials and customer-model ownership. Production admission/ceremony
+  producers still absent/unwired; positive tests use MOCKED/TEST-ONLY records.
+- Removed callable `answer_stub`/caller-class success path. Strict query-only body;
+  original governed skill gate then canonical SKILL_EXECUTOR_UNADMITTED refusal.
+  **Real skill execution remains unwired**, not replaced with a fake response.
+- Wired original DAP extract forms, request rail/drawer/history, contract view,
+  `/dap/requests`, OS `/os/work/tasks` to same records. Generated prototype JSON
+  and OwnerMarkup unchanged. Responsive long-objective wrapping, drawer/menu
+  overlap, truthful labels, accessible close control, unverified contrast fixed.
+- Existing JWT consumer corrected: no protected overview fetch while signed out;
+  abort stale reads during identity transitions. No auth/token/account/password
+  change; `memory/test_credentials.md` remains current. API URL now fails fast.
+
+### Verification and limits
+RED16failed/1passed reproduced → final combined portal+census **146passed,
+2intentional live-drill skips, twice** (`test_reports/iteration_10.json`). Frontend
+production build passes; loaded390/1920 screenshots no overflow, longest objective
+fits its container. Actual operator→signout→analyst transitions: overview200x4,
+overview401x0, analyst write disabled/no operator requests. Isolated ledger faults,
+positive entitlements/skill prerequisites and census unit transports **MOCKED**;
+live request persistence/auth/refusals real. No source/SSH/provider/model calls.
+
+Evidence and authoritative acceptance matrix:
+`assessment_workspace/notes/dap_operational_v1/VERIFICATION_REPORT.md`;
+receipt bank `assessment_workspace/phase0/drill_receipts/dap_operational_v1/`,
+including canonical-chain verification, hashes, logs, screenshots and test reports.
+**D01–D12:4 verified /7 partial /1 open**, not whole-platform completion. Original
+RED tests stay unchanged; additional tests cover concurrency/entitlements/skills.
+
+### Next Action Items / prioritized backlog
+- **P0:** owner-admitted durable organisation/licence/ceremony + recorded operation
+  approval authority; connect real admitted Akki engine receipts; implement actual
+  executing stop, bounded approved retry and rights/checksum-gated results. Do NOT
+  change Routing to Blocked via an edge the sealed state machine does not have.
+- **P1:** complete888-action prototype→Canon/component map; real callable executor
+  through existing chokepoint/grounded class; remaining entitlement rollover,
+  ceilings, catalog-provenance and measured-usage journeys. No default grants.
+- **P2:** Solva reasoning, Mkondo handoffs, Targeta/CIF, governed model/audio/training.
+  GPU recovery only if owner explicitly reopens it. Whole-platform % unmeasured.
+- Suggested enhancement: receipt-linked admission checklist in the existing
+  request drawer, once each blocking prerequisite has an authoritative producer.
+
+Earlier dated entries below are historical; this update supersedes their stub
+status for these routes only and does not supersede parked compute limitations.
+
+## LATEST OWNER DIRECTION — autonomous non-compute continuation
+
+Owner: "Skip this continue with the rest" then "going to bed, go autonomous to end?" after the proposed Northena/request→result, entitlements and remaining OS/DAP plan. Proceed autonomously without more approval loops. **AISCA/GPU recovery PARKED; no further login, probes, key work or provider outreach.** Preserve both VMs/keys, all prototypes and the no-pod-source-execution boundary. T14 remains blocked, not waived/completed.
+
+Current objective `STATE/OBJECTIVES/CP_DAP_OPERATIONAL_V1.md`: Northena + existing DAP lifecycle → canonical persisted requests/history/actions shared by OS/DAP; authoritative licence/terms/metering; then remaining original operational/output journeys. No fabricated grants, prices, approvals, results or defensibility. Sealed contract/service bodies unchanged; compose additively. D01–D12 scoped acceptance established; full-platform completion remains unmeasured. Initial inspection confirms acknowledgement-only request/stop/retry stubs and fixed-period entitlement stubs, plus caller-provided callable answer/class. Build and verify actual behavior, park missing external/admission prerequisites explicitly.
+
 ## CURRENT CONTINUATION — 2026-09-25 execution identity recovery
 
 **LATEST20:06Z — authenticated recovery blocked at provider console/enrollment path.** Portal login VALID; no more credential/provider/URL/new-key-approval requests. Both existing VMs Running. Open console produces XHR502 before terminal on BOTH hosts. Final akki-vm key-edit inspection waited for network/storage readiness: field disabled and expanded value viewer explicitly readOnly; no normal writable key control established. Do not confuse earlier async-loading/locator issues with this verified result or generalize to uninspected accounts. New private/public key NOT generated, installed or activated; no revocation, VM lifecycle/config changes, password policy changes, or estate reads. T14 still0/1. Need AISCA to restore console or provide approved in-place administrator enrollment; prepared-not-sent `AISCA_PROVIDER_RECOVERY_REQUEST.md`. Aggregate REAL browser receipt `aisca_authenticated_recovery_20260925.json`; no mocked checks/app code changes in this portal slice, older103-test suite NOT rerun. Full context `AISCA_AUTHENTICATED_RECOVERY.md`. Preserve same original OS/DAP plan/prototypes; no whole-platform completion increase.

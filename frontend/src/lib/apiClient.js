@@ -4,7 +4,8 @@
  * All backend routes are prefixed with /api.
  */
 
-const BASE = process.env.REACT_APP_BACKEND_URL || "";
+const BASE = process.env.REACT_APP_BACKEND_URL;
+if (!BASE) throw new Error("REACT_APP_BACKEND_URL is required.");
 
 async function request(path, options = {}) {
   const url = `${BASE}${path}`;

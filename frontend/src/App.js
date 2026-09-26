@@ -1298,7 +1298,7 @@ function App() {
           <Route path="/os/work/chat" element={<WorkChat />} />
           <Route path="/os/work/analyze" element={<WorkAnalyze />} />
           <Route path="/os/work/documents" element={<WorkDocuments />} />
-          <Route path="/os/work/tasks" element={<WorkTasks />} />
+          <Route path="/os/work/tasks" element={<AdminEstate />} />
           <Route path="/os/work/team" element={<WorkTeam />} />
           <Route path="/os/work/performance" element={<WorkPerformance />} />
           <Route path="/os/work/board" element={<WorkBoard />} />

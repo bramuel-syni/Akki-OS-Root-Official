@@ -1,0 +1,1 @@
+"""Operational composition; sealed kernels and owner markup remain unchanged."""

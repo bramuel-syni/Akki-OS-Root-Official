@@ -1,5 +1,9 @@
 # Component-led work ledger — current scope and next links
 
+## Current owner-directed work — compute parked; autonomous continuation
+
+Owner explicitly said skip compute recovery and continue, then authorized autonomous work while away. Current link is **Northena + DAP lifecycle + OS/DAP shared work records**, followed by **entitlements/terms/metering** and remaining operational/output journeys. D01–D12 acceptance in `STATE/OBJECTIVES/CP_DAP_OPERATIONAL_V1.md`. No additional AISCA/key operations or provider outreach. Compute/T14 stays blocked; original prototype architecture and full functionality plan unchanged. All earlier recovery entries below are historical, not resumed work.
+
 **Latest20:06Z — AISCA control-plane recovery:** owner portal credentials now verified WORKING; both existing VMs Running in akki-workspace. Console launch fails HTTP502 on BOTH before terminal. Inspected akki-vm key field remains disabled after readiness; expanded viewer readOnly. No key generated/enrolled/revoked, no VM lifecycle/config or product UI changes. Link still blocked: provider administrator/console → replacement-key enrollment → pinned SSH → Akki executor → Mtafiti → OS/DAP. T14 stays0/1, not advanced by successful portal login. REAL browser evidence and prepared-not-sent provider request in `AISCA_AUTHENTICATED_RECOVERY.md` / `AISCA_PROVIDER_RECOVERY_REQUEST.md`. Do not ask again for already working portal credentials or new-key permission. Original component backlog unchanged.
 
 **Latest compute recovery checkpoint18:57Z:** owner GPU workbook is secured and matched to existing host/user pairs. Fresh pinned `auth_none` queries: both server pins MATCH, both accounts advertise publickey only, neither authenticated. Passwords NOT attempted; workbook contains no original private key. Additive operational diagnostic + exclusive receipt runner verified by23 MOCKED tests; full census scope103 passed/2 intentionally skipped twice. Two REAL method-query receipts banked separately. This confirms the recovery dependency, not connection restoration. Mtafiti fresh output/T14 remains0/1. Need original key from authorized system/backup or approved console route. Details `EXECUTION_RECOVERY.md`; no UI changes, no new component-completion percentage.
@@ -66,3 +70,25 @@ These entries are work ownership labels, not an invented serial call graph. The 
 ## Immediate closure target
 
 Current: Mtafiti census-evidence link + Census Autonomy + admitted compute execution + existing OS/DAP consumers. Next real proof is an Akki-owned bounded source outcome, validated canonical registration and durable evidence visible consistently in both products. Solva's reasoning workflow is a different work item and is not part of that claim.
+
+## 2026-09-26 non-compute continuation — owner-approved
+
+The above compute closure is PARKED per owner direction, not waived. Current
+non-compute work is NORTHENA-DAP-RECORD, OS-DAP-WORK, LICENCE-READ and
+SKILL-QUERY-SAFETY. Their Canon/input/output/file/evidence/status/next-gate mapping
+is banked in `notes/dap_operational_v1/VERIFICATION_REPORT.md`.
+
+- NORTHENA-DAP-RECORD: **verified durable intent**, strict scoped submission,
+  immutable canonical payload+17-field row, replay/concurrency/persistence.
+- OS-DAP-WORK: **partial operational parity**; same held request/work/history
+  renders in original prototypes. No claim of approved/running/ready output.
+- LICENCE-READ: **partial**; read-only event projection with correct unresolved
+  production state. Positive licences/rates/metering are TEST-ONLY fixtures;
+  actual owner-admission/ceremony/metering producers still need wiring.
+- SKILL-QUERY-SAFETY: caller-supplied answer/class removed; **explicit refusal**,
+  not skill execution. Positive precondition gate is MOCKED in unit tests.
+- Frozen D01–D12 accounting: **4 verified, 7 partial, 1 open** for this slice.
+  Broader888-action prototype→Canon coverage remains in progress/unmeasured.
+- Tests:146pass/2skip twice plus real API/browser/build, chain+payload verification;
+  bank `phase0/drill_receipts/dap_operational_v1/`. No GPU/source queries, licence
+  seeds, external execution, account changes or billing usage. User review pending.

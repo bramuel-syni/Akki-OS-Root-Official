@@ -1,0 +1,56 @@
+{
+  "summary": "Completed backend+frontend operational verification for DAP/OS continuation scope. Existing 17 portal contracts passed twice against public preview URL. Added and executed expanded live + MOCKED/TEST-ONLY contract tests for replay/concurrency/integrity/fail-closed/entitlement projection (14/14 pass). Census operational regression suite executed with live refusal drill opt-in UNSET (88 pass, 17 expected skips). Frontend authenticated workflows for /dap/extract/processed, /dap/requests, /dap/governance/contract, and /os/work/tasks validated with submit/detail/reload/history parity and analyst-submit disabled checks.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Authenticated route transitions",
+        "issue": "Browser console recorded 401 resource errors for /api/portal/census/overview during session transitions (including sign-out/sign-in path).",
+        "affected_selectors": [
+          "N/A (network/console)"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_request_api.py",
+    "/app/backend/tests/portal_operational/test_submit_request_model.py",
+    "/app/backend/tests/portal_operational/test_request_api_expanded.py",
+    "/app/backend/tests/portal_operational/test_portal_unit_faults_and_entitlements.py",
+    "/app/test_reports/pytest/pytest_portal_operational_run1.xml",
+    "/app/test_reports/pytest/pytest_portal_operational_run2.xml",
+    "/app/test_reports/pytest/pytest_portal_operational_expanded.xml",
+    "/app/test_reports/pytest/pytest_census_operational_regression_unset.xml",
+    "/app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/portal_operational_run1.log",
+    "/app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/portal_operational_run2.log",
+    "/app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/portal_operational_expanded.log",
+    "/app/assessment_workspace/phase0/drill_receipts/dap_operational_v1/census_operational_regression_unset.log"
+  ],
+  "action_items": [
+    "Review and reduce authenticated-route console noise: 401 on /api/portal/census/overview during session transitions.",
+    "Keep expanded portal_operational tests as regression guardrail for replay/concurrency/hash/entitlement fail-closed behavior."
+  ],
+  "critical_code_review_comments": [
+    "frontend/src/lib/apiClient.js uses fallback BASE = process.env.REACT_APP_BACKEND_URL || \"\"; this does not fail fast when backend URL is missing.",
+    "Portal operational write/read paths correctly use canonical insert-only ledger adapter and immutable hash-bound payloads in tested scenarios."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_request_api_expanded.py",
+    "/app/backend/tests/portal_operational/test_portal_unit_faults_and_entitlements.py",
+    "/app/test_reports/iteration_9.json"
+  ],
+  "success_rate": {
+    "backend": "100% on executed non-skipped tests (17/17 existing twice, 14/14 expanded, 88/88 census non-skipped)",
+    "frontend": "95% (core flows passed; console/network noise observed)"
+  },
+  "seed_data_creation": "None. Used live API writes for request records only; entitlement/fault tests used isolated MOCKED/TEST-ONLY fixtures.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Primary deliverable scope passed. New regression files cover concurrent same-key replay, changed-body conflicts, no-fork sequencing, 17-field row hash/payload digest integrity, persistence parity across DAP/OS, role/action denials, fail-closed outage/corruption behavior, and entitlement positive/negative fixture projections. Census regression executed with AKKI_RUN_IDENTITY_REFUSAL_DRILL unset as requested.",
+  "rca of the issue": "Observed frontend console 401s originate from census overview fetch attempts during auth/session transitions rather than portal request/write contract failures. Repro: run browser flow across sign-out/sign-in and watch console for /api/portal/census/overview 401 events."
+}
