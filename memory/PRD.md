@@ -1,5 +1,37 @@
 # Akki — continuity record
 
+## LATEST ASSESSMENT — Live Activation v1.3, GPU excluded
+
+Owner iterated Live Activation v1.0→v1.3; the identified document-review gaps are
+closed. Original v1.3 is retained at `custody/owner_drops/live_activation_20260927/`
+under assessment_workspace (SHA25676e83dc251ac5b1e9c005f6afe04358868f919c8e1c779626bcf019f895edc4e).
+User asked to surface operational/implementation readiness and approved read-only
+assessment: "Except GPU, procceed". No app/config/account changes or live calls.
+
+Banked detailed evidence/ownership/closure register:
+`assessment_workspace/notes/live_activation_v1_3_readiness/READINESS_REGISTER.md`.
+Fourteen work packages R01–R14; mapped LA-1–20/S-36/R-47, existing code references,
+engineering order and conditional owner/custodian inputs. Three traced activation
+paths are IMPLEMENTED architecture / NOT LIVE-VERIFIED. Production is UNBOUND/held,
+not a fixture-backed success; positive tests are MOCKED/SYNTHETIC with FAKE storage.
+
+Concrete joins outstanding: portal submission remains ADMISSION_UNRESOLVED;
+approval kernel is not durable multi-group activation authority; no live binding
+registration found; portal builder omits proper skill/eval and full training
+descriptors; history/stop/retry/result not joined to spine (result always409).
+Skill query still SKILL_EXECUTOR_UNADMITTED. R-47 dimensional enforcement,
+reservation, estate dials, real eligibility/receiver/inspector/measurement,
+protected evaluation, certificates and real recovery proofs remain incomplete.
+Legacy training emit_moac invokes training seam again; MOAC/admission translation
+contains synthetic measurements and incomplete probes. These are read findings,
+not newly reproduced remote effects or fixes. Do not merely enable old mock paths.
+
+Prior227-test parallel+serial JUnit rechecked (not rerun), nine protected hashes
+unchanged. No source/model/worker/GPU calls, database state inspection or credentials.
+Next: shared activation/approval/limit/portal joins, then genuine producers and
+per-path evidence/certification. Recover existing owner records before any new ask;
+missing execution authority routes through platform gates. GPU remains excluded.
+
 ## LATEST RESULT — acknowledged model handoffs, verified 2026-09-27
 
 Owner approved the surfaced continuation plan and said "continue". Implemented
