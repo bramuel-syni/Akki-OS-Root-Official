@@ -1,0 +1,50 @@
+{
+  "summary": "Added supplemental activation certificate model-path coverage for Path B/C using owner-shape fields and ran full serial backend regression. New coverage exposed a deterministic Path-B schema contradiction while Path-C supplemental cases passed.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.activation.schema profile rule for /evidence/refusal_demonstration/kind on path B",
+        "issue": "Path B cannot reach positive validation: schema returns SCHEMA_CONST at /evidence/refusal_demonstration/kind before semantics/evidence verifier. This blocks both expected Path-B positive flow and expected hold-without-verifier flow.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "backend/tests/census_operational/test_live_api_contract.py",
+        "issue": "17 tests skipped in full run due missing REACT_APP_BACKEND_URL in pytest process env (skips are explicit and unchanged behavior)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/activation_controls/test_certificate_model_paths.py",
+    "/app/test_reports/pytest/pytest_activation_controls_iteration41.xml"
+  ],
+  "action_items": [
+    "Reconcile path-B refusal kind constraints between owner schema and validation profile so at least one real-shaped path-B certificate can be schema-valid.",
+    "After schema/profile alignment, re-run new Path-B tests and full serial regression (-n0) to confirm no regressions.",
+    "If live API contract tests are expected in this environment, export REACT_APP_BACKEND_URL for pytest invocation context."
+  ],
+  "critical_code_review_comments": [
+    "Path C supplemental coverage succeeded for admitted/refused routes, chronology mutation, prerequisite-shape handling, and approval-group duplicate/collapse semantics with structured issues (no KeyError observed).",
+    "Path B blocker is pre-evidence schema-gate, so verifier is never called; this is a contract-level inconsistency, not a flaky runtime failure.",
+    "All new proof/verdict inputs are SYNTHETIC/MOCKED and storage interactions remain FAKE by test design; no live certificate issuance/provider proof was exercised."
+  ],
+  "updated_files": [
+    "/app/backend/tests/activation_controls/test_certificate_model_paths.py",
+    "/app/test_reports/iteration_41.json"
+  ],
+  "success_rate": {
+    "backend": "99.56% excluding skips (434/436 passed), 95.81% including skips (434/453 passed)",
+    "frontend": "N/A (not requested)"
+  },
+  "seed_data_creation": "None. Used existing synthetic fixtures and existing credentials guidance only.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Run /app/backend/tests/activation_controls/test_certificate_model_paths.py after profile/schema fix; current deterministic failures are: test_path_b_real_shape_complete_proof_valid_true_with_synthetic_verdict and test_path_b_missing_bound_server_proof_is_hold_with_schema_and_semantics_true. Full regression artifact: /app/test_reports/pytest/pytest_activation_controls_iteration41.xml (453 tests, 2 failed, 17 skipped).",
+  "rca of the issue": "Repro: pytest -n0 /app/backend/tests/activation_controls/test_certificate_model_paths.py -q. Failure path shows schema issue SCHEMA_CONST on /evidence/refusal_demonstration/kind for path B, so validation short-circuits before semantics and before evidence verifier invocation. Impact: no path-B positive certificate shape can currently progress to proof-stage checks."
+}

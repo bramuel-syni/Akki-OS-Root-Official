@@ -39,19 +39,19 @@ async def get_request(request_id: str, request: Request):
 @router.post("/{request_id}/stop", response_model=WorkView)
 async def stop_request(request_id: str, request: Request):
     async with portal_scope(request, write=True) as scope:
-        return await stop(db, scope, request_id)
+        return await stop(db, scope, request_id, bindings=getattr(request.app.state, "execution_bindings", None))
 
 
 @router.post("/{request_id}/retry")
 async def retry_request(request_id: str, request: Request):
     async with portal_scope(request, write=True) as scope:
-        return await retry(db, scope, request_id)
+        return await retry(db, scope, request_id, bindings=getattr(request.app.state, "execution_bindings", None))
 
 
 @router.get("/{request_id}/result")
 async def get_result(request_id: str, request: Request):
     async with portal_scope(request) as scope:
-        return await result(db, scope, request_id)
+        return await result(db, scope, request_id, bindings=getattr(request.app.state, "execution_bindings", None))
 
 
 @router.post("/{request_id}/execution/advance", response_model=RunView)

@@ -441,6 +441,8 @@ app.include_router(canon_rules_registry_router.router)
 from routers import portal_requests as portal_requests_router  # noqa: E402
 app.include_router(portal_requests_router.router)
 app.include_router(portal_requests_router.work_router)
+from routers import activation_controls as activation_controls_router  # noqa: E402
+app.include_router(activation_controls_router.router)
 
 # R-100 · CP-PORTAL-WRITE-SURFACE · portal entitlement reads (JWT-gated).
 # Router already carries prefix="/api/portal/entitlement" · 4 endpoints

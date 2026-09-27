@@ -1,0 +1,54 @@
+{
+  "summary": "Completed backend verification for new portal execution lifecycle join coverage and requested serial regressions (-n0). New lifecycle suite passed (14/14). Combined non-activation suites passed (241/241). activation_controls regressed heavily (76/94 failed) due runtime activation semantic/schema mismatch causing 500s.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/portal/activation/certificates/validate",
+        "issue": "Returns HTTP 500 for scope-mismatch and own-scope validation paths. Backend traceback: KeyError 'unit_scopes' in services/activation/semantics.py line 9.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.activation.validation -> services.activation.semantics",
+        "issue": "semantic_issues assumes d['inputs']['unit_scopes'] exists; owner certificate shape used by tests omits/renames this field, causing broad fail-open-to-500 behavior before intended fail-closed issues.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_execution_lifecycle_join.py",
+    "/app/test_reports/pytest/pytest_execution_lifecycle_join_iteration40.xml",
+    "/app/test_reports/pytest/pytest_activation_controls_iteration40.xml",
+    "/app/test_reports/pytest/pytest_iteration40_non_activation.xml",
+    "/app/test_reports/pytest/pytest_iteration40_combined_regression.xml"
+  ],
+  "action_items": [
+    "Fix activation semantic field contract: align semantics.py with current owner schema inputs structure (remove hard KeyError path, return typed issues fail-closed).",
+    "Ensure /api/portal/activation/certificates/validate returns contract status (200/403/422) instead of 500 for malformed/scope-invalid payloads.",
+    "Re-run /app/backend/tests/activation_controls after semantic fix; then run full requested suites serially (-n0)."
+  ],
+  "critical_code_review_comments": [
+    "Portal lifecycle join coverage now exercises native coordinator path (advance/stop/retry/result), persisted request snapshot replay guard, concealment semantics, and interruption recovery without submit resend.",
+    "No branch job DB detected in tested path: execution metadata remained on canonical append-only execution_flow stream via LedgerJournal.",
+    "Pin-check baseline remained intact through execution/model-handoff suites (immutable hash-pin tests passed in this run).",
+    "No recurring 503 observed in this run; activation failures were deterministic 500s with KeyError root cause."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_execution_lifecycle_join.py",
+    "/app/test_reports/iteration_40.json"
+  ],
+  "success_rate": {
+    "backend": "77.3% overall (259/335); activation_controls 19.1% (18/94); non-activation requested suites 100% (241/241)",
+    "frontend": "N/A (not requested)"
+  },
+  "seed_data_creation": "SYNTHETIC in-test FakeDB entitlement and execution fixtures only; no live DB/account/env resets.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "New file /app/backend/tests/portal_operational/test_execution_lifecycle_join.py is green (14 tests) and should be retained for regression. Activation suite currently blocked by semantics KeyError on inputs.unit_scopes; check services/activation/semantics.py + owner schema alignment before any further portal validation claims.",
+  "rca of the issue": "Repro: pytest -n0 /app/backend/tests/activation_controls -q. 76 failures, including live API 500s. Backend.err shows router /api/portal/activation/certificates/validate -> services.activation.validation.validate_certificate -> services.activation.semantics.semantic_issues line 9 raises KeyError: 'unit_scopes'. This bypasses intended fail-closed issue reporting and crashes validation flow."
+}

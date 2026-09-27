@@ -7,6 +7,7 @@ from services.northena import portal_work
 from services.northena.execution_models import Request, RunView
 from services.northena.execution_composition import build_coordinator
 from services.ledger_writer.mongo_control import digest
+from services.portal_operational import execution_records
 
 
 class ExecutionBudget(BaseModel):
@@ -19,8 +20,17 @@ async def frozen_request(db, scope, request_id, budget):
     if not events:
         raise HTTPException(404, "Request not found.")
     frozen = events[0]["payload"]
-    mapping = {"browse_estate": ("source", "mtafiti"), "connect_workspace": ("source", "synisense"),
-               "fine_tune_model": ("training", "targeta"), "develop_skills": ("training", "targeta")}
+    recorded = await execution_records.events_for(db, scope, request_id)
+    saved = execution_records.snapshot(recorded, scope)
+    if saved is not None:
+        if saved.deadline_epoch != budget.deadline_epoch:
+            raise HTTPException(409, "The recorded execution deadline cannot be changed on replay.")
+        if saved.objective_sha256 != digest(frozen["objective_text"]) or saved.scope_refs != tuple(frozen["units"]):
+            raise HTTPException(409, "Execution descriptor does not match the frozen request.")
+        return saved
+    # Model/skill descriptors must come from their native builders and admitted
+    # recipe/provisioning records; never fabricate training inputs from source IDs.
+    mapping = {"browse_estate": ("source", "mtafiti"), "connect_workspace": ("source", "synisense")}
     if frozen["operation"] not in mapping:
         raise HTTPException(409, "This request needs its operation-specific artifact/input binding.")
     kind, engine = mapping[frozen["operation"]]
@@ -32,4 +42,9 @@ async def frozen_request(db, scope, request_id, budget):
 
 async def advance(db, scope, request_id, budget, bindings=None):
     request = await frozen_request(db, scope, request_id, budget)
-    return await build_coordinator(db, bindings).advance(request)
+    work = await portal_work.detail(db, scope, request_id)
+    if work.lifecycle_state in {"Blocked", "Refused", "Expired", "Stopped"}:
+        raise HTTPException(409, "This request is closed; any new commission requires a fresh request.")
+    view = await build_coordinator(db, bindings).advance(request)
+    await execution_records.remember_view(db, request, view)
+    return view

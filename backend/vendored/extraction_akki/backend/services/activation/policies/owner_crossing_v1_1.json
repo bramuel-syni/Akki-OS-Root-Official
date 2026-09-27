@@ -1,0 +1,102 @@
+{
+  "table_id": "crossing_decision_table",
+  "version": "1.1",
+  "source": "live_activation_v1.3 \u00a78.7; Doc 1 A5.1; DAP-7; CC-2; ENT-18",
+  "invariant": "There is exactly one governed crossing. Every row below is read by the chokepoint's resolution step. A row is never a second route.",
+  "default_when_no_row_matches": "REFUSE",
+  "rows": [
+    {
+      "material_class": "uncontrolled",
+      "destination": "local_model",
+      "masking": "none",
+      "per_call_exception": null,
+      "authority": "standing_terms",
+      "ceremony": null
+    },
+    {
+      "material_class": "uncontrolled",
+      "destination": "frontier_model",
+      "masking": "custody_sequence_identifiers_masked",
+      "per_call_exception": null,
+      "authority": "standing_terms",
+      "ceremony": null,
+      "requires_dial": {
+        "external_crossing.uncontrolled": "masked_permitted"
+      }
+    },
+    {
+      "material_class": "controlled",
+      "destination": "local_model",
+      "masking": "none_class_attributes_govern",
+      "per_call_exception": null,
+      "authority": "approval_where_class_requires",
+      "ceremony": null
+    },
+    {
+      "material_class": "controlled",
+      "destination": "frontier_model",
+      "masking": "REFUSED_BY_DEFAULT",
+      "per_call_exception": {
+        "form": "unmasked_for_this_call_only",
+        "route": "same_crossing",
+        "receipted_as": "unmasked_exception",
+        "condition": "entity_knowledge_objective (CC-1)",
+        "requires_both": [
+          "class-scoped dial change by ceremony (recorded)",
+          "per-call owner approval against the class (CC-2, receipted)"
+        ]
+      },
+      "authority": "owner_approval_recorded_against_custody_class (CC-2)",
+      "ceremony": "loosening the dial for a class is an ordinary-tier ceremony",
+      "requires_dial": {
+        "external_crossing.controlled_exception": "available_by_ceremony"
+      }
+    },
+    {
+      "material_class": "any",
+      "destination": "frontier_model",
+      "masking": null,
+      "per_call_exception": null,
+      "authority": "NONE_CAN_GRANT",
+      "ceremony": "dial change by ceremony only",
+      "requires_dial": {
+        "external_crossing": "refused"
+      },
+      "result": "REFUSE"
+    }
+  ],
+  "dial_values": {
+    "external_crossing": {
+      "uncontrolled": [
+        "refused",
+        "masked_permitted"
+      ],
+      "controlled_exception": [
+        "unavailable",
+        "available_by_ceremony"
+      ]
+    }
+  },
+  "notes": [
+    "A unit's material_class is its recorded custody classification; a rights record never downgrades it (v1.3 \u00a78.2).",
+    "Unassessed, stale or incomplete classification resolves as 'controlled' (LA-19).",
+    "The exception row applies per call, is receipted as such, and never persists across calls."
+  ],
+  "pilot_setting": {
+    "external_crossing": {
+      "uncontrolled": "masked_permitted",
+      "controlled_exception": "unavailable"
+    },
+    "note": "Owner ruling 28 Sep 2026 for the pilot estates: masked crossing for uncontrolled classes only. The controlled/frontier exception row is unavailable until a distinct, class-scoped dial change by ceremony AND the per-call authority both exist; a per-call approval never substitutes for the dial change."
+  },
+  "unassessed_material": {
+    "routing": "resolve as controlled for crossing decisions only",
+    "retains": "classification_state=unassessed on the unit",
+    "never_grants": [
+      "eligibility",
+      "disclosure permission",
+      "downgrade on later licence"
+    ],
+    "source": "LA-19"
+  }
+}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="0" tests="17" time="4.567" timestamp="2026-09-27T12:06:23.427531+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_validation_can_be_positive_with_typed_server_owned_evidence_verdict" time="0.003"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:79: in test_validation_can_be_positive_with_typed_server_owned_evidence_verdict
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_schema_failure_short_circuits_before_evidence_verifier_is_called" time="0.002" /><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_semantic_failure_short_circuits_before_evidence_verifier_is_called" time="0.002"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:126: in test_semantic_failure_short_circuits_before_evidence_verifier_is_called
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_derived_state_binding_rejects_submitted_state_label_when_computed_differs" time="0.002"><failure message="AssertionError: assert False is True&#10; +  where False = ValidationResult(valid=False, schema_valid=False, semantics_valid=False, evidence_verified=False, execution_authorized=False, derived_state=None, profile_id='akki.activation.validation/1', certificate_sha256='721766a25d32b184b11018723b0b019575473f5165098c8f421aa2a94a99764c', issues=(Issue(code='SCHEMA_MINITEMS', path='/mocked_components'),)).schema_valid">backend/tests/activation_controls/test_activation_validation_positive_unit.py:159: in test_derived_state_binding_rejects_submitted_state_label_when_computed_differs
+    assert result.schema_valid is True
+E   AssertionError: assert False is True
+E    +  where False = ValidationResult(valid=False, schema_valid=False, semantics_valid=False, evidence_verified=False, execution_authorized=False, derived_state=None, profile_id='akki.activation.validation/1', certificate_sha256='721766a25d32b184b11018723b0b019575473f5165098c8f421aa2a94a99764c', issues=(Issue(code='SCHEMA_MINITEMS', path='/mocked_components'),)).schema_valid</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_evidence_verifier_timeout_returns_unavailable_issue" time="0.002"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:169: in test_evidence_verifier_timeout_returns_unavailable_issue
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_evidence_fail_closed_variants[mocked_mode]" time="0.002"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:199: in test_evidence_fail_closed_variants
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_evidence_fail_closed_variants[one_false_check]" time="0.002"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:199: in test_evidence_fail_closed_variants
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_evidence_fail_closed_variants[missing_refs]" time="0.002"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:199: in test_evidence_fail_closed_variants
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_evidence_fail_closed_variants[binding_mismatch]" time="0.002"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:199: in test_evidence_fail_closed_variants
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_validation_positive_unit" name="test_evidence_expired_after_await_is_rejected" time="0.002"><failure message="KeyError: 'proposing_principal_id'">backend/tests/activation_controls/test_activation_validation_positive_unit.py:221: in test_evidence_expired_after_await_is_rejected
+    result = asyncio.run(
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/vendored/extraction_akki/backend/services/activation/validation.py:20: in validate_certificate
+    if (d["identity"]["estate_id"], d["identity"]["proposing_principal_id"]) != (tenant_id, principal_id):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'proposing_principal_id'</failure></testcase><testcase classname="tests.activation_controls.test_activation_controls_api_live" name="test_activation_profile_auth_and_shape" time="0.668" /><testcase classname="tests.activation_controls.test_activation_controls_api_live" name="test_activation_validate_authz" time="0.582" /><testcase classname="tests.activation_controls.test_activation_controls_api_live" name="test_activation_validate_rejects_malformed_and_oversized" time="0.729" /><testcase classname="tests.activation_controls.test_activation_controls_api_live" name="test_activation_validate_rejects_extra_top_level_fields" time="0.131" /><testcase classname="tests.activation_controls.test_activation_controls_api_live" name="test_activation_validate_scope_mismatch_returns_403" time="0.354"><failure message="assert 500 == 403&#10; +  where 500 = &lt;Response [500]&gt;.status_code">backend/tests/activation_controls/test_activation_controls_api_live.py:168: in test_activation_validate_scope_mismatch_returns_403
+    assert response.status_code == 403
+E   assert 500 == 403
+E    +  where 500 = &lt;Response [500]&gt;.status_code</failure></testcase><testcase classname="tests.activation_controls.test_activation_controls_api_live" name="test_activation_validate_own_scope_returns_held_not_issued_with_audit_ref" time="0.348"><failure message="assert 500 == 200&#10; +  where 500 = &lt;Response [500]&gt;.status_code">backend/tests/activation_controls/test_activation_controls_api_live.py:183: in test_activation_validate_own_scope_returns_held_not_issued_with_audit_ref
+    assert response.status_code == 200
+E   assert 500 == 200
+E    +  where 500 = &lt;Response [500]&gt;.status_code</failure></testcase><testcase classname="tests.activation_controls.test_activation_controls_api_live" name="test_activation_validate_response_redacts_submitted_signature_text" time="0.347"><failure message="assert 500 == 200&#10; +  where 500 = &lt;Response [500]&gt;.status_code">backend/tests/activation_controls/test_activation_controls_api_live.py:209: in test_activation_validate_response_redacts_submitted_signature_text
+    assert response.status_code == 200
+E   assert 500 == 200
+E    +  where 500 = &lt;Response [500]&gt;.status_code</failure></testcase></testsuite></testsuites>

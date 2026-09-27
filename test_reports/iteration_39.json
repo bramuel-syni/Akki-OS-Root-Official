@@ -1,0 +1,66 @@
+{
+  "summary": "Backend-only testing completed for activation_controls plus requested combined regression. Baseline activation RED suite is GREEN (75/75). Added new owner-schema-aligned positive/e2e activation tests (unit + live API); these expose a critical schema/runtime field mismatch causing KeyError and 500s on /api/portal/activation/certificates/validate. Combined regression run: 305 passed, 14 failed (12 deterministic activation failures + 2 transient 503 failures that passed on retry).",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.activation.validation.validate_certificate",
+        "issue": "Runtime still reads identity.proposing_principal_id, but owner v1.1 schema requires identity.tenant_id and forbids proposing_principal_id. This throws KeyError during scope check after schema/semantic gates for owner-aligned certificates.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "POST /api/portal/activation/certificates/validate",
+        "issue": "Owner-aligned shape-valid certificates return HTTP 500 (not 200/403 fail-closed response) due to uncaught KeyError in activation validation scope binding.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "POST /api/portal/activation/certificates/validate",
+        "issue": "One transient 503 observed during combined sweep for extra-top-level-fields check; retry passed (returned 422)."
+      },
+      {
+        "endpoint": "POST /api/portal/requests/{id}/execution/advance",
+        "issue": "One transient 503 observed in combined sweep for unsupported operation path; retry passed (returned 409)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/activation_controls/test_activation_validation_positive_unit.py",
+    "/app/backend/tests/activation_controls/test_activation_controls_api_live.py",
+    "/app/test_reports/pytest/pytest_activation_controls_iteration39.xml",
+    "/app/test_reports/pytest/pytest_activation_controls_iteration39_new_additions.xml",
+    "/app/test_reports/pytest/pytest_iteration39_combined_regression.xml",
+    "/app/test_reports/pytest/pytest_iteration39_retry_flaky.xml",
+    "/app/test_reports/pytest/pytest_iteration39_hash_verification.xml"
+  ],
+  "action_items": [
+    "Align validation scope binding with owner schema v1.1 identity model (remove hard dependency on proposing_principal_id, use admitted scope fields consistently).",
+    "Convert activation validation failures on owner-aligned docs from 500 to fail-closed contract responses (200 held with issues or 403 scope mismatch as designed).",
+    "Re-run activation additions and full combined regression after scope-binding fix.",
+    "Investigate transient 503 paths in activation validate / execution advance for stability under suite load (likely authoritative-record availability path)."
+  ],
+  "critical_code_review_comments": [
+    "Confirmed owner artifact hashes unchanged: owner_certificate_v1_1.json=ad848bd95e76dcf4ef71cd0e0688914632de33e68ceb4168e7ede4209ad256d2, owner_crossing_v1_1.json=472b6369ef7059f9b451504e329605f02a8918081dbf3d5438239853ba6c8830.",
+    "Confirmed 9 protected immutable hash pins unchanged via test_prechange_immutable_hash_pins_are_stable and sealed module/prototype hash test.",
+    "Positive cryptographic/evidence and worker/inspector fixtures remain SYNTHETIC/MOCKED; production verifier/worker ports remain unbound as expected in this slice."
+  ],
+  "updated_files": [
+    "/app/backend/tests/activation_controls/test_activation_validation_positive_unit.py",
+    "/app/backend/tests/activation_controls/test_activation_controls_api_live.py",
+    "/app/test_reports/iteration_39.json"
+  ],
+  "success_rate": {
+    "backend": "95.6% (305/319 passed in combined regression); activation additions 5/17 passed",
+    "frontend": "N/A (not requested)"
+  },
+  "seed_data_creation": "None. Used existing demo identities from /app/memory/test_credentials.md only; no account/user seed/reset.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "New activation tests now exist and are owner-schema-aligned. Deterministic blocker: KeyError in services.activation.validation on proposing_principal_id. Once fixed, rerun: pytest /app/backend/tests/activation_controls -v --tb=short --junitxml=/app/test_reports/pytest/pytest_activation_controls_iteration39.xml and full combined regression xml path above.",
+  "rca of the issue": "Reproduction: run pytest /app/backend/tests/activation_controls/test_activation_validation_positive_unit.py and /app/backend/tests/activation_controls/test_activation_controls_api_live.py. Server logs show traceback at services/activation/validation.py line 20: d['identity']['proposing_principal_id'] KeyError. Root cause: schema/profile accepts owner v1.1 identity with tenant_id, while runtime scope-binding logic still expects proposing_principal_id (legacy field). This mismatch converts valid owner-aligned validations into internal errors (500) before evidence-stage contract outcomes can be returned."
+}

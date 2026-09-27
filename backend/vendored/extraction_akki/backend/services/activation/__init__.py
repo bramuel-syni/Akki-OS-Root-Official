@@ -1,0 +1,1 @@
+"""Live Activation controls. Validation is neither admission nor certificate issuance."""

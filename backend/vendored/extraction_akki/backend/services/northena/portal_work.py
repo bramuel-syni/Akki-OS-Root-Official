@@ -78,11 +78,17 @@ async def detail(db, scope, request_id):
     events = await events_for(db, scope, request_id)
     if not events:
         raise HTTPException(404, "Request not found.")
-    return project(events)
+    from services.portal_operational.execution_records import events_for as execution_events, project as project_execution
+    return project_execution(project(events), await execution_events(db, scope, request_id))
 
 
 async def listing(db, scope):
+    from services.portal_operational.execution_records import events_for as execution_events, project as project_execution
     grouped = {}
     for event in await events_for(db, scope):
         grouped.setdefault(event["row"]["run_id"], []).append(event)
-    return [project(events) for events in reversed(list(grouped.values()))]
+    executions = {}
+    for event in await execution_events(db, scope):
+        executions.setdefault(event["row"]["run_id"], []).append(event)
+    return [project_execution(project(events), executions.get(events[0]["row"]["run_id"], []))
+            for events in reversed(list(grouped.values()))]
