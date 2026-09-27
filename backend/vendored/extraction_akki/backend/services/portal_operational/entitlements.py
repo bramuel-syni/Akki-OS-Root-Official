@@ -83,6 +83,8 @@ async def read_view(db, scope):
             p = event["payload"]
             if event["row"]["resource_type"] != "metered_event" or p.get("organisation_principal_id") != org:
                 continue
+            if p.get("evidence_mode") not in (None, "measured"):
+                raise ValueError("Unverified execution usage cannot become an allowance debit.")
             usage = MeteredEvent.model_validate(p["metered_event"])
             if not licence.pooled_credits_flag and usage.party_id != scope["principal_id"]:
                 continue

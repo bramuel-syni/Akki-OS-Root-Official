@@ -1,5 +1,53 @@
 # Akki — continuity record
 
+## LATEST RESULT — native component binding, verified2026-09-27
+
+Owner requested “continue” under confirmed architecture-first/autonomous plan.
+Implemented native adapters, not successful stub returns: propagated principal/
+parent org + typed LicencePortalView + sealed entitlement resolver; canonical
+Mtafiti registration AFTER same-Ledger envelope; usage→native MeteredEvent→existing
+entitlement consumer; immutable server-only execution binding bundle/app.state seam.
+Fixed obsolete dict `licence_admitted` assumption without fabricating admission.
+
+Newfiles: `northena/execution_{component_models,authority,usage,bindings}.py`,
+`mtafiti/execution_{record_models,registry}.py`. Unsealed coordinator/completion/
+journal/composition/portal execution/entitlement interfaces updated. Commercial
+snapshot pinned before dispatch; rates/terms rechecked before effect; usage retains
+original snapshot; MOCKED financial usage refused. Exact kind/engine serverbindings;
+no HTTP adapter registration. Registry immutable versionref, commit-before-cache,
+retry/rehydration and read-time inspector checks; canonical writer remains solewriter.
+Source non-model handoff is consumption only, NOT invented model price/free service.
+
+Evidence: `notes/consolidated_fix_plan_20260926/COMPONENT_BINDING_RESULT_20260927.md`
+and `component_binding_verification/FINAL_NATIVE_COMPONENT_EVIDENCE_20260927.json`.
+RED-first iterations28/29; final143pass/0fail/0skip across execution_components,
+execution_spine, portal_operational (`test_reports/iteration_31.json`, JUnit).
+Three native integration tests prove complete source-kind composition, registry
+commit/cache recovery and revalidation refusals, usage replay and historical pricing
+to REAL native entitlement reader. Upstream inputs **MOCKED/SYNTHETIC**, storage
+FAKE; measured-shaped fixture schemas NOT live evidence. Actual APItests only HELD
+requests, no production grants/charges/admissions. No GPU/SSH/source/model/provider
+calls; no UI/dependency/env/credential change.16 protected/reference hashes verified
+unchanged including literalprototypes. Iteration28 manifest mixed mutable baselines:
+4 intended unsealed integration changes explicitly recorded, not claimed sealed.
+
+Iteration30's140pass covered fixture migration/regressions, not new nativepositive
+proof; iteration31 added actual composed tests. Old dict/blank-request fixtures were
+corrected, no auth relaxation. ENT-22 remains tokens×per-tokenrate: synthetic1000×
+0.002=2, later current0.02 does not reprice. No pricingfield or sealedrule change;
+reseller R24 stillheld. Freshnessstamp is asset-version metadata, not changing
+inspection invocation time. No code/document contains new real credentials.
+
+Default production native adapters are wired but operation-decision, worker and
+independent inspector providers remain unbound; successful live execution/callable
+query still unavailable/held. Do not call native-positive synthetic tests real grants
+or source results. NextP0: actual admitted producer bindings, broaden skill/training/
+evaluation native compositions, custody/queuedhandoff/DQ/commercial architecture.
+No need newowner decision for independent work. P1/P2 and ownerholds remain perPLAN;
+GPU parked. No T14/fullprincipal/fullMtafiti/fullDAP/wholeplatform closure. Capacity/
+seat/period concurrency, Mongo failover, witnesses and hardwareperformance remain
+separate validations. Laterenhancement: receipt-linked prerequisites in originaldrawer.
+
 ## LATEST RESULT — architecture-first execution spine, verified2026-09-27
 
 Owner-confirmed architecture-first delivery implemented as one additive Northena

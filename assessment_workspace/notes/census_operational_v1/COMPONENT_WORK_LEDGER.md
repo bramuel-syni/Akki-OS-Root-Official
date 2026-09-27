@@ -1,5 +1,28 @@
 # Component-led work ledger — current scope and next links
 
+## Latest native component-binding slice — verified2026-09-27
+
+Native adapters now compose principal/parent+typedlicence/catalogue resolution,
+canonical Mtafiti registration after durable same-Ledger envelope, and actual usage
+handoff to existing entitlement reads. Server-only frozen binding bundle can connect
+admitted providers without a public registration/approval endpoint. Defaultbindings
+remain empty; no fake approvals/source execution. Commercial snapshot beforedispatch,
+historical per-tokenrate retained; no MOCKED usage into balances; R24held.
+
+Nativepositive sourceflow, registrycommit/projectionrecovery+revalidation, and
+usage→native historicalbalance tests added. Final143/143 scopedtests; upstream
+principal/licence/decision/worker/inspector **SYNTHETIC/MOCKED**, storageFAKE, even
+where schema fixtures are measured-shaped. ActualAPItests held only.16 hashes
+verifiedunchanged (protected/referencekernels and originalprototypes); four unsealed
+integration baselines changed as authorized. No credentials/UI/env/source/SSH/GPU calls.
+
+Bank: `notes/consolidated_fix_plan_20260926/COMPONENT_BINDING_RESULT_20260927.md`
+and `component_binding_verification/FINAL_NATIVE_COMPONENT_EVIDENCE_20260927.json`.
+No globalMtafiti, fullprincipal/DAP/T14 or measuredperformanceclosure. Next: bind
+actualadmitted operation/worker/inspector producers, expand native skill/training/
+evaluation and custody/handoff/DQ/commercial compositions. Elementavailability does
+not block independentarchitecture work; owner decisions/GPU remainheld.
+
 ## Latest architecture-first milestone — verified2026-09-27
 
 Owner confirmed research-backed architectural assembly with explicit element test

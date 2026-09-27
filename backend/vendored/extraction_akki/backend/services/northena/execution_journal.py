@@ -28,7 +28,8 @@ class LedgerJournal:
             if payload["request_sha256"] != request.digest():
                 raise CommandConflict("Execution request identity is frozen.")
             rows.append({"slot": payload["slot"], "data": deepcopy(payload["data"]),
-                         "seq": event["row"]["seq"], "hash": event["row"]["hash"]})
+                         "seq": event["row"]["seq"], "hash": event["row"]["hash"],
+                         "at_epoch": event["row"]["at"]["epoch_s"]})
         return rows
 
     async def append(self, request, slot, data):
@@ -46,4 +47,5 @@ class LedgerJournal:
                      "slot": slot, "data": deepcopy(data)},
         )
         return {"slot": slot, "data": deepcopy(event["payload"]["data"]),
-                "seq": event["row"]["seq"], "hash": event["row"]["hash"]}
+                "seq": event["row"]["seq"], "hash": event["row"]["hash"],
+                "at_epoch": event["row"]["at"]["epoch_s"]}

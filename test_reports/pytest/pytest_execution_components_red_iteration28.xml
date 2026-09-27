@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="11" skipped="0" tests="11" time="0.697" timestamp="2026-09-27T01:57:35.218684+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.execution_components.test_execution_registry_red" name="test_execution_record_models_contract_shapes_are_present_and_strict" time="0.001"><failure message="Failed: Missing expected RED target module services.mtafiti.execution_record_models: No module named 'services.mtafiti.execution_record_models'">backend/tests/execution_components/test_execution_registry_red.py:15: in _models_module
+    return importlib.import_module("services.mtafiti.execution_record_models")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.mtafiti.execution_record_models'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_registry_red.py:113: in test_execution_record_models_contract_shapes_are_present_and_strict
+    mod = _models_module()
+          ^^^^^^^^^^^^^^^^
+backend/tests/execution_components/test_execution_registry_red.py:17: in _models_module
+    pytest.fail(f"Missing expected RED target module services.mtafiti.execution_record_models: {exc}")
+E   Failed: Missing expected RED target module services.mtafiti.execution_record_models: No module named 'services.mtafiti.execution_record_models'</failure></testcase><testcase classname="tests.execution_components.test_execution_component_authority_red" name="test_component_authority_prepare_binds_typed_principal_licence_and_terms" time="0.001"><failure message="Failed: Missing expected RED target module services.northena.execution_authority: No module named 'services.northena.execution_authority'">backend/tests/execution_components/test_execution_component_authority_red.py:20: in _module
+    return importlib.import_module("services.northena.execution_authority")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.northena.execution_authority'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_component_authority_red.py:112: in test_component_authority_prepare_binds_typed_principal_licence_and_terms
+    mod = _module()
+          ^^^^^^^^^
+backend/tests/execution_components/test_execution_component_authority_red.py:22: in _module
+    pytest.fail(f"Missing expected RED target module services.northena.execution_authority: {exc}")
+E   Failed: Missing expected RED target module services.northena.execution_authority: No module named 'services.northena.execution_authority'</failure></testcase><testcase classname="tests.execution_components.test_execution_component_authority_red" name="test_component_authority_refuses_unresolved_or_mismatched_states" time="0.001"><failure message="Failed: Missing expected RED target module services.northena.execution_authority: No module named 'services.northena.execution_authority'">backend/tests/execution_components/test_execution_component_authority_red.py:20: in _module
+    return importlib.import_module("services.northena.execution_authority")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.northena.execution_authority'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_component_authority_red.py:142: in test_component_authority_refuses_unresolved_or_mismatched_states
+    mod = _module()
+          ^^^^^^^^^
+backend/tests/execution_components/test_execution_component_authority_red.py:22: in _module
+    pytest.fail(f"Missing expected RED target module services.northena.execution_authority: {exc}")
+E   Failed: Missing expected RED target module services.northena.execution_authority: No module named 'services.northena.execution_authority'</failure></testcase><testcase classname="tests.execution_components.test_execution_registry_red" name="test_canonical_registry_rejects_mocked_inspection_for_real_registration" time="0.000"><failure message="Failed: Missing expected RED target module services.mtafiti.execution_registry: No module named 'services.mtafiti.execution_registry'">backend/tests/execution_components/test_execution_registry_red.py:22: in _registry_module
+    return importlib.import_module("services.mtafiti.execution_registry")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.mtafiti.execution_registry'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_registry_red.py:120: in test_canonical_registry_rejects_mocked_inspection_for_real_registration
+    mod = _registry_module()
+          ^^^^^^^^^^^^^^^^^^
+backend/tests/execution_components/test_execution_registry_red.py:24: in _registry_module
+    pytest.fail(f"Missing expected RED target module services.mtafiti.execution_registry: {exc}")
+E   Failed: Missing expected RED target module services.mtafiti.execution_registry: No module named 'services.mtafiti.execution_registry'</failure></testcase><testcase classname="tests.execution_components.test_execution_registry_red" name="test_registry_commit_failure_blocks_asset_writer_side_effect" time="0.001"><failure message="Failed: Missing expected RED target module services.mtafiti.execution_registry: No module named 'services.mtafiti.execution_registry'">backend/tests/execution_components/test_execution_registry_red.py:22: in _registry_module
+    return importlib.import_module("services.mtafiti.execution_registry")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.mtafiti.execution_registry'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_registry_red.py:129: in test_registry_commit_failure_blocks_asset_writer_side_effect
+    mod = _registry_module()
+          ^^^^^^^^^^^^^^^^^^
+backend/tests/execution_components/test_execution_registry_red.py:24: in _registry_module
+    pytest.fail(f"Missing expected RED target module services.mtafiti.execution_registry: {exc}")
+E   Failed: Missing expected RED target module services.mtafiti.execution_registry: No module named 'services.mtafiti.execution_registry'</failure></testcase><testcase classname="tests.execution_components.test_execution_component_authority_red" name="test_component_authority_model_kind_requires_exact_catalog_decision" time="0.001"><failure message="Failed: Missing expected RED target module services.northena.execution_authority: No module named 'services.northena.execution_authority'">backend/tests/execution_components/test_execution_component_authority_red.py:20: in _module
+    return importlib.import_module("services.northena.execution_authority")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.northena.execution_authority'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_component_authority_red.py:164: in test_component_authority_model_kind_requires_exact_catalog_decision
+    mod = _module()
+          ^^^^^^^^^
+backend/tests/execution_components/test_execution_component_authority_red.py:22: in _module
+    pytest.fail(f"Missing expected RED target module services.northena.execution_authority: {exc}")
+E   Failed: Missing expected RED target module services.northena.execution_authority: No module named 'services.northena.execution_authority'</failure></testcase><testcase classname="tests.execution_components.test_execution_component_models_red" name="test_component_models_expose_expected_typed_shapes_and_freeze_contract" time="0.000"><failure message="Failed: Missing expected RED target module services.northena.execution_component_models: No module named 'services.northena.execution_component_models'">backend/tests/execution_components/test_execution_component_models_red.py:16: in _module
+    return importlib.import_module("services.northena.execution_component_models")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.northena.execution_component_models'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_component_models_red.py:65: in test_component_models_expose_expected_typed_shapes_and_freeze_contract
+    mod = _module()
+          ^^^^^^^^^
+backend/tests/execution_components/test_execution_component_models_red.py:18: in _module
+    pytest.fail(f"Missing expected RED target module services.northena.execution_component_models: {exc}")
+E   Failed: Missing expected RED target module services.northena.execution_component_models: No module named 'services.northena.execution_component_models'</failure></testcase><testcase classname="tests.execution_components.test_execution_usage_and_bindings_red" name="test_coordinator_signature_exposes_usage_publisher_extension_point" time="0.001"><failure message="assert 'usage_publisher' in mappingproxy(OrderedDict([('self', &lt;Parameter &quot;self&quot;&gt;), ('journal', &lt;Parameter &quot;journal&quot;&gt;), ('authority', &lt;Parameter &quot;authority&quot;&gt;), ('executors', &lt;Parameter &quot;executors&quot;&gt;), ('artifacts', &lt;Parameter &quot;artifacts&quot;&gt;), ('clock', &lt;Parameter &quot;clock=&lt;built-in function time&gt;&quot;&gt;)]))">backend/tests/execution_components/test_execution_usage_and_bindings_red.py:29: in test_coordinator_signature_exposes_usage_publisher_extension_point
+    assert "usage_publisher" in parameters
+E   assert 'usage_publisher' in mappingproxy(OrderedDict([('self', &lt;Parameter "self"&gt;), ('journal', &lt;Parameter "journal"&gt;), ('authority', &lt;Parameter "authority"&gt;), ('executors', &lt;Parameter "executors"&gt;), ('artifacts', &lt;Parameter "artifacts"&gt;), ('clock', &lt;Parameter "clock=&lt;built-in function time&gt;"&gt;)]))</failure></testcase><testcase classname="tests.execution_components.test_execution_usage_and_bindings_red" name="test_usage_publisher_contract_shape_exists" time="0.000"><failure message="Failed: Missing expected RED target module services.northena.execution_usage: No module named 'services.northena.execution_usage'">backend/tests/execution_components/test_execution_usage_and_bindings_red.py:13: in _usage_module
+    return importlib.import_module("services.northena.execution_usage")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.northena.execution_usage'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_usage_and_bindings_red.py:34: in test_usage_publisher_contract_shape_exists
+    mod = _usage_module()
+          ^^^^^^^^^^^^^^^
+backend/tests/execution_components/test_execution_usage_and_bindings_red.py:15: in _usage_module
+    pytest.fail(f"Missing expected RED target module services.northena.execution_usage: {exc}")
+E   Failed: Missing expected RED target module services.northena.execution_usage: No module named 'services.northena.execution_usage'</failure></testcase><testcase classname="tests.execution_components.test_execution_component_models_red" name="test_snapshot_allows_catalog_row_none_without_fabricating_model_pricing" time="0.000"><failure message="Failed: Missing expected RED target module services.northena.execution_component_models: No module named 'services.northena.execution_component_models'">backend/tests/execution_components/test_execution_component_models_red.py:16: in _module
+    return importlib.import_module("services.northena.execution_component_models")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.northena.execution_component_models'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_component_models_red.py:85: in test_snapshot_allows_catalog_row_none_without_fabricating_model_pricing
+    mod = _module()
+          ^^^^^^^^^
+backend/tests/execution_components/test_execution_component_models_red.py:18: in _module
+    pytest.fail(f"Missing expected RED target module services.northena.execution_component_models: {exc}")
+E   Failed: Missing expected RED target module services.northena.execution_component_models: No module named 'services.northena.execution_component_models'</failure></testcase><testcase classname="tests.execution_components.test_execution_usage_and_bindings_red" name="test_execution_bindings_bundle_and_build_coordinator_surface" time="0.000"><failure message="Failed: Missing expected RED target module services.northena.execution_bindings: No module named 'services.northena.execution_bindings'">backend/tests/execution_components/test_execution_usage_and_bindings_red.py:20: in _bindings_module
+    return importlib.import_module("services.northena.execution_bindings")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1204: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1176: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.northena.execution_bindings'
+
+During handling of the above exception, another exception occurred:
+backend/tests/execution_components/test_execution_usage_and_bindings_red.py:44: in test_execution_bindings_bundle_and_build_coordinator_surface
+    mod = _bindings_module()
+          ^^^^^^^^^^^^^^^^^^
+backend/tests/execution_components/test_execution_usage_and_bindings_red.py:22: in _bindings_module
+    pytest.fail(f"Missing expected RED target module services.northena.execution_bindings: {exc}")
+E   Failed: Missing expected RED target module services.northena.execution_bindings: No module named 'services.northena.execution_bindings'</failure></testcase></testsuite></testsuites>

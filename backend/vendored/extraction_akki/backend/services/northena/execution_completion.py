@@ -7,12 +7,15 @@ from services.northena.execution_validation import checked_artifacts
 async def meter(coordinator, request, result, dispatch):
     if result.usage is None or not result.usage:
         raise Held("ACTUAL_USAGE_UNAVAILABLE")
-    return await coordinator.journal.append(request, "metered", {
+    raw = await coordinator.journal.append(request, "metered", {
         "terms_ref": dispatch["data"]["authority"]["terms_ref"],
         "worker_receipt_ref": result.receipt_ref,
         "usage": [item.model_dump(mode="json") for item in result.usage],
         "evidence_mode": result.evidence_mode,
     })
+    if coordinator.usage_publisher is not None:
+        await coordinator.usage_publisher.publish(request, result, dispatch, raw)
+    return raw
 
 
 async def terminal(coordinator, request, phase, reason, mode, artifacts=()):
@@ -28,6 +31,8 @@ async def terminal(coordinator, request, phase, reason, mode, artifacts=()):
     value = event["data"]
     if value["phase"] == "ready":
         await coordinator.authorize(request, "retrieve")
+        if hasattr(coordinator.artifacts, "revalidate"):
+            await coordinator.artifacts.revalidate(request, tuple(value["artifact_refs"]))
     return RunView(request_id=request.request_id, phase=value["phase"],
                    reason_code=value["reason_code"], evidence_mode=value["evidence_mode"],
                    artifact_refs=tuple(value["artifact_refs"]), terms_ref=value.get("terms_ref"),

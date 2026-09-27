@@ -30,6 +30,6 @@ async def frozen_request(db, scope, request_id, budget):
                    scope_refs=tuple(frozen["units"]), deadline_epoch=budget.deadline_epoch)
 
 
-async def advance(db, scope, request_id, budget):
+async def advance(db, scope, request_id, budget, bindings=None):
     request = await frozen_request(db, scope, request_id, budget)
-    return await build_coordinator(db).advance(request)
+    return await build_coordinator(db, bindings).advance(request)

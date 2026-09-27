@@ -1,0 +1,78 @@
+{
+  "summary": "Implemented and executed backend-only RED suite for the component-binding architecture slice under /app/backend/tests/execution_components; all tests failed as expected due missing target modules/contracts and one coordinator signature gap.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.northena.execution_component_models",
+        "issue": "Module missing; Decision/CommercialSnapshot/Prepared typed contracts not implemented.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.execution_authority.ComponentAuthority",
+        "issue": "Module missing; typed principal/licence/decision authority adapter not implemented.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.mtafiti.execution_record_models + services.mtafiti.execution_registry",
+        "issue": "Modules missing; canonical inspection receipt and commit-before-registry adapter contracts absent.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.execution_usage + services.northena.execution_bindings",
+        "issue": "Modules missing; usage publication and server-owned binding bundle contracts absent.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.execution_coordinator.Coordinator.__init__",
+        "issue": "Missing optional usage_publisher parameter required by the new architecture slice.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/execution_components/conftest.py",
+    "/app/backend/tests/execution_components/test_execution_component_models_red.py",
+    "/app/backend/tests/execution_components/test_execution_component_authority_red.py",
+    "/app/backend/tests/execution_components/test_execution_registry_red.py",
+    "/app/backend/tests/execution_components/test_execution_usage_and_bindings_red.py",
+    "/app/test_reports/pytest/pytest_execution_components_red_iteration28.xml",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/component_binding_verification/red_output_iteration28.md",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/component_binding_verification/member_baseline_iteration28.json"
+  ],
+  "action_items": [
+    "Implement missing modules/contracts: execution_component_models, execution_authority, execution_record_models, execution_registry, execution_usage, execution_bindings.",
+    "Extend Coordinator constructor/flow with optional usage_publisher and prepare/snapshot recheck behaviour.",
+    "After implementation, rerun pytest /app/backend/tests/execution_components and then full execution_spine regression.",
+    "Fix existing typed-view bug in execution_composition.ExistingAuthorityBoundary (currently dict access view['licence_admitted'] conflicts with LicencePortalView)."
+  ],
+  "critical_code_review_comments": [
+    "execution_composition.ExistingAuthorityBoundary still assumes dict-shaped entitlement view via view['licence_admitted']; current read_view returns LicencePortalView and this is a known contract mismatch.",
+    "No runtime edits were made in this RED-first iteration; failures reflect genuine missing architecture-slice implementation, not test harness defects.",
+    "All new tests are SYNTHETIC architecture contracts only and do not claim live provider/model/source evidence."
+  ],
+  "updated_files": [
+    "/app/backend/tests/execution_components/conftest.py",
+    "/app/backend/tests/execution_components/test_execution_component_models_red.py",
+    "/app/backend/tests/execution_components/test_execution_component_authority_red.py",
+    "/app/backend/tests/execution_components/test_execution_registry_red.py",
+    "/app/backend/tests/execution_components/test_execution_usage_and_bindings_red.py",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/component_binding_verification/red_output_iteration28.md",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/component_binding_verification/member_baseline_iteration28.json",
+    "/app/test_reports/iteration_28.json"
+  ],
+  "success_rate": {
+    "backend": "0% (0/11, intentional RED)",
+    "frontend": "Not run (runtime/API absent; backend architecture-only scope)"
+  },
+  "seed_data_creation": "None. No users/admissions/licences/grants were created.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "RED suite added under backend/tests/execution_components with vendored-path conftest. Current failures are module-not-found/signature-gap by design against the new component binding contract. Use iteration28 JUnit XML for exact fail list, implement runtime slice, then rerun this suite first before broader regressions.",
+  "rca of the issue": "Primary RED blockers are absent modules and incomplete coordinator signature for the approved architecture slice. Additional pre-existing code review mismatch: execution_composition authority boundary still uses legacy dict access for entitlements instead of typed LicencePortalView fields, matching the contract note that this stub bug must be fixed via typed fields."
+}

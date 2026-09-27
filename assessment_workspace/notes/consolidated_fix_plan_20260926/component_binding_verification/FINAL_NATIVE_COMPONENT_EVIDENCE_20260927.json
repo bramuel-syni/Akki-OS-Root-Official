@@ -1,0 +1,68 @@
+{
+  "timestamp_utc": "2026-09-27T02:18:51.144429+00:00",
+  "scope": "Bounded native component architecture; no live element activation",
+  "denominator": 4,
+  "counts": {"architecture_members_verified_in_scope": 4, "live_element_verified": 0},
+  "members": [
+    {
+      "id": "authority_adapter",
+      "architecture_verified": true,
+      "native": ["ComponentAuthority", "PrincipalV1 facade validation", "portal entitlements.read_view", "sealed entitlement resolve", "dispatch CommercialSnapshot"],
+      "test_refs": ["test_execution_component_authority_red.py", "test_execution_native_composition.py::test_native_full_source_pipeline_non_model_handoff_and_registry_sequence"],
+      "live_element_verified": false
+    },
+    {
+      "id": "canonical_registry_adapter",
+      "architecture_verified": true,
+      "native": ["CanonicalRegistry", "AssetRegistryRecord", "canonical write_asset_record", "canonical deterministic receipt ID", "same-Ledger registry envelope"],
+      "test_refs": ["test_execution_registry_red.py", "test_execution_native_composition.py::test_native_registry_recovery_and_revalidation_refusal_paths"],
+      "live_element_verified": false
+    },
+    {
+      "id": "usage_to_entitlement_consumer",
+      "architecture_verified": true,
+      "native": ["LedgerUsagePublisher", "MeteredEvent", "canonical append_event", "native portal entitlement projection"],
+      "test_refs": ["test_execution_native_composition.py::test_native_usage_publisher_event_time_projection_and_recoverable_handoff_failure"],
+      "historical_pricing_example": {"tokens": 1000, "event_rate_per_token": 0.002, "later_rate_per_token": 0.02, "debit_retained": 2},
+      "r24_dispatch_still_held": true,
+      "live_element_verified": false
+    },
+    {
+      "id": "server_composition",
+      "architecture_verified": true,
+      "native": ["ExecutionBindings", "EngineAdapter", "build_coordinator", "typed app.state binding seam", "default empty executor binding"],
+      "test_refs": ["test_execution_usage_and_bindings_red.py", "test_execution_native_composition.py::test_native_full_source_pipeline_non_model_handoff_and_registry_sequence", "portal_operational/test_execution_advance_architecture_live.py"],
+      "live_element_verified": false
+    }
+  ],
+  "provenance": {
+    "upstream_principal_licence_decisions_worker_inspector": "SYNTHETIC / MOCKED",
+    "native_positive_storage": "FAKE isolated DB",
+    "measured_shaped_values": "Used only in synthetic native-acceptance fixtures; NOT real measurement evidence",
+    "actual_api_checks": "Existing authenticated HELD request/replay/role/scope regressions only",
+    "production_successful_bindings": false,
+    "production_fixture_grants_or_charges": false
+  },
+  "final_regression": {"tests": 143, "passed": 143, "failures": 0, "errors": 0, "skipped": 0, "junit_seconds": 11.990},
+  "protected_hash_recheck": {
+    "unchanged_files": 16,
+    "mismatches": [],
+    "sources": ["component_binding_verification/member_baseline_iteration28.json", "backend/tests/portal_operational/test_w1_control_record_contract_red.py::EXPECTED_FILE_SHA256"],
+    "manifest_correction": "Iteration28 mixed six unchanged reference/kernel files with four mutable integration baselines. Those four changes are authorized; do not call all ten manifest files sealed.",
+    "intentionally_changed_baseline_files": ["services/northena/execution_composition.py", "services/northena/execution_coordinator.py", "services/northena/execution_journal.py", "services/portal_operational/entitlements.py"]
+  },
+  "evidence_hashes_sha256": {
+    "test_reports/pytest/pytest_iteration31_components_spine_portal.xml": "e7364c61f434aa5d64dace8d85d4f74244797148366ced47da7426328ce7bf08",
+    "backend/tests/execution_components/test_execution_native_composition.py": "4c3c93e41a06e768c592cfbfb6782393ce4c9e280485fc34d34185f7641b01ac",
+    "assessment_workspace/notes/consolidated_fix_plan_20260926/component_binding_verification/member_baseline_iteration28.json": "354b2c99de668f7dc111ef610f0a95c67410b032f15cd8a6bc971a852a6fd8f4",
+    "test_reports/iteration_31.json": "0d7dcabbd0f0b1df16974792c1333a0b5e6135a8619c55e1a748747a7f18ba85"
+  },
+  "limits": [
+    "No actual source/model/SSH/provider/GPU calls, real grants or invoices.",
+    "Synthetic measured-shaped fixtures do not constitute independently measured source/model performance.",
+    "No full principal/owner admission, full Mtafiti, full DAP/T14, DQ, pooled capacity/seat concurrency or all-Canon closure.",
+    "No real Mongo replica/failover/concurrency or hardware/SLO performance demonstrated; pytest time is not a benchmark.",
+    "No EX4/R37 protected independent execution claim; tests share the workspace.",
+    "No new credentials or changed auth roles/passwords; test_credentials.md remains current."
+  ]
+}

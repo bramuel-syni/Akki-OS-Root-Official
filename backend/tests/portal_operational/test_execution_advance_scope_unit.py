@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 from contextlib import asynccontextmanager
+from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
@@ -28,11 +29,12 @@ def test_execution_advance_write_authorized_foreign_principal_receives_404(monke
     monkeypatch.setattr(execution.portal_work, "events_for", _events_for)
 
     with pytest.raises(HTTPException) as exc:
+        request = SimpleNamespace(app=SimpleNamespace(state=SimpleNamespace(execution_bindings=None)))
         asyncio.run(
             portal_requests.advance_execution(
                 "req-owned-by-other",
                 execution.ExecutionBudget(deadline_epoch=1_900_000_000),
-                request=object(),
+                request=request,
             )
         )
     assert exc.value.status_code == 404

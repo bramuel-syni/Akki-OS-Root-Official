@@ -12,12 +12,27 @@ from services.ledger_writer.mongo_control import digest
 from services.northena.execution_models import Held, RunView, WorkerResult, Usage
 from services.northena.execution_validation import authority_for, result_for
 from services.northena.execution_completion import complete, meter, terminal
+from services.northena.execution_component_models import Prepared
 
 
 class Coordinator:
-    def __init__(self, journal, authority, executors, artifacts, clock=time.time):
+    def __init__(self, journal, authority, executors, artifacts, clock=time.time, usage_publisher=None):
         self.journal, self.authority = journal, authority
         self.executors, self.artifacts, self.clock = dict(executors), artifacts, clock
+        self.usage_publisher = usage_publisher
+
+    def executor_for(self, request):
+        return self.executors.get((request.kind, request.engine), self.executors.get(request.kind))
+
+    async def prepare(self, request):
+        if hasattr(self.authority, "prepare"):
+            prepared = await self.authority.prepare(request)
+            if not isinstance(prepared, Prepared):
+                raise Held("PREPARED_AUTHORITY_INVALID")
+            prepared = Prepared.model_validate_json(prepared.model_dump_json())
+            grant = authority_for(request, prepared.authority, self.clock(), "dispatch")
+            return grant, prepared.commercial_snapshot.model_dump(mode="json")
+        return await self.authorize(request, "dispatch"), None
 
     async def authorize(self, request, phase):
         return authority_for(request, await self.authority.authorize(request, phase), self.clock(), phase)
@@ -46,15 +61,17 @@ class Coordinator:
         dispatch = slots.get("dispatch")
         if dispatch and dispatch["data"].get("action") == "cancel":
             return await terminal(self, request, "cancelled", "CANCELLED_BEFORE_DISPATCH", "unverified")
-        executor = self.executors.get(request.kind)
+        executor = self.executor_for(request)
         if executor is None:
             raise Held("EXECUTOR_ADAPTER_UNBOUND")
         submitted = False
         if dispatch is None:
-            grant = await self.authorize(request, "dispatch")
+            grant, commercial = await self.prepare(request)
             claim = {"operation_key": digest({"execution": request.request_id, "intent": request.digest()}),
                      "request_sha256": request.digest(), "nonce": uuid4().hex, "action": "submit",
                      "authority": grant.model_dump(mode="json")}
+            if commercial is not None:
+                claim["commercial_snapshot"] = commercial
             try:
                 dispatch = await self.journal.append(request, "dispatch", claim)
                 submitted = True
@@ -78,9 +95,11 @@ class Coordinator:
         try:
             if submitted:
                 # Recheck after durable claim, before any external effect.
-                grant = await self.authorize(request, "dispatch")
+                grant, commercial = await self.prepare(request)
                 if grant.model_dump(mode="json") != dispatch["data"]["authority"]:
                     raise Held("AUTHORITY_CHANGED_BEFORE_DISPATCH")
+                if commercial != dispatch["data"].get("commercial_snapshot"):
+                    raise Held("COMMERCIAL_TERMS_CHANGED_BEFORE_DISPATCH")
                 current = await self.journal.read(request)
                 if any(row["slot"] in {"terminal", "cancel_intent"} for row in current):
                     raise Held("CANCEL_OR_TERMINAL_BEFORE_DISPATCH")
@@ -139,7 +158,7 @@ class Coordinator:
             if dispatch["data"].get("action") == "cancel":
                 return await terminal(self, request, "cancelled", "CANCELLED_BEFORE_DISPATCH", "unverified")
             await self.authorize(request, "cancel")
-            executor = self.executors.get(request.kind)
+            executor = self.executor_for(request)
             if executor is None:
                 raise Held("EXECUTOR_ADAPTER_UNBOUND")
             result = await executor.cancel(request, dispatch["data"]["operation_key"], dispatch["seq"])
@@ -158,6 +177,8 @@ class Coordinator:
             data = final["data"]
             if data["phase"] == "ready":
                 await self.authorize(request, "retrieve")
+                if hasattr(self.artifacts, "revalidate"):
+                    await self.artifacts.revalidate(request, tuple(data["artifact_refs"]))
             return RunView(request_id=request.request_id, phase=data["phase"], reason_code=data["reason_code"],
                            evidence_mode=data["evidence_mode"], artifact_refs=tuple(data["artifact_refs"]),
                            terms_ref=data.get("terms_ref"),

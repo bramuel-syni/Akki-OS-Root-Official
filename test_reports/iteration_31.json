@@ -1,0 +1,37 @@
+{
+  "summary": "Added the requested native positive integration coverage in a new execution_components suite (3 real tests), then reran the full three backend suites successfully.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/execution_components/test_execution_native_composition.py",
+    "/app/test_reports/pytest/pytest_iteration31_components_spine_portal.xml"
+  ],
+  "action_items": [
+    "No runtime code changes were made in this iteration (tests-only).",
+    "Use the new native composition tests as regression gates for future execution/registry/usage changes."
+  ],
+  "critical_code_review_comments": [
+    "Native evidence table (SYNTHETIC upstream + FAKE storage): | Component | Covered in new tests | Evidence | Label | -> | Coordinator | test_native_full_source_pipeline_non_model_handoff_and_registry_sequence | ready flow, metered->usage_handoff->terminal order, retrieve revalidation | SYNTHETIC upstream / FAKE DB |; | LedgerJournal | tests A/B/C | real append/read slots and recovery replay on same journal | SYNTHETIC upstream / FAKE DB |; | ComponentAuthority (real entitlements.read_view) | tests A/C | real portal projection from canonical seeded membership/licence/catalog events; reseller prepare refusal asserted | SYNTHETIC upstream / FAKE DB |; | CanonicalRegistry (+ native write_asset_record) | tests A/B | registry envelope-first, receipt-id match, projection-failure recovery, immutable slot/revalidation refusal paths | SYNTHETIC upstream / FAKE DB |",
+    "Additional native paths covered: real LedgerUsagePublisher idempotent debit behavior and EngineAdapter measured worker contract path."
+  ],
+  "updated_files": [
+    "/app/backend/tests/execution_components/test_execution_native_composition.py",
+    "/app/test_reports/iteration_31.json"
+  ],
+  "success_rate": {
+    "backend": "100% (143/143)",
+    "frontend": "N/A (not requested in this review task)"
+  },
+  "seed_data_creation": "Synthetic canonical ledger events were seeded only inside isolated FAKE DB fixtures (principal_membership, entitlement_licence, entitlement_catalog; plus metered_event via native publisher).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Iteration31 added exactly the missing native-composition test module requested by main agent with three tests (A full pipeline non-model handoff, B registry recovery/revalidation boundaries, C historical usage publisher/event-time projection). Full suites execution_components + execution_spine + portal_operational passed in pytest_iteration31_components_spine_portal.xml.",
+  "rca of the issue": "Initial run failed due to test-harness wiring gaps (principal lookup not set on build_coordinator authority instance, non-deterministic inspector freshness value causing ARTIFACT_REGISTRATION_CHANGED during recovery replay, and deterministic command-id collision in repeated entitlement reseeding). Fixes were confined to test fixture composition in the new test file; runtime modules under test were not edited."
+}

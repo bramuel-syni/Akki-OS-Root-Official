@@ -3,10 +3,16 @@
 from __future__ import annotations
 
 import asyncio
+from types import SimpleNamespace
 
 import pytest
 from pydantic import ValidationError
 
+from contracts.principal_v1 import PrincipalKind, PrincipalV1
+from services.entitlement_service_v1.allowance import LicenceAllowanceState
+from services.entitlement_service_v1.catalog import CatalogRow
+from services.entitlement_service_v1.licence import Licence
+from services.enforce.principal_context_adapter import principal_context
 from contracts.skill_provisioning_record_v0 import SkillProvisioningRecordV0
 from contracts.training_run_v0 import TrainingRunV0
 from services.northena.execution_builders import (
@@ -16,6 +22,7 @@ from services.northena.execution_builders import (
     training_request,
 )
 from services.northena import execution_composition
+from services.northena import execution_authority
 from services.northena.execution_models import Artifact, Held, Request, Usage, WorkerResult
 from services.northena.execution_ports import EngineAdapter
 
@@ -306,14 +313,83 @@ def test_execution_descriptor_builders_with_real_models_and_hash_ref_guards():
     ],
 )
 def test_production_authority_boundary_stays_unbound_for_all_kinds(monkeypatch, kind, engine, floor):
-    async def _admitted(_db, _scope):
-        return {"licence_admitted": True}
+    principal = PrincipalV1(
+        principal_id="principal-1",
+        kind=PrincipalKind.INDIVIDUAL,
+        legal_identity="principal-1",
+        trust_domain_identifier="td-1",
+        admission_time_mandate="mandate",
+        behavioural_signature_state="watch:baseline@admission",
+        parent_organisation_id="org-1",
+        autonomy_scope=None,
+        admit_authority=False,
+        suspended=False,
+    )
+    organisation = PrincipalV1(
+        principal_id="org-1",
+        kind=PrincipalKind.ORGANISATION,
+        legal_identity="org-1",
+        trust_domain_identifier="td-1",
+        admission_time_mandate="mandate",
+        behavioural_signature_state="watch:baseline@admission",
+        parent_organisation_id=None,
+        autonomy_scope=None,
+        admit_authority=True,
+        suspended=False,
+    )
 
-    monkeypatch.setattr(execution_composition, "read_view", _admitted)
-    boundary = execution_composition.ExistingAuthorityBoundary(db=object())
+    async def _admitted(_db, _scope):
+        return execution_authority.LicencePortalView(
+            principal_id="principal-1",
+            status="resolved",
+            reason_code="",
+            licence=Licence(
+                plan_identifier="plan-v1",
+                organisation_principal_id="org-1",
+                seat_count=10,
+                compute_dial="managed",
+                frontier_dial="managed",
+                credits_per_seat_per_period=100,
+                pooled_credits_flag=True,
+                seat_soft_limit=8,
+                organisation_ceiling=1000,
+                period="month",
+                renewal_date="2099-01-01T00:00:00+00:00",
+                status="active",
+                terms_identifier="terms://dispatch/v1",
+            ),
+            allowance_state=LicenceAllowanceState(
+                licence_terms_id="terms://dispatch/v1",
+                period_iso="2026-09",
+                credits_debited=0,
+                credits_allowance=1000,
+                credits_remaining=1000,
+            ),
+            rows=[
+                CatalogRow(
+                    model_identifier="model://northena/m1",
+                    access_class="customer_model",
+                    status="listed",
+                    residency="eu",
+                    credit_rate=None,
+                )
+            ],
+            badges=[],
+            count=1,
+        )
+
+    monkeypatch.setattr(execution_authority, "read_view", _admitted)
+    monkeypatch.setattr(
+        execution_authority,
+        "require_control_scope",
+        lambda: SimpleNamespace(principal_id="principal-1", tenant_id="DIGICOW"),
+    )
+    lookup = lambda pid: principal if pid == "principal-1" else organisation
+    boundary = execution_composition.ExistingAuthorityBoundary(db=object(), principal_lookup=lookup)
     request = _request(kind=kind, engine=engine)
     if floor:
         request = request.model_copy(update={"result_floor": floor})
-    with pytest.raises(Held) as exc:
-        asyncio.run(boundary.authorize(request, "dispatch"))
+    with principal_context(request.principal_id):
+        with pytest.raises(Held) as exc:
+            asyncio.run(boundary.authorize(request, "dispatch"))
     assert exc.value.reason_code == "OPERATION_AUTHORITY_NOT_BOUND"

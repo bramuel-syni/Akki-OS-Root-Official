@@ -1,0 +1,78 @@
+{
+  "summary": "Corrected RED harness defects before runtime implementation and reran execution_components suite. Harness now enforces realistic control context + typed allowance view, request hash/operation binding, and idempotent fake journal semantics. Runtime remains RED due missing target modules/signature gap.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.northena.execution_authority",
+        "issue": "Module missing; ComponentAuthority contracts (including context(request)->(PrincipalV1, LicencePortalView)) remain unimplemented.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.execution_component_models",
+        "issue": "Module missing; Decision/CommercialSnapshot/Prepared typed contracts absent.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.mtafiti.execution_record_models",
+        "issue": "Module missing; InspectorReceipt/InspectionEntry contracts absent.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.mtafiti.execution_registry",
+        "issue": "Module missing; canonical registry adapter not present for commit/rehydration assertions.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.execution_usage + services.northena.execution_bindings",
+        "issue": "Modules missing; usage publication and server-owned bindings bundle contracts absent.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.execution_coordinator.Coordinator.__init__",
+        "issue": "Missing usage_publisher extension parameter required by component-binding contract.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/execution_components/test_execution_component_authority_red.py",
+    "/app/backend/tests/execution_components/test_execution_registry_red.py",
+    "/app/backend/tests/execution_components/test_execution_usage_and_bindings_red.py",
+    "/app/test_reports/pytest/pytest_execution_components_red_iteration29.xml",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/component_binding_verification/red_output_iteration29.md"
+  ],
+  "action_items": [
+    "Implement missing modules for authority/component-model/registry/usage/bindings architecture slice.",
+    "Implement ComponentAuthority.context(request) returning typed (PrincipalV1, LicencePortalView) and enforce bound principal/control scope during prepare/authorize.",
+    "In CanonicalRegistry implementation, keep registry commit before canonical writer side effects; preserve request.digest and operation_key bindings end-to-end.",
+    "Extend Coordinator constructor with optional usage_publisher and wire usage publication semantics.",
+    "After runtime implementation, rerun execution_components RED suite first, then execution_spine regression.",
+    "Keep iteration_28 artifacts unchanged; iteration_29 specifically corrects misleading test fixtures BEFORE implementation to avoid false positives/false negatives."
+  ],
+  "critical_code_review_comments": [
+    "Previous authority positive fixture could pass without principal/control context and without realistic allowance_state.period_iso; this masked contract violations before runtime existed.",
+    "Previous registry commit-failure fixture used detached request_sha256 and authority=None context, so failures could occur pre-commit and falsely satisfy writer==0 assertions.",
+    "Fake journal behavior now explicitly idempotent for exact replay and conflicting for same-slot changed payload, matching command-fingerprint semantics rather than appending duplicates."
+  ],
+  "updated_files": [
+    "/app/backend/tests/execution_components/test_execution_component_authority_red.py",
+    "/app/backend/tests/execution_components/test_execution_registry_red.py",
+    "/app/assessment_workspace/notes/consolidated_fix_plan_20260926/component_binding_verification/red_output_iteration29.md",
+    "/app/test_reports/iteration_29.json"
+  ],
+  "success_rate": {
+    "backend": "7% (1/14 passed; expected RED while target modules are missing)",
+    "frontend": "Not run (backend architecture RED scope)"
+  },
+  "seed_data_creation": "None.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Iteration29 intentionally tightens RED harness semantics only (no runtime edits). New passing test verifies FakeJournal idempotent replay/conflict behavior. Remaining failures are implementation gaps, not harness ambiguity.",
+  "rca of the issue": "Root cause of misleading RED signals was test-fixture drift from contract: missing control context in authority prepare-path, under-specified resolved entitlement view, detached worker request hash, and authority context omitted in registry commit-failure setup. Harness now binds typed context + request digest/operation key so future failures represent actual implementation defects."
+}

@@ -57,4 +57,5 @@ async def get_result(request_id: str, request: Request):
 @router.post("/{request_id}/execution/advance", response_model=RunView)
 async def advance_execution(request_id: str, payload: execution.ExecutionBudget, request: Request):
     async with portal_scope(request, write=True) as scope:
-        return await execution.advance(db, scope, request_id, payload)
+        return await execution.advance(db, scope, request_id, payload,
+                                       bindings=getattr(request.app.state, "execution_bindings", None))
