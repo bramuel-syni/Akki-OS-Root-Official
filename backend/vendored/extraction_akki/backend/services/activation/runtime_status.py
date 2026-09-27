@@ -11,6 +11,7 @@ class RuntimeStatus(BaseModel):
     worker_paths_bound: list[str]
     custody_delivery_bound: bool = False
     skill_query_execution_bound: bool = False
+    native_governance_enforced: bool = False
     reason_code: str
     execution_authorized: bool = False
     live_proof_verified: bool = False
@@ -24,4 +25,5 @@ def runtime_status(state):
         signer_resolution_bound=configured, artifact_inspection_bound=configured,
         custody_delivery_bound=configured and runtime.custody is not None,
         skill_query_execution_bound=configured and 'skill' in paths,
+        native_governance_enforced=configured,
         worker_paths_bound=paths, reason_code="NATIVE_CONFIGURATION_INSTALLED" if configured else "NATIVE_BINDINGS_UNBOUND")

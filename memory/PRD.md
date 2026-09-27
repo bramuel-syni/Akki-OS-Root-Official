@@ -56,6 +56,78 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
+## CURRENT checkpoint — 2026-09-27 20:34 UTC, autonomous non-GPU governance
+
+User repeated: **“Complete all non-GPU work in one autonomous go. Dont stop.”**
+Scope approval is already granted; no further generic permission round. GPU/SSH
+remained parked with no connection, credential, workbook, key or workload activity.
+**This batch is verified, but all non-GPU work is NOT complete.**
+
+Implemented:
+- New `services/non_gpu_governance/` versioned metadata consumers enforce complete
+  seven-family quality bitmap/population reconciliation, confirmed pack/snapshot
+  joins, explicit unknown/flag/non-clean outcomes and no accuracy fabrication.
+  This is NOT the actual seven-family source-side check/repair executor.
+- Deterministic whole-unit context reconstruction with pinned frame/model/tokenizer,
+  native measured token counts, rule order, per-class exclusions and ten highest
+  excluded re-extraction handles. Quality/class ceilings remain distinct from rights.
+- Signed native lineage/current-rights gate traverses descendants, rejects cycles/
+  changed artifact identities and prevents reactivation of immutable withdrawn refs.
+  It denies stale release; it does NOT execute recall notifications, deletion or
+  replacement training, and it does not refund spent budgets.
+- Native memory reload evidence checks publication ordering, original closed-run/
+  principal, source hashes/lineage, recorded loss and inference/utterance ceilings.
+  User-memory stays disabled. No memory bytes are compacted/reloaded through E1.
+- Native coordinator composition enforces these gates at reserve/send/verify/
+  publish/retrieve. Existing custody inherits result-retrieval gates. Current query
+  GET repeats release checks after awaited grounding. Live startup verification and
+  certificate-issuance route use `GovernedNativeEvidence`; legacy v1 LAB verification
+  remains distinguishable and cannot alone satisfy that live route.
+- `GET /api/portal/entitlement/billing?period=<existing-period-id>` returns principal-
+  scoped usage lines only from canonical dispatch/meter/event joins; half-open periods,
+  event-time prices, duplicate detection, no other-seat detail or silent fractional
+  rounding. No second bill store or fiscal invoice issued; broader seats/period
+  producers/rounding-policy cases remain open.
+- Bounded contention backoff is an additive `ledger_writer/contention_control.py`
+  adapter composed in InsertGuard. Initial direct edits to protected mongo_control
+  and principal_control were removed byte-identically; original hashes/tests were
+  NOT altered. Both full-prefix checks and conditional-head fencing remain intact.
+  Payload-free diagnostic error codes added; no auth behavior/credentials changed.
+- Pre-existing mobile header clipping corrected in existing CSS override: compact
+  status badge hides as intended while account avatar/menu remains accessible.
+  Original owner HTML, generated templates, desktop structure and styles unchanged.
+
+Final verification: **684 backend passed, 2 pre-existing explicitly gated custody
+drills skipped, 0 failures/errors; all 7 frontend tests pass.** Both GPU-direct suites
+were explicitly excluded. New focused metadata/billing tests originally72; memory/
+certificate/backoff extension adds10, total82 new tests. Scoped Ruff F checks pass.
+Desktop1920×800/mobile390×844 screenshots: no overflow; mobile account menu opens.
+Canonical evidence: `test_reports/pytest/non_gpu_governance_final.{xml,log}`,
+`non_gpu_governance_frontend.log`, `iteration_49.json` and `iteration_49_resolution.json`.
+
+Earlier full runs had intermittent app503 and external TCP timeouts. Final full
+run and targeted33-test diagnostics passed. Retry contention was a hypothesis, not
+a fully proven cause of every503; diagnostics remain to distinguish recurrence.
+Do not change URLs to localhost or hide outages with relaxed test assertions.
+Testing-agent suggestion to overwrite seeded admin passwords was intentionally
+not adopted: no credential reset was requested and idempotent seed must preserve
+existing account changes. Existing test_credentials.md remains current.
+
+**Live reality:** no actual admitted native worker/query ingress/inspector/custody
+provider was recovered/configured. Runtime remains unconfigured. Live billing read
+correctly returns ORGANISATION_UNRESOLVED rather than fabricated credit/usage.
+Positive signed authority/source/quality/context/memory observations remain
+**SYNTHETIC/MOCKED test fixtures**, not live estate effects. No genuine source read,
+warm answer, byte delivery, physical-host recovery or live certificate was issued.
+
+Remaining P0: admitted provider/record recovery, genuine source→registry→delivery
+and grounded skill proofs, actual DQ/repair/exception producers and memory effects.
+P1: full commercial producer/period/seat semantics, Watch/witness/notification/
+physical-host evidence and recall orchestration. P2: original source/supplemental
+audit closure (24 source-bounded rows,509 mappings), remaining transformed/media
+journeys and measured release acceptance. Do not call the648-row programme closed.
+Details: `assessment_workspace/notes/non_gpu_governance_20260927/IMPLEMENTATION.md`.
+
 ## Previous implementation checkpoint — 2026-09-27
 
 First autonomous control-plane implementation batch verified. Detailed result:

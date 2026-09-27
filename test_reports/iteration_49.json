@@ -1,0 +1,68 @@
+{
+  "summary": "Executed full backend regression (non-GPU), targeted new non-GPU governance/billing suites, auth/runtime live checks, billing endpoint live probe, and desktop/mobile UI smoke on external preview URL.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "sealed-hash invariants (non-API test contract)",
+        "issue": "Two invariant tests failed because /app/backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py hash changed (expected f653905c..., actual 7a00741e...).",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "/api/auth seed behavior",
+        "issue": "Code review: seed_admin_if_absent() does not update existing admin password when password changes (playbook expectation says update existing admin)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "DAP top header (logged-out mobile root)",
+        "issue": "Header overflow/clipping on mobile: trailing indicator element extends beyond viewport (right=407 on 390px viewport) causing overlap/clipped top-bar content.",
+        "selector": ".owner-prototype-dap [data-proto-line=\"41\"]",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Logged-out /dap mobile (390x844)",
+        "issues": [
+          "Brand/status line overlaps and clips at top-right due to fixed-width header packing"
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/test_reports/pytest/pytest_iteration49_full_non_gpu.xml",
+    "/app/test_reports/pytest/pytest_iteration49_non_gpu_governance_targeted.xml",
+    "/app/test_reports/pytest/pytest_iteration49_skill_queries.xml",
+    "/app/backend/tests/non_gpu_flows/test_governance_metadata.py",
+    "/app/backend/tests/non_gpu_flows/test_native_governance_gates.py",
+    "/app/backend/tests/non_gpu_flows/test_native_quality_context.py",
+    "/app/backend/tests/non_gpu_flows/test_period_billing.py"
+  ],
+  "action_items": [
+    "Update sealed hash baselines/manifests for mongo_control.py if the bounded backoff+jitter change is approved as canonical; otherwise revert file bytes to the sealed baseline.",
+    "Apply minimal mobile header correction for .owner-prototype-dap [data-proto-line=\"41\"] (e.g., hide on <=600px to match existing hidden sibling behavior) without redesigning markup.",
+    "Decide whether seed_admin_if_absent should update existing admin credentials to satisfy playbook expectation."
+  ],
+  "critical_code_review_comments": [
+    "Intermittent app503 was NOT reproduced in this cycle; previously failing portal/auth/skill live tests now pass. Prior external failures align with transient timeout/availability rather than current deterministic app fault.",
+    "mongo_control contention handling now includes bounded exponential backoff+jitter and preserves full integrity checks (verify_event + row hash/payload hash) — functional behavior validated by passing concurrency/request tests.",
+    "All positive native/provider/authority proofs remain explicitly SYNTHETIC/MOCKED test fixtures; no real admitted native provider execution was exercised."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_49.json"
+  ],
+  "success_rate": {
+    "backend": "Targeted new package: 72/72 passed. Full non-GPU suite: 674/676 passed (2 failed invariant hash checks, 0 errors, 2 skipped).",
+    "frontend": "Smoke load passed on desktop and mobile; 1 high-priority mobile header overflow issue found."
+  },
+  "seed_data_creation": "None. Live endpoint checks used existing demo identities. Positive governance/native evidence remains SYNTHETIC/MOCKED in tests.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Use REACT_APP_BACKEND_URL from frontend/.env and PYTHONPATH=/app/backend/vendored/extraction_akki/backend:/app/backend/tests/activation_controls:/app/backend/tests/portal_operational. Full-suite blockers are currently only sealed hash invariants tied to mongo_control.py hash drift. Mobile header overflow reproduced at /dap logged-out on 390x844 with overflow element data-proto-line=41.",
+  "rca of the issue": "RCA(1): Full-suite failures are contract-baseline failures, not runtime API faults. Repro: run full backend suite excluding the 2 GPU-direct tests; two tests compare sealed SHA256 manifests and fail because mongo_control.py bytes changed from f653905c... to 7a00741e.... Likely cause is the newly added bounded backoff+jitter contention handling; manifests were not updated in lockstep. Mitigation: either bless+update baseline hashes or revert byte changes. RCA(2): Mobile overflow repro at /dap logged-out on 390x844; element .owner-prototype-dap [data-proto-line=41] renders at right edge beyond viewport (right=407), causing clipped overlap with brand/status row. Minimal mitigation: hide or constrain line-41 in existing <=600px rule set, preserving prototype structure."
+}

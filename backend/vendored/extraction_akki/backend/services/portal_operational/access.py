@@ -1,5 +1,8 @@
 """Existing JWT/account gate composition; no new authentication authority."""
 from contextlib import asynccontextmanager
+import logging
+import traceback
+from pathlib import Path
 from fastapi import HTTPException
 from pymongo.errors import PyMongoError
 from services.enforce.census_identity import census_identity
@@ -21,6 +24,9 @@ async def portal_scope(request, *, write=False):
     except CommandConflict as exc:
         raise HTTPException(409, "This request key already belongs to a different frozen command.") from exc
     except (PyMongoError, ValueError, RuntimeError) as exc:
+        location = traceback.extract_tb(exc.__traceback__)[-1]
+        logging.getLogger(__name__).error('PORTAL_RECORD_UNAVAILABLE type=%s module=%s line=%s',
+            type(exc).__name__, Path(location.filename).name, location.lineno)
         raise HTTPException(503, "The authoritative record could not be verified. Retry with the same request key.") from exc
 
 

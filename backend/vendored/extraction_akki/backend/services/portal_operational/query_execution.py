@@ -59,6 +59,7 @@ async def current_status(db, scope, skill_id, query_id, provisioning, runtime):
             if not result.execution_verified:
                 raise Held(result.reason_code)
             checked = await asyncio.wait_for(query_evidence.grounding(runtime, coordinator, request), runtime.evidence_timeout_seconds)
+            await coordinator.release_gates(request, 'retrieve')
         return {**historical, **checked}
     except Held as exc:
         code = public_reason(exc.reason_code).code

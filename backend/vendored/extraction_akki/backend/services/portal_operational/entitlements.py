@@ -10,7 +10,8 @@ from pydantic import BaseModel, ConfigDict, Field
 from contracts.dap import MeteredEvent
 from services.entitlement_service_v1.licence import Licence
 from services.entitlement_service_v1.catalog import CatalogRow
-from services.entitlement_service_v1.allowance import LicenceAllowanceState, derive_allowance_remaining
+from services.entitlement_service_v1.allowance import LicenceAllowanceState
+from services.portal_operational.billing import debit
 from services.entitlement_service_v1.chokepoint_resolver import _dial_admits_access_class
 from services.ledger_writer.principal_control import read_events
 
@@ -102,11 +103,7 @@ async def read_view(db, scope):
                 raise ValueError("Invalid event-time rate.")
             # Rates belong to event-time rows, not to today's catalog or a
             # terms-only map: different models may share one licence terms ID.
-            debited += derive_allowance_remaining(
-                licence_terms_id=licence.terms_identifier, period_iso=record["period_iso"],
-                credits_allowance=0, ledger_events=[usage],
-                credit_rate_by_terms_id={usage.terms_id: rate},
-            ).credits_debited
+            debited += debit(usage, row)
         allowance = licence.credits_per_seat_per_period * (licence.seat_count if licence.pooled_credits_flag else 1)
         view.allowance_state = LicenceAllowanceState(
             licence_terms_id=licence.terms_identifier, period_iso=record["period_iso"],

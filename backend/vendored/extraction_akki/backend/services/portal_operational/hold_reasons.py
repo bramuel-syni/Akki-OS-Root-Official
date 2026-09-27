@@ -70,6 +70,23 @@ _group('SKILL_PROVISIONING_CHANGED SKILL_PROVISIONING_REVOKED', 'The skill provi
 _group('SKILL_OUTCOME_CONFLICT SKILL_GROUNDING_RECEIPT_REQUIRED SKILL_GROUNDING_BINDING_MISMATCH SKILL_ANSWER_ARTIFACT_MISMATCH SKILL_ANSWER_CLASS_OR_HASH_MISMATCH SKILL_INDEPENDENT_ANCHOR_NOT_PROVED SKILL_RESPONSE_BELOW_FLOOR SKILL_ANSWER_REGISTRY_UNVERIFIED SKILL_NATIVE_VERIFICATION_UNAVAILABLE SKILL_NATIVE_EVIDENCE_INVALID SKILL_REFUSAL_AMBIGUOUS SKILL_REFUSAL_NOT_PROVED',
        'A grounded answer or genuine refusal has not yet been verified.', 'No answer text, class or live success is being fabricated.')
 
+_group('NATIVE_RIGHTS_PROOF_REQUIRED ARTIFACT_LINEAGE_REQUIRED',
+       'Current rights and source-to-result lineage have not been proved.',
+       'Resolve the native rights and lineage receipts for the frozen inputs and result.')
+_group('DESCENDANT_RIGHTS_WITHDRAWN', 'A source supporting this result has been withdrawn.',
+       'Recall the affected result or admit a separately verified replacement; old links cannot restore rights.')
+_group('QUALITY_REGISTER_PROOF_REQUIRED QUALITY_PLAN_BINDING_MISMATCH QUALITY_POLICY_NOT_CONFIRMED QUALITY_POPULATION_MISMATCH TRAINING_QUALITY_NOT_ELIGIBLE',
+       'The confirmed quality pack and complete assessed population have not been reconciled.',
+       'Complete the native quality assessment; unassessed records are not Clean.')
+_group('CONTEXT_WINDOW_PROOF_REQUIRED CONTEXT_QUALITY_OR_OBJECTIVE_MISMATCH CONTEXT_POLICY_MISMATCH CONTEXT_QUALIFIED_POPULATION_MISMATCH CONTEXT_CONTENT_HASH_MISMATCH CONTEXT_QUALITY_CLASS_VIOLATION',
+       'The qualified context window, class and exclusions could not be reconstructed.',
+       'Reconcile the pinned native context evidence without replacing the frozen objective.')
+_group('MEMORY_IDENTITY_OR_CLASS_MISMATCH MEMORY_PUBLICATION_MISMATCH MEMORY_PUBLICATION_ORDER_INVALID',
+       'The compacted context cannot be released with its current evidence.',
+       'Verify its publication receipt, retained-source rights and recorded class.')
+_group('GOVERNANCE_EVIDENCE_PREFIX_CHANGED', 'Governing evidence changed during verification.',
+       'Reconcile this same request against the current ledger; do not duplicate execution.')
+
 
 def disclosure(code, *, receipt_ref=None):
     value = public_reason(code)

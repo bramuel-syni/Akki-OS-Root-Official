@@ -8,6 +8,7 @@ from services.ledger_writer.principal_control import CommandConflict
 from services.activation.receipts import NativeReceipts, SignedReceipt
 from services.activation.approvals import approved_plan
 from services.activation.issuance import issue_certificate
+from services.non_gpu_governance.certificates import GovernedNativeEvidence
 from services.activation.reservations import Reservations
 from routers.activation_controls import bounded_payload, ValidationBody
 
@@ -94,7 +95,8 @@ async def issue(request: Request):
             return RecordResponse(status="held", reason_code="ADMITTED_SIGNER_RESOLVER_UNBOUND")
         try:
             _, ref = await issue_certificate(body.certificate, receipts,
-                timeout_seconds=getattr(request.app.state, "activation_evidence_timeout_seconds", None))
+                timeout_seconds=getattr(request.app.state, "activation_evidence_timeout_seconds", None),
+                evidence=GovernedNativeEvidence(receipts))
             return RecordResponse(status="issued", receipt_ref=ref, certificate_issued=True)
         except Held as exc:
             return RecordResponse(status="held", reason_code=exc.reason_code)

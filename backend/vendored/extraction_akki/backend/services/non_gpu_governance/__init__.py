@@ -1,0 +1,1 @@
+"""Versioned metadata verification. Never executes source/model or memory bytes."""

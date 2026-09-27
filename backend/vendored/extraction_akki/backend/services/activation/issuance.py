@@ -10,11 +10,11 @@ from services.enforce.control_scope import require_control_scope
 from services.northena.execution_models import Held
 
 
-async def issue_certificate(document, receipts, *, timeout_seconds):
+async def issue_certificate(document, receipts, *, timeout_seconds, evidence=None):
     scope = require_control_scope()
     events = await receipts.events()
     result = await validate_certificate(document, tenant_id=scope.tenant_id,
-        principal_id=scope.principal_id, evidence=NativeEvidence(receipts), timeout_seconds=timeout_seconds)
+        principal_id=scope.principal_id, evidence=evidence if evidence is not None else NativeEvidence(receipts), timeout_seconds=timeout_seconds)
     if not result.valid:
         raise Held(result.issues[0].code if result.issues else "CERTIFICATE_PROOF_NOT_VERIFIED")
     # One identity cannot name two different signed certificates. Ledger head CAS

@@ -1,5 +1,31 @@
 # Akki implementation history
 
+## 2026-09-27 20:34 UTC — autonomous non-GPU governance/billing continuation
+
+User reiterated autonomous completion, GPU parked. Added signed metadata consumers
+for seven-family DQ reconciliation, deterministic context windows/loss, transitive
+rights/withdrawal, and native memory publication/source/closed-run checks. Wired
+native release gates and live certificate composition; query GET now rechecks
+current gates after awaited grounding. Added principal-only ledger-derived period
+billing, exact event-time terms/meter joins and duplicate/fractional-debit safeguards.
+These are metadata/control paths, NOT source-side processing or real live providers.
+
+New82 tests plus existing suite: **684backend passed,2pre-existing gated skips,
+0fail/errors;7frontend passed**. Scoped F lint passes. Desktop/mobile screenshot
+overflow empty; account menu opens at390px. Fixed pre-existing mobile header badge
+CSS while original prototype bytes remain unchanged. Initial protected-writer edits
+caught by invariant tests were removed exactly; retry backoff now lives in an
+unsealed additive adapter. No baseline/hash/URL assertions changed. Earlier503/TCP
+failures did not recur in final full run; payload-free diagnostics remain, without
+claiming every historical503 shares a proven root cause.
+
+No GPU/SSH, credential/seed/env/native-root change, native source fetch/model run,
+memory-byte effect, physical-host test or live certificate. No native providers
+configured. Positive native proofs are **SYNTHETIC/MOCKED** tests. All non-GPU work
+is NOT complete: genuine source/answer/delivery/DQ/memory/recall, broader commercial/
+Watch/witness and original source/supplemental audit closure remain. Report49 and
+resolution; final `test_reports/pytest/non_gpu_governance_final.{xml,log}`.
+
 ## 2026-09-27 18:49 UTC — non-GPU query/custody flows and work evidence
 
 Latest user scope: everything except GPU; explicit confirmation received. No GPU

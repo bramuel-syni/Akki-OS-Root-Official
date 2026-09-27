@@ -9,7 +9,7 @@ import inspect
 import re
 from dataclasses import dataclass
 from services.activation.receipts import NativeReceipts
-from services.activation.native_evidence import NativeEvidence
+from services.non_gpu_governance.certificates import GovernedNativeEvidence
 from services.activation.decisions import LedgerActivationDecisions
 from services.activation.bounded_adapter import BoundedEngineAdapter
 from services.northena.execution_bindings import ExecutionBindings
@@ -76,7 +76,7 @@ async def install_runtime(app, db, environ):
             raise ValueError("Native providers must use the existing canonical ledger.")
         # Publish only the complete validated composition, never half of a binding.
         app.state.activation_receipts = runtime.receipts
-        app.state.activation_evidence = NativeEvidence(runtime.receipts)
+        app.state.activation_evidence = GovernedNativeEvidence(runtime.receipts)
         app.state.activation_evidence_timeout_seconds = runtime.evidence_timeout_seconds
         app.state.execution_bindings = runtime.bindings
         app.state.native_runtime = runtime

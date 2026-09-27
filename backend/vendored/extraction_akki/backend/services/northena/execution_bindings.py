@@ -65,7 +65,10 @@ def build_coordinator(db, bindings=None):
     from services.activation.worker_gate import WorkerLimitGate
     runtime_limits = (WorkerLimitGate(bindings.decisions.receipts)
                       if bindings and isinstance(bindings.decisions, LedgerActivationDecisions) else None)
+    from services.non_gpu_governance.gate import NativeGovernance
+    governance = (NativeGovernance(bindings.decisions.receipts, journal) if runtime_limits else None)
     return Coordinator(journal, authority, bindings.executors if bindings else {},
                        CanonicalRegistry(journal, authority, bindings.inspector if bindings else None),
                        usage_publisher=LedgerUsagePublisher(db, journal),
-                       eligibility=eligibility, handoffs=handoffs, runtime_limits=runtime_limits)
+                       eligibility=eligibility, handoffs=handoffs, runtime_limits=runtime_limits,
+                       governance=governance)

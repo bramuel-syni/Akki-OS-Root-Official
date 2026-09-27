@@ -1,5 +1,6 @@
 """Verified tenant prefix for control-plane consumers; no independent-head claim."""
 import re
+import logging
 from copy import deepcopy
 
 from contracts.ledger_v1 import LEDGER_ROW_FIELDS, LEDGER_SCHEMA_VERSION
@@ -40,18 +41,24 @@ def checked_event(event):
 
 
 async def load_verified_prefix(db, tenant_id):
+    stage = 'read'
     try:
         documents = await db[COLLECTION].find(
             {"row.tenant_id": tenant_id}, {"_id": 0}).sort("row.seq", 1).to_list(None)
+        stage = 'event_integrity'
         events = [checked_event(doc) for doc in documents]
         if any(event["row"]["tenant_id"] != tenant_id for event in events):
             raise ValueError("Tenant chain crossed.")
         commands = [event["command_id"] for event in events]
         if len(set(commands)) != len(commands):
             raise ValueError("Duplicate authoritative command.")
+        stage = 'chain_integrity'
         receipt = verify_chain(rows_in_seq_order=[decode_row(event["row"]) for event in events])
         if receipt.break_at_seq is not None:
             raise ValueError("Authoritative Ledger chain is incomplete or broken.")
         return events
+    except ValueError:
+        logging.getLogger(__name__).error('CONTROL_LEDGER_VERIFICATION_FAILED stage=%s', stage)
+        raise
     except (KeyError, TypeError, AttributeError, OverflowError) as exc:
         raise ValueError("Malformed authoritative Ledger prefix.") from exc

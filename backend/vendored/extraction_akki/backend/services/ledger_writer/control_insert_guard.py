@@ -3,6 +3,7 @@ from services.enforce.control_scope import require_control_scope
 from services.ledger_writer.mongo_control import COLLECTION
 from services.ledger_writer.control_commands import check_attribution
 from services.ledger_writer.control_integrity import checked_event
+from services.ledger_writer.contention_control import ContentionDB
 
 
 class _Collection:
@@ -26,7 +27,7 @@ class _Collection:
 
 class InsertGuard:
     def __init__(self, db, scope):
-        self._db, self._scope = db, scope
+        self._db, self._scope = ContentionDB(db), scope
 
     def __getitem__(self, collection):
         if collection != COLLECTION:

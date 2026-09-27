@@ -2,6 +2,7 @@
 import json
 from copy import deepcopy
 from typing import Literal
+from pydantic import model_validator
 from services.activation.evidence import EvidenceVerdict, CHECKS, reference_set
 from services.activation.schema import canonical_document
 from services.activation.approvals import approved_plan
@@ -10,11 +11,17 @@ from services.northena.execution_models import Frozen, Hash, Request, Held
 from services.ledger_writer.mongo_control import digest
 from services.activation.model_proofs import Grounding, Evaluation, Refusal, verify_model_proofs
 from services.custody_delivery.models import DeliveryProof
+from services.non_gpu_governance.quality import QualityPack, QualityRegister
+from services.non_gpu_governance.context import ContextWindow
+from services.non_gpu_governance.lineage import Lineage, Rights
+from services.non_gpu_governance.memory import MemoryEvidence
 
 
 class Observation(Frozen):
     category: Literal["skill_response", "delivery_grant", "delivery_completion", "anchor", "release", "inputs", "measurements", "manifest", "independence", "retrieval", "refusal",
-                      "revalidation", "acceptance", "runtime", "training", "evaluation", "skill"]
+                      "revalidation", "acceptance", "runtime", "training", "evaluation", "skill",
+                      "quality_policy", "quality_population", "quality_register", "context_policy",
+                      "context_window", "lineage", "rights", "memory", "memory_policy", "memory_publication"]
     context_sha256: Hash
     claim_sha256: Hash
     evidence_mode: Literal["measured", "MOCKED"]
@@ -26,6 +33,25 @@ class Observation(Frozen):
     evaluation: Evaluation | None = None
     refusal: Refusal | None = None
     delivery: DeliveryProof | None = None
+    quality_pack: QualityPack | None = None
+    quality_register: QualityRegister | None = None
+    context_window: ContextWindow | None = None
+    lineage: Lineage | None = None
+    rights: Rights | None = None
+    memory: MemoryEvidence | None = None
+
+    @model_validator(mode='after')
+    def typed_native_metadata(self):
+        fields = {'quality_policy': 'quality_pack', 'quality_register': 'quality_register',
+                  'context_window': 'context_window', 'lineage': 'lineage', 'rights': 'rights', 'memory': 'memory'}
+        field = fields.get(self.category)
+        if field is not None:
+            value = getattr(self, field)
+            if value is None or self.claim_sha256 != digest(value.model_dump(mode='json')):
+                raise ValueError('Native metadata category requires its exact committed typed claim.')
+        if any(getattr(self, name) is not None and name != field for name in set(fields.values())):
+            raise ValueError('Native metadata cannot be smuggled under another observation category.')
+        return self
 
 
 class CertificateSeal(Frozen):
