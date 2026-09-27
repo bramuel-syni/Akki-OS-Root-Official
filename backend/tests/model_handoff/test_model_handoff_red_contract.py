@@ -1,0 +1,893 @@
+"""RED-first tests for model handoff + eligibility architecture contract slice.
+
+These tests intentionally encode required behavior before runtime implementation.
+"""
+
+from __future__ import annotations
+
+import asyncio
+import copy
+import hashlib
+import importlib
+import json
+import os
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import pytest
+from pymongo.errors import DuplicateKeyError
+
+from contracts.principal_v1 import PrincipalKind, PrincipalV1
+from contracts.skill_provisioning_record_v0 import SkillProvisioningRecordV0
+from contracts.training_run_v0 import TrainingRunV0
+from services.enforce.control_scope import bind_control_scope
+from services.enforce.principal_context_adapter import principal_context
+from services.ledger_writer.mongo_control import digest
+from services.ledger_writer.principal_control import append_event
+from services.northena.execution_bindings import ExecutionBindings, build_coordinator
+from services.northena.execution_builders import evaluation_request, skill_request, training_request
+from services.northena.execution_component_models import Decision
+from services.northena.execution_models import Artifact, Authority, Held, Request, Usage, WorkerResult
+from services.northena.execution_ports import EngineAdapter
+from services.principal_store.store import Principal
+
+
+PINNED_HASHES = {
+    "/app/backend/vendored/extraction_akki/backend/contracts/handoff_contract.py": "c60d51c4aead4e8d9c003439f2496f30866abe948fb4970a7cc9a6bd32634ee4",
+    "/app/backend/vendored/extraction_akki/backend/services/mkondo/registry.py": "7c84d010ed1a5766852ecaefd9e9bdb16bf4b9cd6f6b1d08bb9e0e9041d2ba23",
+    "/app/backend/vendored/extraction_akki/backend/contracts/principal_v1.py": "4769c643157bac3a9595ff7124f3d0dd16368576143ae7445e1a8d02a872efe3",
+    "/app/backend/vendored/extraction_akki/backend/services/entitlement_service_v1/licence.py": "f457bef70cec1149ca80ed5f6a09c41e6bd35e8e253b67d58efc088d03b3a4c8",
+    "/app/backend/vendored/extraction_akki/backend/services/entitlement_service_v1/catalog.py": "96bf8bf6b7894ace364a2ee42f3b235e02df19a0598f65db590ac8155316c87c",
+    "/app/backend/vendored/extraction_akki/backend/services/mtafiti/execution_registry.py": "cd50d50d4a4818c4ea720f9f1ee2e44dd61465471f7e40ed6941f7abfb0dd350",
+    "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/principal_control.py": "3b9cecb51a72ee3c893e661fed7ce88e57b3cfd6326ec23f54d5cfa4811ba247",
+    "/app/frontend/public/prototype/dap_latest.html": "1b5f59d4e7eb22cfea166ec5119dae8503c9755fa21af00a264c7596085738bc",
+    "/app/frontend/public/prototype/v2_os.html": "9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199",
+}
+
+
+def _must_import(module_name: str):
+    try:
+        return importlib.import_module(module_name)
+    except ModuleNotFoundError as exc:
+        pytest.fail(f"Missing required module for this slice: {module_name}: {exc}")
+
+
+def _nested_get(doc: dict, key: str):
+    value = doc
+    for part in key.split("."):
+        if not isinstance(value, dict) or part not in value:
+            return object()
+        value = value[part]
+    return value
+
+
+def _matches(doc: dict, query: dict) -> bool:
+    for key, expected in query.items():
+        actual = _nested_get(doc, key)
+        if isinstance(expected, dict) and "$in" in expected:
+            if actual not in expected["$in"]:
+                return False
+        elif actual != expected:
+            return False
+    return True
+
+
+class _FakeCursor:
+    def __init__(self, docs: list[dict]):
+        self.docs = docs
+
+    def sort(self, key: str, direction: int):
+        reverse = direction < 0
+        self.docs = sorted(self.docs, key=lambda row: _nested_get(row, key), reverse=reverse)
+        return self
+
+    async def to_list(self, _limit):
+        return [copy.deepcopy(row) for row in self.docs]
+
+
+class _FakeCollection:
+    def __init__(self):
+        self.docs: list[dict] = []
+
+    async def create_index(self, *_args, **_kwargs):
+        return None
+
+    async def find_one(self, query: dict, projection: dict | None = None, sort=None):
+        rows = [row for row in self.docs if _matches(row, query)]
+        if not rows:
+            return None
+        if sort:
+            for key, direction in reversed(sort):
+                rows = sorted(rows, key=lambda row: _nested_get(row, key), reverse=direction < 0)
+        return copy.deepcopy(rows[0])
+
+    def find(self, query: dict, projection: dict | None = None):
+        rows = [row for row in self.docs if _matches(row, query)]
+        return _FakeCursor(rows)
+
+    async def insert_one(self, doc: dict):
+        tenant_id = doc["row"]["tenant_id"]
+        seq = doc["row"]["seq"]
+        command_id = doc["command_id"]
+        for row in self.docs:
+            if row["row"]["tenant_id"] == tenant_id and row["row"]["seq"] == seq:
+                raise DuplicateKeyError("duplicate tenant sequence")
+            if row["row"]["tenant_id"] == tenant_id and row["command_id"] == command_id:
+                raise DuplicateKeyError("duplicate command id")
+        self.docs.append(copy.deepcopy(doc))
+        return type("InsertResult", (), {"inserted_id": "fake-id"})()
+
+
+class _FakeDb(dict):
+    pass
+
+
+def _run_in_scope(principal_id: str, tenant_id: str, coro):
+    async def _runner():
+        with principal_context(principal_id):
+            with bind_control_scope({"principal_id": principal_id, "tenant_id": tenant_id}):
+                return await coro
+
+    return asyncio.run(_runner())
+
+
+def _principal_lookup():
+    principal = Principal(
+        PrincipalV1(
+            principal_id="principal-1",
+            kind=PrincipalKind.INDIVIDUAL,
+            legal_identity="principal-1",
+            trust_domain_identifier="td-1",
+            admission_time_mandate="synthetic-admission",
+            behavioural_signature_state="watch:baseline@admission",
+            parent_organisation_id="org-1",
+            autonomy_scope=None,
+            admit_authority=False,
+            suspended=False,
+        )
+    )
+    org = Principal(
+        PrincipalV1(
+            principal_id="org-1",
+            kind=PrincipalKind.ORGANISATION,
+            legal_identity="org-1",
+            trust_domain_identifier="td-1",
+            admission_time_mandate="synthetic-org-admission",
+            behavioural_signature_state="watch:baseline@admission",
+            parent_organisation_id=None,
+            autonomy_scope=None,
+            admit_authority=True,
+            suspended=False,
+        )
+    )
+    receivers = {
+        "receiver-principal-1": Principal(
+            PrincipalV1(
+                principal_id="receiver-principal-1",
+                kind=PrincipalKind.INDIVIDUAL,
+                legal_identity="receiver-principal-1",
+                trust_domain_identifier="td-1",
+                admission_time_mandate="synthetic-receiver-admission",
+                behavioural_signature_state="watch:baseline@admission",
+                parent_organisation_id="org-1",
+                autonomy_scope=None,
+                admit_authority=False,
+                suspended=False,
+            )
+        ),
+        "rx-skill": Principal(
+            PrincipalV1(
+                principal_id="rx-skill",
+                kind=PrincipalKind.INDIVIDUAL,
+                legal_identity="rx-skill",
+                trust_domain_identifier="td-1",
+                admission_time_mandate="synthetic-receiver-admission",
+                behavioural_signature_state="watch:baseline@admission",
+                parent_organisation_id="org-1",
+                autonomy_scope=None,
+                admit_authority=False,
+                suspended=False,
+            )
+        ),
+        "rx-training": Principal(
+            PrincipalV1(
+                principal_id="rx-training",
+                kind=PrincipalKind.INDIVIDUAL,
+                legal_identity="rx-training",
+                trust_domain_identifier="td-1",
+                admission_time_mandate="synthetic-receiver-admission",
+                behavioural_signature_state="watch:baseline@admission",
+                parent_organisation_id="org-1",
+                autonomy_scope=None,
+                admit_authority=False,
+                suspended=False,
+            )
+        ),
+        "rx-evaluation": Principal(
+            PrincipalV1(
+                principal_id="rx-evaluation",
+                kind=PrincipalKind.INDIVIDUAL,
+                legal_identity="rx-evaluation",
+                trust_domain_identifier="td-1",
+                admission_time_mandate="synthetic-receiver-admission",
+                behavioural_signature_state="watch:baseline@admission",
+                parent_organisation_id="org-1",
+                autonomy_scope=None,
+                admit_authority=False,
+                suspended=False,
+            )
+        ),
+    }
+
+    admitted = {
+        "principal-1": principal,
+        "org-1": org,
+        **receivers,
+    }
+
+    def _lookup(pid):
+        if pid not in admitted:
+            raise KeyError(pid)
+        return admitted[pid]
+
+    return _lookup
+
+
+def _seed_entitlements(db, *, tenant_id: str, principal_id: str):
+    now = datetime.now(timezone.utc)
+    period_start = (now - timedelta(days=1)).isoformat()
+    period_end = (now + timedelta(days=1)).isoformat()
+    payloads = [
+        (
+            "principal_membership",
+            {
+                "principal_id": principal_id,
+                "status": "active",
+                "organisation_principal_id": "org-1",
+                "admission_receipt_ref": "synthetic://owner-admission/membership",
+                "ceremony_receipt_ref": "synthetic://ceremony/membership",
+            },
+        ),
+        (
+            "entitlement_licence",
+            {
+                "licence": {
+                    "plan_identifier": "plan-v1",
+                    "organisation_principal_id": "org-1",
+                    "seat_count": 10,
+                    "compute_dial": "managed",
+                    "frontier_dial": "managed",
+                    "credits_per_seat_per_period": 100,
+                    "pooled_credits_flag": True,
+                    "seat_soft_limit": 8,
+                    "organisation_ceiling": 1000,
+                    "period": "month",
+                    "renewal_date": (now + timedelta(days=30)).isoformat(),
+                    "status": "active",
+                    "terms_identifier": "terms://dispatch/v1",
+                    "agent_count": None,
+                },
+                "period_start": period_start,
+                "period_end": period_end,
+                "period_iso": "2026-02",
+                "admission_receipt_ref": "synthetic://owner-admission/licence",
+                "ceremony_receipt_ref": "synthetic://ceremony/licence",
+            },
+        ),
+        (
+            "entitlement_catalog",
+            {
+                "organisation_principal_id": "org-1",
+                "catalog_row": {
+                    "model_identifier": "model://northena/customer-model",
+                    "access_class": "customer_model",
+                    "status": "listed",
+                    "residency": "za",
+                    "credit_rate": None,
+                },
+                "ceremony_receipt_ref": "synthetic://ceremony/catalog",
+            },
+        ),
+    ]
+
+    for idx, (resource_type, payload) in enumerate(payloads, start=1):
+        command_id = digest({"seed": resource_type, "idx": idx, "principal": principal_id, "payload": payload})
+        _run_in_scope(
+            principal_id,
+            tenant_id,
+            append_event(
+                db,
+                tenant_id=tenant_id,
+                run_id=f"seed-{resource_type}",
+                command_id=command_id,
+                event_type=f"entitlement.{resource_type}.recorded",
+                resource_type=resource_type,
+                decision="recorded",
+                reason_code="SYNTHETIC_TEST_SEED",
+                payload=payload,
+            ),
+        )
+
+
+class _SyntheticDecisions:
+    async def resolve(self, request, _phase, principal, _view):
+        model_identifier = None
+        access_class = None
+        if request.kind in {"skill", "training", "evaluation"}:
+            model_identifier = "model://northena/customer-model"
+            access_class = "customer_model"
+        return Decision(
+            authority=Authority(
+                authority_ref=f"auth://{request.request_id}",
+                request_sha256=request.digest(),
+                tenant_id=request.tenant_id,
+                principal_id=principal.principal_id,
+                scope_refs=request.scope_refs,
+                engine=request.engine,
+                expires_epoch=4_102_444_800,
+                terms_ref="terms://dispatch/v1",
+                policy_epoch=1,
+            ),
+            catalog_model_identifier=model_identifier,
+            catalog_access_class=access_class,
+        )
+
+
+class _SyntheticInspector:
+    async def inspect(self, request, result, operation_key):
+        models = _must_import("services.mtafiti.execution_record_models")
+        registry_models = _must_import("contracts.asset_registry")
+        record = registry_models.AssetRegistryRecord(
+            asset_ref=result.artifacts[0].ref,
+            asset_class=registry_models.AssetClass.ARTIFACT,
+            named_owner=registry_models.NamedOwner(
+                owner_id="org-1", owner_class="organisation", mandate_source="SYNTHETIC"
+            ),
+            custody_class=registry_models.CustodyClass.OPEN,
+            freshness_stamp=_must_import("contracts.mtafiti_registry").FreshnessStamp(
+                logged_date="2026-02-01T00:00:00+00:00", structural_signature=None
+            ),
+        )
+        entry = models.InspectionEntry(artifact=result.artifacts[0], record=record)
+        return models.InspectorReceipt(
+            request_sha256=request.digest(),
+            operation_key=operation_key,
+            worker_receipt_ref=result.receipt_ref,
+            inspection_ref="inspect://1",
+            evidence_mode="measured",
+            entries=(entry,),
+        )
+
+
+class _SyntheticRpc:
+    def __init__(self, receiver_by_kind: dict[str, str] | None = None):
+        self.receiver_by_kind = receiver_by_kind or {}
+
+    def _executor_id(self, request):
+        return self.receiver_by_kind.get(request.kind, f"exec-{request.kind}-target")
+
+    async def submit(self, request, operation_key, fence, _authority):
+        return WorkerResult(
+            operation_key=operation_key,
+            request_sha256=request.digest(),
+            executor_id=self._executor_id(request),
+            fence=fence,
+            state="accepted",
+            receipt_ref="akki://receipt/submit/native",
+            artifacts=(),
+            usage=None,
+            evidence_mode="measured",
+        )
+
+    async def delivery(self, packet):
+        return WorkerResult(
+            operation_key=packet.operation_key,
+            request_sha256=packet.request.digest(),
+            executor_id=packet.binding.receiver_principal_id,
+            fence=packet.fence,
+            state="accepted",
+            receipt_ref="akki://receipt/delivery/native",
+            artifacts=(),
+            usage=None,
+            evidence_mode="measured",
+        )
+
+    async def status(self, request, operation_key, fence):
+        class_label = request.result_floor or "non_factual"
+        return WorkerResult(
+            operation_key=operation_key,
+            request_sha256=request.digest(),
+            executor_id=self._executor_id(request),
+            fence=fence,
+            state="complete",
+            receipt_ref="akki://receipt/status/native",
+            artifacts=(
+                Artifact(
+                    ref=f"akki://artifact/{request.request_id}",
+                    sha256="b" * 64,
+                    size_bytes=12,
+                    tenant_id=request.tenant_id,
+                    class_label=class_label,
+                ),
+            ),
+            usage=(Usage(unit="tokens", quantity="7"),),
+            evidence_mode="measured",
+        )
+
+    async def cancel(self, request, operation_key, fence):
+        return WorkerResult(
+            operation_key=operation_key,
+            request_sha256=request.digest(),
+            executor_id=self._executor_id(request),
+            fence=fence,
+            state="cancelled",
+            receipt_ref="akki://receipt/cancel/native",
+            artifacts=(),
+            usage=(Usage(unit="tokens", quantity="0"),),
+            evidence_mode="measured",
+        )
+
+
+def _skill_request() -> Request:
+    provisioning = SkillProvisioningRecordV0(
+        skill_id="skill-1",
+        corpus_slice_ref="akki://corpus/slice-1",
+        key_grant_id="grant-1",
+        floor="non_factual",
+        scope="scope://skill",
+        endpoint_path="/api/callable_skill/skill-1/query",
+        provisioned_at="2026-01-01T00:00:00+00:00",
+        revoked_at=None,
+    )
+    return skill_request(
+        provisioning,
+        request_id="req-native-skill",
+        tenant_id="DIGICOW",
+        principal_id="principal-1",
+        query_ref="akki://query/q1",
+        query_sha256="d" * 64,
+        deadline_epoch=4_102_444_800,
+    )
+
+
+def _training_request() -> Request:
+    run = TrainingRunV0(
+        run_id="req-native-training",
+        recipe_version="training_params@v0/r1",
+        base_model_id="base-1",
+        adapter_kind="lora",
+        material_admit_ref="admit-1",
+        ssh_mode="mock",
+        status="admitted",
+        started_at="2026-01-01T00:00:00+00:00",
+    )
+    return training_request(
+        run,
+        tenant_id="DIGICOW",
+        principal_id="principal-1",
+        corpus_manifest_ref="akki://corpus/manifest-a",
+        moac_criteria_ref="akki://moac/criteria-a",
+        scope_refs=["scope://training"],
+        deadline_epoch=4_102_444_800,
+    )
+
+
+def _evaluation_request() -> Request:
+    return evaluation_request(
+        request_id="req-native-eval",
+        tenant_id="DIGICOW",
+        principal_id="principal-1",
+        model_artifact_ref="akki://model/a",
+        heldout_manifest_ref="akki://heldout/a",
+        moac_criteria_ref="akki://moac/a",
+        scope_refs=["scope://eval"],
+        deadline_epoch=4_102_444_800,
+    )
+
+
+# Module/feature: pin sealed handoff/Mkondo + principal/licence/catalogue/registry/Ledger/prototypes before runtime edits.
+def test_prechange_immutable_hash_pins_are_stable():
+    assert len(PINNED_HASHES) == 9
+    for path, expected in PINNED_HASHES.items():
+        current = hashlib.sha256(Path(path).read_bytes()).hexdigest()
+        assert current == expected
+
+
+# Module/feature: Eligibility receipt/input gate contract must be strict, frozen, purpose-bound and Akki-handle based.
+def test_execution_eligibility_contract_and_basis_slots_required():
+    mod = _must_import("services.northena.execution_eligibility")
+    fields = tuple(mod.EligibilityReceipt.model_fields.keys())
+    assert fields == (
+        "request_sha256",
+        "input_refs",
+        "scope_refs",
+        "purpose",
+        "policy_ref",
+        "rule_pack_refs",
+        "snapshot_refs",
+        "decision_ref",
+        "disposition",
+        "reason_code",
+        "expires_epoch",
+        "evidence_mode",
+    )
+
+    receipt = mod.EligibilityReceipt(
+        request_sha256="a" * 64,
+        input_refs=("akki://input/1",),
+        scope_refs=("scope://skill",),
+        purpose="skill_context",
+        policy_ref="akki://policy/1",
+        rule_pack_refs=("akki://pack/1",),
+        snapshot_refs=("akki://snapshot/1",),
+        decision_ref="akki://decision/1",
+        disposition="eligible",
+        reason_code="ELIGIBLE",
+        expires_epoch=4_102_444_800,
+        evidence_mode="measured",
+    )
+    assert receipt.disposition == "eligible"
+    with pytest.raises(Exception):
+        receipt.disposition = "ineligible"
+
+
+# Module/feature: EngineAdapter keeps legacy RPCs and adds explicit delivery RPC with strict measured-only binding checks.
+def test_engine_adapter_delivery_rpc_contract_and_no_fallback_submit():
+    mod = _must_import("services.northena.execution_ports")
+    names = tuple(mod.EngineAdapter.__dataclass_fields__.keys())
+    assert names == (
+        "kind",
+        "engine",
+        "submit_rpc",
+        "status_rpc",
+        "cancel_rpc",
+        "timeout_seconds",
+        "delivery_rpc",
+    )
+    assert hasattr(mod.EngineAdapter, "submit_delivery")
+
+
+# Module/feature: ExecutionBindings/production composition must install eligibility+handoff gates with finite timeout policy.
+def test_execution_bindings_and_build_coordinator_enforce_gate_installation_contract():
+    bindings_fields = tuple(ExecutionBindings.__dataclass_fields__.keys())
+    assert bindings_fields == (
+        "decisions",
+        "inspector",
+        "executors",
+        "eligibility",
+        "handoffs",
+        "gate_timeout_seconds",
+    )
+
+    composition = _must_import("services.northena.execution_composition")
+    assert hasattr(composition, "build_production_coordinator")
+
+
+# Module/feature: Mkondo delivery packet must be metadata-only strict cross-binding (no payload/credentials/raw bytes).
+def test_mkondo_execution_delivery_models_and_receiver_task_id_contract():
+    delivery = _must_import("services.mkondo.execution_delivery")
+    assert tuple(delivery.ReceiverBinding.model_fields.keys()) == (
+        "request_sha256",
+        "authority_ref",
+        "operation_key",
+        "receiver_principal_id",
+        "receiver_app",
+        "receiver_role",
+        "receiver_task_id",
+        "scope_refs",
+        "shape_sha256",
+        "mandate_ref",
+        "expires_epoch",
+        "evidence_mode",
+    )
+    assert tuple(delivery.HandoffAck.model_fields.keys()) == (
+        "handoff_id",
+        "contract_sha256",
+        "request_sha256",
+        "operation_key",
+        "fence",
+        "receiver_principal_id",
+        "receiver_task_id",
+        "scope_refs",
+        "shape_sha256",
+        "receipt_ref",
+        "expires_epoch",
+        "evidence_mode",
+    )
+
+    rid = delivery.receiver_task_id("req-native-skill", "op-1", "receiver-1")
+    assert rid.startswith("rx_")
+    assert rid != "req-native-skill"
+
+
+# Module/feature: native Mkondo handoff requires explicit HANDOFF_CONTRACTS_DIR and appends canonical handoff/ack before send.
+def test_mkondo_handoff_explicit_dir_and_pre_send_ack_projection_order(tmp_path, monkeypatch):
+    handoff_mod = _must_import("services.mkondo.execution_handoff")
+    eligibility_mod = _must_import("services.northena.execution_eligibility")
+    delivery_mod = _must_import("services.mkondo.execution_delivery")
+    if "HANDOFF_CONTRACTS_DIR" in os.environ:
+        monkeypatch.delenv("HANDOFF_CONTRACTS_DIR", raising=False)
+
+    db = _FakeDb({"ledger_v1_control_events": _FakeCollection()})
+    request = _skill_request()
+    _seed_entitlements(db, tenant_id=request.tenant_id, principal_id=request.principal_id)
+    rpc = _SyntheticRpc({"skill": "receiver-principal-1"})
+    adapter = EngineAdapter(
+        "skill", "solva", rpc.submit, rpc.status, rpc.cancel, timeout_seconds=1.0, delivery_rpc=rpc.delivery
+    )
+
+    class _EligibilityProvider:
+        async def evaluate(self, request, purpose, phase):
+            return eligibility_mod.EligibilityReceipt(
+                request_sha256=request.digest(),
+                input_refs=request.input_refs,
+                scope_refs=request.scope_refs,
+                purpose=purpose,
+                policy_ref="akki://policy/model-input/1",
+                rule_pack_refs=("akki://pack/input/1",),
+                snapshot_refs=("akki://snapshot/input/1",),
+                decision_ref="akki://decision/input/1",
+                disposition="eligible",
+                reason_code="ELIGIBLE",
+                expires_epoch=4_102_444_800,
+                evidence_mode="measured",
+            )
+
+    class _Provider:
+        async def receiver(self, request, grant, operation_key, fence):
+            return delivery_mod.ReceiverBinding(
+                request_sha256=request.digest(),
+                authority_ref=grant.authority_ref,
+                operation_key=operation_key,
+                receiver_principal_id="receiver-principal-1",
+                receiver_app="mkondo",
+                receiver_role="worker",
+                receiver_task_id=delivery_mod.receiver_task_id(
+                    request.request_id, operation_key, "receiver-principal-1"
+                ),
+                scope_refs=request.scope_refs,
+                shape_sha256=delivery_mod.shape_sha256(request),
+                mandate_ref="akki://mandate/1",
+                expires_epoch=4_102_444_800,
+                evidence_mode="measured",
+            )
+
+        async def acknowledge(self, request, contract, binding, operation_key, fence):
+            return delivery_mod.HandoffAck(
+                handoff_id=contract.handoff_id,
+                contract_sha256=digest(contract.model_dump(mode="json")),
+                request_sha256=request.digest(),
+                operation_key=operation_key,
+                fence=fence,
+                receiver_principal_id=binding.receiver_principal_id,
+                receiver_task_id=binding.receiver_task_id,
+                scope_refs=request.scope_refs,
+                shape_sha256=binding.shape_sha256,
+                receipt_ref="akki://ack/1",
+                expires_epoch=4_102_444_800,
+                evidence_mode="measured",
+            )
+
+    with pytest.raises(Held):
+        handoff_mod.MkondoHandoff(journal=None, authority=None, provider=_Provider(), timeout_seconds=1.0)
+
+    monkeypatch.setenv("HANDOFF_CONTRACTS_DIR", str(tmp_path / "handoff_contracts"))
+    missing_gate_bindings = ExecutionBindings(
+        decisions=_SyntheticDecisions(),
+        inspector=_SyntheticInspector(),
+        executors={"skill": adapter},
+        eligibility=None,
+        handoffs=handoff_mod.MkondoHandoff(journal=None, authority=None, provider=_Provider(), timeout_seconds=1.0),
+        gate_timeout_seconds=1.0,
+    )
+    missing_gate_coordinator = build_coordinator(db, missing_gate_bindings)
+    missing_gate_coordinator.authority.principal_lookup = _principal_lookup()
+    held = _run_in_scope(request.principal_id, request.tenant_id, missing_gate_coordinator.advance(request))
+    assert held.phase == "held"
+    assert held.reason_code == "INPUT_ELIGIBILITY_NOT_BOUND"
+
+    bindings = ExecutionBindings(
+        decisions=_SyntheticDecisions(),
+        inspector=_SyntheticInspector(),
+        executors={"skill": adapter},
+        eligibility=eligibility_mod.InputEligibility(journal=None, provider=_EligibilityProvider(), timeout_seconds=1.0),
+        handoffs=handoff_mod.MkondoHandoff(journal=None, authority=None, provider=_Provider(), timeout_seconds=1.0),
+        gate_timeout_seconds=1.0,
+    )
+    coordinator = build_coordinator(db, bindings)
+    coordinator.authority.principal_lookup = _principal_lookup()
+    _run_in_scope(request.principal_id, request.tenant_id, coordinator.advance(request))
+
+    rows = _run_in_scope(request.principal_id, request.tenant_id, coordinator.journal.read(request))
+    slots = [row["slot"] for row in rows]
+    assert "handoff" in slots
+    assert "handoff_ack" in slots
+    assert "send" in slots
+    assert slots.index("handoff") < slots.index("handoff_ack") < slots.index("send")
+
+
+# Module/feature: positive native trajectories for skill/training/evaluation include eligibility + handoff outbox gates before effect.
+@pytest.mark.parametrize("builder", [_skill_request, _training_request, _evaluation_request])
+def test_native_skill_training_eval_trajectories_with_eligibility_and_handoff_outbox(builder, tmp_path, monkeypatch):
+    eligibility_mod = _must_import("services.northena.execution_eligibility")
+    handoff_mod = _must_import("services.mkondo.execution_handoff")
+
+    request = builder()
+    db = _FakeDb({"ledger_v1_control_events": _FakeCollection()})
+    _seed_entitlements(db, tenant_id=request.tenant_id, principal_id=request.principal_id)
+    monkeypatch.setenv("HANDOFF_CONTRACTS_DIR", str(tmp_path / "handoff_contracts"))
+
+    class _EligibilityProvider:
+        async def evaluate(self, request, purpose, phase):
+            return eligibility_mod.EligibilityReceipt(
+                request_sha256=request.digest(),
+                input_refs=request.input_refs,
+                scope_refs=request.scope_refs,
+                purpose=purpose,
+                policy_ref="akki://policy/model-input/1",
+                rule_pack_refs=("akki://pack/input/1",),
+                snapshot_refs=("akki://snapshot/input/1",),
+                decision_ref="akki://decision/input/1",
+                disposition="eligible",
+                reason_code="ELIGIBLE",
+                expires_epoch=4_102_444_800,
+                evidence_mode="measured",
+            )
+
+    class _HandoffProvider:
+        async def receiver(self, request, grant, operation_key, fence):
+            delivery = _must_import("services.mkondo.execution_delivery")
+            return delivery.ReceiverBinding(
+                request_sha256=request.digest(),
+                authority_ref=grant.authority_ref,
+                operation_key=operation_key,
+                receiver_principal_id=f"rx-{request.kind}",
+                receiver_app="mkondo",
+                receiver_role="worker",
+                receiver_task_id=delivery.receiver_task_id(request.request_id, operation_key, f"rx-{request.kind}"),
+                scope_refs=request.scope_refs,
+                shape_sha256=delivery.shape_sha256(request),
+                mandate_ref="akki://mandate/native/1",
+                expires_epoch=4_102_444_800,
+                evidence_mode="measured",
+            )
+
+        async def acknowledge(self, request, contract, binding, operation_key, fence):
+            delivery = _must_import("services.mkondo.execution_delivery")
+            return delivery.HandoffAck(
+                handoff_id=contract.handoff_id,
+                contract_sha256=digest(contract.model_dump(mode="json")),
+                request_sha256=request.digest(),
+                operation_key=operation_key,
+                fence=fence,
+                receiver_principal_id=binding.receiver_principal_id,
+                receiver_task_id=binding.receiver_task_id,
+                scope_refs=request.scope_refs,
+                shape_sha256=binding.shape_sha256,
+                receipt_ref="akki://ack/native/1",
+                expires_epoch=4_102_444_800,
+                evidence_mode="measured",
+            )
+
+    rpc = _SyntheticRpc({request.kind: f"rx-{request.kind}"})
+    adapter = EngineAdapter(
+        request.kind,
+        request.engine,
+        rpc.submit,
+        rpc.status,
+        rpc.cancel,
+        timeout_seconds=1.0,
+        delivery_rpc=rpc.delivery,
+    )
+    bindings = ExecutionBindings(
+        decisions=_SyntheticDecisions(),
+        inspector=_SyntheticInspector(),
+        executors={(request.kind, request.engine): adapter},
+        eligibility=eligibility_mod.InputEligibility(journal=None, provider=_EligibilityProvider(), timeout_seconds=1.0),
+        handoffs=handoff_mod.MkondoHandoff(journal=None, authority=None, provider=_HandoffProvider(), timeout_seconds=1.0),
+        gate_timeout_seconds=1.0,
+    )
+    coordinator = build_coordinator(db, bindings)
+    coordinator.authority.principal_lookup = _principal_lookup()
+
+    view = _run_in_scope(request.principal_id, request.tenant_id, coordinator.advance(request))
+    assert view.phase == "ready"
+    assert view.evidence_mode == "measured"
+
+    rows = _run_in_scope(request.principal_id, request.tenant_id, coordinator.journal.read(request))
+    slots = [row["slot"] for row in rows]
+    assert any(slot == "eligibility" for slot in slots)
+    assert any(slot.startswith("eligibility_check:") for slot in slots)
+    assert "handoff" in slots and "handoff_ack" in slots and "send" in slots
+    assert slots.index("eligibility") < slots.index("handoff") < slots.index("handoff_ack") < slots.index("send")
+    assert slots.count("send") == 1
+
+
+# Module/feature: pre-send failure/restart, cancel/send race, stale receiver identity and legacy dispatch marker must stay conservative.
+def test_send_slot_recovery_cancel_race_and_legacy_dispatch_status_only(monkeypatch):
+    _ = _must_import("services.mkondo.execution_delivery")
+    coordinator_mod = _must_import("services.northena.execution_coordinator")
+
+    request = Request(
+        request_id="req-legacy-ambiguous",
+        tenant_id="DIGICOW",
+        principal_id="principal-1",
+        kind="source",
+        engine="mtafiti",
+        objective_sha256="a" * 64,
+        input_refs=("akki://source/rms_mysql",),
+        scope_refs=("rms_mysql",),
+        deadline_epoch=4_102_444_800,
+    )
+    db = _FakeDb({"ledger_v1_control_events": _FakeCollection()})
+    _seed_entitlements(db, tenant_id=request.tenant_id, principal_id=request.principal_id)
+
+    class _RecordingRpc(_SyntheticRpc):
+        def __init__(self):
+            super().__init__()
+            self.submit_calls = 0
+
+        async def submit(self, request, operation_key, fence, _authority):
+            self.submit_calls += 1
+            return await super().submit(request, operation_key, fence, _authority)
+
+        async def status(self, request, operation_key, fence):
+            return WorkerResult(
+                operation_key=operation_key,
+                request_sha256=request.digest(),
+                executor_id=self._executor_id(request),
+                fence=fence,
+                state="unknown",
+                receipt_ref="akki://receipt/status/legacy-unknown",
+                artifacts=(),
+                usage=None,
+                evidence_mode="measured",
+            )
+
+    rpc = _RecordingRpc()
+    adapter = EngineAdapter("source", "mtafiti", rpc.submit, rpc.status, rpc.cancel, timeout_seconds=1.0)
+    bindings = ExecutionBindings(decisions=_SyntheticDecisions(), inspector=_SyntheticInspector(), executors={"source": adapter})
+    coordinator = build_coordinator(db, bindings)
+    coordinator.authority.principal_lookup = _principal_lookup()
+
+    legacy_dispatch = {
+        "operation_key": "op-legacy",
+        "request_sha256": request.digest(),
+        "action": "submit",
+        "authority": Authority(
+            authority_ref="auth://legacy",
+            request_sha256=request.digest(),
+            tenant_id=request.tenant_id,
+            principal_id=request.principal_id,
+            scope_refs=request.scope_refs,
+            engine=request.engine,
+            expires_epoch=4_102_444_800,
+            terms_ref="terms://dispatch/v1",
+            policy_epoch=1,
+        ).model_dump(mode="json"),
+    }
+    _run_in_scope(request.principal_id, request.tenant_id, coordinator.journal.append(request, "dispatch", legacy_dispatch))
+    view = _run_in_scope(request.principal_id, request.tenant_id, coordinator.advance(request))
+    assert view.phase == "unknown"
+    assert view.reason_code == "EXECUTOR_UNKNOWN"
+    assert rpc.submit_calls == 0
+
+    async def _race():
+        return await asyncio.gather(
+            _run_cancel(),
+            _run_advance(),
+        )
+
+    async def _run_cancel():
+        with principal_context(request.principal_id):
+            with bind_control_scope({"principal_id": request.principal_id, "tenant_id": request.tenant_id}):
+                return await coordinator.cancel(request)
+
+    async def _run_advance():
+        with principal_context(request.principal_id):
+            with bind_control_scope({"principal_id": request.principal_id, "tenant_id": request.tenant_id}):
+                return await coordinator.advance(request)
+
+    pair = asyncio.run(_race())
+    assert len(pair) == 2
+    assert rpc.submit_calls <= 1

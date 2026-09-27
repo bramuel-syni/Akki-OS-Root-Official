@@ -13,13 +13,26 @@ from services.northena.execution_models import Held, RunView, WorkerResult, Usag
 from services.northena.execution_validation import authority_for, result_for
 from services.northena.execution_completion import complete, meter, terminal
 from services.northena.execution_component_models import Prepared
+from services.northena.execution_send import PROTOCOL, claim_send, cancel_unsent
 
 
 class Coordinator:
-    def __init__(self, journal, authority, executors, artifacts, clock=time.time, usage_publisher=None):
+    def __init__(self, journal, authority, executors, artifacts, clock=time.time, usage_publisher=None,
+                 eligibility=None, handoffs=None):
         self.journal, self.authority = journal, authority
         self.executors, self.artifacts, self.clock = dict(executors), artifacts, clock
         self.usage_publisher = usage_publisher
+        self.eligibility, self.handoffs = eligibility, handoffs
+
+    async def check_inputs(self, request, phase):
+        if self.eligibility is not None:
+            return await self.eligibility.check(request, phase)
+
+    async def release_gates(self, request, phase):
+        grant = await self.authorize(request, phase)
+        await self.check_inputs(request, phase)
+        if request.kind != "source" and self.handoffs is not None:
+            await self.handoffs.revalidate(request, grant)
 
     def executor_for(self, request):
         return self.executors.get((request.kind, request.engine), self.executors.get(request.kind))
@@ -67,9 +80,10 @@ class Coordinator:
         submitted = False
         if dispatch is None:
             grant, commercial = await self.prepare(request)
+            await self.check_inputs(request, "reserve")
             claim = {"operation_key": digest({"execution": request.request_id, "intent": request.digest()}),
                      "request_sha256": request.digest(), "nonce": uuid4().hex, "action": "submit",
-                     "authority": grant.model_dump(mode="json")}
+                     "authority": grant.model_dump(mode="json"), "protocol": PROTOCOL}
             if commercial is not None:
                 claim["commercial_snapshot"] = commercial
             try:
@@ -92,18 +106,18 @@ class Coordinator:
 
     async def _worker(self, request, executor, dispatch, submitted):
         key, fence = dispatch["data"]["operation_key"], dispatch["seq"]
+        submitted, packet = await claim_send(self, request, executor, dispatch)
         try:
             if submitted:
-                # Recheck after durable claim, before any external effect.
-                grant, commercial = await self.prepare(request)
-                if grant.model_dump(mode="json") != dispatch["data"]["authority"]:
-                    raise Held("AUTHORITY_CHANGED_BEFORE_DISPATCH")
-                if commercial != dispatch["data"].get("commercial_snapshot"):
-                    raise Held("COMMERCIAL_TERMS_CHANGED_BEFORE_DISPATCH")
-                current = await self.journal.read(request)
-                if any(row["slot"] in {"terminal", "cancel_intent"} for row in current):
-                    raise Held("CANCEL_OR_TERMINAL_BEFORE_DISPATCH")
-                result = result_for(request, await executor.submit(request, key, fence, grant), dispatch)
+                if packet is not None:
+                    value = await executor.submit_delivery(packet)
+                else:
+                    from services.northena.execution_models import Authority
+                    grant = Authority.model_validate_json(json.dumps(dispatch["data"]["authority"]))
+                    value = await executor.submit(request, key, fence, grant)
+                result = result_for(request, value, dispatch)
+                if request.kind != "source" and self.handoffs is not None:
+                    await self.handoffs.validate_result(request, result)
                 await self.bank_observation(request, result)
                 if result.state not in {"accepted", "running"}:
                     return result
@@ -127,6 +141,8 @@ class Coordinator:
 
     async def observe(self, request, result, dispatch):
         result = result_for(request, result, dispatch)
+        if request.kind != "source" and self.handoffs is not None:
+            await self.handoffs.validate_result(request, result)
         await self.bank_observation(request, result)
         if result.state == "complete":
             return await complete(self, request, result, dispatch)
@@ -152,11 +168,15 @@ class Coordinator:
                     dispatch = await self.journal.append(request, "dispatch", {
                         "action": "cancel", "request_sha256": request.digest(),
                         "operation_key": digest({"execution": request.request_id, "intent": request.digest()}),
+                        "protocol": PROTOCOL,
                     })
                 except CommandConflict:
                     dispatch = next(row for row in await self.journal.read(request) if row["slot"] == "dispatch")
             if dispatch["data"].get("action") == "cancel":
+                await cancel_unsent(self, request, dispatch)
                 return await terminal(self, request, "cancelled", "CANCELLED_BEFORE_DISPATCH", "unverified")
+            if await cancel_unsent(self, request, dispatch):
+                return await terminal(self, request, "cancelled", "CANCELLED_BEFORE_SEND", "unverified")
             await self.authorize(request, "cancel")
             executor = self.executor_for(request)
             if executor is None:
@@ -176,7 +196,7 @@ class Coordinator:
                 raise Held("VERIFIED_RESULT_NOT_AVAILABLE")
             data = final["data"]
             if data["phase"] == "ready":
-                await self.authorize(request, "retrieve")
+                await self.release_gates(request, "retrieve")
                 if hasattr(self.artifacts, "revalidate"):
                     await self.artifacts.revalidate(request, tuple(data["artifact_refs"]))
             return RunView(request_id=request.request_id, phase=data["phase"], reason_code=data["reason_code"],

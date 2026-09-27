@@ -2,7 +2,7 @@
 import time
 from contracts.principal_v1 import PrincipalKind, PrincipalV1
 from services.enforce.control_scope import require_control_scope
-from services.principal_store.store import get_principal
+from services.principal_store.store import get_principal, PrincipalRefusal
 from services.portal_operational.entitlements import read_view, LicencePortalView
 from services.entitlement_service_v1.chokepoint_resolver import resolve, ResolutionRefusal
 from services.northena.execution_models import Held
@@ -19,7 +19,7 @@ class ComponentAuthority:
         try:
             stored = self.principal_lookup(principal_id)
             value = PrincipalV1.model_validate({key: getattr(stored, key) for key in PrincipalV1.model_fields})
-        except (KeyError, ValueError, AttributeError, TypeError) as exc:
+        except (PrincipalRefusal, KeyError, ValueError, AttributeError, TypeError) as exc:
             raise Held("PRINCIPAL_NOT_ADMITTED") from exc
         if value.principal_id != principal_id or value.suspended:
             raise Held("PRINCIPAL_UNAVAILABLE")

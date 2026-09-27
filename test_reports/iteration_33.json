@@ -1,0 +1,44 @@
+{
+  "summary": "Backend-only validation completed for model-handoff architecture slice. Corrected invalid positive fixtures/assertions in tests (not runtime), then reran model_handoff + execution_spine + execution_components + portal_operational: 153/153 passing.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/model_handoff/test_model_handoff_red_contract.py",
+    "/app/backend/tests/execution_components/test_execution_usage_and_bindings_red.py",
+    "/app/test_reports/pytest/pytest_model_handoff_iteration33.xml",
+    "/app/test_reports/pytest/pytest_iteration33_components_spine_portal.xml",
+    "/app/test_reports/pytest/pytest_iteration33_full_backend_contract.xml"
+  ],
+  "action_items": [
+    "No runtime fixes required from this run.",
+    "Keep iteration33 fixture corrections as regression guardrails for native handoff and eligibility contracts."
+  ],
+  "critical_code_review_comments": [
+    "Fixed stale RED fixtures that previously masked real gate behavior: model kinds now select seeded catalogue model/access class; principal lookup now admits explicit distinct synthetic receivers and rejects unknown IDs.",
+    "Fixed native handoff positives to use strict runtime bindings: deterministic receiver_task_id, shape_sha256(request), ACK digest(contract.model_dump(mode=json)), explicit finite gate timeout, explicit async delivery_rpc, and receiver-bound executor identity.",
+    "Updated legacy binding contract assertion from 3-field shape to approved additive 6-field ExecutionBindings API.",
+    "Five-member acceptance evidence (exact tests): (1) skill flow: test_native_skill_training_eval_trajectories_with_eligibility_and_handoff_outbox[_skill_request]; (2) training flow: ...[_training_request]; (3) evaluation flow: ...[_evaluation_request]; (4) eligibility gate enforced + missing-gate negative retained: test_mkondo_handoff_explicit_dir_and_pre_send_ack_projection_order; (5) acknowledged handoff/send sequencing + no submit fallback semantics under legacy marker behavior: test_mkondo_handoff_explicit_dir_and_pre_send_ack_projection_order and test_send_slot_recovery_cancel_race_and_legacy_dispatch_status_only.",
+    "Limitations (honest): upstream decision/eligibility/receiver/ack/worker inputs are SYNTHETIC and ledger DB fixtures are FAKE; this validates native contract/runtime orchestration boundaries, not live provider/GPU/SSH connectivity or real external receiver infrastructure."
+  ],
+  "updated_files": [
+    "/app/backend/tests/model_handoff/test_model_handoff_red_contract.py",
+    "/app/backend/tests/execution_components/test_execution_usage_and_bindings_red.py",
+    "/app/test_reports/iteration_33.json"
+  ],
+  "success_rate": {
+    "backend": "100% (153/153)",
+    "frontend": "N/A (not requested in this review task)"
+  },
+  "seed_data_creation": "SYNTHETIC entitlement/principal fixtures only in isolated FAKE ledger DB test doubles; no live account/admission/provider changes.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Iteration33 corrected only test fixtures/assertions and reran all requested backend suites green. Runtime code under /vendored was not modified in this pass. Use pytest_iteration33_full_backend_contract.xml as the consolidated acceptance artifact.",
+  "rca of the issue": "Root cause of iteration32 RED breakage after runtime landed was stale tests: positives violated new fail-closed contracts (missing finite timeouts, missing eligibility gate, non-deterministic/incorrect handoff hashes, absent delivery_rpc, unresolved model-catalog selection, over-broad principal lookup fallback, and outdated 3-field bindings assertion). Mitigation applied by correcting fixtures to strict native contract inputs and preserving negative coverage without weakening runtime assertions."
+}

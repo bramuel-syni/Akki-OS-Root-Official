@@ -30,7 +30,7 @@ async def terminal(coordinator, request, phase, reason, mode, artifacts=()):
         event = next(item for item in await coordinator.journal.read(request) if item["slot"] == "terminal")
     value = event["data"]
     if value["phase"] == "ready":
-        await coordinator.authorize(request, "retrieve")
+        await coordinator.release_gates(request, "retrieve")
         if hasattr(coordinator.artifacts, "revalidate"):
             await coordinator.artifacts.revalidate(request, tuple(value["artifact_refs"]))
     return RunView(request_id=request.request_id, phase=value["phase"],
@@ -42,7 +42,7 @@ async def terminal(coordinator, request, phase, reason, mode, artifacts=()):
 async def complete(coordinator, request, result, dispatch):
     key = dispatch["data"]["operation_key"]
     try:
-        await coordinator.authorize(request, "verify")
+        await coordinator.release_gates(request, "verify")
         verified = checked_artifacts(request, result, await coordinator.artifacts.verify(request, result, key))
     except (Held, ValueError) as exc:
         # Failed eligibility/validation does not erase actual already-consumed work.
@@ -54,6 +54,6 @@ async def complete(coordinator, request, result, dispatch):
         "worker_receipt_ref": result.receipt_ref, "evidence_mode": result.evidence_mode,
     })
     await meter(coordinator, request, result, dispatch)
-    await coordinator.authorize(request, "publish")
+    await coordinator.release_gates(request, "publish")
     return await terminal(coordinator, request, "ready", "VERIFIED_RESULT_RECORDED",
                           result.evidence_mode, tuple(item.ref for item in verified))

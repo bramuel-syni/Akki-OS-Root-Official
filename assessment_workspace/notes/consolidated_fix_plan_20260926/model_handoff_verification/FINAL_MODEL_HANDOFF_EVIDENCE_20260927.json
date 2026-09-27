@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-27",
+  "scope": "Model-handoff architecture, five members; not live-element or platform completion",
+  "result": "GREEN",
+  "verification": {
+    "combined_tests": 227,
+    "model_handoff_tests": 84,
+    "prior_regressions": 143,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "runs": ["two pytest workers", "serial pytest -n 0"],
+    "junit": "/app/test_reports/pytest/pytest_model_handoff_final_20260927.xml",
+    "junit_sha256": "32e17be8bd73001e5c4ee367303db36dd6d4e600963b5c32e73c52df100c9ce8",
+    "serial_junit": "/app/test_reports/pytest/pytest_model_handoff_final_serial_20260927.xml",
+    "python_compile": "pass",
+    "diff_whitespace": "pass",
+    "ui": "Existing unchanged DAP shell desktop smoke only; not new visual acceptance"
+  },
+  "evidence_modes": {
+    "native_runtime": ["builders", "canonical Ledger kernels", "principal consumer", "licence/catalogue resolver", "Mtafiti writer", "usage consumer", "Mkondo native register/attest"],
+    "synthetic_mocked": ["operation decisions", "eligibility", "receiver selection and ACK", "worker results", "artifact inspector", "positive principal/admission/entitlement fixture inputs"],
+    "storage": "FAKE ledger DB for positive/fault/concurrency tests; native files in isolated temporary directories",
+    "warning": "Measured-shaped synthetic schemas are NOT real measurements, signatures, grants, experiment or source results"
+  },
+  "corrections": {
+    "iteration32": "Original invalid positive fixtures preserved; corrected explicit gates and bindings without relaxing runtime",
+    "iteration34": "Exact PrincipalRefusal mapped to Held; unrelated RuntimeError still propagates",
+    "iteration35": "Seven duplicate-delivery failures were double increment in child+parent test helper, not runtime repeat invocation. Original helper retained; exact single-call assertions preserved. Added after-send-commit BEFORE-RPC crash case; zero delivery, status-only unknown."
+  },
+  "protected_hashes_unchanged": {
+    "contracts/handoff_contract.py": "c60d51c4aead4e8d9c003439f2496f30866abe948fb4970a7cc9a6bd32634ee4",
+    "services/mkondo/registry.py": "7c84d010ed1a5766852ecaefd9e9bdb16bf4b9cd6f6b1d08bb9e0e9041d2ba23",
+    "contracts/principal_v1.py": "4769c643157bac3a9595ff7124f3d0dd16368576143ae7445e1a8d02a872efe3",
+    "services/entitlement_service_v1/licence.py": "f457bef70cec1149ca80ed5f6a09c41e6bd35e8e253b67d58efc088d03b3a4c8",
+    "services/entitlement_service_v1/catalog.py": "96bf8bf6b7894ace364a2ee42f3b235e02df19a0598f65db590ac8155316c87c",
+    "services/mtafiti/execution_registry.py": "cd50d50d4a4818c4ea720f9f1ee2e44dd61465471f7e40ed6941f7abfb0dd350",
+    "services/ledger_writer/principal_control.py": "3b9cecb51a72ee3c893e661fed7ce88e57b3cfd6326ec23f54d5cfa4811ba247",
+    "/app/frontend/public/prototype/dap_latest.html": "1b5f59d4e7eb22cfea166ec5119dae8503c9755fa21af00a264c7596085738bc",
+    "/app/frontend/public/prototype/v2_os.html": "9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199"
+  },
+  "runtime_base": "/app/backend/vendored/extraction_akki/backend",
+  "live_source_model_provider_gpu_ssh_calls": false,
+  "credential_account_environment_frontend_changes": false,
+  "production_status": "Fail-closed; actual authority/eligibility/receiver/ACK/worker/inspection producers unbound",
+  "next_actions": [
+    "Admitted producer and custody joins for bounded source-to-registry and complete request-result proof",
+    "P1 grounded warm answer and context-loss disclosure; broader DQ/entitlement consumers",
+    "P2 real experiments and remaining specialized journeys; preserve owner and AISCA holds"
+  ]
+}

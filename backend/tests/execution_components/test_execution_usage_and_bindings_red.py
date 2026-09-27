@@ -46,7 +46,14 @@ def test_execution_bindings_bundle_and_build_coordinator_surface():
     assert hasattr(mod, "build_coordinator")
 
     binding_fields = tuple(getattr(mod.ExecutionBindings, "__dataclass_fields__", {}).keys())
-    assert binding_fields == ("decisions", "inspector", "executors")
+    assert binding_fields == (
+        "decisions",
+        "inspector",
+        "executors",
+        "eligibility",
+        "handoffs",
+        "gate_timeout_seconds",
+    )
 
     build_parameters = tuple(inspect.signature(mod.build_coordinator).parameters.keys())
     assert build_parameters[:2] == ("db", "bindings")

@@ -1,5 +1,62 @@
 # Akki — continuity record
 
+## LATEST RESULT — acknowledged model handoffs, verified 2026-09-27
+
+Owner approved the surfaced continuation plan and said "continue". Implemented
+the five-member architecture slice: native skill/training/evaluation compositions,
+purpose-bound eligibility and acknowledged Mkondo outbox. Exact scope/result:
+`notes/consolidated_fix_plan_20260926/MODEL_HANDOFF_{CONTRACT,RESULT}_20260927.md`.
+
+New modules: `northena/execution_{gate_checks,eligibility,send}.py` and
+`mkondo/execution_{delivery,handoff,projection}.py`. Unsealed coordinator,
+completion, ports, bindings and composition integrate these gates. Native
+receiver resolves an existing distinct principal; no identity/context spoofing.
+Canonical envelope BEFORE native register/attest; exact contract-digest ACK BEFORE
+separate send slot. Explicit finite producer timeouts and HANDOFF_CONTRACTS_DIR;
+no env changes/fallback directory or legacy submit fallback for model deliveries.
+
+Dispatch reservation is recoverable before send. Send/cancel arbitrate one slot;
+committed-send ambiguity is status-only, even if crash preceded actual RPC.
+Worker stable-key reconciliation remains required; NOT exactly-once network
+delivery. Eligibility policy/pack/snapshot basis pinned and rechecked at send,
+verify/publish/retrieve; receiver identity/mandate and artifacts revalidated.
+Actual already-consumed usage survives output holds under original terms. Native
+PrincipalRefusal maps to Held, without catching unrelated RuntimeError or changing
+sealed principal/admission/auth logic. Source kind gains send arbitration, not
+invented model pricing or a claim of Clean material.
+
+Evidence: **227 pass / 0 fail / 0 skip twice**, parallel and serial; 84 model-handoff
+cases +143 prior scoped regressions. Final JUnit files in `test_reports/pytest/`
+named `pytest_model_handoff_final[_serial]_20260927.xml`; final manifest/logs in
+`notes/consolidated_fix_plan_20260926/model_handoff_verification/`. Nine protected
+hashes unchanged incl. both prototypes; Python compile/diff checks pass. Existing
+DAP desktop shell smoke passed; no frontend changes or new owner visual acceptance.
+
+Testing corrections are explicit: iteration32 original fixtures retained, then
+corrected catalogue/receiver/shape/ACK/eligibility/delivery/timeout inputs; gates
+not relaxed. Iteration34 caught real unknown-principal exception mapping, fixed.
+Iteration35's claimed duplicate delivery was a TEST counter incremented in both
+child and parent, not two runtime calls. Original retained; helper corrected,
+single-call assertions preserved. Added after-send-commit/before-RPC crash test.
+Earlier reports remain historical; final result supersedes current defect status.
+
+Positive upstream inputs **MOCKED/SYNTHETIC**, ledger DB FAKE; native kernel,
+registry/usage and file projection are real code exercised with fixtures.
+Measured-shaped receipt schemas are NOT real measurements/signatures/grants or
+live execution. Actual portal regressions prove existing held/auth/scope/replay
+behavior only. Production operation/eligibility/receiver/ACK/worker/inspection
+providers still unbound; live skill answers/training/evaluation remain unavailable.
+No source/model/provider/GPU/SSH calls, credentials/accounts/dependencies/config
+changes. No real Mongo failover, multi-host projection, performance or EX4/R37
+isolation claim; no full Mkondo/DQ/DAP/T14/platform closure. GPU stays PARKED.
+
+Next P0: admitted producer/custody joins and bounded source→registry→metered
+verified result→rights-gated retrieval proof, without substituting fixtures for
+admission. P1: genuine grounded warm-answer/context-loss path and broader
+DQ/entitlement consumers. P2: real experiments, audio/serving/withdrawal/transformed
+outputs. Owner EX/DQ/CC rulings remain held. Suggested enhancement: receipt-linked
+unmet prerequisites in the existing request drawer, preserving prototype fidelity.
+
 ## LATEST RESULT — native component binding, verified2026-09-27
 
 Owner requested “continue” under confirmed architecture-first/autonomous plan.

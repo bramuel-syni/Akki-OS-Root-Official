@@ -8,6 +8,10 @@ from services.northena.execution_bindings import build_coordinator
 from services.northena.execution_models import Held
 
 
+def build_production_coordinator(db, bindings=None):
+    return build_coordinator(db, bindings)
+
+
 class ExistingAuthorityBoundary(ComponentAuthority):
     """Compatibility name; now uses real typed principal/licence resolution."""
 

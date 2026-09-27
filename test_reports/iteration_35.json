@@ -1,0 +1,51 @@
+{
+  "summary": "Created and executed NEW model-handoff crash/restart acceptance tests (iteration35) focused on omitted fail-once before-send and restart durability scenarios; suite exposed repeated delivery replay defects on restart/concurrency paths.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.northena.execution_coordinator._worker / execution_send.claim_send",
+        "issue": "Restart after fail-once checkpoints (before eligibility/handoff/handoff_ack/send and after observation/terminal) re-invokes delivery RPC twice instead of exactly-once submit effect.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "services.northena.execution_coordinator.advance concurrent path",
+        "issue": "Strong duplicate-advance barrier test shows two delivery RPC calls under same operation key where exactly one initial effectful delivery is required.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/model_handoff/test_model_handoff_restart.py",
+    "/app/test_reports/pytest/pytest_model_handoff_restart_iteration35.xml",
+    "/app/test_reports/pytest/pytest_model_handoff_iteration35_combined.xml"
+  ],
+  "action_items": [
+    "Fix restart replay semantics so model delivery submit is not re-issued after crash points once operation key/fence are already committed.",
+    "Enforce exactly-one effectful delivery call across duplicate advance contenders at send-claim barrier.",
+    "Re-run: pytest /app/backend/tests/model_handoff/test_model_handoff_restart.py -v --tb=short --junitxml=/app/test_reports/pytest/pytest_model_handoff_restart_iteration35.xml"
+  ],
+  "critical_code_review_comments": [
+    "New restart suite correctly uses REAL build_coordinator over SAME fake ledger with NEW gate instances and same provider objects/adapters.",
+    "Status fixture in restart suite tracks actual delivery receipt (no fabricated completion for never-delivered operation keys).",
+    "Native principal mapping fix is validated: actual get_principal unknown receiver now maps to Held(PRINCIPAL_NOT_ADMITTED), while unrelated RuntimeError propagates."
+  ],
+  "updated_files": [
+    "/app/backend/tests/model_handoff/test_model_handoff_restart.py",
+    "/app/test_reports/iteration_35.json"
+  ],
+  "success_rate": {
+    "backend": "68.18% (15/22) on NEW restart suite; 91.57% (76/83) on combined regression",
+    "frontend": "N/A (explicitly skipped per request)"
+  },
+  "seed_data_creation": "SYNTHETIC-only entitlement/principal fixtures inside isolated FAKE ledger; no live seeding or credentials changes.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Seven failing cases are all in /app/backend/tests/model_handoff/test_model_handoff_restart.py and currently fail at assertions expecting exactly one delivery RPC call (observed=2). Other new mandatory areas (projection fail-before-call, projection crash-after-save restart attest, cancel-win source+model race, missing-principal native get_principal mapping, ACK tamper key/fence/task/scope/evidence_mode, pinned pack/snapshot, receiver-mandate drift) are passing.",
+  "rca of the issue": "Repro: run restart suite command above. Failure pattern: after fail-once checkpoints and in duplicate-advance barrier, delivery_rpc is invoked twice under same logical operation rather than status-only reconcile path. Mitigation direction: ensure post-commit restart and loser contenders never call delivery submit again once canonical send slot/fence is established; only bounded status reconciliation should run."
+}
