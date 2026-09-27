@@ -1,0 +1,107 @@
+{
+  "timestamp_utc": "2026-09-27T01:43:36.033802+00:00",
+  "scope": "First assembled metadata execution architecture; not whole-platform or live-element completion",
+  "denominator": 4,
+  "component_modes": {
+    "coordinator": "REAL implementation",
+    "journal": "REAL LedgerJournal with canonical emitter/writer/verifier",
+    "authority": "MOCKED",
+    "worker": "MOCKED",
+    "artifact_checker": "MOCKED",
+    "database": "FAKE isolated adapter; no architecture-success fixtures in production collections"
+  },
+  "common_trace_order": ["request", "dispatch", "observation:accepted", "observation:complete", "verify_artifact", "metered", "terminal"],
+  "rows": [
+    {
+      "kind": "source",
+      "request_sha256": "772688631d3238dda93fb90c36d9a5a7cf2182faae8b181dffbdc761c130330d",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "evidence_mode": "MOCKED",
+      "worker_submit_count": 1,
+      "terminal_phase": "ready",
+      "execution_verified": false,
+      "ledger_hashes_in_sequence": [
+        "d0f1addd4f0989ec3d4b451b5d1c2eb798fdadf303cefd672db92279e4ca22da",
+        "fc59879a170871ba38612a9c6d7f0f0de0390f022056b9d54146d8fd73ee3045",
+        "19f8203f41993964dd33272d5565d555bcb309e6ee1a8a11d39269f3623afe6c",
+        "6e276d776a2c4bb1ca6cb7a896cd9e2833298dfeb455813582d18809b518afd0",
+        "b9f632264688236ac347bd5b42b6c5d14eafa5aed4593ed48652dbed111a1b48",
+        "e4fe3fc70339f38705bad4d1eec933902fd94adc0edb7cd33205403ab0fc3eeb",
+        "8b1328d998944393b4f8eb3357e41aed1b0a137d59f3d2391544673cb91a3e11"
+      ]
+    },
+    {
+      "kind": "skill",
+      "request_sha256": "8540d7ba2c0cca7a46f3145df564f4a0f1e5f3ec20c4637a5e1d06fafec051c2",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "evidence_mode": "MOCKED",
+      "worker_submit_count": 1,
+      "terminal_phase": "ready",
+      "execution_verified": false,
+      "ledger_hashes_in_sequence": [
+        "34ae626cae0752ea38071ba0a9ce13332d0e8fb0f0349a6e1090af9c2e12b883",
+        "398e35c5463fecc2ac8060f1f260b6aba1db93d45e0c57ebb69c665a92ecc997",
+        "dc2383028435a7a0189cb42794c5960347168649a441c54be46f8d095098aa58",
+        "eee2b2a4d63caf509ad35fbbdd4307ec5412bce68412a6b25b3b49d6f7b5d350",
+        "799e469f5ebe220b455093601b25bd4345a96c9fc632913f9b4240804df3d1ee",
+        "894074edf3c0702de9c7179ce5a21d2f7439d342aa8b286daa22d6e731294190",
+        "6460a138303fc07ed86547f3e3f1fb858474944e29c33f11c7a901a2bc42996e"
+      ]
+    },
+    {
+      "kind": "training",
+      "request_sha256": "3193592fc4b67d1da47d0d74926b3082814b1e8711b33635ffa4065e343545b2",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "evidence_mode": "MOCKED",
+      "worker_submit_count": 1,
+      "terminal_phase": "ready",
+      "execution_verified": false,
+      "ledger_hashes_in_sequence": [
+        "d910361aee82adb6b054fa36447d3915d529d24182d1fb5fb22ad3a49b837a66",
+        "4459812170ccc75c883238510606b14b3d95c1574ddf72c16a89a3a05530e918",
+        "5f90f19eae9027da98ac22eea4f4f5cfd1397334d25a1595d8fa7f52e50de3f5",
+        "dcf5250710ac83b85eed9b78e6019834cd6c71c6126082dba313a8fa7b2ec906",
+        "cfda61ef94dfd50a5d06107ac28df55ab6e0000e44df77a536a873e69293cbea",
+        "6b61a9b1b615f8fabf39c81c347f26ab8e16b9ccd5cc3961e4219c47a0a97f01",
+        "389c1a8cd62168878620db2181af138fcf0631a5c946bf5781ea9bf19fef133b"
+      ]
+    },
+    {
+      "kind": "evaluation",
+      "request_sha256": "b8a84d5fd672d8f1e47766677de68c3e00e6c3e06f3e596fb7930eb024f5b6f0",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "evidence_mode": "MOCKED",
+      "worker_submit_count": 1,
+      "terminal_phase": "ready",
+      "execution_verified": false,
+      "ledger_hashes_in_sequence": [
+        "0479b08f31e6a05e79229aa6ea39f0c1118df3736865f78362f959743e867a1a",
+        "748597123e881f9fd4d88b1d9b4323c5ed5e0f8cd70d59ad66fc61153c6c8208",
+        "a66b1abebdaec4b27c91257f9a73fe9abb3e6078f94baedca8b9856b89dcfe4c",
+        "42503966a526cc5398e7480ad51a4c23f1681497719f47cbd9c9fd85969746f4",
+        "821e1ad451552f01cc8d88712fa841a0555b5a83b589765e739c79803d87089a",
+        "dde14e0cd19a49cd31776ac5f1912cf34d7f02aef4a061e5b2dd54d555737c0f",
+        "0d6d9e1d595ab132d18fd1e55505d4c25e77719de73922b8d32ee68bd3b141a5"
+      ]
+    }
+  ],
+  "counts": {"architecture_verified": 4, "live_element_verified": 0},
+  "final_regression": {"tests": 126, "passed": 126, "failed": 0, "errors": 0, "skipped": 0, "junit_seconds": 10.860},
+  "hashes_sha256": {
+    "backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py": "011a5d0063a3ccaf78b3d5bf56da078cce8c6b6d7ec43f6ccf8d9fa0594424b6",
+    "test_reports/pytest/pytest_architecture_portal_final_20260927.xml": "b57ac7d731adfefafe99940c8487098f7b63b468944e1edb66e114c295370e23",
+    "backend/vendored/extraction_akki/backend/services/northena/execution_builders.py": "0a4144803477882d4ee65b8c05470c5f36bd55e648525ae4e8bd7e5561244bb3"
+  },
+  "verification_method": "Reused checker-authored _build_stack/_with_scope/_rows after final126-test GREEN. Canonical prefix verified at reads/writes; captured actual hashes from each seven-row isolated run. Nonces/timestamps mean another re-performance mints different row hashes. Full synthetic row bodies were not retained; hashes alone are not a self-contained archived-chain proof.",
+  "nonclaims": [
+    "Architecture authority/worker/artifact elements remain MOCKED; production defaults remain unbound holds, with no fake positive admissions.",
+    "No real Mongo topology/replica/failover races exercised for positive execution flows; actual held API/replay uses existing Mongo.",
+    "No source/model/GPU/SSH/provider workload calls, bytes, weights or corpus in E1.",
+    "No measured Akki throughput/latency/quality/availability or universal best-performance claim; JUnit wall time is not a benchmark.",
+    "No full-platform, full W1, full W3, all-Canon, EX4/R37 protected independence or source-successT14 closure."
+  ]
+}

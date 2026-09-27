@@ -1,0 +1,15 @@
+{
+  "artifact": "execution_spine_red_iteration25_hash_manifest",
+  "recorded_at": "2026-02-01T00:00:00Z",
+  "notes": "Iteration 24 RED artifacts retained; this file adds iteration 25 RED test/hash evidence only.",
+  "retained_iteration24_artifacts": {
+    "/app/test_reports/pytest/pytest_execution_spine_red.xml": "e7111b015867d24d3486988bc0e0fe53bd5ec69c8163ecb785a7e8abe57df523",
+    "/app/test_reports/iteration_24.json": "26cd2bede02dec126724b8fb1210efe93f66afc0a0addf82cca7162346650857"
+  },
+  "updated_iteration25_artifacts": {
+    "/app/backend/tests/execution_spine/test_execution_coordinator_protocol_red.py": "e2d1e31bcb80de8f80a343fdac4bb75328b6fe74f24e5bc0fc55536d9c710b4a",
+    "/app/backend/tests/execution_spine/test_execution_models_contract_red.py": "c7675488568e2088b6e8bd1c9b8750d4ea5731439c15a77fb097d2722e259bef",
+    "/app/backend/tests/execution_spine/conftest.py": "f032035f70123a6bc54e6aa4e660f665df3fe5174b391ebcc914f4e96f36b7e2",
+    "/app/test_reports/pytest/pytest_execution_spine_red_iteration25.xml": "c70599e80896252f6e6650665eb81a0a7d6282d188fc0ee76ae50c683a1d4b85"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "artifact": "execution_architecture_evidence_iteration27",
+  "denominator_count": 4,
+  "rows": [
+    {
+      "kind": "source",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "authority": "MOCKED",
+      "worker": "MOCKED",
+      "artifact_checker": "MOCKED",
+      "db": "FAKE isolated canonical ledger collection",
+      "trace_slots": ["request", "dispatch", "observation:*", "verify_artifact", "metered", "terminal"],
+      "hash_refs": "ledger row.hash values in /app/backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py via real LedgerJournal append/read",
+      "evidence_paths": [
+        "/app/backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py::test_real_ledger_parameterized_four_kind_traces_are_architecture_only[source-mtafiti-None]",
+        "/app/test_reports/pytest/pytest_execution_spine_iteration27_full.xml"
+      ],
+      "nonclaims": ["No live provider/model/source execution", "No production-ready claim"]
+    },
+    {
+      "kind": "skill",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "authority": "MOCKED",
+      "worker": "MOCKED",
+      "artifact_checker": "MOCKED",
+      "db": "FAKE isolated canonical ledger collection",
+      "trace_slots": ["request", "dispatch", "observation:*", "verify_artifact", "metered", "terminal"],
+      "hash_refs": "ledger row.hash values in isolated LedgerJournal rows",
+      "evidence_paths": [
+        "/app/backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py::test_real_ledger_parameterized_four_kind_traces_are_architecture_only[skill-solva-non_factual]",
+        "/app/test_reports/pytest/pytest_execution_spine_iteration27_full.xml"
+      ],
+      "nonclaims": ["No admitted live skill executor", "No live-ready claim"]
+    },
+    {
+      "kind": "training",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "authority": "MOCKED",
+      "worker": "MOCKED",
+      "artifact_checker": "MOCKED",
+      "db": "FAKE isolated canonical ledger collection",
+      "trace_slots": ["request", "dispatch", "observation:*", "verify_artifact", "metered", "terminal"],
+      "hash_refs": "ledger row.hash values in isolated LedgerJournal rows",
+      "evidence_paths": [
+        "/app/backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py::test_real_ledger_parameterized_four_kind_traces_are_architecture_only[training-targeta-None]",
+        "/app/test_reports/pytest/pytest_execution_spine_iteration27_full.xml"
+      ],
+      "nonclaims": ["No live GPU/trainer execution", "No invoice/approval grant claim"]
+    },
+    {
+      "kind": "evaluation",
+      "architecture_verified": true,
+      "live_element_verified": false,
+      "authority": "MOCKED",
+      "worker": "MOCKED",
+      "artifact_checker": "MOCKED",
+      "db": "FAKE isolated canonical ledger collection",
+      "trace_slots": ["request", "dispatch", "observation:*", "verify_artifact", "metered", "terminal"],
+      "hash_refs": "ledger row.hash values in isolated LedgerJournal rows",
+      "evidence_paths": [
+        "/app/backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py::test_real_ledger_parameterized_four_kind_traces_are_architecture_only[evaluation-targeta-None]",
+        "/app/test_reports/pytest/pytest_execution_spine_iteration27_full.xml"
+      ],
+      "nonclaims": ["No live evaluation worker/artifact registry", "No production readiness claim"]
+    }
+  ],
+  "counts": {
+    "architecture_verified_true": 4,
+    "live_element_verified_true": 0,
+    "live_element_verified_false": 4
+  }
+}

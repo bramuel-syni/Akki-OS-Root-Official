@@ -5,6 +5,8 @@ from services.northena import portal_work
 from services.portal_operational.access import portal_scope, validate_units
 from services.portal_operational.models import SubmitRequest, WorkList, WorkView
 from services.portal_operational.actions import stop, retry, result
+from services.portal_operational import execution
+from services.northena.execution_models import RunView
 
 router = APIRouter(prefix="/api/portal/requests", tags=["portal-requests"])
 work_router = APIRouter(prefix="/api/os/work", tags=["os-work"])
@@ -50,3 +52,9 @@ async def retry_request(request_id: str, request: Request):
 async def get_result(request_id: str, request: Request):
     async with portal_scope(request) as scope:
         return await result(db, scope, request_id)
+
+
+@router.post("/{request_id}/execution/advance", response_model=RunView)
+async def advance_execution(request_id: str, payload: execution.ExecutionBudget, request: Request):
+    async with portal_scope(request, write=True) as scope:
+        return await execution.advance(db, scope, request_id, payload)

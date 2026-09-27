@@ -1,5 +1,31 @@
 # Component-led work ledger — current scope and next links
 
+## Latest architecture-first milestone — verified2026-09-27
+
+Owner confirmed research-backed architectural assembly with explicit element test
+doubles; element availability is not a blocker to independent architectural work.
+Implemented shared Northena execution spine for four descriptor kinds: source,
+skill, training, evaluation. Real coordinator/canonicalLedgerjournal with strict
+metadata, durable dispatch, stable-key reconciliation, atomic cancellation claim,
+artifact checks, event-time usage, single terminal and current-rights retrieval.
+
+Architecture tests126pass/0fail/0skip including existingportal regression. Four-kind
+success traces use MOCKED authority/worker/artifact elements and FAKE isolated DB,
+NOT live workload success. Actual new requestadvance API records only truthfulheld
+control intents; defaultengine/operationauthority/checker unbound. Existingsealed
+modules/prototypes unchanged. No source/model/SSH/GPU/provider activity or grants.
+
+Bank: `notes/consolidated_fix_plan_20260926/ARCHITECTURE_EXECUTION_ADR.md`,
+`ARCHITECTURE_EXECUTION_RESULT.md`, `architecture_verification/
+FINAL_ARCHITECTURE_EVIDENCE_20260927.json`. Corrected test-only403/404 contradiction;
+strengthenedtraining objectivehash bindings, finalsuite green. T14, actualworker
+results, callableexecution and performance remain separate element validations.
+
+Next: connect actualadmitted producer/engine/registry ports, expand custody/handoff/
+commercial architecture, then broader grounded/Watch/specialized paths. Do not
+block these independent compositions on parked GPU. No all-Canon or whole-platform
+completion claim; no inferred resolution of owner policy decisions.
+
 ## Latest autonomous authorization and W1 scoped result — 2026-09-26
 
 Owner: “This works, go autonomous” after reviewing the consolidated plan. This

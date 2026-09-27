@@ -1,0 +1,47 @@
+{
+  "summary": "Executed full architecture/backend suites for execution_spine + portal_operational, added supplemental architecture integration tests, and ran read-only UI smoke on public app.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/portal/requests/{id}/execution/advance",
+        "issue": "Foreign-principal advance path returns 403 (role gate) instead of required 404 concealment for foreign request IDs.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/execution_spine/test_execution_architecture_integration_supplemental.py",
+    "/app/backend/tests/portal_operational/test_execution_advance_architecture_live.py",
+    "/app/test_reports/pytest/pytest_execution_architecture_supplemental_iteration26.xml",
+    "/app/test_reports/pytest/pytest_execution_spine_portal_iteration26_full.xml"
+  ],
+  "action_items": [
+    "Adjust execution advance authorization/error-ordering so foreign request IDs are concealed as 404 (while preserving analyst write denial semantics).",
+    "Re-run full suites after fix: /app/backend/tests/execution_spine and /app/backend/tests/portal_operational."
+  ],
+  "critical_code_review_comments": [
+    "portal_scope(write=True) currently enforces role before request ownership/existence resolution, producing 403 for foreign IDs where architecture contract requires 404 concealment.",
+    "Supplemental execution_spine integration now verifies actual baseline sealed/prototype hash equality from manifest rather than existence-only checks.",
+    "Coordinator+LedgerJournal concurrency/replay behavior was validated using explicit MOCKED authority/worker/artifact ports and real canonical control-plane append/read kernels."
+  ],
+  "updated_files": [
+    "/app/backend/tests/execution_spine/test_execution_architecture_integration_supplemental.py",
+    "/app/backend/tests/portal_operational/test_execution_advance_architecture_live.py",
+    "/app/test_reports/iteration_26.json"
+  ],
+  "success_rate": {
+    "backend": "99.0% (102/103)",
+    "frontend": "100% smoke (2/2 viewports loaded, no page error selectors)"
+  },
+  "seed_data_creation": "Created TEST-ONLY live portal request records through normal operator API during execution advance contract checks; no users/grants seeded and no canonical history deleted.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All previously existing 94 tests still pass; supplemental file increased denominator to 103 with one intentional contract failure exposing foreign-ID concealment mismatch (403 vs required 404). UI smoke stayed unchanged in held sign-in state on desktop/mobile.",
+  "rca of the issue": "Repro: analyst token POST to /api/portal/requests/{operator_request_id}/execution/advance with valid deadline returns 403. Root cause: write-role gate in portal_scope executes before request ownership/existence-based concealment path, so endpoint discloses authorization posture instead of returning foreign/unknown-aligned 404. Mitigation: reorder/normalize refusal mapping for this execution advance seam to preserve concealment contract without weakening write controls."
+}

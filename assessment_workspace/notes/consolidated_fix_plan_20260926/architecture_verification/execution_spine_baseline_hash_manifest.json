@@ -1,0 +1,23 @@
+{
+  "artifact": "execution_spine_baseline_hash_manifest",
+  "recorded_at": "2026-02-01T00:00:00Z",
+  "hash_algorithm": "sha256",
+  "denominator": [
+    "source",
+    "skill",
+    "training",
+    "evaluation"
+  ],
+  "sealed_hashes": {
+    "/app/backend/vendored/extraction_akki/backend/services/request_context/context.py": "ad0d94399af44bd5f6fa57f9aa1371ede7ca526789e47db10b45dddc79c39cfb",
+    "/app/backend/vendored/extraction_akki/backend/services/enforce/principal_context_adapter.py": "16e2f2069cff5ec2c2d686766b3b6bf6fe502c7c2240678b1cf8ec198a5b20ed",
+    "/app/backend/vendored/extraction_akki/backend/services/ledger_emitter/emit_intent.py": "5855d3758508e6a1f90324e41a574d55044dcb4351e2f139918dd1e2a27d98cb",
+    "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/main.py": "9110d16e3a6a6dc53eb9825c6d3397455932f7f0f65ae724735bd25022bb6b9f",
+    "/app/backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py": "f653905cc76a2ba8ed78e3dc5277040db1e325a8eb0e47ed622c2f633b9bd9bd",
+    "/app/backend/vendored/extraction_akki/backend/services/ledger_verifier/verify.py": "18d894ada77903435dd9cd50153b89a7d9514fc9a93ca2e2e1ae68b1bc97c0bc",
+    "/app/backend/vendored/extraction_akki/backend/contracts/ledger_v1.py": "d2a8f5495ca4b963b6deddb892f13803225b4ba565e62c0197608818f0d6aa9e",
+    "/app/assessment_workspace/canon/prototypes/20260925_owner_updated/os.html": "a0a6df580d034cd9eef8efa7ddd130a131b1f97600c181b50002bd30846911b2",
+    "/app/assessment_workspace/canon/prototypes/20260925_owner_updated/dap.html": "0d9a9ee2cf39179c04d77545f5fd3f5c46c41e4a24c44dabade0c6f175b1c188",
+    "/app/assessment_workspace/canon/prototypes/20260925_owner_updated/intake.json": "cc2f7ad2e2ba967ba41540ab1f46e40f165c149a11cf14682f41a0e1ecfe426e"
+  }
+}

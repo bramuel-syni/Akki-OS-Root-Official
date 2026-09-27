@@ -1,5 +1,72 @@
 # Akki — continuity record
 
+## LATEST RESULT — architecture-first execution spine, verified2026-09-27
+
+Owner-confirmed architecture-first delivery implemented as one additive Northena
+metadata coordinator, strict contracts, canonical Ledger journal, bounded adapter
+interface and four component descriptor bridges (source/skill/training/evaluation).
+Frozen request→authority→durable dispatch→worker observation→artifact check→actual
+usage under dispatch-time terms→single terminal→current-rights retrieval. Stable
+operation key, cancel-versus-submit atomic slot, no blind resubmission aftertimeout;
+restart recovery from observations/verify/meter/terminal commit failures tested.
+
+Files: `services/northena/execution_{models,validation,journal,completion,
+coordinator,ports,builders,composition}.py`; `services/portal_operational/execution.py`;
+additive POST `/api/portal/requests/{id}/execution/advance` (explicitdeadline_epoch).
+No newauthority DB/provider/credential/scheduler/UI. Originalsealed principal,
+canonicalMongo/emitter/writer/verifier/17-fieldschema/prototype hashes unchanged.
+
+Research/contract: `notes/consolidated_fix_plan_20260926/ARCHITECTURE_EXECUTION_ADR.md`.
+Result: `ARCHITECTURE_EXECUTION_RESULT.md`; final four-kindtrace/hashes:
+`architecture_verification/FINAL_ARCHITECTURE_EVIDENCE_20260927.json`.
+Tests RED first; final126passed/0failed/0skipped across execution_spine+portal suites,
+JUnit `test_reports/pytest/pytest_architecture_portal_final_20260927.xml`.
+Real Coordinator+LedgerJournal+canonical kernels; authority/worker/artifact ports
+**MOCKED**, database FAKE for positive architectural/fault/concurrency traces.
+RealAPI held/replay/auth/scope checks use existingMongo, no approvals/grants/users
+seeded. Desktop/mobile originalshellsmoke passed; nofrontend edits. Main repeated
+four actual synthetic traces and banked request/row hashes; no live-element claim.
+
+Resolved: iteration26 contradictory analyst403/404 TEST expectation (not authbug);
+uniformanalyst403 forknown/randomIDs retained, authorized foreign404 covered with
+isolated fixture. Iteration27 trainingobjective hash nowalso binds corpus/MOACrefs
+(completeRequestdigest already bound inputrefs). Finalregression allgreen; old
+reports retained. No authenticationcredential changes; test_credentials unchanged.
+
+Critical limits: production factory intentionally has unbound executor/operation
+authority/artifactchecker; publicadvance remains held, callablequery stillrefuses.
+Descriptorbridges+ports are implemented, NOT live activated source/skill/training/
+evaluation. OlderMOCKED training/evaluationpaths not relabelled. No source/model/
+GPU/SSH/provider calls; E1metadataonly. RealMongo topology/replica races and Akki
+hardware performance notproved. Full-prefixverification remainsuncached; noCC/SLO
+oruniversalbest-performance claim. Architectureassembly no longer waits for GPU.
+
+NextP0: bind actualadmitted engine/authority/registryproducer ports, extendqueued
+handoffs/custody/commercialconsumers and remainingW0/W1 architecturalcoverage.
+P1/P2: broader W4/W5/W6 compositions, specializedoutputs and protectedmeasured
+releases; elementvalidation trackedseparately. GPUparked/ownerrulingsstayheld.
+Noall-Canon/W1/S32/T14/wholeDAPclosure. Laterenhancement: receipt-linked unmet
+prerequisites in existingrequestdrawer withoutredesign or inventedstatus.
+
+## CURRENT DELIVERY POSTURE — architecture-first, owner confirmed 2026-09-26
+
+Owner directed research/implementation of established tested patterns and best-fit
+performance posture, testing assembled architecture rather than making every
+individual external element work first. Confirmed interpretation: build full paths
+for source/skill/training/evaluation; clearly labelled test doubles for unavailable
+elements; preserve mandatory gates/E1 boundary/prototypes; GPU stays parked.
+Element availability is an operational validation dependency, not a blocker to
+independent architectural assembly. Do not use this to mark mocked evidence real.
+
+Current ADR/contract: `notes/consolidated_fix_plan_20260926/
+ARCHITECTURE_EXECUTION_ADR.md`. Research: Temporal durable idempotency and Amazon
+Builders Library timeouts/retries/jitter; reuse existing Mongo Ledger single-commit
+boundary. Planned additive Northena metadata execution spine with strict ports,
+durable dispatch/observation/terminal records, ambiguity reconciliation, artifact
+validation, actual usage, cancellation and current-rights retrieval; four-kind
+composed tests plus production default-hold seam. No new provider, credentials,
+UI or authority store; no source/model payloads or live SSH calls in E1.
+
 ## CURRENT OWNER AUTHORIZATION — autonomous programme, 2026-09-26
 
 Owner approved the surfaced consolidated plan: “This works, go autonomous, ill be

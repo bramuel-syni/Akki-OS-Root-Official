@@ -1,0 +1,55 @@
+{
+  "summary": "Completed architecture-acceptance backend coverage expansion, fixed contradictory live authz expectation in tests (iteration26 false-positive corrected), and re-ran full execution_spine + portal_operational suites.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.northena.execution_builders.training_request",
+        "issue": "Training request objective digest does not change when corpus_manifest_ref changes (same run identity hash), conflicting requested immutable descriptor coverage for corpus/MOAC reference changes.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_execution_advance_architecture_live.py",
+    "/app/backend/tests/portal_operational/test_execution_advance_scope_unit.py",
+    "/app/backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py",
+    "/app/backend/tests/execution_spine/test_execution_ports_and_builders_supplemental.py",
+    "/app/test_reports/execution_architecture_evidence_iteration27.json",
+    "/app/test_reports/pytest/pytest_execution_advance_live_iteration27.xml",
+    "/app/test_reports/pytest/pytest_execution_spine_iteration27_full.xml",
+    "/app/test_reports/pytest/pytest_portal_operational_iteration27_full.xml"
+  ],
+  "action_items": [
+    "Runtime fix needed: include corpus/MOAC descriptor references (or explicitly justified frozen equivalent) in training_request identity digest if architecture contract requires ref-sensitive immutability.",
+    "After runtime fix, rerun /app/backend/tests/execution_spine and verify failing assertion in test_execution_ports_and_builders_supplemental passes.",
+    "Keep live authz matrix as corrected in tests: analyst 403 for known+random IDs; operator 404 for random IDs; retain isolated write-authorized foreign-principal 404 unit coverage."
+  ],
+  "critical_code_review_comments": [
+    "iteration26 reported foreign-principal 404 as runtime defect, but test matrix was internally contradictory; corrected to role-gate-first 403 in live matrix plus isolated foreign-principal concealment unit path.",
+    "Protected sealed module/prototype hashes remained unchanged (verified by portal_operational red contract suite and explicit hash recomputation).",
+    "Architecture evidence rows are explicitly MOCKED for authority/worker/artifact and do not claim live element readiness."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_execution_advance_architecture_live.py",
+    "/app/backend/tests/portal_operational/test_execution_advance_scope_unit.py",
+    "/app/backend/tests/execution_spine/test_execution_fault_recovery_and_contract_supplemental.py",
+    "/app/backend/tests/execution_spine/test_execution_ports_and_builders_supplemental.py",
+    "/app/test_reports/execution_architecture_evidence_iteration27.json",
+    "/app/test_reports/iteration_27.json"
+  ],
+  "success_rate": {
+    "backend": "99.2% (125/126 across full execution_spine + portal_operational)",
+    "frontend": "Not run (backend-only scope)"
+  },
+  "seed_data_creation": "No users/roles/credentials seeded or modified. Live portal request records were created only through existing API flows for authz/live tests.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Iteration26 false-positive has been corrected in tests (not runtime). New architecture supplemental coverage added for fail-once recovery, interleavings, adapter/builder contracts, instance revalidation, and 4-kind real-LedgerJournal traces on fake isolated DB. One intentional contract failure remains in execution_spine suite for training descriptor digest sensitivity. Real Mongo race/replica-specific execution_spine tests were not added; execution_spine supplemental uses isolated fake DB by design.",
+  "rca of the issue": "Repro: run pytest /app/backend/tests/execution_spine -k test_execution_descriptor_builders_with_real_models_and_hash_ref_guards. tr1(training_request with corpus_manifest_ref=.../manifest-a) and tr3(...manifest-b) produce identical objective_sha256. Root cause: execution_builders.training_request computes objective from run frozen fields only (run_id/recipe/base_model/adapter/material/ssh_mode), excluding corpus_manifest_ref and moac_criteria_ref. Mitigation options: (a) include those refs in digest if identity must bind to them; or (b) document and test this as intentional non-binding if architecture decision explicitly permits it."
+}

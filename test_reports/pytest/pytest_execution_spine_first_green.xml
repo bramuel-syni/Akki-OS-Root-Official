@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="17" time="0.567" timestamp="2026-09-27T01:28:46.626839+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.execution_spine.test_execution_models_contract_red" name="test_denominator_kinds_and_baseline_manifest_are_pinned" time="0.000" /><testcase classname="tests.execution_spine.test_execution_models_contract_red" name="test_request_contract_enforces_kind_engine_mapping_and_digest_shape" time="0.164" /><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_coordinator_end_to_end_mocked_positive_flows[source-mtafiti]" time="0.173"><failure message="assert None is not None">kind = 'source', engine = 'mtafiti'
+
+    @pytest.mark.parametrize(
+        "kind,engine",
+        [
+            ("source", "mtafiti"),
+            ("skill", "solva"),
+            ("training", "targeta"),
+            ("evaluation", "targeta"),
+        ],
+    )
+    def test_coordinator_end_to_end_mocked_positive_flows(kind, engine):
+        _mod, coordinator, request, _authority, executor, _artifacts, journal = _make_coordinator(kind, engine)
+        executor.status_state = "complete"
+    
+        view = _advance_with_budget(coordinator, request, max_followup_steps=3)
+        assert view.request_id == request.request_id
+        assert view.phase == "ready"
+        assert view.evidence_mode == "MOCKED"
+        assert getattr(view, "execution_verified", False) is False
+        assert executor.submitted
+    
+        rows = journal.events.get(request.request_id, [])
+        slots = [row["slot"] for row in rows]
+        verify_or_register_idx = _first_slot_index(slots, "verify", "register")
+        metered_idx = _first_slot_index(slots, "meter", "usage")
+        terminal_idx = _first_slot_index(slots, "terminal", "ready", "complete")
+&gt;       assert verify_or_register_idx is not None
+E       assert None is not None
+
+backend/tests/execution_spine/test_execution_coordinator_protocol_red.py:231: AssertionError</failure></testcase><testcase classname="tests.execution_spine.test_execution_models_contract_red" name="test_request_forbids_raw_fields_and_non_akki_input_refs" time="0.000" /><testcase classname="tests.execution_spine.test_execution_models_contract_red" name="test_authority_contract_requires_exact_binding_and_future_expiry" time="0.000" /><testcase classname="tests.execution_spine.test_execution_models_contract_red" name="test_artifact_and_usage_contracts_enforce_labels_hashes_and_decimal_lexical" time="0.000" /><testcase classname="tests.execution_spine.test_execution_models_contract_red" name="test_worker_result_contract_enforces_state_and_evidence_mode" time="0.000" /><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_coordinator_end_to_end_mocked_positive_flows[skill-solva]" time="0.001"><failure message="assert None is not None">kind = 'skill', engine = 'solva'
+
+    @pytest.mark.parametrize(
+        "kind,engine",
+        [
+            ("source", "mtafiti"),
+            ("skill", "solva"),
+            ("training", "targeta"),
+            ("evaluation", "targeta"),
+        ],
+    )
+    def test_coordinator_end_to_end_mocked_positive_flows(kind, engine):
+        _mod, coordinator, request, _authority, executor, _artifacts, journal = _make_coordinator(kind, engine)
+        executor.status_state = "complete"
+    
+        view = _advance_with_budget(coordinator, request, max_followup_steps=3)
+        assert view.request_id == request.request_id
+        assert view.phase == "ready"
+        assert view.evidence_mode == "MOCKED"
+        assert getattr(view, "execution_verified", False) is False
+        assert executor.submitted
+    
+        rows = journal.events.get(request.request_id, [])
+        slots = [row["slot"] for row in rows]
+        verify_or_register_idx = _first_slot_index(slots, "verify", "register")
+        metered_idx = _first_slot_index(slots, "meter", "usage")
+        terminal_idx = _first_slot_index(slots, "terminal", "ready", "complete")
+&gt;       assert verify_or_register_idx is not None
+E       assert None is not None
+
+backend/tests/execution_spine/test_execution_coordinator_protocol_red.py:231: AssertionError</failure></testcase><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_coordinator_end_to_end_mocked_positive_flows[training-targeta]" time="0.001"><failure message="assert None is not None">kind = 'training', engine = 'targeta'
+
+    @pytest.mark.parametrize(
+        "kind,engine",
+        [
+            ("source", "mtafiti"),
+            ("skill", "solva"),
+            ("training", "targeta"),
+            ("evaluation", "targeta"),
+        ],
+    )
+    def test_coordinator_end_to_end_mocked_positive_flows(kind, engine):
+        _mod, coordinator, request, _authority, executor, _artifacts, journal = _make_coordinator(kind, engine)
+        executor.status_state = "complete"
+    
+        view = _advance_with_budget(coordinator, request, max_followup_steps=3)
+        assert view.request_id == request.request_id
+        assert view.phase == "ready"
+        assert view.evidence_mode == "MOCKED"
+        assert getattr(view, "execution_verified", False) is False
+        assert executor.submitted
+    
+        rows = journal.events.get(request.request_id, [])
+        slots = [row["slot"] for row in rows]
+        verify_or_register_idx = _first_slot_index(slots, "verify", "register")
+        metered_idx = _first_slot_index(slots, "meter", "usage")
+        terminal_idx = _first_slot_index(slots, "terminal", "ready", "complete")
+&gt;       assert verify_or_register_idx is not None
+E       assert None is not None
+
+backend/tests/execution_spine/test_execution_coordinator_protocol_red.py:231: AssertionError</failure></testcase><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_coordinator_end_to_end_mocked_positive_flows[evaluation-targeta]" time="0.001"><failure message="assert None is not None">kind = 'evaluation', engine = 'targeta'
+
+    @pytest.mark.parametrize(
+        "kind,engine",
+        [
+            ("source", "mtafiti"),
+            ("skill", "solva"),
+            ("training", "targeta"),
+            ("evaluation", "targeta"),
+        ],
+    )
+    def test_coordinator_end_to_end_mocked_positive_flows(kind, engine):
+        _mod, coordinator, request, _authority, executor, _artifacts, journal = _make_coordinator(kind, engine)
+        executor.status_state = "complete"
+    
+        view = _advance_with_budget(coordinator, request, max_followup_steps=3)
+        assert view.request_id == request.request_id
+        assert view.phase == "ready"
+        assert view.evidence_mode == "MOCKED"
+        assert getattr(view, "execution_verified", False) is False
+        assert executor.submitted
+    
+        rows = journal.events.get(request.request_id, [])
+        slots = [row["slot"] for row in rows]
+        verify_or_register_idx = _first_slot_index(slots, "verify", "register")
+        metered_idx = _first_slot_index(slots, "meter", "usage")
+        terminal_idx = _first_slot_index(slots, "terminal", "ready", "complete")
+&gt;       assert verify_or_register_idx is not None
+E       assert None is not None
+
+backend/tests/execution_spine/test_execution_coordinator_protocol_red.py:231: AssertionError</failure></testcase><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_missing_executor_port_stays_held" time="0.001" /><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_submit_timeout_is_unknown_then_status_recovers_without_blind_resubmit" time="0.001" /><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_refusal_fault_paths_scope_expiry_manifest_and_usage_none" time="0.001" /><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_cancel_semantics_with_explicit_zero_usage_acknowledgement" time="0.001"><failure message="AssertionError: assert None&#10; +  where None = getattr(RunView(request_id='req-evaluation', phase='cancelled', reason_code='EXECUTOR_CANCELLED', artifact_refs=(), evidence_mode='MOCKED', execution_verified=False), 'usage', None)">def test_cancel_semantics_with_explicit_zero_usage_acknowledgement():
+        mod, coordinator, request, _authority, executor, _artifacts, _journal = _make_coordinator("evaluation", "targeta")
+        executor.cancel_usage = (mod.Usage(unit="tokens", quantity="0"),)
+        _ = asyncio.run(coordinator.advance(request))
+        view = asyncio.run(coordinator.cancel(request))
+        assert view.phase == "cancelled"
+        assert view.evidence_mode == "MOCKED"
+&gt;       assert getattr(view, "usage", None)
+E       AssertionError: assert None
+E        +  where None = getattr(RunView(request_id='req-evaluation', phase='cancelled', reason_code='EXECUTOR_CANCELLED', artifact_refs=(), evidence_mode='MOCKED', execution_verified=False), 'usage', None)
+
+backend/tests/execution_spine/test_execution_coordinator_protocol_red.py:302: AssertionError</failure></testcase><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_cancel_none_usage_is_held_not_charged_zero" time="0.001" /><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_retrieve_rechecks_publish_rights_and_returns_opaque_artifact_refs_only" time="0.001" /><testcase classname="tests.execution_spine.test_execution_coordinator_protocol_red" name="test_journal_slot_conflict_raises_command_conflict" time="0.001" /></testsuite></testsuites>
