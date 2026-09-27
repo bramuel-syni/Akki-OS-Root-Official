@@ -1,0 +1,854 @@
+{
+  "generated_at_utc": "2026-09-27T11:10:43.095412+00:00",
+  "label": "OFFLINE SYNTHETIC VALIDATION ONLY (not issued certificates; no runtime/API calls)",
+  "artifact_hashes_before": {
+    "activation_certificate.schema.json": "ad848bd95e76dcf4ef71cd0e0688914632de33e68ceb4168e7ede4209ad256d2",
+    "crossing_decision_table.v1_1.json": "472b6369ef7059f9b451504e329605f02a8918081dbf3d5438239853ba6c8830"
+  },
+  "fixture_migration_note": "Legacy mutations re-based onto schema_version=1.1 synthetic baselines to avoid counting old-version invalidity as repair success.",
+  "sections": {
+    "positives": [
+      {
+        "case": "path_a_valid_not_applicable",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/positives/path_a_valid_not_applicable.json",
+        "errors": []
+      },
+      {
+        "case": "path_b_valid_model_and_out_of_scope_refusal",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/positives/path_b_valid_model_and_out_of_scope_refusal.json",
+        "errors": []
+      },
+      {
+        "case": "path_c_valid_admitted_six_met_criteria",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/positives/path_c_valid_admitted_six_met_criteria.json",
+        "errors": []
+      },
+      {
+        "case": "path_c_valid_refused_not_measured_nulls",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/positives/path_c_valid_refused_not_measured_nulls.json",
+        "errors": []
+      },
+      {
+        "case": "partially_live_valid_peripheral_mock",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/positives/partially_live_valid_peripheral_mock.json",
+        "errors": []
+      },
+      {
+        "case": "live_blocked_valid_with_trigger",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/positives/live_blocked_valid_with_trigger.json",
+        "errors": []
+      }
+    ],
+    "claimed_repairs_and_controls": [
+      {
+        "case": "live_verified_with_trigger_blocked_true",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/live_verified_with_trigger_blocked_true.json",
+        "errors": [
+          {
+            "instance_path": "/supersession/revalidation/blocked",
+            "schema_path": "/allOf/0/then/properties/supersession/properties/revalidation/properties/blocked/const",
+            "validator": "const",
+            "message": "False was expected"
+          },
+          {
+            "instance_path": "/supersession/revalidation/triggers_fired",
+            "schema_path": "/allOf/0/then/properties/supersession/properties/revalidation/properties/triggers_fired/maxItems",
+            "validator": "maxItems",
+            "message": "['authority_revocation'] is expected to be empty"
+          }
+        ]
+      },
+      {
+        "case": "live_verified_issuer_unverified",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/live_verified_issuer_unverified.json",
+        "errors": [
+          {
+            "instance_path": "/issuer/verification_status",
+            "schema_path": "/allOf/0/then/properties/issuer/properties/verification_status/const",
+            "validator": "const",
+            "message": "'verified' was expected"
+          }
+        ]
+      },
+      {
+        "case": "empty_signature",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/empty_signature.json",
+        "errors": [
+          {
+            "instance_path": "/issuer/signature",
+            "schema_path": "/properties/issuer/properties/signature/minLength",
+            "validator": "minLength",
+            "message": "'' is too short"
+          }
+        ]
+      },
+      {
+        "case": "live_verified_peripheral_mock_nonempty",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/live_verified_peripheral_mock_nonempty.json",
+        "errors": [
+          {
+            "instance_path": "/mocked_components",
+            "schema_path": "/allOf/0/then/properties/mocked_components/maxItems",
+            "validator": "maxItems",
+            "message": "[{'component': 'peripheral-mock', 'on_evidence_chain': False}] is expected to be empty"
+          }
+        ]
+      },
+      {
+        "case": "path_c_admitted_empty_criteria",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/path_c_admitted_empty_criteria.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/criteria",
+            "schema_path": "/allOf/6/then/properties/release_acceptance/properties/criteria/minItems",
+            "validator": "minItems",
+            "message": "[] should be non-empty"
+          }
+        ]
+      },
+      {
+        "case": "path_c_null_held_out_ref",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/path_c_null_held_out_ref.json",
+        "errors": [
+          {
+            "instance_path": "/inputs/held_out_ref",
+            "schema_path": "/allOf/4/then/properties/inputs/properties/held_out_ref/type",
+            "validator": "type",
+            "message": "None is not of type 'object'"
+          }
+        ]
+      },
+      {
+        "case": "path_c_null_recipe_ref",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/path_c_null_recipe_ref.json",
+        "errors": [
+          {
+            "instance_path": "/runtime/recipe_ref",
+            "schema_path": "/allOf/4/then/properties/runtime/properties/recipe_ref/type",
+            "validator": "type",
+            "message": "None is not of type 'string'"
+          }
+        ]
+      },
+      {
+        "case": "path_c_empty_model_refs",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/path_c_empty_model_refs.json",
+        "errors": [
+          {
+            "instance_path": "/runtime/model_refs",
+            "schema_path": "/allOf/4/then/properties/runtime/properties/model_refs/minItems",
+            "validator": "minItems",
+            "message": "[] should be non-empty"
+          }
+        ]
+      },
+      {
+        "case": "path_b_null_refusal_demonstration",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/path_b_null_refusal_demonstration.json",
+        "errors": [
+          {
+            "instance_path": "/evidence/refusal_demonstration",
+            "schema_path": "/allOf/3/then/properties/evidence/properties/refusal_demonstration/type",
+            "validator": "type",
+            "message": "None is not of type 'object'"
+          }
+        ]
+      },
+      {
+        "case": "criterion_met_empty_measurement_ref",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/criterion_met_empty_measurement_ref.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/criteria/0/measurement_ref",
+            "schema_path": "/properties/release_acceptance/properties/criteria/items/allOf/1/then/properties/measurement_ref/minLength",
+            "validator": "minLength",
+            "message": "'' is too short"
+          }
+        ]
+      },
+      {
+        "case": "admitted_with_not_measured_criterion",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/admitted_with_not_measured_criterion.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/criteria/0/outcome",
+            "schema_path": "/allOf/6/then/properties/release_acceptance/properties/criteria/items/properties/outcome/const",
+            "validator": "const",
+            "message": "'met' was expected"
+          }
+        ]
+      },
+      {
+        "case": "admitted_with_failed_criterion",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/admitted_with_failed_criterion.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/criteria/0/outcome",
+            "schema_path": "/allOf/6/then/properties/release_acceptance/properties/criteria/items/properties/outcome/const",
+            "validator": "const",
+            "message": "'met' was expected"
+          }
+        ]
+      },
+      {
+        "case": "negative_reconciliation_count",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/negative_reconciliation_count.json",
+        "errors": [
+          {
+            "instance_path": "/output/reconciliation/processed",
+            "schema_path": "/properties/output/properties/reconciliation/properties/processed/minimum",
+            "validator": "minimum",
+            "message": "-1 is less than the minimum of 0"
+          }
+        ]
+      },
+      {
+        "case": "negative_usage_quantity",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/negative_usage_quantity.json",
+        "errors": [
+          {
+            "instance_path": "/usage/measured_quantities/0/quantity",
+            "schema_path": "/properties/usage/properties/measured_quantities/items/properties/quantity/minimum",
+            "validator": "minimum",
+            "message": "-1 is less than the minimum of 0"
+          }
+        ]
+      },
+      {
+        "case": "negative_limit_effective_limit",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/negative_limit_effective_limit.json",
+        "errors": [
+          {
+            "instance_path": "/limits/dimensions/0/effective_limit",
+            "schema_path": "/properties/limits/properties/dimensions/items/properties/effective_limit/minimum",
+            "validator": "minimum",
+            "message": "-5 is less than the minimum of 0"
+          }
+        ]
+      },
+      {
+        "case": "scope_all_refused",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/scope_all_refused.json",
+        "errors": [
+          {
+            "instance_path": "/authority/scope/decisions",
+            "schema_path": "/properties/authority/properties/scope/properties/decisions/contains",
+            "validator": "contains",
+            "message": "[{'principal_id': 'principal_scope_1', 'decision': 'refused', 'reason': 'SYNTHETIC refusal', 'recorded_at': '2026-02-01T09:50:00Z', 'receipt_ref': 'receipt_scope_refused_000001'}] does not contain items matching the given schema"
+          }
+        ]
+      },
+      {
+        "case": "expenditure_all_refused",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/expenditure_all_refused.json",
+        "errors": [
+          {
+            "instance_path": "/authority/expenditure/decisions",
+            "schema_path": "/properties/authority/properties/expenditure/properties/decisions/contains",
+            "validator": "contains",
+            "message": "[{'principal_id': 'principal_exp_1', 'decision': 'refused', 'reason': 'SYNTHETIC refusal', 'recorded_at': '2026-02-01T09:51:00Z', 'receipt_ref': 'receipt_expenditure_refused_000001'}] does not contain items matching the given schema"
+          }
+        ]
+      },
+      {
+        "case": "path_a_admitted_should_reject",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/path_a_admitted_should_reject.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/decision",
+            "schema_path": "/allOf/5/then/properties/release_acceptance/properties/decision/const",
+            "validator": "const",
+            "message": "'not_applicable' was expected"
+          }
+        ]
+      },
+      {
+        "case": "refused_c_not_measured_honest_absence_accept",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/refused_c_not_measured_honest_absence_accept.json",
+        "errors": []
+      },
+      {
+        "case": "not_measured_with_fabricated_value_reject",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/not_measured_with_fabricated_value_reject.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/criteria/0/measured_value",
+            "schema_path": "/properties/release_acceptance/properties/criteria/items/allOf/0/then/properties/measured_value/type",
+            "validator": "type",
+            "message": "'fabricated' is not of type 'null'"
+          }
+        ]
+      },
+      {
+        "case": "not_measured_with_nonnull_measurement_ref_reject",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/not_measured_with_nonnull_measurement_ref_reject.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/criteria/0/measurement_ref",
+            "schema_path": "/properties/release_acceptance/properties/criteria/items/allOf/0/then/properties/measurement_ref/type",
+            "validator": "type",
+            "message": "'measurement_ref_should_be_null' is not of type 'null'"
+          }
+        ]
+      },
+      {
+        "case": "control_workspace_touched_true",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/control_workspace_touched_true.json",
+        "errors": [
+          {
+            "instance_path": "/runtime/implementation_workspace_touched_data",
+            "schema_path": "/properties/runtime/properties/implementation_workspace_touched_data/const",
+            "validator": "const",
+            "message": "False was expected"
+          }
+        ]
+      },
+      {
+        "case": "control_unaccounted_nonzero",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/control_unaccounted_nonzero.json",
+        "errors": [
+          {
+            "instance_path": "/output/reconciliation/unaccounted",
+            "schema_path": "/properties/output/properties/reconciliation/properties/unaccounted/const",
+            "validator": "const",
+            "message": "0 was expected"
+          }
+        ]
+      },
+      {
+        "case": "control_extra_root_property",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/control_extra_root_property.json",
+        "errors": [
+          {
+            "instance_path": "/",
+            "schema_path": "/additionalProperties",
+            "validator": "additionalProperties",
+            "message": "Additional properties are not allowed ('unexpected_root' was unexpected)"
+          }
+        ]
+      },
+      {
+        "case": "control_invalid_datetime",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/claimed_repairs/control_invalid_datetime.json",
+        "errors": [
+          {
+            "instance_path": "/identity/run_started_at",
+            "schema_path": "/properties/identity/properties/run_started_at/format",
+            "validator": "format",
+            "message": "'not-a-date-time' is not a 'date-time'"
+          }
+        ]
+      }
+    ],
+    "legacy24_rerun": [
+      {
+        "case": "case_01_live_verified_peripheral_mock_nonempty",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_01_live_verified_peripheral_mock_nonempty.json",
+        "errors": [
+          {
+            "instance_path": "/mocked_components",
+            "schema_path": "/allOf/0/then/properties/mocked_components/maxItems",
+            "validator": "maxItems",
+            "message": "[{'component': 'peripheral-mock', 'on_evidence_chain': False}] is expected to be empty"
+          }
+        ]
+      },
+      {
+        "case": "case_02_live_verified_blocked_true_with_revocation_trigger",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_02_live_verified_blocked_true_with_revocation_trigger.json",
+        "errors": [
+          {
+            "instance_path": "/supersession/revalidation/blocked",
+            "schema_path": "/allOf/0/then/properties/supersession/properties/revalidation/properties/blocked/const",
+            "validator": "const",
+            "message": "False was expected"
+          },
+          {
+            "instance_path": "/supersession/revalidation/triggers_fired",
+            "schema_path": "/allOf/0/then/properties/supersession/properties/revalidation/properties/triggers_fired/maxItems",
+            "validator": "maxItems",
+            "message": "['authority_revocation'] is expected to be empty"
+          }
+        ]
+      },
+      {
+        "case": "case_03_live_verified_issuer_unverified_empty_signature",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_03_live_verified_issuer_unverified_empty_signature.json",
+        "errors": [
+          {
+            "instance_path": "/issuer/signature",
+            "schema_path": "/properties/issuer/properties/signature/minLength",
+            "validator": "minLength",
+            "message": "'' is too short"
+          },
+          {
+            "instance_path": "/issuer/verification_status",
+            "schema_path": "/allOf/0/then/properties/issuer/properties/verification_status/const",
+            "validator": "const",
+            "message": "'verified' was expected"
+          }
+        ]
+      },
+      {
+        "case": "case_04_live_verified_acceptance_script_fail",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_04_live_verified_acceptance_script_fail.json",
+        "errors": [
+          {
+            "instance_path": "/evidence/acceptance_script/result",
+            "schema_path": "/allOf/0/then/properties/evidence/properties/acceptance_script/properties/result/const",
+            "validator": "const",
+            "message": "'pass' was expected"
+          }
+        ]
+      },
+      {
+        "case": "case_05_path_c_release_admitted_minimal_semantics",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_05_path_c_release_admitted_minimal_semantics.json",
+        "errors": [
+          {
+            "instance_path": "/inputs/held_out_ref",
+            "schema_path": "/allOf/4/then/properties/inputs/properties/held_out_ref/type",
+            "validator": "type",
+            "message": "None is not of type 'object'"
+          },
+          {
+            "instance_path": "/release_acceptance/acceptance_standard_ref",
+            "schema_path": "/allOf/6/then/properties/release_acceptance/properties/acceptance_standard_ref/type",
+            "validator": "type",
+            "message": "None is not of type 'string'"
+          },
+          {
+            "instance_path": "/release_acceptance/criteria",
+            "schema_path": "/allOf/6/then/properties/release_acceptance/properties/criteria/minItems",
+            "validator": "minItems",
+            "message": "[] should be non-empty"
+          },
+          {
+            "instance_path": "/runtime/model_refs",
+            "schema_path": "/allOf/4/then/properties/runtime/properties/model_refs/minItems",
+            "validator": "minItems",
+            "message": "[] should be non-empty"
+          },
+          {
+            "instance_path": "/runtime/recipe_ref",
+            "schema_path": "/allOf/4/then/properties/runtime/properties/recipe_ref/type",
+            "validator": "type",
+            "message": "None is not of type 'string'"
+          }
+        ]
+      },
+      {
+        "case": "case_06_path_b_refusal_demonstration_null",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_06_path_b_refusal_demonstration_null.json",
+        "errors": [
+          {
+            "instance_path": "/evidence/refusal_demonstration",
+            "schema_path": "/allOf/3/then/properties/evidence/properties/refusal_demonstration/type",
+            "validator": "type",
+            "message": "None is not of type 'object'"
+          }
+        ]
+      },
+      {
+        "case": "case_07a_met_with_empty_measurement_ref",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_07a_met_with_empty_measurement_ref.json",
+        "errors": [
+          {
+            "instance_path": "/release_acceptance/criteria/0/measurement_ref",
+            "schema_path": "/properties/release_acceptance/properties/criteria/items/allOf/1/then/properties/measurement_ref/minLength",
+            "validator": "minLength",
+            "message": "'' is too short"
+          }
+        ]
+      },
+      {
+        "case": "case_07b_met_with_fabricated_measurement_ref",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_07b_met_with_fabricated_measurement_ref.json",
+        "errors": []
+      },
+      {
+        "case": "case_08_not_measured_with_null_measured_value",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_08_not_measured_with_null_measured_value.json",
+        "errors": []
+      },
+      {
+        "case": "case_09_reconciliation_negative_and_mismatched_counts",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_09_reconciliation_negative_and_mismatched_counts.json",
+        "errors": [
+          {
+            "instance_path": "/output/reconciliation/processed",
+            "schema_path": "/properties/output/properties/reconciliation/properties/processed/minimum",
+            "validator": "minimum",
+            "message": "-4 is less than the minimum of 0"
+          },
+          {
+            "instance_path": "/output/reconciliation/unmeasured_with_reason",
+            "schema_path": "/properties/output/properties/reconciliation/properties/unmeasured_with_reason/minimum",
+            "validator": "minimum",
+            "message": "-3 is less than the minimum of 0"
+          }
+        ]
+      },
+      {
+        "case": "case_10a_usage_negative_quantity",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_10a_usage_negative_quantity.json",
+        "errors": [
+          {
+            "instance_path": "/usage/measured_quantities/0/quantity",
+            "schema_path": "/properties/usage/properties/measured_quantities/items/properties/quantity/minimum",
+            "validator": "minimum",
+            "message": "-1 is less than the minimum of 0"
+          }
+        ]
+      },
+      {
+        "case": "case_10b_limits_negative_effective_limit",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_10b_limits_negative_effective_limit.json",
+        "errors": [
+          {
+            "instance_path": "/limits/dimensions/0/effective_limit",
+            "schema_path": "/properties/limits/properties/dimensions/items/properties/effective_limit/minimum",
+            "validator": "minimum",
+            "message": "-5 is less than the minimum of 0"
+          }
+        ]
+      },
+      {
+        "case": "case_10c_limits_observed_beyond_limit",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_10c_limits_observed_beyond_limit.json",
+        "errors": []
+      },
+      {
+        "case": "case_11_single_limit_dimension_no_spend_dimension",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_11_single_limit_dimension_no_spend_dimension.json",
+        "errors": []
+      },
+      {
+        "case": "case_12_all_refused_empty_group_principal_quorum_without_threshold",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_12_all_refused_empty_group_principal_quorum_without_threshold.json",
+        "errors": [
+          {
+            "instance_path": "/authority/expenditure/decisions",
+            "schema_path": "/properties/authority/properties/expenditure/properties/decisions/contains",
+            "validator": "contains",
+            "message": "[{'principal_id': '', 'decision': 'refused', 'reason': '', 'recorded_at': '2026-02-01T09:55:00Z', 'receipt_ref': ''}] does not contain items matching the given schema"
+          },
+          {
+            "instance_path": "/authority/expenditure/decisions/0/receipt_ref",
+            "schema_path": "/properties/authority/properties/expenditure/properties/decisions/items/properties/receipt_ref/minLength",
+            "validator": "minLength",
+            "message": "'' is too short"
+          },
+          {
+            "instance_path": "/authority/scope/decisions",
+            "schema_path": "/properties/authority/properties/scope/properties/decisions/contains",
+            "validator": "contains",
+            "message": "[{'principal_id': '', 'decision': 'refused', 'reason': '', 'recorded_at': '2026-02-01T09:55:00Z', 'receipt_ref': ''}] does not contain items matching the given schema"
+          },
+          {
+            "instance_path": "/authority/scope/decisions/0/receipt_ref",
+            "schema_path": "/properties/authority/properties/scope/properties/decisions/items/properties/receipt_ref/minLength",
+            "validator": "minLength",
+            "message": "'' is too short"
+          }
+        ]
+      },
+      {
+        "case": "case_13_chronologically_impossible_but_well_formatted_timestamps",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_13_chronologically_impossible_but_well_formatted_timestamps.json",
+        "errors": []
+      },
+      {
+        "case": "case_14_reperformance_negative_and_sum_disagree",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_14_reperformance_negative_and_sum_disagree.json",
+        "errors": []
+      },
+      {
+        "case": "case_15_triggers_nonempty_blocked_false",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/case_15_triggers_nonempty_blocked_false.json",
+        "errors": [
+          {
+            "instance_path": "/supersession/revalidation/triggers_fired",
+            "schema_path": "/allOf/0/then/properties/supersession/properties/revalidation/properties/triggers_fired/maxItems",
+            "validator": "maxItems",
+            "message": "['dial_change'] is expected to be empty"
+          }
+        ]
+      },
+      {
+        "case": "control_reject_on_evidence_chain_true",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/control_reject_on_evidence_chain_true.json",
+        "errors": [
+          {
+            "instance_path": "/mocked_components",
+            "schema_path": "/allOf/0/then/properties/mocked_components/maxItems",
+            "validator": "maxItems",
+            "message": "[{'component': 'evidence-mock', 'on_evidence_chain': True}] is expected to be empty"
+          },
+          {
+            "instance_path": "/mocked_components/0/on_evidence_chain",
+            "schema_path": "/properties/mocked_components/items/properties/on_evidence_chain/const",
+            "validator": "const",
+            "message": "False was expected"
+          }
+        ]
+      },
+      {
+        "case": "control_reject_unaccounted_not_zero",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/control_reject_unaccounted_not_zero.json",
+        "errors": [
+          {
+            "instance_path": "/output/reconciliation/unaccounted",
+            "schema_path": "/properties/output/properties/reconciliation/properties/unaccounted/const",
+            "validator": "const",
+            "message": "0 was expected"
+          }
+        ]
+      },
+      {
+        "case": "control_reject_workspace_touched_data_true",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/control_reject_workspace_touched_data_true.json",
+        "errors": [
+          {
+            "instance_path": "/runtime/implementation_workspace_touched_data",
+            "schema_path": "/properties/runtime/properties/implementation_workspace_touched_data/const",
+            "validator": "const",
+            "message": "False was expected"
+          }
+        ]
+      },
+      {
+        "case": "control_reject_required_field_missing",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/control_reject_required_field_missing.json",
+        "errors": [
+          {
+            "instance_path": "/",
+            "schema_path": "/required",
+            "validator": "required",
+            "message": "'issuer' is a required property"
+          }
+        ]
+      },
+      {
+        "case": "control_reject_extra_root_property",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/control_reject_extra_root_property.json",
+        "errors": [
+          {
+            "instance_path": "/",
+            "schema_path": "/additionalProperties",
+            "validator": "additionalProperties",
+            "message": "Additional properties are not allowed ('unexpected_root' was unexpected)"
+          }
+        ]
+      },
+      {
+        "case": "control_reject_invalid_date_time_format",
+        "expected_accepted": false,
+        "accepted": false,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/legacy24_rerun/control_reject_invalid_date_time_format.json",
+        "errors": [
+          {
+            "instance_path": "/identity/run_started_at",
+            "schema_path": "/properties/identity/properties/run_started_at/format",
+            "validator": "format",
+            "message": "'not-a-date-time' is not a 'date-time'"
+          }
+        ]
+      }
+    ],
+    "focused_residual_edges": [
+      {
+        "case": "partial_live_peripheral_mock_blocked_false_nonempty_triggers",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/residual_edges/partial_live_peripheral_mock_blocked_false_nonempty_triggers.json",
+        "errors": []
+      },
+      {
+        "case": "partial_live_acceptance_script_fail",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/residual_edges/partial_live_acceptance_script_fail.json",
+        "errors": []
+      },
+      {
+        "case": "reperformance_negative_agreements_disagreements",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/residual_edges/reperformance_negative_agreements_disagreements.json",
+        "errors": []
+      },
+      {
+        "case": "path_b_refusal_junk_stratum_kind",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/residual_edges/path_b_refusal_junk_stratum_kind.json",
+        "errors": []
+      },
+      {
+        "case": "path_c_admitted_one_metcriterion_duplicate_ids_semantic_only",
+        "expected_accepted": true,
+        "accepted": true,
+        "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/residual_edges/path_c_admitted_one_metcriterion_duplicate_ids_semantic_only.json",
+        "errors": []
+      }
+    ]
+  },
+  "policy_static_checks": {
+    "version": "1.1",
+    "default_when_no_row_matches": "REFUSE",
+    "uncontrolled_masked_split_present": true,
+    "controlled_exception_split_present": true,
+    "requires_both_in_controlled_exception": [
+      "class-scoped dial change by ceremony (recorded)",
+      "per-call owner approval against the class (CC-2, receipted)"
+    ],
+    "pilot_setting_uncontrolled": "masked_permitted",
+    "pilot_setting_controlled_exception": "unavailable",
+    "unassessed_material_never_grants": [
+      "eligibility",
+      "disclosure permission",
+      "downgrade on later licence"
+    ],
+    "stale_catchall_scalar_external_crossing_refused_detected": true,
+    "note": "Static consistency finding only: default REFUSE still present; no resolver invoked; no runtime leak claim."
+  },
+  "artifact_hashes_after": {
+    "activation_certificate.schema.json": "ad848bd95e76dcf4ef71cd0e0688914632de33e68ceb4168e7ede4209ad256d2",
+    "crossing_decision_table.v1_1.json": "472b6369ef7059f9b451504e329605f02a8918081dbf3d5438239853ba6c8830"
+  },
+  "summary_counts": {
+    "positives": 6,
+    "claimed_repairs_and_controls": 25,
+    "legacy24_rerun": 24,
+    "focused_residual_edges": 5,
+    "total_cases": 60
+  },
+  "classification": {
+    "shape_repairs_verified": [
+      "state-conditioned checks for LIVE-VERIFIED/PARTIALLY LIVE/LIVE-BLOCKED",
+      "path-conditioned requirements for A/B/C",
+      "admitted requires >=1 criteria and all met outcomes",
+      "honest absence branch for not_measured",
+      "minimum constraints on usage/limits/output counters",
+      "approval groups require at least one approved decision"
+    ],
+    "residual_semantic_hardening_owned_by_E1": [
+      "observed <= effective_limit",
+      "manifest/denominator arithmetic invariants",
+      "chronology ordering",
+      "receipt/reference authenticity and authority resolution",
+      "criterion identity quorum and duplicate-ID semantics",
+      "re_performance non-negative agreements/disagreements",
+      "canonical normalization for catch-all external_crossing scalar vs split object"
+    ]
+  }
+}

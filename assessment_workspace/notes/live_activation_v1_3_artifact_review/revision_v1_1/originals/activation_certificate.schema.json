@@ -1,0 +1,1327 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "akki://contracts/activation_certificate/v1.1",
+  "title": "Akki Activation Certificate v1.1 (live_activation_v1.3 \u00b7 LA-11, LA-15, LA-20)",
+  "description": "Proves one recorded run under its recorded conditions. Never a claim about future executions. Append-only; superseded, never edited. v1.1 adds conditional state constraints, path-specific requirements, an honest absence branch for not_measured, non-negative counters, and at-least-one-approved per approval group. These constrain declarations; the semantic verifier establishes the facts behind them.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "certificate_id",
+    "schema_version",
+    "state",
+    "identity",
+    "authority",
+    "release_acceptance",
+    "inputs",
+    "limits",
+    "runtime",
+    "output",
+    "usage",
+    "evidence",
+    "mocked_components",
+    "issuer",
+    "supersession"
+  ],
+  "properties": {
+    "certificate_id": {
+      "type": "string",
+      "pattern": "^cert_[0-9a-f]{32}$"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "1.1"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "LIVE-VERIFIED",
+        "PARTIALLY LIVE",
+        "LIVE-BLOCKED"
+      ],
+      "description": "Derived, never asserted: LIVE-VERIFIED requires mocked_components empty and revalidation.blocked=false; PARTIALLY LIVE requires mocked_components non-empty and none on the evidence-bearing chain (LA-13); LIVE-BLOCKED requires revalidation.blocked=true. A run with any mocked evidence-bearing producer produces no certificate \u2014 the path is IMPLEMENTED."
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "estate_id",
+        "tenant_id",
+        "path",
+        "frozen_request_id",
+        "frozen_objective_hash",
+        "run_id",
+        "run_started_at",
+        "run_ended_at",
+        "clock_source"
+      ],
+      "properties": {
+        "estate_id": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string",
+          "enum": [
+            "A_source_to_registry",
+            "B_callable_skill",
+            "C_training_with_evaluation"
+          ]
+        },
+        "frozen_request_id": {
+          "type": "string"
+        },
+        "frozen_objective_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "run_started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "run_ended_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "clock_source": {
+          "type": "string",
+          "enum": [
+            "disciplined",
+            "holdover",
+            "undisciplined"
+          ],
+          "description": "PB-8 / R-C2: only 'disciplined' is au_3b_defensible."
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "expenditure",
+        "purpose_specific",
+        "purposes_authorised",
+        "standing_approval_ref"
+      ],
+      "description": "Execution authority \u2014 recorded BEFORE the run (LA-4, LA-5). Never implies release acceptance (LA-20).",
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/approval"
+        },
+        "expenditure": {
+          "$ref": "#/$defs/approval"
+        },
+        "purpose_specific": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/approval"
+          },
+          "description": "One per group the estate's dials require for the operation itself (ethics for a training use, clearance for a compartment)."
+        },
+        "purposes_authorised": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "census",
+              "extraction",
+              "answering",
+              "training",
+              "evaluation",
+              "disclosure"
+            ]
+          },
+          "description": "LA-3: each purpose separately; a purpose not listed was not authorised."
+        },
+        "standing_approval_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "DAP-17 standing approval id if the run executed under one; null otherwise."
+        }
+      }
+    },
+    "release_acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "recorded_at",
+        "acceptance_standard_ref",
+        "criteria",
+        "prerequisites"
+      ],
+      "description": "Recorded AFTER the run by the acceptance wall (LA-8, LA-18, LA-20). Separate from authority; neither implies the other.",
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": [
+            "admitted",
+            "refused",
+            "not_applicable",
+            "pending"
+          ]
+        },
+        "recorded_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "acceptance_standard_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "MOAC contract version applied."
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "criterion_id",
+              "measured_value",
+              "threshold",
+              "outcome",
+              "measurement_ref"
+            ],
+            "properties": {
+              "criterion_id": {
+                "type": "string"
+              },
+              "measured_value": {
+                "type": [
+                  "number",
+                  "string",
+                  "boolean",
+                  "null"
+                ]
+              },
+              "threshold": {
+                "type": [
+                  "number",
+                  "string",
+                  "boolean",
+                  "null"
+                ]
+              },
+              "outcome": {
+                "type": "string",
+                "enum": [
+                  "met",
+                  "failed",
+                  "not_measured"
+                ]
+              },
+              "measurement_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Resolvable record id of the receipt or evaluator record producing the value; resolution is the semantic verifier's job."
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "outcome": {
+                      "const": "not_measured"
+                    }
+                  },
+                  "required": [
+                    "outcome"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "measured_value": {
+                      "type": "null"
+                    },
+                    "measurement_ref": {
+                      "type": "null"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "outcome": {
+                      "enum": [
+                        "met",
+                        "failed"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "outcome"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "measured_value": {
+                      "type": [
+                        "number",
+                        "string",
+                        "boolean"
+                      ]
+                    },
+                    "measurement_ref": {
+                      "type": "string",
+                      "minLength": 8
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "prerequisite_id",
+              "extension_version",
+              "outcome",
+              "record_ref"
+            ],
+            "properties": {
+              "prerequisite_id": {
+                "type": "string"
+              },
+              "extension_version": {
+                "type": "string",
+                "description": "LA-18: versioned extension by ceremony; never a build-time addition."
+              },
+              "outcome": {
+                "type": "string",
+                "enum": [
+                  "met",
+                  "failed",
+                  "not_measured"
+                ]
+              },
+              "record_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "outcome": {
+                      "const": "not_measured"
+                    }
+                  },
+                  "required": [
+                    "outcome"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "record_ref": {
+                      "type": "null"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "outcome": {
+                      "enum": [
+                        "met",
+                        "failed"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "outcome"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "record_ref": {
+                      "type": "string",
+                      "minLength": 8
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_hashes",
+        "dial_versions",
+        "policy_versions",
+        "custody_classes_in_scope",
+        "held_out_ref"
+      ],
+      "properties": {
+        "snapshot_hashes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "dial_versions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "custody_floor",
+            "approving_authority",
+            "external_crossing",
+            "disclosure_counterparties"
+          ],
+          "properties": {
+            "custody_floor": {
+              "type": "string"
+            },
+            "approving_authority": {
+              "type": "string"
+            },
+            "external_crossing": {
+              "type": "string"
+            },
+            "disclosure_counterparties": {
+              "type": "string"
+            }
+          },
+          "description": "LA-14: version ids of the estate's four dials at run start."
+        },
+        "policy_versions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "crossing_decision_table",
+            "acceptance_standard",
+            "cleanliness_pack"
+          ],
+          "properties": {
+            "crossing_decision_table": {
+              "type": "string"
+            },
+            "acceptance_standard": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "cleanliness_pack": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "custody_classes_in_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "held_out_ref": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "custodian_principal_id",
+            "split_protocol",
+            "seed",
+            "fixed_before_training_at",
+            "selection_hash"
+          ],
+          "properties": {
+            "custodian_principal_id": {
+              "type": "string"
+            },
+            "split_protocol": {
+              "type": "string",
+              "enum": [
+                "random_row",
+                "speaker_disjoint",
+                "entity_disjoint",
+                "chronological",
+                "other"
+              ]
+            },
+            "seed": {
+              "type": "string"
+            },
+            "fixed_before_training_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "selection_hash": {
+              "$ref": "#/$defs/sha256"
+            }
+          },
+          "description": "LA-17. Contents never appear here; reference only."
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dimensions"
+      ],
+      "description": "LA-16 / R-47: effective limit per dimension with its source; enforced before and during the run.",
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dimension",
+              "effective_limit",
+              "unit",
+              "source",
+              "observed",
+              "enforced_by"
+            ],
+            "properties": {
+              "dimension": {
+                "type": "string",
+                "enum": [
+                  "returned_records",
+                  "scanned_records",
+                  "bytes_read",
+                  "media_duration",
+                  "wall_clock",
+                  "active_compute",
+                  "spend"
+                ]
+              },
+              "effective_limit": {
+                "type": "number",
+                "minimum": 0
+              },
+              "unit": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "owner_run_limit",
+                  "estate_default",
+                  "estate_binding_ceiling",
+                  "R47_default"
+                ]
+              },
+              "observed": {
+                "type": "number",
+                "description": "Measured by the admitted runtime, not supplied by the executor.",
+                "minimum": 0
+              },
+              "enforced_by": {
+                "type": "string",
+                "description": "Component that held the boundary before the operation."
+              }
+            }
+          }
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "admitted_runtime_id",
+        "executor_version",
+        "model_refs",
+        "recipe_ref",
+        "implementation_workspace_touched_data"
+      ],
+      "properties": {
+        "admitted_runtime_id": {
+          "type": "string"
+        },
+        "executor_version": {
+          "type": "string"
+        },
+        "model_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "registry_id",
+              "hash",
+              "version",
+              "licence_ref"
+            ],
+            "properties": {
+              "registry_id": {
+                "type": "string"
+              },
+              "hash": {
+                "$ref": "#/$defs/sha256"
+              },
+              "version": {
+                "type": "string"
+              },
+              "licence_ref": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "recipe_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "implementation_workspace_touched_data": {
+          "type": "boolean",
+          "const": false,
+          "description": "LA-6: must be false; a true value invalidates the certificate."
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artefact_hash",
+        "registry_entry_id",
+        "manifest_hash",
+        "manifest_row_count",
+        "denominator_count",
+        "reconciliation"
+      ],
+      "properties": {
+        "artefact_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "registry_entry_id": {
+          "type": "string"
+        },
+        "manifest_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "manifest_row_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "denominator_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reconciliation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "processed",
+            "refused_with_reason",
+            "unmeasured_with_reason",
+            "unaccounted"
+          ],
+          "properties": {
+            "processed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "refused_with_reason": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unmeasured_with_reason": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unaccounted": {
+              "type": "integer",
+              "const": 0,
+              "description": "EX-9: must be zero."
+            }
+          }
+        }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metered_event_refs",
+        "terms_identifier",
+        "measured_quantities",
+        "reservation_ref",
+        "reconciled_against_reservation"
+      ],
+      "properties": {
+        "metered_event_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "terms_identifier": {
+          "type": "string"
+        },
+        "measured_quantities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "unit",
+              "quantity",
+              "measured_by"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "number",
+                "minimum": 0
+              },
+              "measured_by": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "reservation_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reconciled_against_reservation": {
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_refs",
+        "retrieval",
+        "refusal_demonstration",
+        "acceptance_script",
+        "re_performance"
+      ],
+      "properties": {
+        "receipt_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "retrieval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "principal_id",
+            "retrieved_at",
+            "receipt_ref"
+          ],
+          "properties": {
+            "principal_id": {
+              "type": "string"
+            },
+            "retrieved_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "receipt_ref": {
+              "type": "string"
+            }
+          }
+        },
+        "refusal_demonstration": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "request_ref",
+            "reason_stated",
+            "receipt_ref"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "out_of_scope_question",
+                "unauthorised_manifest_unit",
+                "junk_stratum_unit"
+              ]
+            },
+            "request_ref": {
+              "type": "string"
+            },
+            "reason_stated": {
+              "type": "string"
+            },
+            "receipt_ref": {
+              "type": "string"
+            }
+          },
+          "description": "Required for paths B and C (LA-11); null permitted for path A only."
+        },
+        "acceptance_script": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "script_hash",
+            "written_before_run_at",
+            "held_outside_task_scope",
+            "result"
+          ],
+          "properties": {
+            "script_hash": {
+              "$ref": "#/$defs/sha256"
+            },
+            "written_before_run_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "held_outside_task_scope": {
+              "type": "boolean",
+              "const": true
+            },
+            "result": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail"
+              ]
+            }
+          }
+        },
+        "re_performance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "second_instance_id",
+            "different_model_family",
+            "sample_seed",
+            "sample_size",
+            "agreements",
+            "disagreements",
+            "disagreement_refs"
+          ],
+          "properties": {
+            "second_instance_id": {
+              "type": "string"
+            },
+            "different_model_family": {
+              "type": "boolean"
+            },
+            "sample_seed": {
+              "type": "string"
+            },
+            "sample_size": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "agreements": {
+              "type": "integer"
+            },
+            "disagreements": {
+              "type": "integer"
+            },
+            "disagreement_refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "EX-11: disagreements recorded, never averaged."
+        }
+      }
+    },
+    "mocked_components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "component",
+          "on_evidence_chain"
+        ],
+        "properties": {
+          "component": {
+            "type": "string"
+          },
+          "on_evidence_chain": {
+            "type": "boolean",
+            "const": false,
+            "description": "LA-13: any mock on the evidence chain means no certificate is issued."
+          }
+        }
+      }
+    },
+    "issuer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal_id",
+        "issued_at",
+        "signature",
+        "verification_status",
+        "verifier_head_hash"
+      ],
+      "properties": {
+        "principal_id": {
+          "type": "string"
+        },
+        "issued_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "signature": {
+          "type": "string",
+          "minLength": 16
+        },
+        "verification_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "unverified"
+          ]
+        },
+        "verifier_head_hash": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "supersession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supersedes",
+        "superseded_by",
+        "revalidation"
+      ],
+      "properties": {
+        "supersedes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revalidation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "blocked",
+            "triggers_fired"
+          ],
+          "properties": {
+            "blocked": {
+              "type": "boolean"
+            },
+            "triggers_fired": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "model_revision",
+                  "corpus_replacement",
+                  "custody_change",
+                  "receiver_change",
+                  "dial_change",
+                  "authority_expiry",
+                  "authority_revocation"
+                ]
+              }
+            }
+          },
+          "description": "LA-15: any trigger fired sets blocked=true and state LIVE-BLOCKED until a new certificate supersedes this one."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "group",
+        "rule",
+        "decisions"
+      ],
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "rule": {
+          "type": "string",
+          "enum": [
+            "any_one",
+            "quorum"
+          ]
+        },
+        "decisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "principal_id",
+              "decision",
+              "reason",
+              "recorded_at",
+              "receipt_ref"
+            ],
+            "properties": {
+              "principal_id": {
+                "type": "string"
+              },
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "approved",
+                  "refused"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              },
+              "recorded_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "receipt_ref": {
+                "type": "string",
+                "minLength": 8
+              }
+            }
+          },
+          "contains": {
+            "type": "object",
+            "properties": {
+              "decision": {
+                "const": "approved"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "LIVE-VERIFIED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mocked_components": {
+            "maxItems": 0
+          },
+          "issuer": {
+            "properties": {
+              "verification_status": {
+                "const": "verified"
+              }
+            }
+          },
+          "supersession": {
+            "properties": {
+              "revalidation": {
+                "properties": {
+                  "blocked": {
+                    "const": false
+                  },
+                  "triggers_fired": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          },
+          "evidence": {
+            "properties": {
+              "acceptance_script": {
+                "properties": {
+                  "result": {
+                    "const": "pass"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "PARTIALLY LIVE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mocked_components": {
+            "minItems": 1
+          },
+          "issuer": {
+            "properties": {
+              "verification_status": {
+                "const": "verified"
+              }
+            }
+          },
+          "supersession": {
+            "properties": {
+              "revalidation": {
+                "properties": {
+                  "blocked": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "LIVE-BLOCKED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "supersession": {
+            "properties": {
+              "revalidation": {
+                "properties": {
+                  "blocked": {
+                    "const": true
+                  },
+                  "triggers_fired": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "properties": {
+              "path": {
+                "const": "B_callable_skill"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "properties": {
+              "refusal_demonstration": {
+                "type": "object"
+              }
+            }
+          },
+          "runtime": {
+            "properties": {
+              "model_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "properties": {
+              "path": {
+                "const": "C_training_with_evaluation"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "properties": {
+              "refusal_demonstration": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "unauthorised_manifest_unit",
+                      "junk_stratum_unit"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "runtime": {
+            "properties": {
+              "model_refs": {
+                "minItems": 1
+              },
+              "recipe_ref": {
+                "type": "string"
+              }
+            }
+          },
+          "inputs": {
+            "properties": {
+              "held_out_ref": {
+                "type": "object"
+              }
+            }
+          },
+          "release_acceptance": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "admitted",
+                  "refused",
+                  "pending"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "properties": {
+              "path": {
+                "const": "A_source_to_registry"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "release_acceptance": {
+            "properties": {
+              "decision": {
+                "const": "not_applicable"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "release_acceptance": {
+            "properties": {
+              "decision": {
+                "const": "admitted"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "release_acceptance": {
+            "properties": {
+              "criteria": {
+                "minItems": 1,
+                "items": {
+                  "properties": {
+                    "outcome": {
+                      "const": "met"
+                    }
+                  }
+                }
+              },
+              "prerequisites": {
+                "items": {
+                  "properties": {
+                    "outcome": {
+                      "const": "met"
+                    }
+                  }
+                }
+              },
+              "recorded_at": {
+                "type": "string"
+              },
+              "acceptance_standard_ref": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "semantic_verifier_note": "Not expressible here and required before a certificate is valid: observed <= effective_limit per dimension; manifest_row_count == denominator_count; processed + refused + unmeasured == denominator; run_ended_at >= run_started_at; every *_ref resolves to an authoritative receipt; state derived from the record, not supplied."
+}

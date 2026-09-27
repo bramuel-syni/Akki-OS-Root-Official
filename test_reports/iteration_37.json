@@ -1,0 +1,69 @@
+{
+  "summary": "Completed OFFLINE revision v1.1 artifact review only (JSON schema + crossing table). Executed offline pytest with saved synthetic payload matrix, verified claimed shape repairs, replayed legacy 24 mutations on migrated v1.1 baselines, and confirmed originals unchanged by hash before/after.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "Residual semantic gap: PARTIALLY LIVE accepts non-empty triggers_fired while blocked=false. Schema does not couple trigger presence to blocked for PARTIALLY LIVE."
+      },
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "Residual semantic gap: PARTIALLY LIVE accepts acceptance_script.result=fail."
+      },
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "Residual hardening gap: evidence.re_performance.agreements/disagreements allow negatives (no minimum)."
+      },
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "Residual semantic gap: Path B accepts refusal_demonstration.kind='junk_stratum_unit' (not restricted to out_of_scope_question)."
+      },
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "Residual semantic gap: Path C admitted allows single met criterion and does not enforce criterion-id set uniqueness/quorum."
+      },
+      {
+        "endpoint": "crossing_decision_table.v1_1.json",
+        "issue": "Static consistency gap: catch-all row still uses scalar requires_dial.external_crossing='refused' while declared dial model is split object (uncontrolled/controlled_exception). Default REFUSE remains; no runtime leak claim from this offline review."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/test_revision_v1_1_offline.py",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/results_matrix_v1_1.json",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/",
+    "/app/test_reports/pytest/pytest_artifact_validation_revision_v1_1_iteration37.xml"
+  ],
+  "action_items": [
+    "E1: keep owner-level fixes as verified at schema-shape layer; continue semantic verifier/hardening for residual accepted semantic inconsistencies.",
+    "E1: normalize crossing dial semantics globally (split-object form vs stale scalar catch-all key) in integration resolver logic.",
+    "E1: enforce semantic checks outside schema (chronology, arithmetic consistency, reference authenticity, criterion identity/quorum semantics)."
+  ],
+  "critical_code_review_comments": [
+    "Original hashes verified pre/post test run: activation schema ad848bd95e76dcf4ef71cd0e0688914632de33e68ceb4168e7ede4209ad256d2; crossing table 472b6369ef7059f9b451504e329605f02a8918081dbf3d5438239853ba6c8830.",
+    "Claimed v1.1 shape repairs validated as active: LIVE-VERIFIED constraints, path A/B/C conditionals, admitted-met-only branch, honest not_measured branch, non-negative limits/usage/reconciliation, approval contains approved, legacy controls rejecting required/additional/const/format violations.",
+    "Residual acceptances are correctly classified as semantic-verifier/hardening scope, not proof of runtime bypass in this offline static review."
+  ],
+  "updated_files": [
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/test_revision_v1_1_offline.py",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/results_matrix_v1_1.json",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/payloads/",
+    "/app/test_reports/iteration_37.json",
+    "/app/test_reports/pytest/pytest_artifact_validation_revision_v1_1_iteration37.xml"
+  ],
+  "success_rate": {
+    "backend": "100% (1/1 offline pytest suite passed; 60/60 offline cases matched expected outcomes)",
+    "frontend": "N/A (not requested)"
+  },
+  "seed_data_creation": "Created SYNTHETIC payload fixtures only (MOCKED/FICTIONAL), saved under revision_v1_1/validation/payloads; no runtime/API/DB usage.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Use results_matrix_v1_1.json for exact case-by-case outcomes and violated keyword paths. Focus next on semantic verifier/resolver hardening, not schema v1.1 shape rewrites.",
+  "rca of the issue": "Reproduction: pytest -v --tb=short /app/assessment_workspace/notes/live_activation_v1_3_artifact_review/revision_v1_1/validation/test_revision_v1_1_offline.py --junitxml=/app/test_reports/pytest/pytest_artifact_validation_revision_v1_1_iteration37.xml. Root cause of residual findings: schema encodes structural/conditional shape constraints but intentionally cannot prove runtime facts, arithmetic truth, chronology consistency, or reference authenticity without external semantic verification."
+}

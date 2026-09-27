@@ -1,0 +1,195 @@
+{
+  "certificate_id": "cert_0123456789abcdef0123456789abcdef",
+  "schema_version": "1.1",
+  "state": "LIVE-VERIFIED",
+  "identity": {
+    "estate_id": "estate_SYNTHETIC_alpha",
+    "tenant_id": "tenant_SYNTHETIC_blue",
+    "path": "C_training_with_evaluation",
+    "frozen_request_id": "REQ-SYNTHETIC-0001",
+    "frozen_objective_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "run_id": "run-SYNTHETIC-0001",
+    "run_started_at": "2026-02-01T10:00:00Z",
+    "run_ended_at": "2026-02-01T10:30:00Z",
+    "clock_source": "disciplined"
+  },
+  "authority": {
+    "scope": {
+      "group": "ops-council",
+      "rule": "any_one",
+      "decisions": [
+        {
+          "principal_id": "principal_scope_1",
+          "decision": "approved",
+          "reason": "SYNTHETIC approval",
+          "recorded_at": "2026-02-01T09:50:00Z",
+          "receipt_ref": "receipt_scope_000001_long"
+        }
+      ]
+    },
+    "expenditure": {
+      "group": "finance-council",
+      "rule": "any_one",
+      "decisions": [
+        {
+          "principal_id": "principal_exp_1",
+          "decision": "approved",
+          "reason": "SYNTHETIC approval",
+          "recorded_at": "2026-02-01T09:51:00Z",
+          "receipt_ref": "receipt_expenditure_000001_long"
+        }
+      ]
+    },
+    "purpose_specific": [
+      {
+        "group": "ethics-council",
+        "rule": "any_one",
+        "decisions": [
+          {
+            "principal_id": "principal_purpose_1",
+            "decision": "approved",
+            "reason": "SYNTHETIC approval",
+            "recorded_at": "2026-02-01T09:52:00Z",
+            "receipt_ref": "receipt_purpose_000001_long"
+          }
+        ]
+      }
+    ],
+    "purposes_authorised": [
+      "training",
+      "evaluation"
+    ],
+    "standing_approval_ref": null
+  },
+  "release_acceptance": {
+    "decision": "admitted",
+    "recorded_at": "2026-02-01T10:45:30Z",
+    "acceptance_standard_ref": null,
+    "criteria": [],
+    "prerequisites": [
+      {
+        "prerequisite_id": "prereq_1",
+        "extension_version": "ext-1.1",
+        "outcome": "met",
+        "record_ref": "prereq_record_ref_0001_long"
+      }
+    ]
+  },
+  "inputs": {
+    "snapshot_hashes": [
+      "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    "dial_versions": {
+      "custody_floor": "dial-custody-v1.1",
+      "approving_authority": "dial-authority-v1.1",
+      "external_crossing": "dial-crossing-v1.1",
+      "disclosure_counterparties": "dial-disclosure-v1.1"
+    },
+    "policy_versions": {
+      "crossing_decision_table": "crossing-1.1",
+      "acceptance_standard": "acceptance-standard-v1.1",
+      "cleanliness_pack": "cleanliness-pack-v1.1"
+    },
+    "custody_classes_in_scope": [
+      "uncontrolled"
+    ],
+    "held_out_ref": null
+  },
+  "limits": {
+    "dimensions": [
+      {
+        "dimension": "spend",
+        "effective_limit": 20,
+        "unit": "USD",
+        "source": "owner_run_limit",
+        "observed": 0,
+        "enforced_by": "runtime-limiter"
+      }
+    ]
+  },
+  "runtime": {
+    "admitted_runtime_id": "runtime-synthetic-1",
+    "executor_version": "executor-1.1",
+    "model_refs": [],
+    "recipe_ref": null,
+    "implementation_workspace_touched_data": false
+  },
+  "output": {
+    "artefact_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "registry_entry_id": "registry-entry-SYNTHETIC-1",
+    "manifest_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "manifest_row_count": 100,
+    "denominator_count": 100,
+    "reconciliation": {
+      "processed": 95,
+      "refused_with_reason": 3,
+      "unmeasured_with_reason": 2,
+      "unaccounted": 0
+    }
+  },
+  "usage": {
+    "metered_event_refs": [
+      "metered_event_ref_000001_long"
+    ],
+    "terms_identifier": "terms-synthetic-v1.1",
+    "measured_quantities": [
+      {
+        "unit": "GPU_hour",
+        "quantity": 1.5,
+        "measured_by": "meter-service"
+      }
+    ],
+    "reservation_ref": "reservation_ref_000001_long",
+    "reconciled_against_reservation": true
+  },
+  "evidence": {
+    "receipt_refs": [
+      "evidence_receipt_ref_000001_long"
+    ],
+    "retrieval": {
+      "principal_id": "principal_retrieval_1",
+      "retrieved_at": "2026-02-01T10:35:00Z",
+      "receipt_ref": "retrieval_receipt_ref_000001_long"
+    },
+    "refusal_demonstration": {
+      "kind": "unauthorised_manifest_unit",
+      "request_ref": "request_ref_training_0001_long",
+      "reason_stated": "SYNTHETIC refusal evidence artifact for C path",
+      "receipt_ref": "refusal_receipt_training_0001_long"
+    },
+    "acceptance_script": {
+      "script_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "written_before_run_at": "2026-01-31T09:00:00Z",
+      "held_outside_task_scope": true,
+      "result": "pass"
+    },
+    "re_performance": {
+      "second_instance_id": "instance-2",
+      "different_model_family": true,
+      "sample_seed": "seed-2",
+      "sample_size": 10,
+      "agreements": 8,
+      "disagreements": 2,
+      "disagreement_refs": [
+        "disagree_ref_1_long",
+        "disagree_ref_2_long"
+      ]
+    }
+  },
+  "mocked_components": [],
+  "issuer": {
+    "principal_id": "issuer-1",
+    "issued_at": "2026-02-01T10:45:00Z",
+    "signature": "fictional_signature_ref_000001_long",
+    "verification_status": "verified",
+    "verifier_head_hash": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "supersession": {
+    "supersedes": null,
+    "superseded_by": null,
+    "revalidation": {
+      "blocked": false,
+      "triggers_fired": []
+    }
+  }
+}

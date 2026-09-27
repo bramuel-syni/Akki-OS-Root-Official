@@ -1,15 +1,15 @@
 # Akki — continuity record
 
-## LATEST REVIEW — supplied certificate schema / crossing policy
-Owner supplied two JSON artifacts and new pilot-policy rulings; review is at
-`assessment_workspace/notes/live_activation_v1_3_artifact_review/REVIEW.md`.
-Original bytes retained. Offline24-case validation:17 contradictory candidates
-schema-valid;6 safeguards reject; honest not_measured/null incorrectly rejects.
-Schema shape is not proof: state/provenance/limits/approval need a real verifier.
-Crossing row4 shares masked_permitted with row2; pilot controlled exceptions stay
-disabled absent distinct class-scoped ceremony+per-call authority. Owner rulings
-are recorded as intent, not verified registry writes. Engineering owns hardening;
-freeze validators before runs, issue certificates after proof. GPU remains excluded.
+## LATEST HANDOFF — owner JSON artifacts v1.1 accepted for engineering
+Review: `assessment_workspace/notes/live_activation_v1_3_artifact_review/`
+`revision_v1_1/REVIEW.md`; immutable originals and60-case offline matrix retained.
+Claimed repairs verified incl. honestabsence/state/path constraints and split
+crossing controls; no further desk revision requested. Residual E1 work: PARTIALLY
+LIVE guards, re-performance bounds, exact criteria/quorum, stale scalar deny row,
+semantic/provenance verification and real registry/policy integration. Owner
+explicitly delegates hardening; version corrections rather than replace originals.
+Neither file nor chat proves effective registry records/live readiness. Freeze
+validators before runs, issue certificates after proof. GPU remains excluded.
 
 ## LATEST ASSESSMENT — Live Activation v1.3, GPU excluded
 
