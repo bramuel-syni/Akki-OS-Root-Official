@@ -1,5 +1,38 @@
 # Akki implementation history
 
+## 2026-09-27 — Combined activation/control continuation
+
+User reconfirmed autonomous combined controls + real-path scope, GPU/SSH parked.
+Implemented signed canonical-Ledger control intake/projections, approval groups,
+atomic allocation reservations/settlement, native decision bridge, bounded worker
+admission envelope/ACK and worker-side limit helper. Existing EngineAdapter remained
+unchanged after regression exposed field drift; explicit subtype owns the extension.
+
+Added concrete certificate signature/native-journal joins, signed certificate
+recording only after proof, current revocation/supersession and predeclared script/
+snapshot/policy checks. Model consumers enforce grounded anchors/context/refusal,
+native protected evaluation of the recorded training artifact, explicit adopted
+MOAC mapping, threshold direction and separate release. Legacy training reporting
+and close reuse one persisted result; unknown outcomes cannot re-run. Removed
+fabricated scores and dummy admission ceremony; unmeasured values remain null.
+
+Testing42/43 exposed/corrected adapter shape drift; additional hardening addressed
+late worker admission, wall-clock rollback, final pre-send freshness, native scan
+reconciliation, exact approval provenance and re-signed semantic mutations.
+Canonical final run: **520 passed,2 gated skips,0 failures/errors**. JUnit/log:
+`test_reports/pytest/activation_combined_canonical.{xml,log}`. Native suite includes
+actual two-client Mongo CAS under unique TEST-SYNTHETIC tenants, append-only retained.
+Full signed Path-A positive test is SYNTHETIC on FAKE ledger; no real source data,
+retrieval, model training/evaluation, live issuance, native trust root or worker
+installation. Complete native positive B/C chain still unverified.
+
+Recovered local ledger had no activation approvals/allocations/worker admissions.
+Four legacy local training records were mock-mode, including one historical
+closed_adopted status; preserved unchanged and not promoted to evidence. No auth
+credentials/env changes, GPU/SSH action or UI edit. Scoped runtime Python lint and
+external desktop UI smoke pass. Existing third-party multipart deprecation only.
+Details: `assessment_workspace/notes/activation_combined_20260927/RESULT.md`.
+
 ## Historical continuity
 The prior699-line PRD is preserved unchanged at
 `/app/memory/ARCHIVE_PRD_BEFORE_ACTIVATION_CONTROLS.md`.

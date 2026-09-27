@@ -18,11 +18,12 @@ from services.northena.execution_send import PROTOCOL, claim_send, cancel_unsent
 
 class Coordinator:
     def __init__(self, journal, authority, executors, artifacts, clock=time.time, usage_publisher=None,
-                 eligibility=None, handoffs=None):
+                 eligibility=None, handoffs=None, runtime_limits=None):
         self.journal, self.authority = journal, authority
         self.executors, self.artifacts, self.clock = dict(executors), artifacts, clock
         self.usage_publisher = usage_publisher
         self.eligibility, self.handoffs = eligibility, handoffs
+        self.runtime_limits = runtime_limits
 
     async def check_inputs(self, request, phase):
         if self.eligibility is not None:

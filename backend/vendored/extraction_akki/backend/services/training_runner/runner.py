@@ -30,7 +30,7 @@ from typing import Any, Dict
 
 from contracts.training_material_admit_v0 import TrainingMaterialAdmitV0
 from contracts.training_run_v0 import TrainingRunV0
-from services.training_runner import moac_emitter, persistence, ssh_seam
+from services.training_runner import moac_emitter, persistence, ssh_seam, recorded_effect
 
 
 class RecipeSeatEmpty(RuntimeError):
@@ -215,9 +215,9 @@ def execute_run(run_id: str) -> TrainingRunV0:
     run = persistence.get_run(run_id)
     if run is None:
         raise KeyError(run_id)
-    seam_result = ssh_seam.execute_lora_train(
-        run.recipe_version, run.base_model_id, run.material_admit_ref,
-    )
+    seam_result = recorded_effect.execute_once(run, ssh_seam.execute_lora_train)
+    if run.status in {"moac_emitted", "closed_adopted", "closed_rejected"}:
+        return run
     running_status = "running_mock" if seam_result.mocked else "running_real"
     payload = run.model_dump()
     payload["status"] = running_status
@@ -227,22 +227,24 @@ def execute_run(run_id: str) -> TrainingRunV0:
 
 
 def emit_moac_for_run(run_id: str) -> Dict[str, Any]:
-    """Doc 17 line 90 · six-check MOAC card. Fires seam again to get
-    canned measurement inputs, then produces the card. Status flips
-    to moac_emitted; moac_card_ref set on the run.
-    """
+    """Report the recorded training result. Never invoke training to evaluate it."""
     run = persistence.get_run(run_id)
     if run is None:
         raise KeyError(run_id)
-    seam_result = ssh_seam.execute_lora_train(
-        run.recipe_version, run.base_model_id, run.material_admit_ref,
-    )
+    seam_result = recorded_effect.result(run)
+    saved_card = recorded_effect.read(run, "moac")
+    if saved_card is not None:
+        return {"run": run.model_dump(), "moac_card": saved_card}
     card = moac_emitter.emit_six_check_card(
         run_id=run.run_id,
         seam_result=seam_result,
         lineage_recipe_version=run.recipe_version,
         lineage_base_model_id=run.base_model_id,
     )
+    try:
+        recorded_effect.write_once(run, "moac", card)
+    except FileExistsError:
+        return {"run": run.model_dump(), "moac_card": recorded_effect.read(run, "moac")}
     payload = run.model_dump()
     payload["status"] = "moac_emitted"
     payload["moac_card_ref"] = card["moac_card_id"]
@@ -274,93 +276,9 @@ def emit_moac_for_run(run_id: str) -> Dict[str, Any]:
     # drafter can cite (§33). Mock/floor-failing cards land as
     # outcome='refused', so citation resolves while acceptance
     # stays impossible (Doc 17 line 101 verbatim).
-    _fire_admission_ceremony_for_run(
-        run_id=run_id, card=card, run=run,
-    )
+    # Reporting cannot manufacture measurements or make a release decision.
 
     return {"run": updated.model_dump(), "moac_card": card}
-
-
-def _fire_admission_ceremony_for_run(
-    *, run_id: str, card: Dict[str, Any], run,
-) -> str:
-    """Build a Doc 14 §33 ModelAcceptanceCard_v0 from the trainer's
-    six-check MOAC card and fire the model_admission ceremony
-    (services.model_admission.ceremony.run_admission). Returns the
-    candidate_model_id that will appear as the substring the
-    whitepaper drafter cites.
-
-    Mock/floor-failing cards get REFUSED admission (record written,
-    outcome='refused') so §33 citation resolves while acceptance
-    stays impossible."""
-    from contracts.model_acceptance_card import ModelAcceptanceCard_v0
-    from services.model_admission import ceremony as _ma
-
-    safe = run_id.replace("/", "_").replace(":", "_")
-    candidate_model_id = f"adapter_{safe}"
-    computed_at = _now_iso()
-
-    # Doc 4 §26.1-§26.6 six criteria · derived from the trainer's
-    # six-check card. Mock values keep every measured_value at 0.0
-    # against unreachable floors (0.99) so ceremony refuses on the
-    # first below-floor check while still writing the record.
-    def _c(measured_value: float, floor_value: float, unit: str, method: str,
-           anchor: str):
-        return {
-            "measured_value": measured_value,
-            "unit": unit,
-            "method_of_measurement": method,
-            "floor_value": floor_value,
-            "canon_anchor": anchor,
-        }
-
-    card_payload = {
-        "candidate_model_id": candidate_model_id,
-        "evidence_source_kind": "uncurated_registry_sample",
-        "accuracy_uncurated": _c(
-            0.0, 0.99, "kwer_delta",
-            (
-                "Trainer six-check M-a · mock harness · derived from "
-                f"MOAC card {card['moac_card_id']!r} verdict_summary "
-                f"'{card.get('verdict_summary', '')}'"
-            ),
-            "Canon 4 §26.1",
-        ),
-        "coverage_strata": _c(0.0, 0.99, "coverage_ratio",
-                              "Trainer six-check M-b · mock",
-                              "Canon 4 §26.2"),
-        "refusal_behaviour": _c(0.0, 0.99, "refusal_score",
-                                "Trainer six-check M-f · mock (awaits CP8 real flip)",
-                                "Canon 4 §26.3"),
-        "provenance_integrity": _c(0.0, 0.99, "integrity_score",
-                                   "Trainer six-check · mock",
-                                   "Canon 4 §26.4"),
-        "cost_per_operation": _c(999.0, 0.5, "cost_units",
-                                 "Trainer six-check · mock",
-                                 "Canon 4 §26.5"),
-        "time_to_answer_p95": _c(999.0, 5.0, "seconds",
-                                 "Trainer six-check · mock",
-                                 "Canon 4 §26.6"),
-        "training_lineage_resolved": True,
-        "training_lineage_note": (
-            f"Trainer run {run_id} · base_model_id={run.base_model_id!r} · "
-            f"recipe_version={run.recipe_version!r} · "
-            f"material_admit_ref={run.material_admit_ref!r} · "
-            f"MOAC card {card['moac_card_id']!r}."
-        ),
-        "computed_at": computed_at,
-    }
-
-    try:
-        outcome = _ma.run_admission(card_payload)
-        return outcome.model_id
-    except Exception as e:
-        # Ceremony refused at contract construction (curated benchmark
-        # rejection, etc.). Log and fall back to the candidate id so
-        # the whitepaper's downstream citation surfaces the honest gap
-        # rather than a placeholder. The admission record still gets
-        # written by ceremony for the refusal paths that reach step 2+.
-        return candidate_model_id
 
 
 def close_run(run_id: str, moac_card: Dict[str, Any]) -> TrainingRunV0:
@@ -389,10 +307,14 @@ def close_run(run_id: str, moac_card: Dict[str, Any]) -> TrainingRunV0:
     safe_id = run_id.replace("/", "_")
     receipt_id = f"rcp-training-{safe_id}"
     node_id = os.environ.get("AKKI_GPU_HOST", "mock")
-    # Pull the seam result again for gpu_hours (deterministic in mock).
-    seam_result = ssh_seam.execute_lora_train(
-        run.recipe_version, run.base_model_id, run.material_admit_ref,
-    )
+    seam_result = recorded_effect.result(run)
+    saved_card = recorded_effect.read(run, "moac")
+    if saved_card is None or any(moac_card.get(key) != saved_card.get(key) for key in (
+            "moac_card_id", "accept_for_service", "verdict_summary")):
+        raise ValueError("Close must cite the recorded MOAC card, not caller acceptance.")
+    moac_card = saved_card
+    if run.status in {"closed_adopted", "closed_rejected"}:
+        return run
     receipt = {
         "receipt_id": receipt_id,
         "kind": "ssh_seam",
@@ -408,8 +330,15 @@ def close_run(run_id: str, moac_card: Dict[str, Any]) -> TrainingRunV0:
             "metering_source": "mock" if seam_result.mocked else "live",
         },
     }
-    (receipts_dir / f"{receipt_id}.json").write_text(json.dumps(receipt))
-    cost_ref = f"cost_ledger:crossing_receipt:{receipt_id}"
+    if seam_result.mocked:
+        cost_ref = "not_metered:MOCKED"
+    else:
+        # Preserve an existing observation; closing twice cannot replace metering.
+        target = receipts_dir / f"{receipt_id}.json"
+        if not target.exists():
+            with target.open("x") as stream:
+                json.dump(receipt, stream)
+        cost_ref = f"cost_ledger:crossing_receipt:{receipt_id}"
 
     # ---- Whitepaper on close · CA1-005 · every close draws a whitepaper.
     #      Doc 14 §33 citation invariant: whitepaper MUST resolve to

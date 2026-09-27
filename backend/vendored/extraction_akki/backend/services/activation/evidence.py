@@ -6,6 +6,7 @@ from copy import deepcopy
 from typing import Literal
 from services.activation.models import Frozen, Text, Hash, issue
 from pydantic import Field, ValidationError
+from services.northena.execution_models import Held
 
 CHECKS = ("signature_verified", "request_verified", "policy_verified", "approvals_verified",
           "measurements_verified", "manifest_verified", "independence_verified",
@@ -65,9 +66,11 @@ async def evidence_issues(document, digest, *, tenant_id, principal_id, evidence
         if not isinstance(result, EvidenceVerdict):
             return (issue("EVIDENCE_VERDICT_NOT_TYPED"),)
         result = EvidenceVerdict.model_validate_json(result.model_dump_json())
+    except Held as exc:
+        return (issue(exc.reason_code),)
     except (TimeoutError, ConnectionError, OSError):
         return (issue("EVIDENCE_VERIFIER_UNAVAILABLE"),)
-    except (ValidationError, ValueError, TypeError):
+    except (ValidationError, ValueError, TypeError, KeyError):
         return (issue("EVIDENCE_VERDICT_MALFORMED"),)
     if (result.certificate_sha256, result.tenant_id, result.principal_id) != (digest, tenant_id, principal_id):
         return (issue("EVIDENCE_BINDING_MISMATCH"),)

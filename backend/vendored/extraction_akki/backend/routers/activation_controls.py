@@ -24,6 +24,10 @@ class ValidationResponse(ValidationResult):
 
 
 async def bounded_body(request):
+    return await bounded_payload(request, ValidationBody)
+
+
+async def bounded_payload(request, model):
     raw = bytearray()
     async for chunk in request.stream():
         raw.extend(chunk)
@@ -40,7 +44,7 @@ async def bounded_body(request):
         return out
     try:
         parsed = json.loads(raw, parse_constant=invalid_constant, object_pairs_hook=unique_keys)
-        return ValidationBody.model_validate(parsed)
+        return model.model_validate_json(json.dumps(parsed))
     except (ValueError, TypeError, ValidationError, RecursionError):
         raise HTTPException(422, "A bounded, unambiguous certificate object is required.") from None
 

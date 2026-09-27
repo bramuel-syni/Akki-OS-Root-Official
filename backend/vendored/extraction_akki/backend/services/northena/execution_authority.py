@@ -1,5 +1,6 @@
 """Native principal/licence/catalogue composition; a licence is NOT approval."""
 import time
+import asyncio
 from contracts.principal_v1 import PrincipalKind, PrincipalV1
 from services.enforce.control_scope import require_control_scope
 from services.principal_store.store import get_principal, PrincipalRefusal
@@ -55,7 +56,11 @@ class ComponentAuthority:
         principal, view = await self.context(request)
         if self.decisions is None:
             raise Held("OPERATION_AUTHORITY_NOT_BOUND")
-        decision = await self.decisions.resolve(request, phase, principal, view)
+        timeout = getattr(self.decisions, "timeout_seconds", None)
+        try:
+            decision = await asyncio.wait_for(self.decisions.resolve(request, phase, principal, view), timeout)
+        except (TimeoutError, ConnectionError, OSError):
+            raise Held("OPERATION_AUTHORITY_UNAVAILABLE") from None
         if not isinstance(decision, Decision):
             raise Held("OPERATION_DECISION_INVALID")
         decision = Decision.model_validate_json(decision.model_dump_json())

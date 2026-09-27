@@ -68,7 +68,10 @@ def _profile():
 VALIDATOR = _profile()
 PROFILE_SHA = hashlib.sha256(json.dumps(VALIDATOR.schema, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 IMPLEMENTATION_SHA = hashlib.sha256(b"".join((Path(__file__).parent / name).read_bytes()
-    for name in ("models.py", "schema.py", "chronology.py", "semantics.py", "evidence.py", "validation.py", "crossing.py"))).hexdigest()
+    for name in ("models.py", "schema.py", "chronology.py", "semantics.py", "evidence.py", "validation.py", "crossing.py",
+                 "receipts.py", "record_shapes.py", "approvals.py", "reservations.py", "runtime_limits.py",
+                 "worker_gate.py", "native_evidence.py", "native_joins.py", "issuance.py",
+                 "composition.py", "timed_ports.py", "bounded_adapter.py", "decisions.py", "model_proofs.py"))).hexdigest()
 
 
 def canonical_document(document):

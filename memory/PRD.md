@@ -56,7 +56,7 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
-## Current implementation checkpoint — 2026-09-27
+## Previous implementation checkpoint — 2026-09-27
 
 First autonomous control-plane implementation batch verified. Detailed result:
 `assessment_workspace/notes/activation_controls_20260927/IMPLEMENTATION_RESULT.md`.
@@ -83,12 +83,74 @@ Positive signature/worker/inspector/authority verdicts are **MOCKED/SYNTHETIC** 
 positive storage FAKE. Real API tests cover auth/scope/refusal and validation-audit
 writes, not live source/model operations.9 protected and owner JSON hashes unchanged.
 
-Not complete: native signature/provenance/ref adapters, durable approval-group and
+At that checkpoint, not complete: native signature/provenance/ref adapters, durable approval-group and
 estate activation joins, runtime dimensional limits/reservations, genuine DQ/worker/
 inspection/usage producers, native model descriptor/callable wiring, real training/
 evaluation, actual custody delivery, certificate issuance and independent live proof.
 See ROADMAP.md. Do not call the typed EvidenceVerdict interface real cryptographic
 verification or infer that the14 readiness packages are complete.
+
+## Current checkpoint — 2026-09-27 combined activation continuation
+
+User explicitly reconfirmed the combined scope (controls + real A/B/C proofs), not
+separate approval per package. Engineering continued; GPU/SSH remained untouched.
+**Control-plane batch verified; the complete live-path scope is NOT complete.**
+
+Implemented and tested:
+- Signed native control-receipt consumer using existing Watch Ed25519 verification
+  primitive and canonical Ledger. Admitted signer/key/permissions must resolve from
+  a SERVER-OWNED native admission bridge. No keys, accounts or trust roots installed.
+- Frozen activation plans with owner `inputs.dial_versions` / `inputs.policy_versions`
+  mappings, script/input commitments, independent approval groups/quorum/current
+  decisions/revocation, allocation and already-admitted worker attestations.
+- Native ComponentAuthority decision join and SAME-ledger atomic reservations with
+  compare-and-append; unknown usage remains reserved; signed terminal reconciliation
+  preserves overruns. Real two-client Mongo CAS tested in isolated SYNTHETIC tenants.
+- Explicit BoundedEngineAdapter, pre-send signed runtime-limit ACK, operation/fence
+  binding, bounded metadata calls, worker-side counter/deadline helper including
+  termination and late-admission/wall-clock-rollback checks. The helper is NOT an
+  installed remote hard supervisor or proof that a real workload was terminated.
+- Concrete certificate verification joins for signatures, request/objective,
+  native approvals/policies/registry/usage/reservation/termination, independent
+  evidence, predeclared acceptance, prefix chronology and supersession. Recording
+  an already signed certificate is proof-gated; E1 never signs as the owner.
+- Model-proof consumers require anchored skill/context/refusal evidence and a
+  separate completed native evaluation consuming the trained artifact, predeclared
+  six-criterion mapping/thresholds/protected split and distinct release decision.
+- Legacy training now captures one write-once effect/result; emit and close reuse
+  it, uncertain/historical outcomes cannot silently retrain. Missing MOAC evaluation
+  values are null / `not_measured`; no fabricated zero scores or automatic dummy
+  admission ceremony. Mocked close produces no chargeable metering receipt.
+
+New metadata endpoints under `/api/portal/activation`: `/receipts`, `/readiness`,
+`/reservations/settle`, `/certificates/issue`. Existing profile/validate remain
+diagnostics; current issuance endpoint holds with no admitted signer bridge.
+
+**Canonical regression: 520 passed, 2 explicitly gated custody drills skipped,
+0 failures/errors** (`test_reports/pytest/activation_combined_canonical.xml`).
+Testing reports42/43, protected-hash checks, unchanged UI desktop smoke and scoped
+Python lint pass. Original EngineAdapter contract preserved; extension is a subtype.
+No auth credentials, .env settings, original GPU/SSH runtime or frontend files changed.
+
+Evidence limits: full signed Path-A verification/issuance positive is SYNTHETIC on
+FAKE ledger, not real source/retrieval proof. Signature math is real but signer
+admissions, worker/evaluator observations and trainer test effects are **MOCKED /
+SYNTHETIC**. Mongo concurrency alone is real storage evidence. No live certificate
+issued; no complete native positive B/C chain tested. No real worker installed.
+
+Recovery: initial real control ledger had DAP/execution-request/portal-view and
+validation-audit events, **no activation approvals, allocations or worker records**.
+Legacy local runner metadata contained4 mock-mode records (3 closed_rejected,
+1 historical closed_adopted); no historical row was rewritten or treated as live.
+This finding is local to this composition, not proof the original estate is offline.
+
+Current binding gap: `activation_receipts`/admitted-key resolver, real worker RPCs,
+native inspector/eligibility and model query transports are not installed in app
+startup. `services.activation.composition.native_activation_bindings` is an explicit
+composition factory, NOT a running integration. Do not replace missing native
+admissions with fixture roots. Preserve ordinary auth and PrincipalV1 architecture.
+Detailed result and required interfaces:
+`assessment_workspace/notes/activation_combined_20260927/{RESULT,BINDING_SPEC}.md`.
 
 ## Workspace versus original live Akki
 
@@ -112,6 +174,8 @@ the entire original estate is mocked/disconnected. No new GPU/SSH action perform
 - Readiness register: `notes/live_activation_v1_3_readiness/READINESS_REGISTER.md`.
 - Existing auth credentials: `/app/memory/test_credentials.md`; unchanged this batch.
 
-Next engineering: native activation/approval/limit joins and concrete proof adapters,
-then bounded path A→B→C acceptance. Freeze validation before effects, issue certificates
-after proof. Raise only genuine missing decisions or indispensable external inputs.
+Next engineering: recover/bind actual estate admission/key provenance and non-GPU
+worker/inspector/eligibility interfaces into the implemented composition. Complete
+native callable/model descriptor and measured proof producers; obtain real bounded
+A→B→C acceptance wherever an admitted route exists. GPU-dependent execution alone
+stays parked. Freeze before effects; issue only after independently verified proof.

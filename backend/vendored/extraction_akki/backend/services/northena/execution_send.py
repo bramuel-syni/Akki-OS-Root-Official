@@ -22,6 +22,8 @@ async def claim_send(coordinator, request, executor, dispatch):
     if commercial != dispatch["data"].get("commercial_snapshot"):
         raise Held("COMMERCIAL_TERMS_CHANGED_BEFORE_DISPATCH")
     eligibility = await coordinator.check_inputs(request, "dispatch")
+    if coordinator.runtime_limits is not None:
+        await coordinator.runtime_limits.admit(coordinator, request, executor, dispatch)
     prepared = None
     if request.kind != "source" and coordinator.handoffs is not None:
         if getattr(executor, "delivery_rpc", None) is None:
@@ -40,6 +42,8 @@ async def claim_send(coordinator, request, executor, dispatch):
         raise Held("AUTHORITY_EXPIRED_BEFORE_SEND")
     if eligibility and eligibility["data"]["receipt"]["expires_epoch"] <= coordinator.clock():
         raise Held("INPUT_ELIGIBILITY_EXPIRED")
+    if coordinator.runtime_limits is not None:
+        await coordinator.runtime_limits.admit(coordinator, request, executor, dispatch)
     rows = await coordinator.journal.read(request)
     if any(r["slot"] in {"cancel_intent", "terminal"} for r in rows):
         raise Held("CANCEL_OR_TERMINAL_BEFORE_DISPATCH")

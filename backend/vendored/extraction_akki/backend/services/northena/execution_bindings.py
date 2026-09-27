@@ -59,7 +59,11 @@ def build_coordinator(db, bindings=None):
                    if bindings and bindings.eligibility else InputEligibility(journal))
     handoffs = (bindings.handoffs.bind(journal, authority, bindings.gate_timeout_seconds)
                 if bindings and bindings.handoffs else UnboundHandoff())
+    from services.activation.decisions import LedgerActivationDecisions
+    from services.activation.worker_gate import WorkerLimitGate
+    runtime_limits = (WorkerLimitGate(bindings.decisions.receipts)
+                      if bindings and isinstance(bindings.decisions, LedgerActivationDecisions) else None)
     return Coordinator(journal, authority, bindings.executors if bindings else {},
                        CanonicalRegistry(journal, authority, bindings.inspector if bindings else None),
                        usage_publisher=LedgerUsagePublisher(db, journal),
-                       eligibility=eligibility, handoffs=handoffs)
+                       eligibility=eligibility, handoffs=handoffs, runtime_limits=runtime_limits)

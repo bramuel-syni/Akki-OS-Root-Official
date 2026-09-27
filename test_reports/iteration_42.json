@@ -1,0 +1,50 @@
+{
+  "summary": "Executed requested serial backend regression with REACT_APP_BACKEND_URL and added live API coverage for new activation record endpoints (/receipts, /readiness, /reservations/settle, /certificates/issue). Full suite now: 486 passed, 1 failed, 2 skipped.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services.northena.execution_ports.EngineAdapter contract (covered by backend/tests/model_handoff/test_model_handoff_red_contract.py::test_engine_adapter_delivery_rpc_contract_and_no_fallback_submit)",
+        "issue": "EngineAdapter dataclass now includes extra field admit_limits_rpc, but contract test still expects exact legacy field list ending at delivery_rpc.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "Global test env warning",
+        "issue": "PendingDeprecationWarning from starlette.formparsers importing multipart; non-blocking test warning."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/activation_controls/test_activation_records_api_live.py",
+    "/app/test_reports/pytest/pytest_activation_combined_iteration42.xml"
+  ],
+  "action_items": [
+    "Align model_handoff red contract test with admitted runtime-limit gate extension (include admit_limits_rpc), or explicitly remove that field from EngineAdapter if extension is not intended.",
+    "Re-run serial suite after contract alignment to restore all-green baseline.",
+    "Keep two preflight custody drills gated/skipped as authorization-dependent."
+  ],
+  "critical_code_review_comments": [
+    "New activation record endpoints are fail-closed in live API tests: anonymous denied (401), analyst writes denied where applicable (403), malformed bounded payloads rejected (422), unbound signer resolver prevents issuance with explicit held reason.",
+    "Cross-tenant receipt recording is blocked with RECEIPT_TENANT_MISMATCH and readiness enforces principal/tenant scope ownership.",
+    "Positive activation proofs in this run are SYNTHETIC/MOCKED in unit-level fixtures; no live signer resolver binding or real external worker/source proof was established."
+  ],
+  "updated_files": [
+    "/app/backend/tests/activation_controls/test_activation_records_api_live.py",
+    "/app/test_reports/iteration_42.json"
+  ],
+  "success_rate": {
+    "backend": "99.80% excluding skips (486/487), 99.39% including skips (486/489)",
+    "frontend": "N/A (not requested)"
+  },
+  "seed_data_creation": "None. Used existing demo credentials and synthetic test payloads only.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "New file test_activation_records_api_live.py adds 9 live endpoint checks for activation-record APIs and currently passes. Full serial regression still has exactly one deterministic failure in test_engine_adapter_delivery_rpc_contract_and_no_fallback_submit due to EngineAdapter field drift (admit_limits_rpc).",
+  "rca of the issue": "Repro: export REACT_APP_BACKEND_URL from frontend/.env; pytest -n0 /app/backend/tests -q --tb=short. Failure: backend/tests/model_handoff/test_model_handoff_red_contract.py:538 expects EngineAdapter dataclass fields (kind, engine, submit_rpc, status_rpc, cancel_rpc, timeout_seconds, delivery_rpc). Runtime implementation in services/northena/execution_ports.py adds admit_limits_rpc to support WorkerLimitGate admission RPC. Contract test and runtime shape diverged."
+}

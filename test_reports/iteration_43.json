@@ -1,0 +1,49 @@
+{
+  "summary": "Completed targeted backend verification for activation controls since iteration42. Confirmed existing full serial suite artifact is green (activation_combined_final: 509 passed, 2 skipped). Added new native-certificate negative tests for freshly re-signed semantic mutations and extended model-acceptance checks for missing native lineage/purpose proof conditions.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "Global pytest environment",
+        "issue": "PendingDeprecationWarning from starlette.formparsers importing multipart (non-blocking)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/activation_controls/test_native_certificate_chain.py",
+    "/app/backend/tests/activation_controls/test_native_model_acceptance.py",
+    "/app/test_reports/pytest/pytest_activation_controls_iteration43_targeted.xml",
+    "/app/test_reports/pytest/activation_combined_final.log",
+    "/app/test_reports/pytest/activation_combined_final.xml"
+  ],
+  "action_items": [
+    "Main agent should run full serial backend suite once after merging these test additions to keep single-source baseline artifacts current.",
+    "Keep claiming only SYNTHETIC fixture proof for activation certificate positives; do not claim live A/B/C native completion.",
+    "If desired, add a dedicated test that injects an independently signed conflicting terminal record through an allowed append path (without violating command-id immutability) to further harden independent termination contradiction coverage."
+  ],
+  "critical_code_review_comments": [
+    "Worker limit gate coverage verifies correct/signed/wrong signer/wrong fence/expiry/missing RPC and keeps workload RPCs blocked in this suite.",
+    "New certificate-chain mutations are freshly re-signed, preventing stale-signature false positives and exercising semantic/native-proof joins.",
+    "Model acceptance numeric checks are still synthetic and now additionally fail closed for unresolved training lineage and missing required native purpose metadata.",
+    "Reservations real Mongo CAS test remains append-only on unique TEST-SYNTHETIC tenant with no account/key installation and no evidence deletion."
+  ],
+  "updated_files": [
+    "/app/backend/tests/activation_controls/test_native_certificate_chain.py",
+    "/app/backend/tests/activation_controls/test_native_model_acceptance.py",
+    "/app/test_reports/iteration_43.json"
+  ],
+  "success_rate": {
+    "backend": "100% targeted run (32/32 passed); expanded baseline artifact already green at 509 passed, 2 skipped",
+    "frontend": "N/A (not requested)"
+  },
+  "seed_data_creation": "None. Only SYNTHETIC fixtures and unique TEST-SYNTHETIC reservation tenant were used.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Scope executed: activation_controls targeted files for worker limits, native certificate chain, model acceptance, and real Mongo reservations. Added semantically altered freshly re-signed certificate mutation coverage: changed native reference, wrong purpose, mismatched approval actor/rule, inconsistent denominator, runtime window contradiction, missing predeclared script/snapshot, unresolved supersession. No production/live A/B/C proof claim made.",
+  "rca of the issue": "During first draft of independent runtime termination mutation, appending a second terminal slot through LedgerJournal raised CommandConflict due immutable command-id/slot semantics. Test was corrected to assert runtime-window contradiction via certificate identity timing while keeping fresh re-signing, preserving production immutability checks rather than weakening them."
+}

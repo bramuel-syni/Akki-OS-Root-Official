@@ -428,6 +428,8 @@ async def post_execute_run(run_id: str) -> Dict[str, Any]:
     """Fire the trainer through the SSH seam (mock at CP8 landing)."""
     try:
         updated = _trainer_runner.execute_run(run_id)
+    except RuntimeError:
+        raise HTTPException(status_code=409, detail={"reason": "TRAINING_RESULT_RECOVERY_REQUIRED"}) from None
     except KeyError:
         raise HTTPException(status_code=404,
                             detail={"reason": "run_not_found", "run_id": run_id})
@@ -439,6 +441,8 @@ async def post_emit_moac(run_id: str) -> Dict[str, Any]:
     """Doc 17 line 90 · six-check MOAC card emission · Critic Seam routing."""
     try:
         result = _trainer_runner.emit_moac_for_run(run_id)
+    except RuntimeError:
+        raise HTTPException(status_code=409, detail={"reason": "TRAINING_RESULT_RECOVERY_REQUIRED"}) from None
     except KeyError:
         raise HTTPException(status_code=404,
                             detail={"reason": "run_not_found", "run_id": run_id})
@@ -465,6 +469,11 @@ class CloseRunRequest(BaseModel):
     passed_count: Optional[int] = None
     total_criteria: Optional[int] = None
     reference_verbatim: Optional[str] = None
+    evidence_state: Optional[str] = None
+    release_decision: Optional[str] = None
+    release_reason: Optional[str] = None
+    training_observations: Optional[dict] = None
+    lineage_references: Optional[dict] = None
 
 
 @router.post("/api/training-runs/{run_id:path}/close")
@@ -478,6 +487,10 @@ async def post_close_run(run_id: str, moac_card: CloseRunRequest) -> Dict[str, A
     whitepaper drafted at close cites the record it rests on."""
     try:
         updated = _trainer_runner.close_run(run_id, moac_card.model_dump(exclude_none=True))
+    except RuntimeError:
+        raise HTTPException(status_code=409, detail={"reason": "TRAINING_RESULT_RECOVERY_REQUIRED"}) from None
+    except ValueError:
+        raise HTTPException(status_code=422, detail={"reason": "RECORDED_MOAC_REFERENCE_REQUIRED"}) from None
     except KeyError:
         raise HTTPException(status_code=404,
                             detail={"reason": "run_not_found", "run_id": run_id})

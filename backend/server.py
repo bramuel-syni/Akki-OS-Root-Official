@@ -443,6 +443,8 @@ app.include_router(portal_requests_router.router)
 app.include_router(portal_requests_router.work_router)
 from routers import activation_controls as activation_controls_router  # noqa: E402
 app.include_router(activation_controls_router.router)
+from routers import activation_records as activation_records_router  # noqa: E402
+app.include_router(activation_records_router.router)
 
 # R-100 · CP-PORTAL-WRITE-SURFACE · portal entitlement reads (JWT-gated).
 # Router already carries prefix="/api/portal/entitlement" · 4 endpoints

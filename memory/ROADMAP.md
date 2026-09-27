@@ -13,25 +13,27 @@ inventory where changed by the latest implementation.
 
 | Package | Current status / next task |
 |---|---|
-| R01 Activation envelope/dials | Validation profile and consistency core implemented. Assemble effective estate policy/limits/actor refs into admitted versioned execution envelope; no automatic pilot settings. |
-| R02 Approvals | Still pending durable multi-group approval → native operation-authority integration. Preserve independent required purpose groups and current revocation. |
+| R01 Activation envelope/dials | Signed plan/envelope and exact owner input mappings implemented; script/snapshot commitments frozen. Actual adopted native records not recovered/bound here. |
+| R02 Approvals | Same-ledger group/quorum/current approval/revocation projection and ComponentAuthority producer implemented/tested. Existing native admission/key provenance bridge remains unbound; no fixture root may substitute. |
 | R03 Portal lifecycle | Core history/actions/result-handle joins implemented/tested. Complete native skill/training/evaluation descriptor and callable-query joins; no fabricated training input from source IDs. Actual delivery still pending. |
-| R04 Runtime limits/reservation | Certificate declarations checked; actual dimensional enforcement, atomic spend reservation and termination-window enforcement still pending. |
+| R04 Runtime limits/reservation | Real Mongo two-client atomic reservation test passes; terminal settlement/overruns retained. Signed worker-limit admission and cooperative worker counter/termination-window helper implemented. Actual native worker hard-supervisor installation and real boundary receipts still pending. |
 | R05 Eligibility | Existing typed consumer/pinning tested. Bind genuine DQ/rights/classification/stratum producers under effective adopted policy. |
 | R06 Worker/receiver | Existing handoff/ACK/send/cancel protocol tested. Bind actual admitted receiver/worker transports and authenticated mandates; preserve original instance ownership. |
 | R07 Source proof | Existing census runner/core source scaffolding; no new real source→registered output→actual retrieval certificate. Compose via admitted worker route, not E1 queries. |
-| R08 Skill proof | Native descriptors/gates exist; callable endpoint still refuses absent admitted executor. Implement real retrieval/invocation/anchors/refusal/context-loss path. |
-| R09 Training effect | Bind actual one-shot training result. Fix legacy evaluation-emission re-invocation; persist/reuse result, never train again merely to report/evaluate. |
-| R10 Evaluation | Replace synthetic MOAC measurements with observations or truthful not_measured; exact adopted criterion mapping, protected split, independent control and domain-release gates. |
+| R08 Skill proof | Signed anchor/context/refusal consumers added. Native callable endpoint still refuses absent admitted executor. Real retrieval/invocation/anchor/refusal producers and full positive native chain pending. |
+| R09 Training effect | Legacy execute/emit/close now one recorded effect; unknown outcomes hold, no reporting retrain. Actual admitted training artifact/recovery path still pending and GPU execution parked. |
+| R10 Evaluation | Fabricated scores/dummy release removed; null not_measured. Predeclared native six-criterion thresholds, protected split, separate evaluation artifact/worker and release consumers added. Genuine observations and complete native B/C positive tests remain pending. |
 | R11 Custody/inspection | Native registry consumer and result-handle checks tested; real independent artifact hashing, storage custody and delivered-byte receipts pending. |
-| R12 Metering | Canonical usage consumer preserves historical terms/consumed work. Genuine measurement and allocation/reservation reconciliation pending. |
-| R13 Certificates | Shape/semantic consistency and fail-closed evidence interface/API implemented. Native signature/ref/provenance adapters, issuer, authentic state/revalidation/supersession still pending. No live certificate issued. |
-| R14 Real acceptance |451 backend tests pass; positive effects/proofs still synthetic. Actual store/receiver restart, measured effects, independent re-performance and path certificates pending. |
+| R12 Metering | Signed terminal reservation reconciliation added, including overrun preservation. Mocked legacy close not chargeable. Genuine provider counters/chargeable non-test usage remain pending. |
+| R13 Certificates | Concrete Ed25519/native-reference/journal semantic joins and proof-gated recording of signed certificates implemented; current admitted signer resolver remains unbound. Full Path-A positive only SYNTHETIC; no live certificate issued. |
+| R14 Real acceptance |520 backend tests pass,2 authorised drills skipped. Mongo two-client reservation CAS is real isolated test-storage evidence. Source/receiver/model effects, custody retrieval and live path certificates still unproved. |
 
-Next implementation slice: R01/R02/R04 native record recovery, controlled-request
-approval joins and enforced limits/reservations, alongside concrete R13 receipt/
-signature adapters. Then per-path A→B→C proof. Freeze acceptance before runs;
-issue certificates only after evidence. Genuinely GPU-dependent proof alone waits.
+Next implementation slice: install actual estate-admitted key/provenance lookup,
+non-GPU owning-engine worker/inspector/eligibility transports and native query/model
+descriptor bindings. The explicit composition factory is not yet installed as a
+live app binding. Current local recovery did not yield activation authority records;
+do not mint substitutes. Complete measured producers and full native B/C positive
+contracts, then actual A→B→C proofs. See activation_combined_20260927/BINDING_SPEC.md.
 
 ## P1
 - Grounded warm-answer path with context-loss disclosure.
