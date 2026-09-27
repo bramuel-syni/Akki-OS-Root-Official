@@ -1,0 +1,83 @@
+{
+  "finished_at_utc": "2026-09-27T17:47:14.127034+00:00",
+  "targets_count": 2,
+  "targets": [
+    {
+      "host_alias": "akki-vm-ii",
+      "checked_at_utc": "2026-09-27T17:47:12.149005+00:00",
+      "auth_method": "password",
+      "auth_attempts": 1,
+      "tcp_connected": true,
+      "server_identity_verified": true,
+      "authenticated": false,
+      "status": "DIRECT_PASSWORD_METHOD_NOT_ALLOWED",
+      "allowed_methods": [
+        "publickey"
+      ],
+      "credential_source": "owner_workbook",
+      "historical_client_identity_used": false,
+      "remote_commands": 0,
+      "remote_channels": 0
+    },
+    {
+      "host_alias": "akki-vm",
+      "checked_at_utc": "2026-09-27T17:47:14.126832+00:00",
+      "auth_method": "password",
+      "auth_attempts": 1,
+      "tcp_connected": true,
+      "server_identity_verified": true,
+      "authenticated": false,
+      "status": "DIRECT_PASSWORD_METHOD_NOT_ALLOWED",
+      "allowed_methods": [
+        "publickey"
+      ],
+      "credential_source": "owner_workbook",
+      "historical_client_identity_used": false,
+      "remote_commands": 0,
+      "remote_channels": 0
+    }
+  ],
+  "protected_file_hashes_before": {
+    "/app/backend/.env": {
+      "exists": true,
+      "sha256": "691c037d8979074e095cef7f6a249c80e32cd221e423116ddeda4b9c452027df"
+    },
+    "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/execution_identity.py": {
+      "exists": true,
+      "sha256": "4bf03d0281ea67e3b1596c9c3c4147a7db2b25effa1e1ca546c31d4b948a70ce"
+    },
+    "/root/.ssh/known_hosts": {
+      "exists": true,
+      "sha256": "76af023ae065a5f0fdb93e823db8baa196ae13a06f57a774680736cf9c71e7d4"
+    },
+    "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu": {
+      "exists": true,
+      "sha256": "cc9dd2d721600a02c74b60ab4324360ac07e529689c6ebb610c7275694b151e4"
+    }
+  },
+  "protected_file_hashes_after": {
+    "/app/backend/.env": {
+      "exists": true,
+      "sha256": "691c037d8979074e095cef7f6a249c80e32cd221e423116ddeda4b9c452027df"
+    },
+    "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/execution_identity.py": {
+      "exists": true,
+      "sha256": "4bf03d0281ea67e3b1596c9c3c4147a7db2b25effa1e1ca546c31d4b948a70ce"
+    },
+    "/root/.ssh/known_hosts": {
+      "exists": true,
+      "sha256": "76af023ae065a5f0fdb93e823db8baa196ae13a06f57a774680736cf9c71e7d4"
+    },
+    "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu": {
+      "exists": true,
+      "sha256": "cc9dd2d721600a02c74b60ab4324360ac07e529689c6ebb610c7275694b151e4"
+    }
+  },
+  "protected_files_unchanged": true,
+  "notes": {
+    "workbook_values_used_for_endpoint_user_password": true,
+    "server_pin_required": true,
+    "old_client_key_not_used": true,
+    "legacy_identity_module_not_used_for_connection": true
+  }
+}

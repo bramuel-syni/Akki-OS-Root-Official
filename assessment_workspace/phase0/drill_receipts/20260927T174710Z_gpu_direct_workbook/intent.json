@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-09-27T17:47:10.146051+00:00",
+  "operation": "direct_password_connect_target_once_per_workbook_target",
+  "authorization_scope": "owner-authorized direct password seam; no commands/workload",
+  "constraints": {
+    "single_attempt_per_target": true,
+    "no_retries": true,
+    "ssh_port": 22,
+    "timeout_seconds": 8,
+    "password_method_only": true,
+    "no_key_agent_or_fallback": true,
+    "no_remote_commands": true,
+    "no_remote_channels": true
+  },
+  "workbook_custody_reference": {
+    "path": "/app/backend/estate_keys/gpu_hosts/GPU_CREDs_owner_20260927T174431Z.xlsx",
+    "sha256": "483b8f697dde5117d03bbc7b2cddc322fe49788f65d0d99b0516ff3c9fcdc29b"
+  }
+}

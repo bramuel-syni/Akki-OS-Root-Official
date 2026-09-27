@@ -1,0 +1,1 @@
+"""Owner-supplied direct GPU connection; independent of historical client identity."""

@@ -1,5 +1,30 @@
 # Akki implementation history
 
+## 2026-09-27 17:47 UTC — new workbook, fresh direct GPU seam (ACTIVE)
+
+Owner explicitly instructed no old client identity dependency/rotation and GPU
+connection first. Privately consumed new workbook (two password logins, no key).
+Built standalone services.gpu_direct with one actual password call, no old CLIENT
+key/receipt/agent/approval comparisons, safe errors and separate SERVER identity.
+One LIVE direct attempt/host reached pinned server then returned password-method
+not-allowed with publickey only; neither authenticated. No commands/workload ran.
+This result differs from17:33 local mismatch; not evidence the password is wrong.
+
+After the live diagnostic, selected direct_workbook in existing backend.env,
+configured only workbook path/port/timeout, wired runner and census entrypoints,
+inventory and redaction to workbook data, restarted backend. Old initial env keys
+and audits retained but not consulted by the active connection. No GPU key/account
+changes, no fallback.13targeted offline tests pass (MOCKED network); full-suite
+**578 passed,2 gated skips,0 failures/errors**,116.234s, recorded at
+gpu_direct_full_regression.xml. Network-blocked active configuration check confirms
+password auth/no client key for both targets; restarted API responds correctly.
+Report47/live receipt
+20260927T174710Z_gpu_direct_workbook. No repeat network attempts authorised.
+
+Updated test_credentials.md with restricted workbook custody reference, no secrets.
+Next: actual provider Connect instructions to resolve password-vs-publickey method
+mismatch; no automatic sshd/identity alteration. UI/source-data boundary unchanged.
+
 ## 2026-09-27 17:33 UTC — owner-requested GPU connection diagnostic
 
 User requested a new GPU connection check and clarification of overall completion.

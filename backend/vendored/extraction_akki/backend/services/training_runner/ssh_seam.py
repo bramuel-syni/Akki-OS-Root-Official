@@ -191,6 +191,10 @@ def _env_get(key: str, default: str = "") -> str:
 
 def list_hosts() -> List[str]:
     """Return the multi-host inventory from AKKI_GPU_HOSTS. Empty if unset."""
+    from services.gpu_direct.config import direct_enabled
+    if direct_enabled():
+        from services.gpu_direct.workbook import read_targets
+        return [target.name for target in read_targets()]
     raw = _env_get("AKKI_GPU_HOSTS")
     if not raw:
         return []
@@ -204,6 +208,13 @@ def _legacy_fallback_key(host_name: str) -> str:
 
 def get_host_config(host_name: str) -> HostConfig:
     """Read {SLUG}_* env vars for the host; fall back to legacy for akki-vm-ii."""
+    from services.gpu_direct.config import direct_enabled
+    if direct_enabled():
+        from services.gpu_direct.workbook import get_target
+        target = get_target(host_name)
+        return HostConfig(name=target.name, slug=_slug_for(target.name), host=target.host,
+                          port=target.port, username=target.username, os_family='unspecified',
+                          hostname_expected=target.name, key_path=None, password_present=True)
     if host_name not in list_hosts():
         raise UnknownHost(
             f"Host {host_name!r} not in AKKI_GPU_HOSTS inventory "
@@ -253,6 +264,10 @@ def get_host_config(host_name: str) -> HostConfig:
 
 def _get_password_for(host_name: str) -> str:
     """INTERNAL — read the password value. Callers must not persist the return."""
+    from services.gpu_direct.config import direct_enabled
+    if direct_enabled():
+        from services.gpu_direct.workbook import get_target
+        return get_target(host_name).password
     slug = _slug_for(host_name)
     v = _env_get(f"{slug}_SSH_PASSWORD")
     if v:
@@ -269,6 +284,10 @@ def _get_password_for(host_name: str) -> str:
 
 def _all_secrets() -> List[str]:
     """Collect every known password value currently in os.environ."""
+    from services.gpu_direct.config import direct_enabled
+    if direct_enabled():
+        from services.gpu_direct.workbook import read_targets
+        return [target.password for target in read_targets()]
     secrets: List[str] = []
     for h in list_hosts():
         slug = _slug_for(h)
@@ -300,6 +319,11 @@ def connect(host_name: str, timeout: int = 15):
 
     Auth precedence: key > password > raise SSHAuthUnconfigured.
     """
+    from services.gpu_direct.config import direct_enabled
+    if direct_enabled():
+        from services.gpu_direct.connection import connect as direct_connect
+        client, _ = direct_connect(host_name, timeout=timeout)
+        return client
     import paramiko  # local import; keeps unit-test collection cheap
 
     cfg = get_host_config(host_name)

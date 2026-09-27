@@ -14,6 +14,15 @@ from services.census_autonomy.execution_identity import IdentityVerificationErro
 
 
 def _connect(host, timeout):
+    from services.gpu_direct.config import direct_enabled
+    if direct_enabled():
+        from services.gpu_direct.connection import connect as direct_connect
+        client, _ = direct_connect(host, timeout=timeout)
+        try:
+            return client, ssh_seam.get_host_config(host)
+        except Exception:
+            client.close()
+            raise
     import paramiko
     config = ssh_seam.get_host_config(host)
     key = execution_identity.verify_identity(config)

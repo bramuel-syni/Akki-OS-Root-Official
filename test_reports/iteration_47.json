@@ -1,0 +1,54 @@
+{
+  "summary": "Executed mandated one-pass live direct password seam from owner workbook (one attempt per host, no retries), captured exclusive receipts, then ran targeted offline pytest for gpu_direct workbook/connection modules.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "Direct SSH auth target akki-vm-ii",
+        "issue": "connect_target returned DIRECT_PASSWORD_METHOD_NOT_ALLOWED after successful TCP + server identity verification; server advertised only publickey.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "Direct SSH auth target akki-vm",
+        "issue": "connect_target returned DIRECT_PASSWORD_METHOD_NOT_ALLOWED after successful TCP + server identity verification; server advertised only publickey.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/assessment_workspace/tools/gpu_direct_workbook_once.py",
+    "/app/assessment_workspace/phase0/drill_receipts/20260927T174710Z_gpu_direct_workbook/intent.json",
+    "/app/assessment_workspace/phase0/drill_receipts/20260927T174710Z_gpu_direct_workbook/result.json",
+    "/app/backend/tests/test_gpu_direct_workbook_connection.py",
+    "/app/test_reports/pytest/pytest_iteration47_gpu_direct.xml"
+  ],
+  "action_items": [
+    "Main agent should treat both hosts as password-method-disabled at server side (publickey-only advertised) and align with owner policy without adding retries in this seam.",
+    "If policy requires password login, update remote sshd auth policy out-of-band; do not alter this seam to fallback/rotate credentials.",
+    "Keep receipts as canonical live evidence for this cycle; do not re-run live calls in follow-up testing cycle unless explicitly re-authorized."
+  ],
+  "critical_code_review_comments": [
+    "New direct seam correctly avoids legacy ssh_seam/execution identity path and old client-key dependency during connection.",
+    "connect_target enforces strict server pin verification before auth and makes exactly one password auth call with fallback=False.",
+    "Receipt payload remains sanitized (no username/password leakage) and protected files remained hash-stable before/after live attempt."
+  ],
+  "updated_files": [
+    "/app/assessment_workspace/tools/gpu_direct_workbook_once.py",
+    "/app/backend/tests/test_gpu_direct_workbook_connection.py",
+    "/app/test_reports/iteration_47.json"
+  ],
+  "success_rate": {
+    "backend": "Offline targeted tests: 6/6 passed (100%). Live direct connection auth success: 0/2 hosts authenticated (password method rejected on both).",
+    "frontend": "Not tested (request was backend/live seam focused)."
+  },
+  "seed_data_creation": "None.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Live seam already consumed once per host under timestamped receipt dir 20260927T174710Z_gpu_direct_workbook. Do not repeat live attempts in this cycle. Server pins matched; password method denied with allowed_methods=[publickey] on both targets.",
+  "rca of the issue": "Reproduction: load backend/.env (override=False), set process-local GPU_DIRECT_CREDENTIALS_XLSX + GPU_DIRECT_SSH_PORT=22 + GPU_DIRECT_TIMEOUT_SECONDS=8, read targets via services.gpu_direct.workbook.read_targets, invoke services.gpu_direct.connection.connect_target once per target. Outcome: TCP and host pin verification succeeded, then auth_password raised BadAuthenticationType -> DIRECT_PASSWORD_METHOD_NOT_ALLOWED with advertised publickey only. Root cause is remote auth-method policy mismatch vs requested direct password login, not workbook parsing and not server identity mismatch."
+}

@@ -1,5 +1,16 @@
 # Akki — current engineering order
 
+LATEST17:47UTC: owner supplied new workbook and authorised a fresh DIRECT connector
+without old CLIENT-key records. New active direct_workbook seam implemented/wired;
+one REAL password attempt each reached pinned servers but both SSH listeners
+replied password method not allowed, publickey only. No local client-key gate,
+rotation, shell or workload. Earlier17:33 identity-mismatch item below is HISTORY,
+not the active connector's failure. Next obtain provider's actual Connect command/
+instructions (not private keys in chat) to establish intended supported login route.
+Report47 and DIRECT_WORKBOOK_CONNECTION_20260927.md hold canonical current evidence.
+Fresh-seam full regression:578pass,2gated skips,0failures/errors. Live SSH success
+is still0/2; passing MOCKED transport tests does not change that result.
+
 Latest GPU access check (2026-09-27 17:33UTC, user-requested, once per host): both
 servers reachable with matching server pins; local admitted/client key mismatch
 persists. No key auth attempted, no shell or GPU job. Further attempts remain held

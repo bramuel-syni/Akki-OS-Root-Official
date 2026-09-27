@@ -212,6 +212,44 @@ updated `activation_combined_20260927/BINDING_SPEC.md`.
 
 ## Workspace versus original live Akki
 
+### Latest active connection decision — 2026-09-27 17:47 UTC
+Owner supplied NEW GPU CREDs.xlsx and explicitly overrode old CLIENT-admission
+dependency: fresh direct login from that workbook, no rotation/administrative
+changes; connection first. Historical audit may remain but cannot gate login.
+
+Implemented `services.gpu_direct` workbook-only password seam. Both active runner
+and census connection entrypoints select it through explicit
+`AKKI_GPU_CONNECTION_MODE=direct_workbook`; endpoint/user/password and inventory
+come from the new workbook, NEVER historical client key/receipt or fallback.
+Non-secret connector path/port/timeout added to existing backend.env and backend
+restarted. Existing initial keys retained but old client values are inactive in
+this connector. No GPU credentials changed, no account/key created. Custody path
+and digest are in test_credentials.md (NO password values). SERVER endpoint
+verification remains separate, passed for both targets, and did not block login.
+
+ACTUAL direct auth result17:47:10–17:47:14UTC: both SSH servers reachable/pinned,
+one password auth call each, both replied `DIRECT_PASSWORD_METHOD_NOT_ALLOWED`
+with `allowed_methods=[publickey]`. No old CLIENT key checks ran. No authenticated
+session, shell/workload or key fallback. This does NOT establish wrong passwords;
+the password method itself was rejected. Do not report this as local key mismatch.
+
+Report47/live receipts under
+`phase0/drill_receipts/20260927T174710Z_gpu_direct_workbook/`.13targeted offline
+MOCKED tests pass, including proving both active entrypoints never invoke old
+identity verification and cannot fall back on direct failure. Final full-suite:
+**578 passed,2 existing explicitly gated custody drills skipped,0 failures/errors**
+in116.234s; `test_reports/pytest/gpu_direct_full_regression.xml`. Active configured
+inventory check with networking blocked reports password auth and no client-key
+path for either target. Restarted backend responds401 on the authenticated profile
+route when accessed anonymously, as expected. Details:
+`notes/census_operational_v1/DIRECT_WORKBOOK_CONNECTION_20260927.md`.
+
+Next required connection detail: provider's actual Connect command/instructions,
+not a generic request for an integration design. Workbook contains passwords but
+the SSH listeners offer publickey only; determine intended console/SSH route from
+the provider's supplied instructions. No blind retries, pin rewrites, server auth
+changes or generated identities. Connection/workload still not successful.
+
 ### 2026-09-27 17:33 UTC — newly requested GPU connection check
 User asked whether other work is complete and explicitly requested a GPU connection
 attempt. This authorised one read-only diagnostic per configured host, NOT a
