@@ -1,15 +1,15 @@
 # Akki — continuity record
 
-## LATEST HANDOFF — owner JSON artifacts v1.1 accepted for engineering
-Review: `assessment_workspace/notes/live_activation_v1_3_artifact_review/`
-`revision_v1_1/REVIEW.md`; immutable originals and60-case offline matrix retained.
-Claimed repairs verified incl. honestabsence/state/path constraints and split
-crossing controls; no further desk revision requested. Residual E1 work: PARTIALLY
-LIVE guards, re-performance bounds, exact criteria/quorum, stale scalar deny row,
-semantic/provenance verification and real registry/policy integration. Owner
-explicitly delegates hardening; version corrections rather than replace originals.
-Neither file nor chat proves effective registry records/live readiness. Freeze
-validators before runs, issue certificates after proof. GPU remains excluded.
+## LATEST FINDING — original pod versus this workspace
+User reports original Akki live on amazing-gates-8; current configured workspace is
+pensive-goodall-6. Read-only evidence: `assessment_workspace/notes/`
+`workspace_repo_connection_review/REVIEW.md`. No GPU/SSH attempts or key changes.
+Local main b2ed3ef66; origin Akki-OS-Root; cached origin/main bd776f0e5(Sept24).
+Remote read authentication/access failed: owner's latest push NOT verified. Original
+Extraction-Akki backend/own git absent; bootstrap selects vendored code. Local host
+profiles/files present does not prove authorised key equivalence/connectivity.
+Original real-training records are historical, not fresh health. Earlier unbound
+findings scope THIS activation path. Artifact v1.1 handoff/60-case review retained.
 
 ## LATEST ASSESSMENT — Live Activation v1.3, GPU excluded
 
