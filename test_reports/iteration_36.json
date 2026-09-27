@@ -1,0 +1,68 @@
+{
+  "summary": "Completed OFFLINE artifact validation only for activation_certificate.schema.json and crossing_decision_table.v1.json using Draft202012Validator.check_schema and Draft202012Validator+FormatChecker. Built a clearly labeled SYNTHETIC REVIEW FIXTURE and 24 saved counterexample/control payloads; several semantically inconsistent claims are still schema-valid.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "No cross-field constraints enforce LIVE-VERIFIED consistency (e.g., blocked=true with LIVE-VERIFIED, nonempty mocked_components, triggers_fired while blocked=false all schema-valid).",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "No chronology/consistency constraints enforce temporal ordering or arithmetic invariants (run end before start, negative reconciliation counters, mismatch sums all schema-valid).",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "crossing_decision_table.v1.json",
+        "issue": "Policy artifact has declarative rows only; action/condition resolution semantics are absent in artifacts and cannot be execution-verified from static JSON alone.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "activation_certificate.schema.json",
+        "issue": "not_measured with measured_value=null is not representable due to measured_value type excluding null."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/test_artifact_validation_offline.py",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/synthetic_review_fixture.json",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/results_matrix.json",
+    "/app/test_reports/pytest/pytest_artifact_validation_iteration36.xml"
+  ],
+  "action_items": [
+    "Treat current pass/fail as schema-shape evidence only; do not treat as runtime-policy enforcement evidence.",
+    "If activation blockers require semantic guarantees, add separate verifier/resolver layer (outside this task) for cross-field state, chronology, arithmetic, and authority-trigger coupling.",
+    "Preserve row4 controlled/frontier pilot disablement unless a distinct receipted class-specific change plus per-call authority is introduced.",
+    "Keep unassessed->controlled conservative routing behavior explicit in resolver logic; do not erase not-assessed eligibility paths."
+  ],
+  "critical_code_review_comments": [
+    "Original schema and policy hashes match provided authoritative values exactly.",
+    "Raw policy contains 5 rows and default_when_no_row_matches=REFUSE; no embellished top-level or row-level metadata (row_id/priority/conditions/scope) present.",
+    "Row4 (controlled/frontier) and uncontrolled/frontier row both require external_crossing=masked_permitted; ceremony is natural-language string only.",
+    "Counterexamples demonstrate many semantically inconsistent states remain schema-valid; this is expected from static schema scope and is not proof of bypass execution."
+  ],
+  "updated_files": [
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/synthetic_review_fixture.json",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/test_artifact_validation_offline.py",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/results_matrix.json",
+    "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/",
+    "/app/test_reports/iteration_36.json",
+    "/app/test_reports/pytest/pytest_artifact_validation_iteration36.xml"
+  ],
+  "success_rate": {
+    "backend": "100% (1/1 offline pytest suite)",
+    "frontend": "N/A (not requested)"
+  },
+  "seed_data_creation": "Created SYNTHETIC/MOCKED review fixture and saved synthetic counterexample payloads only; no runtime/app/database state touched.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Use results_matrix.json as machine-readable truth table of accepted/rejected cases and exact failure paths. All tests are offline static artifact checks only; no resolver execution exists in artifacts.",
+  "rca of the issue": "Repro: pytest /app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/test_artifact_validation_offline.py -v --tb=short --junitxml=/app/test_reports/pytest/pytest_artifact_validation_iteration36.xml. Root cause: schema/policy artifacts encode structural declarations but limited cross-field semantics; therefore multiple semantically inconsistent payloads remain valid JSON instances under current schema."
+}

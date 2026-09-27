@@ -1,0 +1,245 @@
+{
+  "generated_at_utc": "2026-09-27T10:43:02.908141+00:00",
+  "method": {
+    "schema_check": "Draft202012Validator.check_schema",
+    "validator": "Draft202012Validator",
+    "format_checker": "FormatChecker",
+    "format_checker_note": "custom timezone-aware RFC3339-shaped date-time checker; not a full format-conformance suite; non-string format instances defer to type validation",
+    "python_jsonschema_api": "jsonschema"
+  },
+  "artifact_hashes": {
+    "activation_certificate.schema.json": "6bebe79c4d5db17db3bcf047c0512c749193bd7cc081e83bdaf7e5f6bbe8f0fa",
+    "crossing_decision_table.v1.json": "f90cf6d7c36f3d4b89bc8bf099c990c223b5836c5cbdf282f70d781b69ba74f3"
+  },
+  "limits": [
+    "Static artifact inspection only.",
+    "Schema shape validation does not prove authenticity, existence, or runtime enforcement.",
+    "No resolver/execution engine is present in these artifacts; matching behavior is not executed here.",
+    "Boolean const checks are declaration constraints only, not real-world observation."
+  ],
+  "synthetic_review_fixture": {
+    "label": "SYNTHETIC REVIEW FIXTURE (fictional; not issued certificate; never app-ingested)",
+    "path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/synthetic_review_fixture.json",
+    "accepted": true
+  },
+  "policy_assertions": {
+    "rows_count": 5,
+    "default_when_no_row_matches": "REFUSE",
+    "uncontrolled_frontier_external_crossing": "masked_permitted",
+    "controlled_frontier_external_crossing": "masked_permitted",
+    "ceremony_field_type": "str",
+    "top_level_embellishment_keys_absent": true
+  },
+  "cases": [
+    {
+      "case": "case_01_live_verified_peripheral_mock_nonempty",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_01_live_verified_peripheral_mock_nonempty.json",
+      "errors": []
+    },
+    {
+      "case": "case_02_live_verified_blocked_true_with_revocation_trigger",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_02_live_verified_blocked_true_with_revocation_trigger.json",
+      "errors": []
+    },
+    {
+      "case": "case_03_live_verified_issuer_unverified_empty_signature",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_03_live_verified_issuer_unverified_empty_signature.json",
+      "errors": []
+    },
+    {
+      "case": "case_04_live_verified_acceptance_script_fail",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_04_live_verified_acceptance_script_fail.json",
+      "errors": []
+    },
+    {
+      "case": "case_05_path_c_release_admitted_minimal_semantics",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_05_path_c_release_admitted_minimal_semantics.json",
+      "errors": []
+    },
+    {
+      "case": "case_06_path_b_refusal_demonstration_null",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_06_path_b_refusal_demonstration_null.json",
+      "errors": []
+    },
+    {
+      "case": "case_07a_met_with_empty_measurement_ref",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_07a_met_with_empty_measurement_ref.json",
+      "errors": []
+    },
+    {
+      "case": "case_07b_met_with_fabricated_measurement_ref",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_07b_met_with_fabricated_measurement_ref.json",
+      "errors": []
+    },
+    {
+      "case": "case_08_not_measured_with_null_measured_value",
+      "expected_accepted": false,
+      "accepted": false,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_08_not_measured_with_null_measured_value.json",
+      "errors": [
+        {
+          "path": "/release_acceptance/criteria/0/measured_value",
+          "validator": "type",
+          "message": "None is not of type 'number', 'string', 'boolean'"
+        }
+      ]
+    },
+    {
+      "case": "case_09_reconciliation_negative_and_mismatched_counts",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_09_reconciliation_negative_and_mismatched_counts.json",
+      "errors": []
+    },
+    {
+      "case": "case_10a_usage_negative_quantity",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_10a_usage_negative_quantity.json",
+      "errors": []
+    },
+    {
+      "case": "case_10b_limits_negative_effective_limit",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_10b_limits_negative_effective_limit.json",
+      "errors": []
+    },
+    {
+      "case": "case_10c_limits_observed_beyond_limit",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_10c_limits_observed_beyond_limit.json",
+      "errors": []
+    },
+    {
+      "case": "case_11_single_limit_dimension_no_spend_dimension",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_11_single_limit_dimension_no_spend_dimension.json",
+      "errors": []
+    },
+    {
+      "case": "case_12_all_refused_empty_group_principal_quorum_without_threshold",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_12_all_refused_empty_group_principal_quorum_without_threshold.json",
+      "errors": []
+    },
+    {
+      "case": "case_13_chronologically_impossible_but_well_formatted_timestamps",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_13_chronologically_impossible_but_well_formatted_timestamps.json",
+      "errors": []
+    },
+    {
+      "case": "case_14_reperformance_negative_and_sum_disagree",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_14_reperformance_negative_and_sum_disagree.json",
+      "errors": []
+    },
+    {
+      "case": "case_15_triggers_nonempty_blocked_false",
+      "expected_accepted": true,
+      "accepted": true,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/case_15_triggers_nonempty_blocked_false.json",
+      "errors": []
+    },
+    {
+      "case": "control_reject_on_evidence_chain_true",
+      "expected_accepted": false,
+      "accepted": false,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/control_reject_on_evidence_chain_true.json",
+      "errors": [
+        {
+          "path": "/mocked_components/0/on_evidence_chain",
+          "validator": "const",
+          "message": "False was expected"
+        }
+      ]
+    },
+    {
+      "case": "control_reject_unaccounted_not_zero",
+      "expected_accepted": false,
+      "accepted": false,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/control_reject_unaccounted_not_zero.json",
+      "errors": [
+        {
+          "path": "/output/reconciliation/unaccounted",
+          "validator": "const",
+          "message": "0 was expected"
+        }
+      ]
+    },
+    {
+      "case": "control_reject_workspace_touched_data_true",
+      "expected_accepted": false,
+      "accepted": false,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/control_reject_workspace_touched_data_true.json",
+      "errors": [
+        {
+          "path": "/runtime/implementation_workspace_touched_data",
+          "validator": "const",
+          "message": "False was expected"
+        }
+      ]
+    },
+    {
+      "case": "control_reject_required_field_missing",
+      "expected_accepted": false,
+      "accepted": false,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/control_reject_required_field_missing.json",
+      "errors": [
+        {
+          "path": "/",
+          "validator": "required",
+          "message": "'issuer' is a required property"
+        }
+      ]
+    },
+    {
+      "case": "control_reject_extra_root_property",
+      "expected_accepted": false,
+      "accepted": false,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/control_reject_extra_root_property.json",
+      "errors": [
+        {
+          "path": "/",
+          "validator": "additionalProperties",
+          "message": "Additional properties are not allowed ('unexpected_root' was unexpected)"
+        }
+      ]
+    },
+    {
+      "case": "control_reject_invalid_date_time_format",
+      "expected_accepted": false,
+      "accepted": false,
+      "payload_path": "/app/assessment_workspace/notes/live_activation_v1_3_artifact_review/validation/counterexamples/control_reject_invalid_date_time_format.json",
+      "errors": [
+        {
+          "path": "/identity/run_started_at",
+          "validator": "format",
+          "message": "'not-a-date-time' is not a 'date-time'"
+        }
+      ]
+    }
+  ]
+}
