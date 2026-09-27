@@ -7,6 +7,7 @@ from services.dap_lifecycle.state_machine import RequestState, transition
 from services.ledger_writer.principal_control import append_event, read_events
 from services.ledger_writer.mongo_control import digest
 from services.portal_operational.models import HistoryEntry, WorkView
+from services.portal_operational.hold_reasons import public_reason, disclosure
 
 RESOURCE = "dap_request"
 REASONS = {
@@ -30,17 +31,33 @@ def project(events):
     history = []
     for event in events:
         for entry in event["payload"]["history"]:
-            history.append(HistoryEntry(**entry, receipt_hash=event["row"]["hash"]))
+            public_entry = {**entry, "reason_code": public_reason(entry["reason_code"]).code if entry["reason_code"] else ""}
+            history.append(HistoryEntry(**public_entry, receipt_hash=event["row"]["hash"]))
     # Allowlist only; no approver fields, raw payloads, identity internals or budget hints.
     return WorkView(
         request_id=first["request_id"], work_id=first["request_id"],
         objective_text=first["objective_text"], objective_hash=first["objective_hash"],
         operation=first["operation"], units=first["units"], state=public_state,
         lifecycle_state=state, governing_engine=first["governing_engine"],
-        created_at=first["created_at"], reason_code=last["reason_code"],
-        reason=REASONS.get(last["reason_code"], "Operation prerequisites remain unresolved."),
+        created_at=first["created_at"], **disclosure(last["reason_code"], receipt_ref=events[-1]["row"]["hash"]),
         history=history, permitted_actions=["stop"] if state == "Executing" else [],
     )
+
+
+async def record_descriptor_hold(db, scope, request_id, reason_code):
+    """Append a failed descriptor lookup without inventing an execution request."""
+    from uuid import uuid4
+    events = await events_for(db, scope, request_id)
+    if not events:
+        raise HTTPException(404, "Request not found.")
+    frozen = {key: events[0]["payload"][key] for key in ("request_id", "principal_id", "objective_text",
+        "objective_hash", "body_hash", "units", "operation", "governing_engine", "created_at")}
+    now = datetime.now(timezone.utc).isoformat()
+    await append_event(db, tenant_id=scope["tenant_id"], run_id=request_id,
+        command_id=digest([request_id, "descriptor_hold", uuid4().hex]),
+        event_type="dap.request.execution_held", resource_type=RESOURCE, decision="held", reason_code=reason_code,
+        payload={**frozen, "lifecycle_state": events[-1]["payload"]["lifecycle_state"], "reason_code": reason_code,
+                 "history": [{"at": now, "state": "routing", "event": "descriptor_held", "reason_code": reason_code}]})
 
 
 async def submit(db, scope, body):

@@ -1,0 +1,50 @@
+{
+  "summary": "Executed one read-only GPU connection diagnostic per configured host (akki-vm, akki-vm-ii) with 8s stage timeout, strict known-host pin checks, and identity-guard preservation. No workloads, channels, commands, retries, key mutations, or env/module mutations were performed.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "SSH identity admission (AKKI_VM)",
+        "issue": "verify_identity failed with IDENTITY_PIN_MISMATCH; key-based auth intentionally not attempted.",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "SSH identity admission (AKKI_VM_II)",
+        "issue": "verify_identity failed with IDENTITY_PIN_MISMATCH; key-based auth intentionally not attempted.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/assessment_workspace/tools/gpu_connection_diag_once.py",
+    "/app/assessment_workspace/phase0/drill_receipts/20260927T173352Z_gpu_connection_diag_once/intent.json",
+    "/app/assessment_workspace/phase0/drill_receipts/20260927T173352Z_gpu_connection_diag_once/result.json"
+  ],
+  "action_items": [
+    "Refresh/realign admitted identity receipt fingerprint inputs for AKKI_VM and AKKI_VM_II so verify_identity can succeed.",
+    "After identity admission is valid, rerun a single governed auth diagnostic to distinguish auth rejection vs authenticated state."
+  ],
+  "critical_code_review_comments": [
+    "read-only diagnostic honored strict guardrails: pin match before auth, no fallback keys/password attempts, no remote command execution.",
+    "Both hosts are network-reachable and pinned host keys match known_hosts.",
+    "Current blocker is local admission mismatch (identity pin mismatch), not TCP reachability and not host-key pin mismatch."
+  ],
+  "updated_files": [
+    "/app/assessment_workspace/tools/gpu_connection_diag_once.py",
+    "/app/test_reports/iteration_46.json"
+  ],
+  "success_rate": {
+    "backend": "Diagnostic workflow 100% complete; 0/2 hosts passed local identity admission.",
+    "frontend": "Not tested (not requested)."
+  },
+  "seed_data_creation": "None.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Receipt directory created: /app/assessment_workspace/phase0/drill_receipts/20260927T173352Z_gpu_connection_diag_once. For both configured hosts: tcp_connected=true, server_pin_matched=true, local_admission.valid=false (IDENTITY_PIN_MISMATCH), auth_attempts=[auth_none], advertised_auth_methods=[publickey], authenticated=false, channels_opened=0, commands_executed=0. Protected file hashes before/after are identical.",
+  "rca of the issue": "Reproduction: load backend/.env with override=False, resolve host configs via ssh_seam.get_host_config, run execution_identity.verify_identity, then perform one pinned handshake per host. Result: verify_identity refused both hosts with IDENTITY_PIN_MISMATCH, so key auth was not offered by design. Mitigation: correct admitted identity receipt/hash linkage for current key custody; do not bypass identity guard."
+}

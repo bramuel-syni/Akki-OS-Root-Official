@@ -7,6 +7,7 @@ from services.ledger_writer.principal_control import read_events
 from services.northena.execution_journal import LedgerJournal, RESOURCE
 from services.northena.execution_models import Request
 from services.portal_operational.models import HistoryEntry
+from services.portal_operational.hold_reasons import public_reason, disclosure
 
 
 async def events_for(db, scope, request_id=None):
@@ -47,27 +48,56 @@ def project(work, events):
     dispatched, state, reason = False, work.lifecycle_state, work.reason_code
     history = list(work.history)
     terminal = None
+    reason_ref = events[-1]["row"]["hash"]
+    terminal_ref = None
+    awaiting_reconciliation = False
+    worker_terminal = False
     for e in events:
         slot, data = e["payload"]["slot"], e["payload"]["data"]
         label = None
         if slot == "dispatch" and data.get("action") == "submit":
             dispatched, state, reason, label = True, "Executing", "EXECUTION_RESERVED", "execution_reserved"
+            awaiting_reconciliation = True
+        elif slot in {"worker_outcome", "worker_terminal"}:
+            worker_terminal = True
+            state, reason, label = "Interrupted", "EXECUTION_FINALISATION_REQUIRED", "worker_outcome_recorded"
+            awaiting_reconciliation = False
+        elif slot.startswith("observation:"):
+            observed = data["result"]["state"]
+            awaiting_reconciliation = False
+            if worker_terminal or observed in {"complete", "cancelled", "failed"}:
+                state, reason, label = "Interrupted", "EXECUTION_FINALISATION_REQUIRED", "worker_outcome_recorded"
+            elif observed in {"accepted", "running"}:
+                state, reason, label = "Executing", "EXECUTOR_" + observed.upper(), "worker_acknowledged"
+            else:
+                state, reason, label = "Interrupted", "EXECUTOR_RECONCILIATION_REQUIRED", "worker_reconciliation_required"
         elif slot == "terminal" or slot.startswith("portal_view:"):
             state, reason, label = _state(data, dispatched), data["reason_code"], "execution_" + data["phase"]
+            awaiting_reconciliation = False
             if slot == "terminal":
                 terminal = data
+                terminal_ref = e["row"]["hash"]
             if state == "Ready" and data["evidence_mode"] != "measured":
                 state, reason = "Blocked", "MOCKED_RESULT_NOT_RELEASABLE"
         elif slot.startswith("uncertain:"):
             state, reason, label = "Interrupted", data["reason_code"], "execution_uncertain"
+            awaiting_reconciliation = False
         if label:
             history.append(HistoryEntry(at=datetime.fromtimestamp(e["row"]["at"]["epoch_s"], timezone.utc).isoformat(),
-                state=state.lower(), event=label, reason_code=reason, receipt_hash=e["row"]["hash"]))
+                state=state.lower(), event=label, reason_code=public_reason(reason).code, receipt_hash=e["row"]["hash"]))
+    if awaiting_reconciliation:
+        state, reason = "Interrupted", "EXECUTOR_RECONCILIATION_REQUIRED"
+    # Diagnostic views can arrive late. They never reopen a canonical terminal.
+    if terminal is not None:
+        state, reason = _state(terminal, dispatched), terminal["reason_code"]
+        reason_ref = terminal_ref
+        if state == "Ready" and terminal["evidence_mode"] != "measured":
+            state, reason = "Blocked", "MOCKED_RESULT_NOT_RELEASABLE"
     actions = {"Executing": ["stop"], "Interrupted": ["retry", "stop"], "Ready": ["result"]}.get(state, [])
     if terminal and state != "Ready":
         actions = []
     return work.model_copy(update={"state": state.lower(), "lifecycle_state": state,
-        "reason_code": reason, "reason": "Execution state is recorded; result access is checked separately.",
+        **disclosure(reason, receipt_ref=reason_ref),
         "history": history, "permitted_actions": actions, "result": None,
         "execution_verified": bool(terminal and state == "Ready" and terminal["evidence_mode"] == "measured")})
 

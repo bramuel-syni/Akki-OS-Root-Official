@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from fastapi import HTTPException
 
 from services.northena import portal_work
-from services.northena.execution_models import Request, RunView
+from services.northena.execution_models import Request, Held
 from services.northena.execution_composition import build_coordinator
 from services.ledger_writer.mongo_control import digest
 from services.portal_operational import execution_records
@@ -15,7 +15,7 @@ class ExecutionBudget(BaseModel):
     deadline_epoch: Annotated[int, Field(gt=0)]
 
 
-async def frozen_request(db, scope, request_id, budget):
+async def frozen_request(db, scope, request_id, budget, receipts=None):
     events = await portal_work.events_for(db, scope, request_id)
     if not events:
         raise HTTPException(404, "Request not found.")
@@ -32,7 +32,11 @@ async def frozen_request(db, scope, request_id, budget):
     # recipe/provisioning records; never fabricate training inputs from source IDs.
     mapping = {"browse_estate": ("source", "mtafiti"), "connect_workspace": ("source", "synisense")}
     if frozen["operation"] not in mapping:
-        raise HTTPException(409, "This request needs its operation-specific artifact/input binding.")
+        from services.activation.portal_plans import MODEL_OPERATIONS, recover_plan
+        if frozen["operation"] not in MODEL_OPERATIONS:
+            raise Held("NATIVE_SKILL_PROVISIONING_BINDING_REQUIRED" if frozen["operation"] == "develop_skills"
+                       else "NATIVE_CUSTODY_DELIVERY_REQUIRED")
+        return await recover_plan(receipts, scope, frozen, budget.deadline_epoch)
     kind, engine = mapping[frozen["operation"]]
     return Request(request_id=request_id, tenant_id=scope["tenant_id"], principal_id=scope["principal_id"],
                    kind=kind, engine=engine, objective_sha256=digest(frozen["objective_text"]),
@@ -40,11 +44,16 @@ async def frozen_request(db, scope, request_id, budget):
                    scope_refs=tuple(frozen["units"]), deadline_epoch=budget.deadline_epoch)
 
 
-async def advance(db, scope, request_id, budget, bindings=None):
-    request = await frozen_request(db, scope, request_id, budget)
+async def advance(db, scope, request_id, budget, bindings=None, receipts=None):
     work = await portal_work.detail(db, scope, request_id)
     if work.lifecycle_state in {"Blocked", "Refused", "Expired", "Stopped"}:
         raise HTTPException(409, "This request is closed; any new commission requires a fresh request.")
+    try:
+        request = await frozen_request(db, scope, request_id, budget, receipts=receipts)
+    except Held as exc:
+        await portal_work.record_descriptor_hold(db, scope, request_id, exc.reason_code)
+        from services.portal_operational.hold_reasons import disclosure
+        raise HTTPException(409, disclosure(exc.reason_code)) from None
     view = await build_coordinator(db, bindings).advance(request)
     await execution_records.remember_view(db, request, view)
     return view

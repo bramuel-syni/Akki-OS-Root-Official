@@ -47,6 +47,8 @@ class WorkView(BaseModel):
     created_at: str
     reason_code: str
     reason: str
+    next_action: str | None = None
+    reason_receipt_ref: str | None = None
     execution_verified: bool = False
     result: dict | None = None
     permitted_actions: list[str] = Field(default_factory=list)

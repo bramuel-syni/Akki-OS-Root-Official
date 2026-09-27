@@ -14,13 +14,13 @@ export function osWorkModel({ work, navigate, setParams, disclosure, toggle }) {
     tmFilteredView: work.rows.map(r => ({ key: r.request_id, name: r.objective_text, status: r.state === 'routing' ? 'Routing · held' : r.state,
       statusColor: 'var(--brass)', meta: `${r.work_id} · ${stamp(r.created_at)}`, pct: 0, barColor: 'var(--ink3)', onOpen: () => setParams({ request: r.work_id }) })),
     tmSecAkkiOpen: !disclosure.receipts, tmSecAkkiLabel: disclosure.receipts ? 'Show' : 'Hide', tmSecAkkiMb: '14px', toggleTmAkki: () => toggle('receipts'),
-    tmRail: selected?.history.map((h, i) => ({ num: String(i + 1), tag: h.event, color: 'var(--brass)', text: `${stamp(h.at)} · ${h.state} · ${h.receipt_hash}` })) || [],
+    tmRail: selected?.history.map((h, i) => ({ num: String(i + 1), tag: h.event, color: 'var(--brass)', text: `${stamp(h.at)} · ${h.state}${h.reason_code ? ` · ${h.reason_code}` : ''} · ${h.receipt_hash}` })) || [],
     tmSecDivideOpen: Boolean(disclosure.division), tmSecDivideLabel: disclosure.division ? 'Hide' : 'Show', tmSecDivideMb: '14px', toggleTmDivide: () => toggle('division'),
     tmDivideReading: 'Counts reflect persisted states, not execution progress or output quality.',
     tmDivideBars: counts.map(c => ({ label: c.label, size: String(c.value), w: `${work.rows.length ? c.value * 100 / work.rows.length : 0}%`, fill: 'var(--brass)' })),
     prodRailIsWork: true, prodRailNotWork: false,
-    tmRailHead: work.error || selected?.reason || (work.loading ? 'Loading authoritative records…' : 'Select a work record to inspect its evidence.'),
-    tmRailLines: selected ? [{ label: 'Work identifier', value: selected.work_id, note: 'Same identifier in DAP' }, { label: 'Engine', value: selected.governing_engine, note: 'Execution has not been admitted.' }, { label: 'Objective SHA-256', value: '', note: selected.objective_hash }] : [],
+    tmRailHead: work.error || (selected ? `${selected.reason_code} · ${selected.reason}` : work.loading ? 'Loading authoritative records…' : 'Select a work record to inspect its evidence.'),
+    tmRailLines: selected ? [{ label: 'Work identifier', value: selected.work_id, note: 'Same identifier in DAP' }, { label: 'Engine', value: selected.governing_engine, note: selected.next_action || (selected.execution_verified ? 'Measured execution recorded; delivery remains separately checked.' : 'Execution is not live-verified.') }, { label: 'Objective SHA-256', value: '', note: selected.objective_hash }] : [],
   };
 }
 

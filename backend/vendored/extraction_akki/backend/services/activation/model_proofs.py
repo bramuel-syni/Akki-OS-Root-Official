@@ -99,7 +99,7 @@ def check_criteria(standard, certificate_acceptance, card):
 
 async def verify_model_proofs(receipts, events, request, plan, d, proofs):
     if request.kind == "source":
-        return
+        return set()
     refusal = proofs.get("refusal")
     expected = {"out_of_scope_question":"OUT_OF_SCOPE", "unauthorised_manifest_unit":"UNAUTHORISED_MANIFEST_UNIT",
                 "junk_stratum_unit":"JUNK_STRATUM_UNIT"}[d["evidence"]["refusal_demonstration"]["kind"]]
@@ -122,7 +122,7 @@ async def verify_model_proofs(receipts, events, request, plan, d, proofs):
                 raise Held("GROUNDED_SKILL_ANCHOR_SOURCE_MISMATCH")
         if "refusal" not in proofs or not proofs["refusal"][0].source_receipt_refs:
             raise Held("GROUNDED_SKILL_RECEIPTED_REFUSAL_MISSING")
-        return
+        return {v.source_receipt_ref for v in ground.anchors} | set(proofs["refusal"][0].source_receipt_refs)
     standard, proof = plan.evaluation_standard, proofs["evaluation"][0].evaluation
     if standard is None or proof is None:
         raise Held("INDEPENDENT_EVALUATION_RECORD_MISSING")
@@ -147,7 +147,10 @@ async def verify_model_proofs(receipts, events, request, plan, d, proofs):
     if (evaluation_request.input_refs[0] not in artifact_refs or not observations or
             observations[-1]["executor_id"] != proofs["evaluation"][1].signer_id):
         raise Held("INDEPENDENT_EVALUATION_NATIVE_ARTIFACT_OR_EXECUTOR_MISMATCH")
+    from services.activation.evaluation_joins import verify_evaluation_operation
+    evaluation_refs = await verify_evaluation_operation(receipts, events, evaluation_request, plan, proofs["evaluation"][1].signer_id)
     check_criteria(standard, d["release_acceptance"], proof.moac_card)
     release = proofs.get("release")
     if release is None or release[1].signer_id in {proofs["evaluation"][1].signer_id, proofs["training"][1].signer_id}:
         raise Held("SEPARATE_MODEL_RELEASE_DECISION_REQUIRED")
+    return evaluation_refs

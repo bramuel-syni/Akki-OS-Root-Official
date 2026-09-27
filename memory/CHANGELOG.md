@@ -1,5 +1,54 @@
 # Akki implementation history
 
+## 2026-09-27 17:33 UTC — owner-requested GPU connection diagnostic
+
+User requested a new GPU connection check and clarification of overall completion.
+One real pinned SSH handshake per configured host: BOTH network-reachable and
+server identities match; BOTH local client identities fail IDENTITY_PIN_MISMATCH.
+Zero key authentication attempts; auth_none only advertised publickey. No login,
+channels, commands, workload, key/config/env/identity changes or automatic retries.
+Protected-file before/after hashes match. Report46 and timestamped diagnostic
+receipts record the result; no connectivity restoration or GPU health asserted.
+
+Offline RCA interpreted without adopting unsupported claims about authorized_keys:
+current remote authorisation and original-runtime health are unknown. Do not repin
+the mismatched key as remediation. Earlier Sept26 actual auth rejection is not
+today's auth result. Safe next step is original admitted key/runtime custody
+recovery, not another generated key. All engineering tests remain last verified
+565backend/7frontend; no full suite rerun for this read-only connectivity check.
+
+## 2026-09-27 — Native startup, model descriptors, recovery and safe hold reasons
+
+User said to proceed with next actions/backlog/suggestion together. Added explicit
+opt-in native startup, bounded async PrincipalV1 lookup and Mkondo revalidation,
+same-ledger provider validation and safe runtime configuration endpoint. Model
+portal requests recover exact signed descriptors; missing bindings bank a durable
+hold, not fake model inputs. Current provider configuration remains absent.
+
+DAP/OS reason/action/history text uses existing owner elements; unknown native
+errors sanitised. No source prototype/CSS change. Actual long-objective drawer
+verified at1920×800 and390×844 without overflow. All7 frontend tests pass.
+
+Added immutable worker_outcome checkpoint (old marker readable), contradictory
+terminal guard, stale reply/view convergence and interrupted-before-view recovery.
+Four actual Mongo/new-process crash drills preserve one SYNTHETIC effect/submit/
+meter/terminal and stable fence. These are same-host tests, not genuine cross-host.
+
+Testing reports44/45: fixed6 initial regressions without weakening baseline tests;
+added full signed B/C LAB positives, then hardened verifier with actual dispatch/
+runtime ACKs, full child-evaluation approvals/limits/reservations/terms/settlement,
+transitive proof-prefix checks and sum-preserving usage. A/B/C LAB positives use
+NativeEvidence/NativeReceipts, not fabricated verifier flags. No live proof issued.
+
+Final: **565 backend pass,2 gated skips,0 failures/errors;7 frontend pass**.
+`test_reports/pytest/native_continuation_verified.{xml,log}` (131.853s). Scoped lint
+and original frozen hash/shape invariants pass. No GPU/SSH, actual source/model data,
+new keys/identities, auth-policy/credential/env changes. Unsolicited auth policy
+recommendations in44 were not treated as adopted policy or silently implemented.
+Remaining indispensable input is the existing admitted native provider/connection
+descriptor and actual signed activation records. Details in native_continuation
+RESULT and updated BINDING_SPEC; combined scope does not need reconfirmation.
+
 ## 2026-09-27 — Combined activation/control continuation
 
 User reconfirmed autonomous combined controls + real-path scope, GPU/SSH parked.

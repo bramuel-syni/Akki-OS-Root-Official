@@ -54,7 +54,9 @@ def build_coordinator(db, bindings=None):
     if bindings is not None and not isinstance(bindings, ExecutionBindings):
         raise ValueError("Execution bindings are server-owned typed configuration.")
     journal = LedgerJournal(db)
-    authority = ComponentAuthority(db, decisions=bindings.decisions if bindings else None)
+    lookup = getattr(bindings, "principal_lookup", None)
+    authority = ComponentAuthority(db, decisions=bindings.decisions if bindings else None,
+                                   **({"principal_lookup": lookup} if lookup is not None else {}))
     eligibility = (bindings.eligibility.bind(journal, bindings.gate_timeout_seconds)
                    if bindings and bindings.eligibility else InputEligibility(journal))
     handoffs = (bindings.handoffs.bind(journal, authority, bindings.gate_timeout_seconds)

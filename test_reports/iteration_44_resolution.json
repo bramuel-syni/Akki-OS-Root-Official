@@ -1,0 +1,28 @@
+{
+  "resolved_at": "2026-09-27",
+  "source_reports": ["/app/test_reports/iteration_44.json", "/app/test_reports/iteration_45.json"],
+  "backend_regressions_resolved": true,
+  "fixes": [
+    "Worker outcome checkpoint distinguished from final control terminal; original assertions preserved",
+    "Stale accepted/running replies reuse definitive facts; real terminal contradictions remain held",
+    "Late portal views cannot reopen a canonical terminal or release MOCKED results",
+    "Native child evaluation independently joins approval, worker admission, limits, reservation, metering/terms and settlement",
+    "Parent/child ACK, dispatch-fence and transitive proof-prefix checks added",
+    "Repeated usage units summed; invalid native quantities rejected"
+  ],
+  "canonical_test_result": {
+    "backend_passed": 565,
+    "backend_skipped": 2,
+    "backend_failed": 0,
+    "backend_errors": 0,
+    "frontend_passed": 7,
+    "junit": "/app/test_reports/pytest/native_continuation_verified.xml"
+  },
+  "skip_reason": "Two existing custody/GPU-related live refusal drills require explicit authorisation and remain disabled",
+  "evidence_limits": [
+    "A/B/C signer/worker/evaluator fixtures are SYNTHETIC/MOCKED, not live activation",
+    "Mongo and child-process recovery are real test mechanics on one host, not independent-host custody proof",
+    "No actual admitted native provider configured or live certificate issued"
+  ],
+  "auth_policy_observations": "Existing login rejection/success verified. No five-attempt threshold or automatic credential rewrite was adopted for this scope; no login policy/CORS/auth-store/credential changes made. Those recommendations are separate policy work, not introduced execution regressions."
+}

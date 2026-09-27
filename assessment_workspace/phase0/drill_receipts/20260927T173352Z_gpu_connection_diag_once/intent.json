@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-09-27T17:33:52.254120+00:00",
+  "operation": "one_read_only_tcp_ssh_handshake_per_configured_gpu_host",
+  "constraints": {
+    "retries": 0,
+    "stage_timeout_seconds": 8.0,
+    "remote_channels_allowed": false,
+    "remote_commands_allowed": false,
+    "workloads_allowed": false,
+    "pin_mismatch_stop_before_auth": true,
+    "identity_guard_bypass": false,
+    "inventory_source": "AKKI_GPU_HOSTS"
+  },
+  "hosts_requested": [
+    "akki-vm",
+    "akki-vm-ii"
+  ]
+}

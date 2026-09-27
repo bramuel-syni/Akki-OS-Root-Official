@@ -1,0 +1,79 @@
+{
+  "summary": "Completed backend+frontend verification for native runtime binding/portal plans/recovery terminal guard/safe hold disclosure and prototype work-copy flows. Targeted native suites passed (66/66), but full serial backend regression still has 6 deterministic execution_spine failures. Runtime endpoint and auth live checks passed for scoped behavior; UI deep-link flow with 1071-char objective showed no mobile overflow and correct hold/history rendering.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "backend/tests/execution_spine/test_execution_architecture_integration_supplemental.py::test_concurrent_advance_submits_once_with_real_ledger_journal",
+        "issue": "Concurrent advance expectation regressed: one of gathered views is outside {running, ready, unknown}.",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "backend/tests/execution_spine/test_execution_coordinator_protocol_red.py::test_coordinator_end_to_end_mocked_positive_flows[*]",
+        "issue": "Expected ordering verify/register < metered < terminal is broken across source/skill/training/evaluation variants (4 failures).",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "backend/tests/execution_spine/test_execution_coordinator_protocol_red.py::test_refusal_fault_paths_scope_expiry_manifest_and_usage_none",
+        "issue": "Fault-path now records terminal/ready/complete-like slot despite expected non-terminal hold/failure path.",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "Brute-force lockout requirement (after 5 failed attempts) not observed; attempts 1-6 all return 401.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "backend/server.py CORS middleware",
+        "issue": "CORS is effectively wide-open (CORS_ORIGINS='*' with credentials enabled), not explicit-origin allowlist as requested by auth playbook checks."
+      },
+      {
+        "endpoint": "services/auth/user_store.py::seed_admin_if_absent",
+        "issue": "Seeder is create-only and does not update existing admin password/hash on change."
+      },
+      {
+        "endpoint": "Global pytest environment",
+        "issue": "PendingDeprecationWarning from starlette.formparsers importing multipart."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/activation_controls/test_runtime_auth_live_iteration44.py",
+    "/app/test_reports/pytest/pytest_iteration44_targeted_native.xml",
+    "/app/test_reports/pytest/pytest_iteration44_runtime_auth_live.xml",
+    "/app/test_reports/pytest/pytest_iteration44_full_serial.xml"
+  ],
+  "action_items": [
+    "Fix execution_spine ordering/concurrency regressions introduced around terminal observation/finalisation path so full serial suite returns to prior canonical green.",
+    "Implement and test lockout/rate-limit behavior for repeated failed login attempts per auth playbook requirement.",
+    "Constrain CORS to explicit allowed origins for credentialed requests (avoid wildcard-effective policy).",
+    "Decide whether seed_admin must reconcile existing admin credentials; if yes, update seeder semantics and add regression tests.",
+    "Re-run full serial backend suite after fixes and confirm 6 failing tests are resolved."
+  ],
+  "critical_code_review_comments": [
+    "Runtime binding fail-closed behavior and safe unconfigured default path validated: no factory env => unbound runtime without side effects.",
+    "GET /api/portal/activation/runtime validated as auth-scoped safe report: configured=false, worker_paths_bound=[], execution_authorized=false, live_proof_verified=false, no explicit signer/principal/url fields.",
+    "Process recovery Mongo crash drills (4 scenarios) are green and remain SYNTHETIC worker/authority with real Mongo persistence only.",
+    "Unit+UI checks confirm hold reason + next action + receipted history are rendered in existing prototype surfaces without markup/style changes; long unbroken objective did not overflow mobile viewport.",
+    "Positive activation proof/certificate flows in these tests are MOCKED/SYNTHETIC fixtures, not live A/B/C native proof evidence."
+  ],
+  "updated_files": [
+    "/app/backend/tests/activation_controls/test_runtime_auth_live_iteration44.py",
+    "/app/test_reports/iteration_44.json"
+  ],
+  "success_rate": {
+    "backend": "Targeted requested scope: 66/66 passed (100%). Full serial regression: 527 passed, 6 failed, 17 skipped (98.87% pass excluding skips).",
+    "frontend": "UI integration flow passed after selector adjustment; desktop+mobile checks green for tested path."
+  },
+  "seed_data_creation": "None. Used existing demo operator/analyst credentials and TEST/SYNTHETIC request payloads only.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Artifacts generated: /tmp/native-hold-desktop.jpg and /tmp/native-hold-mobile.jpg from authenticated DAP work flow with submitted 1071-char unbroken objective; no mobile horizontal overflow. New live auth/runtime regression file added under activation_controls. Full serial failures reproduce same 6 execution_spine regressions already seen in native_continuation_regression.",
+  "rca of the issue": "RCA indicates drift between updated terminal-observation/finalisation behavior and older execution_spine protocol expectations. Repro: `pytest -n0 /app/backend/tests -q --tb=short --junitxml=/app/test_reports/pytest/pytest_iteration44_full_serial.xml` -> 6 deterministic failures: 1 concurrent phase expectation + 4 ordering assertions + 1 fault-path terminal assertion. Auth playbook check repro: six invalid login attempts against `/api/auth/login` return 401 each (no lockout threshold behavior observed)."
+}

@@ -90,7 +90,7 @@ evaluation, actual custody delivery, certificate issuance and independent live p
 See ROADMAP.md. Do not call the typed EvidenceVerdict interface real cryptographic
 verification or infer that the14 readiness packages are complete.
 
-## Current checkpoint — 2026-09-27 combined activation continuation
+## Previous checkpoint — 2026-09-27 combined activation continuation
 
 User explicitly reconfirmed the combined scope (controls + real A/B/C proofs), not
 separate approval per package. Engineering continued; GPU/SSH remained untouched.
@@ -152,7 +152,93 @@ admissions with fixture roots. Preserve ordinary auth and PrincipalV1 architectu
 Detailed result and required interfaces:
 `assessment_workspace/notes/activation_combined_20260927/{RESULT,BINDING_SPEC}.md`.
 
+## Current checkpoint — 2026-09-27 native startup, recovery and disclosure
+
+User authorised the next actions, backlog and suggested hold-reason enhancement
+together, then explicitly said “Go ahead”. Completed the independently executable
+engineering below; genuine effects still need an existing admitted native provider.
+
+- Added opt-in FastAPI native runtime startup/shutdown and coherent, same-ledger
+  `NativeRuntime`/`NativeExecutionBindings` validation. Async native PrincipalV1
+  lookup is bounded and works through operation authority AND Mkondo receiver
+  revalidation. No new identity store, account, key or admission is manufactured.
+- `AKKI_NATIVE_RUNTIME_FACTORY` and `AKKI_NATIVE_RUNTIME_TIMEOUT_SECONDS` are
+  optional SERVER configuration, not currently populated. Both absent performs
+  no provider import/probe. Partial/invalid/wrong-ledger configurations fail closed.
+  `/api/portal/activation/runtime` reports configuration only, never authorisation.
+- Portal answering/training recovers an exact signed native descriptor matching
+  frozen principal/tenant/objective/scope/operation/deadline. Missing descriptors
+  append `descriptor_held` to the existing DAP ledger and return409; no fabricated
+  model input handles. Provisioning/delivery remain distinct unbound operations.
+- DAP/OS drawer shows safe reason codes, explanations/actions and receipt history
+  inside the existing owner prototype elements. Unknown native errors/hidden
+  identities are not echoed. No prototype HTML, CSS, layout or typography change.
+- Durable `worker_outcome` locks definitive worker facts; legacy checkpoints remain
+  readable. Conflicting terminal facts hold; equivalent/stale running replies
+  reconcile instead of causing false failures. Crashes before portal-view writes
+  expose retry/reconciliation, and late views cannot reopen a canonical terminal.
+- Four real-Mongo fresh-process crash drills prove one simulated operation/fence,
+  submit/effect/meter/completion across recovery. SAME HOST, MOCKED worker/authority/
+  inspector; NOT genuine multi-host, source/model or custody-transfer qualification.
+- FULL signed A/B/C native certificate verification/issuance LAB chains now pass,
+  using actual NativeReceipts/NativeEvidence rather than fake verdict flags.
+  Independent evaluation must itself have approved native plan, distinct admitted
+  worker, bounded ACK/fence, reservation, metering/terms and terminal settlement.
+  Parent/child/supporting evidence must precede the verifier head. Repeated usage
+  units are summed rather than overwritten. Signatures/claims/fixtures are all
+  explicitly SYNTHETIC; this is software evidence, not real execution.
+
+**Final regression:565 passed,2 explicitly gated custody drills skipped,0 failures/
+errors; all7 frontend tests pass.** Canonical JUnit/log:
+`test_reports/pytest/native_continuation_verified.{xml,log}` (131.853s).
+Reports44/45 and targeted hardening tests document findings/fixes. Desktop1920×800
+and mobile390×844 tested the actual drawer with an existing1071-character objective
+among hundreds of records; no horizontal overflow. Scoped Python lint passes.
+Original frozen owner/Canon/EngineAdapter hash/shape tests remain green.
+
+**Still held:** no actual admitted native provider/connection descriptor and signed
+activation records recovered for this workspace. Startup code is connected, but
+runtime configuration remains absent. No genuine A/B/C effects or live certificate
+issued. No GPU/SSH action, source/model-data processing in E1, credential/env change
+or account/auth-policy mutation. Physical cross-host drills remain pending an
+admitted independent interface, not falsely satisfied by local processes.
+
+Indispensable next input: the existing admitted non-GPU runtime/provider descriptor
+(module:function OR owning service endpoint/credential REFERENCE), plus references
+to existing signed activation/approval records. Do not mint replacement roots or
+install test providers. This local absence does not establish original-estate health.
+Details: `assessment_workspace/notes/native_continuation_20260927/RESULT.md` and
+updated `activation_combined_20260927/BINDING_SPEC.md`.
+
 ## Workspace versus original live Akki
+
+### 2026-09-27 17:33 UTC — newly requested GPU connection check
+User asked whether other work is complete and explicitly requested a GPU connection
+attempt. This authorised one read-only diagnostic per configured host, NOT a
+workload, key replacement, identity-guard bypass or recurring retries. Prior parked
+status was lifted only for this diagnostic; the attempt has now been consumed.
+
+Both `akki-vm` and `akki-vm-ii` accepted TCP/SSH negotiation and matched their saved
+SERVER identity pins. Both failed original LOCAL client-key admission with
+`IDENTITY_PIN_MISMATCH`. Therefore zero key-auth calls were made; `auth_none`
+discovery alone returned `publickey` as the supported method. Neither authenticated.
+No session/channel/remote command/GPU workload ran. Protected key, known-hosts,
+environment and identity/dispatch code hashes remained unchanged.
+
+Evidence: `/app/test_reports/iteration_46.json` and
+`assessment_workspace/phase0/drill_receipts/20260927T173352Z_gpu_connection_diag_once/`.
+Interpretation correction: `notes/census_operational_v1/GPU_RECHECK_20260927.md`.
+Do NOT follow advice to merely repin the currently available mismatched key.
+Remote `authorized_keys` were not inspected. Today's result does not establish
+remote key rejection or GPU health; Sept26 key rejection remains HISTORICAL.
+Neither old nor new key's current remote authorisation is established by this test.
+
+Plain status: engineering controls/recovery/UI improvements are tested, but NOT
+all work is complete. Genuine source/skill/training/evaluation/retrieval proofs,
+live certificates and independent-host qualification remain outstanding. A/B/C
+positive lab evidence is SYNTHETIC/MOCKED. Next safe access step is to recover the
+originally admitted key/runtime connection through its existing custody/admin,
+without changing working original infrastructure or requesting private keys in chat.
 
 Owner reports original runtime live on amazing-gates-8. Current configured workspace
 is pensive-goodall-6 and uses local credentials/vendored code, not inherited sessions.
@@ -174,8 +260,9 @@ the entire original estate is mocked/disconnected. No new GPU/SSH action perform
 - Readiness register: `notes/live_activation_v1_3_readiness/READINESS_REGISTER.md`.
 - Existing auth credentials: `/app/memory/test_credentials.md`; unchanged this batch.
 
-Next engineering: recover/bind actual estate admission/key provenance and non-GPU
-worker/inspector/eligibility interfaces into the implemented composition. Complete
-native callable/model descriptor and measured proof producers; obtain real bounded
-A→B→C acceptance wherever an admitted route exists. GPU-dependent execution alone
-stays parked. Freeze before effects; issue only after independently verified proof.
+Next: obtain/recover the actual admitted native provider descriptor and signed
+activation records, connect its existing worker/inspector/eligibility transports,
+then run real bounded A→B→C proofs and physical-host recovery wherever admitted.
+Complete any provider-specific provisioning/delivery glue from those actual
+contracts, not invented interfaces. GPU/SSH remains parked. No further generic
+approval of the combined scope is needed; only indispensable native binding input.

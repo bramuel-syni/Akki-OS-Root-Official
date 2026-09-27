@@ -4,10 +4,10 @@ import { stamp } from './evidence';
 export function workDetailCopy(work) {
   const selected = work.selected;
   return <>
-    <p data-testid="dap-work-detail-reason">{selected?.reason}</p>
+    <p data-testid="dap-work-detail-reason">{selected?.reason_code} · {selected?.reason}{selected?.next_action ? ` ${selected.next_action}` : ''}</p>
     <p data-testid="dap-work-detail-hash">Objective SHA-256: {selected?.objective_hash}</p>
     <p data-testid="dap-work-detail-engine">Governing engine: {selected?.governing_engine}. Execution verified: {selected?.execution_verified ? 'yes' : 'no'}.</p>
-    {selected?.history.map((h, i) => <p data-testid={`dap-work-history-${i}`} key={`${h.receipt_hash}-${i}`}>{stamp(h.at)} · {h.event} · {h.state}<br />Receipt: {h.receipt_hash}</p>)}
+    {selected?.history.map((h, i) => <p data-testid={`dap-work-history-${i}`} key={`${h.receipt_hash}-${i}`}>{stamp(h.at)} · {h.event} · {h.state}{h.reason_code ? ` · ${h.reason_code}` : ''}<br />Receipt: {h.receipt_hash}</p>)}
   </>;
 }
 

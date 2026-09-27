@@ -446,6 +446,19 @@ app.include_router(activation_controls_router.router)
 from routers import activation_records as activation_records_router  # noqa: E402
 app.include_router(activation_records_router.router)
 
+
+@app.on_event("startup")
+async def install_admitted_native_runtime():
+    from core import db as canonical_db
+    from services.activation.runtime_binding import install_runtime
+    await install_runtime(app, canonical_db, os.environ)
+
+
+@app.on_event("shutdown")
+async def close_admitted_native_runtime():
+    from services.activation.runtime_binding import close_runtime
+    await close_runtime(app)
+
 # R-100 · CP-PORTAL-WRITE-SURFACE · portal entitlement reads (JWT-gated).
 # Router already carries prefix="/api/portal/entitlement" · 4 endpoints
 # (GET licence + GET catalog/listed + GET allowance + GET badges) with

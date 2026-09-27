@@ -143,6 +143,7 @@ class NativeEvidence:
             sections["release"] = d["release_acceptance"]
         proof_refs = set(d["evidence"]["receipt_refs"]) | set(d["usage"]["metered_event_refs"])
         proofs = {}
+        support_refs = set()
         for ref in proof_refs:
             receipt = await self.receipts.resolve(ref, kind="observation", request_sha256=request.digest(), events=events)
             proof = Observation.model_validate_json(json.dumps(receipt.claims))
@@ -153,6 +154,7 @@ class NativeEvidence:
             proofs[proof.category] = (proof, receipt)
             for source_ref in proof.source_receipt_refs:
                 await self.receipts.resolve(source_ref, events=events)
+                support_refs.add(source_ref)
             expiry = min(expiry, receipt.expires_epoch)
         for category, section in sections.items():
             if category not in proofs or proofs[category][0].claim_sha256 != claim_digest(section):
@@ -175,9 +177,14 @@ class NativeEvidence:
         if "evaluation" in proofs and proofs["evaluation"][1].signer_id == proofs["training"][1].signer_id:
             raise Held("CERTIFICATE_INDEPENDENT_EVALUATION_REQUIRED")
         from services.activation.native_joins import verify_native_completion
+        from services.activation.runtime_evidence import verify_runtime_ack
+        native_rows = {e["payload"].get("slot"): e for e in events if e["row"]["resource_type"] == "execution_flow"
+                       and e["payload"].get("request_sha256") == request.digest()}
+        ack_ref = await verify_runtime_ack(self.receipts, events, request, native_rows, worker.signer_id)
         native_refs = verify_native_completion(events, request, d, proofs)
-        await verify_model_proofs(self.receipts, events, request, plan, d, proofs)
-        verified = set(approval_refs) | native_refs | {plan_ref, plan.terms_ref}
+        native_refs.add(ack_ref)
+        native_refs.update(await verify_model_proofs(self.receipts, events, request, plan, d, proofs))
+        verified = set(approval_refs) | native_refs | support_refs | {plan_ref, plan.terms_ref}
         for ref in reference_set(d) - verified:
             referenced = await self.receipts.resolve(ref, events=events)
             if referenced.request_sha256 not in (None, request.digest()) or not set(request.scope_refs) <= set(referenced.scope_refs):

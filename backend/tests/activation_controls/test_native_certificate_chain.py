@@ -32,14 +32,15 @@ async def chain(estate):
     req=plan.request; journal=LedgerJournal(r.db)
     await journal.append(req,"request",{"request_sha256":req.digest(),"request":req.model_dump(mode="json")})
     reserved=await Reservations(r).reserve(plan,plan_ref)
+    dispatch=await journal.append(req,"dispatch",{"action":"submit","operation_key":"TEST-operation"})
     envelope={"protocol":"akki.runtime.limits/1","request_sha256":req.digest(),"plan_ref":plan_ref,
-        "reservation_ref":reserved,"runtime_id":"worker-SYNTHETIC","operation_key":"TEST-operation","fence":1,
+        "reservation_ref":reserved,"runtime_id":"worker-SYNTHETIC","operation_key":"TEST-operation","fence":dispatch["seq"],
         "limits":[q.model_dump() for q in plan.limits],
         "starts_epoch":k.now,"stop_work_by_epoch":k.now+95,"terminate_by_epoch":k.now+100}
     ack=await r.record(k.receipt("observation",{"category":"runtime","context_sha256":req.digest(),
         "claim_sha256":digest(envelope),"evidence_mode":"measured"},signer="worker",request=req))
     await journal.append(req,"runtime_limits",{"envelope":envelope,"ack_ref":ack})
-    await journal.append(req,"send",{"action":"submit","operation_key":"TEST-operation","fence":1})
+    await journal.append(req,"send",{"action":"submit","operation_key":"TEST-operation","fence":dispatch["seq"]})
     iso=lambda n:datetime.fromtimestamp(n,timezone.utc).isoformat()
     d=_base_document()
     d["identity"].update(estate_id=req.tenant_id,tenant_id=req.tenant_id,frozen_request_id=req.request_id,
@@ -61,9 +62,17 @@ async def chain(estate):
     d["evidence"]["acceptance_script"]["written_before_run_at"]=iso(k.now-2)
     d["evidence"]["re_performance"].update(sample_size=1,agreements=1,disagreements=0,disagreement_refs=[])
     d["issuer"].update(principal_id="issuer",issued_at=iso(k.now))
+    # Model the actual coordinator receipt stages, not only a fabricated final view.
+    from services.northena.execution_models import WorkerResult, Artifact, Usage
+    worker_result=WorkerResult(operation_key="TEST-operation",fence=dispatch["seq"],request_sha256=req.digest(),executor_id="worker",
+        state="complete",receipt_ref="akki://TEST/worker-terminal",evidence_mode="measured",
+        artifacts=(Artifact(ref="akki://TEST/native-artifact",sha256=d["output"]["artefact_hash"],size_bytes=1,
+                            tenant_id=req.tenant_id,class_label="non_factual"),),usage=(Usage(unit="GPU_hour",quantity="0"),))
+    await journal.append(req,"worker_outcome",{"result":worker_result.model_dump(mode="json")})
+    await journal.append(req,"observation:"+digest(worker_result.model_dump(mode="json")),{"result":worker_result.model_dump(mode="json")})
     await journal.append(req,"registry",{"evidence_mode":"measured",
         "artifacts":[{"sha256":d["output"]["artefact_hash"]}],"records":[{"receipt_id":d["output"]["registry_entry_id"]}]})
-    await journal.append(req,"metered",{"evidence_mode":"measured","usage":[{"unit":"GPU_hour","quantity":"0"}]})
+    await journal.append(req,"metered",{"evidence_mode":"measured","terms_ref":plan.terms_ref,"usage":[{"unit":"GPU_hour","quantity":"0"}]})
     await journal.append(req,"terminal",{"evidence_mode":"measured","phase":"ready"})
     sections={"inputs":d["inputs"],"measurements":{"limits":d["limits"],"usage":d["usage"]},
         "manifest":d["output"],"runtime":d["runtime"],"independence":d["evidence"]["re_performance"],

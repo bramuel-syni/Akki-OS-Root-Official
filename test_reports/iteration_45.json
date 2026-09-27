@@ -1,0 +1,43 @@
+{
+  "summary": "Implemented focused backend NativeEvidence Path-B/Path-C synthetic end-to-end coverage using signed native receipts, fake ledger journal execution flow, and measured observation proofs. Added two positive verify+issue tests and freshly-signed semantic negatives; all targeted tests passed.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "pytest runtime",
+        "issue": "PendingDeprecationWarning from starlette.formparsers importing multipart (non-blocking)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/activation_controls/test_native_certificate_chain_paths_bc.py",
+    "/app/test_reports/pytest/pytest_iteration45_native_bc.xml",
+    "/app/test_reports/pytest/pytest_iteration45_native_chain_combo.xml"
+  ],
+  "action_items": [
+    "Main agent can run full backend regression to ensure new B/C coverage coexists with broader execution_spine suites."
+  ],
+  "critical_code_review_comments": [
+    "New tests use actual NativeEvidence.verify and issue_certificate with synthetic in-memory Ed25519 receipts; no fake EvidenceVerdict shortcut.",
+    "Path-B enforces skill/solva request shape, answering purpose approvals, grounded anchor linkage, and signed OUT_OF_SCOPE refusal proof with source_receipt_refs.",
+    "Path-C enforces training/evaluation purpose groups, predeclared EvaluationStandard + heldout chronology, independent evaluation producer, distinct release signer, and signed refusal proof."
+  ],
+  "updated_files": [
+    "/app/backend/tests/activation_controls/test_native_certificate_chain_paths_bc.py",
+    "/app/test_reports/iteration_45.json"
+  ],
+  "success_rate": {
+    "backend": "Targeted new suite: 4/4 passed (100%). Combined native chain regression subset: 20/20 passed (100%).",
+    "frontend": "Not tested (backend-focused request)."
+  },
+  "seed_data_creation": "None. All fixtures are SYNTHETIC signed receipts and fake ledger events.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "New file adds full native Path-B/Path-C fixture builders and assertions around validate_certificate + issue_certificate. Coverage includes worker_outcome/observation, reservations settle, reference resolution, model/refusal/grounding/evaluation proofs, and freshly re-signed semantic negatives.",
+  "rca of the issue": "During implementation, initial failures came from (1) async generator misuse in approval lookup, (2) runtime envelope termination window exceeding wall_clock limit by 1s, and (3) unresolved acceptance_standard_ref in Path-C reference_set. Fixed by explicit approval map helper, corrected terminate_by_epoch bounds, and signing/using a resolvable acceptance_standard_ref receipt."
+}

@@ -1,0 +1,151 @@
+{
+  "finished_at_utc": "2026-09-27T17:33:56.224697+00:00",
+  "hosts_checked": 2,
+  "hosts": [
+    {
+      "host_alias": "akki-vm",
+      "checked_at_utc": "2026-09-27T17:33:52.256118+00:00",
+      "resolved_config": {
+        "host": "41.173.184.244",
+        "port": 22,
+        "username": "ubuntu",
+        "key_path": "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu",
+        "slug": "AKKI_VM"
+      },
+      "local_admission": {
+        "valid": false,
+        "reason": "IDENTITY_PIN_MISMATCH",
+        "admitted_key_fingerprint": null
+      },
+      "server_pin": {
+        "known_hosts_path": "/root/.ssh/known_hosts",
+        "lookup_token": "41.173.184.244",
+        "pin_present": true,
+        "pin_reason": null,
+        "pin_algorithms": [
+          "ssh-ed25519"
+        ],
+        "pin_fingerprints": {
+          "ssh-ed25519": "SHA256:bTjxxKDWKHhPUA4Zz/BIU3W4yK/quLUAfJrW6Vgy1Ec"
+        }
+      },
+      "connection": {
+        "host_alias": "akki-vm",
+        "checked_at_utc": "2026-09-27T17:33:52.256129+00:00",
+        "tcp_connected": true,
+        "server_pin_matched": true,
+        "auth_attempts": [
+          "auth_none"
+        ],
+        "authenticated": false,
+        "channels_opened": 0,
+        "commands_executed": 0,
+        "advertised_auth_methods": [
+          "publickey"
+        ],
+        "status": "AUTH_NONE_REJECTED_METHODS_ADVERTISED",
+        "server_key_algorithm": "ssh-ed25519",
+        "server_key_fingerprint": "SHA256:bTjxxKDWKHhPUA4Zz/BIU3W4yK/quLUAfJrW6Vgy1Ec",
+        "error_type": "BadAuthenticationType"
+      }
+    },
+    {
+      "host_alias": "akki-vm-ii",
+      "checked_at_utc": "2026-09-27T17:33:54.233257+00:00",
+      "resolved_config": {
+        "host": "41.173.184.247",
+        "port": 22,
+        "username": "ubuntu",
+        "key_path": "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu",
+        "slug": "AKKI_VM_II"
+      },
+      "local_admission": {
+        "valid": false,
+        "reason": "IDENTITY_PIN_MISMATCH",
+        "admitted_key_fingerprint": null
+      },
+      "server_pin": {
+        "known_hosts_path": "/root/.ssh/known_hosts",
+        "lookup_token": "41.173.184.247",
+        "pin_present": true,
+        "pin_reason": null,
+        "pin_algorithms": [
+          "ssh-ed25519"
+        ],
+        "pin_fingerprints": {
+          "ssh-ed25519": "SHA256:iWF/y5j573opcH7cPiJYPrubp3OIEPi/xzIftPR9nJ0"
+        }
+      },
+      "connection": {
+        "host_alias": "akki-vm-ii",
+        "checked_at_utc": "2026-09-27T17:33:54.233270+00:00",
+        "tcp_connected": true,
+        "server_pin_matched": true,
+        "auth_attempts": [
+          "auth_none"
+        ],
+        "authenticated": false,
+        "channels_opened": 0,
+        "commands_executed": 0,
+        "advertised_auth_methods": [
+          "publickey"
+        ],
+        "status": "AUTH_NONE_REJECTED_METHODS_ADVERTISED",
+        "server_key_algorithm": "ssh-ed25519",
+        "server_key_fingerprint": "SHA256:iWF/y5j573opcH7cPiJYPrubp3OIEPi/xzIftPR9nJ0",
+        "error_type": "BadAuthenticationType"
+      }
+    }
+  ],
+  "protected_file_hashes_before": {
+    "/app/backend/.env": {
+      "exists": true,
+      "sha256": "691c037d8979074e095cef7f6a249c80e32cd221e423116ddeda4b9c452027df"
+    },
+    "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/execution_identity.py": {
+      "exists": true,
+      "sha256": "4bf03d0281ea67e3b1596c9c3c4147a7db2b25effa1e1ca546c31d4b948a70ce"
+    },
+    "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/remote_dispatch.py": {
+      "exists": true,
+      "sha256": "1afe6b66cc219b46ae113e5edfd98dd3c9863d78296d5c6fa1d9eb7bce5ef7d3"
+    },
+    "/root/.ssh/known_hosts": {
+      "exists": true,
+      "sha256": "76af023ae065a5f0fdb93e823db8baa196ae13a06f57a774680736cf9c71e7d4"
+    },
+    "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu": {
+      "exists": true,
+      "sha256": "cc9dd2d721600a02c74b60ab4324360ac07e529689c6ebb610c7275694b151e4"
+    }
+  },
+  "protected_file_hashes_after": {
+    "/app/backend/.env": {
+      "exists": true,
+      "sha256": "691c037d8979074e095cef7f6a249c80e32cd221e423116ddeda4b9c452027df"
+    },
+    "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/execution_identity.py": {
+      "exists": true,
+      "sha256": "4bf03d0281ea67e3b1596c9c3c4147a7db2b25effa1e1ca546c31d4b948a70ce"
+    },
+    "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/remote_dispatch.py": {
+      "exists": true,
+      "sha256": "1afe6b66cc219b46ae113e5edfd98dd3c9863d78296d5c6fa1d9eb7bce5ef7d3"
+    },
+    "/root/.ssh/known_hosts": {
+      "exists": true,
+      "sha256": "76af023ae065a5f0fdb93e823db8baa196ae13a06f57a774680736cf9c71e7d4"
+    },
+    "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu": {
+      "exists": true,
+      "sha256": "cc9dd2d721600a02c74b60ab4324360ac07e529689c6ebb610c7275694b151e4"
+    }
+  },
+  "protected_files_unchanged": true,
+  "notes": {
+    "no_remote_channels_opened": true,
+    "no_remote_commands_executed": true,
+    "no_key_or_known_hosts_mutation": true,
+    "single_attempt_per_host": true
+  }
+}

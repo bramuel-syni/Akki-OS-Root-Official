@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { tryGet, submitPortalRequest } from '@/lib/apiClient';
 
-const errorText = response => typeof response.data?.detail === 'string' ? response.data.detail : `The record could not be verified (${response.status || 'connection unavailable'}).`;
+const errorText = response => typeof response.data?.detail === 'string' ? response.data.detail :
+  typeof response.data?.detail?.reason === 'string' ? response.data.detail.reason : `The record could not be verified (${response.status || 'connection unavailable'}).`;
 
 export function useOperationalWork(principalId, surface, selectedId) {
   const [rows, setRows] = useState([]);

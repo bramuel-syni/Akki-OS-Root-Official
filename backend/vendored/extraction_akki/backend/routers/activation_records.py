@@ -12,6 +12,13 @@ from services.activation.reservations import Reservations
 from routers.activation_controls import bounded_payload, ValidationBody
 
 router = APIRouter(prefix="/api/portal/activation", tags=["activation-controls"])
+from services.activation.runtime_status import RuntimeStatus, runtime_status
+
+
+@router.get("/runtime", response_model=RuntimeStatus)
+async def runtime_configuration(request: Request):
+    async with portal_scope(request):
+        return runtime_status(request.app.state)
 
 
 class RecordResponse(BaseModel):

@@ -58,4 +58,5 @@ async def get_result(request_id: str, request: Request):
 async def advance_execution(request_id: str, payload: execution.ExecutionBudget, request: Request):
     async with portal_scope(request, write=True) as scope:
         return await execution.advance(db, scope, request_id, payload,
-                                       bindings=getattr(request.app.state, "execution_bindings", None))
+                                       bindings=getattr(request.app.state, "execution_bindings", None),
+                                       receipts=getattr(request.app.state, "activation_receipts", None))

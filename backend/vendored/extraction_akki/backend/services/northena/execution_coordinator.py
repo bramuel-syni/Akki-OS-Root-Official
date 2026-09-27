@@ -96,7 +96,8 @@ class Coordinator:
             return await terminal(self, request, "cancelled", "CANCELLED_BEFORE_DISPATCH", "unverified")
         # Resume an already observed terminal worker result without redoing its effect.
         observed = [row for row in rows if row["slot"].startswith("observation:")]
-        prior = observed[-1]["data"]["result"] if observed else None
+        locked = slots.get("worker_outcome") or slots.get("worker_terminal")
+        prior = locked["data"]["result"] if locked else observed[-1]["data"]["result"] if observed else None
         if prior and prior["state"] in {"complete", "cancelled", "failed"}:
             result = WorkerResult.model_validate_json(json.dumps(prior))
         else:
@@ -119,7 +120,7 @@ class Coordinator:
                 result = result_for(request, value, dispatch)
                 if request.kind != "source" and self.handoffs is not None:
                     await self.handoffs.validate_result(request, result)
-                await self.bank_observation(request, result)
+                result = await self.bank_observation(request, result)
                 if result.state not in {"accepted", "running"}:
                     return result
             # One bounded status RPC, never an in-process polling loop.
@@ -131,20 +132,24 @@ class Coordinator:
             return None
 
     async def bank_observation(self, request, result):
-        previous = [row["data"]["result"] for row in await self.journal.read(request)
+        rows = await self.journal.read(request)
+        previous = [row["data"]["result"] for row in rows
                     if row["slot"].startswith("observation:")]
         if any(row["executor_id"] != result.executor_id for row in previous):
             raise Held("EXECUTOR_IDENTITY_CHANGED")
         if previous and any(row["evidence_mode"] != result.evidence_mode for row in previous):
             raise Held("EXECUTION_EVIDENCE_MODE_CHANGED")
+        from services.northena.execution_observations import guard_terminal
+        result = await guard_terminal(self.journal, request, result, rows)
         data = result.model_dump(mode="json")
-        return await self.journal.append(request, "observation:" + digest(data), {"result": data})
+        await self.journal.append(request, "observation:" + digest(data), {"result": data})
+        return result
 
     async def observe(self, request, result, dispatch):
         result = result_for(request, result, dispatch)
         if request.kind != "source" and self.handoffs is not None:
             await self.handoffs.validate_result(request, result)
-        await self.bank_observation(request, result)
+        result = await self.bank_observation(request, result)
         if result.state == "complete":
             return await complete(self, request, result, dispatch)
         if result.state in {"cancelled", "failed"}:

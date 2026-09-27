@@ -47,7 +47,10 @@ class MkondoHandoff:
         if binding.expires_epoch <= self.clock():
             raise Held("RECEIVER_BINDING_EXPIRED")
         # Resolve existing admission; never create a principal or enter receiver context.
-        self.authority.principal(binding.receiver_principal_id)
+        if hasattr(self.authority, "current_principal"):
+            await self.authority.current_principal(binding.receiver_principal_id)
+        else:
+            self.authority.principal(binding.receiver_principal_id)
         return binding
 
     @staticmethod

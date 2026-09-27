@@ -42,6 +42,31 @@ signatures must be produced by the existing admitted owner/engine, not E1.
   `execution_bindings`, with explicit `activation_evidence_timeout_seconds`.
   No placeholder configuration is automatically installed.
 
+### Startup integration added in the continuation
+`services.activation.runtime_binding` now installs the explicit provider during
+FastAPI startup. The existing owner/runtime module must expose an async factory
+accepting the supplied canonical `db` and returning `NativeRuntime`. Use the
+existing native principal service via an async `principal_lookup`; no principal
+snapshot cache or second identity store is created.
+
+The factory may use `native_activation_bindings(..., principal_lookup=...)` to
+construct `NativeExecutionBindings`, then return receipts/bindings and explicit
+evidence timeout in `NativeRuntime`. Clients must use the injected canonical db,
+not a parallel job ledger. Shutdown closes provider transports, not workloads.
+
+Server-owned configuration keys (NOT currently set):
+- `AKKI_NATIVE_RUNTIME_FACTORY`: the ACTUAL existing module:function descriptor.
+- `AKKI_NATIVE_RUNTIME_TIMEOUT_SECONDS`: explicit finite startup budget.
+
+Neither key is defaulted or added automatically. Both absent means no native
+provider import or network attempt. Partial/invalid configuration fails startup
+without publishing a half-bound runtime or leaking provider details. No example
+fixture module/key may be used to activate the real application.
+
+`GET /api/portal/activation/runtime` distinguishes configuration from proof:
+`configured`, safe bound-capability flags and paths; `execution_authorized` and
+`live_proof_verified` remain false because per-request gates still apply.
+
 ## Records needed before effects
 Signed adopted allocation, worker attestation and immutable Plan with frozen
 request/terms/scope/purposes, all independent required approval groups, exact four

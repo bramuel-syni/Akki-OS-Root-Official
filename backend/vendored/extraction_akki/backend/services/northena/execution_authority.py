@@ -1,6 +1,7 @@
 """Native principal/licence/catalogue composition; a licence is NOT approval."""
 import time
 import asyncio
+import inspect
 from contracts.principal_v1 import PrincipalKind, PrincipalV1
 from services.enforce.control_scope import require_control_scope
 from services.principal_store.store import get_principal, PrincipalRefusal
@@ -19,12 +20,29 @@ class ComponentAuthority:
     def principal(self, principal_id):
         try:
             stored = self.principal_lookup(principal_id)
-            value = PrincipalV1.model_validate({key: getattr(stored, key) for key in PrincipalV1.model_fields})
+            return self.checked_principal(stored, principal_id)
         except (PrincipalRefusal, KeyError, ValueError, AttributeError, TypeError) as exc:
             raise Held("PRINCIPAL_NOT_ADMITTED") from exc
+    @staticmethod
+    def checked_principal(stored, principal_id):
+        value = PrincipalV1.model_validate({key: getattr(stored, key) for key in PrincipalV1.model_fields})
         if value.principal_id != principal_id or value.suspended:
             raise Held("PRINCIPAL_UNAVAILABLE")
         return value
+
+    async def current_principal(self, principal_id):
+        if not inspect.iscoroutinefunction(self.principal_lookup):
+            return self.principal(principal_id)
+        timeout = getattr(self.decisions, "timeout_seconds", None)
+        if timeout is None:
+            raise Held("PRINCIPAL_LOOKUP_NOT_BOUNDED")
+        try:
+            stored = await asyncio.wait_for(self.principal_lookup(principal_id), timeout)
+            return self.checked_principal(stored, principal_id)
+        except (TimeoutError, ConnectionError, OSError):
+            raise Held("PRINCIPAL_ADMISSION_UNAVAILABLE") from None
+        except (PrincipalRefusal, KeyError, ValueError, AttributeError, TypeError):
+            raise Held("PRINCIPAL_NOT_ADMITTED") from None
 
     async def context(self, request):
         try:
@@ -33,11 +51,11 @@ class ComponentAuthority:
             raise Held("PRINCIPAL_CONTEXT_UNAVAILABLE") from exc
         if (scope.principal_id, scope.tenant_id) != (request.principal_id, request.tenant_id):
             raise Held("PRINCIPAL_CONTEXT_MISMATCH")
-        principal = self.principal(request.principal_id)
+        principal = await self.current_principal(request.principal_id)
         org_id = principal.principal_id if principal.kind == PrincipalKind.ORGANISATION else principal.parent_organisation_id
         if not org_id:
             raise Held("ORGANISATION_NOT_ADMITTED")
-        org = self.principal(org_id)
+        org = await self.current_principal(org_id)
         if (org.kind != PrincipalKind.ORGANISATION or org.parent_organisation_id is not None
                 or org.trust_domain_identifier != principal.trust_domain_identifier):
             raise Held("ORGANISATION_CONTEXT_MISMATCH")
