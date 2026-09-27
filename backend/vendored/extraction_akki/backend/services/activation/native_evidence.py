@@ -9,10 +9,11 @@ from services.activation.record_shapes import Quantity, quantities
 from services.northena.execution_models import Frozen, Hash, Request, Held
 from services.ledger_writer.mongo_control import digest
 from services.activation.model_proofs import Grounding, Evaluation, Refusal, verify_model_proofs
+from services.custody_delivery.models import DeliveryProof
 
 
 class Observation(Frozen):
-    category: Literal["anchor", "release", "inputs", "measurements", "manifest", "independence", "retrieval", "refusal",
+    category: Literal["skill_response", "delivery_grant", "delivery_completion", "anchor", "release", "inputs", "measurements", "manifest", "independence", "retrieval", "refusal",
                       "revalidation", "acceptance", "runtime", "training", "evaluation", "skill"]
     context_sha256: Hash
     claim_sha256: Hash
@@ -24,6 +25,7 @@ class Observation(Frozen):
     grounding: Grounding | None = None
     evaluation: Evaluation | None = None
     refusal: Refusal | None = None
+    delivery: DeliveryProof | None = None
 
 
 class CertificateSeal(Frozen):

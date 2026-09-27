@@ -14,6 +14,7 @@ from services.activation.decisions import LedgerActivationDecisions
 from services.activation.bounded_adapter import BoundedEngineAdapter
 from services.northena.execution_bindings import ExecutionBindings
 from services.northena.execution_gate_checks import finite_timeout
+from services.custody_delivery.ports import CustodyBinding
 
 
 @dataclass(frozen=True)
@@ -32,6 +33,7 @@ class NativeRuntime:
     bindings: NativeExecutionBindings
     evidence_timeout_seconds: float
     close: object = None
+    custody: CustodyBinding | None = None
 
     def __post_init__(self):
         finite_timeout(self.evidence_timeout_seconds)
@@ -50,6 +52,8 @@ class NativeRuntime:
                 raise ValueError("Model execution requires native eligibility and handoff providers.")
         if self.close is not None and not inspect.iscoroutinefunction(self.close):
             raise ValueError("Native provider shutdown must be async.")
+        if self.custody is not None and (not isinstance(self.custody, CustodyBinding) or self.custody.receipts is not self.receipts):
+            raise ValueError('Custody must use the same admitted native receipt source.')
 
 
 async def install_runtime(app, db, environ):

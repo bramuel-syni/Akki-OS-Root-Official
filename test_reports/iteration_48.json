@@ -1,0 +1,46 @@
+{
+  "summary": "Added and executed focused non-GPU backend tests for new custody-delivery and callable-skill query flows using signed SYNTHETIC fixtures; then ran full backend regression excluding the 2 GPU connection suites.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/callable_skill/{skill_id}/queries/{query_id}",
+        "issue": "Code-review risk: query status path returns prior view without explicit provisioning digest freshness check in the status route path (not reproduced as failing in this run)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/non_gpu_flows/test_custody_delivery_non_gpu.py",
+    "/app/backend/tests/non_gpu_flows/test_skill_queries_non_gpu.py",
+    "/app/test_reports/pytest/non_gpu_new_flows.xml",
+    "/app/test_reports/pytest/non_gpu_full_regression_iteration48.xml"
+  ],
+  "action_items": [
+    "Consider hardening query status freshness by re-checking provisioning digest/current gate before exposing historical view payloads.",
+    "Unify live API test URL resolution so suites that currently read only REACT_APP_BACKEND_URL env do not skip when value exists only in frontend/.env."
+  ],
+  "critical_code_review_comments": [
+    "Router status path in /app/backend/vendored/extraction_akki/backend/routers/skill_queries.py (query_status) does not currently compare returned query record against a provisioning digest freshness condition before JSON response.",
+    "New custody flow correctly avoids URL/raw-token ledger leakage in tested paths; repr/serialization redaction behavior held in added tests.",
+    "All positive custody/skill proofs in this run are SYNTHETIC signed fixtures, not live source retrieval or live workload evidence."
+  ],
+  "updated_files": [
+    "/app/backend/tests/non_gpu_flows/test_custody_delivery_non_gpu.py",
+    "/app/backend/tests/non_gpu_flows/test_skill_queries_non_gpu.py",
+    "/app/test_reports/iteration_48.json"
+  ],
+  "success_rate": {
+    "backend": "100% pass for new suites (18/18). Full non-GPU regression: 585 tests, 0 failed, 0 errors, 17 skipped.",
+    "frontend": "Not re-tested in this iteration (request scope backend-focused; UI previously smoke-verified)."
+  },
+  "seed_data_creation": "None (SYNTHETIC signed receipts only, in-memory fake DB fixtures for unit-level flow tests).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "New tests live under /app/backend/tests/non_gpu_flows/. They validate custody OFFER->COMPLETED, timeout/status recovery, rights-withdrawal denial, URL origin hardening, query idempotency replay/conflict, signed skill grounding (SYNTHETIC), and anonymous/public endpoint fail-closed responses. Full regression run excluded only /app/backend/tests/test_gpu_direct_workbook_connection.py and /app/backend/tests/test_gpu_direct_active_routing.py.",
+  "rca of the issue": "No runtime backend failures reproduced in this cycle. Observed low-priority risk from static review: query status response path may not enforce provisioning-freshness semantics before exposing last receipted view; this should be validated against intended contract behavior."
+}

@@ -33,6 +33,7 @@ async def result(db, scope, request_id, bindings=None):
     await execution_records.remember_view(db, request, view)
     if not view.execution_verified or not view.artifact_refs:
         raise HTTPException(409, "No currently rights-admitted verified result: " + view.reason_code)
+    work = await portal_work.detail(db, scope, request_id)
     # These are admitted references, not proof that downstream bytes were delivered.
     return {"request_id": request_id, "artifact_refs": list(view.artifact_refs),
-            "execution_verified": True, "delivery_verified": False}
+            "execution_verified": True, "delivery_verified": work.delivery_verified}

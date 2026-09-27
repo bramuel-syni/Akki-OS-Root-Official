@@ -445,6 +445,9 @@ from routers import activation_controls as activation_controls_router  # noqa: E
 app.include_router(activation_controls_router.router)
 from routers import activation_records as activation_records_router  # noqa: E402
 app.include_router(activation_records_router.router)
+from routers import custody_delivery as custody_delivery_router, skill_queries as skill_queries_router  # noqa: E402
+app.include_router(custody_delivery_router.router)
+app.include_router(skill_queries_router.router)
 
 
 @app.on_event("startup")

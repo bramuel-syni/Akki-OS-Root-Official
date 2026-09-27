@@ -49,6 +49,28 @@ def public_reason(code):
         "Inspect this request's recorded evidence through its governing service."))
 
 
+_group('CUSTODY_PROVIDER_UNBOUND', 'Verified result references exist, but no admitted custody delivery service is connected.',
+       'Connect the existing authorised custody service; no source bytes will be downloaded through this workspace.')
+_group('CUSTODY_DELIVERY_REQUESTED', 'A custody handoff is recorded; delivery is not yet proved.')
+_group('CUSTODY_CAPABILITY_ISSUED', 'A short-lived custody link was issued; that is not proof of byte delivery.')
+_group('CUSTODY_COMPLETION_RECORDED', 'Measured custody delivery is recorded. Current access is checked separately.')
+_group('CUSTODY_DELIVERY_NOT_FOUND SKILL_QUERY_NOT_FOUND', 'The requested record is not available within your current scope.')
+_group('CUSTODY_PROVIDER_OUTCOME_UNCERTAIN CUSTODY_PROVIDER_RESPONSE_INVALID', 'The custody service has not supplied verified completion evidence.',
+       'Reconcile the same delivery identifier; issuing a link is not proof of delivery.')
+_group('CUSTODY_IDEMPOTENCY_CONFLICT SKILL_QUERY_IDEMPOTENCY_CONFLICT', 'This retry identifier belongs to a different frozen request.',
+       'Do not alter the original request while retrying it.')
+_group('CUSTODY_RESULT_NOT_CURRENTLY_ADMITTED CUSTODY_SCOPE_MISMATCH CUSTODY_REGISTERED_ARTIFACT_CHANGED',
+       'This result is not currently authorised for delivery.', 'Revalidate the governing rights and exact registered artifact.')
+_group('CUSTODY_ORIGIN_INVALID CUSTODY_CAPABILITY_BINDING_MISMATCH CUSTODY_UNSIGNED_CAPABILITY CUSTODY_GRANT_BOUNDS_INVALID CUSTODY_GRANT_CHANGED CUSTODY_RECEIPT_BINDING_MISMATCH CUSTODY_COMPLETION_NOT_PROVED CUSTODY_COMPLETION_CONFLICT CUSTODY_REGISTRY_NOT_VERIFIED CUSTODY_ARTIFACT_NOT_REGISTERED',
+       'Custody evidence could not be matched to this authorised result.', 'No download or successful delivery is being assumed.')
+_group('SKILL_NATIVE_PLAN_REQUIRED SKILL_NATIVE_PLAN_INVALID SKILL_NATIVE_PLAN_MISMATCH SKILL_EXECUTOR_UNADMITTED SKILL_PLAN_LOOKUP_UNAVAILABLE',
+       'This question needs a matching admitted native skill plan.', 'Use the existing skill admission path; no local answer is generated.')
+_group('SKILL_PROVISIONING_CHANGED SKILL_PROVISIONING_REVOKED', 'The skill provisioning has changed or been withdrawn.',
+       'A frozen question cannot be silently moved to a different skill or corpus.')
+_group('SKILL_OUTCOME_CONFLICT SKILL_GROUNDING_RECEIPT_REQUIRED SKILL_GROUNDING_BINDING_MISMATCH SKILL_ANSWER_ARTIFACT_MISMATCH SKILL_ANSWER_CLASS_OR_HASH_MISMATCH SKILL_INDEPENDENT_ANCHOR_NOT_PROVED SKILL_RESPONSE_BELOW_FLOOR SKILL_ANSWER_REGISTRY_UNVERIFIED SKILL_NATIVE_VERIFICATION_UNAVAILABLE SKILL_NATIVE_EVIDENCE_INVALID SKILL_REFUSAL_AMBIGUOUS SKILL_REFUSAL_NOT_PROVED',
+       'A grounded answer or genuine refusal has not yet been verified.', 'No answer text, class or live success is being fabricated.')
+
+
 def disclosure(code, *, receipt_ref=None):
     value = public_reason(code)
     return {"reason_code": value.code, "reason": value.message,

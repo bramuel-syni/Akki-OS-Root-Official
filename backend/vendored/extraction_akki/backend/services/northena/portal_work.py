@@ -96,16 +96,26 @@ async def detail(db, scope, request_id):
     if not events:
         raise HTTPException(404, "Request not found.")
     from services.portal_operational.execution_records import events_for as execution_events, project as project_execution
-    return project_execution(project(events), await execution_events(db, scope, request_id))
+    from services.portal_operational.delivery_history import project as project_delivery, expected_artifacts
+    executions = await execution_events(db, scope, request_id)
+    work = project_execution(project(events), executions)
+    return await project_delivery(db, scope, work, expected=expected_artifacts(executions))
 
 
 async def listing(db, scope):
     from services.portal_operational.execution_records import events_for as execution_events, project as project_execution
+    from services.portal_operational.delivery_history import grouped as delivery_groups, project as project_delivery, expected_artifacts
     grouped = {}
     for event in await events_for(db, scope):
         grouped.setdefault(event["row"]["run_id"], []).append(event)
     executions = {}
     for event in await execution_events(db, scope):
         executions.setdefault(event["row"]["run_id"], []).append(event)
-    return [project_execution(project(events), executions.get(events[0]["row"]["run_id"], []))
-            for events in reversed(list(grouped.values()))]
+    deliveries = await delivery_groups(db, scope)
+    result = []
+    for events in reversed(list(grouped.values())):
+        request_id = events[0]['row']['run_id']
+        work = project_execution(project(events), executions.get(request_id, []))
+        result.append(await project_delivery(db, scope, work, deliveries.get(request_id, []),
+                                            expected=expected_artifacts(executions.get(request_id, []))))
+    return result

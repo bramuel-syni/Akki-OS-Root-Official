@@ -89,5 +89,28 @@ async def query_callable_skill(
     if isinstance(gate_result, JSONResponse):
         return gate_result
     async with portal_scope(request) as scope:
+        state = getattr(getattr(request, 'app', None), 'state', None)
+        runtime = getattr(state, 'native_runtime', None)
+        if runtime is not None:
+            from services.portal_operational import query_intents, query_execution
+            from services.northena.execution_models import Held
+            from routers.skill_queries import fail, PRIVATE
+            key = request.headers.get('Idempotency-Key')
+            if not key:
+                return JSONResponse({'outcome':'held','reason_code':'SKILL_QUERY_IDEMPOTENCY_REQUIRED',
+                    'execution_verified':False,'delivery_verified':False},status_code=422,headers=PRIVATE)
+            try:
+                intent_body = query_intents.QueryIntentBody(query=body.query,idempotency_key=key)
+                intent = await query_intents.submit(db,scope,skill_id,gate_result,intent_body)
+                result = await query_execution.advance(db,scope,skill_id,intent['row']['run_id'],gate_result,runtime)
+                current = await require_governed_skill_query(request, skill_id, db)
+                if isinstance(current, JSONResponse):
+                    return current
+                query_intents.require_current_provisioning(intent,current)
+                return JSONResponse(result,status_code=409 if result['outcome']=='held' else 200,headers=PRIVATE)
+            except Held as exc:
+                return fail(exc)
+            except ValueError:
+                return JSONResponse({'outcome':'held','reason_code':'SKILL_QUERY_IDEMPOTENCY_INVALID'},status_code=422,headers=PRIVATE)
         refusal = await refuse_unadmitted(db, scope, skill_id, body)
         return JSONResponse(status_code=409, content=refusal)

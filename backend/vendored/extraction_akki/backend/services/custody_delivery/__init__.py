@@ -1,0 +1,1 @@
+"""Metadata-only custody handoff; neither source bytes nor answers pass through E1."""

@@ -72,7 +72,8 @@ IMPLEMENTATION_SHA = hashlib.sha256(b"".join((Path(__file__).parent / name).read
                  "receipts.py", "record_shapes.py", "approvals.py", "reservations.py", "runtime_limits.py",
                  "worker_gate.py", "native_evidence.py", "native_joins.py", "issuance.py",
                  "composition.py", "timed_ports.py", "bounded_adapter.py", "decisions.py", "model_proofs.py",
-                 "runtime_binding.py", "runtime_status.py", "portal_plans.py", "evaluation_joins.py", "runtime_evidence.py"))).hexdigest()
+                 "runtime_binding.py", "runtime_status.py", "portal_plans.py", "evaluation_joins.py", "runtime_evidence.py",
+                 "../custody_delivery/models.py", "../custody_delivery/ports.py"))).hexdigest()
 
 
 def canonical_document(document):

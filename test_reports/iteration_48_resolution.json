@@ -1,0 +1,44 @@
+{
+  "scope": "User-authorised non-GPU continuation; no GPU connections/workloads or credential changes",
+  "source_report": "/app/test_reports/iteration_48.json",
+  "changes_verified": [
+    "Durable scoped query intents and exact native provisioning/plan joins",
+    "Grounded signed answer/class/independent-anchor checks and genuine native refusal distinction",
+    "Current query status/replay and post-await gate revalidation",
+    "Native metadata-only custody grants, single dispatch, uncertainty recovery and measured completion",
+    "Historical completed redemption after link expiry without returning expired capability",
+    "Exact URL origin/hash/recipient/artifact bounds, no capability or question text in Ledger",
+    "Custody evidence in original work history; partial result is not fully delivered",
+    "Original result response allowlist restored; no baseline assertions weakened"
+  ],
+  "test_results": {
+    "backend_passed": 602,
+    "backend_skipped": 2,
+    "backend_failed": 0,
+    "backend_errors": 0,
+    "elapsed_seconds": 64.635,
+    "frontend_passed": 7,
+    "gpu_connector_tests_excluded": 13,
+    "junit": "/app/test_reports/pytest/non_gpu_verified.xml",
+    "lint": "passed",
+    "desktop_mobile_overflow": "none"
+  },
+  "prior_report_corrections": [
+    "Provisioning freshness recommendation implemented and tested for status and replay",
+    "Current preview URL exported; agent's additional15 environment-dependent skips eliminated",
+    "Two remaining skips are pre-existing explicit-authorisation custody/production drills"
+  ],
+  "live_status": {
+    "configured": false,
+    "custody_delivery_bound": false,
+    "skill_query_execution_bound": false,
+    "worker_paths_bound": [],
+    "live_proof_verified": false
+  },
+  "limitations": [
+    "Positive native signers, providers, workers, anchors and completion observations are SYNTHETIC/MOCKED",
+    "No actual source/answer bytes, deployed custody service, genuine A/B proof or live certificate",
+    "Existing admitted non-GPU transports/controls and physical-host qualification remain pending",
+    "No new frontend query/download controls; scoped backend APIs and existing work-history rendering wired"
+  ]
+}

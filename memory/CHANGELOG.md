@@ -1,5 +1,33 @@
 # Akki implementation history
 
+## 2026-09-27 18:49 UTC — non-GPU query/custody flows and work evidence
+
+Latest user scope: everything except GPU; explicit confirmation received. No GPU
+connection/workload, credential/env/identity change, storage data fetch or provider
+activation. Built native query intents/plan/execution/grounding/refusal/status
+modules and scoped APIs around original frozen skill gates. Added exact native
+custody grant/completion protocol, bounded metadata provider calls, single dispatch,
+safe URL handling, expiry/historical completion and current-rights checks.
+
+Custody evidence now joins original work history. Partial artifacts cannot make
+the entire result delivered; no grant link is mistaken for delivery. Preserved
+original four-key result response after regression caught an extra field; receipts
+remain in work history. No baseline tests weakened; UI source/styles untouched.
+
+Report48 initial18 tests passed; main added expiry/race/freshness/privacy/HTTP/
+partial-result cases. Corrected fixture ownership/clock issues, added late rights
+and stale query checks. Final canonical non-GPU run **602pass,2gated skips,0fail/
+errors**64.635s (`test_reports/pytest/non_gpu_verified.xml`);7frontend tests and
+scoped lint pass. Desktop/mobile real971-record drawer with1083-char objective
+has no overflow. Earlier agent run's15 environment-dependent skips eliminated by
+exporting current preview URL; only original2authorised live drills remain skipped.
+
+Current live native runtime endpoint reports configured/custody/skill=false,
+workers=[], no authorization/live proof. Positive signature/worker/custody tests
+are SYNTHETIC/MOCKED; no live source/answer/bytes/certificate. Genuine existing
+non-GPU provider bindings/controls, physical-host and provisioning qualification
+remain pending; GPU explicitly parked. Details in non_gpu_queries_delivery notes.
+
 ## 2026-09-27 17:47 UTC — new workbook, fresh direct GPU seam (ACTIVE)
 
 Owner explicitly instructed no old client identity dependency/rotation and GPU

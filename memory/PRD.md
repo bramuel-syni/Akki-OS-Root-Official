@@ -152,7 +152,7 @@ admissions with fixture roots. Preserve ordinary auth and PrincipalV1 architectu
 Detailed result and required interfaces:
 `assessment_workspace/notes/activation_combined_20260927/{RESULT,BINDING_SPEC}.md`.
 
-## Current checkpoint — 2026-09-27 native startup, recovery and disclosure
+## Previous checkpoint — 2026-09-27 native startup, recovery and disclosure
 
 User authorised the next actions, backlog and suggested hold-reason enhancement
 together, then explicitly said “Go ahead”. Completed the independently executable
@@ -211,6 +211,64 @@ Details: `assessment_workspace/notes/native_continuation_20260927/RESULT.md` and
 updated `activation_combined_20260927/BINDING_SPEC.md`.
 
 ## Workspace versus original live Akki
+
+### CURRENT checkpoint — 2026-09-27 18:49 UTC, non-GPU continuation
+User: “Proceed with everything else except GPU”, followed by “Proceed”. GPU/SSH
+is parked again under this latest scope. No live GPU connection, workbook/key/
+account change or workload was performed in this batch. Existing direct connector
+configuration was left untouched; GPU connector tests excluded from this run.
+
+Implemented:
+- Durable per-tenant/principal/skill query intents with exact question/provisioning
+  hashes, idempotency conflicts, separate query sessions and receipted history.
+  No raw question, source data or answer bytes persist/execute through this flow.
+- Existing signed native plans feed the unchanged skill_request builder/coordinator
+  and original Keygrant/owner/scope/floor/crossing checks. Native answer release
+  requires measured signed artifact/class/grounding, independently signed anchors
+  and context-loss disclosure. Genuine OUT_OF_SCOPE refusals are distinct from
+  administrative holds and must come from the admitted worker for this intent.
+- Query status/replay revalidates current provisioning and admission; changed
+  corpus, withdrawn rights, missing runtime or expired evidence cannot re-expose
+  historical ready artifact references. Gates repeat after awaited native work.
+- Typed native custody-delivery adapter, explicit origin/expiry/recipient/artifact
+  bounds, one dispatch per idempotency key and status-only uncertainty recovery.
+  Capability URLs never enter Ledger/log/history. E1 never fetches/streams bytes.
+  Issuance of a URL is NOT completion: exact-byte/hash signed terminal proof is
+  required, including legal redemption chronology and current rights. Completed
+  past delivery remains auditable after link expiry without restoring the link.
+- Custody intent/grant/uncertainty/completion joins existing WorkView/history.
+  Partial delivery never marks the whole result delivered: all expected artifacts
+  must have completion evidence. Existing four-key result-response contract kept.
+  No prototype HTML/CSS, page layout or new UI control was added; native APIs and
+  existing DAP/OS receipt history are wired. Provider query-ingress/provisioning
+  and real transports are not invented by this work.
+
+New endpoints: `/api/callable_skill/{id}/query-intents`, `/queries/{query_id}`,
+`/queries/{query_id}/advance`, `/queries/{query_id}/delivery`,
+`/queries/{query_id}/deliveries/{delivery_id}`; source request delivery equivalents
+under `/api/portal/requests/{request_id}/delivery` and `/deliveries/{delivery_id}`.
+Existing skill `/query` upgrades only when a native runtime and Idempotency-Key
+are present; without one it still records the original safe409 refusal.
+
+**Final verification:602 non-GPU backend tests passed,2 pre-existing explicitly
+gated custody drills skipped,0 failures/errors (64.635s); all7 frontend tests pass.**
+Evidence: `test_reports/pytest/non_gpu_verified.{xml,log}`, report48 and its main-
+agent resolution. Scoped Python lint passes. Actual drawer with1083-character
+objective among971 requests checked at1920×800 and390×844: zero overflow.
+
+Public API reality: authenticated native runtime status200 reports configured=false,
+custody_delivery_bound=false, skill_query_execution_bound=false, worker_paths_bound=[],
+execution_authorized=false/live_proof_verified=false. Anonymous new routes401.
+**All positive custody/grounded-answer/receipt fixtures are SYNTHETIC/MOCKED; no
+genuine source read, grounded answer, byte delivery or live certificate was issued.**
+Signatures and ledger contracts are real test mechanics, not native provider access.
+
+Remaining: actual admitted non-GPU query ingress/execution/inspector/custody
+bindings and signed controls, then genuine bounded A/B proofs, usage/retrieval
+reconciliation and certificates. Native provisioning and physical-host recovery
+qualification remain pending genuine interfaces. Do not process data in E1 or
+substitute test roots/Tigris credentials for these missing admissions.
+Details: `assessment_workspace/notes/non_gpu_queries_delivery_20260927/{RESULT,NATIVE_PORTS}.md`.
 
 ### Latest active connection decision — 2026-09-27 17:47 UTC
 Owner supplied NEW GPU CREDs.xlsx and explicitly overrode old CLIENT-admission
