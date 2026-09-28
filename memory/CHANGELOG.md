@@ -1,5 +1,36 @@
 # Akki implementation history
 
+## 2026-09-28 — M1.1 second verification and readiness revision 1
+
+Owner requires all work/communication within governing milestones, and complete
+read/reuse review in EVERY milestone readiness phase. Added M1.1–M10.1 review
+homes, full-read/dependency/candidate disposition requirements and no unread-code
+absence claims. Kept ten milestones/51 packs, expanded M1 worker coverage to both
+GPU hosts plus admitted non-GPU paths. Existing qualified GPU census capabilities
+may run in M1; new perception/model/training qualification remains M9.
+
+Read-only functional review and current application baseline confirm RDS/OBS E1
+reads/false placement labels, local subprocess fallback boundary, metadata-only
+workers and NAS driver gap, existing deeper Mtafiti profiling to reuse, unbound
+compute/card controls and unqualified durable custody. Public gpu-spend/response
+queue are 409-quarantined, correcting handoff's HTTP-success overclaim. Existing
+GPU connection receipts verify hostname/H200 but not installed model runtimes;
+nvcc is absent from PATH in inspected receipt. No new SSH attempt.
+
+RMS baseline: seven records, zero PENDING; latest cr-dd05196d837f and two historical
+blocked runs retained. Current desktop/mobile smoke no overflow, but completed
+card ID fallback shows Census #undefined; M1.3 repair remains. No assumption the
+owner's precise card is identified. Tester generic missing-signin-ID recommendation
+reconciled against actual existing IDs successfully used in main smoke.
+
+24 isolated offline contract tests pass (SYNTHETIC/MOCKED). Corrected stale live
+test applying historical census4 values to latest: preserved exact historical
+assertions on record4, added latest/detail agreement; 12 read-only live checks pass.
+No app runtime/UI/auth/credentials/config changes or new census/source/GPU work.
+All live gates NOT RUN; full relevant-code review remains within readiness before
+implementation. Canonical/public plan updated; evidence in
+notes/m1_second_verification/READINESS_REVIEW.md and iteration54 reports.
+
 ## 2026-09-28 — governing goal roadmap and deep Root reuse review (planning only)
 
 Owner requests function-first, test-gated milestones as future canon, with

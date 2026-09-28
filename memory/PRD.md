@@ -18,7 +18,7 @@ one authoritative append-only ledger, and 100% fidelity to owner HTML prototypes
   a local subprocess or HTTPS source SDK does not itself establish an external
   admitted runtime. Do not manufacture admissions, signatures or trust roots.
 - Owner authorises independent non-GPU work; no fresh blanket approval is needed.
-  GPU/SSH recovery remains PARKED; no blind retries or credential changes.
+  GPU/SSH CONNECTED 2026-09-28 17:15 UTC via GPU CRED 3 workbook (password auth).
 - English only. Keep source credentials in ignored custody, not chat/reports/UI.
 - Source requirement text is immutable; hardening is a versioned derivative.
 - A schema, chat ruling, ordinary login or historical fixture is not a live
@@ -41,7 +41,68 @@ one authoritative append-only ledger, and 100% fidelity to owner HTML prototypes
 - Credentials unchanged: `/app/memory/test_credentials.md`; estate access is
   held in ignored `/app/backend/estate_keys/owner_20260928/`.
 
-## Current checkpoint — 2026-09-28, governing goal-based delivery roadmap
+## Current checkpoint — 2026-09-28, M1.1 second verification / readiness revision 1
+
+Owner clarifies “2nd review” means the proposed verification, then rollout within
+the governing milestone framework. Explicitly requires a full relevant-repository
+reuse review in EVERY milestone's readiness phase: read built implementations,
+alternatives, dependencies, tests and actual callers before proposing new code.
+Keep all communications/questions/refusals/recommendations tied to that outcome;
+no detached P0/P1/P2 approval questionnaire and no repeated blanket consent ask.
+
+Updated canonical `notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md` and matching
+public brief: readiness revision 1, ten milestones / 51 packs preserved. Added
+readiness homes M1.1–M10.1, explicit full-read/reuse/change justification, and both
+non-GPU and GPU-hosted worker verification within M1-T1–T5. GPU host access is not
+GPU acceleration proof. Use already-qualified GPU census functions where applicable;
+new model/perception/training qualification remains M9. Do not defer M1 adapter gaps
+to M9. No claim that all repo files or even all relevant M1 candidates are now read.
+
+Report: `notes/m1_second_verification/READINESS_REVIEW.md`.
+Current baseline: RMS overview seven retained records, zero PENDING; latest
+`cr-dd05196d837f`; historical blocked `cr-809561ad5643` and `cr-a29e3b7b16ae` remain.
+Owner's precise intended pending card is not conclusively identified. Reconcile
+the existing history; never invent a pending job or rewrite old refusals.
+
+Confirmed M1 work: RDS/OBS SDKs still execute in E1 with incorrect akki_host claim;
+local subprocess fallback is not off-E1 either. GPU remote worker is mysql_metadata
+only, NAS falls to it. Deeper Mtafiti composition/quality/sampling code exists and
+must be reused after dependency review. Current compute tab/GPU spend are not wired;
+public gpu-spend and response-required routes return intentional 409 quarantine.
+Do not unquarantine unsafe/stub producers. Existing receipt hydration must be
+qualified on durable custody/all consumers, not replaced with another Registry.
+Current owner history has an observed `Census #undefined` result-ID mapping defect
+for records without census_number; M1.3 repair remains open.
+
+Verification: source review + external-preview owner history at 1920x800/390x844,
+no horizontal overflow; 24 isolated offline contract tests pass (SYNTHETIC/MOCKED);
+12 read-only live API tests pass after correcting a stale historical-count test.
+Preserved owner census4 expected values on record4; latest checks its own detail.
+Reports `iteration_54.json` and `iteration_54_resolution.json`. Published readiness
+revision verified accessible; canonical/public copies match and still contain
+ten milestones, 51 unique packs and all ten explicit readiness review homes.
+No runtime/auth/
+credential/config/UI changes, no new source/GPU calls, no census commission or
+service restart. All M1–M10 live gates remain NOT RUN. Next: M1.1 full review/card/
+descriptor reconciliation → M1.2 external workers → M1.3 deep Registry/compute
+bindings → M1.4 acceptance/repair. M2–M10 follow the same readiness discipline.
+
+## Previous checkpoint — 2026-09-28 17:15 UTC, GPU hosts CONNECTED
+
+Owner supplied `GPU CRED 3.xlsx` and said: "Connect GPUs first then we activate the
+2nd review, then roll out." Both GPU VMs now authenticate through Akki's existing
+governed seam (`services/gpu_direct` workbook → pinned server key → password →
+`training_runner.ssh_seam.execute_remote_command` with redacted receipts).
+`capture_gpu_spend()` returns CAPTURED for akki-vm and akki-vm-ii. Provider had
+re-assigned public IPs (akki-vm .230, akki-vm-ii .244); env + known_hosts updated.
+Hardware per host: 2× H200, 36 vCPU, 460 GB RAM, 5.9 TB data volume. Prior notes
+report CUDA 12.8 and no docker/pip/torch; the inspected connection receipts show
+`nvcc: command not found`, so compiler-on-PATH/runtime readiness is not established.
+GPU/SSH is NO LONGER PARKED. Details and
+custody path in `test_credentials.md`. `/api/portal/census/gpu-spend` remains an
+intentionally 409-quarantined legacy unscoped route; the seam proof ran in-process.
+
+## Previous checkpoint — 2026-09-28, governing goal-based delivery roadmap
 
 Owner requests goal-based milestones with outcome/performance test runs opening
 the next milestone; readiness gaps must become tasks within that milestone. Start
@@ -207,4 +268,5 @@ Historical owner-action reconciliation (superseded above where changed):
   revision questionnaire. See `notes/live_activation_v1_3_artifact_review/revision_v1_1/`.
 - Next: versioned descriptor/admission integration and evidence reconciliation,
   admitted non-GPU mount/source verification, then real governed path proofs.
-  Preserve current authority, prototype fidelity and parked GPU boundary.
+  Preserve current authority and prototype fidelity. GPU connectivity is available;
+  qualify census-worker bindings under the current M1 scope above, not old parked notes.

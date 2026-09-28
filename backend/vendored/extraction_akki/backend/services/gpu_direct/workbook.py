@@ -55,7 +55,7 @@ def read_targets(environ=None):
                             continue
                         label, colon, content = str(value).partition(':')
                         label = label.strip().lower()
-                        if not colon or label not in {'hostname', 'username', 'password', 'public ip', 'port', 'ssh port'}:
+                        if not colon or label not in {'hostname', 'username', 'password', 'public ip', 'private ip', 'port', 'ssh port'}:
                             raise DirectConnectionError('DIRECT_WORKBOOK_FIELD_UNSUPPORTED')
                         if label == 'hostname':
                             if set(current) - {'hostname'}:

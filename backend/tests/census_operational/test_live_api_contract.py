@@ -132,10 +132,27 @@ def test_t05_estimated_counts_and_no_sensitive_leak(operator_headers):
     payload = response.json()
     census = payload.get("census") or {}
 
-    # Owner-provided expected census4 aggregate signal.
-    assert census.get("database_count") == 41
-    assert census.get("table_count") == 2642
-    assert census.get("row_count_estimate") == 428786937
+    # Latest is a changing retained record, not necessarily historical census4.
+    assert census.get("tenant_id") == "RMS"
+    assert census.get("record_id")
+    for field in ("database_count", "table_count", "row_count_estimate"):
+        assert type(census.get(field)) is int and census[field] >= 0
+    detail = requests.get(
+        f"{BASE_URL}/api/portal/census/records/{census['record_id']}",
+        headers=operator_headers, timeout=20,
+    )
+    assert detail.status_code == 200
+    assert detail.json()["record"] == census
+
+    # Preserve the owner's fixed historical expectation on its actual record.
+    historical = requests.get(
+        f"{BASE_URL}/api/portal/census/records/4", headers=operator_headers, timeout=20,
+    )
+    assert historical.status_code == 200
+    record4 = historical.json()["record"]
+    assert record4["database_count"] == 41
+    assert record4["table_count"] == 2642
+    assert record4["row_count_estimate"] == 428786937
     assert census.get("volume_bytes") is None
     assert census.get("quality_percent") is None
     assert census.get("licensed_percent") is None

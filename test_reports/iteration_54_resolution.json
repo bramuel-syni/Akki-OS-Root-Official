@@ -1,0 +1,29 @@
+{
+  "scope": "M1.1 readiness review and roadmap revision; not implementation rollout or live census acceptance",
+  "stale_test_assertion": {
+    "resolved": true,
+    "change": "Latest record is checked against its detail and aggregate semantics; unchanged owner census4 counts are asserted against historical record4 instead of latest.",
+    "read_only_live_retest": "12 passed",
+    "evidence": "/app/test_reports/pytest/pytest_iteration_54_readonly_resolution.xml"
+  },
+  "offline_contract_tests": {"passed": 24, "evidence_class": "SYNTHETIC/MOCKED"},
+  "ui_evidence_reconciliation": {
+    "signin_test_ids": "Existing CensusAccess unique IDs were successfully used in main-agent live smoke; do not add duplicates based on generic tester recommendation.",
+    "history_test_ids": "OwnerMarkup generates action/element IDs. Inspect actual owner markup instead of obsolete replacement component selectors.",
+    "undefined_record_label": "Observed in current main-agent desktop/mobile smoke and traced to historyModel using census_run_id instead of record_id on operational result records. Not reproduced by testing subagent, but not dismissed. Repair belongs to M1.3; not fixed during plan revision.",
+    "overflow": {"desktop_1920x800": [], "mobile_390x844": []}
+  },
+  "open_m1_work": [
+    "Complete relevant repo implementation/dependency reads before changes",
+    "Off-E1 RDS/OBS execution and no local subprocess substitute",
+    "NAS and both GPU worker source custody/adapter/runtime qualification",
+    "Real deep profiling and honest sub-connection coverage",
+    "Durable Registry custody/all-reader recovery",
+    "Tenant-bound compute/card controls and result identity wiring"
+  ],
+  "all_live_milestone_acceptance": "NOT RUN",
+  "application_runtime_changed": false,
+  "source_or_gpu_calls": false,
+  "census_commissions": 0,
+  "credentials_modified": false
+}

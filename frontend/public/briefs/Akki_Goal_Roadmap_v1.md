@@ -1,10 +1,12 @@
-# Akki works — goal-based delivery roadmap v1
+# Akki works — goal-based delivery roadmap v1, readiness revision 1
 
 **Date:** 28 September 2026  
 **Standing:** governing execution roadmap under the owner's instruction: “The plan you will develope is canon going forward.”  
 **North star:** Akki reads an organisation's connected estate in place, understands what is usable, turns an intended outcome into completed work, delivers useful supported intelligence, protects legitimate use, and survives interruption without losing truth or control.
 
-This roadmap replaces the previous percentage-led work ordering. It does not silently rewrite original source documents, waive existing rights, or declare any milestone passed. The owner's new direction is function first, with the integrity necessary to make the function dependable. All acceptance runs below are **PLANNED / NOT RUN** in this planning turn.
+This roadmap replaces the previous percentage-led work ordering. It does not silently rewrite original source documents, waive existing rights, or declare any milestone passed. The owner's new direction is function first, with the integrity necessary to make the function dependable. All milestone acceptance runs below remain **PLANNED / NOT RUN**. The second verification has begun inside M1.1: source review and read-only application baseline checks are evidence of readiness work, not a passed census.
+
+**Revision reason — owner direction, 28 September 2026:** the “2nd review” is the proposed verification before rollout, not a separate approval programme. GPU connection receipts now exist. M1 must verify Registry with both GPU-hosted and non-GPU workers. Every milestone's readiness phase must read its complete existing implementation and dependencies to prevent rebuilding. The ten milestones and 51 acceptance packs are retained; this revision strengthens their work ordering and evidence, not their success claims.
 
 ## 1. How execution will work
 
@@ -12,7 +14,32 @@ This roadmap replaces the previous percentage-led work ordering. It does not sil
 
 Each milestone contains three kinds of sprint work: **recover and connect what exists; complete the missing behaviour; run and repair the whole journey**. A missing input, descriptor, module, measurement method, approval reference, dataset or test is a task inside that milestone—not an automatic new request to the owner and not a separate governance programme.
 
-Before each milestone, I will inspect its current call paths and existing evidence, identify reuse in the current build and the two supplied repositories, and make a short readiness list: **available / recover / wire / build / measure / externally blocked**. Earlier audits are leads, not proof of today's defects. No full-programme audit must finish before useful delivery starts.
+Before each milestone, I will read all repository implementations relevant to its outcome, their dependencies and existing evidence, identify reuse in the current build and supplied repositories, and make a short readiness list: **available / recover / wire / repair / build / measure / externally blocked**. Earlier audits are leads, not proof of today's defects. No full-programme audit must finish before useful delivery starts.
+
+### Complete reuse review inside EVERY milestone's readiness phase
+
+This is part of the first work package of M1–M10, not an eleventh milestone or another owner approval gate.
+
+1. **Inventory everything built for the outcome.** Start with the current workspace and the pinned Root inventory; include backend services, frontend bindings and owner templates, workers, contracts/schemas, storage/writers, configuration, scripts, tests and prior decisions. Follow imports, callers, route assembly and shared dependencies. Locate alternatives in the supplied Core/OS and relevant linked repositories before calling a capability missing.
+2. **Read the actual implementations in full.** A filename match, symbol index, README, representative path or passing mock is insufficient. Read active and alternative implementations, fallback/refusal/recovery branches and tests; trace generated UI to its authoring source. Record inaccessible, unread, obsolete and unrelated material separately. Never call unread code absent or claim every repository file was read when only selected paths were inspected.
+3. **Trace outcome to effect.** Identify the ordinary user entry, governing authority, selected provider/worker, real effect, existing writer, receipt and every required consumer. Distinguish code present, wired, runtime available and live-proven. Record whether estate reads occur outside E1.
+4. **Choose the smallest justified change.** Reuse working code; connect an unwired implementation; repair a demonstrated defect; extend a real partial implementation. Propose new code only for a specific requirement not satisfied by any inspected candidate. No parallel Registry, queue, memory plane, execution lifecycle or UI replacement.
+5. **Attach the review to the existing milestone work record.** For each requirement: repository/pin + file/symbol + read status → active caller and dependencies → existing evidence/limits → reuse/wire/repair/build task → existing acceptance test ID. Carry shared reviews forward and inspect their changes; do not repeatedly rebuild or reread unchanged code without purpose.
+
+Across the milestones, this accounts for the built product progressively. An unmapped implemented capability must receive an owning milestone or an explicit out-of-scope reason; it cannot disappear from the inventory. Readiness closes with the reusable implementation and exact delta identified, not with an unsupported assurance that everything works.
+
+| Readiness home | Existing implementation to read and trace before changing it |
+|---|---|
+| M1.1 | Census orchestration, all connector/worker variants, Mtafiti composition/quality/sampling/detection, descriptors/admission, Registry writers/hydration, pending work and actual owner Registry/DAP/history bindings |
+| M2.1 | Watch/Macho/Mkono detection, policy/action, containment, marks, mirage, witness, continuity, notifications, Grey Mirror readers and improvement handoffs |
+| M3.1 | Objective/request/approval services, Northena execution and work history, activation, qualified units, reservation/metering and custody delivery |
+| M4.1 | Retrieval/Targeta, context assembly, model providers, Solva/Critic/grounding, sessions, baseline/cascade and evaluation/benchmark paths |
+| M5.1 | Existing memory storage/publication/access/compaction/re-extraction, tasks/team/goals/board producers and all owner experience handoffs |
+| M6.1 | Artifact/deck producers and exports in current/Core/OS code, versioned contracts, native skill provisioning/query/async/custody; no second delivery lifecycle |
+| M7.1 | Principal/tenant membership, rules/ROC registry and ceremonies, effective terms, entitlements, existing billing/accounting and consumption readers |
+| M8.1 | Execution recovery, checkpoint/fencing, ledger/Registry/artifact persistence, replicas/backup/restore, withdrawal and notification mechanisms |
+| M9.1 | GPU/runtime/model admission, audio/media/perception, training recipes/runner/single-effect, evaluation/judges, checkpoints, serving, learning and Whitepaper Wizard |
+| M10.1 | Integrated versions and all cross-milestone consumers, remaining unmapped implementation, active-versus-dormant scope, regression and independent journey evidence |
 
 ### Gates and sequencing
 
@@ -91,7 +118,7 @@ qualification. None calls for a parallel Registry or removing safe route isolati
 | Prior tiered BC recovery direction; newer defaults conditional on no prior ruling | M8 reconciles the existing packet. New static 24h/72h values do not silently override the tiered direction. |
 | Existing control/contract tests and older implementation reports | Regression assets, not evidence of current whole-product completion. Broader live model/answer/custody positives remain unproved or SYNTHETIC/MOCKED. |
 
-**Owner-supplied external dependencies:** GPU credentials/access and additional datasets when available; responses to genuinely necessary scoped decisions. No new generic questionnaire.
+**Owner-supplied external dependencies:** GPU credentials are already in custody and both hosts have successful connection/telemetry receipts; do not request them again. Additional datasets enter when supplied. Return only genuinely necessary scoped decisions. No new generic questionnaire. SSH success does not itself prove census-worker bindings, installed model capability or Registry compute integration.
 
 **Engineering-owned recovery tasks:** existing pilot authority/custody references; admitted non-GPU worker and source access; independent inspector/witness; permitted model/query/custody runtimes; dataset rights and test references; notification destinations; existing recovery infrastructure. We have not freshly verified all of these. If one genuinely cannot be recovered, configured or built within existing authority, present the exact missing item, evidence of the search, recommended resolution and only the affected test IDs.
 
@@ -101,19 +128,19 @@ Tenant identity submissions and artists_app permission remain parked per the own
 
 ## M1 — Registry is operational: Akki can tell us what is connected, what exists, and what is usable
 
-**User outcome:** commission the first deep, read-only, non-GPU census; inspect its actual findings in Registry and use the same findings for subsequent objectives.
+**User outcome:** commission the first deep, read-only census; inspect its actual findings in Registry and use the same findings for subsequent objectives. Cover the declared accessible non-GPU source scope and verify the GPU-hosted worker paths now that connectivity is established, through the same census and Registry journey.
 
 **Need / first tasks:** current source inventory, read scope, real worker outside E1, source/query/worker/inspection/custody records, database/file/object adapters, population/snapshot method, CPU-capable profiling packs, persistent Registry writer and current frontend reader. Drivers/control paths exist; worker separation, NAS access, deep dimensions and a unified live read model need verification and completion.
 
 **Sprint work packages**
-1. **M1.1 — Shape and commission.** I act as the objective-shaping wizard: recover scope and authority, resolve only material ambiguity, register the outcome and acceptance pack, and commission via Akki's existing path—not a standalone estate script. Enumerate connected and declared-but-unavailable sources before counting. The census method stays objective-blind even though this commissioning task has an objective.
-2. **M1.2 — Read through admitted non-GPU workers.** Reuse the jump/DB/object/NAS connectors; remove E1 direct-source execution from the operative path. Verify read-only permissions, bounded load, pagination and restartable progress. Resolve the NAS host/mount through descriptors.
-3. **M1.3 — Measure and publish.** Perform exhaustive source/region enumeration within the authorised snapshot/scope, then the defined full or sampled CPU measurements. Reuse the existing Registry writer and authoritative result receipts; repair durability/hydration for all consumers rather than adding a second Registry. Write source findings, method references and actionable gaps. Connect the required existing Registry views to that same account.
-4. **M1.4 — Run the census and prove re-use.** Complete the live run, inspect results, rerun a changed region, repair findings and execute the gate pack below.
+1. **M1.1 — Review, shape and commission.** Complete the reuse review above. I act as the objective-shaping wizard: recover scope and authority, inspect the existing census card/queue/result identity, register the outcome and acceptance pack, and commission via Akki's existing path—not a standalone estate script. Preserve historical refusals; resume a genuinely pending commission through its existing recovery path, or link a new authorised run where the previous attempt is terminal or the scope changes. Enumerate connected and declared-but-unavailable sources before counting. The census method stays objective-blind even though this commissioning task has an objective.
+2. **M1.2 — Execute through admitted external workers, both classes.** Reuse the jump/DB/object/NAS and GPU dispatch paths. Bind source custody, dependencies, lawful scope and worker identity on the actual external runtimes. Move RDS/OBS source execution outside E1; a local subprocess also remains E1 and is not an alternative. Verify read-only permissions, bounded load, pagination and restartable progress. Resolve NAS host/mount access through descriptors, then connect its applicable existing file/media adapters. Exercise both GPU hosts and admitted non-GPU workers without equating SSH or a CPU job on a GPU host with GPU-accelerated processing.
+3. **M1.3 — Measure and publish through the existing Registry.** Reuse the existing composition census, quality profiler, samplers, relationship/detection and file/object measurement capabilities after review. Perform exhaustive source/region enumeration within the authorised snapshot/scope, then declared full or sampled checks, including already-qualified GPU census measurements where applicable. Preserve method/population/coverage and per-connection failures in results; do not hide failed hosts behind a source-level COMPLETE. Extend the existing receipt/writer/read model to carry deep findings and actual worker/run telemetry, and qualify durable custody/hydration for all consumers. Connect owner Data Connected, Compute Connected, census card/detail, DAP and history to the same evidence. Preserve UI fidelity and keep unsafe legacy routes quarantined.
+4. **M1.4 — Run the census and prove re-use.** Complete the live journey through Akki for both worker classes, inspect results, rerun a changed region, exercise read failure/re-entry and duplicate/recovery cases, repair findings and execute all five gate packs below. A baseline API test or a GPU connection receipt is not this acceptance run.
 
 **First census commission**
 
-> Establish the composition, coverage, condition and permitted-use position of all currently connected, authorised RMS and DigiCow sources, using admitted non-GPU workers and no source mutation. Include the NAS route and OBS/object holdings where admitted and accessible. Measure the available CPU-supported dimensions deeply enough to guide extraction and model selection; publish what remains unmeasured with its exact cause and next action. Write the result into Akki's Registry and work history.
+> Establish the composition, coverage, condition and permitted-use position of all currently connected, authorised RMS and DigiCow sources, using admitted external workers and no source mutation. Include NAS and OBS/object holdings where admitted and accessible. Verify non-GPU and both connected GPU-hosted worker paths through Akki. Measure available CPU-supported and already-qualified GPU-supported census dimensions deeply enough to guide extraction and model selection; publish what remains unmeasured with its exact cause and next action. Write results, worker identity and actual run-resource evidence into the existing Registry and work history.
 
 Scope is pinned before the run. Artists_app or other predeclared inaccessible sources remain explicit gaps, not silently removed from the estate total. A newly failing supported in-scope route fails its run; it is not reclassified out of scope after the fact.
 
@@ -133,7 +160,28 @@ Scope is pinned before the run. Artists_app or other predeclared inaccessible so
 | M1-T4 Registry use and durability | Fresh census appears in Registry, DAP browse and work history; reload/service restart preserves it, including consumers of the currently in-memory asset projection. Two different objectives read the same versioned measure. Post-assembly routes use the operative tenant-bound census path, never legacy shape-only COMPLETE; required controls work without reopening unsafe quarantined routes. |
 | M1-T5 Change, failure and tenant isolation | In a controlled source fixture, change one region and refresh only its affected measure. A failed refresh stays stale/unknown, not clean. Duplicate delivery of the same run creates no duplicate authoritative result; RMS and DigiCow cannot read one another's restricted records. |
 
-**Gate G1:** all five runs pass for the declared current non-GPU census scope. Registry is operational for that scope; this does not certify all GPU-dependent dimensions measured. Those observed but unmeasured dimensions become named M9 tasks, with source references. **Opens M2.**
+**Both-worker coverage within the same five packs (no new gate):**
+- **M1-T1:** exercise the non-GPU route and each connected GPU-hosted worker on its declared supported scope. A source read on a GPU host proves that worker route, not GPU acceleration. For an actual accelerated measurement, record the qualified model/kernel, inputs, measured output and observed GPU use. Do not duplicate holdings when comparing workers.
+- **M1-T2:** establish off-E1 placement, source authority and read-only operation for each route, including managed APIs and NAS. A self-declared location or hash-only receipt is not independent placement/admission evidence.
+- **M1-T3:** reperform pinned measurements externally, reconcile failed sub-connections and coverage, and link compute identity/telemetry to the same run. A point-in-time nvidia-smi sample does not establish GPU-hours, cost or energy; report only actually measured quantities and applicable terms.
+- **M1-T4:** exercise the existing card and results through ordinary tenant-bound routes, with consistent identity, states and deep findings across owner Registry, Compute Connected, DAP and history. Confirm recovery from durable custody and hydration through every required reader. Do not unquarantine the old unscoped/stub handlers to make a button work.
+- **M1-T5:** cover worker interruption, failed refresh, repeated submission/result publication and cross-tenant refusal across both worker classes. Preserve historical blocked attempts and correlate any successor; never silently relabel an old refusal as a successful new run.
+
+**Gate G1:** all five runs pass for the pinned accessible source scope and declared GPU/non-GPU worker coverage. No metadata-only result or SSH-only proof closes the expanded worker coverage. Existing qualified GPU census functions belong in this run when applicable; missing source-adapter/worker bindings are M1 tasks, not automatically deferred to M9. Producing and independently qualifying new perception/model/training capability remains M9; its unmeasured census dimensions retain named source-linked tasks and no achieved-capability claim. **Opens M2.**
+
+### M1 readiness findings driving execution — 28 September 2026
+
+| Evidence, not an acceptance claim | Owning work and outcome |
+|---|---|
+| Both hosts have retained SSH/hostname/H200 telemetry receipts. Census worker source custody, supported drivers and actual GPU-use proof do not follow from those receipts. | M1.2: qualify both worker routes; M1-T1/T2/T3. |
+| Current GPU-spend and response-required HTTP routes return 409 after assembly; the prior handoff overstated public GPU-spend availability. | M1.3: bind demanded compute/card functions within current tenant scope, retaining quarantine of unsafe handlers; M1-T4. |
+| RDS/OBS drivers call source SDKs in E1 while labelling output akki_host. The local non-GPU subprocess variant also fails the E1 boundary. | M1.2: route real source reads to admitted external workers and validate actual provenance; M1-T2. |
+| Current remote worker accepts mysql_metadata only; NAS falls to this remote dispatcher. Existing deeper composition/quality code is present but not wired into this aggregate worker. | M1.2/M1.3: reuse and extend the inspected adapters/profilers; M1-T1/T3. |
+| Current RMS overview: seven retained records, no PENDING run. Historical blocked cr-809561ad5643 and cr-a29e3b7b16ae remain; the owner's exact intended card is not conclusively identified. | M1.1: reconcile the existing card through retained work/evidence, not an invented queue or blind rerun; M1-T4/T5. |
+| Authenticated Registry/DAP census aliases agree. Owner Compute Connected is informational; GPU-spend rows remain unmeasured. Completed-card labels need exact identity handling. | M1.3: bind the same retained findings/compute evidence through actual owner components, not obsolete replacement pages; M1-T4. |
+| Registry receipt restoration exists; state custody uses workspace paths whose independent persistence has not been qualified. | M1.3/M1.4: prove durable storage and all-reader recovery; do not infer proven data loss or create another Registry; M1-T4/T5. |
+
+Current verification: read-only live application baseline plus 24 isolated offline contract tests. This is not a completed full-code readiness review, a live deep census, or M1 acceptance. Remaining relevant files and alternative implementations must be read before their work is changed. Detailed evidence: `notes/m1_second_verification/READINESS_REVIEW.md` and `/app/test_reports/iteration_54.json`.
 
 ## M2 — Grey Mirror and the Watch protect actual work end to end
 
@@ -288,7 +336,7 @@ Scope is pinned before the run. Artists_app or other predeclared inaccessible so
 
 **User outcome:** the modalities actually found in the estate become useful intelligence and, where commissioned, accepted models/skills—not merely a GPU job that ran.
 
-**Need / first tasks:** owner-provided GPU access, admitted compute/storage, M1's measured classes, licensed/pinned candidate models, corpus rights, protected stratified test sets, quality/calibration thresholds, independent evaluation and existing training/Whitepaper Wizard/serving paths. Additional datasets enter through M1's generic process, not a bespoke intake. Prepare all of this while GPU access is pending; no blind SSH retries.
+**Need / first tasks:** supplied GPU access, admitted compute/storage, M1's measured classes, licensed/pinned candidate models, corpus rights, protected stratified test sets, quality/calibration thresholds, independent evaluation and existing training/Whitepaper Wizard/serving paths. Additional datasets enter through M1's generic process, not a bespoke intake. Prepare inputs in parallel and reuse M1's qualified worker/runtime evidence, reviewing subsequent changes rather than rebuilding its connections. Host connection receipts already exist; model/training/serving qualification is still required. No blind SSH retries.
 
 **Sprint work packages**
 1. **M9.1:** qualify the compute runtime, choose candidates from the census evidence and commission the activated modality/capability jobs. Keep original audio and streaming adoption boundaries explicit.
@@ -362,11 +410,11 @@ All eight prior capability areas have primary homes:
 
 - I own engineering investigation, reuse, shaping, commissioning, implementation, tests and repair. You supply the promised external access/datasets and answer only a precise unresolved authority question.
 - If blocked, report **test ID → exact missing prerequisite → recovery attempts/evidence → recommended action → independent work continuing**. Never request the same credentials/documents already in custody.
-- Each sprint update is short: **working function delivered; tests run/pass/fail; remaining gap and next action**. Each milestone closes with the actual outcome scorecard and gate decision, not a percentage or a pile of unit-test totals.
+- Each sprint update is short: **milestone/work package and intended outcome → what works and its evidence → exact remaining work → next action**. Refusals, assumptions, recommendations and necessary questions stay inside that outcome and its acceptance tests, never a detached priority questionnaire. Each milestone closes with the actual outcome scorecard and gate decision, not a percentage or a pile of unit-test totals.
 - All visible critical data and controls must be backed by real state; preserve the owner HTML experience. UI changes are verified on desktop and mobile, including overflow and interruption/re-entry, not only screenshots of empty states.
 - Change this roadmap only with a recorded reason tied to the promise, dependency or new owner scope. Never weaken acceptance after failure or create a new policy project to avoid a useful feature.
 
-**Immediate execution after this planning handoff:** M1.1 readiness and objective shaping, followed by the first real non-GPU deep census through Akki. No GPU recovery attempts, source reads or application changes were performed while writing this plan.
+**Next execution:** finish M1.1's complete relevant-code review and existing-card reconciliation, then M1.2 worker/source wiring → M1.3 deep measurement/Registry/compute bindings → M1.4 acceptance and repair. This is the work to launch, not a claim that an immediate full census would pass today. M2–M10 retain their sequence and each begins with its own complete reuse review. No new estate/GPU reads or census commission were started during this readiness revision.
 
 ## 7. Source anchors and verification limits
 
@@ -385,4 +433,4 @@ References relative to `/app/assessment_workspace/` unless marked otherwise:
 - `incoming/owner_closure_plan/`: original voice, ROC and deck source documents and pinned donor snapshots.
 - `/app/memory/PRD.md`: current continuity and architectural boundaries.
 
-This turn verified documentary coverage and roadmap consistency only. It did not rerun source connections, independently certify controls, qualify a model, or pass a milestone. Historical synthetic/model/custody positives stay **SYNTHETIC/MOCKED** until the applicable live acceptance runs succeed.
+The initial roadmap verified documentary coverage only. This readiness revision adds targeted source review and live read-only application checks; it did not rerun estate/GPU connections, independently certify controls, qualify a model, or pass a milestone. Historical synthetic/model/custody positives and offline fixture tests stay **SYNTHETIC/MOCKED** until the applicable live acceptance runs succeed. Repository-wide read completeness is not claimed.

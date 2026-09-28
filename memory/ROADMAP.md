@@ -1,6 +1,35 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-28 goal-based gated execution (owner-directed canon)
+## CURRENT — 2026-09-28 readiness revision 1 (owner-directed canon)
+
+Each milestone M1–M10 begins with a full read/reuse review of its existing
+implementation, alternatives, dependencies, tests and actual user→effect→writer
+paths. Pin reviewed/unread coverage; no blanket “everything read” claim from
+inventory counts. No separate audit milestone or generic approval questionnaire.
+All communication/blocks/recommendations stay within the milestone's outcome.
+
+- **M1.1 underway:** second verification and plan revision, not live acceptance.
+  Finish complete relevant-code review, existing-card reconciliation and scope/
+  descriptor recovery. RMS baseline has 7 records, 0 PENDING, two historical
+  blocked runs; exact owner card not conclusively identified.
+- **M1.2 next:** both GPU-hosted and non-GPU worker paths, source custody and
+  dependencies, external NAS adapter/access, off-E1 RDS/OBS execution. Local
+  subprocesses are not external workers. Keep provided GPU credentials in custody.
+- **M1.3:** reuse deeper Mtafiti profiling, complete honest connection/region
+  coverage and durable Registry hydration, bind compute/card/history to same data;
+  repair result label ID fallback. Legacy unsafe/stub routes remain quarantined.
+- **M1.4:** real census and five acceptance packs, including both worker classes,
+  failure/recovery/isolation/changed-region tests. GPU-hosted CPU work is not proof
+  of GPU acceleration. New model/perception/training capability qualification is M9.
+- **After G1:** M2–M10 unchanged order, each with complete readiness reuse review.
+- **Scope dependencies:** artists_app permission and missing tenant authority
+  stay limited to affected tests, not repeated blanket owner questions.
+
+Verification: 24 offline fixture tests + 12 read-only API tests pass; current
+desktop/mobile history smoke no overflow. Known runtime gaps are not fixed by
+this plan; all milestone gates NOT RUN. Report `notes/m1_second_verification/READINESS_REVIEW.md`.
+
+## Governing sequence — 2026-09-28 goal-based gated execution
 
 Authoritative plan: `notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md`.
 Reuse evidence: `notes/goal_delivery_20260928/ROOT_REUSE_REVIEW.md`.
@@ -8,7 +37,7 @@ This replaces the percentage-led order below; prior history retained.
 
 | Order | Working outcome | Acceptance packs | Status |
 |---|---|---|---|
-| M1 | Registry + first deep read-only non-GPU census | M1-T1–T5 | NOT RUN |
+| M1 | Registry + deep read-only census, both worker classes | M1-T1–T5 | Readiness underway; acceptance NOT RUN |
 | M2 | Grey Mirror/Watch real detection, effects, restoration | M2-T1–T5 | NOT RUN |
 | M3 | Request → qualified work → custody delivery/history | M3-T1–T5 | NOT RUN |
 | M4 | Useful supported answers/context/measured capability | M4-T1–T5 | NOT RUN |

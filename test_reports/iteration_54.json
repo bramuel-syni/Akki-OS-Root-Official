@@ -1,0 +1,60 @@
+{
+  "summary": "SECOND VERIFICATION / plan-tightening read-only baseline completed on public preview URL. Verified existing operator login + authenticated GET census surfaces + anonymous denial; verified tenant-quarantined 409 for legacy post-assembly routes; reviewed Owner OS registry behavior and source files without runtime/config changes.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/portal/census/latest",
+        "issue": "Existing live test expectation in test_live_api_contract.py is stale versus current baseline data (asserts 41/2642/428786937, live returned 20/1015/256928107 for latest tenant-attributed record)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Owner OS Registry",
+        "issues": [
+          "Core controls used for verification (sign-in form, history link) are not consistently instrumented with stable data-testid attributes, reducing test robustness.",
+          "Requested historical 'Census #undefined' label was not reproduced in this run; screenshot evidence should remain attached as historical context only."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_live_api_contract.py",
+    "/app/backend/tests/census_operational/test_contract.py",
+    "/app/test_reports/pytest/pytest_iteration_54_readonly_api.xml",
+    "/app/test_reports/pytest/pytest_iteration_54_offline_contract.xml",
+    "/app/backend/vendored/extraction_akki/backend/routers/census_operational.py",
+    "/app/backend/vendored/extraction_akki/backend/services/census_autonomy/operational_reads.py",
+    "/app/frontend/src/pages/os/OwnerOSPage.jsx",
+    "/app/frontend/src/components/prototype/osModel.jsx",
+    "/app/frontend/src/components/prototype/historyModel.js"
+  ],
+  "action_items": [
+    "M1.1 planning pack: keep /api/portal/census/gpu-spend and /api/portal/census/response-required-items in intentional tenant-quarantine 409 state; do not bypass with helper routes.",
+    "Update/segment stale assertion in backend/tests/census_operational/test_live_api_contract.py::test_t05_estimated_counts_and_no_sensitive_leak so it validates invariant semantics instead of frozen historical absolute counts.",
+    "Attach current identities to readiness work packages: RMS records=7, PENDING runs=0, latest=cr-dd05196d837f COMPLETE, historical blocked visible in runs list: cr-809561ad5643 and cr-a29e3b7b16ae.",
+    "If owner still requires the 'Census #undefined' UI defect closure, run a focused reproduction script on the exact completed-record context from earlier evidence before any fix claim.",
+    "Add/standardize data-testid attributes for Owner OS sign-in and history-entry controls to stabilize future milestone verification."
+  ],
+  "critical_code_review_comments": [
+    "census_operational.install() replaces prior /api/census, /api/portal/census, /api/registry routes and intentionally redirects uncovered legacy paths to unbound_surface(409); this explains why gpu-spend and response-required-items currently return 409 despite separate router files existing.",
+    "Owner UI is mounted through OwnerOSPage -> osModel/historyModel (not obsolete CensusWorkspace-only path). Compute Connected tab behavior is informational-only by design in osModel (notice path, no telemetry claim).",
+    "historyModel GPU spend section is static by contract (labels mapped to 'Not measured'); this is consistent with metadata-only census stance and should not be misreported as live telemetry."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_54.json"
+  ],
+  "success_rate": {
+    "backend": "verification-only (not a completion percentage)",
+    "frontend": "verification-only (not a completion percentage)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Read-only baseline only. No service restarts, installs, GPU/SSH reruns, registry writes or /mnt/nfs-share scans were executed. Live checks done with existing operator account at REACT_APP_BACKEND_URL. Anonymous GETs were 401. /api/portal/census/gpu-spend and /api/portal/census/response-required-items both returned 409 with unbound-surface detail. /api/portal/census/overview showed tenant_id=RMS, records_count=7, pending_runs=0, latest_record_id=cr-dd05196d837f status COMPLETE; runs list includes blocked cr-809561ad5643 and cr-a29e3b7b16ae. Focused offline contract tests passed 24/24 with isolated tmp fixtures.",
+  "rca of the issue": "The single failing backend check came from stale hard-coded expected aggregate values in an existing test, not from API transport/auth failure. Endpoint behavior remained consistent and authenticated. For quarantined routes, root cause is deliberate route composition: census_operational.install removes older census/registry route set and forwards uncovered legacy paths to a 409 unbound_surface guardrail."
+}
