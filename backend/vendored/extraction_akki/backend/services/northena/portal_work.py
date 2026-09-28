@@ -92,30 +92,15 @@ async def submit(db, scope, body):
 
 
 async def detail(db, scope, request_id):
-    events = await events_for(db, scope, request_id)
-    if not events:
+    from services.portal_operational.work_snapshot import read_snapshot, project_snapshot
+    snapshot = await read_snapshot(db, scope)
+    if request_id not in snapshot[0]:
         raise HTTPException(404, "Request not found.")
-    from services.portal_operational.execution_records import events_for as execution_events, project as project_execution
-    from services.portal_operational.delivery_history import project as project_delivery, expected_artifacts
-    executions = await execution_events(db, scope, request_id)
-    work = project_execution(project(events), executions)
-    return await project_delivery(db, scope, work, expected=expected_artifacts(executions))
+    return await project_snapshot(db, scope, snapshot, request_id)
 
 
 async def listing(db, scope):
-    from services.portal_operational.execution_records import events_for as execution_events, project as project_execution
-    from services.portal_operational.delivery_history import grouped as delivery_groups, project as project_delivery, expected_artifacts
-    grouped = {}
-    for event in await events_for(db, scope):
-        grouped.setdefault(event["row"]["run_id"], []).append(event)
-    executions = {}
-    for event in await execution_events(db, scope):
-        executions.setdefault(event["row"]["run_id"], []).append(event)
-    deliveries = await delivery_groups(db, scope)
-    result = []
-    for events in reversed(list(grouped.values())):
-        request_id = events[0]['row']['run_id']
-        work = project_execution(project(events), executions.get(request_id, []))
-        result.append(await project_delivery(db, scope, work, deliveries.get(request_id, []),
-                                            expected=expected_artifacts(executions.get(request_id, []))))
-    return result
+    from services.portal_operational.work_snapshot import read_snapshot, project_snapshot
+    snapshot = await read_snapshot(db, scope)
+    return [await project_snapshot(db, scope, snapshot, request_id)
+            for request_id in reversed(list(snapshot[0]))]

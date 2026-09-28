@@ -55,3 +55,23 @@ def bind_control_scope(scope):
     finally:
         bound._lease.closed = True
         _CURRENT.reset(token)
+
+
+@contextmanager
+def bind_authenticated_request_scope(scope):
+    """Start a re-authenticated HTTP request, not a continuation of old work.
+
+    ASGI task/connection contexts can retain a previous request's *closed* lease.
+    Only the HTTP boundary, AFTER census_identity has validated the new request,
+    may discard that dead carrier. Ordinary bind/require still refuse it, and
+    active nested scopes still cannot change identity. No auth/native grant is
+    renewed: this creates only the already-authenticated request's local lease.
+    """
+    previous = _CURRENT.get()
+    token = _CURRENT.set(None) if previous is not None and previous._lease.closed else None
+    try:
+        with bind_control_scope(scope) as bound:
+            yield bound
+    finally:
+        if token is not None:
+            _CURRENT.reset(token)

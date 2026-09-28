@@ -1,4 +1,4 @@
-.census-workspace,.census-dialog,.census-drawer,.census-os{--c-paper:#f5f2ea;--c-surface:#f0ece1;--c-line:#d9d4c9;--c-ink:#1b1f27;--c-muted:#626775;--c-blue:#16274a;--c-sage:#1d7a6e;--c-warn:#8b6922;color:var(--c-ink);font-family:'Söhne','Helvetica Neue',sans-serif;letter-spacing:0}
+.census-workspace,.census-dialog,.census-drawer,.census-os,.census-signin,.census-empty{--c-paper:#f5f2ea;--c-surface:#f0ece1;--c-line:#d9d4c9;--c-ink:#1b1f27;--c-muted:#626775;--c-blue:#16274a;--c-sage:#1d7a6e;--c-warn:#8b6922;color:var(--c-ink);font-family:'Söhne','Helvetica Neue',sans-serif;letter-spacing:0}
 .census-workspace{background:var(--c-paper);padding:40px 46px 60px;min-height:100vh;width:100%;min-width:0;animation:census-enter .3s ease-out}
 .census-workspace *,.census-dialog *,.census-drawer *{box-sizing:border-box;min-width:0;letter-spacing:0}
 .census-header{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:32px}

@@ -1,6 +1,19 @@
 # Akki — current engineering order
 
-CURRENT20:34UTC: autonomous NON-GPU governance/billing batch verified:
+CURRENT2026-09-28 02:45UTC: hierarchy/performance/reliability corrections verified.
+My Work owns My Team/Company Goals/Board; Grey Mirror owns The Watch/subviews;
+old links preserve query/hash. Native feature data remains unavailable, not mocked.
+One verified work prefix replaces3reads; detail selection no longer refetches list/
+allowance. Closed inherited request-context503 cause fixed only after fresh existing
+HTTP authentication; no native/JWT/credential changes. **694backend passed,2gated
+skips,22frontend passed**,3repeat flaky-suite rounds clear; protected hashes pass.
+Desktop/mobile loaded1218 demo records, no overflow/duplicateIDs/template literals.
+User is preparing a repository; five proposals DEFERRED until existing scope and
+holistic handoff acceptance are genuinely complete. Final holistic test NOT run.
+Actual source/query/custody/team/goals/board/Watch feeds remain absent. Non-GPU
+programme NOT complete. See PRD CURRENT checkpoint and non_gpu_hierarchy_20260928.
+
+PREVIOUS20:34UTC: autonomous NON-GPU governance/billing batch verified:
 **684backend pass,2pre-existing gated skips,7frontend pass**; GPU suites excluded.
 New signed quality/context/lineage/memory consumers are wired into native runtime
 release gates and live certificate routing. Ledger-derived principal billing added.
@@ -62,7 +75,7 @@ inventory where changed by the latest implementation.
 | R11 Custody/inspection | Metadata-only native custody handoff implemented: exact signed recipient/artifact/origin/expiry grant; single-dispatch/status recovery; URL never persisted; measured completion/expiry/withdrawal/partial-result checks; source and skill APIs; receipt history joined. Genuine independent-host/custody transfer still required; positive providers are SYNTHETIC. |
 | R12 Metering | Signed terminal reconciliation and ledger-derived principal billing with dispatch/meter/terms/time joins, duplicate/period/rounding safeguards implemented. No fiscal invoices or genuine provider usage; broader commercial producer/seat/period cases remain. |
 | R13 Certificates | Concrete joins now include real dispatch anchors, pre-send ACK signatures, definitive worker facts, child-evaluation governance, transitive verifier-head dependencies and summed usage. Full A/B/C signed LAB chains pass; current runtime remains unconfigured and no live certificate issued. |
-| R14 Real acceptance |684 NON-GPU backend/7 frontend tests pass;2 authorised custody drills skipped;GPU connector suites explicitly excluded. Native provider effects, physical-host qualification and live certificates remain unproved. Protected hashes and mobile header checks pass. |
+| R14 Real acceptance |694 NON-GPU backend/22 frontend tests pass;2 authorised custody drills skipped;GPU connector suites explicitly excluded. Three repeat formerlyflaky-suite rounds pass. Native effects, physical-host qualification and live certificates remain unproved. |
 
 Startup integration, bounded async native-principal bridge and signed model-request
 recovery are wired; CURRENT PROVIDER CONFIGURATION IS ABSENT. Obtain the existing
@@ -80,6 +93,9 @@ backlog advanced with immutable worker outcomes, stale-view protection and4
 fresh-process crash points; actual physical-host qualification remains gated.
 
 ## P1
+- Native team/goals/board and Watch records behind corrected parent-feature views.
+- Optional CORS explicit-origin policy alignment and decomposition of legacy App.js;
+  no security audit requested/performed and no origin/credential changes made.
 - Genuine grounded warm-answer path, native token/window observation and re-extraction; metadata reconstruction/disclosure consumer implemented, no live effects.
 - Actual seven-family source checks/media checks, deterministic repair/recheck, owner-confirmed exceptions and broader entitlement producers.
 - Recall/notice/re-derivation effects for all withdrawn descendants; current metadata release-denial is implemented, not physical erasure or completed recall.
@@ -93,6 +109,14 @@ fresh-process crash points; actual physical-host qualification remains gated.
 - Real experiments and model adoption/serving qualification beyond bounded activation.
 - Audio, transformed outputs, specialised withdrawals and cross-tenant journeys.
 - Broader multi-host/storage failure and performance evidence, independently scoped.
+
+## Five proposals deferred by owner until existing scope/holistic acceptance
+- Continue across applications with authorised objective/context/evidence intact.
+- Resolve blockers in place with exact missing approval/evidence and safe next action.
+- Goal-linked delivery connecting My Work owners/milestones to Company Goals.
+- Actionable, grouped Watch changes and authorised responses inside Grey Mirror.
+- Fast, truthful interaction feedback and native-supported streaming; no fabricated
+  progress, smaller model substitution or hidden context cuts to claim speed.
 
 Potential enhancement: link existing safe hold reasons to the exact missing native
 receipt checklist in the current request drawer, preserving prototype fidelity.

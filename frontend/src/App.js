@@ -28,9 +28,6 @@ import WorkChat from "@/pages/os/WorkChat";
 import WorkAnalyze from "@/pages/os/WorkAnalyze";
 import WorkDocuments from "@/pages/os/WorkDocuments";
 import WorkTasks from "@/pages/os/WorkTasks";
-import WorkTeam from "@/pages/os/WorkTeam";
-import WorkPerformance from "@/pages/os/WorkPerformance";
-import WorkBoard from "@/pages/os/WorkBoard";
 import MonitorSignals from "@/pages/os/MonitorSignals";
 import MonitorIdeas from "@/pages/os/MonitorIdeas";
 
@@ -44,14 +41,11 @@ import ThinkLabHypothesis from "@/pages/os/ThinkLabHypothesis";
 import ThinkLabPerspective from "@/pages/os/ThinkLabPerspective";
 import AdminEstate from "@/pages/os/OwnerOSPage";
 import AdminGovern from "@/pages/os/AdminGovern";
-import AdminGreyMirror from "@/pages/os/AdminGreyMirror";
 import AdminSpendReq from "@/pages/os/AdminSpendReq";
 import AdminRulesUpd from "@/pages/os/AdminRulesUpd";
 import AdminModelAdmission from "@/pages/os/AdminModelAdmission";
-import AdminWState from "@/pages/os/AdminWState";
-import AdminWRecord from "@/pages/os/AdminWRecord";
-import AdminWUnder from "@/pages/os/AdminWUnder";
-import AdminWDecisions from "@/pages/os/AdminWDecisions";
+import { legacyFeaturePaths, workSections, watchSections } from "@/components/prototype/osHierarchy";
+import { LegacyFeatureRedirect } from "@/components/prototype/LegacyFeatureRedirect";
 
 // v2 OS Prototype · Turn 4 sub-slice 4f GREEN · Frontend rebuild slice 4 ·
 // Build 4 + Buildlib 2 + Collab 4 + 3rdParty 4 = 14 honest-gap surfaces ·
@@ -1299,9 +1293,8 @@ function App() {
           <Route path="/os/work/analyze" element={<WorkAnalyze />} />
           <Route path="/os/work/documents" element={<WorkDocuments />} />
           <Route path="/os/work/tasks" element={<AdminEstate />} />
-          <Route path="/os/work/team" element={<WorkTeam />} />
-          <Route path="/os/work/performance" element={<WorkPerformance />} />
-          <Route path="/os/work/board" element={<WorkBoard />} />
+          {workSections.slice(1).map(section => <Route key={section.key} path={section.path} element={<AdminEstate />} />)}
+          {Object.entries(legacyFeaturePaths).map(([from, to]) => <Route key={from} path={from} element={<LegacyFeatureRedirect to={to} />} />)}
           <Route path="/os/monitor/signals" element={<MonitorSignals />} />
           <Route path="/os/monitor/ideas" element={<MonitorIdeas />} />
 
@@ -1312,14 +1305,12 @@ function App() {
           <Route path="/os/work/perspective" element={<ThinkLabPerspective />} />
           <Route path="/os/admin/estate" element={<AdminEstate />} />
           <Route path="/os/admin/govern" element={<AdminGovern />} />
-          <Route path="/os/admin/greymirror" element={<AdminGreyMirror />} />
+          <Route path="/os/admin/greymirror" element={<AdminEstate />} />
+          <Route path="/os/admin/greymirror/watch" element={<LegacyFeatureRedirect to="/os/admin/greymirror/watch/state" />} />
+          {watchSections.map(section => <Route key={section.key} path={section.path} element={<AdminEstate />} />)}
           <Route path="/os/admin/spendreq" element={<AdminSpendReq />} />
           <Route path="/os/admin/rulesupd" element={<AdminRulesUpd />} />
           <Route path="/os/admin/modeladmission" element={<AdminModelAdmission />} />
-          <Route path="/os/admin/wstate" element={<AdminWState />} />
-          <Route path="/os/admin/wrecord" element={<AdminWRecord />} />
-          <Route path="/os/admin/wunder" element={<AdminWUnder />} />
-          <Route path="/os/admin/wdecisions" element={<AdminWDecisions />} />
 
           {/* Sub-slice 4f · Build/Buildlib (build tab) + Collab (work tab) + 3rdParty (apps tab) */}
           <Route path="/os/build/train" element={<BuildTrain />} />

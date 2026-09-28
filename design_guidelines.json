@@ -1,11 +1,144 @@
 {
-  "status": "OWNER_PROTOTYPES_ARE_THE_BASELINE",
-  "owner_instruction": "this serve as baseline experience architecture nothing less only better if to be changed",
-  "source_directory": "/app/assessment_workspace/canon/prototypes/20260925_owner_updated",
-  "intake_hashes": "intake.json",
-  "implementation": "Literal markup extracted by compile_owner_prototypes.py; safe declarative React renderer. Original mock scripts are never executed.",
-  "preserve": ["original typography and palette", "navigation and content hierarchy", "DAP three-column composition and notes/usage rail", "OS portal tile launcher and preview", "Registry disclosure cards and census-intelligence rail", "in-place census history and evidence tabs"],
-  "allowed_changes": ["identity-bound real data and state", "explicit unknown/estimated values instead of fixtures", "necessary responsive and accessible controls", "explicitly documented Canon conflict corrections"],
-  "forbidden": ["replacement dashboard", "style-inspired redesign instead of original composition", "silent persona or tenant substitution", "invented metrics or entitlement", "timer/random mock execution", "generic dark theme", "unrelated stock images"],
-  "acceptance": "/app/assessment_workspace/notes/census_operational_v1/VERIFICATION_REPORT.md"
+  "project_title": "Enterprise AI OS - Non-GPU Backlog Clearance & Application Hierarchy Blueprint",
+  "version": "1.0.0",
+  "date": "2026-07-01",
+  "file_type": "JavaScript (.js / .jsx)",
+  "overview": {
+    "objective": "Clear non-GPU backlog, establish strict application hierarchy alignment with HTML prototypes, define 5 deferred enhancement proposals, and specify visual, accessibility, and navigation guidelines for main agent implementation.",
+    "top_level_apps": [
+      "My Work",
+      "Grey Mirror",
+      "ThinkLab",
+      "DAP / Data Estates",
+      "Admin / Governance"
+    ],
+    "app_hierarchy_updates": {
+      "my_work": {
+        "parent": "My Work",
+        "nested_capabilities": [
+          "Board",
+          "My Team",
+          "Company Goals"
+        ],
+        "rules": "Board, My Team, and Company Goals MUST be rendered as delivery support subcomponents inside 'My Work', not as standalone top-level application launcher items."
+      },
+      "grey_mirror": {
+        "parent": "Grey Mirror",
+        "nested_app": "The Watch",
+        "watch_subitems": [
+          "State",
+          "Record",
+          "Under Watch",
+          "Decisions"
+        ],
+        "rules": "State, Record, Under Watch, and Decisions are capabilities/subitems of 'The Watch' inside 'Grey Mirror'. Remove State, Record, Under Watch, and Decisions from standalone top-level launcher presentation."
+      }
+    }
+  },
+  "deferred_enhancement_proposals": [
+    {
+      "id": "ENH-01",
+      "name": "Cross-Application Context Continuity",
+      "description": "Preserve active context (selected model, session token, active task) seamlessly when moving between My Work, Grey Mirror, and ThinkLab.",
+      "status": "Deferred until holistic test"
+    },
+    {
+      "id": "ENH-02",
+      "name": "In-Place Blocker Resolution",
+      "description": "Allow users to request or resolve DAP access approvals directly within current view without navigate-away redirects.",
+      "status": "Deferred until holistic test"
+    },
+    {
+      "id": "ENH-03",
+      "name": "Goal-Linked Delivery Matrix",
+      "description": "Connect Board tasks and Team activities directly to active Company Goals with visual metric progress bars.",
+      "status": "Deferred until holistic test"
+    },
+    {
+      "id": "ENH-04",
+      "name": "Actionable Watch Audit Drill-Down",
+      "description": "Enable 1-click execution trace inspection from Grey Mirror -> The Watch -> Decisions directly into Governance Audit Log.",
+      "status": "Deferred until holistic test"
+    },
+    {
+      "id": "ENH-05",
+      "name": "Truthful Responsive Progress & System Telemetry",
+      "description": "Provide live indicator badges distinguishing bound operational features from unbound runtime features with clear empty-state actions.",
+      "status": "Deferred until holistic test"
+    }
+  ],
+  "typography": {
+    "headline_font": "Outfit, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "mono_font": "JetBrains Mono, monospace",
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100",
+      "h2": "text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100",
+      "h3": "text-xl sm:text-2xl font-medium text-slate-800 dark:text-slate-200",
+      "h4": "text-lg sm:text-xl font-medium text-slate-800 dark:text-slate-200",
+      "body": "text-base text-slate-600 dark:text-slate-300 leading-relaxed",
+      "small_label": "text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+    }
+  },
+  "colors": {
+    "mode": "hybrid",
+    "theme": {
+      "bg_primary": "bg-slate-950 dark:bg-slate-950 light:bg-slate-50",
+      "bg_surface": "bg-slate-900/90 dark:bg-slate-900/90 light:bg-white",
+      "border_default": "border-slate-800 dark:border-slate-800 light:border-slate-200",
+      "primary_accent": "#007AFF",
+      "status_success": "#10B981",
+      "status_warning": "#F59E0B",
+      "status_error": "#EF4444",
+      "text_main": "text-slate-100 dark:text-slate-100 light:text-slate-900",
+      "text_muted": "text-slate-400 dark:text-slate-400 light:text-slate-500"
+    },
+    "forbidden_colors": [
+      "#7351B7",
+      "#1B93A4"
+    ]
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-slate-900/80 border border-slate-800/80 shadow-2xl",
+    "card_style": "rounded-xl border border-slate-800 bg-slate-900/60 p-6 shadow-sm hover:border-slate-700 transition-all duration-200",
+    "active_indicator": "ring-2 ring-blue-500/50 bg-blue-500/10 text-blue-400"
+  },
+  "grids": {
+    "dashboard_grid": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "app_launcher_grid": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+  },
+  "layouts": {
+    "header_height": "h-16",
+    "sidebar_width": "w-64",
+    "content_padding": "p-6 lg:p-8"
+  },
+  "motion": {
+    "transition_standard": "transition-colors duration-200 ease-in-out",
+    "hover_lift": "hover:-translate-y-0.5 transition-transform duration-150 ease-out",
+    "reduced_motion": "motion-reduce:transition-none motion-reduce:transform-none"
+  },
+  "accessibility": {
+    "contrast_ratio": "WCAG AA minimum 4.5:1 for normal text, 3:1 for large text",
+    "test_id_required": true,
+    "test_id_convention": "kebab-case data-testid attributes on all interactive elements, tabs, buttons, and app launchers"
+  },
+  "media": {
+    "image_urls": {}
+  },
+  "instructions_to_main_agent": [
+    "Ensure 100% UI fidelity to source HTML prototypes (public/prototype/dap_latest.html and v2_os.html).",
+    "Do NOT edit pinned source markup directly; apply application layout and hierarchy composition changes cleanly.",
+    "Implement My Work as parent app with subcomponents: Board, My Team, and Company Goals.",
+    "Implement Grey Mirror as parent app containing 'The Watch', with nested sub-views: State, Record, Under Watch, and Decisions.",
+    "Remove State, Record, Under Watch, Decisions, Board, My Team, and Company Goals from standalone top-level launcher.",
+    "Provide clear honest empty states (e.g. using src/components/shared/HonestEmpty.jsx) for unbound backend features.",
+    "Maintain back navigation, breadcrumbs, and responsive drawer/mobile layouts.",
+    "Keep source file extensions as .js / .jsx (not .tsx)."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Always include data-testid attributes on interactive components.",
+    "Maintain high UI sharpness, dark-mode elegance, and consistent padding.",
+    "Never rely on pure transparent backgrounds for headers or floating menus.",
+    "Do not introduce fake backend data; display explicit unbound/pending notices where live APIs are absent."
+  ]
 }

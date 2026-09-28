@@ -56,7 +56,73 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
-## CURRENT checkpoint — 2026-09-27 20:34 UTC, autonomous non-GPU governance
+## CURRENT checkpoint — 2026-09-28 02:45 UTC, hierarchy/performance/reliability
+
+Latest user objective: complete pending non-GPU requirements before the holistic
+component-handoff acceptance test; preserve model capability, responsiveness and
+crisp owner-prototype UX. Circled components must not appear as standalone apps.
+User approved **existing requirements/hierarchy first, five recommendations deferred**.
+User's latest answer: **“1 - as recommended. 2 - there is no repository, setting up
+the repository now”**. Do not ask for generic scope approval again.
+
+Implemented and verified this continuation:
+- Workstudio launcher contains Chat, Data Suite, Documents, My Work. My Team,
+  Company Goals and Board are nested under My Work alongside Work records.
+  Board retains the intended board-pack/minutes meaning, not a new kanban product.
+- Grey Mirror contains The Watch, with State/Record/Under Watch/Decisions as its
+  subviews. No separate Watch launcher or component tiles. Seven old deep links
+  redirect to exact nested paths, preserving search/hash, back/forward and refresh.
+- Original HTML and generated prototypes remain unchanged. Only application
+  composition and scoped owner-style overrides changed. Placeholder developer
+  scaffolding pages are bypassed; absent native team/goals/board/Watch records are
+  explicitly unavailable, not fake populated features or zero activity claims.
+- My Work row selection preserves `?request` across sibling views. Loading/failure
+  is distinct from a successfully empty dataset; unavailable counts show dashes.
+  Duplicate renderer IDs fixed, scoped replacement labels resolve safely without
+  template literals/eval. Sign-in palette variables and margin-style warnings fixed.
+- `useOperationalWork`: selecting a record fetches detail only, not list+allowance
+  again. Refresh still rereads current records; delayed responses/logout/principal
+  switches cannot expose previous rows/detail/terms. No global authority cache.
+- Work list/detail use `work_snapshot.py`: **one fully verified canonical prefix
+  rather than three** with identical scoped/redacted public projections. Integrity,
+  current release checks and append-only semantics unchanged. This measures fewer
+  reads, not a fabricated 3x wall-time/model-throughput improvement.
+- Recurring503 finally traced to **binding entry with a CLOSED inherited request
+  lease**, not a TTL or proved ledger contention. Added a fresh local request-scope
+  boundary ONLY after current `census_identity` authentication. Old direct/copied
+  contexts still fail, active nested identity substitution still fails, cancellation
+  closes child contexts. No JWT/native admission/PrincipalV1/credential changes.
+  Protected Canon/writer/control/prototype hash tests pass unchanged.
+
+Final independent verification51: **694 backend passed,2 pre-existing gated skips,
+0 failures/errors** (696 collected); **22 frontend tests passed**. Previously flaky
+API suites passed three repeated rounds with no new binding503. Five explicit
+closed-carrier/auth-failure/nesting/cancellation regression tests pass. Scoped F
+lint passes. Tested loaded desktop/mobile UI with1,218 persisted demo work records:
+selection/tab/history/refresh preserved, zero overflow/duplicate IDs/literal bindings.
+Final margin cleanup self-test: zero shorthand warnings, margins0px, no overflow.
+Reports: `test_reports/iteration_50.json`, `iteration_51.json`,
+`iteration_51_resolution.json`, and `pytest/pytest_iteration_51_non_gpu.xml`.
+
+**Still NOT complete:** native provider/source/query/custody connections and signed
+records are absent. Team/goals/board/Watch data is not connected. No source/model
+quality or end-to-end latency benchmark was possible; model config/prompts/context
+budgets were not reduced. Positive authority/provider fixtures remain
+**SYNTHETIC/MOCKED**; persisted demo held-work records are not estate execution proof.
+GPU untouched. The requested final holistic component-handoff test was **NOT run**.
+Repository availability alone will not satisfy admitted provider/effect evidence.
+
+P0 next: inspect the repository/location when user supplies it; recover actual native
+bindings and owning-service producers without routing bytes through E1. Complete
+source-side DQ/repair/memory/recall effects and real source→registry→delivery/skill
+flows. P1: full commercial/Watch/witness/recovery and source-backed experience tests.
+P2: audit648/source-supplement closure and then owner-approved enhancements.
+Optional CORS explicit-origin hardening and legacy App.js decomposition remain
+maintenance notes, not completed security-review work. No security review requested.
+Five deferred proposals and the holistic acceptance gate are documented in
+`assessment_workspace/notes/non_gpu_hierarchy_20260928/CLOSURE.md`.
+
+## Previous checkpoint — 2026-09-27 20:34 UTC, autonomous non-GPU governance
 
 User repeated: **“Complete all non-GPU work in one autonomous go. Dont stop.”**
 Scope approval is already granted; no further generic permission round. GPU/SSH

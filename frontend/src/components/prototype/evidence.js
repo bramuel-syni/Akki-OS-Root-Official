@@ -19,11 +19,10 @@ export const tabs = [
   ['work', 'Work'], ['build', 'Build'], ['apps', '3rd Party Apps'], ['admin', 'Admin'],
 ];
 export const groups = {
-  work: [{ key: 'workstudio', label: 'WorkStudio', items: [['Chat', '/os/work/chat'], ['Data Suite', '/os/work/analyze'], ['Documents', '/os/work/documents'], ['My Work', '/os/work/tasks'], ['My Team', '/os/work/team'], ['Company Goals', '/os/work/performance'], ['Board', '/os/work/board']] },
+  work: [{ key: 'workstudio', label: 'WorkStudio', items: [['Chat', '/os/work/chat'], ['Data Suite', '/os/work/analyze'], ['Documents', '/os/work/documents'], ['My Work', '/os/work/tasks']] },
     { key: 'thinklab', label: 'ThinkLab', items: [['Seek Clarity', '/os/work/clarity'], ['Develop Strategy', '/os/work/strategy'], ['Test Hypothesis', '/os/work/hypothesis'], ['Get Perspective', '/os/work/perspective']] },
     { key: 'collab', label: 'Collab', items: [['Mentions', '/os/work/mentions'], ['Emails', '/os/work/emails'], ['Projects/Tasks', '/os/work/projects'], ['HR Stuff', '/os/work/hrstuff']] }],
-  admin: [{ key: 'estate', label: 'Manage Estate', items: [['Registry', '/os/admin/estate'], ['Shield', '/os/admin/govern'], ['Grey Mirror', '/os/admin/greymirror'], ['Approvals', '/os/admin/spendreq']] },
-    { key: 'watch', label: 'The Watch', items: [['State', '/os/admin/wstate'], ['Record', '/os/admin/wrecord'], ['Under Watch', '/os/admin/wunder'], ['Decisions', '/os/admin/wdecisions']] }],
+  admin: [{ key: 'estate', label: 'Manage Estate', items: [['Registry', '/os/admin/estate'], ['Shield', '/os/admin/govern'], ['Grey Mirror', '/os/admin/greymirror'], ['Approvals', '/os/admin/spendreq']] }],
   build: [{ key: 'build', label: 'Build Your Resources', items: [['Train Models', '/os/build/train'], ['Build Agents', '/os/build/agentbuild'], ['Build Skill', '/os/build/buildskill'], ['Extract Data', '/os/build/extract']] }, { key: 'buildlib', label: 'Your Resources', items: [['Agents', '/os/build/youragents'], ['Models', '/os/build/yourmodels']] }],
   apps: [{ key: 'apps', label: '3rd Party Apps', items: [['New', '/os/apps/new'], ['Frequent', '/os/apps/frequent'], ['Connected', '/os/apps/connected'], ['Requests', '/os/apps/requests']] }],
 };

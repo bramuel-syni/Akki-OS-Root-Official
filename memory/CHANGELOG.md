@@ -1,5 +1,29 @@
 # Akki implementation history
 
+## 2026-09-28 02:45 UTC — owner hierarchy, work-read efficiency, closed-context503
+
+User clarified child features are not app-launcher items and accepted deferral of
+five enhancements until existing requirements/handoff acceptance; preparing a repo.
+Reparented My Team/Company Goals/Board into My Work; The Watch and State/Record/
+Under Watch/Decisions into Grey Mirror. Seven old deep links preserve query/hash.
+Native data feeds remain unavailable; no legacy sample/file Watch/team data exposed.
+Protected prototypes unchanged, owner palette retained. Fixed loading/empty truth,
+stale responses, duplicate test IDs, scoped copy interpolation, sign-in contrast and
+React margin warning. Loaded-record selection persists through tab/history/refresh.
+
+Optimised work projection3verifiedprefixreads→1, same semantics; selection3HTTP
+requests→1detail, refresh stillcurrent. No model/provider/prompt/context downgrade.
+Closed inherited scope at HTTP binding entry caused intermittent503; fresh local
+lease now established only AFTER current existing auth. Oldchildscope/nesting/
+cancellation safeguards retained, sealed roots and credentials untouched.
+
+Independent51: **694passed2gatedskips backend,22frontendpassed**; previouslyflaky
+suites clear3repeat rounds. Loaded1218 demo work records verified desktop/mobile,
+no overflow/duplicateIDs/template literals. Finalstylewarning cleanup selftested.
+Reports50/51 and51resolution. Source/provider positives remain SYNTHETIC/MOCKED;
+no native source/answer/delivery or finalholistichandoff acceptance. Native bindings,
+actual DQ/memory/recall, commercial/Watch/witness and original audit remain open.
+
 ## 2026-09-27 20:34 UTC — autonomous non-GPU governance/billing continuation
 
 User reiterated autonomous completion, GPU parked. Added signed metadata consumers

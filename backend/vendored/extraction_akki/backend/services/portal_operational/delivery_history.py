@@ -11,6 +11,14 @@ from services.portal_operational.models import HistoryEntry
 async def grouped(db, scope):
     events = await read_events(db, {'row.tenant_id': scope['tenant_id'], 'row.resource_type': 'custody_delivery',
                                     'payload.principal_id': scope['principal_id']})
+    return group_events(events, scope)
+
+
+def group_events(events, scope):
+    """Pure projection of one already-verified, identity-scoped ledger snapshot."""
+    events = [e for e in events if e['row']['resource_type'] == 'custody_delivery'
+              and e['row']['tenant_id'] == scope['tenant_id']
+              and e['payload'].get('principal_id') == scope['principal_id']]
     requests = {e['row']['run_id']: e['payload']['data']['descriptor']['request_id'] for e in events if e['payload'].get('slot') == 'intent'
            and e['payload']['data']['descriptor'].get('principal_id') == scope['principal_id']
            and e['payload']['data']['descriptor'].get('tenant_id') == scope['tenant_id']}

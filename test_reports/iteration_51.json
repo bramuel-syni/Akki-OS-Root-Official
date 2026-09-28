@@ -1,0 +1,57 @@
+{
+  "summary": "Completed targeted verification after CRITICAL503 request-scope fix: full non-GPU backend suite, repeated flaky suites, scope-recovery tests, prototype frontend test suite (22/22), and public-URL desktop/mobile UI integration checks.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "My Work /os/work/tasks",
+        "issues": [
+          "No loading-empty flash reproduced in this run (\"Nothing in this view\" remained absent during initial/settled checks).",
+          "React console emitted shorthand/non-shorthand style conflict warnings after refresh (margin vs marginLeft/marginRight); functional flow unaffected."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/test_reports/pytest/pytest_iteration_51_non_gpu.xml",
+    "/app/test_reports/pytest/pytest_iteration_51_request_api_expanded_r1.xml",
+    "/app/test_reports/pytest/pytest_iteration_51_request_api_expanded_r2.xml",
+    "/app/test_reports/pytest/pytest_iteration_51_request_api_expanded_r3.xml",
+    "/app/test_reports/pytest/pytest_iteration_51_activation_runtime_r1.xml",
+    "/app/test_reports/pytest/pytest_iteration_51_activation_runtime_r2.xml",
+    "/app/test_reports/pytest/pytest_iteration_51_activation_runtime_r3.xml",
+    "/app/test_reports/pytest/pytest_iteration_51_scope_recovery.xml",
+    "/app/backend/tests/portal_operational/test_authenticated_request_scope_recovery.py",
+    "/app/frontend/src/components/prototype/OwnerMarkup.test.js",
+    "/app/frontend/src/components/prototype/osHierarchy.test.js",
+    "/app/frontend/src/components/prototype/osWorkModel.test.js",
+    "/app/frontend/src/components/prototype/useOperationalWork.test.js",
+    "/app/frontend/src/components/prototype/workCopy.test.js"
+  ],
+  "action_items": [
+    "Optional hardening: resolve React inline-style shorthand conflict warnings on My Work refresh.",
+    "Optional auth-hardening review: CORS is currently configured from env as wildcard while allow_credentials=true; align with explicit-origin policy if required by product security baseline."
+  ],
+  "critical_code_review_comments": [
+    "CRITICAL503 request-context regression is not recurring under current targeted load; repeated flaky suites passed across 3 rounds each and no new phase=binding PORTAL_RECORD_UNAVAILABLE entries appeared during this run window.",
+    "Scope-recovery guardrail remains strict: stale closed carriers are rejected except at authenticated HTTP boundary via bind_authenticated_request_scope; nested active substitution is still refused.",
+    "Frontend App.js remains very large (>700 lines), increasing maintenance and regression risk despite current pass status."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_51.json"
+  ],
+  "success_rate": {
+    "backend": "100% pass on executed scope (full non-GPU: 696 tests, 0 fail, 2 skipped; flaky reruns: 24/24; scope recovery: 5/5)",
+    "frontend": "100% pass on executed scope (Jest: 22/22; UI integration checks: desktop+mobile critical flows passed)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Public URL used from frontend/.env. Verified 1218 loaded My Work rows with selector data-testid^=my-work-record-, selected first row, and confirmed ?request persistence across Team tab, back navigation, forward navigation, and refresh. Verified no duplicate data-testid on loaded desktop/mobile pages and no literal {t.evidence}. Grey Mirror/The Watch desktop/mobile pages loaded and captured.",
+  "rca of the issue": "RCA confirmation aligns with request: prior 503 originated at binding entry when a closed inherited control-scope lease was present (require_control_scope line31 via bind_control_scope line46 in portal_scope binding phase). Current recovery behavior validated by dedicated recovery tests and repeated live-suite reruns: stale closed carriers are discarded only at authenticated request boundary; active nested substitution still blocked; no JWT/principal/native authorization changes observed."
+}

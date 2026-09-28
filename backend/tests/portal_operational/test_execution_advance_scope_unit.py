@@ -11,6 +11,7 @@ from fastapi import HTTPException
 
 from routers import portal_requests
 from services.portal_operational import execution
+from services.portal_operational import work_snapshot
 
 
 # Module/feature: write-authorized foreign principal still receives 404 concealment (isolated scoped gate).
@@ -20,13 +21,13 @@ def test_execution_advance_write_authorized_foreign_principal_receives_404(monke
         assert write is True
         yield {"tenant_id": "DIGICOW", "principal_id": "operator-foreign", "roles": ["operator"]}
 
-    async def _events_for(_db, scope, request_id=None):
+    async def _snapshot(_db, scope):
         assert scope["principal_id"] == "operator-foreign"
-        assert request_id == "req-owned-by-other"
-        return []
+        return {}, {}, {}
 
     monkeypatch.setattr(portal_requests, "portal_scope", _operator_scope)
-    monkeypatch.setattr(execution.portal_work, "events_for", _events_for)
+    # Read-only seam moved to one verified snapshot; 404 expectation is unchanged.
+    monkeypatch.setattr(work_snapshot, "read_snapshot", _snapshot)
 
     with pytest.raises(HTTPException) as exc:
         request = SimpleNamespace(app=SimpleNamespace(state=SimpleNamespace(execution_bindings=None)))

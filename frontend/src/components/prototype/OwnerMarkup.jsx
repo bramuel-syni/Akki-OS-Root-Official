@@ -87,7 +87,7 @@ export function OwnerMarkup({ template, surface, model, replace = {}, slots = {}
       props.onMouseEnter = event => Object.entries(hover).forEach(([name, value]) => { event.currentTarget.style[name] = value; });
       props.onMouseLeave = event => Object.keys(hover).forEach(name => { event.currentTarget.style[name] = props.style?.[name] || ''; });
     }
-    props['data-testid'] = `prototype-${surface}-${actionId || tag}-${line}-${trace.replaceAll('r-', '')}`;
+    props['data-testid'] = `prototype-${surface}-${actionId || tag}-${line}-${key.replaceAll('r-', '')}`;
     if (action) {
       props['data-action'] = action;
       if (!['button', 'a', 'input', 'select'].includes(tag)) {
@@ -101,7 +101,10 @@ export function OwnerMarkup({ template, surface, model, replace = {}, slots = {}
     if (line === (surface === 'os' ? 29 : 27)) props['data-proto-root'] = surface;
     if (enhance[line]) Object.assign(props, typeof enhance[line] === 'function' ? enhance[line](context, props) : enhance[line]);
     if (line in slots) return React.createElement(tag, props, slots[line]);
-    if (line in replace) return React.createElement(tag, props, typeof replace[line] === 'function' ? replace[line](context) : replace[line]);
+    if (line in replace) {
+      const value = typeof replace[line] === 'function' ? replace[line](context) : replace[line];
+      return React.createElement(tag, props, typeof value === 'string' ? interpolate(value, context) : value);
+    }
     return React.createElement(tag, props, voidTags.has(tag) ? undefined : render(children, context, key));
   });
   return <div className={`owner-prototype owner-prototype-${surface}`} data-testid={`owner-prototype-${surface}`}>{render(template.nodes)}</div>;
