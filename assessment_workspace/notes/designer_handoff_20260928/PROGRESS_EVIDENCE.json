@@ -1,0 +1,30 @@
+{
+  "as_of": "2026-09-28T05:20:49.543077+00:00",
+  "completion_percent": null,
+  "accepted_requirement_numerator": null,
+  "adopted_completion_denominator": null,
+  "reason": "Current requirement-level implementation/integration/acceptance reconciliation is incomplete.",
+  "historical_assessment_date": "2026-09-26",
+  "historical_registered_rows": 648,
+  "historical_families": 56,
+  "historical_dispositions": {
+    "PARTIAL": 475,
+    "UNVERIFIED": 128,
+    "SOURCE_UNRESOLVED": 24,
+    "SPEC_DECISION_REQUIRED": 7,
+    "EXPLICIT_NONCLAIM": 1,
+    "EVIDENCED_SCOPED": 13
+  },
+  "historical_counts_are_current_completion": false,
+  "last_verified_regression": {
+    "backend_passed": 712,
+    "frontend_passed": 31,
+    "gated_skips": 2,
+    "backend_report": "/app/test_reports/iteration_53.json",
+    "frontend_unchanged_since_previous_checkpoint": true
+  },
+  "test_count_is_completion_percent": false,
+  "all_backend_integrations_complete": false,
+  "holistic_component_handoff_acceptance_run": false,
+  "gpu_parked": true
+}

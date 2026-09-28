@@ -1,6 +1,17 @@
 # Akki — current engineering order
 
-CURRENT2026-09-28 04:17UTC: actual latest ownerHTML adopted for affected features.
+CURRENT2026-09-28 05:23UTC: user requests requirement-ledcompletion and standalone
+designerbrief, NOTplacementagainstHTML. Delivered14capabilitystories/journeys,
+7endtoendscenarios,5additionalproposals andseparatehoneststatusreport asWord/Markdown
+downloadsunder/briefs. Overallcompletion%=UNESTABLISHED untilcurrentrowclosure;
+648historicalrowdispositions arenotcurrentcompletion. No fabricated%fromtests.
+NewRMS/Digicowinputs0600gitignored,offlineonly. RMS8credentialshapedrows+1incomplete;
+DigiCowregion/cluster/secret/database refsconsistent,notdataset/nativenetworkidentity.
+Actualreadonlyruntimeprobe:NATIVE_BINDINGS_UNBOUND. CensusstilldependsparkedSSHpath.
+No estateconnections/reads/Registrywrites/GPU. **712backendpassed,2gatedskips**,last
+unchangedfrontend31pass;7addedoffline/docschecksarenotliveintegrationcompletion.
+
+PREVIOUS2026-09-28 04:17UTC: actual latest ownerHTML adopted for affected features.
 Five recommendations NOW APPROVED within existing journeys, not deferred. Deleted
 custom feature-shell replacements; literal source MyWork/Board/Goals/GreyMirror/
 Watch/drawer/header controls restored. Original4task-intake stages/11choices kept,
@@ -85,7 +96,7 @@ inventory where changed by the latest implementation.
 | R11 Custody/inspection | Metadata-only native custody handoff implemented: exact signed recipient/artifact/origin/expiry grant; single-dispatch/status recovery; URL never persisted; measured completion/expiry/withdrawal/partial-result checks; source and skill APIs; receipt history joined. Genuine independent-host/custody transfer still required; positive providers are SYNTHETIC. |
 | R12 Metering | Signed terminal reconciliation and ledger-derived principal billing with dispatch/meter/terms/time joins, duplicate/period/rounding safeguards implemented. No fiscal invoices or genuine provider usage; broader commercial producer/seat/period cases remain. |
 | R13 Certificates | Concrete joins now include real dispatch anchors, pre-send ACK signatures, definitive worker facts, child-evaluation governance, transitive verifier-head dependencies and summed usage. Full A/B/C signed LAB chains pass; current runtime remains unconfigured and no live certificate issued. |
-| R14 Real acceptance |705 NON-GPU backend/31 frontend tests pass;2 authorised custody drills skipped;GPU connector suites explicitly excluded. Original-source adoption/notice/intake paths checked; native effects, physical-host qualification and live certificates remain unproved. |
+| R14 Real acceptance |712 NON-GPU backend/31 unchangedfrontend tests pass;2 authorised custody drills skipped;GPU suites excluded.7addedtestsareofflineintake/docschecks. Native runtimecurrentlyunbound; real effects, physical-host qualification/livecertificates/holisticacceptance remainunproved. |
 
 Startup integration, bounded async native-principal bridge and signed model-request
 recovery are wired; CURRENT PROVIDER CONFIGURATION IS ABSENT. Obtain the existing
@@ -103,6 +114,9 @@ backlog advanced with immutable worker outcomes, stale-view protection and4
 fresh-process crash points; actual physical-host qualification remains gated.
 
 ## P1
+- Finish source-authorised native Registrylink/census after admittednonGPUworker
+  access and secretresolver available. NewDigicowARNs arenot aresolvedAWSidentity;
+  incompleteRMS credentialrow mustnotbesilentlyfilledfromoldinputs.
 - Native team/goals/board and Watch records behind corrected parent-feature views.
 - Optional CORS explicit-origin policy alignment and decomposition of legacy App.js;
   no security audit requested/performed and no origin/credential changes made.

@@ -56,7 +56,71 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
-## CURRENT checkpoint — 2026-09-28 04:17 UTC, actual owner HTML adoption
+## CURRENT checkpoint — 2026-09-28 05:23 UTC, requirement-led designer brief/intake
+
+Latest user instructions supersede HTML-placement briefs:
+**“Connection is per Registry journey and requirements - this is read only link
+that census will use and later extraction for the specific.”**
+**“For the brief - dont write against my html. Write against what it is, does etc
+(seasoned brief to a UI UX designer), according to your vision, not where it is
+supposed to be.”** All backend/integrations must finish against established
+requirements, with testing following—not define completion by passing tests. User
+asks overall%progress. Do not infer that current backend is fully integrated.
+
+Delivered standalone designer brief:
+- `assessment_workspace/notes/designer_handoff_20260928/AKKI_EXPERIENCE_BRIEF.md`:
+  product promise/personas,14outcome-based capabilities with stories/journeys/
+  experience requirements/acceptance,7complete representativejourneys,5additional
+  valueproposals, state/error/recovery/accessibility/performance and deliverables.
+  It does NOT prescribe screen placement or a new architecture. Machine-purpose
+  components explicitly stay behind human-readable outcomes.
+- Public downloads: `/briefs/Akki_Designer_Brief.docx`, `/briefs/Akki_Designer_Brief.md`,
+  `/briefs/Akki_Build_Status.md`. Export contains no credentials/ARNs/endpoints/source
+  account values. Wordfilechecked; Markdown matches authoritativebrief/status.
+- Separate `BUILD_STATUS.md` and `PROGRESS_EVIDENCE.json`: **overallcompletionpercent
+  remains NOT ESTABLISHED/null**, not0/notanestimate.26Sept648-rowassessment is
+  historical475partial128unverified24sourceunresolved13scopedevidenced7decision1nonclaim
+  across56families; it is not currentclosure.13scoped rows are not13completefeatures;
+  no2%/75%/80%or90%completionclaim. Laterworkneedsfullrowreconciliation and adopted
+  denominator/closureevidence. This is a real reporting gap, not absenceofallwork.
+
+Owner-supplied credential inputs handled OFFLINE only:
+- RMS CREDS3.csv andDigicow.xlsx staged under
+  `/app/backend/estate_keys/owner_20260928/`,both0600andgitignored; no source secrets
+  inreport/transcript/frontend. Originalartifacts retained; no key/accountrotation.
+- RMS shape:8endpoint/account/secret-shapedrows,1endpointmissingaccount/secret.
+  Not8verifiedMySQLconnections. No scopeclassification inferred fromlayout, no
+  hiddenfallback tooldercredentials for incompletefields.
+- Digicow workbook containsregion,clusterARN,secretARN,database-nameref; shape/
+  account/regionconsistent. It is connectionreferences, NOTadataestatepayload.
+  It doesnotprovide nativeAWSidentity authorised toresolve the secret.
+- `estate_intake_20260928.py` emits only custodyhashes/counts/booleans/knownfieldnames;
+  it has no network, Registrywrites, admission or source-read path. Report
+  `CONNECTION_INTAKE.json` explicitlyfalse forregistered/admitted/connected/census/
+  extraction/GPU. Fileprotectionsandbadshape/duplicate/mismatch/reporttests added.
+
+Current runtime blocker independentlyverified: readonly
+`/api/portal/activation/runtime` returns **configured=false,NATIVE_BINDINGS_UNBOUND**.
+Existingcensusremote_dispatch routes viaparkedconfiguredSSHhosts; no admitted
+nonGPUworker/nativefactory/credentialresolverestablished. DO NOT runcensusPOST or
+useworkspaceDB/S3/SSH to“finish”connections. E1neverdatapath. Requireddependencyis
+access toadmitted nativeingestionworker outsideE1 plus its source/network/secret
+authority. Repositoryavailabilityaloneisnotadmission/connectioncompletion.
+
+Verified independent53: **712backendpassed,2gatedskips**;31unchangedfrontendlastpass.
+New7tests are offlineintake/documentchecks, NOTliveintegrationprogress. Public3files
+200actualpayloads/Wordvalid,reportcountsconsistent,ruffFclean,unchangedappsmokeOK.
+No productionUI/API/authbehaviorchanged, noauthcredentialscreated/modified, no
+sourceconnection/GPU/SSH/nativeeffect/holisticacceptance attempted. Positive broader
+provider/authorityfixtures remain **SYNTHETIC/MOCKED**. Reportiteration53.
+
+NextP0: nativeRegistry/worker/credentialbinding and current648-rowclosureledger;
+finish source/extraction/answers/custody and durabletask/goal/team/Board/Watch flows.
+P1: commercial/withdrawal/memory/witness/recoveryeffects and matched-quality/latency
+verification. P2: source/supplementreleaseclosure and ownerprioritisation of extra
+V01–V05designopportunities. No claim allnonGPUdone; substantialintegration remains.
+
+## Previous checkpoint — 2026-09-28 04:17 UTC, actual owner HTML adoption
 
 User rejected invented/limited experience wrappers and supplied the new authoritative
 `Nexus Bank AI Prototype Sep 2026 (standalone) (1).html`. Latest instruction:

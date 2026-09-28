@@ -1,5 +1,23 @@
 # Akki implementation history
 
+## 2026-09-28 05:23 UTC — standalone designer brief, honest progress, offline estate intake
+
+User clarifiedRegistryreadonlylink→census→specificextraction and askedstandalone
+seniorUXbrief,notHTMLplacement; requirementsfirstthenverification,overall%status.
+Delivered14capabilityoutcomes/stories/journeys/acceptance,7completejourneys,5extra
+valueproposals,roles/states/accessibility/performance andmachinery-exclusionrules.
+Word/Markdown+separatebuildstatuspublishedasverifiedpublicdownloads,no secrets.
+Progress%=null/unestablished: historical648classificationsnotcurrentclosure,tests
+arenotproductcompletion. No inventedpercentageorunsupportedwholebackendclaim.
+
+RMSCSV/DigicowXLSXnewartifacts staged0600gitignored; offlinebooleans/countsonly.
+RMS8endpointaccountsecretshapes+1missing;Digicowregion/cluster/secret/dbrefsnotdata.
+Noconnection/Registryadmission/source/GPU/SSHread. Readonlyruntimeconfirmedunbound;
+censusdependsonparkedSSHhosts,needsadmittednativeworkerandsecretresolveroutsideE1.
+Noauthcredentials/configurationchanged. New7offline/reporttests; independent53
+fullnonGPU712pass2gatedskips,lastfrontend31pass. Docs200/Wordvalid/mdexact andruffF
+clean. BroaderpositiveproviderfixturesSYNTHETIC/MOCKED; holisticacceptanceNOT run.
+
 ## 2026-09-28 04:17 UTC — authoritative Nexus owner HTML, not replacement shells
 
 User supplied latestNexusstandaloneHTML and approved fiveenhancements within existing

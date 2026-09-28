@@ -1,0 +1,50 @@
+{
+  "version": "akki.offline-credential-intake/1",
+  "created_at": "2026-09-28T05:14:23.711187+00:00",
+  "classification": "credential_custody_and_shape_only",
+  "registry_registered": false,
+  "admission_issued": false,
+  "source_connection_attempted": false,
+  "census_run": false,
+  "extraction_run": false,
+  "gpu_contacted": false,
+  "required_journey": [
+    "read_only_registry_link",
+    "native_census",
+    "separately_authorised_specific_extraction"
+  ],
+  "rms": {
+    "filename": "rms.csv",
+    "sha256": "9d02dffbceb2dbe2bb0639c05874740cf06029d4e3fe9c4fcb38cf4ea83060c8",
+    "bytes": 1908,
+    "mode": "0o600",
+    "endpoint_account_secret_shaped_rows": 8,
+    "endpoint_rows_missing_account_or_secret": 1,
+    "row_count": 78,
+    "source_types_verified": false,
+    "scope_semantics_verified": false,
+    "live_credentials_validated": false
+  },
+  "digicow": {
+    "filename": "digicow.xlsx",
+    "sha256": "2ec3761f15440cca8581506aa1556a3788ab623d590e8905004963baf8b6b391",
+    "bytes": 3934,
+    "mode": "0o600",
+    "recognized_reference_fields_present": [
+      "cluster arn",
+      "database name",
+      "region",
+      "secret arn"
+    ],
+    "duplicate_reference_labels": [],
+    "cluster_arn_well_formed": true,
+    "secret_arn_well_formed": true,
+    "region_consistent": true,
+    "account_consistent": true,
+    "native_secret_resolver_required": true,
+    "native_identity_admission_verified": false,
+    "live_credentials_validated": false,
+    "classification": "connection_references_not_dataset"
+  },
+  "blocker": "ADMITTED_NON_GPU_INGESTION_WORKER_AND_NATIVE_CREDENTIAL_RESOLUTION_NOT_ESTABLISHED"
+}

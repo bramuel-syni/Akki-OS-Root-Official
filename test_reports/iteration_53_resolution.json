@@ -1,0 +1,18 @@
+{
+  "source_report": "/app/test_reports/iteration_53.json",
+  "scope": "Standalone designer brief, honest build reporting and offline estate connection-input inventory",
+  "backend_regression": {"passed":712,"skipped":2,"failed":0,"junit":"/app/test_reports/pytest/pytest_iteration_53_full_non_gpu.xml"},
+  "frontend": {"last_unchanged_pass_count":31,"code_changed_this_pass":false},
+  "documents": {"designer_word":"/briefs/Akki_Designer_Brief.docx","designer_markdown":"/briefs/Akki_Designer_Brief.md","build_status":"/briefs/Akki_Build_Status.md","downloads_verified":true,"source_exports_match":true,"capabilities":14,"additional_proposals":5,"representative_journeys":7},
+  "progress": {"completion_percent":null,"historical_requirement_rows":648,"counts_are_current_completion":false,"test_count_is_completion":false},
+  "credential_intake": {"files_gitignored":true,"file_modes":"0600","rms_endpoint_account_secret_shaped_rows":8,"rms_endpoint_rows_missing_account_or_secret":1,"digicow_type":"region/cluster/secret/database references; not dataset","values_exported":false},
+  "runtime": {"configured":false,"reason_code":"NATIVE_BINDINGS_UNBOUND","live_probe":"GET /api/portal/activation/runtime"},
+  "blocked": ["Admitted non-GPU ingestion runtime and native credential resolver are not configured", "Actual Registry-native connection/census/extraction not run", "Current requirement-level closure ledger incomplete"],
+  "native_source_connection_attempted":false,
+  "registry_registration_or_admission_issued":false,
+  "gpu_or_ssh_attempted":false,
+  "auth_credentials_changed":false,
+  "positive_native_test_fixtures":"SYNTHETIC/MOCKED",
+  "holistic_acceptance_run":false,
+  "all_backend_integrations_complete":false
+}
