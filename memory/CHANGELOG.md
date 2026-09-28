@@ -1,5 +1,26 @@
 # Akki implementation history
 
+## 2026-09-28 04:17 UTC — authoritative Nexus owner HTML, not replacement shells
+
+User supplied latestNexusstandaloneHTML and approved fiveenhancements within existing
+architecture. Source preserved/hash-pinned, decoded/parsed asDATA only.8649nodes/
+898eventsites are structuralcounts, NOTcompletion. Compiled300KB exactoriginal
+subtrees without demoJS/data execution. Removed customOSFeatureViews replacement
+pages; restored source MyWork lenses/fullworkspace/Viewall/intelligence, Board/Goals,
+GreyMirror/Watch and evidence drawer. Existing app shell/product branding retained.
+
+Originalnoticebell now opens exactheld-work reason/nextaction in source drawer;
+sourceBack/keyboard/focus/mobile2×2stats/popup bounds verified. Originaltasksetup
+4questions/11options retained, duplicate same intakehidden; completionreturns towork
+without a nativePOST. Explicitly UNSAVED localdraft, notsubmitted/scheduled, noAIcall.
+Partialenhancement integration only; nativefeeds/actions/modelstreaming stillabsent.
+
+Final705backendpass2gatedskips/31frontendpass,0finalfailures. Independent52 plus
+selftest sourceBell→drawer, focus, options/return,0nativewrites anddesktop/mobile
+containment. No authcredentials/nativefactory/model/contextbudget/GPU changes.
+No finalholistichandoff/livecertificate. Authpolicy advisories recorded, not silently
+converted into arbitrary throttle/cookie migration. Source/status doc and52resolution.
+
 ## 2026-09-28 02:45 UTC — owner hierarchy, work-read efficiency, closed-context503
 
 User clarified child features are not app-launcher items and accepted deferral of

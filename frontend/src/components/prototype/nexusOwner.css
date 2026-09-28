@@ -1,0 +1,33 @@
+/* Original owner fragments retain their inline design. Only containment,
+   accessibility and mobile adaptation are added; no new cards/theme/shell. */
+.owner-prototype-os [data-proto-line^="nexus-"]{box-sizing:border-box;min-width:0}
+.owner-prototype-os [data-proto-line^="nexus-"][role="button"]:focus-visible,.owner-prototype-os [data-proto-line^="nexus-"]:is(button,a,input,textarea,select):focus-visible{outline:2px solid var(--sage);outline-offset:3px}
+.owner-prototype-os [data-proto-line^="nexus-"]:is(input,textarea,select){font-family:inherit;max-width:100%}
+.owner-prototype-os [data-proto-line^="nexus-"][hidden]{display:none!important}
+.owner-prototype-os [data-proto-line="nexus-2448"]{max-width:100%!important}
+.owner-prototype-os [data-proto-line="nexus-2458"],.owner-prototype-os [data-proto-line="nexus-8442"]{flex-wrap:wrap}
+.owner-prototype-os [data-proto-line="nexus-8442"]{gap:14px!important}
+.owner-prototype-os [data-proto-line="nexus-77"]{max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.owner-prototype-os [data-proto-line="nexus-2504"],.owner-prototype-os [data-proto-line="nexus-2507"],.owner-prototype-os [data-proto-line="nexus-3033"],.owner-prototype-os [data-proto-line="nexus-3036"],.owner-prototype-os [data-proto-line="nexus-9739"]{overflow-wrap:anywhere}
+.owner-prototype-os [data-proto-line="nexus-9720"]{width:min(720px,100vw)!important}
+.owner-prototype-os [data-proto-line="nexus-43"]{width:min(420px,calc(100vw - 24px))!important;right:0!important}
+.owner-prototype-os [data-proto-line="nexus-58"],.owner-prototype-os [data-proto-line="nexus-59"]{overflow-wrap:anywhere}
+@media(max-width:1000px){
+ .owner-prototype-os [data-proto-line="nexus-2465"],.owner-prototype-os [data-proto-line="nexus-8451"]{grid-template-columns:minmax(0,1fr)!important;gap:24px!important;margin:0!important;width:100%!important}
+ .owner-prototype-os [data-proto-line="nexus-2466"]{margin:0!important;padding:22px 0!important}
+ .owner-prototype-os [data-proto-line="nexus-2946"],.owner-prototype-os [data-proto-line="nexus-8665"]{display:none}
+ .owner-prototype-os [data-proto-line="nexus-2947"],.owner-prototype-os [data-proto-line="nexus-8666"]{position:static!important;max-height:none!important}
+}
+@media(max-width:600px){
+ .owner-prototype-os [data-proto-line="nexus-43"]{position:fixed!important;top:58px!important;right:12px!important;width:calc(100vw - 24px)!important}
+ .owner-prototype-os [data-proto-line="nexus-2582"],.owner-prototype-os [data-proto-line="nexus-2690"],.owner-prototype-os [data-proto-line="nexus-2791"],.owner-prototype-os [data-proto-line="nexus-2855"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .owner-prototype-os [data-proto-line="nexus-2582"]>div:nth-child(-n+2),.owner-prototype-os [data-proto-line="nexus-2690"]>div:nth-child(-n+2),.owner-prototype-os [data-proto-line="nexus-2791"]>div:nth-child(-n+2),.owner-prototype-os [data-proto-line="nexus-2855"]>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+ .owner-prototype-os [data-proto-line="nexus-77"]{display:none!important}
+ .owner-prototype-os [data-proto-line="nexus-2458"]{gap:14px!important}
+ .owner-prototype-os [data-proto-line="nexus-2458"] button{margin-left:0!important}
+ .owner-prototype-os [data-proto-line="nexus-3010"]{display:block!important}
+ .owner-prototype-os [data-proto-line="nexus-3045"]{display:none!important}
+ .owner-prototype-os [data-proto-line="nexus-3046"]{margin-top:28px}
+ .owner-prototype-os [data-proto-line="nexus-3049"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .owner-prototype-os [data-proto-line="nexus-9721"],.owner-prototype-os [data-proto-line="nexus-9763"]{padding-left:18px!important;padding-right:18px!important}
+}

@@ -54,7 +54,7 @@ export function styleObject(raw, model) {
 }
 
 /** Declarative original markup only. No eval, iframe, prototype runtime, timers, or mock scripts. */
-export function OwnerMarkup({ template, surface, model, replace = {}, slots = {}, enhance = {}, onUnbound }) {
+export function OwnerMarkup({ template, surface, model, replace = {}, slots = {}, enhance = {}, onUnbound, fragment = false }) {
   const render = (nodes, context = model, trace = 'r') => nodes.map((node, index) => {
     const key = `${trace}-${index}`;
     if (typeof node === 'string') return <React.Fragment key={key}>{interpolate(node, context)}</React.Fragment>;
@@ -67,7 +67,7 @@ export function OwnerMarkup({ template, surface, model, replace = {}, slots = {}
       const list = interpolate(attrs.list, context);
       return Array.isArray(list) ? list.map((item, i) => <React.Fragment key={`${key}-${item.key || item.id || i}`}>{render(children, { ...context, [attrs.as]: item, $index: i }, `${key}-i${i}`)}</React.Fragment>) : null;
     }
-    const props = { key, 'data-proto-line': line };
+    const props = { key, 'data-proto-line': surface.startsWith('nexus-') ? `nexus-${line}` : line };
     let action;
     Object.entries(attrs).forEach(([rawName, rawValue]) => {
       if (rawName.startsWith('hint-') || rawName === 'ref' || rawName === 'style-hover') return;
@@ -107,5 +107,5 @@ export function OwnerMarkup({ template, surface, model, replace = {}, slots = {}
     }
     return React.createElement(tag, props, voidTags.has(tag) ? undefined : render(children, context, key));
   });
-  return <div className={`owner-prototype owner-prototype-${surface}`} data-testid={`owner-prototype-${surface}`}>{render(template.nodes)}</div>;
+  return fragment ? <>{render(template.nodes)}</> : <div className={`owner-prototype owner-prototype-${surface}`} data-testid={`owner-prototype-${surface}`}>{render(template.nodes)}</div>;
 }

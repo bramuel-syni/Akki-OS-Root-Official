@@ -56,7 +56,70 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
-## CURRENT checkpoint — 2026-09-28 02:45 UTC, hierarchy/performance/reliability
+## CURRENT checkpoint — 2026-09-28 04:17 UTC, actual owner HTML adoption
+
+User rejected invented/limited experience wrappers and supplied the new authoritative
+`Nexus Bank AI Prototype Sep 2026 (standalone) (1).html`. Latest instruction:
+**“Mostly the same - review attached. Your recommendationd are fine and approve
+just integrate the appropriately without intoducing new architecture”**.
+The five recommendations are now APPROVED for appropriate integration, not deferred.
+No new experience architecture, product tiles, theme or fake feature data is authorised.
+
+Source is preserved at `assessment_workspace/canon/prototypes/20260928_owner_nexus/`:
+`nexus.html` SHA256 **0330a1712aad3b76dfe6f5e97207707fa35a1ed774a134313635a59ba0a67d3d**.
+Parsed `__bundler/template` as data; prototype JavaScript and demo outcomes are NOT
+executed/imported into production.8649markupnodes/898events are STRUCTURAL counts,
+not feature-completion percentages. Compiled300KB literal source fragments retain
+exact original subtrees; all earlier canonical HTML/generated templates unchanged.
+
+Verified UI correction:
+- Deleted custom OSFeatureViews/osFeatures replacement shells. Actual source My Work,
+  Company Goals, Board, Grey Mirror/Watch and evidence-drawer subtrees now render in
+  the existing app shell with existing product branding. This adoption is scoped to
+  these affected areas, NOT a claim that all prototype apps have been implemented.
+- Restored Today/My team/The work/Execution score/Sources & governance, plus approved
+  nested Company Goals/Board. Restored original3-taskpreview, Viewall/search, full
+  task workspace, intelligence rail and disclosures. No hidden dataset truncation.
+- Source Board4views and filters, goal filters, Grey Mirror original views and
+  nested Watch lanes retain their original layouts/controls. Missing feeds show
+  unknown/unavailable state within those layouts, not substitute dead-end pages.
+- Original header notice popup uses real held-work records (NOT invented Watch
+  alerts); opens original drawer with exact reason/next action and task link.
+  Session-only read markers do not resolve any Watch case. Fixed parent-slot36
+  wiring, responsive popup bounds, Escape/focus return and account access.
+- Original task intake keeps all4sourceprompts and11choiceoptions. Redundant second
+  prototype rendering of the SAME intake is hidden. Local intake completion offers
+  original return control labelled “Back to the work”. **Draft is UNSAVED, session-
+  local, NOT submitted/scheduled, and no native write occurs.** No AI answers claimed.
+- Preserved design tokens and original components; mobile statistic rows2×2, long
+  text containment, original drawer/popover responsiveness and keyboard focus checked.
+  No models, prompt policy, context budgets or backend execution limits downgraded.
+
+Verification: **705backendpassed,2existinggatedskips,0fail/errors**; **31frontendtests
+passed**. Independent52 plus final self-tests. Bell→originaldrawer reason/next action,
+focus return,4-stage/intakechoices, return-to-work with ZERO native POSTs verified.
+Desktop1920×800/mobile390×844: no horizontal overflow. Final references:
+`test_reports/pytest/nexus_non_gpu_final.xml`, `nexus_frontend_final.log`,
+`test_reports/iteration_52.json`, `iteration_52_resolution.json`.
+
+Five enhancements are only PARTIALLY integrated: in-place blocker notices and scoped
+work-record navigation function; goal-linked native delivery, genuine Watch actions,
+cross-app AI/context handoffs and native streaming still require real services.
+Prototype prompts/options and unknown-value UI are not proof of complete features.
+Native task submission/save, team/goals/board/Watch feeds, source/model/custody effects,
+DQ/repair/memory/recall, commercial/witness/recovery and original audit remain open.
+No genuine native model-quality/latency benchmark, live certificate or final holistic
+handoff acceptance run. Positive authority/provider tests remain **SYNTHETIC/MOCKED**.
+GPU untouched; no credentials, auth architecture or native runtime factory changed.
+
+Test52 auth-policy advisories are not reported as fixed: six failed logins do not
+establish the authoritative throttle policy; the existing bearer-token flow has no
+httpOnly session-cookie requirement established; wildcard/credential CORS alignment
+remains a release-policy follow-up. No unsolicited auth redesign/security audit.
+Details, source mappings and exact enhancement status:
+`assessment_workspace/notes/nexus_owner_adoption_20260928/STATUS.md`.
+
+## Previous checkpoint — 2026-09-28 02:45 UTC, hierarchy/performance/reliability
 
 Latest user objective: complete pending non-GPU requirements before the holistic
 component-handoff acceptance test; preserve model capability, responsiveness and

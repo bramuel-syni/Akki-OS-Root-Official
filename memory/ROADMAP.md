@@ -1,6 +1,16 @@
 # Akki — current engineering order
 
-CURRENT2026-09-28 02:45UTC: hierarchy/performance/reliability corrections verified.
+CURRENT2026-09-28 04:17UTC: actual latest ownerHTML adopted for affected features.
+Five recommendations NOW APPROVED within existing journeys, not deferred. Deleted
+custom feature-shell replacements; literal source MyWork/Board/Goals/GreyMirror/
+Watch/drawer/header controls restored. Original4task-intake stages/11choices kept,
+but UNSAVED localdraft only—not a commissioned task. Work notices→source drawer
+and scoped work navigation function. Native goal/Watch/cross-app AI/streaming
+integrations remain OPEN. **705backendpassed,2gatedskips,31frontendpassed**; source
+hashes unchanged, no overflow. No live native effects/holisticacceptance; GPUparked.
+Source/mapping/status: nexus_owner_adoption_20260928/STATUS.md and PRD CURRENT.
+
+PREVIOUS2026-09-28 02:45UTC: hierarchy/performance/reliability corrections verified.
 My Work owns My Team/Company Goals/Board; Grey Mirror owns The Watch/subviews;
 old links preserve query/hash. Native feature data remains unavailable, not mocked.
 One verified work prefix replaces3reads; detail selection no longer refetches list/
@@ -75,7 +85,7 @@ inventory where changed by the latest implementation.
 | R11 Custody/inspection | Metadata-only native custody handoff implemented: exact signed recipient/artifact/origin/expiry grant; single-dispatch/status recovery; URL never persisted; measured completion/expiry/withdrawal/partial-result checks; source and skill APIs; receipt history joined. Genuine independent-host/custody transfer still required; positive providers are SYNTHETIC. |
 | R12 Metering | Signed terminal reconciliation and ledger-derived principal billing with dispatch/meter/terms/time joins, duplicate/period/rounding safeguards implemented. No fiscal invoices or genuine provider usage; broader commercial producer/seat/period cases remain. |
 | R13 Certificates | Concrete joins now include real dispatch anchors, pre-send ACK signatures, definitive worker facts, child-evaluation governance, transitive verifier-head dependencies and summed usage. Full A/B/C signed LAB chains pass; current runtime remains unconfigured and no live certificate issued. |
-| R14 Real acceptance |694 NON-GPU backend/22 frontend tests pass;2 authorised custody drills skipped;GPU connector suites explicitly excluded. Three repeat formerlyflaky-suite rounds pass. Native effects, physical-host qualification and live certificates remain unproved. |
+| R14 Real acceptance |705 NON-GPU backend/31 frontend tests pass;2 authorised custody drills skipped;GPU connector suites explicitly excluded. Original-source adoption/notice/intake paths checked; native effects, physical-host qualification and live certificates remain unproved. |
 
 Startup integration, bounded async native-principal bridge and signed model-request
 recovery are wired; CURRENT PROVIDER CONFIGURATION IS ABSENT. Obtain the existing
@@ -110,13 +120,18 @@ fresh-process crash points; actual physical-host qualification remains gated.
 - Audio, transformed outputs, specialised withdrawals and cross-tenant journeys.
 - Broader multi-host/storage failure and performance evidence, independently scoped.
 
-## Five proposals deferred by owner until existing scope/holistic acceptance
-- Continue across applications with authorised objective/context/evidence intact.
-- Resolve blockers in place with exact missing approval/evidence and safe next action.
-- Goal-linked delivery connecting My Work owners/milestones to Company Goals.
-- Actionable, grouped Watch changes and authorised responses inside Grey Mirror.
-- Fast, truthful interaction feedback and native-supported streaming; no fabricated
-  progress, smaller model substitution or hidden context cuts to claim speed.
+## Five enhancements APPROVED within owner HTML — latest2026-09-28 instruction
+- Cross-app continuity: scoped work list/fullworkspace/governing-record links work;
+  full Chat/Documents/DataSuite/native-context handoffs still pending.
+- In-place blockers: source notice popup→exact reason/nextaction→source drawer/task
+  works. Native approval/remediation effects still require their original services.
+- Goal-linked delivery: source CompanyGoals and task owner/date/evidence controls
+  restored; real goal links, durable task drafts/submission and feed joins pending.
+- Actionable Watch: original GreyMirror/Watch views/controls restored. Real Watch
+  events/actions/notices/witness still pending; work holds are not native Watch alerts.
+- Truthful responsive feedback: original3-rowpreview+fullViewall, unknown states,
+  keyboard/focus/containment fixed. Native streaming and matched model/latency
+  acceptance pending; no model/context cuts or fabricated speed/quality claims.
 
 Potential enhancement: link existing safe hold reasons to the exact missing native
 receipt checklist in the current request drawer, preserving prototype fidelity.
