@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://akki.local/schemas/canonical_tenant_ids.schema.json",
+  "title": "Canonical Tenant IDs (CP-TENANT-SEPARATION Turn 4 sub-slice 4j)",
+  "description": "Owner card TENANT_SEPARATION.md §2 verbatim: RMS · DIGICOW · AKKI-TEST · AUDIT-FIXTURE-20260921. Authoritative closed set per SO §3.10-α. Python mirror at services.tenant_separation.tenant_registry.CANONICAL_TENANT_IDS; paired equality asserted by tests/invariants/test_cp_tenant_separation.py::test_four_tenants_declared_verbatim.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tenant_id"],
+  "properties": {
+    "tenant_id": {
+      "type": "string",
+      "enum": [
+        "RMS",
+        "DIGICOW",
+        "AKKI-TEST",
+        "AUDIT-FIXTURE-20260921"
+      ]
+    }
+  }
+}

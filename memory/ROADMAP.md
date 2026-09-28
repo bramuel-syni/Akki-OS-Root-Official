@@ -1,6 +1,38 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-28 reuse-first closure planning
+## CURRENT — 2026-09-28 goal-based gated execution (owner-directed canon)
+
+Authoritative plan: `notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md`.
+Reuse evidence: `notes/goal_delivery_20260928/ROOT_REUSE_REVIEW.md`.
+This replaces the percentage-led order below; prior history retained.
+
+| Order | Working outcome | Acceptance packs | Status |
+|---|---|---|---|
+| M1 | Registry + first deep read-only non-GPU census | M1-T1–T5 | NOT RUN |
+| M2 | Grey Mirror/Watch real detection, effects, restoration | M2-T1–T5 | NOT RUN |
+| M3 | Request → qualified work → custody delivery/history | M3-T1–T5 | NOT RUN |
+| M4 | Useful supported answers/context/measured capability | M4-T1–T5 | NOT RUN |
+| M5 | Durable memory/work/team/goals/board journeys | M5-T1–T5 | NOT RUN |
+| M6 | Artifacts, deterministic decks, callable skills | M6-T1–T5 | NOT RUN |
+| M7 | Tenant/rule/entitlement/commercial operation | M7-T1–T5 | NOT RUN |
+| M8 | Interruption, withdrawal, continuity/site recovery | M8-T1–T5 | NOT RUN |
+| M9 | Activated media/models/training/learning | M9-T1–T5 | NOT RUN |
+| M10 | Integrated independent whole-product acceptance | M10-T1–T6 | NOT RUN |
+
+PASS opens the next integrated milestone; independent work packages/preparation
+can overlap. Blocked GPU work does not stop non-GPU engineering. Missing inputs
+become tasks in their owning milestone; recover prior custody/decisions first.
+No mock/skip is a pass, no new made-up timers/metrics or percentage claims, and no
+ratified safeguard is silently waived. Basic rights/usage/Watch land as needed,
+not held back until a later general milestone. Preserve exact owner UI.
+
+Root pin c481c1d: 1,200 identical runtime/frontend blobs, 15 different, no donor-only
+paths; current work has substantial newer native integration. Reuse present
+services/writers/contracts, repair actual bindings and prove results. Do not
+restore legacy unsafe routes or import Root wholesale. All review was static;
+M1.1 is the next execution, not already started during planning.
+
+## PREVIOUS — 2026-09-28 reuse-first closure planning
 
 See `notes/owner_closure_plan_20260928/PLAN.md` for source hashes, pinned donor
 commits, recovered rulings, exact scope and acceptance criteria. Documentation only.

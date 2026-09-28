@@ -1,0 +1,1610 @@
+{
+  "sha": "dc6216998fa8507f74276c153a36b369348f78c6",
+  "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/dc6216998fa8507f74276c153a36b369348f78c6",
+  "tree": [
+    {
+      "path": "components.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3670f42f3cdc66dc68d9c1274eb69b6d7fceb34d",
+      "size": 445,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/3670f42f3cdc66dc68d9c1274eb69b6d7fceb34d"
+    },
+    {
+      "path": "craco.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "633d26693ed88f3838f6bc07426bce00dd2c478d",
+      "size": 6683,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/633d26693ed88f3838f6bc07426bce00dd2c478d"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34ecef7943425585ce42d33fa3f0f49a3a7fffdc",
+      "size": 3660,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/34ecef7943425585ce42d33fa3f0f49a3a7fffdc"
+    },
+    {
+      "path": "plugins",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4274adac6fbf1ebff586eff73f6fb2eb83874e42",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/4274adac6fbf1ebff586eff73f6fb2eb83874e42"
+    },
+    {
+      "path": "plugins/health-check",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8be1af328a084f04738ddae94c077b091b10a902",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/8be1af328a084f04738ddae94c077b091b10a902"
+    },
+    {
+      "path": "plugins/health-check/health-endpoints.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5af66cfc6dabdc40d2264b0cecf00de470084e6c",
+      "size": 7412,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/5af66cfc6dabdc40d2264b0cecf00de470084e6c"
+    },
+    {
+      "path": "plugins/health-check/webpack-health-plugin.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4efbce72ef278f9bb2db8e27bcde4b01c7c68776",
+      "size": 3141,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4efbce72ef278f9bb2db8e27bcde4b01c7c68776"
+    },
+    {
+      "path": "plugins/ip-allowlist",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "278441d6db04608b336707d9744215991b2da4f4",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/278441d6db04608b336707d9744215991b2da4f4"
+    },
+    {
+      "path": "plugins/ip-allowlist/__tests__",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "293b49edc9012490cbf17bbd56a44794b5d81c2f",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/293b49edc9012490cbf17bbd56a44794b5d81c2f"
+    },
+    {
+      "path": "plugins/ip-allowlist/__tests__/ip_allowlist.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb7bc1caba47bebcafcb42975ac06611c1b63755",
+      "size": 5219,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/cb7bc1caba47bebcafcb42975ac06611c1b63755"
+    },
+    {
+      "path": "plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75db317c5dd30b2c4fdcb34fb28290b647d0561e",
+      "size": 4820,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/75db317c5dd30b2c4fdcb34fb28290b647d0561e"
+    },
+    {
+      "path": "plugins/ip-allowlist/__tests__/w10_wave_close_strict_flip_matrix.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abe9542a4a5a8382ed7b76ea8303fd5fb5bf87da",
+      "size": 6439,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/abe9542a4a5a8382ed7b76ea8303fd5fb5bf87da"
+    },
+    {
+      "path": "plugins/ip-allowlist/check.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60482f3ffe6eb30c539300f4d914fd0c8a736413",
+      "size": 3304,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/60482f3ffe6eb30c539300f4d914fd0c8a736413"
+    },
+    {
+      "path": "plugins/ip-allowlist/middleware.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75cdf19487f651b3b0f4d2007739d599d807b919",
+      "size": 1252,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/75cdf19487f651b3b0f4d2007739d599d807b919"
+    },
+    {
+      "path": "plugins/retired-routes",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d59828a0bbce065647ae39416355c9d9d22e145e",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/d59828a0bbce065647ae39416355c9d9d22e145e"
+    },
+    {
+      "path": "plugins/retired-routes/middleware.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c90600b651277109e0f338a02b41359d1a9ef969",
+      "size": 986,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c90600b651277109e0f338a02b41359d1a9ef969"
+    },
+    {
+      "path": "postcss.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33ad091d26d8a9dc95ebdf616e217d985ec215b8",
+      "size": 82,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/33ad091d26d8a9dc95ebdf616e217d985ec215b8"
+    },
+    {
+      "path": "public",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bc6f1ced5b1c53b124d748b8953447fcfa4a79bd",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/bc6f1ced5b1c53b124d748b8953447fcfa4a79bd"
+    },
+    {
+      "path": "public/audit",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "789fa6a511b6b340d41bbb67639076532dd9c563",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/789fa6a511b6b340d41bbb67639076532dd9c563"
+    },
+    {
+      "path": "public/audit/AKKI_ADMIN_CONNECTIVITY_BRIEF_20260917.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb08a8b4091d1c7f2e8c97e5e46e4cb469daa491",
+      "size": 32250,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/bb08a8b4091d1c7f2e8c97e5e46e4cb469daa491"
+    },
+    {
+      "path": "public/audit/AKKI_ADMIN_CONNECTIVITY_BRIEF_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41f4cdbe81f963741dc0ce4da0572e0b45a16fd5",
+      "size": 36862,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/41f4cdbe81f963741dc0ce4da0572e0b45a16fd5"
+    },
+    {
+      "path": "public/audit/AKKI_BUILD_BRIEF_20260917.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fdbeebeb67461f3d5d5ba21d9e60f25b6e36fc2",
+      "size": 30969,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/7fdbeebeb67461f3d5d5ba21d9e60f25b6e36fc2"
+    },
+    {
+      "path": "public/audit/AKKI_BUILD_BRIEF_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04253fcdc4a6e08ac0fc72e75ad2d84232b22d06",
+      "size": 32098,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/04253fcdc4a6e08ac0fc72e75ad2d84232b22d06"
+    },
+    {
+      "path": "public/audit/AKKI_DEEP_DIVE_20260917.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8edb7cf46d1f5cb2c28d138e5cd708f812f18e5",
+      "size": 37624,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c8edb7cf46d1f5cb2c28d138e5cd708f812f18e5"
+    },
+    {
+      "path": "public/audit/AKKI_DEEP_DIVE_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6db3959cde11d8c455269764c292bad7a5a7dfe1",
+      "size": 54684,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/6db3959cde11d8c455269764c292bad7a5a7dfe1"
+    },
+    {
+      "path": "public/audit/AKKI_V1_GAP_ASSESSMENT_20260917.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f22f9e5dc408c6bc9a8eb58ba2dca69825e66ad9",
+      "size": 24710,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f22f9e5dc408c6bc9a8eb58ba2dca69825e66ad9"
+    },
+    {
+      "path": "public/audit/AKKI_V1_GAP_ASSESSMENT_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95ed8a8fad87d7aefb592558379aff4e62f21360",
+      "size": 40930,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/95ed8a8fad87d7aefb592558379aff4e62f21360"
+    },
+    {
+      "path": "public/audit/ESTATE_CONTACT_AUDIT_20260915.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8af9e02fe8dec87de65246de098208b9eecf1e0a",
+      "size": 15991,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8af9e02fe8dec87de65246de098208b9eecf1e0a"
+    },
+    {
+      "path": "public/audit/FE_FIX_READY_R87_blocked_vocabulary_correction.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a04414d80a81a4169abc77a730caa094214c25de",
+      "size": 18803,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a04414d80a81a4169abc77a730caa094214c25de"
+    },
+    {
+      "path": "public/audit/GPU_UTILIZATION_72H.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0bb11182e2a7ec387a3832473f2c91141211bb2",
+      "size": 2584,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f0bb11182e2a7ec387a3832473f2c91141211bb2"
+    },
+    {
+      "path": "public/audit/GPU_UTILIZATION_72H.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9c3271b38fc117961d4f7e44e72940cf1a6bf9e",
+      "size": 2428,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a9c3271b38fc117961d4f7e44e72940cf1a6bf9e"
+    },
+    {
+      "path": "public/audit/ITEM_3_CENSUS_RUN_20260915.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef78733d5c36c5d648c8b08314d5cfab4d67df0c",
+      "size": 10125,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/ef78733d5c36c5d648c8b08314d5cfab4d67df0c"
+    },
+    {
+      "path": "public/audit/M8_SEAL_WAVE_CLOSE_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb8be61ec196310ed1996ff820416de6b77b3e2b",
+      "size": 23315,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/cb8be61ec196310ed1996ff820416de6b77b3e2b"
+    },
+    {
+      "path": "public/audit/M9_PLATFORM_LAYER_COMPLETE_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cc031dce9eca9daa85e2541c57910f911849599",
+      "size": 32909,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/3cc031dce9eca9daa85e2541c57910f911849599"
+    },
+    {
+      "path": "public/audit/NEXT_MILESTONES_PLAN_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef9eda6c29cb0559e0e75f96dd2f164651556e71",
+      "size": 29554,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/ef9eda6c29cb0559e0e75f96dd2f164651556e71"
+    },
+    {
+      "path": "public/audit/ORCH_BOOT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ac42421e8b21357ded1fa92009f0bc0dbecdc91",
+      "size": 352557,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8ac42421e8b21357ded1fa92009f0bc0dbecdc91"
+    },
+    {
+      "path": "public/audit/PROJECT_STATE_AND_RULES_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "442ca218d9fc6139d6a4e92054fbf4d3c65e07bd",
+      "size": 30616,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/442ca218d9fc6139d6a4e92054fbf4d3c65e07bd"
+    },
+    {
+      "path": "public/audit/RMS_ESTATE_CONNECTION_BRIEF_20260917.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50eca3147400e3923da6974dcaa3af156a0d94a5",
+      "size": 26327,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/50eca3147400e3923da6974dcaa3af156a0d94a5"
+    },
+    {
+      "path": "public/audit/SER_ERRATA_v1_0_1_20260918.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "665e398673687642872fec69d1b86d3b8200b98d",
+      "size": 13972,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/665e398673687642872fec69d1b86d3b8200b98d"
+    },
+    {
+      "path": "public/audit/SHAPING_LEDGER.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0443951903292b6259643a3d77a3a9f4557c886",
+      "size": 20659,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f0443951903292b6259643a3d77a3a9f4557c886"
+    },
+    {
+      "path": "public/audit/estate_contact_audit_20260915.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d629dac795e75bf4518e113688658794f1dbfe8b",
+      "size": 54282,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/d629dac795e75bf4518e113688658794f1dbfe8b"
+    },
+    {
+      "path": "public/deliverables",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a03e1d4502d2c2a98d3a4fba111de0ce34687c33",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/a03e1d4502d2c2a98d3a4fba111de0ce34687c33"
+    },
+    {
+      "path": "public/deliverables/BUILD_JOURNAL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56b11283ac155680da5807594642ed82c780ef11",
+      "size": 20093,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/56b11283ac155680da5807594642ed82c780ef11"
+    },
+    {
+      "path": "public/deliverables/CENSUS_OBJECTIVES_SCORECARD.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb3971727cacb9c0d27d2426cce03bdab56de6ab",
+      "size": 23947,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/fb3971727cacb9c0d27d2426cce03bdab56de6ab"
+    },
+    {
+      "path": "public/deliverables/DQ17_UNLOCK_RUNBOOK.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "290e0423bfa67c241d2b61973bd5516e019796b1",
+      "size": 23837,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/290e0423bfa67c241d2b61973bd5516e019796b1"
+    },
+    {
+      "path": "public/deliverables/OUTCOMES_TO_DATE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f494e8490741d0e9d86b006aa22c0435f7b65c38",
+      "size": 17613,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f494e8490741d0e9d86b006aa22c0435f7b65c38"
+    },
+    {
+      "path": "public/deliverables/OWNER_RETURN_REPORT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4685284caaae51ce41434e0e95087e39febd8e21",
+      "size": 29148,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4685284caaae51ce41434e0e95087e39febd8e21"
+    },
+    {
+      "path": "public/index.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2d93f500f288b6b5d549d95f2139f6c0c3c8e94",
+      "size": 5302,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/e2d93f500f288b6b5d549d95f2139f6c0c3c8e94"
+    },
+    {
+      "path": "public/prototype",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "62080c1580a72454a6de2b60f27917128c951852",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/62080c1580a72454a6de2b60f27917128c951852"
+    },
+    {
+      "path": "public/prototype/dap_latest.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cfdb9d7db2aae2eaf76429a1b7d1810c349caf66",
+      "size": 221620,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/cfdb9d7db2aae2eaf76429a1b7d1810c349caf66"
+    },
+    {
+      "path": "public/prototype/v2_os.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf56c8c9bb67b70eba7b1b0e44eb729e393ba141",
+      "size": 2286992,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/bf56c8c9bb67b70eba7b1b0e44eb729e393ba141"
+    },
+    {
+      "path": "public/v8_prototype.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9739defe66ee659263977f63020fa45749f689cc",
+      "size": 1264425,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9739defe66ee659263977f63020fa45749f689cc"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "991fb5d46731d677e568f9763a429da9f02d578a",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/991fb5d46731d677e568f9763a429da9f02d578a"
+    },
+    {
+      "path": "src/App.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5236dccd955c57f9aeb34b0b74907e02cd5f8267",
+      "size": 606,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/5236dccd955c57f9aeb34b0b74907e02cd5f8267"
+    },
+    {
+      "path": "src/App.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c8a3c63af8adfb7e4410288e57e306273fd12f1",
+      "size": 58813,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/2c8a3c63af8adfb7e4410288e57e306273fd12f1"
+    },
+    {
+      "path": "src/components",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "063bbfbfe7fe5e884665afd71aca235f263e8b4b",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/063bbfbfe7fe5e884665afd71aca235f263e8b4b"
+    },
+    {
+      "path": "src/components/AuditTrail.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f84cbb18491c174ee63f118d0fd68685fde6695",
+      "size": 9025,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8f84cbb18491c174ee63f118d0fd68685fde6695"
+    },
+    {
+      "path": "src/components/Chat.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eeea8b3211bbc79e6d857c75ece170afec77fad5",
+      "size": 7490,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/eeea8b3211bbc79e6d857c75ece170afec77fad5"
+    },
+    {
+      "path": "src/components/ClassBadge.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1f478cf743428e69326807fb231f9aad3310cae",
+      "size": 1158,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b1f478cf743428e69326807fb231f9aad3310cae"
+    },
+    {
+      "path": "src/components/CommissionWizard.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5b787e06c012c5b2cd36c6e74ab005d72dc8f24",
+      "size": 19472,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a5b787e06c012c5b2cd36c6e74ab005d72dc8f24"
+    },
+    {
+      "path": "src/components/ConnectDrawerChat.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "053ecc666423165d00b9ff78e8833c5041c74839",
+      "size": 36037,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/053ecc666423165d00b9ff78e8833c5041c74839"
+    },
+    {
+      "path": "src/components/ConnectWizard.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08fa6d5bb2ac501e2edab636c75ad854e8be1355",
+      "size": 27765,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/08fa6d5bb2ac501e2edab636c75ad854e8be1355"
+    },
+    {
+      "path": "src/components/CostLedger.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4b97b639f767b88d5215d769fec4ecd122f5304",
+      "size": 16714,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b4b97b639f767b88d5215d769fec4ecd122f5304"
+    },
+    {
+      "path": "src/components/DataShield.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a30c25dbfd5eda9e69f7f6fec327ba8a20c0a5a9",
+      "size": 22659,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a30c25dbfd5eda9e69f7f6fec327ba8a20c0a5a9"
+    },
+    {
+      "path": "src/components/EvidenceRegister.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "633cf7c29bdb624e3cd6f359fb1ec8f85e8cac6f",
+      "size": 9360,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/633cf7c29bdb624e3cd6f359fb1ec8f85e8cac6f"
+    },
+    {
+      "path": "src/components/Governance.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b5dcee091a8b24727e20cc19c652b791812fe0f",
+      "size": 8186,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4b5dcee091a8b24727e20cc19c652b791812fe0f"
+    },
+    {
+      "path": "src/components/GreyMirror.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc6096bbc8fe11b695f0c8137e490bf00dc89639",
+      "size": 9355,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/cc6096bbc8fe11b695f0c8137e490bf00dc89639"
+    },
+    {
+      "path": "src/components/ModelEcosystem.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d4138d23d12b4b3630fea623da3ba765848f92f",
+      "size": 13146,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4d4138d23d12b4b3630fea623da3ba765848f92f"
+    },
+    {
+      "path": "src/components/RefusalCard.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66a1778b6157e60c97a0bbce3c6827ebc5603a35",
+      "size": 5196,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/66a1778b6157e60c97a0bbce3c6827ebc5603a35"
+    },
+    {
+      "path": "src/components/Registry.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da77f35f7601c34914f4f0835b23156d2fd19778",
+      "size": 45717,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/da77f35f7601c34914f4f0835b23156d2fd19778"
+    },
+    {
+      "path": "src/components/SkillFiles.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c941265fa4fb75e178dbe674ccb88ab97d3ce13d",
+      "size": 7961,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c941265fa4fb75e178dbe674ccb88ab97d3ce13d"
+    },
+    {
+      "path": "src/components/ThinkLab.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dabbe6e30be561413311bb57b5951c48c527835d",
+      "size": 29267,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/dabbe6e30be561413311bb57b5951c48c527835d"
+    },
+    {
+      "path": "src/components/Training.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea8366b9ce4847c88378df4fbfe046dc6f9a5c28",
+      "size": 21188,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/ea8366b9ce4847c88378df4fbfe046dc6f9a5c28"
+    },
+    {
+      "path": "src/components/Watch.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a0a0e0248f536465c7fd81db1ef85a4fe00171c",
+      "size": 14227,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8a0a0e0248f536465c7fd81db1ef85a4fe00171c"
+    },
+    {
+      "path": "src/components/dap",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b1a25e02bca7361a3be118182d018f43ba6760bf",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/b1a25e02bca7361a3be118182d018f43ba6760bf"
+    },
+    {
+      "path": "src/components/dap/StatusBadge.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe1217d90b565e8e48ec5a2a8853a2a984d6c0d7",
+      "size": 2074,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/fe1217d90b565e8e48ec5a2a8853a2a984d6c0d7"
+    },
+    {
+      "path": "src/components/portal",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "20aad4e89ed60ff14b93ffc2a71cbfa75dbae90c",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/20aad4e89ed60ff14b93ffc2a71cbfa75dbae90c"
+    },
+    {
+      "path": "src/components/portal/CensusAutonomyDrawer.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "771bd25519e425c952448b6cbe658c28b6a25a6b",
+      "size": 10742,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/771bd25519e425c952448b6cbe658c28b6a25a6b"
+    },
+    {
+      "path": "src/components/portal/ResponseRequiredBadge.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39e870db9f0dece01959c926c2a78c36f5aec310",
+      "size": 12211,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/39e870db9f0dece01959c926c2a78c36f5aec310"
+    },
+    {
+      "path": "src/components/shared",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8caf78b0a03c0185e0432a1ae744434dfde1ba90",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/8caf78b0a03c0185e0432a1ae744434dfde1ba90"
+    },
+    {
+      "path": "src/components/shared/AllowlistBlock.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f3b6384510a0ebc936b2c414008b691aef76dec",
+      "size": 739,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/7f3b6384510a0ebc936b2c414008b691aef76dec"
+    },
+    {
+      "path": "src/components/shared/BackendPending.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e53396f03439026c75309bad20381d69f8ec4ee1",
+      "size": 1270,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/e53396f03439026c75309bad20381d69f8ec4ee1"
+    },
+    {
+      "path": "src/components/shared/HonestEmpty.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ada0d09f73aead3fe8efd0eaad0ad2427dae2a33",
+      "size": 554,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/ada0d09f73aead3fe8efd0eaad0ad2427dae2a33"
+    },
+    {
+      "path": "src/components/shared/LoadingState.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e4f48cf3b346cf37fbf6f3870d77d461f8a7c3a",
+      "size": 427,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/5e4f48cf3b346cf37fbf6f3870d77d461f8a7c3a"
+    },
+    {
+      "path": "src/components/shared/RefusalCard.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfd4ff54cde14e915f7881bda46f96bcb6d83042",
+      "size": 3232,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/dfd4ff54cde14e915f7881bda46f96bcb6d83042"
+    },
+    {
+      "path": "src/components/shared/TransportError.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a55b8d26d74e3c5ed91ccf51fac2cb2333afe6e6",
+      "size": 860,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a55b8d26d74e3c5ed91ccf51fac2cb2333afe6e6"
+    },
+    {
+      "path": "src/components/ui",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a37c90121a0c4ec89396e54f47c6766b5448a116",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/a37c90121a0c4ec89396e54f47c6766b5448a116"
+    },
+    {
+      "path": "src/components/ui/accordion.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c4416a4a852c758ce4056b302fb6b2e9cf24118",
+      "size": 1615,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/1c4416a4a852c758ce4056b302fb6b2e9cf24118"
+    },
+    {
+      "path": "src/components/ui/alert-dialog.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4174f3675cce4b9835ec9acb878b6d0578134e7",
+      "size": 3461,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a4174f3675cce4b9835ec9acb878b6d0578134e7"
+    },
+    {
+      "path": "src/components/ui/alert.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28597e84ffa7ba757fb992076bc5340fd9d567a0",
+      "size": 1335,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/28597e84ffa7ba757fb992076bc5340fd9d567a0"
+    },
+    {
+      "path": "src/components/ui/aspect-ratio.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4abbf37f217c715a0eaade7f45ac78600df419f",
+      "size": 140,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c4abbf37f217c715a0eaade7f45ac78600df419f"
+    },
+    {
+      "path": "src/components/ui/avatar.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a2f853246a39519572367f45336371dc24d80ea",
+      "size": 1029,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9a2f853246a39519572367f45336371dc24d80ea"
+    },
+    {
+      "path": "src/components/ui/badge.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a687ebad024768896157580c5884e8c6c0c0f502",
+      "size": 990,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a687ebad024768896157580c5884e8c6c0c0f502"
+    },
+    {
+      "path": "src/components/ui/breadcrumb.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2588f36ddf5e0a0d5367d44033d43fd17db3a66b",
+      "size": 2269,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/2588f36ddf5e0a0d5367d44033d43fd17db3a66b"
+    },
+    {
+      "path": "src/components/ui/button.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91db9be3834a9ff9cc847a0faa00ab10b9f84df6",
+      "size": 1662,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/91db9be3834a9ff9cc847a0faa00ab10b9f84df6"
+    },
+    {
+      "path": "src/components/ui/calendar.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3eac376da3a69b0fce316f5130f0b82b01f45ec",
+      "size": 2849,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a3eac376da3a69b0fce316f5130f0b82b01f45ec"
+    },
+    {
+      "path": "src/components/ui/card.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2985cca80f03eae3175a3ee94936204141e38b6f",
+      "size": 1440,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/2985cca80f03eae3175a3ee94936204141e38b6f"
+    },
+    {
+      "path": "src/components/ui/carousel.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4a94a868c661f274cebdbd56b2d0628341cfcf8",
+      "size": 4811,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/e4a94a868c661f274cebdbd56b2d0628341cfcf8"
+    },
+    {
+      "path": "src/components/ui/checkbox.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e0c96bf7bcb9878da9239772b3ff361a5e8a1c0",
+      "size": 880,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/5e0c96bf7bcb9878da9239772b3ff361a5e8a1c0"
+    },
+    {
+      "path": "src/components/ui/collapsible.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a23e7a281287e18b1c332498491b6bcc8d8e2b70",
+      "size": 315,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a23e7a281287e18b1c332498491b6bcc8d8e2b70"
+    },
+    {
+      "path": "src/components/ui/command.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0eac7787ae4fa8179744784d91b42916b533c3b",
+      "size": 3893,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/e0eac7787ae4fa8179744784d91b42916b533c3b"
+    },
+    {
+      "path": "src/components/ui/context-menu.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b450396a3c3eac489ac0698b8613d18ac72e1dd0",
+      "size": 6175,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b450396a3c3eac489ac0698b8613d18ac72e1dd0"
+    },
+    {
+      "path": "src/components/ui/dialog.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b41b8e1a061f95bbc925802378c7da7b84055489",
+      "size": 3214,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b41b8e1a061f95bbc925802378c7da7b84055489"
+    },
+    {
+      "path": "src/components/ui/drawer.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1aa82681f576d60f17848ff6f8fc233d0059dc4a",
+      "size": 2345,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/1aa82681f576d60f17848ff6f8fc233d0059dc4a"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91d98a3fefa41a17fc3e00fac729e02b488ed86e",
+      "size": 6345,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/91d98a3fefa41a17fc3e00fac729e02b488ed86e"
+    },
+    {
+      "path": "src/components/ui/form.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd161604211cee808f35baa8e087965a08da1282",
+      "size": 3121,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/bd161604211cee808f35baa8e087965a08da1282"
+    },
+    {
+      "path": "src/components/ui/hover-card.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85d12ed5a2bed4024bba24be7ae565c273b808dc",
+      "size": 1109,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/85d12ed5a2bed4024bba24be7ae565c273b808dc"
+    },
+    {
+      "path": "src/components/ui/input-otp.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6e989965d6770383be088afaffa1014e26f5e8a",
+      "size": 1809,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/d6e989965d6770383be088afaffa1014e26f5e8a"
+    },
+    {
+      "path": "src/components/ui/input.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "764b48f35a932da47fcd9ed32efb95cdfd679010",
+      "size": 688,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/764b48f35a932da47fcd9ed32efb95cdfd679010"
+    },
+    {
+      "path": "src/components/ui/label.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1f40999c1466ed84fdd2ad1a8944781f516c9ba",
+      "size": 525,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a1f40999c1466ed84fdd2ad1a8944781f516c9ba"
+    },
+    {
+      "path": "src/components/ui/menubar.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "361c54dc8701a9926064269ad5e6ea36d4349991",
+      "size": 6874,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/361c54dc8701a9926064269ad5e6ea36d4349991"
+    },
+    {
+      "path": "src/components/ui/navigation-menu.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b62c0a345dfb7b033e83d737966db4d7645a4de",
+      "size": 4299,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/3b62c0a345dfb7b033e83d737966db4d7645a4de"
+    },
+    {
+      "path": "src/components/ui/pagination.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "193407e6d2bf990665776a932a865b764df2a3a7",
+      "size": 2322,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/193407e6d2bf990665776a932a865b764df2a3a7"
+    },
+    {
+      "path": "src/components/ui/popover.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de4a2716064d6c9f8813ee9649c5576aa6b158f2",
+      "size": 1216,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/de4a2716064d6c9f8813ee9649c5576aa6b158f2"
+    },
+    {
+      "path": "src/components/ui/progress.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bcb2e1e9e4f33e609d83e453a6bdb1b07e6a2b8",
+      "size": 653,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/6bcb2e1e9e4f33e609d83e453a6bdb1b07e6a2b8"
+    },
+    {
+      "path": "src/components/ui/radio-group.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d8a29ed4244866c424ee45ac458dcd0988139f0",
+      "size": 1133,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4d8a29ed4244866c424ee45ac458dcd0988139f0"
+    },
+    {
+      "path": "src/components/ui/resizable.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c961f53242f2c0082d94325d83247cc332c88492",
+      "size": 1556,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c961f53242f2c0082d94325d83247cc332c88492"
+    },
+    {
+      "path": "src/components/ui/scroll-area.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc3d3840ca9a57627ec2edcc938111a877c67761",
+      "size": 1362,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/dc3d3840ca9a57627ec2edcc938111a877c67761"
+    },
+    {
+      "path": "src/components/ui/select.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1367bf2397e6b8a021de7fa9966066d1f12138c",
+      "size": 4769,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b1367bf2397e6b8a021de7fa9966066d1f12138c"
+    },
+    {
+      "path": "src/components/ui/separator.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c40b88839ea28b3755355e6a9841301315abf908",
+      "size": 600,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c40b88839ea28b3755355e6a9841301315abf908"
+    },
+    {
+      "path": "src/components/ui/sheet.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6741fcb0d2550ce3b01c4816753316987790d2a9",
+      "size": 3535,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/6741fcb0d2550ce3b01c4816753316987790d2a9"
+    },
+    {
+      "path": "src/components/ui/skeleton.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12138e566b4542484df231624764f46717ce6e5b",
+      "size": 225,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/12138e566b4542484df231624764f46717ce6e5b"
+    },
+    {
+      "path": "src/components/ui/slider.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6062ce5e4b36a90b148d55eb0cb080ac3f47330c",
+      "size": 914,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/6062ce5e4b36a90b148d55eb0cb080ac3f47330c"
+    },
+    {
+      "path": "src/components/ui/sonner.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5e2b57932c4ca087542b2170f77293751f94041",
+      "size": 797,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c5e2b57932c4ca087542b2170f77293751f94041"
+    },
+    {
+      "path": "src/components/ui/switch.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ef3287b76983539c22e5d2d3c05d6b69347beec",
+      "size": 1025,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/5ef3287b76983539c22e5d2d3c05d6b69347beec"
+    },
+    {
+      "path": "src/components/ui/table.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07443a1a5a091046a7bed640882106fbc2df47cf",
+      "size": 2231,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/07443a1a5a091046a7bed640882106fbc2df47cf"
+    },
+    {
+      "path": "src/components/ui/tabs.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b674eb93009a3f5da27631ea28a99604fc6321cd",
+      "size": 1529,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b674eb93009a3f5da27631ea28a99604fc6321cd"
+    },
+    {
+      "path": "src/components/ui/textarea.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a3276c2b780ae17dd21cf914be3d02a823a191e",
+      "size": 585,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9a3276c2b780ae17dd21cf914be3d02a823a191e"
+    },
+    {
+      "path": "src/components/ui/toast.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8936f1ba83299acf89e66300f575016f5cc9d07",
+      "size": 3829,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f8936f1ba83299acf89e66300f575016f5cc9d07"
+    },
+    {
+      "path": "src/components/ui/toaster.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "892a53d2daa1dec36d96bca848b3bfb63b40f93e",
+      "size": 774,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/892a53d2daa1dec36d96bca848b3bfb63b40f93e"
+    },
+    {
+      "path": "src/components/ui/toggle-group.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "618c02c84d41cdb0738a43ef9b4fe30b688f3e91",
+      "size": 1268,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/618c02c84d41cdb0738a43ef9b4fe30b688f3e91"
+    },
+    {
+      "path": "src/components/ui/toggle.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3908703436f451162f6f44fb5ad0e82b4d7b0f88",
+      "size": 1324,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/3908703436f451162f6f44fb5ad0e82b4d7b0f88"
+    },
+    {
+      "path": "src/components/ui/tooltip.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bf88282d9c928f266543db5980577c6c589e38f",
+      "size": 1127,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/5bf88282d9c928f266543db5980577c6c589e38f"
+    },
+    {
+      "path": "src/hooks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "32b9f7ac5f4e5a654cf197c4850b2edd28feda04",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/32b9f7ac5f4e5a654cf197c4850b2edd28feda04"
+    },
+    {
+      "path": "src/hooks/use-toast.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03accc0a354f14ce303aef1143ebb68284586145",
+      "size": 3085,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/03accc0a354f14ce303aef1143ebb68284586145"
+    },
+    {
+      "path": "src/hooks/useBuildSkillProvisioning.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e9f4d6c6457d4c54f6ff415114616397d1e021b",
+      "size": 3722,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9e9f4d6c6457d4c54f6ff415114616397d1e021b"
+    },
+    {
+      "path": "src/hooks/useCensusRunState.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db5690a74ea3ef0e3b3389576629d537e35532e1",
+      "size": 2378,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/db5690a74ea3ef0e3b3389576629d537e35532e1"
+    },
+    {
+      "path": "src/hooks/useResponseRequiredList.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0dea8d0199b95e810af315d2fe448494d4271d0",
+      "size": 3475,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/d0dea8d0199b95e810af315d2fe448494d4271d0"
+    },
+    {
+      "path": "src/index.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e839749567dcf07b934d79810b1c3eddb7ae0cf8",
+      "size": 3176,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/e839749567dcf07b934d79810b1c3eddb7ae0cf8"
+    },
+    {
+      "path": "src/index.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a27d249b0a404b3aff14e82960163353d4b80732",
+      "size": 255,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a27d249b0a404b3aff14e82960163353d4b80732"
+    },
+    {
+      "path": "src/lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dc8af70512960d2225d83e13cbe52eb696bfdaec",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/dc8af70512960d2225d83e13cbe52eb696bfdaec"
+    },
+    {
+      "path": "src/lib/apiClient.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7156a2257268870f9a49b88eea38bd56c8913b53",
+      "size": 6447,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/7156a2257268870f9a49b88eea38bd56c8913b53"
+    },
+    {
+      "path": "src/lib/utils.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b20bf017182a344cc7cd55ce40eb2e19752a42df",
+      "size": 137,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b20bf017182a344cc7cd55ce40eb2e19752a42df"
+    },
+    {
+      "path": "src/pages",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5a167bbff7da6378d70198568963db8580bb767a",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/5a167bbff7da6378d70198568963db8580bb767a"
+    },
+    {
+      "path": "src/pages/dap",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "77f62eb8f2941fe596a9f6ed1962f80cca1ae82a",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/77f62eb8f2941fe596a9f6ed1962f80cca1ae82a"
+    },
+    {
+      "path": "src/pages/dap/AdminApprovalsLedger.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9e9fd6f230ee2f820eeef17ca4c16a31e76dae2",
+      "size": 2520,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f9e9fd6f230ee2f820eeef17ca4c16a31e76dae2"
+    },
+    {
+      "path": "src/pages/dap/AdminWatchTrailBridge.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a31f44dcf2ea183e10f28dd38acbcbc67ddaf61b",
+      "size": 2381,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a31f44dcf2ea183e10f28dd38acbcbc67ddaf61b"
+    },
+    {
+      "path": "src/pages/dap/AvailableResources.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a1b9afecc1b74450ecdb2513f55fabf92a0edd9",
+      "size": 9310,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/2a1b9afecc1b74450ecdb2513f55fabf92a0edd9"
+    },
+    {
+      "path": "src/pages/dap/BuildSkill.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a05489b0ede38f7f0d1e84fe00df54256f807b23",
+      "size": 9158,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a05489b0ede38f7f0d1e84fe00df54256f807b23"
+    },
+    {
+      "path": "src/pages/dap/CanonCountdown.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c593a1f4ac6876c9bc982a9920aa3febd72be5ac",
+      "size": 6614,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c593a1f4ac6876c9bc982a9920aa3febd72be5ac"
+    },
+    {
+      "path": "src/pages/dap/ConnectResources.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62c09f04c2355161fcfb2ffb97cfb6f3986d079f",
+      "size": 1792,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/62c09f04c2355161fcfb2ffb97cfb6f3986d079f"
+    },
+    {
+      "path": "src/pages/dap/DAPLanding.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72c0ab2308358dc6777f3c8bd2bdbabd2b0796b7",
+      "size": 9420,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/72c0ab2308358dc6777f3c8bd2bdbabd2b0796b7"
+    },
+    {
+      "path": "src/pages/dap/DAPLayout.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8443ef347054ae038a36ab0df1404e53cab34787",
+      "size": 10367,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8443ef347054ae038a36ab0df1404e53cab34787"
+    },
+    {
+      "path": "src/pages/dap/DataEstates.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ee951d6924008dd27648a22cda149c34a1309e1",
+      "size": 13782,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4ee951d6924008dd27648a22cda149c34a1309e1"
+    },
+    {
+      "path": "src/pages/dap/DataGovernance.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b291e8ced112f9d0c46a700022299077a6567f92",
+      "size": 15498,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b291e8ced112f9d0c46a700022299077a6567f92"
+    },
+    {
+      "path": "src/pages/dap/Entitlement.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93e719bdc7f4ecce24660f835528024d3d765bf4",
+      "size": 12420,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/93e719bdc7f4ecce24660f835528024d3d765bf4"
+    },
+    {
+      "path": "src/pages/dap/ExtractModes.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d17b614512ff2e65eae352c1f648fffaaff65163",
+      "size": 5681,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/d17b614512ff2e65eae352c1f648fffaaff65163"
+    },
+    {
+      "path": "src/pages/dap/RequestLifecycle.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f89db4ba060c56b1860c588d40c77d896ffe026",
+      "size": 36810,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8f89db4ba060c56b1860c588d40c77d896ffe026"
+    },
+    {
+      "path": "src/pages/os",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1be491a507f9d2f7b1392cc911c07fc28aaa1ca9",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/1be491a507f9d2f7b1392cc911c07fc28aaa1ca9"
+    },
+    {
+      "path": "src/pages/os/AdminEstate.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24ec986cc30de10f60ca8feaf09573c4efb606c4",
+      "size": 2956,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/24ec986cc30de10f60ca8feaf09573c4efb606c4"
+    },
+    {
+      "path": "src/pages/os/AdminGovern.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e726af071c76e1af8b30807bc0eeaad0bd6cbc3",
+      "size": 2927,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/7e726af071c76e1af8b30807bc0eeaad0bd6cbc3"
+    },
+    {
+      "path": "src/pages/os/AdminGreyMirror.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9176a645386bd9d18a594c50dba486dc80100f2",
+      "size": 3020,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a9176a645386bd9d18a594c50dba486dc80100f2"
+    },
+    {
+      "path": "src/pages/os/AdminModelAdmission.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e5ab08fcdf30515244f30ca4ed464c0b1a1664f",
+      "size": 3081,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9e5ab08fcdf30515244f30ca4ed464c0b1a1664f"
+    },
+    {
+      "path": "src/pages/os/AdminRulesUpd.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eed53de51a6daa98d36984dd9b3df840b9a04e5b",
+      "size": 2991,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/eed53de51a6daa98d36984dd9b3df840b9a04e5b"
+    },
+    {
+      "path": "src/pages/os/AdminSpendReq.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "104a5d6d5ab09e008e232ea2e2f33ab6a47bf6a4",
+      "size": 3001,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/104a5d6d5ab09e008e232ea2e2f33ab6a47bf6a4"
+    },
+    {
+      "path": "src/pages/os/AdminWDecisions.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "801af657f163d1fe1e394fcc2e615c0ad334614d",
+      "size": 3015,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/801af657f163d1fe1e394fcc2e615c0ad334614d"
+    },
+    {
+      "path": "src/pages/os/AdminWRecord.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6a64b867421f250884f6bfbd1696b4bc0f0896a",
+      "size": 2960,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b6a64b867421f250884f6bfbd1696b4bc0f0896a"
+    },
+    {
+      "path": "src/pages/os/AdminWState.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e761794c01c3d3900e56b8f2c4566ea83cbc1ba",
+      "size": 2922,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/7e761794c01c3d3900e56b8f2c4566ea83cbc1ba"
+    },
+    {
+      "path": "src/pages/os/AdminWUnder.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a69bdf9c2d85ee83e889e629ccfa04969c98d93",
+      "size": 2959,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9a69bdf9c2d85ee83e889e629ccfa04969c98d93"
+    },
+    {
+      "path": "src/pages/os/AppsConnected.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9d9b03efa6e60f12258183e7a8e5a9568237314",
+      "size": 2105,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/b9d9b03efa6e60f12258183e7a8e5a9568237314"
+    },
+    {
+      "path": "src/pages/os/AppsFrequent.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9149b0a668eafb6fbd8eace61083a8ffc537746a",
+      "size": 2072,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9149b0a668eafb6fbd8eace61083a8ffc537746a"
+    },
+    {
+      "path": "src/pages/os/AppsNew.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bdc0665e9a13f086684db5e67b6c61a376482e2",
+      "size": 2023,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/5bdc0665e9a13f086684db5e67b6c61a376482e2"
+    },
+    {
+      "path": "src/pages/os/AppsRequests.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d5324e5d428594a2403868468896a277b57717a",
+      "size": 2086,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/2d5324e5d428594a2403868468896a277b57717a"
+    },
+    {
+      "path": "src/pages/os/BuildAgent.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c9455f86c99d3a78151a4664eb7fd016ba6474d",
+      "size": 2092,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/0c9455f86c99d3a78151a4664eb7fd016ba6474d"
+    },
+    {
+      "path": "src/pages/os/BuildExtract.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6ef7290c1c939de97a2b4e42621445763cf8537",
+      "size": 2115,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a6ef7290c1c939de97a2b4e42621445763cf8537"
+    },
+    {
+      "path": "src/pages/os/BuildSkill.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9d3bdcf746bfe7ce2a4487fb9e0733995c98e3e",
+      "size": 2078,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c9d3bdcf746bfe7ce2a4487fb9e0733995c98e3e"
+    },
+    {
+      "path": "src/pages/os/BuildTrain.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1a1e5aad8033407bf68c072f8a25608d25a38d1",
+      "size": 2084,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/a1a1e5aad8033407bf68c072f8a25608d25a38d1"
+    },
+    {
+      "path": "src/pages/os/BuildlibAgents.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8fd5c81e65fd14b163b4000b594e96fcc4da3b0",
+      "size": 2088,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f8fd5c81e65fd14b163b4000b594e96fcc4da3b0"
+    },
+    {
+      "path": "src/pages/os/BuildlibModels.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8aefb876dcb678ca0f7be5806264e1a7fb00625",
+      "size": 2096,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/d8aefb876dcb678ca0f7be5806264e1a7fb00625"
+    },
+    {
+      "path": "src/pages/os/CollabEmails.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4912004610236768d8d316dc359b9aebc8fe0434",
+      "size": 2066,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4912004610236768d8d316dc359b9aebc8fe0434"
+    },
+    {
+      "path": "src/pages/os/CollabHrStuff.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb344c2fcfc909f99e1e8242b0d387cac7486f0f",
+      "size": 2084,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/fb344c2fcfc909f99e1e8242b0d387cac7486f0f"
+    },
+    {
+      "path": "src/pages/os/CollabMentions.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80a8923d7c2302061799e8ef9e61df25044b3ff1",
+      "size": 2090,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/80a8923d7c2302061799e8ef9e61df25044b3ff1"
+    },
+    {
+      "path": "src/pages/os/CollabProjects.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6c82bdac1e8eff259c7a1b2b30144da4859f1d2",
+      "size": 2114,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f6c82bdac1e8eff259c7a1b2b30144da4859f1d2"
+    },
+    {
+      "path": "src/pages/os/MonitorIdeas.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11479411dabb21d734926276bbe777bb194093ae",
+      "size": 2839,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/11479411dabb21d734926276bbe777bb194093ae"
+    },
+    {
+      "path": "src/pages/os/MonitorSignals.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42137579968acc095e60822d32f4dc730059b101",
+      "size": 2914,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/42137579968acc095e60822d32f4dc730059b101"
+    },
+    {
+      "path": "src/pages/os/OSPrototype.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c6656c779dda9c785ea749a2ae2baa12eb5b878",
+      "size": 492,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/4c6656c779dda9c785ea749a2ae2baa12eb5b878"
+    },
+    {
+      "path": "src/pages/os/ThinkLabClarity.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d34c554f6421342a221c0cdfe89bdc6462851d52",
+      "size": 2995,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/d34c554f6421342a221c0cdfe89bdc6462851d52"
+    },
+    {
+      "path": "src/pages/os/ThinkLabHypothesis.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8f047afde41e9459aa780cda5141620f523418a",
+      "size": 3025,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/c8f047afde41e9459aa780cda5141620f523418a"
+    },
+    {
+      "path": "src/pages/os/ThinkLabPerspective.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1d378efd94b462447a03333e0c251d546e5a3e2",
+      "size": 3081,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f1d378efd94b462447a03333e0c251d546e5a3e2"
+    },
+    {
+      "path": "src/pages/os/ThinkLabStrategy.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6cdc63ab86c932f69f4a42cd8bd1ebc0c5f2258a",
+      "size": 3035,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/6cdc63ab86c932f69f4a42cd8bd1ebc0c5f2258a"
+    },
+    {
+      "path": "src/pages/os/WorkAnalyze.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e071bdf5570400cea91f65d7cecdcbc01e54f78",
+      "size": 3239,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/9e071bdf5570400cea91f65d7cecdcbc01e54f78"
+    },
+    {
+      "path": "src/pages/os/WorkBoard.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce229cb5da1a3a6091cdad925aa36e47ac5d7bc1",
+      "size": 2810,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/ce229cb5da1a3a6091cdad925aa36e47ac5d7bc1"
+    },
+    {
+      "path": "src/pages/os/WorkChat.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c4b99a3a14b9b97ee6a44ff1ad0beb4f2a24519",
+      "size": 4402,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/3c4b99a3a14b9b97ee6a44ff1ad0beb4f2a24519"
+    },
+    {
+      "path": "src/pages/os/WorkCommission.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c38f73a24e759e5f468c23bd63547d44d733cad",
+      "size": 3190,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/1c38f73a24e759e5f468c23bd63547d44d733cad"
+    },
+    {
+      "path": "src/pages/os/WorkDocuments.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9e74f1b7417e6df0179b1f6abdb1e66ba65370c",
+      "size": 2847,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f9e74f1b7417e6df0179b1f6abdb1e66ba65370c"
+    },
+    {
+      "path": "src/pages/os/WorkPerformance.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc58d707ef6e50b03836c9b9712535e482c82e3c",
+      "size": 3241,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/dc58d707ef6e50b03836c9b9712535e482c82e3c"
+    },
+    {
+      "path": "src/pages/os/WorkTasks.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ba095fdcbcfa3fbc39fdb4442e14f90dbe712ec",
+      "size": 3160,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8ba095fdcbcfa3fbc39fdb4442e14f90dbe712ec"
+    },
+    {
+      "path": "src/pages/os/WorkTeam.jsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d8010ece3bba030e3de72d49ecb9dab65369a88",
+      "size": 2843,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/1d8010ece3bba030e3de72d49ecb9dab65369a88"
+    },
+    {
+      "path": "src/strings",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0669094f4ad01f4f301637202ee0d01b66dc349e",
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/trees/0669094f4ad01f4f301637202ee0d01b66dc349e"
+    },
+    {
+      "path": "src/strings/entitlementStrings.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d57533e0702e6e78b455ddb359aa71cde97fc047",
+      "size": 2244,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/d57533e0702e6e78b455ddb359aa71cde97fc047"
+    },
+    {
+      "path": "src/strings/lifecycleStrings.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2938e8f8ff1f242c4c7f3c1dc1f7741524301bb",
+      "size": 5127,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/f2938e8f8ff1f242c4c7f3c1dc1f7741524301bb"
+    },
+    {
+      "path": "tailwind.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b428adca6c530ae396b059f57230ddcc06fd0d3",
+      "size": 2250,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/8b428adca6c530ae396b059f57230ddcc06fd0d3"
+    },
+    {
+      "path": "yarn.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44a7a5c13db89fad1bcada8a1b7eb1e866816ad9",
+      "size": 539255,
+      "url": "https://api.github.com/repos/bramuel-syni/Akki-OS-Root/git/blobs/44a7a5c13db89fad1bcada8a1b7eb1e866816ad9"
+    }
+  ],
+  "truncated": false
+}

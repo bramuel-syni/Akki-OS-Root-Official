@@ -1,0 +1,30 @@
+{
+  "registry_id": "pii_classification_registry_v0",
+  "purpose": "Governed classifications for potentially-sensitive fields in the estate. Every entry cites its owner ruling. The response-sanitizer reads DIGICOW_PII_BANNED_FIELDS from services/response_sanitizer/__init__.py; entries here are the authoritative provenance for those inclusions and carry the declassification-path metadata a compliance reviewer needs.",
+  "classifications": [
+    {
+      "database": "digicow_live",
+      "table": "ussd_users",
+      "field": "occupation",
+      "type": "tinyint",
+      "class": "pii",
+      "policy": "conservative_default_quasi_identifier",
+      "rationale": "Boolean/tinyint occupation-class field. On its own it is not directly identifying, but as a quasi-identifier it combines with adjacent columns (location, cluster, phone-band, adult marker) into a linkage risk. Under a conservative-default policy for quasi-identifiers this is PII until a documented linkage-risk assessment proves otherwise.",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": [
+          "linkage_risk_assessment",
+          "dpo_signoff"
+        ],
+        "note": "The path exists — declassification is legally and technically possible — but is CLOSED until BOTH a documented linkage-risk assessment AND DPO sign-off are on record. Owner Ruling #2 verbatim: 'the declassification path exists but is CLOSED until a documented linkage-risk assessment plus DPO sign-off says otherwise.'"
+      },
+      "ruling_ref": "STATE/DECISIONS.md · Wave-G5c · 2026-08-28T~15:40Z · Owner Ruling #2 · verbatim: 'DigiCow occupation-boolean: PII. Masked at every crossing, never renders on a surface. Ruled under conservative-default policy for quasi-identifiers.'",
+      "enforcement": {
+        "response_sanitizer": "services/response_sanitizer/__init__.py :: DIGICOW_PII_BANNED_FIELDS",
+        "census_engine": "services/census_engine/engine.py :: aggregates-only chokepoint (row_count + column_names + column_types + null_count per column) — values never cross the seam by construction. See tests/invariants/test_census_engine_contract.py::test_engine_manifest_never_contains_row_values.",
+        "banned_aggregate_ban": "services/census_engine/engine.py :: MIN/MAX SQL functions banned (returns actual row values). See tests/invariants/test_census_engine_contract.py::test_engine_sql_module_never_emits_min_or_max."
+      }
+    }
+  ]
+}

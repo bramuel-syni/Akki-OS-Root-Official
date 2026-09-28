@@ -1,0 +1,48 @@
+{
+  "schema_version": "chokepoint_llm_endpoint_allowlist_v0",
+  "governance": {
+    "authority": "Owner",
+    "class": "governed positive allowlist — entries are FACTS tied to real LLM connections. A provider is added when a key of that provider is pasted, verified via the chokepoint, and its data_connection_record file lands on disk. A provider is removed when its connection record is retired.",
+    "authored": "2026-08-25",
+    "wave": "W5 · extended at CP-M12-W1g-CLOSED-OUTBOUND · extended at CP-M12-W1h-D16-D17-STRUCTURAL-PROHIBITIONS",
+    "canon_anchor": "Canon 1 §A5.5 (closed outbound network except at crossing); Owner sharpening 2026-08-25 §2 (allowlist entries are facts tied to connections, not pre-opened for all three providers); Canon 4 §43.4 (Local-cascade offload · cascade builds only against demonstrated cost pressure); D-17 (Frontier accounts: gateway-only with customer-held provider accounts by default · Doc 14 C5.2)"
+  },
+  "providers": [
+    {
+      "provider": "emergent",
+      "host": "api.emergent.host",
+      "region": "platform-managed",
+      "key_class": "platform-managed",
+      "connection_kind": "env_var",
+      "connection_probe": "environment_variable::EMERGENT_LLM_KEY",
+      "notes": "Emergent Universal LLM — the pod carries this key in /app/backend/.env. Every crossing rides it until an operator pastes a provider key via the ConnectDrawerChat 'An LLM' chip. Registered as a real connected LLM at W5 open per Owner Order 2026-08-25 §2. D-17 key_class = 'platform-managed' (Emergent IS the reseller-authorized path by design; distinct from frontier providers)."
+    },
+    {
+      "provider": "anthropic",
+      "host": "api.anthropic.com",
+      "region": "us-east-1",
+      "key_class": "customer-held",
+      "connection_kind": "estate_keys_file",
+      "connection_probe": "data_connection_record::data_source_llm_anthropic_*_FINAL.json",
+      "notes": "OFF-allowlist until an anthropic sk-ant-* key is pasted, verified via the chokepoint's llm.connect_verify purpose, and its data_connection_record file lands on disk. Owner sharpening 2026-08-25 §2. D-17 key_class = 'customer-held' (the default per D-17 for frontier providers)."
+    },
+    {
+      "provider": "openai",
+      "host": "api.openai.com",
+      "region": "us-east-1",
+      "key_class": "customer-held",
+      "connection_kind": "estate_keys_file",
+      "connection_probe": "data_connection_record::data_source_llm_openai_*_FINAL.json",
+      "notes": "OFF-allowlist until an openai sk-* key is pasted, verified via the chokepoint's llm.connect_verify purpose, and its data_connection_record file lands on disk. D-17 key_class = 'customer-held' (the default per D-17 for frontier providers)."
+    },
+    {
+      "provider": "gemini",
+      "host": "generativelanguage.googleapis.com",
+      "region": "us-central1",
+      "key_class": "customer-held",
+      "connection_kind": "estate_keys_file",
+      "connection_probe": "data_connection_record::data_source_llm_gemini_*_FINAL.json",
+      "notes": "OFF-allowlist until a gemini key is pasted, verified via the chokepoint's llm.connect_verify purpose, and its data_connection_record file lands on disk. D-17 key_class = 'customer-held' (the default per D-17 for frontier providers)."
+    }
+  ]
+}

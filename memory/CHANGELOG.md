@@ -1,5 +1,31 @@
 # Akki implementation history
 
+## 2026-09-28 — governing goal roadmap and deep Root reuse review (planning only)
+
+Owner requests function-first, test-gated milestones as future canon, with
+engineering-owned readiness gaps inside each milestone. Created full ten-goal
+roadmap, 51 acceptance packs and 56-family/648-row routing plus E01–E14 coverage.
+All test packs NOT RUN; no invented percentage or timebox. Independent work may
+overlap, but mandatory blocked/failed gates do not become passes. GPU prep is
+parallel; owner handles GPU access/additional data. Immediate next action M1.1
+shaping/readiness for genuine non-GPU deep census through Akki.
+
+Per owner request deeply inspected Root pinned c481c1d65eb6ddd2c6630d31a736d11e46e1641a.
+Fetched complete code subtrees after top recursive tree truncation; 1,215 donor
+backend/frontend paths compared: 1,200 identical, 15 different, no donor-only.
+1,204 selected code/docs materialised with Git-blob verification, 1,005 Python
+files statically indexed. Read-only functional review + manual call-path checks
+across M1–M9; no claim of exhaustive historical/submodule inspection. Explicit
+reuse map preserves current newer execution, activation, custody, skill and billing
+paths. Census depth/durability/worker separation, Watch real effects, useful model
+outputs, connected collaboration and physical recovery become scoped tasks.
+Legacy unsafe census route 409 quarantine must not be blindly removed.
+
+Files: `notes/goal_delivery_20260928/{AKKI_GOAL_ROADMAP_v1.md,ROOT_REUSE_REVIEW.md,FAMILY_OWNERSHIP.json}`.
+No app/config/auth/credential/UI code changes, no live source/model/GPU calls,
+no application suite or milestone acceptance run. Historical SYNTHETIC/MOCKED
+positives remain labelled. Documentary coverage checked; plan published separately.
+
 ## 2026-09-28 — source recovery, donor inspection and closure planning
 
 Owner supplies the three missing source families, cites Core/OS repositories,

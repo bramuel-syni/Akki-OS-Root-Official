@@ -1,0 +1,14 @@
+{
+  "policy_id": "ca1_n5_continuity_policy_v0",
+  "cadence": "quarterly",
+  "cadence_class": "default",
+  "canon_grounded": false,
+  "verification_mechanism": "independent_backup_check",
+  "owner_ruling_ref": "STATE/DECISIONS.md · Wave E scope §3 · 2026-08-27T~12:10Z · verbatim: 'CA1-N5 ledger continuity: countersigner independent of the primary ledger writer's infrastructure (external-witness pattern); cadence = quarterly recorded as DEFAULT-class (preserve the proposal-class distinction in the contract/config — it is NOT canon-grounded like the 72h window).'",
+  "rto_target_seconds": "3600",
+  "rto_class": "default",
+  "rto_revisable_on": "incident_evidence",
+  "rto_owner_rationale": "1-hour tier is proportionate for record-continuity (not live-transaction) recovery; the independent countersigner must be able to detect and escalate within the window.",
+  "rto_owner_ruling_ref": "STATE/DECISIONS.md · Wave-G5c · 2026-08-28T~15:40Z · Owner Ruling #1 · verbatim: 'CA1-N5 RTO: 3600 seconds. Land as DEFAULT-class, revisable on incident evidence.' Rationale carried verbatim in `rto_owner_rationale` above.",
+  "note_on_rto": "Owner ruled RTO at 3600 seconds on 2026-08-28. DEFAULT-class per owner ruling — revisable on incident evidence, not frozen by canon. Service-level refusal in services.watch.continuity.write_attestation lifts by consequence (rto_target_seconds no longer sentinel)."
+}

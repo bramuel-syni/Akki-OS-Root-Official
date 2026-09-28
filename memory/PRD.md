@@ -41,7 +41,63 @@ one authoritative append-only ledger, and 100% fidelity to owner HTML prototypes
 - Credentials unchanged: `/app/memory/test_credentials.md`; estate access is
   held in ignored `/app/backend/estate_keys/owner_20260928/`.
 
-## Current checkpoint — 2026-09-28, reuse-first closure plan
+## Current checkpoint — 2026-09-28, governing goal-based delivery roadmap
+
+Owner requests goal-based milestones with outcome/performance test runs opening
+the next milestone; readiness gaps must become tasks within that milestone. Start
+with Registry/deep non-GPU census commissioned through Akki by the agent acting
+as objective-shaping wizard; Grey Mirror and all core functions follow. Exact
+direction: "The plan you will develope is canon going forward." Function and
+integrity serve the promise; eliminate unanchored invented restrictions/timers,
+not ratified safeguards. GPU credentials/additional datasets stay with owner.
+Planning only: do not begin source runs or implementation during this turn.
+
+**Governing execution document:**
+`assessment_workspace/notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md`.
+Companion `FAMILY_OWNERSHIP.json` routes all historical 56 families / 648 rows,
+and E01–E14 experiences. Routing is not clause-level adjudication or closure.
+Ten milestones / 51 acceptance packs, all NOT RUN:
+M1 Registry + deep census → M2 Grey Mirror/Watch → M3 request-to-delivery →
+M4 useful grounded answers/context → M5 memory/collaborative work/goals/board →
+M6 artifacts/decks/callable skills → M7 tenant/rules/commercial operation →
+M8 resilience/withdrawal/recovery → M9 activated media/model/training capability →
+M10 integrated independent acceptance. Independent preparations can overlap;
+mandatory FAIL/BLOCKED runs never count as PASS. GPU preparation runs in parallel.
+No new percentage, arbitrary milestone duration or test threshold. Source-default
+metrics require prior-ruling reconciliation; informational findings are not
+silently made into blocking gates. Existing UI fidelity and E1 isolation stand.
+
+Owner added explicit deep reuse review of https://github.com/bramuel-syni/Akki-OS-Root.
+Pinned main `c481c1d65eb6ddd2c6630d31a736d11e46e1641a`. Root recursive API listing
+was truncated; complete backend/frontend/memory subtrees fetched separately.
+Backend + frontend/src comparison: 1,215 donor paths, 1,200 identical current
+blobs, 15 different, zero donor-only. 1,204 selected source/docs materialised;
+1,005 Python files statically indexed without execution. Root links Core/OS/
+Extraction/RMS-IQ as gitlinks. No claim that all archive/submodule code was read.
+
+**Reuse review:** `notes/goal_delivery_20260928/ROOT_REUSE_REVIEW.md`.
+Current workspace is ahead of Root in operational census, execution/activation,
+custody/native skill queries, billing joins and UI. Do NOT overwrite with Root.
+Existing memory, Watch action/mirage/witness, registry, skill provisioning,
+training/WPW and single-effect mechanisms must be reused. Old async dispatcher's
+NotImplemented branch is not proof that current native skill queries are absent.
+
+Concrete milestone tasks from read-only review: deepen census; qualify external
+worker/provider placement; retain tenant-bound `/api/portal/census/run`; old
+unscoped routes are intentionally 409-quarantined and shape-only COMPLETE is not
+success. Verify durable receipt custody and RAM registry hydration/all consumers;
+workspace-based state needs persistent-runtime qualification. Watch has mutation
+mechanisms but recorded actions do not prove effects. Solva equal-weight scaffold
+and synthetic quality/memory tests do not establish useful live answers. Team/
+goal feeds have explicit empty placeholders. Repair these within owning milestones.
+
+Verification: documentary/source/identity coverage and static review only; no
+application tests, estate/GPU/model calls, state/config/auth/UI modification or
+live milestone pass. Broader positives remain SYNTHETIC/MOCKED where unproved.
+Next execution is M1.1 readiness and objective shaping, then commissioning the
+deep non-GPU census through Akki—not direct source execution from E1.
+
+## Previous checkpoint — 2026-09-28, reuse-first closure plan
 
 Owner works on GPUs; asks to plan closure of the previously estimated 65% gap.
 Supplied Supplement 2 ZIP, Streaming Voice Training Capacity DOCX and Deck Engine

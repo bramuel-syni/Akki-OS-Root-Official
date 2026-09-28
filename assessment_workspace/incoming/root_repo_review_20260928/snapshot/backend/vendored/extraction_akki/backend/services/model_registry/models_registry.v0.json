@@ -1,0 +1,68 @@
+{
+  "version": "v0",
+  "seeded_at": "2026-08-25T23:50:00Z",
+  "authority_source": "Owner Ruling 2026-08-25T23:30Z (W7 GO · Q3 disposition). Verbatim: 'Registry contents seed from FACTS: the Emergent Universal connection (real) + whatever the donor's seeded whisper-tiny entry means \u2014 if whisper-tiny isn't actually available on this estate, it does NOT get seeded; only real models on record.' The 7 models below are the Emergent Universal catalogue on record at W5 open (Owner Order 2026-08-25 \u00a72). whisper-tiny is NOT seeded here \u2014 it is a donor-side CI fixture in RMS-IQ-Core-2/backend/services/perception/models_registry.v0.json, not a model on this estate.",
+  "seed_provenance": {
+    "source": "services/registry_facts/facts.py::_EMERGENT_UNIVERSAL_MODELS at HEAD 60581fb (W7 CP1)",
+    "custody_boundary": "Emergent Universal LLM connection via EMERGENT_LLM_KEY env var; models_available list is a governed value updated only via owner ruling.",
+    "connected_at": "2026-08-25T00:00:00Z"
+  },
+  "models": {
+    "gpt-5.4": {
+      "model_id": "gpt-5.4",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream OpenAI licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gpt-5.2": {
+      "model_id": "gpt-5.2",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream OpenAI licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gpt-5-mini": {
+      "model_id": "gpt-5-mini",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation_low_cost",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream OpenAI licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "claude-sonnet-4-6": {
+      "model_id": "claude-sonnet-4-6",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Anthropic licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "claude-haiku-4-5-20251001": {
+      "model_id": "claude-haiku-4-5-20251001",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation_low_cost",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Anthropic licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gemini-3.1-pro-preview": {
+      "model_id": "gemini-3.1-pro-preview",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Google licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gemini-2.5-flash": {
+      "model_id": "gemini-2.5-flash",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation_low_cost",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Google licence honoured by the proxy operator. No raw key on record; custody marker only."
+    }
+  }
+}

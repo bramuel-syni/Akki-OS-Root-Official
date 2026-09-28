@@ -1,0 +1,74 @@
+{
+  "config_version": "v5",
+  "landed_at": "2026-08-27",
+  "supersedes": "v4",
+  "landing_note": "W11 D · CP-D6 · Owner Ruling (2026-08-27 · A17.16 scope correction · Reading 1 narrow-strike): 'the model-output form comes off the refused list' — MODEL form only. Nothing in the A17.16 ACCEPT ruling made callable_skill or knowledge_artifact offerable; their §6.3/§6.4 build is pending, so their refusal path must remain REPRESENTABLE. CP-D0/CP-D1 v4 rebuild over-executed the strike by removing `form_not_offerable` from valid_reasons entirely, orphaning the non-model null-multiplier refusal path at `services/economics/quote_service.py:131`. Restoring an over-struck ratified code is a CORRECTION, not an invention, and does not violate the 'no new reason codes' directive.\n\nv5 restores `form_not_offerable` to `valid_reasons` with a SCOPED spec_anchor (non-model null-multiplier forms only, until §6.3/§6.4 pricing lands). The struck_codes entry is retained with strike_rationale rescoped to the model-form doctrinal §6.5 case: the model form is off the refused list — struck for that use only — because ModelFormOfferEnvelopeV0 replaces it. Non-model callable_skill/knowledge_artifact forms with null multipliers continue to refuse with `form_not_offerable`, which is a distinct semantic case A17.16 did not address.\n\nv4 file remains byte-identical (Ruling 3: no in-place mutation of past registries). v5 is the current bless.\n\nRecorded in STATE/DECISIONS.md 2026-08-27 as 'CP-D0 A17.16 strike over-execution — corrected to ruling scope'.",
+  "valid_reasons": [
+    {
+      "reason": "form_not_offerable",
+      "landed_at_version": "v0",
+      "spec_anchor": "v3 §6.3/§6.4 (non-model null-multiplier). Fires when `output.form ∈ {callable_skill, knowledge_artifact}` at current price-model config bless (null `output_form_multipliers` entries) until §6.3/§6.4 pricing lands. SCOPED: MODEL-FORM USE IS STRUCK per struck_codes[0] (A17.16 ACCEPT · offered via ModelFormOfferEnvelopeV0). Non-model use retained per Owner Ruling 2026-08-27 (CP-D6 A17.16 scope correction · Reading 1 narrow-strike). Recorded in STATE/DECISIONS.md 2026-08-27."
+    },
+    {
+      "reason": "grain_form_incompatible",
+      "landed_at_version": "v1",
+      "spec_anchor": "v3 §6.1.4/§6.2.4/§6.3.4/§6.4.4 grain × form matrix."
+    },
+    {
+      "reason": "standard_below_admission_floor",
+      "landed_at_version": "v1",
+      "spec_anchor": "v3 §6.1.6 standard hard input filter."
+    },
+    {
+      "reason": "license_class_unavailable",
+      "landed_at_version": "v1",
+      "spec_anchor": "v3 §6.1.2 license-class axis of three-way selection."
+    },
+    {
+      "reason": "idempotency_key_reused_with_different_body",
+      "landed_at_version": "v2",
+      "spec_anchor": "v3 §7 bullet 6 (idempotency key; retried POST must not double-commission)."
+    },
+    {
+      "reason": "idempotency_key_missing",
+      "landed_at_version": "v2",
+      "spec_anchor": "v3 §7 bullet 6 (idempotency key required on external_request)."
+    },
+    {
+      "reason": "fleet_policy_reserved_zero_capacity",
+      "landed_at_version": "v3",
+      "spec_anchor": "v3 §8 bullet 5 (fleet apportionment set by Master Admin; capacity-class zero-reserved is a governance decision, NOT infra saturation)."
+    },
+    {
+      "reason": "pricing_tier_frozen_by_control_surface",
+      "landed_at_version": "v3",
+      "spec_anchor": "v3 §8 bullet 2 (Master Admin control surface swaps price-model versions; tier lock is a governance decision)."
+    },
+    {
+      "reason": "exploratory_tier_expired",
+      "landed_at_version": "v3",
+      "spec_anchor": "v3 §8 bullet 2 (Learning-phase quotes structurally non-precedent; time-boxed; lapsed model refuses per honest-not-silent principle)."
+    }
+  ],
+  "struck_codes": [
+    {
+      "reason": "form_not_offerable",
+      "struck_at": "2026-08-27",
+      "supersedes_reason_in": "v3 §6.5 (Model form off the offerable menu — MODEL FORM DOCTRINAL USE ONLY)",
+      "strike_scope": "model_form_only",
+      "strike_rationale": "W11 D · CP-D0 · Owner ruling A17.16 ACCEPT (Message 317 STEP 2 item 1, 2026-08-27) verbatim scope-fragment: 'the model-output form comes off the refused list'. Model output form is now OFFERABLE via ModelFormOfferEnvelopeV0 carrying the INGREDIENTS-ONLY guarantee verbatim: 'provenance of ingredients: what went in, its standard, its licence — never provenance of assertions.' Owner reasoning verbatim: 'claiming provenance of assertions would be overclaiming something training structurally cannot support — a direct violation of the platform's own \"measure, don't assert\" doctrine. Provenance of ingredients is the honest ceiling... the training manifest already tracks exactly this.'\n\nW11 D · CP-D6 · Owner Ruling scope-correction (2026-08-27): the strike is SCOPED to the MODEL FORM DOCTRINAL USE ONLY. Callers whose refusal was tied to the model form's off-menu status now dispatch via ModelFormOfferEnvelopeV0 with the specific stronger-claim discriminator, not a refusal. Non-model callable_skill/knowledge_artifact null-multiplier refusal path retains `form_not_offerable` per valid_reasons[0] — this was NOT covered by A17.16 ACCEPT (nothing in the ruling made non-model forms offerable) and their §6.3/§6.4 build is pending. CP-D0/CP-D1 v4 rebuild over-executed the strike; v5 restores the scope."
+    },
+    {
+      "reason": "caller_cancelled",
+      "struck_at": "2026-07-04",
+      "supersedes_reason_in": "v1",
+      "strike_rationale": "Phase 5 Stage B (Owner ruling, 2026-07-04): cancellation is a STATE (idempotency ledger row) not a REFUSAL. Struck to prevent conflating declined requests with caller-side aborts."
+    },
+    {
+      "reason": "async_queue_saturated",
+      "struck_at": "2026-07-04",
+      "supersedes_reason_in": "v1",
+      "strike_rationale": "Phase 5 Stage B (Owner ruling, 2026-07-04): infra saturation is NOT a refusal. Struck to preserve unwilling-not-unable discipline; async retries handle capacity."
+    }
+  ]
+}

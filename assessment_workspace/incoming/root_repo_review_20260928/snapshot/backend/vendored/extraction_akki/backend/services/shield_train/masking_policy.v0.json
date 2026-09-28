@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "authored_at_utc": "2026-09-06T11:34:00Z",
+  "authoring_authority": "W-Shield-Train-build wave \u00b7 authored via services.shield_train.authoring \u00b7 ratified by W-Shield-Train close DECISIONS.md entry",
+  "doc_ref": "Doc 02 \u00a7A5.2 governed masking policy authored \u00b7 Doc 01 \u00a7A5.2 custody sequence \u00b7 services/chokepoint/masking_tier_allowlist.v0.json t1_full_mask not_admissible_because clause",
+  "wave": "W-Shield-Train-build",
+  "ledger": [
+    {
+      "table": "ussd_question_response",
+      "column": "id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "row primary key identifier \u2014 quasi-identifier, cautious-default exclude to avoid re-identification via join back to source rows",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31 \u00b7 lifted into governed policy this wave",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment (Doc 02 \u00a7A5.2) plus DPO sign-off",
+        "note": "id alone is not directly personal but joins back to source rows carrying farmer PII; conservative-default excludes"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "ussd_user_id",
+      "class": "pii",
+      "action": "exclude",
+      "rationale": "identifier linking to ussd_users table which carries direct PII (2.28M farmer rows) \u2014 strip",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31 \u00b7 response_sanitizer DIGICOW_PII_BANNED_FIELDS discipline",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment plus DPO sign-off \u2014 direct link to farmer PII table",
+        "note": "linking identifier to a PII table is itself PII; never emits"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "mobile_number",
+      "class": "pii",
+      "action": "exclude",
+      "rationale": "direct PII (Kenyan phone number) \u2014 strip",
+      "ruling_ref": "response_sanitizer PII discipline (farmer_mobile_no equivalent) \u00b7 bypass-era mask.py",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment plus DPO sign-off \u2014 phone numbers are direct personal identifiers under Kenyan DPA 2019 \u00a72",
+        "note": "never declassifies without explicit ceremony"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "training_code",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "code identifier \u2014 cautious-default; may reveal training cohort membership",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment showing training_code cardinality is high enough to prevent cohort re-identification",
+        "note": "conservative-default until analysis lands"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "post_id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "post identifier \u2014 cautious-default; may reveal engagement pattern",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment",
+        "note": "conservative-default"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "question_id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "question identifier \u2014 cautious-default; joins to question metadata",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment plus curation of the question_id -> question_string mapping",
+        "note": "the question_string column carries the human-visible content; question_id is a redundant join key"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "option_id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "option identifier \u2014 cautious-default; joins to option metadata",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment",
+        "note": "option_string carries the human-visible content"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "option_string",
+      "class": "non-pii-text",
+      "action": "mask_regex_scrub",
+      "rationale": "response text \u2014 training material; free-text regex-scrubbed for embedded phone/ID patterns before the row crosses the seam",
+      "ruling_ref": "bypass-era mask.py mask_free_text() applied to this column 2026-08-31",
+      "declassification_path": null,
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "created_at",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "metadata timestamp \u2014 not training-relevant, cautious-default; fine temporal grain can be a re-id signal",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment plus temporal-coarsening design (e.g. day-bucket instead of second-timestamp)",
+        "note": "if a future run needs temporal context, bucket first"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "question_string",
+      "class": "non-pii-text",
+      "action": "mask_regex_scrub",
+      "rationale": "prompt text \u2014 training material; free-text regex-scrubbed for embedded PII patterns",
+      "ruling_ref": "bypass-era mask.py mask_free_text() applied to this column 2026-08-31",
+      "declassification_path": null,
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "value_chain",
+      "class": "non-pii-structural",
+      "action": "include",
+      "rationale": "structural category (e.g. 'dairy', 'poultry') \u2014 non-PII enum, preserved verbatim for training",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": null,
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "number_of_animals",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "quasi-identifier revealing farm scale \u2014 combined with any other quasi-id identifies a specific farm",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment showing bucketed farm-scale bins do not enable re-id when combined with other retained quasi-ids in the training corpus",
+        "note": "conservative-default"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "ussd_question_response",
+      "column": "forage_area",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "quasi-identifier revealing farm scale \u2014 same rationale as number_of_animals",
+      "ruling_ref": "bypass-era mask.py DECISION_LEDGER 2026-08-31",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment plus bucketing design",
+        "note": "conservative-default"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "row primary key identifier \u2014 quasi-identifier, cautious-default",
+      "ruling_ref": "governed classification landed by W-Shield-Train-build (this wave) \u00b7 pattern lifted from ussd_question_response.id",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment plus DPO sign-off",
+        "note": "joins back to source rows"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "county_name",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "coarse geo \u2014 combined with phone/name/date enables re-identification (Doc 02 \u00a7A5.2 linkage-risk clause)",
+      "ruling_ref": "W-Shield-Train-build \u00b7 Doc 02 \u00a7A5.2 linkage-risk clause",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment: geo grain \u00d7 other retained columns \u00d7 row count must show adequate k-anonymity",
+        "note": "county grain alone in a 255K-row corpus doesn't identify; combined with other quasi-ids it does"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "subcounty",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "finer geo \u2014 stronger re-id signal than county; conservative exclude",
+      "ruling_ref": "W-Shield-Train-build \u00b7 Doc 02 \u00a7A5.2",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment as for county_name; subcounty grain is riskier",
+        "note": ""
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "ward",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "finest geo \u2014 ward-level location is a direct re-id signal in small ward populations",
+      "ruling_ref": "W-Shield-Train-build \u00b7 Doc 02 \u00a7A5.2",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment \u00b7 ward-level geo generally not safely declassifiable in a farmer corpus",
+        "note": "highest re-id risk of the three geo columns"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "farmer_name",
+      "class": "pii",
+      "action": "exclude",
+      "rationale": "direct personal name \u2014 direct PII, always excluded",
+      "ruling_ref": "response_sanitizer DIGICOW_PII_BANNED_FIELDS \u00b7 Kenyan DPA 2019 \u00a72",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment plus DPO sign-off \u2014 names are direct identifiers",
+        "note": "never declassifies without explicit ceremony"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "phone_number",
+      "class": "pii",
+      "action": "exclude",
+      "rationale": "direct PII (Kenyan phone number) \u2014 same policy as ussd_question_response.mobile_number",
+      "ruling_ref": "response_sanitizer PII discipline (farmer_mobile_no equivalent)",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment plus DPO sign-off \u2014 phone numbers are direct personal identifiers",
+        "note": "never declassifies without explicit ceremony"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "created_at",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "date-level timestamp \u2014 combined with geo + name enables re-id",
+      "ruling_ref": "W-Shield-Train-build",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment plus temporal-coarsening design",
+        "note": "date grain narrower than the underlying event uniqueness"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "sms_id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "SMS identifier \u2014 joins to SMS provider metadata; cautious-default",
+      "ruling_ref": "W-Shield-Train-build",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment",
+        "note": ""
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "clints_id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "client identifier \u2014 cautious-default; joins to client tenancy",
+      "ruling_ref": "W-Shield-Train-build",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment",
+        "note": ""
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "sms_sent",
+      "class": "non-pii-text",
+      "action": "mask_regex_scrub",
+      "rationale": "SMS body free text (longtext). Included per owner Ruling #5(a) via drawer resolution shield-2026-09-06-q001 (2026-09-06T~15:XXZ). mask_regex_scrub belt-and-braces scrubs embedded phone/ID/national-ID/breeding-ref patterns; belt-and-braces refuse fires on residual PII shape via CorpusIntegrityRefusal.",
+      "ruling_ref": "W-SMS-Body-Emit \u00b7 drawer resolution shield-2026-09-06-q001 \u00b7 owner ruling 'a' verbatim 2026-09-06T~15:XXZ",
+      "declassification_path": null,
+      "resolves_drawer_question_id": "shield-2026-09-06-q001",
+      "authored_by": "programme.track-a.W-SMS-Body-Emit",
+      "entered_at_utc": "2026-09-06T16:20:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "sms_title",
+      "class": "non-pii-text",
+      "action": "mask_regex_scrub",
+      "rationale": "SMS title \u2014 short free-text; scrub phone/ID patterns before use",
+      "ruling_ref": "W-Shield-Train-build \u00b7 pattern lifted from ussd_question_response free-text columns",
+      "declassification_path": null,
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "created_on_dt",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "second-grain timestamp \u2014 very high re-id risk under linkage",
+      "ruling_ref": "W-Shield-Train-build",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "linkage-risk assessment plus temporal-coarsening",
+        "note": "fine temporal grain is the strongest re-id signal"
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    },
+    {
+      "table": "sms_log",
+      "column": "breeding_id",
+      "class": "quasi-identifier",
+      "action": "exclude",
+      "rationale": "breeding record identifier \u2014 joins to breeding metadata (farmer's livestock lifecycle)",
+      "ruling_ref": "W-Shield-Train-build",
+      "declassification_path": {
+        "exists": true,
+        "state": "closed",
+        "unlock_requires": "documented linkage-risk assessment",
+        "note": ""
+      },
+      "entered_at_utc": "2026-09-06T11:34:00Z"
+    }
+  ],
+  "clarification_drawer": [
+    {
+      "question_id": "shield-2026-09-06-q001",
+      "field": "sms_log.sms_sent",
+      "cautious_default_applied": "exclude",
+      "note": "sms_sent is a longtext SMS body. It is free-text authored by DigiCow staff addressing farmers by name/number in the body \u2014 meaning it can (and typically does) carry embedded direct PII. Two viable rulings: (a) INCLUDE with mask_regex_scrub \u2014 treat like ussd_question_response.question_string, accept residual leakage risk (regex won't catch every name); or (b) EXCLUDE \u2014 treat as untrusted PII surface, drop from training corpus entirely. Cautious-default applied: EXCLUDE. Owner ruling requested before this column can ever cross the seam.",
+      "opened_at_utc": "2026-09-06T11:34:00Z",
+      "state": "resolved",
+      "resolution": {
+        "owner_ruling": "a",
+        "resolved_at_utc": "2026-09-06T16:20:00Z",
+        "choice_taken": "INCLUDE with mask_regex_scrub",
+        "evidence_record_path": "phase0/policy_drawer_resolutions/drawer_resolution_shield-2026-09-06-q001_20260906T162000Z.json",
+        "retroactive_reclassification": true,
+        "wave": "W-SMS-Body-Emit"
+      }
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "schema_version": "chokepoint_masking_tier_v0",
+  "governance": {
+    "authority": "Owner",
+    "class": "governed positive allowlist \u2014 adding a tier requires an Owner ruling recorded in STATE/DECISIONS.md",
+    "authored": "2026-08-25",
+    "wave": "W3",
+    "canon_anchor": "Doc 02 \u00a7A3 three-level specificity (exact / pattern / category); Doc 01 \u00a7A5.2 custody sequence"
+  },
+  "entries": [
+    {
+      "tier": "structure_only",
+      "description": "Metadata / information_schema reads. No row content crosses the seam.",
+      "admissible_under_env": [
+        "development",
+        "sandbox",
+        "production"
+      ],
+      "applicable_kinds": [
+        "rds_data_api"
+      ],
+      "row_content_permitted": false,
+      "canon_anchor": "Doc 01 \u00a7A5.5 \u00b7 closed outbound network except at crossing"
+    },
+    {
+      "tier": "attested_command",
+      "description": "SSH seam commands limited to hardening.json's attested command list. No shell.",
+      "admissible_under_env": [
+        "development",
+        "sandbox",
+        "production"
+      ],
+      "applicable_kinds": [
+        "ssh_seam"
+      ],
+      "row_content_permitted": false,
+      "canon_anchor": "Doc 12 \u00b7 in-perimeter compute; Doc 01 \u00a7A5.6 structural impossibility"
+    },
+    {
+      "tier": "receipt_only",
+      "description": "Governance / audit reads that touch no external system. No network out.",
+      "admissible_under_env": [
+        "development",
+        "sandbox",
+        "production"
+      ],
+      "applicable_kinds": [
+        "governance_read"
+      ],
+      "row_content_permitted": false,
+      "canon_anchor": "Doc 01 \u00a7A5.7 \u00b7 trust receipt"
+    },
+    {
+      "tier": "llm_prompt_governed_text",
+      "description": "Chat / ThinkLab / Solva prompts composed by the operator: no PII, no row content, no credentials. The chokepoint scrubs credential-shaped material at the boundary (standing rule Owner Order 2026-08-25 \u00a76). Admissible for W5 LLM crossings while row-bearing tiers stand down.",
+      "admissible_under_env": [
+        "development",
+        "sandbox",
+        "production"
+      ],
+      "applicable_kinds": [
+        "llm_chat",
+        "llm_synthesis",
+        "llm_frame_audit",
+        "llm_candidate_generation",
+        "llm_connect_verify",
+        "llm_direct_answer"
+      ],
+      "row_content_permitted": false,
+      "canon_anchor": "Doc 01 \u00a7A5.5 (closed outbound network except at crossing); Doc 02 \u00a7A3 exact-value grammar; Owner Order 2026-08-25 \u00a76 (masking tier at the LLM crossing)"
+    },
+    {
+      "tier": "llm_reasoning_context",
+      "description": "ThinkLab direction statement / Solva stage context text: operator-composed, non-PII, non-row-bearing. Same posture as llm_prompt_governed_text but named separately so the receipt log shows which crossings carried operator text vs raw prompt.",
+      "admissible_under_env": [
+        "development",
+        "sandbox",
+        "production"
+      ],
+      "applicable_kinds": [
+        "llm_frame_audit",
+        "llm_candidate_generation",
+        "llm_synthesis"
+      ],
+      "row_content_permitted": false,
+      "canon_anchor": "Doc 01 \u00a7A5.5; Doc 04 \u00a7A5 (Solva reasoning stages)"
+    },
+    {
+      "tier": "t1_full_mask",
+      "description": "Full de-identify + re-identify per Doc 01 \u00a7A5.2. Row content crosses in placeholder-token form only.",
+      "admissible_under_env": [
+        "development"
+      ],
+      "applicable_kinds": [
+        "llm_synthesis",
+        "rds_data_api"
+      ],
+      "row_content_permitted": true,
+      "canon_anchor": "Doc 01 \u00a7A5.2 \u00b7 custody sequence",
+      "not_admissible_because": "ADMITTED under development env only per owner ruling 2026-09-06T~12:40Z (see admission_ruling_verbatim). Not admitted under sandbox/production - owner ruling required for either.",
+      "admission_request_drafted_by_wave": "W-Shield-Train-build",
+      "prerequisites_status": [
+        {
+          "prerequisite": "(i) LLM chokepoint landed",
+          "satisfied_by_this_build": false,
+          "evidence": "services/chokepoint/router.py + services/chokepoint/llm.py are landed for W3 LLM crossings under non-row-bearing tiers (llm_prompt_governed_text, llm_reasoning_context). Row-bearing LLM chokepoint is chartered as W-Chokepoint-LLM-row-bearing (future wave).",
+          "still_needed": "the row-bearing LLM chokepoint that composes prompts with de-identified row content and re-identifies on response. Out of W-Shield-Train scope."
+        },
+        {
+          "prerequisite": "(ii) tenant entity catalogue populated",
+          "satisfied_by_this_build": false,
+          "evidence": "not touched by this build wave. Census #2 has the schema catalogue; the tenant entity catalogue (mapping DigiCow entity types to declared-confidential categories per Doc 02 \u00a7A3) is a separate artefact.",
+          "still_needed": "tenant entity catalogue authored + ratified. Chartered as W-Tenant-Entity-Catalogue (future wave)."
+        },
+        {
+          "prerequisite": "(iii) governed masking policy authored (Doc 02 \u00a7A5.2)",
+          "satisfied_by_this_build": true,
+          "evidence": "services/shield_train/masking_policy.v0.json (26 ledger entries covering ussd_question_response + sms_log, 1 clarification-drawer entry for sms_log.sms_sent) authored via services/shield_train/authoring.py (add_entry / add_drawer_entry / resolve_drawer_entry) \u2014 invariants frozen in tests/invariants/test_shield_train_masking_policy.py + test_shield_train_pii_registry_expansion.py.",
+          "still_needed": "nothing on the policy authoring surface itself. Ratification of new entries (or resolution of the sms_sent drawer entry) requires owner rulings but does not block this prerequisite's status."
+        }
+      ],
+      "admission_ruled_at_utc": "20260906T124000Z",
+      "admission_ruling_verbatim": "Masking-tier admission: \"yes\" - t1_full_mask admitted for the governed training-extraction pipeline. Campaign design: \"yes\" - GO on Campaign A (baseline ladder, akki-vm) + Campaign B (method ablations, akki-vm-ii) as designed. \"Mapping clear objectives on the campaign starting now, runs until 9th September, 2026\" - campaign window: NOW - 2026-09-09.",
+      "admission_rationale": "Prerequisites (i) LLM chokepoint + (ii) tenant entity catalogue remain out-of-scope for W-Shield-Train and are chartered as separate future waves; owner ruled t1_full_mask admission on the basis of (iii) governed masking policy authored (satisfied_by_this_build=true per this entry prerequisites_status) + refusal-by-construction row_executor + shape-only receipts + closed-declassification-path pattern from the Ruling #5/occupation ruling lineage. Admission scoped to development env only; production admission requires owner ruling separately."
+    },
+    {
+      "tier": "t2_partial",
+      "description": "Partial de-identify \u2014 identifiers redacted but declared-confidential categories preserved for governed reasoning contexts.",
+      "admissible_under_env": [],
+      "applicable_kinds": [
+        "llm_synthesis"
+      ],
+      "row_content_permitted": true,
+      "canon_anchor": "Doc 02 \u00a7A3 pattern-level specificity",
+      "not_admissible_because": "No LLM crossing exists yet.",
+      "admission_request_drafted_by_wave": "W-Shield-Train-build",
+      "prerequisites_status": [
+        {
+          "prerequisite": "row-bearing LLM crossing exists",
+          "satisfied_by_this_build": false,
+          "evidence": "same as t1_full_mask (i) \u2014 no row-bearing LLM chokepoint yet.",
+          "still_needed": "the row-bearing LLM chokepoint. Out of W-Shield-Train scope."
+        }
+      ]
+    },
+    {
+      "tier": "t3_category",
+      "description": "Category-level mask (unreleased pricing, M&A working material, etc.) via reasoning-layer recogniser.",
+      "admissible_under_env": [],
+      "applicable_kinds": [
+        "llm_synthesis"
+      ],
+      "row_content_permitted": true,
+      "canon_anchor": "Doc 02 \u00a7A3 category-level specificity",
+      "not_admissible_because": "No LLM crossing exists yet.",
+      "admission_request_drafted_by_wave": "W-Shield-Train-build",
+      "prerequisites_status": [
+        {
+          "prerequisite": "row-bearing LLM crossing exists",
+          "satisfied_by_this_build": false,
+          "evidence": "same as t1_full_mask (i).",
+          "still_needed": "the row-bearing LLM chokepoint. Out of W-Shield-Train scope."
+        }
+      ]
+    }
+  ]
+}

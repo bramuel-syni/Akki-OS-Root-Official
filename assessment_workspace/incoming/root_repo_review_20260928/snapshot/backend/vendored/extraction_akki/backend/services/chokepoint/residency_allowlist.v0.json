@@ -1,0 +1,43 @@
+{
+  "schema_version": "chokepoint_residency_allowlist_v0",
+  "governance": {
+    "authority": "Owner",
+    "class": "governed positive allowlist — adding a region requires an Owner ruling recorded in STATE/DECISIONS.md",
+    "authored": "2026-08-25",
+    "wave": "W3",
+    "canon_anchor": "CA1-N4 · data residency & cross-border transfer control"
+  },
+  "regions": [
+    {
+      "region": "in_process",
+      "admitted_under_facts": [
+        "canon_anchor::doc_01_a5_7 (governance_read · in-process reads write receipts without a network boundary)"
+      ],
+      "purpose": "Governance reads and in-process attestations (e.g., CA1-010 lowered_standard session open/close · retention enforcement attestation writes). No network transit; the receipt is the attestation.",
+      "authored": "2026-08-25",
+      "wave": "W6",
+      "applicable_kinds": ["governance_read"]
+    },
+    {
+      "region": "eu-west-1",
+      "admitted_under_facts": [
+        "phase0/data_connection_records/data_source_digicow_live_20260819T152513Z_FINAL.json",
+        "phase0/data_connection_records/data_source_ndume_20260819T152513Z_FINAL.json"
+      ],
+      "purpose": "Aurora MySQL cluster db-restore-603-cluster hosts the estate's connected data sources.",
+      "authored": "2026-08-25"
+    },
+    {
+      "region": "platform-managed",
+      "admitted_under_facts": [
+        "environment_variable::EMERGENT_LLM_KEY (universal LLM gateway; provider region abstracted behind emergentintegrations)"
+      ],
+      "purpose": "Emergent Universal LLM — provider fan-out across OpenAI / Anthropic / Gemini. The provider region is chosen by the emergent gateway per-model; the estate declares it 'platform-managed' honestly.",
+      "authored": "2026-08-25",
+      "wave": "W5"
+    }
+  ],
+  "notes": [
+    "akki-vm's commissioning record does NOT carry a region field. This is a real gap on record; W3 does NOT invent one. The Data Shield surface renders this drawn-not-blank until the commissioning record is amended with a region field."
+  ]
+}
