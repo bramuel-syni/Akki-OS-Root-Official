@@ -1,0 +1,49 @@
+{
+  "census_run_id": "cr-034d9d21f9d8",
+  "tenant_id": "DIGICOW",
+  "completed_at_utc": "20260928T110501Z",
+  "payload": {
+    "protocol": "akki-census-aggregate-v1",
+    "outcomes": [
+      {
+        "protocol": "akki-census-aggregate-v1",
+        "census_run_id": "cr-034d9d21f9d8",
+        "tenant_id": "DIGICOW",
+        "source_id": "digicow_rds",
+        "execution_location": "akki_host",
+        "source_rows_returned": 0,
+        "observed_at": "2026-09-28T11:05:00.731995+00:00",
+        "status": "complete",
+        "database_count": 2,
+        "table_count": 239,
+        "row_count_estimate": 5908556,
+        "worker_receipt_id": "cwr-8dcad0771793bafcf49994f0e8298308ffa4669f6ef2e8ff54c52c1c1896e47a"
+      }
+    ],
+    "registry_receipts": [
+      {
+        "record": {
+          "asset_ref": "census:DIGICOW:cr-034d9d21f9d8:digicow_rds",
+          "asset_class": "receipt",
+          "named_owner": {
+            "owner_id": "DIGICOW",
+            "owner_class": "organisation",
+            "mandate_source": "CP-CENSUS-OPERATIONAL-V1; Canon-9 \u00a73"
+          },
+          "custody_class": "sensitive",
+          "freshness_stamp": {
+            "logged_date": "2026-09-28T11:05:00.731995+00:00",
+            "structural_signature": null
+          }
+        },
+        "receipt": {
+          "receipt_id": "receipt_efd9682c2fdb798e927e91ee",
+          "collection": "mtafiti_asset_registry_records",
+          "au_3b_defensible": false
+        }
+      }
+    ],
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "principal_id": "6ab56dd48894abb269135ca2"
+  }
+}

@@ -50,13 +50,7 @@ def run_bounded_census(job, job_deadline, execute=None):
             current.update(stage="executing", started_at=store.now(), deadline=job_deadline)
             store.save(current)
             if execute is None:
-                _mode = os.environ.get("AKKI_CENSUS_EXECUTION_MODE")
-                if _mode == "non_gpu_jump":
-                    from services.census_autonomy.jump_dispatch import execute_source
-                elif _mode == "non_gpu_worker":
-                    from services.census_autonomy.non_gpu_dispatch import execute_source
-                else:
-                    from services.census_autonomy.remote_dispatch import execute_source
+                from services.census_autonomy.census_router import execute_source
                 execute = execute_source
             outcomes, registry = [], []
             for source in current["source_ids"]:

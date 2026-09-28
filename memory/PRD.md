@@ -56,6 +56,40 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
+## CHECKPOINT — 2026-09-28 07:45 UTC, DIGICOW + OBS LIVE; PLAIN-LANGUAGE REPORT
+
+Owner: (1) confused by the technical %/gap report — wants plain language
+"we need to build X, built X%, X remaining, what makes remaining + each item's
+contribution"; (2) sent real creds — DigiCow AWS access key
+(`api_user_accessKeys.csv`, AKIAXGH5…) + Huawei OBS AK/SK (`credentials (9)/(8).csv`,
+HPUA…, user BramwelMwalo); NAS "is CIFS connection"; artists_app GRANT "ok".
+
+DELIVERED (verified, unmocked):
+- Plain-language report: `assessment_workspace/notes/non_gpu_worker_20260928/SIMPLE_STATUS.md`.
+  Headline: ~35% built AND proven; house/reading-machine analogy; remaining ~65%
+  split across 8 buckets with each bucket's share-of-remaining; blockers listed.
+- DigiCow census LIVE via existing RDS Data API path (new driver
+  `rds_data_dispatch.py`): digicow_live (126 tbl/5.30M rows) + ndume (113 tbl/
+  0.61M rows) = 2 databases, 239 tables, ~5.9M rows, COMPLETE, tenant DIGICOW.
+- Huawei OBS census LIVE (new driver `obs_dispatch.py`, S3-compat,
+  obs.af-south-1.myhuaweicloud.com): all 106 buckets listed; inventory saved to
+  `estate_keys/owner_20260928/obs_buckets.json` (0600). Source rms_obs, tenant RMS.
+  database_count == bucket count; object-level census is a bounded follow-on.
+- New `census_router.py` routes each source to its driver (rms_mysql→jump/worker,
+  digicow_rds→rds_data, rms_obs→obs, else→gpu remote_dispatch). operational_runner
+  now calls the router. New creds staged in estate_access.json (0600, gitignored)
+  under `digicow` + `obs` sections; env AKKI_ESTATE_ACCESS_CONFIG added.
+- RMS MySQL census re-verified via router over HTTP: 20 db / 1,015 tbl / ~257M rows.
+- Tests: 733 backend pass (adds DigiCow/OBS/router tests to the non-GPU suite),
+  17 skipped. (One auth test flakes only under brute-force lockout from repeated
+  test logins; passes in isolation — not a regression.)
+
+3 of 4 major estates now proven live (RMS MySQL, DigiCow, OBS). REMAINING owner-side:
+NAS SMB/CIFS enablement (or SMB password); artists_app MySQL GRANT. DigiCow HTTP
+self-serve needs a DIGICOW-tenant login seeded (driver+pipeline already proven via
+direct enqueue).
+
+
 ## CHECKPOINT — 2026-09-28 07:10 UTC, JUMP-ROUTED FULL ESTATE READ + LIVE DQ
 
 Owner replies to the four next-actions: (DigiCow) "the key is in the sheet";

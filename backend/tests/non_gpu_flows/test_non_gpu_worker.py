@@ -287,3 +287,101 @@ def test_dq_producer_skips_fully_complete_run(tmp_path, monkeypatch):
     monkeypatch.setattr(dq, "bank_response_required_item", lambda **kw: "rri-x")
     monkeypatch.setattr(dq, "_existing_signatures", lambda t: set())
     assert dq.emit_from_run("cr-222222222222", "RMS") == []
+
+
+# --------------------------------------------------------------------------
+# rds_data_dispatch (DigiCow Aurora via RDS Data API — boto3 monkeypatched)
+# --------------------------------------------------------------------------
+
+from services.census_autonomy import rds_data_dispatch as rds
+from services.census_autonomy import obs_dispatch as obs
+from services.census_autonomy import census_router as router
+
+
+def _estate_cfg(tmp_path, monkeypatch):
+    cfg = {"digicow": {"provider": "aws_rds_data", "region": "eu-west-1",
+                       "cluster_arn": "arn:c", "secret_arn": "arn:s",
+                       "databases": ["digicow_live", "ndume"],
+                       "aws_access_key_id": "AKIA", "aws_secret_access_key": "sk"},
+           "obs": {"provider": "huawei_obs", "region": "af-south-1",
+                   "endpoint": "https://obs.af-south-1.myhuaweicloud.com",
+                   "access_key_id": "HPUA", "secret_access_key": "sk"}}
+    path = tmp_path / "estate_access.json"
+    path.write_text(json.dumps(cfg))
+    monkeypatch.setenv("AKKI_ESTATE_ACCESS_CONFIG", str(path))
+    monkeypatch.setenv("CENSUS_MAX_DATABASES", "100")
+
+
+def test_rds_data_dispatch_completes_over_databases(tmp_path, monkeypatch):
+    import time, boto3
+    _estate_cfg(tmp_path, monkeypatch)
+    monkeypatch.setattr(rds.store, "cursor_dir", lambda: tmp_path)
+
+    class _Client:
+        def execute_statement(self, **kw):
+            n = {"digicow_live": (126, 5298351), "ndume": (113, 610205)}[kw["database"]]
+            return {"records": [[{"longValue": n[0]}, {"longValue": n[1]}]]}
+
+    monkeypatch.setattr(boto3, "client", lambda *a, **k: _Client())
+    res = rds.execute_source("cr-777777777777", "DIGICOW", "digicow_rds", "h", time.time() + 60)
+    assert res["status"] == "complete"
+    assert res["database_count"] == 2 and res["table_count"] == 239 and res["row_count_estimate"] == 5908556
+    validate_output(res, "cr-777777777777", "DIGICOW", "digicow_rds")
+
+
+def test_rds_data_dispatch_blocks_when_api_fails(tmp_path, monkeypatch):
+    import time, boto3
+    _estate_cfg(tmp_path, monkeypatch)
+    monkeypatch.setattr(rds.store, "cursor_dir", lambda: tmp_path)
+
+    def _boom(*a, **k):
+        raise RuntimeError("no aws")
+
+    monkeypatch.setattr(boto3, "client", _boom)
+    res = rds.execute_source("cr-888888888888", "DIGICOW", "digicow_rds", "h", time.time() + 60)
+    assert res["status"] == "blocked" and res["reason_code"].startswith("AKKI_RDS_")
+
+
+# --------------------------------------------------------------------------
+# obs_dispatch (Huawei OBS inventory — boto3 monkeypatched)
+# --------------------------------------------------------------------------
+
+def test_obs_dispatch_inventories_buckets(tmp_path, monkeypatch):
+    import time, boto3
+    _estate_cfg(tmp_path, monkeypatch)
+    monkeypatch.setattr(obs.store, "cursor_dir", lambda: tmp_path)
+
+    class _S3:
+        def list_buckets(self):
+            return {"Buckets": [{"Name": f"b{i}"} for i in range(106)]}
+
+    monkeypatch.setattr(boto3, "client", lambda *a, **k: _S3())
+    res = obs.execute_source("cr-999999999999", "RMS", "rms_obs", "h", time.time() + 60)
+    assert res["status"] == "complete" and res["database_count"] == 106
+    assert res["table_count"] == 0 and res["row_count_estimate"] == 0
+    validate_output(res, "cr-999999999999", "RMS", "rms_obs")
+
+
+# --------------------------------------------------------------------------
+# census_router
+# --------------------------------------------------------------------------
+
+@pytest.mark.parametrize("source,module_attr", [
+    ("digicow_rds", "rds_data_dispatch"), ("rms_obs", "obs_dispatch"),
+])
+def test_router_routes_managed_sources(monkeypatch, source, module_attr):
+    import services.census_autonomy as pkg
+    target = getattr(__import__(f"services.census_autonomy.{module_attr}", fromlist=["x"]), "execute_source")
+    calls = {}
+    mod = __import__(f"services.census_autonomy.{module_attr}", fromlist=["x"])
+    monkeypatch.setattr(mod, "execute_source",
+                        lambda *a, **k: (calls.__setitem__("hit", a[2]), {"ok": True})[1])
+    out = router.execute_source("cr-aaaaaaaaaaaa", "T", source, "h", 0)
+    assert out == {"ok": True} and calls["hit"] == source
+
+
+def test_router_rms_mysql_honours_mode(monkeypatch):
+    monkeypatch.setenv("AKKI_CENSUS_EXECUTION_MODE", "non_gpu_jump")
+    from services.census_autonomy import jump_dispatch
+    monkeypatch.setattr(jump_dispatch, "execute_source", lambda *a, **k: {"routed": "jump"})
+    assert router.execute_source("cr-bbbbbbbbbbbb", "RMS", "rms_mysql", "h", 0) == {"routed": "jump"}

@@ -1,0 +1,25 @@
+{
+  "census_run_id": "cr-034d9d21f9d8",
+  "source_id": "digicow_rds",
+  "at_utc": "2026-09-28T11:05:01.691097+00:00",
+  "execution_location": "rds_data",
+  "stage": "rds_data",
+  "route": "aws_rds_data",
+  "worker_status": "complete",
+  "connections": [
+    {
+      "label": "digicow_live",
+      "status": "complete",
+      "database_count": 1,
+      "table_count": 126,
+      "row_count_estimate": 5298351
+    },
+    {
+      "label": "ndume",
+      "status": "complete",
+      "database_count": 1,
+      "table_count": 113,
+      "row_count_estimate": 610205
+    }
+  ]
+}
