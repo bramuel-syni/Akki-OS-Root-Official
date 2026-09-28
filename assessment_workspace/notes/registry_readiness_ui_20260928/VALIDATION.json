@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-28",
+  "scope": "M1 readiness revision2: owner UI/UX, repository reuse, integration and historical gap reconciliation; no implementation",
+  "owner_prototype_sha256": "0330a1712aad3b76dfe6f5e97207707fa35a1ed774a134313635a59ba0a67d3d",
+  "owner_screenshots": [
+    "https://customer-assets-jt897jd0.emergentagent.net/job_pensive-goodall-6/artifacts/8vyidh0f_Screenshot_20260928_204541_Chrome.webp",
+    "https://customer-assets-jt897jd0.emergentagent.net/job_pensive-goodall-6/artifacts/idzksk2k_Screenshot_20260928_204554_Chrome.webp",
+    "https://customer-assets-jt897jd0.emergentagent.net/job_pensive-goodall-6/artifacts/e245ew8n_Screenshot_20260928_204602_Chrome.webp"
+  ],
+  "canonical_public_and_http_download_identical": true,
+  "published_documents": {
+    "Akki_Goal_Roadmap_v1.md": "dbd50d1025dc9693e8d1eafe23af75e22e57546feda3ba6485ad4614acb6d9ed",
+    "Akki_Registry_Readiness_M1.md": "0c29aed46a3b183689ca889fd04623a67ad9e812408ed2e1a9bfb4ed17d6c851",
+    "Akki_Registry_Clause_Map_M1.md": "b2ee5ed45b1e392b63b22aef14fc44c3df9c13519f85f59665ab5cdcd6422f57"
+  },
+  "coverage_checks": {
+    "milestones": 10,
+    "unique_acceptance_packs": 51,
+    "explicit_readiness_homes": 10,
+    "original_audit_ids": ["D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11"],
+    "original_report_rows": 13,
+    "row_groups": {"Coverage": 4, "Condition": 5, "Readiness": 4},
+    "source_clause_ids_match_original_csv_exactly": true,
+    "mapped_clauses": {"Doc9_and_Doc10": 22, "data_cleanliness_v1": 15, "trust_domains_v1": 3},
+    "all_cited_acceptance_ids_exist_in_roadmap": true,
+    "counts_are_coverage_not_closure": true
+  },
+  "current_application_baseline": {
+    "record": "census-4",
+    "tenant": "RMS",
+    "fidelity": "FAIL: exact four tabs and three report groups absent; known ID defect also persists",
+    "viewport_checks": {"1920x800": "no overflow", "390x844": "no overflow"},
+    "scoped_api_tests_passed": 16,
+    "offline_contract_tests_passed": 24,
+    "offline_evidence_class": "SYNTHETIC/MOCKED",
+    "test_report": "/app/test_reports/iteration_55.json",
+    "test_success_percentages_adopted": false,
+    "backend_whole_census_pass_claim": false
+  },
+  "integrity": {
+    "original_prototype_unchanged": true,
+    "existing_design_guidelines_unchanged": true,
+    "backend_and_frontend_runtime_source_changed": false,
+    "credentials_changed": false,
+    "new_source_or_gpu_calls": false,
+    "census_commissions": 0,
+    "full_transitive_repository_read_claim": false,
+    "all_live_milestone_acceptance": "NOT RUN"
+  }
+}

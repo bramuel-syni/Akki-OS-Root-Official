@@ -1,5 +1,33 @@
 # Akki implementation history
 
+## 2026-09-28 — Registry readiness revision 2: design fidelity and closure accounting
+
+Owner supplied3screenshots and rejected simplified census report. Read latest
+Nexus original Registry/report/source/compute/model/Connect markup and actual
+report/Connect interaction code against current owner renderer/models/styles.
+Confirmed root: Registry uses older os.json; Nexus fragment adoption omitted it;
+historyModel substitutes Inventory/Execution outcome, renamed tabs/fields and
+forced no-conversation. Actual retained RMS census4 desktop/mobile confirms exact
+four tab labels and all3groups absent, no overflow. Fidelity FAIL; no UI repair
+performed before requested implementation phase.
+
+Banked integrated M1 readiness report with full13row/evidence map, broader Registry
+UI/UX bindings, source policy/sample-formula caveats, component reuse and bounded
+closure rules. Reconciled old D1–D11 plus eleven15Sep field gaps. Full recovered
+Doc9/10 texts read;40clauses mapped(22Doc9/10+15DQ+3trust), not40closed requirements.
+Current DAPfictional pages unmounted and factsauthenticated200 verified; retain
+scoped closure, do not incorrectly say facts409 or D3stillfabricated. Historical
+unsafe hydrator quarantine is not feature completion. Assetoverwrite/sensitivity/
+off-E1/deepcoverage/durablesourceRegistry and frontend integration remain open.
+
+Expanded every milestone readiness to include full frontend/UI/UX and integrated
+effects, no design flattening, no late cosmetic stage. Closed work remains closed
+unless a concrete regression/evidence change/new requirement arises.10milestones/
+51packs retained.16targeted API tests PASS;24offline tests PASS SYNTHETIC/MOCKED;
+iteration55 and live screenshots banked, arbitrary tester percentages rejected.
+No application/auth/config/credential/source/GPU changes or census commission.
+
+
 ## 2026-09-28 — M1.1 second verification and readiness revision 1
 
 Owner requires all work/communication within governing milestones, and complete

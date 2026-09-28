@@ -1,0 +1,68 @@
+{
+  "summary": "Read-only M1 readiness audit completed for registry/census scope using targeted regression only (16 live API + 24 offline contract + UI route/fidelity smoke). Backend scoped registry path is healthy; frontend census-history fidelity remains materially divergent from owner reference.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "OwnerOSPage history detail",
+        "issue": "Detail tabs diverge from owner reference model: current labels are Discovery/GPU spend/Conversation/Evidence while expected Discovery Summary/GPU Spend/Conversation with Agent/Discovery Details.",
+        "selector": "text=Discovery | text=GPU spend | text=Conversation | text=Evidence",
+        "priority": "HIGH"
+      },
+      {
+        "component": "OwnerOSPage history detail",
+        "issue": "Designed discovery groups Coverage/Condition/Readiness are absent; current groups render Inventory/Execution outcome.",
+        "selector": "text=Coverage | text=Condition | text=Readiness",
+        "priority": "HIGH"
+      },
+      {
+        "component": "History list",
+        "issue": "Multiple entries show as 'Census #undefined' (record label defect still present in current live UI).",
+        "selector": "text=Census #undefined",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "/os/admin/estate?view=history",
+        "issues": [
+          "Owner census reference structure is materially reduced (missing all three designed grouped sections in discovery).",
+          "Current UI remains functional but does not satisfy exact-reference fidelity for census history detail."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_live_api_contract.py",
+    "/app/backend/tests/census_operational/test_contract.py",
+    "/app/test_reports/pytest/pytest_iteration_55_readonly_api.xml",
+    "/app/test_reports/pytest/pytest_iteration_55_offline_contract.xml"
+  ],
+  "action_items": [
+    "Restore owner-reference census history detail taxonomy and labels (Discovery Summary/GPU Spend/Conversation with Agent/Discovery Details + Coverage/Condition/Readiness groups).",
+    "Fix history record labeling path to avoid 'Census #undefined' in list rows.",
+    "Keep /api/registry/facts scoped 200 and avoid regressing it into blanket legacy 409 handling."
+  ],
+  "critical_code_review_comments": [
+    "D3 verification: DataEstates.jsx and DAPLanding.jsx still contain fictional Digicow figures but are not mounted by current App.js routes; live /dap and /dap/estates/:id are served through OwnerDAPLayout + scoped model.",
+    "Legacy/unbound route boundary is selective and correct in this slice: /api/portal/census/assets returns 409 while /api/registry/facts and /api/portal/census/overview return 200 for authenticated scoped access.",
+    "OwnerOSPage correctly binds to generated/os.json (not a replacement dashboard shell).",
+    "Prototype source integrity check passed: nexus.html SHA256 remains 0330a1712aad3b76dfe6f5e97207707fa35a1ed774a134313635a59ba0a67d3d; frontend generated nexus-fragments source_sha256 matches and contains no 'registry' fragment payload."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_55.json"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "55%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Targeted evidence-only rerun used to avoid whole-suite repetition. Live checks: 16/16 API pass, 24/24 offline contract pass, /api/registry/facts scoped 200, /api/portal/census/assets 409. UI still fails owner-fidelity on history detail labels/groups and retains Census #undefined rows.",
+  "rca of the issue": "History detail divergence is code-level in frontend model mapping: historyModel.js explicitly defines simplified tabs (Discovery/GPU spend/Conversation/Evidence) and discovery groups (Inventory + Execution outcome), so owner-reference grouped taxonomy cannot render. Census #undefined appears because list display falls back to census_run_id when census_number/record mapping is incomplete for some run records."
+}

@@ -1,6 +1,27 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-28 readiness revision 1 (owner-directed canon)
+## CURRENT — 2026-09-28 readiness revision 2 (owner-directed canon)
+
+Owner requires no flattening/watering down of supplied design. Every milestone
+readiness includes complete in-scope FRONTEND/UI/UX capture + producer/record/API/
+interaction integration mapping, alongside repo reuse and historical-gap closure.
+Once done, retain closure; reopen only concrete regression, invalidated evidence
+or explicitly changed requirement. No recurring re-audit gate or reset of progress.
+
+M1 readiness report `notes/registry_readiness_ui_20260928/REGISTRY_READINESS.md`:
+exact owner13report rows/four tabs, full Registry source/Connect/compute/model
+experience, D1–D11 and eleven old-field-gap dispositions; companion maps40source
+clauses across Doc9/10/DQ/trust. Report/source design—not generic guidance—is canon.
+Current UI fidelity FAILS;16API/24offline contract tests pass only their scope.
+Keep D3 fictional-route removal, D10 authenticated facts200 and census4 date/read
+corrections closed; full source Registry/deep/off-E1/compute/response/UI work open.
+
+**Next implementation:** M1.2 external source/worker effects; M1.3 existing deep
+producers, durable one-source account and complete designed frontend/interactions
+together; M1.4 allfive acceptance packs including full owner journey. No launch
+in this review. M2–M10 retain order and the expanded readiness discipline.
+
+## Readiness revision 1 context (retained)
 
 Each milestone M1–M10 begins with a full read/reuse review of its existing
 implementation, alternatives, dependencies, tests and actual user→effect→writer

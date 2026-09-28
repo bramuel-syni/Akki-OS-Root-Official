@@ -41,7 +41,57 @@ one authoritative append-only ledger, and 100% fidelity to owner HTML prototypes
 - Credentials unchanged: `/app/memory/test_credentials.md`; estate access is
   held in ignored `/app/backend/estate_keys/owner_20260928/`.
 
-## Current checkpoint — 2026-09-28, M1.1 second verification / readiness revision 1
+## Current checkpoint — 2026-09-28, M1 Registry readiness revision 2
+
+Owner accepts roadmap but rejects flattened Registry report. Three new screenshots
+show selected Census4, successive scroll: exact Discovery Summary/GPU Spend/
+Conversation with Agent/Discovery Details; five-category condition bar; Coverage,
+Condition, Readiness with13 annotated value/delta rows. Source is latest Nexus
+HTML0330a171… (not sample values as runtime data). Original design must remain full.
+Every milestone readiness now explicitly includes FRONTEND source/UI/UX capture,
+backend integration mapping and prior-gap closure reconciliation. Once a scoped
+correction is verified, keep it closed unless specific regression/evidence change/
+new requirement justifies reopening. No arbitrary recurring re-audit/new gates.
+
+Current readiness report: `notes/registry_readiness_ui_20260928/REGISTRY_READINESS.md`;
+companion `CLAUSE_MAP.md` maps all22Doc9/10+15DQ+3trust-domain rows (coverage, not
+closure). Full Doc9/10 source texts recovered26Sep and read; never ask again based
+on15Sep missing-document note. Historical audit D1–D11 and original11field gaps
+reconciled without overwriting original evidence. Ready-to-implement delta includes
+complete UI/interaction AND backend functions; no cosmetic-only fix accepted.
+
+Concrete mismatch: OwnerOSPage still uses generated/os.json, source a0a6df580…;
+Nexus fragment generator excludes Registry. historyModel explicitly renames tabs,
+replaces3groups with Inventory/Execution outcome, omits actor/coverage, changes
+pagination to8 and GPU rows, forces no conversation; Census #undefined persists.
+Full original Registry/source/report/compute/model/Connect markup and report/
+Connect model transitions reviewed. Preserve source styles, responsive adaptation,
+all fields/controls and non-fabricated states; use existing renderer.
+
+Verified narrow closures: D3 fictional DAP pages no longer mounted; D10 facts is
+authenticated scoped200 (NOT blanket409); census4 read/date visibility retained.
+D1/D2/D7/D8 unsafe legacy exposure quarantined—not corresponding capabilities
+complete. D6 conflicting asset overwrite still open; D11 actual sensitivity,
+RDS/OBS off-E1, deeper profiles/coverage, durable source Registry, NAS/worker and
+full UI/compute/response integration remain open. Existing Canon source writer,
+Measurement/Unmeasured, stratum, activation, classifier, enumerator, NAS inventory,
+two-layer composition, quality bitmap consumer and brief generator MUST be reused.
+Quality consumer is not profiler; name-FK scaffold not all4ruled linkage types.
+
+Evidence iteration55:16scoped API tests PASS,24offline tests PASS (SYNTHETIC/MOCKED),
+actual census4 desktop1920x800/mobile390x844 comparison: fidelity FAIL, no overflow.
+Ignore arbitrary tester percent scores/global backend-healthy statement beyond
+its read-path tests. Known defects deliberately not fixed in this readiness-only
+request. No app/UI/auth/credential/config edits, no source/GPU calls or new census.
+Published readiness report, clause map and revised roadmap verified exact against
+canonical HTTP downloads. VALIDATION.json banks source/screenshot links, hashes,
+all13rows, originalD1–D11, all40exactclauseIDs and unchanged runtime/source checks.
+Ten milestones/51packs preserved; M1 acceptance NOT RUN. Remaining full dependency
+reads explicitly listed; no exhaustive repository-read claim. Next work when
+implementation begins: M1.2 external effects and M1.3 whole designed Registry
+integration together, then M1.4 all5acceptance packs and closure. No new questionnaire.
+
+## Previous checkpoint — 2026-09-28, M1.1 second verification / readiness revision 1
 
 Owner clarifies “2nd review” means the proposed verification, then rollout within
 the governing milestone framework. Explicitly requires a full relevant-repository

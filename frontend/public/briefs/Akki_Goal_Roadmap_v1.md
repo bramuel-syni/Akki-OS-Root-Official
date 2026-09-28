@@ -1,4 +1,4 @@
-# Akki works — goal-based delivery roadmap v1, readiness revision 1
+# Akki works — goal-based delivery roadmap v1, readiness revision 2
 
 **Date:** 28 September 2026  
 **Standing:** governing execution roadmap under the owner's instruction: “The plan you will develope is canon going forward.”  
@@ -6,7 +6,7 @@
 
 This roadmap replaces the previous percentage-led work ordering. It does not silently rewrite original source documents, waive existing rights, or declare any milestone passed. The owner's new direction is function first, with the integrity necessary to make the function dependable. All milestone acceptance runs below remain **PLANNED / NOT RUN**. The second verification has begun inside M1.1: source review and read-only application baseline checks are evidence of readiness work, not a passed census.
 
-**Revision reason — owner direction, 28 September 2026:** the “2nd review” is the proposed verification before rollout, not a separate approval programme. GPU connection receipts now exist. M1 must verify Registry with both GPU-hosted and non-GPU workers. Every milestone's readiness phase must read its complete existing implementation and dependencies to prevent rebuilding. The ten milestones and 51 acceptance packs are retained; this revision strengthens their work ordering and evidence, not their success claims.
+**Revision reason — owner direction, 28 September 2026:** the “2nd review” is the proposed verification before rollout, not a separate approval programme. GPU connection receipts now exist. M1 must verify Registry with both GPU-hosted and non-GPU workers. Every milestone's readiness phase must read its complete existing implementation and dependencies to prevent rebuilding. Revision 2 explicitly adds full owner UI/UX capture, frontend/backend integration and historical-gap closure reconciliation to that readiness and delivery. Designs must not be flattened or watered down. The ten milestones and 51 acceptance packs are retained; this revision strengthens their work ordering and evidence, not their success claims.
 
 ## 1. How execution will work
 
@@ -24,7 +24,10 @@ This is part of the first work package of M1–M10, not an eleventh milestone or
 2. **Read the actual implementations in full.** A filename match, symbol index, README, representative path or passing mock is insufficient. Read active and alternative implementations, fallback/refusal/recovery branches and tests; trace generated UI to its authoring source. Record inaccessible, unread, obsolete and unrelated material separately. Never call unread code absent or claim every repository file was read when only selected paths were inspected.
 3. **Trace outcome to effect.** Identify the ordinary user entry, governing authority, selected provider/worker, real effect, existing writer, receipt and every required consumer. Distinguish code present, wired, runtime available and live-proven. Record whether estate reads occur outside E1.
 4. **Choose the smallest justified change.** Reuse working code; connect an unwired implementation; repair a demonstrated defect; extend a real partial implementation. Propose new code only for a specific requirement not satisfied by any inspected candidate. No parallel Registry, queue, memory plane, execution lifecycle or UI replacement.
-5. **Attach the review to the existing milestone work record.** For each requirement: repository/pin + file/symbol + read status → active caller and dependencies → existing evidence/limits → reuse/wire/repair/build task → existing acceptance test ID. Carry shared reviews forward and inspect their changes; do not repeatedly rebuild or reread unchanged code without purpose.
+5. **Capture the full owner UI/UX within scope.** Read the supplied prototype's markup, state/interaction model and current frontend—not just screenshots, backend routes or representative components. Capture every page/section, visible field, explanatory note, comparison, status, navigation/selection/pagination, disclosure, drawer and failure/recovery state. Preserve the original experience, density, typography, layout and responsive behaviour. A missing provider requires an honest state in the designed surface, not a simplified replacement or removal of the surface.
+6. **Plan integration as implementation, not follow-up polish.** Map each designed field/control to its existing producer/command, authority, durable record, reader and ordinary user journey. Deliver frontend, backend and their effects together. A working API, present markup, read-only placeholder or non-overflowing screenshot does not alone close the function or prove UI fidelity.
+7. **Reconcile previous gaps and preserve closure.** For every prior gap in scope, retain its original ID, requirement, version/scope, existing fix, proof and residual work. A closed correction remains closed unless a specific reproduced regression, invalidated evidence or explicitly changed requirement justifies reopening it. Quarantining a false-success route closes that exposure, not the desired function; a new prototype is a named integration delta. No arbitrary re-audit timer, no repeatedly resetting completed work.
+8. **Attach the review to the existing milestone work record.** For each requirement: repository/pin + file/symbol + read status → owner UI/UX → active caller and dependencies → existing evidence/limits → prior-gap disposition → reuse/wire/repair/build task → existing acceptance test ID. Carry shared reviews forward and inspect their changes; do not repeatedly rebuild or reread unchanged code without purpose. Once the complete pinned outcome passes, close it and carry its evidence/regressions forward.
 
 Across the milestones, this accounts for the built product progressively. An unmapped implemented capability must receive an owning milestone or an explicit out-of-scope reason; it cannot disappear from the inventory. Readiness closes with the reusable implementation and exact delta identified, not with an unsupported assurance that everything works.
 
@@ -181,7 +184,25 @@ Scope is pinned before the run. Artists_app or other predeclared inaccessible so
 | Authenticated Registry/DAP census aliases agree. Owner Compute Connected is informational; GPU-spend rows remain unmeasured. Completed-card labels need exact identity handling. | M1.3: bind the same retained findings/compute evidence through actual owner components, not obsolete replacement pages; M1-T4. |
 | Registry receipt restoration exists; state custody uses workspace paths whose independent persistence has not been qualified. | M1.3/M1.4: prove durable storage and all-reader recovery; do not infer proven data loss or create another Registry; M1-T4/T5. |
 
-Current verification: read-only live application baseline plus 24 isolated offline contract tests. This is not a completed full-code readiness review, a live deep census, or M1 acceptance. Remaining relevant files and alternative implementations must be read before their work is changed. Detailed evidence: `notes/m1_second_verification/READINESS_REVIEW.md` and `/app/test_reports/iteration_54.json`.
+Current verification: targeted source review and live application baseline; revision 2 adds **16 scoped API checks and 24 isolated offline contract checks** plus current desktop/mobile owner-report comparison. API checks pass; **owner report fidelity FAILS**: all four exact tab labels and Coverage/Condition/Readiness are absent, replaced by Inventory/Execution outcome. No overflow does not mean fidelity. This is not a live deep census or M1 acceptance. Remaining relevant dependency/alternative reads are named in the work record before their changes.
+
+### M1.3 design and integration acceptance — owner screenshots reconciled
+
+Reference: latest retained Nexus HTML hash `0330a1712aad3b76dfe6f5e97207707fa35a1ed774a134313635a59ba0a67d3d`; owner screenshots show selected Census #4. The current application still renders older Registry markup and simplified report bindings. Restore the complete experience through the existing renderer, not a new dashboard:
+
+- **Every census:** original master/detail, selected state, status, actor/time/coverage, exclusions, five-per-page pagination and back navigation; real run identity and historical failures retained.
+- **Discovery Summary / GPU Spend / Conversation with Agent / Discovery Details:** exact tabs and their intended full content and interactions.
+- **Condition of what was read:** original distribution/legend and population basis. No invented proportions and no replacement of canonical quality classifications.
+- **Coverage:** Data held; Sources read in full; Share measured; Not read.
+- **Condition:** Duplicates; Degraded; Incomplete records; Stale; Schema drift.
+- **Readiness:** Share verified; Share carrying PII; Usable today; Things worth building.
+- Preserve all thirteen explanatory rows, values and comparison columns. Connect each through its existing producer, method/population/run evidence, durable writer and shared reader. Unknown values remain honest inside this complete design, not in a substituted report.
+- GPU Spend retains GPU hours, Wall time, GPUs in parallel and Sources swept, from actual run evidence—not fixed-eight-GPU arithmetic. Conversation retains actual question/reply/acknowledgement/resolution and same-run/recovery linkage. Discovery Details explains findings, source coverage/exclusions and reader/initiator, not merely a hash.
+- Include Data Connected disclosures/intelligence rail, source catalogue/profile, Connect, Compute Connected and recorded model inventory. Their existing approved UI is not removed because new model capability belongs to M4/M9 or commercial accounting to M7.
+
+**Historical closure:** current DAP fictional-data exposure, authenticated facts read and historical census4/date visibility have verified scoped corrections; preserve them. Off-E1 managed-source execution, deep measurements, truthful sub-connection coverage, conflicting asset writes, full durable source Registry joins, actual sensitivity, designed UI and compute/response bindings remain open. Do not confuse old CP endpoint/DOM checks with current end-to-end completion.
+
+Detailed readiness and all prior-gap dispositions: [M1 Registry readiness](Akki_Registry_Readiness_M1.md). Full Doc-9/Doc-10, DQ and trust-domain routing: [M1 clause map](Akki_Registry_Clause_Map_M1.md). These extend existing **M1-T1–T5**, especially integrated user acceptance T4; they do not add a milestone or weaken its gate.
 
 ## M2 — Grey Mirror and the Watch protect actual work end to end
 
