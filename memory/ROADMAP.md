@@ -1,5 +1,44 @@
 # Akki — current engineering order
 
+## CURRENT — 2026-09-28 descriptor review (supersedes historical statuses below)
+
+Owner supplied five descriptor schemas, admission schema, 18-entry inventory and
+NAS mount `/mnt/nfs-share`; asked what remains pending from them. Review only,
+no live actions. Report: `notes/descriptor_requirements_20260928/OWNER_PENDING.md`.
+Previous ~35% is not a reconciled completion metric. Missing work is not all
+owner-blocked, and schema delivery does not establish live signed admissions.
+
+### P0 — E1-owned
+- Map/pin supplied contracts against existing Registry/Principal/ledger/runtime;
+  populate inventory evidence locations and honest verification status.
+- Prove admitted worker separation, actual signed records and independent
+  inspection/custody; direct RDS/OBS SDK calls and same-pod subprocesses are not
+  sufficient proof. Preserve existing authority; no fixture trust roots.
+- Recover D-18 pilot/AKKI-TEST evidence and current scope before asking owner again.
+- Verify reported NAS mount on its actual host, read-only admitted-worker access
+  and bounded census route. No blanket SMB credential request.
+- Reconcile completed DigiCow/OBS/RMS aggregate reads with stale blocked labels.
+  DigiCow web-user setup is engineering work, not another AWS-key requirement.
+
+### P1 — remaining implementation / scoped external dependencies
+- Finish actual DQ/content registry, governed answers, usage/custody effects and
+  live end-to-end evidence. UI prototype fidelity remains mandatory.
+- Tenant authority identity drops: RMS three / DigiCow two per inventory.
+  Existing custody refs first; real missing documents via tenant custody only.
+- artists_app: narrow admin permission only if still denied after confirmed update.
+- Recover missing SV/ROC/deck source clauses and reconcile historical EP/A18.6/
+  BC3/BC4 policy rows. Seven historical decisions are not seven fresh demands.
+- Platform-principal MT-13 and separated SYNTHETIC test estates are E1 work.
+
+### P2 / parked
+- Remaining model/media/memory/Watch/commercial/recovery qualification.
+- Designer-updated HTML when provided, preserving existing experience architecture.
+- AISCA/GPU recovery remains explicitly parked, never a blanket non-GPU blocker.
+- Enhancement: owner/action/evidence columns on existing gap register, not another
+  invented percentage or a new UI architecture.
+
+## Historical checkpoints (retain for evidence; not current access status)
+
 CURRENT2026-09-28 05:23UTC: user requests requirement-ledcompletion and standalone
 designerbrief, NOTplacementagainstHTML. Delivered14capabilitystories/journeys,
 7endtoendscenarios,5additionalproposals andseparatehoneststatusreport asWord/Markdown

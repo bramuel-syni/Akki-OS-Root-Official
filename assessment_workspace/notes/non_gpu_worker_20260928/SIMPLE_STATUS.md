@@ -1,5 +1,13 @@
 # Akki — where we are, in plain language (2026-09-28)
 
+> **Historical report — corrected by the later descriptor review.** The ~35%
+> figure is an unreconciled planning estimate, not verified programme completion.
+> Revised remaining shares below do not sum to 100%. NAS is now owner-reported
+> mounted at `/mnt/nfs-share`; worker/read-only verification is E1 work before
+> requesting SMB changes. New requirements and actual owner dependencies:
+> `../descriptor_requirements_20260928/OWNER_PENDING.md`. Historical census counts
+> are not a fresh live check or proof of complete admitted-runtime compliance.
+
 ## What are we building?
 **Akki** is an autonomous system that:
 1. Safely connects to a client's **entire data estate** (databases, cloud storage, archives),

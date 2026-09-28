@@ -1,5 +1,31 @@
 # Akki implementation history
 
+## 2026-09-28 — descriptor requirements / owner-action reconciliation
+
+Reviewed files (20).zip and user NAS mount `/mnt/nfs-share`: six Draft2020-12
+schemas meta-validate; 18 workbook entries directly read, all location/status
+cells blank. No populated signed admissions arrived. Originals retained and
+hash-pinned in `notes/descriptor_requirements_20260928/OWNER_PENDING.md`.
+Separated tenant identity drops, conditional artists_app permission, missing
+source clauses and genuinely unruled policy from E1's descriptor/worker/custody/
+platform-principal/test-estate/DigiCow-access work. NAS now needs admitted-worker
+mount verification, not a blanket SMB-password request. GPU stays parked.
+Corrected historical overclaims: 24 clauses are not 24 documents; seven decision
+rows are not seven thresholds; ~35% is not verified completion and remaining
+shares sum to 93%. Direct SDK metadata reads/same-pod workers/hash receipt IDs do
+not establish native runtime admission or independent proof. No app/auth/UI/
+credential/config changes or new estate reads; no full regression rerun implied.
+Prior 761-line PRD preserved as `ARCHIVE_PRD_BEFORE_DESCRIPTOR_REVIEW.md` and
+current PRD condensed; earlier historical reports annotated, not erased.
+
+## 2026-09-28 06:40–07:45 UTC — historical non-GPU census implementation
+
+Prior PRD records non-GPU worker, jump router, live census DQ producer, RDS Data
+API and OBS dispatchers. Reported RMS 20 databases/1,015 tables/~257M estimated
+rows, DigiCow 239 tables/~5.9M estimated rows, and OBS 106 buckets. Last reported
+733 backend tests pass; not rerun during descriptor review. See archived PRD
+for exact checkpoints and caveats; admission/isolation qualification is open.
+
 ## 2026-09-28 05:23 UTC — standalone designer brief, honest progress, offline estate intake
 
 User clarifiedRegistryreadonlylink→census→specificextraction and askedstandalone

@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "akki://contracts/connection_descriptor/query/v1",
+  "title": "Akki query descriptor v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "descriptor_id",
+    "descriptor_class",
+    "tenant_id",
+    "estate_id",
+    "version",
+    "pinned_hash",
+    "recorded_by_principal_id",
+    "recorded_at",
+    "supersedes",
+    "status",
+    "verification_receipt_ref",
+    "source_descriptor_id",
+    "operations",
+    "fields",
+    "selection",
+    "limits"
+  ],
+  "properties": {
+    "descriptor_id": {
+      "type": "string",
+      "pattern": "^(src|qry|wrk|insp|cust)_[0-9a-f]{16}$"
+    },
+    "descriptor_class": {
+      "const": "query"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "estate_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pinned_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "recorded_by_principal_id": {
+      "type": "string"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "declared",
+        "verified",
+        "unreachable",
+        "retired"
+      ],
+      "description": "'verified' only after a platform-side connectivity test wrote a receipt; 'declared' is a claim."
+    },
+    "verification_receipt_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_descriptor_id": {
+      "type": "string"
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "census_metadata",
+          "census_profile",
+          "bounded_extraction"
+        ]
+      },
+      "minItems": 1
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed",
+        "excluded_by_signal"
+      ],
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excluded_by_signal": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "personal_data",
+              "credential",
+              "free_text",
+              "unassessed_classification"
+            ]
+          }
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition"
+      ],
+      "properties": {
+        "condition": {
+          "type": "string"
+        }
+      }
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "dimension",
+          "limit",
+          "unit",
+          "source"
+        ],
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "enum": [
+              "returned_records",
+              "scanned_records",
+              "bytes_read",
+              "media_duration",
+              "wall_clock",
+              "active_compute",
+              "spend"
+            ]
+          },
+          "limit": {
+            "type": "number",
+            "minimum": 0
+          },
+          "unit": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "owner_run_limit",
+              "estate_default",
+              "estate_binding_ceiling",
+              "R47_default"
+            ]
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "interface": {
+      "type": "string",
+      "enum": [
+        "replica",
+        "api",
+        "direct"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verification_receipt_ref": {
+            "type": "string",
+            "minLength": 8
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

@@ -1,5 +1,12 @@
 # Akki — non-GPU worker delivered + named-gap roadmap to completion
 
+> **Historical checkpoint, not the current owner-action list.** DigiCow/OBS
+> credentials subsequently arrived; NAS is now reported mounted at
+> `/mnt/nfs-share`. A same-pod subprocess does not prove the required separation
+> from E1. See `../descriptor_requirements_20260928/OWNER_PENDING.md` for current
+> ownership, source/decision counts and evidence limitations. The 24 missing
+> items are clauses across three source families, not 24 missing documents.
+
 **Date:** 2026-09-28 · **Owner ask:** "build a non-GPU worker (operates like the
 GPU worker)… can you read the estate… give me the plan with named gaps, how each
 gap contributes to the remaining % to completion, and a clear roadmap of what we
