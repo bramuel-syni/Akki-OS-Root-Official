@@ -196,3 +196,94 @@ def test_dispatch_passes_worker_receipt_through(tmp_path, monkeypatch):
     res = dispatch.execute_source("cr-dddddddddddd", "RMS", "rms_mysql", "h", time.time() + 60)
     assert res["status"] == "complete" and res["table_count"] == 119
     validate_output(res, "cr-dddddddddddd", "RMS", "rms_mysql")
+
+
+# --------------------------------------------------------------------------
+# jump_dispatch (SSH monkeypatched — no real network)
+# --------------------------------------------------------------------------
+
+from services.census_autonomy import jump_dispatch
+
+
+def test_jump_dispatch_reads_over_jump_and_isolates_failures(tmp_path, monkeypatch):
+    import time
+    monkeypatch.setenv("CENSUS_MAX_DATABASES", "100")
+    monkeypatch.setenv("CENSUS_AUTONOMY_STATE_DIR", str(tmp_path / "autonomy"))
+    conns = [{"host": "good", "port": 3306, "user": "u", "password": "p", "label": "good"},
+             {"host": "bad", "port": 3306, "user": "u", "password": "p", "label": "bad"}]
+    cpath = _connector_file(tmp_path, conns)
+    monkeypatch.setattr(jump_dispatch, "resolve_connector",
+                        lambda r, t, s, h: (cpath, [{"label": "good"}, {"label": "bad"}]))
+    monkeypatch.setattr(jump_dispatch, "_jump_config", lambda: {"jump_host": "x", "jump_user": "u", "jump_password": "p"})
+
+    class _Client:
+        def close(self): pass
+
+    monkeypatch.setattr(jump_dispatch, "_connect_jump", lambda cfg, t: _Client())
+
+    def fake_run(client, cmd, timeout):
+        if "'good'" in cmd or " good " in cmd:
+            return ("2\t119\t2198643" if "COUNT(DISTINCT" in cmd else "news_vault,razuna"), ""
+        return ("ERROR 2003 (HY000): timeout", "") if "COUNT(DISTINCT" in cmd else ("", "")
+
+    monkeypatch.setattr(jump_dispatch, "_run", fake_run)
+    res = jump_dispatch.execute_source("cr-eeeeeeeeeeee", "RMS", "rms_mysql", "h", time.time() + 60)
+    assert res["status"] == "complete"
+    assert res["database_count"] == 2 and res["table_count"] == 119 and res["row_count_estimate"] == 2198643
+    validate_output(res, "cr-eeeeeeeeeeee", "RMS", "rms_mysql")
+
+
+def test_jump_dispatch_blocks_on_connector_refusal(tmp_path, monkeypatch):
+    import time
+    monkeypatch.setenv("CENSUS_MAX_DATABASES", "100")
+    monkeypatch.setenv("CENSUS_AUTONOMY_STATE_DIR", str(tmp_path / "autonomy"))
+
+    def _refuse(r, t, s, h):
+        raise reg.ConnectorResolutionError("NATIVE_SECRET_RESOLVER_UNAVAILABLE")
+
+    monkeypatch.setattr(jump_dispatch, "resolve_connector", _refuse)
+    res = jump_dispatch.execute_source("cr-ffffffffffff", "DIGICOW", "digicow_rds", "h", time.time() + 60)
+    assert res["status"] == "blocked"
+    assert res["reason_code"] == "AKKI_CONNECTOR_NATIVE_SECRET_RESOLVER_UNAVAILABLE"
+
+
+# --------------------------------------------------------------------------
+# census_dq_producer (live producer off real census detail)
+# --------------------------------------------------------------------------
+
+from services.census_autonomy import census_dq_producer as dq
+
+
+def test_dq_producer_banks_actionable_item_for_blocked_host(tmp_path, monkeypatch):
+    # Fake transport detail manifest with one complete + one denied host.
+    cursor = tmp_path / "dispatch"
+    cursor.mkdir()
+    monkeypatch.setattr(dq.store, "cursor_dir", lambda: cursor)
+    (cursor / "transport-cr-111111111111-rms_mysql.json").write_text(json.dumps({
+        "source_id": "rms_mysql",
+        "connections": [
+            {"label": "razuna", "status": "complete", "database_count": 2},
+            {"label": "artists_app", "status": "blocked", "reason_code": "ERROR 1045 (28000)"},
+        ]}))
+    banked = []
+    monkeypatch.setattr(dq, "bank_response_required_item",
+                        lambda **kw: banked.append(kw) or f"rri-{len(banked)}")
+    monkeypatch.setattr(dq, "_existing_signatures", lambda t: set())
+    ids = dq.emit_from_run("cr-111111111111", "RMS")
+    assert len(ids) == 1
+    item = banked[0]
+    assert item["refusal_code"] == "BLOCKED_SURFACE_UNREACHABLE"
+    assert "Grant read" in item["reason_text"] and "artists_app" in item["reason_text"]
+    assert item["tenant_id"] == "RMS"
+
+
+def test_dq_producer_skips_fully_complete_run(tmp_path, monkeypatch):
+    cursor = tmp_path / "dispatch"
+    cursor.mkdir()
+    monkeypatch.setattr(dq.store, "cursor_dir", lambda: cursor)
+    (cursor / "transport-cr-222222222222-rms_mysql.json").write_text(json.dumps({
+        "source_id": "rms_mysql",
+        "connections": [{"label": "razuna", "status": "complete", "database_count": 2}]}))
+    monkeypatch.setattr(dq, "bank_response_required_item", lambda **kw: "rri-x")
+    monkeypatch.setattr(dq, "_existing_signatures", lambda t: set())
+    assert dq.emit_from_run("cr-222222222222", "RMS") == []

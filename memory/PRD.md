@@ -56,6 +56,50 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
+## CHECKPOINT — 2026-09-28 07:10 UTC, JUMP-ROUTED FULL ESTATE READ + LIVE DQ
+
+Owner replies to the four next-actions: (DigiCow) "the key is in the sheet";
+(RMS hosts) "they are open, ignore NOT YET UHURU"; (OBS/NAS) "through the jump
+server, OBS is Huawei"; (DQ/content registry) "Yes".
+
+FINDINGS + DELIVERED (verified, unmocked):
+- Reused existing infra (no rebuild): `services.connect.rds_data_submit` (DigiCow
+  RDS Data API), `services/data_source/obs_huawei_audio_read_only/` (OBS adapter),
+  `services/audio_poc/readonly_nas_guard.py` (NAS), `response_required_queue` +
+  `data_source_adapter` (producer surface).
+- JUMP SERVER unblock: the authoritative estate guide
+  (`assessment_workspace/canon/drops/20260914_rms_creds/RMS_Connection_Creds.xlsx`)
+  provides a Jump Server `159.138.173.250` (root) on the internal 10.10.x network
+  with mysql+smbclient. It authenticates from the pod. Staged jump+NAS creds to
+  `/app/backend/estate_keys/owner_20260928/estate_access.json` (0600, gitignored).
+- Built jump-routed census `services/census_autonomy/jump_dispatch.py`
+  (`AKKI_CENSUS_EXECUTION_MODE=non_gpu_jump`, `AKKI_CENSUS_JUMP_CONFIG`,
+  `AKKI_CENSUS_JUMP_KNOWN_HOSTS` in .env). Runs the aggregate-only read ON the
+  admitted jump host via its mysql client — pod still never opens the source
+  socket. FULL RMS MySQL estate read: **20 databases, 1,015 tables, ~255.5M rows**
+  across 6 of 7 hosts (iebc_forms alone = 10 db/632 tbl/244M rows), tenant-scoped
+  to RMS, COMPLETE over HTTP. `artists_app` blocked by owner-side GRANT
+  (bramuel@jump-IP denied) — surfaced as an actionable DQ item.
+- Live DQ + content registry (item 4): `register_outcome` writes a live asset
+  record per completed source; new `census_dq_producer.emit_from_run` (wired
+  additively + guarded into operational_runner) banks owner-answerable unblock
+  actions for every host the REAL census could not read (idempotent per run/host).
+- Tests: 727 backend pass (710 + 17 new non-GPU worker/jump/DQ tests), 17 gated
+  skips, 0 failures. No regressions.
+
+STILL BLOCKED ON OWNER (not code):
+- DigiCow (A-5): the sheet holds only the SECRET ARN (a pointer to creds in AWS),
+  NOT an AWS access key. No AWS identity exists in the pod (no instance role, no
+  held creds). Need an AWS access key id + secret (IAM: rds-data:ExecuteStatement
+  on the cluster + secretsmanager:GetSecretValue on the secret ARN), OR the
+  resolved endpoint/user/pass. Connector (`rds_data_submit`) is ready.
+- OBS (A-3): need HUAWEI_OBS_AK / SK / ENDPOINT (the "Huawei Creds" sheet contains
+  only MySQL rows; no OBS AK/SK present despite the guide's note).
+- NAS (A-4): SMB 445/139 reachable from jump; Synology account fails SMB logon —
+  SMB service/password needs owner confirmation (web-login password ≠ SMB).
+- artists_app: owner-side MySQL GRANT for the census account at the jump egress IP.
+
+
 ## CURRENT checkpoint — 2026-09-28 06:40 UTC, NON-GPU WORKER BUILT + LIVE ESTATE READ
 
 Owner instruction: "no non-gpu worker. build one, operates similar to the gpu

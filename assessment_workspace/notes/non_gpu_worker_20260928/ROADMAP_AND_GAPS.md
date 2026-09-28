@@ -92,13 +92,25 @@ claimed, not even statically confirmed).
 
 ### Area A named gaps (the one we just moved — finish it first)
 - **A-1 DONE:** RMS MySQL census — connected host read live, tenant-scoped. ✅
-- **A-2:** Connect the remaining 6 RMS MySQL hosts as they come "UHURU" (config
-  only — worker already handles them).
-- **A-3:** RMS OBS (object archive) driver — needs Huawei OBS list capability.
-- **A-4:** RMS NAS / broadcast archive driver — needs CIFS/SMB walk capability.
-- **A-5:** DigiCow RDS census — **blocked on AWS credential** (secret ARN resolution).
-- **A-6:** content_registry + data_cleanliness live producers over real census
-  output (currently PARTIAL/UNVERIFIED, mocked).
+- **A-2 DONE (jump-routed):** Full RMS MySQL estate read via the owner's Jump
+  Server (`159.138.173.250`). 6 of 7 hosts read live → **20 databases, 1,015
+  tables, ~255.5M estimated rows**, tenant-scoped to RMS, verified over HTTP.
+  Mode `AKKI_CENSUS_EXECUTION_MODE=non_gpu_jump`. Only `artists_app` is blocked
+  by an owner-side MySQL GRANT (`bramuel@159.138.173.250` denied) — surfaced as an
+  actionable DQ item. ✅
+- **A-3:** RMS OBS (Huawei object archive) — adapter shape exists
+  (`services/data_source/obs_huawei_audio_read_only/`); needs `HUAWEI_OBS_AK/SK/
+  ENDPOINT` (not in custody yet).
+- **A-4:** RMS NAS / broadcast archive (Synology, 16 channels, share OFFAIRRECS)
+  via jump `smbclient` — SMB ports 445/139 reachable from jump; the provided
+  Synology account fails SMB logon (SMB service/password needs owner confirmation).
+- **A-5:** DigiCow RDS census — **blocked on AWS credential**. Reuses the existing
+  `services.connect.rds_data_submit` Data-API connector; the workbook has only the
+  secret ARN (a pointer), no AWS access key.
+- **A-6 DONE (live):** DQ + content-registry producers now run off REAL census
+  output — `register_outcome` writes a live asset record per completed source, and
+  `census_dq_producer` banks owner-answerable unblock actions for every host the
+  real census could not read (e.g. the artists_app GRANT). ✅
 
 ---
 

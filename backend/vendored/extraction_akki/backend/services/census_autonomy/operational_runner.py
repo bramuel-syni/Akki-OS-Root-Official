@@ -50,7 +50,10 @@ def run_bounded_census(job, job_deadline, execute=None):
             current.update(stage="executing", started_at=store.now(), deadline=job_deadline)
             store.save(current)
             if execute is None:
-                if os.environ.get("AKKI_CENSUS_EXECUTION_MODE") == "non_gpu_worker":
+                _mode = os.environ.get("AKKI_CENSUS_EXECUTION_MODE")
+                if _mode == "non_gpu_jump":
+                    from services.census_autonomy.jump_dispatch import execute_source
+                elif _mode == "non_gpu_worker":
                     from services.census_autonomy.non_gpu_dispatch import execute_source
                 else:
                     from services.census_autonomy.remote_dispatch import execute_source
@@ -74,6 +77,13 @@ def run_bounded_census(job, job_deadline, execute=None):
                 store.save(current)
             payload = {"protocol": PROTOCOL, "outcomes": outcomes, "registry_receipts": registry,
                        "lawful_basis_sha256": admit_hash, "principal_id": current["principal_id"]}
+            # Live DQ producer: bank owner-answerable unblock actions for real per-host
+            # census gaps. Additive, guarded — never fails the run.
+            try:
+                from services.census_autonomy.census_dq_producer import emit_from_run
+                emit_from_run(run_id, tenant)
+            except Exception:
+                pass
             outcome_class = classify_payload(payload)
             # The same sealed census writer owns durable results; the cursor is not a second registry.
             receipt = engine._write_result_receipt(run_id, tenant, payload)

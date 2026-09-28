@@ -1,0 +1,41 @@
+{
+  "census_run_id": "cr-eeeeeeeeeeee",
+  "source_id": "rms_mysql",
+  "at_utc": "2026-09-28T10:41:18.697657+00:00",
+  "execution_location": "non_gpu_jump",
+  "stage": "jump",
+  "estate_manifest": [
+    {
+      "label": "good"
+    },
+    {
+      "label": "bad"
+    }
+  ],
+  "route": "jump_server",
+  "worker_status": "complete",
+  "connections_total": 2,
+  "connections_read": 1,
+  "connections": [
+    {
+      "index": 0,
+      "host_fingerprint": "770e607624d6",
+      "label": "good",
+      "status": "complete",
+      "database_count": 2,
+      "table_count": 119,
+      "row_count_estimate": 2198643,
+      "schemas": [
+        "news_vault",
+        "razuna"
+      ]
+    },
+    {
+      "index": 1,
+      "host_fingerprint": "2f05d4b689d2",
+      "label": "bad",
+      "status": "blocked",
+      "reason_code": "ERROR 2003 (HY000)"
+    }
+  ]
+}

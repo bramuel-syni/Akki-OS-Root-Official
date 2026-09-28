@@ -1,0 +1,13 @@
+{
+  "banked_at_utc": "2026-09-28T10:40:21.133409+00:00",
+  "census_run_id": "cr-d4375952f097",
+  "decision_timestamp_utc": "2026-09-28T10:40:21.133373+00:00",
+  "item_id": "rri-8152bfd0d041470c",
+  "reason_text": "[UNBLOCK action_class=host_reachability] Grant read (SELECT + PROCESS) to the census account on 'artists_app' for the estate census route's source IP, then re-run the census.\nsource=rms_mysql host=artists_app census_reason=ERROR 1045 (28000)",
+  "refusal_code": "BLOCKED_SURFACE_UNREACHABLE",
+  "resolution_text": null,
+  "resolved_at_utc": null,
+  "resolver_id": null,
+  "state": "PENDING",
+  "tenant_id": "RMS"
+}

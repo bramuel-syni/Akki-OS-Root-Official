@@ -1,0 +1,143 @@
+{
+  "census_run_id": "cr-d4375952f097",
+  "source_id": "rms_mysql",
+  "at_utc": "2026-09-28T10:36:56.766832+00:00",
+  "execution_location": "non_gpu_jump",
+  "stage": "jump",
+  "estate_manifest": [
+    {
+      "label": "iebc_forms",
+      "host_fingerprint": "cd4c5390fb10",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "artists_app",
+      "host_fingerprint": "cd57802e1444",
+      "estate_status": "OK"
+    },
+    {
+      "label": "viupay",
+      "host_fingerprint": "a0a497b29fc3",
+      "estate_status": "OK"
+    },
+    {
+      "label": "citizen_digital",
+      "host_fingerprint": "3de193c7b51c",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "citizen_digital",
+      "host_fingerprint": "318772a8c6d2",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "citizen-pulse",
+      "host_fingerprint": "b6ff240ded83",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+      "host_fingerprint": "8512835c0ceb",
+      "estate_status": "NOT YET UHURU"
+    }
+  ],
+  "route": "jump_server",
+  "worker_status": "complete",
+  "connections_total": 7,
+  "connections_read": 6,
+  "connections": [
+    {
+      "index": 0,
+      "host_fingerprint": "cd4c5390fb10",
+      "label": "iebc_forms",
+      "status": "complete",
+      "database_count": 10,
+      "table_count": 632,
+      "row_count_estimate": 244123579,
+      "schemas": [
+        "ecommerce_tafaria",
+        "iebc_forms",
+        "kra_reports",
+        "miniapps",
+        "viupay",
+        "viupay_agent_staging",
+        "viusasa_artists",
+        "viusasa_miniapps_prod",
+        "viusasa_staging",
+        "viutickets"
+      ]
+    },
+    {
+      "index": 1,
+      "host_fingerprint": "cd57802e1444",
+      "label": "artists_app",
+      "status": "blocked",
+      "reason_code": "ERROR 1045 (28000)"
+    },
+    {
+      "index": 2,
+      "host_fingerprint": "a0a497b29fc3",
+      "label": "viupay",
+      "status": "complete",
+      "database_count": 3,
+      "table_count": 123,
+      "row_count_estimate": 3094681,
+      "schemas": [
+        "kra_reports",
+        "viupay",
+        "viutickets"
+      ]
+    },
+    {
+      "index": 3,
+      "host_fingerprint": "3de193c7b51c",
+      "label": "citizen_digital",
+      "status": "complete",
+      "database_count": 1,
+      "table_count": 17,
+      "row_count_estimate": 987599,
+      "schemas": [
+        "local"
+      ]
+    },
+    {
+      "index": 4,
+      "host_fingerprint": "318772a8c6d2",
+      "label": "citizen_digital",
+      "status": "complete",
+      "database_count": 1,
+      "table_count": 47,
+      "row_count_estimate": 4580776,
+      "schemas": [
+        "db_visitors"
+      ]
+    },
+    {
+      "index": 5,
+      "host_fingerprint": "b6ff240ded83",
+      "label": "citizen-pulse",
+      "status": "complete",
+      "database_count": 3,
+      "table_count": 77,
+      "row_count_estimate": 581733,
+      "schemas": [
+        "citizen-pulse",
+        "correspondents",
+        "saa"
+      ]
+    },
+    {
+      "index": 6,
+      "host_fingerprint": "8512835c0ceb",
+      "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+      "status": "complete",
+      "database_count": 2,
+      "table_count": 119,
+      "row_count_estimate": 2198643,
+      "schemas": [
+        "news_vault",
+        "razuna"
+      ]
+    }
+  ]
+}
