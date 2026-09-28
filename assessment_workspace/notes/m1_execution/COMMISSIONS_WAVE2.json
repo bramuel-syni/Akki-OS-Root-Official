@@ -1,0 +1,44 @@
+[
+  {
+    "tenant_id": "RMS",
+    "census_run_id": "cr-f8086f961dcd",
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "source_ids": [
+      "rms_mysql"
+    ],
+    "status": "PENDING",
+    "stage": "queued",
+    "created_at": "2026-09-28T18:51:11.523133+00:00",
+    "outcomes": [],
+    "worker_id": "non_gpu_jump",
+    "duplicate": false
+  },
+  {
+    "tenant_id": "RMS",
+    "census_run_id": "cr-7fdf4bcb0195",
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "source_ids": [
+      "rms_nas"
+    ],
+    "status": "PENDING",
+    "stage": "queued",
+    "created_at": "2026-09-28T18:51:11.656483+00:00",
+    "outcomes": [],
+    "worker_id": "non_gpu_jump",
+    "duplicate": false
+  },
+  {
+    "tenant_id": "RMS",
+    "census_run_id": "cr-41a031a64351",
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "source_ids": [
+      "rms_obs"
+    ],
+    "status": "PENDING",
+    "stage": "queued",
+    "created_at": "2026-09-28T18:51:11.834794+00:00",
+    "outcomes": [],
+    "worker_id": "akki-vm",
+    "duplicate": false
+  }
+]

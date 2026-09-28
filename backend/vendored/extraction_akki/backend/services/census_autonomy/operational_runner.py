@@ -60,7 +60,7 @@ def run_bounded_census(job, job_deadline, execute=None):
                     try:
                         value = execute(run_id, tenant, source, admit_hash, job_deadline)
                         outcome = validate_output(value, run_id, tenant, source)
-                        if outcome["status"] == "complete":
+                        if outcome["status"] in {"complete", "partial"}:
                             registry.append(register_outcome(outcome))
                     except Exception as exc:
                         outcome = {"source_id": source, "status": "blocked", "reason_code": "EXECUTION_NOT_VERIFIED",
@@ -69,6 +69,8 @@ def run_bounded_census(job, job_deadline, execute=None):
                 current = store.get(run_id, tenant) or current
                 current["outcomes"] = outcomes
                 store.save(current)
+            from services.census_autonomy.deep_response import publish
+            publish(current,admit_hash)
             payload = {"protocol": PROTOCOL, "outcomes": outcomes, "registry_receipts": registry,
                        "lawful_basis_sha256": admit_hash, "principal_id": current["principal_id"]}
             # Live DQ producer: bank owner-answerable unblock actions for real per-host
@@ -85,7 +87,9 @@ def run_bounded_census(job, job_deadline, execute=None):
                 os.fsync(persisted.fileno())
             if json.loads(receipt.read_text())["payload"] != payload:
                 raise ValueError("Result persistence could not be verified.")
-            current.update(status="COMPLETE" if outcome_class == "COMPLETE" else "REFUSED",
+            from services.census_autonomy.registry_durability import preserve_result
+            preserve_result(receipt)
+            current.update(status="COMPLETE" if outcome_class == "COMPLETE" else "PARTIAL" if outcome_class == "PARTIAL" else "REFUSED",
                            stage=outcome_class.lower(), finished_at=store.now(),
                            proof_ref=f"census_autonomy_state/results/{receipt.name}",
                            proof_sha256=hashlib.sha256(receipt.read_bytes()).hexdigest())

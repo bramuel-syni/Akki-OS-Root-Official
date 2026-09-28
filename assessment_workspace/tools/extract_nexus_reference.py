@@ -34,7 +34,9 @@ def main():
     (SOURCE / 'intake.json').write_text(json.dumps(intake, indent=2) + '\n')
     all_nodes = list(walk(nodes))
     gates = {'work': 'isTasksActive', 'company': 'isMonPerformance', 'board': 'isBoard360',
-             'mirror': 'isGreyMirror', 'mirrorRecord': 'gmIsFullRecord', 'watch': 'isWatchGroup', 'drawer': 'dwOpen'}
+             'mirror': 'isGreyMirror', 'mirrorRecord': 'gmIsFullRecord', 'watch': 'isWatchGroup', 'drawer': 'dwOpen',
+             'registry':'isRegEstate', 'censusHistory':'measuredPageOpen', 'sourceCatalogue':'estateFullOpen',
+             'connectDrawer':'connectOpen', 'modelFull':'mrFullOpen', 'sourceProfile':'efProfileOpen', 'modelDetail':'mrDetailDrawer', 'censusResponse':'censusPauseOpen', 'computeDetail':'loadOpen'}
     fragments = {key: next(n for n in all_nodes if n['tag'] == 'sc-if' and n['attributes'].get('value') == '{{ ' + gate + ' }}')
                  for key, gate in gates.items()}
     fragments['header'] = next(n for n in all_nodes if n['line'] == 31 and n['tag'] == 'div')

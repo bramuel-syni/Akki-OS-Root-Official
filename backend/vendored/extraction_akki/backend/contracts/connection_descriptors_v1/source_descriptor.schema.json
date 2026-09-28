@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "akki://contracts/connection_descriptor/source/v1",
+  "title": "Akki source descriptor v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "descriptor_id",
+    "descriptor_class",
+    "tenant_id",
+    "estate_id",
+    "version",
+    "pinned_hash",
+    "recorded_by_principal_id",
+    "recorded_at",
+    "supersedes",
+    "status",
+    "verification_receipt_ref",
+    "kind",
+    "endpoint",
+    "scope",
+    "credential_ref",
+    "custody_class_default",
+    "connector_registry_id"
+  ],
+  "properties": {
+    "descriptor_id": {
+      "type": "string",
+      "pattern": "^(src|qry|wrk|insp|cust)_[0-9a-f]{16}$"
+    },
+    "descriptor_class": {
+      "const": "source"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "estate_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pinned_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "recorded_by_principal_id": {
+      "type": "string"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "declared",
+        "verified",
+        "unreachable",
+        "retired"
+      ],
+      "description": "'verified' only after a platform-side connectivity test wrote a receipt; 'declared' is a claim."
+    },
+    "verification_receipt_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "postgresql",
+        "mysql",
+        "gaussdb",
+        "sqlserver",
+        "object_store",
+        "nas_smb",
+        "nas_nfs",
+        "http_api",
+        "file_export"
+      ]
+    },
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "host_ref",
+        "port",
+        "database_or_bucket"
+      ],
+      "properties": {
+        "host_ref": {
+          "type": "string",
+          "description": "Host by custody reference or DNS name; never an IP in a document."
+        },
+        "port": {
+          "type": "integer"
+        },
+        "database_or_bucket": {
+          "type": "string"
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemas_or_prefixes",
+        "excluded"
+      ],
+      "properties": {
+        "schemas_or_prefixes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excluded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "credential_ref": {
+      "type": "string",
+      "pattern": "^cust://[a-z0-9_-]+/[A-Za-z0-9._-]+$",
+      "description": "Custody-store reference. Names a secret without revealing it; knowledge of the reference grants no access (LA-9)."
+    },
+    "custody_class_default": {
+      "type": "string",
+      "enum": [
+        "uncontrolled",
+        "controlled",
+        "special_category",
+        "commercial_confidential",
+        "submitted_in_confidence",
+        "public"
+      ]
+    },
+    "connector_registry_id": {
+      "type": "string"
+    },
+    "read_only": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verification_receipt_ref": {
+            "type": "string",
+            "minLength": 8
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

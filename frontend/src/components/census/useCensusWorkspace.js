@@ -21,14 +21,17 @@ export function useCensusWorkspace() {
   const [loading, setLoading] = useState(true);
   const pendingRead = useRef(null);
   const reload = useCallback(async () => {
+    if(pendingRead.current && !pendingRead.current.signal.aborted && pendingRead.current.token === sessionStorage.getItem('akki_access_token')) return;
     pendingRead.current?.abort();
     const controller = new AbortController();
     pendingRead.current = controller;
     const token = sessionStorage.getItem('akki_access_token');
+    controller.token = token;
     if (!token) {
       setData(null);
       setError(Object.assign(new Error('Sign in to view your admitted estate.'), { status: 401 }));
       setLoading(false);
+      pendingRead.current=null;
       return;
     }
     const current = () => !controller.signal.aborted && sessionStorage.getItem('akki_access_token') === token;
@@ -37,7 +40,7 @@ export function useCensusWorkspace() {
       const overview = await censusRequest('/overview', { signal: controller.signal });
       if (current()) { setData(overview); setError(null); }
     } catch (e) { if (current()) { setError(e); setData(null); } }
-    finally { if (current()) setLoading(false); }
+    finally { if (current()) setLoading(false); if(pendingRead.current===controller)pendingRead.current=null; }
   }, []);
   useEffect(() => {
     reload();

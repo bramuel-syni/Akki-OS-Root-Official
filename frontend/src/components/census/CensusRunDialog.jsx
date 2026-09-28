@@ -8,12 +8,13 @@ export function CensusRunDialog({ open, onClose, data, onQueued }) {
   const [key, setKey] = useState(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [worker, setWorker] = useState('');
   async function submit(event) {
     event.preventDefault(); setBusy(true); setError('');
     const submissionKey = key || crypto.randomUUID();
     setKey(submissionKey);
     try {
-      await censusRequest('/run', { method: 'POST', body: JSON.stringify({ source_ids: selected, idempotency_key: submissionKey }) });
+      await censusRequest('/run', { method: 'POST', body: JSON.stringify({ source_ids: selected, idempotency_key: submissionKey, ...(worker?{worker_id:worker}:{}) }) });
       setKey(null); setSelected([]); onQueued(); onClose();
     } catch (e) { setError(e.message); }
     finally { setBusy(false); }
@@ -21,7 +22,7 @@ export function CensusRunDialog({ open, onClose, data, onQueued }) {
   return <Dialog open={open} onOpenChange={value => !busy && !value && onClose()}>
     <DialogContent data-testid="census-run-dialog" className="census-dialog">
       <DialogHeader><DialogTitle data-testid="census-run-title">Run census</DialogTitle>
-        <DialogDescription data-testid="census-run-boundary">Read-only, bounded metadata checks. Source data stays within Akki’s execution perimeter.</DialogDescription></DialogHeader>
+        <DialogDescription data-testid="census-run-boundary">Read-only enumeration and declared sampled checks on external workers. Source content remains at the estate.</DialogDescription></DialogHeader>
       <div className="census-tenant" data-testid="census-run-tenant"><ShieldCheck size={16} />{data.tenant_id} · identity-bound</div>
       <form onSubmit={submit} data-testid="census-run-form">
         <fieldset disabled={busy}><legend>Sources</legend>
@@ -33,6 +34,12 @@ export function CensusRunDialog({ open, onClose, data, onQueued }) {
             <span data-testid={`census-source-label-${source.source_id}`}>{source.label}<small>{source.scope}</small></span>
           </label>)}
         </fieldset>
+        <label data-testid="census-worker-label">Worker
+          <select data-testid="census-worker-select" value={worker} disabled={busy} onChange={e=>{setWorker(e.target.value);setKey(null);}}>
+            <option value="">Source’s registered route</option>
+            {(data.compute_resources||[]).map(w=><option key={w.runtime_id} value={w.runtime_id}>{w.runtime_id}</option>)}
+          </select>
+        </label>
         <p className="census-caption" data-testid="census-run-limit">No content extraction, quality score or release permission is implied. Unavailable sources return a recorded blocked outcome.</p>
         {error && <p data-testid="census-run-error" role="alert" className="census-error">{error}</p>}
         <div className="census-actions"><button data-testid="census-run-cancel" type="button" className="census-button" disabled={busy} onClick={onClose}>Cancel</button>

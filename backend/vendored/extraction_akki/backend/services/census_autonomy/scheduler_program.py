@@ -35,6 +35,7 @@ import os
 import signal
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
 from typing import Final
 
 # NOTE: These imports are additive over sealed modules. All are read-only
@@ -105,6 +106,10 @@ def main() -> int:
     """
     _install_signal_handlers()
     log = _configure_logging()
+    from services.census_autonomy.registry_durability import collection
+    collection()
+    inflight={}
+    pool=ThreadPoolExecutor(max_workers=int(os.environ['CENSUS_SCHEDULER_MAX_INFLIGHT']),thread_name_prefix='census-control')
 
     log.info(
         "census_scheduler starting · poll_interval=%ds · job_max=%ds · "
@@ -121,30 +126,21 @@ def main() -> int:
             log.exception("get_pending_scheduled_runs failed: %s", exc)
             pending = ()
 
-        if pending:
-            job = pending[0]
-            log.info(
-                "picking up census job census_run_id=%s tenant=%s "
-                "trigger=%s",
-                job.get("census_run_id"),
-                job.get("tenant_id"),
-                job.get("trigger"),
-            )
-            job_deadline = time.time() + MAX_JOB_WALL_CLOCK_SECONDS
-            try:
-                run_bounded_census(job, job_deadline=job_deadline)
-            except Exception as exc:  # noqa: BLE001  degradation-honesty
-                # Refusal path stays honest: engine records the refusal
-                # row; the loop must not stall.
-                log.exception(
-                    "run_bounded_census failed for census_run_id=%s: %s",
-                    job.get("census_run_id"),
-                    exc,
-                )
-        else:
-            time.sleep(SLEEP_BETWEEN_POLLS_SECONDS)
+        for identity,future in list(inflight.items()):
+            if future.done():
+                try: future.result()
+                except Exception as exc: log.error('Census %s raised %s; retained cursor is recoverable',identity,type(exc).__name__)
+                del inflight[identity]
+        for job in pending:
+            identity=job.get('census_run_id')
+            if identity in inflight: continue
+            if len(inflight)>=int(os.environ['CENSUS_SCHEDULER_MAX_INFLIGHT']): break
+            log.info('Dispatching committed census %s for tenant %s',identity,job.get('tenant_id'))
+            inflight[identity]=pool.submit(run_bounded_census,job,job_deadline=time.time()+MAX_JOB_WALL_CLOCK_SECONDS)
+        time.sleep(SLEEP_BETWEEN_POLLS_SECONDS)
 
     log.info("census_scheduler shutting down cleanly on signal")
+    pool.shutdown(wait=True)
     return 0
 
 

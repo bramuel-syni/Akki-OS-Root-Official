@@ -9,7 +9,7 @@ import pytest
 import requests
 
 
-BASE_URL = os.environ.get("REACT_APP_BACKEND_URL", "").rstrip("/")
+BASE_URL = os.environ["REACT_APP_BACKEND_URL"].rstrip("/")
 
 OPERATOR_EMAIL = "demo.operator@demo.rms.example.com"
 OPERATOR_PASSWORD = "demo-operator-pw"
@@ -153,13 +153,27 @@ def test_t05_estimated_counts_and_no_sensitive_leak(operator_headers):
     assert record4["database_count"] == 41
     assert record4["table_count"] == 2642
     assert record4["row_count_estimate"] == 428786937
-    assert census.get("volume_bytes") is None
+    if census.get('source_details'):
+        assert type(census.get('volume_bytes')) is int and census['volume_bytes'] >= 0
+        assert census['report']['metrics']['data_held']['status'] == 'measured'
+    else:
+        assert census.get("volume_bytes") is None
     assert census.get("quality_percent") is None
     assert census.get("licensed_percent") is None
 
     serialized = json.dumps(payload).lower()
-    forbidden = ["password", "cluster_host", "select ", "information_schema", "credentials", "private_ip"]
+    # A schema can legitimately contain password-named columns/tables or a
+    # role.password signal. Those are metadata, not a returned credential value.
+    forbidden = ["cluster_host", "select ", "information_schema", "private_ip"]
     assert all(marker not in serialized for marker in forbidden)
+    forbidden_keys = {'password','aws_access_key_id','aws_secret_access_key','access_key_id','secret_access_key','raw_rows','sample_values','row_values','sql_trace'}
+    def assert_metadata_only(value):
+        if isinstance(value,dict):
+            assert not forbidden_keys.intersection(value)
+            for child in value.values(): assert_metadata_only(child)
+        elif isinstance(value,list):
+            for child in value: assert_metadata_only(child)
+    assert_metadata_only(payload)
 
 
 def test_t06_analyst_cannot_run(analyst_headers):

@@ -1,0 +1,38 @@
+[
+  {
+    "runtime_id": "non_gpu_jump",
+    "exit_code": 0,
+    "packages": [
+      "pydantic==2.13.5",
+      "pymysql==1.2.3",
+      "boto3==1.43.99",
+      "langdetect==1.0.9"
+    ],
+    "status": "prepared",
+    "diagnostic": ""
+  },
+  {
+    "runtime_id": "akki-vm",
+    "exit_code": 0,
+    "packages": [
+      "pydantic==2.13.5",
+      "pymysql==1.2.3",
+      "boto3==1.43.99",
+      "langdetect==1.0.9"
+    ],
+    "status": "prepared",
+    "diagnostic": ""
+  },
+  {
+    "runtime_id": "akki-vm-ii",
+    "exit_code": 0,
+    "packages": [
+      "pydantic==2.13.5",
+      "pymysql==1.2.3",
+      "boto3==1.43.99",
+      "langdetect==1.0.9"
+    ],
+    "status": "prepared",
+    "diagnostic": ""
+  }
+]

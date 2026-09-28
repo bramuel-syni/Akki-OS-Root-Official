@@ -40,19 +40,12 @@ def _jump_config():
 
 def _connect_jump(cfg, timeout):
     client = paramiko.SSHClient()
-    known = os.environ.get("AKKI_CENSUS_JUMP_KNOWN_HOSTS")
-    if known and Path(known).exists():
-        client.load_host_keys(known)
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(cfg["jump_host"], int(cfg.get("jump_port", 22)), username=cfg["jump_user"],
+    known = os.environ["AKKI_CENSUS_JUMP_KNOWN_HOSTS"]
+    client.load_host_keys(known)
+    client.set_missing_host_key_policy(paramiko.RejectPolicy())
+    client.connect(cfg["jump_host"], int(cfg["jump_port"]), username=cfg["jump_user"],
                    password=cfg["jump_password"], look_for_keys=False, allow_agent=False,
                    timeout=timeout, auth_timeout=timeout, banner_timeout=timeout)
-    if known:
-        try:
-            client.save_host_keys(known)
-            os.chmod(known, 0o600)
-        except OSError:
-            pass
     return client
 
 

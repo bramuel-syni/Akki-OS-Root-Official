@@ -39,6 +39,9 @@ def lock(key, blocking=True):
 def save(doc):
     if not re.fullmatch(r"cr-[a-f0-9]{12}", doc["census_run_id"]):
         raise ValueError("Invalid run identifier")
+    doc['updated_at']=now()
+    from services.census_autonomy.registry_durability import preserve_cursor
+    preserve_cursor(doc)
     path = cursor_dir() / (doc["census_run_id"] + ".json")
     temp = path.with_suffix(f".{os.getpid()}.tmp")
     with temp.open("w") as handle:
@@ -49,6 +52,8 @@ def save(doc):
 
 
 def runs(tenant):
+    from services.census_autonomy.registry_durability import restore_cursors
+    restore_cursors(tenant,cursor_dir())
     values = []
     for path in cursor_dir().glob("cr-*.json"):
         try:
@@ -61,13 +66,20 @@ def runs(tenant):
 
 
 def get(run_id, tenant):
-    return next((r for r in runs(tenant) if r["census_run_id"] == run_id), None)
+    if not re.fullmatch(r'cr-[a-f0-9]{12}',run_id): return None
+    path=cursor_dir()/(run_id+'.json')
+    try: row=json.loads(path.read_text())
+    except (OSError,ValueError): return None
+    return row if row.get('tenant_id')==tenant else None
 
 
-def enqueue(tenant, principal, sources, key, lawful_ref):
+def enqueue(tenant, principal, sources, key, lawful_ref, worker_id=None, source_refs=None):
     if not re.fullmatch(r"[a-zA-Z0-9_-]{16,100}", key):
         raise ValueError("A valid idempotency key is required.")
-    fingerprint = hashlib.sha256(json.dumps([tenant, principal, sorted(sources)], separators=(",", ":")).encode()).hexdigest()
+    identity=[tenant, principal, sorted(sources)]
+    if worker_id: identity.append(worker_id)
+    if source_refs: identity.append(sorted(source_refs))
+    fingerprint = hashlib.sha256(json.dumps(identity, separators=(",", ":")).encode()).hexdigest()
     with lock(f"submit:{tenant}:{principal}:{key}"):
         for row in runs(tenant):
             if row.get("principal_id") == principal and row.get("idempotency_key") == key:
@@ -77,6 +89,7 @@ def enqueue(tenant, principal, sources, key, lawful_ref):
         descriptor = {"version": "operational-v1", "source_ids": sources, "principal_id": principal,
                       "idempotency_key": key, "fingerprint": fingerprint,
                       "lawful_basis_sha256": hashlib.sha256(Path(lawful_ref).read_bytes()).hexdigest()}
+        if source_refs: descriptor['source_refs']=source_refs
         # Recover a crash after the canonical enqueue but before the dispatch cursor write.
         job = next((j for j in engine.get_pending_scheduled_runs()
                     if j.get("tenant_id") == tenant and j.get("connect_source_descriptor") == descriptor), None)
@@ -84,6 +97,7 @@ def enqueue(tenant, principal, sources, key, lawful_ref):
         doc = {"census_run_id": run_id, "tenant_id": tenant, "principal_id": principal,
                "source_ids": sources, "idempotency_key": key, "fingerprint": fingerprint,
                "status": "PENDING", "stage": "queued", "created_at": now(), "outcomes": [],
-               "lawful_basis_admit_ref": lawful_ref}
+               "lawful_basis_admit_ref": lawful_ref, "worker_id": worker_id, "source_refs":source_refs}
+        doc['job_descriptor']=next((job for job in engine.get_pending_scheduled_runs() if job['census_run_id']==run_id),None)
         save(doc)
         return doc, True

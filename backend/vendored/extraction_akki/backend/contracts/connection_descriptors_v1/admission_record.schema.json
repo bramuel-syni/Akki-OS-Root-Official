@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "akki://contracts/admission_record/v1",
+  "title": "Akki signed admission record v1",
+  "description": "Authority, not configuration. Append-only; a change is a new record that supersedes. Signed by the admitting principal; verifiable from the tenant's key.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "admission_id",
+    "tenant_id",
+    "principal",
+    "role",
+    "groups",
+    "scope",
+    "evidence",
+    "admitted_by",
+    "admitted_at",
+    "expires_at",
+    "signature",
+    "supersedes",
+    "status"
+  ],
+  "properties": {
+    "admission_id": {
+      "type": "string",
+      "pattern": "^adm_[0-9a-f]{16}$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "principal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal_id",
+        "kind",
+        "display_name_ref"
+      ],
+      "properties": {
+        "principal_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "individual",
+            "organisation",
+            "system",
+            "platform"
+          ]
+        },
+        "display_name_ref": {
+          "type": "string",
+          "description": "Reference to the identity record; not the identity document."
+        }
+      }
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "estate_owner",
+        "approving_authority",
+        "expenditure_authority",
+        "purpose_specific_authority",
+        "external_party",
+        "worker",
+        "inspector",
+        "platform_principal",
+        "interim_pilot"
+      ]
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "group",
+          "rule"
+        ],
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "string",
+            "enum": [
+              "any_one",
+              "quorum"
+            ]
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purposes",
+        "descriptors",
+        "custody_classes"
+      ],
+      "properties": {
+        "purposes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "census",
+              "extraction",
+              "answering",
+              "training",
+              "evaluation",
+              "disclosure"
+            ]
+          }
+        },
+        "descriptors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "custody_classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "ref"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "identity_drop_custody_ref",
+              "mandate_document_ref",
+              "ruling_ref",
+              "ceremony_receipt_ref"
+            ]
+          },
+          "ref": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "admitted_by": {
+      "type": "string"
+    },
+    "admitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alg",
+        "key_id",
+        "value"
+      ],
+      "properties": {
+        "alg": {
+          "type": "string",
+          "const": "Ed25519"
+        },
+        "key_id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 64
+        }
+      }
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "superseded",
+        "revoked",
+        "expired"
+      ]
+    }
+  }
+}

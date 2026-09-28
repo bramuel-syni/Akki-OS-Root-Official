@@ -164,64 +164,10 @@ def run_bounded_census(
     Returns a summary dict banking the run outcome (also written to
     disk via _write_result_receipt so the loop is crash-resumable).
     """
-    census_run_id = job.get("census_run_id") or str(uuid.uuid4())
-    tenant_id = job.get("tenant_id") or "UNKNOWN"
-
-    # Lawful-basis admit gate (Doc-5 B5.2 · pre-first-byte).
-    if not job.get("lawful_basis_admit_ref"):
-        _write_refusal_row(
-            census_run_id,
-            tenant_id,
-            "BLOCKED_LAWFUL_BASIS_MISSING",
-            "job lacks lawful_basis_admit_ref pre-first-byte",
-        )
-        _remove_pending_job(census_run_id)
-        return {
-            "census_run_id": census_run_id,
-            "tenant_id": tenant_id,
-            "status": "BLOCKED_LAWFUL_BASIS_MISSING",
-        }
-
-    # Tenant-scope gate (R-106 §3 · tenant-scoped from birth).
-    # (Deferred: the full is_census_admitted_tenant check wires to
-    # tenant_scope.is_census_admitted_tenant when the on-demand API
-    # trigger surface lands in Phase 3 continuation.)
-
-    # Budget gate.
-    if time.time() >= job_deadline:
-        _write_refusal_row(
-            census_run_id,
-            tenant_id,
-            "DEFERRED_BUDGET_EXCEEDED",
-            "wall-clock exhausted before first byte",
-        )
-        _remove_pending_job(census_run_id)
-        return {
-            "census_run_id": census_run_id,
-            "tenant_id": tenant_id,
-            "status": "DEFERRED_BUDGET_EXCEEDED",
-        }
-
-    # Real engine adapter fold-in lives here (Phase 3 continuation
-    # sub-slices). At Commit-A the shape gate + refusal path plumbing
-    # are the productized surface; PHASE 3 continuation wires the
-    # sealed data_source adapters + sealed asset_registry_writer.
-    result_payload = {
-        "trigger": job.get("trigger"),
-        "connect_source_descriptor": job.get("connect_source_descriptor"),
-        "note": (
-            "Commit-A shape gate landed; data_source adapter fold-in + "
-            "sealed asset_registry_writer wiring in Phase 3 continuation "
-            "sub-slices per R-106 §3."
-        ),
-    }
-    _write_result_receipt(census_run_id, tenant_id, result_payload)
-    _remove_pending_job(census_run_id)
-    return {
-        "census_run_id": census_run_id,
-        "tenant_id": tenant_id,
-        "status": "COMPLETE",
-    }
+    # Reuse the real scoped runner. Shape-only COMPLETE is no longer an engine
+    # result, even for a caller outside the currently mounted HTTP routes.
+    from services.census_autonomy.operational_runner import run_bounded_census as execute
+    return execute(job,job_deadline)
 
 
 def enqueue_on_demand_run(

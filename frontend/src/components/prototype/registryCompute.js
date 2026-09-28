@@ -1,0 +1,31 @@
+import { registryCount } from './registryHistory';
+import { stamp } from './evidence';
+
+export function registryCompute({data,state,setState,show,refresh,setParams}) {
+  const workers=data?.compute_resources || [];
+  const gpuRows=workers.flatMap(w=>(w.telemetry?.gpu_devices || []).map(g=>({...g,worker:w})));
+  const openWorker=w=>show({title:w.runtime_id,subtitle:w.telemetry?.hostname,code:w.status || 'Receipt observed',body:`${w.execution_mode || 'CPU census'}\nObserved ${stamp(w.observed_at)}.\nPinned transport: ${w.transport_verified?'verified':'not retained'}.\nDevice availability is not model or workload qualification.`,next:`${w.telemetry?.python?`Python ${w.telemetry.python}. `:''}${w.reason_code || ''}`});
+  const models=data?.llm_backends || [];
+  const licence=m=>typeof m.licence==='string'?m.licence:'Unrecorded';
+  const filtered=models.filter(m=>m.name.toLowerCase().includes((state.modelSearch || '').toLowerCase())&&(!state.modelLicence||state.modelLicence==='all'||licence(m)===state.modelLicence)&&(!state.modelOrigin||state.modelOrigin==='all'||m.provider===state.modelOrigin));
+  const openModel=m=>setState(s=>({...s,modelDetail:m,modelEvidence:null}));
+  return {
+    computeToplineStats:[{label:'Workers observed',value:String(workers.length),note:'Actual retained worker receipts'},{label:'GPU devices',value:String(gpuRows.length),note:'Enumerated, not assumed in use'},{label:'GPU memory',value:`${registryCount(gpuRows.reduce((n,g)=>n+g.memory_mb,0)/1024)} GiB`,note:'Device-reported capacity'},{label:'Last observation',value:stamp(workers[0]?.observed_at),note:'Refresh explicitly to observe again'}],
+    computeStats:[{k:'External workers',v:String(workers.length)},{k:'GPU devices',v:String(gpuRows.length)},{k:'Compute attribution',v:'Per census receipt'}],
+    addedCompute:[],gpuRowsView:gpuRows.map((g,i)=>({id:g.uuid,card:g.name,slot:g.worker.runtime_id,util:`${g.utilization_percent}% snapshot`,mem:`${registryCount(g.memory_mb/1024)} GiB`,state:'Observed',stateColor:'var(--sage)',stateBg:'rgba(29,122,110,.12)',dotBg:'var(--sage)',open:state.gpu===g.uuid,chev:state.gpu===g.uuid?'−':'+',rowBg:'#fff',runLine:g.worker.execution_mode || 'No attributed job in this observation',insight:'Device telemetry is a point-in-time observation, not consumed GPU hours.',insightPlain:true,insightAtRisk:false,onToggle:()=>setState(s=>({...s,gpu:s.gpu===g.uuid?null:g.uuid})),onViewMore:()=>openWorker(g.worker)})),
+    gpuBlurb:workers.length?'External runtime observations. GPU presence does not imply a qualified model is serving.':'No worker observation retained. Refresh compute inventory to inspect the configured runtimes.',
+    openLoad:refresh,gpuCeilingPct:'Not defined',gpuQueueRows:(data?.runs || []).filter(r=>r.status==='PENDING').map((r,i)=>({pos:String(i+1),work:r.census_run_id,eta:'Not estimated',etaColor:'var(--ink3)'})),
+    computeUserBar:[],computeWorkBar:[],spendPath:'',spendPoints:[],spendYLabels:[],spendXLabels:[],cpNeeds:[],
+    cpBudgetHead:'Run-attributed evidence, not a fabricated allowance',cpBudgetLines:[{label:'GPU work',value:'CPU census',note:'Current census workers do not claim acceleration.'},{label:'Ceiling',value:'Not recorded',note:'No commercial limit is invented by Registry.'}],
+    llmStats:[{k:'Registered models',v:String(models.length)},{k:'Qualified serving',v:'Not established here'},{k:'Usage',v:'Not measured'}],addedLlms:[],modelsView:[],
+    llmRowsView:models.map(m=>({key:m.model_id,name:m.name,sub:m.provider || 'Provider not recorded',status:'Registered',statusColor:'var(--brass)',statusBg:'rgba(176,141,46,.14)',dotBg:'var(--brass)',open:state.model===m.model_id,closed:state.model!==m.model_id,hasCode:false,hosting:m.provider || 'Not recorded',usage:'Not measured',share:'Not measured',onToggle:()=>setState(s=>({...s,model:s.model===m.model_id?null:m.model_id})),onOpen:()=>openModel(m)})),
+    llmBlurb:'Actual entries from the versioned model registry. Registration, admission and live capability are distinct.',
+    llmNarrative:'No model calls are commissioned by viewing this inventory.',llmChartPanels:[],llmCostCards:[],llmCareCards:[],
+    llmRailHead:'Qualification is explicit',llmRailLines:[{label:'Recorded',value:String(models.length),note:'Versioned registry entries'},{label:'Live capability',value:'Not inferred',note:'M4/M9 qualify execution and quality'}],
+    modelAsideEyebrow:'Model inventory',modelAsideHeadline:'Registration is not qualification',modelAsideRail:[],sixChecksView:[],
+    viewAllModelsStop:()=>setParams({view:'models'}),mrFullOpen:new URLSearchParams(window.location.search).get('view')==='models',closeModelRecord:()=>setParams({section:'models'}),
+    mrLede:'Versioned model inventory and its retained provenance.',mrSearch:state.modelSearch || '',mrSearchChange:e=>setState(s=>({...s,modelSearch:e.target.value})),mrHasFilters:Boolean(state.modelSearch||(state.modelLicence&&state.modelLicence!=='all')||(state.modelOrigin&&state.modelOrigin!=='all')),mrClearFilters:()=>setState(s=>({...s,modelSearch:'',modelLicence:'all',modelOrigin:'all'})),
+    mrLicenceOptions:[{value:'all',label:'All licences'},...[...new Set(models.map(licence))].map(value=>({value,label:value}))],mrOriginOptions:[{value:'all',label:'All providers'},...[...new Set(models.map(m=>m.provider).filter(Boolean))].map(value=>({value,label:value}))],mrLicenceValue:state.modelLicence||'all',mrOriginValue:state.modelOrigin||'all',mrLicenceChange:e=>setState(s=>({...s,modelLicence:e.target.value})),mrOriginChange:e=>setState(s=>({...s,modelOrigin:e.target.value})),mrTiles:[],mrStateBar:[],mrOriginBars:[],mrStateReading:'No operational state is inferred from registration.',mrOriginReading:'Origin and licence remain in each registered record.',
+    mrShowAll:true,mrEmpty:filtered.length===0,mrGroupList:filtered.map(m=>({isItem:true,isHeader:false,label:m.name,l:m.name,n:m.provider || 'Unrecorded provider',v:'Registered',dot:'var(--brass)',rowBg:'#fff',rowColor:'var(--ink)',onClick:()=>openModel(m)})),mrAttOpen:false,mrAttTotal:'Not evaluated',mrAttEmpty:true,mrAttSections:[],mrDetailInFull:false,
+  };
+}

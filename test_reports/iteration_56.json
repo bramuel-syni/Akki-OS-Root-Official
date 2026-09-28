@@ -1,0 +1,85 @@
+{
+  "summary": "Executed mixed backend/frontend M1 acceptance regression. Offline contract suites largely pass, but critical runtime defects remain: auth/login hangs for non-browser clients and UI sign-in often stalls at 'Signing in…'; descriptor-contract module has import-time failure blocking declaration flow confidence.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/portal/census/connections",
+        "issue": "descriptor_contracts cannot import (`ImportError: cannot import name 'sources_for' from operational_scope`), indicating broken runtime path for connection descriptor declaration.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "Direct HTTP clients (curl/requests) repeatedly time out waiting for response body despite backend access logs showing HTTP 200; this aligns with UI login spinner never clearing in several runs.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "CensusAccess sign-in form",
+        "issue": "Submit remains stuck at 'Signing in…' for >12s with no surfaced error; user cannot proceed to registry/census screens reliably.",
+        "selector": "[data-testid='census-signin-submit']",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "Owner history report detail",
+        "issue": "When history view was reachable, owner-required detail taxonomy remained absent (exact tabs and Coverage/Condition/Readiness grouped rows not observed).",
+        "selector": "[data-testid^='registry-census-tab-'], [data-testid^='registry-metric-']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Operator sign-in to authenticated census overview",
+        "issue": "Intermittent auth/session progression failure: backend logs show login 200, but frontend remains unauthenticated/sign-in-required state.",
+        "affected_selectors": [
+          "[data-testid='census-signin-submit']",
+          "text=Scoped access · sign-in required"
+        ]
+      }
+    ],
+    "design_issues": [
+      {
+        "screen": "/os/admin/estate?view=history",
+        "issues": [
+          "Exact owner census-detail labels/sections were not confirmed in this run due blocked auth progression.",
+          "Desktop/mobile shell shows no overflow in captured smoke frames, but acceptance fidelity remains unproven."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_m1_registry_acceptance_iteration56.py",
+    "/app/backend/tests/census_operational/test_registry_contracts_iteration56.py",
+    "/app/backend/tests/census_operational/test_contract.py",
+    "/app/test_reports/pytest/pytest_iteration_56_offline_contracts.xml",
+    "/app/test_reports/pytest/pytest_iteration_56_m1_registry_retry2.xml",
+    "/app/test_reports/pytest/pytest_iteration_56_baseline.xml"
+  ],
+  "action_items": [
+    "Fix `services/census_autonomy/descriptor_contracts.py` import dependency (`sources_for`) or restore compatibility in `operational_scope.py`; then retest `/api/portal/census/connections` declaration/idempotency path.",
+    "Root-cause auth response hang (likely response-body completion/session propagation issue) so login resolves for both browser and HTTP clients; verify spinner clears and protected data loads.",
+    "After auth stabilization, rerun full owner UX fidelity checks: exact four detail tabs, all 13 rows under Coverage/Condition/Readiness, historical census #4 truth states, Source/Connect/Compute/Models flows."
+  ],
+  "critical_code_review_comments": [
+    "`descriptor_contracts.py` imports `sources_for`, but `operational_scope.py` currently exposes `tenant_from_account` and `validate_submission` only; this is a hard runtime contract break.",
+    "Frontend login state machine in `CensusAccess.jsx` depends on `login()` promise resolution; observed stuck busy state plus HTTP-client timeouts indicate backend/auth transport completion problem, not merely selector/test instability.",
+    "`test_live_api_contract.py` still uses `BASE_URL = os.environ.get(..., '')` default pattern (empty fallback) contrary to strict no-default env rule; keep env-fail-fast semantics for reliability."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_m1_registry_acceptance_iteration56.py",
+    "/app/backend/tests/census_operational/test_registry_contracts_iteration56.py",
+    "/app/test_reports/iteration_56.json"
+  ],
+  "success_rate": {
+    "backend": "87% (26 pass, 1 fail, 3 skip on offline/contract suite; live API suite skipped due repeated login timeout from requests client)",
+    "frontend": "30% (shell load + screenshots pass; auth-gated deep flows blocked)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Login behavior is inconsistent: backend logs repeatedly show POST /api/auth/login 200, yet UI often remains stuck on sign-in form with 'Signing in…' and no error. Requests/curl from test client timed out awaiting login response body. One hard backend code defect reproduced via pytest: descriptor_contracts import failure on missing `sources_for`. Offline durability tests (registry_durability restore integrity/writeback) passed.",
+  "rca of the issue": "RCA-1 (backend contract break): `descriptor_contracts.py` statically imports `sources_for` from `operational_scope.py`, but symbol is absent -> import-time crash and likely 500 when connection descriptor flow loads. Repro: run `pytest backend/tests/census_operational/test_registry_contracts_iteration56.py::test_r00_descriptor_contracts_module_imports`. Mitigation: restore/export `sources_for` or refactor descriptor module to use existing tenant/source gate API. RCA-2 (auth hang): non-browser HTTP login calls stall until timeout while UI button remains busy, indicating unresolved response/promise chain despite logged 200 status. Repro: curl/login command with 20s timeout and Playwright sign-in loop. Mitigation: inspect auth endpoint response write/flush path and frontend login fetch lifecycle; confirm complete JSON body delivery and token storage/event dispatch completion."
+}

@@ -1,0 +1,85 @@
+[
+  {
+    "runtime_id": "non_gpu_jump",
+    "status": "observed",
+    "hostname": "ecs-b896",
+    "python": "3.12.3",
+    "packages": {
+      "pymysql": false,
+      "boto3": true,
+      "pydantic": false,
+      "langdetect": false,
+      "numpy": false
+    },
+    "commands": {
+      "mysql": true,
+      "smbclient": true,
+      "ffprobe": true,
+      "nvidia-smi": false,
+      "pip3": true
+    },
+    "mounts": {
+      "/mnt/nfs-share": true,
+      "/mnt/volume_dkgjrkx": false,
+      "/mnt/akki-storage-3388s": false
+    }
+  },
+  {
+    "runtime_id": "akki-vm",
+    "status": "observed",
+    "hostname": "akki-vm",
+    "python": "3.12.3",
+    "packages": {
+      "pymysql": false,
+      "boto3": true,
+      "pydantic": false,
+      "langdetect": false,
+      "numpy": false
+    },
+    "commands": {
+      "mysql": false,
+      "smbclient": false,
+      "ffprobe": false,
+      "nvidia-smi": true,
+      "pip3": false
+    },
+    "mounts": {
+      "/mnt/nfs-share": false,
+      "/mnt/volume_dkgjrkx": true,
+      "/mnt/akki-storage-3388s": true
+    },
+    "gpu_inventory": [
+      "GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1, NVIDIA H200, 143771, 0",
+      "GPU-e87acccb-7848-1573-98ae-fcf26b185c0b, NVIDIA H200, 143771, 0"
+    ]
+  },
+  {
+    "runtime_id": "akki-vm-ii",
+    "status": "observed",
+    "hostname": "akki-vm-ii",
+    "python": "3.12.3",
+    "packages": {
+      "pymysql": false,
+      "boto3": true,
+      "pydantic": false,
+      "langdetect": false,
+      "numpy": false
+    },
+    "commands": {
+      "mysql": false,
+      "smbclient": false,
+      "ffprobe": false,
+      "nvidia-smi": true,
+      "pip3": false
+    },
+    "mounts": {
+      "/mnt/nfs-share": false,
+      "/mnt/volume_dkgjrkx": true,
+      "/mnt/akki-storage-3388s": true
+    },
+    "gpu_inventory": [
+      "GPU-c59c154d-f308-f79f-09fd-19ecae790b03, NVIDIA H200, 143771, 0",
+      "GPU-12834670-6217-3f68-0414-905ce8699a95, NVIDIA H200, 143771, 0"
+    ]
+  }
+]

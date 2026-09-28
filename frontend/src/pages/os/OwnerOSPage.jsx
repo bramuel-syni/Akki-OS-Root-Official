@@ -10,6 +10,7 @@ import { CensusAccess } from '@/components/census/CensusAccess';
 import { CensusRunDialog } from '@/components/census/CensusRunDialog';
 import { featureRoute } from '@/components/prototype/osHierarchy';
 import { useNexusExperience } from '@/components/prototype/useNexusExperience';
+import { useRegistryExperience } from '@/components/prototype/useRegistryExperience';
 import '@/components/census/census.css';
 import '@/components/prototype/prototype.css';
 import '@/components/prototype/nexusOwner.css';
@@ -44,9 +45,11 @@ export default function OwnerOSPage() {
     disclosure, toggle: key => setDisclosure(old => ({ ...old, [key]: !old[key] })), openRun: () => setRunOpen(true), notice });
   const account = { role: 'button', tabIndex: 0, title: 'Your account', 'aria-label': 'Your account', 'data-testid': 'prototype-account-trigger', onClick: () => setAccountOpen(!accountOpen), onKeyDown: event => { if (['Enter', ' '].includes(event.key)) { event.preventDefault(); setAccountOpen(!accountOpen); } } };
   const nexus = useNexusExperience({ feature, work, session, navigate, params, setParams, baseModel:model, account });
+  const registry = useRegistryExperience({data:session.data,params,setParams,baseModel:model,run:()=>setRunOpen(true),reload:session.reload,active:pathname==='/os/admin/estate'&&Boolean(session.data)});
   if(nexus.active) Object.assign(model,nexus.model);
   const slots = !session.data ? { 96: <CensusAccess error={session.error} loading={session.loading} retry={session.reload} /> } : {};
   if(nexus.active){slots[36]=nexus.header;if(workRoute)slots[2408]=<>{nexus.content}{nexus.drawer}</>;else slots[96]=<>{nexus.content}{nexus.drawer}</>;}
+  if(registry.active) slots[96]=<>{registry.content}{registry.drawer}</>;
   const enhance = { 38: account, ...(nexus.active?{36:{className:'nexus-header-actions'}}:{}) };
   return <>
     <OwnerMarkup template={template} surface="os" model={model} replace={osCopy(session.data, params.get('view'))} slots={slots} enhance={enhance} onUnbound={() => nexus.active?nexus.unavailable('Action unavailable'):notice('Action unavailable', 'This action is not connected. No work was started or changed.')} />

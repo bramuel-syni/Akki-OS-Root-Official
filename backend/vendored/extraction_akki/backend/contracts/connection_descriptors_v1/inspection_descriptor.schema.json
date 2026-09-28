@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "akki://contracts/connection_descriptor/inspection/v1",
+  "title": "Akki inspection descriptor v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "descriptor_id",
+    "descriptor_class",
+    "tenant_id",
+    "estate_id",
+    "version",
+    "pinned_hash",
+    "recorded_by_principal_id",
+    "recorded_at",
+    "supersedes",
+    "status",
+    "verification_receipt_ref",
+    "inspector_service",
+    "inspector_identity_ref",
+    "checks",
+    "independent_of_workers"
+  ],
+  "properties": {
+    "descriptor_id": {
+      "type": "string",
+      "pattern": "^(src|qry|wrk|insp|cust)_[0-9a-f]{16}$"
+    },
+    "descriptor_class": {
+      "const": "inspection"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "estate_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pinned_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "recorded_by_principal_id": {
+      "type": "string"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "declared",
+        "verified",
+        "unreachable",
+        "retired"
+      ],
+      "description": "'verified' only after a platform-side connectivity test wrote a receipt; 'declared' is a claim."
+    },
+    "verification_receipt_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "inspector_service": {
+      "type": "string"
+    },
+    "inspector_identity_ref": {
+      "type": "string",
+      "pattern": "^cust://[a-z0-9_-]+/[A-Za-z0-9._-]+$",
+      "description": "Custody-store reference. Names a secret without revealing it; knowledge of the reference grants no access (LA-9)."
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "artefact_hash",
+          "manifest_reconciliation",
+          "registry_match",
+          "custody_class_applied",
+          "retrieval_authorised"
+        ]
+      },
+      "minItems": 1
+    },
+    "independent_of_workers": {
+      "type": "boolean",
+      "const": true,
+      "description": "The inspector holds credentials no worker holds (B-M10-Q2 pattern)."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verification_receipt_ref": {
+            "type": "string",
+            "minLength": 8
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

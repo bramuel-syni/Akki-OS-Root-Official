@@ -19,6 +19,7 @@ R-C2 marker (this module):
 from __future__ import annotations
 
 import hashlib
+import threading
 from typing import Dict, List, Tuple
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -55,6 +56,34 @@ class WriteReceipt(BaseModel):
 # the deterministic-idempotent envelope; downstream persistence is a
 # later wave's concern.  Keys by asset_ref → last-written record.
 _REGISTRY: Dict[str, AssetRegistryRecord] = {}
+_WRITE_LOCK = threading.RLock()
+_PERSISTENCE = None
+
+
+def configure_persistence(collection):
+    """Bind the existing canonical writer to its durable collection at assembly."""
+    global _PERSISTENCE
+    _PERSISTENCE = collection
+    collection.create_index('asset_ref', unique=True)
+
+
+def persistence_enabled():
+    return _PERSISTENCE is not None
+
+
+def append_census_evidence(asset_ref, tenant_id, evidence):
+    """Additive content-addressed evidence through the same single Registry writer."""
+    import json
+    from pymongo.errors import DuplicateKeyError
+    if _PERSISTENCE is None:
+        raise RuntimeError('Canonical Registry persistence is not configured')
+    digest=hashlib.sha256(json.dumps(evidence,sort_keys=True,default=str).encode()).hexdigest()
+    document={'asset_ref':asset_ref,'tenant_id':tenant_id,'evidence_sha256':digest,'census_evidence':evidence}
+    try:
+        _PERSISTENCE.update_one({'asset_ref':asset_ref,'evidence_sha256':digest},{'$setOnInsert':document},upsert=True)
+    except DuplicateKeyError as exc:
+        raise ValueError('Conflicting evidence cannot replace an accepted Registry record') from exc
+    return digest
 
 
 def _compute_receipt_id(record: AssetRegistryRecord) -> str:
@@ -70,7 +99,21 @@ def write_asset_record(record: AssetRegistryRecord) -> WriteReceipt:
     Append-only (Canon-3 §9.3).  Idempotent by record content.  R-C2
     carrier: receipt.au_3b_defensible defaults to False.
     """
-    _REGISTRY[record.asset_ref] = record
+    with _WRITE_LOCK:
+        previous=_REGISTRY.get(record.asset_ref)
+        if previous and previous!=record:
+            raise ValueError('Conflicting content cannot overwrite an existing asset_ref')
+        if _PERSISTENCE is not None:
+            from pymongo.errors import DuplicateKeyError
+            payload=record.model_dump(mode='json')
+            digest=_compute_receipt_id(record)
+            try:
+                _PERSISTENCE.update_one({'asset_ref':record.asset_ref,'record_hash':digest},
+                    {'$setOnInsert':{'asset_ref':record.asset_ref,'tenant_id':record.named_owner.owner_id,
+                                     'record_hash':digest,'record':payload}},upsert=True)
+            except DuplicateKeyError as exc:
+                raise ValueError('Conflicting content cannot overwrite a persisted asset') from exc
+        _REGISTRY[record.asset_ref] = record
     return WriteReceipt(
         receipt_id=_compute_receipt_id(record),
         collection=ASSET_REGISTRY_COLLECTION,
@@ -81,6 +124,9 @@ def write_asset_record(record: AssetRegistryRecord) -> WriteReceipt:
 def find_by_custody_class(custody_class: CustodyClass) -> List[AssetRegistryRecord]:
     """Doc-0 BR-1.4 queryable custody class.  Typed parameter — free-
     text is refused at the language layer."""
+    if _PERSISTENCE is not None:
+        return [AssetRegistryRecord.model_validate(d['record']) for d in
+                _PERSISTENCE.find({'record.custody_class':custody_class.value},{'_id':0,'record':1})]
     return [r for r in _REGISTRY.values() if r.custody_class is custody_class]
 
 

@@ -8,6 +8,9 @@ COUNTS = {"database_count", "table_count", "row_count_estimate"}
 
 
 def validate_output(value, run_id, tenant, source):
+    if isinstance(value,dict) and value.get('protocol')=='akki-census-deep-v1':
+        from services.census_autonomy.deep_validation import validate_deep
+        return validate_deep(value,run_id,tenant,source)
     if not isinstance(value, dict) or set(value) - COMMON - COUNTS - {"reason_code"}:
         raise ValueError("Unexpected worker output; aggregate-only contract refused.")
     expected = {"protocol": PROTOCOL, "census_run_id": run_id, "tenant_id": tenant,
@@ -35,9 +38,9 @@ def validate_output(value, run_id, tenant, source):
 def classify_payload(payload):
     if payload.get("protocol") != PROTOCOL or not payload.get("outcomes"):
         return "UNVERIFIED"
-    good = [x for x in payload["outcomes"] if x.get("status") == "complete"]
+    good = [x for x in payload["outcomes"] if x.get("status") in {"complete", "partial"}]
     if good and len(payload.get("registry_receipts", [])) != len(good):
         return "UNVERIFIED"
     if not good:
         return "BLOCKED"
-    return "COMPLETE" if len(good) == len(payload["outcomes"]) else "PARTIAL"
+    return "COMPLETE" if all(x.get('status')=='complete' for x in payload['outcomes']) else "PARTIAL"

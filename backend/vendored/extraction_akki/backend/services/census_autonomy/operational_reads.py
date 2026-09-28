@@ -11,6 +11,8 @@ from services.mtafiti.census_result_adapter import restore_registered
 
 
 def records(tenant):
+    from services.census_autonomy.registry_durability import restore_results
+    restore_results(tenant)
     values = list_records(Path(os.environ["CENSUS_RECORDS_DIR"]), tenant)
     for path in (engine.CENSUS_STATE_DIR / engine.RESULTS_SUBDIR).glob("*.json"):
         try:
@@ -23,9 +25,9 @@ def records(tenant):
             if state not in {"COMPLETE", "PARTIAL"}:
                 continue
             good = [validate_output(o, doc["census_run_id"], tenant, o["source_id"])
-                    for o in payload["outcomes"] if o.get("status") == "complete"]
+                    for o in payload["outcomes"] if o.get("status") in {"complete", "partial"}]
             restore_registered(payload)
-            values.append({"record_id": doc["census_run_id"], "census_number": None, "tenant_id": tenant,
+            record={"record_id": doc["census_run_id"], "census_number": None, "tenant_id": tenant,
                            "status": state, "scope": "Bounded metadata inventory", "execution_verified": True,
                            "finished_at": doc["completed_at_utc"], "database_count": sum(o["database_count"] for o in good),
                            "table_count": sum(o["table_count"] for o in good),
@@ -34,10 +36,13 @@ def records(tenant):
                            "licensed_percent": None, "outcomes": payload["outcomes"],
                            "proof_ref": f"census_autonomy_state/results/{path.name}",
                            "proof_sha256": hashlib.sha256(raw).hexdigest(),
-                           "limitations": ["Metadata only; source content, quality and external rights were not assessed."]})
+                           "limitations": ["Metadata only; source content, quality and external rights were not assessed."]}
+            from services.census_autonomy.registry_report import enrich_record
+            values.append(enrich_record(record,doc,payload))
         except (OSError, ValueError, KeyError, TypeError):
             continue
-    return sorted(values, key=lambda v: v.get("finished_at") or "", reverse=True)
+    from services.census_autonomy.registry_report import attach_reports
+    return attach_reports(sorted(values, key=lambda v: v.get("finished_at") or "", reverse=True))
 
 
 def run_view(row):

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="11" failures="0" skipped="0" tests="17" time="1.625" timestamp="2026-09-28T19:12:40.520159+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.census_operational.test_registry_contracts_iteration56" name="test_r00_descriptor_contracts_module_imports" time="1.022" /><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a01_auth_shape" time="0.329"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a02_overview_contains_current_and_historical_runs" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a03_run_state_endpoint_and_status_truth[cr-f8086f961dcd]" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a03_run_state_endpoint_and_status_truth[cr-7fdf4bcb0195]" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a03_run_state_endpoint_and_status_truth[cr-41a031a64351]" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a03_run_state_endpoint_and_status_truth[cr-5355698447dd]" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a04_no_runs_id_route_without_state_suffix" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a05_declare_connection_declared_only_and_idempotent" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a06_connection_refuses_raw_credentials" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a07_live_read_surfaces_available" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_m1_registry_acceptance_iteration56" name="test_m1_a08_source_detail_matches_list" time="0.000"><error message="failed on setup with &quot;assert 502 == 200&#10; +  where 502 = &lt;Response [502]&gt;.status_code&quot;">@pytest.fixture(scope="session")
+    def operator_session():
+        """Operator-authenticated session headers for M1 live read + declaration checks."""
+&gt;       return _login(OPERATOR_EMAIL, OPERATOR_PASSWORD)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+email = 'demo.operator@demo.rms.example.com', password = 'demo-operator-pw'
+
+    def _login(email: str, password: str) -&gt; dict:
+        url = f"{_require_base_url()}/api/auth/login"
+        last_error = None
+        response = None
+        for attempt in range(2):
+            try:
+                response = requests.post(url, json={"email": email, "password": password}, timeout=60)
+                break
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        if response is None:
+            pytest.fail(f"Public API login did not complete: {last_error}")
+&gt;       assert response.status_code == 200
+E       assert 502 == 200
+E        +  where 502 = &lt;Response [502]&gt;.status_code
+
+tests/census_operational/test_m1_registry_acceptance_iteration56.py:37: AssertionError</error></testcase><testcase classname="tests.census_operational.test_registry_contracts_iteration56" name="test_r01_bind_existing_refuses_foreign_source" time="0.000" /><testcase classname="tests.census_operational.test_registry_contracts_iteration56" name="test_r02_bind_existing_is_idempotent_when_evidence_exists" time="0.000" /><testcase classname="tests.census_operational.test_registry_contracts_iteration56" name="test_r03_bind_existing_creates_declared_only_descriptor" time="0.007" /><testcase classname="tests.census_operational.test_registry_contracts_iteration56" name="test_r04_restore_results_rejects_tampered_evidence" time="0.001" /><testcase classname="tests.census_operational.test_registry_contracts_iteration56" name="test_r05_restore_results_writes_missing_file" time="0.001" /></testsuite></testsuites>

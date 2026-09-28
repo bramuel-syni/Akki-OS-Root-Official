@@ -1,5 +1,14 @@
 # Existing JWT consumer regression — 2026-09-26
 
+## M1 regression addition — 2026-09-28
+
+The observed sign-in stall was an app reload waiting on long-running census
+BackgroundTasks, not bad credentials. Keep the existing supervised census worker
+as the sole queue executor. Verify complete login JSON + auth/me + overview while
+an external census is pending and across an app reload. No duplicate UI polling
+may continually abort the same in-flight read. Credentials, tokens, roles, cookie
+architecture and seed logic remain unchanged; no arbitrary auth timer was added.
+
 This slice preserves the existing bearer-token transport and account/password
 logic. The integration playbook's generic new-cookie-auth/seeding instructions
 are NOT an instruction to replace Akki's established authentication.

@@ -36,4 +36,6 @@ def _driver_for(source):
 
 
 def execute_source(run_id, tenant, source, lawful_hash, deadline):
-    return _driver_for(source)(run_id, tenant, source, lawful_hash, deadline)
+    # Every source, including managed HTTPS APIs, executes outside this pod.
+    from services.census_autonomy.deep_dispatch import execute_source as external_execute
+    return external_execute(run_id, tenant, source, lawful_hash, deadline)

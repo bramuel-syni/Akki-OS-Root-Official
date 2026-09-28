@@ -1,0 +1,29 @@
+{
+  "census_run_id": "cr-7fdf4bcb0195",
+  "tenant_id": "RMS",
+  "completed_at_utc": "20260928T200835Z",
+  "payload": {
+    "protocol": "akki-census-aggregate-v1",
+    "outcomes": [
+      {
+        "protocol": "akki-census-deep-v1",
+        "census_run_id": "cr-7fdf4bcb0195",
+        "tenant_id": "RMS",
+        "source_id": "rms_nas",
+        "execution_location": "control_plane",
+        "source_rows_returned": 0,
+        "status": "blocked",
+        "observed_at": "2026-09-28T19:08:35.903493+00:00",
+        "worker_receipt_id": null,
+        "sources": [],
+        "reason_code": "WORKER_DEADLINE",
+        "error_sites": [
+          "deep_dispatch.py:64"
+        ]
+      }
+    ],
+    "registry_receipts": [],
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "principal_id": "6ab56dd48894abb269135ca2"
+  }
+}

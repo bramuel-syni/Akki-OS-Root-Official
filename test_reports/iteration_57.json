@@ -1,0 +1,85 @@
+{
+  "summary": "Retested backend+frontend M1 flows on public URL after login stall fix. Auth body delivery and history fidelity now load, but critical regressions remain in brute-force auth protection, CORS origin handling, and source-profile interaction binding.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "No brute-force lockout: after 5 invalid password attempts, valid login still succeeds with HTTP 200 instead of temporary refusal.",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "/api/auth/login (OPTIONS)",
+        "issue": "CORS preflight returns access-control-allow-origin as cluster emergentcf.cloud host instead of explicit requester origin, despite allow_credentials=true.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Source catalogue row interaction (/os/admin/estate?view=sources)",
+        "issue": "Clicking source rows opens UNBOUND drawer ('no qualified effect is bound...') instead of opening Source Profile modal.",
+        "selector": "[data-testid^='prototype-nexus-sourceCatalogue-t-on-click-']",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "Registry sources mobile layout",
+        "issue": "Horizontal overflow on mobile sources view; content extends beyond viewport and hides right-side text/rows.",
+        "selector": "view=sources at 390x844",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Source profile drill-down",
+        "issue": "Source profile/schema/profile/relationships details are present in code path but unreachable from source rows due unbound click wiring.",
+        "affected_selectors": [
+          "[data-testid^='prototype-nexus-sourceCatalogue-t-on-click-']",
+          "[data-testid='registry-source-profile']"
+        ]
+      }
+    ],
+    "design_issues": [
+      {
+        "screen": "/os/admin/estate?view=sources (mobile 390x844)",
+        "issues": [
+          "Horizontal overflow present (scrollWidth > innerWidth).",
+          "Right column content is clipped/partially hidden during normal reading."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_iteration57_live_auth_and_scope.py",
+    "/app/backend/tests/census_operational/test_m1_registry_acceptance_iteration56.py",
+    "/app/backend/tests/census_operational/test_registry_contracts_iteration56.py",
+    "/app/test_reports/pytest/pytest_iteration_57_backend_live.xml",
+    "/app/test_reports/pytest/pytest_iteration_57_backend.xml"
+  ],
+  "action_items": [
+    "Implement and enforce auth brute-force lockout policy (>=5 failed attempts) in /api/auth/login flow.",
+    "Fix CORS origin behavior for credentialed requests so Access-Control-Allow-Origin is explicit and stable to caller origin/domain policy.",
+    "Bind source catalogue row click to sourceInfo/open profile path (not onUnbound), so Source Profile modal opens with real table/profile/relationships data.",
+    "Fix mobile sources layout overflow/clipping at 390x844.",
+    "After fixes, rerun operator journey for Data Connected → Source profile → Compute/Models tabs/disclosures and mobile overflow checks."
+  ],
+  "critical_code_review_comments": [
+    "operational_scope source_refs/worker/source-tenant guards are functioning correctly in live checks (wrong worker, cross-tenant source, bad source_refs, extra credential/shell keys all rejected).",
+    "descriptor_contracts import/runtime path is now healthy (iteration56 isolated contract suite passed).",
+    "Source catalogue UX still contains an active UNBOUND pathway, violating owner requirement to report and avoid noop/unbound critical actions."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_iteration57_live_auth_and_scope.py",
+    "/app/test_reports/iteration_57.json"
+  ],
+  "success_rate": {
+    "backend": "93%",
+    "frontend": "72%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "History fidelity improved in this run: tabs Discovery Summary/GPU Spend/Conversation with Agent/Discovery Details present; Coverage/Condition/Readiness present; no 'Census #undefined'; cr-5938285cddbf and cr-f8086f961dcd visible with partial 6-of-7 text. Connect drawer flow works with existing rms_mysql declaration (idempotent 'already exists'). Remaining blocker: source rows open UNBOUND drawer instead of Source Profile modal.",
+  "rca of the issue": "RCA-1 auth lockout: login path (routers/auth.py -> user_store.authenticate) performs plain credential verification with no failure counter/time-window state, so repeated failures never transition to lockout. RCA-2 CORS: credentialed preflight response returns a different canonical host origin (cluster emergentcf.cloud) than request origin, indicating origin normalization/mismatch in deployment CORS policy chain. RCA-3 source profile UI: source catalogue row click maps to unbound callback in rendered owner markup path, triggering global onUnbound drawer ('no qualified effect is bound') instead of registryEstate.sourceInfo -> registry-source-profile modal opening."
+}
