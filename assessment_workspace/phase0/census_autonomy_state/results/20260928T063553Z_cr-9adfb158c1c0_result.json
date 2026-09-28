@@ -1,0 +1,49 @@
+{
+  "census_run_id": "cr-9adfb158c1c0",
+  "tenant_id": "RMS",
+  "completed_at_utc": "20260928T063553Z",
+  "payload": {
+    "protocol": "akki-census-aggregate-v1",
+    "outcomes": [
+      {
+        "protocol": "akki-census-aggregate-v1",
+        "census_run_id": "cr-9adfb158c1c0",
+        "tenant_id": "RMS",
+        "source_id": "rms_mysql",
+        "execution_location": "akki_host",
+        "source_rows_returned": 0,
+        "observed_at": "2026-09-28T06:35:20.833054+00:00",
+        "status": "complete",
+        "database_count": 2,
+        "table_count": 119,
+        "row_count_estimate": 2198643,
+        "worker_receipt_id": "cwr-d1eef39dca8cb4ec95da71d5d0da053ec63c1a26d7c7e15b0ab46e5edd857899"
+      }
+    ],
+    "registry_receipts": [
+      {
+        "record": {
+          "asset_ref": "census:RMS:cr-9adfb158c1c0:rms_mysql",
+          "asset_class": "receipt",
+          "named_owner": {
+            "owner_id": "RMS",
+            "owner_class": "organisation",
+            "mandate_source": "CP-CENSUS-OPERATIONAL-V1; Canon-9 \u00a73"
+          },
+          "custody_class": "sensitive",
+          "freshness_stamp": {
+            "logged_date": "2026-09-28T06:35:20.833054+00:00",
+            "structural_signature": null
+          }
+        },
+        "receipt": {
+          "receipt_id": "receipt_3758bb7e8c42fea7e4f22b29",
+          "collection": "mtafiti_asset_registry_records",
+          "au_3b_defensible": false
+        }
+      }
+    ],
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "principal_id": "6ab56dd48894abb269135ca2"
+  }
+}

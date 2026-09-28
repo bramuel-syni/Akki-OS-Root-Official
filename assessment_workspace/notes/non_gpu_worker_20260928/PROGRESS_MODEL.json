@@ -1,0 +1,31 @@
+{
+  "version": "akki.progress-model/1",
+  "date": "2026-09-28",
+  "denominator": {"requirement_rows": 648, "spec_families": 56, "source": "full_requirements_gap_20260926"},
+  "delivery_status_counts": {"PARTIAL": 475, "UNVERIFIED": 128, "SOURCE_UNRESOLVED": 24, "SPEC_DECISION_REQUIRED": 7, "EVIDENCED_SCOPED": 13, "EXPLICIT_NONCLAIM": 1},
+  "architecture_axis_weights": {"PARTIAL": 0.55, "UNVERIFIED": 0.25, "SOURCE_UNRESOLVED": 0.0, "SPEC_DECISION_REQUIRED": 0.0, "EVIDENCED_SCOPED": 0.75, "EXPLICIT_NONCLAIM": 1.0},
+  "architecture_completion_pct": 47,
+  "live_verified_completion_pct_before_session": 1,
+  "live_verified_note": "First genuine live evidence landed this session in Area A (RMS MySQL census). All other positive provider/source results remain SYNTHETIC/MOCKED.",
+  "areas": {
+    "A. Ingestion, Connection & Census": {"rows": 93, "architecture_pct": 51, "share_of_remaining_pct": 13, "live": "started_rms_mysql"},
+    "B. Core Promise & Adaptive Certainty": {"rows": 92, "architecture_pct": 38, "share_of_remaining_pct": 17, "live": "mocked"},
+    "C. Execution, Context & Model Quality": {"rows": 63, "architecture_pct": 37, "share_of_remaining_pct": 12, "live": "mocked"},
+    "D. Memory, Learning & Watch": {"rows": 30, "architecture_pct": 56, "share_of_remaining_pct": 4, "live": "mocked"},
+    "E. Governance, Security & Containment": {"rows": 116, "architecture_pct": 54, "share_of_remaining_pct": 15, "live": "static_only"},
+    "F. Entitlements & Commercial": {"rows": 58, "architecture_pct": 55, "share_of_remaining_pct": 8, "live": "ledger_fixtures"},
+    "G. Rules, Amendments & Decision Engines": {"rows": 149, "architecture_pct": 42, "share_of_remaining_pct": 25, "live": "static_plus_24_source_unresolved"},
+    "H. Principals, Tenancy & Continuity": {"rows": 47, "architecture_pct": 52, "share_of_remaining_pct": 7, "live": "partial"}
+  },
+  "blocked_on_owner": {
+    "digicow_aws_credential": "secret ARN present, AWS access key/GetSecretValue identity absent",
+    "source_unresolved_rows": 24,
+    "spec_decision_rows": 7
+  },
+  "session_evidence": {
+    "non_gpu_worker": true,
+    "rms_mysql_live_read": {"databases": 2, "schemas": ["news_vault", "razuna"], "tables": 119, "row_count_estimate": 2198643, "tenant": "RMS"},
+    "cross_tenant_isolation_verified": true,
+    "backend_tests_passing": 723
+  }
+}

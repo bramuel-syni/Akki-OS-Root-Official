@@ -1,0 +1,122 @@
+{
+  "census_run_id": "cr-9adfb158c1c0",
+  "source_id": "rms_mysql",
+  "at_utc": "2026-09-28T06:35:53.622777+00:00",
+  "execution_location": "non_gpu_worker",
+  "stage": "worker",
+  "estate_manifest": [
+    {
+      "label": "iebc_forms",
+      "host_fingerprint": "cd4c5390fb10",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "artists_app",
+      "host_fingerprint": "cd57802e1444",
+      "estate_status": "OK"
+    },
+    {
+      "label": "viupay",
+      "host_fingerprint": "a0a497b29fc3",
+      "estate_status": "OK"
+    },
+    {
+      "label": "citizen_digital",
+      "host_fingerprint": "3de193c7b51c",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "citizen_digital",
+      "host_fingerprint": "318772a8c6d2",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "citizen-pulse",
+      "host_fingerprint": "b6ff240ded83",
+      "estate_status": "NOT YET UHURU"
+    },
+    {
+      "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+      "host_fingerprint": "8512835c0ceb",
+      "estate_status": "NOT YET UHURU"
+    }
+  ],
+  "worker_status": "complete",
+  "connections_total": 7,
+  "connections_read": 1,
+  "connections": [
+    {
+      "label": "iebc_forms",
+      "estate_status": null,
+      "status": "blocked",
+      "reason_code": "OperationalError",
+      "database_count": null,
+      "table_count": null,
+      "row_count_estimate": null,
+      "schemas": null
+    },
+    {
+      "label": "artists_app",
+      "estate_status": null,
+      "status": "blocked",
+      "reason_code": "OperationalError",
+      "database_count": null,
+      "table_count": null,
+      "row_count_estimate": null,
+      "schemas": null
+    },
+    {
+      "label": "viupay",
+      "estate_status": null,
+      "status": "blocked",
+      "reason_code": "OperationalError",
+      "database_count": null,
+      "table_count": null,
+      "row_count_estimate": null,
+      "schemas": null
+    },
+    {
+      "label": "citizen_digital",
+      "estate_status": null,
+      "status": "blocked",
+      "reason_code": "OperationalError",
+      "database_count": null,
+      "table_count": null,
+      "row_count_estimate": null,
+      "schemas": null
+    },
+    {
+      "label": "citizen_digital",
+      "estate_status": null,
+      "status": "blocked",
+      "reason_code": "OperationalError",
+      "database_count": null,
+      "table_count": null,
+      "row_count_estimate": null,
+      "schemas": null
+    },
+    {
+      "label": "citizen-pulse",
+      "estate_status": null,
+      "status": "blocked",
+      "reason_code": "OperationalError",
+      "database_count": null,
+      "table_count": null,
+      "row_count_estimate": null,
+      "schemas": null
+    },
+    {
+      "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+      "estate_status": null,
+      "status": "complete",
+      "reason_code": null,
+      "database_count": 2,
+      "table_count": 119,
+      "row_count_estimate": 2198643,
+      "schemas": [
+        "news_vault",
+        "razuna"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "census_run_id": "cr-dddddddddddd",
+  "source_id": "rms_mysql",
+  "at_utc": "2026-09-28T06:39:39.669312+00:00",
+  "execution_location": "non_gpu_worker",
+  "stage": "worker",
+  "estate_manifest": [
+    {
+      "label": "good_db",
+      "host_fingerprint": "f5047344122f",
+      "estate_status": "OK"
+    },
+    {
+      "label": "pending_db",
+      "host_fingerprint": "cb5f37b47628",
+      "estate_status": "NOT YET UHURU"
+    }
+  ],
+  "worker_status": "complete",
+  "connections_total": null,
+  "connections_read": null,
+  "connections": []
+}

@@ -56,6 +56,60 @@ counterparties; any loosening receipted. File/chat claims do not establish live 
 - Every Mongo response excludes BSON IDs; immutable request identity and canonical
   evidence are preserved. Do not introduce a parallel job/admission/receipt authority.
 
+## CURRENT checkpoint — 2026-09-28 06:40 UTC, NON-GPU WORKER BUILT + LIVE ESTATE READ
+
+Owner instruction: "no non-gpu worker. build one, operates similar to the gpu
+worker. Repository to be ready once done. Can you read the estate i have shared?"
+Owner answers: (1) dedicated worker inside the akki environment; (2) both routes
+legitimate depending on commissioned work type; (3) DigiCow — "see attached";
+(4) will share additional data repository to connect; (5) commission Akki to fully
+read the connected estate registered in the right tenant, do not rebuild what
+exists. Owner also demanded a plan with NAMED GAPS and how each contributes to the
+remaining % to completion, plus a done/remaining roadmap.
+
+DELIVERED (verified, unmocked):
+- Built the missing non-GPU ingestion worker mirroring the GPU worker's contract:
+  `services/census_autonomy/non_gpu_census_worker.py` (worker; bounded subprocess,
+  local counterpart of remote_worker.py), `estate_connector_registry.py`
+  (authorised credential resolver → 0600 connector custody from the registered
+  estate), `non_gpu_dispatch.py` (dispatch authority, local counterpart of
+  remote_dispatch.py). Selected via `AKKI_CENSUS_EXECUTION_MODE=non_gpu_worker`
+  (new .env keys: AKKI_RMS_ESTATE_CSV, AKKI_CENSUS_CONNECTOR_DIR,
+  AKKI_CENSUS_WORKER_STATE_DIR, AKKI_RMS_MYSQL_PORT). Only 5-line additive change
+  to operational_runner.py (mode selector; remote_dispatch remains default). No
+  sealed engine/scheduler/store/validator/registry rebuilt. E1 pod never the data
+  path — DB I/O runs only in the spawned worker subprocess.
+- GENUINE estate read (RMS tenant, source rms_mysql, counts only, no rows/PII):
+  connected host Razuna/Newsvault read live → 2 databases (news_vault, razuna),
+  119 tables, 2,198,643 estimated rows. 6 other RMS MySQL hosts isolated as
+  not-yet-connected ("NOT YET UHURU") / IP-restricted — partial estate never
+  blocks the read. Full HTTP journey POST /api/portal/census/run → COMPLETE,
+  tenant-scoped, execution_verified=true, signed proof receipt on disk.
+  Cross-tenant isolation verified (RMS run invisible to DIGICOW principal).
+- 723 backend tests pass (710 existing + 13 new non-GPU worker tests), 17 gated
+  skips, 0 failures. No regressions.
+
+BLOCKED ON OWNER (not code): DigiCow — the attached workbook is byte-identical to
+before and contains only ARNs (region, cluster ARN, secret ARN, db names), NOT an
+AWS credential. Resolver refuses cleanly (NATIVE_SECRET_RESOLVER_UNAVAILABLE)
+until AWS access key with secretsmanager:GetSecretValue OR resolved
+endpoint/user/pass is supplied. RMS OBS/NAS need OBS/CIFS drivers (next slices).
+
+ROADMAP + NAMED GAPS (answers owner's % demand):
+`assessment_workspace/notes/non_gpu_worker_20260928/ROADMAP_AND_GAPS.md` +
+`PROGRESS_MODEL.json`. Denominator = 648 assessed rows / 56 families. Two axes:
+architecture ~47%; live-verified ~1% before this session (all positive
+provider/source results were SYNTHETIC/MOCKED) — Area A now off zero (first live
+evidence). 8 named areas with rows / architecture% / share-of-remaining:
+A Ingestion 93/51%/13% (STARTED live), B Core-promise 92/38%/17%,
+C Execution/model 63/37%/12%, D Memory/Watch 30/56%/4%,
+E Governance/security 116/54%/15%, F Entitlements/commercial 58/55%/8%,
+G Rules/amendments/decision-engines 149/42%/25% (incl. 24 source-unresolved + 5
+spec-decision), H Principals/tenancy/continuity 47/52%/7%. Biggest levers: G then
+B. P0 = finish Area A live ingestion (remaining RMS hosts, DigiCow when creds,
+OBS/NAS drivers, live DQ/content-registry producers).
+
+
 ## CURRENT checkpoint — 2026-09-28 05:23 UTC, requirement-led designer brief/intake
 
 Latest user instructions supersede HTML-placement briefs:
