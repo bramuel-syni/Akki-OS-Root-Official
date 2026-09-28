@@ -1,6 +1,31 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-28 descriptor review (supersedes historical statuses below)
+## CURRENT — 2026-09-28 reuse-first closure planning
+
+See `notes/owner_closure_plan_20260928/PLAN.md` for source hashes, pinned donor
+commits, recovered rulings, exact scope and acceptance criteria. Documentation only.
+
+- P0: versioned source/ruling/reuse/call-path crosswalk. All 24 missing clause
+  sources now recovered; source presence is not implementation/live closure.
+- P0: real descriptor/admission/inspection/custody integration; prove non-GPU
+  execution outside E1, then verify `/mnt/nfs-share` there, not an E1 census.
+- P1: genuine pilot-scoped DAP→worker→registry/DQ→result→usage→custody/history;
+  DigiCow account plumbing without invented authority; real negative-path proofs.
+- P1 parallel: reuse existing rules/deck/async services, repair only demonstrated
+  deltas. A18.6 already adopted; EP-4 guard already directed. Full DeckSpec needs
+  versioned evolution from the existing frozen shell. Voice thresholds/corpus
+  remain OPEN in source, subject to later rulings, not blanket build blockers.
+- P1: reconcile EP mapping to actual Audit Standards v2 (older QA has V1–V7),
+  BC tiers (2026-09-15 ruling exists: new conditional static defaults do not
+  supersede it), then real memory/Watch/commercial/containment/recovery evidence.
+- Parked at owner's request: tenant identity submissions, artists_app permission,
+  GPU access work. Skipped is not waived. No blind SSH retries or credential asks.
+- P2: GPU/model/media/training/evaluation and physical-host recovery qualification;
+  updated designer HTML later. Preserve current UI fidelity and original authority.
+- Reporting: reuse/wiring/build/proof gaps separately, evidence-linked per row;
+  no 35%/65% replacement estimate. Broader positives still SYNTHETIC/MOCKED.
+
+## PREVIOUS — 2026-09-28 descriptor review
 
 Owner supplied five descriptor schemas, admission schema, 18-entry inventory and
 NAS mount `/mnt/nfs-share`; asked what remains pending from them. Review only,

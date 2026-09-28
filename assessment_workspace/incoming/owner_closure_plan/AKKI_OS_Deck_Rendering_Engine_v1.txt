@@ -1,0 +1,95 @@
+AKKI OS
+DECK RENDERING ENGINE
+Technical Specification
+Version 1.0 · 2026-08-02
+Builder-facing engineering spec — deterministic, token-bound rendering of
+DeckSpecs. Companion, not merged: the akki-decks skill (SKILL.md) is separate.
+
+Table of Contents
+Populates automatically when opened in Microsoft Word. If it shows blank: select it and press F9, or right-click → Update Field → Update entire table.
+
+
+
+Deck Rendering Engine v1.0
+Deterministic, token-bound rendering of DeckSpecs. Consumes the akki-decks skill (SKILL.md + references/plates-and-registers.md) as its knowledge layer — this document does not restate that content. Economic premise: the LLM writes CONTENT ONLY; the engine does every pixel. Zero LLM tokens on styling, layout, charts, or consistency — measured, not asserted.
+1 · Architecture (DR-R1–R3)
+DR-R1. One backend rendering service (extends the transform-forms / artifact-production family; no sibling): input DeckSpec_v0, output a rendered deck artifact. Rendering is a pure function: render(deck_spec, token_set@version, engine@version) → artifact.
+DR-R2. Determinism is a contract: identical (spec, token version, engine version) MUST produce byte-identical output. The artifact record carries {spec_hash, token_version, engine_version} — every deck is reproducible from its record, and re-rendering is free.
+DR-R3. Charts render as engine-generated SVG from plate law — no client-side charting runtime in static output (runtime variance breaks DR-R2). The optional live-motion layer is an additive HTML delivery feature, off in all static/exported formats.
+2 · DeckSpec — the content contract (DR-R4–R5)
+DR-R4. DeckSpec_v0 — a frozen contract (it crosses the application boundary: the executive app and OS paths both submit it; freeze argued on D4b at Stage A, prior is freeze). Shape:
+{ register: R1|R2|R3|R4|R5,
+  meta: { title, audience_line, date, rights_posture_ref, sample_deck: bool },
+  selection_manifest: { register_why, overrides[] },
+  slides: [ { type: <slide-type, skill §‘Slide type library’>,
+              kicker, title,                      // title = assertion, ≤2 lines
+              plate?: P1..P17,
+              data?: <plate-specific schema>,      // per-plate schemas in engine
+              so_what?,
+              figures: [ { value, unit, class: measured|estimated|sample,
+                           receipt_refs[] } ],
+              receipt_refs[],                      // exhibit-level
+              notes? } ],
+  coverage_and_limits: { covered_basis_ref, limits[]: {reason∈refusal-grammar,
+                          statement, closing_condition} },
+  appendix: { exhibit_index_auto: true, extra_slides[] } }
+Content only. No color, font, size, spacing, or position field exists in the spec — styling is unrepresentable in the input, which is what makes consistency structural rather than reviewed.
+DR-R5. Validation is fail-closed with enumerated errors. Schema-invalid → reject with {slide_index, rule, message}. Rendering is all-or-nothing: a deck with unrenderable exhibits does not emit a partial artifact; the error set enumerates every violation in one pass.
+3 · Honesty overlays — engine-enforced (DR-R6–R7)
+DR-R6. The engine, not the author, guarantees:
+Every figures[].class renders as its chip at the figure. A figure without a class field fails validation.
+Every exhibit carries its receipt line from receipt_refs; an exhibit with zero resolvable receipts fails validation — the does-not-persist rule executed mechanically. Receipt resolution is checked against the trace service at render time.
+Unmeasured territory renders hatched with caption: plate data schemas carry explicit unmeasured markers; a null value without the marker fails validation (no silent blanks by construction).
+sample_deck or per-figure class: sample renders SAMPLE badges; page-level when deck-wide.
+coverage_and_limits is REQUIRED — a spec without it fails validation (the mandatory slide, enforced at the schema).
+P11 (one big number) refuses class: estimated at landmark size and auto-applies the demoted rendering (mechanical).
+Comparison and Harvey-ball plates: any accent/highlight field on a column is rejected (findings-never-selection, made unrepresentable).
+DR-R7. Mechanical lint (advisory, rendered into the production record, never blocking): title sentence-form check, one-plate-per-slide, ≤2-line title at register scale, body-slide count vs. length discipline, per-register plate-fit warnings. Horizontal logic remains a generation-side + human review property — the engine cannot judge narrative truth and does not pretend to.
+4 · Tokens, registers, plates (DR-R8–R9)
+DR-R8. Token sets are versioned artifacts extracted from the frontend file of record, extended per register (status family, ramps, divider motif) and ratified with that work. Registers = token themes + density parameters; plates = pure functions (data, tokens) → SVG/HTML fragments implementing plate law exactly. Engine, templates, and token sets version under E-class; no style constant lives outside a token set.
+DR-R9. Delivery: HTML is first-class (crisp, immediate, shareable); PDF via the print pipeline from the same HTML (print stylesheet per register — furniture survives export intact by test, DR-R13). PPTX: establish at Stage A whether a faithful mapping of plate law is achievable; if not, PPTX exports as rendered-slide images + notes rather than degrading the law. No format ships that drops chips, receipts, or hatching.
+5 · Integration (DR-R10–R11)
+DR-R10. Producers compile content into DeckSpecs: memo-to-deck (memo receipts inherit automatically), commission close → R4 deck, opportunity brief → R1, compliance export → R2, run status → R5. The LLM's whole job per deck is the spec's text and data fields — authored per the akki-decks skill. User plate/register overrides enter selection_manifest.overrides as their recorded act.
+DR-R11. The harvested pattern is acknowledged and bounded: the token-bound deterministic slide template approach is adopted as a PATTERN (proven by an MIT-licensed reference implementation); the engine is original code implementing OUR plate law. The reference's layout/chart-selection reference files MAY be consulted as authoring references under MIT with attribution in NOTICE; no code vendored without the governed-component pattern.
+6 · Economics — measured (DR-R12)
+DR-R12. Metering: tokens-per-deck (spec authoring only) and renders-per-deck land in the Cost Ledger with {deck_id}. The claim “zero LLM tokens on styling” is proven by the meter, not asserted: spec-token count vs. a baseline generated-HTML deck, measured once at E1 of this track and thereafter monitored. Re-renders and register switches cost zero LLM tokens by construction.
+7 · Gates (DR-R13)
+Gate
+Break-in?
+Purpose
+gate_determinism
+—
+Same (spec, tokens, engine) twice → byte-identical.
+gate_unreceipted_exhibit_refuses
+Yes
+A spec with a non-resolving receipt must fail validation, not render.
+gate_missing_class_refuses
+Yes
+A figure without a class value must fail validation.
+gate_no_silent_blank
+Yes
+Null-without-unmeasured-marker fails.
+gate_coverage_slide_required
+—
+A spec without coverage_and_limits fails.
+gate_style_unrepresentable
+Yes
+A spec smuggling style fields is rejected by schema.
+gate_export_furniture_survives
+—
+PDF/PPTX retains chips, receipts, hatching, badges.
+gate_register_purity / gate_selection_manifest_recorded
+—
+One register per artifact; every pick recorded.
+8 · Sequencing and establishment (DR-R14)
+DR-R14. Backend-only, parallel-safe (the Memory-build pattern): may run beside the current fidelity cycles without touching them. Stage A MUST establish: DeckSpec freeze argument (D4b); overlap with the Analyze acquisition's report_builder when that lands (extend-not-duplicate ruling recorded); receipt-resolution call path from the render service; PPTX feasibility (DR-R9); token extraction dependency state.
+Owner slot
+Default
+O-D1 — default register for unlisted document classes
+R3
+O-D2 — whether live-motion ships at all in v1
+Off
+Manifest
+OWNER-DIRECTED: build the rendering engine; clean consistent decks; look-and-feel as competitive feature; the lower-token-charge insight — deterministic rendering so the LLM spends nothing on styling.
+ASSISTANT-ADDED, strikeable: all-or-nothing rendering (DR-R5) over partial-with-holes; SVG-in-engine over charting libs (DR-R3); PPTX fallback-as-images posture (DR-R9); the advisory-only lint boundary (DR-R7); O-D1/O-D2 defaults.
+LOAD-BEARING ASSUMPTIONS: (1) receipt resolution is callable from a backend render service; (2) print-pipeline PDF can preserve furniture faithfully; (3) DeckSpec as content-only is sufficient for every slide type in the skill's library.

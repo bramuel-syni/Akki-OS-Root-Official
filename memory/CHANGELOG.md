@@ -1,5 +1,22 @@
 # Akki implementation history
 
+## 2026-09-28 — source recovery, donor inspection and closure planning
+
+Owner supplies the three missing source families, cites Core/OS repositories,
+parks identity/artists_app items and offers conditional policy defaults. Retrieved
+and hashed originals, safely extracted Supplement 2, read DOCX sources and checked
+all 24 historical clause IDs via direct OOXML extraction; 648-row CSV unchanged.
+Fetched/pinned non-truncated public main trees (Core 5844eee, OS 8c36190), inspected
+selected code plus current runtime. Existing code is reuse evidence, not full
+current end-to-end conformity. Found prior A18.6 adoption, EP-4 directive/guard,
+ROC working-default approval and BC tiered-recovery direction. Conditional 24h/72h
+defaults therefore cannot silently replace earlier BC direction. Older V1–V7 QA
+legend vs requested Audit Standards v2 V1–V8 needs versioned crosswalk.
+Detailed plan: `notes/owner_closure_plan_20260928/PLAN.md`. No application/auth/UI/
+credentials/config changes; no GPU/estate/model calls, tests or live certification.
+Source-recovery dependency closed for these 24 only; broader SYNTHETIC/MOCKED
+positives and admitted-runtime/model/delivery proof gaps remain.
+
 ## 2026-09-28 — descriptor requirements / owner-action reconciliation
 
 Reviewed files (20).zip and user NAS mount `/mnt/nfs-share`: six Draft2020-12

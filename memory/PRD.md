@@ -41,7 +41,50 @@ one authoritative append-only ledger, and 100% fidelity to owner HTML prototypes
 - Credentials unchanged: `/app/memory/test_credentials.md`; estate access is
   held in ignored `/app/backend/estate_keys/owner_20260928/`.
 
-## Current checkpoint — 2026-09-28, descriptor requirements review
+## Current checkpoint — 2026-09-28, reuse-first closure plan
+
+Owner works on GPUs; asks to plan closure of the previously estimated 65% gap.
+Supplied Supplement 2 ZIP, Streaming Voice Training Capacity DOCX and Deck Engine
+v1 DOCX; points to Akki-Executive-Core and Akki-OS-V1 for reuse. Says "skip" for
+tenant authority submissions and artists_app permission: park, do not waive gates.
+
+Current report: `notes/owner_closure_plan_20260928/PLAN.md`. Originals and pinned
+repository snapshots: `assessment_workspace/incoming/owner_closure_plan/`.
+All 24 historical source-unresolved clause bodies recovered (11 SV, 11 ROC, two
+deck). This closes source recovery only, not implementation or live acceptance.
+Voice remains PROPOSED/NOT YET MERGED in source; LT-2/3 OPEN there. ROC source draft
+must reconcile existing 2026-09-09 BANKED-DERIVED approved working default.
+
+Important recovered prior rulings in `STATE/DECISIONS.md`:
+- A18.6 already ADOPTED on 2026-08-27; current runtime adoption record exists.
+- EP-4 mandatory dual-judge/register precondition already directed; guard exists.
+- BC-3/4 on 2026-09-15 explicitly reject a blanket static recovery number and
+  direct a tiered dynamic-recovery packet. Full packet ratification not established.
+  New 24h estate / near-zero Ledger / 72h-after-unit-arrival defaults were offered
+  ONLY absent a prior ruling, so do not silently bind them over this direction.
+- Older QA workbook has a 2026-09-20 V1–V7 ruling; owner now references Audit
+  Standards v2 V1–V8. Pin/version/crosswalk actual definitions, never invent V8 or
+  overwrite auditor verdicts. EP-1–3 adoption/mapping needs precise reconciliation.
+
+Both public main trees fetched without truncation: Core `5844eee95d5faffea0dcab98bd4fe5e8d1419f32`,
+OS `8c361903cdd319bfdc0709de3f4392f5bfa3956b`. Targeted inspection found existing
+deck async jobs, async accepted/estimate/state/refusal, current rules register and
+EP guard. Donor OS async dispatch explicitly lacks callable-skill support there;
+current DeckSpec is only a frozen two-field shell. Reuse candidates are not proof
+of active current full-spec conformity; trace ownership and extend, do not duplicate.
+
+Next: evidence-linked reuse/call-path crosswalk; six-schema descriptor/admission
+integration; NAS verification on an admitted EXTERNAL worker; genuine governed
+non-GPU path; parallel rules/deck/async deltas; remaining product/live proofs.
+GPU/SSH stays with owner; no retries. Never scan NAS/source data from E1.
+
+Verification: all three originals hashed/read; direct OOXML extraction confirms
+24 expected clause IDs; historical baseline confirmed 648 rows; targeted code and
+prior-ruling reads. Planning/docs only: no app, auth, config, credential, UI or
+estate changes; no new tests/live certification. Broader positives remain
+SYNTHETIC/MOCKED without live evidence. No completion percentage recomputed.
+
+## Previous checkpoint — 2026-09-28, descriptor requirements review
 
 Owner: “Attached are some of the requirements. NAS - mounted on: /mnt/nfs-share.
 You now have data to close alot of the gaps. What is pending from me?”
@@ -54,7 +97,7 @@ cells and all 18 status cells blank. These are contracts/inventory, not populate
 verified descriptors or signed admissions. Originals retained unchanged at
 `assessment_workspace/incoming/requirements_files20/`, hashes in report below.
 
-Authoritative current owner-action reconciliation:
+Historical owner-action reconciliation (superseded above where changed):
 `assessment_workspace/notes/descriptor_requirements_20260928/OWNER_PENDING.md`.
 
 ### Owner dependencies, limited to affected work

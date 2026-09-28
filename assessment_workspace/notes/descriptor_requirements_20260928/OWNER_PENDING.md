@@ -1,5 +1,11 @@
 # Akki — what remains with the owner after files (20).zip
 
+> Superseded where changed by `../owner_closure_plan_20260928/PLAN.md`: owner
+> subsequently supplied all three original source families (24 clause bodies
+> recovered), parked items 1/2, and offered conditional defaults. Reconciliation
+> found existing A18.6/EP-4/ROC and tiered BC rulings. Retain this earlier review
+> as history; do not re-request the supplied sources or apply defaults over rulings.
+
 Review date: 2026-09-28. Scope: documentary reconciliation and relevant source-code
 inspection, not a new live census, security audit, admission ceremony or release test.
 User supplied requirements, stated `NAS - mounted on: /mnt/nfs-share`, asked what

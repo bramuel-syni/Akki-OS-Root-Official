@@ -1,0 +1,42 @@
+PROPOSED EXTENSION — FOR REVIEW, NOT YET MERGED
+Streaming Voice Training Capacity
+Extends Document 17 §17.4a (Extraction) and §17.4c (Invention) only. Trains the capability that a future telephony service would consume — does not spec the deployed service, its live-call governance, or a custody-per-turn model. Everything below is PROPOSED pending Owner ruling; nothing here is CANON until merged.
+1 · Scope, restated precisely
+In scope: what Document 17's training engine must additionally produce — streaming-capable extraction, real-time-capable synthesis — so the resulting models could power a telephony service later.
+Out of scope: the deployed voice agent itself, live-call custody/entitlement checking, dialogue management, telephony transport selection (Pipecat/LiveKit/carrier). Those depend on this capability existing; they are not this document.
+Leverages, does not replace: Document 20's existing text-dimension candidates (Qwen3, Llama) stay fixed as the reasoning layer. This document adds the voice I/O layer around them.
+2 · Extends §17.4a — Streaming Extraction
+A distinct mode from the existing batch extraction, not a replacement for it. Same tokenized representation — content/character stream split, language-ID and code-switch detection — running incrementally on partial audio rather than a complete file after the fact.
+SE-1  [PROPOSED] Streaming extraction is a named second mode of §17.4a, sharing its tokenized representation and Character Register outputs.
+The codec, language-ID, and code-switch detection already specified for archive extraction apply unchanged to streaming input — what changes is that they run on a rolling window of partial audio, not a complete file. No new extraction concept, a new operating mode of the existing one.
+SE-2  [PROPOSED] Candidate: NVIDIA Nemotron ASR Streaming — cache-aware architecture, 40 language-locales in a single 600M-parameter model, language-ID conditioning built in.
+Directly compatible with §17.4a's existing language-ID and code-switch work — the model's own conditioning mechanism is the same kind of signal this document already requires. Named the strongest real-time streaming candidate in an independent 50-configuration benchmark (Microsoft, April 2026).
+SE-3  [PROPOSED] Qwen3-ASR is not proposed for this mode — named here to close the question, not leave it implicit.
+Highest raw accuracy among models compared (5.90% WER) and a reasonable candidate for §17.4a's existing batch/archive extraction, where it already fits alongside Document 20's other Qwen-family candidates. The same benchmark that measured it flags it as fundamentally batch-oriented, not streaming-native — stated plainly so it isn't assumed to cover both modes by default.
+SE-4  [PROPOSED] Methodology, not a model: target a compact model tuned through rigorous register normalization against the Character Register, following the precedent that closed the same gap for a different low-resource language.
+A 115M-parameter model matched Whisper-Large-v3 accuracy on Thai — a low-resource language — at 45× less compute, through careful text normalization rather than scale. The Character Register (§17.4b) already exists as exactly this kind of normalization substrate for Swahili/Sheng; the same approach is the target methodology here, not a specific model to import.
+3 · Extends §17.4c — Real-Time Invention
+This section is the trigger, not a rewrite. §17.4c's scope note already states rendering is “explicitly Phase 2” and requires a separate synthesis stack. A telephony-service objective is exactly the kind of commission that note was written to gate — this section proposes activating it, not changing what it says.
+RI-1  [PROPOSED] A telephony-service objective is the Phase 2 trigger §17.4c already named.
+No change to §17.4c's own text. This is confirmation that the condition it was waiting on — a real objective needing rendering — has arrived, not a redefinition of when Phase 2 starts.
+RI-2  [PROPOSED] The distance guarantee and certificate are unchanged by real-time rendering — stated explicitly so it isn't assumed to need rework.
+§17.4c's fail-closed distance gate runs once, at identity construction, before any use. Real-time synthesis consumes an already-certified identity to generate audio faster; it does not re-run the distance check per utterance. The safety mechanism doesn't change — only the rendering engine's speed does.
+RI-3  [PROPOSED] Candidates — Qwen3-TTS, CosyVoice2-0.5B, Chatterbox.
+Qwen3-TTS — same publisher family already trusted for text (Document 20 A20.1) and vision (A20.7). Measured, not marketed: ≈80ms audible onset in independent benchmarking.
+CosyVoice2-0.5B — ≈150ms streaming latency, one of the top-rated open real-time options generally.
+Chatterbox (Resemble AI) — sub-200ms, and ships audio watermarked by default. Worth naming for the precedent, not just the latency: an independent “provably synthetic” marker on every output is the same spirit as §17.4c's own certificate, arrived at from a different angle.
+RI-4  [PROPOSED] Orchestration: cascaded ASR → LLM → TTS, not integrated speech-to-speech.
+Cascaded pipelines still outperform integrated speech-to-speech models in production as of 2026, per dedicated comparison — not a marginal call. This matters architecturally, not just for quality: a cascaded pipeline keeps the LLM stage a separate, addressable step, which is what lets it route through Document 1's existing chokepoint. A fused speech-to-speech model would not offer an equivalent seam — governance would have no clean point of entry.
+4 · TargetOutcome extension — latency as a calibrated dimension
+The schema already carries a constraints.latency field (Document 17 §17.3). This does not add a field — it adds a rule for how that field is treated when the objective is streaming-classed.
+For task class = streaming:
+  constraints.latency is promoted from a soft bound
+  to a third calibrated acceptance dimension, measured
+  and gated per stratum alongside accuracy × coverage —
+  not merely filtered against after the fact.
+LT-1  [PROPOSED] A technically accurate result that arrives late has failed the objective, not merely underperformed a preference.
+For a telephony use case specifically, this is the honest framing: a correct transcript delivered two seconds late doesn't clear a lower bar, it fails the objective the same way a wrong transcript would. Treating latency as a soft constraint understates that.
+LT-2  [OPEN] The actual latency threshold is not set here.
+I don't have canon grounding for a specific number and am not inventing one. This needs either a real Owner-set target or a calibration run against real call material to derive one — the same “measure, don't assert” discipline §1.4 already requires elsewhere.
+LT-3  [OPEN] Calibration corpus for streaming objectives is unaddressed.
+§17.3's calibration stage assumes archive material to train and evaluate against. Whether a streaming-representative corpus already exists, or needs new collection distinct from the archive, is not answered by anything in Document 17 as it stands.

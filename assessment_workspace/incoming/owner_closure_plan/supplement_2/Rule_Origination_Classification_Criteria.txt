@@ -1,0 +1,90 @@
+AKKI PLATFORM  ·  GOVERNANCE SPECIFICATION
+Rule Origination & Classification Criteria
+rule_criteria_spec_v1 — Draft for owner ratification
+Governs
+The platform's system rules — every rule in force prior to, and independent of, any customer relationship.
+Excludes
+Customer-authored rule books (§8).
+Origination
+Drafted to Owner brief, 1 September 2026. ROC-2 derives from the standing principle at Document 17 §17.2.
+Status
+Draft v1. Every rule in this document is PROPOSED until ratified; on ratification all become CANON unless individually ruled otherwise. Three rulings parked (§9); none block application of §2–§6 to new rules.
+Date
+1 September 2026
+1   Purpose & Scope
+This document defines what constitutes a system rule on the Akki platform, how each rule is identified and named, where it originates, how it is classified, and how the complete set is tracked. Its purpose is that the rules governing the platform are consistent in form, unambiguous in identity, and enumerable by lookup.
+It governs the platform's own rules: those in force prior to and independent of any customer relationship, which a customer's own rule books are constrained by and cannot override. It does not govern customer-authored rule books; §8 states that boundary.
+2   What Is a Rule
+ROC-1  A rule is a statement that is (a) individually addressable — it carries a unique ID and can be cited on its own; (b) a requirement, not an explanation — phrased as something a specific implementation does or does not satisfy, independent of which section or document structure it appears in; and (c) falsifiable — a statement that no implementation could fail is a value or a principle, not a rule.
+ROC-2  A statement that restates the substance of an already-ratified rule under a new ID, without citing the original, is rule proliferation and MUST be rejected at authoring. An extending document MAY cite an existing rule by ID; it MUST NOT reissue it under a new one.
+Source: Document 17 §17.2 — “anything that reads as a parallel to an existing service is rule proliferation and must be collapsed into the existing service” — generalized from services to rules.
+Document convention. Canon documents present each promise in six parts: promise · service · definition · delivery experience · technical and behavioural requirements · what must be true. Individually identified rules appear in the fifth part. A document that does not follow this structure identifies its rules by ROC-1 alone; the structure is a convention, not the test.
+Example. A promise's definition section states what the promise means (“identifiers are removed before crossing”). Its requirements section states what is built to make that true (A5.1: exactly one function invokes the external model client, enforced by a negative-scan build test). The first explains; the second is a rule.
+3   Rule Origination
+Every rule carries a provenance citation as part of its registry entry (§6). A rule without a stated origin cannot be distinguished from an unsupported assertion. Five origination classes; every rule is exactly one.
+Class
+Meaning
+Citation states
+RATIFIED-EXTERNAL
+Decomposed from a pre-existing, separately ratified specification.
+Source document and section.
+PROMISE-DECOMPOSED
+Derived from a promise's own definition within the same document.
+Promise number and document.
+OWNER-DIRECTED
+Instructed directly by the Owner; drafted to specification.
+The instruction, ceremony, or ratification date.
+ASSISTANT-PROPOSED
+Synthesized to close a gap; offered for ratification; not yet adopted.
+The proposing session or date. Carries PROPOSED or OPEN status until ratified — never CANON without a ratification event.
+EXTENSION
+Amends or extends the scope of an existing rule.
+The rule(s) extended, and what changes against what does not.
+4   Rule ID & Naming Convention
+Two schemes
+ROC-3  POSITIONAL: [Part][Section].[Sequence] — e.g. A5.3, B5.2. The default. Used when a rule is intrinsic to one promise or document and is not referenced elsewhere as a named mechanism.
+ROC-4  MNEMONIC: [2–4-letter abbreviation]-[Sequence] — e.g. QA-4, DR-R7, WPW-11. Used only when a rule belongs to a named, addressable sub-mechanism with its own identity: referenced from multiple places, or constituting a distinct capability layer — a critic pass, an evidence protocol, a rendering engine, a wizard.
+Scheme exclusivity
+ROC-5  A rule population uses exactly one scheme. A document or section MUST NOT carry both a positional sequence and a mnemonic sequence over the same items. Two concurrent schemes over one population make both the identity and the count of its rules ambiguous.
+ROC-6  Every mnemonic prefix MUST be reserved in the Rule Registry (§6) before first use. A prefix collision is caught at reservation, not inside a document.
+5   Rule Classification — Three Axes
+Every rule carries a value on all three axes. None is optional, and they are independent: a rule's enforcement class does not imply its status, and neither implies its domain.
+Axis 1 — Status: how settled
+ROC-7  CANON (ratified, in force) · RULED (an Owner decision on record, not yet executed) · DEFAULT (a working value, revisable on evidence, not yet formally ratified) · PROPOSED (synthesized, offered for ratification, not adopted) · OPEN (undecided; no default stands). Exactly five values. Any other status vocabulary MUST be mapped onto these five; no document introduces a sixth.
+Axis 2 — Enforcement class: how it is held to
+ROC-8  STRUCTURAL (the violating state is unrepresentable — cannot be expressed, compiled, or executed) · MECHANICAL (an automated check — build gate, schema validator, negative-scan test — catches violations at a defined point) · MEASURED (held to a standing metric with a stated kill or revision condition) · CEREMONIAL (enforced by a defined human process — counter-signature, cancellable countdown, ratification) · ADVISORY (surfaced and recorded; never blocking).
+Axis 3 — Domain: what it governs
+ROC-9  SyniSense · Solva · Northena · Mtafiti · Targeta · Mkondo — the six engines. The Watch · The Ledger · Faculties (e.g. CIF) · Wizards (e.g. the Whitepaper Wizard) — four categories outside the six by design. Cross-Cutting — platform-wide doctrine owned by no single engine (the class of Document 16).
+6   The Rule Registry
+ROC-10  A single standing Rule Registry exists. Every rule's entry carries: ID · one-line statement · origination class and citation (§3) · status · enforcement class · domain · date last changed.
+ROC-11  The Registry is append-only, on the custody discipline of Document 5's Ledger pattern. A rule's history — proposed, ratified, amended — remains visible; entries are superseded with the prior version retained, never overwritten.
+7   Examples of Classification
+Four rules from the canon, classified under §3–§5.
+Rule
+Origination · citation
+Status · enforcement
+Domain
+A5.1 — the single chokepoint
+PROMISE-DECOMPOSED · Promise #1, Document 1
+CANON · STRUCTURAL
+SyniSense
+A17.9 — explicit execution mode
+OWNER-DIRECTED · Owner ruling 9.2a-E2 α, 10 July 2026
+CANON · STRUCTURAL
+Targeta
+WPW-11 — Tier 3 eligibility
+EXTENSION · extends Promise #25, Document 14
+DEFAULT · MECHANICAL
+Wizards
+EP-4 — evidence-register ordering
+ASSISTANT-PROPOSED · Document 19B
+OPEN · CEREMONIAL
+Cross-Cutting
+8   Non-Scope — Customer Rule Books
+Customer rule books (Promise #27, Document 15) are a separate system this document does not govern: plain-language rules authored by whoever is accountable for them, adopted from templates, changed only through a signed ceremony with a cancellable countdown, and classed by their own bindingness taxonomy — hard line, ordinary, permission, managed list. That taxonomy answers how binding a customer's rule is; the axes in §5 answer how a system rule is enforced and where it came from.
+The relationship between the two is one-directional. System rules bound what is structurally and mechanically possible; customer rules configure within that bound. A customer rule cannot relax a system rule whose enforcement class is STRUCTURAL or MECHANICAL. Where the two appear to conflict, the system rule's enforcement class decides which yields — not which was written more recently.
+9   Owner Rulings — Parked
+OR-1  Whether rules pre-dating this specification are entered into the Registry retrospectively, or the specification applies to new rules only with retrospective entry scheduled separately.
+OR-2  Ratification of the Domain taxonomy (ROC-9) as the standing list, amended, or extended — including whether rendering and output layers warrant a category of their own.
+OR-3  Whether the Rule Registry is a built platform surface or a maintained document.
+These rulings do not block application of §2–§6 to any new rule.
