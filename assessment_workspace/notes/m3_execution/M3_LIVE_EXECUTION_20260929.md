@@ -66,8 +66,10 @@ execution_components + activation_controls: see `test_reports/pytest/m3_regressi
 
 - `req-c1f2738b3449081569aebfbfd537e2a6` (first completed run, pre-fix): its registry was written before rights
   existed and carries a call-time stamp; rights were later extended by operator tool `m3_extend_rights.py`
-  (`4c086656…`) but the immutable registration cannot be restated, so it stays `Interrupted` with its real
-  work metered. Not deleted, not rewritten.
+  (`4c086656…`) but the immutable registration cannot be restated, so its last hold is
+  `ARTIFACT_REGISTRATION_CHANGED` → My Work `Blocked` (closed; advance → 409) with its real work metered.
+  Not deleted, not rewritten. Now disclosed honestly (was the generic `EXECUTION_HELD`).
+  Live binding suite `tests/m3_commission/test_m3_live_bindings.py` 15/15 (testing-agent iteration 64 + this fix).
 - Custody grants for DIGICOW need an owner ruling on an HTTPS retrieval origin (or delivery is by mount).
   `CustodyBinding` binds one tenant's origin (RMS) — multi-tenant custody binding is an M7 item.
 - Quality matrix rule `matrix.structured_records.v0:pending_first_verified_sample`: threshold is to be set from

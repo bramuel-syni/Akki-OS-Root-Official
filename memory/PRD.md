@@ -33,8 +33,11 @@ Two live legacy tests (`test_entitlement_allowance_without_licence…`, `test_ex
 assert the pre-ceremony world (no RMS licence / no bindings) — superseded, not regressions.
 `test_non_gpu_worker.py` failures are pre-existing at git HEAD.
 
-**Standing limits:** `req-c1f2738b3449081569aebfbfd537e2a6` (first completion, pre-fix) stays `Interrupted`
-— registry written before rights existed, immutable; rights later extended by `m3_extend_rights.py`.
+**Standing limits:** `req-c1f2738b3449081569aebfbfd537e2a6` (first completion, pre-fix) is `Blocked` on
+`ARTIFACT_REGISTRATION_CHANGED` (now disclosed honestly) — registry written before rights existed with a
+call-time stamp, immutable; rights later extended by `m3_extend_rights.py`; real work metered.
+Testing agent iteration 64 (13/15; the 2 "failures" were my brief's wrong expectation of `Interrupted` for
+this refusal) → suite `tests/m3_commission/test_m3_live_bindings.py` aligned, 15/15 live.
 DIGICOW custody grant needs an HTTPS-origin ruling (or delivery by mount); `CustodyBinding` is single-tenant
 (RMS origin). Quality matrix threshold pending the first human-verified sample. DigiCow authorities unseated
 (stand-in cited on every approval). No commissioning UI yet. M2 Watch inventory must be rerun for the new

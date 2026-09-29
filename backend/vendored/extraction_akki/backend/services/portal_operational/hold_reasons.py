@@ -61,6 +61,10 @@ _group('CUSTODY_ORIGIN_UNAVAILABLE', 'The verified result rests in your estate\'
        'Retrieve it where that store is mounted, or have an HTTPS retrieval origin ruled for this estate\'s custody.')
 _group('CUSTODY_GRANT_REFUSED CUSTODY_COMPLETION_REFUSED CUSTODY_OBJECT_SIZE_MISMATCH CUSTODY_AUTHORITY_WINDOW_TOO_SHORT SEALED_OBJECT_UNRESOLVED CUSTODY_DESCRIPTOR_UNRESOLVED',
        'The custodian could not match the sealed result to this delivery.', 'Reconcile the same delivery identifier against the recorded sealed object; nothing is downloaded meanwhile.')
+_group('ARTIFACT_REGISTRATION_CHANGED CANONICAL_REGISTRY_RECEIPT_MISMATCH',
+       'The independently inspected registration of this result no longer restates identically, so the result is not released.',
+       'A registration is immutable and is never rewritten; commission a fresh request for a new registration.')
+
 
 _group('CUSTODY_IDEMPOTENCY_CONFLICT SKILL_QUERY_IDEMPOTENCY_CONFLICT', 'This retry identifier belongs to a different frozen request.',
        'Do not alter the original request while retrying it.')

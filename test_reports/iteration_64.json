@@ -1,0 +1,42 @@
+{
+  "summary": "Backend-only M3 verification against live control plane. Ran pytest suite covering all 9 review-request scenarios except the OPTIONAL live extraction (skipped by design — freezing a warm draft dispatches real bounded reads). Result: 13/15 assertions PASS. Two assertions FAIL for the same legacy request req-c1f2738b3449081569aebfbfd537e2a6: lifecycle_state is still 'Blocked' (expected 'Interrupted') and POST /commission/{id}/advance still returns HTTP 409 'This request is closed' (expected 200 with terminal.phase='held'). Session fix (3) from the review-request ('holds ending _REQUIRED are Interrupted, not Blocked') has NOT been applied to legacy hold reason_code EXECUTION_HELD which this request carries.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "GET /api/portal/requests/req-c1f2738b3449081569aebfbfd537e2a6",
+        "issue": "lifecycle_state='Blocked', permitted_actions=[]; review-request requires 'Interrupted' with permitted_actions ['retry','stop']. Root cause: services/portal_operational/execution_records.py:_state maps reason to 'Interrupted' only when reason.endswith(('_UNBOUND','_NOT_BOUND','_UNAVAILABLE','_REQUIRED')) or 'UNCERTAIN' in reason. This legacy hold's reason_code is 'EXECUTION_HELD' (from history event 'execution_held' with ADMISSION_UNRESOLVED) which matches none of those suffixes and falls through to 'Blocked'. The fix promised in the review-request (interrupted for _REQUIRED holds) never triggers here — either the transient set must include 'EXECUTION_HELD'/'ADMISSION_UNRESOLVED' or the terminal reason_code must be re-derived to *_REQUIRED before the state helper runs.",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "POST /api/portal/commission/req-c1f2738b3449081569aebfbfd537e2a6/advance",
+        "issue": "Returns HTTP 409 {\"detail\":\"This request is closed; any new commission requires a fresh request.\"}. Review-request requires 200 with terminal.phase='held' (reason may be ARTIFACT_REGISTRATION_CHANGED or EXECUTION_HELD). Same root cause as above — because lifecycle is 'Blocked', the advance router treats the record as closed. Fixing the lifecycle-state mapping will also fix this endpoint.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/m3_commission/test_m3_live_bindings.py",
+    "/app/test_reports/pytest/m3_live_bindings.xml"
+  ],
+  "action_items": [
+    "Extend services/portal_operational/execution_records.py:_state (or its caller) to classify reason_code 'EXECUTION_HELD' / event 'execution_held' with 'ADMISSION_UNRESOLVED' as an Interrupted/retryable state for legacy holds. Verify GET /api/portal/requests/req-c1f2738b3449081569aebfbfd537e2a6 returns lifecycle_state 'Interrupted' with permitted_actions ['retry','stop'] and POST /commission/.../advance returns 200 with terminal.phase='held'.",
+    "After fixing, re-run /app/backend/tests/m3_commission/test_m3_live_bindings.py — the two TestInterruptedRun cases should pass."
+  ],
+  "critical_code_review_comments": [
+    "services/portal_operational/execution_records.py:_state uses a suffix-based classifier for transient reasons; legacy reason codes without an *_UNAVAILABLE/_REQUIRED suffix (here 'EXECUTION_HELD') are silently classified as terminal 'Blocked'. Prefer an explicit set of transient reason codes (or an is_retryable flag on the hold record) rather than string-suffix heuristics — the current heuristic already fails for real data.",
+    "The 409 advance response wording ('This request is closed; any new commission requires a fresh request.') will be user-facing for every legacy Interrupted-should-be record; that is the wrong operator message for a retryable hold.",
+    "Budget structure returned by /run is a list keyed by 'dimension' (not 'name'); the review-request wording uses 'row named X consumed Y' — non-breaking, but flagging for docs consistency."
+  ],
+  "updated_files": [
+    "/app/backend/tests/m3_commission/test_m3_live_bindings.py (new)"
+  ],
+  "success_rate": {"backend": "87%", "frontend": "n/a"},
+  "test_credentials": "demo.operator@demo.digicow.example.com / demo-digicow-operator-pw (DIGICOW operator, ask_console_user); demo.analyst@demo.rms.example.com / demo-analyst-pw (RMS analyst, read-only, other tenant). Both verified this run.",
+  "seed_data_creation": "None. Draft-shaping test created warm/unknown/PII drafts on digicow_live (no freeze, no dispatch); v2 warm draft was withdrawn.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "The OPTIONAL single live extraction (feature #8 in the review-request) was NOT executed — it dispatches a real bounded read of DigiCow pilot rows and everything else was reproducible without it. If main agent wants that covered, add a targeted test with a guarded fixture and a unique timestamp-based idempotency_key; use max_records<=50 on digicow_live.training_questions only. The 13 passing assertions cover: ready-run terminal + budget + registry + sealed; ready summary/result/commission cross-check; idempotent 3x advance with unchanged freshness_stamp 2026-09-29T15:38:40+00:00; stopped run terminal EXECUTOR_CANCELLED + budget scanned=2500 active_compute=1 + 409 on /stop; delivery held with CUSTODY_ORIGIN_UNAVAILABLE (reason text mentions estate store); draft shaping (warm/revise-preserves-v1/unknown-TABLE_NOT_CENSUSED/PII-floor-email+mobile_number/withdraw+409); tenant/role boundaries (RMS analyst 404 on DIGICOW /run, 403 on drafts, anonymous 401).",
+  "rca of the issue": "Legacy request req-c1f2738b3449081569aebfbfd537e2a6 was frozen 2026-09-29T15:21:49 and its terminal reason_code is 'EXECUTION_HELD' (history shows event 'execution_held' with reason_code 'ADMISSION_UNRESOLVED' at the routing step). _state() in services/portal_operational/execution_records.py maps a reason to 'Interrupted' only when it ends with _UNBOUND, _NOT_BOUND, _UNAVAILABLE or _REQUIRED, or contains 'UNCERTAIN'. EXECUTION_HELD matches none of those, so it lands on 'Blocked'. Consequently permitted_actions is [] (only Interrupted maps to ['retry','stop']) and the advance router treats Blocked as closed, returning 409. Reproduction: (a) GET /api/portal/requests/req-c1f2738b3449081569aebfbfd537e2a6 → lifecycle_state 'Blocked'. (b) POST /api/portal/commission/req-c1f2738b3449081569aebfbfd537e2a6/advance → 409 'This request is closed…'. Mitigation options: (i) add 'EXECUTION_HELD' to the transient set (or use an explicit retryable_reason_codes constant), (ii) recompute the terminal reason_code from the history's last non-terminal event where present, (iii) tag the hold record itself with retryable=true when the block is ADMISSION_UNRESOLVED. Either (i) or (iii) is the smallest change."
+}
