@@ -1,0 +1,89 @@
+{
+ "job_id": "lcj-e365bce78871",
+ "phase": "train_corrective",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T17:23:29.622169Z",
+ "params": {
+  "baseline_job_id": "lcj-f96c86a16312",
+  "gpu_index": 1,
+  "seed": 41,
+  "epochs": 20,
+  "batch_size": 512,
+  "physical_batch_size": 512,
+  "max_windows_per_file": 180,
+  "parallelism": 24,
+  "lr": 0.0003,
+  "adversary_strength": 0.5,
+  "noise_multiplier": 1.0,
+  "max_grad_norm": 1.0,
+  "delta": 1e-06,
+  "smoke_steps": 0,
+  "owner_order_ref": "owner-order://2026-09-29/language-cognition-corrective-max-utilisation"
+ },
+ "northena_run_id": "run-c48807273f5a",
+ "northena_trace_id": "trc-528c9edb4fd3",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-e365bce78871"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-e365bce78871",
+  "pid": 353512
+ },
+ "status": "running",
+ "final_model_commission": {
+  "decision": "refused",
+  "reason": "CleanMonolingualOnlyRefused",
+  "message": "MUST-NOT \u00a71 owner verbatim: 'Clean-monolingual alone is a MUST-NOT for the final model.' Commission refused because has_code_switched_material is False; the training set MUST carry labelled code-switched material per span."
+ },
+ "ledger_rows": [
+  {
+   "row_id": "led-8cc248997069",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_train_corrective_admitted"
+  },
+  {
+   "row_id": "led-d1406f66662b",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_train_corrective_daemonised:pid=353512"
+  }
+ ],
+ "code_sha256": "52f3525e38da2d0c899f3ed3c9ac4e91c49f997e00ecbf140813007aec6b3c47",
+ "started_at": "2026-09-29T17:23:34.775951Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T17:30:53.801031Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-2e4e4b913b2d"
+ },
+ "remote_state": {
+  "phase": "train_corrective",
+  "status": "running",
+  "started_at": "2026-09-29T17:23:34Z",
+  "progress": {
+   "stage": "corrective DP-SGD training",
+   "epoch": 1,
+   "epochs": 20,
+   "step": 40,
+   "loss": 2.05792,
+   "gpu_index": 1,
+   "elapsed_seconds": 428,
+   "gpu_memory_gb": 25.79,
+   "examples_per_logical_batch": 512,
+   "dp_per_sample_verified": true,
+   "latest_dev": null
+  },
+  "events": [],
+  "job_id": "lcj-e365bce78871",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T17:30:49Z"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 8698.86it/s]\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/opacus/privacy_engine.py:98: UserWarning: Secure RNG turned off. This is perfectly fine for experimentation as it allows for much faster training performance, but remember to turn it on and retrain one last time before production with ``secure_mode`` turned on.\n  warnings.warn(\nsys:1: UserWarning: Full backward hook is firing when gradients are computed with respect to module outputs since no inputs require gradients. See https://docs.pytorch.org/docs/main/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook for more details.",
+ "process_alive": true
+}

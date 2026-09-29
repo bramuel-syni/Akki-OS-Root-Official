@@ -256,6 +256,8 @@ Readiness, reuse crosswalk, four-panel UI contract, drill-pack evidence and stan
 
 **Need / first tasks:** qualified units, admitted model/provider and tokenizer/window configuration, source locators, baseline/cascade, Solva/Critic, protected reference task set and current performance/quality bounds. Recover the existing native runtime/provider records; having model-related code is not an executable model. Use a qualified non-GPU-capable route where available, never assume GPU access is unnecessary for every model.
 
+**Context/memory emphasis confirmed 2026-09-29:** M4 explicitly includes preservation under **heavy estate/context shrinkage**, bounded rapid-access working sets over durable qualified units, and short-inquiry warm serving without re-running the estate (Doc 7 #19; Doc 8 #20/#21; MEM-1–11; CC-4–9/15–16). Build the shared memory/retrieval spine in M4 and reuse it in M5; do not create two memory services or delay all memory until M5. Readiness findings and code reuse map: `M4_M5_READINESS_20260929.md`. This is an integration/test emphasis, not a new quality threshold or gate pass.
+
 **Sprint work packages**
 1. **M4.1:** connect intent, authorised retrieval, deterministic whole-unit assembly and model invocation through existing custody/Watch boundaries.
 2. **M4.2:** complete warm/full synchronous results, fresh acknowledgement+estimate, controlled decisions, evidence-floor phrasing, uncertainty/assumptions and context-loss disclosure.
@@ -265,8 +267,8 @@ Readiness, reuse crosswalk, four-panel UI contract, drill-pack evidence and stan
 |---|---|
 | M4-T1 Useful answers | Retrieval, synthesis, multi-step and entity-heavy tasks produce answers checked against protected references and the applicable rubric. Claim support resolves to permitted rows/pages/time positions. Multi-turn sessions preserve identity, objective and scope. |
 | M4-T2 Difficult evidence | Contradictory, unqualified, missing, stale and withdrawn support gives the required class/limitation/refusal. Source uncertainty is not promoted to fact by model confidence. |
-| M4-T3 Context and custody | Same pinned objective/qualified set produces the same whole-unit window and exclusion statement. Controlled entity-knowledge follows its authorised local/exception branch. Meaning is preserved across masking/re-identification with no unauthorised disclosure. |
-| M4-T4 Performance without quality loss | Measure warm completion, fresh acknowledgement, controlled queue time, warm-serve ratio, resource cost and errors per tenant/workload against the existing bound versions. Same-model/seed/config comparisons do not silently swap capability. |
+| M4-T3 Context and custody | Same pinned objective/qualified set produces the same whole-unit window and exclusion statement. Exercise severe reduction, preserve objective/frame/floor and source-anchored meaning, regenerate selected content rings through exact re-extraction handles and carry any loss/class limitation into the answer. Controlled entity-knowledge follows its authorised local/exception branch. Meaning is preserved across masking/re-identification with no unauthorised disclosure. |
+| M4-T4 Performance without quality loss | Measure warm completion, fresh acknowledgement, controlled queue time, warm-serve ratio, working-set hits/evictions, resource cost and errors per tenant/workload against the existing bound versions. Repeated short warm inquiries produce no new estate extraction/read; fresh requests touch only the missing slice, proved by dispatch and source rows/bytes counters. Same-model/seed/config comparisons do not silently swap capability. |
 | M4-T5 Capability comparison | Execute the adopted CC-12/14 task set (at least 200 tasks, two paths, at least 400 task-path outcomes) in its authorised isolated benchmark boundary. Reconcile every outcome, including refusals/timeouts. Report quality/latency delta per class, named causes and re-performance. Never create a production bypass or export controlled data to make the bare-path comparison. |
 
 **Gate G4:** core answer tasks pass their adopted quality bars; measured latency/capability findings receive exactly the source-defined disposition. CC-13 is not silently converted from a disclosure/named-cause finding into an invented universal blocking quality percentage. A missing benchmark is not a measured pass. **Opens M5.**
@@ -276,6 +278,8 @@ Readiness, reuse crosswalk, four-panel UI contract, drill-pack evidence and stan
 **User outcome:** leave and resume work, move between chat/analysis/documents, collaborate on a task, and connect a goal or board decision to actual delivery evidence.
 
 **Need / first tasks:** existing My Work/team/goals/board prototype surfaces, durable task producers, scoped membership, memory-plane store and source re-extraction handles. Current UI composition is reusable; historical gaps include unsaved drafts and missing native feeds. Verify current state rather than assuming those gaps persist unchanged.
+
+**Shared M4/M5 seam:** reuse the qualified-memory spine, context-loss/class contract, source handles, scoped working-set management and objective/session identity proven in M4. M5 adds cross-run and cross-application durability, publication/compaction/reload and organisational continuity. Personal user-memory remains subject to its separate R-21 OFF ruling; it is not implicitly enabled by rapid-access memory. See `M4_M5_READINESS_20260929.md`.
 
 **Sprint work packages**
 1. **M5.1:** wire durable tasks, ownership/contribution, goal links, board questions/minutes/decisions and actual activity feeds.

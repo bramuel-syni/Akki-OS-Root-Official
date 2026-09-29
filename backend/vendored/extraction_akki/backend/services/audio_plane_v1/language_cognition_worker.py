@@ -997,8 +997,20 @@ def train_baseline(control, state):
                                              "per-language and no-speaker-ID readings above are measured on presenter-disjoint material"}}}
 
 
+def train_corrective(control, state):
+    import fcntl
+    from services.audio_plane_v1.corrective_training import train
+    # A host-local allocation lock, not a new scheduler. A second owner of this GPU must refuse.
+    with open(Path(control['root']) / f"corrective_gpu_{control['gpu_index']}.lock", 'w') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        os.environ['CUDA_VISIBLE_DEVICES'] = str(control['gpu_index'])
+        os.environ['HF_HUB_OFFLINE'] = '1'
+        os.environ['TRANSFORMERS_OFFLINE'] = '1'
+        return train(control, state)
+
+
 PHASES = {"corpus_census": corpus_census, "register_bases": register_bases, "speaker_linkage": speaker_linkage,
-          "gate_eval": gate_eval, "train_baseline": train_baseline}
+          "gate_eval": gate_eval, "train_baseline": train_baseline, "train_corrective": train_corrective}
 
 
 def execute(control):

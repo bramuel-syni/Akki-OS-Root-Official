@@ -1,6 +1,15 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-29 execution checkpoint
+## CURRENT — 2026-09-29 joint M4/M5 review and corrective M9 research campaign
+
+- Four post-M3 journey proposals parked pending owner journeys; not waived/accepted.
+- M4/M5 reviewed jointly: explicitly retain heavy shrinkage, rapid-access qualified memory and short-inquiry zero-estate-rerun obligations. Integration needed, no G4/G5 pass. Report: `assessment_workspace/notes/goal_delivery_20260928/M4_M5_READINESS_20260929.md`. Shared spine lands in M4 and is reused in M5; R-21 OFF.
+- Owner authorised background language retraining **"maximum utilization, no spend limit"**. Existing akki-vm-ii/authorised staged corpus only. Real DP smoke `lcj-07c848c58923` passed; 20-epoch trials `lcj-a6ea5b4bcdf6` (GPU0), `lcj-e365bce78871` (GPU1) submitted via normal Akki API and observed alive. No new scheduler or paid infrastructure. Evidence: `assessment_workspace/notes/m9_corrective_training/EXECUTION_20260929.md`.
+- Both trials verified in real DP-SGD at17:31Z (epoch1/20). Both H200s allocated; measured ten-second utilisation averages45%/24.8%, peaks99%/100%; sustained saturation NOT achieved.
+- P0 next: monitor/profile throughput and review terminal quality/speaker/DP results; no auto-promotion or DP weakening. P1 shared M4/M5 integration and owner journeys. P2 missing English/Sheng/code-switch labels, independent/privacy M9 acceptance, full checkpoint interruption-resume proof; M6–M10 retain governing roadmap.
+- Current test result: 42 passed, 1 skipped (focused + authenticated metadata API), report iteration65. Earlier statements below that "no language training launched" are historical, superseded by the baseline and this corrective campaign.
+
+## Prior — 2026-09-29 execution checkpoint
 
 Latest owner assignment: holistic census on **akki-vm**, language cognition training
 on **akki-vm-ii**; fix P0/P1 and continue autonomously without weakening M1's rigor.

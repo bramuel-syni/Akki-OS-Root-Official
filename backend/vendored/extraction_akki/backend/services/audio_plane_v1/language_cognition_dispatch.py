@@ -28,7 +28,7 @@ from services.northena.ledger import record as ledger_record
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/audio_plane_v1/language_cognition_worker.py"
-PHASES = ("corpus_census", "register_bases", "speaker_linkage", "gate_eval", "train_baseline")
+PHASES = ("corpus_census", "register_bases", "speaker_linkage", "gate_eval", "train_baseline", "train_corrective")
 BOOTSTRAP = '''import sys,json,base64,pathlib,hashlib,os
 p=json.load(sys.stdin)
 b=base64.b64decode(p.pop('bundle'))
@@ -90,10 +90,14 @@ def _ledger(job, stage, decision, reason, stamp_audit=None):
     job.setdefault("ledger_rows", []).append({"row_id": row.row_id, "stage": stage, "decision": decision, "reason": reason})
 
 
-def build_bundle():
+def build_bundle(phase=None):
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
+        if phase == 'train_corrective':
+            for name in ('corrective_data', 'corrective_model', 'corrective_training'):
+                path = f'services/audio_plane_v1/{name}.py'
+                archive.writestr(zipfile.ZipInfo(path, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / path).read_bytes())
         for directory in ("services", "services/audio_plane_v1"):
             archive.writestr(zipfile.ZipInfo(directory + "/__init__.py", date_time=(2026, 1, 1, 0, 0, 0)), b"")
     raw = buffer.getvalue()
@@ -150,6 +154,9 @@ def submit(phase, params, principal_id, lawful_ref, timeout=60):
     """Admit through Northena, ship the worker, daemonise the phase on the GPU host."""
     if phase not in PHASES:
         raise ValueError("Unknown language-cognition phase.")
+    if phase == 'train_corrective':
+        from services.audio_plane_v1.corrective_training import validate
+        validate(params)
     from services.census_autonomy.remote_dispatch import _connect
     sealed = _sealed_language_cognition()
     job_id = "lcj-" + uuid.uuid4().hex[:12]
@@ -159,7 +166,7 @@ def submit(phase, params, principal_id, lawful_ref, timeout=60):
            "northena_run_id": f"run-{uuid.uuid4().hex[:12]}", "northena_trace_id": f"trc-{uuid.uuid4().hex[:12]}",
            "governing_artifact_ref": _governing_ref(job_id), "lawful_basis_ref": str(lawful_ref),
            "remote": {"root": _remote_root(), "job_dir": f"{_remote_root()}/jobs/{job_id}"}, "status": "submitting"}
-    if phase == "train_baseline":
+    if phase in ("train_baseline", "train_corrective"):
         # The FINAL model's commission is refused by design until labelled code-switched spans exist;
         # this run is the measured compute receipt for the commissioned job, never the final artefact.
         try:
@@ -174,7 +181,7 @@ def submit(phase, params, principal_id, lawful_ref, timeout=60):
             job["final_model_commission"] = {"decision": "refused", "reason": "CleanMonolingualOnlyRefused", "message": str(exc)[:300]}
     _ledger(job, "admit", "admitted", f"language_cognition_{phase}_admitted",
             {"host": host, "final_model_commission": job.get("final_model_commission")})
-    bundle, code_hash = build_bundle()
+    bundle, code_hash = build_bundle(phase)
     control = {"bundle": bundle, "code_sha256": code_hash, "job_id": job_id, "phase": phase, "runtime_id": host,
                "hostname_expected": os.environ[f"{host.upper().replace('-', '_')}_HOSTNAME_EXPECTED"],
                "root": job["remote"]["root"], "job_dir": job["remote"]["job_dir"], **(params or {})}
@@ -251,12 +258,16 @@ def refresh(job_id):
             receipt["receipt_sha256"] = digest
             receipt["digest_verified"] = hashlib.sha256(body).hexdigest() == digest
             job["receipt"] = receipt
+            if not receipt['digest_verified'] or receipt.get('job_id') != job_id or receipt.get('phase') != job['phase']:
+                job.update(status='failed', reason='WORKER_RECEIPT_INTEGRITY_FAILED', finished_at=now())
+                _close(job)
+                return save_job(job)
             job["status"] = receipt.get("status", "failed")
             job["finished_at"] = receipt.get("finished_at")
             _close(job)
-    elif not job["process_alive"] and job.get("remote_state") is None:
+    elif not job["process_alive"]:
         job["status"] = "failed"
-        job["reason"] = "worker process gone before writing state"
+        job["reason"] = "worker process gone without a terminal receipt; retained progress is not completion"
         _close(job)
     return save_job(job)
 
@@ -270,7 +281,7 @@ def _close(job):
     job["track4_run_receipt"] = receipt.__dict__
     if job["phase"] == "register_bases" and status == "completed":
         job["training_base_registration"] = _bank_base_registration(job["receipt"]["result"])
-    if job["phase"] == "train_baseline" and status == "completed":
+    if job["phase"] in ("train_baseline", "train_corrective") and status == "completed":
         job["run_certificate"] = _bank_run_certificate(job)
     _ledger(job, "converge", "terminate_success" if status == "completed" else "terminate_budget",
             f"language_cognition_{job['phase']}_{status}", {"receipt_sha256": (job.get("receipt") or {}).get("receipt_sha256")})
@@ -292,6 +303,8 @@ def _bank_run_certificate(job):
                                "meets_default": row["accuracy"] is not None and row["accuracy"] >= moac.per_language_accuracy_default}
                         for code, row in held.items() if row["windows"]},
         "archive_test": result.get("archive_test"),
+        "dp_sgd": result.get('dp_sgd'), "recipe_sha256": result.get('recipe_sha256'),
+        "checkpoint": result.get('checkpoint'),
         "sealed_contract_check": {
             "span_rule_matches_default": (span.window_seconds_min <= rule["window_seconds"] <= span.window_seconds_max
                                           and rule["min_span_seconds"] == span.min_span_duration_seconds and rule["hysteresis_windows"] == span.hysteresis_frames),
