@@ -29,15 +29,20 @@ class CorrectiveModel(nn.Module):
         base.embed_positions = nn.Embedding.from_pretrained(base.embed_positions.weight[:FRAMES // 2].detach().clone(), freeze=True)
         self.encoder = get_peft_model(base, LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05,
                                                      target_modules=['q_proj', 'v_proj'], bias='none'))
-        self.project = nn.Sequential(nn.LayerNorm(base.config.d_model), nn.Linear(base.config.d_model, 128), nn.GELU())
-        self.language_head = nn.Linear(128, languages)
-        self.speaker_head = nn.Linear(128, presenters)
-        self.condition_head = nn.Linear(128, control['condition_count'])
+        dim = control.get('bottleneck_dim', 128)
+        self.project = nn.Sequential(nn.LayerNorm(base.config.d_model), nn.Linear(base.config.d_model, dim), nn.GELU())
+        self.language_head = nn.Linear(dim, languages)
+        self.speaker_head = nn.Linear(dim, presenters)
+        self.condition_head = nn.Linear(dim, control['condition_count'])
         self.adversary_strength = control['adversary_strength']
+        self.bottleneck_noise = control.get('bottleneck_noise', 0.0)
 
     def forward(self, features):
         enc = self.encoder(input_features=features).last_hidden_state.mean(1)
         z = self.project(enc)
+        if self.training and self.bottleneck_noise > 0:
+            # Capacity limit on the bottleneck: what a probe can read from z is bounded by this noise floor.
+            z = z + torch.randn_like(z) * self.bottleneck_noise
         reversed_z = Reverse.apply(z, self.adversary_strength)
         return self.language_head(z), self.speaker_head(reversed_z), self.condition_head(reversed_z), z, enc
 

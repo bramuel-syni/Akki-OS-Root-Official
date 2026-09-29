@@ -1,0 +1,228 @@
+{
+ "job_id": "m9j-1e1b97ce8e1c",
+ "phase": "compare_optimizers",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T22:49:00.808283Z",
+ "params": {
+  "gpu_index": 1,
+  "corpus_id": "rms-transcripts-v1",
+  "non_target_corpus_id": "digicow-sealed-units-v1",
+  "base": "qwen3-1.7b-base",
+  "comparison_fraction": 0.25,
+  "comparison_recipe": {
+   "lr": 0.0002,
+   "epochs": 1,
+   "batch_size": 512,
+   "grad_accum": 1,
+   "max_seq_len": 256,
+   "tokens_per_batch": 12288,
+   "gradient_checkpointing": false,
+   "warmup_steps": 20,
+   "checkpoint_every": 0,
+   "eval_every": 0,
+   "eval_batch_size": 64,
+   "eval_cap_per_stratum": 200
+  }
+ },
+ "northena_run_id": "run-34d56b985581",
+ "northena_trace_id": "trc-3ac1d869773f",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-1e1b97ce8e1c"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-1e1b97ce8e1c",
+  "pid": 740215
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-b4a45d9c5e54",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_compare_optimizers_admitted"
+  },
+  {
+   "row_id": "led-094e8f8d6108",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_compare_optimizers_daemonised:pid=740215"
+  },
+  {
+   "row_id": "led-009db7e69f2e",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_compare_optimizers_completed"
+  }
+ ],
+ "code_sha256": "1be7ba3316a09d262f6cccde3916caf13ea0023042f33e62c12420a422ef65f3",
+ "started_at": "2026-09-29T22:49:05.278762Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T22:57:49.820175Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-6d4f8e0c5d41"
+ },
+ "remote_state": {
+  "phase": "compare_optimizers",
+  "status": "completed",
+  "started_at": "2026-09-29T22:49:05Z",
+  "progress": {
+   "stage": "training compare:muon",
+   "step": 220,
+   "total_steps": 226,
+   "epoch": 1,
+   "loss": 3.83753,
+   "tokens_per_second": 14924.9,
+   "padded_tokens_per_step": 12071,
+   "rows_last_step": 384,
+   "recent_step_seconds": 0.728,
+   "gpu_memory_gb": 90.0,
+   "resumed": null,
+   "elapsed_seconds": 155
+  },
+  "stages": {
+   "comparison:baseline": {
+    "at": "2026-09-29T22:53:24Z",
+    "moac_m_a_improvement": 0.7942,
+    "moac_m_b_regression": -0.45664,
+    "gpu_hours_to_convergence": 0.0444
+   },
+   "comparison:muon": {
+    "at": "2026-09-29T22:57:27Z",
+    "moac_m_a_improvement": 0.81779,
+    "moac_m_b_regression": 13.35825,
+    "gpu_hours_to_convergence": 0.0441
+   }
+  },
+  "events": [],
+  "job_id": "m9j-1e1b97ce8e1c",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T22:57:27Z",
+  "finished_at": "2026-09-29T22:57:27Z",
+  "receipt_sha256": "e28b321b7953a84497832e8888fcb0e1bb936f2973cc1af20bb3a1b2d36659df"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7401.66it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-1e1b97ce8e1c/worker.zip/services/training_runner/m9_worker.py:619: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * cfg[\"grad_accum\"]); trained_tokens += int(mask.sum()); padded_tokens += x.numel(); batch_index += 1\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7693.97it/s]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-1e1b97ce8e1c",
+  "phase": "compare_optimizers",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T22:49:05Z",
+  "code_sha256": "1be7ba3316a09d262f6cccde3916caf13ea0023042f33e62c12420a422ef65f3",
+  "status": "completed",
+  "result": {
+   "corpus_id": "rms-transcripts-v1",
+   "manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+   "base": "qwen3-1.7b-base",
+   "comparison_fraction": 0.25,
+   "train_units": 32636,
+   "arms": {
+    "baseline": {
+     "optimizer": "adamw",
+     "moac_m_a_improvement": 0.7942,
+     "moac_m_b_regression": -0.45664,
+     "wallclock_seconds_to_convergence": 160,
+     "gpu_hours_to_convergence": 0.0444,
+     "moac_m_e_calibration": 0.01057,
+     "held_macro_accuracy": 0.93997,
+     "held_min_stratum": 0.86842,
+     "final_loss": 4.00372,
+     "tokens_per_second": 14837.4,
+     "evaluation_samples_uncurated": true,
+     "dev_curve": []
+    },
+    "muon": {
+     "optimizer": "muon",
+     "moac_m_a_improvement": 0.81779,
+     "moac_m_b_regression": 13.35825,
+     "wallclock_seconds_to_convergence": 159,
+     "gpu_hours_to_convergence": 0.0441,
+     "moac_m_e_calibration": 0.01562,
+     "held_macro_accuracy": 0.96356,
+     "held_min_stratum": 0.87245,
+     "final_loss": 3.80032,
+     "tokens_per_second": 14916.1,
+     "evaluation_samples_uncurated": true,
+     "dev_curve": []
+    }
+   },
+   "quality_parity": false,
+   "parity_tolerance": 0.005,
+   "recommended_verdict": "rejected",
+   "recommendation_rule": "parity on M-a and M-b mandatory; adopt only if the candidate also converges in no more GPU-hours and to no higher loss",
+   "recipe": {
+    "optimizer": "adamw",
+    "lr": 0.0002,
+    "muon_lr": 0.01,
+    "muon_momentum": 0.95,
+    "weight_decay": 0.01,
+    "epochs": 1,
+    "max_steps": 0,
+    "batch_size": 512,
+    "grad_accum": 1,
+    "max_seq_len": 256,
+    "tokens_per_batch": 12288,
+    "gradient_checkpointing": false,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+     "q_proj",
+     "k_proj",
+     "v_proj",
+     "o_proj",
+     "gate_proj",
+     "up_proj",
+     "down_proj"
+    ],
+    "warmup_steps": 20,
+    "max_grad_norm": 1.0,
+    "seed": 41,
+    "checkpoint_every": 0,
+    "eval_every": 0
+   }
+  },
+  "finished_at": "2026-09-29T22:57:27Z",
+  "receipt_sha256": "e28b321b7953a84497832e8888fcb0e1bb936f2973cc1af20bb3a1b2d36659df",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T22:57:27Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-1e1b97ce8e1c",
+  "started_at_utc": "2026-09-29T22:49:05.278762Z",
+  "finished_at_utc": "2026-09-29T22:57:27Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-1e1b97ce8e1c"
+ },
+ "optimizer_comparison": {
+  "comparison_id": "m9-m9j-1e1b97ce8e1c",
+  "verdict": "ineligible",
+  "verdict_note": "quality_parity_breach on M-b: candidate 13.35825 > baseline -0.45664",
+  "quality_parity": false,
+  "arms": {
+   "baseline": {
+    "moac_m_a_improvement": 0.7942,
+    "moac_m_b_regression": -0.45664,
+    "wallclock_seconds_to_convergence": 160,
+    "gpu_hours_to_convergence": 0.0444,
+    "moac_m_e_calibration": 0.01057
+   },
+   "muon": {
+    "moac_m_a_improvement": 0.81779,
+    "moac_m_b_regression": 13.35825,
+    "wallclock_seconds_to_convergence": 159,
+    "gpu_hours_to_convergence": 0.0441,
+    "moac_m_e_calibration": 0.01562
+   }
+  }
+ }
+}

@@ -1,6 +1,52 @@
 # Akki — product requirements and current continuity
 
-## CURRENT — 2026-09-29 M4/M5 readiness reviewed; M9 corrective background campaign launched
+## CURRENT — 2026-09-29 M4 governed memory-backed chat LIVE · M5 durable sessions/compaction LIVE · M5.1 work/team/goals/board IN PROGRESS
+
+Owner directive: "1-a, 2-a … run M5 immediately when done" (all three parts of the M4/M5 plan approved; live reads of the
+sealed DIGICOW artefact allowed; then proceed straight into M5). Standing directive: **everything here is GENERAL** —
+no logic keyed to `digicow`/`rms`; tenant and principal come only from the signed-in identity; qualified units are
+whatever sealed, independently inspected, rights-bearing artefacts that tenant holds.
+
+**Built and proven (backend `services/chat/*`, `services/memory/compaction_v1/mongo_storage.py`):**
+- `POST /api/chat/ask` (identity-scoped via `portal_scope`, optional `session_id`) → `journey.ask`: one decision per turn
+  on the Northena gate (`warm` | `fresh` | `refused`, ledger row each); warm = bounded whole-unit read from the sealed
+  artefact on the admitted runtime (`unit_select`, **zero source reads**), deterministic CC-4/5/6 window measured by
+  `tiktoken o200k_base` (6000-token [SLOT] budget, reserve for reply), grounded JSON answer with citations checked
+  against the window, loss statement appended to the answer, working-set hits/misses, critic seam attestation.
+  fresh = best-matching censused table → ONE idempotent draft commission (operators only; never dispatched). refused =
+  out of scope, nothing read. Held → existing 409 disclosure.
+- Sessions (`chat_sessions`): frozen objective at first question, durable turns with full evidence.
+  `GET /api/chat/sessions`, `GET …/{id}`, `POST …/{id}/compact` (MEM v1: facts/receipts by pointer, ledger row on the ONE
+  chain BEFORE bytes, Mongo artefact, lineage pointer to the previous artefact, `compaction_history`), `GET …/{id}/reload`
+  (hash-verified or refused; cross-tenant refused), `POST …/{id}/archive`. Auto-compaction after 12 open turns [SLOT
+  `AKKI_CHAT_COMPACT_AFTER_TURNS`].
+- Fixed latent bug: `chain_integration.append_compaction_row_to_chain` passed `artifact_ref=None` (ValidationError);
+  now names the compacted run as `objective_request`. Installed `spacy` + `en_core_web_sm` (shield's permitted fallback;
+  chokepoint was failing closed with 500 → now refusals surface verbatim, `ServiceUnavailable` is a refusal).
+- Frontend `/os/work/chat` (`pages/os/WorkChat.jsx`, `components/workchat/*`): sign-in gate (CensusAccess), session
+  rail, frozen-objective bar, durable-memory bar (compact / verify reload / archive), TurnCards with decision badge,
+  citations, context-loss line, "See the working" (source dispatches = 0, store reads, window tokens, memory hits,
+  model, grounding, ledger row, receipt, critic). Desktop + 390px verified, zero overflow.
+- **Live measurements (DIGICOW operator, real model calls):** first warm turn 200 units read (341,643 B) → 55 candidates
+  → 33 whole units / 4,898 of 4,973 tokens, 22 excluded (disclosed), 8 citations in window, ~24 s; follow-ups ~18–36 s
+  with memory hits; compaction 31 claims → 7,993 B artefact, reload verified after backend restart; out-of-scope refused
+  in ~6 s with zero reads. RMS (no artefacts) → fresh/refused honestly.
+- **Tests:** offline `backend/tests/m4_m5/test_m4_window_m5_compaction.py` 11/11 (determinism, heavy shrink, oversized
+  load-bearing unit excluded whole, nothing-fits refusal, Mongo compaction/reload/tamper/cross-tenant, session lineage);
+  live `backend/tests/m4_m5/test_chat_live.py` 9/9; testing agent iteration 66 (frontend 95%, two UI items fixed:
+  compact race + "nothing to compact" reachability). No API mocked.
+
+**Standing limits:** relevance is term overlap (a weak match can route warm and answer narrowly with
+`sufficient:false` — a policy slot, not silently thresholded); fresh-slice choice is name-match ranking; publication
+threshold [SLOT] still unset (refuses loud, correct); R-21 personal memory stays OFF; M4 acceptance packs M4-T1–T5 and
+G4 not formally run.
+
+**NEXT (M5, in progress):** M5.2 handoffs from a turn (save as durable task / document with objective, citations,
+rights receipts, source versions, loss statement); M5-T5 withdrawal (signed revocation → dependent sessions/tasks marked
+stale, reuse refused); M5.1 general durable tasks / team assignment & contribution / goals with stated measure /
+versioned board packs & decisions bound into the existing My Work prototype tabs; then M5-T1–T5 runs.
+
+## Prior checkpoint — 2026-09-29 M4/M5 readiness reviewed; M9 corrective background campaign launched
 
 Owner parked the four post-M3 journey proposals until journeys are shared. Current request: confirm heavy context shrinkage/meaning preservation and rapid-access memory avoiding whole-estate work for short questions; review M4/M5 jointly; retrain language cognition before M9. Owner selected background execution: **"B - maximum utilization, no spend limit"**.
 

@@ -25,6 +25,7 @@ import ResponseRequiredBadge from "@/components/portal/ResponseRequiredBadge";
 // native React implementation of the design-of-record shape with honest-gap
 // disclosure where backend wiring is pending PHASE 3/4. SO §3.8 additive-only.
 import WorkChat from "@/pages/os/WorkChat";
+import EstateIntelligence from "@/pages/os/EstateIntelligence";
 import WorkAnalyze from "@/pages/os/WorkAnalyze";
 import WorkDocuments from "@/pages/os/WorkDocuments";
 import WorkTasks from "@/pages/os/WorkTasks";
@@ -1304,6 +1305,7 @@ function App() {
           <Route path="/os/work/hypothesis" element={<ThinkLabHypothesis />} />
           <Route path="/os/work/perspective" element={<ThinkLabPerspective />} />
           <Route path="/os/admin/estate" element={<AdminEstate />} />
+          <Route path="/os/admin/estate/intelligence" element={<EstateIntelligence />} />
           <Route path="/os/admin/govern" element={<AdminGovern />} />
           <Route path="/os/admin/greymirror" element={<AdminEstate />} />
           <Route path="/os/admin/greymirror/watch" element={<LegacyFeatureRedirect to="/os/admin/greymirror/watch/state" />} />

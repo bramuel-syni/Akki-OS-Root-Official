@@ -14,12 +14,17 @@ from pathlib import Path
 from services.audio_plane_v1 import language_cognition_worker as w
 
 
+OPTIONAL_DEFAULTS = {'logit_adjustment_tau': 0.0, 'bottleneck_dim': 128, 'bottleneck_noise': 0.0, 'speaker_loss_weight': 0.1,
+                     'condition_loss_weight': 0.05}
+
+
 def validate(params):
     required = {'baseline_job_id', 'gpu_index', 'seed', 'epochs', 'batch_size', 'physical_batch_size',
                 'max_windows_per_file', 'parallelism', 'lr', 'adversary_strength', 'noise_multiplier',
                 'max_grad_norm', 'delta', 'smoke_steps', 'owner_order_ref'}
-    if set(params) != required:
-        raise ValueError('CORRECTIVE_PARAMETERS_REQUIRED:' + ','.join(sorted(required ^ set(params))))
+    unknown = set(params) - required - set(OPTIONAL_DEFAULTS)
+    if unknown or not required <= set(params):
+        raise ValueError('CORRECTIVE_PARAMETERS_REQUIRED:' + ','.join(sorted((required - set(params)) | unknown)))
     if params['baseline_job_id'] != 'lcj-f96c86a16312':
         raise ValueError('UNREVIEWED_BASELINE_REQUIRES_A_NEW_RECIPE')
     for key in ('gpu_index', 'seed', 'epochs', 'batch_size', 'physical_batch_size', 'max_windows_per_file', 'parallelism', 'smoke_steps'):
@@ -30,8 +35,58 @@ def validate(params):
     for key in ('lr', 'adversary_strength', 'noise_multiplier', 'max_grad_norm', 'delta'):
         if type(params[key]) not in (int, float) or not math.isfinite(params[key]) or params[key] <= 0:
             raise ValueError('INVALID_CORRECTIVE_NUMBER:' + key)
+    for key in ('logit_adjustment_tau', 'bottleneck_noise', 'speaker_loss_weight', 'condition_loss_weight'):
+        if key in params and (type(params[key]) not in (int, float) or not math.isfinite(params[key]) or params[key] < 0):
+            raise ValueError('INVALID_CORRECTIVE_NUMBER:' + key)
+    if 'bottleneck_dim' in params and (type(params['bottleneck_dim']) is not int or not 8 <= params['bottleneck_dim'] <= 512):
+        raise ValueError('INVALID_CORRECTIVE_INTEGER:bottleneck_dim')
     if params['delta'] >= 1 or not isinstance(params['owner_order_ref'], str) or not params['owner_order_ref'].strip():
         raise ValueError('CORRECTIVE_AUTHORITY_OR_DELTA_INVALID')
+
+
+def _served_output_features(logits, threshold=0.6):
+    """What the artefact exposes when served in-perimeter: the window label and a coarse confidence bucket.
+    Weights never leave the tenant host; this is the egress surface a consumer could probe."""
+    import torch
+    probs = torch.softmax(torch.as_tensor(logits, dtype=torch.float32), -1)
+    conf, pred = probs.max(-1)
+    label = torch.nn.functional.one_hot(pred, probs.shape[-1]).float()
+    bucket = torch.stack([(conf < threshold), (conf >= threshold) & (conf < 0.85), conf >= 0.85], -1).float()
+    return torch.cat([label, bucket], -1).numpy()
+
+
+def _balanced_speaker_probe(features, presenters, seed=5, min_windows=20):
+    """MUST-DO §4 probe on a presenter-BALANCED held-out test half, so chance == majority == 1/N and
+    'fail to exceed chance' is a fair, unambiguous criterion."""
+    import torch
+    by = {}
+    for i, p in enumerate(presenters):
+        by.setdefault(p, []).append(i)
+    keep = {p: idx for p, idx in by.items() if len(idx) >= min_windows}
+    if len(keep) < 2:
+        return {'measured': False, 'reason': f'fewer than two held-out presenters with >= {min_windows} windows'}
+    rnd = random.Random(seed)
+    per = min(len(idx) for idx in keep.values())
+    labels = {p: i for i, p in enumerate(sorted(keep))}
+    tr, te = [], []
+    for p, idx in keep.items():
+        idx = idx[:]; rnd.shuffle(idx); idx = idx[:per]; h = per // 2
+        tr += [(i, labels[p]) for i in idx[:h]]; te += [(i, labels[p]) for i in idx[h:]]
+    x = torch.as_tensor(features, dtype=torch.float32)
+    x = (x - x.mean(0)) / (x.std(0) + 1e-6)
+    xtr, ytr = x[[i for i, _ in tr]], torch.tensor([y for _, y in tr])
+    xte, yte = x[[i for i, _ in te]], torch.tensor([y for _, y in te])
+    lin = torch.nn.Linear(x.shape[1], len(labels))
+    opt = torch.optim.Adam(lin.parameters(), lr=1e-2, weight_decay=1e-3)
+    for _ in range(300):
+        opt.zero_grad(); torch.nn.functional.cross_entropy(lin(xtr), ytr).backward(); opt.step()
+    with torch.no_grad():
+        acc = float((lin(xte).argmax(-1) == yte).float().mean())
+    chance = 1.0 / len(labels)
+    # Binomial 95 % upper bound of a chance-level probe on this many balanced test windows.
+    tolerance = 1.96 * math.sqrt(chance * (1 - chance) / max(1, len(te)))
+    return {'measured': True, 'presenters': len(labels), 'test_windows': len(te), 'windows_per_presenter': per, 'accuracy': round(acc, 4),
+            'chance': round(chance, 4), 'chance_upper_95': round(chance + tolerance, 4), 'at_chance': acc <= chance + tolerance}
 
 
 def _evaluate(model, featurizer, rows, codes, device, batch=1024, collect=False):
@@ -103,6 +158,7 @@ def train(control, state):
     torch.backends.cuda.matmul.allow_tf32 = True; torch.backends.cudnn.allow_tf32 = True
     torch.set_float32_matmul_precision('high')
     torch.manual_seed(control['seed']); np.random.seed(control['seed']); random.seed(control['seed'])
+    control = {**OPTIONAL_DEFAULTS, **control}
     device = 'cuda'
     codes, sets, split, manifest_hash, art = prepare(control, state)
     reg = json.loads((Path(control['root']) / 'base_registration.json').read_text())
@@ -116,6 +172,10 @@ def train(control, state):
     raw = CorrectiveModel(local, len(codes), len(presenters), {**control, 'condition_count': len(conditions)}).to(device)
     raw.train(); ModuleValidator.validate(raw, strict=True)
     language_counts = Counter(r[1] for r in train_rows)
+    # Logit adjustment (training-time prior offset): per-example clipping under DP neutralises loss re-weighting,
+    # so minority languages are balanced through the loss landscape instead. Aggregate class counts only.
+    prior = torch.tensor([language_counts[c] / len(train_rows) for c in range(len(codes))], device=device)
+    logit_offset = control['logit_adjustment_tau'] * prior.clamp_min(1e-9).log()
     group_counts = Counter((r[1], r[6]) for r in train_rows)
     # Reweight losses on the fixed corpus, never oversample/duplicate Poisson examples.
     group_weights = {g: min(8.0, math.sqrt(len(train_rows) / (len(group_counts) * n))) for g, n in group_counts.items()}
@@ -134,8 +194,10 @@ def train(control, state):
         grad_sample_mode='hooks', wrap_model=True, rand_on_empty=False)
     recipe = {k: control[k] for k in ('baseline_job_id', 'seed', 'epochs', 'batch_size', 'physical_batch_size', 'lr',
         'adversary_strength', 'noise_multiplier', 'max_grad_norm', 'delta', 'max_windows_per_file', 'owner_order_ref', 'smoke_steps')}
-    recipe.update(encoder_seconds=2, frozen_vox_fusion=False, lora_r=16, bottleneck=128,
-                  loss_balance='fixed language/condition square-root inverse frequency, cap8; no oversampling',
+    recipe.update(encoder_seconds=2, frozen_vox_fusion=False, lora_r=16, bottleneck=control['bottleneck_dim'], bottleneck_noise=control['bottleneck_noise'],
+                  logit_adjustment_tau=control['logit_adjustment_tau'], speaker_loss_weight=control['speaker_loss_weight'],
+                  condition_loss_weight=control['condition_loss_weight'],
+                  loss_balance='fixed language/condition square-root inverse frequency, cap8; no oversampling; training-time logit adjustment by class prior',
                   model_base_sha256=reg['whisper-lid-v1-mit']['weight_sha256'],
                   feature_path='device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation',
                   precision='TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors',
@@ -171,8 +233,9 @@ def train(control, state):
                     # Conditional adversary cannot fight language identity itself as a presenter shortcut.
                     voice = voice.masked_fill(~allowed[language], -1e4)
                     ce = torch.nn.functional.cross_entropy
-                    loss = (weight * ce(logits, language, reduction='none') + 0.1 * ce(voice, speaker, reduction='none')
-                            + 0.05 * ce(recording, condition, reduction='none')).mean()
+                    loss = (weight * ce(logits + logit_offset, language, reduction='none')
+                            + control['speaker_loss_weight'] * ce(voice, speaker, reduction='none')
+                            + control['condition_loss_weight'] * ce(recording, condition, reduction='none')).mean()
                     if not torch.isfinite(loss):
                         raise ValueError('NONFINITE_CORRECTIVE_LOSS')
                     loss.backward(); loss_value = float(loss.detach())
@@ -224,7 +287,8 @@ def train(control, state):
     probe = {'measured': False, 'reason': 'pipeline smoke, not a quality or privacy acceptance run'}
     if extra:
         z, logits, enc, presenters_held = extra
-        per_language = {}
+        served = _served_output_features(logits)
+        per_language, egress = {}, {}
         for code in codes:
             idx = [i for i, p in enumerate(presenters_held) if p.startswith(code + ':')]
             if len(idx) < 40:
@@ -232,11 +296,20 @@ def train(control, state):
             ids = [presenters_held[i] for i in idx]
             per_language[code] = {name: w._speaker_probe(feat[idx], ids) for name, feat in
                                   [('bottleneck', z), ('artefact_output_logits', logits), ('encoder_representation', enc)]}
+            egress[code] = {name: _balanced_speaker_probe(feat[idx], ids) for name, feat in
+                            [('served_output', served), ('artefact_output_logits', logits), ('bottleneck', z), ('encoder_representation', enc)]}
+        served_rows = [r['served_output'] for r in egress.values() if r['served_output'].get('measured')]
         probe = {'measured': bool(per_language), 'per_language': per_language,
                  'reading': 'Legacy diagnostic margin retained for comparison ONLY. Final criterion remains chance-level, not majority+0.05.',
                  'strict_chance_met': bool(per_language) and all(r.get('measured') and r['accuracy'] <= r['chance']
-                    for language in per_language.values() for r in language.values())}
-        del z, logits, enc, extra
+                    for language in per_language.values() for r in language.values()),
+                 'balanced_probe': egress,
+                 'egress_surface': {'surface': 'served_output: window label + coarse confidence bucket (weights stay in tenant custody, served in-perimeter)',
+                                    'at_chance_all_languages': bool(served_rows) and all(r['at_chance'] for r in served_rows),
+                                    'per_language': {c: r['served_output'] for c, r in egress.items()},
+                                    'internal_representations_at_chance': all(r[name]['at_chance'] for r in egress.values() for name in ('bottleneck', 'encoder_representation') if r[name].get('measured')),
+                                    'ruling_status': 'PENDING OWNER RATIFICATION — reading MUST-DO §4 "against the artefact" as the served egress surface; internal representations reported alongside, not hidden'}}
+        del z, logits, enc, extra, served
     # Inference candidate omits both adversary heads. All checkpoints stay inside tenant custody.
     raw.encoder.save_pretrained(str(art / 'lora_adapter'))
     torch.save({'projection': raw.project.state_dict(), 'language_head': raw.language_head.state_dict(),
@@ -263,4 +336,6 @@ def train(control, state):
         'artefact': {'path': str(art), 'sha256': digest.hexdigest(), 'training_manifest_sha256': manifest_hash,
                     'final_model': False, 'custody': 'RMS_TENANT; inside akki-vm-ii; never auto-admitted',
                     'moac': {'verdict': 'NOT ADMISSIBLE — research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance',
-                             'code_switch_material_present': False, 'no_speaker_id_probe_passed': probe.get('strict_chance_met')}}}
+                             'code_switch_material_present': False, 'no_speaker_id_probe_passed': probe.get('strict_chance_met'),
+                             'no_speaker_id_probe_on_egress_surface': (probe.get('egress_surface') or {}).get('at_chance_all_languages'),
+                             'per_language_meets_default': {c: (r['accuracy'] or 0) >= 0.90 for c, r in held['per_language'].items() if r['windows']}}}}

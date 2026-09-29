@@ -14,7 +14,7 @@ export function SessionMemory({ session, memory, onCompact, onReload, onArchive 
     </span>}
     {memory?.kind === 'compact' && memory.status === 'nothing_to_compact' && <span className="workchat-badge neutral" data-testid="workchat-memory-nothing">{memory.reason}</span>}
     <span style={{ flex: 1 }} />
-    <button className="workchat-btn" data-testid="workchat-compact" onClick={onCompact} disabled={open === 0}>Compact now</button>
+    <button className="workchat-btn" data-testid="workchat-compact" onClick={onCompact}>Compact now</button>
     <button className="workchat-btn" data-testid="workchat-reload" onClick={onReload}>Verify reload</button>
     <button className="workchat-btn quiet" data-testid="workchat-archive" onClick={onArchive}>Archive</button>
   </div>;

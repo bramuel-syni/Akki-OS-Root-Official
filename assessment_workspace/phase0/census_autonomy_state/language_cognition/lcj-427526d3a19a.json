@@ -1,0 +1,256 @@
+{
+ "job_id": "lcj-427526d3a19a",
+ "phase": "train_corrective",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T22:06:39.748750Z",
+ "params": {
+  "baseline_job_id": "lcj-f96c86a16312",
+  "gpu_index": 0,
+  "seed": 41,
+  "epochs": 60,
+  "batch_size": 2048,
+  "physical_batch_size": 1024,
+  "max_windows_per_file": 180,
+  "parallelism": 24,
+  "lr": 0.001,
+  "adversary_strength": 1.0,
+  "noise_multiplier": 1.0,
+  "max_grad_norm": 1.0,
+  "delta": 1e-06,
+  "smoke_steps": 0,
+  "logit_adjustment_tau": 1.0,
+  "bottleneck_dim": 32,
+  "bottleneck_noise": 0.5,
+  "speaker_loss_weight": 0.5,
+  "condition_loss_weight": 0.05,
+  "owner_order_ref": "owner-order 2026-09-29 4b: retrain language cognition with a fixed recipe on akki-vm (logit adjustment, capacity-limited bottleneck, stronger speaker adversary, 60 epochs)"
+ },
+ "northena_run_id": "run-38e23586bbc4",
+ "northena_trace_id": "trc-c09f14e292ca",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-427526d3a19a"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-427526d3a19a",
+  "pid": 157008
+ },
+ "status": "running",
+ "final_model_commission": {
+  "decision": "refused",
+  "reason": "CleanMonolingualOnlyRefused",
+  "message": "MUST-NOT \u00a71 owner verbatim: 'Clean-monolingual alone is a MUST-NOT for the final model.' Commission refused because has_code_switched_material is False; the training set MUST carry labelled code-switched material per span."
+ },
+ "ledger_rows": [
+  {
+   "row_id": "led-e6d720072e4a",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_train_corrective_admitted"
+  },
+  {
+   "row_id": "led-b2c70f0283d6",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_train_corrective_daemonised:pid=157008"
+  }
+ ],
+ "code_sha256": "ee826a97f8f847044f8f6f355481677520d477410af331ffbe4f51430b1e7d9c",
+ "started_at": "2026-09-29T22:06:45.226953Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T22:47:26.775719Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-0a1d9ba0147b"
+ },
+ "remote_state": {
+  "phase": "train_corrective",
+  "status": "running",
+  "started_at": "2026-09-29T22:06:45Z",
+  "progress": {
+   "stage": "corrective DP-SGD training",
+   "epoch": 33,
+   "epochs": 60,
+   "step": 2910,
+   "loss": 4.14014,
+   "gpu_index": 0,
+   "elapsed_seconds": 2436,
+   "gpu_memory_gb": 50.52,
+   "examples_per_logical_batch": 2048,
+   "dp_per_sample_verified": true,
+   "windows_per_second": 2748.5,
+   "recent_step_seconds": 0.665,
+   "latest_dev": {
+    "epoch": 32,
+    "step": 2848,
+    "dev": {
+     "windows": 27114,
+     "per_language": {
+      "bxk": {
+       "windows": 0,
+       "correct": 0,
+       "abstain": 0,
+       "accuracy": null,
+       "abstention_rate": null
+      },
+      "guz": {
+       "windows": 2305,
+       "correct": 287,
+       "abstain": 522,
+       "accuracy": 0.16096,
+       "abstention_rate": 0.22646
+      },
+      "kam": {
+       "windows": 2050,
+       "correct": 169,
+       "abstain": 487,
+       "accuracy": 0.10813,
+       "abstention_rate": 0.23756
+      },
+      "kik": {
+       "windows": 4745,
+       "correct": 1069,
+       "abstain": 990,
+       "accuracy": 0.28469,
+       "abstention_rate": 0.20864
+      },
+      "kln": {
+       "windows": 3903,
+       "correct": 299,
+       "abstain": 1994,
+       "accuracy": 0.15663,
+       "abstention_rate": 0.51089
+      },
+      "luo": {
+       "windows": 2368,
+       "correct": 1685,
+       "abstain": 263,
+       "accuracy": 0.80048,
+       "abstention_rate": 0.11106
+      },
+      "lwg": {
+       "windows": 220,
+       "correct": 1,
+       "abstain": 136,
+       "accuracy": 0.0119,
+       "abstention_rate": 0.61818
+      },
+      "swa": {
+       "windows": 11523,
+       "correct": 991,
+       "abstain": 3469,
+       "accuracy": 0.12304,
+       "abstention_rate": 0.30105
+      }
+     },
+     "per_condition_sample_rate": {
+      "44100Hz": {
+       "windows": 21984,
+       "correct": 2928,
+       "abstain": 6943,
+       "accuracy": 0.19467,
+       "abstention_rate": 0.31582
+      },
+      "22050Hz": {
+       "windows": 1528,
+       "correct": 277,
+       "abstain": 334,
+       "accuracy": 0.23199,
+       "abstention_rate": 0.21859
+      },
+      "11025Hz": {
+       "windows": 3035,
+       "correct": 1236,
+       "abstain": 379,
+       "accuracy": 0.46536,
+       "abstention_rate": 0.12488
+      },
+      "16000Hz": {
+       "windows": 260,
+       "correct": 49,
+       "abstain": 46,
+       "accuracy": 0.22897,
+       "abstention_rate": 0.17692
+      },
+      "48000Hz": {
+       "windows": 307,
+       "correct": 11,
+       "abstain": 159,
+       "accuracy": 0.07432,
+       "abstention_rate": 0.51792
+      }
+     },
+     "overall_accuracy_on_judged": 0.23378,
+     "overall_abstention_rate": 0.28992,
+     "confidence_threshold": 0.6,
+     "confusion_top": {
+      "guz": {
+       "luo": 690,
+       "kik": 444,
+       "guz": 287,
+       "kam": 181,
+       "bxk": 132
+      },
+      "kam": {
+       "luo": 967,
+       "bxk": 295,
+       "kam": 169,
+       "kik": 55,
+       "swa": 30
+      },
+      "kik": {
+       "luo": 1420,
+       "kik": 1069,
+       "bxk": 520,
+       "guz": 429,
+       "kam": 264
+      },
+      "kln": {
+       "lwg": 717,
+       "kam": 374,
+       "kln": 299,
+       "luo": 288,
+       "guz": 144
+      },
+      "luo": {
+       "luo": 1685,
+       "bxk": 306,
+       "kam": 77,
+       "kik": 15,
+       "kln": 11
+      },
+      "lwg": {
+       "luo": 50,
+       "kln": 13,
+       "kam": 12,
+       "guz": 3,
+       "kik": 2
+      },
+      "swa": {
+       "luo": 6520,
+       "swa": 991,
+       "bxk": 233,
+       "kam": 199,
+       "kln": 68
+      }
+     }
+    },
+    "epsilon": 4.357902869865992,
+    "selection_score": [
+     0.004545454545454545,
+     0.18728096872064381
+    ]
+   }
+  },
+  "events": [],
+  "job_id": "lcj-427526d3a19a",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-09-29T22:47:24Z"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 11174.36it/s]\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/opacus/privacy_engine.py:98: UserWarning: Secure RNG turned off. This is perfectly fine for experimentation as it allows for much faster training performance, but remember to turn it on and retrain one last time before production with ``secure_mode`` turned on.\n  warnings.warn(\nsys:1: UserWarning: Full backward hook is firing when gradients are computed with respect to module outputs since no inputs require gradients. See https://docs.pytorch.org/docs/main/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook for more details.",
+ "process_alive": true
+}

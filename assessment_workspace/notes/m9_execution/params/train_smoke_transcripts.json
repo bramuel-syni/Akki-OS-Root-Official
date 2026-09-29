@@ -1,0 +1,4 @@
+{"corpus_id": "rms-transcripts-v1", "non_target_corpus_id": "digicow-sealed-units-v1", "base": "qwen3-1.7b-base", "gpu_index": 0,
+ "recipe": {"optimizer": "adamw", "lr": 0.0002, "epochs": 1, "max_steps": 30, "batch_size": 16, "grad_accum": 1, "max_seq_len": 256,
+            "checkpoint_every": 10, "eval_every": 15, "eval_batch_size": 32, "eval_cap_per_stratum": 40, "warmup_steps": 5, "interrupt_after_steps": 10},
+ "distance_probe": {"samples": 24, "max_new_tokens": 32}, "prune_fraction": 0.3}

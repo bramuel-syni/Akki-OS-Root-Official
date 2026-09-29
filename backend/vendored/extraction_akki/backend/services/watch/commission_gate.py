@@ -28,6 +28,8 @@ PROTECTED_BOUNDARIES = {
     "language_cognition.cancel": "POST /api/portal/census/language-cognition/jobs/{job_id}/cancel",
     "estate_intelligence.commission": "POST /api/portal/census/estate-intelligence/jobs",
     "estate_intelligence.cancel": "POST /api/portal/census/estate-intelligence/jobs/{job_id}/cancel",
+    "m9_training.commission": "POST /api/training/m9/jobs",
+    "m9_training.cancel": "POST /api/training/m9/jobs/{job_id}/cancel",
     # M3 · a request becomes completed, delivered work: three more commission gates on the same inventory.
     "dap.commission": "POST /api/portal/commission/drafts/{draft_id}/freeze",
     "dap.approval": "POST /api/portal/approvals/{request_id}/decide",

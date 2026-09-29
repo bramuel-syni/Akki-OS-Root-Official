@@ -2,8 +2,9 @@
  "job_id": "eij-91933223a5b1",
  "status": "partial",
  "measured_at": "2026-09-29T18:49:55.453268Z",
- "built_at": "2026-09-29T19:06:19.280909Z",
+ "built_at": "2026-09-29T22:55:38.511183Z",
  "reading": "19 databases and 703 tables (12.8 GiB, \u224825,599,098 rows) were measured; 0.3% of rows repeat exactly, 11.1% carry damage, 35.6% have empty required-looking fields and 61.1% of sampled rows carry personal-data markers. About 358.0 MiB (2.7%) looks reclaimable.",
+ "report_version": 2,
  "headline": {
   "connections": 5,
   "databases": 19,
@@ -52,6 +53,7 @@
    "exact_duplicate_ratio": 0.00268,
    "normalised_duplicate_ratio": 0.02774,
    "null_bearing_row_ratio": 0.35592,
+   "incomplete_row_ratio": null,
    "degraded_row_ratio": 0.11076,
    "pii_row_ratio": 0.61149,
    "near_duplicate_text_ratio": 0.75437
@@ -2230,6 +2232,34 @@
     "80.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "most supporting tables have not been written for over a year: value is historical, not live",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "content": {
+     "column": "tims_posted_at",
+     "estimated_distinct": 268263,
+     "distinct_ratio": 0.5,
+     "table": "viupay/kra_reports.viusasa_postings"
+    },
+    "time": {
+     "column": "created_at",
+     "table": "viupay/viutickets.movie_seats",
+     "earliest": "1970-01-01 00:00:00",
+     "latest": "2030-02-02 04:00:00",
+     "span_days": 21947,
+     "future_timestamps": true
+    },
+    "engagement": {
+     "column": "response",
+     "estimated_distinct": 268263,
+     "distinct_ratio": 0.5,
+     "table": "viupay/kra_reports.viusasa_postings"
+    }
+   },
+   "licensable_units": [
+    "\u2248268,263 distinct content values (viupay/kra_reports.viusasa_postings.tims_posted_at)",
+    "history 1970-01-01 \u2192 2030-02-02 (21,947 days; viupay/viutickets.movie_seats.created_at)",
+    "\u2248268,263 distinct engagement values (viupay/kra_reports.viusasa_postings.response)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -2398,6 +2428,41 @@
     "most supporting tables have not been written for over a year: value is historical, not live",
     "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "content": {
+     "column": "VID_NAME_IMAGE",
+     "estimated_distinct": 460786,
+     "distinct_ratio": 0.9621,
+     "table": "Razuna (Library Content) & Newsvault (Radio News content)/razuna.raz1_videos"
+    },
+    "identity": {
+     "column": "VID_CUSTOM_ID",
+     "estimated_distinct": 478938,
+     "distinct_ratio": 1.0,
+     "table": "Razuna (Library Content) & Newsvault (Radio News content)/razuna.raz1_videos"
+    },
+    "product": {
+     "column": "order_column",
+     "estimated_distinct": 12498,
+     "distinct_ratio": 0.0265,
+     "table": "viupay/viutickets.media"
+    },
+    "time": {
+     "column": "entrydate",
+     "table": "iebc_forms/viupay_agent_staging.tbl_lastsession",
+     "earliest": "1970-01-01 00:00:00",
+     "latest": "2030-02-02 04:00:00",
+     "span_days": 21947,
+     "future_timestamps": true
+    }
+   },
+   "licensable_units": [
+    "\u2248460,786 distinct content values (Razuna (Library Content) & Newsvault (Radio News content)/razuna.raz1_videos.VID_NAME_IMAGE)",
+    "\u2248478,938 distinct identity values (Razuna (Library Content) & Newsvault (Radio News content)/razuna.raz1_videos.VID_CUSTOM_ID)",
+    "\u224812,498 distinct product values (viupay/viutickets.media.order_column)",
+    "history 1970-01-01 \u2192 2030-02-02 (21,947 days; iebc_forms/viupay_agent_staging.tbl_lastsession.entrydate)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -2557,6 +2622,39 @@
     "91.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "most supporting tables have not been written for over a year: value is historical, not live",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "channel": {
+     "column": "msisdn",
+     "estimated_distinct": 189723,
+     "distinct_ratio": 0.363,
+     "table": "iebc_forms/viupay_agent_staging.agent_api_logs"
+    },
+    "engagement": {
+     "column": "event_log_id",
+     "estimated_distinct": 1247320,
+     "distinct_ratio": 0.5,
+     "table": "citizen_digital/db_visitors.event_logs"
+    },
+    "time": {
+     "column": "entrydate",
+     "table": "iebc_forms/viupay_agent_staging.agent_api_logs",
+     "earliest": "2014-12-16",
+     "latest": "2026-09-29 20:04:39",
+     "span_days": 4305
+    },
+    "entity": {
+     "column": "staff_id",
+     "estimated_distinct": 211545,
+     "distinct_ratio": 0.0848,
+     "table": "citizen_digital/db_visitors.event_logs"
+    }
+   },
+   "licensable_units": [
+    "\u2248189,723 distinct channel values (iebc_forms/viupay_agent_staging.agent_api_logs.msisdn)",
+    "\u22481,247,320 distinct engagement values (citizen_digital/db_visitors.event_logs.event_log_id)",
+    "history 2014-12-16 \u2192 2026-09-29 (4,305 days; iebc_forms/viupay_agent_staging.agent_api_logs.entrydate)",
+    "\u2248211,545 distinct entity values (citizen_digital/db_visitors.event_logs.staff_id)"
    ]
   },
   {
@@ -2727,6 +2825,48 @@
     "most supporting tables have not been written for over a year: value is historical, not live",
     "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "engagement": {
+     "column": "event_log_id",
+     "estimated_distinct": 1247320,
+     "distinct_ratio": 0.5,
+     "table": "citizen_digital/db_visitors.event_logs"
+    },
+    "entity": {
+     "column": "staff_id",
+     "estimated_distinct": 211545,
+     "distinct_ratio": 0.0848,
+     "table": "citizen_digital/db_visitors.event_logs"
+    },
+    "time": {
+     "column": "created_at",
+     "table": "viupay/viupay.mpesa_stk_requests",
+     "earliest": "1970-01-01 00:00:00",
+     "latest": "2030-02-02 04:00:00",
+     "span_days": 21947,
+     "future_timestamps": true
+    },
+    "channel": {
+     "column": "device_name",
+     "estimated_distinct": 748,
+     "distinct_ratio": 0.0003,
+     "table": "citizen_digital/db_visitors.event_logs"
+    },
+    "geo": {
+     "column": "file_location",
+     "estimated_distinct": 20442,
+     "distinct_ratio": 0.2563,
+     "table": "citizen_digital/local.uploaded_files"
+    }
+   },
+   "licensable_units": [
+    "\u22481,247,320 distinct engagement values (citizen_digital/db_visitors.event_logs.event_log_id)",
+    "\u2248211,545 distinct entity values (citizen_digital/db_visitors.event_logs.staff_id)",
+    "history 1970-01-01 \u2192 2030-02-02 (21,947 days; viupay/viupay.mpesa_stk_requests.created_at)",
+    "\u2248748 distinct channel values (citizen_digital/db_visitors.event_logs.device_name)",
+    "\u224820,442 distinct geo values (citizen_digital/local.uploaded_files.file_location)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -2888,6 +3028,32 @@
     "91.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "most supporting tables have not been written for over a year: value is historical, not live",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "entity": {
+     "column": "customer_id",
+     "estimated_distinct": 21671,
+     "distinct_ratio": 0.6704,
+     "table": "viupay/viutickets.orders"
+    },
+    "money": {
+     "column": "cu_invoice_number",
+     "estimated_distinct": 268317,
+     "distinct_ratio": 0.5001,
+     "table": "viupay/kra_reports.viusasa_postings"
+    },
+    "time": {
+     "column": "created_at",
+     "table": "viupay/viupay.mpesa_stk_requests",
+     "earliest": "2022-01-10 12:21:52",
+     "latest": "2026-09-29 21:37:43.161000",
+     "span_days": 1723
+    }
+   },
+   "licensable_units": [
+    "\u224821,671 distinct entity values (viupay/viutickets.orders.customer_id)",
+    "\u2248268,317 distinct money values (viupay/kra_reports.viusasa_postings.cu_invoice_number)",
+    "history 2022-01-10 \u2192 2026-09-29 (1,723 days; viupay/viupay.mpesa_stk_requests.created_at)"
    ]
   },
   {
@@ -3048,6 +3214,32 @@
     "75.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "geo": {
+     "column": "file_location",
+     "estimated_distinct": 20442,
+     "distinct_ratio": 0.2563,
+     "table": "citizen_digital/local.uploaded_files"
+    },
+    "engagement": {
+     "column": "event",
+     "estimated_distinct": 48,
+     "distinct_ratio": 0.0001,
+     "table": "Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits"
+    },
+    "time": {
+     "column": "created_at",
+     "table": "Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits",
+     "earliest": "2022-09-15 17:58:59",
+     "latest": "2026-09-29 21:31:35",
+     "span_days": 1475
+    }
+   },
+   "licensable_units": [
+    "\u224820,442 distinct geo values (citizen_digital/local.uploaded_files.file_location)",
+    "\u224848 distinct engagement values (Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.event)",
+    "history 2022-09-15 \u2192 2026-09-29 (1,475 days; Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.created_at)"
    ]
   },
   {
@@ -3215,6 +3407,32 @@
     "91.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "most supporting tables have not been written for over a year: value is historical, not live",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "money": {
+     "column": "cu_invoice_number",
+     "estimated_distinct": 268317,
+     "distinct_ratio": 0.5001,
+     "table": "viupay/kra_reports.viusasa_postings"
+    },
+    "time": {
+     "column": "created_at",
+     "table": "viupay/viupay.mpesa_stk_requests",
+     "earliest": "2022-01-10 12:21:52",
+     "latest": "2026-09-29 21:37:43.161000",
+     "span_days": 1723
+    },
+    "product": {
+     "column": "order_id",
+     "estimated_distinct": 19719,
+     "distinct_ratio": 0.8698,
+     "table": "viupay/viutickets.payment_processings"
+    }
+   },
+   "licensable_units": [
+    "\u2248268,317 distinct money values (viupay/kra_reports.viusasa_postings.cu_invoice_number)",
+    "history 2022-01-10 \u2192 2026-09-29 (1,723 days; viupay/viupay.mpesa_stk_requests.created_at)",
+    "\u224819,719 distinct product values (viupay/viutickets.payment_processings.order_id)"
    ]
   },
   {
@@ -3376,6 +3594,46 @@
     "88.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "content": {
+     "column": "text_file_path",
+     "estimated_distinct": 78156,
+     "distinct_ratio": 0.9799,
+     "table": "citizen_digital/local.uploaded_files"
+    },
+    "engagement": {
+     "column": "event",
+     "estimated_distinct": 48,
+     "distinct_ratio": 0.0001,
+     "table": "Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits"
+    },
+    "entity": {
+     "column": "user_id",
+     "estimated_distinct": 23153,
+     "distinct_ratio": 0.0481,
+     "table": "Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits"
+    },
+    "geo": {
+     "column": "file_location",
+     "estimated_distinct": 20442,
+     "distinct_ratio": 0.2563,
+     "table": "citizen_digital/local.uploaded_files"
+    },
+    "time": {
+     "column": "time_processed",
+     "table": "citizen_digital/local.uploaded_files",
+     "earliest": "2022-01-10 12:21:52",
+     "latest": "2026-09-29 21:31:35",
+     "span_days": 1723
+    }
+   },
+   "licensable_units": [
+    "\u224878,156 distinct content values (citizen_digital/local.uploaded_files.text_file_path)",
+    "\u224848 distinct engagement values (Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.event)",
+    "\u224823,153 distinct entity values (Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.user_id)",
+    "\u224820,442 distinct geo values (citizen_digital/local.uploaded_files.file_location)",
+    "history 2022-01-10 \u2192 2026-09-29 (1,723 days; citizen_digital/local.uploaded_files.time_processed)"
    ]
   }
  ],
@@ -3514,6 +3772,893 @@
    }
   ]
  },
+ "degradation": {
+  "kinds": {
+   "mojibake": 0.0,
+   "placeholder": 0.0624,
+   "truncation": 0.0504,
+   "invalid_format": 0.0491,
+   "whitespace": 0.0346
+  },
+  "kinds_note": "Row-weighted share of measured rows whose worst column shows the kind; a row can carry several kinds.",
+  "dead_columns": 539,
+  "columns_measured": 4167,
+  "dead_column_share": 0.1293,
+  "dead_columns_note": "Columns never populated (null on \u226599.9 % of measured rows, primary key excluded): schema carried without data.",
+  "databases": [
+   {
+    "connection": "iebc_forms",
+    "database": "miniapps",
+    "tables": 21,
+    "measured": 8,
+    "rows": 56,
+    "columns": 52,
+    "dead_columns": 16,
+    "dead_column_names": [
+     "DATABASECHANGELOG.CONTEXTS",
+     "DATABASECHANGELOG.LABELS",
+     "DATABASECHANGELOG.TAG",
+     "DATABASECHANGELOGLOCK.LOCKEDBY",
+     "DATABASECHANGELOGLOCK.LOCKGRANTED",
+     "role.created_by"
+    ],
+    "stale_tables": 4,
+    "earliest_write": "2021-02-01 00:00:00",
+    "latest_write": "2024-12-11 13:46:47.067000",
+    "worst_table": {
+     "table": "DATABASECHANGELOG",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 40
+    },
+    "degraded_ratio": 0.7143,
+    "dead_column_share": 0.3077,
+    "write_span_days": 1409,
+    "days_since_last_write": 657,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "viupay",
+    "database": "viupay",
+    "tables": 39,
+    "measured": 26,
+    "rows": 138966,
+    "columns": 264,
+    "dead_columns": 20,
+    "dead_column_names": [
+     "oauth_access_tokens.name",
+     "oauth_access_tokens.user_id",
+     "oauth_clients.user_id",
+     "pay_instruments.customer_id",
+     "pay_instruments.deleted_at",
+     "pay_instruments.ip_address"
+    ],
+    "stale_tables": 11,
+    "earliest_write": "2022-01-10 11:50:39",
+    "latest_write": "2027-09-29 17:42:53",
+    "worst_table": {
+     "table": "dpo_operations",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 156
+    },
+    "degraded_ratio": 0.6944,
+    "dead_column_share": 0.0758,
+    "write_span_days": 2088,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viupay",
+    "tables": 38,
+    "measured": 24,
+    "rows": 67080,
+    "columns": 248,
+    "dead_columns": 22,
+    "dead_column_names": [
+     "mpesa_stk_callbacks.Balance",
+     "oauth_access_tokens.name",
+     "oauth_access_tokens.user_id",
+     "oauth_clients.provider",
+     "oauth_clients.user_id",
+     "pay_instruments.customer_id"
+    ],
+    "stale_tables": 21,
+    "earliest_write": "2022-01-10 11:50:39",
+    "latest_write": "2025-01-12 12:36:18",
+    "worst_table": {
+     "table": "gateway_configs",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 8
+    },
+    "degraded_ratio": 0.6747,
+    "dead_column_share": 0.0887,
+    "write_span_days": 1098,
+    "days_since_last_write": 625,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen_digital",
+    "database": "db_visitors",
+    "tables": 47,
+    "measured": 43,
+    "rows": 4597822,
+    "columns": 418,
+    "dead_columns": 55,
+    "dead_column_names": [
+     "audits.tags",
+     "check_ins.deleted_at",
+     "departments.deleted_at",
+     "departments.description",
+     "devices.deleted_at",
+     "equipment_allocations.deleted_at"
+    ],
+    "stale_tables": 8,
+    "earliest_write": "1970-01-01",
+    "latest_write": "2030-02-02 04:00:00",
+    "worst_table": {
+     "table": "telescope_entries",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 164127
+    },
+    "degraded_ratio": 0.3763,
+    "dead_column_share": 0.1316,
+    "write_span_days": 21947,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viutickets",
+    "tables": 56,
+    "measured": 41,
+    "rows": 1607466,
+    "columns": 479,
+    "dead_columns": 38,
+    "dead_column_names": [
+     "audits.tags",
+     "event_affiliates.paid_amount",
+     "event_affiliates.total_amount",
+     "events.end_time",
+     "events.previous_slugs",
+     "events.start_time"
+    ],
+    "stale_tables": 38,
+    "earliest_write": "2022-05-25 17:03:37",
+    "latest_write": "2025-04-01",
+    "worst_table": {
+     "table": "media",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 392888
+    },
+    "degraded_ratio": 0.2545,
+    "dead_column_share": 0.0793,
+    "write_span_days": 1041,
+    "days_since_last_write": 546,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "viupay",
+    "database": "viutickets",
+    "tables": 57,
+    "measured": 42,
+    "rows": 2131947,
+    "columns": 489,
+    "dead_columns": 39,
+    "dead_column_names": [
+     "audits.tags",
+     "events.end_time",
+     "events.previous_slugs",
+     "events.start_time",
+     "gateways.deleted_at",
+     "movie_bookings.coupon_id"
+    ],
+    "stale_tables": 19,
+    "earliest_write": "2013-10-19 04:52:00",
+    "latest_write": "2026-12-31 22:00:00",
+    "worst_table": {
+     "table": "media",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 471627
+    },
+    "degraded_ratio": 0.2319,
+    "dead_column_share": 0.0798,
+    "write_span_days": 4821,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+    "database": "razuna",
+    "tables": 82,
+    "measured": 44,
+    "rows": 1341830,
+    "columns": 532,
+    "dead_columns": 107,
+    "dead_column_names": [
+     "groups.FOLDER_REDIRECT",
+     "groups.GRP_TRANSLATION_KEY",
+     "hosts.HOST_LANG",
+     "modules.MOD_HOST_ID",
+     "permissions.PER_HOST_ID",
+     "permissions.PER_LEVEL"
+    ],
+    "stale_tables": 17,
+    "earliest_write": "2014-12-16",
+    "latest_write": "2026-09-16 17:22:20",
+    "worst_table": {
+     "table": "personal_access_tokens",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 8514
+    },
+    "degraded_ratio": 0.026,
+    "dead_column_share": 0.2011,
+    "write_span_days": 4292,
+    "days_since_last_write": 13,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "saa",
+    "tables": 28,
+    "measured": 22,
+    "rows": 423474,
+    "columns": 159,
+    "dead_columns": 16,
+    "dead_column_names": [
+     "answers.deleted_at",
+     "audits.tags",
+     "booths.description",
+     "campaigns.deleted_at",
+     "campaigns.description",
+     "check_ins.deleted_at"
+    ],
+    "stale_tables": 7,
+    "earliest_write": "2024-11-01",
+    "latest_write": "2028-07-31",
+    "worst_table": {
+     "table": "telescope_entries",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 5708
+    },
+    "degraded_ratio": 0.0173,
+    "dead_column_share": 0.1006,
+    "write_span_days": 1368,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "kra_reports",
+    "tables": 19,
+    "measured": 8,
+    "rows": 769,
+    "columns": 93,
+    "dead_columns": 11,
+    "dead_column_names": [
+     "credit_note_items.deleted_at",
+     "credit_note_items.hs_code",
+     "credit_notes.deleted_at",
+     "invoice_items.deleted_at",
+     "invoices.deleted_at",
+     "invoices.failure_log"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2022-07-19 08:18:35",
+    "latest_write": "2024-01-12 08:40:03",
+    "worst_table": {
+     "table": "customers",
+     "degraded_row_ratio": 0.1,
+     "rows_estimate": 20
+    },
+    "degraded_ratio": 0.0117,
+    "dead_column_share": 0.1183,
+    "write_span_days": 542,
+    "days_since_last_write": 991,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_artists",
+    "tables": 8,
+    "measured": 7,
+    "rows": 898,
+    "columns": 70,
+    "dead_columns": 14,
+    "dead_column_names": [
+     "artist_page_urls.updated_at",
+     "artist_pages.about_page",
+     "artist_pages.deleted_at",
+     "artist_pages.music_page",
+     "moderation_reasons.deleted_at",
+     "sample_content.deleted_at"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2021-08-22 23:55:08",
+    "latest_write": "2022-03-25 17:47:39",
+    "worst_table": {
+     "table": "artist_page_urls",
+     "degraded_row_ratio": 0.6667,
+     "rows_estimate": 6
+    },
+    "degraded_ratio": 0.0045,
+    "dead_column_share": 0.2,
+    "write_span_days": 214,
+    "days_since_last_write": 1649,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "ecommerce_tafaria",
+    "tables": 130,
+    "measured": 40,
+    "rows": 986,
+    "columns": 390,
+    "dead_columns": 93,
+    "dead_column_names": [
+     "access_types.created_by",
+     "access_types.slug",
+     "active_users.deleted_at",
+     "active_users.first_name",
+     "active_users.last_name",
+     "addresses.deleted_at"
+    ],
+    "stale_tables": 33,
+    "earliest_write": "1990-01-01",
+    "latest_write": "2021-09-28 18:17:28",
+    "worst_table": {
+     "table": "media",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 1
+    },
+    "degraded_ratio": 0.002,
+    "dead_column_share": 0.2385,
+    "write_span_days": 11593,
+    "days_since_last_write": 1827,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_miniapps_prod",
+    "tables": 21,
+    "measured": 14,
+    "rows": 272234,
+    "columns": 134,
+    "dead_columns": 31,
+    "dead_column_names": [
+     "DATABASECHANGELOG.CONTEXTS",
+     "DATABASECHANGELOG.LABELS",
+     "DATABASECHANGELOG.TAG",
+     "DATABASECHANGELOGLOCK.LOCKEDBY",
+     "DATABASECHANGELOGLOCK.LOCKGRANTED",
+     "bill.date_deleted"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2021-02-01 00:00:00",
+    "latest_write": "2026-09-29 21:37:43.161000",
+    "worst_table": {
+     "table": "DATABASECHANGELOG",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 40
+    },
+    "degraded_ratio": 0.0002,
+    "dead_column_share": 0.2313,
+    "write_span_days": 2066,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "iebc_forms",
+    "tables": 3,
+    "measured": 3,
+    "rows": 135432,
+    "columns": 31,
+    "dead_columns": 2,
+    "dead_column_names": [
+     "s3_files.timestamp",
+     "s3_files_2.timestamp"
+    ],
+    "stale_tables": 0,
+    "earliest_write": null,
+    "latest_write": null,
+    "worst_table": null,
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.0645,
+    "write_span_days": null,
+    "days_since_last_write": null,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viupay_agent_staging",
+    "tables": 31,
+    "measured": 29,
+    "rows": 12055808,
+    "columns": 402,
+    "dead_columns": 39,
+    "dead_column_names": [
+     "tbl_customer.channel",
+     "tbl_customer.cust_type",
+     "tbl_customer.customer_id",
+     "tbl_customer_trans.earningwallet",
+     "tbl_driver_history.acctype",
+     "tbl_driver_history.loginid"
+    ],
+    "stale_tables": 19,
+    "earliest_write": "2020-11-24 16:01:03",
+    "latest_write": "2022-07-18 21:40:09",
+    "worst_table": {
+     "table": "tbl_driver",
+     "degraded_row_ratio": 0.5455,
+     "rows_estimate": 11
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.097,
+    "write_span_days": 601,
+    "days_since_last_write": 1534,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "viupay",
+    "database": "kra_reports",
+    "tables": 27,
+    "measured": 11,
+    "rows": 821934,
+    "columns": 159,
+    "dead_columns": 19,
+    "dead_column_names": [
+     "credit_note_items.deleted_at",
+     "credit_notes.deleted_at",
+     "external_credit_notes.callback_sent_at",
+     "external_credit_notes.callback_url",
+     "external_credit_notes.deleted_at",
+     "invoice_items.deleted_at"
+    ],
+    "stale_tables": 2,
+    "earliest_write": "2022-07-19 08:18:35",
+    "latest_write": "2026-09-29 21:44:08",
+    "worst_table": {
+     "table": "customers",
+     "degraded_row_ratio": 0.125,
+     "rows_estimate": 32
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.1195,
+    "write_span_days": 1533,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen_digital",
+    "database": "local",
+    "tables": 17,
+    "measured": 9,
+    "rows": 987524,
+    "columns": 73,
+    "dead_columns": 4,
+    "dead_column_names": [
+     "audits.tags",
+     "folder_languages.total_time",
+     "speakers.deleted_at",
+     "uploaded_files.created_at"
+    ],
+    "stale_tables": 5,
+    "earliest_write": "2023-11-09 08:47:44",
+    "latest_write": "2025-03-11 09:52:28",
+    "worst_table": {
+     "table": "transcripts",
+     "degraded_row_ratio": 0.0001,
+     "rows_estimate": 433680
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.0548,
+    "write_span_days": 488,
+    "days_since_last_write": 567,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "citizen-pulse",
+    "tables": 39,
+    "measured": 0,
+    "rows": 0,
+    "columns": 0,
+    "dead_columns": 0,
+    "dead_column_names": [],
+    "stale_tables": 0,
+    "earliest_write": null,
+    "latest_write": null,
+    "worst_table": null,
+    "degraded_ratio": null,
+    "dead_column_share": null,
+    "write_span_days": null,
+    "days_since_last_write": null,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "correspondents",
+    "tables": 10,
+    "measured": 4,
+    "rows": 169,
+    "columns": 19,
+    "dead_columns": 3,
+    "dead_column_names": [
+     "sessions.user_id",
+     "users.email_verified_at",
+     "users.remember_token"
+    ],
+    "stale_tables": 0,
+    "earliest_write": "2025-03-13 07:38:41",
+    "latest_write": "2025-12-11 13:23:55",
+    "worst_table": null,
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.1579,
+    "write_span_days": 273,
+    "days_since_last_write": 292,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+    "database": "news_vault",
+    "tables": 30,
+    "measured": 24,
+    "rows": 856820,
+    "columns": 155,
+    "dead_columns": 10,
+    "dead_column_names": [
+     "audits.tags",
+     "categories.deleted_at",
+     "news.deleted_at",
+     "packages.deleted_at",
+     "packages.description",
+     "stations.deleted_at"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2022-09-15 16:53:45",
+    "latest_write": "2026-09-16 18:00:04",
+    "worst_table": {
+     "table": "stories",
+     "degraded_row_ratio": 0.0001,
+     "rows_estimate": 233527
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.0645,
+    "write_span_days": 1462,
+    "days_since_last_write": 13,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   }
+  ],
+  "trend": null,
+  "trend_note": "No previous verified census to compare against; trend starts with the next census."
+ },
+ "within_table_duplicates": [
+  {
+   "connection": "viupay",
+   "database": "kra_reports",
+   "table": "external_credit_notes",
+   "exact_duplicate_ratio": 0.25,
+   "normalised_duplicate_ratio": 0.25,
+   "rows_estimate": 224547,
+   "data_bytes": 291291136,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "raz1_errors",
+   "exact_duplicate_ratio": 0.01956,
+   "normalised_duplicate_ratio": 0.02116,
+   "rows_estimate": 28276,
+   "data_bytes": 781729792,
+   "method": "complete"
+  },
+  {
+   "connection": "viupay",
+   "database": "viutickets",
+   "table": "movies",
+   "exact_duplicate_ratio": 0.07501,
+   "normalised_duplicate_ratio": 0.19239,
+   "rows_estimate": 8305,
+   "data_bytes": 8929280,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viutickets",
+   "table": "movies",
+   "exact_duplicate_ratio": 0.0846,
+   "normalised_duplicate_ratio": 0.21697,
+   "rows_estimate": 7562,
+   "data_bytes": 6832128,
+   "method": "complete"
+  },
+  {
+   "connection": "viupay",
+   "database": "viutickets",
+   "table": "movie_shows",
+   "exact_duplicate_ratio": 0.10969,
+   "normalised_duplicate_ratio": 0.11204,
+   "rows_estimate": 24638,
+   "data_bytes": 4734976,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viutickets",
+   "table": "movie_shows",
+   "exact_duplicate_ratio": 0.1258,
+   "normalised_duplicate_ratio": 0.1285,
+   "rows_estimate": 21400,
+   "data_bytes": 3686400,
+   "method": "complete"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "raz1_log_users",
+   "exact_duplicate_ratio": 0.01705,
+   "normalised_duplicate_ratio": 0.91831,
+   "rows_estimate": 45494,
+   "data_bytes": 16334848,
+   "method": "complete"
+  },
+  {
+   "connection": "viupay",
+   "database": "viupay",
+   "table": "oauth_access_tokens",
+   "exact_duplicate_ratio": 0.03013,
+   "normalised_duplicate_ratio": 0.9993,
+   "rows_estimate": 7591,
+   "data_bytes": 2637824,
+   "method": "complete"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "raz1_assets_temp",
+   "exact_duplicate_ratio": 0.15565,
+   "normalised_duplicate_ratio": 0.41185,
+   "rows_estimate": 1408,
+   "data_bytes": 458752,
+   "method": "complete"
+  },
+  {
+   "connection": "citizen-pulse",
+   "database": "saa",
+   "table": "submissions",
+   "exact_duplicate_ratio": 0.02331,
+   "normalised_duplicate_ratio": 0.47695,
+   "rows_estimate": 20159,
+   "data_bytes": 1589248,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viupay",
+   "table": "cache",
+   "exact_duplicate_ratio": 0.38246,
+   "normalised_duplicate_ratio": 0.38246,
+   "rows_estimate": 285,
+   "data_bytes": 65536,
+   "method": "complete"
+  },
+  {
+   "connection": "citizen_digital",
+   "database": "local",
+   "table": "bazuu",
+   "exact_duplicate_ratio": 0.67778,
+   "normalised_duplicate_ratio": 0.67778,
+   "rows_estimate": 180,
+   "data_bytes": 16384,
+   "method": "head_sample_no_single_primary_key"
+  },
+  {
+   "connection": "viupay",
+   "database": "viutickets",
+   "table": "book_events",
+   "exact_duplicate_ratio": 0.07613,
+   "normalised_duplicate_ratio": 0.57833,
+   "rows_estimate": 683,
+   "data_bytes": 131072,
+   "method": "complete"
+  },
+  {
+   "connection": "viupay",
+   "database": "viupay",
+   "table": "cache",
+   "exact_duplicate_ratio": 0.375,
+   "normalised_duplicate_ratio": 0.375,
+   "rows_estimate": 48,
+   "data_bytes": 16384,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viupay",
+   "table": "oauth_access_tokens",
+   "exact_duplicate_ratio": 0.01158,
+   "normalised_duplicate_ratio": 0.99807,
+   "rows_estimate": 2080,
+   "data_bytes": 376832,
+   "method": "complete"
+  },
+  {
+   "connection": "citizen_digital",
+   "database": "db_visitors",
+   "table": "users",
+   "exact_duplicate_ratio": 0.01093,
+   "normalised_duplicate_ratio": 0.02113,
+   "rows_estimate": 4118,
+   "data_bytes": 327680,
+   "method": "complete"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "file_types",
+   "exact_duplicate_ratio": 0.17476,
+   "normalised_duplicate_ratio": 0.17476,
+   "rows_estimate": 103,
+   "data_bytes": 16384,
+   "method": "complete"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "ct_users_hosts",
+   "exact_duplicate_ratio": 0.08824,
+   "normalised_duplicate_ratio": 0.08824,
+   "rows_estimate": 34,
+   "data_bytes": 16384,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "ecommerce_tafaria",
+   "table": "genres",
+   "exact_duplicate_ratio": 0.08065,
+   "normalised_duplicate_ratio": 0.08065,
+   "rows_estimate": 62,
+   "data_bytes": 16384,
+   "method": "complete"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "raz1_files_desc",
+   "exact_duplicate_ratio": 0.02941,
+   "normalised_duplicate_ratio": 0.02941,
+   "rows_estimate": 68,
+   "data_bytes": 16384,
+   "method": "complete"
+  },
+  {
+   "connection": "citizen_digital",
+   "database": "db_visitors",
+   "table": "check_ins",
+   "exact_duplicate_ratio": 0.02069,
+   "normalised_duplicate_ratio": 0.02069,
+   "rows_estimate": 137,
+   "data_bytes": 16384,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viutickets",
+   "table": "movie_bookings",
+   "exact_duplicate_ratio": 0.01471,
+   "normalised_duplicate_ratio": 0.20588,
+   "rows_estimate": 68,
+   "data_bytes": 16384,
+   "method": "complete"
+  },
+  {
+   "connection": "viupay",
+   "database": "viutickets",
+   "table": "movie_bookings",
+   "exact_duplicate_ratio": 0.01235,
+   "normalised_duplicate_ratio": 0.18519,
+   "rows_estimate": 81,
+   "data_bytes": 16384,
+   "method": "complete"
+  }
+ ],
  "condition_bytes": {
   "total": 13705740288,
   "not_read": 73891840,
@@ -4331,5 +5476,5 @@
  "method_note": "Ratios are measured on complete passes (tables \u2264100k rows) or stratified keyset samples (8\u00d75k rows) and disclosed per table; cross-table overlap is a bottom-256 sketch Jaccard estimate over same-schema tables; no row values were retained or returned.",
  "row_values_retained": false,
  "brief_path": "/briefs/Akki_Estate_Intelligence_eij-91933223a5b1.md",
- "brief_sha256": "aef006277563c39fba8185ab8bb71d7ff48a294b0140848a89cdd288005caeb1"
+ "brief_sha256": "ba7e33704ab55edd668bc5b6bcef40582e8612d0a7d049982d1d6f7d95e4da3f"
 }

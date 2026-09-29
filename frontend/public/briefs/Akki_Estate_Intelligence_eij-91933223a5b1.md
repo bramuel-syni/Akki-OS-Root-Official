@@ -1,6 +1,6 @@
 # Akki Estate Intelligence — RMS MySQL estate
 
-Job `eij-91933223a5b1` · status **partial** · measured 2026-09-29T18:49:55.453268Z · built 2026-09-29T19:06:19.280909Z
+Job `eij-91933223a5b1` · status **partial** · measured 2026-09-29T18:49:55.453268Z · built 2026-09-29T22:55:38.511183Z
 
 Census only: rows were measured on the jump host and discarded; this brief carries aggregates, sketches and hashes — no row, cell or identifier value.
 
@@ -48,6 +48,44 @@ Census only: rows were measured on the jump host and discarded; this brief carri
 | citizen-pulse / correspondents | 10 | 169 | 304.0 KiB | D (51.0) | identity 7, measure 6, time 6, entity 3, money 1, geo 1 |
 | iebc_forms / miniapps | 21 | 54 | 944.0 KiB | D (42.9) | identity 21, time 17, measure 17, entity 8, content 6, product 6 |
 
+## Degradation and trend
+
+Row-weighted share of measured rows whose worst column shows the kind; a row can carry several kinds.
+
+| Damage kind | Share of measured rows |
+|---|---|
+| mojibake | 0.0% |
+| placeholder | 6.2% |
+| truncation | 5.0% |
+| invalid_format | 4.9% |
+| whitespace | 3.5% |
+
+Never-populated columns: 539 of 4,167 measured (12.9%). Columns never populated (null on ≥99.9 % of measured rows, primary key excluded): schema carried without data.
+
+| Connection / database | Degraded rows | Dead columns | Stale tables | Writes span | Last write | Schema drift | Rows Δ |
+|---|---|---|---|---|---|---|---|
+| iebc_forms / miniapps | 71.4% | 16 / 52 | 4 | 1,409 days | 657 days ago | 0 | — |
+| viupay / viupay | 69.4% | 20 / 264 | 11 | 2,088 days | 0 days ago | 0 | — |
+| iebc_forms / viupay | 67.5% | 22 / 248 | 21 | 1,098 days | 625 days ago | 0 | — |
+| citizen_digital / db_visitors | 37.6% | 55 / 418 | 8 | 21,947 days | 0 days ago | 0 | — |
+| iebc_forms / viutickets | 25.4% | 38 / 479 | 38 | 1,041 days | 546 days ago | 0 | — |
+| viupay / viutickets | 23.2% | 39 / 489 | 19 | 4,821 days | 0 days ago | 0 | — |
+| Razuna (Library Content) & Newsvault (Radio News content) / razuna | 2.6% | 107 / 532 | 17 | 4,292 days | 13 days ago | 0 | — |
+| citizen-pulse / saa | 1.7% | 16 / 159 | 7 | 1,368 days | 0 days ago | 0 | — |
+| iebc_forms / kra_reports | 1.2% | 11 / 93 | 6 | 542 days | 991 days ago | 0 | — |
+| iebc_forms / viusasa_artists | 0.4% | 14 / 70 | 6 | 214 days | 1,649 days ago | 0 | — |
+| iebc_forms / ecommerce_tafaria | 0.2% | 93 / 390 | 33 | 11,593 days | 1,827 days ago | 0 | — |
+| iebc_forms / viusasa_miniapps_prod | 0.0% | 31 / 134 | 6 | 2,066 days | 0 days ago | 0 | — |
+| iebc_forms / iebc_forms | 0.0% | 2 / 31 | 0 | no timestamps | — | 0 | — |
+| iebc_forms / viupay_agent_staging | 0.0% | 39 / 402 | 19 | 601 days | 1,534 days ago | 0 | — |
+| viupay / kra_reports | 0.0% | 19 / 159 | 2 | 1,533 days | 0 days ago | 0 | — |
+| citizen_digital / local | 0.0% | 4 / 73 | 5 | 488 days | 567 days ago | 0 | — |
+| citizen-pulse / citizen-pulse | —% | 0 / 0 | 0 | no timestamps | — | 0 | — |
+| citizen-pulse / correspondents | 0.0% | 3 / 19 | 0 | 273 days | 292 days ago | 0 | — |
+| Razuna (Library Content) & Newsvault (Radio News content) / news_vault | 0.0% | 10 / 155 | 6 | 1,462 days | 13 days ago | 0 | — |
+
+No previous verified census to compare against; trend starts with the next census.
+
 ## What the data can do — dimensional monetisation candidates
 
 Ranked by rows × readiness × supporting dimensions. Every candidate is an aggregate or de-identified product; rights are declared at Connect, not measured here.
@@ -58,6 +96,7 @@ Catalogue metadata, engagement-weighted recommendation features and licensable a
 
 - Dimensions required: content; supporting: engagement, time
 - 50 supporting tables, ≈8,069,529 rows across 13 databases
+- Licensable grain: ≈268,263 distinct content values (viupay/kra_reports.viusasa_postings.tims_posted_at); history 1970-01-01 → 2030-02-02 (21,947 days; viupay/viutickets.movie_seats.created_at); ≈268,263 distinct engagement values (viupay/kra_reports.viusasa_postings.response); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: viupay/viutickets.movie_seats (1,158,096 rows, A); iebc_forms/viutickets.movie_seats (834,440 rows, A); iebc_forms/viupay_agent_staging.tbl_lastsession (935,106 rows, B); viupay/viupay.mpesa_stk_requests (20,888 rows, A)
 - Blockers: 80.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -67,6 +106,7 @@ Clean product / catalogue / form reference tables licensable as master data wher
 
 - Dimensions required: product; supporting: content, identity
 - 32 supporting tables, ≈4,023,136 rows across 10 databases
+- Licensable grain: ≈460,786 distinct content values (Razuna (Library Content) & Newsvault (Radio News content)/razuna.raz1_videos.VID_NAME_IMAGE); ≈478,938 distinct identity values (Razuna (Library Content) & Newsvault (Radio News content)/razuna.raz1_videos.VID_CUSTOM_ID); ≈12,498 distinct product values (viupay/viutickets.media.order_column); history 1970-01-01 → 2030-02-02 (21,947 days; iebc_forms/viupay_agent_staging.tbl_lastsession.entrydate); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: iebc_forms/viupay_agent_staging.tbl_lastsession (935,106 rows, B); viupay/viutickets.media (471,627 rows, C); iebc_forms/viutickets.media (392,888 rows, C); Razuna (Library Content) & Newsvault (Radio News content)/news_vault.stories (233,527 rows, C)
 - Blockers: 78.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · supporting tables grade D/E on completeness, duplication or degradation: cleanse first · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -76,6 +116,7 @@ Channel performance, shortcode and campaign attribution, response-rate benchmark
 
 - Dimensions required: channel, time; supporting: engagement, entity
 - 22 supporting tables, ≈4,517,978 rows across 9 databases
+- Licensable grain: ≈189,723 distinct channel values (iebc_forms/viupay_agent_staging.agent_api_logs.msisdn); ≈1,247,320 distinct engagement values (citizen_digital/db_visitors.event_logs.event_log_id); history 2014-12-16 → 2026-09-29 (4,305 days; iebc_forms/viupay_agent_staging.agent_api_logs.entrydate); ≈211,545 distinct entity values (citizen_digital/db_visitors.event_logs.staff_id)
 - Top tables: iebc_forms/viupay_agent_staging.agent_api_logs (522,652 rows, B); iebc_forms/viupay_agent_staging.tbl_lastsession (935,106 rows, B); citizen_digital/db_visitors.event_logs (2,494,639 rows, D); Razuna (Library Content) & Newsvault (Radio News content)/razuna.raz1_log_users (45,494 rows, B)
 - Blockers: 91.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -85,6 +126,7 @@ Segmentation, lifetime value and retention modelling across products; requires d
 
 - Dimensions required: engagement, entity; supporting: channel, geo
 - 38 supporting tables, ≈6,039,769 rows across 12 databases
+- Licensable grain: ≈1,247,320 distinct engagement values (citizen_digital/db_visitors.event_logs.event_log_id); ≈211,545 distinct entity values (citizen_digital/db_visitors.event_logs.staff_id); history 1970-01-01 → 2030-02-02 (21,947 days; viupay/viupay.mpesa_stk_requests.created_at); ≈748 distinct channel values (citizen_digital/db_visitors.event_logs.device_name); ≈20,442 distinct geo values (citizen_digital/local.uploaded_files.file_location); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: viupay/viupay.mpesa_stk_requests (20,888 rows, A); citizen_digital/db_visitors.event_logs (2,494,639 rows, D); citizen-pulse/saa.submissions (20,159 rows, C); Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits (481,349 rows, D)
 - Blockers: 82.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · supporting tables grade D/E on completeness, duplication or degradation: cleanse first · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -94,6 +136,7 @@ Revenue, fee and settlement analytics; cohort and churn views once the entity di
 
 - Dimensions required: money, time; supporting: entity
 - 34 supporting tables, ≈1,142,878 rows across 8 databases
+- Licensable grain: ≈21,671 distinct entity values (viupay/viutickets.orders.customer_id); ≈268,317 distinct money values (viupay/kra_reports.viusasa_postings.cu_invoice_number); history 2022-01-10 → 2026-09-29 (1,723 days; viupay/viupay.mpesa_stk_requests.created_at)
 - Top tables: viupay/viupay.mpesa_stk_requests (20,888 rows, A); iebc_forms/viupay.mpesa_stk_requests (9,789 rows, B); viupay/viupay.mm_pay_instruments (16,299 rows, B); viupay/viutickets.orders (32,326 rows, C)
 - Blockers: 91.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -103,6 +146,7 @@ County / constituency level demand, penetration and service-coverage maps sold a
 
 - Dimensions required: geo, time; supporting: engagement, money
 - 20 supporting tables, ≈1,963,125 rows across 8 databases
+- Licensable grain: ≈20,442 distinct geo values (citizen_digital/local.uploaded_files.file_location); ≈48 distinct engagement values (Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.event); history 2022-09-15 → 2026-09-29 (1,475 days; Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.created_at)
 - Top tables: citizen_digital/db_visitors.ci_sessions (56,175 rows, B); Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits (481,349 rows, D); citizen_digital/db_visitors.audits (219,709 rows, D); citizen-pulse/saa.submissions (20,159 rows, C)
 - Blockers: 75.0% of supporting tables carry PII markers: de-identify or aggregate before any release · supporting tables grade D/E on completeness, duplication or degradation: cleanse first · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -112,6 +156,7 @@ Daily/weekly demand and revenue series for forecasting products and planning ben
 
 - Dimensions required: money, time; supporting: geo, product
 - 34 supporting tables, ≈1,142,878 rows across 8 databases
+- Licensable grain: ≈268,317 distinct money values (viupay/kra_reports.viusasa_postings.cu_invoice_number); history 2022-01-10 → 2026-09-29 (1,723 days; viupay/viupay.mpesa_stk_requests.created_at); ≈19,719 distinct product values (viupay/viutickets.payment_processings.order_id)
 - Top tables: viupay/viupay.mpesa_stk_requests (20,888 rows, A); iebc_forms/viupay.mpesa_stk_requests (9,789 rows, B); viupay/viupay.mm_pay_instruments (16,299 rows, B); viupay/kra_reports.viusasa_postings (536,526 rows, D)
 - Blockers: 91.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -121,6 +166,7 @@ Aggregated audience and civic-participation indices by geography; strictly aggre
 
 - Dimensions required: entity, geo; supporting: content, engagement
 - 16 supporting tables, ≈1,903,655 rows across 8 databases
+- Licensable grain: ≈78,156 distinct content values (citizen_digital/local.uploaded_files.text_file_path); ≈48 distinct engagement values (Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.event); ≈23,153 distinct entity values (Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits.user_id); ≈20,442 distinct geo values (citizen_digital/local.uploaded_files.file_location); history 2022-01-10 → 2026-09-29 (1,723 days; citizen_digital/local.uploaded_files.time_processed)
 - Top tables: citizen_digital/local.uploaded_files (79,759 rows, C); Razuna (Library Content) & Newsvault (Radio News content)/news_vault.audits (481,349 rows, D); citizen_digital/db_visitors.audits (219,709 rows, D); citizen-pulse/saa.submissions (20,159 rows, C)
 - Blockers: 88.0% of supporting tables carry PII markers: de-identify or aggregate before any release · supporting tables grade D/E on completeness, duplication or degradation: cleanse first · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 

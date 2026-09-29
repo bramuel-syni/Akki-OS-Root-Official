@@ -1,0 +1,33 @@
+{
+  "summary": "Frontend end-to-end testing of /os/work/chat (M4/M5 governed multi-turn chat). Backend was not retested per instructions. Verified sign-in gate, DIGICOW operator flow (open existing compacted session, TurnCards with decision badges, answer, context-loss line, citation chips, 'See the working' facts with 0 source dispatches, qualified-store, window, memory, plus lines list), new session ask + warm answer (~26s), follow-up warm ask keeps objective frozen and increments memory turns to 2, out-of-scope handling, compact + reload + attempted second compact, archive, error surface (no error alerts anywhere), mobile 390x844 responsive (rail stacks above thread, no horizontal overflow), and RMS analyst tenant refusal-only path. All major UI elements and data-testids render as specified. Two functional observations to report: (a) DIGICOW OOS question returned decision 'Warm · answered from qualified memory' instead of 'Refused'/'Out of scope' (backend judgment, not a UI bug); (b) 'already compacted' path (workchat-memory-nothing) is unreachable from the UI because the 'Compact now' button is disabled when open===0, and there is also a race in useChatSessions.compact() where open() resets memory to null right after setMemory({...nothing_to_compact}).",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/chat/ask (DIGICOW tenant)", "issue": "Question 'What is the weather in Paris tomorrow?' returned decision 'Warm · answered from qualified memory' in ~6s instead of a Refused/out-of-scope response. RMS analyst tenant correctly refuses the analogous OOS question, so the shield refusal path works; on DIGICOW the qualified store apparently matched. Worth verifying the warm gate's subject-matching for clearly OOS subjects."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "SessionMemory / useChatSessions", "issue": "'Compact now' is disabled when open===0, so users cannot trigger the 'already compacted' state through the UI; the workchat-memory-nothing badge is effectively unreachable via the button. Additionally, useChatSessions.compact() calls open(active.session_id) after setMemory({kind:'compact',...}); open() synchronously does setMemory(null), which will null-out the nothing_to_compact memory state even if the click were somehow allowed. Recommend either awaiting open before clearing memory, or setting memory after open, or keeping the button enabled and rendering the nothing badge.", "selector": "[data-testid=workchat-compact], [data-testid=workchat-memory-nothing]", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/screenshots/wc_signed_in.jpeg", "/app/test_reports/screenshots/wc_session_open.jpeg", "/app/test_reports/screenshots/wc_after_archive.jpeg", "/app/test_reports/screenshots/wc_mobile.jpeg", "/app/test_reports/screenshots/wc_analyst.jpeg"],
+  "action_items": [
+    "Investigate DIGICOW OOS classification: 'What is the weather in Paris tomorrow?' should not return a Warm badge; the RMS refusal path works and returns 'Refused / Out of scope' with 0 source dispatches - align DIGICOW subject-matching accordingly.",
+    "Make workchat-memory-nothing reachable: either keep 'Compact now' enabled and rely on backend nothing_to_compact response, or fix the race in useChatSessions.compact() (await open before/after setMemory so the badge is not cleared by open()'s setMemory(null))."
+  ],
+  "critical_code_review_comments": [
+    "useChatSessions.compact() calls open() which synchronously resets memory state; this races with setMemory({kind:'compact',...}) and can clobber the nothing_to_compact badge. Consider: await open(...); setMemory(...); or store memory-derived flags on session object.",
+    "SessionMemory disables 'Compact now' when open===0 while the backend explicitly returns a nothing_to_compact envelope; UI and backend contracts are out of sync for this state."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "not-tested", "frontend": "95%"},
+  "test_credentials": "DIGICOW operator demo.operator@demo.digicow.example.com / demo-digicow-operator-pw; RMS analyst demo.analyst@demo.rms.example.com / demo-analyst-pw",
+  "seed_data_creation": "Created one new DIGICOW chat session ('What do farmers ask about milk production?') then archived it. Created a follow-up turn ('Which of those mention breeds?') and an OOS turn ('What is the weather in Paris tomorrow?') in that session. Also created one RMS chat session ('How many songs are in the catalogue?') - refused. Compaction ledger row was written for the archived DIGICOW session as expected.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All workchat data-testids verified to exist and match spec. Key numbers observed: warm answers took ~21-26s; RMS refusal ~2s; DIGICOW OOS returned warm in ~6s (suspicious). Existing DIGICOW rail had 7 sessions before this run and 7 after (new one archived).",
+  "rca of the issue": "workchat-memory-nothing missing: SessionMemory.jsx disables the Compact button when open===0 (session.turns.filter(t=>!t.compacted).length===0). After the first successful compact, all turns become compacted so the button becomes disabled and the second click is a no-op. Even bypassing the disabled state, useChatSessions.compact() fires open(active.session_id) after setMemory which synchronously calls setMemory(null), so the nothing_to_compact badge would be cleared before rendering."
+}

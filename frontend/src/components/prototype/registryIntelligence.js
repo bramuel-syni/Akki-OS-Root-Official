@@ -82,7 +82,8 @@ export function registryIntelligence({ data, show }) {
       .map(([key, label, fill]) => ({ label, size: `${registryCount(methods[key])} tables`, w: pctOf(methods[key] / methodTotal), fill })),
     opportunitiesView: latest.data_products.slice(0, 2).map(p => ({ key: p.key, title: `${p.title} — grade ${p.readiness_grade}`, body: `${p.tables} tables · ≈${registryCount(p.rows_estimate)} rows · ${p.databases.length} databases. ${p.use}` })),
     openOppDrawerNew: () => show({ title: 'What your data can do', subtitle: `Estate intelligence ${latest.job_id} · aggregates only, no row values`, code: latest.status, cards: drawerCards(latest),
-      actions: latest.brief_path ? [{ label: 'Download the brief', border: 'var(--blue)', bg: 'var(--blue)', color: '#fff', onClick: () => window.open(latest.brief_path, '_blank', 'noopener') }] : [] }),
+      actions: [{ label: 'Open the full report', border: 'var(--blue)', bg: 'var(--blue)', color: '#fff', onClick: () => window.location.assign('/os/admin/estate/intelligence') },
+        ...(latest.brief_path ? [{ label: 'Download the brief', border: 'var(--blue)', bg: 'transparent', color: 'var(--blue)', onClick: () => window.open(latest.brief_path, '_blank', 'noopener') }] : [])] }),
     efGapsHook: latest.coverage_note,
     regQualReading: `${registryCount(h.grades?.A || 0)} tables grade A, ${registryCount(h.grades?.E || 0)} grade E on completeness, duplication, damage, freshness and PII.`,
   };

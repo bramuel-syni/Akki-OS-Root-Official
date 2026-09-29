@@ -221,6 +221,14 @@ class TestSessionContinuity:
         assert run(sessions.get(other, session['session_id'])) is None
         assert run(sessions.reload(other, session))['status'] == 'refused'
         assert run(sessions.compact(scope, session, actor=scope['principal_id'])) is None
+        run(sessions.append_turn(scope, session['session_id'], turn(9)))
+        session = run(sessions.get(scope, session['session_id']))
+        second = run(sessions.compact(scope, session, actor=scope['principal_id']))
+        assert second['artefact_hash'] != compaction['artefact_hash']
+        session = run(sessions.get(scope, session['session_id']))
+        assert [h['artefact_hash'] for h in session['compaction_history']] == [compaction['artefact_hash']]
+        entries = run(sessions.reload(scope, session))['entries']
+        assert any(e['provenance_ref'] == f"compaction:{compaction['artefact_hash']}" for e in entries)
 
     def test_reload_refuses_after_tamper(self, scope, stub_chain, cleanup_sessions):
         session = run(sessions.create(scope, 'tamper drill'))

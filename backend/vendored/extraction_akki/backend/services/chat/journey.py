@@ -49,7 +49,7 @@ async def ask(db, scope, *, question, session_id=None, model=DEFAULT_MODEL, prov
     decision = await deciding.decide(db, scope, session_id=session['session_id'], turn_id=turn_id, question=question, terms=terms,
                                      artefacts=artefacts, candidates=candidates)
     evidence = {'qualified_set_ref': spine.qualified_set_ref(artefacts),
-                'artefacts': [{k: a[k] for k in ('artifact_ref', 'region', 'units', 'rights_receipt_ref', 'inspection_ref', 'request_id')} for a in artefacts],
+                'artefacts': [{k: a[k] for k in ('artifact_ref', 'sha256', 'region', 'units', 'rights_receipt_ref', 'inspection_ref', 'request_id')} for a in artefacts],
                 'reads': {'source_dispatches': 0, 'source_rows_read': 0, 'source_bytes_read': 0, 'qualified_store_calls': read['calls'],
                           'qualified_bytes_read': read['qualified_bytes_read'], 'candidates_returned': len(candidates),
                           'matched_total': read['matched_total'], 'units_total': read['units_total'], 'failures': read['failures']},

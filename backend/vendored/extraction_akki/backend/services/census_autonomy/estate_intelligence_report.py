@@ -14,7 +14,9 @@ from services.census_autonomy import estate_intelligence_dispatch as dispatch
 from services.census_autonomy.estate_intelligence_worker import TIMESTAMP_TYPES, NUMERIC_TYPES, rollup
 
 TERMINAL_WITH_RESULT = ("completed", "partial")
+REPORT_VERSION = 2  # bump when build() gains sections so cached reports are rebuilt from the banked detail
 BRIEF_DIR = Path(__file__).resolve().parents[6] / "frontend" / "public" / "briefs"
+DEGRADATION_KINDS = ("mojibake_ratio", "placeholder_ratio", "truncation_ratio", "invalid_format_ratio", "whitespace_ratio")
 
 DIMENSIONS = {
     "time": re.compile(r"(^|_)(date|time|created|updated|modified|timestamp|year|month|period|expires?|start|end)(_|$)|_at$|_on$"),
@@ -172,9 +174,63 @@ def database_profiles(tables):
     return sorted(out, key=lambda p: -(p["rows_estimate"] or 0))
 
 
+def _days_between(earliest, latest):
+    try:
+        return max(0, (datetime.fromisoformat(str(latest)[:19]) - datetime.fromisoformat(str(earliest)[:19])).days)
+    except (TypeError, ValueError):
+        return None
+
+
+def table_grain(t, dims):
+    """Finest measured grain per dimension: the column with the most distinct values (or the widest time span) on this table."""
+    columns, rows, out = t.get("columns") or {}, t.get("rows_estimate") or 0, {}
+    for dimension in dims:
+        best = None
+        for name in table_dimensions(t).get(dimension, []):
+            c = columns.get(name) or {}
+            if dimension == "time" and (c.get("earliest") or c.get("latest")):
+                span = _days_between(c.get("earliest"), c.get("latest"))
+                if best is None or (span or 0) > (best.get("span_days") or 0):
+                    best = {"column": name, "earliest": c.get("earliest"), "latest": c.get("latest"), "span_days": span}
+            elif dimension != "time" and c.get("distinct_ratio") is not None:
+                distinct = int(round(c["distinct_ratio"] * rows))
+                if best is None or distinct > best["estimated_distinct"]:
+                    best = {"column": name, "estimated_distinct": distinct, "distinct_ratio": c["distinct_ratio"]}
+        if best:
+            out[dimension] = best
+    return out
+
+
+def product_grain(hits, sources, dims):
+    """Product-level licensable grain: widest history and highest cardinality per product dimension across the supporting tables."""
+    grain, units = {}, []
+    for h in hits:
+        for dimension, g in table_grain(sources[h["table"]], [d for d in h["dimensions"] if d in dims]).items():
+            current = grain.get(dimension)
+            if dimension == "time":
+                if current is None:
+                    grain[dimension] = {**g, "table": h["table"]}
+                else:
+                    earliest = min(x for x in (current.get("earliest"), g.get("earliest")) if x)
+                    latest = max(x for x in (current.get("latest"), g.get("latest")) if x)
+                    grain[dimension] = {"column": current["column"], "table": current["table"], "earliest": earliest, "latest": latest, "span_days": _days_between(earliest, latest)}
+            elif current is None or g["estimated_distinct"] > current["estimated_distinct"]:
+                grain[dimension] = {**g, "table": h["table"]}
+    for dimension, g in grain.items():
+        if dimension == "time" and g.get("span_days") is not None:
+            units.append(f"history {str(g['earliest'])[:10]} → {str(g['latest'])[:10]} ({g['span_days']:,} days; {g['table']}.{g['column']})")
+        elif dimension != "time":
+            units.append(f"≈{g['estimated_distinct']:,} distinct {dimension} values ({g['table']}.{g['column']})")
+    if grain.get("time") and str(grain["time"].get("latest") or "")[:10] > now()[:10]:
+        grain["time"]["future_timestamps"] = True
+        units.append("latest timestamp lies in the future: placeholder dates are present in the time dimension")
+    return grain, units
+
+
 def data_products(tables):
     candidates = []
     measured = [t for t in tables if t.get("rows_measured") and (t.get("rows_estimate") or 0) >= 500]
+    sources = {f"{t['connection']}/{t['database']}.{t['table']}": t for t in measured}
     for key, title, required, supporting, use in PRODUCTS:
         hits = []
         for t in measured:
@@ -203,11 +259,88 @@ def data_products(tables):
             blockers.append("supporting tables grade D/E on completeness, duplication or degradation: cleanse first")
         blockers.append("use rights are declared at Connect, not measured: a release needs its own grant and purpose")
         databases = sorted({h["table"].rsplit(".", 1)[0] for h in hits})
+        grain, licensable_units = product_grain(hits[:12], sources, required | supporting | {"time"})
         candidates.append({"key": key, "title": title, "use": use, "required_dimensions": sorted(required), "supporting_dimensions": sorted(supporting),
                            "tables": len(hits), "rows_estimate": rows, "databases": databases, "readiness_grade": _grade(avg_grade_score),
                            "readiness_score": round(avg_grade_score, 1), "pii_table_share": round(pii_share, 3), "stale_table_share": round(stale_share, 3),
-                           "score": round(sum(h["value"] for h in hits[:12]), 2), "top_tables": hits[:8], "blockers": blockers})
+                           "score": round(sum(h["value"] for h in hits[:12]), 2), "top_tables": hits[:8], "blockers": blockers,
+                           "grain": grain, "licensable_units": licensable_units})
     return sorted(candidates, key=lambda c: -c["score"])
+
+
+def _dead_columns(t):
+    return [n for n, c in (t.get("columns") or {}).items() if (c.get("null_ratio") or 0) >= 0.999 and n != t.get("primary_key")]
+
+
+def degradation(tables, previous, headline):
+    """How the estate is decaying: damage kinds, never-populated columns, write spans per database and the trend against the previous census."""
+    measured = [t for t in tables if t.get("rows_measured")]
+    rows_total = sum(max(1, t.get("rows_estimate") or 0) for t in measured) or 1
+    kinds = {k: 0.0 for k in DEGRADATION_KINDS}
+    per_db = {}
+    for t in tables:
+        key = f"{t['connection']}/{t['database']}"
+        p = per_db.setdefault(key, {"connection": t["connection"], "database": t["database"], "tables": 0, "measured": 0, "rows": 0, "degraded_weighted": 0.0,
+                                    "columns": 0, "dead_columns": 0, "dead_column_names": [], "stale_tables": 0, "earliest_write": None, "latest_write": None, "worst_table": None})
+        p["tables"] += 1
+        if not t.get("rows_measured"):
+            continue
+        weight = max(1, t.get("rows_estimate") or 0)
+        p["measured"] += 1; p["rows"] += weight; p["degraded_weighted"] += (t.get("degraded_row_ratio") or 0) * weight
+        for k in DEGRADATION_KINDS:
+            kinds[k] += max((c.get(k) or 0) for c in (t.get("columns") or {}).values()) * weight if t.get("columns") else 0.0
+        dead = _dead_columns(t)
+        p["columns"] += t.get("column_count") or len(t.get("columns") or {}); p["dead_columns"] += len(dead)
+        p["dead_column_names"].extend(f"{t['table']}.{n}" for n in dead[:3])
+        fresh = t.get("freshness") or {}
+        if (fresh.get("staleness_days") or 0) > 365:
+            p["stale_tables"] += 1
+        if fresh.get("earliest_write") and (p["earliest_write"] is None or fresh["earliest_write"] < p["earliest_write"]):
+            p["earliest_write"] = fresh["earliest_write"]
+        if fresh.get("latest_write") and (p["latest_write"] is None or fresh["latest_write"] > p["latest_write"]):
+            p["latest_write"] = fresh["latest_write"]
+        if (t.get("degraded_row_ratio") or 0) > 0 and (p["worst_table"] is None or t["degraded_row_ratio"] > p["worst_table"]["degraded_row_ratio"]):
+            p["worst_table"] = {"table": t["table"], "degraded_row_ratio": t["degraded_row_ratio"], "rows_estimate": t.get("rows_estimate")}
+    previous_dbs = {f"{d['connection']}/{d['database']}": d for d in (previous or {}).get("databases", [])}
+    previous_fp = (previous or {}).get("schema_fingerprints") or {}
+    databases = []
+    for key, p in per_db.items():
+        drift = sorted(k.rsplit(".", 1)[1] for k, fp in _fingerprints(tables).items() if k.startswith(key + ".") and k in previous_fp and previous_fp[k] != fp)
+        prev = previous_dbs.get(key)
+        p.update(degraded_ratio=round(p["degraded_weighted"] / p["rows"], 4) if p["rows"] else None,
+                 dead_column_share=round(p["dead_columns"] / p["columns"], 4) if p["columns"] else None,
+                 write_span_days=_days_between(p["earliest_write"], p["latest_write"]),
+                 days_since_last_write=_days_between(p["latest_write"], now()) if p["latest_write"] else None,
+                 growth={"rows_delta": (sum(t.get("rows_estimate") or 0 for t in tables if f"{t['connection']}/{t['database']}" == key) - (prev.get("rows_estimate") or 0)) if prev else None,
+                         "bytes_delta": (sum((t.get("data_bytes") or 0) + (t.get("index_bytes") or 0) for t in tables if f"{t['connection']}/{t['database']}" == key) - (prev.get("bytes") or 0)) if prev else None,
+                         "tables_delta": (p["tables"] - prev["tables"]) if prev else None},
+                 schema_drift_tables=drift, dead_column_names=p["dead_column_names"][:6])
+        del p["degraded_weighted"]
+        databases.append(p)
+    databases.sort(key=lambda p: -(p["degraded_ratio"] or 0))
+    dead_total = sum(p["dead_columns"] for p in databases); columns_total = sum(p["columns"] for p in databases)
+    trend = None
+    if previous:
+        ph = previous["headline"]
+        trend = {"previous_job_id": previous["job_id"], "previous_measured_at": previous.get("measured_at"),
+                 "deltas": {k: (round(headline[k] - ph[k], 2) if isinstance(headline.get(k), (int, float)) and isinstance(ph.get(k), (int, float)) else None)
+                            for k in ("bytes_total", "rows_estimate", "tables", "tables_measured", "exact_duplicate_pct", "degraded_pct", "null_bearing_pct", "pii_pct",
+                                      "stale_pct_of_bytes", "reclaimable_bytes", "empty_tables", "failed_tables", "duplicate_table_pairs")},
+                 "schema_drift_tables": sum(len(p["schema_drift_tables"]) for p in databases),
+                 "coverage_changed": (headline.get("tables_measured") != ph.get("tables_measured")) or (headline.get("connections") != ph.get("connections")),
+                 "databases_grown": sum(1 for p in databases if (p["growth"]["rows_delta"] or 0) > 0),
+                 "databases_shrunk": sum(1 for p in databases if (p["growth"]["rows_delta"] or 0) < 0)}
+    return {"kinds": {k.replace("_ratio", ""): round(v / rows_total, 4) for k, v in kinds.items()},
+            "kinds_note": "Row-weighted share of measured rows whose worst column shows the kind; a row can carry several kinds.",
+            "dead_columns": dead_total, "columns_measured": columns_total, "dead_column_share": round(dead_total / columns_total, 4) if columns_total else None,
+            "dead_columns_note": "Columns never populated (null on ≥99.9 % of measured rows, primary key excluded): schema carried without data.",
+            "databases": databases, "trend": trend,
+            "trend_note": ("Deltas against the previous verified estate intelligence census over the same connections." if previous else
+                           "No previous verified census to compare against; trend starts with the next census.")}
+
+
+def _fingerprints(tables):
+    return {f"{t['connection']}/{t['database']}.{t['table']}": t.get("schema_fingerprint") for t in tables if t.get("schema_fingerprint")}
 
 
 def cost_strategies(summary, tables, total_bytes):
@@ -310,8 +443,8 @@ def _connection_detail(job, detail, tables):
     return out
 
 
-def build(job, detail):
-    """Full report from a job and its verified detail (per-table aggregates)."""
+def build(job, detail, previous=None):
+    """Full report from a job and its verified detail (per-table aggregates); `previous` is the prior verified report for trend."""
     tables = flatten(detail)
     summary = rollup([{**d, "connection_label": d["connection"]} for d in detail["databases"]])
     measured = [t for t in tables if t.get("rows_measured")]
@@ -341,8 +474,13 @@ def build(job, detail):
     reading = (f"{headline['databases']} databases and {headline['tables']:,} tables ({headline['bytes_label']}, ≈{headline['rows_estimate']:,} rows) were measured; "
                f"{headline['exact_duplicate_pct']}% of rows repeat exactly, {headline['degraded_pct']}% carry damage, {headline['null_bearing_pct']}% have empty required-looking fields "
                f"and {headline['pii_pct']}% of sampled rows carry personal-data markers. About {headline['reclaimable_label']} ({headline['reclaimable_pct']}%) looks reclaimable.")
-    return {"job_id": job["job_id"], "status": job["status"], "measured_at": job.get("finished_at"), "built_at": now(), "reading": reading,
+    within = sorted([t for t in measured if (t.get("exact_duplicate_ratio") or 0) >= 0.01], key=lambda t: -(t["exact_duplicate_ratio"] * (t.get("data_bytes") or 0)))
+    return {"job_id": job["job_id"], "status": job["status"], "measured_at": job.get("finished_at"), "built_at": now(), "reading": reading, "report_version": REPORT_VERSION,
             "headline": headline, "summary": summary, "databases": profiles, "data_products": products, "cost_strategies": strategies,
+            "degradation": degradation(tables, previous, headline),
+            "within_table_duplicates": [{"connection": t["connection"], "database": t["database"], "table": t["table"], "exact_duplicate_ratio": t["exact_duplicate_ratio"],
+                                         "normalised_duplicate_ratio": t.get("normalised_duplicate_ratio"), "rows_estimate": t.get("rows_estimate"), "data_bytes": t.get("data_bytes"),
+                                         "method": t.get("method")} for t in within[:25]],
             "condition_bytes": condition_bytes(tables),
             "connections": _connection_detail(job, detail, tables),
             "schema_fingerprints": {f"{t['connection']}/{t['database']}.{t['table']}": t.get("schema_fingerprint") for t in tables if t.get("schema_fingerprint")},
@@ -397,12 +535,28 @@ def render_markdown(report):
     for p in report["databases"]:
         dims = ", ".join(f"{k} {v}" for k, v in list(p["dimensions"].items())[:6])
         lines.append(f"| {p['connection']} / {p['database']} | {p['tables']} | {p['rows_estimate']:,} | {_fmt_bytes(p['bytes'])} | {p['readiness']['grade']} ({p['readiness']['score']}) | {dims} |")
-    lines += ["", "## What the data can do — dimensional monetisation candidates", "",
+    lines += ["", "## Degradation and trend", "", report["degradation"]["kinds_note"], "",
+              "| Damage kind | Share of measured rows |", "|---|---|"] + [f"| {k} | {_pct(v)}% |" for k, v in report["degradation"]["kinds"].items()]
+    lines += ["", f"Never-populated columns: {report['degradation']['dead_columns']:,} of {report['degradation']['columns_measured']:,} measured "
+              f"({_pct(report['degradation']['dead_column_share'])}%). {report['degradation']['dead_columns_note']}", "",
+              "| Connection / database | Degraded rows | Dead columns | Stale tables | Writes span | Last write | Schema drift | Rows Δ |", "|---|---|---|---|---|---|---|---|"]
+    for p in report["degradation"]["databases"]:
+        span = f"{p['write_span_days']:,} days" if p.get("write_span_days") is not None else "no timestamps"
+        last = f"{p['days_since_last_write']:,} days ago" if p.get("days_since_last_write") is not None else "—"
+        delta = f"{p['growth']['rows_delta']:+,}" if p["growth"].get("rows_delta") is not None else "—"
+        lines.append(f"| {p['connection']} / {p['database']} | {_pct(p['degraded_ratio']) if p['degraded_ratio'] is not None else '—'}% | {p['dead_columns']} / {p['columns']} | {p['stale_tables']} | {span} | {last} | {len(p['schema_drift_tables'])} | {delta} |")
+    trend = report["degradation"]["trend"]
+    lines += ["", report["degradation"]["trend_note"], ""]
+    if trend:
+        lines += [f"Against `{trend['previous_job_id']}` ({trend['previous_measured_at']}): " + "; ".join(f"{k} {v:+,}" for k, v in trend["deltas"].items() if v is not None)
+                  + f"; {trend['schema_drift_tables']} tables changed schema; {trend['databases_grown']} databases grew, {trend['databases_shrunk']} shrank.", ""]
+    lines += ["## What the data can do — dimensional monetisation candidates", "",
               "Ranked by rows × readiness × supporting dimensions. Every candidate is an aggregate or de-identified product; rights are declared at Connect, not measured here.", ""]
     for i, c in enumerate(report["data_products"], 1):
         lines += [f"### {i}. {c['title']} — grade {c['readiness_grade']}", "", c["use"], "",
                   f"- Dimensions required: {', '.join(c['required_dimensions'])}; supporting: {', '.join(c['supporting_dimensions'])}",
                   f"- {c['tables']} supporting tables, ≈{c['rows_estimate']:,} rows across {len(c['databases'])} databases",
+                  f"- Licensable grain: " + ("; ".join(c.get("licensable_units") or []) or "not measurable from column statistics"),
                   f"- Top tables: " + "; ".join(f"{t['table']} ({t['rows_estimate']:,} rows, {t['grade']})" for t in c["top_tables"][:4]),
                   "- Blockers: " + " · ".join(c["blockers"]), ""]
     lines += ["## Strategies to reduce cost", "", report["cost_strategies"]["currency_note"], "",
@@ -443,6 +597,16 @@ def _report_path(job_id):
     return dispatch._jobs_dir() / f"{job_id}.report.json"
 
 
+def _previous_report(job):
+    """The latest verified report banked BEFORE this job (cached only; never a remote read)."""
+    for other in dispatch.list_jobs():
+        if other["job_id"] != job["job_id"] and other.get("submitted_at", "") < job.get("submitted_at", "") and other.get("status") in TERMINAL_WITH_RESULT:
+            path = _report_path(other["job_id"])
+            if path.exists():
+                return json.loads(path.read_text())
+    return None
+
+
 def report_for(job_id, rebuild=False, cached_only=False):
     """Cached report for a terminal job; built once from the digest-verified detail, then banked beside the job."""
     job = dispatch.load_job(job_id)
@@ -451,14 +615,14 @@ def report_for(job_id, rebuild=False, cached_only=False):
     path = _report_path(job_id)
     if path.exists() and not rebuild:
         cached = json.loads(path.read_text())
-        if "condition_bytes" in cached and "pii_rows_checked" in cached.get("headline", {}):
+        if cached.get("report_version") == REPORT_VERSION:
             return cached
     if cached_only and not detail_cached(job_id):
         return None
     detail = detail_for(job)
     if not detail:
         return None
-    report = build(job, detail)
+    report = build(job, detail, _previous_report(job))
     dossier_path = dispatch._jobs_dir() / f"{job_id}.dossier.json"
     if dossier_path.exists():
         report["dossier"] = json.loads(dossier_path.read_text())
@@ -496,8 +660,10 @@ async def compose_dossier(job_id, actor, tenant_id, model="gpt-5-mini", provider
     report = report_for(job_id)
     if not report:
         return None
-    prompt = json.dumps({k: report[k] for k in ("reading", "headline", "databases", "data_products", "coverage_note")} |
-                        {"cost_strategies": [{k: s[k] for k in ("title", "bytes_label", "share_of_estate", "action", "risk")} for s in report["cost_strategies"]["items"]],
+    prompt = json.dumps({k: report[k] for k in ("reading", "headline", "databases", "coverage_note")} |
+                        {"data_products": [{k: c[k] for k in ("title", "use", "tables", "rows_estimate", "readiness_grade", "databases", "blockers", "licensable_units")} for c in report["data_products"]],
+                         "cost_strategies": [{k: s[k] for k in ("title", "bytes_label", "share_of_estate", "action", "risk")} for s in report["cost_strategies"]["items"]],
+                         "degradation": {k: report["degradation"][k] for k in ("kinds", "kinds_note", "dead_columns", "columns_measured", "dead_column_share", "trend", "trend_note")},
                          "top_duplicate_pairs": report["summary"]["duplication"]["top_pairs"][:8],
                          "top_degraded": report["summary"]["quality"]["top_degraded"][:8], "top_pii": report["summary"]["quality"]["top_pii"][:8],
                          "orphaned_references": report["summary"]["quality"]["orphaned_references"][:8]}, default=str)

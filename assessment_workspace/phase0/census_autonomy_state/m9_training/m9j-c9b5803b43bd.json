@@ -1,0 +1,160 @@
+{
+ "job_id": "m9j-c9b5803b43bd",
+ "phase": "acquire_bases",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T21:49:27.276784Z",
+ "params": {
+  "bases": [
+   {
+    "registry_id": "qwen3-1.7b-base",
+    "repo": "Qwen/Qwen3-1.7B-Base",
+    "expected_licence": "apache-2.0",
+    "dimension": "text"
+   },
+   {
+    "registry_id": "qwen3-8b-base",
+    "repo": "Qwen/Qwen3-8B-Base",
+    "expected_licence": "apache-2.0",
+    "dimension": "text"
+   }
+  ]
+ },
+ "northena_run_id": "run-17ab7ddb24dd",
+ "northena_trace_id": "trc-831f4348f7ca",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-c9b5803b43bd"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-c9b5803b43bd",
+  "pid": 735389
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-7a168c782f0c",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_acquire_bases_admitted"
+  },
+  {
+   "row_id": "led-1c8d46afa864",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_acquire_bases_daemonised:pid=735389"
+  },
+  {
+   "row_id": "led-31949d3e6669",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_acquire_bases_completed"
+  }
+ ],
+ "code_sha256": "04231337ccaf017c2bace23c851c581d2b9d66b1e7812b4b185bf0c33bed5b70",
+ "started_at": "2026-09-29T21:49:33.434280Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T21:53:47.814399Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-e7e31ccaafc3"
+ },
+ "remote_state": {
+  "phase": "acquire_bases",
+  "status": "completed",
+  "started_at": "2026-09-29T21:49:33Z",
+  "progress": {},
+  "stages": {},
+  "events": [
+   {
+    "at": "2026-09-29T21:49:33Z",
+    "message": "acquiring Qwen/Qwen3-1.7B-Base"
+   },
+   {
+    "at": "2026-09-29T21:50:24Z",
+    "message": "acquiring Qwen/Qwen3-8B-Base"
+   }
+  ],
+  "job_id": "m9j-c9b5803b43bd",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T21:51:48Z",
+  "finished_at": "2026-09-29T21:51:48Z",
+  "receipt_sha256": "c56f1017ffffab6ebd6eb6e2448b8a301d2768b7644e6af46165853256672b6f"
+ },
+ "worker_log_tail": "| 0/8 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rFetching 8 files:  12%|\u2588\u258e        | 1/8 [00:00<00:03,  1.80it/s]\rFetching 8 files:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 6/8 [00:00<00:00, 11.36it/s]\rFetching 8 files:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 7/8 [00:19<00:00, 11.36it/s]\rFetching 8 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 8/8 [00:46<00:00,  7.72s/it]\rFetching 8 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 8/8 [00:46<00:00,  5.82s/it]\n\rFetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]\rFetching 13 files:   8%|\u258a         | 1/13 [00:00<00:07,  1.58it/s]\rFetching 13 files:  23%|\u2588\u2588\u258e       | 3/13 [00:00<00:02,  4.75it/s]\rFetching 13 files:  38%|\u2588\u2588\u2588\u258a      | 5/13 [00:01<00:02,  3.75it/s]\rFetching 13 files:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 7/13 [00:01<00:01,  5.27it/s]\rFetching 13 files:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 8/13 [00:02<00:01,  3.23it/s]\rFetching 13 files:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 9/13 [00:37<00:36,  9.07s/it]\rFetching 13 files:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 10/13 [00:52<00:31, 10.57s/it]\rFetching 13 files:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 11/13 [01:03<00:21, 10.56s/it]\rFetching 13 files:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 12/13 [01:04<00:07,  7.94s/it]\rFetching 13 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 13/13 [01:04<00:00,  5.71s/it]\rFetching 13 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 13/13 [01:04<00:00,  4.96s/it]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-c9b5803b43bd",
+  "phase": "acquire_bases",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T21:49:33Z",
+  "code_sha256": "04231337ccaf017c2bace23c851c581d2b9d66b1e7812b4b185bf0c33bed5b70",
+  "status": "completed",
+  "result": {
+   "qwen3-1.7b-base": {
+    "repo": "Qwen/Qwen3-1.7B-Base",
+    "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "local_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "licence_verified": "apache-2.0",
+    "weight_bytes": 3441185608,
+    "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c",
+    "dimension": "text",
+    "acquired_at": "2026-09-29T21:50:24Z"
+   },
+   "qwen3-8b-base": {
+    "repo": "Qwen/Qwen3-8B-Base",
+    "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+    "local_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-8B-Base/snapshots/49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+    "licence_verified": "apache-2.0",
+    "weight_bytes": 16381516776,
+    "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+    "dimension": "text",
+    "acquired_at": "2026-09-29T21:51:48Z"
+   }
+  },
+  "finished_at": "2026-09-29T21:51:48Z",
+  "receipt_sha256": "c56f1017ffffab6ebd6eb6e2448b8a301d2768b7644e6af46165853256672b6f",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T21:51:48Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-c9b5803b43bd",
+  "started_at_utc": "2026-09-29T21:49:33.434280Z",
+  "finished_at_utc": "2026-09-29T21:51:48Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-c9b5803b43bd"
+ },
+ "base_registration": {
+  "qwen3-1.7b-base": {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "local_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "licence_verified": "apache-2.0",
+   "weight_bytes": 3441185608,
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c",
+   "dimension": "text",
+   "acquired_at": "2026-09-29T21:50:24Z",
+   "host_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "banked_at": "2026-09-29T21:53:47.843322Z"
+  },
+  "qwen3-8b-base": {
+   "repo": "Qwen/Qwen3-8B-Base",
+   "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "local_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-8B-Base/snapshots/49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "licence_verified": "apache-2.0",
+   "weight_bytes": 16381516776,
+   "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+   "dimension": "text",
+   "acquired_at": "2026-09-29T21:51:48Z",
+   "host_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-8B-Base/snapshots/49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "banked_at": "2026-09-29T21:53:47.843333Z"
+  }
+ }
+}

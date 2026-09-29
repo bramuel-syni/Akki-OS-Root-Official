@@ -1,0 +1,562 @@
+[
+ {
+  "review_id": "REQ-142",
+  "composite_id": "Doc 13::B5.1",
+  "statement": "The six acceptance criteria are structural, with no human in the path",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "Autonomous training controls are partially present; full six-criteria deploy gate and fixed-foundation assertions are incomplete.",
+  "required_action": "Add unified 6/6 acceptance gate artifact that blocks registry entry/deploy on any failed criterion and stamps lineage inputs."
+ },
+ {
+  "review_id": "REQ-143",
+  "composite_id": "Doc 13::B5.2",
+  "statement": "Targeta learns yield but never narrows reach",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Autonomous training controls are partially present; full six-criteria deploy gate and fixed-foundation assertions are incomplete.",
+  "required_action": "Add unified 6/6 acceptance gate artifact that blocks registry entry/deploy on any failed criterion and stamps lineage inputs."
+ },
+ {
+  "review_id": "REQ-144",
+  "composite_id": "Doc 13::B5.3",
+  "statement": "Foundation methods and material are fixed",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Autonomous training controls are partially present; full six-criteria deploy gate and fixed-foundation assertions are incomplete.",
+  "required_action": "Add unified 6/6 acceptance gate artifact that blocks registry entry/deploy on any failed criterion and stamps lineage inputs."
+ },
+ {
+  "review_id": "REQ-145",
+  "composite_id": "Doc 13::B5.4",
+  "statement": "The recipe seat is governed and evidence-bound",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "B5.4 requires evidence-bound + blinded comparison lifecycle; seat is governed, but blinded-arm proof is not persisted.",
+  "required_action": "Persist comparison blinding receipt (arm-id masking proof + reveal ceremony ref) on seat append."
+ },
+ {
+  "review_id": "REQ-147",
+  "composite_id": "Doc 13::B5.6",
+  "statement": "Retained learning data from exceptional runs [RULED \u2014 see Document 14]",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "Exceptional-run retained learning data path is not implemented as a governed training artifact; only narrative whitepaper rows exist.",
+  "required_action": "Add retained-learning-data contract with source-unit refs, rights horizon, and reuse gate linked to run_id."
+ },
+ {
+  "review_id": "REQ-153",
+  "composite_id": "Doc 14::A5.1",
+  "statement": "Every baseline is a licence-verified registry entry",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Baseline-selection rules are represented as metadata, but no enforced verification receipt binds claims to usable state transitions.",
+  "required_action": "Add candidate-rights verification ceremony requiring verification_receipt_ref before a baseline can be selected."
+ },
+ {
+  "review_id": "REQ-154",
+  "composite_id": "Doc 14::A5.2",
+  "statement": "Curation is evidence-bound and governed",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Baseline-selection rules are represented as metadata, but no enforced verification receipt binds claims to usable state transitions.",
+  "required_action": "Add candidate-rights verification ceremony requiring verification_receipt_ref before a baseline can be selected."
+ },
+ {
+  "review_id": "REQ-155",
+  "composite_id": "Doc 14::A5.3",
+  "statement": "The baseline library never overrides acceptance",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Baseline-selection rules are represented as metadata, but no enforced verification receipt binds claims to usable state transitions.",
+  "required_action": "Add candidate-rights verification ceremony requiring verification_receipt_ref before a baseline can be selected."
+ },
+ {
+  "review_id": "REQ-159",
+  "composite_id": "WPW spec::WPW-1",
+  "statement": "The wizard MUST attach to every training run at commissioning",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Tier-1 controls exist, but attach-on-every-run and no-influence closure is not enforced through run-open/run-close gates.",
+  "required_action": "Require WPW packet at commissioning and run-close zero-influence attestation before run finalization."
+ },
+ {
+  "review_id": "REQ-183",
+  "composite_id": "Doc 17::A17.12",
+  "statement": "No runner exists in any modality",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Code now has a runner scaffold; however it does not execute real training capacity and remains honesty-stubbed.",
+  "required_action": "Keep honest-gap markers and add explicit capability-state enum (stubbed/simulated/real) persisted per run."
+ },
+ {
+  "review_id": "REQ-185",
+  "composite_id": "Doc 17::A17.14",
+  "statement": "GPU host is reachable; authentication is not configured",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Host reachability/auth seam exists but no closure proof shows live trainer handshake drives training run state transitions.",
+  "required_action": "Bind ssh handshake receipt into runner state machine and refuse run launch without verified remote execution target."
+ },
+ {
+  "review_id": "REQ-194",
+  "composite_id": "Doc 17::A17.19d",
+  "statement": "Baseline-tier contents (\u00a79.2) remain open \u2014 not part of this ruling round",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Cluster decision seams exist, but consolidated owner-decision artifact and explicit distance-witness proof for protected-voice egress are not evidenced in this row set.",
+  "required_action": "Create owner_decision_bundle contract tying each A17.19(a-d) decision to executable checks and distance-witness receipts."
+ },
+ {
+  "review_id": "REQ-199",
+  "composite_id": "Doc 17::A17.5\u2013A17.6",
+  "statement": "The optimizer-selection protocol: two arms, identical conditions, parity mandatory",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Harness exists, but closure receipts proving production-run parity on real workloads are not included in this evidence slice.",
+  "required_action": "Attach real-run metric provenance refs to every arm measurement and expose mismatch refusals in run receipts."
+ },
+ {
+  "review_id": "REQ-201",
+  "composite_id": "Doc 17::A17.8",
+  "statement": "Cascade offload builds only against a measured shortfall, never speculatively",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Recipe-yield guard exists, but measured shortfall triggers and rollback orchestration are not evidenced in current module set.",
+  "required_action": "Add shortfall detector tied to objective floor breaches with auto-halt + rollback receipt."
+ },
+ {
+  "review_id": "REQ-204",
+  "composite_id": "Doc 20::A20.10",
+  "statement": "Pixtral 12B (Mistral) \u2014 Apache 2.0. Smaller and cheaper to serve than the 70B-class options above; the right candidate where the task's constraints (\u00a710.1) cap latency or",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+  "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state."
+ },
+ {
+  "review_id": "REQ-207",
+  "composite_id": "Doc 20::A20.13",
+  "statement": "Where a dimension holds one eligible license-verified candidate, it is used. Where it holds more than one (as document and vision now do), calibration's mandatory first s",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "Requirement is present only as metadata seed; there is no implemented evaluation harness proving the stated candidate quality/coverage/refusal economics dimensions.",
+  "required_action": "Implement model-capability evaluation contracts + runner to populate measured results and bind to registry eligibility state."
+ },
+ {
+  "review_id": "REQ-219",
+  "composite_id": "SV extension::LT-3",
+  "statement": "Calibration corpus for streaming objectives is unaddressed",
+  "delivery_status": "SOURCE_UNRESOLVED",
+  "exact_gap": "Streaming extension source body is absent from SOURCE_CORPUS/source_text, so thresholds, acceptance clauses, and exceptions cannot be verified against executable behavior.",
+  "required_action": "Recover canonical Streaming_Voice_Training_Capacity text, hash-pin each LT/RI/SE clause, then map each clause to a concrete enforcement point or explicit non-implementation note."
+ },
+ {
+  "review_id": "REQ-235",
+  "composite_id": "Doc 15::B5.3",
+  "statement": "The objective is frozen against recalibration",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Ceremony semantics are coded, but evidence remains local/in-memory and does not prove full open-ceremony traceability and immutable cross-run version stamping for every run path.",
+  "required_action": "Bind ceremony transitions to durable receipted records and add explicit rule-version-in-force stamping at run creation/read paths."
+ },
+ {
+  "review_id": "REQ-237",
+  "composite_id": "Doc 19::RV-1",
+  "statement": "citation-existence: Every SHA, file path, ruling id, registry row id, and contract name cited resolves to an existing on-disk object; cited SHAs match the object's actual",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-238",
+  "composite_id": "Doc 19::RV-2",
+  "statement": "scope-trace: Every work item traces to an authorizing instrument \u2014 a dispatch, a register row, a ruling",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-239",
+  "composite_id": "Doc 19::RV-3",
+  "statement": "evidence-class presence: Classed assertions (status, values, verdicts) carry FACT/NORM/DEFAULT or fact/recalled/inferred, matching their class's required form",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-240",
+  "composite_id": "Doc 19::RV-4",
+  "statement": "schema-completeness: Required sections present \u2014 band, escalations, registry rows, self-audit table for proposals; gate roster, artifact SHAs, self-audit table for closes",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-241",
+  "composite_id": "Doc 19::RV-5",
+  "statement": "status-truth: Every status claim about an on-disk artifact is cross-checked against actual repository state at submission time",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-242",
+  "composite_id": "Doc 19::RV-6",
+  "statement": "novelty collision: Proposed function ids, promise ids, and concept labels are matched against the Registry and mandate documents; collisions flag for semantic confirmatio",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-243",
+  "composite_id": "Doc 19::QA-1",
+  "statement": "Detect, never decide",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-244",
+  "composite_id": "Doc 19::QA-2",
+  "statement": "The format gate",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-245",
+  "composite_id": "Doc 19::QA-3",
+  "statement": "No self-review",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-246",
+  "composite_id": "Doc 19::QA-4",
+  "statement": "Findings carry the honesty grammar \u2014 every finding is evidence-classed and cited; an unclassed finding is itself a finding",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-247",
+  "composite_id": "Doc 19::QA-5",
+  "statement": "The layer pays rent",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-248",
+  "composite_id": "Doc 19::QA-6",
+  "statement": "Frame authority is untouchable",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Manifest/rubric scaffolds exist, but many review checks remain template-level; full rule-specific semantic verification coverage is not evidenced for all RV/QA constraints.",
+  "required_action": "Implement rule-bound RV/QA checkers with artifact-level evidence outputs (FACT/NORM classes, trace links, and explicit gate outcomes)."
+ },
+ {
+  "review_id": "REQ-251",
+  "composite_id": "Doc 19::EP-3",
+  "statement": "A-4 (claims validation) rides inside this capability, scoped explicitly as validation, never a build gate \u2014 its real experiments require real material and naturally seque",
+  "delivery_status": "SPEC_DECISION_REQUIRED",
+  "exact_gap": "A4 is validation, not a gate. Retain that constraint while resolving proposal adoption; do not implement new gating authority. EP items are proposal-seeded and not ratified as mandatory behavior; EP-5 is explicitly non-adopted and must stay non-claim.",
+  "required_action": "Keep EP rows marked proposed/non-adopted until explicit ratification; do not treat EP paths as delivery commitments."
+ },
+ {
+  "review_id": "REQ-252",
+  "composite_id": "Doc 19::EP-4",
+  "statement": "Hard ordering constraint, stated by the original proposal: the evidence register and dual-judge protocol must exist before the terminal test runs, or that test's verdict ",
+  "delivery_status": "SPEC_DECISION_REQUIRED",
+  "exact_gap": "Proposed ordering needs an adoption disposition and evidence. Do not classify a positive proposed obligation as a nonclaim. EP items are proposal-seeded and not ratified as mandatory behavior; EP-5 is explicitly non-adopted and must stay non-claim.",
+  "required_action": "Keep EP rows marked proposed/non-adopted until explicit ratification; do not treat EP paths as delivery commitments."
+ },
+ {
+  "review_id": "REQ-259",
+  "composite_id": "Deck Engine spec::DR-R14",
+  "statement": "Backend-only, parallel-safe (the Memory-build pattern): may run beside the current fidelity cycles without touching them",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "The prior assessment wrongly substituted deterministic-renderer proof for the backend-only/parallel-safe build constraint. Inspected DeckSpec/seed artifacts do not prove change-scope isolation. This is a workflow/isolation evidence gap, not a requirement to invent another renderer feature.",
+  "required_action": "Recover the authoritative DR-R14 build boundary and bind the deck work card to an explicit backend-only path set. Preserve frontend/generated-prototype hashes and isolate generated artifacts/dependencies from the concurrent fidelity workstream; receipt any required exception rather than editing shared surfaces silently."
+ },
+ {
+  "review_id": "REQ-291",
+  "composite_id": "Rules Service spec::RBM-5",
+  "statement": "Impact record produced before countersign \u2014 every dependent rule, checkpoint, component, profile",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Rules Service paths are largely local append/in-memory flows; ceremony/check/audit semantics are partially encoded but not durably proven end-to-end across all RBM and invariant requirements.",
+  "required_action": "Add durable, queryable receipts for every ceremony phase, conflict check, assessment run, and audit event with clear linkage to rule version in force."
+ },
+ {
+  "review_id": "REQ-322",
+  "composite_id": "DAP Backend spec::DAP-9",
+  "statement": "Fine-tuning is compute-to-data only \u2014 no configuration permits the inverse",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Scoped implementation exists, but full promise closure for 'Fine-tuning is compute-to-data only \u2014 no configuration permits the inverse' is not yet wired across approval/execution/retrieval paths.",
+  "required_action": "Add rule-specific integration proof showing enforced gate behavior on success/refusal/race paths with immutable receipts."
+ },
+ {
+  "review_id": "REQ-323",
+  "composite_id": "DAP Backend spec::DAP-10",
+  "statement": "Trained weights/skill files leave as artefact egress with rights posture, hash, terms cited",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Scoped implementation exists, but full promise closure for 'Trained weights/skill files leave as artefact egress with rights posture, hash, terms cited' is not yet wired across approval/execution/retrieval paths.",
+  "required_action": "Add rule-specific integration proof showing enforced gate behavior on success/refusal/race paths with immutable receipts."
+ },
+ {
+  "review_id": "REQ-329",
+  "composite_id": "DAP Backend spec::DAP-16",
+  "statement": "Fine-tune and skill-development always require approval; raw download always if controlled",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Scoped implementation exists, but full promise closure for 'Fine-tune and skill-development always require approval; raw download always if controlled' is not yet wired across approval/execution/retrieval paths.",
+  "required_action": "Add rule-specific integration proof showing enforced gate behavior on success/refusal/race paths with immutable receipts."
+ },
+ {
+  "review_id": "REQ-349",
+  "composite_id": "Amendment T-2::DAP-32",
+  "statement": "Admission integrity for entering base models \u2014 provenance, hash, mirage behavioural probe",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Amendment vocabulary/mechanism markers are present, but end-to-end operational wiring and ratified thresholds remain partial or owner-ruling-gated.",
+  "required_action": "Add rule-specific integration proof showing enforced gate behavior on success/refusal/race paths with immutable receipts."
+ },
+ {
+  "review_id": "REQ-353",
+  "composite_id": "Amendment W-8::DAP-36",
+  "statement": "Differentially private training (DP-SGD) by default for every fine-tune; non-DP requires approval + stricter gate",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Amendment vocabulary/mechanism markers are present, but end-to-end operational wiring and ratified thresholds remain partial or owner-ruling-gated.",
+  "required_action": "Do not infer real DP guarantees from epsilon parameter alone; require receipt-backed privacy accounting evidence before claiming DAP-36 closure."
+ },
+ {
+  "review_id": "REQ-363",
+  "composite_id": "Governance Architecture::BR-3.2",
+  "statement": "Progressive disclosure states its outcome set explicitly per checkpoint",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+  "required_action": "Add subsystem-level adversarial tests and published evidence linking this BR to enforced runtime gates (not module comments alone)."
+ },
+ {
+  "review_id": "REQ-369",
+  "composite_id": "Governance Architecture::BR-6.1",
+  "statement": "Every subsystem hand-off crosses a registered hand-off checkpoint, not only the one instantiated crossing",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+  "required_action": "Add subsystem-level adversarial tests and published evidence linking this BR to enforced runtime gates (not module comments alone)."
+ },
+ {
+  "review_id": "REQ-371",
+  "composite_id": "Governance Architecture::BR-6.3",
+  "statement": "No-dual-hatted-task rule enforced at the hand-off checkpoint, not left to convention",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+  "required_action": "Add subsystem-level adversarial tests and published evidence linking this BR to enforced runtime gates (not module comments alone)."
+ },
+ {
+  "review_id": "REQ-384",
+  "composite_id": "Governance Architecture::BR-11.1",
+  "statement": "MOAC criteria not alterable by the run being evaluated, at any point",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+  "required_action": "Add subsystem-level adversarial tests and published evidence linking this BR to enforced runtime gates (not module comments alone)."
+ },
+ {
+  "review_id": "REQ-385",
+  "composite_id": "Governance Architecture::BR-11.2",
+  "statement": "MOAC's non-bypassability and tamper-resistance demonstrated to SyniSense's standard",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+  "required_action": "Add subsystem-level adversarial tests and published evidence linking this BR to enforced runtime gates (not module comments alone)."
+ },
+ {
+  "review_id": "REQ-391",
+  "composite_id": "Governance Architecture::BR-14.1",
+  "statement": "Rights recorded at connection setup are the named policy information point for downstream checkpoints",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+  "required_action": "Add subsystem-level adversarial tests and published evidence linking this BR to enforced runtime gates (not module comments alone)."
+ },
+ {
+  "review_id": "REQ-392",
+  "composite_id": "Governance Architecture::BR-15.1",
+  "statement": "Agent-deploy checkpoint's outcome set stated explicitly",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Governance intent is partially implemented in scoped modules, but global subsystem coverage proof and adversarial runtime evidence are incomplete for this rule.",
+  "required_action": "Add subsystem-level adversarial tests and published evidence linking this BR to enforced runtime gates (not module comments alone)."
+ },
+ {
+  "review_id": "REQ-405",
+  "composite_id": "Governance Architecture \u2014 gap register::G-11",
+  "statement": "Failure types not enumerated per component; posture not declared per checkpoint",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Gap-register item is partly addressed by newer artifacts; remaining closure requires explicit publication-grade proof and cross-surface verification.",
+  "required_action": "Update gap register wording to distinguish historical closure from remaining publication/runtime proof obligations."
+ },
+ {
+  "review_id": "REQ-446",
+  "composite_id": "security_architecture_v1::SEC-2",
+  "statement": "MOAC's acceptance criteria MUST be held in versioned, Rules-Service-governed configuration \u2014 the same discipline as SyniSense's custody policy \u2014 with integrity verified at load. No criterion is editable by the run it measures, by construction rather than by convention.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "MOAC criteria are not sourced from Rules-Service-governed, load-time-integrity-verified configuration.",
+  "required_action": "Externalize MOAC criteria into versioned governed config with hash/signature verification and bind ceremony to that immutable snapshot."
+ },
+ {
+  "review_id": "REQ-447",
+  "composite_id": "security_architecture_v1::SEC-3",
+  "statement": "MOAC operates entirely within Targeta's boundary and reads only the run artefacts Targeta produces. It does not query Solva, Mtafiti, or any other engine to reach its decision.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "No explicit, evidenced boundary gate proving MOAC consumes only Targeta artefacts and cannot query other engines.",
+  "required_action": "Add a strict MOAC input contract that accepts only Targeta-produced run artefact references and test-fails any Solva/Mtafiti dependency wiring."
+ },
+ {
+  "review_id": "REQ-448",
+  "composite_id": "security_architecture_v1::SEC-4",
+  "statement": "MOAC MUST refuse to evaluate \u2014 not default-accept, not skip \u2014 if its criteria configuration is unset or fails integrity verification at load, on the same pattern as A17.9's execution-mode raise.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "MOAC refusal-on-unset/integrity-fail is not wired to governed criteria configuration loading.",
+  "required_action": "Insert explicit MOAC criteria configuration loader with integrity refusal class; block evaluation when unset/malformed/hash-mismatched."
+ },
+ {
+  "review_id": "REQ-449",
+  "composite_id": "security_architecture_v1::SEC-5",
+  "statement": "Every path by which a run's result could be treated as accepted MUST be enumerated and shown to pass through MOAC's evaluation, in a build-time test comparable to SyniSense's negative-scan gate.",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "No evidence of build-time exhaustive enumeration proving all effective acceptance paths route through MOAC.",
+  "required_action": "Create acceptance-path map test that fails if any model-serving admission route avoids MOAC ceremony."
+ },
+ {
+  "review_id": "REQ-455",
+  "composite_id": "failure_posture_v1::FP-2",
+  "statement": "A gate whose governing configuration is unset or fails integrity verification at load refuses by default rather than passing by default. This absorbs security_architecture_v1's SEC-4 (MOAC), SEC-6 (the distance gate), and SEC-7 (the admission probe) as one rule rather than three restatements of it \u2014 an unconfigured gate is a closed gate, platform-wide, not per-component.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Pattern is present across multiple modules, but no platform-wide enforcement proof that every governed gate refuses on unset/unverifiable config.",
+  "required_action": "Enumerate governed gates and assert fail-closed-on-unset in a single regression suite; block additions without default-closed checks."
+ },
+ {
+  "review_id": "REQ-462",
+  "composite_id": "handoff_registry_v1::HR-2",
+  "statement": "A hand-off entry carries: the commissioning subsystem's identity; the receiving subsystem's identity; the job's frozen objective, from Northena's existing mechanism (BR-3.1); the shape of what is being handed off (a reasoning session, a training commission, an extraction request, a rule proposal \u2014 whatever the job class); a timestamp from the platform's reliable time source; and a receipt once the receiving subsystem acknowledges.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Contract includes fields, but explicit freeze-objective binding and reliable-time-source enforcement in handoff write path are not strict/mechanically bound.",
+  "required_action": "Bind authored_at to reliable_time_source stamp and include explicit frozen_objective_ref field with invariant check."
+ },
+ {
+  "review_id": "REQ-472",
+  "composite_id": "Pruning & Unlearning Amendment::DAP-37",
+  "statement": "A fine-tuned artefact MAY be pruned \u2014 magnitude pruning or an equivalent structural reduction \u2014 between MOAC acceptance and DAP-31's distance gate, as a ruled optional step. Pruning is a second, empirical reduction in memorisation surface on top of DAP-36's differentially private training; it is never a substitute for it, and this document does not present it as one. A pruned artefact MUST re-pass MOAC's acceptance criteria \u2014 pruning can degrade performance below the accepted bar, and acceptance is re-evaluated, not assumed to survive the change. A pruned artefact's hash differs from its pre-pruning hash; it is a new artefact for every purpose DAP-10 and DAP-31 govern, including a fresh pass through the distance gate at the ruled threshold. Pruning ratio and method are ruled values, ratified alongside DAP-31's own probe parameters.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Static implementation evidence exists for parts of DAP-37, but full requirement closure (including governed producer path and scenario proof) is not yet demonstrated in this read-only slice.",
+  "required_action": "Add a rule-specific executable proof for DAP-37 (success/refusal/race paths) with canonical receipts and bounded authority semantics."
+ },
+ {
+  "review_id": "REQ-473",
+  "composite_id": "Pruning & Unlearning Amendment::DAP-38",
+  "statement": "When a unit's rights status changes to withdrawn \u2014 consent revoked, licence expired, or an equivalent event \u2014 every artefact whose training manifest cites that unit is identified via the registry (a query, per RBM-20's design, not a search) and is either re-derived without the unit or recalled. Re-derivation trains a replacement artefact excluding the withdrawn unit, using the same run configuration recorded in the original training manifest, and passes it through DAP-31 and MOAC as a new artefact before it replaces the original in the registry. Recall withdraws the original artefact's registry entry and, where the artefact was already delivered under DAP-10, notifies the receiving party that the artefact's rights basis has changed. A unit's contribution to the estate release budget (DAP-35) is NOT refunded on unlearning \u2014 the privacy loss from the original release already occurred; unlearning restores the artefact's cleanliness going forward, not the budget already spent.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Static implementation evidence exists for parts of DAP-38, but full requirement closure (including governed producer path and scenario proof) is not yet demonstrated in this read-only slice.",
+  "required_action": "Add a rule-specific executable proof for DAP-38 (success/refusal/race paths) with canonical receipts and bounded authority semantics."
+ },
+ {
+  "review_id": "REQ-474",
+  "composite_id": "serving_integrity_v1::A20.15",
+  "statement": "A registered artefact MUST be served semantics-stable: identical input, identical seed, identical sampling parameters produce identical output from the identical registered artefact, regardless of memory placement, hardware tier, concurrent load, or storage medium. Resource pressure MAY reduce speed \u2014 time-to-first-token, tokens per second \u2014 and MUST NOT alter precision, truncate context, substitute a different artefact, or change routing semantics. A serving path that cannot uphold this refuses to serve rather than serving a semantically different model. Verification at load: the serving stack verifies the artefact's hash against the register before the first token. Verification in operation: a token-exact reproduction check against a reference path is runnable on demand and on a standing schedule (cadence: ruled, R-13). A merged-adapter checkpoint is a distinct artefact with its own hash and its own register entry \u2014 it passes the gates as itself, on DAP-37's own new-hash precedent.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Static implementation evidence exists for parts of A20.15, but full requirement closure (including governed producer path and scenario proof) is not yet demonstrated in this read-only slice.",
+  "required_action": "Add a rule-specific executable proof for A20.15 (success/refusal/race paths) with canonical receipts and bounded authority semantics."
+ },
+ {
+  "review_id": "REQ-476",
+  "composite_id": "serving_integrity_v1::AC-13",
+  "statement": "\u201cContain\u201d for a running agent session MAY be implemented as session freeze: the agent's inference state (prefix or recurrent-state checkpoint) is persisted, the session halts, and resumption restores the deepest surviving checkpoint. Stop without destroy \u2014 the frozen state is preserved for the record (AC-12) and for resumption on release, under the Ledger's custody discipline for containment-relevant events.",
+  "delivery_status": "EVIDENCED_SCOPED",
+  "exact_gap": "Static implementation evidence exists for parts of AC-13, but full requirement closure (including governed producer path and scenario proof) is not yet demonstrated in this read-only slice.",
+  "required_action": "Add a rule-specific executable proof for AC-13 (success/refusal/race paths) with canonical receipts and bounded authority semantics."
+ },
+ {
+  "review_id": "REQ-479",
+  "composite_id": "watch_learning_v1::A5.20",
+  "statement": "A certificate requirement is a deterministic gate: the named set of data points that must be observed for a verdict to assert a named behaviour. Requirements are formed from data points collected in this environment \u2014 live, or in the mirage (A5.21) \u2014 and are formed under Solva's assertion floor: every data point in a requirement anchors to an observation record, and a requirement that cannot anchor is not proposed. Formation happens offline, never in the hot path. Grey Mirror's own model MAY be retrained \u2014 intelligence smarter \u2014 and this is safe precisely because its outputs are certificate-gated; retraining is a change to a Watch component and follows A5.12 and the Watch's ceremony like any other.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Static implementation evidence exists for parts of A5.20, but full requirement closure (including governed producer path and scenario proof) is not yet demonstrated in this read-only slice.",
+  "required_action": "Add a rule-specific executable proof for A5.20 (success/refusal/race paths) with canonical receipts and bounded authority semantics."
+ },
+ {
+  "review_id": "REQ-490",
+  "composite_id": "Security Assurance Promise Set::S-28",
+  "statement": "The system will never act on a verdict it cannot evidence \u2014 every Watch action carries a certificate a human can read, and every behaviour it learns to recognise entered its vocabulary through ceremony, not through silent training.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Static implementation evidence exists for parts of S-28, but full requirement closure (including governed producer path and scenario proof) is not yet demonstrated in this read-only slice.",
+  "required_action": "Add a rule-specific executable proof for S-28 (success/refusal/race paths) with canonical receipts and bounded authority semantics."
+ },
+ {
+  "review_id": "REQ-530",
+  "composite_id": "entitlement_service_v1::ENT-39",
+  "statement": "A model the buyer brings or trains enters the catalog as a customer-model row only through registry admission: hash pin, the DAP-32 admission battery, and serving under the SFP-8 floor. It is listed only for the buyer's own licence unless separately admitted for wider listing.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Static implementation evidence exists for parts of ENT-39, but full requirement closure (including governed producer path and scenario proof) is not yet demonstrated in this read-only slice.",
+  "required_action": "Add a rule-specific executable proof for ENT-39 (success/refusal/race paths) with canonical receipts and bounded authority semantics."
+ },
+ {
+  "review_id": "REQ-546",
+  "composite_id": "memory_compaction_v1::MEM-6",
+  "statement": "Every compaction writes a ledger row before the artefact becomes readable: the source key and version hashes, the retention rule set version, the artefact hash, and the loss statement \u2014 counts by class of what was dropped and what was summarised. If the row cannot be written, the compaction does not complete and the source is retained untouched.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Ordering in in-memory adapter is append-before-readability, but canonical single-writer chain integration is still scoped; \u201cledger row before visibility\u201d is not yet proven across all runtime writers.",
+  "required_action": "Route compaction ledger rows through canonical ledger writer and prove readers cannot access artefact prior to confirmed append receipt."
+ },
+ {
+  "review_id": "REQ-550",
+  "composite_id": "memory_compaction_v1::MEM-10",
+  "statement": "User memory is personal data of the principal it belongs to. It is populated only from that principal's own closed runs, never from another principal's; it is readable by the principal; and it is erased on the principal's request or on deprovisioning, with a ledger row. An organisation MAY disable the class tenant-wide; it MAY NOT read a principal's user memory without a documented lawful basis.",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "Spec requires principal-readable memory with lawful-basis constraint for organisation access; no explicit lawful-basis authorization policy/read-path enforcement is evidenced here.",
+  "required_action": "Implement lawful-basis policy gate and audit rows for organisation reads of user memory; refuse reads lacking documented basis."
+ },
+ {
+  "review_id": "REQ-596",
+  "composite_id": "security_function_policies_v1::SFP-1",
+  "statement": "| Assertion Floor | Subjects: any principal requesting a composed answer. Objects: the claim being composed. Operations: assert, compose, refuse. Rule: no sentence enters a composed answer without a per-sentence anchor to material; an unanchorable sentence is refused, not weakened (Doc 4 A2, A5.5). | | **SFP-2** | Certainty-to-Evidence Binding | Subjects: the Watch's response function (Mkono). Objects: severance authority. Operations: unlock, withhold. Rule: severance unlocks only from the closed six-signal registry; no confidence score, however high, is an eligible input (Doc 3 A5.2). | | **SFP-3** | Acceptance Floor | Subjects: any training run. Objects: model output. Operations: accept, refuse. Rule: every stated criterion satisfied or the run is refused in full; no partial acceptance (Promise #22, MOAC). | | **SFP-4** | Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1\u2013A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "SFP-1 workbook concatenation was corrected to atomic source clause, but end-to-end enforcement path beyond vocabulary/scanner registration is not demonstrated.",
+  "required_action": "Add receipted executable checks for SFP-1 on real governed paths; keep this clause atomic and do not reinterpret adjacent concatenated workbook text as new grants."
+ },
+ {
+  "review_id": "REQ-597",
+  "composite_id": "security_function_policies_v1::SFP-2",
+  "statement": "| Certainty-to-Evidence Binding | Subjects: the Watch's response function (Mkono). Objects: severance authority. Operations: unlock, withhold. Rule: severance unlocks only from the closed six-signal registry; no confidence score, however high, is an eligible input (Doc 3 A5.2). | | **SFP-3** | Acceptance Floor | Subjects: any training run. Objects: model output. Operations: accept, refuse. Rule: every stated criterion satisfied or the run is refused in full; no partial acceptance (Promise #22, MOAC). | | **SFP-4** | Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1\u2013A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "SFP-2 workbook concatenation was corrected to atomic source clause, but end-to-end enforcement path beyond vocabulary/scanner registration is not demonstrated.",
+  "required_action": "Add receipted executable checks for SFP-2 on real governed paths; keep this clause atomic and do not reinterpret adjacent concatenated workbook text as new grants."
+ },
+ {
+  "review_id": "REQ-598",
+  "composite_id": "security_function_policies_v1::SFP-3",
+  "statement": "| Acceptance Floor | Subjects: any training run. Objects: model output. Operations: accept, refuse. Rule: every stated criterion satisfied or the run is refused in full; no partial acceptance (Promise #22, MOAC). | | **SFP-4** | Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1\u2013A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "SFP-3 workbook concatenation was corrected to atomic source clause, but end-to-end enforcement path beyond vocabulary/scanner registration is not demonstrated.",
+  "required_action": "Add receipted executable checks for SFP-3 on real governed paths; keep this clause atomic and do not reinterpret adjacent concatenated workbook text as new grants."
+ },
+ {
+  "review_id": "REQ-599",
+  "composite_id": "security_function_policies_v1::SFP-4",
+  "statement": "| Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1\u2013A5.3). | | **SFP-5** | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "SFP-4 workbook concatenation was corrected to atomic source clause, but end-to-end enforcement path beyond vocabulary/scanner registration is not demonstrated.",
+  "required_action": "Add receipted executable checks for SFP-4 on real governed paths; keep this clause atomic and do not reinterpret adjacent concatenated workbook text as new grants."
+ },
+ {
+  "review_id": "REQ-600",
+  "composite_id": "security_function_policies_v1::SFP-5",
+  "statement": "| Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7). | | **SFP-6** | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35). | | **SFP-7** | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15). |",
+  "delivery_status": "PARTIAL",
+  "exact_gap": "SFP-5 workbook concatenation was corrected to atomic source clause, but end-to-end enforcement path beyond vocabulary/scanner registration is not demonstrated.",
+  "required_action": "Add receipted executable checks for SFP-5 on real governed paths; keep this clause atomic and do not reinterpret adjacent concatenated workbook text as new grants."
+ },
+ {
+  "review_id": "REQ-615",
+  "composite_id": "execution_standard_v1::EX-13",
+  "statement": "Re-performance is mandatory for: every task whose artefact feeds a decision gate (a training manifest, a census figure that enters the measure, a registry mapping); every task that triggers the velocity detector; and any task the owner names. It is sampled, seeded, for all others.",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "EX-13 has only seam-level static evidence; requirement-level executable closure is unverified in this read-only pass.",
+  "required_action": "Implement a EX-13-specific acceptance script path with denominator reconciliation, explicit refused/unmeasured accounting, and immutable claim-register evidence before using completion language."
+ },
+ {
+  "review_id": "REQ-631",
+  "composite_id": "data_cleanliness_v1::DQ-14",
+  "statement": "A training manifest cites only records in Clean or Repairable strata. A Suspect record enters a manifest only with an owner decision receipt naming the rule it failed and the reason it is admitted. A Junk record in a manifest is refused at commission. This is one MOAC criterion: every cited unit carries a passing bitmap at the pack version named in the manifest.",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "DQ-14 remains unverified: static seams do not prove per-record deterministic DQ execution for the full source population.",
+  "required_action": "Deliver DQ-14 as deterministic per-record checks tied to four-strata reconciliation, preserving 4-strata separation and avoiding any second-store classifier retcon."
+ },
+ {
+  "review_id": "REQ-644",
+  "composite_id": "context_and_capability_v1::CC-12",
+  "statement": "A fixed task set of not fewer than 200 tasks across four classes \u2014 retrieval, synthesis, multi-step reasoning, entity-heavy \u2014 with reference answers, held under the estate owner's custody and never used for training. Each task runs through the governed path and the bare path on the same model and seed. Quality is scored by a deterministic rubric per class against the references; latency is measured end to end. The delta per class, quality and latency, is reported per release.",
+  "delivery_status": "UNVERIFIED",
+  "exact_gap": "CC-12 requires measured operational evidence and was not runtime-validated in this read-only assessment.",
+  "required_action": "Implement and receipt CC-12 with explicit 5-ring boundaries, preserve 8-class memory taxonomy and 4-strata DQ semantics, and avoid prototype/second-store redesigns."
+ }
+]

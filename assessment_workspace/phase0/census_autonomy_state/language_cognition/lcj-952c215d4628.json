@@ -1,0 +1,122 @@
+{
+ "job_id": "lcj-952c215d4628",
+ "phase": "train_corrective",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T21:53:48.914408Z",
+ "params": {
+  "baseline_job_id": "lcj-f96c86a16312",
+  "gpu_index": 0,
+  "seed": 41,
+  "epochs": 1,
+  "batch_size": 2048,
+  "physical_batch_size": 1024,
+  "max_windows_per_file": 180,
+  "parallelism": 24,
+  "lr": 0.001,
+  "adversary_strength": 1.0,
+  "noise_multiplier": 1.0,
+  "max_grad_norm": 1.0,
+  "delta": 1e-06,
+  "smoke_steps": 2,
+  "logit_adjustment_tau": 1.0,
+  "bottleneck_dim": 32,
+  "bottleneck_noise": 0.5,
+  "speaker_loss_weight": 0.5,
+  "condition_loss_weight": 0.05,
+  "owner_order_ref": "owner-order 2026-09-29 4b: root-cause + restart language cognition with a fixed recipe on akki-vm (smoke first)"
+ },
+ "northena_run_id": "run-9e612e1b509c",
+ "northena_trace_id": "trc-bddc18819437",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-952c215d4628"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-952c215d4628",
+  "pid": 80079
+ },
+ "status": "failed",
+ "final_model_commission": {
+  "decision": "refused",
+  "reason": "CleanMonolingualOnlyRefused",
+  "message": "MUST-NOT \u00a71 owner verbatim: 'Clean-monolingual alone is a MUST-NOT for the final model.' Commission refused because has_code_switched_material is False; the training set MUST carry labelled code-switched material per span."
+ },
+ "ledger_rows": [
+  {
+   "row_id": "led-5617fe126199",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_train_corrective_admitted"
+  },
+  {
+   "row_id": "led-0944c0739278",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_train_corrective_daemonised:pid=80079"
+  },
+  {
+   "row_id": "led-e6c648964c2b",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "language_cognition_train_corrective_failed"
+  }
+ ],
+ "code_sha256": "ee826a97f8f847044f8f6f355481677520d477410af331ffbe4f51430b1e7d9c",
+ "started_at": "2026-09-29T21:53:54.700961Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T21:59:17.744403Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-3c4ddc2db296"
+ },
+ "remote_state": {
+  "phase": "train_corrective",
+  "status": "failed",
+  "started_at": "2026-09-29T21:53:54Z",
+  "progress": {
+   "stage": "windowing authorised local corpus",
+   "files_done": 0,
+   "files": 3958,
+   "windows": 0
+  },
+  "events": [],
+  "job_id": "lcj-952c215d4628",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-09-29T21:54:01Z",
+  "finished_at": "2026-09-29T21:54:01Z",
+  "receipt_sha256": "3c805e4a9e4e7a5f0955cdd6a5b38cbaff6424839ca917ae97e01c27ec748d7a"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-952c215d4628",
+  "phase": "train_corrective",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-09-29T21:53:54Z",
+  "code_sha256": "ee826a97f8f847044f8f6f355481677520d477410af331ffbe4f51430b1e7d9c",
+  "status": "failed",
+  "error": {
+   "type": "FileNotFoundError",
+   "message": "[Errno 2] No such file or directory: 'ffmpeg'",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-952c215d4628/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 1026, in execute\n    receipt[\"result\"] = PHASES[control[\"phase\"]](control, state)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-952c215d4628/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 1009, in train_corrective\n    return train(control, state)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-952c215d4628/worker.zip/services/audio_plane_v1/corrective_training.py\", line 163, in train\n    codes, sets, split, manifest_hash, art = prepare(control, state)\n                                             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-952c215d4628/worker.zip/services/audio_plane_v1/corrective_data.py\", line 73, in prepare\n    for n, (code, path, old, rows) in enumerate(pool.map(read, plan)):\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 619, in result_iterator\n    yield _result_or_cancel(fs.pop())\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 317, in _result_or_cancel\n    return fut.result(timeout)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/usr/lib/python3.12/concurrent/futures/thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-952c215d4628/worker.zip/services/audio_plane_v1/corrective_data.py\", line 46, in read\n    audio = w._load_audio(path, 900)\n            ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-952c215d4628/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 473, in _load_audio\n    raw = subprocess.run(cmd, capture_output=True, timeout=300, check=False).stdout\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 548, in run\n    with Popen(*popenargs, **kwargs) as process:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 1026, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n  File \"/usr/lib/python3.12/subprocess.py\", line 1955, in _execute_child\n    raise child_exception_type(errno_num, err_msg, err_filename)\nFileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'\n"
+  },
+  "finished_at": "2026-09-29T21:54:01Z",
+  "receipt_sha256": "3c805e4a9e4e7a5f0955cdd6a5b38cbaff6424839ca917ae97e01c27ec748d7a",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T21:54:01Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-952c215d4628",
+  "started_at_utc": "2026-09-29T21:53:54.700961Z",
+  "finished_at_utc": "2026-09-29T21:54:01Z",
+  "status": "failed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-952c215d4628"
+ }
+}

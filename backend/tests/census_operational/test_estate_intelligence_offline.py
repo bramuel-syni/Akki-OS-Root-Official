@@ -39,9 +39,9 @@ def test_table_measure_counts_duplicates_nulls_degradation_and_pii_without_retai
     assert 0.015 <= result['exact_duplicate_ratio'] <= 0.08           # one in fifty rows repeats the previous row, plus cyclic coincidences
     assert result['null_bearing_row_ratio'] > 0.4                     # user_id null on every even row
     assert result['degraded_row_ratio'] > 0.6                         # 'N/A' placeholder on two rows in three
-    assert result['pii_kinds'] == {'pii.email': 750} and result['pii_row_ratio'] == 0.75
-    assert result['columns']['id']['distinct_ratio'] == 1.0
-    assert result['columns']['user_id']['null_ratio'] == 0.5
+    assert set(result['pii_kinds']) == {'pii.email'} and 0.75 <= result['pii_row_ratio'] <= 0.77   # every fourth row is null; copied rows re-carry an email
+    assert result['columns']['id']['distinct_ratio'] >= 0.95                # KMV estimate of 1,000 distinct ids
+    assert 0.45 <= result['columns']['user_id']['null_ratio'] <= 0.5       # null on even rows, minus copied rows
     assert result['freshness']['latest_write'].startswith('2026-09')
     text = json.dumps(result)
     assert 'example.com' not in text and 'lorem' not in text          # aggregates only: no row value survives
@@ -85,7 +85,7 @@ def test_report_build_grades_databases_infers_dimensions_and_ranks_products_and_
     report = r.build(job, _detail())
     headline = report['headline']
     assert headline['tables'] == 3 and headline['tables_measured'] == 1 and headline['failed_tables'] == 1 and headline['empty_tables'] == 1
-    assert headline['blocked_connections'] == ['c2'] and headline['pii_pct'] == 75.0
+    assert headline['blocked_connections'] == ['c2'] and 75.0 <= headline['pii_pct'] <= 77.0
     profile = report['databases'][0]
     assert profile['readiness']['grade'] in 'ABCDE' and {'time', 'money', 'entity', 'identity'} <= set(profile['dimensions'])
     titles = [p['title'] for p in report['data_products']]
@@ -99,3 +99,28 @@ def test_report_build_grades_databases_infers_dimensions_and_ranks_products_and_
     assert compact['job_id'] == 'eij-0123456789ab' and compact['data_products'][0]['title'] in titles
     markdown = r.render_markdown(report)
     assert '## What the data can do' in markdown and '## Strategies to reduce cost' in markdown and 'example.com' not in markdown
+
+
+def test_report_v2_degradation_grain_and_trend_against_previous_census():
+    job = {'job_id': 'eij-0123456789ab', 'status': 'completed', 'finished_at': '2026-09-29T00:00:00Z', 'submitted_at': '2026-09-29T00:00:00Z', 'receipt': {'result': {'errors': []}}}
+    first = r.build(job, _detail())
+    assert first['report_version'] == r.REPORT_VERSION
+    degradation = first['degradation']
+    assert set(degradation['kinds']) == {'mojibake', 'placeholder', 'truncation', 'invalid_format', 'whitespace'}
+    assert degradation['kinds']['placeholder'] > 0.5                        # 'N/A' on two rows in three
+    assert degradation['trend'] is None and 'No previous' in degradation['trend_note']
+    shop = degradation['databases'][0]
+    assert shop['database'] == 'shop' and shop['measured'] == 1 and shop['write_span_days'] is not None and shop['growth']['rows_delta'] is None
+    product = first['data_products'][0]
+    assert 'grain' in product and 'licensable_units' in product
+    assert product['grain']['time']['span_days'] is not None and any('history' in u for u in product['licensable_units'])
+    assert first['within_table_duplicates'] and first['within_table_duplicates'][0]['table'] == 'payments'
+    # second census, more rows: the trend names the previous job and the per-database growth
+    later = {**job, 'job_id': 'eij-0123456789ac', 'submitted_at': '2026-09-30T00:00:00Z', 'finished_at': '2026-09-30T00:00:00Z'}
+    detail = _detail(); detail['databases'][0]['tables']['payments']['rows_estimate'] = 1500
+    second = r.build(later, detail, previous=first)
+    trend = second['degradation']['trend']
+    assert trend['previous_job_id'] == 'eij-0123456789ab' and trend['deltas']['rows_estimate'] == 500 and trend['databases_grown'] == 1
+    assert second['degradation']['databases'][0]['growth']['rows_delta'] == 500
+    markdown = r.render_markdown(second)
+    assert '## Degradation and trend' in markdown and 'Licensable grain' in markdown and 'example.com' not in markdown

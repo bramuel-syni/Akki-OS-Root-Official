@@ -36,7 +36,9 @@ export function useChatSessions(enabled) {
   const compact = useCallback(async () => {
     if (!active) return;
     const r = await tryPost(`/api/chat/sessions/${active.session_id}/compact`);
-    if (r.ok) { setMemory({ kind: 'compact', ...r.data }); open(active.session_id); } else setError(failure(r, 'Compaction was refused.'));
+    if (!r.ok) { setError(failure(r, 'Compaction was refused.')); return; }
+    await open(active.session_id);
+    setMemory({ kind: 'compact', ...r.data });
   }, [active, open]);
 
   const reload = useCallback(async () => {

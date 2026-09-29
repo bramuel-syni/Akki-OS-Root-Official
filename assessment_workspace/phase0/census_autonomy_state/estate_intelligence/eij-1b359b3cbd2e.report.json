@@ -2,8 +2,9 @@
  "job_id": "eij-1b359b3cbd2e",
  "status": "partial",
  "measured_at": "2026-09-29T19:12:15.151993Z",
- "built_at": "2026-09-29T19:31:12.533733Z",
+ "built_at": "2026-09-29T22:55:38.885808Z",
  "reading": "20 databases and 1,006 tables (351.3 GiB, \u2248259,273,874 rows) were measured; 1.5% of rows repeat exactly, 23.0% carry damage, 81.7% have empty required-looking fields and 71.8% of sampled rows carry personal-data markers. About 15.2 GiB (4.3%) looks reclaimable.",
+ "report_version": 2,
  "headline": {
   "connections": 5,
   "databases": 20,
@@ -2268,6 +2269,41 @@
    "blockers": [
     "62.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "content": {
+     "column": "content_length",
+     "estimated_distinct": 4037354,
+     "distinct_ratio": 0.1176,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "identity": {
+     "column": "id",
+     "estimated_distinct": 34331240,
+     "distinct_ratio": 1.0,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "product": {
+     "column": "order_id",
+     "estimated_distinct": 6163376,
+     "distinct_ratio": 1.0,
+     "table": "iebc_forms/viusasa_staging.subscriptions"
+    },
+    "time": {
+     "column": "updated_at",
+     "table": "iebc_forms/viusasa_staging.mpesa_stk_requests",
+     "earliest": "2020-08-14 11:07:23",
+     "latest": "2038-01-18 21:00:15",
+     "span_days": 6366,
+     "future_timestamps": true
+    }
+   },
+   "licensable_units": [
+    "\u22484,037,354 distinct content values (iebc_forms/viusasa_staging.playback_stagings.content_length)",
+    "\u224834,331,240 distinct identity values (iebc_forms/viusasa_staging.playback_stagings.id)",
+    "\u22486,163,376 distinct product values (iebc_forms/viusasa_staging.subscriptions.order_id)",
+    "history 2020-08-14 \u2192 2038-01-18 (6,366 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -2436,6 +2472,32 @@
    "blockers": [
     "74.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "content": {
+     "column": "content_length",
+     "estimated_distinct": 4037354,
+     "distinct_ratio": 0.1176,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "engagement": {
+     "column": "session_key",
+     "estimated_distinct": 33023220,
+     "distinct_ratio": 0.9619,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "time": {
+     "column": "updated_at",
+     "table": "iebc_forms/viusasa_staging.mpesa_stk_requests",
+     "earliest": "1950-01-01",
+     "latest": "2026-09-29 18:57:38",
+     "span_days": 28030
+    }
+   },
+   "licensable_units": [
+    "\u22484,037,354 distinct content values (iebc_forms/viusasa_staging.playback_stagings.content_length)",
+    "\u224833,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key)",
+    "history 1950-01-01 \u2192 2026-09-29 (28,030 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at)"
    ]
   },
   {
@@ -2611,6 +2673,41 @@
    "blockers": [
     "79.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "channel": {
+     "column": "sms_sent_at",
+     "estimated_distinct": 6698441,
+     "distinct_ratio": 0.838,
+     "table": "iebc_forms/viusasa_staging.orders"
+    },
+    "engagement": {
+     "column": "session_key",
+     "estimated_distinct": 33023220,
+     "distinct_ratio": 0.9619,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "entity": {
+     "column": "user_id",
+     "estimated_distinct": 6629698,
+     "distinct_ratio": 0.8294,
+     "table": "iebc_forms/viusasa_staging.orders"
+    },
+    "time": {
+     "column": "subscribed_on",
+     "table": "iebc_forms/viusasa_staging.subscriptions",
+     "earliest": "1950-01-01",
+     "latest": "2038-01-18 21:00:15",
+     "span_days": 32159,
+     "future_timestamps": true
+    }
+   },
+   "licensable_units": [
+    "\u22486,698,441 distinct channel values (iebc_forms/viusasa_staging.orders.sms_sent_at)",
+    "\u224833,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key)",
+    "\u22486,629,698 distinct entity values (iebc_forms/viusasa_staging.orders.user_id)",
+    "history 1950-01-01 \u2192 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.subscriptions.subscribed_on)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -2798,6 +2895,48 @@
     "most supporting tables have not been written for over a year: value is historical, not live",
     "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "engagement": {
+     "column": "session_key",
+     "estimated_distinct": 33023220,
+     "distinct_ratio": 0.9619,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "entity": {
+     "column": "user_id",
+     "estimated_distinct": 6949398,
+     "distinct_ratio": 0.7075,
+     "table": "iebc_forms/viusasa_staging.sms"
+    },
+    "time": {
+     "column": "created_at",
+     "table": "iebc_forms/viusasa_staging.episode_views",
+     "earliest": "1950-01-01",
+     "latest": "2038-01-18 21:00:15",
+     "span_days": 32159,
+     "future_timestamps": true
+    },
+    "channel": {
+     "column": "sms_sent_at",
+     "estimated_distinct": 6698441,
+     "distinct_ratio": 0.838,
+     "table": "iebc_forms/viusasa_staging.orders"
+    },
+    "geo": {
+     "column": "latitude",
+     "estimated_distinct": 6687726,
+     "distinct_ratio": 0.1948,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    }
+   },
+   "licensable_units": [
+    "\u224833,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key)",
+    "\u22486,949,398 distinct entity values (iebc_forms/viusasa_staging.sms.user_id)",
+    "history 1950-01-01 \u2192 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.episode_views.created_at)",
+    "\u22486,698,441 distinct channel values (iebc_forms/viusasa_staging.orders.sms_sent_at)",
+    "\u22486,687,726 distinct geo values (iebc_forms/viusasa_staging.playback_stagings.latitude)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -2977,6 +3116,41 @@
    "blockers": [
     "77.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "money": {
+     "column": "wallet_account_alias",
+     "estimated_distinct": 6113578,
+     "distinct_ratio": 1.0,
+     "table": "iebc_forms/viusasa_staging.users"
+    },
+    "product": {
+     "column": "cart_id",
+     "estimated_distinct": 6852215,
+     "distinct_ratio": 1.0,
+     "table": "iebc_forms/viusasa_staging.payment_requests"
+    },
+    "time": {
+     "column": "updated_at",
+     "table": "iebc_forms/viusasa_staging.mpesa_stk_requests",
+     "earliest": "1950-01-01",
+     "latest": "2038-01-18 21:00:15",
+     "span_days": 32159,
+     "future_timestamps": true
+    },
+    "geo": {
+     "column": "longitude",
+     "estimated_distinct": 5234407,
+     "distinct_ratio": 0.7639,
+     "table": "iebc_forms/viusasa_staging.payment_requests"
+    }
+   },
+   "licensable_units": [
+    "\u22486,113,578 distinct money values (iebc_forms/viusasa_staging.users.wallet_account_alias)",
+    "\u22486,852,215 distinct product values (iebc_forms/viusasa_staging.payment_requests.cart_id)",
+    "history 1950-01-01 \u2192 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at)",
+    "\u22485,234,407 distinct geo values (iebc_forms/viusasa_staging.payment_requests.longitude)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -3152,6 +3326,34 @@
    "blockers": [
     "77.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "entity": {
+     "column": "user_id",
+     "estimated_distinct": 6949398,
+     "distinct_ratio": 0.7075,
+     "table": "iebc_forms/viusasa_staging.sms"
+    },
+    "money": {
+     "column": "wallet_account_alias",
+     "estimated_distinct": 6113578,
+     "distinct_ratio": 1.0,
+     "table": "iebc_forms/viusasa_staging.users"
+    },
+    "time": {
+     "column": "updated_at",
+     "table": "iebc_forms/viusasa_staging.mpesa_stk_requests",
+     "earliest": "1950-01-01",
+     "latest": "2038-01-18 21:00:15",
+     "span_days": 32159,
+     "future_timestamps": true
+    }
+   },
+   "licensable_units": [
+    "\u22486,949,398 distinct entity values (iebc_forms/viusasa_staging.sms.user_id)",
+    "\u22486,113,578 distinct money values (iebc_forms/viusasa_staging.users.wallet_account_alias)",
+    "history 1950-01-01 \u2192 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at)",
+    "latest timestamp lies in the future: placeholder dates are present in the time dimension"
    ]
   },
   {
@@ -3342,6 +3544,39 @@
     "most supporting tables have not been written for over a year: value is historical, not live",
     "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "engagement": {
+     "column": "session_key",
+     "estimated_distinct": 33023220,
+     "distinct_ratio": 0.9619,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "geo": {
+     "column": "latitude",
+     "estimated_distinct": 6687726,
+     "distinct_ratio": 0.1948,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "money": {
+     "column": "wallet_account_alias",
+     "estimated_distinct": 6113578,
+     "distinct_ratio": 1.0,
+     "table": "iebc_forms/viusasa_staging.users"
+    },
+    "time": {
+     "column": "dob",
+     "table": "iebc_forms/viusasa_staging.users",
+     "earliest": "1950-01-01",
+     "latest": "2026-07-06 11:35:00",
+     "span_days": 27945
+    }
+   },
+   "licensable_units": [
+    "\u224833,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key)",
+    "\u22486,687,726 distinct geo values (iebc_forms/viusasa_staging.playback_stagings.latitude)",
+    "\u22486,113,578 distinct money values (iebc_forms/viusasa_staging.users.wallet_account_alias)",
+    "history 1950-01-01 \u2192 2026-07-06 (27,945 days; iebc_forms/viusasa_staging.users.dob)"
    ]
   },
   {
@@ -3532,6 +3767,46 @@
     "86.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
     "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
     "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+   ],
+   "grain": {
+    "content": {
+     "column": "api_message_id",
+     "estimated_distinct": 7224427,
+     "distinct_ratio": 0.7355,
+     "table": "iebc_forms/viusasa_staging.sms"
+    },
+    "engagement": {
+     "column": "session_key",
+     "estimated_distinct": 33023220,
+     "distinct_ratio": 0.9619,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "entity": {
+     "column": "user_id",
+     "estimated_distinct": 6949398,
+     "distinct_ratio": 0.7075,
+     "table": "iebc_forms/viusasa_staging.sms"
+    },
+    "geo": {
+     "column": "latitude",
+     "estimated_distinct": 6687726,
+     "distinct_ratio": 0.1948,
+     "table": "iebc_forms/viusasa_staging.playback_stagings"
+    },
+    "time": {
+     "column": "created_at",
+     "table": "iebc_forms/viusasa_staging.playback_stagings",
+     "earliest": "1950-01-01",
+     "latest": "2026-08-23 18:53:52",
+     "span_days": 27993
+    }
+   },
+   "licensable_units": [
+    "\u22487,224,427 distinct content values (iebc_forms/viusasa_staging.sms.api_message_id)",
+    "\u224833,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key)",
+    "\u22486,949,398 distinct entity values (iebc_forms/viusasa_staging.sms.user_id)",
+    "\u22486,687,726 distinct geo values (iebc_forms/viusasa_staging.playback_stagings.latitude)",
+    "history 1950-01-01 \u2192 2026-08-23 (27,993 days; iebc_forms/viusasa_staging.playback_stagings.created_at)"
    ]
   }
  ],
@@ -3670,6 +3945,970 @@
    }
   ]
  },
+ "degradation": {
+  "kinds": {
+   "mojibake": 0.0,
+   "placeholder": 0.0126,
+   "truncation": 0.2191,
+   "invalid_format": 0.0626,
+   "whitespace": 0.0094
+  },
+  "kinds_note": "Row-weighted share of measured rows whose worst column shows the kind; a row can carry several kinds.",
+  "dead_columns": 983,
+  "columns_measured": 7563,
+  "dead_column_share": 0.13,
+  "dead_columns_note": "Columns never populated (null on \u226599.9 % of measured rows, primary key excluded): schema carried without data.",
+  "databases": [
+   {
+    "connection": "iebc_forms",
+    "database": "miniapps",
+    "tables": 21,
+    "measured": 8,
+    "rows": 56,
+    "columns": 52,
+    "dead_columns": 16,
+    "dead_column_names": [
+     "DATABASECHANGELOG.CONTEXTS",
+     "DATABASECHANGELOG.LABELS",
+     "DATABASECHANGELOG.TAG",
+     "DATABASECHANGELOGLOCK.LOCKEDBY",
+     "DATABASECHANGELOGLOCK.LOCKGRANTED",
+     "role.created_by"
+    ],
+    "stale_tables": 4,
+    "earliest_write": "2021-02-01 00:00:00",
+    "latest_write": "2024-12-11 13:46:47.067000",
+    "worst_table": {
+     "table": "DATABASECHANGELOG",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 40
+    },
+    "degraded_ratio": 0.7143,
+    "dead_column_share": 0.3077,
+    "write_span_days": 1409,
+    "days_since_last_write": 657,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "viupay",
+    "database": "viupay",
+    "tables": 39,
+    "measured": 26,
+    "rows": 138972,
+    "columns": 264,
+    "dead_columns": 20,
+    "dead_column_names": [
+     "oauth_access_tokens.name",
+     "oauth_access_tokens.user_id",
+     "oauth_clients.user_id",
+     "pay_instruments.customer_id",
+     "pay_instruments.deleted_at",
+     "pay_instruments.ip_address"
+    ],
+    "stale_tables": 11,
+    "earliest_write": "2022-01-10 11:50:39",
+    "latest_write": "2027-09-29 17:42:53",
+    "worst_table": {
+     "table": "dpo_operations",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 156
+    },
+    "degraded_ratio": 0.6944,
+    "dead_column_share": 0.0758,
+    "write_span_days": 2088,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": 6,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viupay",
+    "tables": 38,
+    "measured": 24,
+    "rows": 67080,
+    "columns": 248,
+    "dead_columns": 22,
+    "dead_column_names": [
+     "mpesa_stk_callbacks.Balance",
+     "oauth_access_tokens.name",
+     "oauth_access_tokens.user_id",
+     "oauth_clients.provider",
+     "oauth_clients.user_id",
+     "pay_instruments.customer_id"
+    ],
+    "stale_tables": 21,
+    "earliest_write": "2022-01-10 11:50:39",
+    "latest_write": "2025-01-12 12:36:18",
+    "worst_table": {
+     "table": "gateway_configs",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 8
+    },
+    "degraded_ratio": 0.6747,
+    "dead_column_share": 0.0887,
+    "write_span_days": 1098,
+    "days_since_last_write": 625,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen_digital",
+    "database": "db_visitors",
+    "tables": 47,
+    "measured": 43,
+    "rows": 4597869,
+    "columns": 418,
+    "dead_columns": 55,
+    "dead_column_names": [
+     "audits.tags",
+     "check_ins.deleted_at",
+     "departments.deleted_at",
+     "departments.description",
+     "devices.deleted_at",
+     "equipment_allocations.deleted_at"
+    ],
+    "stale_tables": 8,
+    "earliest_write": "1970-01-01",
+    "latest_write": "2030-02-02 04:00:00",
+    "worst_table": {
+     "table": "telescope_entries",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 164127
+    },
+    "degraded_ratio": 0.3762,
+    "dead_column_share": 0.1316,
+    "write_span_days": 21947,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": 47,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viutickets",
+    "tables": 56,
+    "measured": 41,
+    "rows": 1607466,
+    "columns": 479,
+    "dead_columns": 38,
+    "dead_column_names": [
+     "audits.tags",
+     "event_affiliates.paid_amount",
+     "event_affiliates.total_amount",
+     "events.end_time",
+     "events.previous_slugs",
+     "events.start_time"
+    ],
+    "stale_tables": 38,
+    "earliest_write": "2022-05-25 17:03:37",
+    "latest_write": "2025-04-01",
+    "worst_table": {
+     "table": "media",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 392888
+    },
+    "degraded_ratio": 0.2545,
+    "dead_column_share": 0.0793,
+    "write_span_days": 1041,
+    "days_since_last_write": 546,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_staging",
+    "tables": 303,
+    "measured": 239,
+    "rows": 233674548,
+    "columns": 3396,
+    "dead_columns": 444,
+    "dead_column_names": [
+     "DATABASECHANGELOG.CONTEXTS",
+     "DATABASECHANGELOG.LABELS",
+     "DATABASECHANGELOG.TAG",
+     "DATABASECHANGELOGLOCK.LOCKEDBY",
+     "DATABASECHANGELOGLOCK.LOCKGRANTED",
+     "access_types.created_by"
+    ],
+    "stale_tables": 82,
+    "earliest_write": "0001-11-30",
+    "latest_write": "2045-01-23 11:34:00",
+    "worst_table": {
+     "table": "DATABASECHANGELOG",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 42
+    },
+    "degraded_ratio": 0.2425,
+    "dead_column_share": 0.1307,
+    "write_span_days": 746245,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": null,
+     "bytes_delta": null,
+     "tables_delta": null
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "viupay",
+    "database": "viutickets",
+    "tables": 57,
+    "measured": 42,
+    "rows": 2131951,
+    "columns": 489,
+    "dead_columns": 39,
+    "dead_column_names": [
+     "audits.tags",
+     "events.end_time",
+     "events.previous_slugs",
+     "events.start_time",
+     "gateways.deleted_at",
+     "movie_bookings.coupon_id"
+    ],
+    "stale_tables": 19,
+    "earliest_write": "2013-10-19 04:52:00",
+    "latest_write": "2026-12-31 22:00:00",
+    "worst_table": {
+     "table": "media",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 471627
+    },
+    "degraded_ratio": 0.2319,
+    "dead_column_share": 0.0798,
+    "write_span_days": 4821,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": 4,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+    "database": "razuna",
+    "tables": 82,
+    "measured": 44,
+    "rows": 1341830,
+    "columns": 532,
+    "dead_columns": 107,
+    "dead_column_names": [
+     "groups.FOLDER_REDIRECT",
+     "groups.GRP_TRANSLATION_KEY",
+     "hosts.HOST_LANG",
+     "modules.MOD_HOST_ID",
+     "permissions.PER_HOST_ID",
+     "permissions.PER_LEVEL"
+    ],
+    "stale_tables": 17,
+    "earliest_write": "2014-12-16",
+    "latest_write": "2026-09-16 17:22:20",
+    "worst_table": {
+     "table": "personal_access_tokens",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 8514
+    },
+    "degraded_ratio": 0.026,
+    "dead_column_share": 0.2011,
+    "write_span_days": 4292,
+    "days_since_last_write": 13,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "saa",
+    "tables": 28,
+    "measured": 22,
+    "rows": 423474,
+    "columns": 159,
+    "dead_columns": 16,
+    "dead_column_names": [
+     "answers.deleted_at",
+     "audits.tags",
+     "booths.description",
+     "campaigns.deleted_at",
+     "campaigns.description",
+     "check_ins.deleted_at"
+    ],
+    "stale_tables": 7,
+    "earliest_write": "2024-11-01",
+    "latest_write": "2028-07-31",
+    "worst_table": {
+     "table": "telescope_entries",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 5708
+    },
+    "degraded_ratio": 0.0173,
+    "dead_column_share": 0.1006,
+    "write_span_days": 1368,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "kra_reports",
+    "tables": 19,
+    "measured": 8,
+    "rows": 769,
+    "columns": 93,
+    "dead_columns": 11,
+    "dead_column_names": [
+     "credit_note_items.deleted_at",
+     "credit_note_items.hs_code",
+     "credit_notes.deleted_at",
+     "invoice_items.deleted_at",
+     "invoices.deleted_at",
+     "invoices.failure_log"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2022-07-19 08:18:35",
+    "latest_write": "2024-01-12 08:40:03",
+    "worst_table": {
+     "table": "customers",
+     "degraded_row_ratio": 0.1,
+     "rows_estimate": 20
+    },
+    "degraded_ratio": 0.0117,
+    "dead_column_share": 0.1183,
+    "write_span_days": 542,
+    "days_since_last_write": 991,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_artists",
+    "tables": 8,
+    "measured": 7,
+    "rows": 898,
+    "columns": 70,
+    "dead_columns": 14,
+    "dead_column_names": [
+     "artist_page_urls.updated_at",
+     "artist_pages.about_page",
+     "artist_pages.deleted_at",
+     "artist_pages.music_page",
+     "moderation_reasons.deleted_at",
+     "sample_content.deleted_at"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2021-08-22 23:55:08",
+    "latest_write": "2022-03-25 17:47:39",
+    "worst_table": {
+     "table": "artist_page_urls",
+     "degraded_row_ratio": 0.6667,
+     "rows_estimate": 6
+    },
+    "degraded_ratio": 0.0045,
+    "dead_column_share": 0.2,
+    "write_span_days": 214,
+    "days_since_last_write": 1649,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "ecommerce_tafaria",
+    "tables": 130,
+    "measured": 40,
+    "rows": 986,
+    "columns": 390,
+    "dead_columns": 93,
+    "dead_column_names": [
+     "access_types.created_by",
+     "access_types.slug",
+     "active_users.deleted_at",
+     "active_users.first_name",
+     "active_users.last_name",
+     "addresses.deleted_at"
+    ],
+    "stale_tables": 33,
+    "earliest_write": "1990-01-01",
+    "latest_write": "2021-09-28 18:17:28",
+    "worst_table": {
+     "table": "media",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 1
+    },
+    "degraded_ratio": 0.002,
+    "dead_column_share": 0.2385,
+    "write_span_days": 11593,
+    "days_since_last_write": 1827,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_miniapps_prod",
+    "tables": 21,
+    "measured": 14,
+    "rows": 272234,
+    "columns": 134,
+    "dead_columns": 31,
+    "dead_column_names": [
+     "DATABASECHANGELOG.CONTEXTS",
+     "DATABASECHANGELOG.LABELS",
+     "DATABASECHANGELOG.TAG",
+     "DATABASECHANGELOGLOCK.LOCKEDBY",
+     "DATABASECHANGELOGLOCK.LOCKGRANTED",
+     "bill.date_deleted"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2021-02-01 00:00:00",
+    "latest_write": "2026-09-29 21:52:29.459000",
+    "worst_table": {
+     "table": "DATABASECHANGELOG",
+     "degraded_row_ratio": 1.0,
+     "rows_estimate": 40
+    },
+    "degraded_ratio": 0.0002,
+    "dead_column_share": 0.2313,
+    "write_span_days": 2066,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "iebc_forms",
+    "tables": 3,
+    "measured": 3,
+    "rows": 135432,
+    "columns": 31,
+    "dead_columns": 2,
+    "dead_column_names": [
+     "s3_files.timestamp",
+     "s3_files_2.timestamp"
+    ],
+    "stale_tables": 0,
+    "earliest_write": null,
+    "latest_write": null,
+    "worst_table": null,
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.0645,
+    "write_span_days": null,
+    "days_since_last_write": null,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viupay_agent_staging",
+    "tables": 31,
+    "measured": 29,
+    "rows": 12055808,
+    "columns": 402,
+    "dead_columns": 39,
+    "dead_column_names": [
+     "tbl_customer.channel",
+     "tbl_customer.cust_type",
+     "tbl_customer.customer_id",
+     "tbl_customer_trans.earningwallet",
+     "tbl_driver_history.acctype",
+     "tbl_driver_history.loginid"
+    ],
+    "stale_tables": 19,
+    "earliest_write": "2020-11-24 16:01:03",
+    "latest_write": "2022-07-18 21:40:09",
+    "worst_table": {
+     "table": "tbl_driver",
+     "degraded_row_ratio": 0.5455,
+     "rows_estimate": 11
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.097,
+    "write_span_days": 601,
+    "days_since_last_write": 1534,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "viupay",
+    "database": "kra_reports",
+    "tables": 27,
+    "measured": 11,
+    "rows": 822073,
+    "columns": 159,
+    "dead_columns": 19,
+    "dead_column_names": [
+     "credit_note_items.deleted_at",
+     "credit_notes.deleted_at",
+     "external_credit_notes.callback_sent_at",
+     "external_credit_notes.callback_url",
+     "external_credit_notes.deleted_at",
+     "invoice_items.deleted_at"
+    ],
+    "stale_tables": 2,
+    "earliest_write": "2022-07-19 08:18:35",
+    "latest_write": "2026-09-29 22:07:03",
+    "worst_table": {
+     "table": "customers",
+     "degraded_row_ratio": 0.125,
+     "rows_estimate": 32
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.1195,
+    "write_span_days": 1533,
+    "days_since_last_write": 0,
+    "growth": {
+     "rows_delta": 139,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen_digital",
+    "database": "local",
+    "tables": 17,
+    "measured": 9,
+    "rows": 987524,
+    "columns": 73,
+    "dead_columns": 4,
+    "dead_column_names": [
+     "audits.tags",
+     "folder_languages.total_time",
+     "speakers.deleted_at",
+     "uploaded_files.created_at"
+    ],
+    "stale_tables": 5,
+    "earliest_write": "2023-11-09 08:47:44",
+    "latest_write": "2025-03-11 09:52:28",
+    "worst_table": {
+     "table": "transcripts",
+     "degraded_row_ratio": 0.0001,
+     "rows_estimate": 433680
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.0548,
+    "write_span_days": 488,
+    "days_since_last_write": 567,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "citizen-pulse",
+    "tables": 39,
+    "measured": 0,
+    "rows": 0,
+    "columns": 0,
+    "dead_columns": 0,
+    "dead_column_names": [],
+    "stale_tables": 0,
+    "earliest_write": null,
+    "latest_write": null,
+    "worst_table": null,
+    "degraded_ratio": null,
+    "dead_column_share": null,
+    "write_span_days": null,
+    "days_since_last_write": null,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "correspondents",
+    "tables": 10,
+    "measured": 4,
+    "rows": 169,
+    "columns": 19,
+    "dead_columns": 3,
+    "dead_column_names": [
+     "sessions.user_id",
+     "users.email_verified_at",
+     "users.remember_token"
+    ],
+    "stale_tables": 0,
+    "earliest_write": "2025-03-13 07:38:41",
+    "latest_write": "2025-12-11 13:23:55",
+    "worst_table": null,
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.1579,
+    "write_span_days": 273,
+    "days_since_last_write": 292,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   },
+   {
+    "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+    "database": "news_vault",
+    "tables": 30,
+    "measured": 24,
+    "rows": 856820,
+    "columns": 155,
+    "dead_columns": 10,
+    "dead_column_names": [
+     "audits.tags",
+     "categories.deleted_at",
+     "news.deleted_at",
+     "packages.deleted_at",
+     "packages.description",
+     "stations.deleted_at"
+    ],
+    "stale_tables": 6,
+    "earliest_write": "2022-09-15 16:53:45",
+    "latest_write": "2026-09-16 18:00:04",
+    "worst_table": {
+     "table": "stories",
+     "degraded_row_ratio": 0.0001,
+     "rows_estimate": 233527
+    },
+    "degraded_ratio": 0.0,
+    "dead_column_share": 0.0645,
+    "write_span_days": 1462,
+    "days_since_last_write": 13,
+    "growth": {
+     "rows_delta": 0,
+     "bytes_delta": 0,
+     "tables_delta": 0
+    },
+    "schema_drift_tables": []
+   }
+  ],
+  "trend": {
+   "previous_job_id": "eij-91933223a5b1",
+   "previous_measured_at": "2026-09-29T18:49:55.453268Z",
+   "deltas": {
+    "bytes_total": 363494031360,
+    "rows_estimate": 233674776,
+    "tables": 303,
+    "tables_measured": 239,
+    "exact_duplicate_pct": 1.2,
+    "degraded_pct": 11.9,
+    "null_bearing_pct": 46.1,
+    "pii_pct": 10.7,
+    "stale_pct_of_bytes": -35.2,
+    "reclaimable_bytes": 15988100306,
+    "empty_tables": 68,
+    "failed_tables": 0,
+    "duplicate_table_pairs": 9
+   },
+   "schema_drift_tables": 0,
+   "coverage_changed": true,
+   "databases_grown": 4,
+   "databases_shrunk": 0
+  },
+  "trend_note": "Deltas against the previous verified estate intelligence census over the same connections."
+ },
+ "within_table_duplicates": [
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "search_lookups",
+   "exact_duplicate_ratio": 0.05895,
+   "normalised_duplicate_ratio": 0.1554,
+   "rows_estimate": 259017,
+   "data_bytes": 9307324416,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "playback_qualified_streams",
+   "exact_duplicate_ratio": 0.05117,
+   "normalised_duplicate_ratio": 0.05137,
+   "rows_estimate": 15794152,
+   "data_bytes": 4973395968,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "episode_views",
+   "exact_duplicate_ratio": 0.21968,
+   "normalised_duplicate_ratio": 0.29145,
+   "rows_estimate": 5561526,
+   "data_bytes": 801112064,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "viupay",
+   "database": "kra_reports",
+   "table": "external_credit_notes",
+   "exact_duplicate_ratio": 0.25,
+   "normalised_duplicate_ratio": 0.25,
+   "rows_estimate": 224547,
+   "data_bytes": 291291136,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "new_episode_views",
+   "exact_duplicate_ratio": 0.66065,
+   "normalised_duplicate_ratio": 0.77902,
+   "rows_estimate": 983009,
+   "data_bytes": 103464960,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "ussd_hits",
+   "exact_duplicate_ratio": 0.0853,
+   "normalised_duplicate_ratio": 0.36323,
+   "rows_estimate": 9224505,
+   "data_bytes": 600834048,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "raz1_errors",
+   "exact_duplicate_ratio": 0.02555,
+   "normalised_duplicate_ratio": 0.04112,
+   "rows_estimate": 28276,
+   "data_bytes": 781729792,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "manual_payments",
+   "exact_duplicate_ratio": 0.19873,
+   "normalised_duplicate_ratio": 0.19873,
+   "rows_estimate": 312325,
+   "data_bytes": 55148544,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "cart_items",
+   "exact_duplicate_ratio": 0.1532,
+   "normalised_duplicate_ratio": 0.15355,
+   "rows_estimate": 249881,
+   "data_bytes": 70893568,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "article_menu",
+   "exact_duplicate_ratio": 0.55073,
+   "normalised_duplicate_ratio": 0.55073,
+   "rows_estimate": 146599,
+   "data_bytes": 6832128,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "episodes_migration_progress",
+   "exact_duplicate_ratio": 0.99995,
+   "normalised_duplicate_ratio": 0.99995,
+   "rows_estimate": 80483,
+   "data_bytes": 2637824,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "search_category_intents",
+   "exact_duplicate_ratio": 0.1891,
+   "normalised_duplicate_ratio": 0.2213,
+   "rows_estimate": 84419,
+   "data_bytes": 9977856,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "music_type_track_migration_progress",
+   "exact_duplicate_ratio": 0.99958,
+   "normalised_duplicate_ratio": 0.99958,
+   "rows_estimate": 18655,
+   "data_bytes": 1589248,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "model_has_genres",
+   "exact_duplicate_ratio": 0.12507,
+   "normalised_duplicate_ratio": 0.12562,
+   "rows_estimate": 127641,
+   "data_bytes": 8929280,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viusasa_staging",
+   "table": "product_stock_uploads",
+   "exact_duplicate_ratio": 0.02558,
+   "normalised_duplicate_ratio": 0.28123,
+   "rows_estimate": 396383,
+   "data_bytes": 28901376,
+   "method": "stratified_keyset_sample"
+  },
+  {
+   "connection": "viupay",
+   "database": "viutickets",
+   "table": "movies",
+   "exact_duplicate_ratio": 0.07501,
+   "normalised_duplicate_ratio": 0.19239,
+   "rows_estimate": 8305,
+   "data_bytes": 8929280,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viutickets",
+   "table": "movies",
+   "exact_duplicate_ratio": 0.0846,
+   "normalised_duplicate_ratio": 0.21697,
+   "rows_estimate": 7562,
+   "data_bytes": 6832128,
+   "method": "complete"
+  },
+  {
+   "connection": "viupay",
+   "database": "viutickets",
+   "table": "movie_shows",
+   "exact_duplicate_ratio": 0.10969,
+   "normalised_duplicate_ratio": 0.11204,
+   "rows_estimate": 24638,
+   "data_bytes": 4734976,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viutickets",
+   "table": "movie_shows",
+   "exact_duplicate_ratio": 0.1258,
+   "normalised_duplicate_ratio": 0.1285,
+   "rows_estimate": 21400,
+   "data_bytes": 3686400,
+   "method": "complete"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "raz1_log_users",
+   "exact_duplicate_ratio": 0.01705,
+   "normalised_duplicate_ratio": 0.91831,
+   "rows_estimate": 45494,
+   "data_bytes": 16334848,
+   "method": "complete"
+  },
+  {
+   "connection": "viupay",
+   "database": "viupay",
+   "table": "oauth_access_tokens",
+   "exact_duplicate_ratio": 0.03013,
+   "normalised_duplicate_ratio": 0.9993,
+   "rows_estimate": 7591,
+   "data_bytes": 2637824,
+   "method": "complete"
+  },
+  {
+   "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "database": "razuna",
+   "table": "raz1_assets_temp",
+   "exact_duplicate_ratio": 0.15565,
+   "normalised_duplicate_ratio": 0.41185,
+   "rows_estimate": 1408,
+   "data_bytes": 458752,
+   "method": "complete"
+  },
+  {
+   "connection": "citizen-pulse",
+   "database": "saa",
+   "table": "submissions",
+   "exact_duplicate_ratio": 0.02331,
+   "normalised_duplicate_ratio": 0.47695,
+   "rows_estimate": 20159,
+   "data_bytes": 1589248,
+   "method": "complete"
+  },
+  {
+   "connection": "iebc_forms",
+   "database": "viupay",
+   "table": "cache",
+   "exact_duplicate_ratio": 0.38246,
+   "normalised_duplicate_ratio": 0.38246,
+   "rows_estimate": 285,
+   "data_bytes": 65536,
+   "method": "complete"
+  },
+  {
+   "connection": "citizen_digital",
+   "database": "local",
+   "table": "bazuu",
+   "exact_duplicate_ratio": 0.67778,
+   "normalised_duplicate_ratio": 0.67778,
+   "rows_estimate": 180,
+   "data_bytes": 16384,
+   "method": "head_sample_no_single_primary_key"
+  }
+ ],
  "condition_bytes": {
   "total": 377199771648,
   "not_read": 73891840,
@@ -4785,5 +6024,17 @@
  "method_note": "Ratios are measured on complete passes (tables \u2264100k rows) or stratified keyset samples (8\u00d75k rows) and disclosed per table; cross-table overlap is a bottom-256 sketch Jaccard estimate over same-schema tables; no row values were retained or returned.",
  "row_values_retained": false,
  "brief_path": "/briefs/Akki_Estate_Intelligence_eij-1b359b3cbd2e.md",
- "brief_sha256": "1279bb07ef411adf33d0f175fd755c9cab936d4ca74631e5659e1b3b0eb79328"
+ "brief_sha256": "b3d3786499508b209af1c173dcc499cbd868c259fa41cb8fef503f998d6fe047",
+ "dossier": {
+  "text": "# Estate-handling dossier \u2014 executive briefing\n\nPrepared for the estate owner. Source: aggregated census measurements of the estate (supplied dataset).\n\n## Executive summary\n- Scope: 20 databases, 1,006 tables (measured tables: 638) across the estate (source: headline: databases = 20; tables = 1006; tables_measured = 638). Measured rows: 5,881,277 (headline.rows_measured = 5,881,277). Total bytes: unmeasured in the supplied summary (bytes_total is unmeasured).\n- Quality and risk snapshot: 1.5% exact repeated rows, 3.6% normalised duplicate rate, 23.0% degraded rows, 81.7% of rows carry empty required-looking fields, and 71.8% of sampled rows carry personal-data markers (source: headline: exact_duplicate_pct = 1.5%; normalised_duplicate_pct = 3.6%; degraded_pct = 23.0; null_bearing_pct = 81.7%; pii_pct = 71.8; pii_rows_checked = 1,011,330).\n- Storage / reclaimable: ~15.2 GiB labelled reclaimable (15.2 GiB; reclaimable_pct = 4.3%) and stale data accounts for 15.4% of bytes (headline: reclaimable_label = \"15.2 GiB\"; reclaimable_pct = 4.3; stale_pct_of_bytes = 15.4). Cost-reduction levers with measured savings are provided below.\n- Readiness distribution: Grades A:171, B:62, C:191, D:189, E:25 (headline.grades). Many candidate data-products are mid-to-low readiness (typical readiness scores in the mid\u201150s to low\u201160s).\n- Blockers to release: heavy PII presence and declared-but-unverified rights (multiple product blockers state \"use rights are declared at Connect, not measured\"). Several supporting tables require de\u2011identification or aggregation before any release (per-product blockers; see product sections).\n\n---\n\n## Condition of the estate\n- Surface metrics:\n  - Databases: 20 (headline.databases = 20).\n  - Tables: 1,006 total; 638 measured; 44 failed tables; 368 empty tables (headline: tables = 1006; tables_measured = 638; failed_tables = 44; empty_tables = 368).\n  - Measured rows: 5,881,277 (headline.rows_measured = 5,881,277). Global rows_estimate fields are unmeasured in many places (rows_estimate: some databases show estimates; others are placeholders or unmeasured).\n  - Data-size label: \u201c351.3 GiB\u201d appears in the supplied summary as bytes_label; the canonical total bytes figure itself is not provided (bytes_total is unmeasured).\n- Data quality:\n  - Exact duplicates low (1.5%) but near-text duplicates are extremely common (near_duplicate_text_pct = 85.3%) \u2014 duplicate detection must include semantic/text similarity (headline: exact_duplicate_pct = 1.5; near_duplicate_text_pct = 85.3).\n  - Degradation: 23.0% of rows are flagged as carrying damage (headline.degraded_pct = 23.0).\n  - Null/required fields: 81.7% of sampled rows have empty required\u2011looking fields (headline.null_bearing_pct = 81.7) \u2014 this is a major analytics completeness problem.\n  - PII surface: 71.8% of sampled rows carry personal\u2011data markers (headline.pii_pct = 71.8; pii_rows_checked = 1,011,330). Top PII tables are concentrated in iebc_forms / viusasa_staging (examples: playback_stagings, sms, payment_requests \u2014 see \u201ctop_pii\u201d).\n- Operational status:\n  - Many tables are stale (stale_pct_of_bytes = 15.4). Several product blockers call out that \u201cmost supporting tables have not been written for over a year\u201d (per-product blockers).\n  - Some connections are blocked (artists_app listed in headline.blocked_connections).\n\nConclusion: The estate holds substantial, productisable information but the bulk is low\u2011to\u2011moderate readiness due to pervasive nulls, PII, staleness and semantic near\u2011duplicates. Targeted remediation will unlock most commercial value.\n\n---\n\n## Duplication and storage economics\nMeasured storage-saving opportunities (from supplied cost strategies and duplicate-pair sketches):\n- Move to cold storage: 54.1 GiB identified as not written for over a year; action recommended: export to compressed object storage and keep schema stubs (cost_strategy[0]: bytes_label = 54.1 GiB; share_of_estate = 0.1541). Note: staleness detection used latest timestamp columns; tables without timestamps may not be counted as stale.\n- Remove redundant prefix indexes: estimated saving 14.0 GiB (cost_strategy[1]: bytes_label = 14.0 GiB; share_of_estate = 0.0397).\n- De\u2011duplicate exact repeated rows inside tables: estimated saving 1.2 GiB (cost_strategy[2]: bytes_label = 1.2 GiB; share_of_estate = 0.0035).\n- Consolidate duplicate/staging copies: estimated saving 54.0 MiB (cost_strategy[3]: bytes_label = 54.0 MiB).\n- Archive / remove empty tables: estimated saving 13.7 MiB (cost_strategy[4]: bytes_label = 13.7 MiB).\n- Note on reclaimed bytes: headline lists reclaimable_label = \"15.2 GiB\" and reclaimable_pct = 4.3% (headline.reclaimable_label; headline.reclaimable_pct).\n\nDuplication hotspots (examples):\n- failed_jobs between iebc_forms and viupay: content overlap \u2248 78% (top_duplicate_pairs[0]: content_overlap_estimate = 0.7812).\n- movies tables and others show overlap estimates 80\u201384% (see top_duplicate_pairs entries). These are candidates for consolidation after ownership confirmation.\n\nRisks to savings:\n- Some duplicates are deliberate (staging/backups). Over\u2011aggressive deletion risks data loss \u2014 confirm ownership/intent before retirement.\n- Index removal reduces storage but might change query performance; verify no explicit index hints exist.\n\nBottom line: Measured tactical actions (cold storage + index rationalisation + dedupe) yield immediate, verifiable savings (54.1 GiB + 14.0 GiB + 1.2 GiB = 69.3 GiB measured potential reduction; sources: cost_strategy entries). Further savings may be available but were not measured.\n\n---\n\n## What the data can do (dimensional monetisation \u2014 aggregate or de\u2011identified only)\nEach candidate below is presented as an aggregate/de\u2011identified product only (no row\u2011level release).\n\n1. Reference and master-data licensing\n   - Proposition: licence cleaned reference/master tables (product/catalogue/form reference) as master data feeds to partners (requires rights). Readiness: score 60.1, grade C (data_products.reference_data.readiness_score = 60.1; readiness_grade = \"C\"). PII exposure: 62.1% of tables supporting the product carry PII markers; 40.2% supporting tables are stale (product blockers). Top value tables include mpesa_stk_requests and media but many have high PII ratios (e.g. mpesa_stk_requests pii_ratio = 1.0). Before licensing, de\u2011identify or publish only canonical reference fields and secure an explicit rights grant (blockers: \"62.0% of supporting tables carry PII markers\" and \"use rights are declared at Connect, not measured\").\n\n2. Content catalogue, recommendation and licensing corpus\n   - Proposition: aggregate catalogue metadata, engagement\u2011weighted recommendation features, licensable archive indices. Readiness: score 56.8, grade C (data_products.content_corpus.readiness_score = 56.8). PII exposure: high \u2014 74.5% of supporting tables carry PII markers (product pii_table_share = 0.745) and 42.9% of supporting tables are stale (stale_table_share = 0.429). Licensable units exist (e.g. 4,037,354 distinct content values from playback_stagings.content_length). Any external catalogue or recommendation product must strip or aggregate PII (product blocker: \"74.0% of supporting tables carry PII markers\") and obtain rights clearance.\n\n3. Channel / telco engagement analytics\n   - Proposition: aggregated channel performance and campaign benchmarks (shortcode, delivery and response rates) for telcos/advertisers. Readiness: score 59.7, grade C (data_products.channel_engagement.readiness_score = 59.7). PII exposure: 78.9% supporting tables carry PII markers (pii_table_share = 0.789). Grain supports channel/time aggregation (licenses: 6,698,441 distinct channel values). Publish as aggregated metrics per channel/time bucket (e.g. daily county\u2011level response rates) after de\u2011identification and rights clearance.\n\n4. Customer / subscriber 360 and segmentation (de\u2011identified)\n   - Proposition: de\u2011identified LTV, segmentation and churn cohorts sold to partners or used internally for marketing; must be de\u2011identified before release. Readiness: score 53.5, grade D (data_products.customer_360.readiness_score = 53.5). PII exposure: 80.3% of supporting tables carry PII markers (pii_table_share = 0.803); many supporting tables are stale (stale_table_share = 0.513). The product can be built internally after cleansing, but external sharing requires strict hashing/tokenisation and a formal rights/legal review.\n\n5. Time-series forecasting datasets (money/time)\n   - Proposition: aggregated daily/weekly demand and revenue series for forecasting and capacity planning. Readiness: score 57.6, grade C (data_products.forecasting.readiness_score = 57.6). PII exposure: 76.8% supporting tables carry PII markers. Key time-range units exist (e.g. mpesa_stk_requests spans many historical days). Publish aggregated series (sums, counts, rates) at product/time granularity after removing direct identifiers and ensuring no small\u2011count leakage.\n\n6. Transaction analytics (settlement and fee reporting)\n   - Proposition: aggregated revenue, fee and settlement analytics for financial reconciliation and partner dashboards. Readiness: score 57.6, grade C (data_products.transaction_analytics.readiness_score = 57.6). PII exposure: 76.8% of supporting tables are PII\u2011dense. Release only as aggregated reports (daily/partner-level), and do not export row\u2011level payment identifiers without explicit legal clearance. Note: several top tables (mpesa_stk_requests, users, orders) carry full PII and must be tokenised.\n\n7. Geospatial demand and coverage mapping\n   - Proposition: county/constituency demand, penetration and coverage maps delivered as aggregated indices. Readiness: score 52.7, grade D (data_products.geo_demand.readiness_score = 52.7). PII exposure: 77.8% supporting tables carry PII; many supporting tables are stale. Produce aggregated indices (e.g. popularity per county per month) but remove or bucket fine geolocation fields to avoid re\u2011identification (product blockers note supporting tables grade D/E and PII risk).\n\n8. Civic and audience insight panels\n   - Proposition: aggregated civic\u2011participation indices and aggregated audience panels by geography; strictly aggregate, never row\u2011level. Readiness: score 49.0, grade D (data_products.civic_insight.readiness_score = 49.0). PII exposure: 85.7% of supporting tables carry PII markers (pii_table_share = 0.857). This product is feasible but requires the most remediation \u2014 remove or aggregate PII, improve completeness and confirm rights.\n\nFor every candidate product: do not release row\u2011level data; apply aggregation, k\u2011anonymity / differential privacy (where practical), or tokenisation; obtain explicit rights grants (product blockers repeatedly flag rights unmeasured).\n\n---\n\n## Risks and obligations\n1. Personal data and privacy\n   - High PII footprint: 71.8% of sampled rows carry personal\u2011data markers (headline.pii_pct = 71.8; pii_rows_checked = 1,011,330). Top PII tables include playback_stagings, sms, payment_requests (top_pii list). Any external sharing must be preceded by legal review and technical de\u2011identification/tokenisation. The detector used is sampled/deterministic \u2014 absence of a marker \u2260 absence of personal data.\n2. Staleness and value decay\n   - Stale bytes account for 15.4% of bytes (headline.stale_pct_of_bytes = 15.4); multiple products note that many supporting tables have not been written for over a year. This reduces commercial value for time\u2011sensitive products (forecasts, engagement).\n3. Rights and licensing\n   - Use rights are declared at Connect but were not measured in the census; the summary repeatedly flags: \"use rights are declared at Connect, not measured: a release needs its own grant and purpose\" (per-product blockers). Do not publish or license data without explicit, recorded contractual grants for the intended purpose.\n4. Re\u2011identification risk from near\u2011duplicates and granular fields\n   - Near\u2011duplicate text is very high (85.3%) and granular columns (e.g. latitude/longitude, session keys, wallet identifiers) are present at high cardinality. Aggregation must account for linkage risk; small\u2011count suppression and rigorous review are required.\n5. Structural and referential integrity\n   - The census found orphaned references (examples: invoices.payment_id \u2192 payments orphan_ratio = 1.0; viusasa_staging.active_users.user_id orphan_ratio = 1.0; full list in orphaned_references). These undermine joins used in products and must be reconciled or documented as known gaps.\n6. Unmeasured items\n   - Total bytes (canonical bytes_total) is unmeasured in the supplied summary. Use rights and licence terms are not fully measured. Where a figure is missing in the transcript, it remains unmeasured \u2014 proceed on the basis that those items require explicit measurement before financial projection or transfer.\n\n---\n\n## 90\u2011day plan (numbered, decisive)\nPriority: secure & reduce cost, remediate PII exposure, prepare one pilot product (channel_engagement or forecasting) for internal use.\n\n1. Governance & legal (Days 0\u201310)\n   - Action: Convene a 2\u2011hour triage between Data Owner, Legal, and Data Engineering.\n   - Deliverable: Inventory of required rights per intended product (confirm whether Connect grants cover the use cases). Status: rights were not measured \u2014 therefore obtain explicit grants before any external release (product blockers).\n\n2. Immediate containment of exposed PII (Days 0\u201314)\n   - Action: Apply read\u2011only access controls to high\u2011PII tables identified in top_pii (e.g., playback_stagings, sms, payment_requests) and log all accesses.\n   - Deliverable: Access control list and audit log retention policy. Rationale: headline.pii_pct = 71.8 and pii_rows_checked = 1,011,330.\n\n3. Cold\u2011storage and archival for stale tables (Days 0\u201330)\n   - Action: Export tables not written for > 1 year to compressed object storage; keep schema stubs and a retrieval process.\n   - Target: 54.1 GiB measured candidate (cost_strategy[0]: bytes_label = 54.1 GiB; share_of_estate = 0.1541).\n   - Deliverable: Archive manifest, restore runbook, and cost estimate for object storage.\n\n4. Quick index rationalisation (Days 7\u201330)\n   - Action: Identify non\u2011unique indexes that are leading prefixes of others and drop after 7\u2011day query monitoring.\n   - Target measured saving: 14.0 GiB (cost_strategy[1]: bytes_label = 14.0 GiB).\n   - Deliverable: Index removal roll\u2011back plan and before/after performance dashboard.\n\n5. Exact deduplication pilot (Days 7\u201345)\n   - Action: For three large, high\u2011value tables (suggest: mpesa_stk_requests, orders, playback_stagings), run dedupe pass and validate joins.\n   - Target measured saving: 1.2 GiB (cost_strategy[2]: bytes_label = 1.2 GiB).\n   - Deliverable: De\u2011duplication scripts, preserved archive of removed rows, and updated ingestion constraints.\n\n6. Empty & duplicate table cleanup (Days 14\u201340)\n   - Action: Place empty tables (368) into a 30\u2011day observation window; retire or archive after confirmation. Consolidate high\u2011overlap duplicate pairs (see top_duplicate_pairs) by snapshotting the smaller copy and retaining one system of record after owner sign\u2011off.\n   - Deliverables: Retire list, snapshots, and owner confirmations (cost_strategy[3] and [4]).\n\n7. Repair or document orphaned references (Days 14\u201360)\n   - Action: For the orphaned_references list, either (a) repair by reintroducing or reassigning targets where available, or (b) document and purge rows that reference nothing.\n   - Deliverable: Referential integrity report and remediation tasks (note: repair does not save storage but improves product quality).\n\n8. PII tokenisation and analytics copy creation (Days 21\u201360)\n   - Action: Create de\u2011identified analytics copies (tokenise ids, drop direct identifiers) for development of internal products. For each copy, produce a privacy risk memo.\n   - Deliverable: Tokenisation scripts, one de\u2011identified analytics schema per product domain (channel_engagement and forecasting prioritised).\n\n9. Pilot product delivery (Days 30\u201375)\n   - Action: Build an internal pilot for Channel Engagement (or Forecasting) using de\u2011identified analytics copy.\n   - Metrics: deliver aggregated dashboards (daily/weekly channel response rates), run an internal privacy review, and collect stakeholder feedback.\n   - Readiness rationale: channel_engagement readiness_score = 59.7; forecasting readiness_score = 57.6.\n\n10. Rights & commercial readiness (Days 45\u201390)\n    - Action: For any external pilot or licensing, obtain explicit written rights from Connect or other owners; produce a Data Release Agreement and a Pricing/Usage policy (note: pricing not measured and must be determined by business).\n    - Deliverable: Signed rights, release checklist, and minimal product SLA.\n\n11. Data quality remediation (Days 30\u201390)\n    - Action: Remediate top quality issues: reduce null_bearing_pct (81.7%) by addressing ingest validation on key tables; fix highest\u2011impact degraded tables listed in top_degraded.\n    - Deliverable: Data quality tickets, measurable targets (e.g. reduce null_bearing in target tables by 30% in 60 days).\n\n12. Measurement & ongoing census (Days 60\u201390)\n    - Action: Run a follow\u2011up census on measured tables (recompute exact/near duplicates, PII share, staleness).\n    - Deliverable: Comparison report vs. baseline (this dossier). Use the report to set the next 90\u2011day OKRs.\n\n---\n\nIf you approve, I will:\n- Produce an access\u2011controlled remediation workbook (per step) with owners and deadlines.\n- Prepare the de\u2011identification templates and a privacy risk checklist for the pilot product(s).\n\nNotes and caveats\n- Several values in the supplied inventory are placeholders or unmeasured (for example the canonical total bytes figure is unmeasured). Where figures were missing they are reported as unmeasured and must be measured before cost or revenue projections are final.\n- Rights: the summary repeatedly states \"use rights are declared at Connect, not measured\" \u2014 do not proceed with any licensing or outward release until the legal grant is obtained and captured.\n- All releases must be aggregate or de\u2011identified; the census explicitly flags many tables with PII markers and high PII ratios (per\u2011product blockers and top_pii entries).\n\nAppendix: primary figures cited\n- Overall: databases = 20; total tables = 1,006; tables_measured = 638 (headline).\n- Measured rows = 5,881,277 (headline.rows_measured).\n- Exact duplicates = 1.5%; normalised duplicates = 3.6% (headline).\n- Degraded rows = 23.0% (headline.degraded_pct).\n- Null-bearing rows = 81.7% (headline.null_bearing_pct).\n- PII in sampled rows = 71.8% (headline.pii_pct; pii_rows_checked = 1,011,330).\n- Reclaimable: 15.2 GiB (reclaimable_label) = 4.3% reclaimable_pct (headline).\n- Stale bytes = 15.4% of bytes (headline.stale_pct_of_bytes).\n- Cost strategies measured savings: cold storage 54.1 GiB; drop redundant indexes 14.0 GiB; dedupe 1.2 GiB; consolidate copies 54.0 MiB; archive empty tables 13.7 MiB (cost_strategies entries).\n- Readiness distribution: A=171, B=62, C=191, D=189, E=25 (headline.grades).\n\n--- \n\nTell me which of the 90\u2011day steps you want prioritised and I will convert that into a weekly sprint plan with owners and minimal checklists.",
+  "receipt_id": "rcp-f3b244641843",
+  "model_id": "gpt-5-mini",
+  "provider": "emergent",
+  "tokens_in": 17679,
+  "tokens_out": 4583,
+  "latency_ms": 45030,
+  "at": "2026-09-29T23:02:40.432175Z",
+  "prompt_sha256": "354fd68cd5d4b08331a47e6ecf6a5a91aaa8cf0d0a969dc51ddeb2ef96714443",
+  "composed_from": "aggregates only; no row values"
+ }
 }

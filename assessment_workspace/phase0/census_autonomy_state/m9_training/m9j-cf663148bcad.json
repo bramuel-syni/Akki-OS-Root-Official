@@ -1,0 +1,159 @@
+{
+ "job_id": "m9j-cf663148bcad",
+ "phase": "assemble",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T21:54:58.991432Z",
+ "params": {
+  "corpus_id": "digicow-sealed-units-v1",
+  "kind": "digicow_units",
+  "unit_files": [
+   "/mnt/akki-storage-3388s/akki/deliveries/req-97999a0b46d2f51564b85dcd05d871a2/6d32bd6ed415729304eff03f178ca9ad579179d946cf7d3b5cd9c856132a7367/units.jsonl"
+  ],
+  "rights_ref": "DIGICOW commission req-97999a0b46d2f51564b85dcd05d871a2 \u00b7 sealed 341,643 B \u00b7 independently inspected on akki-vm-ii \u00b7 rights follow lineage (derived_rights) \u00b7 VERIFIED_RESULT_RECORDED",
+  "seed": 41,
+  "min_chars": 20,
+  "max_chars": 1200,
+  "held_fraction": 0.1,
+  "canary_count": 8,
+  "canary_repeats": [
+   1,
+   2,
+   4
+  ],
+  "min_stratum_units": 12
+ },
+ "northena_run_id": "run-0d0d657542d1",
+ "northena_trace_id": "trc-3a08c56e3157",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-cf663148bcad"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-cf663148bcad",
+  "pid": 735927
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-9112169f719a",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_assemble_admitted"
+  },
+  {
+   "row_id": "led-2f3643d9a8bd",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_assemble_daemonised:pid=735927"
+  },
+  {
+   "row_id": "led-f62bf1c7bc87",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_assemble_completed"
+  }
+ ],
+ "code_sha256": "04231337ccaf017c2bace23c851c581d2b9d66b1e7812b4b185bf0c33bed5b70",
+ "started_at": "2026-09-29T21:55:03.881502Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T21:56:21.529900Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-ce375bec71fe"
+ },
+ "remote_state": {
+  "phase": "assemble",
+  "status": "completed",
+  "started_at": "2026-09-29T21:55:03Z",
+  "progress": {
+   "stage": "deduplicating",
+   "units": 12
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-cf663148bcad",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T21:55:03Z",
+  "finished_at": "2026-09-29T21:55:03Z",
+  "receipt_sha256": "16d050620d9c62a41116e01223a8a8c0fd3002fcbdfb57204146ed24898c4cd1"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-cf663148bcad",
+  "phase": "assemble",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T21:55:03Z",
+  "code_sha256": "04231337ccaf017c2bace23c851c581d2b9d66b1e7812b4b185bf0c33bed5b70",
+  "status": "completed",
+  "result": {
+   "corpus_id": "digicow-sealed-units-v1",
+   "kind": "digicow_units",
+   "rights_ref": "DIGICOW commission req-97999a0b46d2f51564b85dcd05d871a2 \u00b7 sealed 341,643 B \u00b7 independently inspected on akki-vm-ii \u00b7 rights follow lineage (derived_rights) \u00b7 VERIFIED_RESULT_RECORDED",
+   "source": {
+    "unit_files": 1
+   },
+   "units": 12,
+   "duplicates_removed": 0,
+   "chars": 1307,
+   "splits": {
+    "train": 9,
+    "dev": 1,
+    "held": 2,
+    "archive_test": 0
+   },
+   "per_stratum": {
+    "training_other": {
+     "train": 9,
+     "dev": 1,
+     "held": 2,
+     "archive_test": 0,
+     "groups_train": 9,
+     "groups_held": 2
+    }
+   },
+   "test_set_seal": {
+    "corpus_id": "digicow-sealed-units-v1",
+    "held_unit_count": 2,
+    "held_ids_sha256": "4911b46600e1bb39e7f1789a32b5666ffea14aa7031694efbdae2970966c5dab",
+    "held_text_sha256": "79f74c4af650318a0824a22a2979f8f7978f86c3e497fed8cb2f27a21cbb7fda",
+    "strata": [
+     "training_other"
+    ],
+    "sealed_at": "2026-09-29T21:55:03Z",
+    "rule": "sealed before any training step; never re-drawn"
+   },
+   "canaries": {
+    "inserted": 24,
+    "repeats": [
+     1,
+     2,
+     4
+    ],
+    "reference": 32
+   },
+   "assembled_at": "2026-09-29T21:55:03Z",
+   "split_rule": "group-disjoint per stratum (presenter for transcripts, unit for sealed records); archive sessions \u2192 archive_test",
+   "manifest_sha256": "3d3b7a41b54bcda5476df08646fa5aab7c2889eb182948e52ebf38ea801ffbc9"
+  },
+  "finished_at": "2026-09-29T21:55:03Z",
+  "receipt_sha256": "16d050620d9c62a41116e01223a8a8c0fd3002fcbdfb57204146ed24898c4cd1",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T21:55:03Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-cf663148bcad",
+  "started_at_utc": "2026-09-29T21:55:03.881502Z",
+  "finished_at_utc": "2026-09-29T21:55:03Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-cf663148bcad"
+ }
+}

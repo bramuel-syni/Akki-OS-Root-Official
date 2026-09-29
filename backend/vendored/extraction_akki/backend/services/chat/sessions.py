@@ -72,6 +72,16 @@ async def update(scope, session_id, fields):
     return result.matched_count == 1
 
 
+async def tenant_sessions(tenant_id):
+    """Every session of the estate (all principals) — used only by estate-level acts such as a rights withdrawal."""
+    return [_public(doc) async for doc in db[COLLECTION].find({'tenant_id': tenant_id})]
+
+
+async def mark_turn_stale(tenant_id, session_id, turn_id, stale):
+    await db[COLLECTION].update_one({'session_id': session_id, 'tenant_id': tenant_id, 'turns.turn_id': turn_id},
+                                    {'$set': {'turns.$.stale_rights': stale, 'updated_at': now()}})
+
+
 def recent_context(session, limit=3):
     """The conversation ring that enters the prompt: compacted pointers, then the last turns verbatim (bounded)."""
     lines = []
@@ -79,7 +89,11 @@ def recent_context(session, limit=3):
     if compaction:
         lines.append(f"Earlier turns are compacted into artefact {compaction['artefact_hash'][:16]}… "
                      f"({compaction['claims']} claims, facts and receipts by pointer).")
-    for turn in [t for t in session.get('turns', []) if not t.get('compacted')][-limit:]:
+    live = [t for t in session.get('turns', []) if not t.get('compacted')]
+    withheld = sum(1 for t in live if t.get('stale_rights'))
+    if withheld:
+        lines.append(f"{withheld} earlier answer(s) withheld: the source right behind them was withdrawn.")
+    for turn in [t for t in live if not t.get('stale_rights')][-limit:]:
         lines.append(f"Q: {turn['question'][:300]}")
         lines.append(f"A ({turn['decision']}): {(turn.get('answer') or turn.get('refusal_reason') or '')[:400]}")
     return lines
@@ -88,10 +102,18 @@ def recent_context(session, limit=3):
 def _claims(session):
     claims = [Claim(class_='objective', text=session['objective']['text'], text_hash=session['objective']['sha256'],
                     provenance_ref=f"objective:{session['session_id']}")]
+    previous = session.get('compaction')
+    if previous:  # lineage by pointer: the new artefact names the one it succeeds
+        claims.append(Claim(class_='fact', text=previous['artefact_hash'], text_hash=sha(previous['artefact_hash']),
+                            provenance_ref=f"compaction:{previous['artefact_hash']}"))
     for turn in session['turns']:
         if turn.get('compacted'):
             continue
         claims.append(Claim(class_='utterance', text=turn['question'], text_hash=sha(turn['question']), provenance_ref=f"turn:{turn['turn_id']}:question"))
+        if turn.get('stale_rights'):  # the answer and its facts are not carried forward; the withdrawal is
+            note = f"withheld: {turn['stale_rights']['reason_code']} {turn['stale_rights']['revocation_ref']}"
+            claims.append(Claim(class_='refusal', text=note, text_hash=sha(note), provenance_ref=f"turn:{turn['turn_id']}:withdrawn"))
+            continue
         if turn.get('refused'):
             reason = turn.get('refusal_reason') or turn['decision']
             claims.append(Claim(class_='refusal', text=reason, text_hash=sha(reason), provenance_ref=f"turn:{turn['turn_id']}:refusal"))
@@ -107,9 +129,9 @@ def _claims(session):
 async def compact(scope, session, actor):
     """Compact the session's working context (not its evidence/receipts) into a durable, ledgered artefact."""
     key = f"t_{scope['tenant_id']}/run_{session['session_id']}/obj_{session['objective']['sha256'][:16]}"
-    ctx = RunScopedContext(key=key, claims=_claims(session))
-    if len(ctx.claims) <= 1:
+    if not any(not t.get('compacted') for t in session['turns']):
         return None
+    ctx = RunScopedContext(key=key, claims=_claims(session))
     storage = MongoCompactionStorage(scope['tenant_id'])
     try:
         artefact_ref, row = await asyncio.to_thread(_compact, ctx=ctx, engine=RetentionEngine(rule_set_version=RULE_SET),
@@ -122,8 +144,10 @@ async def compact(scope, session, actor):
                   'chain_row_id': receipt.chain_row_id, 'chain_appended_at_utc': receipt.chain_appended_at_utc,
                   'compacted_turns': sum(1 for t in session['turns'] if not t.get('compacted')), 'at': now(),
                   'source_version_hashes': list(artefact_ref.source_version_hashes)}
-    await db[COLLECTION].update_one({'session_id': session['session_id'], 'tenant_id': scope['tenant_id']},
-                                    {'$set': {'compaction': compaction, 'turns.$[].compacted': True, 'updated_at': now()}})
+    update = {'$set': {'compaction': compaction, 'turns.$[].compacted': True, 'updated_at': now()}}
+    if session.get('compaction'):
+        update['$push'] = {'compaction_history': session['compaction']}
+    await db[COLLECTION].update_one({'session_id': session['session_id'], 'tenant_id': scope['tenant_id']}, update)
     return compaction
 
 

@@ -1,0 +1,184 @@
+{
+ "owner_order": "2026-09-29: finish M9 autonomously; increase batch sizes/throughput to fully utilise the H200s (1a 2a 3a). Recipes below use the measured H200 budgets from notes/m9_execution/probe/*.log.",
+ "plan": {
+  "host": "akki-vm-ii",
+  "train_runner_up": true,
+  "calibrate": {
+   "gpu_index": 0,
+   "corpus_id": "rms-transcripts-v1",
+   "non_target_corpus_id": "digicow-sealed-units-v1",
+   "bases": [
+    "qwen3-1.7b-base",
+    "qwen3-8b-base"
+   ],
+   "data_fractions": [
+    0.125,
+    0.25,
+    0.5
+   ],
+   "full_epochs": 3,
+   "acceptance_floor": 0.9,
+   "calibration_recipe": {
+    "optimizer": "adamw",
+    "lr": 0.0002,
+    "epochs": 1,
+    "batch_size": 512,
+    "grad_accum": 1,
+    "max_seq_len": 256,
+    "tokens_per_batch": 12288,
+    "gradient_checkpointing": false,
+    "warmup_steps": 20,
+    "checkpoint_every": 0,
+    "eval_every": 0,
+    "eval_batch_size": 64,
+    "eval_cap_per_stratum": 200
+   },
+   "base_recipes": {
+    "qwen3-8b-base": {
+     "lr": 0.0001,
+     "batch_size": 256,
+     "tokens_per_batch": 4096,
+     "eval_batch_size": 32
+    }
+   }
+  },
+  "compare": {
+   "gpu_index": 1,
+   "corpus_id": "rms-transcripts-v1",
+   "non_target_corpus_id": "digicow-sealed-units-v1",
+   "base": "qwen3-1.7b-base",
+   "comparison_fraction": 0.25,
+   "comparison_recipe": {
+    "lr": 0.0002,
+    "epochs": 1,
+    "batch_size": 512,
+    "grad_accum": 1,
+    "max_seq_len": 256,
+    "tokens_per_batch": 12288,
+    "gradient_checkpointing": false,
+    "warmup_steps": 20,
+    "checkpoint_every": 0,
+    "eval_every": 0,
+    "eval_batch_size": 64,
+    "eval_cap_per_stratum": 200
+   }
+  },
+  "train": {
+   "qwen3-1.7b-base": {
+    "corpus_id": "rms-transcripts-v1",
+    "non_target_corpus_id": "digicow-sealed-units-v1",
+    "recipe": {
+     "lr": 0.0002,
+     "epochs": 3,
+     "batch_size": 512,
+     "grad_accum": 1,
+     "max_seq_len": 256,
+     "tokens_per_batch": 12288,
+     "gradient_checkpointing": false,
+     "warmup_steps": 50,
+     "checkpoint_every": 200,
+     "eval_every": 400,
+     "eval_batch_size": 64,
+     "eval_cap_per_stratum": 400,
+     "interrupt_after_steps": 200
+    },
+    "distance_probe": {
+     "samples": 200,
+     "max_new_tokens": 48
+    },
+    "prune_fraction": 0.3
+   },
+   "qwen3-8b-base": {
+    "corpus_id": "rms-transcripts-v1",
+    "non_target_corpus_id": "digicow-sealed-units-v1",
+    "recipe": {
+     "lr": 0.0001,
+     "epochs": 2,
+     "batch_size": 256,
+     "grad_accum": 1,
+     "max_seq_len": 256,
+     "tokens_per_batch": 4096,
+     "gradient_checkpointing": false,
+     "warmup_steps": 100,
+     "checkpoint_every": 500,
+     "eval_every": 1500,
+     "eval_batch_size": 32,
+     "eval_cap_per_stratum": 400,
+     "interrupt_after_steps": 500
+    },
+    "distance_probe": {
+     "samples": 200,
+     "max_new_tokens": 48
+    },
+    "prune_fraction": 0.3
+   }
+  }
+ },
+ "superseded": {
+  "reason": "first launch measured 6k tok/s (cuBLAS re-selection on ever-new batch shapes); worker fixed with quantised shapes (18k tok/s measured)",
+  "stages": {
+   "calibrate": {
+    "job_id": "m9j-d852d28cfe4b",
+    "status": "running",
+    "reason": null,
+    "finished_at": null
+   },
+   "compare": {
+    "job_id": "m9j-a8fa19396fe8",
+    "status": "running",
+    "reason": null,
+    "finished_at": null
+   }
+  }
+ },
+ "stages": {
+  "calibrate": {
+   "job_id": "m9j-c4bec2810778",
+   "status": "running",
+   "reason": null,
+   "finished_at": null
+  },
+  "compare": {
+   "job_id": "m9j-1e1b97ce8e1c",
+   "status": "completed",
+   "reason": null,
+   "finished_at": "2026-09-29T22:57:27Z",
+   "result_keys": [
+    "arms",
+    "base",
+    "comparison_fraction",
+    "corpus_id",
+    "manifest_sha256",
+    "parity_tolerance",
+    "quality_parity",
+    "recipe",
+    "recommendation_rule",
+    "recommended_verdict",
+    "train_units"
+   ],
+   "recommended_verdict": "rejected",
+   "harness": {
+    "comparison_id": "m9-m9j-1e1b97ce8e1c",
+    "verdict": "ineligible",
+    "verdict_note": "quality_parity_breach on M-b: candidate 13.35825 > baseline -0.45664",
+    "quality_parity": false,
+    "arms": {
+     "baseline": {
+      "moac_m_a_improvement": 0.7942,
+      "moac_m_b_regression": -0.45664,
+      "wallclock_seconds_to_convergence": 160,
+      "gpu_hours_to_convergence": 0.0444,
+      "moac_m_e_calibration": 0.01057
+     },
+     "muon": {
+      "moac_m_a_improvement": 0.81779,
+      "moac_m_b_regression": 13.35825,
+      "wallclock_seconds_to_convergence": 159,
+      "gpu_hours_to_convergence": 0.0441,
+      "moac_m_e_calibration": 0.01562
+     }
+    }
+   }
+  }
+ }
+}

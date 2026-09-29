@@ -68,6 +68,7 @@ from services.compute_seam.reflection_router import router as compute_reflection
 from services.chokepoint.router import router as shield_router  # noqa: E402
 from services.northena.router import router as thinklab_router  # noqa: E402
 from services.chat.router import router as chat_router  # noqa: E402
+from services.work.router import router as work_router  # noqa: E402
 from services.wizard.connect_llm_router import router as connect_llm_router  # noqa: E402
 from services.cost_ledger.router import router as cost_ledger_router  # noqa: E402
 from services.retention.router import router as retention_router  # noqa: E402
@@ -320,6 +321,7 @@ app.include_router(compute_reflection_router)
 app.include_router(shield_router)
 app.include_router(thinklab_router)
 app.include_router(chat_router)
+app.include_router(work_router)
 app.include_router(connect_llm_router)
 app.include_router(cost_ledger_router)
 app.include_router(retention_router)
@@ -536,6 +538,8 @@ from routers.census_operational import install as install_operational_census
 install_operational_census(app)
 from routers.watch_operational import install as install_operational_watch
 install_operational_watch(app)
+from routers.m9_training import router as m9_training_router  # noqa: E402
+app.include_router(m9_training_router)
 
 _cors_origins = [origin.strip() for origin in os.environ['CORS_ORIGINS'].split(',') if origin.strip()]
 if not _cors_origins or '*' in _cors_origins:

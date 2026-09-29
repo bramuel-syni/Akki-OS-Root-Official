@@ -48,8 +48,13 @@ execute(p)
 _LOOP = None
 
 
-def _host():
-    return os.environ["LANGUAGE_COGNITION_HOST"]
+def _host(requested=None):
+    admitted = [h.strip() for h in os.environ.get("LANGUAGE_COGNITION_HOSTS", os.environ["LANGUAGE_COGNITION_HOST"]).split(",") if h.strip()]
+    if requested is None:
+        return os.environ["LANGUAGE_COGNITION_HOST"]
+    if requested not in admitted:
+        raise ValueError("LANGUAGE_COGNITION_HOST_NOT_ADMITTED:" + str(requested))
+    return requested
 
 
 def _remote_root():
@@ -154,13 +159,14 @@ def submit(phase, params, principal_id, lawful_ref, timeout=60):
     """Admit through Northena, ship the worker, daemonise the phase on the GPU host."""
     if phase not in PHASES:
         raise ValueError("Unknown language-cognition phase.")
+    params = dict(params or {})
+    host = _host(params.pop("host", None))
     if phase == 'train_corrective':
         from services.audio_plane_v1.corrective_training import validate
         validate(params)
     from services.census_autonomy.remote_dispatch import _connect
     sealed = _sealed_language_cognition()
     job_id = "lcj-" + uuid.uuid4().hex[:12]
-    host = _host()
     job = {"job_id": job_id, "phase": phase, "host": host, "principal_id": principal_id, "submitted_at": now(),
            "params": {k: v for k, v in (params or {}).items() if k not in ("connector",)},
            "northena_run_id": f"run-{uuid.uuid4().hex[:12]}", "northena_trace_id": f"trc-{uuid.uuid4().hex[:12]}",
