@@ -1,0 +1,904 @@
+{
+ "job_id": "lcj-6cc90db10bee",
+ "phase": "train_corrective",
+ "host": "akki-vm-ii",
+ "principal_id": "demo.operator@demo.rms.example.com",
+ "submitted_at": "2026-09-29T18:05:34.048766Z",
+ "params": {
+  "baseline_job_id": "lcj-f96c86a16312",
+  "gpu_index": 0,
+  "seed": 41,
+  "epochs": 20,
+  "batch_size": 2048,
+  "physical_batch_size": 1024,
+  "max_windows_per_file": 180,
+  "parallelism": 24,
+  "lr": 0.0003,
+  "adversary_strength": 0.2,
+  "noise_multiplier": 1.0,
+  "max_grad_norm": 1.0,
+  "delta": 1e-06,
+  "smoke_steps": 2,
+  "owner_order_ref": "owner-order://2026-09-29/language-cognition-corrective-max-utilisation#throughput-relaunch-1a"
+ },
+ "northena_run_id": "run-eb484a04e809",
+ "northena_trace_id": "trc-3010cba5a3fc",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-6cc90db10bee"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-6cc90db10bee",
+  "pid": 504879
+ },
+ "status": "completed",
+ "final_model_commission": {
+  "decision": "refused",
+  "reason": "CleanMonolingualOnlyRefused",
+  "message": "MUST-NOT \u00a71 owner verbatim: 'Clean-monolingual alone is a MUST-NOT for the final model.' Commission refused because has_code_switched_material is False; the training set MUST carry labelled code-switched material per span."
+ },
+ "ledger_rows": [
+  {
+   "row_id": "led-2958515a5787",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_train_corrective_admitted"
+  },
+  {
+   "row_id": "led-22013427343c",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_train_corrective_daemonised:pid=504879"
+  },
+  {
+   "row_id": "led-4993c0923542",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "language_cognition_train_corrective_completed"
+  }
+ ],
+ "code_sha256": "f13dd979ee4933ca6b84be5b452f7d449de11e050815ace99dc767800bc90eb7",
+ "started_at": "2026-09-29T18:05:39.640424Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T18:11:36.203669Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-e64590430143"
+ },
+ "remote_state": {
+  "phase": "train_corrective",
+  "status": "completed",
+  "started_at": "2026-09-29T18:05:39Z",
+  "progress": {
+   "stage": "terminal protected-set evaluation",
+   "step": 1,
+   "best_dev_epoch": 1
+  },
+  "events": [],
+  "job_id": "lcj-6cc90db10bee",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T18:10:10Z",
+  "finished_at": "2026-09-29T18:10:10Z",
+  "receipt_sha256": "ce4d4cd33c200f98c014b664463af6f931338da4d6be866a31350e59a1ef5060"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 9249.40it/s]\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/opacus/privacy_engine.py:98: UserWarning: Secure RNG turned off. This is perfectly fine for experimentation as it allows for much faster training performance, but remember to turn it on and retrain one last time before production with ``secure_mode`` turned on.\n  warnings.warn(\nsys:1: UserWarning: Full backward hook is firing when gradients are computed with respect to module outputs since no inputs require gradients. See https://docs.pytorch.org/docs/main/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook for more details.",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-6cc90db10bee",
+  "phase": "train_corrective",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T18:05:39Z",
+  "code_sha256": "f13dd979ee4933ca6b84be5b452f7d449de11e050815ace99dc767800bc90eb7",
+  "status": "completed",
+  "result": {
+   "classes": [
+    "bxk",
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "swa"
+   ],
+   "split": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "baseline_params": {
+     "max_windows_per_file": 60,
+     "max_windows_per_language": 30000,
+     "max_audio_seconds": 900,
+     "split_seed": 11
+    },
+    "windows": {
+     "train": 180516,
+     "dev": 27114,
+     "held": 57825,
+     "archive_test": 246227,
+     "excluded": 256
+    },
+    "per_language": {
+     "bxk": {
+      "train_presenters": 0,
+      "dev_presenters": 0,
+      "held_presenters": 0,
+      "archive_test_presenters": 0,
+      "meets_presenter_minimum_n": false
+     },
+     "guz": {
+      "train_presenters": 85,
+      "dev_presenters": 9,
+      "held_presenters": 27,
+      "archive_test_presenters": 34,
+      "meets_presenter_minimum_n": true
+     },
+     "kam": {
+      "train_presenters": 120,
+      "dev_presenters": 13,
+      "held_presenters": 47,
+      "archive_test_presenters": 96,
+      "meets_presenter_minimum_n": true
+     },
+     "kik": {
+      "train_presenters": 133,
+      "dev_presenters": 14,
+      "held_presenters": 20,
+      "archive_test_presenters": 14,
+      "meets_presenter_minimum_n": true
+     },
+     "kln": {
+      "train_presenters": 131,
+      "dev_presenters": 14,
+      "held_presenters": 40,
+      "archive_test_presenters": 2,
+      "meets_presenter_minimum_n": true
+     },
+     "luo": {
+      "train_presenters": 113,
+      "dev_presenters": 12,
+      "held_presenters": 76,
+      "archive_test_presenters": 7,
+      "meets_presenter_minimum_n": true
+     },
+     "lwg": {
+      "train_presenters": 39,
+      "dev_presenters": 4,
+      "held_presenters": 15,
+      "archive_test_presenters": 0,
+      "meets_presenter_minimum_n": true
+     },
+     "swa": {
+      "train_presenters": 183,
+      "dev_presenters": 20,
+      "held_presenters": 36,
+      "archive_test_presenters": 0,
+      "meets_presenter_minimum_n": true
+     }
+    },
+    "duplicate_clips_removed": 5708,
+    "files_without_transcript": 19,
+    "test_reading": "legacy held-out already observed; not blind independent M9 acceptance",
+    "limitations": [
+     "presenter linkage inferred within language, not ground truth or cross-language biometric linkage",
+     "folder language labels, no labelled code-switched spans",
+     "English/Sheng absent",
+     "DP applies to fixed window dataset; corpus selection/linkage and evaluation are not DP-certified"
+    ],
+    "kind": "protected legacy holdout + training-only development; archive presenters excluded from all training",
+    "speaker_linkage_used": true,
+    "files": {
+     "train": 1800,
+     "dev": 397,
+     "held": 839,
+     "archive_test": 2363,
+     "excluded": 111
+    },
+    "pipeline_smoke_only": true,
+    "smoke_windows": {
+     "train": 1024,
+     "dev": 128,
+     "held": 128,
+     "archive_test": 128,
+     "excluded": 256
+    }
+   },
+   "held_out": {
+    "windows": 128,
+    "per_language": {
+     "bxk": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     },
+     "guz": {
+      "windows": 13,
+      "correct": 0,
+      "abstain": 13,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "kam": {
+      "windows": 10,
+      "correct": 0,
+      "abstain": 10,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "kik": {
+      "windows": 9,
+      "correct": 0,
+      "abstain": 9,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "kln": {
+      "windows": 21,
+      "correct": 0,
+      "abstain": 21,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "luo": {
+      "windows": 41,
+      "correct": 0,
+      "abstain": 41,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "lwg": {
+      "windows": 1,
+      "correct": 0,
+      "abstain": 1,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "swa": {
+      "windows": 33,
+      "correct": 0,
+      "abstain": 33,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     }
+    },
+    "per_condition_sample_rate": {
+     "44100Hz": {
+      "windows": 91,
+      "correct": 0,
+      "abstain": 91,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "11025Hz": {
+      "windows": 27,
+      "correct": 0,
+      "abstain": 27,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "16000Hz": {
+      "windows": 5,
+      "correct": 0,
+      "abstain": 5,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "48000Hz": {
+      "windows": 4,
+      "correct": 0,
+      "abstain": 4,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "32000Hz": {
+      "windows": 1,
+      "correct": 0,
+      "abstain": 1,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     }
+    },
+    "overall_accuracy_on_judged": null,
+    "overall_abstention_rate": 1.0,
+    "confidence_threshold": 0.6,
+    "confusion_top": {}
+   },
+   "archive_test": {
+    "windows": 128,
+    "per_language": {
+     "bxk": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     },
+     "guz": {
+      "windows": 47,
+      "correct": 0,
+      "abstain": 47,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "kam": {
+      "windows": 47,
+      "correct": 0,
+      "abstain": 47,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "kik": {
+      "windows": 24,
+      "correct": 0,
+      "abstain": 24,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "kln": {
+      "windows": 1,
+      "correct": 0,
+      "abstain": 1,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "luo": {
+      "windows": 9,
+      "correct": 0,
+      "abstain": 9,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "lwg": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     },
+     "swa": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     }
+    },
+    "per_condition_sample_rate": {
+     "44100Hz": {
+      "windows": 110,
+      "correct": 0,
+      "abstain": 110,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "11025Hz": {
+      "windows": 14,
+      "correct": 0,
+      "abstain": 14,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     },
+     "48000Hz": {
+      "windows": 4,
+      "correct": 0,
+      "abstain": 4,
+      "accuracy": null,
+      "abstention_rate": 1.0
+     }
+    },
+    "overall_accuracy_on_judged": null,
+    "overall_abstention_rate": 1.0,
+    "confidence_threshold": 0.6,
+    "confusion_top": {}
+   },
+   "development": [
+    {
+     "epoch": 1,
+     "step": 1,
+     "dev": {
+      "windows": 128,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 11,
+        "correct": 0,
+        "abstain": 11,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "kam": {
+        "windows": 12,
+        "correct": 0,
+        "abstain": 12,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "kik": {
+        "windows": 20,
+        "correct": 0,
+        "abstain": 20,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "kln": {
+        "windows": 20,
+        "correct": 0,
+        "abstain": 20,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "luo": {
+        "windows": 14,
+        "correct": 0,
+        "abstain": 14,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "lwg": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "swa": {
+        "windows": 51,
+        "correct": 0,
+        "abstain": 51,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 100,
+        "correct": 0,
+        "abstain": 100,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "11025Hz": {
+        "windows": 17,
+        "correct": 0,
+        "abstain": 17,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "22050Hz": {
+        "windows": 10,
+        "correct": 0,
+        "abstain": 10,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "16000Hz": {
+        "windows": 1,
+        "correct": 0,
+        "abstain": 1,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       }
+      },
+      "overall_accuracy_on_judged": null,
+      "overall_abstention_rate": 1.0,
+      "confidence_threshold": 0.6,
+      "confusion_top": {}
+     },
+     "epsilon": 5.2215396311544175,
+     "selection_score": [
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "no_speaker_id_probe": {
+    "measured": false,
+    "reason": "pipeline smoke, not a quality or privacy acceptance run"
+   },
+   "recipe": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "seed": 41,
+    "epochs": 20,
+    "batch_size": 2048,
+    "physical_batch_size": 1024,
+    "lr": 0.0003,
+    "adversary_strength": 0.2,
+    "noise_multiplier": 1.0,
+    "max_grad_norm": 1.0,
+    "delta": 1e-06,
+    "max_windows_per_file": 180,
+    "owner_order_ref": "owner-order://2026-09-29/language-cognition-corrective-max-utilisation#throughput-relaunch-1a",
+    "smoke_steps": 2,
+    "encoder_seconds": 2,
+    "frozen_vox_fusion": false,
+    "lora_r": 16,
+    "bottleneck": 128,
+    "loss_balance": "fixed language/condition square-root inverse frequency, cap8; no oversampling",
+    "model_base_sha256": "d95e9ce85c11692857a008ac9223a0325a9732aec8f7b26cd80b874d1aae2122",
+    "feature_path": "device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation",
+    "precision": "TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors",
+    "loader": "4 prefetching workers, pinned memory; Poisson sampler and RNG in the main process",
+    "selection": "minimum dev-language correct/ALL windows (abstentions included), then macro; no test selection",
+    "privacy_scope": "window-example DP on fixed manifest; not presenter-level or end-to-end DP certification",
+    "secure_rng": false,
+    "auto_admission": false,
+    "checkpoint_custody": "internal only; speaker adversary never exported"
+   },
+   "recipe_sha256": "acfd364b24fe31437e1a220b9418d6793a687153be95e94815b5e3f4854b6c78",
+   "training": {
+    "steps": 1,
+    "epochs_completed": 1,
+    "best_dev_epoch": 1,
+    "elapsed_seconds": 265,
+    "device": "cuda",
+    "gpu_index": 0,
+    "gpu": "NVIDIA H200",
+    "gpu_max_memory_gb": 50.89,
+    "batch_size": 2048,
+    "physical_batch_size": 1024,
+    "precision": "TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors",
+    "feature_path": "device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation",
+    "windows_per_second": 470.8
+   },
+   "dp_sgd": {
+    "applied": true,
+    "epsilon": 5.2215396311544175,
+    "delta": 1e-06,
+    "noise_multiplier": 1.0,
+    "max_grad_norm": 1.0,
+    "accountant": "rdp",
+    "poisson_sampling": true,
+    "secure_rng": false,
+    "checkpoint_accountant_verified": true,
+    "scope": "window-example DP on fixed manifest; not presenter-level or end-to-end DP certification",
+    "release_privacy_certified": false
+   },
+   "checkpoint": {
+    "optimizer_saved": true,
+    "rng_saved": true,
+    "path": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-6cc90db10bee/checkpoint.pt",
+    "full_interruption_resume_proven": false
+   },
+   "span_rule": {
+    "window_seconds": 2.0,
+    "min_span_seconds": 0.5,
+    "hysteresis_windows": 2
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-6cc90db10bee",
+    "sha256": "a58adfe603cd4aaddc27c9b3c7a09e430b5ce6eb41f61cc068bf446be80c44ad",
+    "training_manifest_sha256": "f68eb67303724e1abc6fbc9f4fc2023e88d65cd3e3686f4192c08a069ed4142a",
+    "final_model": false,
+    "custody": "RMS_TENANT; inside akki-vm-ii; never auto-admitted",
+    "moac": {
+     "verdict": "NOT ADMISSIBLE \u2014 research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance",
+     "code_switch_material_present": false,
+     "no_speaker_id_probe_passed": null
+    }
+   }
+  },
+  "finished_at": "2026-09-29T18:10:10Z",
+  "receipt_sha256": "ce4d4cd33c200f98c014b664463af6f931338da4d6be866a31350e59a1ef5060",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T18:10:10Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-6cc90db10bee",
+  "started_at_utc": "2026-09-29T18:05:39.640424Z",
+  "finished_at_utc": "2026-09-29T18:10:10Z",
+  "status": "completed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-6cc90db10bee"
+ },
+ "run_certificate": {
+  "job_id": "lcj-6cc90db10bee",
+  "host": "akki-vm-ii",
+  "receipt_sha256": "ce4d4cd33c200f98c014b664463af6f931338da4d6be866a31350e59a1ef5060",
+  "compute": {
+   "steps": 1,
+   "epochs_completed": 1,
+   "best_dev_epoch": 1,
+   "elapsed_seconds": 265,
+   "device": "cuda",
+   "gpu_index": 0,
+   "gpu": "NVIDIA H200",
+   "gpu_max_memory_gb": 50.89,
+   "batch_size": 2048,
+   "physical_batch_size": 1024,
+   "precision": "TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors",
+   "feature_path": "device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation",
+   "windows_per_second": 470.8
+  },
+  "artefact_sha256": "a58adfe603cd4aaddc27c9b3c7a09e430b5ce6eb41f61cc068bf446be80c44ad",
+  "training_manifest_sha256": "f68eb67303724e1abc6fbc9f4fc2023e88d65cd3e3686f4192c08a069ed4142a",
+  "data_touched": {
+   "baseline_job_id": "lcj-f96c86a16312",
+   "baseline_params": {
+    "max_windows_per_file": 60,
+    "max_windows_per_language": 30000,
+    "max_audio_seconds": 900,
+    "split_seed": 11
+   },
+   "windows": {
+    "train": 180516,
+    "dev": 27114,
+    "held": 57825,
+    "archive_test": 246227,
+    "excluded": 256
+   },
+   "per_language": {
+    "bxk": {
+     "train_presenters": 0,
+     "dev_presenters": 0,
+     "held_presenters": 0,
+     "archive_test_presenters": 0,
+     "meets_presenter_minimum_n": false
+    },
+    "guz": {
+     "train_presenters": 85,
+     "dev_presenters": 9,
+     "held_presenters": 27,
+     "archive_test_presenters": 34,
+     "meets_presenter_minimum_n": true
+    },
+    "kam": {
+     "train_presenters": 120,
+     "dev_presenters": 13,
+     "held_presenters": 47,
+     "archive_test_presenters": 96,
+     "meets_presenter_minimum_n": true
+    },
+    "kik": {
+     "train_presenters": 133,
+     "dev_presenters": 14,
+     "held_presenters": 20,
+     "archive_test_presenters": 14,
+     "meets_presenter_minimum_n": true
+    },
+    "kln": {
+     "train_presenters": 131,
+     "dev_presenters": 14,
+     "held_presenters": 40,
+     "archive_test_presenters": 2,
+     "meets_presenter_minimum_n": true
+    },
+    "luo": {
+     "train_presenters": 113,
+     "dev_presenters": 12,
+     "held_presenters": 76,
+     "archive_test_presenters": 7,
+     "meets_presenter_minimum_n": true
+    },
+    "lwg": {
+     "train_presenters": 39,
+     "dev_presenters": 4,
+     "held_presenters": 15,
+     "archive_test_presenters": 0,
+     "meets_presenter_minimum_n": true
+    },
+    "swa": {
+     "train_presenters": 183,
+     "dev_presenters": 20,
+     "held_presenters": 36,
+     "archive_test_presenters": 0,
+     "meets_presenter_minimum_n": true
+    }
+   },
+   "duplicate_clips_removed": 5708,
+   "files_without_transcript": 19,
+   "test_reading": "legacy held-out already observed; not blind independent M9 acceptance",
+   "limitations": [
+    "presenter linkage inferred within language, not ground truth or cross-language biometric linkage",
+    "folder language labels, no labelled code-switched spans",
+    "English/Sheng absent",
+    "DP applies to fixed window dataset; corpus selection/linkage and evaluation are not DP-certified"
+   ],
+   "kind": "protected legacy holdout + training-only development; archive presenters excluded from all training",
+   "speaker_linkage_used": true,
+   "files": {
+    "train": 1800,
+    "dev": 397,
+    "held": 839,
+    "archive_test": 2363,
+    "excluded": 111
+   },
+   "pipeline_smoke_only": true,
+   "smoke_windows": {
+    "train": 1024,
+    "dev": 128,
+    "held": 128,
+    "archive_test": 128,
+    "excluded": 256
+   }
+  },
+  "per_stratum": {
+   "guz": {
+    "accuracy": null,
+    "abstention_rate": 1.0,
+    "windows": 13,
+    "meets_default": false
+   },
+   "kam": {
+    "accuracy": null,
+    "abstention_rate": 1.0,
+    "windows": 10,
+    "meets_default": false
+   },
+   "kik": {
+    "accuracy": null,
+    "abstention_rate": 1.0,
+    "windows": 9,
+    "meets_default": false
+   },
+   "kln": {
+    "accuracy": null,
+    "abstention_rate": 1.0,
+    "windows": 21,
+    "meets_default": false
+   },
+   "luo": {
+    "accuracy": null,
+    "abstention_rate": 1.0,
+    "windows": 41,
+    "meets_default": false
+   },
+   "lwg": {
+    "accuracy": null,
+    "abstention_rate": 1.0,
+    "windows": 1,
+    "meets_default": false
+   },
+   "swa": {
+    "accuracy": null,
+    "abstention_rate": 1.0,
+    "windows": 33,
+    "meets_default": false
+   }
+  },
+  "archive_test": {
+   "windows": 128,
+   "per_language": {
+    "bxk": {
+     "windows": 0,
+     "correct": 0,
+     "abstain": 0,
+     "accuracy": null,
+     "abstention_rate": null
+    },
+    "guz": {
+     "windows": 47,
+     "correct": 0,
+     "abstain": 47,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    },
+    "kam": {
+     "windows": 47,
+     "correct": 0,
+     "abstain": 47,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    },
+    "kik": {
+     "windows": 24,
+     "correct": 0,
+     "abstain": 24,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    },
+    "kln": {
+     "windows": 1,
+     "correct": 0,
+     "abstain": 1,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    },
+    "luo": {
+     "windows": 9,
+     "correct": 0,
+     "abstain": 9,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    },
+    "lwg": {
+     "windows": 0,
+     "correct": 0,
+     "abstain": 0,
+     "accuracy": null,
+     "abstention_rate": null
+    },
+    "swa": {
+     "windows": 0,
+     "correct": 0,
+     "abstain": 0,
+     "accuracy": null,
+     "abstention_rate": null
+    }
+   },
+   "per_condition_sample_rate": {
+    "44100Hz": {
+     "windows": 110,
+     "correct": 0,
+     "abstain": 110,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    },
+    "11025Hz": {
+     "windows": 14,
+     "correct": 0,
+     "abstain": 14,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    },
+    "48000Hz": {
+     "windows": 4,
+     "correct": 0,
+     "abstain": 4,
+     "accuracy": null,
+     "abstention_rate": 1.0
+    }
+   },
+   "overall_accuracy_on_judged": null,
+   "overall_abstention_rate": 1.0,
+   "confidence_threshold": 0.6,
+   "confusion_top": {}
+  },
+  "dp_sgd": {
+   "applied": true,
+   "epsilon": 5.2215396311544175,
+   "delta": 1e-06,
+   "noise_multiplier": 1.0,
+   "max_grad_norm": 1.0,
+   "accountant": "rdp",
+   "poisson_sampling": true,
+   "secure_rng": false,
+   "checkpoint_accountant_verified": true,
+   "scope": "window-example DP on fixed manifest; not presenter-level or end-to-end DP certification",
+   "release_privacy_certified": false
+  },
+  "recipe_sha256": "acfd364b24fe31437e1a220b9418d6793a687153be95e94815b5e3f4854b6c78",
+  "checkpoint": {
+   "optimizer_saved": true,
+   "rng_saved": true,
+   "path": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-6cc90db10bee/checkpoint.pt",
+   "full_interruption_resume_proven": false
+  },
+  "sealed_contract_check": {
+   "span_rule_matches_default": true,
+   "presenter_minimum_n_default": 20,
+   "presenter_minimum_n_tagged_pending": true,
+   "languages_meeting_presenter_minimum": [
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "swa"
+   ],
+   "per_language_accuracy_default": 0.9,
+   "per_language_accuracy_tagged_pending": true,
+   "code_switch_span_accuracy_default": 0.85,
+   "code_switch_material_present": false,
+   "no_speaker_id_probe": {
+    "measured": false,
+    "reason": "pipeline smoke, not a quality or privacy acceptance run"
+   },
+   "abstention_rate_reported": true
+  },
+  "verdict": "NOT ADMISSIBLE \u2014 research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance",
+  "final_model": false,
+  "certified_at": "2026-09-29T18:11:36.232995Z"
+ }
+}

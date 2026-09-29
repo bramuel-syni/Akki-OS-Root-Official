@@ -115,6 +115,7 @@ from typing import Dict, Final
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from contracts.northena_ledger import LedgerArtifactRef
 from services.compliance.deletion_ledger import emit_deletion_ledger_row
 from services.memory.compaction_v1.carriers import CompactionLedgerRow
 from services.memory.compaction_v1.refusals import (
@@ -284,7 +285,9 @@ async def append_compaction_row_to_chain(
         keys_deleted=0,  # honest zero · not a deletion event.
         retention_rule_ref=_CHAIN_RETENTION_RULE_REF,
         actor=actor,
-        artifact_ref=None,  # let emit_deletion_ledger_row fill defaults.
+        # The compacted run is the objective the row names; emit_deletion_ledger_row has no default.
+        artifact_ref=LedgerArtifactRef(artifact_type="objective_request", artifact_id=row.source_key,
+                                       version=row.retention_rule_set_version),
         lawful_basis_ref=_CHAIN_LAWFUL_BASIS_REF,
         extra_stamp_audit=stamp_audit_extras,
     )

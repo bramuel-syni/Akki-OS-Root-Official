@@ -1,0 +1,1965 @@
+{
+ "job_id": "eij-1b359b3cbd2e",
+ "phase": "estate_intelligence",
+ "source_id": "rms_mysql",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T18:56:40.497239Z",
+ "params": {
+  "reason": "rerun after jump-host OOM fix: streaming cursor, bounded text, KMV distinct sketch, memory guard"
+ },
+ "northena_run_id": "run-89d9f2c5dc92",
+ "northena_trace_id": "trc-20ce3f03c0f6",
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-CENSUS-ESTATE-INTELLIGENCE",
+  "version": "eij-1b359b3cbd2e"
+ },
+ "remote": {
+  "root": "~/.akki-census/state/estate_intelligence",
+  "job_dir": "~/.akki-census/state/estate_intelligence/jobs/eij-1b359b3cbd2e",
+  "pid": 75761
+ },
+ "status": "partial",
+ "scope": "census only: aggregates, sketches and hashes; no row values retained or returned",
+ "ledger_rows": [
+  {
+   "row_id": "led-398166457377",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "estate_intelligence_rms_mysql_admitted"
+  },
+  {
+   "row_id": "led-4e9f184f9601",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "estate_intelligence_daemonised:pid=75761"
+  },
+  {
+   "row_id": "led-6067b8b42dc7",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "estate_intelligence_partial"
+  }
+ ],
+ "connections": [
+  {
+   "label": "iebc_forms",
+   "host_fingerprint": "cd4c5390fb10"
+  },
+  {
+   "label": "artists_app",
+   "host_fingerprint": "cd57802e1444"
+  },
+  {
+   "label": "viupay",
+   "host_fingerprint": "a0a497b29fc3"
+  },
+  {
+   "label": "citizen_digital",
+   "host_fingerprint": "3de193c7b51c"
+  },
+  {
+   "label": "citizen_digital",
+   "host_fingerprint": "318772a8c6d2"
+  },
+  {
+   "label": "citizen-pulse",
+   "host_fingerprint": "b6ff240ded83"
+  },
+  {
+   "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "host_fingerprint": "8512835c0ceb"
+  }
+ ],
+ "code_sha256": "90322d4a826da81bfb0c57bc483b255beafeedd68654fee7f2656e09fb50af35",
+ "started_at": "2026-09-29T18:56:46.473440Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T19:31:04.697931Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-110585010a39"
+ },
+ "remote_state": {
+  "phase": "estate_intelligence",
+  "job_id": "eij-1b359b3cbd2e",
+  "status": "partial",
+  "started_at": "2026-09-29T18:56:46.355585Z",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "progress": {
+   "stage": "estate roll-up",
+   "databases_done": 20,
+   "at": "2026-09-29T19:12:14.809256Z"
+  },
+  "databases_done": [
+   {
+    "connection": "iebc_forms",
+    "database": "ecommerce_tafaria",
+    "tables": 130,
+    "rows_fetched": 3056,
+    "wall_seconds": 0.4
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "iebc_forms",
+    "tables": 3,
+    "rows_fetched": 138230,
+    "wall_seconds": 15.6
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "kra_reports",
+    "tables": 19,
+    "rows_fetched": 1238,
+    "wall_seconds": 0.3
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "miniapps",
+    "tables": 21,
+    "rows_fetched": 315,
+    "wall_seconds": 0.2
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viupay",
+    "tables": 38,
+    "rows_fetched": 72447,
+    "wall_seconds": 17.1
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viupay_agent_staging",
+    "tables": 31,
+    "rows_fetched": 199553,
+    "wall_seconds": 15.4
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_artists",
+    "tables": 8,
+    "rows_fetched": 995,
+    "wall_seconds": 0.3
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_miniapps_prod",
+    "tables": 21,
+    "rows_fetched": 73125,
+    "wall_seconds": 11.6
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viusasa_staging",
+    "tables": 303,
+    "rows_fetched": 3336586,
+    "wall_seconds": 542.1
+   },
+   {
+    "connection": "iebc_forms",
+    "database": "viutickets",
+    "tables": 56,
+    "rows_fetched": 274795,
+    "wall_seconds": 34.3
+   },
+   {
+    "connection": "viupay",
+    "database": "kra_reports",
+    "tables": 27,
+    "rows_fetched": 141738,
+    "wall_seconds": 33.3
+   },
+   {
+    "connection": "viupay",
+    "database": "viupay",
+    "tables": 39,
+    "rows_fetched": 144886,
+    "wall_seconds": 25.1
+   },
+   {
+    "connection": "viupay",
+    "database": "viutickets",
+    "tables": 57,
+    "rows_fetched": 315974,
+    "wall_seconds": 38.7
+   },
+   {
+    "connection": "citizen_digital",
+    "database": "local",
+    "tables": 17,
+    "rows_fetched": 164090,
+    "wall_seconds": 23.7
+   },
+   {
+    "connection": "citizen_digital",
+    "database": "db_visitors",
+    "tables": 47,
+    "rows_fetched": 568371,
+    "wall_seconds": 60.7
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "citizen-pulse",
+    "tables": 39,
+    "rows_fetched": 589,
+    "wall_seconds": 0.1
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "correspondents",
+    "tables": 10,
+    "rows_fetched": 206,
+    "wall_seconds": 0.3
+   },
+   {
+    "connection": "citizen-pulse",
+    "database": "saa",
+    "tables": 28,
+    "rows_fetched": 113061,
+    "wall_seconds": 13.2
+   },
+   {
+    "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+    "database": "news_vault",
+    "tables": 30,
+    "rows_fetched": 125160,
+    "wall_seconds": 23.4
+   },
+   {
+    "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+    "database": "razuna",
+    "tables": 82,
+    "rows_fetched": 259756,
+    "wall_seconds": 49.3
+   }
+  ],
+  "finished_at": "2026-09-29T19:12:15.151993Z",
+  "receipt_sha256": "d9c99a6322789a7a31b14918a0265da508120d22b3ef3910b379499da3b88d72"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-estate-intelligence/1",
+  "job_id": "eij-1b359b3cbd2e",
+  "phase": "estate_intelligence",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-09-29T18:56:46.355585Z",
+  "code_sha256": "90322d4a826da81bfb0c57bc483b255beafeedd68654fee7f2656e09fb50af35",
+  "status": "partial",
+  "result": {
+   "summary": {
+    "tables_total": 1006,
+    "tables_measured": 638,
+    "rows_estimate_total": 259273874,
+    "bytes_total": 377199771648,
+    "rows_measured_total": 5881277,
+    "complete_tables": 513,
+    "sampled_tables": 83,
+    "head_sampled_tables": 41,
+    "failed_tables": 44,
+    "weighted": {
+     "exact_duplicate_ratio": 0.01537,
+     "normalised_duplicate_ratio": 0.03584,
+     "null_bearing_row_ratio": 0.81695,
+     "degraded_row_ratio": 0.22957,
+     "pii_row_ratio": 0.71833,
+     "near_duplicate_text_ratio": 0.85313
+    },
+    "duplication": {
+     "within_table_duplicate_bytes_estimate": 1302200726,
+     "cross_table_pairs": 71,
+     "cross_table_duplicate_bytes_estimate": 56607013,
+     "top_pairs": [
+      {
+       "a": "iebc_forms/viupay.failed_jobs",
+       "b": "viupay/viupay.failed_jobs",
+       "content_overlap_estimate": 0.7812,
+       "bytes_smaller": 33095680,
+       "rows_smaller": 1926
+      },
+      {
+       "a": "iebc_forms/viutickets.movies",
+       "b": "viupay/viutickets.movies",
+       "content_overlap_estimate": 0.8398,
+       "bytes_smaller": 6832128,
+       "rows_smaller": 7562
+      },
+      {
+       "a": "iebc_forms/viutickets.ussd_hits",
+       "b": "viupay/viutickets.ussd_hits",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 6832128,
+       "rows_smaller": 117102
+      },
+      {
+       "a": "iebc_forms/viutickets.payment_processings",
+       "b": "viupay/viutickets.payment_processings",
+       "content_overlap_estimate": 0.6523,
+       "bytes_smaller": 4734976,
+       "rows_smaller": 15470
+      },
+      {
+       "a": "iebc_forms/viupay.payment_requests",
+       "b": "viupay/viupay.payment_requests",
+       "content_overlap_estimate": 0.5,
+       "bytes_smaller": 3686400,
+       "rows_smaller": 12831
+      },
+      {
+       "a": "iebc_forms/viutickets.movie_shows",
+       "b": "viupay/viutickets.movie_shows",
+       "content_overlap_estimate": 0.8047,
+       "bytes_smaller": 3686400,
+       "rows_smaller": 21400
+      },
+      {
+       "a": "iebc_forms/viutickets.orders",
+       "b": "viupay/viutickets.orders",
+       "content_overlap_estimate": 0.7812,
+       "bytes_smaller": 3686400,
+       "rows_smaller": 24215
+      },
+      {
+       "a": "iebc_forms/viupay.mpesa_stk_requests",
+       "b": "viupay/viupay.mpesa_stk_requests",
+       "content_overlap_estimate": 0.4531,
+       "bytes_smaller": 2637824,
+       "rows_smaller": 9789
+      },
+      {
+       "a": "iebc_forms/viupay.mm_pay_instruments",
+       "b": "viupay/viupay.mm_pay_instruments",
+       "content_overlap_estimate": 0.5273,
+       "bytes_smaller": 1589248,
+       "rows_smaller": 7875
+      },
+      {
+       "a": "iebc_forms/viupay.mpesa_stk_callbacks",
+       "b": "viupay/viupay.mpesa_stk_callbacks",
+       "content_overlap_estimate": 0.4297,
+       "bytes_smaller": 1589248,
+       "rows_smaller": 9147
+      },
+      {
+       "a": "iebc_forms/viupay.pay_instruments",
+       "b": "viupay/viupay.pay_instruments",
+       "content_overlap_estimate": 0.4766,
+       "bytes_smaller": 1589248,
+       "rows_smaller": 7922
+      },
+      {
+       "a": "iebc_forms/viutickets.customers",
+       "b": "viupay/viutickets.customers",
+       "content_overlap_estimate": 0.6523,
+       "bytes_smaller": 1589248,
+       "rows_smaller": 11179
+      },
+      {
+       "a": "iebc_forms/viutickets.sms",
+       "b": "viupay/viutickets.sms",
+       "content_overlap_estimate": 0.5273,
+       "bytes_smaller": 1589248,
+       "rows_smaller": 4118
+      },
+      {
+       "a": "iebc_forms/viupay.payment_transactions",
+       "b": "viupay/viupay.payment_transactions",
+       "content_overlap_estimate": 0.418,
+       "bytes_smaller": 540672,
+       "rows_smaller": 2380
+      },
+      {
+       "a": "iebc_forms/viutickets.payments",
+       "b": "viupay/viutickets.payments",
+       "content_overlap_estimate": 0.4844,
+       "bytes_smaller": 524288,
+       "rows_smaller": 3786
+      },
+      {
+       "a": "iebc_forms/viupay.oauth_access_tokens",
+       "b": "viupay/viupay.oauth_access_tokens",
+       "content_overlap_estimate": 0.2734,
+       "bytes_smaller": 376832,
+       "rows_smaller": 2080
+      },
+      {
+       "a": "iebc_forms/viupay.mm_payment_transactions",
+       "b": "viupay/viupay.mm_payment_transactions",
+       "content_overlap_estimate": 0.3555,
+       "bytes_smaller": 344064,
+       "rows_smaller": 2330
+      },
+      {
+       "a": "iebc_forms/viutickets.sessions",
+       "b": "viupay/viutickets.sessions",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 294912,
+       "rows_smaller": 615
+      },
+      {
+       "a": "iebc_forms/viutickets.events",
+       "b": "viupay/viutickets.events",
+       "content_overlap_estimate": 0.668,
+       "bytes_smaller": 147456,
+       "rows_smaller": 347
+      },
+      {
+       "a": "iebc_forms/viupay.iveri_operations",
+       "b": "viupay/viupay.iveri_operations",
+       "content_overlap_estimate": 0.957,
+       "bytes_smaller": 114688,
+       "rows_smaller": 589
+      },
+      {
+       "a": "iebc_forms/viutickets.newsletter_customers",
+       "b": "viupay/viutickets.newsletter_customers",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 98304,
+       "rows_smaller": 883
+      },
+      {
+       "a": "iebc_forms/kra_reports.invoice_items",
+       "b": "viupay/kra_reports.invoice_items",
+       "content_overlap_estimate": 0.3906,
+       "bytes_smaller": 81920,
+       "rows_smaller": 355
+      },
+      {
+       "a": "iebc_forms/viutickets.seats",
+       "b": "viupay/viutickets.seats",
+       "content_overlap_estimate": 0.3633,
+       "bytes_smaller": 81920,
+       "rows_smaller": 521
+      },
+      {
+       "a": "iebc_forms/viutickets.users",
+       "b": "viupay/viutickets.users",
+       "content_overlap_estimate": 0.5695,
+       "bytes_smaller": 65536,
+       "rows_smaller": 140
+      },
+      {
+       "a": "iebc_forms/viutickets.model_has_permissions",
+       "b": "viupay/viutickets.model_has_permissions",
+       "content_overlap_estimate": 0.6953,
+       "bytes_smaller": 49152,
+       "rows_smaller": 406
+      },
+      {
+       "a": "iebc_forms/viupay.gateways",
+       "b": "viupay/viupay.gateways",
+       "content_overlap_estimate": 0.4853,
+       "bytes_smaller": 49152,
+       "rows_smaller": 99
+      },
+      {
+       "a": "iebc_forms/viutickets.venues",
+       "b": "viupay/viutickets.venues",
+       "content_overlap_estimate": 0.7383,
+       "bytes_smaller": 49152,
+       "rows_smaller": 205
+      },
+      {
+       "a": "iebc_forms/kra_reports.migrations",
+       "b": "iebc_forms/viupay.migrations",
+       "content_overlap_estimate": 0.2308,
+       "bytes_smaller": 16384,
+       "rows_smaller": 25
+      },
+      {
+       "a": "iebc_forms/kra_reports.migrations",
+       "b": "viupay/kra_reports.migrations",
+       "content_overlap_estimate": 0.625,
+       "bytes_smaller": 16384,
+       "rows_smaller": 25
+      },
+      {
+       "a": "iebc_forms/kra_reports.migrations",
+       "b": "viupay/viupay.migrations",
+       "content_overlap_estimate": 0.2264,
+       "bytes_smaller": 16384,
+       "rows_smaller": 25
+      },
+      {
+       "a": "iebc_forms/viupay.migrations",
+       "b": "viupay/viupay.migrations",
+       "content_overlap_estimate": 0.975,
+       "bytes_smaller": 16384,
+       "rows_smaller": 39
+      },
+      {
+       "a": "iebc_forms/viutickets.migrations",
+       "b": "viupay/viutickets.migrations",
+       "content_overlap_estimate": 0.9741,
+       "bytes_smaller": 16384,
+       "rows_smaller": 113
+      },
+      {
+       "a": "citizen-pulse/saa.model_has_roles",
+       "b": "Razuna (Library Content) & Newsvault (Radio News content)/news_vault.model_has_roles",
+       "content_overlap_estimate": 0.2109,
+       "bytes_smaller": 16384,
+       "rows_smaller": 134
+      },
+      {
+       "a": "iebc_forms/miniapps.designation",
+       "b": "iebc_forms/viusasa_miniapps_prod.designation",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 16384,
+       "rows_smaller": 4
+      },
+      {
+       "a": "iebc_forms/miniapps.designation",
+       "b": "iebc_forms/viusasa_staging.designation",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 16384,
+       "rows_smaller": 4
+      },
+      {
+       "a": "iebc_forms/miniapps.status",
+       "b": "iebc_forms/viusasa_miniapps_prod.status",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 16384,
+       "rows_smaller": 7
+      },
+      {
+       "a": "iebc_forms/miniapps.status",
+       "b": "iebc_forms/viusasa_staging.status",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 16384,
+       "rows_smaller": 7
+      },
+      {
+       "a": "iebc_forms/viusasa_miniapps_prod.designation",
+       "b": "iebc_forms/viusasa_staging.designation",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 16384,
+       "rows_smaller": 4
+      },
+      {
+       "a": "iebc_forms/viusasa_miniapps_prod.status",
+       "b": "iebc_forms/viusasa_staging.status",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 16384,
+       "rows_smaller": 7
+      },
+      {
+       "a": "iebc_forms/miniapps.role",
+       "b": "iebc_forms/viusasa_miniapps_prod.role",
+       "content_overlap_estimate": 1.0,
+       "bytes_smaller": 16384,
+       "rows_smaller": 1
+      }
+     ],
+     "same_schema_groups": 97
+    },
+    "storage": {
+     "empty_tables": 368,
+     "empty_table_bytes": 14368768,
+     "stale_over_one_year_tables": 290,
+     "stale_bytes": 58131546112,
+     "redundant_index_bytes_estimate": 14990321376,
+     "reclaimable_bytes_estimate": 16363497884,
+     "top_stale": [
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "audits",
+       "rows_estimate": 22935968,
+       "data_bytes": 19968032768,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.00055,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 666
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "master_payments",
+       "rows_estimate": 4410685,
+       "data_bytes": 4481613824,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.9667,
+       "staleness_days": 438
+      },
+      {
+       "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+       "database": "razuna",
+       "table": "raz1_videos",
+       "rows_estimate": 478938,
+       "data_bytes": 3169845248,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0026,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 1341
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payment_requests",
+       "rows_estimate": 6852215,
+       "data_bytes": 3056599040,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.098,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 664
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "sms",
+       "rows_estimate": 9822471,
+       "data_bytes": 2935996416,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.00473,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 583
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "mpesa_stk_requests",
+       "rows_estimate": 6558280,
+       "data_bytes": 1480589312,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 724
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payments",
+       "rows_estimate": 6323116,
+       "data_bytes": 1236254720,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.9728,
+       "pii_row_ratio": 0.0862,
+       "staleness_days": 658
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "mpesa_stk_callbacks",
+       "rows_estimate": 6698731,
+       "data_bytes": 1201668096,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0001,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.9943,
+       "staleness_days": 724
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "orders",
+       "rows_estimate": 7993366,
+       "data_bytes": 898629632,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0013,
+       "pii_row_ratio": 0.0862,
+       "staleness_days": 684
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "episode_views",
+       "rows_estimate": 5561526,
+       "data_bytes": 801112064,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.21968,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.4648,
+       "staleness_days": 1069
+      },
+      {
+       "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+       "database": "razuna",
+       "table": "raz1_errors",
+       "rows_estimate": 28276,
+       "data_bytes": 781729792,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.02555,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.803,
+       "staleness_days": 1340
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "ussd_hits",
+       "rows_estimate": 9224505,
+       "data_bytes": 600834048,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0853,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 683
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "job_adverts",
+       "rows_estimate": 41922,
+       "data_bytes": 402538496,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.149,
+       "pii_row_ratio": 0.0145,
+       "staleness_days": 1160
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payment_requests_new",
+       "rows_estimate": 1502041,
+       "data_bytes": 352272384,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 1097
+      },
+      {
+       "connection": "citizen_digital",
+       "database": "local",
+       "table": "audits",
+       "rows_estimate": 473513,
+       "data_bytes": 346947584,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.00028,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 733
+      },
+      {
+       "connection": "viupay",
+       "database": "kra_reports",
+       "table": "external_credit_notes",
+       "rows_estimate": 224547,
+       "data_bytes": 291291136,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.25,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 379
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "datapass_webhooks",
+       "rows_estimate": 314099,
+       "data_bytes": 259866624,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 7e-05,
+       "degraded_row_ratio": 0.0002,
+       "pii_row_ratio": 0.9983,
+       "staleness_days": 615
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "otps",
+       "rows_estimate": 3024871,
+       "data_bytes": 175882240,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.0,
+       "staleness_days": 586
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viupay_agent_staging",
+       "table": "agent_api_logs",
+       "rows_estimate": 522652,
+       "data_bytes": 174784512,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 1558
+      },
+      {
+       "connection": "viupay",
+       "database": "viutickets",
+       "table": "media",
+       "rows_estimate": 471627,
+       "data_bytes": 160120832,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.7893,
+       "staleness_days": 613
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viupay_agent_staging",
+       "table": "tbl_lastsession",
+       "rows_estimate": 935106,
+       "data_bytes": 149635072,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0002,
+       "pii_row_ratio": 0.9995,
+       "staleness_days": 1556
+      },
+      {
+       "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+       "database": "razuna",
+       "table": "raz1_images",
+       "rows_estimate": 6527,
+       "data_bytes": 123289600,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.9958,
+       "staleness_days": 1497
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viutickets",
+       "table": "media",
+       "rows_estimate": 392888,
+       "data_bytes": 122322944,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.7884,
+       "staleness_days": 724
+      },
+      {
+       "connection": "viupay",
+       "database": "viutickets",
+       "table": "audits",
+       "rows_estimate": 237367,
+       "data_bytes": 113934336,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 3e-05,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 516
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "new_episode_views",
+       "rows_estimate": 983009,
+       "data_bytes": 103464960,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.66065,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.6062,
+       "staleness_days": 1094
+      }
+     ]
+    },
+    "quality": {
+     "top_degraded": [
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "telescope_entries",
+       "rows_estimate": 38110619,
+       "data_bytes": 86429941760,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.7862,
+       "staleness_days": 0
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "telescope_entries_tags",
+       "rows_estimate": 10406547,
+       "data_bytes": 1104166912,
+       "method": "head_sample_no_single_primary_key",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.163,
+       "staleness_days": null
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payments",
+       "rows_estimate": 6323116,
+       "data_bytes": 1236254720,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.9728,
+       "pii_row_ratio": 0.0862,
+       "staleness_days": 658
+      },
+      {
+       "connection": "citizen_digital",
+       "database": "db_visitors",
+       "table": "event_logs",
+       "rows_estimate": 2494684,
+       "data_bytes": 1993342976,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.6084,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 53
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "playback_stagings",
+       "rows_estimate": 34331240,
+       "data_bytes": 55237935104,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0243,
+       "pii_row_ratio": 0.9069,
+       "staleness_days": 118
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payment_requests",
+       "rows_estimate": 6852215,
+       "data_bytes": 3056599040,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.098,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 664
+      },
+      {
+       "connection": "viupay",
+       "database": "viutickets",
+       "table": "media",
+       "rows_estimate": 471627,
+       "data_bytes": 160120832,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.7893,
+       "staleness_days": 613
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viutickets",
+       "table": "media",
+       "rows_estimate": 392888,
+       "data_bytes": 122322944,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.7884,
+       "staleness_days": 724
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "playback_qualified_streams",
+       "rows_estimate": 15794152,
+       "data_bytes": 4973395968,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.05117,
+       "degraded_row_ratio": 0.0192,
+       "pii_row_ratio": 0.5834,
+       "staleness_days": 146
+      },
+      {
+       "connection": "citizen_digital",
+       "database": "db_visitors",
+       "table": "telescope_entries",
+       "rows_estimate": 164127,
+       "data_bytes": 102350848,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.3553,
+       "staleness_days": 308
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "datapass_transactions",
+       "rows_estimate": 333954,
+       "data_bytes": 75087872,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 7e-05,
+       "degraded_row_ratio": 0.3496,
+       "pii_row_ratio": 0.9919,
+       "staleness_days": 620
+      },
+      {
+       "connection": "citizen_digital",
+       "database": "db_visitors",
+       "table": "telescope_entries_tags",
+       "rows_estimate": 42165,
+       "data_bytes": 7913472,
+       "method": "head_sample_no_single_primary_key",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.2109,
+       "staleness_days": null
+      },
+      {
+       "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+       "database": "razuna",
+       "table": "raz1_folders_groups",
+       "rows_estimate": 145684,
+       "data_bytes": 20529152,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0008,
+       "degraded_row_ratio": 0.1718,
+       "pii_row_ratio": 0.6487,
+       "staleness_days": null
+      },
+      {
+       "connection": "viupay",
+       "database": "viupay",
+       "table": "payment_requests",
+       "rows_estimate": 24875,
+       "data_bytes": 6832128,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.9998,
+       "staleness_days": 0
+      },
+      {
+       "connection": "viupay",
+       "database": "viutickets",
+       "table": "order_details",
+       "rows_estimate": 22011,
+       "data_bytes": 3686400,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.0039,
+       "staleness_days": -1
+      },
+      {
+       "connection": "viupay",
+       "database": "viupay",
+       "table": "webhooks",
+       "rows_estimate": 18030,
+       "data_bytes": 15187968,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.3045,
+       "staleness_days": 0
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "search_lookups",
+       "rows_estimate": 259017,
+       "data_bytes": 9307324416,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.05895,
+       "degraded_row_ratio": 0.0686,
+       "pii_row_ratio": 0.1264,
+       "staleness_days": -1
+      },
+      {
+       "connection": "viupay",
+       "database": "viupay",
+       "table": "pay_instruments",
+       "rows_estimate": 16380,
+       "data_bytes": 3686400,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 0
+      },
+      {
+       "connection": "viupay",
+       "database": "viupay",
+       "table": "mm_pay_instruments",
+       "rows_estimate": 16300,
+       "data_bytes": 2637824,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.9991,
+       "staleness_days": 0
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viutickets",
+       "table": "order_details",
+       "rows_estimate": 16135,
+       "data_bytes": 2637824,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.0038,
+       "staleness_days": 656
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "notifications",
+       "rows_estimate": 13711,
+       "data_bytes": 4734976,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0005,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.9617,
+       "staleness_days": 939
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viupay",
+       "table": "payment_requests",
+       "rows_estimate": 12831,
+       "data_bytes": 3686400,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.9997,
+       "staleness_days": 991
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "subscriptions",
+       "rows_estimate": 6163376,
+       "data_bytes": 761249792,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0003,
+       "degraded_row_ratio": 0.0018,
+       "pii_row_ratio": 0.0,
+       "staleness_days": -4130
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "orders",
+       "rows_estimate": 7993366,
+       "data_bytes": 898629632,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0013,
+       "pii_row_ratio": 0.0862,
+       "staleness_days": 684
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viupay",
+       "table": "webhooks",
+       "rows_estimate": 9209,
+       "data_bytes": 7880704,
+       "method": "complete",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.3003,
+       "staleness_days": 993
+      }
+     ],
+     "top_pii": [
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "playback_stagings",
+       "rows_estimate": 34331240,
+       "data_bytes": 55237935104,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0243,
+       "pii_row_ratio": 0.9069,
+       "staleness_days": 118
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "telescope_entries",
+       "rows_estimate": 38110619,
+       "data_bytes": 86429941760,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.7862,
+       "staleness_days": 0
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "audits",
+       "rows_estimate": 22935968,
+       "data_bytes": 19968032768,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.00055,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 666
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "sms",
+       "rows_estimate": 9822471,
+       "data_bytes": 2935996416,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.00473,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 583
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "ussd_hits",
+       "rows_estimate": 9224505,
+       "data_bytes": 600834048,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0853,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 683
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "playback_qualified_streams",
+       "rows_estimate": 15794152,
+       "data_bytes": 4973395968,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.05117,
+       "degraded_row_ratio": 0.0192,
+       "pii_row_ratio": 0.5834,
+       "staleness_days": 146
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payment_requests",
+       "rows_estimate": 6852215,
+       "data_bytes": 3056599040,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.098,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 664
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "mpesa_stk_callbacks",
+       "rows_estimate": 6698731,
+       "data_bytes": 1201668096,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0001,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.9943,
+       "staleness_days": 724
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "mpesa_stk_requests",
+       "rows_estimate": 6558280,
+       "data_bytes": 1480589312,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 724
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "users",
+       "rows_estimate": 6113578,
+       "data_bytes": 1578090496,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0001,
+       "pii_row_ratio": 0.9988,
+       "staleness_days": 0
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "users_staging",
+       "rows_estimate": 6049518,
+       "data_bytes": 1337982976,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0001,
+       "pii_row_ratio": 0.9988,
+       "staleness_days": 243
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "playback_batches",
+       "rows_estimate": 5899905,
+       "data_bytes": 78914781184,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.9938,
+       "staleness_days": 280
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viupay_agent_staging",
+       "table": "tbl_free_transid",
+       "rows_estimate": 9660306,
+       "data_bytes": 383762432,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.6034,
+       "staleness_days": null
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "master_payments",
+       "rows_estimate": 4410685,
+       "data_bytes": 4481613824,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.9667,
+       "staleness_days": 438
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "episode_views",
+       "rows_estimate": 5561526,
+       "data_bytes": 801112064,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.21968,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.4648,
+       "staleness_days": 1069
+      },
+      {
+       "connection": "citizen_digital",
+       "database": "db_visitors",
+       "table": "event_logs",
+       "rows_estimate": 2494684,
+       "data_bytes": 1993342976,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.6084,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 53
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "continue_watchings",
+       "rows_estimate": 5053836,
+       "data_bytes": 7092568064,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0066,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.4753,
+       "staleness_days": 1
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "mpesa_c2b_callbacks",
+       "rows_estimate": 1981037,
+       "data_bytes": 475004928,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0001,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 115
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "telescope_entries_tags",
+       "rows_estimate": 10406547,
+       "data_bytes": 1104166912,
+       "method": "head_sample_no_single_primary_key",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 1.0,
+       "pii_row_ratio": 0.163,
+       "staleness_days": null
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payment_requests_new",
+       "rows_estimate": 1502041,
+       "data_bytes": 352272384,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 1097
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "login_activities",
+       "rows_estimate": 1406632,
+       "data_bytes": 93995008,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0077,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 1.0,
+       "staleness_days": 538
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viupay_agent_staging",
+       "table": "tbl_lastsession",
+       "rows_estimate": 935106,
+       "data_bytes": 149635072,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0002,
+       "pii_row_ratio": 0.9995,
+       "staleness_days": 1556
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "orders",
+       "rows_estimate": 7993366,
+       "data_bytes": 898629632,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.0013,
+       "pii_row_ratio": 0.0862,
+       "staleness_days": 684
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "new_episode_views",
+       "rows_estimate": 983009,
+       "data_bytes": 103464960,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.66065,
+       "degraded_row_ratio": 0.0,
+       "pii_row_ratio": 0.6062,
+       "staleness_days": 1094
+      },
+      {
+       "connection": "iebc_forms",
+       "database": "viusasa_staging",
+       "table": "payments",
+       "rows_estimate": 6323116,
+       "data_bytes": 1236254720,
+       "method": "stratified_keyset_sample",
+       "exact_duplicate_ratio": 0.0,
+       "degraded_row_ratio": 0.9728,
+       "pii_row_ratio": 0.0862,
+       "staleness_days": 658
+      }
+     ],
+     "orphaned_references": [
+      {
+       "table": "ecommerce_tafaria.invoices",
+       "column": "order_id",
+       "target": "orders",
+       "orphan_ratio": 1.0,
+       "sampled": 4
+      },
+      {
+       "table": "ecommerce_tafaria.invoices",
+       "column": "payment_id",
+       "target": "payments",
+       "orphan_ratio": 1.0,
+       "sampled": 1
+      },
+      {
+       "table": "viusasa_staging.active_users",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.airtel_ussd_pushes",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.article_menu",
+       "column": "article_id",
+       "target": "articles",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.audits",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.bill_payment_accounts",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.bulk_activations",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.campaign_coupon_usages",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 2
+      },
+      {
+       "table": "viusasa_staging.cart_items",
+       "column": "merchant_id",
+       "target": "merchants",
+       "orphan_ratio": 1.0,
+       "sampled": 2
+      },
+      {
+       "table": "viusasa_staging.cart_items",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.cart_sessions",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.comments",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.continue_watchings",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.datapass_revamp_subscriptions",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.datapass_transactions",
+       "column": "product_id",
+       "target": "products",
+       "orphan_ratio": 1.0,
+       "sampled": 4
+      },
+      {
+       "table": "viusasa_staging.delivery_addresses",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 184
+      },
+      {
+       "table": "viusasa_staging.delivery_infos",
+       "column": "category_id",
+       "target": "category",
+       "orphan_ratio": 1.0,
+       "sampled": 1
+      },
+      {
+       "table": "viusasa_staging.elimu_learner_videos",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 2
+      },
+      {
+       "table": "viusasa_staging.elimu_point_transactions",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 5
+      },
+      {
+       "table": "viusasa_staging.elimu_quiz_attempts",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 10
+      },
+      {
+       "table": "viusasa_staging.elimu_streaks",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 6
+      },
+      {
+       "table": "viusasa_staging.episode_views",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.equity_bill_payments",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 1
+      },
+      {
+       "table": "viusasa_staging.equity_s_d_k_payments",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 1
+      },
+      {
+       "table": "viusasa_staging.favorites",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.fcm_tokens",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 282
+      },
+      {
+       "table": "viusasa_staging.iveri_debit_transactions",
+       "column": "card_id",
+       "target": "cards",
+       "orphan_ratio": 1.0,
+       "sampled": 20
+      },
+      {
+       "table": "viusasa_staging.iveri_debit_transactions",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 5
+      },
+      {
+       "table": "viusasa_staging.iveris",
+       "column": "card_id",
+       "target": "cards",
+       "orphan_ratio": 1.0,
+       "sampled": 1
+      },
+      {
+       "table": "viusasa_staging.iveris",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.job_adverts",
+       "column": "job_id",
+       "target": "jobs",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.job_statuses",
+       "column": "job_id",
+       "target": "jobs",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.learner_active_profiles",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 32
+      },
+      {
+       "table": "viusasa_staging.learner_progress",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 4
+      },
+      {
+       "table": "viusasa_staging.livia_webhooks",
+       "column": "status_id",
+       "target": "status",
+       "orphan_ratio": 1.0,
+       "sampled": 9
+      },
+      {
+       "table": "viusasa_staging.livia_webhooks",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 2
+      },
+      {
+       "table": "viusasa_staging.login_activities",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      },
+      {
+       "table": "viusasa_staging.manual_payments",
+       "column": "order_id",
+       "target": "orders",
+       "orphan_ratio": 1.0,
+       "sampled": 1
+      },
+      {
+       "table": "viusasa_staging.manual_payments",
+       "column": "user_id",
+       "target": "user",
+       "orphan_ratio": 1.0,
+       "sampled": 400
+      }
+     ],
+     "pii_kinds": {
+      "pii.email": 46064,
+      "pii.phone": 1043187,
+      "pii.ipv4": 151971,
+      "pii.url": 358590,
+      "pii.credit_card": 25940,
+      "pii.iban": 7620
+     }
+    },
+    "method_note": "Ratios are measured on complete passes (tables \u2264100k rows) or stratified keyset samples (8\u00d75k rows) and disclosed per table; cross-table overlap is a bottom-256 sketch Jaccard estimate over same-schema tables; no row values were retained or returned."
+   },
+   "errors": [
+    {
+     "connection": "artists_app",
+     "code": "PULL_SEAM_WORKER_FAILED:pymysql.err.OperationalError: (1045, Access denied for user bramuel159.138.173.250 (using passwo"
+    }
+   ],
+   "databases": [
+    {
+     "connection": "iebc_forms",
+     "database": "ecommerce_tafaria",
+     "tables": 130,
+     "rows_fetched": 3056,
+     "statements": 145,
+     "wall_seconds": 0.4,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "iebc_forms",
+     "tables": 3,
+     "rows_fetched": 138230,
+     "statements": 33,
+     "wall_seconds": 15.6,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "kra_reports",
+     "tables": 19,
+     "rows_fetched": 1238,
+     "statements": 27,
+     "wall_seconds": 0.3,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "miniapps",
+     "tables": 21,
+     "rows_fetched": 315,
+     "statements": 24,
+     "wall_seconds": 0.2,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "viupay",
+     "tables": 38,
+     "rows_fetched": 72447,
+     "statements": 69,
+     "wall_seconds": 17.1,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "viupay_agent_staging",
+     "tables": 31,
+     "rows_fetched": 199553,
+     "statements": 71,
+     "wall_seconds": 15.4,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "viusasa_artists",
+     "tables": 8,
+     "rows_fetched": 995,
+     "statements": 12,
+     "wall_seconds": 0.3,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "viusasa_miniapps_prod",
+     "tables": 21,
+     "rows_fetched": 73125,
+     "statements": 38,
+     "wall_seconds": 11.6,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "viusasa_staging",
+     "tables": 303,
+     "rows_fetched": 3336586,
+     "statements": 1196,
+     "wall_seconds": 542.1,
+     "table_errors": 0
+    },
+    {
+     "connection": "iebc_forms",
+     "database": "viutickets",
+     "tables": 56,
+     "rows_fetched": 274795,
+     "statements": 152,
+     "wall_seconds": 34.3,
+     "table_errors": 0
+    },
+    {
+     "connection": "viupay",
+     "database": "kra_reports",
+     "tables": 27,
+     "rows_fetched": 141738,
+     "statements": 64,
+     "wall_seconds": 33.3,
+     "table_errors": 0
+    },
+    {
+     "connection": "viupay",
+     "database": "viupay",
+     "tables": 39,
+     "rows_fetched": 144886,
+     "statements": 89,
+     "wall_seconds": 25.1,
+     "table_errors": 0
+    },
+    {
+     "connection": "viupay",
+     "database": "viutickets",
+     "tables": 57,
+     "rows_fetched": 315974,
+     "statements": 160,
+     "wall_seconds": 38.7,
+     "table_errors": 0
+    },
+    {
+     "connection": "citizen_digital",
+     "database": "local",
+     "tables": 17,
+     "rows_fetched": 164090,
+     "statements": 50,
+     "wall_seconds": 23.7,
+     "table_errors": 5
+    },
+    {
+     "connection": "citizen_digital",
+     "database": "db_visitors",
+     "tables": 47,
+     "rows_fetched": 568371,
+     "statements": 201,
+     "wall_seconds": 60.7,
+     "table_errors": 0
+    },
+    {
+     "connection": "citizen-pulse",
+     "database": "citizen-pulse",
+     "tables": 39,
+     "rows_fetched": 589,
+     "statements": 3,
+     "wall_seconds": 0.1,
+     "table_errors": 39
+    },
+    {
+     "connection": "citizen-pulse",
+     "database": "correspondents",
+     "tables": 10,
+     "rows_fetched": 206,
+     "statements": 13,
+     "wall_seconds": 0.3,
+     "table_errors": 0
+    },
+    {
+     "connection": "citizen-pulse",
+     "database": "saa",
+     "tables": 28,
+     "rows_fetched": 113061,
+     "statements": 65,
+     "wall_seconds": 13.2,
+     "table_errors": 0
+    },
+    {
+     "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+     "database": "news_vault",
+     "tables": 30,
+     "rows_fetched": 125160,
+     "statements": 68,
+     "wall_seconds": 23.4,
+     "table_errors": 0
+    },
+    {
+     "connection": "Razuna (Library Content) & Newsvault (Radio News content)",
+     "database": "razuna",
+     "tables": 82,
+     "rows_fetched": 259756,
+     "statements": 138,
+     "wall_seconds": 49.3,
+     "table_errors": 0
+    }
+   ],
+   "detail_path": "~/.akki-census/state/estate_intelligence/jobs/eij-1b359b3cbd2e/detail.json",
+   "detail_sha256": "bc4487fdfc5897e5bb7425090ec1416243d0a423958399a29cf9c86a4b737e26",
+   "row_values_retained": false,
+   "execution": "jump host measured; GPU host held aggregates only"
+  },
+  "finished_at": "2026-09-29T19:12:15.151993Z",
+  "receipt_sha256": "d9c99a6322789a7a31b14918a0265da508120d22b3ef3910b379499da3b88d72",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T19:12:15.151993Z"
+}

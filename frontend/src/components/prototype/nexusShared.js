@@ -13,8 +13,8 @@ export function ownerDrawer(value, close) {
   return { dwOpen: Boolean(value), closeWalk: close, dwXPlain: true, dwShowSub: true, dwShowCards: true,
     dwTitle: value?.title || '', dwSub: value?.subtitle || '', dwHasChip: true, dwChipLabel: value?.code || 'Recorded',
     dwChipBg: 'var(--surface2)', dwChipColor: 'var(--ink3)', dwHideTransitions: true,
-    dwCards: value ? [{ q: 'What the record says', a: value.body, hasArrow: false, hasControls: false },
-      ...(value.next ? [{ q: 'Next action', a: value.next, hasArrow: false, hasControls: false }] : [])] : [],
+    dwCards: value ? (value.cards || [{ q: 'What the record says', a: value.body, hasArrow: false, hasControls: false },
+      ...(value.next ? [{ q: 'Next action', a: value.next, hasArrow: false, hasControls: false }] : [])]) : [],
     dwHasActions: Boolean(value?.actions?.length), dwActions: value?.actions || [],
   };
 }

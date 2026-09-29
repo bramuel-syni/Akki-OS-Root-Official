@@ -66,6 +66,9 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     "chat.governed_answer",
     # BYO-LLM connect verification round-trip (Owner sharpening §2):
     "llm.connect_verify",
+    # Estate Intelligence dossier (Owner ruling 2026-09-29 "2 — add any relevant meaningful datapoint … go autonomous":
+    # LLM-written monetisation / cost-reduction dossier composed ONLY from census aggregates, no row content):
+    "census.estate_intelligence_dossier",
 })
 
 

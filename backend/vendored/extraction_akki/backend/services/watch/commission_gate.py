@@ -25,6 +25,9 @@ PROTECTED_BOUNDARIES = {
     "census.commission": "POST /api/portal/census/run",
     "census.plan": "POST /api/portal/census/plan",
     "language_cognition.commission": "POST /api/portal/census/language-cognition/jobs",
+    "language_cognition.cancel": "POST /api/portal/census/language-cognition/jobs/{job_id}/cancel",
+    "estate_intelligence.commission": "POST /api/portal/census/estate-intelligence/jobs",
+    "estate_intelligence.cancel": "POST /api/portal/census/estate-intelligence/jobs/{job_id}/cancel",
     # M3 · a request becomes completed, delivered work: three more commission gates on the same inventory.
     "dap.commission": "POST /api/portal/commission/drafts/{draft_id}/freeze",
     "dap.approval": "POST /api/portal/approvals/{request_id}/decide",

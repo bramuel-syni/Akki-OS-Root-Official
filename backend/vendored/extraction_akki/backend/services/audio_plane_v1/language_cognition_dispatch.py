@@ -221,13 +221,37 @@ def submit(phase, params, principal_id, lawful_ref, timeout=60):
     return save_job(job)
 
 
+def cancel(job_id, reason):
+    """Owner-ordered stop of a running phase: terminate the detached worker and record the stop as a fact, not a failure."""
+    from services.training_runner.ssh_seam import execute_remote_command
+    job = load_job(job_id)
+    if not job or job["status"] != "running":
+        return job
+    pid = int(job["remote"].get("pid") or 0)
+    if pid <= 0:
+        raise ValueError("CANCEL_REQUIRES_A_KNOWN_WORKER_PID")
+    command = (f"kill -TERM {pid} 2>/dev/null; sleep 3; "
+               f"if kill -0 {pid} 2>/dev/null; then kill -KILL {pid} 2>/dev/null; sleep 1; fi; "
+               f"kill -0 {pid} 2>/dev/null && echo still_alive || echo stopped")
+    result = execute_remote_command(job["host"], command, purpose=f"language_cognition_cancel:{job_id}", timeout=45)
+    outcome = result.stdout_redacted.strip().splitlines()[-1] if result.stdout_redacted.strip() else "unknown"
+    job["cancel_rpc"] = {"at": now(), "rc": result.rc, "receipt_id": result.receipt_id, "outcome": outcome, "reason": reason}
+    if result.rc != 0 or outcome != "stopped":
+        job["cancel_rpc"]["error"] = result.stderr_redacted[:300]
+        return save_job(job)
+    job.update(status="cancelled", reason=reason, finished_at=now())
+    _ledger(job, "converge", "terminate_budget", f"language_cognition_{job['phase']}_cancelled:{reason}"[:200],
+            {"pid": pid, "cancel_receipt_id": result.receipt_id})
+    return save_job(job)
+
+
 def refresh(job_id):
     """One bounded status RPC: read the host-side state and receipt (verified by digest)."""
     from services.training_runner.ssh_seam import execute_remote_command
     job = load_job(job_id)
     if not job:
         return None
-    if job["status"] in ("completed", "failed", "refused"):
+    if job["status"] in ("completed", "failed", "refused", "cancelled"):
         return job
     job_dir = job["remote"]["job_dir"]
     command = (f"cat {shlex.quote(job_dir + '/state.json')} 2>/dev/null; echo; echo __RECEIPT__; "

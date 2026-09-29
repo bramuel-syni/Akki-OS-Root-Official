@@ -31,7 +31,14 @@ def overview(actor=Depends(census_identity)):
         surfaces=inventory(actor['tenant_id'],values)
         surfaces['source_details']=[source_summary(s) for s in surfaces['source_details']]
         values=[record_summary(r) for r in values]
-        return {**actor, "records": values, "latest": values[0] if values else None,
+        estate_intelligence=None
+        if actor['tenant_id']=='RMS':
+            from services.census_autonomy import estate_intelligence_report as eir
+            try:
+                estate_intelligence=eir.overview_projection()
+                values=sorted(values+eir.census_records(),key=lambda r:r.get('finished_at') or r.get('created_at') or '',reverse=True)
+            except (OSError,ValueError,KeyError): estate_intelligence={'latest':None,'running':None,'error':'projection unavailable'}
+        return {**actor, "records": values, "latest": values[0] if values else None, "estate_intelligence": estate_intelligence,
                 "runs": [run_summary(reads.run_view(r)) for r in store.runs(actor["tenant_id"])],
                 "can_run": bool({"operator", "master_admin"}.intersection(actor["roles"])),
                 "sources": [{"source_id": s, "label": SOURCE_LABELS[s], "scope": "External read-only enumeration and declared sampled checks"}
@@ -51,7 +58,11 @@ def records(actor=Depends(census_identity)):
 
 @router.get("/api/portal/census/records/{record_id}", response_model=CensusEnvelope)
 def record(record_id: str, actor=Depends(census_identity)):
-    row = next((r for r in reads.records(actor["tenant_id"])
+    rows = reads.records(actor["tenant_id"])
+    if actor["tenant_id"] == "RMS" and record_id.startswith("eij-"):
+        from services.census_autonomy import estate_intelligence_report as eir
+        rows = eir.census_records()
+    row = next((r for r in rows
                 if record_id in {r["record_id"], str(r.get("census_number"))}), None)
     if not row:
         raise HTTPException(404, "No census record with that reference is available in your tenant.")
@@ -189,6 +200,135 @@ def language_cognition_job(job_id: str, actor=Depends(census_identity)):
     if not job:
         raise HTTPException(404, "No language-cognition job with that reference is available in your tenant.")
     return {"tenant_id": actor["tenant_id"], "job": job}
+
+
+@router.post("/api/portal/census/language-cognition/jobs/{job_id}/cancel", response_model=CensusEnvelope)
+def language_cognition_cancel(job_id: str, body: dict = Body(...), actor=Depends(census_identity)):
+    """Owner-ordered stop of a running phase on the host. The job is recorded as cancelled, never as completed."""
+    with commission_gate.crossing(actor, "language_cognition.cancel", {**body, "job_id": job_id}):
+        if not {"operator", "master_admin"}.intersection(actor["roles"]):
+            raise HTTPException(403, "Only an admitted estate operator can stop a training phase.")
+        if actor["tenant_id"] != "RMS" or not re.fullmatch(r"lcj-[a-f0-9]{12}", job_id):
+            raise HTTPException(404, "No language-cognition job with that reference is available in your tenant.")
+        reason = str(body.get("reason") or "").strip()
+        if not reason:
+            raise HTTPException(422, "A stop needs a stated reason.")
+        from services.audio_plane_v1 import language_cognition_dispatch as lc
+        try:
+            job = lc.cancel(job_id, reason[:200])
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        except (OSError, KeyError) as exc:
+            raise HTTPException(409, "The training host is unavailable; the worker was not stopped.") from exc
+        if not job:
+            raise HTTPException(404, "No language-cognition job with that reference is available in your tenant.")
+    return {"tenant_id": actor["tenant_id"], "job": job}
+
+
+@router.post("/api/portal/census/estate-intelligence/jobs", status_code=202, response_model=CensusEnvelope)
+def estate_intelligence_submit(body: dict = Body(...), actor=Depends(census_identity)):
+    """Commission the Estate Intelligence census (duplication, quality, degradation, freshness, integrity,
+    PII density, storage economics) on the admitted census worker. Census only: aggregates, never rows."""
+    with commission_gate.crossing(actor, "estate_intelligence.commission", body):
+        if not {"operator", "master_admin"}.intersection(actor["roles"]):
+            raise HTTPException(403, "Only an admitted estate operator can commission an estate census.")
+        if actor["tenant_id"] != "RMS":
+            raise HTTPException(403, "The RMS estate is RMS tenant material.")
+        from services.census_autonomy import estate_intelligence_dispatch as ei
+        try:
+            path, _ = admission_path()
+            params = {k: v for k, v in body.items() if k not in ("source", "tenant_id")}
+            job = ei.submit(body.get("source", "rms_mysql"), params, actor["principal_id"], str(path))
+        except (ValueError, TypeError) as exc:
+            raise HTTPException(422, str(exc)) from exc
+        except (OSError, KeyError) as exc:
+            raise HTTPException(409, "The census worker or estate custody is unavailable; nothing was dispatched.") from exc
+    return {"tenant_id": actor["tenant_id"], "job": job}
+
+
+@router.get("/api/portal/census/estate-intelligence/jobs", response_model=CensusEnvelope)
+def estate_intelligence_jobs(actor=Depends(census_identity)):
+    from services.census_autonomy import estate_intelligence_dispatch as ei
+    return {"tenant_id": actor["tenant_id"], "jobs": ei.list_jobs() if actor["tenant_id"] == "RMS" else []}
+
+
+@router.get("/api/portal/census/estate-intelligence/jobs/{job_id}", response_model=CensusEnvelope)
+def estate_intelligence_job(job_id: str, actor=Depends(census_identity)):
+    from services.census_autonomy import estate_intelligence_dispatch as ei
+    if actor["tenant_id"] != "RMS" or not re.fullmatch(r"eij-[a-f0-9]{12}", job_id):
+        raise HTTPException(404, "No estate-intelligence job with that reference is available in your tenant.")
+    job = ei.refresh(job_id)
+    if not job:
+        raise HTTPException(404, "No estate-intelligence job with that reference is available in your tenant.")
+    if job.get("status") in ("completed", "partial") and (job.get("receipt") or {}).get("digest_verified"):
+        from services.census_autonomy import estate_intelligence_report as eir
+        try:
+            report = eir.report_for(job_id)
+        except (OSError, ValueError, KeyError):
+            report = None
+        job["report_ready"] = bool(report)
+        job["brief_path"] = (report or {}).get("brief_path")
+    return {"tenant_id": actor["tenant_id"], "job": job}
+
+
+@router.post("/api/portal/census/estate-intelligence/jobs/{job_id}/cancel", response_model=CensusEnvelope)
+def estate_intelligence_cancel(job_id: str, body: dict = Body(...), actor=Depends(census_identity)):
+    with commission_gate.crossing(actor, "estate_intelligence.cancel", {**body, "job_id": job_id}):
+        if not {"operator", "master_admin"}.intersection(actor["roles"]):
+            raise HTTPException(403, "Only an admitted estate operator can stop an estate census.")
+        if actor["tenant_id"] != "RMS" or not re.fullmatch(r"eij-[a-f0-9]{12}", job_id):
+            raise HTTPException(404, "No estate-intelligence job with that reference is available in your tenant.")
+        reason = str(body.get("reason") or "").strip()
+        if not reason:
+            raise HTTPException(422, "A stop needs a stated reason.")
+        from services.census_autonomy import estate_intelligence_dispatch as ei
+        try:
+            job = ei.cancel(job_id, reason[:200])
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        if not job:
+            raise HTTPException(404, "No estate-intelligence job with that reference is available in your tenant.")
+    return {"tenant_id": actor["tenant_id"], "job": job}
+
+
+@router.get("/api/portal/census/estate-intelligence/report", response_model=CensusEnvelope)
+def estate_intelligence_latest_report(actor=Depends(census_identity)):
+    """Latest digest-verified Estate Intelligence report (aggregates only) with the running census, if any."""
+    from services.census_autonomy import estate_intelligence_report as eir
+    if actor["tenant_id"] != "RMS":
+        return {"tenant_id": actor["tenant_id"], "report": None, "running": None}
+    projection = eir.overview_projection()
+    return {"tenant_id": actor["tenant_id"], "report": eir.latest_report(), "running": projection["running"]}
+
+
+@router.get("/api/portal/census/estate-intelligence/jobs/{job_id}/report", response_model=CensusEnvelope)
+def estate_intelligence_job_report(job_id: str, actor=Depends(census_identity)):
+    from services.census_autonomy import estate_intelligence_report as eir
+    if actor["tenant_id"] != "RMS" or not re.fullmatch(r"eij-[a-f0-9]{12}", job_id):
+        raise HTTPException(404, "No estate-intelligence job with that reference is available in your tenant.")
+    report = eir.report_for(job_id)
+    if not report:
+        raise HTTPException(409, "No verified terminal receipt is banked for this job yet; the report is built only from a digest-verified result.")
+    return {"tenant_id": actor["tenant_id"], "report": report}
+
+
+@router.post("/api/portal/census/estate-intelligence/jobs/{job_id}/dossier", response_model=CensusEnvelope)
+async def estate_intelligence_dossier(job_id: str, body: dict = Body(default={}), actor=Depends(census_identity)):
+    """Compose the governed LLM dossier from the report's aggregates through the single chokepoint."""
+    from services.census_autonomy import estate_intelligence_report as eir
+    from services.chokepoint.llm import LLMShieldFailure, PurposeInvalid
+    from services.chokepoint import ChokepointRefused
+    if not {"operator", "master_admin"}.intersection(actor["roles"]):
+        raise HTTPException(403, "Only an admitted estate operator can commission the estate dossier.")
+    if actor["tenant_id"] != "RMS" or not re.fullmatch(r"eij-[a-f0-9]{12}", job_id):
+        raise HTTPException(404, "No estate-intelligence job with that reference is available in your tenant.")
+    if not eir.report_for(job_id):
+        raise HTTPException(409, "No verified terminal receipt is banked for this job yet; nothing was sent to a model.")
+    try:
+        report = await eir.compose_dossier(job_id, actor["principal_id"], actor["tenant_id"], model=str(body.get("model") or "gpt-5-mini"))
+    except (LLMShieldFailure, PurposeInvalid, ChokepointRefused) as exc:
+        return {"tenant_id": actor["tenant_id"], "refused": True, "refusal_reason": str(exc)[:400], "report": eir.report_for(job_id)}
+    return {"tenant_id": actor["tenant_id"], "refused": False, "report": report}
 
 
 async def unbound_surface(request: Request, actor=Depends(census_identity)):

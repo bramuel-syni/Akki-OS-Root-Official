@@ -1,0 +1,548 @@
+{
+ "job_id": "lcj-372fadc90b73",
+ "host": "akki-vm-ii",
+ "receipt_sha256": "cb2e79187d22a7760e04dca2292d841b97ec604fac44f1aedf762d91869cfaad",
+ "compute": {
+  "steps": 1780,
+  "epochs_completed": 20,
+  "best_dev_epoch": 20,
+  "elapsed_seconds": 1793,
+  "device": "cuda",
+  "gpu_index": 1,
+  "gpu": "NVIDIA H200",
+  "gpu_max_memory_gb": 51.14,
+  "batch_size": 2048,
+  "physical_batch_size": 1024,
+  "precision": "TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors",
+  "feature_path": "device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation",
+  "windows_per_second": 2550.8
+ },
+ "artefact_sha256": "a9c95a20f2801c75c9b406ebe214105ccd3cc47b1fcd1af545bf50c4a0542cd1",
+ "training_manifest_sha256": "f68eb67303724e1abc6fbc9f4fc2023e88d65cd3e3686f4192c08a069ed4142a",
+ "data_touched": {
+  "baseline_job_id": "lcj-f96c86a16312",
+  "baseline_params": {
+   "max_windows_per_file": 60,
+   "max_windows_per_language": 30000,
+   "max_audio_seconds": 900,
+   "split_seed": 11
+  },
+  "windows": {
+   "train": 180516,
+   "dev": 27114,
+   "held": 57825,
+   "archive_test": 246227,
+   "excluded": 256
+  },
+  "per_language": {
+   "bxk": {
+    "train_presenters": 0,
+    "dev_presenters": 0,
+    "held_presenters": 0,
+    "archive_test_presenters": 0,
+    "meets_presenter_minimum_n": false
+   },
+   "guz": {
+    "train_presenters": 85,
+    "dev_presenters": 9,
+    "held_presenters": 27,
+    "archive_test_presenters": 34,
+    "meets_presenter_minimum_n": true
+   },
+   "kam": {
+    "train_presenters": 120,
+    "dev_presenters": 13,
+    "held_presenters": 47,
+    "archive_test_presenters": 96,
+    "meets_presenter_minimum_n": true
+   },
+   "kik": {
+    "train_presenters": 133,
+    "dev_presenters": 14,
+    "held_presenters": 20,
+    "archive_test_presenters": 14,
+    "meets_presenter_minimum_n": true
+   },
+   "kln": {
+    "train_presenters": 131,
+    "dev_presenters": 14,
+    "held_presenters": 40,
+    "archive_test_presenters": 2,
+    "meets_presenter_minimum_n": true
+   },
+   "luo": {
+    "train_presenters": 113,
+    "dev_presenters": 12,
+    "held_presenters": 76,
+    "archive_test_presenters": 7,
+    "meets_presenter_minimum_n": true
+   },
+   "lwg": {
+    "train_presenters": 39,
+    "dev_presenters": 4,
+    "held_presenters": 15,
+    "archive_test_presenters": 0,
+    "meets_presenter_minimum_n": true
+   },
+   "swa": {
+    "train_presenters": 183,
+    "dev_presenters": 20,
+    "held_presenters": 36,
+    "archive_test_presenters": 0,
+    "meets_presenter_minimum_n": true
+   }
+  },
+  "duplicate_clips_removed": 5708,
+  "files_without_transcript": 19,
+  "test_reading": "legacy held-out already observed; not blind independent M9 acceptance",
+  "limitations": [
+   "presenter linkage inferred within language, not ground truth or cross-language biometric linkage",
+   "folder language labels, no labelled code-switched spans",
+   "English/Sheng absent",
+   "DP applies to fixed window dataset; corpus selection/linkage and evaluation are not DP-certified"
+  ],
+  "kind": "protected legacy holdout + training-only development; archive presenters excluded from all training",
+  "speaker_linkage_used": true,
+  "files": {
+   "train": 1800,
+   "dev": 397,
+   "held": 839,
+   "archive_test": 2363,
+   "excluded": 111
+  }
+ },
+ "per_stratum": {
+  "guz": {
+   "accuracy": 0.00578,
+   "abstention_rate": 0.42941,
+   "windows": 6672,
+   "meets_default": false
+  },
+  "kam": {
+   "accuracy": 0.13437,
+   "abstention_rate": 0.42258,
+   "windows": 6006,
+   "meets_default": false
+  },
+  "kik": {
+   "accuracy": 0.8643,
+   "abstention_rate": 0.14661,
+   "windows": 3765,
+   "meets_default": false
+  },
+  "kln": {
+   "accuracy": 0.7954,
+   "abstention_rate": 0.18921,
+   "windows": 10031,
+   "meets_default": false
+  },
+  "luo": {
+   "accuracy": 0.90024,
+   "abstention_rate": 0.0833,
+   "windows": 15702,
+   "meets_default": true
+  },
+  "lwg": {
+   "accuracy": 0.0,
+   "abstention_rate": 0.4254,
+   "windows": 1126,
+   "meets_default": false
+  },
+  "swa": {
+   "accuracy": 0.95356,
+   "abstention_rate": 0.08662,
+   "windows": 14523,
+   "meets_default": true
+  }
+ },
+ "archive_test": {
+  "windows": 246227,
+  "per_language": {
+   "bxk": {
+    "windows": 0,
+    "correct": 0,
+    "abstain": 0,
+    "accuracy": null,
+    "abstention_rate": null
+   },
+   "guz": {
+    "windows": 82930,
+    "correct": 148,
+    "abstain": 34269,
+    "accuracy": 0.00304,
+    "abstention_rate": 0.41323
+   },
+   "kam": {
+    "windows": 95305,
+    "correct": 5824,
+    "abstain": 42446,
+    "accuracy": 0.11018,
+    "abstention_rate": 0.44537
+   },
+   "kik": {
+    "windows": 39803,
+    "correct": 28858,
+    "abstain": 5783,
+    "accuracy": 0.84827,
+    "abstention_rate": 0.14529
+   },
+   "kln": {
+    "windows": 5227,
+    "correct": 2587,
+    "abstain": 1474,
+    "accuracy": 0.68932,
+    "abstention_rate": 0.282
+   },
+   "luo": {
+    "windows": 22962,
+    "correct": 18735,
+    "abstain": 1688,
+    "accuracy": 0.88065,
+    "abstention_rate": 0.07351
+   },
+   "lwg": {
+    "windows": 0,
+    "correct": 0,
+    "abstain": 0,
+    "accuracy": null,
+    "abstention_rate": null
+   },
+   "swa": {
+    "windows": 0,
+    "correct": 0,
+    "abstain": 0,
+    "accuracy": null,
+    "abstention_rate": null
+   }
+  },
+  "per_condition_sample_rate": {
+   "44100Hz": {
+    "windows": 198262,
+    "correct": 41461,
+    "abstain": 69727,
+    "accuracy": 0.32257,
+    "abstention_rate": 0.35169
+   },
+   "22050Hz": {
+    "windows": 1741,
+    "correct": 971,
+    "abstain": 316,
+    "accuracy": 0.6814,
+    "abstention_rate": 0.1815
+   },
+   "48000Hz": {
+    "windows": 8221,
+    "correct": 652,
+    "abstain": 3871,
+    "accuracy": 0.14989,
+    "abstention_rate": 0.47087
+   },
+   "11025Hz": {
+    "windows": 37834,
+    "correct": 12997,
+    "abstain": 11715,
+    "accuracy": 0.49761,
+    "abstention_rate": 0.30964
+   },
+   "16000Hz": {
+    "windows": 169,
+    "correct": 71,
+    "abstain": 31,
+    "accuracy": 0.51449,
+    "abstention_rate": 0.18343
+   }
+  },
+  "overall_accuracy_on_judged": 0.34971,
+  "overall_abstention_rate": 0.34789,
+  "confidence_threshold": 0.6,
+  "confusion_top": {
+   "guz": {
+    "kik": 26917,
+    "luo": 11312,
+    "kln": 7348,
+    "swa": 2635,
+    "kam": 301
+   },
+   "kam": {
+    "swa": 21523,
+    "luo": 12840,
+    "kik": 10335,
+    "kam": 5824,
+    "kln": 2337
+   },
+   "kik": {
+    "kik": 28858,
+    "swa": 2934,
+    "luo": 1819,
+    "kln": 257,
+    "kam": 152
+   },
+   "kln": {
+    "kln": 2587,
+    "luo": 590,
+    "swa": 387,
+    "kik": 187,
+    "guz": 2
+   },
+   "luo": {
+    "luo": 18735,
+    "swa": 2211,
+    "kik": 277,
+    "kam": 36,
+    "kln": 15
+   }
+  }
+ },
+ "dp_sgd": {
+  "applied": true,
+  "epsilon": 3.474317064570945,
+  "delta": 1e-06,
+  "noise_multiplier": 1.0,
+  "max_grad_norm": 1.0,
+  "accountant": "rdp",
+  "poisson_sampling": true,
+  "secure_rng": false,
+  "checkpoint_accountant_verified": true,
+  "scope": "window-example DP on fixed manifest; not presenter-level or end-to-end DP certification",
+  "release_privacy_certified": false
+ },
+ "recipe_sha256": "578cc214657539b3f7453c07aa4132b7c21c75109da9644fb352d19371a4dd5f",
+ "checkpoint": {
+  "optimizer_saved": true,
+  "rng_saved": true,
+  "path": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-372fadc90b73/checkpoint.pt",
+  "full_interruption_resume_proven": false
+ },
+ "sealed_contract_check": {
+  "span_rule_matches_default": true,
+  "presenter_minimum_n_default": 20,
+  "presenter_minimum_n_tagged_pending": true,
+  "languages_meeting_presenter_minimum": [
+   "guz",
+   "kam",
+   "kik",
+   "kln",
+   "luo",
+   "lwg",
+   "swa"
+  ],
+  "per_language_accuracy_default": 0.9,
+  "per_language_accuracy_tagged_pending": true,
+  "code_switch_span_accuracy_default": 0.85,
+  "code_switch_material_present": false,
+  "no_speaker_id_probe": {
+   "measured": true,
+   "per_language": {
+    "guz": {
+     "bottleneck": {
+      "measured": true,
+      "presenters": 18,
+      "test_windows": 3316,
+      "accuracy": 0.4973,
+      "chance": 0.0556,
+      "majority_baseline": 0.2992,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 18,
+      "test_windows": 3316,
+      "accuracy": 0.3378,
+      "chance": 0.0556,
+      "majority_baseline": 0.2992,
+      "above_chance": false
+     },
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 18,
+      "test_windows": 3316,
+      "accuracy": 0.6764,
+      "chance": 0.0556,
+      "majority_baseline": 0.2992,
+      "above_chance": true
+     }
+    },
+    "kam": {
+     "bottleneck": {
+      "measured": true,
+      "presenters": 35,
+      "test_windows": 2959,
+      "accuracy": 0.3802,
+      "chance": 0.0286,
+      "majority_baseline": 0.0845,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 35,
+      "test_windows": 2959,
+      "accuracy": 0.1791,
+      "chance": 0.0286,
+      "majority_baseline": 0.0845,
+      "above_chance": true
+     },
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 35,
+      "test_windows": 2959,
+      "accuracy": 0.661,
+      "chance": 0.0286,
+      "majority_baseline": 0.0845,
+      "above_chance": true
+     }
+    },
+    "kik": {
+     "bottleneck": {
+      "measured": true,
+      "presenters": 14,
+      "test_windows": 1870,
+      "accuracy": 0.5406,
+      "chance": 0.0714,
+      "majority_baseline": 0.3337,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 14,
+      "test_windows": 1870,
+      "accuracy": 0.3936,
+      "chance": 0.0714,
+      "majority_baseline": 0.3337,
+      "above_chance": true
+     },
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 14,
+      "test_windows": 1870,
+      "accuracy": 0.8053,
+      "chance": 0.0714,
+      "majority_baseline": 0.3337,
+      "above_chance": true
+     }
+    },
+    "kln": {
+     "bottleneck": {
+      "measured": true,
+      "presenters": 30,
+      "test_windows": 4990,
+      "accuracy": 0.479,
+      "chance": 0.0333,
+      "majority_baseline": 0.1661,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 30,
+      "test_windows": 4990,
+      "accuracy": 0.2848,
+      "chance": 0.0333,
+      "majority_baseline": 0.1661,
+      "above_chance": true
+     },
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 30,
+      "test_windows": 4990,
+      "accuracy": 0.7643,
+      "chance": 0.0333,
+      "majority_baseline": 0.1661,
+      "above_chance": true
+     }
+    },
+    "luo": {
+     "bottleneck": {
+      "measured": true,
+      "presenters": 51,
+      "test_windows": 7797,
+      "accuracy": 0.4615,
+      "chance": 0.0196,
+      "majority_baseline": 0.2279,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 51,
+      "test_windows": 7797,
+      "accuracy": 0.2956,
+      "chance": 0.0196,
+      "majority_baseline": 0.2279,
+      "above_chance": true
+     },
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 51,
+      "test_windows": 7797,
+      "accuracy": 0.7688,
+      "chance": 0.0196,
+      "majority_baseline": 0.2279,
+      "above_chance": true
+     }
+    },
+    "lwg": {
+     "bottleneck": {
+      "measured": true,
+      "presenters": 7,
+      "test_windows": 539,
+      "accuracy": 0.5176,
+      "chance": 0.1429,
+      "majority_baseline": 0.4917,
+      "above_chance": false
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 7,
+      "test_windows": 539,
+      "accuracy": 0.5065,
+      "chance": 0.1429,
+      "majority_baseline": 0.4917,
+      "above_chance": false
+     },
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 7,
+      "test_windows": 539,
+      "accuracy": 0.7885,
+      "chance": 0.1429,
+      "majority_baseline": 0.4917,
+      "above_chance": true
+     }
+    },
+    "swa": {
+     "bottleneck": {
+      "measured": true,
+      "presenters": 23,
+      "test_windows": 7211,
+      "accuracy": 0.4755,
+      "chance": 0.0435,
+      "majority_baseline": 0.3098,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 23,
+      "test_windows": 7211,
+      "accuracy": 0.3728,
+      "chance": 0.0435,
+      "majority_baseline": 0.3098,
+      "above_chance": true
+     },
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 23,
+      "test_windows": 7211,
+      "accuracy": 0.8126,
+      "chance": 0.0435,
+      "majority_baseline": 0.3098,
+      "above_chance": true
+     }
+    }
+   },
+   "reading": "Legacy diagnostic margin retained for comparison ONLY. Final criterion remains chance-level, not majority+0.05.",
+   "strict_chance_met": false
+  },
+  "abstention_rate_reported": true
+ },
+ "verdict": "NOT ADMISSIBLE \u2014 research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance",
+ "final_model": false,
+ "certified_at": "2026-09-29T19:30:59.219623Z"
+}

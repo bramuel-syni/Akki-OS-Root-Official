@@ -114,6 +114,7 @@ class LLMResponse:
     tokens_out: int
     latency_ms: int
     purpose: str
+    shield: Optional[Dict[str, Any]] = None  # de-identification measurements of this crossing (no token values)
 
 
 class LLMShieldFailure(RuntimeError):
@@ -495,6 +496,10 @@ async def invoke(
         tokens_out=tokens_out,
         latency_ms=latency_ms,
         purpose=purpose,
+        shield={"dilution_score": getattr(de_id_result, "dilution_score", None),
+                "exposure_reduction_score": getattr(de_id_result, "exposure_reduction_score", None),
+                "entities_masked": sum((getattr(de_id_result, "de_id_summary", None) or {}).values()) if isinstance(getattr(de_id_result, "de_id_summary", None), dict) else None,
+                "prompt_sha256": _prompt_hash},
     )
 
 

@@ -2,7 +2,7 @@
 
 One entrypoint, `execute(control)`, dispatched by `control['mode']`:
   attest · admit_limits · submit · status · cancel · inner_select · inspect ·
-  custody_prepare · custody_status · write_attempt
+  custody_prepare · custody_status · write_attempt · unit_select
 Durable state lives in the runtime's state directory; E1 receives metadata and signed
 receipts only. Credentials arrive on stdin inside the SSH channel and are held in a 0600
 job file consumed by the detached runner, which deletes it after connecting.
@@ -330,6 +330,70 @@ def inner_select(control):
     return value
 
 
+_STOP = {'the', 'and', 'for', 'are', 'was', 'were', 'what', 'which', 'who', 'how', 'many', 'much', 'with', 'from',
+         'that', 'this', 'these', 'those', 'there', 'their', 'have', 'has', 'had', 'does', 'did', 'about', 'into',
+         'than', 'then', 'them', 'they', 'you', 'your', 'our', 'any', 'all', 'can', 'not', 'but', 'its', 'per',
+         'show', 'list', 'tell', 'give', 'find', 'when', 'where', 'why', 'will', 'would', 'should', 'could'}
+
+
+def unit_terms(text):
+    import re
+    return {t for t in re.findall(r'[a-z0-9][a-z0-9_]{2,}', str(text).lower()) if t not in _STOP}
+
+
+def _unit_text(unit):
+    record = unit.get('record') or {}
+    parts = [str(v) for v in record.values() if v is not None and not str(v).startswith('redacted:')]
+    parts.append(str(unit.get('provenance', {}).get('context', '')))
+    return ' '.join(parts)
+
+
+def _relational_keys(unit):
+    record = unit.get('record') or {}
+    keys = set()
+    for edge in unit.get('relational', {}).get('edges', []):
+        column = str(edge.get('target_unit_ref', '')).rsplit('.', 1)[-1]
+        if record.get(column) is not None:
+            keys.add(f"{edge['target_unit_ref']}={record[column]}")
+    return keys
+
+
+def unit_select(control):
+    """Qualified-memory read: whole units matching the question's terms, plus relational neighbours.
+    Reads the sealed artefact only — never a source — and returns bounded, ordered candidates."""
+    store = _Store(control['secrets']['object_store'])
+    body = store.get(control['artifact']['key'])
+    digest = hashlib.sha256(body).hexdigest()
+    if digest != control['artifact']['sha256'] or len(body) != control['artifact']['size_bytes']:
+        return {'status': 'failed', 'reason_code': 'ARTIFACT_DIGEST_MISMATCH', 'bytes_read': len(body)}
+    wanted = set(control.get('terms') or [])
+    pinned = set(control.get('unit_ids') or [])
+    limit = int(control.get('max_candidates', 64))
+    neighbour_limit = int(control.get('max_neighbours', 16))
+    rows = []
+    for position, line in enumerate(body.splitlines()):
+        if not line.strip():
+            continue
+        unit = json.loads(line)
+        overlap = len(wanted & unit_terms(_unit_text(unit)))
+        rows.append({'position': position, 'unit': unit, 'overlap': overlap, 'rel_keys': _relational_keys(unit),
+                     'content_sha256': hashlib.sha256(line.encode() if isinstance(line, str) else line).hexdigest()})
+    matched = [r for r in rows if r['overlap'] > 0 or r['unit']['unit_id'] in pinned]
+    matched.sort(key=lambda r: (-r['overlap'], r['position'], r['unit']['unit_id']))
+    chosen = matched[:limit]
+    chosen_ids = {r['unit']['unit_id'] for r in chosen}
+    chosen_keys = set().union(*(r['rel_keys'] for r in chosen)) if chosen else set()
+    neighbours = [r for r in rows if r['unit']['unit_id'] not in chosen_ids and r['rel_keys'] & chosen_keys]
+    neighbours.sort(key=lambda r: (r['position'], r['unit']['unit_id']))
+
+    def out(r, kind):
+        return {'unit': r['unit'], 'position': r['position'], 'overlap': r['overlap'], 'kind': kind,
+                'rel_keys': sorted(r['rel_keys']), 'content_sha256': r['content_sha256']}
+    return {'status': 'complete', 'artifact_sha256': digest, 'bytes_read': len(body), 'units_total': len(rows),
+            'matched_total': len(matched), 'neighbours_total': len(neighbours),
+            'candidates': [out(r, 'matched') for r in chosen] + [out(r, 'neighbour') for r in neighbours[:neighbour_limit]]}
+
+
 def sign_worker(control):
     """Self-attestation: the runtime signs its own Worker receipt with the key generated here."""
     identity.ensure(control['state_dir'])
@@ -340,7 +404,8 @@ def sign_worker(control):
 
 MODES = {'attest': attest, 'admit_limits': admit_limits, 'submit': submit, 'status': status, 'cancel': cancel,
          'inspect': inspect, 'custody_prepare': custody_prepare, 'custody_status': custody_status,
-         'inner_select': inner_select, 'write_attempt': write_attempt, 'sign_worker': sign_worker}
+         'inner_select': inner_select, 'write_attempt': write_attempt, 'sign_worker': sign_worker,
+         'unit_select': unit_select}
 
 
 def execute(control):

@@ -34,7 +34,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-e365bce78871",
   "pid": 353512
  },
- "status": "running",
+ "status": "cancelled",
  "final_model_commission": {
   "decision": "refused",
   "reason": "CleanMonolingualOnlyRefused",
@@ -52,6 +52,12 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "language_cognition_train_corrective_daemonised:pid=353512"
+  },
+  {
+   "row_id": "led-7100853420dd",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "language_cognition_train_corrective_cancelled:owner-order 2026-09-29 1a: relaunch with GPU-native mel, batch 2048, TF32 for maximum utilisation; stopped at epoch 2/20"
   }
  ],
  "code_sha256": "52f3525e38da2d0c899f3ed3c9ac4e91c49f997e00ecbf140813007aec6b3c47",
@@ -85,5 +91,14 @@
   "updated_at": "2026-09-29T17:30:49Z"
  },
  "worker_log_tail": "Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 8698.86it/s]\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/opacus/privacy_engine.py:98: UserWarning: Secure RNG turned off. This is perfectly fine for experimentation as it allows for much faster training performance, but remember to turn it on and retrain one last time before production with ``secure_mode`` turned on.\n  warnings.warn(\nsys:1: UserWarning: Full backward hook is firing when gradients are computed with respect to module outputs since no inputs require gradients. See https://docs.pytorch.org/docs/main/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook for more details.",
- "process_alive": true
+ "process_alive": true,
+ "cancel_rpc": {
+  "at": "2026-09-29T18:12:30.975568Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-e37eb62d58fb",
+  "outcome": "stopped",
+  "reason": "owner-order 2026-09-29 1a: relaunch with GPU-native mel, batch 2048, TF32 for maximum utilisation; stopped at epoch 2/20"
+ },
+ "reason": "owner-order 2026-09-29 1a: relaunch with GPU-native mel, batch 2048, TF32 for maximum utilisation; stopped at epoch 2/20",
+ "finished_at": "2026-09-29T18:12:30.975584Z"
 }

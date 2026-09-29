@@ -34,10 +34,9 @@ def validate(params):
         raise ValueError('CORRECTIVE_AUTHORITY_OR_DELTA_INVALID')
 
 
-def _evaluate(model, processor, rows, codes, device, batch=256, collect=False):
+def _evaluate(model, featurizer, rows, codes, device, batch=1024, collect=False):
     import numpy as np
     import torch
-    from services.audio_plane_v1.corrective_model import mel_batch
     per = {c: {'windows': 0, 'correct': 0, 'abstain': 0} for c in codes}
     conditions, confusion, features, logits_all, encoder_all, presenters = {}, {}, [], [], [], []
     model.eval(); model.disable_hooks()
@@ -45,7 +44,7 @@ def _evaluate(model, processor, rows, codes, device, batch=256, collect=False):
         with torch.no_grad():
             for i in range(0, len(rows), batch):
                 chunk = rows[i:i + batch]
-                mel = mel_batch(processor, torch.from_numpy(np.stack([r[0] for r in chunk])), device)
+                mel = featurizer(torch.from_numpy(np.stack([r[0] for r in chunk])))
                 logits, _, _, z, enc = model(mel)
                 conf, pred = logits.softmax(-1).max(-1)
                 if collect:
@@ -95,17 +94,20 @@ def train(control, state):
     from torch.utils.data import DataLoader, TensorDataset
     from transformers import WhisperProcessor
     from services.audio_plane_v1.corrective_data import prepare
-    from services.audio_plane_v1.corrective_model import CorrectiveModel, mel_batch
+    from services.audio_plane_v1.corrective_model import CorrectiveModel, Featurizer
     start = time.monotonic()
     torch.set_num_threads(8)
     if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
         raise ValueError('CORRECTIVE_REQUIRES_ONE_RESERVED_VISIBLE_GPU')
+    # Owner order 2026-09-29 (maximum utilisation): TF32 tensor-core matmul. Clipping and noise stay fp32 tensors.
+    torch.backends.cuda.matmul.allow_tf32 = True; torch.backends.cudnn.allow_tf32 = True
+    torch.set_float32_matmul_precision('high')
     torch.manual_seed(control['seed']); np.random.seed(control['seed']); random.seed(control['seed'])
     device = 'cuda'
     codes, sets, split, manifest_hash, art = prepare(control, state)
     reg = json.loads((Path(control['root']) / 'base_registration.json').read_text())
     local = reg['whisper-lid-v1-mit']['local_path']
-    processor = WhisperProcessor.from_pretrained(local, local_files_only=True)
+    featurizer = Featurizer(WhisperProcessor.from_pretrained(local, local_files_only=True), device)
     train_rows = sets['train']
     if not control['delta'] < 1 / len(train_rows):
         raise ValueError('DELTA_MUST_BE_SMALLER_THAN_INVERSE_WINDOW_POPULATION')
@@ -123,7 +125,8 @@ def train(control, state):
         torch.tensor([r[1] for r in train_rows]), torch.tensor([presenters[r[2]] for r in train_rows]),
         torch.tensor([conditions[r[6]] for r in train_rows]), torch.tensor([group_weights[(r[1], r[6])] for r in train_rows]))
     generator = torch.Generator(); generator.manual_seed(control['seed'])
-    loader = DataLoader(ds, batch_size=control['batch_size'], shuffle=True, generator=generator, num_workers=0)
+    loader = DataLoader(ds, batch_size=control['batch_size'], shuffle=True, generator=generator,
+                        num_workers=4, pin_memory=True, prefetch_factor=4)
     optimizer = torch.optim.AdamW((p for p in raw.parameters() if p.requires_grad), lr=control['lr'], weight_decay=0.01)
     privacy = PrivacyEngine(accountant='rdp', secure_mode=False)
     model, optimizer, loader = privacy.make_private(module=raw, optimizer=optimizer, data_loader=loader,
@@ -134,6 +137,9 @@ def train(control, state):
     recipe.update(encoder_seconds=2, frozen_vox_fusion=False, lora_r=16, bottleneck=128,
                   loss_balance='fixed language/condition square-root inverse frequency, cap8; no oversampling',
                   model_base_sha256=reg['whisper-lid-v1-mit']['weight_sha256'],
+                  feature_path='device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation',
+                  precision='TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors',
+                  loader='4 prefetching workers, pinned memory; Poisson sampler and RNG in the main process',
                   selection='minimum dev-language correct/ALL windows (abstentions included), then macro; no test selection',
                   privacy_scope='window-example DP on fixed manifest; not presenter-level or end-to-end DP certification',
                   secure_rng=False, auto_admission=False, checkpoint_custody='internal only; speaker adversary never exported')
@@ -145,6 +151,7 @@ def train(control, state):
     per_sample_verified = False
     state.update(progress={'stage': 'DP-SGD ready', 'train_windows': len(train_rows), 'gpu_index': control['gpu_index'],
                            'manifest_sha256': manifest_hash, 'recipe_sha256': recipe_hash, 'opacus': 'validated'})
+    training_started, step_clock = time.monotonic(), []
     for epoch in range(control['epochs']):
         losses = []
         # BatchMemoryManager controls physical accumulation; noise/accountant step once per logical Poisson batch.
@@ -158,8 +165,8 @@ def train(control, state):
                         p.grad = torch.zeros_like(p)
                     loss_value = 0.0
                 else:
-                    mel = mel_batch(processor, pcm, device, augment=True)
-                    language, speaker, condition, weight = (v.to(device) for v in (language, speaker, condition, weight))
+                    mel = featurizer(pcm, augment=True)
+                    language, speaker, condition, weight = (v.to(device, non_blocking=True) for v in (language, speaker, condition, weight))
                     logits, voice, recording, _, _ = model(mel)
                     # Conditional adversary cannot fight language identity itself as a presenter shortcut.
                     voice = voice.masked_fill(~allowed[language], -1e4)
@@ -177,17 +184,21 @@ def train(control, state):
                 if optimizer._is_last_step_skipped:
                     continue
                 steps += 1
+                step_clock.append(time.monotonic())
                 if steps % 10 == 0 or steps == 1:
+                    recent = step_clock[-21:]
                     state.update(progress={'stage': 'corrective DP-SGD training', 'epoch': epoch + 1, 'epochs': control['epochs'],
                         'step': steps, 'loss': round(float(np.mean(losses[-20:])), 5), 'gpu_index': control['gpu_index'],
                         'elapsed_seconds': round(time.monotonic() - start), 'gpu_memory_gb': round(torch.cuda.max_memory_allocated()/1e9, 2),
                         'examples_per_logical_batch': control['batch_size'], 'dp_per_sample_verified': per_sample_verified,
+                        'windows_per_second': round(steps * control['batch_size'] / max(1e-6, time.monotonic() - training_started), 1),
+                        'recent_step_seconds': round((recent[-1] - recent[0]) / max(1, len(recent) - 1), 3) if len(recent) > 1 else None,
                         'latest_dev': curve[-1] if curve else None})
                 if control['smoke_steps'] and steps >= control['smoke_steps']:
                     break
         state.update(progress={'stage': 'development evaluation (test still untouched)', 'epoch': epoch + 1, 'step': steps})
         before = privacy.accountant.state_dict()
-        dev, _ = _evaluate(model, processor, sets['dev'], codes, device)
+        dev, _ = _evaluate(model, featurizer, sets['dev'], codes, device)
         if before != privacy.accountant.state_dict():
             raise ValueError('VALIDATION_CHANGED_PRIVACY_ACCOUNTANT')
         scores = [r['correct']/r['windows'] for r in dev['per_language'].values() if r['windows']]
@@ -208,8 +219,8 @@ def train(control, state):
         raise ValueError('PRIVACY_CHECKPOINT_RELOAD_MISMATCH')
     model.load_state_dict(torch.load(art / 'best_internal.pt', map_location=device, weights_only=True))
     state.update(progress={'stage': 'terminal protected-set evaluation', 'step': steps, 'best_dev_epoch': best_epoch})
-    held, extra = _evaluate(model, processor, sets['held'], codes, device, collect=not control['smoke_steps'])
-    archive, _ = _evaluate(model, processor, sets['archive_test'], codes, device)
+    held, extra = _evaluate(model, featurizer, sets['held'], codes, device, collect=not control['smoke_steps'])
+    archive, _ = _evaluate(model, featurizer, sets['archive_test'], codes, device)
     probe = {'measured': False, 'reason': 'pipeline smoke, not a quality or privacy acceptance run'}
     if extra:
         z, logits, enc, presenters_held = extra
@@ -238,7 +249,9 @@ def train(control, state):
         'training': {'steps': steps, 'epochs_completed': len(curve), 'best_dev_epoch': best_epoch,
                      'elapsed_seconds': round(time.monotonic()-start), 'device': device, 'gpu_index': control['gpu_index'],
                      'gpu': torch.cuda.get_device_name(0), 'gpu_max_memory_gb': round(torch.cuda.max_memory_allocated()/1e9, 2),
-                     'batch_size': control['batch_size'], 'precision': 'fp32 DP correctness; TF32 not requested'},
+                     'batch_size': control['batch_size'], 'physical_batch_size': control['physical_batch_size'],
+                     'precision': recipe['precision'], 'feature_path': recipe['feature_path'],
+                     'windows_per_second': round(steps * control['batch_size'] / max(1e-6, time.monotonic() - training_started), 1)},
         'dp_sgd': {'applied': per_sample_verified, 'epsilon': original_epsilon, 'delta': control['delta'],
                    'noise_multiplier': control['noise_multiplier'], 'max_grad_norm': control['max_grad_norm'],
                    'accountant': 'rdp', 'poisson_sampling': True, 'secure_rng': False, 'checkpoint_accountant_verified': True,

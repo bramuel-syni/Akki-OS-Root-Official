@@ -1,0 +1,66 @@
+.workchat{--paper:#f5f2ea;--surface:#f0ece1;--surface2:#ede8da;--line:#e4dfd3;--ink:#1b1f27;--ink2:#3d4350;--ink3:#5b6270;--blue:#16274a;--blue2:#0f1b33;--oxblood:#b8395b;--brass:#b08d2e;--sage:#1d7a6e;--head:'Iowan Old Style',Georgia,serif;--body:'Söhne','Helvetica Neue',Arial,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;
+  min-height:100vh;background:var(--paper);color:var(--ink);font-family:var(--body);padding:36px 48px 64px}
+.workchat-head{margin-bottom:22px;max-width:1240px}
+.workchat-crumb{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:8px}
+.workchat-title{font-family:var(--head);font-size:clamp(28px,4vw,40px);font-weight:300;margin:0;letter-spacing:-.02em}
+.workchat-lead{max-width:720px;font-size:15px;line-height:1.6;color:var(--ink2);margin:12px 0 0}
+.workchat-body{display:grid;grid-template-columns:270px minmax(0,1fr);gap:26px;max-width:1240px;align-items:start}
+.workchat-rail{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 14px;position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto}
+.workchat-rail-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.workchat-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700}
+.workchat-btn{padding:7px 12px;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;transition:background-color .15s,transform .15s,border-color .15s}
+.workchat-btn:hover{background:var(--surface2);transform:translateY(-1px)}
+.workchat-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.workchat-btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.workchat-btn.primary:hover{background:#263b60}
+.workchat-btn.quiet{border-color:transparent;background:transparent}
+.workchat-session{width:100%;text-align:left;padding:10px 11px;border:1px solid transparent;background:transparent;border-radius:8px;cursor:pointer;display:flex;flex-direction:column;gap:4px;transition:background-color .15s,border-color .15s}
+.workchat-session:hover{background:#fff}
+.workchat-session.active{background:#fff;border-color:var(--line);box-shadow:0 1px 2px rgba(22,39,74,.05)}
+.workchat-session-title{font-size:13px;color:var(--ink);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.workchat-session-meta{font-family:var(--mono);font-size:10px;color:var(--ink3)}
+.workchat-empty{font-size:13px;color:var(--ink3);padding:10px 4px;line-height:1.6}
+.workchat-thread{display:flex;flex-direction:column;gap:18px;min-width:0}
+.workchat-objective{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:9px}
+.workchat-objective strong{font-family:var(--head);font-weight:400;font-size:16px}
+.workchat-objective span{font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
+.workchat-turn{display:flex;flex-direction:column;gap:8px;animation:wcFade .28s ease-out both}
+@keyframes wcFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.workchat-who{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.workchat-q{font-size:14px;font-weight:600;color:var(--ink);line-height:1.5;overflow-wrap:anywhere}
+.workchat-a{background:#fff;border:1px solid var(--line);border-left:3px solid var(--sage);border-radius:0 10px 10px 0;padding:14px 16px;min-width:0}
+.workchat-a.fresh{border-left-color:var(--brass)}
+.workchat-a.refused{border-left-color:var(--oxblood)}
+.workchat-a-text{font-size:13.5px;color:var(--ink2);line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;margin:0 0 10px}
+.workchat-loss{font-size:11.5px;color:var(--ink3);line-height:1.5;margin:0 0 10px;font-style:italic}
+.workchat-reason{font-size:12.5px;color:var(--oxblood);line-height:1.55;margin:0 0 8px;overflow-wrap:anywhere}
+.workchat-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:10px;font-weight:700}
+.workchat-badge.warm{background:rgba(29,122,110,.12);color:var(--sage)}
+.workchat-badge.fresh{background:rgba(176,141,46,.14);color:#7e6418}
+.workchat-badge.refused{background:rgba(184,57,91,.10);color:var(--oxblood)}
+.workchat-badge.neutral{background:var(--surface2);color:var(--ink3)}
+.workchat-cites{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.workchat-cite{font-family:var(--mono);font-size:9.5px;padding:3px 8px;border-radius:5px;background:var(--surface2);color:var(--ink3);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.workchat-working summary{cursor:pointer;font-size:11.5px;color:var(--blue);font-weight:600;list-style:none;display:inline-flex;align-items:center;gap:6px}
+.workchat-working summary::-webkit-details-marker{display:none}
+.workchat-working[open] summary{margin-bottom:10px}
+.workchat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.workchat-fact{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;min-width:0}
+.workchat-fact b{display:block;font-family:var(--head);font-size:17px;font-weight:400;line-height:1.1;margin-bottom:4px;overflow-wrap:anywhere}
+.workchat-fact span{font-size:10.5px;color:var(--ink3);line-height:1.35;display:block}
+.workchat-lines{margin:10px 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:10.5px;color:var(--ink3);line-height:1.7;overflow-wrap:anywhere}
+.workchat-lines li b{color:var(--ink2);font-weight:600}
+.workchat-composer{display:flex;gap:8px;align-items:flex-end;position:sticky;bottom:12px;background:var(--paper);padding-top:6px}
+.workchat-input{flex:1;min-height:48px;max-height:180px;resize:vertical;padding:12px 14px;border:1px solid var(--line);border-radius:9px;font-size:13.5px;background:#fff;font-family:inherit;line-height:1.5;color:var(--ink)}
+.workchat-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(22,39,74,.08)}
+.workchat-pending{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--ink3)}
+.workchat-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:wcPulse 1.1s infinite ease-in-out}
+.workchat-dot:nth-child(2){animation-delay:.18s}.workchat-dot:nth-child(3){animation-delay:.36s}
+@keyframes wcPulse{0%,100%{opacity:.25}50%{opacity:1}}
+.workchat-alert{border:1px solid var(--oxblood);background:rgba(184,57,91,.06);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--ink);line-height:1.55;display:flex;justify-content:space-between;gap:12px;align-items:flex-start;overflow-wrap:anywhere}
+.workchat-memory{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px 14px;border:1px dashed var(--line);border-radius:8px;font-size:12px;color:var(--ink2);overflow-wrap:anywhere}
+.workchat-memory .workchat-label{margin-right:2px}
+.workchat-intro{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 22px;font-size:13.5px;line-height:1.65;color:var(--ink2);max-width:720px}
+.workchat-intro h2{font-family:var(--head);font-weight:400;font-size:19px;margin:0 0 8px;color:var(--ink)}
+.workchat-intro ul{margin:8px 0 0;padding-left:18px}
+@media (max-width:900px){.workchat{padding:22px 16px 48px}.workchat-body{grid-template-columns:minmax(0,1fr)}.workchat-rail{position:static;max-height:220px}.workchat-composer{position:static}}

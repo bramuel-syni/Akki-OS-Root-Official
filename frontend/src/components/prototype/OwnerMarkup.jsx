@@ -19,7 +19,7 @@ export function resolveBinding(expression, model) {
 
 function interpolate(value, model) {
   if (typeof value !== 'string') return value;
-  const exact = value.trim().match(/^{{\s*(.*?)\s*}}$/);
+  const exact = value.trim().match(/^{{\s*([^{}]*?)\s*}}$/);
   if (exact) return resolveBinding(exact[1], model);
   return value.replace(/{{\s*(.*?)\s*}}/g, (_, key) => {
     const result = resolveBinding(key, model);

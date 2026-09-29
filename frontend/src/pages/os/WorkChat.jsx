@@ -1,130 +1,64 @@
 /*
- * WorkChat.jsx — v2 OS Prototype · Work tab · WORKSTUDIO group · chat leaf.
+ * WorkChat.jsx — v2 OS · Work tab · WORKSTUDIO · chat leaf, LIVE (M4 grounded answers · M5 durable sessions).
  *
- * R-101 preserved WHAT · Turn 4 sub-slice 4d GREEN · 2026-09-22T08:22:00Z
- * Owner FE brief §0 verbatim: "The prototype is the design of record ... prototype wins."
- * Owner directive verbatim 2026-09-22T~06:10Z: "UI/UX architecture and experience
- * flow needs to be exact as the HTML I shared."
- *
- * Sub-slice 4d owner ruling verbatim 2026-09-22T~08:15Z: "Work tab (chat LIVE +
- * analyze/documents/tasks/team/performance/board honest-gap)".
- *
- * HONEST-GAP DISCLOSURE (SO §5 honest-gap-never-fake · this-slice specific):
- * No `/api/chat` or equivalent chat surface currently exists in the
- * Extraction-Akki backend (grep verified 2026-09-22T08:20Z zero hits on
- * backend/routers/ for chat routes). The design-of-record "chat LIVE"
- * capability is a PHASE 4 feature (owner R-102 MASTER DIRECTIVE
- * "productized and functional or gaps surfaced"). This surface reveals the
- * gap honestly rather than fabricating a fake chat pipeline. Live-wire
- * lands at CP-CHAT-LIVE-WIRE (queued to DQ-14/15/16 fork if desk cannot
- * fold into PHASE 4 (h) Model Registry lane).
- *
- * FOURQ discipline (Rule zero · every block leads with a sentence; measures
- * live behind "see the working"): each section header is a plain-English
- * lead sentence; details/measures collapse below.
+ * Every question transits one decision (warm | fresh | refused) recorded on the one ledger; warm answers read
+ * only sealed, rights-bearing qualified units of the signed-in tenant (zero source reads) through a measured,
+ * whole-unit window whose loss is disclosed with the answer. Sessions are durable; compaction turns the closed
+ * working context into a hash-verified artefact behind a ledger row. Nothing here is tenant-specific.
  */
+import React, { useEffect, useRef } from 'react';
+import { CensusAccess } from '@/components/census/CensusAccess';
+import { usePrototypeSession } from '@/components/prototype/usePrototypeSession';
+import { Composer } from '@/components/workchat/Composer';
+import { SessionMemory } from '@/components/workchat/SessionMemory';
+import { SessionRail } from '@/components/workchat/SessionRail';
+import { TurnCard } from '@/components/workchat/TurnCard';
+import { useChatSessions } from '@/components/workchat/useChatSessions';
+import '@/components/census/census.css';
+import '@/components/workchat/workchat.css';
 
-import React from "react";
+function Intro() {
+  return <section className="workchat-intro" data-testid="workchat-intro">
+    <h2>Ask; the shield stays on.</h2>
+    Your first question freezes the objective of a new conversation. Each turn is decided once:
+    <ul>
+      <li><b>Warm</b> — qualified units already verified for your estate answer it; no source is read.</li>
+      <li><b>Fresh</b> — nothing qualified covers it yet; the specific missing slice is named and drafted, never dispatched from here.</li>
+      <li><b>Refused</b> — nothing in your estate names the subject; the refusal is recorded and shown verbatim.</li>
+    </ul>
+  </section>;
+}
 
 export default function WorkChat() {
-  return (
-    <div
-      data-testid="work-chat-surface"
-      style={{
-        minHeight: "100vh",
-        background: "var(--surface, #f7f5ef)",
-        color: "var(--ink, #12121a)",
-        padding: "48px 64px",
-        fontFamily: "'Charter', 'Iowan Old Style', Georgia, serif",
-      }}
-    >
-      <header style={{ marginBottom: 32 }}>
-        <div
-          style={{
-            fontSize: 12,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "var(--ink3, #6b6b78)",
-            marginBottom: 8,
-          }}
-          data-testid="work-chat-breadcrumb"
-        >
-          WORKSTUDIO · Chat
-        </div>
-        <h1
-          style={{
-            fontSize: 40,
-            fontWeight: 300,
-            margin: 0,
-            letterSpacing: "-0.02em",
-          }}
-          data-testid="work-chat-title"
-        >
-          Chat
-        </h1>
-      </header>
+  const session = usePrototypeSession();
+  const signedIn = Boolean(session.data);
+  const chat = useChatSessions(signedIn);
+  const end = useRef(null);
+  useEffect(() => { end.current?.scrollIntoView({ block: 'nearest' }); }, [chat.active?.turns?.length, chat.pending]);
 
-      <section
-        data-testid="work-chat-lead"
-        style={{
-          maxWidth: 720,
-          fontSize: 17,
-          lineHeight: 1.6,
-          color: "var(--ink, #12121a)",
-        }}
-      >
-        <p style={{ margin: "0 0 24px 0" }}>
-          Ask a question; the shield stays on. Every answer traces to a source
-          or says plainly why it can't. Branch a reply to compare two directions
-          without losing the original.
-        </p>
-      </section>
-
-      <section
-        data-testid="work-chat-honest-gap"
-        style={{
-          marginTop: 40,
-          padding: "24px 28px",
-          background: "rgba(184,57,91,.06)",
-          border: "1px solid var(--oxblood, #b8395b)",
-          borderRadius: 4,
-          maxWidth: 720,
-        }}
-      >
-        <div
-          style={{
-            fontSize: 11,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "var(--oxblood, #b8395b)",
-            marginBottom: 8,
-            fontWeight: 600,
-          }}
-          data-testid="work-chat-honest-gap-label"
-        >
-          Honest gap · backend wire pending
-        </div>
-        <div
-          style={{ fontSize: 15, lineHeight: 1.5, color: "var(--ink, #12121a)" }}
-          data-testid="work-chat-honest-gap-body"
-        >
-          The chat backend is not yet wired. This surface reveals the gap
-          honestly. Live wire lands at CP-CHAT-LIVE-WIRE under the PHASE 4
-          feature build-out per R-102 MASTER DIRECTIVE. Until then this page
-          shows the design-of-record shape without fabricating a fake pipeline.
-        </div>
-        <div
-          style={{
-            marginTop: 16,
-            fontSize: 13,
-            color: "var(--ink3, #6b6b78)",
-          }}
-          data-testid="work-chat-honest-gap-see-working"
-        >
-          See the working: shell constants at /app/frontend/src/App.js
-          const NAV → workstudio.chat · this surface at pages/os/WorkChat.jsx.
-        </div>
-      </section>
-    </div>
-  );
+  return <div className="workchat" data-testid="work-chat-surface">
+    <header className="workchat-head">
+      <div className="workchat-crumb" data-testid="work-chat-breadcrumb">WORKSTUDIO · Chat{session.data?.tenant_id ? ` · ${session.data.tenant_id}` : ''}</div>
+      <h1 className="workchat-title" data-testid="work-chat-title">Chat</h1>
+      <p className="workchat-lead" data-testid="work-chat-lead">Ask a question; the shield stays on. Every answer traces to a qualified unit or says plainly why it can't, and every conversation is kept.</p>
+    </header>
+    {!signedIn && <CensusAccess error={session.error} loading={session.loading} retry={session.reload} />}
+    {signedIn && <div className="workchat-body">
+      <SessionRail rows={chat.rows} active={chat.active} onOpen={chat.open} onFresh={chat.fresh} />
+      <main className="workchat-thread" data-testid="workchat-thread">
+        {chat.active
+          ? <>
+            <div className="workchat-objective" data-testid="workchat-objective"><span>Objective · frozen {new Date(chat.active.objective.frozen_at).toLocaleString()}</span><strong>{chat.active.objective.text}</strong><span>{chat.active.session_id}</span></div>
+            <SessionMemory session={chat.active} memory={chat.memory} onCompact={chat.compact} onReload={chat.reload} onArchive={chat.archive} />
+            {chat.active.turns.map(turn => <TurnCard key={turn.turn_id} turn={turn} />)}
+          </>
+          : <Intro />}
+        {chat.pending && <div className="workchat-turn" data-testid="workchat-pending"><div className="workchat-who">You</div><div className="workchat-q">{chat.pending}</div>
+          <div className="workchat-pending"><span className="workchat-dot" /><span className="workchat-dot" /><span className="workchat-dot" /> deciding, reading qualified units, measuring the window…</div></div>}
+        {chat.error && <div className="workchat-alert" role="alert" data-testid="workchat-error"><span>{chat.error}</span><button className="workchat-btn quiet" data-testid="workchat-error-dismiss" onClick={chat.dismiss}>Dismiss</button></div>}
+        <div ref={end} />
+        <Composer busy={Boolean(chat.pending)} disabled={!signedIn} onAsk={chat.ask} hasSession={Boolean(chat.active)} />
+      </main>
+    </div>}
+  </div>;
 }

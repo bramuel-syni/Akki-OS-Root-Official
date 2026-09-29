@@ -1,93 +1,97 @@
-"""services.chat.router — Chat surface router.
+"""services.chat.router — the governed, memory-backed chat surface (M4 answers · M5 durable sessions).
 
-POST /api/chat/ask — one question / one answer through the LLM
-chokepoint. Refusals surface verbatim (A8-Q3).
+POST /api/chat/ask                       one question → one decision (warm | fresh | refused) inside a durable session
+GET  /api/chat/sessions                  the requester's sessions (metadata; turns excluded)
+GET  /api/chat/sessions/{id}             one session with every turn and its evidence
+POST /api/chat/sessions/{id}/compact     compact the closed working context (ledger row → artefact → pointer)
+GET  /api/chat/sessions/{id}/reload      scope-checked, hash-verified reload of the compacted context — or refusal
+POST /api/chat/sessions/{id}/archive     close the session (turns stay; nothing is deleted)
+
+Identity is the same portal gate every estate surface uses; tenant and principal come only from the signed-in
+account. Held conditions surface as the existing 409 disclosure, never as an answer.
 """
-from __future__ import annotations
+from typing import Optional
 
-from typing import Any, Dict, Optional
-
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
 
-from services.chokepoint import llm as _chokepoint_llm
-from services.chokepoint.llm import LLMShieldFailure, PurposeInvalid
-# W11 R4.8 · Doc19A-005 verbatim: 'every worker output passes through the
-# Critic Seam; shipped-without-seam is a defect'.
-from services.critic_pass import producer_seam as _critic_seam
+from core import db
+from services.chat import journey, sessions
+from services.northena.execution_models import Held
+from services.portal_operational.access import portal_scope
+from services.portal_operational.hold_reasons import disclosure
 
-
-router = APIRouter()
+router = APIRouter(tags=['chat'])
+PRIVATE = {'Cache-Control': 'private, no-store', 'Pragma': 'no-cache'}
 
 
 class AskRequest(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra='ignore')
     question: str = Field(..., min_length=1, max_length=4000)
-    actor: str = Field(default="operator@estate", max_length=200)
-    model: str = Field(default="gpt-5-mini", max_length=64)
-    provider: str = Field(default="emergent", max_length=32)
+    session_id: Optional[str] = Field(default=None, max_length=64)
+    model: str = Field(default=journey.DEFAULT_MODEL, max_length=64)
+    provider: str = Field(default=journey.DEFAULT_PROVIDER, max_length=32)
 
 
-@router.post("/api/chat/ask")
-async def post_chat_ask(body: AskRequest) -> Dict[str, Any]:
-    """One-question / one-answer chat. Every submit transits the LLM
-    chokepoint.
+def _held(exc):
+    return JSONResponse({'outcome': 'held', **disclosure(exc.reason_code)}, status_code=409, headers=PRIVATE)
 
-    Response shape:
-      {
-        "answer":         str,  # empty on refusal
-        "receipt_id":     str,  # rcp-<hex12>
-        "model_id":       str,
-        "provider":       str,
-        "tokens_in":      int,
-        "tokens_out":     int,
-        "latency_ms":     int,
-        "refused":        bool,
-        "refusal_reason": str,  # verbatim (A8-Q3)
-      }
-    """
-    try:
-        resp = await _chokepoint_llm.invoke(
-            purpose="chat.governed_answer",
-            prompt=body.question,
-            masking_tier="llm_prompt_governed_text",
-            actor=body.actor,
-            model=body.model,
-            provider=body.provider,
-            tenant_id=body.actor or "unknown",  # M12-W1e: actor as tenant scope
-            custody_class="tenant_estate",  # M12-W1e: real estate work
-        )
-    except (LLMShieldFailure, PurposeInvalid) as exc:
-        # A8-Q3 · surface the refusal verbatim.
-        return {
-            "answer": "",
-            "receipt_id": "",
-            "model_id": "",
-            "provider": "",
-            "tokens_in": 0,
-            "tokens_out": 0,
-            "latency_ms": 0,
-            "refused": True,
-            "refusal_reason": str(exc)[:400],
-        }
 
-    return {
-        "answer": resp.text,
-        "receipt_id": resp.receipt_id,
-        "model_id": resp.model_id,
-        "provider": resp.provider,
-        "tokens_in": resp.tokens_in,
-        "tokens_out": resp.tokens_out,
-        "latency_ms": resp.latency_ms,
-        "refused": False,
-        "refusal_reason": "",
-        # W11 R4.8 · Doc19A-005 producer-side seam attestation.
-        # QA-1 preserves execution; findings are DATA, never a gate.
-        "critic_verdict": _critic_seam.verdict_summary(
-            _critic_seam.route_through_seam(
-                artifact_ref=f"chat:{resp.receipt_id}",
-                artifact_content=resp.text,
-                producing_instance_id=f"chat.{body.provider}.{body.model}",
-            )
-        ),
-    }
+async def _session_or_404(scope, session_id):
+    session = await sessions.get(scope, session_id)
+    if session is None:
+        raise HTTPException(404, 'No such conversation in your scope.')
+    return session
+
+
+@router.post('/api/chat/ask')
+async def post_chat_ask(body: AskRequest, request: Request):
+    async with portal_scope(request) as scope:
+        try:
+            result = await journey.ask(db, scope, question=body.question, session_id=body.session_id,
+                                       model=body.model, provider=body.provider)
+        except Held as exc:
+            return _held(exc)
+        if result is None:
+            raise HTTPException(404, 'No such conversation in your scope.')
+        return JSONResponse(result, headers=PRIVATE)
+
+
+@router.get('/api/chat/sessions')
+async def list_sessions(request: Request, archived: bool = False):
+    async with portal_scope(request) as scope:
+        rows = await sessions.listing(scope, archived=archived)
+        return JSONResponse({'rows': rows, 'count': len(rows)}, headers=PRIVATE)
+
+
+@router.get('/api/chat/sessions/{session_id}')
+async def get_session(session_id: str, request: Request):
+    async with portal_scope(request) as scope:
+        return JSONResponse(await _session_or_404(scope, session_id), headers=PRIVATE)
+
+
+@router.post('/api/chat/sessions/{session_id}/compact')
+async def compact_session(session_id: str, request: Request):
+    async with portal_scope(request) as scope:
+        session = await _session_or_404(scope, session_id)
+        compaction = await sessions.compact(scope, session, actor=scope['principal_id'])
+        if compaction is None:
+            return JSONResponse({'status': 'nothing_to_compact', 'reason': 'Every turn of this session is already compacted or the session has no turns.',
+                                 'compaction': session.get('compaction')}, headers=PRIVATE)
+        return JSONResponse({'status': 'compacted', 'compaction': compaction}, headers=PRIVATE)
+
+
+@router.get('/api/chat/sessions/{session_id}/reload')
+async def reload_session(session_id: str, request: Request):
+    async with portal_scope(request) as scope:
+        session = await _session_or_404(scope, session_id)
+        return JSONResponse(await sessions.reload(scope, session), headers=PRIVATE)
+
+
+@router.post('/api/chat/sessions/{session_id}/archive')
+async def archive_session(session_id: str, request: Request):
+    async with portal_scope(request) as scope:
+        await _session_or_404(scope, session_id)
+        await sessions.update(scope, session_id, {'archived': True})
+        return JSONResponse({'status': 'archived', 'session_id': session_id}, headers=PRIVATE)

@@ -1,0 +1,112 @@
+{
+ "job_id": "lcj-9062d0a75f15",
+ "phase": "train_corrective",
+ "host": "akki-vm-ii",
+ "principal_id": "demo.operator@demo.rms.example.com",
+ "submitted_at": "2026-09-29T18:02:17.329779Z",
+ "params": {
+  "baseline_job_id": "lcj-f96c86a16312",
+  "gpu_index": 0,
+  "seed": 41,
+  "epochs": 20,
+  "batch_size": 2048,
+  "physical_batch_size": 1024,
+  "max_windows_per_file": 180,
+  "parallelism": 24,
+  "lr": 0.0003,
+  "adversary_strength": 0.2,
+  "noise_multiplier": 1.0,
+  "max_grad_norm": 1.0,
+  "delta": 1e-06,
+  "smoke_steps": 2,
+  "owner_order_ref": "owner-order://2026-09-29/language-cognition-corrective-max-utilisation#throughput-relaunch-1a"
+ },
+ "northena_run_id": "run-e46da2a360be",
+ "northena_trace_id": "trc-c83548bdc82b",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-9062d0a75f15"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-9062d0a75f15",
+  "pid": 504621
+ },
+ "status": "failed",
+ "final_model_commission": {
+  "decision": "refused",
+  "reason": "CleanMonolingualOnlyRefused",
+  "message": "MUST-NOT \u00a71 owner verbatim: 'Clean-monolingual alone is a MUST-NOT for the final model.' Commission refused because has_code_switched_material is False; the training set MUST carry labelled code-switched material per span."
+ },
+ "ledger_rows": [
+  {
+   "row_id": "led-88740333cd8f",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_train_corrective_admitted"
+  },
+  {
+   "row_id": "led-3ae8ada68911",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_train_corrective_daemonised:pid=504621"
+  },
+  {
+   "row_id": "led-b20e30d122c5",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "language_cognition_train_corrective_failed"
+  }
+ ],
+ "code_sha256": "f13dd979ee4933ca6b84be5b452f7d449de11e050815ace99dc767800bc90eb7",
+ "started_at": "2026-09-29T18:02:22.769044Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T18:04:54.969975Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-760657070fb6"
+ },
+ "remote_state": {
+  "phase": "train_corrective",
+  "status": "failed",
+  "started_at": "2026-09-29T18:02:22Z",
+  "progress": {},
+  "events": [],
+  "job_id": "lcj-9062d0a75f15",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T18:02:22Z",
+  "finished_at": "2026-09-29T18:02:22Z",
+  "receipt_sha256": "37d5cc198fe38464529111360ce3e153a13b4ca252830dd2f04da2027c2252ac"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-9062d0a75f15",
+  "phase": "train_corrective",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T18:02:22Z",
+  "code_sha256": "f13dd979ee4933ca6b84be5b452f7d449de11e050815ace99dc767800bc90eb7",
+  "status": "failed",
+  "error": {
+   "type": "BlockingIOError",
+   "message": "[Errno 11] Resource temporarily unavailable",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-9062d0a75f15/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 1026, in execute\n    receipt[\"result\"] = PHASES[control[\"phase\"]](control, state)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-9062d0a75f15/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 1005, in train_corrective\n    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)\nBlockingIOError: [Errno 11] Resource temporarily unavailable\n"
+  },
+  "finished_at": "2026-09-29T18:02:22Z",
+  "receipt_sha256": "37d5cc198fe38464529111360ce3e153a13b4ca252830dd2f04da2027c2252ac",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T18:02:22Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-9062d0a75f15",
+  "started_at_utc": "2026-09-29T18:02:22.769044Z",
+  "finished_at_utc": "2026-09-29T18:02:22Z",
+  "status": "failed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-9062d0a75f15"
+ }
+}

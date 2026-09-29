@@ -62,7 +62,9 @@ export function registryHistory({ data, params, setParams, state, setState }) {
       delta: row.delta != null ? `${row.delta > 0 ? '+' : ''}${registryCount(row.delta)}${row.unit === 'percent' ? ' pp' : ''} vs previous` : row.status === 'sampled' ? `sampled · ${registryCount(row.population)} assessed` : row.status === 'unmeasured' ? 'unmeasured' : 'measured · no comparable prior',
       deltaColor: row.status === 'sampled' ? 'var(--brass)' : 'var(--ink3)',
     })) })),
-    censusConditionBar: ['Clean','Duplicate','Degraded','Incomplete','Not read'].map((label,i) => ({label,pct:'Not classified',w:'0%',color:['var(--sage)','var(--brass)','#b04a3a','#c9a24a','#b8b0a0'][i]})),
+    censusConditionBar: selected?.report?.condition_distribution
+      ? selected.report.condition_distribution.map(seg => ({ label: seg.label, pct: `${registryCount(Math.round(seg.share * 1000) / 10)}%`, w: `${Math.max(seg.share > 0 ? 0.5 : 0, seg.share * 100)}%`, color: seg.color }))
+      : ['Clean','Duplicate','Degraded','Incomplete','Not read'].map((label,i) => ({label,pct:'Not classified',w:'0%',color:['var(--sage)','var(--brass)','#b04a3a','#c9a24a','#b8b0a0'][i]})),
     censusConditionTotal: selected?.report?.condition_note || 'Condition has not been classified for this record.',
     censusGpuSummary: known ? 'Actual worker receipts for this census. CPU execution on a GPU host is not GPU acceleration; device telemetry is not attributed consumption.' : 'No run-attributed worker telemetry is retained for this historical census.',
     censusGpuRows: [

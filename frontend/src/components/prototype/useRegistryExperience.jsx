@@ -9,6 +9,7 @@ import { registryResponse } from './registryResponse';
 import { registryModelDetail } from './registryModelDetail';
 import { registryComputeDetail } from './registryComputeDetail';
 import { ownerDrawer } from './nexusShared';
+import { intelligenceHeader, intelligenceBasis, intelligenceReading, opportunitiesLead } from './registryIntelligence';
 import { censusRequest } from '../census/useCensusWorkspace';
 import './registryOwner.css';
 
@@ -19,6 +20,15 @@ export function useRegistryExperience({data,params,setParams,baseModel,run,reloa
   const setState=useCallback(updater=>setOwned(previous=>({owner:data?.principal_id,value:updater(previous.owner===data?.principal_id?previous.value:{})})),[data?.principal_id]);
   const show=value=>setState(previous=>({...previous,drawer:value}));
   const close=useCallback(()=>setState(previous=>({...previous,drawer:null})),[setState]);
+  // A running estate-intelligence census is refreshed by one bounded RPC a minute; the receipt lands into the overview on reload.
+  const runningJob=data?.estate_intelligence?.running?.job_id;
+  useEffect(()=>{
+    if(!active||!runningJob)return undefined;
+    let cancelled=false;
+    const tick=async()=>{try{const result=await censusRequest(`/estate-intelligence/jobs/${runningJob}`);if(!cancelled&&result?.job?.status!=='running')reload();}catch{/* next tick */}};
+    const timer=setInterval(tick,60000);tick();
+    return()=>{cancelled=true;clearInterval(timer);};
+  },[active,runningJob,reload]);
   const refresh=async()=>{
     if(state.refreshing)return;
     setState(s=>({...s,refreshing:true}));
@@ -75,9 +85,18 @@ export function useRegistryExperience({data,params,setParams,baseModel,run,reloa
     4946:'{{ estateCatalogueTitle }}',
     4947:'Observed source metadata, sampled checks and unmeasured dimensions retain their own method and coverage. Source counts below describe the retained Registry, not a full-content quality verdict.',
     5003:'{{ estateCatalogueCount }}',
+    6176:intelligenceHeader(data?.estate_intelligence),
+    6177:intelligenceBasis(data?.estate_intelligence),
     6187:'A source is counted as fully read only where the declared population was reached. Samples, estimates and prior observations stay explicit in the report.',
     6210:'Quality findings retain their tested population and method. Unperformed checks and unclassified data are not treated as clean.',
-    6285:'Quality strata have not yet been published for the whole estate.',
+    6268:'Measurement method per table in the estate intelligence census: complete pass, stratified sample, head sample or failed',
+    6286:'Language distribution has not been measured by this census.',
+    6304:'Data + index bytes held per connection, as measured by the estate intelligence census',
+    6317:`${[...new Set((data?.source_details||[]).map(s=>s.kind))].length} kinds of data across ${(data?.source_details||[]).length} retained source scopes`,
+    6380:'Every figure names its method: complete keyset pass, stratified sample, head sample or failed. Duplicate, damage, empty-field and PII ratios were measured on the jump host and only aggregates left the estate; no row value was retained.',
+    6391:'Rights class is recorded at Connect, in the words of the person connecting the source. The census never establishes rights; a release needs its own grant and purpose.',
+    6432:intelligenceReading(data?.estate_intelligence),
+    6448:opportunitiesLead(data?.estate_intelligence),
     6521:'{{ gpuBlurb }}',
     5940:'No operator conversation is retained for this run. This does not establish that every source was read or that no intervention was needed.',
     5973:'Every figure identifies its actual method: full enumeration, sampled inspection, estimate, declaration or unmeasured. Sources read in full requires every declared row or file header; sampled and historical coverage is never presented as a full direct read.',

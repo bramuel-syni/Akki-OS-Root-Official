@@ -39567,3 +39567,13 @@ R-6 boundary regen advancing `notes/ORCH_BOOT.md` heads_last_sealed:
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-29 · Owner ruling · Estate Intelligence census + governed dossier purpose
+
+Owner directive (verbatim, this session): "Adding more Akki run GPU census work (in the background), what duplicationd does RMS has, whats the quality of data, how much data is degraded, deep research on what this data estate can be used or monitized, dimentionaly, strategies to reduce cost, etc - this is deep data estate inteligence that informs estate handling and monetization - feel free to add - covers the whole estate" → options accepted "1-a, 2-you can add any revevant meaningful datapoint, 3-a / Now go autonomous".
+
+Rulings recorded:
+1. Scope order 1-a: RMS MySQL first (census only; rows measured on the jump host and discarded; aggregates/sketches/hashes only), then OBS and NAS duplication from the enumeration frontier.
+2. Purpose allowlist gains `census.estate_intelligence_dossier` (additive): ONE governed LLM crossing per job composing a monetisation / cost-reduction dossier ONLY from census aggregates (ratios, bytes, table/column names, grades). Tier `llm_prompt_governed_text`; receipt kind stays in the sealed vocabulary (`llm_synthesis`, purpose carried in `purpose_declared`). No row content, PII value or credential may enter the prompt.
+3. Surface 3-a: owner's Registry design (Condition/Coverage rows, "Read with problems", "Possible duplicates", "What your data can do") plus a downloadable brief under `/briefs/Akki_Estate_Intelligence_<job>.md`.
+4. Protected boundaries `estate_intelligence.commission` / `.cancel` added to the Watch commission gate inventory (M2 inventory rerun obligation stands).

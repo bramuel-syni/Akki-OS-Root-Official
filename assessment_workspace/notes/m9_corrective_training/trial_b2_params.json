@@ -1,0 +1,17 @@
+{
+  "baseline_job_id": "lcj-f96c86a16312",
+  "gpu_index": 1,
+  "seed": 41,
+  "epochs": 20,
+  "batch_size": 2048,
+  "physical_batch_size": 1024,
+  "max_windows_per_file": 180,
+  "parallelism": 24,
+  "lr": 0.0003,
+  "adversary_strength": 0.5,
+  "noise_multiplier": 1.0,
+  "max_grad_norm": 1.0,
+  "delta": 1e-06,
+  "smoke_steps": 0,
+  "owner_order_ref": "owner-order://2026-09-29/language-cognition-corrective-max-utilisation#throughput-relaunch-1a"
+}
