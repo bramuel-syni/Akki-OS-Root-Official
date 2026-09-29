@@ -76,6 +76,7 @@ def state(census_run_id: str, actor=Depends(census_identity)):
 @router.post("/api/census/run", status_code=202, response_model=CensusEnvelope)
 def submit(background: BackgroundTasks, body: dict = Body(...), actor=Depends(census_identity)):
     try:
+        body = {**body, 'worker_id': body.get('worker_id') or os.environ['CENSUS_PRIMARY_WORKER']}
         sources = validate_submission(body, actor["tenant_id"], actor["roles"])
         budget = int(os.environ["CENSUS_JOB_MAX_SECONDS"])
         if budget <= 0:

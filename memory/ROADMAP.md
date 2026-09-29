@@ -1,5 +1,33 @@
 # Akki — current engineering order
 
+## CURRENT — 2026-09-29 execution checkpoint
+
+Latest owner assignment: holistic census on **akki-vm**, language cognition training
+on **akki-vm-ii**; fix P0/P1 and continue autonomously without weakening M1's rigor.
+
+- Closed/verified repair scope: source-row/category/child CTA/modal/mobile binding;
+  SSH exit-ready/drain and diagnostic retention; exact CORS origins; default census
+  placement; tenant-bound Watch reader and legacy authority-route quarantine;
+  Watch original drawer/overview/refresh/mobile flow. Backend28/frontend9 tests pass.
+- **P0 still open:** NAS mount on akki-vm absent; five relational scopes unreachable,
+  artists_app authentication refused. OBS successor `cr-b47b981d2035` executing,
+  terminal outcome not yet verified. No terminal-history overwrite or source data
+  moved into E1. Explicit successors listed in PRD/M1 evidence note.
+- **P1/M1:** all designed deep dimensions/source denominator identity and all five
+  acceptance packs remain. Distinct same-label SQL endpoints need D6 reconciliation.
+  Current metadata/sample outcome is not full consumption. G1 NOT PASSED.
+- **P1/training:** vm-ii observed; no language training launched. Wire existing
+  corpus/base/split/MOAC references to an actual native job, with receipts. Generic
+  LoRA or legacy MOCKED training is not language cognition. M9 final acceptance kept.
+- **P1/M2 independent prep:** scoped evidence reader is working. Full relevant
+  alternative/callsite/frontend readiness review and real detectors/effectors/
+  independent witness/notifications/restoration remain, then M2-T1–T5. G2 NOT RUN.
+- **P2:** M3–M10 retain the governing order; no invented approval/timer/percentage gate.
+
+Read `notes/m1_execution/REPAIR_AND_SUCCESSOR_STATUS_20260929.md` and
+`notes/m2_readiness_20260929/READINESS_AND_PROGRESS.md` (under assessment_workspace).
+Prior readiness history below is retained, not current gate status.
+
 ## CURRENT — 2026-09-28 readiness revision 2 (owner-directed canon)
 
 Owner requires no flattening/watering down of supplied design. Every milestone

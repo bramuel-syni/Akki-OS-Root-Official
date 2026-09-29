@@ -1,0 +1,68 @@
+{
+  "summary": "Executed backend+frontend regression testing for Iteration 58 on public preview URL. MOCKED deep_dispatch transport tests and live auth/registry/UI checks were run; one backend transport regression remains and one frontend control is missing.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "services/census_autonomy/deep_dispatch.execute_source",
+        "issue": "On successful worker execution, transport_diagnostic is dropped from final response because result is overwritten with worker payload (line replacing result=value). This breaks retained stdout/stderr/exit provenance visibility after success.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "/api/auth/login (OPTIONS)",
+        "issue": "CORS currently allows arbitrary origins (backend .env has CORS_ORIGINS='*'). Unlisted origin also receives allow-credentials=true and allow-origin echo; allowed preview origin is rewritten to cluster emergentcf host by platform edge for one request path."
+      },
+      {
+        "endpoint": "services/auth/user_store.seed_admin_if_absent",
+        "issue": "Seed helper is create-only; existing admin password is never updated, so playbook expectation for update-on-change is not implemented."
+      },
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "No lockout authority/mechanism found in auth router/user_store (no failed-attempt counters or lockout path)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Source catalogue row action",
+        "issue": "Expected explicit 'Open source' child control was not present in rendered row during live check, so single-invocation behavior for that child control could not be validated.",
+        "selector": "text=Open source",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_iteration58_deep_dispatch_transport_mocked.py",
+    "/app/backend/tests/census_operational/test_iteration58_live_registry_auth_cors.py",
+    "/app/test_reports/pytest/pytest_iteration_58_backend.xml"
+  ],
+  "action_items": [
+    "Fix deep_dispatch success-path payload merge so transport_diagnostic persists alongside worker payload on success.",
+    "Confirm intended CORS policy: if strict-origin policy is required with credentials, replace wildcard CORS_ORIGINS and align edge/backend origin handling.",
+    "Clarify/implement lockout policy authority (if required) rather than relying on ad-hoc test thresholds.",
+    "If Nexus spec requires explicit child CTA, add/restore visible 'Open source' control with a stable data-testid and validate single invocation."
+  ],
+  "critical_code_review_comments": [
+    "deep_dispatch transport loop fixes mostly hold: nonzero/-1 refusal, budget recalculation, and timeout classification passed in isolated MOCKED tests.",
+    "Success payload currently loses transport diagnostic metadata due assignment overwrite after JSON parse; this is a root-cause-level regression risk for auditability.",
+    "History fidelity requirement still holds when a census card is opened: exactly 4 tabs and 13 metrics were present in live UI."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_iteration58_deep_dispatch_transport_mocked.py",
+    "/app/backend/tests/census_operational/test_iteration58_live_registry_auth_cors.py",
+    "/app/test_reports/iteration_58.json"
+  ],
+  "success_rate": {
+    "backend": "93%",
+    "frontend": "92%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Use public URL from frontend/.env. For history checks, click a census card (data-testid prefix registry-census-open-) before asserting 4 tabs/13 metrics. Source catalogue row click/keyboard profile open-close-focus and async race checks are currently passing at 1920x800 and 390x844 with no horizontal overflow observed.",
+  "rca of the issue": "RCA-1 deep_dispatch: execute_source writes transport_diagnostic before parsing output, then replaces result with parsed worker payload; this drops diagnostic fields in success responses. Repro: run test_i58_transport_drains_stdout_and_stderr_before_exit_status (MOCKED) and observe KeyError for missing transport_diagnostic. RCA-2 CORS observation: backend wildcard CORS_ORIGINS allows unlisted origins; edge can rewrite origin on allowed preview request to emergentcf cluster host. RCA-3 frontend control gap: expected explicit 'Open source' child CTA not rendered in tested source rows, preventing single-click invocation proof for that child action."
+}

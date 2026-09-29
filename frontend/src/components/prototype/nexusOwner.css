@@ -12,7 +12,11 @@
 .owner-prototype-os [data-proto-line="nexus-9720"]{width:min(720px,100vw)!important}
 .owner-prototype-os [data-proto-line="nexus-43"]{width:min(420px,calc(100vw - 24px))!important;right:0!important}
 .owner-prototype-os [data-proto-line="nexus-58"],.owner-prototype-os [data-proto-line="nexus-59"]{overflow-wrap:anywhere}
+.owner-prototype-os [data-proto-line="nexus-7246"],.owner-prototype-os [data-proto-line="nexus-8622"]{overflow-wrap:anywhere}
 @media(max-width:1000px){
+ .owner-prototype-os [data-proto-line="nexus-8452"]{margin:0!important;padding:18px 0!important}
+ .owner-prototype-os [data-proto-line="nexus-7234"]{grid-template-columns:minmax(0,1fr)!important;gap:24px!important;width:100%}
+ .owner-prototype-os [data-proto-line="nexus-7357"]{position:static!important}
  .owner-prototype-os [data-proto-line="nexus-2465"],.owner-prototype-os [data-proto-line="nexus-8451"]{grid-template-columns:minmax(0,1fr)!important;gap:24px!important;margin:0!important;width:100%!important}
  .owner-prototype-os [data-proto-line="nexus-2466"]{margin:0!important;padding:22px 0!important}
  .owner-prototype-os [data-proto-line="nexus-2946"],.owner-prototype-os [data-proto-line="nexus-8665"]{display:none}

@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-09-29T01:05:16.442519+00:00",
+  "runtimes": [
+    {
+      "runtime_id": "akki-vm",
+      "receipt_id": "gpurcp-e7533e044eb4",
+      "exit_code": 0,
+      "hostname": "akki-vm",
+      "observed_at": "2026-09-29T01:05:20.774694+00:00",
+      "nas_root_present": false,
+      "nas_mounted": false,
+      "census_python_present": true,
+      "system_python_packages": {
+        "torch": false,
+        "transformers": false,
+        "peft": false
+      },
+      "gpu_process_count": 0,
+      "training_claim": "Not established by a runtime observation"
+    },
+    {
+      "runtime_id": "akki-vm-ii",
+      "receipt_id": "gpurcp-eb24d11c7885",
+      "exit_code": 0,
+      "hostname": "akki-vm-ii",
+      "observed_at": "2026-09-29T01:05:24.941012+00:00",
+      "nas_root_present": false,
+      "nas_mounted": false,
+      "census_python_present": true,
+      "system_python_packages": {
+        "torch": false,
+        "transformers": false,
+        "peft": false
+      },
+      "gpu_process_count": 0,
+      "training_claim": "Not established by a runtime observation"
+    }
+  ]
+}

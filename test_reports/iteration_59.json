@@ -1,0 +1,85 @@
+{
+  "summary": "Executed M2 backend+frontend regression on public preview URL for scoped Watch reader, legacy Watch authority boundary, CORS hardening, and Grey Mirror watch record UX. Backend transport diagnostics regression is fixed (all 5 isolated tests green); scoped Watch authority matrix is mostly green; one critical CORS mismatch and multiple frontend M2 acceptance gaps remain.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/auth/login (OPTIONS preflight)",
+        "issue": "Configured preview origin preflight is denied with HTTP 400 'Disallowed CORS origin' (same as unlisted origin). This breaks allowed-origin browser auth flow despite explicit CORS_ORIGINS setting.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Grey Mirror watch record filters",
+        "issue": "Required status filters 'Refused' and 'Held' were not present in /os/admin/greymirror/watch/record (only All/Observation/Action/Decision surfaced).",
+        "selector": "text=Refused, text=Held",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Watch evidence drawer Open census action",
+        "issue": "Clicking drawer 'Open census' did not navigate to the expected census record route; URL stayed on /os/admin/greymirror/watch/record.",
+        "selector": "[data-testid='owner-evidence-drawer'] button:has-text('Open census')",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Registry source CTA",
+        "issue": "Required literal CTA 'Open the source →' and stable controls [data-testid^='registry-source-link-'] were not present on tested /os/admin/estate views, so single-request source-open behavior could not be validated.",
+        "selector": "text='Open the source →', [data-testid^='registry-source-link-']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Open census from watch row drawer",
+        "issue": "Watch row walk opens drawer correctly, but Open census action does not transfer to census history/detail view.",
+        "affected_selectors": [
+          "[data-testid^='watch-record-walk-']",
+          "[data-testid='owner-evidence-drawer']"
+        ]
+      }
+    ],
+    "design_issues": [
+      {
+        "screen": "/os/admin/greymirror/watch/record (desktop 1920x800 + mobile 390x844)",
+        "issues": [
+          "Record column readability improved; no horizontal overflow detected in sampled watch rows.",
+          "No text overlap observed in sampled long basis/evidence lines within visible rows."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_iteration58_deep_dispatch_transport_mocked.py",
+    "/app/backend/tests/census_operational/test_iteration58_live_registry_auth_cors.py",
+    "/app/backend/tests/census_operational/test_iteration59_watch_operational_m2.py",
+    "/app/test_reports/pytest/pytest_iteration_59_backend.xml"
+  ],
+  "action_items": [
+    "Fix CORS allowed-origin matching so preview origin preflight succeeds while unlisted origins remain denied without ACAO.",
+    "Restore/implement required watch status filters Refused and Held in /os/admin/greymirror/watch/record.",
+    "Fix watch drawer Open census navigation to open the intended census record route.",
+    "Restore required source CTA literal 'Open the source →' and [data-testid^='registry-source-link-'] on the intended registry view so request-count behavior can be validated."
+  ],
+  "critical_code_review_comments": [
+    "M2 scoped reader backend contract is largely correct: anonymous 401, analyst 403, operator 200, run-id parity with census cursor, and legacy write routes auth-bound 409 with non-mutating refusal body all validated.",
+    "Tenant isolation behavior for conflicting explicit tenant + linked census_run_id is correctly enforced in isolated mocked-store test (conflicting DIGICOW-tenant record is filtered out).",
+    "Iteration58 deep_dispatch transport_diagnostic retention is now working on success path (all 5 isolated mocked tests passed)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_iteration58_live_registry_auth_cors.py",
+    "/app/backend/tests/census_operational/test_iteration59_watch_operational_m2.py",
+    "/app/test_reports/iteration_59.json"
+  ],
+  "success_rate": {
+    "backend": "95%",
+    "frontend": "70%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Use public URL from frontend/.env. Backend pytest run: 19 passed, 1 failed (CORS allowed origin denied). Scoped Watch APIs and legacy write refusals are mostly green. For frontend, navigation tabs state/record/under-watch/decisions pass and responsive readability is improved, but source-link CTA/testids are missing on tested estate views and drawer Open census did not navigate.",
+  "rca of the issue": "RCA-1 CORS: OPTIONS /api/auth/login returns 400 'Disallowed CORS origin' for both configured preview origin and unlisted origin, indicating running-origin comparison mismatch (likely env/runtime origin list mismatch or edge-origin normalization drift). RCA-2 Watch drawer action: Open census button renders in drawer but click does not change route; action binding or navigation target handoff is not executing in rendered context. RCA-3 Source CTA gap: required text/testid contract for source child link is absent on tested registry/estate routes, preventing single-click request counting verification."
+}

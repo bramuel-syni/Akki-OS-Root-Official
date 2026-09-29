@@ -1,5 +1,28 @@
 # Akki implementation history
 
+## 2026-09-29 — M1 repair proofs; M2 scoped records, not milestone closure
+
+Fixed external SSH completion loop/diagnostic retention, source catalogue click/
+modal/mobile bindings and fabricated prototype totals, explicit-origin CORS and
+default new census assignment to akki-vm. Commissioned three idempotent successors,
+preserving original failed runs. SQL partial1/7; NAS mount refusal; OBS executing
+at handoff. No dataset/corpus/weights executed in or copied into E1.
+
+Added tenant-scoped projection over existing census/Watch records and authenticated
+read aliases; quarantined legacy HTTP authority mutation surfaces without native
+effects changes. Bound original Grey Mirror/Watch record/overview/filter/refresh/
+evidence→census flow. Fixed duplicate outer OS drawer intercepting actions and
+responsive Watch/overview layout. Actual mouse actions pass desktop/mobile.
+
+Runtime metadata observation confirms both expected VMs reachable; vm-ii language
+cognition NOT LAUNCHED. Fully read native language commission handle contract;
+handle is not executable-job evidence. Source/base/corpus/training wiring and
+M9 qualification remain, with no substituted mock/text-model training.
+
+Final targeted backend28 and frontend9 tests pass. Original reports58/59 kept with
+separate resolution note. G1 open; M2 preparation only, physical detections/effects/
+witness/restoration T1–T5 not run. See current PRD and milestone evidence notes.
+
 ## 2026-09-28 — Registry readiness revision 2: design fidelity and closure accounting
 
 Owner supplied3screenshots and rejected simplified census report. Read latest

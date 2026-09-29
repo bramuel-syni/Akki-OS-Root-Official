@@ -6,9 +6,12 @@ import { nexusMirrorModel } from './nexusMirror';
 import { ownerDrawer } from './nexusShared';
 import { stamp } from './evidence';
 import { taskSetupStages } from './nexusTaskSetup';
+import { useWatchRecords } from './useWatchRecords';
+import { watchRecordModel } from './watchRecordModel';
 
 export function useNexusExperience({ feature, work, session, navigate, params, setParams, baseModel, account }) {
   const principal = session.data?.principal_id;
+  const watch = useWatchRecords(principal,feature?.family==='mirror');
   const [storedState,setStoredState] = useState({owner:null,value:{}});
   const state = storedState.owner === principal ? storedState.value : {};
   const setState = update => setStoredState(old=>({owner:principal,value:update(old.owner===principal?old.value:{})}));
@@ -31,6 +34,7 @@ export function useNexusExperience({ feature, work, session, navigate, params, s
     ...(feature?.family==='work'?nexusWorkModel({work,section:feature.section,state,setState,params,navigate,setParams,unavailable,show}):{}),
     ...(feature?.family==='work'?supportModel({section:feature.section,state,setState,unavailable}):{}),
     ...(feature?.family==='mirror'?nexusMirrorModel({section:feature.section,state,setState,params,navigate,unavailable}):{}),
+    ...(feature?.family==='mirror'?watchRecordModel({...watch,state,show,navigate:target=>{setDrawer(null);navigate(target);}}):{}),
     ...ownerDrawer(currentDrawer,()=>setDrawer(null)),
   };
   const recent = work.rows.filter(row=>row.state==='routing' && Date.now()-Date.parse(row.created_at)<=14*86400000);
@@ -66,6 +70,13 @@ export function useNexusExperience({ feature, work, session, navigate, params, s
     2454:{'aria-disabled':true},2450:{'data-testid':'my-work-scope'},78:account,
     2462:{'data-testid':'my-work-new-task'},2935:{'data-testid':'task-setup-input'},2936:{'data-testid':'task-setup-submit',disabled:answers.length>=steps.length},2940:{'data-testid':'task-setup-back-to-work'},
     8444:ctx=>({'data-testid':`grey-mirror-${ctx.t.key}-link`,'aria-current':ctx.t.active?'page':undefined}),
+    8597:ctx=>({'data-testid':`grey-mirror-filter-${ctx.ff.label.toLowerCase()}`}),
+    8622:ctx=>({'data-testid':`grey-mirror-record-${ctx.rw.key}`}),
+    7246:ctx=>({'data-testid':`watch-record-${ctx.r.key}`}),
+    7254:ctx=>({'data-testid':`watch-record-walk-${ctx.r.key}`}),
+    8454:{'data-testid':'watch-record-status'},7243:{'data-testid':'watch-record-coverage'},
+    10439:ctx=>({'data-testid':`owner-evidence-action-${ctx.$index}`}),
+    7241:{'data-testid':'watch-refresh-record'},
     ...(feature?.family==='mirror'&&feature.section!=='overview'&&feature.section!=='state'?{
       8451:(ctx,props)=>({style:{...props.style,gridTemplateColumns:'minmax(0,1fr)'}}),
     }:{}),

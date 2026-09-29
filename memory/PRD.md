@@ -1,5 +1,66 @@
 # Akki — product requirements and current continuity
 
+## CURRENT — 2026-09-29 M1 repairs / independent M2 preparation
+
+Latest owner directive: “Akki trains language cognition model on akki-vm ii,
+holistc Census on akii-vm (entire deep census as initially designed) consume fully.
+Fix P1 +P0. Close this and commence M2. Run M2 autonomously. Maintain same rigour
+in the structure shaped in M1”. Owner confirmed “Proceed”. Do not repeat a
+blanket planning/approval loop; preserve the existing10-milestone roadmap.
+
+**M1 NOT CLOSED; G1 NOT PASSED. M2 preparation/scoped reader started; G2 NOT RUN.**
+No full-census/training/enforcement completion claim is supported by this repair.
+English only. E1 remains the control plane, not a source/corpus/weights data path.
+
+Verified this increment:
+- SSH worker completion recognizes exit-status after draining both streams,
+  recalculates remaining budget after connection, preserves transport diagnostics.
+  Original failed runs retained. Five MOCKED transport tests are not live gate proof.
+- Source category/legend/row/child CTA/profile bindings and async-close race repaired;
+  original Nexus source catalogue made responsive and populated from retained data
+  instead of hardcoded prototype totals. Single child click sends one source read.
+- Credentialed CORS now uses explicit configured frontend + observed proxy alias,
+  not wildcard; unrelated origins denied. Auth/accounts/credentials unchanged.
+- New implicit census jobs select env `CENSUS_PRIMARY_WORKER=akki-vm`. Verified
+  idempotent replay returns original SQL successor with no extra dispatch.
+- M2 original Grey Mirror/Watch reads tenant-bound retained observations/records;
+  old unadmitted Watch HTTP mutation paths are authenticated409, not authority
+  minting. No detector/physical effect/witness qualification inferred from records.
+  Overview ledger/filters, refresh and evidence→selected census work. Duplicate
+  outer OS drawer obstruction and mobile Watch/overview layout repaired.
+- Final targeted backend28 pass; existing frontend9 pass; real UI source/profile,
+  Watch record/drawer/overview verified at1920×800 and390×844, overflow[].
+
+Actual successor census placement/status:
+- `cr-d5d34eb632a9`, akki-vm, PARTIAL: external43.385s,1/7 scopes complete;
+  five MySQL scopes unreachable, artists_app authentication failure.
+- `cr-b13eaacdc4bb`, akki-vm, REFUSED: external0.05s, NAS root absent/not mounted.
+- `cr-b47b981d2035`, akki-vm, PENDING/executing at final read; OBS not yet verified.
+  Existing supervised dispatcher continues it; do not submit a duplicate blindly.
+
+Training target is **akki-vm-ii**; **NOT LAUNCHED**. Remote readiness observed expected
+hostnames, no GPU processes at that instant and no torch/transformers/peft in system
+Python (not proof about other environments). The fully read language-cognition
+commission function returns a handle, not job-pickup evidence. Recover/qualify
+existing base/corpus/speaker-disjoint split/frozen MOAC references and wire actual
+Akki-native language training; do not use text LoRA or legacy MOCKED training as
+a substitute. Preserve original biometric/DP/abstention/custody rules and M9's
+independent acceptance; pending owner defaults are not measured passes.
+
+P0/P1 next: restore akki-vm NAS/MySQL access; inspect OBS terminal receipt; complete
+all40source clauses/deep producer integration and M1-T1–T5. D6 duplicate-label SQL
+source identity still needs descriptor-safe historical reconciliation. Current
+metadata/64-row samples/object lists/media probes are not the full designed census.
+M2 next: finish full reuse/callsite/readiness crosswalk, bind real detection→bounded
+physical effect→record→independent witness→notice→legitimate restoration; then T1–T5.
+P2: M3–M10 unchanged, with M9 final language-cognition qualification.
+
+Evidence:
+- `assessment_workspace/notes/m1_execution/REPAIR_AND_SUCCESSOR_STATUS_20260929.md`
+- `assessment_workspace/notes/m2_readiness_20260929/READINESS_AND_PROGRESS.md`
+- `test_reports/iteration_59_resolution.md` and passing pytest XML; original
+  iteration58/59 reports preserved. No five-attempt lockout policy invented.
+
 ## Original problem statement
 
 Deeply understand, assess and operate Akki Extraction under strict architectural

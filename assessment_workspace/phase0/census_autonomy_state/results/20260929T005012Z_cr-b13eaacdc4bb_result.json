@@ -1,0 +1,64 @@
+{
+  "census_run_id": "cr-b13eaacdc4bb",
+  "tenant_id": "RMS",
+  "completed_at_utc": "20260929T005012Z",
+  "payload": {
+    "protocol": "akki-census-aggregate-v1",
+    "outcomes": [
+      {
+        "census_run_id": "cr-b13eaacdc4bb",
+        "database_count": 0,
+        "execution_location": "akki_host",
+        "observed_at": "2026-09-29T00:50:12.496965+00:00",
+        "protocol": "akki-census-deep-v1",
+        "reason_code": "FileNotFoundError",
+        "row_count_estimate": 0,
+        "source_id": "rms_nas",
+        "source_rows_returned": 0,
+        "sources": [],
+        "status": "blocked",
+        "table_count": 0,
+        "tenant_id": "RMS",
+        "worker": {
+          "code_sha256": "2c98f7c1023cbc4adf04b38041403fc13ec0450e25fb2c3f22e43496a7fe76d2",
+          "execution_mode": "cpu",
+          "gpu_compute_hours": 0,
+          "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+          "runtime_id": "akki-vm",
+          "telemetry": {
+            "gpu_devices": [
+              {
+                "memory_mb": 143771,
+                "name": "NVIDIA H200",
+                "utilization_percent": 0,
+                "uuid": "GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1"
+              },
+              {
+                "memory_mb": 143771,
+                "name": "NVIDIA H200",
+                "utilization_percent": 0,
+                "uuid": "GPU-e87acccb-7848-1573-98ae-fcf26b185c0b"
+              }
+            ],
+            "hostname": "akki-vm",
+            "python": "3.12.3"
+          },
+          "wall_seconds": 0.05,
+          "transport_verified": true,
+          "server_key_sha256": "69b1541556813e4a88cfe0b8edb8cb46f1301cef6811aa2f9fc3b5637154dd53"
+        },
+        "worker_receipt_id": "cwr-6df505936a4ded56b4b579f285e49f133280185bd4a44e3de7ee99feee8badb4",
+        "transport_diagnostic": {
+          "exit_code": 0,
+          "stdout_bytes": 1063,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "error_classes": []
+        }
+      }
+    ],
+    "registry_receipts": [],
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "principal_id": "6ab56dd48894abb269135ca2"
+  }
+}

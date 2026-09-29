@@ -44,6 +44,8 @@ export function useRegistryExperience({data,params,setParams,baseModel,run,reloa
   const context={data,params,setParams,state,setState,show,run,reload,refresh};
   const model={...baseModel,...registryHistory(context),...registryEstate(context),...registryCompute(context),...registryComputeDetail(context),...registryConnect(context),...registrySourceProfile(context),...registryResponse(context),...registryModelDetail(context),...ownerDrawer(state.drawer,close)};
   const enhance={
+    5014:(ctx)=>({'data-testid':`registry-source-open-${ctx.r.key}`,role:'button',tabIndex:0,onClick:ctx.r.onOpen,onKeyDown:event=>{if(event.target===event.currentTarget&&['Enter',' '].includes(event.key)){event.preventDefault();ctx.r.onOpen();}}}),
+    5026:(ctx)=>({'data-testid':`registry-source-link-${ctx.r.key}`,onClick:event=>{event.stopPropagation();ctx.r.onOpen();}}),
     5805:(ctx,props)=>({'data-testid':'registry-census-layout',style:{...props.style,gridTemplateColumns:'minmax(0,32fr) 1px minmax(0,68fr)'}}),
     5812:ctx=>({'data-testid':`registry-census-open-${ctx.c.key}`}),
     5865:ctx=>({'data-testid':`registry-census-tab-${ctx.t.key}`}),
@@ -68,6 +70,11 @@ export function useRegistryExperience({data,params,setParams,baseModel,run,reloa
     12938:{role:'dialog','aria-modal':true,'aria-label':'Compute record',tabIndex:-1,'data-testid':'registry-compute-detail'},
   };
   const replace={
+    4938:'{{ efGapsHook }}',
+    4945:'{{ estateCatalogueBasis }}',
+    4946:'{{ estateCatalogueTitle }}',
+    4947:'Observed source metadata, sampled checks and unmeasured dimensions retain their own method and coverage. Source counts below describe the retained Registry, not a full-content quality verdict.',
+    5003:'{{ estateCatalogueCount }}',
     6187:'A source is counted as fully read only where the declared population was reached. Samples, estimates and prior observations stay explicit in the report.',
     6210:'Quality findings retain their tested population and method. Unperformed checks and unclassified data are not treated as clean.',
     6285:'Quality strata have not yet been published for the whole estate.',

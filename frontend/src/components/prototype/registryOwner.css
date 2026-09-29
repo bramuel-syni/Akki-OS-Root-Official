@@ -1,5 +1,11 @@
 /* Owner source markup and spacing; responsive adaptation retains every row. */
 .registry-owner { min-width:0; width:100%; }
+.registry-owner [data-proto-line="nexus-4910"] { width:100%;box-sizing:border-box;grid-template-columns:minmax(0,40fr) 1px minmax(0,60fr)!important; }
+.registry-owner [data-proto-line="nexus-4911"],.registry-owner [data-proto-line="nexus-4942"] { min-width:0;overflow-wrap:anywhere; }
+.registry-owner [data-proto-line="nexus-5015"] { flex-wrap:wrap; }
+.registry-owner [data-proto-line="nexus-5016"],.registry-owner [data-proto-line="nexus-5025"] { min-width:0!important;overflow-wrap:anywhere; }
+.registry-owner [data-proto-line="nexus-5014"] { cursor:pointer; }
+.registry-owner [data-proto-line="nexus-5014"]:focus-visible { outline:2px solid var(--blue);outline-offset:3px; }
 .registry-owner [data-proto-line="nexus-5805"] { width:100%; box-sizing:border-box; }
 .registry-owner [data-proto-line="nexus-5813"],.registry-owner [data-proto-line="nexus-5851"] { flex-wrap:wrap; }
 .registry-owner [data-proto-line="nexus-5814"],.registry-owner [data-proto-line="nexus-5852"] { white-space:normal!important;overflow-wrap:anywhere; }
@@ -16,6 +22,12 @@
  .registry-owner [data-proto-line="nexus-6466"] { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
 }
 @media(max-width:700px) {
+ .registry-owner [data-proto-line="nexus-4910"] { grid-template-columns:minmax(0,1fr)!important;gap:24px!important; }
+ .registry-owner [data-proto-line="nexus-4911"],.registry-owner [data-proto-line="nexus-4942"] { grid-column:1!important;grid-row:auto!important; }
+ .registry-owner [data-proto-line="nexus-4941"] { display:none; }
+ .registry-owner [data-proto-line="nexus-4994"] { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+ .registry-owner [data-proto-line="nexus-5016"] { flex-basis:100%!important; }
+ .registry-owner [data-proto-line="nexus-5025"] { flex-basis:100%!important; }
  .registry-owner [data-proto-line="nexus-5805"],.registry-owner [data-proto-line="nexus-6174"],.registry-owner [data-proto-line="nexus-4940"],.registry-owner [data-proto-line="nexus-5510"] { grid-template-columns:minmax(0,1fr)!important;gap:24px!important; }
  .registry-owner [data-proto-line="nexus-5806"],.registry-owner [data-proto-line="nexus-5845"] { grid-column:1!important;grid-row:auto!important;position:static!important;max-height:none!important; }
  .registry-owner [data-proto-line="nexus-5844"] { display:none; }

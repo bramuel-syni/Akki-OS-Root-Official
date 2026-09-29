@@ -532,11 +532,16 @@ for _wrfb_router in W_REGISTRY_FULL_BUILD_ROUTERS:
 # CP-CENSUS-OPERATIONAL-V1: additive composition over sealed route implementations.
 from routers.census_operational import install as install_operational_census
 install_operational_census(app)
+from routers.watch_operational import install as install_operational_watch
+install_operational_watch(app)
 
+_cors_origins = [origin.strip() for origin in os.environ['CORS_ORIGINS'].split(',') if origin.strip()]
+if not _cors_origins or '*' in _cors_origins:
+    raise RuntimeError('CORS_ORIGINS must name the permitted browser origins explicitly')
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=_cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )

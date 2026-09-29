@@ -53,6 +53,9 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
         else:
             client,host_config=_connect(runtime,min(20,remaining)); expected=host_config.hostname_expected
         bundle,code_hash=build_bundle()
+        # Connection and code preparation consume the same job budget.
+        remaining=int(deadline-time.time())
+        if remaining<=3: raise TimeoutError('BUDGET_EXHAUSTED')
         control={'bundle':bundle,'code_sha256':code_hash,'census_run_id':run_id,'tenant_id':tenant,
                  'source_id':source,'runtime_id':runtime,'hostname_expected':expected,
                  'lawful_basis_sha256':lawful_hash,'max_seconds':remaining-2,'connector':config}
@@ -62,7 +65,6 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
         channel.sendall(json.dumps(control).encode()); channel.shutdown_write()
         output=bytearray(); diagnostic=bytearray()
         while True:
-            if time.time()>=deadline: channel.close(); raise TimeoutError('WORKER_DEADLINE')
             if channel.recv_ready():
                 output.extend(channel.recv(65536))
                 # Mongo's document bound; schema measurements only, never unlimited raw data.
@@ -70,7 +72,14 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
             if channel.recv_stderr_ready():
                 chunk=channel.recv_stderr(65536)
                 diagnostic.extend(chunk[:max(0,65536-len(diagnostic))])
-            if channel.closed and not channel.recv_ready() and not channel.recv_stderr_ready(): break
+            # SSH exit-status does not require the peer to close the channel.
+            # Drain both streams before collecting it (large receipts can fill
+            # the SSH window), including completion already queued at deadline.
+            if channel.exit_status_ready() and not channel.recv_ready() and not channel.recv_stderr_ready(): break
+            if time.time()>=deadline:
+                result['transport_diagnostic']={'stdout_bytes':len(output),'stderr_bytes':len(diagnostic),
+                    'stderr_sha256':hashlib.sha256(diagnostic).hexdigest()}
+                channel.close(); raise TimeoutError('WORKER_DEADLINE')
             time.sleep(.02)
         code=channel.recv_exit_status()
         result['transport_diagnostic']={'exit_code':code,'stdout_bytes':len(output),'stderr_bytes':len(diagnostic),
@@ -86,6 +95,7 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
         value['worker_receipt_id']=receipt_id
         value['worker']['transport_verified']=True
         value['worker']['server_key_sha256']=hashlib.sha256(client.get_transport().get_remote_server_key().asbytes()).hexdigest()
+        value['transport_diagnostic']=result['transport_diagnostic']
         result=value
     except Exception as exc:
         # Only local classified exceptions; never copy SDK/SSH raw credential diagnostics.
