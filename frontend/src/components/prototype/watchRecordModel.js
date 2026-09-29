@@ -15,7 +15,7 @@ export function watchRecordModel({data,error,state,show,navigate,refresh}) {
   return {
     gmIsLedger:true,gmIsRollup:false,gmCol1:'Record',gmCol3:'State',
     drillChipLabel:'Refresh record',
-    gmTopOneliner:data.coverage,gmHeadDeck:`${data.counts.observations} retained census observations`,
+    gmTopOneliner:data.coverage,gmHeadDeck:`${data.counts.observations} retained census observations · ${data.counts.gate_crossings??0} gate crossings · ${data.counts.gate_effects??0} enforced effects`,
     gmHeadSub:data.enforcement_status,gmTableTitle:'Tenant record',gmNarrative:filtered.length?'Observations and Watch records remain distinct.':'No records match this filter.',
     gmRowsView:filtered.map(r=>({key:r.record_id,text:r.title,state:r.state,stateBg:'var(--surface2)',stateColor:'var(--ink)',actor:r.actor,when:stamp(r.observed_at),meta:r.basis,link:'Walk this →',onOpen:()=>walk(r)})),
     recordLaneCopy:`${laneRows.length} records · ${data.coverage}`,

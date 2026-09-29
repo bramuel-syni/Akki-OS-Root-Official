@@ -1,0 +1,698 @@
+{
+ "job_id": "lcj-f96c86a16312",
+ "host": "akki-vm-ii",
+ "receipt_sha256": "872a13852cd1c0c3f0bd6ab72c326a2084c160b2505a00427e13519d121c4cb4",
+ "compute": {
+  "steps": 14511,
+  "epochs_completed": 8,
+  "batch_size": 64,
+  "lr": 0.0002,
+  "final_loss": 0.0352,
+  "curve": [
+   {
+    "step": 500,
+    "elapsed_s": 446,
+    "loss": 1.1187,
+    "held_subset_accuracy_on_judged": 0.9247,
+    "held_subset_abstention": 0.332
+   },
+   {
+    "step": 1000,
+    "elapsed_s": 656,
+    "loss": 0.4904,
+    "held_subset_accuracy_on_judged": 0.9236,
+    "held_subset_abstention": 0.1309
+   },
+   {
+    "step": 1500,
+    "elapsed_s": 860,
+    "loss": 0.3391,
+    "held_subset_accuracy_on_judged": 0.9141,
+    "held_subset_abstention": 0.1128
+   },
+   {
+    "step": 2000,
+    "elapsed_s": 1062,
+    "loss": 0.2742,
+    "held_subset_accuracy_on_judged": 0.9251,
+    "held_subset_abstention": 0.1064
+   },
+   {
+    "step": 2500,
+    "elapsed_s": 1269,
+    "loss": 0.2191,
+    "held_subset_accuracy_on_judged": 0.9161,
+    "held_subset_abstention": 0.0752
+   },
+   {
+    "step": 3000,
+    "elapsed_s": 1477,
+    "loss": 0.1937,
+    "held_subset_accuracy_on_judged": 0.9262,
+    "held_subset_abstention": 0.0737
+   },
+   {
+    "step": 3500,
+    "elapsed_s": 1684,
+    "loss": 0.1856,
+    "held_subset_accuracy_on_judged": 0.931,
+    "held_subset_abstention": 0.0732
+   },
+   {
+    "step": 4000,
+    "elapsed_s": 1885,
+    "loss": 0.1623,
+    "held_subset_accuracy_on_judged": 0.9271,
+    "held_subset_abstention": 0.0488
+   },
+   {
+    "step": 4500,
+    "elapsed_s": 2092,
+    "loss": 0.1307,
+    "held_subset_accuracy_on_judged": 0.9245,
+    "held_subset_abstention": 0.0552
+   },
+   {
+    "step": 5000,
+    "elapsed_s": 2299,
+    "loss": 0.1263,
+    "held_subset_accuracy_on_judged": 0.9249,
+    "held_subset_abstention": 0.0444
+   },
+   {
+    "step": 5500,
+    "elapsed_s": 2506,
+    "loss": 0.1186,
+    "held_subset_accuracy_on_judged": 0.9308,
+    "held_subset_abstention": 0.0479
+   },
+   {
+    "step": 6000,
+    "elapsed_s": 2706,
+    "loss": 0.1033,
+    "held_subset_accuracy_on_judged": 0.9277,
+    "held_subset_abstention": 0.0342
+   },
+   {
+    "step": 6500,
+    "elapsed_s": 2910,
+    "loss": 0.0912,
+    "held_subset_accuracy_on_judged": 0.9379,
+    "held_subset_abstention": 0.0405
+   },
+   {
+    "step": 7000,
+    "elapsed_s": 3113,
+    "loss": 0.0881,
+    "held_subset_accuracy_on_judged": 0.9264,
+    "held_subset_abstention": 0.0312
+   },
+   {
+    "step": 7500,
+    "elapsed_s": 3311,
+    "loss": 0.0885,
+    "held_subset_accuracy_on_judged": 0.9276,
+    "held_subset_abstention": 0.0356
+   },
+   {
+    "step": 8000,
+    "elapsed_s": 3511,
+    "loss": 0.0714,
+    "held_subset_accuracy_on_judged": 0.9243,
+    "held_subset_abstention": 0.0264
+   },
+   {
+    "step": 8500,
+    "elapsed_s": 3710,
+    "loss": 0.0638,
+    "held_subset_accuracy_on_judged": 0.937,
+    "held_subset_abstention": 0.0312
+   },
+   {
+    "step": 9000,
+    "elapsed_s": 3909,
+    "loss": 0.0682,
+    "held_subset_accuracy_on_judged": 0.9392,
+    "held_subset_abstention": 0.0366
+   },
+   {
+    "step": 9500,
+    "elapsed_s": 4108,
+    "loss": 0.0674,
+    "held_subset_accuracy_on_judged": 0.9356,
+    "held_subset_abstention": 0.0366
+   },
+   {
+    "step": 10000,
+    "elapsed_s": 4308,
+    "loss": 0.0535,
+    "held_subset_accuracy_on_judged": 0.9242,
+    "held_subset_abstention": 0.0332
+   },
+   {
+    "step": 10500,
+    "elapsed_s": 4519,
+    "loss": 0.0504,
+    "held_subset_accuracy_on_judged": 0.9206,
+    "held_subset_abstention": 0.0283
+   },
+   {
+    "step": 11000,
+    "elapsed_s": 4718,
+    "loss": 0.0496,
+    "held_subset_accuracy_on_judged": 0.9308,
+    "held_subset_abstention": 0.0259
+   },
+   {
+    "step": 11500,
+    "elapsed_s": 4940,
+    "loss": 0.0511,
+    "held_subset_accuracy_on_judged": 0.932,
+    "held_subset_abstention": 0.0303
+   },
+   {
+    "step": 12000,
+    "elapsed_s": 5165,
+    "loss": 0.0421,
+    "held_subset_accuracy_on_judged": 0.9346,
+    "held_subset_abstention": 0.0225
+   },
+   {
+    "step": 12500,
+    "elapsed_s": 5382,
+    "loss": 0.041,
+    "held_subset_accuracy_on_judged": 0.9319,
+    "held_subset_abstention": 0.0181
+   },
+   {
+    "step": 13000,
+    "elapsed_s": 5601,
+    "loss": 0.0399,
+    "held_subset_accuracy_on_judged": 0.9289,
+    "held_subset_abstention": 0.0249
+   },
+   {
+    "step": 13500,
+    "elapsed_s": 5821,
+    "loss": 0.0411,
+    "held_subset_accuracy_on_judged": 0.9338,
+    "held_subset_abstention": 0.0269
+   },
+   {
+    "step": 14000,
+    "elapsed_s": 6033,
+    "loss": 0.0329,
+    "held_subset_accuracy_on_judged": 0.937,
+    "held_subset_abstention": 0.0239
+   },
+   {
+    "step": 14500,
+    "elapsed_s": 6236,
+    "loss": 0.0315,
+    "held_subset_accuracy_on_judged": 0.9319,
+    "held_subset_abstention": 0.0181
+   }
+  ],
+  "elapsed_seconds": 6405,
+  "budget_seconds": 9600.0,
+  "device": "cuda",
+  "gpu": "NVIDIA H200",
+  "gpu_max_memory_gb": 28.99,
+  "precision": "bf16 autocast"
+ },
+ "artefact_sha256": "d2cd0497f3305bde9612110b6151c7aa58bc286098ffa296a2cea6e8332393d8",
+ "training_manifest_sha256": "f407af1d08459337a8b556a3a4218cd20f9cf54fe125c17116e84311aa161014",
+ "data_touched": {
+  "kind": "presenter-disjoint (biometric speaker linkage) for held-out; archive-only sessions as session-disjoint second test set",
+  "speaker_linkage_used": true,
+  "presenter_minimum_n_default": 20,
+  "per_language": {
+   "guz": {
+    "presenters_train": 123,
+    "presenters_held": 32,
+    "windows_train": 21320,
+    "windows_held": 5340,
+    "windows_archive_test": 2240,
+    "meets_presenter_minimum_n": true
+   },
+   "kam": {
+    "presenters_train": 182,
+    "presenters_held": 60,
+    "windows_train": 18600,
+    "windows_held": 5557,
+    "windows_archive_test": 4750,
+    "meets_presenter_minimum_n": true
+   },
+   "kik": {
+    "presenters_train": 159,
+    "presenters_held": 22,
+    "windows_train": 22803,
+    "windows_held": 5853,
+    "windows_archive_test": 567,
+    "meets_presenter_minimum_n": true
+   },
+   "kln": {
+    "presenters_train": 154,
+    "presenters_held": 42,
+    "windows_train": 14063,
+    "windows_held": 3518,
+    "windows_archive_test": 60,
+    "meets_presenter_minimum_n": true
+   },
+   "luo": {
+    "presenters_train": 137,
+    "presenters_held": 83,
+    "windows_train": 22129,
+    "windows_held": 5583,
+    "windows_archive_test": 159,
+    "meets_presenter_minimum_n": true
+   },
+   "lwg": {
+    "presenters_train": 43,
+    "presenters_held": 15,
+    "windows_train": 2501,
+    "windows_held": 814,
+    "windows_archive_test": 0,
+    "meets_presenter_minimum_n": true
+   },
+   "swa": {
+    "presenters_train": 205,
+    "presenters_held": 36,
+    "windows_train": 22857,
+    "windows_held": 6116,
+    "windows_archive_test": 0,
+    "meets_presenter_minimum_n": true
+   }
+  },
+  "files": {
+   "train": 3284,
+   "held": 1384,
+   "archive_test": 262
+  },
+  "windows": {
+   "train": 124273,
+   "held": 32781,
+   "archive_test": 7776
+  },
+  "train_condition_mix_sample_rate": {
+   "guz": {
+    "44100Hz": 21160,
+    "48000Hz": 160
+   },
+   "swa": {
+    "44100Hz": 20610,
+    "11025Hz": 1353,
+    "48000Hz": 894
+   },
+   "luo": {
+    "44100Hz": 11605,
+    "11025Hz": 9615,
+    "48000Hz": 53,
+    "22050Hz": 597,
+    "16000Hz": 250,
+    "32000Hz": 9
+   },
+   "kam": {
+    "44100Hz": 12677,
+    "11025Hz": 4468,
+    "48000Hz": 1219,
+    "22050Hz": 236
+   },
+   "kln": {
+    "44100Hz": 13643,
+    "48000Hz": 219,
+    "22050Hz": 201
+   },
+   "kik": {
+    "44100Hz": 20298,
+    "22050Hz": 749,
+    "48000Hz": 650,
+    "11025Hz": 902,
+    "16000Hz": 204
+   },
+   "lwg": {
+    "44100Hz": 1909,
+    "48000Hz": 592
+   }
+  },
+  "condition_reading": "source sample rate is the one measurable condition column (AIP \u00a74.3); held-out accuracy is reported per condition so a rate-confound is visible, not hidden"
+ },
+ "per_stratum": {
+  "guz": {
+   "accuracy": 0.944,
+   "abstention_rate": 0.0172,
+   "windows": 5340,
+   "meets_default": true
+  },
+  "kam": {
+   "accuracy": 0.9506,
+   "abstention_rate": 0.0171,
+   "windows": 5557,
+   "meets_default": true
+  },
+  "kik": {
+   "accuracy": 0.9761,
+   "abstention_rate": 0.0082,
+   "windows": 5853,
+   "meets_default": true
+  },
+  "kln": {
+   "accuracy": 0.9573,
+   "abstention_rate": 0.0159,
+   "windows": 3518,
+   "meets_default": true
+  },
+  "luo": {
+   "accuracy": 0.9253,
+   "abstention_rate": 0.0245,
+   "windows": 5583,
+   "meets_default": true
+  },
+  "lwg": {
+   "accuracy": 0.5916,
+   "abstention_rate": 0.0946,
+   "windows": 814,
+   "meets_default": false
+  },
+  "swa": {
+   "accuracy": 0.9394,
+   "abstention_rate": 0.0209,
+   "windows": 6116,
+   "meets_default": true
+  }
+ },
+ "archive_test": {
+  "windows": 7776,
+  "per_language": {
+   "bxk": {
+    "windows": 0,
+    "correct": 0,
+    "abstain": 0,
+    "accuracy": null,
+    "abstention_rate": null
+   },
+   "guz": {
+    "windows": 2240,
+    "correct": 2172,
+    "abstain": 19,
+    "accuracy": 0.9779,
+    "abstention_rate": 0.0085
+   },
+   "kam": {
+    "windows": 4750,
+    "correct": 4399,
+    "abstain": 87,
+    "accuracy": 0.9434,
+    "abstention_rate": 0.0183
+   },
+   "kik": {
+    "windows": 567,
+    "correct": 533,
+    "abstain": 5,
+    "accuracy": 0.9484,
+    "abstention_rate": 0.0088
+   },
+   "kln": {
+    "windows": 60,
+    "correct": 60,
+    "abstain": 0,
+    "accuracy": 1.0,
+    "abstention_rate": 0.0
+   },
+   "luo": {
+    "windows": 159,
+    "correct": 146,
+    "abstain": 5,
+    "accuracy": 0.9481,
+    "abstention_rate": 0.0314
+   },
+   "lwg": {
+    "windows": 0,
+    "correct": 0,
+    "abstain": 0,
+    "accuracy": null,
+    "abstention_rate": null
+   },
+   "swa": {
+    "windows": 0,
+    "correct": 0,
+    "abstain": 0,
+    "accuracy": null,
+    "abstention_rate": null
+   }
+  },
+  "per_condition_sample_rate": {
+   "44100Hz": {
+    "windows": 5355,
+    "correct": 5065,
+    "abstain": 64,
+    "languages": {
+     "guz": 2160,
+     "kam": 2625,
+     "kik": 510,
+     "kln": 60
+    },
+    "accuracy": 0.9573,
+    "abstention_rate": 0.012
+   },
+   "22050Hz": {
+    "windows": 91,
+    "correct": 78,
+    "abstain": 2,
+    "languages": {
+     "guz": 40,
+     "kik": 51
+    },
+    "accuracy": 0.8764,
+    "abstention_rate": 0.022
+   },
+   "48000Hz": {
+    "windows": 746,
+    "correct": 685,
+    "abstain": 17,
+    "languages": {
+     "guz": 40,
+     "kam": 700,
+     "kik": 6
+    },
+    "accuracy": 0.9396,
+    "abstention_rate": 0.0228
+   },
+   "11025Hz": {
+    "windows": 1584,
+    "correct": 1482,
+    "abstain": 33,
+    "languages": {
+     "kam": 1425,
+     "luo": 159
+    },
+    "accuracy": 0.9555,
+    "abstention_rate": 0.0208
+   }
+  },
+  "overall_accuracy_on_judged": 0.9543,
+  "overall_abstention_rate": 0.0149,
+  "confidence_threshold": 0.6,
+  "confusion_top": {
+   "guz": {
+    "guz": 2172,
+    "luo": 14,
+    "kik": 13,
+    "kam": 9
+   },
+   "kam": {
+    "kam": 4399,
+    "swa": 111,
+    "kik": 67,
+    "luo": 37
+   },
+   "kik": {
+    "kik": 533,
+    "swa": 12,
+    "kln": 7,
+    "kam": 5
+   },
+   "kln": {
+    "kln": 60
+   },
+   "luo": {
+    "luo": 146,
+    "kam": 4,
+    "swa": 3,
+    "kik": 1
+   }
+  }
+ },
+ "sealed_contract_check": {
+  "span_rule_matches_default": true,
+  "presenter_minimum_n_default": 20,
+  "presenter_minimum_n_tagged_pending": true,
+  "languages_meeting_presenter_minimum": [
+   "guz",
+   "kam",
+   "kik",
+   "kln",
+   "luo",
+   "lwg",
+   "swa"
+  ],
+  "per_language_accuracy_default": 0.9,
+  "per_language_accuracy_tagged_pending": true,
+  "code_switch_span_accuracy_default": 0.85,
+  "code_switch_material_present": false,
+  "no_speaker_id_probe": {
+   "measured": true,
+   "per_language": {
+    "guz": {
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 19,
+      "test_windows": 2647,
+      "accuracy": 0.7975,
+      "chance": 0.0526,
+      "majority_baseline": 0.5508,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 19,
+      "test_windows": 2647,
+      "accuracy": 0.5735,
+      "chance": 0.0526,
+      "majority_baseline": 0.5508,
+      "above_chance": false
+     }
+    },
+    "kam": {
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 40,
+      "test_windows": 2745,
+      "accuracy": 0.8106,
+      "chance": 0.025,
+      "majority_baseline": 0.3956,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 40,
+      "test_windows": 2745,
+      "accuracy": 0.616,
+      "chance": 0.025,
+      "majority_baseline": 0.3956,
+      "above_chance": true
+     }
+    },
+    "kik": {
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 14,
+      "test_windows": 2912,
+      "accuracy": 0.8359,
+      "chance": 0.0714,
+      "majority_baseline": 0.4808,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 14,
+      "test_windows": 2912,
+      "accuracy": 0.5649,
+      "chance": 0.0714,
+      "majority_baseline": 0.4808,
+      "above_chance": true
+     }
+    },
+    "kln": {
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 24,
+      "test_windows": 1710,
+      "accuracy": 0.7749,
+      "chance": 0.0417,
+      "majority_baseline": 0.1614,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 24,
+      "test_windows": 1710,
+      "accuracy": 0.3667,
+      "chance": 0.0417,
+      "majority_baseline": 0.1614,
+      "above_chance": true
+     }
+    },
+    "luo": {
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 43,
+      "test_windows": 2687,
+      "accuracy": 0.751,
+      "chance": 0.0233,
+      "majority_baseline": 0.198,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 43,
+      "test_windows": 2687,
+      "accuracy": 0.3844,
+      "chance": 0.0233,
+      "majority_baseline": 0.198,
+      "above_chance": true
+     }
+    },
+    "lwg": {
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 7,
+      "test_windows": 392,
+      "accuracy": 0.7551,
+      "chance": 0.1429,
+      "majority_baseline": 0.5867,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 7,
+      "test_windows": 392,
+      "accuracy": 0.6148,
+      "chance": 0.1429,
+      "majority_baseline": 0.5867,
+      "above_chance": false
+     }
+    },
+    "swa": {
+     "encoder_representation": {
+      "measured": true,
+      "presenters": 22,
+      "test_windows": 3039,
+      "accuracy": 0.8684,
+      "chance": 0.0455,
+      "majority_baseline": 0.3574,
+      "above_chance": true
+     },
+     "artefact_output_logits": {
+      "measured": true,
+      "presenters": 22,
+      "test_windows": 3039,
+      "accuracy": 0.4877,
+      "chance": 0.0455,
+      "majority_baseline": 0.3574,
+      "above_chance": true
+     }
+    }
+   },
+   "any_language_above_chance": {
+    "encoder_representation": true,
+    "artefact_output_logits": true
+   },
+   "reading": "linear probe on held-out presenters (\u226520 windows each), 50/50 split per presenter; above_chance = accuracy > max(chance, majority) + 0.05"
+  },
+  "abstention_rate_reported": true
+ },
+ "verdict": "NOT ADMISSIBLE \u2014 MUST-NOT \u00a71 (clean-monolingual only: no labelled code-switched spans); per-language and no-speaker-ID readings above are measured on presenter-disjoint material",
+ "final_model": false,
+ "certified_at": "2026-09-29T07:11:08.656484Z"
+}

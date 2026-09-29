@@ -1,6 +1,57 @@
 # Akki — product requirements and current continuity
 
-## CURRENT — 2026-09-29 (pm) M1 P0 pull-seam census now consumes fully
+## CURRENT — 2026-09-29 (late) M2 language cognition TRAINED on akki-vm-ii (measured, not final)
+
+Owner directive: "Akki trains language cognition model on akki-vm ii … Run M2
+autonomously. Maintain same rigour." Owner inputs this increment: 2 h+ budget;
+train on the extracted `google-transcripts/datasets` clean-cut labelled audio; other
+material tests model success; audio is a database (AIP §1.1); use the repo's
+biometric (speaker) layer. Owner said "Proceed without check in 1-5". English only.
+
+**Done this increment (all phases ran as daemonised jobs on akki-vm-ii through
+`services/audio_plane_v1/language_cognition_dispatch.py`; E1 never a data path):**
+- Worker fixed/hardened (`language_cognition_worker.py`): `win` NameError; real
+  layout `datasets/<code>/<session>/{audio,transcript,metadata}`; files are MP3 in
+  `.wav` containers → ffprobe facts (duration/codec/sample rate); prefix-marker
+  objects skipped; 262 archive-only sessions unpacked + per-session origin index;
+  corpus read as a database (`corpus_db/files.jsonl` 3,958 rows, `segments.jsonl`
+  351,021 rows). NEW phase `speaker_linkage` (ECAPA speaker embeddings → presenters;
+  embeddings destroyed after clustering, AIP §6.2.4). `train_baseline` now splits by
+  PRESENTER (MUST-DO §3), keeps archive-only sessions as a second test set, reports
+  per-language + per-condition (sample-rate) accuracy with abstention, runs the
+  no-speaker-ID linear probe (MUST-DO §4), checkpoints, banks manifest hash.
+- Control plane: `_bank_run_certificate` (AIP §11.6) checks receipts against SEALED
+  defaults (`WINDOW_AND_SPAN_RULE_DEFAULT`, `SPEAKER_DISJOINT_SPLIT_CONTRACT_DEFAULT`,
+  `LANGUAGE_COGNITION_MOAC_CONTRACT_DEFAULT`) — no silent re-thresholding.
+- Receipts (digest-verified, Northena admit/gate/converge + Track-4 rows):
+  corpus_census `lcj-1851c62aee3b` — 15,899 objects/54.1 GB; 529.5 h audio, 828.6 h
+  segment time, 8 languages with audio (guz/kam/kik/kln/luo/lwg/swa/bxk), English +
+  Sheng absent, no per-span labels. speaker_linkage `lcj-e16f26a43d22` — e.g. kik
+  1,372 session-local ids → 203 presenters; all 7 transcribed languages meet N≥20.
+  gate_eval `lcj-4e9283997834` — pre-trained Whisper-LID/VoxLingua107 label every
+  Kenyan language `sw` (agreement 1.00 swa, 0.00 elsewhere): the overlay cannot
+  deliver the census distribution. train_baseline smoke `lcj-229ca62fe5cb` proved the
+  pipeline. FULL RUN `lcj-f96c86a16312` (05:22–07:07 UTC, 14,511 steps/8 epochs/6,405 s
+  on one H200, 124,273 train windows): held-out PRESENTERS 32,781 windows → overall
+  accuracy on judged **0.940**, abstention 1.9 %; kik 0.976 · kln 0.957 · kam 0.951 ·
+  guz 0.944 · swa 0.939 · luo 0.925 (all ≥ 0.90 default) · **lwg 0.592 (fails; 43 train
+  presenters)**; archive-only sessions 0.954; per-condition reported (22/48 kHz weakest).
+  **No-speaker-ID probe MEASURED FAIL** (encoder rep. 0.77–0.84 presenter-ID; output
+  logits above chance in kam/kik/kln) → `no_speaker_id_probe_passed: False`. Verdict NOT
+  ADMISSIBLE (MUST-NOT §1 + MUST-DO §4); artefact `d2cd0497…` on host, not admitted;
+  certificate `run_certificate_lcj-f96c86a16312.json` banked against sealed defaults.
+- Tests: offline worker (10) + dispatch (8) pass; live API suite iteration 61 9/9
+  (`tests/census_operational/test_language_cognition_api.py`). Operator tool:
+  `assessment_workspace/tools/m2_language_cognition_run.py`. Evidence:
+  `assessment_workspace/notes/m2_execution/LANGUAGE_COGNITION_RUN_20260929.md`.
+
+**Standing facts / not done:** artefact is `final_model: False` (MUST-NOT §1 — no
+labelled code-switched spans; English/Sheng absent; DP-SGD not applied, DQ-24
+recorded). No UI surface exists for LC jobs (AIP §13: milestones surface; none
+invented). Roadmap M2 (Grey Mirror/Watch) and M9 (final LC qualification) remain as
+sequenced. Never POST a valid phase from tests — it spawns real GPU jobs.
+
+## SUPERSEDED — 2026-09-29 (pm) M1 P0 pull-seam census now consumes fully
 
 Owner P0/P1: "holistic Census on akki-vm (entire deep census as designed) consume
 fully; train language cognition on akki-vm-ii." E1 stays control plane; akki-vm is

@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict
 
 from services.enforce.census_identity import census_identity
 from services.enforce.principal_context_adapter import principal_context
+from services.watch import commission_gate
 from services.census_autonomy import engine, operational_store as store, operational_reads as reads
 from services.census_autonomy.operational_scope import SOURCE_TENANTS, SOURCE_LABELS, validate_submission
 from services.census_autonomy.operational_runner import admission_path, run_bounded_census
@@ -76,21 +77,22 @@ def state(census_run_id: str, actor=Depends(census_identity)):
 @router.post("/api/portal/census/run", status_code=202, response_model=CensusEnvelope)
 @router.post("/api/census/run", status_code=202, response_model=CensusEnvelope)
 def submit(background: BackgroundTasks, body: dict = Body(...), actor=Depends(census_identity)):
-    try:
-        body = {**body, 'worker_id': body.get('worker_id') or os.environ['CENSUS_PRIMARY_WORKER']}
-        sources = validate_submission(body, actor["tenant_id"], actor["roles"])
-        budget = int(os.environ["CENSUS_JOB_MAX_SECONDS"])
-        if budget <= 0:
-            raise ValueError("The current census budget does not permit a run.")
-        path, _ = admission_path()
-        row, fresh = store.enqueue(actor["tenant_id"], actor["principal_id"], sources,
-                                   body.get("idempotency_key", ""), str(path), body.get('worker_id'), body.get('source_refs'))
-    except PermissionError as exc:
-        raise HTTPException(403, str(exc)) from exc
-    except (ValueError, TypeError) as exc:
-        raise HTTPException(422, str(exc)) from exc
-    except (OSError, KeyError) as exc:
-        raise HTTPException(409, "The existing census admission or execution budget is unavailable. No source read was started.") from exc
+    with commission_gate.crossing(actor, "census.commission", body):
+        try:
+            body = {**body, 'worker_id': body.get('worker_id') or os.environ['CENSUS_PRIMARY_WORKER']}
+            sources = validate_submission(body, actor["tenant_id"], actor["roles"])
+            budget = int(os.environ["CENSUS_JOB_MAX_SECONDS"])
+            if budget <= 0:
+                raise ValueError("The current census budget does not permit a run.")
+            path, _ = admission_path()
+            row, fresh = store.enqueue(actor["tenant_id"], actor["principal_id"], sources,
+                                       body.get("idempotency_key", ""), str(path), body.get('worker_id'), body.get('source_refs'))
+        except PermissionError as exc:
+            raise HTTPException(403, str(exc)) from exc
+        except (ValueError, TypeError) as exc:
+            raise HTTPException(422, str(exc)) from exc
+        except (OSError, KeyError) as exc:
+            raise HTTPException(409, "The existing census admission or execution budget is unavailable. No source read was started.") from exc
     # Execution belongs to the existing supervised worker and durable queue,
     # not an ASGI BackgroundTask that prevents app reloads from completing.
     return {**reads.run_view(row), "duplicate": not fresh}
@@ -103,6 +105,12 @@ def plan(body: dict = Body(default={}), actor=Depends(census_identity)):
     scoop 0 is commissioned on the external worker; the supervised runner advances
     the cadence one scoop at a time. An active plan is returned, not duplicated,
     unless `replan=true`."""
+    with commission_gate.crossing(actor, "census.plan", body):
+        built, commissioned, reused = _plan(body, actor)
+    return {"tenant_id": actor["tenant_id"], "plan": built, "commissioned_run_id": commissioned, "reused_active_plan": reused}
+
+
+def _plan(body, actor):
     if not {"operator", "master_admin"}.intersection(actor["roles"]):
         raise HTTPException(403, "Only an admitted estate operator can shape a census plan.")
     from services.census_autonomy import census_scoop_origination as shovel
@@ -132,7 +140,7 @@ def plan(body: dict = Body(default={}), actor=Depends(census_identity)):
         raise HTTPException(422, str(exc)) from exc
     except (OSError, KeyError) as exc:
         raise HTTPException(409, "The census admission or worker configuration is unavailable; no plan was commissioned.") from exc
-    return {"tenant_id": actor["tenant_id"], "plan": built, "commissioned_run_id": commissioned, "reused_active_plan": reused}
+    return built, commissioned, reused
 
 
 @router.get("/api/portal/census/plan/{plan_id}", response_model=CensusEnvelope)
@@ -148,19 +156,20 @@ def plan_state(plan_id: str, actor=Depends(census_identity)):
 def language_cognition_submit(body: dict = Body(...), actor=Depends(census_identity)):
     """Commission one CP-AIP-LANGUAGE-COGNITION phase on the admitted GPU host (akki-vm-ii).
     E1 wires and steps back: the phase daemonises on the host and reports through its receipt."""
-    if not {"operator", "master_admin"}.intersection(actor["roles"]):
-        raise HTTPException(403, "Only an admitted estate operator can commission a training phase.")
-    if actor["tenant_id"] != "RMS":
-        raise HTTPException(403, "The language-cognition corpus is RMS tenant material.")
-    from services.audio_plane_v1 import language_cognition_dispatch as lc
-    try:
-        path, _ = admission_path()
-        params = {k: v for k, v in body.items() if k not in ("phase", "tenant_id")}
-        job = lc.submit(body.get("phase"), params, actor["principal_id"], str(path))
-    except (ValueError, TypeError) as exc:
-        raise HTTPException(422, str(exc)) from exc
-    except (OSError, KeyError) as exc:
-        raise HTTPException(409, "The training host or census admission is unavailable; nothing was dispatched.") from exc
+    with commission_gate.crossing(actor, "language_cognition.commission", body):
+        if not {"operator", "master_admin"}.intersection(actor["roles"]):
+            raise HTTPException(403, "Only an admitted estate operator can commission a training phase.")
+        if actor["tenant_id"] != "RMS":
+            raise HTTPException(403, "The language-cognition corpus is RMS tenant material.")
+        from services.audio_plane_v1 import language_cognition_dispatch as lc
+        try:
+            path, _ = admission_path()
+            params = {k: v for k, v in body.items() if k not in ("phase", "tenant_id")}
+            job = lc.submit(body.get("phase"), params, actor["principal_id"], str(path))
+        except (ValueError, TypeError) as exc:
+            raise HTTPException(422, str(exc)) from exc
+        except (OSError, KeyError) as exc:
+            raise HTTPException(409, "The training host or census admission is unavailable; nothing was dispatched.") from exc
     return {"tenant_id": actor["tenant_id"], "job": job}
 
 

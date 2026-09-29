@@ -1,0 +1,20 @@
+{
+  "summary": "M2 language-cognition backend testing complete. All 9 API tests pass against the live REACT_APP_BACKEND_URL: operator login, jobs list (RMS tenant, 4 expected job ids, no secret leakage), gate_eval receipt (agreement rates swa=1.0/kik=0.0, digest_verified, ledger stages admit/gate/converge), speaker_linkage (kik presenters=203, embeddings-destroyed custody, no speaker_embedding/voiceprint leak), corpus_census (kik audio_hours=82.1, codecs={mp3:584}, archive session_origins keys), running train_baseline (status=running, process_alive=true, progress stage in {windowing/features/training}), 404 on unknown/malformed job ids, unknown-phase submit → 422 for operator and 403 for analyst, anonymous list → 401. Offline pytest suites (test_language_cognition_worker.py + test_language_cognition_dispatch.py) pass: 17 passed, 1 skipped (scipy). Live 2h GPU training job lcj-f96c86a16312 not disturbed (only two bounded status GETs). No valid phase was submitted.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_language_cognition_api.py",
+    "/app/test_reports/pytest/lc_api.xml",
+    "/app/test_reports/pytest/lc_offline.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": ["/app/backend/tests/census_operational/test_language_cognition_api.py"],
+  "success_rate": {"backend": "100%", "frontend": "skipped"},
+  "test_credentials": "operator demo.operator@demo.rms.example.com / demo-operator-pw; analyst demo.analyst@demo.rms.example.com / demo-analyst-pw",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "M2 language-cognition control-plane routes validated end-to-end via /api/portal/census/language-cognition/jobs. Reusable test file at /app/backend/tests/census_operational/test_language_cognition_api.py drives the live backend via REACT_APP_BACKEND_URL. Do NOT POST any valid phase (corpus_census/register_bases/speaker_linkage/gate_eval/train_baseline) — that spawns real GPU jobs on akki-vm-ii. Job lcj-f96c86a16312 was still running at test time; running-status GET makes a bounded SSH RPC — call sparingly.",
+  "rca of the issue": "N/A — all assertions passed."
+}
