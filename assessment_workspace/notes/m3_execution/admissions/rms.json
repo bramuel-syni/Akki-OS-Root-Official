@@ -1,0 +1,60 @@
+{
+  "tenant_id": "RMS",
+  "organisation": {
+    "legal_identity": "Royal Media Services (RMS) — estate owner of record (legal name as supplied in the owner estate intake)",
+    "admitted_by": "Estate owner — Akki platform owner M3 rulings 1, 2, 3, 6 (2026-09-29)"
+  },
+  "members": {"from_account_bindings": true},
+  "agents": [
+    {"autonomy_scope": "northena:planner", "name": "Northena planner (signs the frozen Plan)", "key_id": "northena-planner",
+     "permissions": ["activation:plan"]},
+    {"autonomy_scope": "estate:allocator", "name": "Estate allocator (signs the pilot Allocation)", "key_id": "estate-allocator",
+     "permissions": ["activation:allocation"]},
+    {"autonomy_scope": "estate:rights-authority", "name": "Estate rights authority (anchors lawful basis, signs rights)",
+     "key_id": "estate-rights-authority", "permissions": ["activation:observation:anchor", "activation:observation:rights"]}
+  ],
+  "approval_groups": [
+    {"group": "expenditure.estate", "purpose": "expenditure", "quorum": 1, "members": []},
+    {"group": "extraction.controlled", "purpose": "extraction", "quorum": 1, "members": []}
+  ],
+  "interim_stand_in": {
+    "basis": "DAP-R-2 (approving authority for this estate) is an open owner ruling; the named authorities of record have no identity drops in custody. Per the owner's M3 ruling of 2026-09-29 the interim-pilot admission stands in for the unseated expenditure and controlled groups until a named authority is seated. Every approval it signs cites INTERIM_PILOT_ADMISSION_STAND_IN; the scope group is always the requester's own operator standing."
+  },
+  "licence": {
+    "terms_identifier": "TERMS-PILOT-M3-v0",
+    "fields": {"plan_identifier": "pilot.m3.zero_rate", "seat_count": 4, "compute_dial": "managed", "frontier_dial": "your_keys",
+               "credits_per_seat_per_period": 0, "pooled_credits_flag": true, "seat_soft_limit": 4, "organisation_ceiling": 1000,
+               "period": "month", "renewal_date": "2027-09-01T00:00:00+00:00", "status": "active"}
+  },
+  "dials": {
+    "dial_versions": {"custody_floor": "v0-pilot-de_identified", "approving_authority": "v0-requester-standing+interim-pilot-stand-in",
+                      "external_crossing": "v0-closed", "disclosure_counterparties": "v0-none"},
+    "policy_versions": {"crossing_decision_table": "v0", "acceptance_standard": "v0-m3", "cleanliness_pack": "v0"},
+    "policy_epoch": 1
+  },
+  "allocation": {"limits": [
+    {"dimension": "spend", "unit": "USD", "quantity": "0"},
+    {"dimension": "wall_clock", "unit": "seconds", "quantity": "2592000"},
+    {"dimension": "scanned_records", "unit": "records", "quantity": "50000000"},
+    {"dimension": "returned_records", "unit": "records", "quantity": "10000000"},
+    {"dimension": "bytes_read", "unit": "bytes", "quantity": "5000000000000"},
+    {"dimension": "active_compute", "unit": "cpu_seconds", "quantity": "10000000"},
+    {"dimension": "active_compute", "unit": "gpu_seconds", "quantity": "1000000"}
+  ]},
+  "rights": {"units": ["rms_mysql", "rms_obs", "rms_nas"], "lawful_basis_path_env": "CENSUS_LAWFUL_BASIS_PATH"},
+  "runtimes": [
+    {"runtime_id": "akki-vm", "roles": ["worker"], "transport": {"kind": "ssh_seam", "host_slug": "akki-vm"},
+     "python": "/opt/akki-census/bin/python", "state_dir": "~/.akki-extraction", "kinds": ["source"],
+     "enforced_dimensions": ["spend", "wall_clock", "scanned_records", "returned_records", "bytes_read", "active_compute"],
+     "reach": {"direct": ["rms_obs"], "pull_seam": ["rms_mysql", "rms_nas"]}},
+    {"runtime_id": "akki-vm-ii", "roles": ["inspector", "custodian"], "transport": {"kind": "ssh_seam", "host_slug": "akki-vm-ii"},
+     "python": "/opt/akki-census/bin/python", "state_dir": "~/.akki-extraction", "kinds": ["source"],
+     "enforced_dimensions": ["spend", "wall_clock", "scanned_records", "returned_records", "bytes_read", "active_compute"],
+     "reach": {"direct": ["rms_obs"], "pull_seam": ["rms_mysql", "rms_nas"]}}
+  ],
+  "custody": {
+    "provider": "huawei_obs", "endpoint_origin": "https://obs.af-south-1.myhuaweicloud.com", "region": "af-south-1",
+    "bucket": "datauploadroyalmedia.co.ke", "prefix": "akki/deliveries/", "custodian_runtime_id": "akki-vm-ii",
+    "basis": "Ruling 3: existing censused bucket of the tenant (source_ref source_1fce48c91233092cf1c9a251 in the OBS census), prefix akki/deliveries/; recorded here as the tenant's custody descriptor, never as a constant in code."
+  }
+}

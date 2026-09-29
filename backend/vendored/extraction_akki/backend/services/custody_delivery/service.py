@@ -72,6 +72,8 @@ class CustodyDelivery:
         except (TimeoutError, ConnectionError, OSError):
             await ledger.append(self.db, descriptor, 'uncertain', {'reason_code': 'CUSTODY_PROVIDER_OUTCOME_UNCERTAIN'})
             return self.view(descriptor, 'uncertain', grant_ref, grant)
+        except Held:
+            raise  # the admitted custodian's own classified hold is a verdict, not an invalid response
         except Exception:
             raise Held('CUSTODY_PROVIDER_RESPONSE_INVALID') from None
         if not isinstance(state, ProviderState):

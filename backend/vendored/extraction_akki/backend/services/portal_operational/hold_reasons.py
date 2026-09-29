@@ -57,6 +57,11 @@ _group('CUSTODY_COMPLETION_RECORDED', 'Measured custody delivery is recorded. Cu
 _group('CUSTODY_DELIVERY_NOT_FOUND SKILL_QUERY_NOT_FOUND', 'The requested record is not available within your current scope.')
 _group('CUSTODY_PROVIDER_OUTCOME_UNCERTAIN CUSTODY_PROVIDER_RESPONSE_INVALID', 'The custody service has not supplied verified completion evidence.',
        'Reconcile the same delivery identifier; issuing a link is not proof of delivery.')
+_group('CUSTODY_ORIGIN_UNAVAILABLE', 'The verified result rests in your estate\'s own store; no retrieval origin is ruled for it, so Akki issues no link.',
+       'Retrieve it where that store is mounted, or have an HTTPS retrieval origin ruled for this estate\'s custody.')
+_group('CUSTODY_GRANT_REFUSED CUSTODY_COMPLETION_REFUSED CUSTODY_OBJECT_SIZE_MISMATCH CUSTODY_AUTHORITY_WINDOW_TOO_SHORT SEALED_OBJECT_UNRESOLVED CUSTODY_DESCRIPTOR_UNRESOLVED',
+       'The custodian could not match the sealed result to this delivery.', 'Reconcile the same delivery identifier against the recorded sealed object; nothing is downloaded meanwhile.')
+
 _group('CUSTODY_IDEMPOTENCY_CONFLICT SKILL_QUERY_IDEMPOTENCY_CONFLICT', 'This retry identifier belongs to a different frozen request.',
        'Do not alter the original request while retrying it.')
 _group('CUSTODY_RESULT_NOT_CURRENTLY_ADMITTED CUSTODY_SCOPE_MISMATCH CUSTODY_REGISTERED_ARTIFACT_CHANGED',

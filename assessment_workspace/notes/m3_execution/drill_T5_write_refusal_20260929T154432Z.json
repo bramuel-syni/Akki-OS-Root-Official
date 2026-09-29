@@ -1,0 +1,39 @@
+{
+ "tenant_id": "DIGICOW",
+ "runtime_id": "akki-vm",
+ "attempts": [
+  {
+   "sql_sha256": "2b285a951c13cdf94f761e90ef3d47f3e77ea2b156bbbaec3dea97d4f5e09613",
+   "verb": "DELETE",
+   "status": "refused",
+   "reason_code": "WRITE_VERB_REFUSED",
+   "signer_id": "runtime:akki-vm",
+   "refusal_receipt_ref": "3e1ae8e02f0bbb9ab2f7f0e2d1d9a7b1512df89fc2270a7376afa0c14cd25079"
+  },
+  {
+   "sql_sha256": "ebdf39db0d4030e678d56f61fd56d1f3bf5634d4505d5541ec52ede827af7c10",
+   "verb": "UPDATE",
+   "status": "refused",
+   "reason_code": "WRITE_VERB_REFUSED",
+   "signer_id": "runtime:akki-vm",
+   "refusal_receipt_ref": "5158e312a5938b71c8cd7e0c1c437b08fd22202d524652dfd50babcf4f4acac5"
+  },
+  {
+   "sql_sha256": "94d32e4456a73f35d0fec56b99bdc436f0467febdbf064be3e4f87d6b44892b6",
+   "verb": "DROP",
+   "status": "refused",
+   "reason_code": "WRITE_VERB_REFUSED",
+   "signer_id": "runtime:akki-vm",
+   "refusal_receipt_ref": "38dd42c12d3e27302dab3ba3a9adae6733518c151ba74f7364de250bfebd1c16"
+  },
+  {
+   "sql_sha256": "c34b204be7d05056cc8eacf1079a822311b2acd3ed9e77f8c71d8ed2798adfdf",
+   "verb": "INSERT",
+   "status": "refused",
+   "reason_code": "WRITE_VERB_REFUSED",
+   "signer_id": "runtime:akki-vm",
+   "refusal_receipt_ref": "93df3b69d981a1e08797cbc75dac02456c9bc4aa42a89980f3bf2e4a6207bd03"
+  }
+ ],
+ "all_refused": true
+}

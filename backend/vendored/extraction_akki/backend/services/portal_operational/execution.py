@@ -33,10 +33,15 @@ async def frozen_request(db, scope, request_id, budget, receipts=None):
     mapping = {"browse_estate": ("source", "mtafiti"), "connect_workspace": ("source", "synisense")}
     if frozen["operation"] not in mapping:
         from services.activation.portal_plans import MODEL_OPERATIONS, recover_plan
-        if frozen["operation"] not in MODEL_OPERATIONS:
+        from services.work_orders.kind_profiles import engines_for_operation
+        # A commissioned work order names its kind through the registered profile and the signed Plan.
+        allowed = engines_for_operation(frozen["operation"])
+        if frozen["operation"] in MODEL_OPERATIONS:
+            allowed.add(MODEL_OPERATIONS[frozen["operation"]])
+        if not allowed:
             raise Held("NATIVE_SKILL_PROVISIONING_BINDING_REQUIRED" if frozen["operation"] == "develop_skills"
                        else "NATIVE_CUSTODY_DELIVERY_REQUIRED")
-        return await recover_plan(receipts, scope, frozen, budget.deadline_epoch)
+        return await recover_plan(receipts, scope, frozen, budget.deadline_epoch, allowed)
     kind, engine = mapping[frozen["operation"]]
     return Request(request_id=request_id, tenant_id=scope["tenant_id"], principal_id=scope["principal_id"],
                    kind=kind, engine=engine, objective_sha256=digest(frozen["objective_text"]),

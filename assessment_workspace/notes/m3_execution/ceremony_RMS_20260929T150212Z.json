@@ -1,0 +1,200 @@
+{
+ "finished_at": "2026-09-29T15:02:49.444638+00:00",
+ "started_at": "2026-09-29T15:02:12.249568+00:00",
+ "steps": {
+  "agents": {
+   "estate:allocator": {
+    "admission_ref": "8669af00ee35a3be5465a3190ac9428c78e56b7d7ea0442a7511b9d51903329b",
+    "key_id": "estate-allocator",
+    "principal_id": "agent-8d8f14dae05179ca",
+    "signer_ref": "5c6c6098b188126f31a32b3d7bff30879c2afcfd46f2bdc3e8d33fa16b789920"
+   },
+   "estate:rights-authority": {
+    "admission_ref": "77b161d3a574723489c439adb074c3d96d41474b1ebae53c838e806cbaa878e4",
+    "key_id": "estate-rights-authority",
+    "principal_id": "agent-90be68178cc9ac37",
+    "signer_ref": "ab64302bfd43c0db5c5124ab67adbfa294d879f51eb0862461b5814bf739f18b"
+   },
+   "northena:planner": {
+    "admission_ref": "f200971c363d922389d57d3662d53dd85f0a5bcf91f63ea4e99ab02ccbea5f2a",
+    "key_id": "northena-planner",
+    "principal_id": "agent-926d504853ef30ca",
+    "signer_ref": "5b07069ee877082602f0d6457217b86ea566783198c82baf7bb614107a468150"
+   }
+  },
+  "allocation": "c11e78054a15507259a4bf56500ca8bc722b6a54453bc5a4fedaf3f2f3c26eb7",
+  "approval_groups": {
+   "groups": [
+    {
+     "group": "expenditure.estate",
+     "members": [],
+     "purpose": "expenditure",
+     "quorum": 1
+    },
+    {
+     "group": "extraction.controlled",
+     "members": [],
+     "purpose": "extraction",
+     "quorum": 1
+    }
+   ],
+   "interim_stand_in": {
+    "autonomy_scope": "pilot:interim-admission",
+    "basis": "DAP-R-2 (approving authority for this estate) is an open owner ruling; the named authorities of record have no identity drops in custody. Per the owner's M3 ruling of 2026-09-29 the interim-pilot admission stands in for the unseated expenditure and controlled groups until a named authority is seated. Every approval it signs cites INTERIM_PILOT_ADMISSION_STAND_IN; the scope group is always the requester's own operator standing.",
+    "principal_id": "agent-c503311e38c166a0",
+    "signer_ref": "7543d38a56884e781cafd77afac5ca02e901176a9c578476723d86f2373c30a6",
+    "stands_in_for": [
+     "expenditure.estate",
+     "extraction.controlled"
+    ]
+   },
+   "ref": "8d1e468b3c3784584da2066c1cb9c491f33b5a30556b6665f16a1df55167712c"
+  },
+  "custody_descriptor": "2ea058ae58d095582e4b2824eeaa08a304a54651238585f1db59e484da9ff79d",
+  "dials": "374b3e653896d5263c1e2c3334b46793e66532aab5df2cefc9108887c7878dfe",
+  "licence": {
+   "period": "2026-09",
+   "ref": "bbf3bfbb5ad62f2cb7d3b363df2440bc65028a5c553f9ecb25f83543f283351c",
+   "terms_identifier": "TERMS-PILOT-M3-v0"
+  },
+  "members": [
+   {
+    "account_tenant": null,
+    "admission_ref": "b485a370b62da05d47a6ef5a3c048f4b7f222b94ce7b1b49a3f92b27b13c1b51",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "d6ab8bd79f3527cc907e7b9652ee76e65ce6f45998da3149333df785ef21d92b",
+    "name": "Demo \u00b7 Master Admin",
+    "principal_id": "6ab56dd48894abb269135ca0",
+    "seats": [
+     "scope.requester"
+    ],
+    "signer_ref": "c9d7fd7e2bff16d031a9a8b4b88a2d6273701dc82f75711b411cbd4cbf1c9538"
+   },
+   {
+    "account_tenant": null,
+    "admission_ref": "8cd3b8fe999e5878e642e53337273674ab42d492abf6f7b49503aa2fa51ca0b9",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "2148b785e82bb9d6a4665179decc57591df9c60967904831d05b50350b7e4678",
+    "name": "Demo \u00b7 DPO",
+    "principal_id": "6ab56dd48894abb269135ca1",
+    "seats": [
+     "scope.requester"
+    ],
+    "signer_ref": "a2ee02d46c46a856479793d384ef36ddbcec76858ee6de77df648cbddbe0582b"
+   },
+   {
+    "account_tenant": null,
+    "admission_ref": "c8a350f12f3701b983be2e646ef55faef669e6e94b7f13ee02c89c8be41205e0",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "18d51effbc3996807890635c5388a97c6307c4bb868eae6b346424eccbdffcaf",
+    "name": "Demo \u00b7 Operator",
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "seats": [
+     "scope.requester"
+    ],
+    "signer_ref": "65bbde19f2626868a0e481b522541bdc61af07b650877cd6d84ef33cbf0a9643"
+   },
+   {
+    "account_tenant": null,
+    "admission_ref": "39665b495a97c25569feb7835da72ba0633fbaa6102b108669ba502d644258e6",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "0c673214f3606a73159177de95878e1e958f28fec4e44bcdd161db58e0a3858e",
+    "name": "Demo \u00b7 Analyst",
+    "principal_id": "6ab56dd58894abb269135ca3",
+    "seats": [
+     "scope.requester"
+    ],
+    "signer_ref": "d05ad7cfaa65de9bec17e09e56a7f8b478a161712238177737f521ffba6fe00e"
+   }
+  ],
+  "organisation": {
+   "principal_id": "org-744caabbd1434797",
+   "ref": "c7b8f4fc47688fa3c329c55476560e0206078cf64d8a845f3551dbf0752a8ab1"
+  },
+  "rights": {
+   "anchor_ref": "e7f5c2ab2bfef96bedfbcb4f309069c10f3a9e5652527b5b90b47f740a4f52b7",
+   "rights_refs": {
+    "rms_mysql": "0e2c8f3f1c9ed7cfd44353e5fc63af000efcb95970334c738972968116e7fe5d",
+    "rms_nas": "02c04d17f4785c0bd10b1e3ec86aef0f41deab6c22fbbeaf86514b4814cc6955",
+    "rms_obs": "a62990986faa9b7eabc12607e49af49bcddf4c0bb563f13b29fa10573a014da7"
+   }
+  },
+  "runtimes": {
+   "akki-vm": {
+    "attestation": {
+     "attested_at": "2026-09-29T15:02:36.906506+00:00",
+     "capacity_observed": {
+      "accounting": [
+       "cpu_seconds"
+      ],
+      "compute_classes": [
+       "cpu",
+       "gpu"
+      ],
+      "cpu_cores": 36,
+      "gpu_count": 2,
+      "memory_gb": 460
+     },
+     "hostname": "akki-vm",
+     "modules": {
+      "boto3": true,
+      "cryptography": true,
+      "paramiko": true,
+      "pydantic": true,
+      "pymysql": true
+     },
+     "python": "/opt/akki-census/bin/python"
+    },
+    "capacity": {
+     "cpu_cores": 36,
+     "gpu_count": 2,
+     "memory_gb": 460
+    },
+    "compute_classes": [
+     "cpu",
+     "gpu"
+    ],
+    "key_id": "rk-9a8a653cba0334d53f29",
+    "worker_receipt_ref": "82f22f0c859ef87f63c3e07ec8141ea64cfb56ec91e791a0483001aa59916766"
+   },
+   "akki-vm-ii": {
+    "attestation": {
+     "attested_at": "2026-09-29T15:02:48.487820+00:00",
+     "capacity_observed": {
+      "accounting": [
+       "cpu_seconds"
+      ],
+      "compute_classes": [
+       "cpu",
+       "gpu"
+      ],
+      "cpu_cores": 36,
+      "gpu_count": 2,
+      "memory_gb": 460
+     },
+     "hostname": "akki-vm-ii",
+     "modules": {
+      "boto3": true,
+      "cryptography": true,
+      "paramiko": true,
+      "pydantic": true,
+      "pymysql": true
+     },
+     "python": "/opt/akki-census/bin/python"
+    },
+    "capacity": {
+     "cpu_cores": 36,
+     "gpu_count": 2,
+     "memory_gb": 460
+    },
+    "compute_classes": [
+     "cpu",
+     "gpu"
+    ],
+    "key_id": "rk-87c617c5bc1c472c08a1",
+    "worker_receipt_ref": "1f7a9bcc8f8d1dfad7082b882b0f032ce68139cf10f9bc93c9d0c07ae219ca79"
+   }
+  }
+ },
+ "tenant_id": "RMS"
+}

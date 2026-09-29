@@ -36,7 +36,8 @@ def _state(view, dispatched):
     if phase == "held":
         if not dispatched:
             return "Routing"
-        transient = reason.endswith(("_UNBOUND", "_NOT_BOUND", "_UNAVAILABLE")) or "UNCERTAIN" in reason
+        transient = (reason.endswith(("_UNBOUND", "_NOT_BOUND", "_UNAVAILABLE", "_REQUIRED")) or "UNCERTAIN" in reason
+                     or reason.startswith("RUNTIME_CALL"))  # a failed seam call or a missing proof is an interruption, not a refusal
         return "Interrupted" if transient else "Blocked"
     return {"running": "Executing", "unknown": "Interrupted", "ready": "Ready",
             "cancelled": "Stopped", "failed": "Blocked"}[phase]

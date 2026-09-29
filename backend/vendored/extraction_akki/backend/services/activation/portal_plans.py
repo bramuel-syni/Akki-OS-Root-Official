@@ -9,7 +9,8 @@ from services.northena.execution_models import Held
 MODEL_OPERATIONS = {"processed_intelligence": ("skill", "solva"), "fine_tune_model": ("training", "targeta")}
 
 
-async def recover_plan(receipts, scope, frozen, deadline_epoch):
+async def recover_plan(receipts, scope, frozen, deadline_epoch, allowed=None):
+    allowed = allowed or {MODEL_OPERATIONS.get(frozen["operation"])}
     if not isinstance(receipts, NativeReceipts) or receipts.admitted_keys is None:
         raise Held("ADMITTED_SIGNER_RESOLVER_UNBOUND")
     async def resolve():
@@ -29,7 +30,7 @@ async def recover_plan(receipts, scope, frozen, deadline_epoch):
                 or receipt.request_sha256 != request.digest()
                 or receipt.scope_refs != request.scope_refs):
             raise Held("ACTIVATION_PORTAL_DESCRIPTOR_MISMATCH")
-        if (request.kind, request.engine) != MODEL_OPERATIONS.get(frozen["operation"]):
+        if (request.kind, request.engine) not in allowed:
             raise Held("ACTIVATION_PORTAL_OPERATION_MISMATCH")
         return request
     try:

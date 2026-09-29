@@ -448,6 +448,8 @@ app.include_router(activation_records_router.router)
 from routers import custody_delivery as custody_delivery_router, skill_queries as skill_queries_router  # noqa: E402
 app.include_router(custody_delivery_router.router)
 app.include_router(skill_queries_router.router)
+from routers import commissioning as commissioning_router  # noqa: E402  M3 · intent → feasibility → freeze → run → custody
+app.include_router(commissioning_router.router)
 
 
 @app.on_event("startup")

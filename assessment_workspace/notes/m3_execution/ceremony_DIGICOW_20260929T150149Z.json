@@ -1,0 +1,163 @@
+{
+ "finished_at": "2026-09-29T15:02:11.687419+00:00",
+ "started_at": "2026-09-29T15:01:49.695568+00:00",
+ "steps": {
+  "agents": {
+   "estate:allocator": {
+    "admission_ref": "959bc79a0cc0e9b34a04255071fa10f860f77fefd331ec1fd19d2d0ee43199a7",
+    "key_id": "estate-allocator",
+    "principal_id": "agent-4b8912bc92070aa6",
+    "signer_ref": "db40cdbe0299a5fd0298080ec4524c4bf21fe31f976612acadf25b28d947f2cc"
+   },
+   "estate:rights-authority": {
+    "admission_ref": "95c7c30c1cdd1574d05e996fa6b79d7a0909ad23585a55bfc6a2d09d3d36f056",
+    "key_id": "estate-rights-authority",
+    "principal_id": "agent-99247932e93ec3da",
+    "signer_ref": "71d75ca7103ff365b2fa4a4997db0edacded5cfcd88bf2ee58ab62ce7df09d6b"
+   },
+   "northena:planner": {
+    "admission_ref": "6bb10487ca15852199b8c5c841e3042d5760448bd5e5d1ee36ec11d863e42076",
+    "key_id": "northena-planner",
+    "principal_id": "agent-901b40e627fa6f20",
+    "signer_ref": "b88b2fa9f7808302326372e80212095f6f186204651a5ff9496ab7c1913be0d7"
+   }
+  },
+  "allocation": "0b02386ef4acd32f13ce402bb8f64d3daebf23d2a922b29e52cb56c73227c8ac",
+  "approval_groups": {
+   "groups": [
+    {
+     "group": "expenditure.estate",
+     "members": [],
+     "purpose": "expenditure",
+     "quorum": 1
+    },
+    {
+     "group": "extraction.controlled",
+     "members": [],
+     "purpose": "extraction",
+     "quorum": 1
+    }
+   ],
+   "interim_stand_in": {
+    "autonomy_scope": "pilot:interim-admission",
+    "basis": "The named DigiCow authorities of record (Vincent Kimani, Peninah Wanja per the owner workbook) have no identity drops in custody. Per the owner's M3 ruling of 2026-09-29 the interim-pilot admission stands in for the unseated expenditure and controlled groups until a named authority is seated. Every approval it signs cites INTERIM_PILOT_ADMISSION_STAND_IN; the scope group is always the requester's own operator standing.",
+    "principal_id": "agent-a1bd5e4283d224bc",
+    "signer_ref": "7c8f9fc569bde9bf371f4284ee7219ec6296e83371549aa99fd2bee8e179b455",
+    "stands_in_for": [
+     "expenditure.estate",
+     "extraction.controlled"
+    ]
+   },
+   "ref": "64328eeeca7a8356daf762acd6f5c85525d2afb42942f390d36199ecc6088352"
+  },
+  "custody_descriptor": "77b368c5e03db6dd104559a6ad57ebbfdd3d25f2c92044a540fb79b25b86d270",
+  "dials": "52ad57542ac69b48d88d96b7df03f83eed816592feb6b5143e3b55036a2369cb",
+  "licence": {
+   "period": "2026-09",
+   "ref": "43b58daafaa1d79667194bf5a180bf42f5782b2e4a514a43e36b6bef9dcd1476",
+   "terms_identifier": "TERMS-PILOT-M3-DIGICOW-v0"
+  },
+  "members": [
+   {
+    "account_tenant": null,
+    "admission_ref": "e556ea4e72a909152bc52404e09fdbadfeb1e21f5a3357445c82be6a4fba2f64",
+    "binding_ref": "M3-owner-ruling-20260929-digicow-extraction-estate",
+    "membership_ref": "f0ad95ffd5005208dde3a4df3abcb3d656b3873ec45b76f1ba055823fe40f57c",
+    "name": "Demo \u00b7 DigiCow Operator",
+    "principal_id": "6abbd184a6389f4c762b87d2",
+    "seats": [
+     "scope.requester"
+    ],
+    "signer_ref": "7e104b2bd71fc199810471ca0475d9ef78b04bb8d01b6deedfb65e6ba144dbc6"
+   }
+  ],
+  "organisation": {
+   "principal_id": "org-2bb77fd82f6624d9",
+   "ref": "a504f87328e5a84e9d8b8b46c76d7ac93396f3049b8b4020cc2980bd6005807c"
+  },
+  "rights": {
+   "anchor_ref": "2d1bde6ef65c6ac826132546179f10b92687b177fc03c78d07f2d9bc11792952",
+   "rights_refs": {
+    "digicow_rds": "ba0c66f1057da7b27f45d0df8984446f8d25fc5c44f10e20924617701991e2f4",
+    "digicow_s3": "c529b6c809f574c30891efef1456c8d1566c8ff5dd88fe8fd976f173b4c9db79"
+   }
+  },
+  "runtimes": {
+   "akki-vm": {
+    "attestation": {
+     "attested_at": "2026-09-29T15:02:01.901202+00:00",
+     "capacity_observed": {
+      "accounting": [
+       "cpu_seconds"
+      ],
+      "compute_classes": [
+       "cpu",
+       "gpu"
+      ],
+      "cpu_cores": 36,
+      "gpu_count": 2,
+      "memory_gb": 460
+     },
+     "hostname": "akki-vm",
+     "modules": {
+      "boto3": true,
+      "cryptography": true,
+      "paramiko": true,
+      "pydantic": true,
+      "pymysql": true
+     },
+     "python": "/opt/akki-census/bin/python"
+    },
+    "capacity": {
+     "cpu_cores": 36,
+     "gpu_count": 2,
+     "memory_gb": 460
+    },
+    "compute_classes": [
+     "cpu",
+     "gpu"
+    ],
+    "key_id": "rk-9a8a653cba0334d53f29",
+    "worker_receipt_ref": "fe9f716b5219003f53fd935a3c7dad7ca34063754e826c4baa00a9b83ddc21c0"
+   },
+   "akki-vm-ii": {
+    "attestation": {
+     "attested_at": "2026-09-29T15:02:11.659703+00:00",
+     "capacity_observed": {
+      "accounting": [
+       "cpu_seconds"
+      ],
+      "compute_classes": [
+       "cpu",
+       "gpu"
+      ],
+      "cpu_cores": 36,
+      "gpu_count": 2,
+      "memory_gb": 460
+     },
+     "hostname": "akki-vm-ii",
+     "modules": {
+      "boto3": true,
+      "cryptography": true,
+      "paramiko": true,
+      "pydantic": true,
+      "pymysql": true
+     },
+     "python": "/opt/akki-census/bin/python"
+    },
+    "capacity": {
+     "cpu_cores": 36,
+     "gpu_count": 2,
+     "memory_gb": 460
+    },
+    "compute_classes": [
+     "cpu",
+     "gpu"
+    ],
+    "key_id": "rk-87c617c5bc1c472c08a1",
+    "worker_receipt_ref": "8e74aa0a1214cc38bc865eedf0ab799eb5fca168efbb473b27c9668cb17fb588"
+   }
+  }
+ },
+ "tenant_id": "DIGICOW"
+}

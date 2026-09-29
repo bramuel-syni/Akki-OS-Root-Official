@@ -24,7 +24,10 @@ class Quantity(Frozen):
 
 def quantities(values):
     keys = [(v.dimension, v.unit) for v in values]
-    if not keys or len(set(keys)) != len(keys) or len({v.dimension for v in values}) != len(keys):
+    single = [v.dimension for v in values if v.dimension != "active_compute"]
+    if not keys or len(set(keys)) != len(keys) or len(set(single)) != len(single):
+        # active_compute is the one dimension whose unit names the compute class (cpu_seconds, gpu_seconds):
+        # a mixed job reserves one entry per class; every other dimension carries exactly one unit.
         raise ValueError("One explicit unit per dimension is required.")
     return {(v.dimension, v.unit): Decimal(v.quantity) for v in values}
 

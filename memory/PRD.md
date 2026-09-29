@@ -1,6 +1,50 @@
 # Akki — product requirements and current continuity
 
-## CURRENT — 2026-09-29 (evening) M2 Grey Mirror / Watch CLOSED — G2 PASS on the admitted inventory · M3 OPEN
+## CURRENT — 2026-09-29 (night) M3 request→verified result PROVEN LIVE on DIGICOW · M3.3 delivery = ruled rest-in-store · UI wiring OPEN
+
+Owner directives this increment: "a" (proceed autonomously with the 4-step plan); "switch — remember you
+cannot extract data from rms" (RMS is census-only; extraction scope stays DIGICOW / AKKI-TEST). English only.
+E1 stayed control plane: bytes moved akki-vm → `/mnt/akki-storage-3388s`; E1 saw metadata + signed receipts.
+
+**Live proof (deployed backend, operator `demo.operator@demo.digicow.example.com`, see
+`assessment_workspace/notes/m3_execution/M3_LIVE_EXECUTION_20260929.md`):**
+- M3-T1 `req-97999a0b46d2f51564b85dcd05d871a2` (`digicow_live.training_questions`, max 200): warm feasibility →
+  zero-rate quote → requester + interim stand-in approvals → cpu-class dispatch to akki-vm → envelope ack →
+  200 scanned / 200 qualified / 2 PII-floor redactions → sealed 341,643 B → independent inspection on
+  akki-vm-ii → registry → rights follow lineage → settled + metered → **terminal `ready · VERIFIED_RESULT_RECORDED`
+  (measured)**; identical after 11 retrievals and a backend restart.
+- M3-T3 `req-393db89ef35ac94ccae17770f52b1c1f` (`shortcode_response`, max 20,000): sizing now MEASURED from 2
+  settled runs; `running` → requester stop → cancelled at 2,500 rows, usage metered, nothing published.
+- M3-T5: DELETE/UPDATE/DROP/INSERT refused on akki-vm before any connection, 4 signed refusal receipts banked.
+- M3-T4: widened intent → version 2 (v1 immutable); revise-commissioned 409; un-censused → `unknown`; `users`
+  floored on 6 personal columns; withdrawn/duplicate freeze 409; cross-tenant 404, analyst 403, anon 401.
+- M3.3: `POST /delivery` → custodian verified size then **held `CUSTODY_ORIGIN_UNAVAILABLE`** (shared store has
+  no HTTPS origin — the ruled pilot state; artefact rests in the tenant's store).
+
+**Fixed this increment (each surfaced live):** NEW `extraction_runtime/derived_rights.py` — rights authority
+extends the source grant to a verified artefact along worker-signed lineage (idempotent; withdrawn parent
+holds), called from `IndependentInspector.inspect` before the registry is written (publish gate was holding
+every completed run at `NATIVE_RIGHTS_PROOF_REQUIRED`); inspector freshness stamp = recorded inspection time
+(was `now()` → `ARTIFACT_REGISTRATION_CHANGED` on every revalidate); `_REQUIRED` holds are `Interrupted`
+(retryable) not `Blocked`; custodian `Held` propagates from `custody_delivery/service.py` with honest
+disclosures; run-view `active_compute` consumed mapped. Offline `tests/m3_commission` 10/10 (+ lineage-rights
+test); regression 170 pass over m3_commission/non_gpu governance/execution_spine/portal_operational.
+Two live legacy tests (`test_entitlement_allowance_without_licence…`, `test_execution_advance_held_unbound…`)
+assert the pre-ceremony world (no RMS licence / no bindings) — superseded, not regressions.
+`test_non_gpu_worker.py` failures are pre-existing at git HEAD.
+
+**Standing limits:** `req-c1f2738b3449081569aebfbfd537e2a6` (first completion, pre-fix) stays `Interrupted`
+— registry written before rights existed, immutable; rights later extended by `m3_extend_rights.py`.
+DIGICOW custody grant needs an HTTPS-origin ruling (or delivery by mount); `CustodyBinding` is single-tenant
+(RMS origin). Quality matrix threshold pending the first human-verified sample. DigiCow authorities unseated
+(stand-in cited on every approval). No commissioning UI yet. M2 Watch inventory must be rerun for the new
+`dap.commission` / `dap.delivery` gates.
+
+**NEXT:** P1 wire DAP Request / My Work UI to `/api/portal/commission/*` (drafts, feasibility, freeze,
+advance, run view, deliveries) with prototype fidelity; rerun M2 inventory; then M4 grounded answers on the
+verified DIGICOW units.
+
+## SUPERSEDED — 2026-09-29 (evening) M2 Grey Mirror / Watch CLOSED — G2 PASS on the admitted inventory · M3 OPEN
 
 Owner directive: "Did you follow the three steps … readiness review, implementation, testing with
 the same rigour as M1? If so finish M2 cleanly in one autonomous run. Use the same depth of front

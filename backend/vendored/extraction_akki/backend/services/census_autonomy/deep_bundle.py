@@ -24,11 +24,11 @@ MODULES = [
     'services/census_autonomy/deep_bundle.py',
 ]
 
-def build_bundle():
+def build_bundle(modules=MODULES):
     buffer=io.BytesIO()
     with zipfile.ZipFile(buffer,'w',zipfile.ZIP_DEFLATED) as archive:
         directories=set()
-        for name in MODULES:
+        for name in modules:
             for parent in Path(name).parents:
                 if str(parent)!='.': directories.add(str(parent))
             entry=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0))

@@ -41,7 +41,7 @@ _ISO8601_Z_RE = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$"
 )
 
-_DISPATCH_INTENT_PREFIXES = ("ssh_host_slug:", "gpu_lane:")
+_DISPATCH_INTENT_PREFIXES = ("ssh_host_slug:", "gpu_lane:", "runtime:")
 
 
 def _validate_dispatch_intent(value: str) -> str:
@@ -51,7 +51,7 @@ def _validate_dispatch_intent(value: str) -> str:
         if value.startswith(prefix) and len(value) > len(prefix):
             return value
     raise ValueError(
-        f"dispatch_intent {value!r} must be 'local' | "
+        f"dispatch_intent {value!r} must be 'local' | 'runtime:<runtime_id>' | "
         f"'ssh_host_slug:<slug>' | 'gpu_lane:<lane_id>'"
     )
 

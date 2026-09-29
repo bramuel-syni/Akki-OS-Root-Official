@@ -1,0 +1,195 @@
+{
+ "finished_at": "2026-09-29T15:01:14.828164+00:00",
+ "started_at": "2026-09-29T15:00:52.120464+00:00",
+ "steps": {
+  "agents": {
+   "estate:allocator": {
+    "admission_ref": "a56d10cdf4263ab31da54dba2193c2dea451b91463e7b96f36ac81d7bb441d36",
+    "key_id": "estate-allocator",
+    "principal_id": "agent-0b7f48987fbc50b1",
+    "signer_ref": "4b39baad2f7970e9c534fcdd9b991702c4cfa3b9dbf4546f990787be42070fc8"
+   },
+   "estate:rights-authority": {
+    "admission_ref": "4248ec53d2eeb1e3a4c60ba3bdd7e5a6cc61de37f42b174ff2e79424296cd3b9",
+    "key_id": "estate-rights-authority",
+    "principal_id": "agent-2412e556bdc90517",
+    "signer_ref": "a48ff267193f096cb42d2628d2760708163e2220e71b93ad88530227d7556eda"
+   },
+   "northena:planner": {
+    "admission_ref": "340b02723aa54c45d88bf2dc76ba0f8afb80c09af7a66164d893357a24aa8a06",
+    "key_id": "northena-planner",
+    "principal_id": "agent-2bcae7eef7dea393",
+    "signer_ref": "c0b0d06eb228f1f72f6640481f032d8fa3cb3b683e881ba4f9280724c846d383"
+   }
+  },
+  "allocation": "b756ba30413e21f2f6294aea240410b3f08c17bf4385931bba92144d43bccd83",
+  "approval_groups": {
+   "groups": [
+    {
+     "group": "expenditure.estate",
+     "members": [
+      "6ab56dd48894abb269135ca0"
+     ],
+     "purpose": "expenditure",
+     "quorum": 1
+    },
+    {
+     "group": "extraction.controlled",
+     "members": [
+      "6ab56dd48894abb269135ca1"
+     ],
+     "purpose": "extraction",
+     "quorum": 1
+    }
+   ],
+   "interim_stand_in": null,
+   "ref": "8da7f486d2b47300ee59847a5b7e955b620a9329372728918aced25bf0710b40"
+  },
+  "custody_descriptor": "none declared for this estate",
+  "dials": "909afb0ae11fdacaa5461458a4f306beb3b28ce85d13bc89112ad9368084230d",
+  "licence": {
+   "period": "2026-09",
+   "ref": "cf9a4192067aeb46f816a33f53613342b2faabe58f3c1ffffae210df32b6d41e",
+   "terms_identifier": "TERMS-PILOT-M3-STAGING-v0"
+  },
+  "members": [
+   {
+    "account_tenant": "RMS",
+    "admission_ref": "6ceca10541a67f732a79231445765c2dc1d887db6c263f3526b3144f7788f271",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "88fba84b8cf2bde25011f2c1de29dee3e065e43f8973dcd17e752bbebb3e9662",
+    "name": "Demo \u00b7 Operator",
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "seats": [
+     "scope.requester"
+    ],
+    "signer_ref": "5c70697b8c9ba34ff0b0c353e86f21b07c97a83f5aa5cd1fca85fea50c6c26da"
+   },
+   {
+    "account_tenant": "RMS",
+    "admission_ref": "1e4180bd0b7151275e5a62b9fd02505b7976378c8eb29e3bb21d68a28054aec3",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "4cf6c35497495fd5c38e9c5c71383b74d13e74981644f12230114f9ed3d43405",
+    "name": "Demo \u00b7 Master Admin",
+    "principal_id": "6ab56dd48894abb269135ca0",
+    "seats": [
+     "scope.requester",
+     "expenditure.estate"
+    ],
+    "signer_ref": "75608e84cf44dd215806e08e706f72f81a3c701cb319f7c29f77acae2309bc80"
+   },
+   {
+    "account_tenant": "RMS",
+    "admission_ref": "7f7d4b2c9607b4f6a73b031d4659006911d04a3a59459762e9b536cf647a8b83",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "19e96866ea39018677361120768767758203d99cd44353dcb4453a7ef1eafb8c",
+    "name": "Demo \u00b7 DPO",
+    "principal_id": "6ab56dd48894abb269135ca1",
+    "seats": [
+     "scope.requester",
+     "extraction.controlled"
+    ],
+    "signer_ref": "856153d6bd48d1c011c4ebb3445fa2c506be4287f396198ac6206cb31eede26a"
+   },
+   {
+    "account_tenant": "RMS",
+    "admission_ref": "0bac2f64a36e1e276d3812333f7e22401e6b1cd4f7ed67b9182cdb9f7a3448c3",
+    "binding_ref": "CP-CENSUS-OPERATIONAL-V1-owner-approved-20260925",
+    "membership_ref": "020812bd5087f11fabeaf15c893fd081c375cb06795ed73f50d5876dcb4250dd",
+    "name": "Demo \u00b7 Analyst",
+    "principal_id": "6ab56dd58894abb269135ca3",
+    "seats": [
+     "scope.requester"
+    ],
+    "signer_ref": "4deeb156ba5aa9d30fee71becdedd517de206be079876696286376dcd32e232c"
+   }
+  ],
+  "organisation": {
+   "principal_id": "org-7cce4f1bea0c8246",
+   "ref": "3909602264acf847c0d35b5d0cc2a39053a2aa2aa600e96e5cf14fe627163903"
+  },
+  "rights": {
+   "anchor_ref": "3f66d843f3a1762b97c8eb5175d0ecf235d20b21405d835393b0be09624ce55f",
+   "rights_refs": {
+    "staging.control_plane": "dfd5317518cc46cd5aeeb25a04c7c62e29a48ecf49488ca2cbb5260bb3709a39"
+   }
+  },
+  "runtimes": {
+   "akki-vm": {
+    "attestation": {
+     "attested_at": "2026-09-29T15:01:04.278068+00:00",
+     "capacity_observed": {
+      "accounting": [
+       "cpu_seconds"
+      ],
+      "compute_classes": [
+       "cpu",
+       "gpu"
+      ],
+      "cpu_cores": 36,
+      "gpu_count": 2,
+      "memory_gb": 460
+     },
+     "hostname": "akki-vm",
+     "modules": {
+      "boto3": true,
+      "cryptography": true,
+      "paramiko": true,
+      "pydantic": true,
+      "pymysql": true
+     },
+     "python": "/opt/akki-census/bin/python"
+    },
+    "capacity": {
+     "cpu_cores": 36,
+     "gpu_count": 2,
+     "memory_gb": 460
+    },
+    "compute_classes": [
+     "cpu",
+     "gpu"
+    ],
+    "key_id": "rk-9a8a653cba0334d53f29",
+    "worker_receipt_ref": "bd9efb7814eb0ce067f14694cff0893d618f7a119e32f172905be81f57533d94"
+   },
+   "akki-vm-ii": {
+    "attestation": {
+     "attested_at": "2026-09-29T15:01:14.797005+00:00",
+     "capacity_observed": {
+      "accounting": [
+       "cpu_seconds"
+      ],
+      "compute_classes": [
+       "cpu",
+       "gpu"
+      ],
+      "cpu_cores": 36,
+      "gpu_count": 2,
+      "memory_gb": 460
+     },
+     "hostname": "akki-vm-ii",
+     "modules": {
+      "boto3": true,
+      "cryptography": true,
+      "paramiko": true,
+      "pydantic": true,
+      "pymysql": true
+     },
+     "python": "/opt/akki-census/bin/python"
+    },
+    "capacity": {
+     "cpu_cores": 36,
+     "gpu_count": 2,
+     "memory_gb": 460
+    },
+    "compute_classes": [
+     "cpu",
+     "gpu"
+    ],
+    "key_id": "rk-87c617c5bc1c472c08a1",
+    "worker_receipt_ref": "b79bfcdb7b6961bc1382545df4a7c3d6f859a5654a75625cb1b8d537210fe959"
+   }
+  }
+ },
+ "tenant_id": "AKKI-TEST"
+}

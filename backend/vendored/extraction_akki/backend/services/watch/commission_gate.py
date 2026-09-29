@@ -25,6 +25,10 @@ PROTECTED_BOUNDARIES = {
     "census.commission": "POST /api/portal/census/run",
     "census.plan": "POST /api/portal/census/plan",
     "language_cognition.commission": "POST /api/portal/census/language-cognition/jobs",
+    # M3 · a request becomes completed, delivered work: three more commission gates on the same inventory.
+    "dap.commission": "POST /api/portal/commission/drafts/{draft_id}/freeze",
+    "dap.approval": "POST /api/portal/approvals/{request_id}/decide",
+    "dap.delivery": "POST /api/portal/requests/{request_id}/deliveries/{delivery_id}/retrieve",
 }
 DETECTORS = {
     "fast_violation": {"count": ("WATCH_GATE_FAST_REFUSALS", 3), "window_s": ("WATCH_GATE_FAST_WINDOW_S", 60),
