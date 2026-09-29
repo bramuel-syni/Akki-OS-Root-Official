@@ -1,0 +1,85 @@
+{
+  "plan_id": "plan-4a7433bb1b11",
+  "tenant_id": "RMS",
+  "worker_id": "akki-vm",
+  "target_bytes": 1099511627776,
+  "capacity": {
+    "concurrent_workers": 3,
+    "pass_seconds": 3600,
+    "nas_dirs_per_sec": 0.4,
+    "obs_objects_per_sec": 850.0
+  },
+  "created_at": "2026-09-29T03:19:23.874147+00:00",
+  "estate_measured_bytes": 302067007488,
+  "scoop_count": 1,
+  "cadence": {
+    "scoop_target": "1.00 TiB per scoop, one at a time",
+    "discovery_scoops": 0,
+    "sized_scoops": 1,
+    "oversized_scoops": 0,
+    "estimated_total_passes": 1,
+    "estimated_wall_hours_at_current_capacity": 0.3,
+    "principle": "Shovel: complete one scoop, bank it, move to the next; resumable enumeration walks any single scoop larger than one pass."
+  },
+  "scoops": [
+    {
+      "kind": "region",
+      "sources": [
+        "rms_mysql"
+      ],
+      "regions": [
+        {
+          "source_ref": "source_8c1d5d14c6656c03c7c4dc0b",
+          "label": "citizen-pulse",
+          "source_id": "rms_mysql",
+          "volume_bytes": 172900352,
+          "status": "complete",
+          "complete": false
+        },
+        {
+          "source_ref": "source_2cb331fa9f7c6613693e4163",
+          "label": "citizen_digital",
+          "source_id": "rms_mysql",
+          "volume_bytes": 457588736,
+          "status": "complete",
+          "complete": false
+        },
+        {
+          "source_ref": "source_f411960ace6ef12e8eaecf1d",
+          "label": "viupay",
+          "source_id": "rms_mysql",
+          "volume_bytes": 1641857024,
+          "status": "complete",
+          "complete": false
+        },
+        {
+          "source_ref": "source_2fe5356652305e628bf2b7b4",
+          "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+          "source_id": "rms_mysql",
+          "volume_bytes": 5163483136,
+          "status": "complete",
+          "complete": false
+        },
+        {
+          "source_ref": "source_329ecaf6bf305f4b80ca31a8",
+          "label": "iebc_forms",
+          "source_id": "rms_mysql",
+          "volume_bytes": 294631178240,
+          "status": "complete",
+          "complete": false
+        }
+      ],
+      "volume_bytes": 302067007488,
+      "oversized": false,
+      "sequence": 0,
+      "source_refs": [
+        "source_8c1d5d14c6656c03c7c4dc0b",
+        "source_2cb331fa9f7c6613693e4163",
+        "source_f411960ace6ef12e8eaecf1d",
+        "source_2fe5356652305e628bf2b7b4",
+        "source_329ecaf6bf305f4b80ca31a8"
+      ],
+      "estimated_passes": 1
+    }
+  ]
+}

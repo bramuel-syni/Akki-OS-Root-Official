@@ -1,0 +1,33 @@
+{
+  "admit_id": "adm-26f2b44257fc",
+  "frozen_artifact": {
+    "artifact_id": "census-shovel:RMS",
+    "artifact_type": "objective_request",
+    "artifact_version": "snap-7d93d8a7ebfee858",
+    "defensibility_floor": "utterance",
+    "frozen_at_iso": "2026-09-29T03:51:50.993606Z",
+    "judgement_provenance": {
+      "defensibility_floor": "declared",
+      "preservation_depth": "stub_awaiting_solva",
+      "resolve_scope": "stub_awaiting_solva"
+    },
+    "lawful_basis": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+    "objective": "Consume the admitted estate fully in ordered scoops, one bounded pass at a time.",
+    "objective_shape": "rms_mysql rms_obs rms_nas",
+    "preservation_depth": 3,
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "run_id": "run-0508d88d67df",
+    "scoop_target_bytes": 1099511627776,
+    "scope": [
+      "rms_mysql",
+      "rms_obs",
+      "rms_nas"
+    ],
+    "tenant_id": "RMS",
+    "trace_id": "trc-2b9d980dac59",
+    "worker_id": "akki-vm"
+  },
+  "ledger_row_id": "led-e6829bb0d2e4",
+  "run_id": "run-0508d88d67df",
+  "trace_id": "trc-2b9d980dac59"
+}

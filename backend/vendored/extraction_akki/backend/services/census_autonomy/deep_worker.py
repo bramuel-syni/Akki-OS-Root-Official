@@ -21,10 +21,15 @@ def execute(control):
     started=time.time(); stamp=lambda:datetime.now(timezone.utc).isoformat()
     before=telemetry()
     if before['hostname']!=control['hostname_expected']: raise ValueError('REMOTE_IDENTITY_MISMATCH')
-    deadline=started+control['max_seconds']; sources=[]
+    deadline=started+control['max_seconds']; sources=[]; seam=None; inner_reason=None
     try:
         config=control['connector']; driver=config['driver']
-        if driver in ('mysql_metadata','rds_data'):
+        if config.get('pull_via'):
+            # Pull seam: this worker stays the worker of record; the code runs where the data is.
+            from services.census_autonomy.deep_pull import through_jump
+            inner,seam=through_jump(control,deadline)
+            sources=inner.get('sources',[]); inner_reason=inner.get('reason_code')
+        elif driver in ('mysql_metadata','rds_data'):
             from services.census_autonomy.deep_sql import run
             sources=run(config,deadline)
         elif driver=='nas_nfs':
@@ -36,9 +41,9 @@ def execute(control):
         else: raise ValueError('SOURCE_DRIVER_NOT_BOUND')
         good=[s for s in sources if s['status'] in ('complete','partial')]
         status='complete' if sources and all(s['status']=='complete' for s in sources) else 'partial' if good else 'blocked'
-        reason=None if status=='complete' else 'SOURCE_COVERAGE_INCOMPLETE'
+        reason=None if status=='complete' else inner_reason or 'SOURCE_COVERAGE_INCOMPLETE'
     except Exception as exc:
-        status='blocked'; reason=type(exc).__name__
+        status='blocked'; reason=str(exc) if isinstance(exc,(ValueError,TimeoutError)) and str(exc).isupper() else type(exc).__name__
     result={'protocol':'akki-census-deep-v1','census_run_id':control['census_run_id'],'tenant_id':control['tenant_id'],
             'source_id':control['source_id'],'execution_location':'akki_host','observed_at':stamp(),
             'status':status,'source_rows_returned':0,'sources':sources,
@@ -48,6 +53,7 @@ def execute(control):
             'worker':{'runtime_id':control['runtime_id'],'code_sha256':control['code_sha256'],
                       'lawful_basis_sha256':control['lawful_basis_sha256'],'wall_seconds':round(time.time()-started,3),
                       'execution_mode':'cpu','gpu_compute_hours':0,'telemetry':before}}
+    if seam: result['worker']['pull_seam']=seam
     if reason: result['reason_code']=reason
     result['worker_receipt_id']='cwr-'+hashlib.sha256(json.dumps(result,sort_keys=True,default=str).encode()).hexdigest()
     return result

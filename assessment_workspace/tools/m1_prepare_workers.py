@@ -13,7 +13,7 @@ from services.census_autonomy.jump_dispatch import _connect_jump, _jump_config
 from services.census_autonomy.remote_dispatch import _connect
 from services.training_runner.ssh_seam import list_hosts
 
-PACKAGES = ['pydantic', 'pymysql', 'boto3', 'langdetect']
+PACKAGES = ['pydantic', 'pymysql', 'boto3', 'langdetect', 'paramiko']
 
 def prepare(runtime):
     client = None

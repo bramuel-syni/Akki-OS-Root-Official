@@ -95,6 +95,54 @@ def submit(background: BackgroundTasks, body: dict = Body(...), actor=Depends(ce
     return {**reads.run_view(row), "duplicate": not fresh}
 
 
+@router.post("/api/portal/census/plan", response_model=CensusEnvelope)
+def plan(body: dict = Body(default={}), actor=Depends(census_identity)):
+    """Shovel origination: Northena admits the census objective, Targeta orders the
+    retained regions into a reproducible MiningPlan, the shovel cuts ~1 TiB scoops and
+    scoop 0 is commissioned on the external worker; the supervised runner advances
+    the cadence one scoop at a time. An active plan is returned, not duplicated,
+    unless `replan=true`."""
+    if not {"operator", "master_admin"}.intersection(actor["roles"]):
+        raise HTTPException(403, "Only an admitted estate operator can shape a census plan.")
+    from services.census_autonomy import census_scoop_origination as shovel
+    try:
+        worker_id = body.get("worker_id") or os.environ["CENSUS_PRIMARY_WORKER"]
+        if worker_id != os.environ["CENSUS_PRIMARY_WORKER"]:
+            from services.training_runner.ssh_seam import list_hosts
+            if worker_id not in ["non_gpu_jump", *list_hosts()]:
+                raise ValueError("Choose a registered external worker.")
+        path, _ = admission_path()
+        built = None if body.get("replan") is True else shovel.active_plan(actor["tenant_id"])
+        reused = built is not None
+        if built is None:
+            built = shovel.originate(actor["tenant_id"], actor["principal_id"], str(path), worker_id,
+                                     body.get("target_bytes"), body.get("objective_shape"))
+        commissioned = None
+        if built.get("state") == "active" and built["scoops"]:
+            live = next((s for s in built["scoops"] if s.get("state") == "commissioned"), None)
+            if live:
+                commissioned = live["census_run_id"]
+            elif built["scoops"][0].get("state") == "queued":
+                row, _fresh = shovel.commission_scoop(built, 0, actor["principal_id"], str(path))
+                commissioned = row["census_run_id"]
+    except PermissionError as exc:
+        raise HTTPException(403, str(exc)) from exc
+    except (ValueError, TypeError) as exc:
+        raise HTTPException(422, str(exc)) from exc
+    except (OSError, KeyError) as exc:
+        raise HTTPException(409, "The census admission or worker configuration is unavailable; no plan was commissioned.") from exc
+    return {"tenant_id": actor["tenant_id"], "plan": built, "commissioned_run_id": commissioned, "reused_active_plan": reused}
+
+
+@router.get("/api/portal/census/plan/{plan_id}", response_model=CensusEnvelope)
+def plan_state(plan_id: str, actor=Depends(census_identity)):
+    from services.census_autonomy import census_scoop_origination as shovel
+    saved = shovel.load_plan(actor["tenant_id"], plan_id)
+    if not saved:
+        raise HTTPException(404, "No census plan with that reference is available in your tenant.")
+    return {"tenant_id": actor["tenant_id"], "plan": saved}
+
+
 async def unbound_surface(request: Request, actor=Depends(census_identity)):
     raise HTTPException(409, "This older census projection is not tenant-bound. Use the current Census records view; no unscoped data was returned.")
 

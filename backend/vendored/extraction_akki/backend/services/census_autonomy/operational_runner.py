@@ -1,6 +1,7 @@
 """Bounded operational executor composition. No sealed engine body is modified."""
 import hashlib
 import json
+import logging
 import os
 import time
 from pathlib import Path
@@ -20,6 +21,100 @@ def admission_path():
     if not doc.get("scope"):
         raise ValueError("Census admission has no scope.")
     return path, hashlib.sha256(raw).hexdigest()
+
+
+def _scope_job_id(current):
+    """Stable id for one progressive-consumption scope across its bounded passes."""
+    key = json.dumps([current["tenant_id"], sorted(current.get("source_ids") or []),
+                      sorted(current.get("source_refs") or [])], sort_keys=True)
+    return "census-" + hashlib.sha256(key.encode()).hexdigest()[:16]
+
+
+def _progress_ring():
+    from services.census_autonomy import engine
+    return engine.CENSUS_STATE_DIR / "progress_ring"
+
+
+def _supervise_pass(current):
+    """Supervision Plane (L5, work_supervisor) — 'alive != done'. Record this pass's
+    cumulative coverage as a ProgressSignal, then let the designed starvation watchdog
+    decide whether the scope is still progressing. Returns (healthy, verdict)."""
+    from datetime import datetime, timezone
+    from services.work_supervisor.runtime_supervisor import (
+        ProgressSignal, record_progress, output_verification_watchdog)
+    files = objects = volume = 0
+    for outcome in current.get("outcomes", []):
+        for s in outcome.get("sources", []):
+            files += s.get("file_count") or 0
+            objects += s.get("object_count") or 0
+            volume += s.get("volume_bytes") or 0
+    job_id = _scope_job_id(current)
+    ring = _progress_ring()
+    now = datetime.now(timezone.utc)
+    record_progress(ProgressSignal(job_id=job_id, at_utc=now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                   magnitude=float(files + objects), output_bytes=int(volume), output_path=job_id),
+                    ring_root=ring)
+    # A scope that produced ≥2 passes without growing coverage has starved (flatline),
+    # even though the worker is 'alive'. SLA is generous: many passes may legitimately run.
+    verdict = output_verification_watchdog(job_id, sla_seconds=int(os.environ["CENSUS_JOB_MAX_SECONDS"]) * 6,
+                                           ring_root=ring, now_utc=now)
+    return (verdict is None or verdict.reason != "starvation_output_flatline"), verdict
+
+
+def _inherit_scope(current, successor):
+    """A successor pass stays the same scoop of the same Targeta-ordered plan."""
+    successor['continues_run_id'] = current['census_run_id']
+    for key in ('scoop_plan_id', 'scoop_index', 'northena_run_id'):
+        if current.get(key) is not None:
+            successor[key] = current[key]
+
+
+def continue_if_resumable(current):
+    """Progressive consumption cadence, supervised by the designed L5 work_supervisor:
+    a scope keeps scooping while it is genuinely progressing (alive AND done-growing);
+    a starved (flatline) scope halts and escalates instead of looping forever."""
+    resumable = [o['source_id'] for o in current.get('outcomes', [])
+                 if o.get('status') == 'partial'
+                 and any(s.get('resumable') and s.get('status') == 'partial'
+                         and s.get('reason_code') == 'BUDGET_EXHAUSTED' for s in o.get('sources', []))]
+    if not resumable:
+        return None
+    healthy, verdict = _supervise_pass(current)
+    if not healthy:
+        # NO RUN WITHOUT PROGRESS (SO §3.2): bank the starvation as owner-answerable, do not continue.
+        current['scope_halt'] = {'reason': verdict.reason, 'message': verdict.message, 'at_utc': verdict.at_utc}
+        store.save(current)
+        return None
+    successor, created = store.enqueue(current['tenant_id'], current['principal_id'], resumable,
+                                       f"{current['census_run_id']}-continue",
+                                       current['lawful_basis_admit_ref'], current.get('worker_id'), current.get('source_refs'))
+    if created:
+        _inherit_scope(current, successor)
+        store.save(successor)
+    current['continuation_run_id'] = successor['census_run_id']; store.save(current)
+    return successor['census_run_id']
+
+
+def defer_if_scope_busy(current):
+    """The admitted worker refused because this scope's enumeration is still running
+    remotely (an orphaned pass after a control-plane restart; its checkpoint is durable).
+    Alive is not done: re-enter the queue after a back-off instead of breaking the chain."""
+    outcomes = current.get('outcomes', [])
+    if not outcomes or not all(o.get('reason_code') == 'ENUMERATION_ALREADY_RUNNING' for o in outcomes):
+        return None
+    attempt = int(current.get('busy_retry_attempt') or 0) + 1
+    if attempt > int(os.environ.get('CENSUS_BUSY_RETRY_MAX', '6')):
+        return None
+    successor, created = store.enqueue(current['tenant_id'], current['principal_id'], current['source_ids'],
+                                       f"{current['census_run_id']}-busy{attempt}",
+                                       current['lawful_basis_admit_ref'], current.get('worker_id'), current.get('source_refs'))
+    if created:
+        _inherit_scope(current, successor)
+        successor.update(busy_retry_attempt=attempt,
+                         not_before=time.time() + int(os.environ.get('CENSUS_BUSY_RETRY_SECONDS', '900')))
+        store.save(successor)
+    current['continuation_run_id'] = successor['census_run_id']; store.save(current)
+    return successor['census_run_id']
 
 
 def run_bounded_census(job, job_deadline, execute=None):
@@ -100,5 +195,26 @@ def run_bounded_census(job, job_deadline, execute=None):
             if current:
                 current.update(status="REFUSED", stage="blocked", reason_code=code, finished_at=store.now())
                 store.save(current)
+        # Resumable enumeration continuation is additive and never fails the finished run.
+        if current and current.get("status") == "PARTIAL":
+            try:
+                continue_if_resumable(current)
+            except Exception:
+                logging.getLogger(__name__).exception("Continuation enqueue failed for %s", run_id)
+        # A scope still enumerating remotely re-enters after a back-off (alive != done).
+        if current and current.get("status") == "REFUSED":
+            try:
+                defer_if_scope_busy(current)
+            except Exception:
+                logging.getLogger(__name__).exception("Deferred re-entry failed for %s", run_id)
+        # Shovel cadence: a finished scoop (banked, refused or halted) that did not
+        # self-continue advances its Targeta-ordered plan through Northena's ledger.
+        if current and current.get("scoop_plan_id"):
+            try:
+                from services.census_autonomy.census_scoop_origination import advance_plan
+                current = store.get(run_id, tenant) or current
+                advance_plan(current)
+            except Exception:
+                logging.getLogger(__name__).exception("Shovel plan advance failed for %s; retained cursor is recoverable", run_id)
         engine._remove_pending_job(run_id)
         return current or {"census_run_id": run_id, "tenant_id": tenant, "status": "REFUSED"}

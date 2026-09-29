@@ -44,6 +44,7 @@ from typing import Final
 from services.census_autonomy.engine import (
     get_pending_scheduled_runs,
 )
+from services.census_autonomy import operational_store as store
 from services.census_autonomy.operational_runner import run_bounded_census
 
 # Loop configuration (env-overridable, additive-only defaults).
@@ -134,6 +135,9 @@ def main() -> int:
         for job in pending:
             identity=job.get('census_run_id')
             if identity in inflight: continue
+            # A deferred re-entry (scope still enumerating remotely) waits out its back-off.
+            cursor=store.get(identity,job.get('tenant_id')) or {}
+            if cursor.get('not_before') and time.time()<float(cursor['not_before']): continue
             if len(inflight)>=int(os.environ['CENSUS_SCHEDULER_MAX_INFLIGHT']): break
             log.info('Dispatching committed census %s for tenant %s',identity,job.get('tenant_id'))
             inflight[identity]=pool.submit(run_bounded_census,job,job_deadline=time.time()+MAX_JOB_WALL_CLOCK_SECONDS)

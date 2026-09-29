@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-09-29T01:42:32Z",
+  "facts": {
+    "non_gpu_jump": "HOST=ecs-b896\nMOUNT_NFS_SHARE=yes\n//10.10.55.55/OFFAIRRECS/Record on /mnt/nfs-share type cifs (rw,relatime,vers=3.1.1,cache=strict,upcall_target=app,username=REDACTED,uid=0,noforceuid,gid=0,noforcegid,addr=10.10.55.55,file_mode=0755,dir_mode=0755,soft,nounix,mapposix,rsize=4194304,wsize=4194304,bsize=1048576,retrans=1,echo_interval=60,actimeo=1,closetimeo=1)\nCHANNEL_DIRS=16\nSMBCLIENT=yes\nFFPROBE=yes\nMYSQL=yes\nCENSUS_PY=yes\nTCP_10.10.55.55:445=open\nTCP_10.10.55.55:2049=open\nTCP_159.138.173.250:22=open\n",
+    "akki-vm": "HOST=akki-vm\nMOUNT_NFS_SHARE=no\nCHANNEL_DIRS=0\nSMBCLIENT=no\nFFPROBE=no\nMYSQL=no\nCENSUS_PY=yes\nTCP_10.10.55.55:445=closed\nTCP_10.10.55.55:2049=closed\nTCP_159.138.173.250:22=open\n"
+  }
+}

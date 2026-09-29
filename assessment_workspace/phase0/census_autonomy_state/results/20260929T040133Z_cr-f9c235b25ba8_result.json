@@ -1,0 +1,82 @@
+{
+  "census_run_id": "cr-f9c235b25ba8",
+  "tenant_id": "RMS",
+  "completed_at_utc": "20260929T040133Z",
+  "payload": {
+    "protocol": "akki-census-aggregate-v1",
+    "outcomes": [
+      {
+        "census_run_id": "cr-f9c235b25ba8",
+        "database_count": 0,
+        "execution_location": "akki_host",
+        "observed_at": "2026-09-29T04:01:33.627868+00:00",
+        "protocol": "akki-census-deep-v1",
+        "reason_code": "SOURCE_COVERAGE_INCOMPLETE",
+        "row_count_estimate": 0,
+        "source_id": "rms_mysql",
+        "source_rows_returned": 0,
+        "sources": [
+          {
+            "kind": "mysql",
+            "label": "artists_app",
+            "provider_error_code": 1045,
+            "reason_code": "AUTHENTICATION_FAILED",
+            "source_ref": "source_d4879ca49db7f60e5f1b71cb",
+            "status": "blocked"
+          }
+        ],
+        "status": "blocked",
+        "table_count": 0,
+        "tenant_id": "RMS",
+        "worker": {
+          "code_sha256": "46e83b28cb57594b08ab7f0b425a6e34ca831c4adafff708360e3bfe77d7f16d",
+          "execution_mode": "cpu",
+          "gpu_compute_hours": 0,
+          "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+          "pull_seam": {
+            "hostname": "ecs-b896",
+            "inner_wall_seconds": 0.351,
+            "inner_worker_receipt_id": "cwr-b9b7ee096e5bad9fe9fdfa5878b0036e934d4e87491345bca6e894800e26b008",
+            "principle": "compute to data: reviewed code executed where the estate is reachable; no estate bytes on the GPU host",
+            "server_key_sha256": "5b8e71be386c01124e7058fd53f6dc582dca0ed7b7d13f809aedde0b1e14af05",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "via": "non_gpu_jump"
+          },
+          "runtime_id": "akki-vm",
+          "telemetry": {
+            "gpu_devices": [
+              {
+                "memory_mb": 143771,
+                "name": "NVIDIA H200",
+                "utilization_percent": 0,
+                "uuid": "GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1"
+              },
+              {
+                "memory_mb": 143771,
+                "name": "NVIDIA H200",
+                "utilization_percent": 0,
+                "uuid": "GPU-e87acccb-7848-1573-98ae-fcf26b185c0b"
+              }
+            ],
+            "hostname": "akki-vm",
+            "python": "3.12.3"
+          },
+          "wall_seconds": 1.379,
+          "transport_verified": true,
+          "server_key_sha256": "69b1541556813e4a88cfe0b8edb8cb46f1301cef6811aa2f9fc3b5637154dd53"
+        },
+        "worker_receipt_id": "cwr-8e84bb0510d55541a6807d8f80abf5a46afb4ea68a8c56a637c2feea9d51e7d0",
+        "transport_diagnostic": {
+          "exit_code": 0,
+          "stdout_bytes": 1738,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "error_classes": []
+        }
+      }
+    ],
+    "registry_receipts": [],
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "principal_id": "6ab56dd48894abb269135ca2"
+  }
+}

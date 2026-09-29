@@ -26,11 +26,22 @@ def connector_for(run_id,tenant,source,lawful_hash):
         finally: path.unlink(missing_ok=True)
     else:
         access=json.loads(Path(os.environ['AKKI_CENSUS_JUMP_CONFIG']).read_text())
-        if source=='rms_obs': config={**access['obs'],'driver':'object_store'}
+        # Resumable enumeration frontier lives on the admitted worker, never in E1.
+        state_dir=os.environ['CENSUS_REMOTE_STATE_DIR']
+        if source=='rms_obs': config={**access['obs'],'driver':'object_store','state_dir':state_dir}
         elif source=='digicow_rds': config={**access['digicow'],'driver':'rds_data'}
-        elif source=='rms_nas': config={'driver':'nas_nfs','root':os.environ['CENSUS_NAS_ROOT']}
+        elif source=='rms_nas': config={'driver':'nas_nfs','root':os.environ['CENSUS_NAS_ROOT'],'state_dir':state_dir}
         else: raise ValueError('SOURCE_CUSTODY_NOT_AVAILABLE')
     return {**config,'source_id':source}
+
+# The NAS share and egress-pinned relational grants are reachable only from the jump host.
+JUMP_GOVERNED_SOURCES=('rms_mysql','rms_nas')
+
+def pull_seam_hop():
+    jump=_jump_config()
+    return {'host':jump['jump_host'],'port':int(jump['jump_port']),'user':jump['jump_user'],'password':jump['jump_password'],
+            'hostname_expected':os.environ['CENSUS_JUMP_HOSTNAME'],'python':os.environ['CENSUS_REMOTE_PYTHON'],
+            'known_hosts':Path(os.environ['AKKI_CENSUS_JUMP_KNOWN_HOSTS']).read_text()}
 
 def execute_source(run_id,tenant,source,lawful_hash,deadline):
     from services.training_runner.ssh_seam import list_hosts
@@ -46,19 +57,25 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
         if runtime!='non_gpu_jump' and runtime not in hosts: raise ValueError('UNRECOGNIZED_WORKER')
         config=connector_for(run_id,tenant,source,lawful_hash)
         if cursor.get('source_refs'): config['source_refs']=cursor['source_refs']
+        # Pull seam: a GPU worker of record executes jump-governed sources through the jump host.
+        if runtime!='non_gpu_jump' and source in JUMP_GOVERNED_SOURCES: config['pull_via']=pull_seam_hop()
         remaining=int(deadline-time.time())
         if remaining<=3: raise TimeoutError('BUDGET_EXHAUSTED')
         if runtime=='non_gpu_jump':
             client=_connect_jump(_jump_config(),min(20,remaining)); expected=os.environ['CENSUS_JUMP_HOSTNAME']
         else:
             client,host_config=_connect(runtime,min(20,remaining)); expected=host_config.hostname_expected
+        # Hour-long jobs are silent until the receipt; keep the pinned session alive across stateful middleboxes.
+        client.get_transport().set_keepalive(30)
         bundle,code_hash=build_bundle()
         # Connection and code preparation consume the same job budget.
         remaining=int(deadline-time.time())
         if remaining<=3: raise TimeoutError('BUDGET_EXHAUSTED')
+        # The worker stops measuring before E1's deadline so partial measurements can still be flushed.
+        margin=min(45,max(2,remaining//4))
         control={'bundle':bundle,'code_sha256':code_hash,'census_run_id':run_id,'tenant_id':tenant,
                  'source_id':source,'runtime_id':runtime,'hostname_expected':expected,
-                 'lawful_basis_sha256':lawful_hash,'max_seconds':remaining-2,'connector':config}
+                 'lawful_basis_sha256':lawful_hash,'max_seconds':remaining-margin,'connector':config}
         channel=client.get_transport().open_session(timeout=15)
         channel.settimeout(remaining)
         channel.exec_command(shlex.quote(os.environ['CENSUS_REMOTE_PYTHON'])+' -c '+shlex.quote(BOOTSTRAP))
@@ -74,8 +91,9 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
                 diagnostic.extend(chunk[:max(0,65536-len(diagnostic))])
             # SSH exit-status does not require the peer to close the channel.
             # Drain both streams before collecting it (large receipts can fill
-            # the SSH window), including completion already queued at deadline.
-            if channel.exit_status_ready() and not channel.recv_ready() and not channel.recv_stderr_ready(): break
+            # the SSH window). Terminate only on channel EOF: exit-status can be
+            # ready while stdout is still in flight (observed truncation at 3×64KB).
+            if channel.exit_status_ready() and getattr(channel,'eof_received',True) and not channel.recv_ready() and not channel.recv_stderr_ready(): break
             if time.time()>=deadline:
                 result['transport_diagnostic']={'stdout_bytes':len(output),'stderr_bytes':len(diagnostic),
                     'stderr_sha256':hashlib.sha256(diagnostic).hexdigest()}

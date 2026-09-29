@@ -1,6 +1,71 @@
 # Akki — product requirements and current continuity
 
-## CURRENT — 2026-09-29 M1 repairs / independent M2 preparation
+## CURRENT — 2026-09-29 (pm) M1 P0 pull-seam census now consumes fully
+
+Owner P0/P1: "holistic Census on akki-vm (entire deep census as designed) consume
+fully; train language cognition on akki-vm-ii." E1 stays control plane; akki-vm is
+worker of record and hops to the jump host via the pull seam (NAS/MySQL reachable
+only there). No estate bytes on E1 or the GPU host.
+
+**M1 P0 FIXED and PROVEN LIVE (this increment):**
+- Root causes: (1) CIFS directory listing on the jump is RTT-bound (57 ms) and does
+  NOT scale with threads on one session (~95 files/s ceiling, 1 vCPU) — a multi-TB
+  share cannot be walked in one bounded pass; (2) MySQL receipt truncated at 3×64 KiB
+  because paramiko `exit_status_ready()` fired before stdout drained → `JSONDecodeError`.
+- `deep_files.py` rewritten to **resumable** enumeration: durable frontier
+  (NAS directory paths; OBS continuation tokens + 16-byte ETag+size fingerprints)
+  checkpointed on the worker every 30 s; shared work queue commits a dir only when
+  fully scanned; per-pass cumulative totals + `directories_pending`/`progress_this_run`
+  + `epoch`; flock refuses concurrent same-scope runs; completing a share opens a
+  fresh re-census epoch. `CENSUS_REMOTE_STATE_DIR` added to backend/.env.
+- `deep_dispatch.py` + `deep_pull.py`: drain to channel EOF (`eof_received`) not just
+  exit-status (fixes MySQL truncation); SSH `set_keepalive(30)` for hour-long jobs.
+- `operational_runner.continue_if_resumable()`: progressive-consumption cadence now
+  supervised by the DESIGNED Supervision Plane engine `services/work_supervisor/
+  runtime_supervisor.py` (reuse, not proliferation): each finished pass records a
+  `ProgressSignal` (cumulative files+objects, volume bytes) into a progress ring and
+  the canon `output_verification_watchdog` decides continue-vs-halt. A scope keeps
+  scooping while coverage grows; a flatlined scope HALTS + banks `scope_halt`
+  (STANDING ORDER §3.2 "NO RUN WITHOUT A PROGRESS SIGNAL / alive ≠ done") instead of
+  looping. Unit-tested: grows→continue, flatline→halt+escalate.
+- Read word-for-word the designed engines that own progressive consumption:
+  Targeta (deterministic eligibility+ranking → reproducible MiningPlan of ordered
+  target regions; yield layer gated admitted=False), Northena (admit crossing +
+  execution coordinator), CIF (Doc-9 Conditioned Ideation Faculty: detection.author_
+  proposal → acceptance_point.is_accepted single-experiment gate → output_routing to
+  L-4/L-5; proposes-never-ratifies), Solva (reasoning/critic seam), and the harvest
+  roadmap recursion principle (archive=programme=file are all estates; census applies
+  at every scale = the shovel). NEXT: originate the census scoop ORDER through Targeta
+  and coordinate through Northena rather than the bespoke census_scoop_planner
+  (anti-proliferation §1.2) — scope to confirm with owner (touches census↔Northena).
+- Bespoke `census_scoop_planner.py` + `POST /api/portal/census/plan` exist and work
+  (1 TB bin-packed ordered scoops + cadence estimate) but OVERLAP Targeta's MiningPlan;
+  slated to collapse into Targeta origination per the owner's engine directive.
+- LIVE: MySQL `cr-3b6b013458de` 6/7 scopes COMPLETE — **20 db, 1013 tables, ~239.6M
+  rows** (was 1/7); only `artists_app` blocked (needs MySQL GRANT — owner dep, banked).
+  NAS consuming via scheduler: epoch 1, 84,616 files/16 channels, 4,844 dirs pending,
+  checkpoint advancing; probes showed cumulative growth 4,388→13,794 files. OBS
+  resumable by continuation token (99+ buckets). Evidence:
+  `assessment_workspace/notes/m1_execution/PULL_SEAM_CONSUME_FULLY_20260929.md`.
+- Tests: pull-seam-hop, deep-dispatch-transport, Watch-M2 mocked suites pass; 116
+  census_operational pass. Pre-existing `test_execution.py` t08/t09 fail identically
+  at git HEAD (legacy aggregate protocol) — not introduced here.
+
+**M1 remaining (not a mock): NAS/OBS "fully" is many autonomous bounded passes**
+(now lossless via worker checkpoint); artists_app GRANT; full designed producers
+beyond metadata+sampled-media; D6 duplicate-label identity reconciliation; M1-T1–T5.
+
+**M2 language-cognition training on akki-vm-ii — HONEST WALL (real SSH telemetry):**
+2× H200 143 GB idle, no GPU procs, `nvcc` off PATH; torch/torchaudio/transformers/
+peft/speechbrain/datasets/accelerate ALL MISSING (system + census venv); 5.9 TB
+volume empty; no base weights / no labelled corpus / no split on disk. The
+`commission_language_cognition_training_run` callable returns a handle, not job
+pickup. A REAL run cannot launch until framework is provisioned, a base model
+(Whisper/VoxLingua107) is registered, and a labelled code-switched speaker-disjoint
+corpus is assembled — none may be mocked (MUST-NOT §9). Owner direction requested
+before provisioning (cost/data/base-model choice). Final training acceptance is M9.
+
+## SUPERSEDED — 2026-09-29 M1 repairs / independent M2 preparation
 
 Latest owner directive: “Akki trains language cognition model on akki-vm ii,
 holistc Census on akii-vm (entire deep census as initially designed) consume fully.

@@ -20,6 +20,8 @@ MODULES = [
     'services/census_autonomy/deep_worker.py',
     'services/census_autonomy/deep_sql.py',
     'services/census_autonomy/deep_files.py',
+    'services/census_autonomy/deep_pull.py',
+    'services/census_autonomy/deep_bundle.py',
 ]
 
 def build_bundle():

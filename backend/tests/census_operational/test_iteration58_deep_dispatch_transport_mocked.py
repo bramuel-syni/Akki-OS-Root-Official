@@ -73,6 +73,9 @@ class _FakeTransport:
     def get_remote_server_key(self):
         return _FakeServerKey()
 
+    def set_keepalive(self, seconds):
+        self.keepalive = seconds
+
 
 class _FakeClient:
     def __init__(self, channel):

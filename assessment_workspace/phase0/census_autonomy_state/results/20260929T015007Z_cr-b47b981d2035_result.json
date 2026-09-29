@@ -1,0 +1,34 @@
+{
+  "census_run_id": "cr-b47b981d2035",
+  "tenant_id": "RMS",
+  "completed_at_utc": "20260929T015007Z",
+  "payload": {
+    "protocol": "akki-census-aggregate-v1",
+    "outcomes": [
+      {
+        "protocol": "akki-census-deep-v1",
+        "census_run_id": "cr-b47b981d2035",
+        "tenant_id": "RMS",
+        "source_id": "rms_obs",
+        "execution_location": "control_plane",
+        "source_rows_returned": 0,
+        "status": "blocked",
+        "observed_at": "2026-09-29T00:50:07.676962+00:00",
+        "worker_receipt_id": null,
+        "sources": [],
+        "transport_diagnostic": {
+          "stdout_bytes": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "reason_code": "WORKER_DEADLINE",
+        "error_sites": [
+          "deep_dispatch.py:82"
+        ]
+      }
+    ],
+    "registry_receipts": [],
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "principal_id": "6ab56dd48894abb269135ca2"
+  }
+}
