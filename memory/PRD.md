@@ -1,6 +1,75 @@
 # Akki — product requirements and current continuity
 
-## CURRENT — 2026-09-29 (late) M2 language cognition TRAINED on akki-vm-ii (measured, not final)
+## CURRENT — 2026-09-29 (evening) M2 Grey Mirror / Watch CLOSED — G2 PASS on the admitted inventory · M3 OPEN
+
+Owner directive: "Did you follow the three steps … readiness review, implementation, testing with
+the same rigour as M1? If so finish M2 cleanly in one autonomous run. Use the same depth of front
+end as you did in registry." English only. E1 stays a control plane.
+
+**Readiness:** Canon 8 read in full; every `services/watch` + `services/cif` module, contracts,
+drills and the Nexus `mirror`/`watch` fragments read before code. Crosswalk + limits:
+`assessment_workspace/notes/m2_execution/M2_WATCH_READINESS_AND_CLOSURE_20260929.md` (public copy
+`frontend/public/briefs/Akki_Watch_Readiness_M2.md`; both roadmap copies link it under Gate G2).
+
+**Implemented (reuse-first, no new engine/grammar):**
+- `commission_gate.py`: mark/sever state evaluated FIRST on every pass at the 3 protected
+  boundaries (403 hold, effect receipt); tripwire hook; expired containments reconciled on every
+  READ (not only the subject's next crossing) with a release row + notice; witness digest
+  attestation at every mint; verdicts name `requirements=vN` or `thresholds=DEFAULT_PENDING_OWNER_RULING`;
+  contain-release-contain anomaly flag; console reads receipted.
+- NEW `tripwire.py`: operator plants a decoy one-way (hash only) after a MEASURED isolation check of
+  the mirage store against 7 production stores; touching it at a gate → `mirage_incrimination`
+  signal (closed registry) → `structural_certainty` verdict → `sever` (holds) → `MarkV0` (6
+  dimensions: principal, session_ref, device_ref one-way, behavioural digest, content hashes) →
+  witness → detection/effect rows → pre-opened Decisions item → notice.
+- NEW `decisions.py`: reserved human set; approve needs TWO DISTINCT operator/master_admin
+  principals (same approver twice → 409, empty note → 409); acknowledge changes nothing; decline
+  keeps protection; execution = `release_sever` (real restoration, gate admits again) or
+  `learning_loop.ratify`.
+- NEW `notices.py` (notify posture, owner default), `learning_loop.py` (finding → `services.cif`
+  detection→acceptance point→L-4 routing → `research_queue` → grounding by citation resolution →
+  Decisions → `watch_requirements/v{n}.json`; detectors read the ratified version, history keeps
+  its label), `witness_binding.py` (`wi_gate_record_witness`, digest attestations, standing
+  break-in via production writer — must refuse), `console_projection.py` (tiles, charts, patterns,
+  mirage, marked, decisions panel, walks, budgets).
+- Routes (tenant-bound): GET `/api/portal/watch/state` (+legacy aliases, same envelope), GET
+  `/api/portal/watch/notices` (own), POST `/api/portal/watch/decisions/{id}`, `/requests/demark`,
+  `/requests/redeclaration`, `/learning/propose`, `/mirage/plant`, `/witness/break-in`. Legacy
+  `/api/watch/*` mutations stay 401/409.
+- Frontend (prototype DOM/CSS unchanged; bindings + testids only): State tiles/G2/G3/chart/budget
+  gauges/ledger walks; Record lanes + "The notice we sent →" + six-step evidence walk ("Walk
+  incomplete" when a step is missing); Under watch curves (inline SVG), Watch closer, re-declaration
+  notice, mirage findings, real Marked lines (L7300 sample text replaced), de-mark request →
+  Decisions; Decisions Review/Approve(n of 2)/Decline/Acknowledge with side-by-side records; bell
+  merges Watch notices. `OwnerMarkup` exact-binding interpolation now trims whitespace.
+
+**Drill pack (live, deployed backend; nothing dispatched to any worker):** T1 (iter 62 + sever
+`ma_gate_505031dd5f5e`), T2 (benign zero verdicts; 8 refusals → contain never sever; dual-control
+release `wd_1be2814bcdf4` → DPO's next crossing reached the handler), T3 (decoy
+`mr_gate_ce1aa789274a`, touch `mt_gate_505031dd5f5e`, mark `mark_gate_505031dd5f5e` checked at all
+3 gates, reads unaffected, no dimension leaks), T4 (503 fail-closed offline; break-in `passed` live;
+drift → tamper alarm offline; acknowledge leaves protection), T5 (`cif_watch_71a04299eb53` →
+`wd_6ac4580d762a` → `watch_requirements/v1.json`; new verdicts cite v1, old keep DEFAULT).
+Tests: offline 14 (`test_watch_commission_gate.py`, `test_watch_m2_full_loop.py`), live drill 8/8
+(`test_watch_m2_live_drill.py`), iteration 63: 29/29 live backend + all four panels desktop/mobile,
+zero overflow; frontend unit 31/31. Drill subject: demo.dpo (severed then released).
+
+**Standing limits (recorded in the closure note, not hidden):** inventory = 3 commission gates +
+console (auth/invocation/egress mark checks not yet in inventory); independent watchdog not placed
+(record witness runs in-pod); learned detectors/behavioural signature not built; mirage entry
+above containment not autonomous (owner ruling pending — highest bar holds); jittered bands not
+implemented; budget gauges measure drill traffic (friction gauge will show the analyst's drill
+effects as friction once released clean — a standing §19 finding on drill traffic). Each
+`learning/propose` call while an identical finding is open returns the open item (no duplicate
+proposal). Testing agent left ONE open `requirement_ratification` (`wd_9f099816b25f`, v2 candidate)
+and one extra live decoy (`mr_gate_8d182331a121`, TTL 600 s).
+
+**NEXT: M3.1** — intent → saved draft → feasibility → review → commission made durable on the
+existing DAP/Northena path; M3-T1 first bounded extraction scope to confirm with owner (RMS MySQL is
+the fully-censused candidate). Rerun the M2 inventory as M3 adds gates (G2 says later milestones
+extend and rerun it).
+
+## SUPERSEDED — 2026-09-29 (late) M2 language cognition TRAINED on akki-vm-ii (measured, not final)
 
 Owner directive: "Akki trains language cognition model on akki-vm ii … Run M2
 autonomously. Maintain same rigour." Owner inputs this increment: 2 h+ budget;

@@ -226,6 +226,8 @@ Detailed readiness and all prior-gap dispositions: [M1 Registry readiness](Akki_
 
 **Gate G2:** real protection and real restoration pass across the currently admitted path inventory. Every declared rail has a full-loop receipt and measured effect; no cosmetic alert feed qualifies. Later milestones extend and rerun this inventory. **Opens M3.**
 
+Readiness, reuse crosswalk, four-panel UI contract, drill-pack evidence and standing limits: [M2 Watch readiness and closure](Akki_Watch_Readiness_M2.md) (29 Sep 2026 — G2 PASS on the admitted inventory of three commission gates + console; limits recorded there; M3 opened).
+
 ## M3 — A request becomes completed, delivered work
 
 **User outcome:** a user commissions a bounded data/intelligence job, receives the permitted result, and can revisit its work history without asking an engineer to finish it.

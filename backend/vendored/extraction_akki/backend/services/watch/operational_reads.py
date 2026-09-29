@@ -92,7 +92,7 @@ def state_for(actor):
         'tiles': console_projection.tiles(feed, items, now), 'charts': console_projection.charts(feed),
         'patterns': console_projection.patterns(feed, now), 'mirage': console_projection.mirage(feed, now),
         'marked': console_projection.marked(tenant, feed), 'decisions': console_projection.panel(tenant, items),
-        'witness': witness_binding.summary(), 'learning': live_requirements,
+        'witness': witness_binding.summary(), 'learning': live_requirements, 'budgets': console_projection.budgets(feed, now),
         'protected_boundaries': commission_gate.boundary_register(),
         'coverage': 'Census commissions, commission-gate crossings and explicitly tenant-owned Watch records only',
         'enforcement_status': 'Commission gates enforce sever/contain/shape with effect receipts and evaluate mark state on every pass; other effectors not qualified',

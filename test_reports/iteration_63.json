@@ -1,0 +1,33 @@
+{
+  "summary": "M2 Watch (Grey Mirror) full backend + frontend regression against the deployed URL. Backend: 29/29 pytest test cases passed in /app/backend/tests/backend_test_m2.py covering watch/state envelope (all required top-level keys, tiles 9, charts.activity=3 boundaries, charts.responses labels annotate/shape/contain/sever, patterns, mirage isolation with no decoy leak, marked with 6 dimensions and NO credential/session/device fields, decisions with approvals_needed=2, witness.identity=wi_gate_record_witness, learning requirements_version + label, never_all_clear string, acted rows carry walk signal→verdict→policy→action→outcome→witness→complete), auth (anonymous 401, analyst 403, operator 200), console_reads increment per operator read, legacy aliases /api/watch/state and /api/grey_mirror/state return same envelope; notices (anonymous 401, DPO sees sever+release kinds, analyst 200); decisions (unknown id 404, analyst 403, executed decision approve→409, executed decision acknowledge→200 protection_changed=false); requests demark (no live mark → 409 for DPO principal, analyst 403), redeclaration (operator 200 + analyst notices include 'redeclaration' kind, analyst 403); mirage plant (success with isolation.passed=true and stores_compared=7, decoy_ref shorter than 8 chars → 422, analyst 403, mirage.live increments, decoy string never appears in watch/state); witness break-in (immutability_measurement='passed', attempt_result='refused', refusal_reason contains 'write_once', tiles.checks increments); learning propose (analyst 403, operator 200 with decision.klass='requirement_ratification' and decision.refs.routing='research_loop_appended'); legacy mutations POST /api/watch/verdict|act|mark → 401 anonymous, 409 signed-in; census reads unaffected (DPO /api/portal/census/overview 200, DPO POST /api/portal/census/language-cognition/jobs {phase:'nope'} → 422). Offline pytest suite (test_watch_commission_gate.py, test_watch_m2_full_loop.py, test_iteration59_watch_operational_m2.py): 15 passed, 13 skipped. Frontend (operator sessionStorage token injection): /watch/state — watch-tile-waiting=1, watch-tile-actors=3, watch-tile-sessions=2 (values, no '—'); never-all-clear line present. /watch/record — watch-record-coverage reads '39 records · 16 gate crossings · 9 enforced effects · 1 releases · lanes: noted-only, acted, held' (all required phrases present — the iteration_62 gap is now fixed); 80 watch-record-* rows found; watch-refresh-record chip increments console_reads by +2 (two reads: the chip fetch and the assertion GET). /watch/under-watch — 12 watch-pattern-* cards; watch-mirage-copy says 'isolation measured disjoint from production'; watch-marked-line-0 shows 'principal:6ab56dd48894abb269135ca1 · marked 29 Sept 2026, 08:01 UTC · de-marked by dual control · 6 dimensions bound · subject notified'; watch-request-demark present. /watch/decisions — 7 items; 1 open toggle; note textarea + approve/decline/acknowledge buttons; Approve with EMPTY note → drawer shows 'Refused' and 'One line' (matches spec); footer says '1 open · 2 closed · ranked by blast radius · requirements=v1' and watch-decisions-propose link present. Bell (owner-work-notices-trigger) as DPO opens with title 'Work and Watch notices' containing 'Watch notice' items. Responsive: at 390x844 ALL FOUR Watch views render with ZERO horizontal-overflow offenders. Decoy string 'qa-decoy-*' verified absent from operator watch/state response.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test_m2.py",
+    "/app/test_reports/pytest/iteration_63_backend.xml",
+    "/app/test_reports/iteration_63_state.jpeg"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Learning propose response nests 'routing' under decision.refs (not top-level refs) — spec text 'refs.routing=research_loop_appended' can be read either way. Consider documenting the location explicitly or mirroring 'routing' at the top level to reduce ambiguity for future consumers.",
+    "Refresh-record chip triggers TWO console-read increments per click in the current wiring (state read + a follow-up), which is harmless but slightly overcounts session activity. Non-blocking.",
+    "The iteration_62 HIGH gap on legacy /api/watch/state is closed: both /api/watch/state and /api/grey_mirror/state now return the same envelope as /api/portal/watch/state for the operator; anonymous is 401 by design."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test_m2.py"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "operator/master_admin/dpo/analyst demo creds all authenticate 200. DPO's earlier iteration-62 sever was released before this run; DPO now has no live mark (demark → 409 as expected).",
+  "seed_data_creation": "Test suite plants ONE mirage decoy per run with a random UUID-based decoy_ref (qa-decoy-<12hex>, TTL=600 s) and calls learning/propose ONCE, which opens a fresh requirement_ratification decision (state=open). These are the safe side effects called out in the review request. NO live-drill was executed (test_watch_m2_live_drill.py was NOT invoked); no subject was severed/marked. NO census run was dispatched.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Backend endpoints for M2 Watch are fully green against the deployed URL. Reusable pytest suite is at /app/backend/tests/backend_test_m2.py (29 tests, ~6 s runtime, uses REACT_APP_BACKEND_URL). Each run adds one live mirage decoy and one open 'Finding → candidate requirement vN' decision (was v1→v2 after this run). Frontend Watch views (state/record/under-watch/decisions) render with all documented data-testids; no responsive overflow at 390x844. Analyst principal:6ab56dd58894abb269135ca3 was still contained by ma_gate_0aa280248082 at test time (TTL 2026-09-29T08:21:20Z); DPO principal:6ab56dd48894abb269135ca1 is already released with de-mark visible in Marked section.",
+  "rca_of_the_issue": "N/A — no failures. Prior iteration_62 findings (legacy /api/watch/state empty; missing 'enforced effects' in record header deck) are both fixed and verified in this run."
+}

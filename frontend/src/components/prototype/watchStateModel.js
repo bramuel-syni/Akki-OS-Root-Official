@@ -11,6 +11,7 @@ const bars = (rows, fill) => {
   const top = Math.max(1, ...rows.map(r => r.value));
   return rows.map(r => ({ key: r.label, label: r.label, size: count(r.value), pct: Math.round(100 * r.value / top), fill }));
 };
+const pct = gauge => gauge ? `${(gauge.share * 100).toFixed(2)}% (${gauge.hits ?? gauge.acted} of ${gauge.of})` : 'not measured';
 
 export function watchStateModel({ data, error, state, setState, show }) {
   if (!data) return error ? { gmTopOneliner: error } : {};
@@ -32,7 +33,7 @@ export function watchStateModel({ data, error, state, setState, show }) {
     gmChartTitle: chart === 'activity' ? 'Crossings by protected boundary' : 'Responses by action class',
     gmChartCaption: `${count(data.counts?.gate_crossings)} crossings · ${count(data.counts?.gate_effects)} effects · ${count(data.counts?.gate_releases)} releases`,
     gmChartRows: bars(rows, chart === 'activity' ? 'var(--blue)' : '#7a1f1f'),
-    gmVisualFoot: `${(data.protected_boundaries || []).length} protected boundaries observed with mark checks on every pass · console reads receipted: ${count(data.counts?.console_reads)}`,
+    gmVisualFoot: `Budget gauges — friction ${pct(data.budgets?.friction)} (${data.budgets?.friction?.ceiling || 'ceiling pending'}) · blast ${pct(data.budgets?.blast)} (${data.budgets?.blast?.ceiling || 'ceiling pending'}) · ${(data.protected_boundaries || []).length} protected boundaries with mark checks on every pass · console reads receipted: ${count(data.counts?.console_reads)}`,
     gmTableOneliner: 'Every acted row carries its evidence walk: signal → verdict → policy row → action → outcome → witness.',
     gmHeadEyebrow: 'What is happening right now',
     gmRailSub: 'Evidence and actions from the same record',

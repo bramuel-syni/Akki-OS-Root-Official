@@ -84,6 +84,10 @@ def propose(tenant_id, principal_id, now=None):
     if not detections:
         raise ValueError("No gate finding is on record yet; the loop starts from a finding, not from a wish.")
     thresholds = _effective_thresholds()
+    signature = hashlib.sha256(json.dumps(thresholds, sort_keys=True).encode()).hexdigest()[:16]
+    for item in decisions.fold(tenant_id).values():
+        if item["state"] == "open" and item["klass"] == "requirement_ratification" and item["subject_ref"] == f"requirements:{signature}":
+            return item                                        # the same finding is already on the panel; no second proposal
     citations = tuple(sorted({d["evidence_ref"] for d in detections}))
     payload = {"candidate_kind": "candidate_requirement", "thresholds": thresholds, "basis_label": label(),
                "evidence": {"detections": len(detections), "by_detector": {n: sum(1 for d in detections if d["detector"] == n) for n in commission_gate.DETECTORS},
@@ -96,7 +100,6 @@ def propose(tenant_id, principal_id, now=None):
         commission_gate._append(tenant_id, {"kind": "learning", "at": _iso(now), "tenant_id": tenant_id, "stage": "refused_at_acceptance_point", "proposal_id": proposal.proposal_id})
         raise ValueError("The CIF acceptance point refused the proposal (uncited).")
     routed = route_accepted_proposal(proposal, accepted)
-    signature = hashlib.sha256(json.dumps(thresholds, sort_keys=True).encode()).hexdigest()[:16]
     ResearchQueue().enqueue(UnsureCase(case_id=proposal.proposal_id, verdict_signature=signature, observation_record=citations))
     grounded = _ground(tenant_id, citations)
     if not grounded:

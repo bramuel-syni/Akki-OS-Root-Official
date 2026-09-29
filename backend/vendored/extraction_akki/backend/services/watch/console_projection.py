@@ -117,6 +117,22 @@ def record_walks(tenant_id, gate, rows):
     return walks
 
 
+def budgets(rows, now):
+    """Canon 8 §7/§19 gauges, measured from the feed: friction = share of crossings by innocents (later
+    released clean) that met Watch friction; blast = share of active principals under an autonomous
+    action in the rolling hour. Ceilings are DEFAULT class pending ruling."""
+    hour = now - timedelta(hours=1)
+    crossings = [r for r in rows if r["kind"] == "crossing"]
+    innocents = {r["principal_id"] for r in rows if r["kind"] == "release" and r["outcome"] == "expired_clean"}
+    friction_hits = sum(1 for r in rows if r["kind"] == "effect" and r["principal_id"] in innocents)
+    active = {r["principal_id"] for r in crossings if _parse(r["at"]) >= hour}
+    acted = {r["principal_id"] for r in rows if r["kind"] == "detection" and r["action_class"] != "annotate" and _parse(r["at"]) >= hour}
+    return {"friction": {"share": round(friction_hits / len(crossings), 4) if crossings else 0.0, "hits": friction_hits, "of": len(crossings),
+                         "ceiling": "≤ 0.5% weekly (DEFAULT)", "note": "effects felt by principals later released clean, over all crossings"},
+            "blast": {"share": round(len(acted & active) / len(active), 4) if active else 0.0, "acted": len(acted & active), "of": len(active),
+                      "ceiling": "≤ 5% of active actors per hour (DEFAULT · dual-control)", "note": "principals under an autonomous shape/contain/sever this hour"}}
+
+
 def learning(rows):
     steps = [r for r in rows if r["kind"] == "learning"]
     live = learning_loop.current()
