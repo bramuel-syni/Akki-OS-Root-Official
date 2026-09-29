@@ -1,0 +1,279 @@
+{
+ "job_id": "lcj-cc595a42533d",
+ "phase": "corpus_census",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T04:25:10.498481Z",
+ "params": {},
+ "northena_run_id": "run-0bf3a572ccf5",
+ "northena_trace_id": "trc-9f0d48b6a3bc",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-cc595a42533d"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-cc595a42533d",
+  "pid": 9842
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-f6949ac853ee",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_corpus_census_admitted"
+  },
+  {
+   "row_id": "led-09fd4b9066dd",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_corpus_census_daemonised:pid=9842"
+  },
+  {
+   "row_id": "led-09852025b5cb",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "language_cognition_corpus_census_completed"
+  }
+ ],
+ "code_sha256": "1950e47ac8c547d8cd9877c64807b11c7a6e83b8a1cdf1e2502ca013299edaf9",
+ "started_at": "2026-09-29T04:25:15.782444Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T04:34:19.612852Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-c7a880bae227"
+ },
+ "remote_state": {
+  "phase": "corpus_census",
+  "status": "completed",
+  "started_at": "2026-09-29T04:25:15Z",
+  "progress": {
+   "listed_objects": 15899,
+   "staged_objects": 15800,
+   "staged_bytes": 53276629816,
+   "to_stage": 15867
+  },
+  "events": [],
+  "job_id": "lcj-cc595a42533d",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T04:34:10Z",
+  "finished_at": "2026-09-29T04:34:10Z",
+  "receipt_sha256": "2e19211474edd256c6c63f55e052fe5789682825855d92745c8bc43d3881e7a1"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-cc595a42533d",
+  "phase": "corpus_census",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T04:25:15Z",
+  "code_sha256": "1950e47ac8c547d8cd9877c64807b11c7a6e83b8a1cdf1e2502ca013299edaf9",
+  "status": "completed",
+  "result": {
+   "bucket": "google-transcripts",
+   "prefix": "datasets/",
+   "object_count": 15899,
+   "volume_bytes": 54117614250,
+   "languages": {
+    "_unclassified": {
+     "objects": 3274,
+     "bytes": 18003664299
+    },
+    "bxk": {
+     "language": "Bukusu",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 14,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    },
+    "guz": {
+     "language": "Kisii",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 2044,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    },
+    "kam": {
+     "language": "Akamba",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 3181,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    },
+    "kik": {
+     "language": "Kikuyu",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 1816,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    },
+    "kln": {
+     "language": "Kalenjin",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 941,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    },
+    "luo": {
+     "language": "Luo",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 1663,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    },
+    "lwg": {
+     "language": "Luhya",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 1270,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    },
+    "swa": {
+     "language": "Kiswahili",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "other": 1696,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0,
+      "note": "stem pairing; a single transcript file covering many audio files is reported as audio_without_transcript"
+     }
+    }
+   },
+   "target_five_coverage": {
+    "Kikuyu": true,
+    "Luo": true,
+    "Sheng": false,
+    "Swahili": true,
+    "English": false
+   },
+   "code_switched_spans_labelled": 0,
+   "honest_gap": "English, Sheng and code-switched per-span labels are absent from this corpus (MUST-NOT \u00a71 stands for the final model).",
+   "staged": {
+    "root": "/mnt/volume_dkgjrkx/akki-lc/corpus",
+    "objects_pulled_this_run": 15867,
+    "bytes_pulled_this_run": 54003779421,
+    "objects_present": 15899,
+    "custody": "RMS_TENANT \u00b7 host volume \u00b7 never leaves perimeter"
+   }
+  },
+  "finished_at": "2026-09-29T04:34:10Z",
+  "receipt_sha256": "2e19211474edd256c6c63f55e052fe5789682825855d92745c8bc43d3881e7a1",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T04:34:10Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-cc595a42533d",
+  "started_at_utc": "2026-09-29T04:25:15.782444Z",
+  "finished_at_utc": "2026-09-29T04:34:10Z",
+  "status": "completed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-cc595a42533d"
+ }
+}

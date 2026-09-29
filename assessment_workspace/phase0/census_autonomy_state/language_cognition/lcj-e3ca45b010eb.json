@@ -1,0 +1,154 @@
+{
+ "job_id": "lcj-e3ca45b010eb",
+ "phase": "register_bases",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T04:23:27.300179Z",
+ "params": {},
+ "northena_run_id": "run-9536c72a511b",
+ "northena_trace_id": "trc-42d9971db2ae",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-e3ca45b010eb"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-e3ca45b010eb",
+  "pid": 9289
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-121077a26f72",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_register_bases_admitted"
+  },
+  {
+   "row_id": "led-6b364d9615b4",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_register_bases_daemonised:pid=9289"
+  },
+  {
+   "row_id": "led-0aee47ae223f",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "language_cognition_register_bases_completed"
+  }
+ ],
+ "code_sha256": "8d9accd55aca3acd4a8c2050e30c4a4369b26c66ba61be78fa9d1dba4f6bffe5",
+ "started_at": "2026-09-29T04:23:32.772113Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T04:24:37.402131Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-f49d471b562c"
+ },
+ "remote_state": {
+  "phase": "register_bases",
+  "status": "completed",
+  "started_at": "2026-09-29T04:23:32Z",
+  "progress": {},
+  "events": [
+   {
+    "at": "2026-09-29T04:23:34Z",
+    "message": "pulling openai/whisper-small"
+   },
+   {
+    "at": "2026-09-29T04:24:21Z",
+    "message": "pulling speechbrain/lang-id-voxlingua107-ecapa"
+   }
+  ],
+  "job_id": "lcj-e3ca45b010eb",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T04:24:30Z",
+  "finished_at": "2026-09-29T04:24:30Z",
+  "receipt_sha256": "ee5f88987c2e84d207effafcc286a02e1fbe3a5109f33296eaf24eee3ec45982"
+ },
+ "worker_log_tail": "e HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rFetching 16 files:   6%|\u258b         | 1/16 [00:00<00:04,  3.23it/s]\rFetching 16 files:  19%|\u2588\u2589        | 3/16 [00:00<00:01,  7.82it/s]\rFetching 16 files:  31%|\u2588\u2588\u2588\u258f      | 5/16 [00:00<00:01,  6.10it/s]\rFetching 16 files:  56%|\u2588\u2588\u2588\u2588\u2588\u258b    | 9/16 [00:00<00:00, 11.61it/s]\rFetching 16 files:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 11/16 [00:01<00:00,  7.59it/s]\rFetching 16 files:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 12/16 [00:19<00:00,  7.59it/s]\rFetching 16 files:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 13/16 [00:28<00:12,  4.12s/it]\rFetching 16 files:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 14/16 [00:28<00:06,  3.47s/it]\rFetching 16 files:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 15/16 [00:38<00:04,  4.70s/it]\rFetching 16 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 16/16 [00:42<00:00,  4.63s/it]\rFetching 16 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 16/16 [00:42<00:00,  2.68s/it]\n\rFetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]\rFetching 9 files:  11%|\u2588         | 1/9 [00:00<00:02,  3.73it/s]\rFetching 9 files:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 6/9 [00:02<00:01,  2.25it/s]\rFetching 9 files:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 7/9 [00:04<00:01,  1.47it/s]\rFetching 9 files:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 8/9 [00:04<00:00,  1.74it/s]\rFetching 9 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 9/9 [00:09<00:00,  1.58s/it]\rFetching 9 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 9/9 [00:09<00:00,  1.02s/it]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-e3ca45b010eb",
+  "phase": "register_bases",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T04:23:32Z",
+  "code_sha256": "8d9accd55aca3acd4a8c2050e30c4a4369b26c66ba61be78fa9d1dba4f6bffe5",
+  "status": "completed",
+  "result": {
+   "whisper-lid-v1-mit": {
+    "repo": "openai/whisper-small",
+    "revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+    "local_path": "/mnt/volume_dkgjrkx/akki-lc/models/hf_cache/models--openai--whisper-small/snapshots/973afd24965f72e36ca33b3055d56a652f456b4d",
+    "weight_files": [
+     "model.safetensors",
+     "pytorch_model.bin"
+    ],
+    "weight_bytes": 1934087499,
+    "weight_sha256": "d95e9ce85c11692857a008ac9223a0325a9732aec8f7b26cd80b874d1aae2122",
+    "licence_card": "apache-2.0",
+    "execution_mode": "cuda",
+    "lora_adapter_declaration": "LoRA r=16 on encoder q_proj/v_proj; base frozen",
+    "pulled_at": "2026-09-29T04:24:21Z"
+   },
+   "speechbrain-voxlingua107-apache-2-0": {
+    "repo": "speechbrain/lang-id-voxlingua107-ecapa",
+    "revision": "0253049ae131d6a4be1c4f0d8b0ff483a0f8c8e9",
+    "local_path": "/mnt/volume_dkgjrkx/akki-lc/models/hf_cache/models--speechbrain--lang-id-voxlingua107-ecapa/snapshots/0253049ae131d6a4be1c4f0d8b0ff483a0f8c8e9",
+    "weight_files": [
+     "classifier.ckpt",
+     "embedding_model.ckpt",
+     "normalizer.ckpt"
+    ],
+    "weight_bytes": 85237973,
+    "weight_sha256": "7f5869e76fedb3f3ae651f3bf7354da036909807f8fad3fb5433d70c70d7d103",
+    "licence_card": null,
+    "execution_mode": "cuda",
+    "lora_adapter_declaration": "frozen ECAPA embedding (192-d) fused into the classifier; no adapter",
+    "pulled_at": "2026-09-29T04:24:30Z"
+   }
+  },
+  "finished_at": "2026-09-29T04:24:30Z",
+  "receipt_sha256": "ee5f88987c2e84d207effafcc286a02e1fbe3a5109f33296eaf24eee3ec45982",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T04:24:30Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-e3ca45b010eb",
+  "started_at_utc": "2026-09-29T04:23:32.772113Z",
+  "finished_at_utc": "2026-09-29T04:24:30Z",
+  "status": "completed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-e3ca45b010eb"
+ },
+ "training_base_registration": {
+  "whisper-lid-v1-mit": {
+   "sealed_model_entry": "whisper-lid-v1-mit",
+   "training_base_posture_hash": "d95e9ce85c11692857a008ac9223a0325a9732aec8f7b26cd80b874d1aae2122",
+   "licence_id_pinned": "MIT",
+   "licence_card_measured": "apache-2.0",
+   "lora_adapter_declaration": "LoRA r=16 on encoder q_proj/v_proj; base frozen",
+   "repo": "openai/whisper-small",
+   "revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+   "host_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-lc/models/hf_cache/models--openai--whisper-small/snapshots/973afd24965f72e36ca33b3055d56a652f456b4d",
+   "execution_mode": "cuda",
+   "banked_at": "2026-09-29T04:25:53.537089Z"
+  },
+  "speechbrain-voxlingua107-apache-2-0": {
+   "sealed_model_entry": "speechbrain-voxlingua107-apache-2-0",
+   "training_base_posture_hash": "7f5869e76fedb3f3ae651f3bf7354da036909807f8fad3fb5433d70c70d7d103",
+   "licence_id_pinned": "Apache-2.0",
+   "licence_card_measured": null,
+   "lora_adapter_declaration": "frozen ECAPA embedding (192-d) fused into the classifier; no adapter",
+   "repo": "speechbrain/lang-id-voxlingua107-ecapa",
+   "revision": "0253049ae131d6a4be1c4f0d8b0ff483a0f8c8e9",
+   "host_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-lc/models/hf_cache/models--speechbrain--lang-id-voxlingua107-ecapa/snapshots/0253049ae131d6a4be1c4f0d8b0ff483a0f8c8e9",
+   "execution_mode": "cuda",
+   "banked_at": "2026-09-29T04:25:53.537106Z"
+  }
+ }
+}

@@ -1,0 +1,42 @@
+{
+  "summary": "Backend-only iteration 60 verification of the census shovel origination flow through Northena/Targeta/CIF/Solva. Executed offline unit suite (13/13 passed) plus a new live public-URL contract suite (23/23 passed) covering login, POST/GET /api/portal/census/plan, engine evidence, scoop-order parity with Targeta ordered_targets, authZ (analyst 403, anonymous 401), Mongo persistence in targeta_mining_plans + northena_ledger_rows, on-disk ledger and dispatch cursor files, census run cursor state, and overview/latest regressions. No mutations against the live estate were performed (no replan=true, no POST /api/portal/census/run).",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_iteration60_shovel_live.py",
+    "/app/backend/tests/census_operational/test_shovel_origination.py",
+    "/app/backend/tests/census_operational/test_runner_busy_reentry.py",
+    "/app/test_reports/pytest/pytest_iteration_60.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Shovel origination envelope is well-formed: reused_active_plan is idempotent (two consecutive POST /api/portal/census/plan {} returned identical plan_id=plan_80002c62711eb23e and commissioned_run_id=cr-aa33fffba60e), so the 'no duplicate plan, no duplicate commission' invariant holds.",
+    "Targeta MiningPlan is fully persisted and correctly referenced: mode=per_run, yield_layer_version=core-only, governing_artifact_ref points at objective_request/census-shovel:RMS with a version snapshot, and ordered_targets are the authoritative source of scoop ordering.",
+    "Scoop flattening (discovery -> <source_id>:inflight|:unmeasured, region -> source_refs) reproduces mining_plan.ordered_targets exactly in order; no non-oversized scoop exceeds 1 TiB (1099511627776 bytes).",
+    "Northena ledger evidence is coherent: admit + gate rows both present in envelope and in Mongo (northena_ledger_rows), gate row reason == 'targeta_plan_built:plan_80002c62711eb23e', and on-disk JSON files exist under /app/assessment_workspace/phase0/northena_ledger for every row_id.",
+    "Terminated plan plan_53927bd32e60e591 tail is well-formed: state=terminated, both scoops banked/REFUSED, ledger tail reason contains 'no_progress_signal:owner_dependency_banked'. Unknown plan id correctly returns 404.",
+    "AuthZ boundary is enforced: analyst -> 403, anonymous -> 401 on POST /api/portal/census/plan.",
+    "Dispatch cursor for cr-aa33fffba60e carries scoop_plan_id=plan_80002c62711eb23e, scoop_index=0, busy_retry_attempt=1, continues_run_id=cr-399d1b46e9f9, and a numeric not_before, matching the documented pending back-off — pending is expected, not a bug.",
+    "Minor test-side note: GET /api/census/latest is auth-gated (returns 401 anonymous, 200 with operator bearer). Not a functional issue; the review-request phrasing implied unauthenticated 200 but the correct behaviour is authenticated 200 — test updated accordingly."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_iteration60_shovel_live.py"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "not_tested"
+  },
+  "test_credentials": "Operator demo.operator@demo.rms.example.com / demo-operator-pw ; Analyst demo.analyst@demo.rms.example.com / demo-analyst-pw",
+  "seed_data_creation": "None (read-only verification against live control plane)",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Live shovel-origination scope is fully green (23/23 live + 13/13 offline). Constraints respected: no replan=true, no POST /api/portal/census/run, no restarts, no writes under /app/assessment_workspace/phase0. Commissioned scoop cr-aa33fffba60e is intentionally PENDING with not_before back-off — treat as expected. Pre-existing unrelated failures (test_execution_identity.py r06, test_execution.py t08/t09, test_live_api_contract.py env) remain out of scope. To rerun: cd /app/backend && set -a && . ./.env && set +a && export REACT_APP_BACKEND_URL=$(grep REACT_APP_BACKEND_URL /app/frontend/.env | cut -d= -f2) && python3 -m pytest tests/census_operational/test_iteration60_shovel_live.py tests/census_operational/test_shovel_origination.py tests/census_operational/test_runner_busy_reentry.py -q -p no:cacheprovider",
+  "rca of the issue": "N/A — all in-scope assertions pass. Sole test-side adjustment: /api/census/latest requires operator bearer (401 without, 200 with); test now authenticates."
+}

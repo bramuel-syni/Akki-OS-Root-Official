@@ -1,0 +1,26 @@
+{
+ "whisper-lid-v1-mit": {
+  "sealed_model_entry": "whisper-lid-v1-mit",
+  "training_base_posture_hash": "d95e9ce85c11692857a008ac9223a0325a9732aec8f7b26cd80b874d1aae2122",
+  "licence_id_pinned": "MIT",
+  "licence_card_measured": "apache-2.0",
+  "lora_adapter_declaration": "LoRA r=16 on encoder q_proj/v_proj; base frozen",
+  "repo": "openai/whisper-small",
+  "revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+  "host_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-lc/models/hf_cache/models--openai--whisper-small/snapshots/973afd24965f72e36ca33b3055d56a652f456b4d",
+  "execution_mode": "cuda",
+  "banked_at": "2026-09-29T04:25:53.537089Z"
+ },
+ "speechbrain-voxlingua107-apache-2-0": {
+  "sealed_model_entry": "speechbrain-voxlingua107-apache-2-0",
+  "training_base_posture_hash": "7f5869e76fedb3f3ae651f3bf7354da036909807f8fad3fb5433d70c70d7d103",
+  "licence_id_pinned": "Apache-2.0",
+  "licence_card_measured": null,
+  "lora_adapter_declaration": "frozen ECAPA embedding (192-d) fused into the classifier; no adapter",
+  "repo": "speechbrain/lang-id-voxlingua107-ecapa",
+  "revision": "0253049ae131d6a4be1c4f0d8b0ff483a0f8c8e9",
+  "host_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-lc/models/hf_cache/models--speechbrain--lang-id-voxlingua107-ecapa/snapshots/0253049ae131d6a4be1c4f0d8b0ff483a0f8c8e9",
+  "execution_mode": "cuda",
+  "banked_at": "2026-09-29T04:25:53.537106Z"
+ }
+}

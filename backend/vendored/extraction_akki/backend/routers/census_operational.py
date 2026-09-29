@@ -1,5 +1,6 @@
 """Native census route composition. Replaces unsafe bindings, not sealed engine bodies."""
 import os
+import re
 import time
 from pathlib import Path
 
@@ -141,6 +142,44 @@ def plan_state(plan_id: str, actor=Depends(census_identity)):
     if not saved:
         raise HTTPException(404, "No census plan with that reference is available in your tenant.")
     return {"tenant_id": actor["tenant_id"], "plan": saved}
+
+
+@router.post("/api/portal/census/language-cognition/jobs", status_code=202, response_model=CensusEnvelope)
+def language_cognition_submit(body: dict = Body(...), actor=Depends(census_identity)):
+    """Commission one CP-AIP-LANGUAGE-COGNITION phase on the admitted GPU host (akki-vm-ii).
+    E1 wires and steps back: the phase daemonises on the host and reports through its receipt."""
+    if not {"operator", "master_admin"}.intersection(actor["roles"]):
+        raise HTTPException(403, "Only an admitted estate operator can commission a training phase.")
+    if actor["tenant_id"] != "RMS":
+        raise HTTPException(403, "The language-cognition corpus is RMS tenant material.")
+    from services.audio_plane_v1 import language_cognition_dispatch as lc
+    try:
+        path, _ = admission_path()
+        params = {k: v for k, v in body.items() if k not in ("phase", "tenant_id")}
+        job = lc.submit(body.get("phase"), params, actor["principal_id"], str(path))
+    except (ValueError, TypeError) as exc:
+        raise HTTPException(422, str(exc)) from exc
+    except (OSError, KeyError) as exc:
+        raise HTTPException(409, "The training host or census admission is unavailable; nothing was dispatched.") from exc
+    return {"tenant_id": actor["tenant_id"], "job": job}
+
+
+@router.get("/api/portal/census/language-cognition/jobs", response_model=CensusEnvelope)
+def language_cognition_jobs(actor=Depends(census_identity)):
+    from services.audio_plane_v1 import language_cognition_dispatch as lc
+    return {"tenant_id": actor["tenant_id"], "jobs": lc.list_jobs() if actor["tenant_id"] == "RMS" else []}
+
+
+@router.get("/api/portal/census/language-cognition/jobs/{job_id}", response_model=CensusEnvelope)
+def language_cognition_job(job_id: str, actor=Depends(census_identity)):
+    """One bounded status RPC to the host; the receipt is verified by digest when present."""
+    from services.audio_plane_v1 import language_cognition_dispatch as lc
+    if actor["tenant_id"] != "RMS" or not re.fullmatch(r"lcj-[a-f0-9]{12}", job_id):
+        raise HTTPException(404, "No language-cognition job with that reference is available in your tenant.")
+    job = lc.refresh(job_id)
+    if not job:
+        raise HTTPException(404, "No language-cognition job with that reference is available in your tenant.")
+    return {"tenant_id": actor["tenant_id"], "job": job}
 
 
 async def unbound_surface(request: Request, actor=Depends(census_identity)):

@@ -1,0 +1,750 @@
+{
+ "job_id": "lcj-6cc15d519c4f",
+ "phase": "corpus_census",
+ "host": "akki-vm-ii",
+ "principal_id": "demo.operator@demo.rms.example.com",
+ "submitted_at": "2026-09-29T05:03:14.966819Z",
+ "params": {
+  "parallelism": 24
+ },
+ "northena_run_id": "run-c1fe9882bab6",
+ "northena_trace_id": "trc-5536efd5a3e2",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-6cc15d519c4f"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-6cc15d519c4f",
+  "pid": 48717
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-ea7c3290a5c4",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_corpus_census_admitted"
+  },
+  {
+   "row_id": "led-82927e91921d",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_corpus_census_daemonised:pid=48717"
+  },
+  {
+   "row_id": "led-09ff1e07f7fa",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "language_cognition_corpus_census_completed"
+  }
+ ],
+ "code_sha256": "97bd8ccc8d1fdf217ab1468277f4faa09dc5af2b48f714e43c9d45ae1930a3cd",
+ "started_at": "2026-09-29T05:03:20.892503Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T05:04:30.511686Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-93b567de81ce"
+ },
+ "remote_state": {
+  "phase": "corpus_census",
+  "status": "completed",
+  "started_at": "2026-09-29T05:03:20Z",
+  "progress": {
+   "stage": "reading corpus as database"
+  },
+  "events": [],
+  "job_id": "lcj-6cc15d519c4f",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T05:03:48Z",
+  "finished_at": "2026-09-29T05:03:48Z",
+  "receipt_sha256": "5932b63817e4566e5ad8a9e27114e299f71491d14b3e35178bc48ce184f18647"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-6cc15d519c4f",
+  "phase": "corpus_census",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T05:03:20Z",
+  "code_sha256": "97bd8ccc8d1fdf217ab1468277f4faa09dc5af2b48f714e43c9d45ae1930a3cd",
+  "status": "completed",
+  "result": {
+   "bucket": "google-transcripts",
+   "prefix": "datasets/",
+   "object_count": 15899,
+   "prefix_markers_skipped": 182,
+   "volume_bytes": 54117614250,
+   "layout": "datasets/<code>/<session>/{audio,transcript,metadata}/<id>.{wav,txt,tsv} + datasets/<code>/<session>.tar.xz + manifests",
+   "languages": {
+    "bxk": {
+     "language": "Bukusu",
+     "audio": {
+      "objects": 14,
+      "bytes": 70351255,
+      "extensions": {
+       ".wav": 14
+      }
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "metadata": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "archives": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 14,
+      "transcript_without_audio": 0
+     },
+     "session_count": 14,
+     "archive_only_sessions": 0
+    },
+    "ebu": {
+     "language": "Embu",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "metadata": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "archives": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0
+     },
+     "session_count": 0,
+     "archive_only_sessions": 0
+    },
+    "guz": {
+     "language": "Kisii",
+     "audio": {
+      "objects": 676,
+      "bytes": 7196956878,
+      "extensions": {
+       ".wav": 676
+      }
+     },
+     "transcript": {
+      "objects": 684,
+      "bytes": 5929622
+     },
+     "metadata": {
+      "objects": 684,
+      "bytes": 123666
+     },
+     "archives": {
+      "objects": 527,
+      "bytes": 3501261412
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 674,
+      "audio_without_transcript": 2,
+      "transcript_without_audio": 10
+     },
+     "session_count": 686,
+     "archive_only_sessions": 56
+    },
+    "kam": {
+     "language": "Akamba",
+     "audio": {
+      "objects": 1061,
+      "bytes": 4199534111,
+      "extensions": {
+       ".wav": 1061
+      }
+     },
+     "transcript": {
+      "objects": 1060,
+      "bytes": 4811778
+     },
+     "metadata": {
+      "objects": 1060,
+      "bytes": 145142
+     },
+     "archives": {
+      "objects": 1018,
+      "bytes": 3431157420
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 1060,
+      "audio_without_transcript": 1,
+      "transcript_without_audio": 0
+     },
+     "session_count": 1061,
+     "archive_only_sessions": 190
+    },
+    "kik": {
+     "language": "Kikuyu",
+     "audio": {
+      "objects": 606,
+      "bytes": 5769441181,
+      "extensions": {
+       ".wav": 606
+      }
+     },
+     "transcript": {
+      "objects": 605,
+      "bytes": 5839786
+     },
+     "metadata": {
+      "objects": 605,
+      "bytes": 106202
+     },
+     "archives": {
+      "objects": 381,
+      "bytes": 2230974392
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 605,
+      "audio_without_transcript": 1,
+      "transcript_without_audio": 0
+     },
+     "session_count": 605,
+     "archive_only_sessions": 12
+    },
+    "kln": {
+     "language": "Kalenjin",
+     "audio": {
+      "objects": 311,
+      "bytes": 6778180133,
+      "extensions": {
+       ".wav": 311
+      }
+     },
+     "transcript": {
+      "objects": 315,
+      "bytes": 8376356
+     },
+     "metadata": {
+      "objects": 315,
+      "bytes": 88226
+     },
+     "archives": {
+      "objects": 71,
+      "bytes": 586463804
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 311,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 4
+     },
+     "session_count": 315,
+     "archive_only_sessions": 1
+    },
+    "luo": {
+     "language": "Luo",
+     "audio": {
+      "objects": 555,
+      "bytes": 3781489968,
+      "extensions": {
+       ".wav": 555
+      }
+     },
+     "transcript": {
+      "objects": 554,
+      "bytes": 6003115
+     },
+     "metadata": {
+      "objects": 554,
+      "bytes": 106829
+     },
+     "archives": {
+      "objects": 394,
+      "bytes": 1266043660
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 554,
+      "audio_without_transcript": 1,
+      "transcript_without_audio": 0
+     },
+     "session_count": 555,
+     "archive_only_sessions": 3
+    },
+    "lwg": {
+     "language": "Luhya",
+     "audio": {
+      "objects": 60,
+      "bytes": 770609384,
+      "extensions": {
+       ".wav": 60
+      }
+     },
+     "transcript": {
+      "objects": 605,
+      "bytes": 7779540
+     },
+     "metadata": {
+      "objects": 605,
+      "bytes": 158093
+     },
+     "archives": {
+      "objects": 340,
+      "bytes": 1746663260
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 60,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 545
+     },
+     "session_count": 601,
+     "archive_only_sessions": 0
+    },
+    "mas": {
+     "language": "Maasai",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "metadata": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "archives": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0
+     },
+     "session_count": 0,
+     "archive_only_sessions": 0
+    },
+    "mer": {
+     "language": "Meru",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "metadata": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "archives": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0
+     },
+     "session_count": 0,
+     "archive_only_sessions": 0
+    },
+    "mrg": {
+     "language": "Maragoli",
+     "audio": {
+      "objects": 0,
+      "bytes": 0,
+      "extensions": {}
+     },
+     "transcript": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "metadata": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "archives": {
+      "objects": 0,
+      "bytes": 0
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 0,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 0
+     },
+     "session_count": 0,
+     "archive_only_sessions": 0
+    },
+    "swa": {
+     "language": "Kiswahili",
+     "audio": {
+      "objects": 550,
+      "bytes": 7501642080,
+      "extensions": {
+       ".wav": 550
+      }
+     },
+     "transcript": {
+      "objects": 573,
+      "bytes": 6173263
+     },
+     "metadata": {
+      "objects": 573,
+      "bytes": 103343
+     },
+     "archives": {
+      "objects": 507,
+      "bytes": 5239855592
+     },
+     "manifests": 2,
+     "other": 0,
+     "pairing": {
+      "matched_pairs": 550,
+      "audio_without_transcript": 0,
+      "transcript_without_audio": 23
+     },
+     "session_count": 572,
+     "archive_only_sessions": 0
+    },
+    "_unclassified": {
+     "objects": 12,
+     "bytes": 97569,
+     "sample_keys": [
+      "datasets/validation/bxk.xlsx",
+      "datasets/validation/ebu.xlsx",
+      "datasets/validation/guz.xlsx",
+      "datasets/validation/kam.xlsx",
+      "datasets/validation/kik.xlsx"
+     ]
+    }
+   },
+   "target_five_coverage": {
+    "Kikuyu": true,
+    "Luo": true,
+    "Sheng": false,
+    "Swahili": true,
+    "English": false
+   },
+   "code_switched_spans_labelled": 0,
+   "honest_gap": "English and Sheng are absent; transcripts are time-aligned and speaker-attributed but carry NO per-span language label, so code-switched spans are unlabelled (MUST-NOT \u00a71 stands for the final model).",
+   "bucket_survey": {
+    "root_objects": [
+     {
+      "key": "datasets.tar.xz",
+      "bytes": 76587908
+     },
+     {
+      "key": "datasets_kln.tar.xz",
+      "bytes": 92174696
+     },
+     {
+      "key": "datasets_swa.tar.xz",
+      "bytes": 117607520
+     }
+    ],
+    "prefixes": {
+     "brenda.obura/": {
+      "objects": 1,
+      "bytes": 26,
+      "prefix_markers": 1,
+      "extensions": {
+       ".txt": 1
+      }
+     },
+     "datasets/": {
+      "objects": 15899,
+      "bytes": 54117614250,
+      "prefix_markers": 182,
+      "extensions": {
+       ".tsv": 4420,
+       ".txt": 4396,
+       ".wav": 3833,
+       ".xz": 3238,
+       ".xlsx": 12
+      }
+     },
+     "oms/": {
+      "objects": 3,
+      "bytes": 4307428,
+      "prefix_markers": 0,
+      "extensions": {
+       ".txt": 3
+      }
+     },
+     "roadshows/": {
+      "objects": 1439,
+      "bytes": 4430787716,
+      "prefix_markers": 0,
+      "extensions": {
+       ".jpg": 1436,
+       ".png": 3
+      }
+     },
+     "transcripts/": {
+      "objects": 6106,
+      "bytes": 41587149,
+      "prefix_markers": 1,
+      "extensions": {
+       ".txt": 6106
+      }
+     }
+    }
+   },
+   "staged": {
+    "to_stage": 0,
+    "objects_pulled_this_run": 0,
+    "bytes_pulled_this_run": 0,
+    "objects_present": 15899,
+    "root": "/mnt/volume_dkgjrkx/akki-lc/corpus",
+    "custody": "RMS_TENANT \u00b7 host volume \u00b7 never leaves perimeter"
+   },
+   "archives": {
+    "archives_to_extract": 262,
+    "extracted_this_run": 262,
+    "failed_count": 0,
+    "failed": [],
+    "session_origins": {
+     "folder": 1300,
+     "folder+archive": 2976,
+     "archive": 262
+    }
+   },
+   "measured_on_host": {
+    "bxk": {
+     "language": "Bukusu",
+     "sessions": 14,
+     "session_origins": {
+      "folder": 14
+     },
+     "wav_files": 14,
+     "unreadable_wav": 14,
+     "transcribed_files": 0,
+     "segments": 0,
+     "speakers_with_gender_suffix": 0,
+     "metadata_gender": {},
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 0,
+     "session_local_speaker_ids": 0,
+     "audio_hours": 0.0,
+     "speech_hours": 0.0
+    },
+    "guz": {
+     "language": "Kisii",
+     "sessions": 732,
+     "session_origins": {
+      "folder+archive": 471,
+      "archive": 56,
+      "folder": 205
+     },
+     "wav_files": 732,
+     "unreadable_wav": 732,
+     "transcribed_files": 730,
+     "segments": 58291,
+     "speakers_with_gender_suffix": 1904,
+     "metadata_gender": {
+      "male": 1248,
+      "female": 656
+     },
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 5712,
+     "session_local_speaker_ids": 1904,
+     "audio_hours": 0.0,
+     "speech_hours": 107.45
+    },
+    "kam": {
+     "language": "Akamba",
+     "sessions": 1166,
+     "session_origins": {
+      "folder+archive": 828,
+      "archive": 190,
+      "folder": 148
+     },
+     "wav_files": 1166,
+     "unreadable_wav": 1166,
+     "transcribed_files": 1165,
+     "segments": 21190,
+     "speakers_with_gender_suffix": 1795,
+     "metadata_gender": {
+      "female": 720,
+      "male": 1075
+     },
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 5385,
+     "session_local_speaker_ids": 1795,
+     "audio_hours": 0.0,
+     "speech_hours": 144.6
+    },
+    "kik": {
+     "language": "Kikuyu",
+     "sessions": 583,
+     "session_origins": {
+      "folder": 202,
+      "folder+archive": 369,
+      "archive": 12
+     },
+     "wav_files": 584,
+     "unreadable_wav": 584,
+     "transcribed_files": 582,
+     "segments": 44549,
+     "speakers_with_gender_suffix": 1471,
+     "metadata_gender": {
+      "female": 373,
+      "male": 1098
+     },
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 4413,
+     "session_local_speaker_ids": 1470,
+     "audio_hours": 0.0,
+     "speech_hours": 81.24
+    },
+    "kln": {
+     "language": "Kalenjin",
+     "sessions": 295,
+     "session_origins": {
+      "folder": 224,
+      "folder+archive": 70,
+      "archive": 1
+     },
+     "wav_files": 295,
+     "unreadable_wav": 295,
+     "transcribed_files": 295,
+     "segments": 101499,
+     "speakers_with_gender_suffix": 1496,
+     "metadata_gender": {
+      "male": 1172,
+      "female": 324
+     },
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 4488,
+     "session_local_speaker_ids": 1496,
+     "audio_hours": 0.0,
+     "speech_hours": 183.66
+    },
+    "luo": {
+     "language": "Luo",
+     "sessions": 558,
+     "session_origins": {
+      "folder+archive": 391,
+      "folder": 164,
+      "archive": 3
+     },
+     "wav_files": 558,
+     "unreadable_wav": 558,
+     "transcribed_files": 557,
+     "segments": 66577,
+     "speakers_with_gender_suffix": 1666,
+     "metadata_gender": {
+      "male": 1291,
+      "female": 375
+     },
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 4998,
+     "session_local_speaker_ids": 1666,
+     "audio_hours": 0.0,
+     "speech_hours": 206.78
+    },
+    "lwg": {
+     "language": "Luhya",
+     "sessions": 56,
+     "session_origins": {
+      "folder": 21,
+      "folder+archive": 35
+     },
+     "wav_files": 60,
+     "unreadable_wav": 60,
+     "transcribed_files": 60,
+     "segments": 8849,
+     "speakers_with_gender_suffix": 326,
+     "metadata_gender": {
+      "male": 196,
+      "female": 130
+     },
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 978,
+     "session_local_speaker_ids": 293,
+     "audio_hours": 0.0,
+     "speech_hours": 18.5
+    },
+    "swa": {
+     "language": "Kiswahili",
+     "sessions": 549,
+     "session_origins": {
+      "folder+archive": 493,
+      "folder": 56
+     },
+     "wav_files": 549,
+     "unreadable_wav": 549,
+     "transcribed_files": 549,
+     "segments": 50066,
+     "speakers_with_gender_suffix": 1495,
+     "metadata_gender": {
+      "female": 496,
+      "male": 999
+     },
+     "metadata_condition_cells_filled": 0,
+     "metadata_condition_cells": 4485,
+     "session_local_speaker_ids": 1495,
+     "audio_hours": 0.0,
+     "speech_hours": 86.33
+    },
+    "_reading": "Speaker ids are numbered per session (Speaker_1_m \u2026) and are not linked across sessions by the corpus; the speaker_linkage phase links them biometrically so the split can be presenter-disjoint. Condition columns (age/device/environment) are mostly blank \u2192 condition stratification is unmeasured.",
+    "_database": {
+     "files_jsonl": "/mnt/volume_dkgjrkx/akki-lc/corpus_db/files.jsonl",
+     "segments_jsonl": "/mnt/volume_dkgjrkx/akki-lc/corpus_db/segments.jsonl"
+    }
+   }
+  },
+  "finished_at": "2026-09-29T05:03:48Z",
+  "receipt_sha256": "5932b63817e4566e5ad8a9e27114e299f71491d14b3e35178bc48ce184f18647",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T05:03:48Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-6cc15d519c4f",
+  "started_at_utc": "2026-09-29T05:03:20.892503Z",
+  "finished_at_utc": "2026-09-29T05:03:48Z",
+  "status": "completed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-6cc15d519c4f"
+ }
+}

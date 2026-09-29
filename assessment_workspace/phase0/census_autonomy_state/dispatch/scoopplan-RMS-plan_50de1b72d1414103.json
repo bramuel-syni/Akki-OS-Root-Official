@@ -1,0 +1,702 @@
+{
+  "plan_id": "plan_50de1b72d1414103",
+  "tenant_id": "RMS",
+  "principal_id": "6ab56dd48894abb269135ca2",
+  "state": "terminated",
+  "worker_id": "akki-vm",
+  "target_bytes": 1099511627776,
+  "objective_shape": "rms_mysql rms_obs rms_nas",
+  "created_at": "2026-09-29T04:22:35.670918+00:00",
+  "capacity": {
+    "concurrent_workers": 3,
+    "pass_seconds": 3600,
+    "nas_dirs_per_sec": 0.4,
+    "obs_objects_per_sec": 850.0
+  },
+  "northena_run_id": "run-a868ca406e84",
+  "northena_trace_id": "trc-a92694787848",
+  "governing_artifact_ref": {
+    "artifact_type": "objective_request",
+    "artifact_id": "census-shovel:RMS",
+    "version": "snap-040af784cf51c684"
+  },
+  "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+  "ledger_rows": [
+    {
+      "row_id": "led-ecba6bac1736",
+      "stage": "admit",
+      "decision": "admitted",
+      "reason": "admitted"
+    },
+    {
+      "row_id": "led-40db1c038bf2",
+      "stage": "gate",
+      "decision": "warm",
+      "reason": "targeta_plan_built:plan_50de1b72d1414103"
+    },
+    {
+      "row_id": "led-fef87a3a3cb7",
+      "stage": "converge",
+      "decision": "continue",
+      "reason": "scoop_000_banked:REFUSED:units=0"
+    },
+    {
+      "row_id": "led-15478a23cca2",
+      "stage": "converge",
+      "decision": "continue",
+      "reason": "scoop_001_banked:REFUSED:units=0"
+    },
+    {
+      "row_id": "led-985a0b7cfb35",
+      "stage": "converge",
+      "decision": "continue",
+      "reason": "scoop_002_banked:REFUSED:units=0"
+    },
+    {
+      "row_id": "led-798d696cb68e",
+      "stage": "converge",
+      "decision": "terminate_budget",
+      "reason": "no_progress_signal:owner_dependency_banked"
+    }
+  ],
+  "mining_plan": {
+    "plan_id": "plan_50de1b72d1414103",
+    "mode": "per_run",
+    "governing_artifact_ref": {
+      "artifact_type": "objective_request",
+      "artifact_id": "census-shovel:RMS",
+      "version": "snap-040af784cf51c684"
+    },
+    "registry_snapshot_ref": "snap-040af784cf51c684",
+    "ordered_targets": [
+      {
+        "source_ref": "source_00729bc678fdce66cb3b202e",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_03445ff31d8938a83788c562",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_03c63fb4731de5e4c9c7c562",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_13fe43632da8d7964b2ac549",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_180147a1c5b1c9e56032097d",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_1aae8cb26816d5c1a596c6e2",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_2041e13402f080cf1d675343",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_20df085faa0d6b3c7049a0fe",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_38d0c0330a98fe1cdfa25428",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_42533e37ea5a79c09d3220fe",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_4362d55228c64bc419ba8fea",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_4589e71b021c5b1285230099",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_48a4190f5009c45ff0dfba06",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_5018198390a6cc50e3e9489a",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_5c7bf22cf01f7ba773634550",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_64d172b9edd8361729268c37",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_6f00241a5234635fc9064c4a",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_73bbf45c148270b291ac5ea0",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_740b614e1cb15546ace2862b",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_75bde08b1287f1c6c81c8142",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_7af1d2db7f7a1d26a71d3fef",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_7c41131b013f16ba95e6012b",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_87db9f8411a8e4755dc56470",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_8d5c4887f80794c8107f8bad",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_a065f201424461f0f0bca1d5",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_a4269f6f83bfa72d3fe3177b",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_a92214f44326b5f498795ce2",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_b19582a3b198342040748c98",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_baa76b714b7cd3b479127b4c",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_bf8a740e35c191499983bb7c",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_cac13df24fc2de5b07989b98",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_cfd3001a8d100552d50919a2",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_d0c059ab6653afb2eae3669a",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_d4879ca49db7f60e5f1b71cb",
+        "region": "rms_mysql"
+      },
+      {
+        "source_ref": "source_dccbbda6aed76e7d870688ea",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_de683900a6ec76b5b5e374e9",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_e3d6089ee2367ed01c1ffa2a",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_f3ceedd527ebc540e70dc105",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_f65c9d2886b096295f7d05b9",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_f75d11a7906c39235ad1c17e",
+        "region": "rms_obs"
+      },
+      {
+        "source_ref": "source_f8bfd08fcff3d65ee2be5838",
+        "region": "rms_obs"
+      }
+    ],
+    "defensibility_floor": {
+      "minimum_class": "utterance"
+    },
+    "core_baseline_ranking": [
+      "source_00729bc678fdce66cb3b202e",
+      "source_03445ff31d8938a83788c562",
+      "source_03c63fb4731de5e4c9c7c562",
+      "source_13fe43632da8d7964b2ac549",
+      "source_180147a1c5b1c9e56032097d",
+      "source_1aae8cb26816d5c1a596c6e2",
+      "source_2041e13402f080cf1d675343",
+      "source_20df085faa0d6b3c7049a0fe",
+      "source_38d0c0330a98fe1cdfa25428",
+      "source_42533e37ea5a79c09d3220fe",
+      "source_4362d55228c64bc419ba8fea",
+      "source_4589e71b021c5b1285230099",
+      "source_48a4190f5009c45ff0dfba06",
+      "source_5018198390a6cc50e3e9489a",
+      "source_5c7bf22cf01f7ba773634550",
+      "source_64d172b9edd8361729268c37",
+      "source_6f00241a5234635fc9064c4a",
+      "source_73bbf45c148270b291ac5ea0",
+      "source_740b614e1cb15546ace2862b",
+      "source_75bde08b1287f1c6c81c8142",
+      "source_7af1d2db7f7a1d26a71d3fef",
+      "source_7c41131b013f16ba95e6012b",
+      "source_87db9f8411a8e4755dc56470",
+      "source_8d5c4887f80794c8107f8bad",
+      "source_a065f201424461f0f0bca1d5",
+      "source_a4269f6f83bfa72d3fe3177b",
+      "source_a92214f44326b5f498795ce2",
+      "source_b19582a3b198342040748c98",
+      "source_baa76b714b7cd3b479127b4c",
+      "source_bf8a740e35c191499983bb7c",
+      "source_cac13df24fc2de5b07989b98",
+      "source_cfd3001a8d100552d50919a2",
+      "source_d0c059ab6653afb2eae3669a",
+      "source_d4879ca49db7f60e5f1b71cb",
+      "source_dccbbda6aed76e7d870688ea",
+      "source_de683900a6ec76b5b5e374e9",
+      "source_e3d6089ee2367ed01c1ffa2a",
+      "source_f3ceedd527ebc540e70dc105",
+      "source_f65c9d2886b096295f7d05b9",
+      "source_f75d11a7906c39235ad1c17e",
+      "source_f8bfd08fcff3d65ee2be5838"
+    ],
+    "yield_layer_version": "core-only",
+    "generated_at": "2026-09-29T04:22:35.669703+00:00"
+  },
+  "registry_snapshot_ref": "snap-040af784cf51c684",
+  "targets_pending": 41,
+  "regions_consumed": 87,
+  "estate_measured_bytes": 0,
+  "scoop_count": 3,
+  "cadence": {
+    "scoop_target": "1.00 TiB per scoop, one at a time",
+    "discovery_scoops": 0,
+    "sized_scoops": 3,
+    "oversized_scoops": 0,
+    "estimated_total_passes": 3,
+    "estimated_wall_hours_at_current_capacity": 1.0,
+    "principle": "Shovel: Targeta orders, complete one scoop, bank it, move to the next; resumable enumeration walks any scoop larger than one pass."
+  },
+  "scoops": [
+    {
+      "kind": "region",
+      "source_id": "rms_obs",
+      "regions": [
+        {
+          "source_ref": "source_00729bc678fdce66cb3b202e",
+          "label": "na7p4100",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_03445ff31d8938a83788c562",
+          "label": "instore-radio-items",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_03c63fb4731de5e4c9c7c562",
+          "label": "na7p41j6",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_13fe43632da8d7964b2ac549",
+          "label": "razuna-direct-access",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_180147a1c5b1c9e56032097d",
+          "label": "rms-acronis-backup-bucket",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_1aae8cb26816d5c1a596c6e2",
+          "label": "sdatauploadroyalmedia.co.ke",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_2041e13402f080cf1d675343",
+          "label": "na7p4oy4",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_20df085faa0d6b3c7049a0fe",
+          "label": "na7p4oz6",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_38d0c0330a98fe1cdfa25428",
+          "label": "iso-rms-storage",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_42533e37ea5a79c09d3220fe",
+          "label": "na7p435c",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_4362d55228c64bc419ba8fea",
+          "label": "na7p42s7",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_4589e71b021c5b1285230099",
+          "label": "na7p42ry",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_48a4190f5009c45ff0dfba06",
+          "label": "na7p41f4",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_5018198390a6cc50e3e9489a",
+          "label": "apr252017",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_5c7bf22cf01f7ba773634550",
+          "label": "private-isos",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_64d172b9edd8361729268c37",
+          "label": "na7p43hs",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_6f00241a5234635fc9064c4a",
+          "label": "na7p42s5",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_73bbf45c148270b291ac5ea0",
+          "label": "seconddatauploadroyalmedia.co.ke",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_740b614e1cb15546ace2862b",
+          "label": "na7p4374",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_75bde08b1287f1c6c81c8142",
+          "label": "rms-ai",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_7af1d2db7f7a1d26a71d3fef",
+          "label": "na7p42tq",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_7c41131b013f16ba95e6012b",
+          "label": "na7p4oxs",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_87db9f8411a8e4755dc56470",
+          "label": "na7p43jw",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_8d5c4887f80794c8107f8bad",
+          "label": "na7p49pc",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_a065f201424461f0f0bca1d5",
+          "label": "na7p41ab",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_a4269f6f83bfa72d3fe3177b",
+          "label": "citizen-vod",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_a92214f44326b5f498795ce2",
+          "label": "na7p43d6",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_b19582a3b198342040748c98",
+          "label": "onesignal-logos",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_baa76b714b7cd3b479127b4c",
+          "label": "na7p410c",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_bf8a740e35c191499983bb7c",
+          "label": "one-signal-live-service",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_cac13df24fc2de5b07989b98",
+          "label": "feb272017",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_cfd3001a8d100552d50919a2",
+          "label": "elections",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_d0c059ab6653afb2eae3669a",
+          "label": "na7p419y",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        }
+      ],
+      "volume_bytes": 0,
+      "oversized": false,
+      "sequence": 0,
+      "source_refs": [
+        "source_00729bc678fdce66cb3b202e",
+        "source_03445ff31d8938a83788c562",
+        "source_03c63fb4731de5e4c9c7c562",
+        "source_13fe43632da8d7964b2ac549",
+        "source_180147a1c5b1c9e56032097d",
+        "source_1aae8cb26816d5c1a596c6e2",
+        "source_2041e13402f080cf1d675343",
+        "source_20df085faa0d6b3c7049a0fe",
+        "source_38d0c0330a98fe1cdfa25428",
+        "source_42533e37ea5a79c09d3220fe",
+        "source_4362d55228c64bc419ba8fea",
+        "source_4589e71b021c5b1285230099",
+        "source_48a4190f5009c45ff0dfba06",
+        "source_5018198390a6cc50e3e9489a",
+        "source_5c7bf22cf01f7ba773634550",
+        "source_64d172b9edd8361729268c37",
+        "source_6f00241a5234635fc9064c4a",
+        "source_73bbf45c148270b291ac5ea0",
+        "source_740b614e1cb15546ace2862b",
+        "source_75bde08b1287f1c6c81c8142",
+        "source_7af1d2db7f7a1d26a71d3fef",
+        "source_7c41131b013f16ba95e6012b",
+        "source_87db9f8411a8e4755dc56470",
+        "source_8d5c4887f80794c8107f8bad",
+        "source_a065f201424461f0f0bca1d5",
+        "source_a4269f6f83bfa72d3fe3177b",
+        "source_a92214f44326b5f498795ce2",
+        "source_b19582a3b198342040748c98",
+        "source_baa76b714b7cd3b479127b4c",
+        "source_bf8a740e35c191499983bb7c",
+        "source_cac13df24fc2de5b07989b98",
+        "source_cfd3001a8d100552d50919a2",
+        "source_d0c059ab6653afb2eae3669a"
+      ],
+      "estimated_passes": 1,
+      "state": "banked",
+      "census_run_id": "cr-1d92cb65abdd",
+      "adopted_inflight": false,
+      "status": "REFUSED",
+      "progress_units": 0,
+      "proof_ref": "census_autonomy_state/results/20260929T042336Z_cr-1d92cb65abdd_result.json",
+      "reason_codes": [
+        "SOURCE_COVERAGE_INCOMPLETE"
+      ]
+    },
+    {
+      "kind": "region",
+      "source_id": "rms_mysql",
+      "regions": [
+        {
+          "source_ref": "source_d4879ca49db7f60e5f1b71cb",
+          "label": "artists_app",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        }
+      ],
+      "volume_bytes": 0,
+      "oversized": false,
+      "sequence": 1,
+      "source_refs": [
+        "source_d4879ca49db7f60e5f1b71cb"
+      ],
+      "estimated_passes": 1,
+      "state": "banked",
+      "census_run_id": "cr-8202b67b1f71",
+      "adopted_inflight": false,
+      "status": "REFUSED",
+      "progress_units": 0,
+      "proof_ref": "census_autonomy_state/results/20260929T042434Z_cr-8202b67b1f71_result.json",
+      "reason_codes": [
+        "SOURCE_COVERAGE_INCOMPLETE"
+      ]
+    },
+    {
+      "kind": "region",
+      "source_id": "rms_obs",
+      "regions": [
+        {
+          "source_ref": "source_dccbbda6aed76e7d870688ea",
+          "label": "na7p41jk",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_de683900a6ec76b5b5e374e9",
+          "label": "na7p43dj",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_e3d6089ee2367ed01c1ffa2a",
+          "label": "na7p42tz",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_f3ceedd527ebc540e70dc105",
+          "label": "onsignal-bucket",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_f65c9d2886b096295f7d05b9",
+          "label": "librarydirectupload2",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_f75d11a7906c39235ad1c17e",
+          "label": "na7p4omz",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        },
+        {
+          "source_ref": "source_f8bfd08fcff3d65ee2be5838",
+          "label": "obituariesdata",
+          "status": "blocked",
+          "volume_bytes": 0,
+          "defensibility_class": "utterance"
+        }
+      ],
+      "volume_bytes": 0,
+      "oversized": false,
+      "sequence": 2,
+      "source_refs": [
+        "source_dccbbda6aed76e7d870688ea",
+        "source_de683900a6ec76b5b5e374e9",
+        "source_e3d6089ee2367ed01c1ffa2a",
+        "source_f3ceedd527ebc540e70dc105",
+        "source_f65c9d2886b096295f7d05b9",
+        "source_f75d11a7906c39235ad1c17e",
+        "source_f8bfd08fcff3d65ee2be5838"
+      ],
+      "estimated_passes": 1,
+      "state": "banked",
+      "census_run_id": "cr-81526aa143aa",
+      "adopted_inflight": false,
+      "status": "REFUSED",
+      "progress_units": 0,
+      "proof_ref": "census_autonomy_state/results/20260929T042535Z_cr-81526aa143aa_result.json",
+      "reason_codes": [
+        "SOURCE_COVERAGE_INCOMPLETE"
+      ]
+    }
+  ],
+  "cif_proposals": [],
+  "solva_critic": {
+    "findings": [
+      "Rubric received but Tier-2-binding pending: 'Does the scoop order consume the admitted estate fully, one bounded pass per scoop, without a second ranking?'"
+    ],
+    "citations": [
+      "Doc 05 \u00a7B5.1; Targeta \u00a717 #8; harvest recursion: census applies at every scale"
+    ]
+  }
+}

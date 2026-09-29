@@ -1,0 +1,93 @@
+{
+ "job_id": "lcj-9dd9c13c9085",
+ "phase": "corpus_census",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-29T04:23:33.441546Z",
+ "params": {},
+ "northena_run_id": "run-52a7380e7e63",
+ "northena_trace_id": "trc-16fe502b6d71",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-9dd9c13c9085"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-9dd9c13c9085",
+  "pid": 9446
+ },
+ "status": "failed",
+ "ledger_rows": [
+  {
+   "row_id": "led-a21686210272",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_corpus_census_admitted"
+  },
+  {
+   "row_id": "led-c3fc1b516880",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_corpus_census_daemonised:pid=9446"
+  },
+  {
+   "row_id": "led-95d1c23b9a68",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "language_cognition_corpus_census_failed"
+  }
+ ],
+ "code_sha256": "8d9accd55aca3acd4a8c2050e30c4a4369b26c66ba61be78fa9d1dba4f6bffe5",
+ "started_at": "2026-09-29T04:23:38.061011Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T04:24:41.657028Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-b9e9ea27102c"
+ },
+ "remote_state": {
+  "phase": "corpus_census",
+  "status": "failed",
+  "started_at": "2026-09-29T04:23:37Z",
+  "progress": {
+   "listed_objects": 16081
+  },
+  "events": [],
+  "job_id": "lcj-9dd9c13c9085",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T04:23:47Z",
+  "finished_at": "2026-09-29T04:23:47Z",
+  "receipt_sha256": "01215146b2ee7818b6747d5ebd2db7fef33b3fa796e1f68ad6a541317f7d48f6"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-9dd9c13c9085",
+  "phase": "corpus_census",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T04:23:37Z",
+  "code_sha256": "8d9accd55aca3acd4a8c2050e30c4a4369b26c66ba61be78fa9d1dba4f6bffe5",
+  "status": "failed",
+  "error": {
+   "type": "IsADirectoryError",
+   "message": "[Errno 21] Is a directory: '/mnt/volume_dkgjrkx/akki-lc/corpus/datasets.7cd1cdA8' -> '/mnt/volume_dkgjrkx/akki-lc/corpus/datasets'",
+   "trace": "e_v1/language_cognition_worker.py\", line 468, in execute\n    receipt[\"result\"] = PHASES[control[\"phase\"]](control, state)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-9dd9c13c9085/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 151, in corpus_census\n    list(pool.map(pull, todo))\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 619, in result_iterator\n    yield _result_or_cancel(fs.pop())\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 317, in _result_or_cancel\n    return fut.result(timeout)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/usr/lib/python3.12/concurrent/futures/thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-9dd9c13c9085/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 145, in pull\n    sdk.download_file(bucket, key, str(dest))\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/botocore/context.py\", line 123, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/boto3/s3/inject.py\", line 223, in download_file\n    return transfer.download_file(\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/boto3/s3/transfer.py\", line 484, in download_file\n    future.result()\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/s3transfer/futures.py\", line 111, in result\n    return self._coordinator.result()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/s3transfer/futures.py\", line 287, in result\n    raise self._exception\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/s3transfer/tasks.py\", line 142, in __call__\n    return self._execute_main(kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/s3transfer/tasks.py\", line 165, in _execute_main\n    return_value = self._main(**kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/s3transfer/download.py\", line 975, in _main\n    osutil.rename_file(fileobj.name, final_filename)\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/s3transfer/utils.py\", line 299, in rename_file\n    rename_file(current_filename, new_filename)\nIsADirectoryError: [Errno 21] Is a directory: '/mnt/volume_dkgjrkx/akki-lc/corpus/datasets.7cd1cdA8' -> '/mnt/volume_dkgjrkx/akki-lc/corpus/datasets'\n"
+  },
+  "finished_at": "2026-09-29T04:23:47Z",
+  "receipt_sha256": "01215146b2ee7818b6747d5ebd2db7fef33b3fa796e1f68ad6a541317f7d48f6",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T04:23:47Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-9dd9c13c9085",
+  "started_at_utc": "2026-09-29T04:23:38.061011Z",
+  "finished_at_utc": "2026-09-29T04:23:47Z",
+  "status": "failed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-9dd9c13c9085"
+ }
+}

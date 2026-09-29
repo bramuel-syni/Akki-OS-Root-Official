@@ -1,0 +1,318 @@
+{
+ "job_id": "lcj-4e9283997834",
+ "phase": "gate_eval",
+ "host": "akki-vm-ii",
+ "principal_id": "demo.operator@demo.rms.example.com",
+ "submitted_at": "2026-09-29T05:18:25.153291Z",
+ "params": {
+  "per_language_limit": 60
+ },
+ "northena_run_id": "run-94dcbac6ec25",
+ "northena_trace_id": "trc-32774ab5e79d",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-4e9283997834"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-4e9283997834",
+  "pid": 130497
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-d5e99a2e6a3b",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_gate_eval_admitted"
+  },
+  {
+   "row_id": "led-c724f3f6d7bd",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_gate_eval_daemonised:pid=130497"
+  },
+  {
+   "row_id": "led-add1a369b275",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "language_cognition_gate_eval_completed"
+  }
+ ],
+ "code_sha256": "1f9520da266344959d6adf7dd20c5a25ee79ee1cf60aa4a12f99cf85d3cf1d9a",
+ "started_at": "2026-09-29T05:18:30.336132Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T05:20:32.724808Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-923072cd0b97"
+ },
+ "remote_state": {
+  "phase": "gate_eval",
+  "status": "completed",
+  "started_at": "2026-09-29T05:18:30Z",
+  "progress": {
+   "languages_evaluated": 8,
+   "of": 8
+  },
+  "events": [],
+  "job_id": "lcj-4e9283997834",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T05:19:52Z",
+  "finished_at": "2026-09-29T05:19:52Z",
+  "receipt_sha256": "c346daf3ae51fb1bb994c3c46e2b17dba365a3060b718f540dd38927e93925a4"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 6385.38it/s]\nCategoricalEncoder.expect_len was never called: assuming category count of 107 to be correct! Sanity check your encoder using `.expect_len`. Ensure that downstream code also uses the correct size. If you are sure this does not apply to you, use `.ignore_len`.",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-4e9283997834",
+  "phase": "gate_eval",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T05:18:30Z",
+  "code_sha256": "1f9520da266344959d6adf7dd20c5a25ee79ee1cf60aa4a12f99cf85d3cf1d9a",
+  "status": "completed",
+  "result": {
+   "per_language": {
+    "bxk": {
+     "language": "Bukusu",
+     "files": 14,
+     "whisper": {
+      "agree": 0,
+      "abstain": 2,
+      "top": {
+       "sw": 12
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.1429
+     },
+     "voxlingua107": {
+      "agree": 0,
+      "abstain": 3,
+      "top": {
+       "sw": 11
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.2143
+     },
+     "in_whisper_vocabulary": false,
+     "in_voxlingua107_vocabulary": false
+    },
+    "guz": {
+     "language": "Kisii",
+     "files": 60,
+     "whisper": {
+      "agree": 0,
+      "abstain": 36,
+      "top": {
+       "sw": 20,
+       "es": 2,
+       "sn": 2
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.6
+     },
+     "voxlingua107": {
+      "agree": 0,
+      "abstain": 22,
+      "top": {
+       "sw": 25,
+       "ln": 5,
+       "sn": 2,
+       "ha": 2,
+       "it": 2
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.3667
+     },
+     "in_whisper_vocabulary": false,
+     "in_voxlingua107_vocabulary": false
+    },
+    "kam": {
+     "language": "Akamba",
+     "files": 60,
+     "whisper": {
+      "agree": 0,
+      "abstain": 10,
+      "top": {
+       "sw": 50
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.1667
+     },
+     "voxlingua107": {
+      "agree": 0,
+      "abstain": 11,
+      "top": {
+       "sw": 47,
+       "ln": 1,
+       "sn": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.1833
+     },
+     "in_whisper_vocabulary": false,
+     "in_voxlingua107_vocabulary": false
+    },
+    "kik": {
+     "language": "Kikuyu",
+     "files": 60,
+     "whisper": {
+      "agree": 0,
+      "abstain": 6,
+      "top": {
+       "sw": 53,
+       "yo": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.1
+     },
+     "voxlingua107": {
+      "agree": 0,
+      "abstain": 5,
+      "top": {
+       "sw": 52,
+       "as": 1,
+       "sn": 1,
+       "ht": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.0833
+     },
+     "in_whisper_vocabulary": false,
+     "in_voxlingua107_vocabulary": false
+    },
+    "kln": {
+     "language": "Kalenjin",
+     "files": 60,
+     "whisper": {
+      "agree": 0,
+      "abstain": 34,
+      "top": {
+       "sw": 23,
+       "my": 1,
+       "es": 1,
+       "am": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.5667
+     },
+     "voxlingua107": {
+      "agree": 0,
+      "abstain": 12,
+      "top": {
+       "sw": 35,
+       "am": 5,
+       "sn": 2,
+       "yi": 1,
+       "ps": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.2
+     },
+     "in_whisper_vocabulary": false,
+     "in_voxlingua107_vocabulary": false
+    },
+    "luo": {
+     "language": "Luo",
+     "files": 60,
+     "whisper": {
+      "agree": 0,
+      "abstain": 6,
+      "top": {
+       "sw": 53,
+       "yo": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.1
+     },
+     "voxlingua107": {
+      "agree": 0,
+      "abstain": 7,
+      "top": {
+       "sw": 49,
+       "yo": 2,
+       "ln": 1,
+       "ha": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.1167
+     },
+     "in_whisper_vocabulary": false,
+     "in_voxlingua107_vocabulary": false
+    },
+    "lwg": {
+     "language": "Luhya",
+     "files": 60,
+     "whisper": {
+      "agree": 0,
+      "abstain": 16,
+      "top": {
+       "sw": 43,
+       "en": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.2667
+     },
+     "voxlingua107": {
+      "agree": 0,
+      "abstain": 2,
+      "top": {
+       "sw": 37,
+       "sn": 14,
+       "ha": 6,
+       "pt": 1
+      },
+      "agreement_rate": 0.0,
+      "abstention_rate": 0.0333
+     },
+     "in_whisper_vocabulary": false,
+     "in_voxlingua107_vocabulary": false
+    },
+    "swa": {
+     "language": "Kiswahili",
+     "files": 60,
+     "whisper": {
+      "agree": 60,
+      "abstain": 0,
+      "top": {
+       "sw": 60
+      },
+      "agreement_rate": 1.0,
+      "abstention_rate": 0.0
+     },
+     "voxlingua107": {
+      "agree": 60,
+      "abstain": 0,
+      "top": {
+       "sw": 60
+      },
+      "agreement_rate": 1.0,
+      "abstention_rate": 0.0
+     },
+     "in_whisper_vocabulary": true,
+     "in_voxlingua107_vocabulary": true
+    }
+   },
+   "confidence_threshold": 0.5,
+   "window": "first 30 s of each file (Whisper) / first 10 s (VoxLingua107)",
+   "gate_default_threshold": 0.9,
+   "reading": "Agreement is measurable only for languages inside a base's vocabulary; the Kenyan languages outside both vocabularies are structurally unknown to the overlay \u2014 the census marks them unmeasured."
+  },
+  "finished_at": "2026-09-29T05:19:52Z",
+  "receipt_sha256": "c346daf3ae51fb1bb994c3c46e2b17dba365a3060b718f540dd38927e93925a4",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T05:19:52Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-4e9283997834",
+  "started_at_utc": "2026-09-29T05:18:30.336132Z",
+  "finished_at_utc": "2026-09-29T05:19:52Z",
+  "status": "completed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-4e9283997834"
+ }
+}

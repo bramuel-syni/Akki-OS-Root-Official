@@ -1,0 +1,240 @@
+{
+ "job_id": "lcj-e16f26a43d22",
+ "phase": "speaker_linkage",
+ "host": "akki-vm-ii",
+ "principal_id": "demo.operator@demo.rms.example.com",
+ "submitted_at": "2026-09-29T05:07:36.878701Z",
+ "params": {
+  "parallelism": 24,
+  "cosine_threshold": 0.45,
+  "crops_per_speaker": 6
+ },
+ "northena_run_id": "run-b878b5cb06d1",
+ "northena_trace_id": "trc-d0e40b941d34",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-e16f26a43d22"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-e16f26a43d22",
+  "pid": 53743
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-ffa30d0631a3",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_speaker_linkage_admitted"
+  },
+  {
+   "row_id": "led-944579c38e11",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_speaker_linkage_daemonised:pid=53743"
+  },
+  {
+   "row_id": "led-85d946055843",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "language_cognition_speaker_linkage_completed"
+  }
+ ],
+ "code_sha256": "b7478c76d898ff13b85f6125fc5e98bc12782013a60c44a414aaedc9838f62bd",
+ "started_at": "2026-09-29T05:07:42.633425Z",
+ "last_status_rpc": {
+  "at": "2026-09-29T05:13:48.119502Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-94fa3c238a89"
+ },
+ "remote_state": {
+  "phase": "speaker_linkage",
+  "status": "completed",
+  "started_at": "2026-09-29T05:07:42Z",
+  "progress": {
+   "stage": "clustered",
+   "languages_done": 8
+  },
+  "events": [],
+  "job_id": "lcj-e16f26a43d22",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-29T05:13:01Z",
+  "finished_at": "2026-09-29T05:13:01Z",
+  "receipt_sha256": "d97682674d28d96f5dbd49464e0b85b5a3572383cb5da6534a0594652cdfa431"
+ },
+ "worker_log_tail": "Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rFetching 10 files:  10%|\u2588         | 1/10 [00:00<00:04,  2.18it/s]\rFetching 10 files:  20%|\u2588\u2588        | 2/10 [00:00<00:02,  3.95it/s]\rFetching 10 files:  40%|\u2588\u2588\u2588\u2588      | 4/10 [00:00<00:00,  7.92it/s]\rFetching 10 files:  60%|\u2588\u2588\u2588\u2588\u2588\u2588    | 6/10 [00:01<00:00,  6.61it/s]\rFetching 10 files:  70%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 7/10 [00:01<00:00,  6.28it/s]\rFetching 10 files:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 9/10 [00:06<00:01,  1.11s/it]\rFetching 10 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 10/10 [00:09<00:00,  1.54s/it]\rFetching 10 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 10/10 [00:09<00:00,  1.11it/s]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-e16f26a43d22",
+  "phase": "speaker_linkage",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T05:07:42Z",
+  "code_sha256": "b7478c76d898ff13b85f6125fc5e98bc12782013a60c44a414aaedc9838f62bd",
+  "status": "completed",
+  "result": {
+   "instrument": {
+    "repo": "speechbrain/spkrec-ecapa-voxceleb",
+    "revision": "0f99f2d0ebe89ac095bcc5903c4dd8f72b367286",
+    "local_path": "/mnt/volume_dkgjrkx/akki-lc/models/hf_cache/models--speechbrain--spkrec-ecapa-voxceleb/snapshots/0f99f2d0ebe89ac095bcc5903c4dd8f72b367286",
+    "weight_files": [
+     "classifier.ckpt",
+     "embedding_model.ckpt",
+     "mean_var_norm_emb.ckpt"
+    ],
+    "weight_bytes": 88852935,
+    "weight_sha256": "f42e1c9f652761893efeb2be4a210a1492f0a3d04c35108d7ded78d5ad308bdc",
+    "licence_card": "apache-2.0",
+    "pulled_at": "2026-09-29T05:07:55Z"
+   },
+   "method": "ECAPA-TDNN speaker embedding, mean of \u22646 crops per session-local id, average-linkage cosine clustering",
+   "cosine_threshold": 0.45,
+   "presenter_minimum_n_default": 20,
+   "per_language": {
+    "bxk": {
+     "language": "Bukusu",
+     "session_local_ids": 0,
+     "presenters": 0,
+     "presenters_spanning_sessions": 0,
+     "singleton_presenters": 0,
+     "largest_presenter_ids": 0,
+     "presenters_with_mixed_gender_suffix": 0,
+     "sessions": 14,
+     "session_origins": {
+      "folder": 14
+     },
+     "meets_presenter_minimum_n": false
+    },
+    "guz": {
+     "language": "Kisii",
+     "session_local_ids": 1729,
+     "presenters": 201,
+     "presenters_spanning_sessions": 89,
+     "singleton_presenters": 105,
+     "largest_presenter_ids": 199,
+     "presenters_with_mixed_gender_suffix": 25,
+     "sessions": 732,
+     "session_origins": {
+      "folder+archive": 471,
+      "archive": 56,
+      "folder": 205
+     },
+     "meets_presenter_minimum_n": true
+    },
+    "kam": {
+     "language": "Akamba",
+     "session_local_ids": 1728,
+     "presenters": 296,
+     "presenters_spanning_sessions": 151,
+     "singleton_presenters": 140,
+     "largest_presenter_ids": 182,
+     "presenters_with_mixed_gender_suffix": 24,
+     "sessions": 1166,
+     "session_origins": {
+      "folder+archive": 828,
+      "archive": 190,
+      "folder": 148
+     },
+     "meets_presenter_minimum_n": true
+    },
+    "kik": {
+     "language": "Kikuyu",
+     "session_local_ids": 1372,
+     "presenters": 203,
+     "presenters_spanning_sessions": 80,
+     "singleton_presenters": 107,
+     "largest_presenter_ids": 200,
+     "presenters_with_mixed_gender_suffix": 41,
+     "sessions": 583,
+     "session_origins": {
+      "folder": 202,
+      "folder+archive": 369,
+      "archive": 12
+     },
+     "meets_presenter_minimum_n": true
+    },
+    "kln": {
+     "language": "Kalenjin",
+     "session_local_ids": 1112,
+     "presenters": 204,
+     "presenters_spanning_sessions": 103,
+     "singleton_presenters": 90,
+     "largest_presenter_ids": 115,
+     "presenters_with_mixed_gender_suffix": 37,
+     "sessions": 295,
+     "session_origins": {
+      "folder": 224,
+      "folder+archive": 70,
+      "archive": 1
+     },
+     "meets_presenter_minimum_n": true
+    },
+    "luo": {
+     "language": "Luo",
+     "session_local_ids": 1446,
+     "presenters": 235,
+     "presenters_spanning_sessions": 105,
+     "singleton_presenters": 113,
+     "largest_presenter_ids": 164,
+     "presenters_with_mixed_gender_suffix": 35,
+     "sessions": 558,
+     "session_origins": {
+      "folder+archive": 391,
+      "folder": 164,
+      "archive": 3
+     },
+     "meets_presenter_minimum_n": true
+    },
+    "lwg": {
+     "language": "Luhya",
+     "session_local_ids": 254,
+     "presenters": 69,
+     "presenters_spanning_sessions": 36,
+     "singleton_presenters": 29,
+     "largest_presenter_ids": 20,
+     "presenters_with_mixed_gender_suffix": 8,
+     "sessions": 56,
+     "session_origins": {
+      "folder": 21,
+      "folder+archive": 35
+     },
+     "meets_presenter_minimum_n": true
+    },
+    "swa": {
+     "language": "Kiswahili",
+     "session_local_ids": 1392,
+     "presenters": 253,
+     "presenters_spanning_sessions": 119,
+     "singleton_presenters": 127,
+     "largest_presenter_ids": 148,
+     "presenters_with_mixed_gender_suffix": 13,
+     "sessions": 549,
+     "session_origins": {
+      "folder+archive": 493,
+      "folder": 56
+     },
+     "meets_presenter_minimum_n": true
+    }
+   },
+   "custody": "embeddings held in memory only and destroyed after cluster assignment (AIP \u00a76.2.4); persisted: opaque presenter ids per session-local speaker id",
+   "reading": "Presenters are inferred by voice similarity at the recorded threshold \u2014 a measured linkage, not ground truth. presenters_with_mixed_gender_suffix is the visible error signal."
+  },
+  "finished_at": "2026-09-29T05:13:01Z",
+  "receipt_sha256": "d97682674d28d96f5dbd49464e0b85b5a3572383cb5da6534a0594652cdfa431",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T05:13:01Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-e16f26a43d22",
+  "started_at_utc": "2026-09-29T05:07:42.633425Z",
+  "finished_at_utc": "2026-09-29T05:13:01Z",
+  "status": "completed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-e16f26a43d22"
+ }
+}

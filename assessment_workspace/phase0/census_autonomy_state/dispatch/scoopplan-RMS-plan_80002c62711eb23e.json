@@ -2,7 +2,7 @@
   "plan_id": "plan_80002c62711eb23e",
   "tenant_id": "RMS",
   "principal_id": "6ab56dd48894abb269135ca2",
-  "state": "active",
+  "state": "terminated",
   "worker_id": "akki-vm",
   "target_bytes": 1099511627776,
   "objective_shape": "rms_mysql rms_obs rms_nas",
@@ -33,6 +33,24 @@
       "stage": "gate",
       "decision": "warm",
       "reason": "targeta_plan_built:plan_80002c62711eb23e"
+    },
+    {
+      "row_id": "led-aeef98cd6712",
+      "stage": "converge",
+      "decision": "continue",
+      "reason": "scoop_000_banked:PARTIAL:units=22975591"
+    },
+    {
+      "row_id": "led-c2dff5739bde",
+      "stage": "converge",
+      "decision": "continue",
+      "reason": "scoop_001_banked:REFUSED:units=0"
+    },
+    {
+      "row_id": "led-7ad0595bf5c4",
+      "stage": "converge",
+      "decision": "terminate_success",
+      "reason": "shovel_walked:scoops=2"
     }
   ],
   "mining_plan": {
@@ -97,9 +115,15 @@
       "sequence": 0,
       "source_refs": null,
       "estimated_passes": null,
-      "state": "commissioned",
+      "state": "banked",
       "census_run_id": "cr-aa33fffba60e",
-      "adopted_inflight": true
+      "adopted_inflight": true,
+      "status": "PARTIAL",
+      "progress_units": 22975591,
+      "proof_ref": "census_autonomy_state/results/20260929T042148Z_cr-aa33fffba60e_result.json",
+      "reason_codes": [
+        "SOURCE_COVERAGE_INCOMPLETE"
+      ]
     },
     {
       "kind": "region",
@@ -120,7 +144,15 @@
         "source_d4879ca49db7f60e5f1b71cb"
       ],
       "estimated_passes": 1,
-      "state": "queued"
+      "state": "banked",
+      "census_run_id": "cr-6ff80ab9901b",
+      "adopted_inflight": false,
+      "status": "REFUSED",
+      "progress_units": 0,
+      "proof_ref": "census_autonomy_state/results/20260929T042234Z_cr-6ff80ab9901b_result.json",
+      "reason_codes": [
+        "SOURCE_COVERAGE_INCOMPLETE"
+      ]
     }
   ],
   "cif_proposals": [],
@@ -131,5 +163,6 @@
     "citations": [
       "Doc 05 \u00a7B5.1; Targeta \u00a717 #8; harvest recursion: census applies at every scale"
     ]
-  }
+  },
+  "successor_plan_id": "plan_50de1b72d1414103"
 }
