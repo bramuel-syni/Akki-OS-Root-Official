@@ -1,0 +1,7 @@
+{
+  "witness_id": "wi_gate_record_witness",
+  "registered_at": "2026-09-29T12:00:02Z",
+  "signing_material_ref": "witness_binding:sha256-digest-attestation",
+  "independent_of_authorities": true,
+  "registration_note": "Record witness for commission-gate actions. Holds no Watch credentials and no governance credentials; performs read-only digest attestation and the standing break-in test. Placement: application pod, not yet a separate deployment (declared gap)."
+}

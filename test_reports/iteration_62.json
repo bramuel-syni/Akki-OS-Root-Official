@@ -1,0 +1,65 @@
+{
+  "summary": "M2-T1 Watch commission-gate live drill executed end-to-end against the deployed backend, and Grey Mirror Watch record UI validated as operator. Step A (3x back-to-back POST /api/portal/census/language-cognition/jobs {phase:'nope'} as analyst) returned 403/403/403; Step B (immediate retry) returned HTTP 429 with detail containing 'friction' and action id ma_gate_63fd3485b58f. Operator GET /api/portal/watch/state after Step B showed counts.gate_crossings=7, gate_refusals=7, gate_effects=1, verdicts=1, actions=1; protected_boundaries has exactly 3 entries (census.commission, census.plan, language_cognition.commission); a verdict row kind='verdict' detector='fast_violation' boundary='language_cognition.commission' actor='principal:6ab56dd58894abb269135ca3' is present, and a 'shape' action row is In effect with effect_verified=true; no 'password'/'secret' strings in response. Step C (further POSTs spaced 32-33 s) produced 3 more 403s (refusal count 8,9,10) and the 4th spaced attempt returned HTTP 409 with detail 'suspended by the Watch until 2026-09-29T08:21:20.015063Z (action ma_gate_0aa280248082). Reading your estate's records is unaffected.' Analyst reads remained unaffected: GET /api/portal/census/language-cognition/jobs -> 200 and GET /api/portal/census/overview -> 200. Post-Step-C operator watch/state shows contain action In effect, effect_verified=true, detector='slow_play', gate_effects=3 (was 1). M2-T2: operator benign GETs (overview, jobs list, single job lcj-f96c86a16312) all 200 and did NOT change counts.gate_crossings (10 before/after). One operator POST {phase:'nope'} returned 422 and correctly appeared as a refused crossing (final counts.gate_refusals=11, gate_crossings=11). Frontend: signed in as operator, navigated to /os/admin/greymirror/watch/record; ledger shows externally_steerable verdicts (Recorded) and 'contain'+'shape' actions (In effect) with correct timestamps and 'Commission-gate detection; effect receipts prove the gate enforced it' basis. Clicked 'Walk this →' on the contain row and the drawer opened with body containing 'Commission-gate detection'. No horizontal overflow at 1920x800 or 390x844.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "GET /api/watch/state (legacy unauthenticated rollup)",
+        "issue": "Spec expects legacy GET /api/watch/state to return 200 unauthenticated with verdicts.entries containing ids starting 'mv_gate_' and verdict_class='externally_steerable'. Actual: unauthenticated call returns 401 ('Sign in to view your estate's census.'). With operator auth it returns 200 but verdicts.entries is EMPTY (0 gate entries). Gate verdicts (mv_gate_ccfd9202c812, mv_gate_adb54a6af141) are only surfaced via the new /api/portal/watch/state, not rolled up into legacy /api/watch/state. Note: 'no entry has action_class sever' is technically satisfied because there are no entries at all, but the positive requirement (entries include mv_gate_* with externally_steerable) is not met.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Grey Mirror Watch record header deck",
+        "issue": "Spec expected the record view header deck to contain both 'gate crossings' AND 'enforced effects' with non-zero numbers. Current header/deck text on /os/admin/greymirror/watch/record shows '34 records · Census commissions, commission-gate crossings and explicitly tenant-owned Watch records only' and the right-side subtitle 'Commission gates enforce contain/shape with effect receipts; other effectors not qualified'. 'gate crossings' is present (via 'commission-gate crossings') but 'enforced effects' phrase is NOT present, and neither the deck nor the subtitle exposes the numeric counts (gate_crossings / gate_effects). Non-blocking display gap in watchRecordModel.js gmHeadDeck copy.",
+        "affected_selectors": ["/os/admin/greymirror/watch/record header deck"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_62_drill.py",
+    "/app/test_reports/iteration_62_drill_output.json",
+    "/app/test_reports/iteration_62_desktop_1920x800.jpeg",
+    "/app/test_reports/iteration_62_mobile_390x844.jpeg",
+    "/app/test_reports/iteration_62_walk_contain_drawer.jpeg"
+  ],
+  "action_items": [
+    "Roll up commission-gate verdicts/actions into the legacy /api/watch/state entries (or clarify that legacy endpoint now requires auth) so mv_gate_* entries with verdict_class='externally_steerable' appear as spec requires.",
+    "Update watchRecordModel.js gmHeadDeck to include 'gate crossings' and 'enforced effects' with the live numeric counts from state.counts.gate_crossings / state.counts.gate_effects.",
+    "Live regression test tests/census_operational/test_language_cognition_api.py::test_submit_unknown_phase_analyst_403 currently fails (returns 409 not 403) because the analyst is contained by the drill's own contain action for 3600 s. Expected reversible at TTL (2026-09-29T08:21:20Z). No code fix needed; consider using a different actor in that test or explicitly documenting the ordering constraint stated in the review request."
+  ],
+  "critical_code_review_comments": [
+    "Legacy rollup service (services/watch/operational_reads.py or its predecessor for /api/watch/state) is not merging the new commission-gate verdict/action files under /app/assessment_workspace/phase0/watch_verdicts and watch_actions. Either extend the rollup or version the endpoint.",
+    "Effect-count semantics: shape action 'effects' counter went from 1 (after Step B) to a fresh contain action with effects=2 immediately upon minting, before the actual 409 was ever returned to the analyst. Verify effect_verified accounting — contain minted on the 8th refusal (C1) but C1/C2/C3 continued to return 403 not 409, meaning the enforcement window may lag detection by one request. Refusals are still counted correctly; minor semantic clarification worth documenting."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "95%", "frontend": "95%"},
+  "test_credentials": "demo.operator@demo.rms.example.com / demo-operator-pw and demo.analyst@demo.rms.example.com / demo-analyst-pw — both authenticate 200.",
+  "seed_data_creation": "No seeds created. The drill deliberately left REAL Watch evidence on disk as required by review request: verdict mv_gate_ccfd9202c812 (fast_violation, externally_steerable, 2026-09-29T07:19:39.978Z), verdict mv_gate_adb54a6af141 (slow_play, externally_steerable, 2026-09-29T07:21:20.015Z), action ma_gate_63fd3485b58f (shape, In effect, TTL 600 s from 07:19:39.978Z), action ma_gate_0aa280248082 (contain, In effect, TTL 3600 s from 07:21:20.015Z). Analyst principal:6ab56dd58894abb269135ca3 is contained until 2026-09-29T08:21:20Z (reversible at TTL).",
+  "drill_evidence": {
+    "step_A_refusals": [
+      {"attempt": 1, "status": 403, "ts_utc": "2026-09-29T07:19:36Z"},
+      {"attempt": 2, "status": 403, "ts_utc": "2026-09-29T07:19:37Z"},
+      {"attempt": 3, "status": 403, "ts_utc": "2026-09-29T07:19:39Z"}
+    ],
+    "step_B_throttle": {"status": 429, "action_id": "ma_gate_63fd3485b58f", "detail_contains_friction": true, "ts_utc": "2026-09-29T07:19:39Z"},
+    "step_C_contain_trigger": {"status": 409, "action_id": "ma_gate_0aa280248082", "ts_utc": "2026-09-29T07:21:20Z"},
+    "verdict_ids": ["mv_gate_ccfd9202c812", "mv_gate_adb54a6af141"],
+    "action_ids": ["ma_gate_63fd3485b58f", "ma_gate_0aa280248082"],
+    "final_counts": {"observations": 30, "gate_crossings": 11, "gate_refusals": 11, "gate_effects": 3, "gate_releases": 0, "verdicts": 2, "actions": 2},
+    "protected_boundaries": ["census.commission", "census.plan", "language_cognition.commission"],
+    "no_password_or_secret_leak_in_watch_state": true,
+    "analyst_reads_after_contain": {"jobs": 200, "overview": 200}
+  },
+  "offline_pytest": {"command": "pytest tests/census_operational/test_watch_commission_gate.py test_language_cognition_dispatch.py test_language_cognition_worker.py", "result": "23 passed, 1 skipped"},
+  "live_pytest": {"command": "pytest tests/census_operational/test_iteration59_watch_operational_m2.py test_language_cognition_api.py", "result": "22 passed, 1 failed (test_submit_unknown_phase_analyst_403 -> 409 not 403, expected side effect of the drill's own contain on the analyst)"},
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "The analyst principal:6ab56dd58894abb269135ca3 is contained until 2026-09-29T08:21:20Z. Any test that POSTs {phase:'nope'} as analyst before that time will get HTTP 409, not 403 — either wait for TTL or use a different actor. The drill left durable evidence files (verdicts mv_gate_ccfd9202c812, mv_gate_adb54a6af141; actions ma_gate_63fd3485b58f (shape), ma_gate_0aa280248082 (contain)) and the observation feed at /app/assessment_workspace/phase0/watch_observations/RMS.jsonl. Legacy /api/watch/state currently requires auth AND does not roll up mv_gate_* — flagged as HIGH backend gap for main agent. Grey Mirror record UI is functionally correct (verdicts + actions visible, walk drawer opens with 'Commission-gate detection'); only the header deck copy needs to include 'enforced effects' plus live numeric counts.",
+  "rca_of_the_issue": "1) /api/watch/state auth+empty: The new commission-gate ledger writes verdicts/actions into a per-tenant namespace consumed by services/watch/operational_reads.state_for (feeding /api/portal/watch/state). The legacy /api/watch/state rollup was not updated to include those files, so its verdicts.entries stays empty. Additionally the legacy route now requires session auth. Mitigation: extend the legacy rollup to include gate verdict/action files, or version the endpoint and update spec. 2) Header deck copy: watchRecordModel.js gmHeadDeck should be extended to display state.counts.gate_crossings and state.counts.gate_effects with labels 'gate crossings' and 'enforced effects'."
+}

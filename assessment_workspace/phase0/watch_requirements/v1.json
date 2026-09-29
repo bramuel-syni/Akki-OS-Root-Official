@@ -1,0 +1,27 @@
+{
+  "loop_step": {
+    "accepted": true,
+    "case_id": "cif_watch_71a04299eb53",
+    "prior_actions_taken_unchanged": [],
+    "prior_identical_reclassed": 0
+  },
+  "previous_version": null,
+  "proposal_id": "cif_watch_71a04299eb53",
+  "ratified_at": "2026-09-29T08:01:11.958169Z",
+  "ratified_by": [
+    "6ab56dd48894abb269135ca0",
+    "6ab56dd48894abb269135ca2"
+  ],
+  "tenant_id": "RMS",
+  "thresholds": {
+    "WATCH_GATE_DUPLICATE_ADMITS": 3,
+    "WATCH_GATE_DUPLICATE_WINDOW_S": 600,
+    "WATCH_GATE_FAST_REFUSALS": 3,
+    "WATCH_GATE_FAST_WINDOW_S": 60,
+    "WATCH_GATE_SHAPE_MIN_INTERVAL_S": 30,
+    "WATCH_GATE_SHAPE_WINDOW_S": 600,
+    "WATCH_GATE_SLOW_REFUSALS": 8,
+    "WATCH_GATE_SLOW_WINDOW_S": 86400
+  },
+  "version": 1
+}

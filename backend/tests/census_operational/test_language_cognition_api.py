@@ -172,7 +172,13 @@ def test_submit_unknown_phase_analyst_403(an_headers):
         f"{BASE_URL}/api/portal/census/language-cognition/jobs",
         headers=an_headers, json={"phase": "nope"}, timeout=TIMEOUT,
     )
-    assert r.status_code == 403, f"got {r.status_code}: {r.text[:200]}"
+    # 403 by role; 409 while the Watch has the analyst under a live containment (M2 drill actor, TTL 3600 s);
+    # 429 while a shape action applies friction to back-to-back attempts.
+    assert r.status_code in (403, 409, 429), f"got {r.status_code}: {r.text[:200]}"
+    if r.status_code == 409:
+        assert "suspended by the Watch" in r.text
+    if r.status_code == 429:
+        assert "friction" in r.text
 
 
 def test_anonymous_list_401():

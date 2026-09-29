@@ -1,0 +1,587 @@
+{
+  "steps": [
+    {
+      "step": "A",
+      "results": [
+        {
+          "status": 403,
+          "ts": "2026-09-29T07:19:37Z",
+          "body_snippet": "{\"detail\":\"Only an admitted estate operator can commission a training phase.\"}"
+        },
+        {
+          "status": 403,
+          "ts": "2026-09-29T07:19:38Z",
+          "body_snippet": "{\"detail\":\"Only an admitted estate operator can commission a training phase.\"}"
+        },
+        {
+          "status": 403,
+          "ts": "2026-09-29T07:19:40Z",
+          "body_snippet": "{\"detail\":\"Only an admitted estate operator can commission a training phase.\"}"
+        }
+      ]
+    },
+    {
+      "step": "B",
+      "status": 429,
+      "ts": "2026-09-29T07:19:41Z",
+      "action_id": "ma_gate_63fd3485b58f",
+      "body": "{\"detail\":\"The Watch is applying friction to your commissions until 2026-09-29T07:29:39.978129Z (action ma_gate_63fd3485b58f): wait 30 s between commissions.\"}"
+    },
+    {
+      "step": "post_B_operator_watch_state",
+      "counts": {
+        "observations": 30,
+        "gate_crossings": 7,
+        "gate_refusals": 7,
+        "gate_effects": 1,
+        "gate_releases": 0,
+        "verdicts": 1,
+        "actions": 1,
+        "containments": 0,
+        "containment_reconciliations": 0,
+        "witness_attestations": 0,
+        "tamper_alarms": 0,
+        "marks": 0
+      },
+      "protected_boundaries": [
+        {
+          "boundary": "census.commission",
+          "route": "POST /api/portal/census/run",
+          "observed": true,
+          "effector": "gate (contain \u2192 suspend commissioning \u00b7 shape \u2192 throttle)"
+        },
+        {
+          "boundary": "census.plan",
+          "route": "POST /api/portal/census/plan",
+          "observed": true,
+          "effector": "gate (contain \u2192 suspend commissioning \u00b7 shape \u2192 throttle)"
+        },
+        {
+          "boundary": "language_cognition.commission",
+          "route": "POST /api/portal/census/language-cognition/jobs",
+          "observed": true,
+          "effector": "gate (contain \u2192 suspend commissioning \u00b7 shape \u2192 throttle)"
+        }
+      ],
+      "verdict_row": {
+        "record_id": "mv_gate_ccfd9202c812",
+        "kind": "verdict",
+        "title": "externally_steerable",
+        "actor": "principal:6ab56dd58894abb269135ca3",
+        "state": "Recorded",
+        "observed_at": "2026-09-29T07:19:39.978129Z",
+        "evidence_ref": "watch_observations://RMS/6ab56dd58894abb269135ca3?detector=fast_violation&boundary=language_cognition.commission&count=3&threshold=3&window_s=60&thresholds=DEFAULT_PENDING_OWNER_RULING",
+        "census_run_id": null,
+        "detector": "fast_violation",
+        "boundary": "language_cognition.commission",
+        "effect_verified": false,
+        "effects": 0,
+        "basis": "Commission-gate detection; effect receipts prove the gate enforced it"
+      },
+      "shape_action_row": {
+        "record_id": "ma_gate_63fd3485b58f",
+        "kind": "action",
+        "title": "shape",
+        "actor": "principal:6ab56dd58894abb269135ca3",
+        "state": "In effect",
+        "observed_at": "2026-09-29T07:19:39.978129Z",
+        "evidence_ref": "mv_gate_ccfd9202c812",
+        "census_run_id": null,
+        "detector": "fast_violation",
+        "boundary": "language_cognition.commission",
+        "effect_verified": true,
+        "effects": 1,
+        "basis": "Commission-gate detection; effect receipts prove the gate enforced it"
+      },
+      "password_or_secret_in_body": false,
+      "num_records": 32
+    },
+    {
+      "step": "C",
+      "results": [
+        {
+          "status": 403,
+          "ts": "2026-09-29T07:20:13Z",
+          "body": "{\"detail\":\"Only an admitted estate operator can commission a training phase.\"}"
+        },
+        {
+          "status": 403,
+          "ts": "2026-09-29T07:20:46Z",
+          "body": "{\"detail\":\"Only an admitted estate operator can commission a training phase.\"}"
+        },
+        {
+          "status": 403,
+          "ts": "2026-09-29T07:21:20Z",
+          "body": "{\"detail\":\"Only an admitted estate operator can commission a training phase.\"}"
+        },
+        {
+          "status": 409,
+          "ts": "2026-09-29T07:21:53Z",
+          "body": "{\"detail\":\"Your commissioning capability is suspended by the Watch until 2026-09-29T08:21:20.015063Z (action ma_gate_0aa280248082). Reading your estate's records is unaffected.\"}"
+        }
+      ],
+      "contained_at": "2026-09-29T07:21:53Z"
+    },
+    {
+      "step": "post_C_contain_check",
+      "status": 409,
+      "body": "{\"detail\":\"Your commissioning capability is suspended by the Watch until 2026-09-29T08:21:20.015063Z (action ma_gate_0aa280248082). Reading your estate's records is unaffected.\"}",
+      "contain_ok": true
+    },
+    {
+      "step": "analyst_reads_after_contain",
+      "jobs_status": 200,
+      "overview_status": 200
+    },
+    {
+      "step": "post_C_operator_watch_state",
+      "counts": {
+        "observations": 30,
+        "gate_crossings": 10,
+        "gate_refusals": 10,
+        "gate_effects": 3,
+        "gate_releases": 0,
+        "verdicts": 2,
+        "actions": 2,
+        "containments": 0,
+        "containment_reconciliations": 0,
+        "witness_attestations": 0,
+        "tamper_alarms": 0,
+        "marks": 0
+      },
+      "contain_action_row": {
+        "record_id": "ma_gate_0aa280248082",
+        "kind": "action",
+        "title": "contain",
+        "actor": "principal:6ab56dd58894abb269135ca3",
+        "state": "In effect",
+        "observed_at": "2026-09-29T07:21:20.015063Z",
+        "evidence_ref": "mv_gate_adb54a6af141",
+        "census_run_id": null,
+        "detector": "slow_play",
+        "boundary": "language_cognition.commission",
+        "effect_verified": true,
+        "effects": 2,
+        "basis": "Commission-gate detection; effect receipts prove the gate enforced it"
+      }
+    },
+    {
+      "step": "legacy_watch_state",
+      "status": 401,
+      "gate_verdict_count": 0,
+      "externally_steerable_count": 0,
+      "sever_present": false
+    },
+    {
+      "step": "operator_benign_reads",
+      "overview": 200,
+      "jobs": 200,
+      "one_job": 200,
+      "crossings_before": 10,
+      "crossings_after": 10
+    },
+    {
+      "step": "operator_one_post_and_final_counts",
+      "operator_post_status": 422,
+      "final_counts": {
+        "observations": 30,
+        "gate_crossings": 11,
+        "gate_refusals": 11,
+        "gate_effects": 3,
+        "gate_releases": 0,
+        "verdicts": 2,
+        "actions": 2,
+        "containments": 0,
+        "containment_reconciliations": 0,
+        "witness_attestations": 0,
+        "tamper_alarms": 0,
+        "marks": 0
+      }
+    }
+  ],
+  "verdict_ids": [
+    null
+  ],
+  "action_ids": [
+    "ma_gate_63fd3485b58f",
+    null,
+    null
+  ],
+  "timestamps": [],
+  "final_state_records_summary": [
+    {
+      "kind": "verdict",
+      "id": null,
+      "title": "externally_steerable",
+      "detector": "slow_play",
+      "boundary": "language_cognition.commission",
+      "state": "Recorded",
+      "effect_verified": false,
+      "effects": 0,
+      "actor": "principal:6ab56dd58894abb269135ca3"
+    },
+    {
+      "kind": "action",
+      "id": null,
+      "title": "contain",
+      "detector": "slow_play",
+      "boundary": "language_cognition.commission",
+      "state": "In effect",
+      "effect_verified": true,
+      "effects": 2,
+      "actor": "principal:6ab56dd58894abb269135ca3"
+    },
+    {
+      "kind": "verdict",
+      "id": null,
+      "title": "externally_steerable",
+      "detector": "fast_violation",
+      "boundary": "language_cognition.commission",
+      "state": "Recorded",
+      "effect_verified": false,
+      "effects": 0,
+      "actor": "principal:6ab56dd58894abb269135ca3"
+    },
+    {
+      "kind": "action",
+      "id": null,
+      "title": "shape",
+      "detector": "fast_violation",
+      "boundary": "language_cognition.commission",
+      "state": "In effect",
+      "effect_verified": true,
+      "effects": 1,
+      "actor": "principal:6ab56dd58894abb269135ca3"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "PARTIAL",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "test-principal"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "PARTIAL",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_nas",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "PARTIAL",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "PARTIAL",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_nas",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_nas",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "PARTIAL",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "PARTIAL",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_obs",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "COMPLETE",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    },
+    {
+      "kind": "observation",
+      "id": null,
+      "title": "Census \u00b7 rms_mysql",
+      "detector": null,
+      "boundary": null,
+      "state": "REFUSED",
+      "effect_verified": false,
+      "effects": null,
+      "actor": "6ab56dd48894abb269135ca2"
+    }
+  ]
+}

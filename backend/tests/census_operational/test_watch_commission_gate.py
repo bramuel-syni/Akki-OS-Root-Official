@@ -11,9 +11,12 @@ from services.watch import commission_gate as gate
 
 @pytest.fixture
 def isolated(monkeypatch, tmp_path):
-    monkeypatch.setenv("WATCH_OBSERVATIONS_DIR", str(tmp_path / "obs"))
-    monkeypatch.setenv("WATCH_VERDICTS_DIR", str(tmp_path / "verdicts"))
-    monkeypatch.setenv("WATCH_ACTIONS_DIR", str(tmp_path / "actions"))
+    for key, sub in (("WATCH_OBSERVATIONS_DIR", "obs"), ("WATCH_VERDICTS_DIR", "verdicts"), ("WATCH_ACTIONS_DIR", "actions"),
+                     ("WATCH_MARKS_DIR", "marks"), ("WATCH_SEVER_SIGNALS_DIR", "signals"), ("MIRAGES_DIR", "mirages"),
+                     ("MIRAGE_TOUCHES_DIR", "touches"), ("WATCH_MIRAGE_ARTIFACTS_DIR", "mirage_artifacts"),
+                     ("WITNESS_IDENTITIES_DIR", "wi"), ("WITNESS_ATTESTATIONS_DIR", "wa"), ("WITNESS_TAMPER_ALARMS_DIR", "ta"),
+                     ("WATCH_NOTICES_DIR", "notices"), ("WATCH_DECISIONS_DIR", "decisions"), ("WATCH_REQUIREMENTS_DIR", "requirements")):
+        monkeypatch.setenv(key, str(tmp_path / sub))
     monkeypatch.setenv("WATCH_CONTAIN_DEFAULT_TTL_SECONDS", "3600")
     return tmp_path
 
@@ -119,8 +122,13 @@ def test_permitted_but_misused_duplicate_admits_annotate_without_effect(isolated
         pass                                                   # annotate changes nothing at the gate
     assert not any(r["kind"] == "effect" for r in gate.rows("RMS"))
     owned = gate.owned_records("RMS")
-    assert owned["counts"] == {"crossings": 4, "refusals": 0, "detections": 1, "effects": 0, "releases": 0}
+    assert {k: owned["counts"][k] for k in ("crossings", "refusals", "detections", "effects", "releases")} == \
+        {"crossings": 4, "refusals": 0, "detections": 1, "effects": 0, "releases": 0}
     assert set(owned["action_ids"]) == {detections[0]["action_id"]}
+    # The record witness attested the action digest at mint time (Canon 8 §16 sentence 1).
+    from services.watch.witness import load_attestations
+    assert [a.subject_ref for a in load_attestations()] == [f"action:{detections[0]['action_id']}"]
+    assert detections[0]["witness_attestation"] == load_attestations()[0].attestation_id
 
 
 def test_benign_operator_traffic_stays_within_friction_budget(isolated, monkeypatch):

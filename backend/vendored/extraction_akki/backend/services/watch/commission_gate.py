@@ -1,14 +1,15 @@
-"""The Watch at the commission gates — the first REAL protected boundaries (roadmap M2.1/M2.2).
+"""The Watch at the commission gates — the REAL protected boundaries (roadmap M2.1/M2.2).
 
 Not a sibling engine (AIP §1.2): every crossing of an admitted commission gate is OBSERVED into an
 append-only per-tenant feed; deterministic detectors read that feed and mint MachoVerdicts through
 the existing `services.watch.macho` seam; Mkono maps them through the existing deterministic ladder
-(`services.watch.mkono`); and the gate itself is the EFFECTOR — a `contain` action suspends the
-subject's commissioning capability until its TTL, a `shape` action throttles it — writing an
-`effect` receipt every time it bites (a persisted action is not proof of effect; a receipt is).
-Expired containments reconcile once (`release` row, `expired_clean`). Every threshold is a seam
-DEFAULT pending owner ruling and is named on the verdict's evidence_ref. Detectors here are
-externally steerable by construction: they can never reach `sever`.
+(`services.watch.mkono`); and the gate itself is the EFFECTOR — `contain` suspends the subject's
+commissioning until its TTL, `shape` throttles it, `sever` (structural certainty only, via the
+tripwire) holds until a dual-control release — writing an `effect` receipt every time it bites
+(a persisted action is not proof of effect; a receipt is). Mark state is evaluated on every pass.
+Expired containments reconcile once (`release` row + notice). Thresholds are seam DEFAULTS until a
+ratified requirements version exists; every verdict names the version it was minted under.
+Gate detectors are externally steerable by construction: they can never reach `sever`.
 """
 import hashlib
 import json
@@ -36,6 +37,8 @@ DETECTORS = {
 SHAPE_WINDOW = ("WATCH_GATE_SHAPE_WINDOW_S", 600)
 SHAPE_MIN_INTERVAL = ("WATCH_GATE_SHAPE_MIN_INTERVAL_S", 30)
 RESPONDER = "mkono.commission_gate"
+SEVER_MESSAGE = ("Your commissioning capability is severed by the Watch (action {action}). It holds rather than expires; "
+                 "restoration requires a dual-control decision by your estate's operators. Reading your estate's records is unaffected.")
 
 
 class GateUnobservable(RuntimeError):
@@ -43,7 +46,9 @@ class GateUnobservable(RuntimeError):
 
 
 def _param(spec):
-    return int(os.environ.get(spec[0], spec[1]))
+    from services.watch import learning_loop
+    ratified = learning_loop.ratified_value(spec[0])
+    return int(ratified if ratified is not None else os.environ.get(spec[0], spec[1]))
 
 
 def _dir():
@@ -93,14 +98,49 @@ def _action(action_id):
     return get_action(action_id)
 
 
-def active_effects(tenant_id, principal_id, now=None):
-    """Live Mkono state for a subject read from the record: active containments (issued_at+ttl) and
-    shape windows. Expired containments are reconciled here, once, as `release` rows (Canon 8 §18)."""
+def receipt_console(actor, surface="watch.state"):
+    """Canon 8 §13: the console is watched — its sessions receipted. Not a detector input."""
+    _append(actor["tenant_id"], {"kind": "console", "at": _iso(_now()), "tenant_id": actor["tenant_id"],
+                                 "principal_id": actor["principal_id"], "surface": surface})
+
+
+def reconcile_expired(tenant_id, now=None):
+    """Every expired containment is released once (Canon 8 §18 auto-release integrity) and the
+    subject is told what did not land (notify posture). Runs on every read and every crossing."""
+    from services.watch import notices
     now = now or _now()
     all_rows = rows(tenant_id)
     released = {r["action_ref"] for r in all_rows if r["kind"] == "release"}
-    contain, shape = [], []
+    out = []
     for row in all_rows:
+        if row["kind"] != "detection" or row.get("action_class") != "contain" or row["action_id"] in released:
+            continue
+        action = _action(row["action_id"])
+        if action is None:
+            continue
+        expires = _parse(action.issued_at) + timedelta(seconds=action.ttl_seconds)
+        if now < expires:
+            continue
+        refused = sum(1 for r in all_rows if r["kind"] == "effect" and r["action_ref"] == action.action_id)
+        _append(tenant_id, {"kind": "release", "at": _iso(now), "tenant_id": tenant_id, "principal_id": row["principal_id"],
+                            "action_ref": action.action_id, "outcome": "expired_clean", "expired_at": _iso(expires), "reconciled_by": RESPONDER,
+                            "attempts_not_landed": refused, "reconciliation": "notify",
+                            "period_summary": "Commissioning suspended for the TTL; reads unaffected; released at expiry without extension."})
+        notices.send(tenant_id, row["principal_id"], "release",
+                     f"Your commissioning capability was suspended by the Watch from {action.issued_at} until {_iso(expires)} and has been released. "
+                     f"{refused} commission attempt(s) in that period did not land and were not replayed; resubmit any you still need.",
+                     {"action_ref": action.action_id}, now)
+        released.add(action.action_id)
+        out.append(action.action_id)
+    return out
+
+
+def active_effects(tenant_id, principal_id, now=None):
+    """Live Mkono state for a subject, read from the record: active containments and shape windows."""
+    now = now or _now()
+    reconcile_expired(tenant_id, now)
+    contain, shape = [], []
+    for row in rows(tenant_id):
         if row["kind"] != "detection" or row["principal_id"] != principal_id:
             continue
         action = _action(row["action_id"])
@@ -111,21 +151,48 @@ def active_effects(tenant_id, principal_id, now=None):
             expires = issued + timedelta(seconds=action.ttl_seconds)
             if now < expires:
                 contain.append({"action_id": action.action_id, "verdict_id": action.verdict_ref, "expires_at": _iso(expires)})
-            elif action.action_id not in released:
-                _append(tenant_id, {"kind": "release", "at": _iso(now), "tenant_id": tenant_id, "principal_id": principal_id,
-                                    "action_ref": action.action_id, "outcome": "expired_clean", "expired_at": _iso(expires),
-                                    "reconciled_by": RESPONDER,
-                                    "period_summary": "Commissioning suspended for the TTL; reads unaffected; released at expiry without extension."})
-                released.add(action.action_id)
         elif action.action_class == "shape" and now < issued + timedelta(seconds=_param(SHAPE_WINDOW)):
             shape.append({"action_id": action.action_id, "verdict_id": action.verdict_ref, "until": _iso(issued + timedelta(seconds=_param(SHAPE_WINDOW)))})
     return {"contain": contain, "shape": shape}
 
 
+def sever_state(tenant_id, principal_id):
+    """Mark state evaluated on every pass (Canon 8 §10): an unreleased sever or a live mark on the
+    subject holds the gate. Release exists only as a dual-control `release` row."""
+    from services.watch.mark import read_marks
+    from services.watch.persistence import read_actions
+    subject = subject_ref(principal_id)
+    released = {r["action_ref"] for r in rows(tenant_id) if r["kind"] == "release" and r["outcome"] == "released_by_dual_control"}
+    demarked = {r.get("mark_ref") for r in rows(tenant_id) if r["kind"] == "release" and r["outcome"] == "released_by_dual_control"}
+    sever = next((a for a in read_actions() if a.action_class == "sever" and a.subject_ref == subject and a.action_id not in released), None)
+    mark = next((m for m in read_marks() if m.identity == subject and m.mark_id not in demarked), None)
+    if sever is None and mark is None:
+        return None
+    return {"action_id": sever.action_id if sever else mark.action_ref, "mark_id": mark.mark_id if mark else None}
+
+
+def release_sever(tenant_id, subject, refs, approvers, now=None):
+    """The distinct release authority for severance: two operators, one record, real restoration."""
+    from services.watch import notices
+    now = now or _now()
+    principal = subject.split(":", 1)[-1]
+    _append(tenant_id, {"kind": "release", "at": _iso(now), "tenant_id": tenant_id, "principal_id": principal, "action_ref": refs["action_ref"],
+                        "mark_ref": refs.get("mark_ref"), "outcome": "released_by_dual_control", "released_by": approvers, "reconciled_by": "decisions.dual_control",
+                        "period_summary": "Severance released by two distinct estate operators; the mark stays on record as history, de-marked by this entry."})
+    notices.send(tenant_id, principal, "release", "Two estate operators have released the Watch's severance on your commissioning capability. "
+                 "Attempts made while severed did not land and were not replayed.", {"action_ref": refs["action_ref"]}, now)
+    return {"protection_changed": True, "released_action": refs["action_ref"], "demarked": refs.get("mark_ref")}
+
+
 def _enforce(actor, boundary, now):
-    """The gate is the effector. contain → commissioning suspended (reads intact); shape → friction:
-    the subject's commission attempts (admitted or refused) are spaced by SHAPE_MIN_INTERVAL."""
+    """The gate is the effector. sever → held until dual-control release; contain → commissioning
+    suspended (reads intact); shape → friction: attempts spaced by SHAPE_MIN_INTERVAL."""
     tenant, principal = actor["tenant_id"], actor["principal_id"]
+    held = sever_state(tenant, principal)
+    if held:
+        _append(tenant, {"kind": "effect", "at": _iso(now), "tenant_id": tenant, "principal_id": principal, "boundary": boundary,
+                         "effect": "refused_by_sever", "action_ref": held["action_id"]})
+        raise HTTPException(403, SEVER_MESSAGE.format(action=held["action_id"]))
     live = active_effects(tenant, principal, now)
     if live["contain"]:
         c = live["contain"][0]
@@ -145,12 +212,13 @@ def _enforce(actor, boundary, now):
 
 
 def _detect(actor, boundary, digest, now):
-    """Macho reads the feed; Mkono maps; nothing here can reach sever (externally steerable by grammar)."""
+    """Macho reads the feed; Mkono maps; the witness attests the digest; nothing here can reach sever."""
+    from services.watch import learning_loop, witness_binding
     from services.watch.macho import MachoVerdict, mint_macho_verdict
     from services.watch.mkono import map_verdict_to_action, persist_action
     tenant, principal = actor["tenant_id"], actor["principal_id"]
     all_rows = rows(tenant)
-    mine = [r for r in all_rows if r["principal_id"] == principal]
+    mine = [r for r in all_rows if r.get("principal_id") == principal]
     for name, spec in DETECTORS.items():
         window_start = now - timedelta(seconds=_param(spec["window_s"]))
         hits = [r for r in mine if r["kind"] == "crossing" and r["outcome"] == spec["outcome"] and _parse(r["at"]) >= window_start
@@ -161,7 +229,7 @@ def _detect(actor, boundary, digest, now):
             continue  # one verdict per detector per window
         verdict_id, action_id = f"mv_gate_{uuid.uuid4().hex[:12]}", f"ma_gate_{uuid.uuid4().hex[:12]}"
         evidence = (f"watch_observations://{tenant}/{principal}?detector={name}&boundary={boundary}&count={len(hits)}"
-                    f"&threshold={_param(spec['count'])}&window_s={_param(spec['window_s'])}&thresholds=DEFAULT_PENDING_OWNER_RULING")
+                    f"&threshold={_param(spec['count'])}&window_s={_param(spec['window_s'])}&{learning_loop.label()}")
         try:
             verdict = mint_macho_verdict(MachoVerdict(verdict_id=verdict_id, verdict_class="externally_steerable",
                                                       subject_ref=subject_ref(principal), evidence_ref=evidence,
@@ -171,9 +239,17 @@ def _detect(actor, boundary, digest, now):
             _append(tenant, {"kind": "detection_error", "at": _iso(now), "tenant_id": tenant, "principal_id": principal,
                              "detector": name, "error": f"{type(exc).__name__}: {str(exc)[:200]}"})
             continue
+        witness = None
+        try:
+            witness = witness_binding.attest_action(action.action_id, now).attestation_id
+        except (ValueError, OSError) as exc:
+            _append(tenant, {"kind": "witness_gap", "at": _iso(now), "tenant_id": tenant, "action_ref": action.action_id, "error": str(exc)[:200]})
+        prior_release = any(r["kind"] == "release" and r["principal_id"] == principal for r in all_rows)
         _append(tenant, {"kind": "detection", "at": _iso(now), "tenant_id": tenant, "principal_id": principal, "detector": name,
                          "boundary": boundary, "verdict_id": verdict.verdict_id, "action_id": action.action_id,
-                         "action_class": action.action_class, "ttl_seconds": action.ttl_seconds, "evidence_ref": evidence})
+                         "action_class": action.action_class, "ttl_seconds": action.ttl_seconds, "evidence_ref": evidence,
+                         "witness_attestation": witness, "requirements": learning_loop.label(),
+                         **({"anomaly": "contain_release_contain"} if action.action_class == "contain" and prior_release else {})})
 
 
 def observe(actor, boundary, outcome, status, digest, now=None):
@@ -185,14 +261,25 @@ def observe(actor, boundary, outcome, status, digest, now=None):
 
 @contextmanager
 def crossing(actor, boundary, body):
-    """Wrap one admitted-gate handler: enforce live Mkono state first, then observe the outcome
-    (admitted or the handler's own refusal) into the feed before the response leaves."""
+    """Wrap one admitted-gate handler: enforce live Mkono state first, evaluate the tripwire, then
+    observe the outcome (admitted or the handler's own refusal) before the response leaves."""
+    from services.watch import tripwire
     if boundary not in PROTECTED_BOUNDARIES:
         raise ValueError(f"unknown protected boundary {boundary!r}")
     digest = hashlib.sha256(json.dumps(body or {}, sort_keys=True, default=str).encode()).hexdigest()
     now = _now()
     try:
         _enforce(actor, boundary, now)
+        hit = tripwire.touched(actor["tenant_id"], body, now)
+        if hit is not None:
+            observe(actor, boundary, "refused", 403, digest, now)
+            try:
+                action = tripwire.convict(actor, boundary, digest, hit, now)
+            except (ValueError, RuntimeError) as exc:
+                _append(actor["tenant_id"], {"kind": "detection_error", "at": _iso(now), "tenant_id": actor["tenant_id"], "principal_id": actor["principal_id"],
+                                             "detector": "mirage_incrimination", "error": f"{type(exc).__name__}: {str(exc)[:200]}"})
+                raise HTTPException(503, "The Watch could not complete the conviction record; nothing was commissioned.") from exc
+            raise HTTPException(403, SEVER_MESSAGE.format(action=action.action_id))
     except GateUnobservable as exc:
         raise HTTPException(503, "The Watch could not observe this crossing; nothing was commissioned.") from exc
     try:
@@ -210,8 +297,8 @@ def crossing(actor, boundary, body):
 
 
 def owned_records(tenant_id):
-    """Ownership evidence for the console: gate detections bind verdict/action ids to the tenant,
-    effect receipts prove the effector ran, release rows prove the honest expiry."""
+    """Ownership evidence for the console: gate detections bind verdict/action/mark ids to the tenant,
+    effect receipts prove the effector ran, release rows prove the honest expiry or the dual-control release."""
     all_rows = rows(tenant_id)
     detections = [r for r in all_rows if r["kind"] == "detection"]
     effects, releases = {}, {}
@@ -221,12 +308,17 @@ def owned_records(tenant_id):
         elif r["kind"] == "release":
             releases[r["action_ref"]] = r
     return {"verdict_ids": {d["verdict_id"]: d for d in detections}, "action_ids": {d["action_id"]: d for d in detections},
+            "mark_ids": {d["mark_id"]: d for d in detections if d.get("mark_id")},
             "effects": effects, "releases": releases,
             "counts": {"crossings": sum(1 for r in all_rows if r["kind"] == "crossing"),
+                       "admitted": sum(1 for r in all_rows if r["kind"] == "crossing" and r["outcome"] == "admitted"),
                        "refusals": sum(1 for r in all_rows if r["kind"] == "crossing" and r["outcome"] == "refused"),
-                       "detections": len(detections), "effects": sum(len(v) for v in effects.values()), "releases": len(releases)}}
+                       "detections": len(detections), "effects": sum(len(v) for v in effects.values()), "releases": len(releases),
+                       "console": sum(1 for r in all_rows if r["kind"] == "console"),
+                       "exceptions": sum(1 for r in all_rows if r["kind"] in ("detection_error", "witness_gap"))}}
 
 
 def boundary_register():
-    return [{"boundary": k, "route": v, "observed": True, "effector": "gate (contain → suspend commissioning · shape → throttle)"}
+    return [{"boundary": k, "route": v, "observed": True, "mark_check": True,
+             "effector": "gate (sever → hold until dual-control release · contain → suspend commissioning · shape → throttle)"}
             for k, v in PROTECTED_BOUNDARIES.items()]

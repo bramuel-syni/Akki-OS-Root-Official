@@ -1,4 +1,6 @@
 """Approved identity-to-tenant composition; no email inference or role escalation."""
+import hashlib
+
 from bson import ObjectId
 from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse
@@ -20,4 +22,9 @@ async def census_identity(request: Request):
         tenant = tenant_from_account(account or {})
     except ValueError as exc:
         raise HTTPException(403, str(exc)) from exc
-    return {"principal_id": result.user_id, "tenant_id": tenant, "roles": (account or {}).get("roles", [])}
+    # One-way session/device references for Watch mark dimensions; never the raw token or agent string.
+    token = (request.headers.get("Authorization") or "").split(" ", 1)[-1]
+    agent = request.headers.get("User-Agent") or ""
+    return {"principal_id": result.user_id, "tenant_id": tenant, "roles": (account or {}).get("roles", []),
+            "session_ref": "sha256:" + hashlib.sha256(token.encode()).hexdigest()[:24],
+            "device_ref": "sha256:" + hashlib.sha256(agent.encode()).hexdigest()[:24]}

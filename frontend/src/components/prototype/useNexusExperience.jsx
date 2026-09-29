@@ -6,12 +6,16 @@ import { nexusMirrorModel } from './nexusMirror';
 import { ownerDrawer } from './nexusShared';
 import { stamp } from './evidence';
 import { taskSetupStages } from './nexusTaskSetup';
-import { useWatchRecords } from './useWatchRecords';
+import { useWatchNotices, useWatchRecords } from './useWatchRecords';
 import { watchRecordModel } from './watchRecordModel';
+import { watchStateModel } from './watchStateModel';
+import { watchUnderModel } from './watchUnderModel';
+import { watchDecisionsModel } from './watchDecisionsModel';
 
 export function useNexusExperience({ feature, work, session, navigate, params, setParams, baseModel, account }) {
   const principal = session.data?.principal_id;
   const watch = useWatchRecords(principal,feature?.family==='mirror');
+  const watchNotices = useWatchNotices(principal);
   const [storedState,setStoredState] = useState({owner:null,value:{}});
   const state = storedState.owner === principal ? storedState.value : {};
   const setState = update => setStoredState(old=>({owner:principal,value:update(old.owner===principal?old.value:{})}));
@@ -35,19 +39,25 @@ export function useNexusExperience({ feature, work, session, navigate, params, s
     ...(feature?.family==='work'?supportModel({section:feature.section,state,setState,unavailable}):{}),
     ...(feature?.family==='mirror'?nexusMirrorModel({section:feature.section,state,setState,params,navigate,unavailable}):{}),
     ...(feature?.family==='mirror'?watchRecordModel({...watch,state,show,navigate:target=>{setDrawer(null);navigate(target);}}):{}),
+    ...(feature?.family==='mirror'&&['overview','state'].includes(feature.section)?(()=>{const m=watchStateModel({...watch,state,setState,show});if(feature.section!=='state')delete m.gmTopEyebrow;return m;})():{}),
+    ...(feature?.family==='mirror'&&feature.section==='under-watch'?watchUnderModel({...watch,show,navigate:target=>{setDrawer(null);navigate(target);}}):{}),
+    ...(feature?.family==='mirror'&&feature.section==='decisions'?watchDecisionsModel({...watch,state,setState,show,navigate:target=>{setDrawer(null);navigate(target);}}):{}),
     ...ownerDrawer(currentDrawer,()=>setDrawer(null)),
   };
   const recent = work.rows.filter(row=>row.state==='routing' && Date.now()-Date.parse(row.created_at)<=14*86400000);
+  const noticeItems = watchNotices.slice(0,8).map(n=>({key:n.notice_id,kind:'Watch notice',source:'Watch record',headline:n.text,hasReason:false,reason:'',hasLine:false,time:stamp(n.at),link:'View notice',
+    onOpen:()=>{setRead(r=>({...r,[n.notice_id]:true}));show({title:'Watch notice',subtitle:n.notice_id,code:n.kind,body:n.text,next:n.posture});}}));
+  const unread = recent.filter(r=>!read[r.request_id]).length + watchNotices.filter(n=>!read[n.notice_id]).length;
   Object.assign(model, {
     rolePerson:session.data?.actor_name || principal || 'Not signed in',roleDept:session.data?.roles?.join(' · ') || '',roleInitials:baseModel.initials || 'AK',
-    topBellOpen:bell,topBellToggle:()=>setBell(v=>!v),topBellTitle:work.loading?'Loading work notices…':'Work notices',
-    topBellHasCount:recent.some(r=>!read[r.request_id]),topBellCount:recent.filter(r=>!read[r.request_id]).length>99?'99+':String(recent.filter(r=>!read[r.request_id]).length),
-    topBellMarkAll:()=>setRead(Object.fromEntries(recent.map(r=>[r.request_id,true]))),
-    topBellEmpty:work.recordsAvailable && !work.loading && !recent.length,topBellHasMore:recent.length>8,topBellMore:`Latest 8 of ${recent.length} work notices`,
-    topBellItems:recent.slice(0,8).map(row=>({key:row.request_id,kind:'Work held',source:'Work record',headline:row.objective_text,
+    topBellOpen:bell,topBellToggle:()=>setBell(v=>!v),topBellTitle:work.loading?'Loading work notices…':'Work and Watch notices',
+    topBellHasCount:unread>0,topBellCount:unread>99?'99+':String(unread),
+    topBellMarkAll:()=>setRead(Object.fromEntries([...recent.map(r=>[r.request_id,true]),...watchNotices.map(n=>[n.notice_id,true])])),
+    topBellEmpty:work.recordsAvailable && !work.loading && !recent.length && !watchNotices.length,topBellHasMore:recent.length+watchNotices.length>8,topBellMore:`Latest 8 of ${recent.length+watchNotices.length} notices`,
+    topBellItems:[...noticeItems,...recent.slice(0,Math.max(0,8-noticeItems.length)).map(row=>({key:row.request_id,kind:'Work held',source:'Work record',headline:row.objective_text,
       hasReason:true,reason:row.reason,hasLine:false,time:stamp(row.created_at),link:'View record',
       onOpen:()=>{setRead(r=>({...r,[row.request_id]:true}));show({title:row.reason_code,subtitle:row.work_id,body:row.reason,next:row.next_action,code:'Work held',actions:[{
-        label:'Open task',bg:'var(--blue)',color:'var(--paper)',border:'var(--blue)',onClick:()=>{setDrawer(null);navigate(`/os/work/tasks?request=${encodeURIComponent(row.request_id)}`);}}]});}})),
+        label:'Open task',bg:'var(--blue)',color:'var(--paper)',border:'var(--blue)',onClick:()=>{setDrawer(null);navigate(`/os/work/tasks?request=${encodeURIComponent(row.request_id)}`);}}]});}}))],
   });
   const steps = taskSetupStages;
   const answers = state.taskAnswers || [];
@@ -77,6 +87,15 @@ export function useNexusExperience({ feature, work, session, navigate, params, s
     8454:{'data-testid':'watch-record-status'},7243:{'data-testid':'watch-record-coverage'},
     10439:ctx=>({'data-testid':`owner-evidence-action-${ctx.$index}`}),
     7241:{'data-testid':'watch-refresh-record'},
+    7251:ctx=>({'data-testid':`watch-record-notice-${ctx.r.key}`}),
+    7268:ctx=>({'data-testid':`watch-pattern-${ctx.p.key}`}),7277:ctx=>({'data-testid':`watch-pattern-closer-${ctx.p.key}`}),
+    7278:ctx=>({'data-testid':`watch-pattern-declare-${ctx.p.key}`}),7279:ctx=>({'data-testid':`watch-pattern-walk-${ctx.p.key}`}),
+    7288:{'data-testid':'watch-mirage-copy'},7299:{'data-testid':'watch-marked-copy'},7300:{'data-testid':'watch-marked-lines'},7301:{'data-testid':'watch-request-demark'},
+    7308:ctx=>({'data-testid':`watch-decision-${ctx.d.key}`}),7312:ctx=>({'data-testid':`watch-decision-walk-${ctx.d.key}`}),7314:ctx=>({'data-testid':`watch-decision-toggle-${ctx.d.key}`}),
+    7341:{'data-testid':'watch-decision-note'},7345:ctx=>({'data-testid':`watch-decision-${ctx.d.key}-${ctx.a.label.split(' ')[0].toLowerCase()}`}),
+    7353:{'data-testid':'watch-decisions-footer'},
+    8457:ctx=>({'data-testid':`watch-tile-${ctx.mc.key}`}),8488:ctx=>({'data-testid':`watch-tile-${ctx.mc.key}`}),8521:ctx=>({'data-testid':`watch-tile-${ctx.mc.key}`}),
+    8565:ctx=>({'data-testid':`watch-chart-${ctx.lb.key}`}),
     ...(feature?.family==='mirror'&&feature.section!=='overview'&&feature.section!=='state'?{
       8451:(ctx,props)=>({style:{...props.style,gridTemplateColumns:'minmax(0,1fr)'}}),
     }:{}),
@@ -90,6 +109,10 @@ export function useNexusExperience({ feature, work, session, navigate, params, s
     2940:'Back to the work',68:work.recordsAvailable?'No work notices in the last 14 days.':'Work notices are not available yet.',
     2916:'Describe the task, owner, date and evidence. It is not submitted or scheduled until the connected service accepts it.',
     2526:'Actions in the recorded work history. Unverified autonomous follow-ups are not inferred.',
+    // Original marked line is prototype sample text; render the actual marked subjects (never their dimensions).
+    7300:()=>(model.markedLines?.length?model.markedLines.map((line,i)=><div key={i} data-testid={`watch-marked-line-${i}`}>{line}</div>):'No marked subject on record.'),
+    7353:()=><>{model.decisionsFooter}{model.decisionsPropose&&<span role="button" tabIndex={0} data-testid="watch-decisions-propose" onClick={model.decisionsPropose}
+      onKeyDown={e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();model.decisionsPropose();}}} style={{marginLeft:12,color:'var(--blue)',cursor:'pointer',fontWeight:600}}>{model.decisionsProposeLabel} →</span>}</>,
   };
   model.perfLevelsView=[{label:'Your authorised scope',color:'var(--ink)',bg:'#fff',onClick:work.reload}];
   useEffect(()=>{
