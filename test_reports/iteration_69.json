@@ -1,0 +1,61 @@
+{
+  "summary": "Frontend-only verification of /os/admin/modeladmission (Model Approval) at desktop 1920x800 and mobile 390x844. Sign-in gate renders with header above; sign-in with demo.operator@demo.rms.example.com succeeds; all wired live sections render with expected data-testid rows and content; health-check click transitions correctly and returns real serving telemetry; Re-read records reload succeeds without error; mobile viewport has no document horizontal overflow; regression page /os/admin/estate/intelligence still renders.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "detailed_results": {
+    "desktop_signed_out": {
+      "admin-modeladmission-title": "Model Approval (renders above sign-in gate as required)",
+      "census-signin-form + census-email + census-password + census-signin-submit": "all visible"
+    },
+    "desktop_signed_in": {
+      "admin-modeladmission-meta": "registry v3 · 2 admitted adapters · 1 served · 2 drill receipts · capability account 30 Sept 2026, 08:57 UTC (MATCHES SPEC)",
+      "admin-modeladmission-error": "absent (OK)",
+      "models-row-m9j-74af7cef0a85": "ADMITTED, serving RUNNING @ akki-vm-ii:8611 · m9j-934daf924154 (OK)",
+      "models-row-m9j-74af7cef0a85-pruned": "ADMITTED, 'not served' (OK)",
+      "models-admission rows": "4 rows present: two REFUSED (moac_criterion_below_floor, swa 96.8/99.7 and swa 98.0/99.7 chips visible) and two ADMITTED (registry v1, registry v2, 100% 7 of 7) — MATCHES SPEC",
+      "capabilities": "1 activated (text language identification · 7 strata) + 3 dormant rows including audio language cognition (LC audio dormant) and image/video perception (dormant) and streaming/synthetic identity (M9-T4 not adopted) — MATCHES SPEC (spec mentions 'including LC audio dormant / image-video dormant'; both present)",
+      "drills": "2 drill-row items, both PASS: M8-T1 interrupt-and-resume · M9-T3 checkpoint restore; M8-T3 Ledger recovery point-in-time restore (OK)",
+      "tiers": "4 tiles rendered (models-tier-*) (OK)",
+      "deferred": "M8-T4 site restore (owner ruling 2026-09-30 4c: deferred) and M8-T5 real notification delivery (owner ruling 2026-09-30 3d: deferred) (OK)"
+    },
+    "health_check_click": {
+      "pending_state": "button text became 'Reading…' during pending",
+      "result": "models-health-m9j-74af7cef0a85 = 'serving · artefact unaltered · 1174 texts served, 0 refused · p95 14.682s' (live GPU host reachable)",
+      "button_reenabled": true,
+      "final_text": "Check health"
+    },
+    "reload_click": {
+      "pending_text_observed": "Re-read records (transition was fast; no 'Reading…' captured within 300ms, but call completed and content persisted)",
+      "post_reload_meta_visible": true,
+      "post_reload_error_banner": false
+    },
+    "mobile_390x844": {
+      "document.documentElement.scrollWidth": 390,
+      "no_document_overflow": true,
+      "header_actions_visible": true,
+      "meta_visible": true
+    },
+    "regression_estate_intelligence": {
+      "estate-intelligence-surface_present": true
+    }
+  },
+  "test_report_links": [
+    "/app/test_reports/screenshots/modeladmission_desktop.jpg",
+    "/app/test_reports/screenshots/modeladmission_mobile.jpg"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Minor: 'Reading…' transient state on admin-modeladmission-reload button was not captured within 300ms probe window (likely because parallel fetches resolve very fast in this environment). Not a bug — pending state exists in code; just fast. Consider a brief min-duration if UX wants a visible spinner, but non-blocking."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "100%"},
+  "test_credentials": "demo.operator@demo.rms.example.com / demo-operator-pw (used as provided, from /app/memory/test_credentials.md)",
+  "seed_data_creation": "none — read-only clicks only (Check health, Re-read records) as instructed",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Model Approval page (/os/admin/modeladmission) is fully wired and passing at both viewports. Health endpoint contacts real GPU host akki-vm-ii and responded in ~15s with live counters. Do NOT trigger any POST to /api/training/m9/jobs or continuity drill endpoints — those dispatch real GPU work."
+}

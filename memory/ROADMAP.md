@@ -1,6 +1,15 @@
 # Akki — current engineering order
 
-## Reporting update — 2026-09-30 owner-requested percentage recap
+## CURRENT — 2026-09-30 after M8/M9 completion · owner's next wave: M6 then M5
+
+M8/M9 backend and the Model Approval UI are done and tested (`test_reports/iteration_69.json`). Owner-deferred M8-T4/T5 stay deferred. Do not relaunch or promote M9 jobs; the 8B adapter is admitted and served.
+
+- **P0 · M6 (~50%) — next wave, ask owner before starting:** connect generate/review/revise/version/download UI to the mounted `/api/decks/*` router (NOT `/api/portal/decks/*`); login key is `access_token`. Then memo/commission-close producers, PDF byte-determinism proof (HTML determinism is what is asserted today), PPTX not built, callable-skill invocation from a permitted external caller, async restart/duplicate/late-refusal proofs; close G6.
+- **P0 · M5 (~55%) — after M6, only when owner unpauses:** chat→document/task handoff and save/reopen in My Work; team assignment/contributions/activity feeds; goal measures linked to real delivery evidence; versioned board packs/decisions/follow-ups; cross-app restart + source withdrawal; close G5. R-21 personal memory stays OFF.
+- **P1:** M1 NAS/OBS frontier + artists_app exclusion + five G1 packs; M3 ordinary commissioning UI + HTTPS delivery binding; M4 200-task benchmark + weak-subject-match fix; M7 rule-publication atomicity, Rules Updates journey, nonempty real usage bill.
+- **P2:** M8-T4 site restore / M8-T5 real notification (owner-deferred), broader GPU full-state restore, M10 independent whole-product acceptance.
+
+## PREVIOUS — 2026-09-30 owner-requested percentage recap
 
 See `assessment_workspace/notes/goal_delivery_20260928/M1_M10_PROGRESS_20260930.md`
 for all ten milestones, explicit estimated implementation percentages and exact

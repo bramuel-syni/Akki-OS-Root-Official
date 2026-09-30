@@ -465,3 +465,15 @@ Result: `/app/assessment_workspace/notes/activation_controls_20260927/IMPLEMENTA
 Final JUnit: `/app/test_reports/pytest/pytest_activation_portal_final_full.xml`.
 Reports38–41 retained as historical intermediate findings; final evidence supersedes
 their current defect status. See ROADMAP.md for next work and honest package status.
+## 2026-09-30 — M8/M9 completion: Model Approval UI wired (plan A)
+
+- `/os/admin/modeladmission` replaced the honest-gap stub with the live surface:
+  registry of admitted adapters (registry v3; 8B full served on akki-vm-ii, pruned
+  admitted not served), re-adjudication decisions with per-stratum adapter/base
+  chips, G9 capability account (text LID activated; LC audio, image/video, streaming
+  identity dormant), and M8 failure/recovery evidence (M8-T1/M9-T3 and M8-T3 PASS
+  receipts, four ratified BC tiers, owner-deferred M8-T4/T5 named as deferred).
+- Reuses `usePrototypeSession`/`CensusAccess` gate and `estate.css`; actions are
+  read-only (Re-read records, per-model Check health → live GPU serving telemetry).
+- Testing agent iteration_69: frontend 100% at 1920×800 and 390×844, no overflow,
+  Estate Intelligence regression OK. No accounts, jobs or backend files changed.

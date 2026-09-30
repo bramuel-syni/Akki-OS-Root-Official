@@ -20,7 +20,15 @@ M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → 
 - English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
 - M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-## CURRENT — 2026-09-30 owner-requested M1–M10 progress recap
+## CURRENT — 2026-09-30 M8/M9 completion (backend + Model Approval UI)
+
+Owner asked “Can we complete M8 and M9 fully”, ruled 1a/2a/3d/4c/5a (recorded in `assessment_workspace/notes/m8_m9_completion_20260930/OWNER_RULINGS_20260930.md`), then chose plan A for the UI. Owner's stated next wave after this: **M6 (~50%) and M5 (~55%) pending work**.
+
+- **M9:** per-stratum acceptance = Outcome floor AND no regression below base (1a). Re-adjudication admitted 8B `m9j-74af7cef0a85` (full + pruned) → registry v3; the 8B full adapter is served on akki-vm-ii:8611 (`m9j-934daf924154`), live health returns artefact-unaltered + served/refused counters + p95. 1.7B remains refused on `swa`. LC audio is dormant/not-activated for G9 (2a). APIs: `/api/training/m9/{models,capabilities,readjudications,serving/{id}/health}`.
+- **M8:** BC tiers ratified as proposed in `BC_DYNAMIC_RECOVERY_PACKET_20260915` (5a); drills M8-T1/M9-T3 interrupt-and-resume (110 steps ≈ 67.5s lost, RPO 900s, five carriers restored) and M8-T3 Ledger PITR (3,506 rows in 0.349s, chain intact, Ed25519 countersign from akki-vm) both PASS. M8-T4 site restore (4c) and M8-T5 real notification delivery (3d) are **deferred by owner** and shown as deferred, not claimed. APIs: `/api/continuity/{drills,policy}`. Services: `services/business_continuity/{policy,ledger_archive}.py`, `services/training_runner/m9_{worker,dispatch,serving,drills}.py`.
+- **UI (this session):** `/os/admin/modeladmission` (APPROVALS · Model Approval) is now LIVE — replaced the honest-gap stub with `components/models/{ModelRegistry,ModelAdmissions,RecoveryDrills}.jsx` + `useModelApproval.js`, same `usePrototypeSession`/`CensusAccess` gate and `estate.css` language as Estate Intelligence. Sections: registry (with per-model “Check health”), admission decisions (per-stratum adapter/base chips, failing strata tinted), G9 capability account (activated vs dormant), failure & recovery evidence (drill receipts, four ratified tiers, owner deferrals). Testing agent `test_reports/iteration_69.json`: frontend 100% at 1920×800 and 390×844, no overflow, live health read succeeded, Estate Intelligence regression OK.
+
+## PREVIOUS — 2026-09-30 owner-requested M1–M10 progress recap
 
 Owner asked: “Reflect back all the milestones and give me % status progress for each and state the details and to dos for each thats not done.” Approved estimated-implementation reporting with “Go ahead.” No application or training changes authorized by this report.
 
