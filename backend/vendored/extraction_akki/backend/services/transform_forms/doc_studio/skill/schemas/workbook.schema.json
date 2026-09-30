@@ -49,6 +49,29 @@
               "series",
               "checks"
             ]
+          },
+          "rows": {
+            "type": "array",
+            "description": "v1.2 \u00b7 options_model rows (label, unit, field, optional format); absent \u2192 option-model default",
+            "items": {
+              "type": "object",
+              "required": [
+                "label",
+                "unit",
+                "field"
+              ]
+            }
+          },
+          "checks": {
+            "type": "array",
+            "description": "v1.2 \u00b7 checks rows (label, calc, and either formula over Inputs.<F> or option + derived index); absent \u2192 option-model default",
+            "items": {
+              "type": "object",
+              "required": [
+                "label",
+                "calc"
+              ]
+            }
           }
         }
       }

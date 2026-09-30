@@ -1,0 +1,102 @@
+{
+  "brief_ref": "BR-2026-09-30-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T18:50:14Z",
+  "content_ref": "commission-close-eij-1b359b3cbd2e@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "CC-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-09-30",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "Commission close · delivered {content.delivered_on}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C004}. {C005}. The decision is the estate owner's; this pack sets out what was delivered and what was not.",
+      "complication": "{C003}. {C006}.",
+      "kicker": "Executive summary",
+      "question": "Should the estate owner accept the delivery and close the commission, or hold it open until the blocked connections are read?",
+      "situation": "{C001}. {C002}.",
+      "title": "The census delivered a partial, digest-verified result; blocked connections remain open",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "What was commissioned and what was delivered",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C009}",
+        "y_format": "num"
+      },
+      "kicker": "Coverage",
+      "title": "{C013}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C006}",
+        "y_format": "num"
+      },
+      "kicker": "Connections",
+      "title": "{C003}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Evidence",
+      "points": [
+        "{C005}",
+        "{C010}",
+        "{C007}"
+      ],
+      "title": "{C004}",
+      "type": "assertion_points"
+    },
+    {
+      "number": 2,
+      "title": "Usage, volume and what remains open",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C012}",
+        "y_format": "num"
+      },
+      "kicker": "Volume",
+      "title": "{C011}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Open items",
+      "points": [
+        "{C021}",
+        "{C022}",
+        "{C023}"
+      ],
+      "title": "{C014}",
+      "type": "assertion_points"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-close-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-09-30-close-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

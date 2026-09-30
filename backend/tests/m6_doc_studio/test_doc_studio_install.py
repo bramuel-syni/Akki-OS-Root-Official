@@ -37,14 +37,18 @@ def run(cmd, timeout=280):
 
 def test_install_manifest_edit_is_within_approval():
     m = install.read_manifest()
-    assert m["version"] == "1.1"
-    assert set(m["changed_from_v1_0"]) == {"scripts/build.py", "scripts/qa.py"}, m["changed_from_v1_0"]
+    assert m["version"] == "1.2"
+    # v1.1 = condition A (tool paths); v1.2 = owner ruling 3a (declared option-model rows in the workbook spec).
+    assert set(m["changed_from_v1_0"]) == {"scripts/build.py", "scripts/qa.py", "scripts/render_xlsx.py", "scripts/studio.py", "schemas/workbook.schema.json"}, m["changed_from_v1_0"]
+    assert set(m["approved_edits"]) == set(m["changed_from_v1_0"])
     assert m["edit_within_approval"] is True
     assert m["owner_zip_sha256"] == "8f920f9f70c771a4e4edabf9ab85e142aa6b5ab1554de094818f3039cba56840"
-    assert len(m["v1_1_files_sha256"]) == 39 and len(m["v1_0_files_sha256"]) == 39
-    for rel in m["v1_1_files_sha256"]:
+    assert len(m["installed_files_sha256"]) == 39 and len(m["v1_0_files_sha256"]) == 39
+    for rel in m["installed_files_sha256"]:
         if rel not in m["changed_from_v1_0"]:
-            assert m["v1_0_files_sha256"][rel] == m["v1_1_files_sha256"][rel], f"{rel} drifted from the owner's package"
+            assert m["v1_0_files_sha256"][rel] == m["installed_files_sha256"][rel], f"{rel} drifted from the owner's package"
+        else:
+            assert m["v1_0_files_sha256"][rel] != m["installed_files_sha256"][rel], f"{rel} is listed as changed but is byte-identical"
 
 
 def test_approved_edit_reads_tools_dir_from_environment():
@@ -172,7 +176,7 @@ def test_producer_seed_and_stamp_are_derived_and_specs_hold_no_numbers(report):
     assert plan["seed"] == f"estate-intelligence-{report['job_id']}/decide/2026-09-30"
     assert plan["build_stamp"] == "2026-09-30T12:00:00Z"
     assert plan["commission_id"].startswith("com-") and plan["frame_ref"] == "FR-strategy-decide-v1"
-    for name in ("deck.json", "paper.json"):
+    for name in ("deck.json", "paper.json", "workbook.json"):
         spec = plan["files"][name]
         jsonschema.validate(spec, json.loads((SKILL_DIR / "schemas" / f"{spec['spec_type']}.schema.json").read_text()))
         assert spec["seed"] == plan["seed"] and spec["build_stamp"] == plan["build_stamp"]
@@ -181,7 +185,10 @@ def test_producer_seed_and_stamp_are_derived_and_specs_hold_no_numbers(report):
     assert va.retyped_numbers(plan["files"]["deck.json"]) == []
     assert va.retyped_numbers(plan["files"]["paper.json"]) == []
     assert plan["files"]["verdict.json"]["manifest"][0]["source"] == "brief.purpose, brief.audience"
-    assert "workbook.json" not in plan["files"]
+    # v1.2 (owner ruling 3a): the workbook declares its option rows/checks in the spec; the option model is live, not fixture-shaped.
+    options = next(s for s in plan["files"]["workbook.json"]["sheets"] if s["kind"] == "options_model")
+    assert options["options"] == ["O1", "O2", "O3"] and {r["field"] for r in options["rows"]} == {"reclaimable_gib", "monthly_saving_usd"}
+    assert {s["kind"] for s in plan["files"]["workbook.json"]["sheets"]} == {"cover", "inputs", "options_model", "series", "checks"}
 
 
 def test_receipts_bind_platform_refs_and_block_unresolvable(report):
@@ -215,7 +222,10 @@ def test_lifecycle_commission_build_revise_strike_reverdict(studio_store, report
     rec = service.build("RMS", rec["commission_id"], "operator-1")
     b = rec["builds"][-1]
     assert b["status"] == "released" and b["prove"]["byte_identical"] is True, (b.get("error"), b.get("validate"), b.get("qa"))
-    assert {o["format"] for o in b["outputs"]} == {"pptx", "docx", "html"} and b["validate"]["blockers"] == [] and b["qa"]["status"] == "PASS"
+    assert {o["format"] for o in b["outputs"]} == {"pptx", "docx", "html", "xlsx"} and b["validate"]["blockers"] == [] and b["qa"]["status"] == "PASS"
+    assert b["exports"]["thumbnails"]["rendered"] is True and b["exports"]["thumbnails"]["count"] >= 10, b["exports"]["thumbnails"]
+    assert service.thumbnail("RMS", rec["commission_id"], b["build_id"], 1)[:8] == b"\x89PNG\r\n\x1a\n"
+    assert service.thumbnail("RMS", rec["commission_id"], b["build_id"], 499) is None
     assert rec["release"]["state"] == "clear" and rec["economics"]["renders_total"] == 2 and rec["economics"]["authoring_tokens_total"] == 0
     rec = service.revise("RMS", rec["commission_id"], "operator-1", [{"path": "content.facts.F005.value", "value": 16.0}])
     rev = rec["revisions"][-1]

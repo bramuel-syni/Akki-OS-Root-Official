@@ -22,8 +22,13 @@ MANIFEST_PATH = HERE / "INSTALL_MANIFEST.json"
 INTAKE_DIR = Path("/app/assessment_workspace/incoming/doc_studio_20260930")
 OWNER_ZIP = INTAKE_DIR / "files21.zip"
 SKILL_ZIP = INTAKE_DIR / "owner_artifacts" / "doc-studio.zip"
-APPROVED_EDITS = ("scripts/build.py", "scripts/qa.py")
-VERSION = "1.1"
+APPROVED_EDITS = ("scripts/build.py", "scripts/qa.py", "scripts/render_xlsx.py", "scripts/studio.py", "schemas/workbook.schema.json")
+VERSION = "1.2"
+EDIT_STATEMENTS = {
+    "1.1": "build.py and qa.py read their tool paths from DOC_STUDIO_TOOLS_DIR (owner condition A, 2026-09-30)",
+    "1.2": "render_xlsx.py: options_model rows and checks rows may be declared in the workbook spec (default = option-model shape, fixtures byte-identical); "
+           "studio.py: two-line pass-through of the declared rows/checks into the resolved plan; workbook.schema.json documents the optional fields (owner ruling 3a, 2026-09-30)",
+}
 
 
 def _sha(data: bytes) -> str:
@@ -70,10 +75,11 @@ def write_manifest() -> Dict[str, Any]:
         "skill": "doc-studio", "version": VERSION, "installed_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "install_path": str(SKILL_DIR), "owner_zip_sha256": _sha(OWNER_ZIP.read_bytes()) if OWNER_ZIP.exists() else None,
         "skill_zip_sha256": _sha(SKILL_ZIP.read_bytes()) if SKILL_ZIP.exists() else None,
-        "v1_0_files_sha256": shipped, "v1_1_files_sha256": installed,
+        "v1_0_files_sha256": shipped, "v1_1_files_sha256": installed, "installed_files_sha256": installed,
         "changed_from_v1_0": changed, "approved_edits": list(APPROVED_EDITS),
         "edit_within_approval": set(changed) <= set(APPROVED_EDITS) if shipped else None,
-        "edit_statement": "build.py and qa.py read their tool paths from DOC_STUDIO_TOOLS_DIR (owner condition A, 2026-09-30); nothing else in the package changed",
+        "edit_statement": " · ".join(f"v{v}: {t}" for v, t in EDIT_STATEMENTS.items()) + "; nothing else in the package changed",
+        "edit_statements": EDIT_STATEMENTS,
         "tools_sha256": _tree_hashes(TOOLS_DIR), "environment": environment(),
         "role": "Akki primary production skill for document production; reference implementation of the Deck Rendering Engine (DR-R1–R14) per owner ruling 2026-09-30 (2)",
     }

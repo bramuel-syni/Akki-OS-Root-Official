@@ -373,6 +373,10 @@ def resolve_workbook(spec, content, brief, verdict, theme, voice):
         elif sh["kind"] == "options_model":
             r["options"] = [{"id": oid, **content.options[oid], "receipt_text": content.receipt_for(content.options[oid]["receipt"])} for oid in sh["options"]]
             r["derived"] = sh["derived"]
+            if sh.get("rows"):
+                r["rows"] = sh["rows"]  # v1.2: declared option rows
+        elif sh["kind"] == "checks" and sh.get("checks"):
+            r["checks"] = sh["checks"]  # v1.2: declared checks
         elif sh["kind"] == "series":
             r["series"] = [{"id": sid, **content.series[sid], "receipt_text": content.receipt_for(content.series[sid]["receipt"])} for sid in sh["series"]]
         sheets.append(r)

@@ -17,11 +17,13 @@ from services.transform_forms.doc_studio import store
 from services.transform_forms.doc_studio.frames import FRAMES, frame_for, verdict_from_frame
 from services.transform_forms.doc_studio.install import environment, read_manifest
 from services.transform_forms.doc_studio.manifest_template import manifest_from_brief
+from services.transform_forms.doc_studio.producer_close import commission_from_job
 from services.transform_forms.doc_studio.producer_estate import commission_from_report
 from services.transform_forms.doc_studio.receipts import bind_receipts
 from services.transform_forms.doc_studio.skill_env import SCRIPTS_DIR, build_env, skill_module
 
-MEDIA = {".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+THUMB_DPI = 60
+MEDIA = {".png": "image/png", ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
          ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", ".html": "text/html; charset=utf-8", ".pdf": "application/pdf", ".json": "application/json"}
 LOOK_KEYS = ("palette_id", "type_pair_id", "cover_composition", "divider_treatment")
 BUILD_TIMEOUT = 280
@@ -42,13 +44,22 @@ def _sha(data: bytes) -> str:
 # ----------------------------------------------------------------------------- create
 
 
-def create_from_estate(job_id: str, tenant_id: str, principal_id: str) -> Tuple[Dict[str, Any], bool]:
-    """Idempotent per (tenant, census, purpose, day): a repeat call returns the existing commission, never a duplicate."""
+def _estate_plan(job_id: str, tenant_id: str, principal_id: str, now_: datetime) -> Dict[str, Any]:
     from services.census_autonomy import estate_intelligence_report as eir
     report = eir.report_for(job_id, cached_only=True)
     if not report:
         raise LookupError("No verified estate intelligence report is banked for that census.")
-    plan = commission_from_report(report, tenant_id, principal_id, now())
+    return commission_from_report(report, tenant_id, principal_id, now_)
+
+
+PRODUCERS = {"estate-intelligence": _estate_plan, "commission-close": commission_from_job}
+
+
+def create_from_producer(producer: str, job_id: str, tenant_id: str, principal_id: str) -> Tuple[Dict[str, Any], bool]:
+    """Idempotent per (tenant, content, purpose, day): a repeat call returns the existing commission, never a duplicate."""
+    if producer not in PRODUCERS:
+        raise LookupError("No producer with that name is installed.")
+    plan = PRODUCERS[producer](job_id, tenant_id, principal_id, now())
     existing = store.load_record(tenant_id, plan["commission_id"])
     if existing:
         return existing, False
@@ -62,12 +73,16 @@ def create_from_estate(job_id: str, tenant_id: str, principal_id: str) -> Tuple[
               "brief_id": plan["files"]["brief.json"]["brief_id"], "verdict_id": plan["files"]["verdict.json"]["verdict_id"], "adopted_direction": plan["files"]["verdict.json"]["adopted"],
               "manifest": plan["files"]["verdict.json"]["manifest"], "outputs": [o["format"] for o in plan["files"]["brief.json"]["outputs"]], "specs": sorted(n for n in plan["files"] if n not in ("brief.json", "content.json", "verdict.json")),
               "created_at": stamp(), "created_by": principal_id, "updated_at": stamp(), "current_content_version": 1,
-              "versions": [{"version": 1, "at": stamp(), "by": principal_id, "reason": "commissioned from the verified census report"}],
+              "versions": [{"version": 1, "at": stamp(), "by": principal_id, "reason": f"commissioned by producer {plan['producer']} from {plan['source_ref']}"}],
               "receipts": bound, "receipt_blockers": blockers, "builds": [], "revisions": [],
-              "release": {"state": "unbuilt", "reason": "no build yet"}, "authoring": {"tokens": 0, "source": "deterministic producer estate_intelligence; no model authored the brief, content or specs"},
+              "release": {"state": "unbuilt", "reason": "no build yet"}, "authoring": {"tokens": 0, "source": f"deterministic producer {plan['producer']}; no model authored the brief, content or specs"},
               "economics": {"builds_total": 0, "renders_total": 0, "authoring_tokens_total": 0, "rerender_authoring_tokens": 0,
                             "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction"}}
     return store.save_record(record), True
+
+
+def create_from_estate(job_id: str, tenant_id: str, principal_id: str) -> Tuple[Dict[str, Any], bool]:
+    return create_from_producer("estate-intelligence", job_id, tenant_id, principal_id)
 
 
 # ----------------------------------------------------------------------------- build
@@ -107,6 +122,8 @@ def build(tenant_id: str, commission_id: str, principal_id: str, *, previous_out
         bdir = store.build_dir(tenant_id, commission_id, build_id)
         run = _run_build(vdir, bdir)
         entry.update(_summarise(bdir, run, previous_outputs))
+    if entry["status"] == "released":
+        entry["exports"]["thumbnails"] = _thumbnails(store.build_dir(tenant_id, commission_id, build_id), entry, principal_id)
     record["builds"].append(entry)
     record["economics"]["builds_total"] += 1
     record["economics"]["renders_total"] += (2 if entry["status"] in ("released", "not_reproducible") else 0)
@@ -334,6 +351,59 @@ def export_pdf(tenant_id: str, commission_id: str, build_id: str, principal_id: 
                                "note": "browser PDF carries producer metadata; determinism is proven on the pptx/docx/xlsx/html bytes"}
     record["updated_at"] = stamp()
     return store.save_record(record)
+
+
+# ----------------------------------------------------------------------------- thumbnails (visual QA · export, outside the byte-identity contract)
+
+
+def _thumbnails(bdir: Path, entry: Dict[str, Any], principal_id: str) -> Dict[str, Any]:
+    """Every page of the released deck as a PNG: pptx → PDF (LibreOffice, the environment of record) → pdftoppm."""
+    import shutil as _sh
+    import subprocess as _sp
+    import tempfile
+    deck = next((o for o in entry["outputs"] if o["format"] == "pptx"), None)
+    soffice, pdftoppm = _sh.which("soffice"), _sh.which("pdftoppm")
+    if not deck or not soffice or not pdftoppm:
+        return {"rendered": False, "refusal": "no pptx output" if not deck else "LIBREOFFICE_OR_POPPLER_UNAVAILABLE", "at": stamp(), "by": principal_id}
+    out = bdir / "exports" / "thumbs"
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            src = bdir / "a" / "out" / deck["name"]
+            run = _sp.run([soffice, f"-env:UserInstallation=file://{tmp}/profile", "--headless", "--norestore", "--convert-to", "pdf", "--outdir", tmp, str(src)], capture_output=True, text=True, timeout=180)
+            pdf = Path(tmp) / (src.stem + ".pdf")
+            if run.returncode != 0 or not pdf.exists():
+                return {"rendered": False, "refusal": f"LIBREOFFICE_CONVERT_FAILED rc={run.returncode}", "at": stamp(), "by": principal_id}
+            if out.exists():
+                _sh.rmtree(out)
+            out.mkdir(parents=True)
+            _sp.run([pdftoppm, "-r", str(THUMB_DPI), "-png", str(pdf), str(out / "page")], check=True, capture_output=True, timeout=120)
+    except (_sp.SubprocessError, OSError) as exc:
+        return {"rendered": False, "refusal": f"{type(exc).__name__}: {str(exc)[:160]}", "at": stamp(), "by": principal_id}
+    pages = sorted(out.glob("page-*.png"))
+    return {"rendered": True, "count": len(pages), "dpi": THUMB_DPI, "source": deck["name"], "at": stamp(), "by": principal_id,
+            "pages": [{"n": i, "name": p.name, "sha256": _sha(p.read_bytes()), "size": p.stat().st_size} for i, p in enumerate(pages, start=1)],
+            "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract"}
+
+
+def render_thumbnails(tenant_id: str, commission_id: str, build_id: str, principal_id: str) -> Dict[str, Any]:
+    record = store.load_record(tenant_id, commission_id)
+    entry = _build_entry(record, build_id) if record else None
+    if not entry or entry["status"] != "released":
+        raise LookupError("Only a released build can be thumbnailed.")
+    entry["exports"]["thumbnails"] = _thumbnails(store.build_dir(tenant_id, commission_id, build_id), entry, principal_id)
+    record["updated_at"] = stamp()
+    return store.save_record(record)
+
+
+def thumbnail(tenant_id: str, commission_id: str, build_id: str, n: int) -> Optional[bytes]:
+    record = store.load_record(tenant_id, commission_id)
+    entry = _build_entry(record, build_id) if record else None
+    thumbs = (entry or {}).get("exports", {}).get("thumbnails") or {}
+    page = next((p for p in thumbs.get("pages", []) if p["n"] == n), None)
+    if not page:
+        return None
+    path = store.build_dir(tenant_id, commission_id, build_id) / "exports" / "thumbs" / page["name"]
+    return path.read_bytes() if path.exists() else None
 
 
 # ----------------------------------------------------------------------------- reads

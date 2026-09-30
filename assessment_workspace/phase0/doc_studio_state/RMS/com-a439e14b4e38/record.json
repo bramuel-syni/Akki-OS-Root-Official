@@ -24,7 +24,7 @@
       "error": null,
       "exports": {
         "pdf": {
-          "at": "2026-09-30T16:44:07Z",
+          "at": "2026-09-30T18:52:46Z",
           "by": "6ab56dd48894abb269135ca2",
           "check": {
             "checked": true,
@@ -35,8 +35,91 @@
           "exported": true,
           "name": "review.pdf",
           "note": "browser PDF carries producer metadata; determinism is proven on the pptx/docx/xlsx/html bytes",
-          "sha256": "4a9359f158bce7723a72650cb793eb9e18ec466e68dbecb4b30ed04b5e8a3620",
+          "sha256": "1f0586fb4833ba828363ec9421733691d2447b87d47dfec549756cceecbdccb2",
           "size": 949698
+        },
+        "thumbnails": {
+          "at": "2026-09-30T18:35:06Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "count": 12,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "85e5bce0c2a003385be597ef9027c074d084aa93e3b5711964eea03eead8639d",
+              "size": 19786
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "a0b8a3dd27a0f2cc257a8227925f8b2e9d822d6db1186a526e5cdfd60930d64c",
+              "size": 64533
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "eeab92fea19e2fae94c0218265c60737000f156983a74400837b668715083349",
+              "size": 14498
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "e0d22e57afc4ca794b8a914693d4698bf141cf8196abef3f85f64e543714849b",
+              "size": 37967
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "c3091e4d8f6f3dc56745937085b4650c21123e094097aa33dc07dbf296190378",
+              "size": 43301
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "350ab4f7d817472db3cffc6611807dc1b5ca2015cda265f1f88af3c0aa8718e1",
+              "size": 31646
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "a5a3be8ef2e17beec955b146b638223671ff658fdb7a1f566dcdb5e772844a95",
+              "size": 15988
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "927da7ecd6e2badc2ac1002cc040f6e162ed74744be87f2d97235109a0a2686d",
+              "size": 53576
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "1c6468f0d0df8325fe5ad3c130f130a67951ad333d71725063313d93a8e664f7",
+              "size": 49987
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "185ba1b909aa244bfff97d5e4dffc5dfb2797952bfb04a4d44e51e9865fe7c48",
+              "size": 66728
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "5ac3b095dc7664281915d3c2abd925bdfc955959eb9713990b277d47fc9484cb",
+              "size": 58916
+            },
+            {
+              "n": 12,
+              "name": "page-12.png",
+              "sha256": "e53a95060ef0d28beecb7c5d91c3547b123384e3692a73e5e6ba855583baee84",
+              "size": 47942
+            }
+          ],
+          "rendered": true,
+          "source": "estate-intelligence-eij-1b359b3cbd2e.pptx"
         }
       },
       "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-a439e14b4e38/builds/bld-189be273e643/log.txt",
@@ -268,7 +351,7 @@
   ],
   "tenant_id": "RMS",
   "title": "Estate intelligence — eij-1b359b3cbd2e",
-  "updated_at": "2026-09-30T16:44:07Z",
+  "updated_at": "2026-09-30T18:52:46Z",
   "verdict_id": "V-2026-09-30-eij-1b359b3cbd2e",
   "versions": [
     {

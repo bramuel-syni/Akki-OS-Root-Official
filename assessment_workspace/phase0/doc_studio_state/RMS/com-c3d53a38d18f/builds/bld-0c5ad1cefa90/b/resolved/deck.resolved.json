@@ -1,0 +1,586 @@
+{
+  "brief_ref": "BR-2026-09-30-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T18:50:14Z",
+  "content_ref": "commission-close-eij-1b359b3cbd2e@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "CC-eij-1b359b3cbd2e"
+  },
+  "furniture_zones": {
+    "confidentiality": {
+      "h": 0.412,
+      "w": 4.897,
+      "x": 6.767,
+      "y": 6.638
+    },
+    "doc_id": {
+      "h": 0.412,
+      "w": 5.916,
+      "x": 0.65,
+      "y": 6.638
+    },
+    "page_no": {
+      "h": 0.412,
+      "w": 0.819,
+      "x": 11.864,
+      "y": 6.638
+    }
+  },
+  "inputs_sha256": {
+    "brief.json": "d8490c5fe681ed724ab397d9903b469d93242e00bfd0aa08c33c9634d4d54010",
+    "content.json": "daef890ed4b2b9652607980ddff33158bf6365190702b1d6c124a01ce30e376c",
+    "deck.json": "e24eb74156bc7cda7e9aee36157a04fec14be2ce0bc3e40ef42f019923b40c6c",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "a2c8aaf75ff04fce059cd3c06ff2b165c84a6970cce68f0733c27adae5e36967"
+  },
+  "look": {
+    "cover_composition": "title-left-high",
+    "divider_treatment": "number-small-rule",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Bookman Old Style"
+    },
+    "palette": {
+      "accent": "B4413E",
+      "field": "FFFFFF",
+      "hatch": "E8EFEB",
+      "muted": "6F8579",
+      "rule": "D4DED8",
+      "structure": "1F3A2E"
+    },
+    "palette_id": "moss",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "bookman-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-09-30",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "slide_h": 7.5,
+  "slide_w": 13.333,
+  "slides": [
+    {
+      "n": 1,
+      "org": "RMS",
+      "subtitle": "Commission close · delivered 2026-09-29",
+      "title": "Commission close — estate intelligence eij-1b359b3cbd2e",
+      "title_chars": 55,
+      "type": "cover",
+      "zones": {
+        "org": {
+          "h": 0.412,
+          "w": 5.916,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "subtitle": {
+          "h": 0.825,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 4.575
+        },
+        "title": {
+          "h": 1.65,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 2.925
+        }
+      }
+    },
+    {
+      "kicker": "Executive summary",
+      "n": 2,
+      "scqa": [
+        [
+          "Situation",
+          "The census ran under CP-CENSUS-ESTATE-INTELLIGENCE on runtime akki-vm for 15.5 minutes and closed partial. 638 of 1006 tables were measured (63.4%): 513 by complete pass, 83 by stratified sample, 41 by head sample; 44 failed."
+        ],
+        [
+          "Complication",
+          "3 of 6 connections completed, 2 were partial and 1 blocked. The delivered result is partial: artists_app blocked (MYSQL_ACCESS_DENIED_1045)."
+        ],
+        [
+          "Question",
+          "Should the estate owner accept the delivery and close the commission, or hold it open until the blocked connections are read?"
+        ],
+        [
+          "Answer",
+          "The result receipt is digest-verified; the Ledger records admit, gate and converge. The report holds aggregates, sketches and hashes only; no row value was retained or returned. The decision is the estate owner's; this pack sets out what was delivered and what was not."
+        ]
+      ],
+      "title": "The census delivered a partial, digest-verified result; blocked connections remain open",
+      "title_chars": 87,
+      "type": "exec_summary",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 3,
+      "number": 1,
+      "title": "What was commissioned and what was delivered",
+      "title_chars": 44,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Complete pass",
+          "Stratified sample",
+          "Head sample",
+          "Failed",
+          "Not reached"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "How tables were measured",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)",
+        "so_what": "Complete passes cover 51.0% of tables; 4.4% of tables failed",
+        "unit": "tables",
+        "values": {
+          "Tables": [
+            513,
+            83,
+            41,
+            44,
+            324
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Coverage",
+      "n": 4,
+      "title": "638 of 1006 tables were measured (63.4%); 44 failed",
+      "title_chars": 51,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "iebc_forms (complete)",
+          "artists_app (blocked)",
+          "viupay (complete)",
+          "citizen_digital (partial)",
+          "citizen-pulse (partial)",
+          "Razuna (Library Content) & N (complete)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Tables measured by connection",
+        "plate": "bar",
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes",
+        "so_what": "The delivered result is partial: artists_app blocked (MYSQL_ACCESS_DENIED_1045)",
+        "unit": "tables",
+        "values": {
+          "Tables": [
+            630,
+            0,
+            123,
+            64,
+            77,
+            112
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Connections",
+      "n": 5,
+      "title": "3 of 6 connections completed, 2 were partial and 1 blocked",
+      "title_chars": 58,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence",
+      "n": 6,
+      "points": [
+        "The report holds aggregates, sketches and hashes only; no row value was retained or returned",
+        "Lawful basis: 20260922T014000Z census admit; scope: census only: aggregates, sketches and hashes; no row values retained or returned",
+        "The executive dossier was composed by gpt-5-mini from 17679 tokens in and 4583 tokens out, receipt rcp-f3b244641843"
+      ],
+      "title": "The result receipt is digest-verified; the Ledger records admit, gate and converge",
+      "title_chars": 82,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 7,
+      "number": 2,
+      "title": "Usage, volume and what remains open",
+      "title_chars": 35,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "iebc_forms",
+          "artists_app",
+          "viupay",
+          "citizen_digital",
+          "citizen-pulse",
+          "Razuna (Library Content) & N"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Data and index by connection, GiB",
+        "plate": "bar",
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes",
+        "so_what": "Measured usage: 15.5 minutes wall clock and 5.9m rows read on akki-vm; jump host measured; GPU host held aggregates only",
+        "unit": "GiB",
+        "values": {
+          "GiB": [
+            340.4,
+            0.0,
+            2.0,
+            3.3,
+            0.2,
+            5.4
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Volume",
+      "n": 8,
+      "title": "351.3 GiB across 20 databases were measured in 15.5 minutes",
+      "title_chars": 59,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Open items",
+      "n": 9,
+      "points": [
+        "artists_app: blocked — MYSQL_ACCESS_DENIED_1045 (GRANT pending, owner dependency); 0 tables reached",
+        "citizen_digital: partial — 5 tables failed; 64 tables reached",
+        "citizen-pulse: partial — 39 tables failed; 77 tables reached"
+      ],
+      "title": "The result closed partial with 1 blocked and 2 partial connections",
+      "title_chars": 66,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "coverage": {
+        "cannot_say": [
+          {
+            "closes_with": "owner grants access; re-census",
+            "gap": "Connection artists_app",
+            "reason": "MYSQL_ACCESS_DENIED_1045 (GRANT pending, owner dependency)"
+          },
+          {
+            "closes_with": "a complete-pass census on those tables",
+            "gap": "Ratios on sampled tables",
+            "reason": "stratified or head samples where complete passes were not possible"
+          },
+          {
+            "closes_with": "re-census with the recorded errors addressed",
+            "gap": "44 failed tables",
+            "reason": "the worker could not measure them in this run"
+          },
+          {
+            "closes_with": "rights declared at Connect; a language and similarity pass",
+            "gap": "Languages, rights and semantic similarity",
+            "reason": "not measured by this census"
+          }
+        ],
+        "covers": "Delivery of census eij-1b359b3cbd2e: 638 of 1006 tables, 6 connections, wall clock, Ledger rows, receipts and the dossier composition. Everything here is read from the job record and the digest-verified report."
+      },
+      "kicker": "Coverage and limits",
+      "n": 10,
+      "title": "What this pack covers, what it cannot say, and what would close each gap",
+      "title_chars": 72,
+      "type": "coverage_limits",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Appendix",
+      "n": 11,
+      "receipts": [
+        {
+          "id": "R01",
+          "text": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)"
+        },
+        {
+          "id": "R02",
+          "text": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes"
+        },
+        {
+          "id": "R03",
+          "text": "Lawful basis admit 20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json (sha256 37d1508d4ea9); governing artifact CP-CENSUS-ESTATE-INTELLIGENCE version eij-1b359b3cbd2e"
+        },
+        {
+          "id": "R04",
+          "text": "Ledger rows led-398166457377, led-4e9f184f9601, led-6067b8b42dc7: admit:admitted → gate:warm → converge:terminate_success"
+        },
+        {
+          "id": "R05",
+          "text": "Executive dossier receipt rcp-f3b244641843: gpt-5-mini via emergent, 17679 tokens in / 4583 out, prompt 354fd68cd5d4"
+        },
+        {
+          "id": "R06",
+          "text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+        },
+        {
+          "id": "R07",
+          "text": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+        }
+      ],
+      "title": "Exhibit index with receipts",
+      "title_chars": 27,
+      "type": "appendix",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    }
+  ],
+  "spec_id": "DK-close-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "title": "Commission close — estate intelligence eij-1b359b3cbd2e",
+  "verdict_ref": "V-2026-09-30-close-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

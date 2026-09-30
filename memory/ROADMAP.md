@@ -1,6 +1,16 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-30 after doc-studio install · M6 remaining, then M5
+## CURRENT — 2026-09-30 after M6 follow-on (thumbnails, workbook, commission-close, M6-T4 boundary) · M6-T4 grounded result HELD by owner
+
+Verification is terminal pytest only (owner condition C) — do not call the testing agent for M6 work. Rulings this wave: 1a DIGICOW artefact · 2b existing operator + key grant · **3b hold the answering executor until a QA model is admitted** · **4b no re-admission ceremony yet** · 5a phased order.
+
+- **P0 · M6-T4 unhold (needs owner rulings 3 and 4 first, do not start without them):** (1) admit a QA-capable executor; (2) DIGICOW ceremony with `kinds=[source, skill]`, worker `activation:observation:skill_response` (+ quality/context), inspector `activation:observation:anchor`; (3) control plane: skill commission (Plan `skill`/`solva`, purposes `answering`, scope/expenditure/answering groups with stand-in), `BoundedEngineAdapter(kind='skill')`, eligibility + Mkondo handoff providers in `extraction_runtime/factory.py`; (4) worker skill mode over the sealed `units.jsonl` + inspector anchors + quality_register/context_window receipts; (5) rerun `tests/m6_callable_skill` — same caller/grant/skill must return `200 · ready · GROUNDED_SKILL_RESULT_VERIFIED`. Then M6-T5 async/late-refusal/withdrawal on the same path (duplicate rule already proven).
+- **P0 · M6 remaining (ask owner before each):** CIF ideas endpoint for non-routine briefs (owner owns CIF; not an LLM path); RMS house theme (owner-stated later work); ruling on gating `POST /api/transform/callable_skill/provision` (currently no identity check — recorded finding).
+- **P0 · M5 (~55%) — after M6, only when owner unpauses:** chat→document/task handoff and save/reopen in My Work; team assignment/contributions/activity feeds; goal measures linked to real delivery evidence; versioned board packs/decisions/follow-ups (doc-studio is the producer); cross-app restart + source withdrawal; close G5. R-21 personal memory stays OFF.
+- **P1:** M1 NAS/OBS frontier + artists_app exclusion + five G1 packs; M3 ordinary commissioning UI + HTTPS delivery binding; M4 200-task benchmark + weak-subject-match fix; M7 rule-publication atomicity, Rules Updates journey, nonempty real usage bill.
+- **P2:** M8-T4 site restore / M8-T5 real notification (owner-deferred), broader GPU full-state restore, M10 independent whole-product acceptance.
+
+## PREVIOUS — 2026-09-30 after doc-studio install · M6 remaining, then M5
 
 doc-studio v1.1 is installed and proven (evals 1–3 in-pod, estate commission released, UI live). See `notes/m6_execution/M6_DOC_STUDIO_INSTALL_20260930.md`. Verification is terminal pytest only (owner condition C) — do not call the testing agent for M6 work.
 

@@ -1,0 +1,436 @@
+{
+  "calculations": {
+    "K001": {
+      "formula": "F002 / F001",
+      "inputs": [
+        "F001",
+        "F002"
+      ],
+      "label": "Share of tables measured",
+      "unit": "pct"
+    },
+    "K002": {
+      "formula": "F003 / F001",
+      "inputs": [
+        "F001",
+        "F003"
+      ],
+      "label": "Share of tables by complete pass",
+      "unit": "pct"
+    },
+    "K003": {
+      "formula": "F010 / F009",
+      "inputs": [
+        "F009",
+        "F010"
+      ],
+      "label": "Share of connections complete",
+      "unit": "pct"
+    },
+    "K004": {
+      "formula": "F006 / F001",
+      "inputs": [
+        "F001",
+        "F006"
+      ],
+      "label": "Share of tables that failed",
+      "unit": "pct"
+    }
+  },
+  "census_ref": "eij-1b359b3cbd2e",
+  "claims": {
+    "C001": {
+      "supports": [
+        "F008"
+      ],
+      "text": "The census ran under CP-CENSUS-ESTATE-INTELLIGENCE on runtime akki-vm for {F008} minutes and closed partial"
+    },
+    "C002": {
+      "supports": [
+        "F001",
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006"
+      ],
+      "text": "{F002} of {F001} tables were measured ({K001}): {F003} by complete pass, {F004} by stratified sample, {F005} by head sample; {F006} failed"
+    },
+    "C003": {
+      "supports": [
+        "F009",
+        "F010",
+        "F011",
+        "F012"
+      ],
+      "text": "{F010} of {F009} connections completed, {F011} were partial and {F012} blocked"
+    },
+    "C004": {
+      "supports": [
+        "F015"
+      ],
+      "text": "The result receipt is digest-verified; the Ledger records admit, gate and converge"
+    },
+    "C005": {
+      "supports": [
+        "F007"
+      ],
+      "text": "The report holds aggregates, sketches and hashes only; no row value was retained or returned"
+    },
+    "C006": {
+      "supports": [
+        "F012"
+      ],
+      "text": "The delivered result is partial: artists_app blocked (MYSQL_ACCESS_DENIED_1045)"
+    },
+    "C007": {
+      "supports": [
+        "F017",
+        "F018"
+      ],
+      "text": "The executive dossier was composed by gpt-5-mini from {F017} tokens in and {F018} tokens out, receipt rcp-f3b244641843"
+    },
+    "C008": {
+      "supports": [
+        "F019",
+        "F020"
+      ],
+      "text": "Object storage enumeration reached {F019} buckets; {F020} were unreachable"
+    },
+    "C009": {
+      "supports": [
+        "F001",
+        "F003",
+        "F006"
+      ],
+      "text": "Complete passes cover {K002} of tables; {K004} of tables failed"
+    },
+    "C010": {
+      "supports": [
+        "F015"
+      ],
+      "text": "Lawful basis: 20260922T014000Z census admit; scope: census only: aggregates, sketches and hashes; no row values retained or returned"
+    },
+    "C011": {
+      "supports": [
+        "F008",
+        "F013",
+        "F014"
+      ],
+      "text": "{F013} GiB across {F014} databases were measured in {F008} minutes"
+    },
+    "C012": {
+      "supports": [
+        "F007",
+        "F008"
+      ],
+      "text": "Measured usage: {F008} minutes wall clock and {F007} rows read on akki-vm; jump host measured; GPU host held aggregates only"
+    },
+    "C013": {
+      "supports": [
+        "F001",
+        "F002",
+        "F006"
+      ],
+      "text": "{F002} of {F001} tables were measured ({K001}); {F006} failed"
+    },
+    "C014": {
+      "supports": [
+        "F011",
+        "F012"
+      ],
+      "text": "The result closed partial with {F012} blocked and {F011} partial connections"
+    },
+    "C021": {
+      "supports": [
+        "F012"
+      ],
+      "text": "artists_app: blocked — MYSQL_ACCESS_DENIED_1045 (GRANT pending, owner dependency); 0 tables reached"
+    },
+    "C022": {
+      "supports": [
+        "F011"
+      ],
+      "text": "citizen_digital: partial — 5 tables failed; 64 tables reached"
+    },
+    "C023": {
+      "supports": [
+        "F011"
+      ],
+      "text": "citizen-pulse: partial — 39 tables failed; 77 tables reached"
+    }
+  },
+  "content_id": "commission-close-eij-1b359b3cbd2e",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "owner grants access; re-census",
+        "gap": "Connection artists_app",
+        "reason": "MYSQL_ACCESS_DENIED_1045 (GRANT pending, owner dependency)"
+      },
+      {
+        "closes_with": "a complete-pass census on those tables",
+        "gap": "Ratios on sampled tables",
+        "reason": "stratified or head samples where complete passes were not possible"
+      },
+      {
+        "closes_with": "re-census with the recorded errors addressed",
+        "gap": "44 failed tables",
+        "reason": "the worker could not measure them in this run"
+      },
+      {
+        "closes_with": "rights declared at Connect; a language and similarity pass",
+        "gap": "Languages, rights and semantic similarity",
+        "reason": "not measured by this census"
+      }
+    ],
+    "covers": "Delivery of census eij-1b359b3cbd2e: 638 of 1006 tables, 6 connections, wall clock, Ledger rows, receipts and the dossier composition. Everything here is read from the job record and the digest-verified report."
+  },
+  "delivered_on": "2026-09-29",
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Tables in scope",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 1006
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Tables measured",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 638
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Tables measured by complete pass",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 513
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Tables measured by stratified sample",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 83
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Tables measured by head sample",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 41
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Tables that failed",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 44
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Rows measured",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 5.9
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Wall clock on the runtime",
+      "receipt": "R01",
+      "unit": "minutes",
+      "value": 15.5
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Connections in scope",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 6
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Connections complete",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 3
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Connections partial",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 2
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Connections blocked",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 1
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Data and index measured",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 351.3
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Databases measured",
+      "receipt": "R02",
+      "unit": "databases",
+      "value": 20
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Ledger rows for the run",
+      "receipt": "R04",
+      "unit": "rows",
+      "value": 3
+    },
+    "F016": {
+      "class": "estimated",
+      "label": "Rows held (estimate)",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 259.3
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Dossier tokens in",
+      "receipt": "R05",
+      "unit": "tokens",
+      "value": 17679
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Dossier tokens out",
+      "receipt": "R05",
+      "unit": "tokens",
+      "value": 4583
+    },
+    "F019": {
+      "class": "measured",
+      "label": "OBS buckets enumerated",
+      "receipt": "R06",
+      "unit": "buckets",
+      "value": 106
+    },
+    "F020": {
+      "class": "measured",
+      "label": "OBS buckets unreachable",
+      "receipt": "R06",
+      "unit": "buckets",
+      "value": 40
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "receipts": {
+    "R01": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)"
+    },
+    "R02": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes"
+    },
+    "R03": {
+      "resolves_to": "Lawful basis admit 20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json (sha256 37d1508d4ea9); governing artifact CP-CENSUS-ESTATE-INTELLIGENCE version eij-1b359b3cbd2e"
+    },
+    "R04": {
+      "resolves_to": "Ledger rows led-398166457377, led-4e9f184f9601, led-6067b8b42dc7: admit:admitted → gate:warm → converge:terminate_success"
+    },
+    "R05": {
+      "resolves_to": "Executive dossier receipt rcp-f3b244641843: gpt-5-mini via emergent, 17679 tokens in / 4583 out, prompt 354fd68cd5d4"
+    },
+    "R06": {
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+    },
+    "R07": {
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+    }
+  },
+  "series": {
+    "S001": {
+      "categories": [
+        "iebc_forms (complete)",
+        "artists_app (blocked)",
+        "viupay (complete)",
+        "citizen_digital (partial)",
+        "citizen-pulse (partial)",
+        "Razuna (Library Content) & N (complete)"
+      ],
+      "class": "measured",
+      "label": "Tables measured by connection",
+      "receipt": "R02",
+      "unit": "tables",
+      "values": {
+        "Tables": [
+          630,
+          0,
+          123,
+          64,
+          77,
+          112
+        ]
+      }
+    },
+    "S002": {
+      "categories": [
+        "Complete pass",
+        "Stratified sample",
+        "Head sample",
+        "Failed",
+        "Not reached"
+      ],
+      "class": "measured",
+      "label": "How tables were measured",
+      "receipt": "R01",
+      "unit": "tables",
+      "values": {
+        "Tables": [
+          513,
+          83,
+          41,
+          44,
+          324
+        ]
+      }
+    },
+    "S003": {
+      "categories": [
+        "iebc_forms",
+        "artists_app",
+        "viupay",
+        "citizen_digital",
+        "citizen-pulse",
+        "Razuna (Library Content) & N"
+      ],
+      "class": "measured",
+      "label": "Data and index by connection, GiB",
+      "receipt": "R02",
+      "unit": "GiB",
+      "values": {
+        "GiB": [
+          340.4,
+          0.0,
+          2.0,
+          3.3,
+          0.2,
+          5.4
+        ]
+      }
+    }
+  },
+  "status": "partial",
+  "title": "Commission close — estate intelligence eij-1b359b3cbd2e",
+  "version": 1
+}

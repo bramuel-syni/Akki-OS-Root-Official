@@ -1,0 +1,43 @@
+{
+ "at": "2026-09-30T18:40:37.510923+00:00",
+ "boundary": {
+  "query": "/api/callable_skill/1a03977aeac14421a980890f6622c91f/query",
+  "query_intents": "/api/callable_skill/1a03977aeac14421a980890f6622c91f/query-intents"
+ },
+ "key_grant": {
+  "created_now": true,
+  "floor": "utterance",
+  "grant_id": "6090156f3b936c22e8267fff",
+  "grantee_email": "demo.operator@demo.digicow.example.com",
+  "grantor_id": "owner-ruling:M6-T4:2026-09-30:2b",
+  "instance_id": null,
+  "issued_at": "2026-09-30T18:40:37.462375Z",
+  "justification": "M6-T4 skill really callable: the DIGICOW operator of record is the permitted external-style caller of the skill bound to the verified M3 artefact req-97999a0b46d2f51564b85dcd05d871a2 (owner ruling 2026-09-30, 2b).",
+  "key_class": "external",
+  "lawful_basis_ref": "activation_receipt:2d1bde6ef65c6ac826132546179f10b92687b177fc03c78d07f2d9bc11792952",
+  "path": "governed_extract",
+  "revocation_reason": null,
+  "revoked_at": null,
+  "scope": "digicow_rds"
+ },
+ "not_claimed": "No grounded result: the native runtime has no admitted skill executor, plan, worker skill_response or independent anchors (owner 3b/4b).",
+ "rulings": {
+  "caller": "2b existing operator + key grant",
+  "ceremony": "4b not re-run",
+  "executor": "3b HELD until a QA model is admitted",
+  "target": "1a DIGICOW artefact"
+ },
+ "skill": {
+  "corpus_sha256": "64a6938aa34bce613b067fce38c3ad0cd4f1ab5621297171c4932c5d6ad436aa",
+  "corpus_slice_ref": "akki://artifact/DIGICOW/req-97999a0b46d2f51564b85dcd05d871a2/qualified-units",
+  "created_now": true,
+  "endpoint_path": "/api/callable_skill/1a03977aeac14421a980890f6622c91f/query",
+  "floor": "utterance",
+  "key_grant_id": "6090156f3b936c22e8267fff",
+  "provisioned_at": "2026-09-30T18:40:37.485721+00:00",
+  "revoked_at": null,
+  "scope": "digicow_rds",
+  "skill_id": "1a03977aeac14421a980890f6622c91f"
+ },
+ "tenant_id": "DIGICOW"
+}

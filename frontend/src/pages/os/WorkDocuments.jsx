@@ -50,7 +50,7 @@ export default function WorkDocuments() {
       {notice && <div className="estate-running" data-testid="work-documents-notice">{notice}</div>}
       {commissions && <CommissionList commissions={commissions} selected={selected} onSelect={select} />}
       {commission && <>
-        <CommissionBuilds commission={commission} canOperate={canOperate} busy={busy} onBuild={() => act('Build', `/commissions/${commission.commission_id}/build`)} onExport={buildId => act('Export PDF', `/commissions/${commission.commission_id}/builds/${buildId}/export-pdf`)} />
+        <CommissionBuilds commission={commission} canOperate={canOperate} busy={busy} onBuild={() => act('Build', `/commissions/${commission.commission_id}/build`)} onExport={buildId => act('Export PDF', `/commissions/${commission.commission_id}/builds/${buildId}/export-pdf`)} onThumbnails={buildId => act('Render pages', `/commissions/${commission.commission_id}/builds/${buildId}/thumbnails`)} />
         <CommissionRevisions commission={commission} canOperate={canOperate} busy={busy} onRevise={changes => act('Revise', `/commissions/${commission.commission_id}/revise`, { changes })} onReverdict={() => act('Re-verdict', `/commissions/${commission.commission_id}/reverdict`)} />
         <CommissionDirection commission={commission} />
       </>}

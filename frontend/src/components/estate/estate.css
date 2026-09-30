@@ -98,3 +98,18 @@
 .estate-empty{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 22px;font-size:13.5px;line-height:1.6;color:var(--ink2);max-width:720px}
 .estate-running{border:1px dashed var(--brass);background:rgba(176,141,46,.06);border-radius:8px;padding:10px 14px;font-size:12.5px;color:var(--ink2)}
 @media (max-width:900px){.estate{padding:22px 14px 48px}.estate-header{grid-template-columns:minmax(0,1fr)}.estate-actions{justify-content:flex-start}.estate-product-body{padding-left:14px}.estate-product-body dl{grid-template-columns:minmax(0,1fr)}.estate-strategy-row{grid-template-columns:minmax(0,1fr)}.estate-strategy-bytes{text-align:left}.estate-list.plain li{grid-template-columns:minmax(0,1fr) auto}.estate-bars li{grid-template-columns:90px minmax(0,1fr) 54px}}
+
+/* WORKSTUDIO · Documents — released deck pages as thumbnails (visual-QA export) */
+.studio-thumbs{margin-top:8px;min-width:0}
+.studio-thumb-grid{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px 12px;counter-reset:page}
+.studio-thumb-grid li{min-width:0;display:flex;flex-direction:column;gap:5px}
+.studio-thumb-grid li small{font-size:10.5px;color:var(--ink3);font-family:var(--mono)}
+.studio-thumb-grid button{display:block;width:100%;aspect-ratio:16/9;padding:0;border:1px solid var(--line);border-radius:6px;background:var(--surface2);overflow:hidden;cursor:zoom-in;transition:transform .15s,border-color .15s,box-shadow .15s}
+.studio-thumb-grid button:hover{transform:translateY(-2px);border-color:var(--brass);box-shadow:0 6px 18px rgba(27,31,39,.12)}
+.studio-thumb-grid li.on button{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue)}
+.studio-thumb-grid img{display:block;width:100%;height:100%;object-fit:contain;background:#fff}
+.studio-thumb-wait{display:flex;align-items:center;justify-content:center;height:100%;font-size:11px;color:var(--ink3)}
+.studio-thumb-focus{margin:16px 0 0;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);animation:esFade .25s ease-out both}
+.studio-thumb-focus img{display:block;width:100%;max-height:70vh;object-fit:contain;margin-top:12px;border:1px solid var(--line);border-radius:6px;background:#fff}
+.studio-thumb-focus figcaption{margin-top:8px;font-size:11px;color:var(--ink3);word-break:break-all}
+@media (max-width:900px){.studio-thumb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

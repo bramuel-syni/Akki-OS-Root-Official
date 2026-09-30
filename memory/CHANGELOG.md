@@ -492,3 +492,17 @@ their current defect status. See ROADMAP.md for next work and honest package sta
   the owner's shipped manifest), tests/m6_decks 14 passed. Visual QA caught and fixed a producer ratio defect
   (strategy bytes vs DB-only reclaimable); polluted dev commission removed and re-commissioned clean.
 - New env keys: AKKI_STUDIO_STORE_DIR, DOC_STUDIO_TOOLS_DIR. No accounts changed.
+
+## 2026-09-30 — M6 follow-on: v1.2 workbook, commission-close, page thumbnails, M6-T4 boundary
+
+- doc-studio v1.2 (owner ruling 3a): declared option rows in the workbook spec; estate commission ships a live
+  option-model workbook. Five approved edits on the install manifest, 34 files byte-identical to the owner package.
+- Commission-close producer live (`com-c3d53a38d18f`, released, byte-identical, pptx·docx·html·xlsx).
+- Page thumbnails: rendered at build (LibreOffice → poppler), served per page, `DeckThumbnails.jsx` grid + enlarged
+  view in WORKSTUDIO · Documents; desktop and 390 px verified.
+- M6-T4: DIGICOW operator granted `external/governed_extract/utterance/digicow_rds` (grant `6090156f…`, grantor
+  `owner-ruling:M6-T4:2026-09-30:2b`); skill `1a03977a…` bound write-once to the verified DIGICOW artefact. Live call
+  through `/api/callable_skill/{id}/query` → receipted first-class hold `SKILL_NATIVE_PLAN_REQUIRED`; duplicate,
+  conflict, no-key, anonymous, no-grant and unknown-skill edges proven. Grounded result HELD by owner (3b/4b).
+- Stale v1.1 assertions corrected; pytest: m6_doc_studio 20, m6_decks 14, m6_callable_skill 11 — all passed.
+- No accounts, passwords, roles, runtimes, signers or ceremony records changed.

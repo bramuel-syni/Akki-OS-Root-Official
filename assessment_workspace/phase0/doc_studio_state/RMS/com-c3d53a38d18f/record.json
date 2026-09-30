@@ -1,0 +1,355 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "source": "deterministic producer commission_close; no model authored the brief, content or specs",
+    "tokens": 0
+  },
+  "brief_id": "BR-2026-09-30-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T18:50:14Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-09-30T18:50:14Z",
+      "build_id": "bld-0c5ad1cefa90",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 1,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-09-30T18:50:21Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "count": 11,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "fae5efca56241425b784d782e5e87249b3ad74063771f7d53d061abd79471575",
+              "size": 25482
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "a93dff48a63630a59c858517b51ebcc820c8b81947fa952dfb80ac60ff7174b6",
+              "size": 63900
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "f0547b177fd01b69abf446f5d9aeaf90dab9f187f690272482a802a00c3c2a3a",
+              "size": 15424
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "0c5c8418d767b04c85225c3dda61de6e41fd2e7ed4e457a724686b58d325b4e7",
+              "size": 35725
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "0ee664788d41baf009ddbe9bddac235a50a353dc14cce5d7834d421cf8520a98",
+              "size": 39059
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "e98eb26d97129958c715a0f212bdbc685212ad96874adafc3c023da84a3dc570",
+              "size": 39548
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "d5e0fb0041413c6339483d207e322fa509803955a23344e76328f451da2d2d0e",
+              "size": 12610
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "28d1d6f3c801295cc19decefa6a88e4e54f3b86c3f902dae30409db5254e3388",
+              "size": 39709
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "bab32b0598063622f52a08e919949f2205852aef917ecc493527b7b105f47c34",
+              "size": 32175
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "328ff3fdaf13eb257108ae812cd7b6bc0b99f92e70ef298367b7a6ebc594ef4f",
+              "size": 57063
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "0ba9770c2cfb0c9261b597b812ae9debb4ba537a2e73c3808109176d4bc47d0f",
+              "size": 70181
+            }
+          ],
+          "rendered": true,
+          "source": "commission-close-eij-1b359b3cbd2e.pptx"
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-c3d53a38d18f/builds/bld-0c5ad1cefa90/log.txt",
+      "look": {
+        "cover_composition": "title-left-high",
+        "divider_treatment": "number-small-rule",
+        "palette_id": "moss",
+        "type_pair_id": "bookman-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-09-30T18:50:14Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "b08983e3e2e1405ad4e9f4d17675d349b7d0d7a2abd5620f238c8aef5399317d",
+          "deck.resolved/brief.json": "d8490c5fe681ed724ab397d9903b469d93242e00bfd0aa08c33c9634d4d54010",
+          "deck.resolved/content.json": "daef890ed4b2b9652607980ddff33158bf6365190702b1d6c124a01ce30e376c",
+          "deck.resolved/deck.json": "e24eb74156bc7cda7e9aee36157a04fec14be2ce0bc3e40ef42f019923b40c6c",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "a2c8aaf75ff04fce059cd3c06ff2b165c84a6970cce68f0733c27adae5e36967",
+          "paper.resolved.json": "4f5ab1a5179915666f0c78946c116cc4170210ca18d076ab598a7edc36c1dc3a",
+          "paper.resolved/brief.json": "d8490c5fe681ed724ab397d9903b469d93242e00bfd0aa08c33c9634d4d54010",
+          "paper.resolved/content.json": "daef890ed4b2b9652607980ddff33158bf6365190702b1d6c124a01ce30e376c",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "01f36d30bfd31dc7c4161b3f41000bd5e409195a0befcec74716cdcf3a51e4d5",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "a2c8aaf75ff04fce059cd3c06ff2b165c84a6970cce68f0733c27adae5e36967",
+          "workbook.resolved.json": "d14530d5300c9d2feefc45b81f28c7ff459353fe1da7ff9793ab0a6cf8a7ac0d",
+          "workbook.resolved/brief.json": "d8490c5fe681ed724ab397d9903b469d93242e00bfd0aa08c33c9634d4d54010",
+          "workbook.resolved/content.json": "daef890ed4b2b9652607980ddff33158bf6365190702b1d6c124a01ce30e376c",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "a2c8aaf75ff04fce059cd3c06ff2b165c84a6970cce68f0733c27adae5e36967",
+          "workbook.resolved/workbook.json": "2aa537412a2694dff8f5184eb00e4fbe95a61a7dd1e24a45fa265f5c60155165"
+        },
+        "outputs_sha256": {
+          "commission-close-eij-1b359b3cbd2e-review.html": "53c12d169416c523d8f329d264441a63097a587ab18bb3e834aa862ddf746b34",
+          "commission-close-eij-1b359b3cbd2e.docx": "b6c0e8820fbb93795808ac8edb917f5fa0cdfe4d68d71004be0f25dd368e2804",
+          "commission-close-eij-1b359b3cbd2e.pptx": "62abc8d87649c36f10fadae86850e22e6382511a27783f3a225a6066ad91bfe2",
+          "commission-close-eij-1b359b3cbd2e.xlsx": "90ffbd45f7c53a807676d9197d90f9ab1b922f61662bd899d86d6cf70a123128"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "commission-close-eij-1b359b3cbd2e-review.html",
+          "sha256": "53c12d169416c523d8f329d264441a63097a587ab18bb3e834aa862ddf746b34",
+          "size": 159348
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "commission-close-eij-1b359b3cbd2e.docx",
+          "sha256": "b6c0e8820fbb93795808ac8edb917f5fa0cdfe4d68d71004be0f25dd368e2804",
+          "size": 61824
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "commission-close-eij-1b359b3cbd2e.pptx",
+          "sha256": "62abc8d87649c36f10fadae86850e22e6382511a27783f3a225a6066ad91bfe2",
+          "size": 65752
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "commission-close-eij-1b359b3cbd2e.xlsx",
+          "sha256": "90ffbd45f7c53a807676d9197d90f9ab1b922f61662bd899d86d6cf70a123128",
+          "size": 11507
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 9: is the title a full-sentence assertion? \"The result closed partial with 1 blocked and 2 partial connections\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-c3d53a38d18f",
+  "content_id": "commission-close-eij-1b359b3cbd2e",
+  "created_at": "2026-09-30T18:50:14Z",
+  "created_by": "6ab56dd48894abb269135ca2",
+  "current_content_version": 1,
+  "economics": {
+    "authoring_tokens_total": 0,
+    "builds_total": 1,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 2,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Estate owner · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is high on the business, mixed on the data estate",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are what was delivered, what remains open, evidence and usage",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "pptx",
+    "docx",
+    "xlsx",
+    "html"
+  ],
+  "producer": "commission_close",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)",
+      "status": "partial",
+      "verified": true
+    },
+    "R02": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes",
+      "status": "partial",
+      "verified": true
+    },
+    "R03": {
+      "binding": "declared",
+      "resolves_to": "Lawful basis admit 20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json (sha256 37d1508d4ea9); governing artifact CP-CENSUS-ESTATE-INTELLIGENCE version eij-1b359b3cbd2e"
+    },
+    "R04": {
+      "binding": "declared",
+      "resolves_to": "Ledger rows led-398166457377, led-4e9f184f9601, led-6067b8b42dc7: admit:admitted → gate:warm → converge:terminate_success"
+    },
+    "R05": {
+      "binding": "declared",
+      "resolves_to": "Executive dossier receipt rcp-f3b244641843: gpt-5-mini via emergent, 17679 tokens in / 4583 out, prompt 354fd68cd5d4"
+    },
+    "R06": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+      "status": null,
+      "verified": true
+    },
+    "R07": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
+      "status": null,
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "build bld-0c5ad1cefa90 byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-09-30",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "eij-1b359b3cbd2e",
+  "specs": [
+    "deck.json",
+    "paper.json",
+    "workbook.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Commission close — estate intelligence eij-1b359b3cbd2e",
+  "updated_at": "2026-09-30T18:50:21Z",
+  "verdict_id": "V-2026-09-30-close-eij-1b359b3cbd2e",
+  "versions": [
+    {
+      "at": "2026-09-30T18:50:14Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "commissioned by producer commission_close from eij-1b359b3cbd2e",
+      "version": 1
+    }
+  ],
+  "voice": "strategy-house"
+}

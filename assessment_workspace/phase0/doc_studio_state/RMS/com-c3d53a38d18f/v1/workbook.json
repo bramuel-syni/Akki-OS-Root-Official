@@ -1,0 +1,79 @@
+{
+  "brief_ref": "BR-2026-09-30-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T18:50:14Z",
+  "content_ref": "commission-close-eij-1b359b3cbd2e@1",
+  "family": "strategy",
+  "objective": "decide",
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-09-30",
+  "sheets": [
+    {
+      "kind": "cover",
+      "name": "Cover"
+    },
+    {
+      "facts": [
+        "F001",
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F013",
+        "F014",
+        "F015",
+        "F016",
+        "F017",
+        "F018",
+        "F019",
+        "F020"
+      ],
+      "kind": "inputs",
+      "name": "Inputs"
+    },
+    {
+      "kind": "series",
+      "name": "Series",
+      "series": [
+        "S001",
+        "S002",
+        "S003"
+      ]
+    },
+    {
+      "checks": [
+        {
+          "calc": "K001",
+          "formula": "Inputs.F002/Inputs.F001",
+          "label": "K001 share of tables measured"
+        },
+        {
+          "calc": "K002",
+          "formula": "Inputs.F003/Inputs.F001",
+          "label": "K002 share of tables by complete pass"
+        },
+        {
+          "calc": "K003",
+          "formula": "Inputs.F010/Inputs.F009",
+          "label": "K003 share of connections complete"
+        },
+        {
+          "calc": "K004",
+          "formula": "Inputs.F006/Inputs.F001",
+          "label": "K004 share of tables that failed"
+        }
+      ],
+      "kind": "checks",
+      "name": "Checks"
+    }
+  ],
+  "spec_id": "WB-close-eij-1b359b3cbd2e",
+  "spec_type": "workbook",
+  "verdict_ref": "V-2026-09-30-close-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

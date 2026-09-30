@@ -2,8 +2,8 @@
 content model (facts, series, options, calculations, claims, receipts with platform_ref, coverage), a six-dimension brief, a
 verdict under the standing frame with a manifest generated from that brief, and structure-only deck + paper specs.
 Deterministic: zero authoring tokens; the seed is derived from content_id, purpose and commission date (owner ruling 4);
-build_stamp is set once at commission creation and frozen. No workbook: the studio's Options/Checks sheets are bound to the
-option-model shape (recorded limit)."""
+build_stamp is set once at commission creation and frozen. The workbook declares its option rows and checks in the spec
+(doc-studio v1.2, owner ruling 3a) so strategy bytes, monthly saving and share checks are carried honestly."""
 from __future__ import annotations
 
 import hashlib
@@ -131,7 +131,8 @@ def build_brief(content: Dict[str, Any], tenant_id: str, day: str) -> Dict[str, 
             "setting": {"mode": "read-ahead then presented", "presentation_minutes": 15, "read_unattended": True, "printed": True, "ongoing_use": False},
             "content": {"evidence": True, "narrative": True, "financial": True, "diagrams": False, "imagery": False, "appendix": True},
             "brand": {"house": HOUSE, "formality": "formal", "expressiveness": "restrained", "variation_allowed": "within-family"},
-            "outputs": [{"format": "pptx", "role": "presented deck", "editable_charts": True}, {"format": "docx", "role": "paper for read-ahead", "editable_charts": False}, {"format": "html", "role": "review surface", "editable_charts": False}],
+            "outputs": [{"format": "pptx", "role": "presented deck", "editable_charts": True}, {"format": "docx", "role": "paper for read-ahead", "editable_charts": False},
+                        {"format": "xlsx", "role": "model workbook: inputs, options, series and cross-checks", "editable_charts": False}, {"format": "html", "role": "review surface", "editable_charts": False}],
             "constraints": {"max_deck_slides": 14, "page_size": "A4", "confidentiality": CONFIDENTIALITY}}
 
 
@@ -185,6 +186,26 @@ def build_paper(content: Dict[str, Any], brief: Dict[str, Any], verdict: Dict[st
                 {"heading": "Appendix: receipts", "blocks": [{"receipts": True}]}]}
 
 
+def build_workbook(content: Dict[str, Any], brief: Dict[str, Any], verdict: Dict[str, Any], seed: str, stamp: str, voice: str) -> Dict[str, Any]:
+    has_options = len(content["options"]) == 3
+    checks: List[Dict[str, Any]] = [
+        {"label": "K001 share of tables measured", "calc": "K001", "formula": "Inputs.F003/Inputs.F002"},
+        {"label": "K002 share of bytes in the largest databases", "calc": "K002", "formula": "Inputs.F016/Inputs.F004"},
+    ]
+    sheets: List[Dict[str, Any]] = [{"name": "Cover", "kind": "cover"}, {"name": "Inputs", "kind": "inputs", "facts": sorted(content["facts"])}]
+    if has_options:
+        sheets.append({"name": "Options", "kind": "options_model", "options": ["O1", "O2", "O3"],
+                       "rows": [{"label": "Bytes addressed", "unit": "GiB", "field": "reclaimable_gib", "format": "#,##0.0"},
+                                {"label": "Monthly saving", "unit": "USD", "field": "monthly_saving_usd", "format": "#,##0.0"}],
+                       "derived": [{"label": "Share of bytes addressed by all strategies", "formula": "reclaimable_gib / Inputs.F021", "calc": "K003", "format": "0.0%"},
+                                   {"label": "Annual saving (USD)", "formula": "12 * monthly_saving_usd", "format": "#,##0.0"}]})
+        checks.append({"label": "K004 three largest strategies' share of bytes addressed", "calc": "K004", "formula": "Inputs.F020/Inputs.F021"})
+        checks += [{"label": f"K003 share of bytes addressed {oid}", "calc": "K003", "option": oid, "derived": 0} for oid in ("O1", "O2", "O3")]
+    sheets += [{"name": "Series", "kind": "series", "series": sorted(content["series"])}, {"name": "Checks", "kind": "checks", "checks": checks}]
+    return {"spec_type": "workbook", "spec_id": f"WB-{content['census_ref']}", "content_ref": brief["content_ref"], "brief_ref": brief["brief_id"], "verdict_ref": verdict["verdict_id"],
+            "objective": "decide", "family": "strategy", "voice": voice, "seed": seed, "build_stamp": stamp, "sheets": sheets}
+
+
 def commission_from_report(report: Dict[str, Any], tenant_id: str, principal_id: str, now: datetime) -> Dict[str, Any]:
     """All commission files plus the identifiers the store needs. Raises LookupError when no standing frame covers the brief."""
     day = now.strftime("%Y-%m-%d")
@@ -200,4 +221,5 @@ def commission_from_report(report: Dict[str, Any], tenant_id: str, principal_id:
     return {"commission_id": commission_id_for(tenant_id, content["content_id"], brief["purpose"]["kind"], day), "content_id": content["content_id"], "seed": seed, "build_stamp": stamp,
             "frame_ref": frame["frame_id"], "voice": frame["voice"], "producer": "estate_intelligence", "source_ref": report["job_id"], "title": content["title"],
             "files": {"brief.json": brief, "content.json": content, "verdict.json": verdict,
-                      "deck.json": build_deck(content, brief, verdict, seed, stamp, frame["voice"]), "paper.json": build_paper(content, brief, verdict, seed, stamp, frame["voice"])}}
+                      "deck.json": build_deck(content, brief, verdict, seed, stamp, frame["voice"]), "paper.json": build_paper(content, brief, verdict, seed, stamp, frame["voice"]),
+                      "workbook.json": build_workbook(content, brief, verdict, seed, stamp, frame["voice"])}}

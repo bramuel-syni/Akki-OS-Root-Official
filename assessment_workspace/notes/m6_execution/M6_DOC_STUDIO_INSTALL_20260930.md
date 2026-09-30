@@ -51,3 +51,19 @@ Thumbnails of the first estate deck showed "Three strategies carry 317403.8% of 
 No CIF ideas endpoint exists yet (non-routine commissions are refused). No RMS house theme. No workbook for the estate commission. The
 in-repo office tools are not the office skills' OOXML validators. PDF bytes are not part of the determinism proof. G6 remains open:
 M6-T4 (skill really callable by an external caller) and M6-T5 (async/late refusal/withdrawal) were not exercised in this wave.
+
+## Addendum · v1.2 and the four follow-on directives (2026-09-30, later the same day)
+
+- **v1.2 (owner ruling 3a):** `scripts/render_xlsx.py` accepts option-model rows and checks declared in the workbook spec (default = the
+  fixture's option shape, fixtures byte-identical), `scripts/studio.py` passes the declared rows through, `schemas/workbook.schema.json`
+  documents the optional fields. `INSTALL_MANIFEST.json` lists five approved edits; the other 34 files are byte-identical to the owner
+  package (asserted by `test_install_manifest_edit_is_within_approval`). The estate commission now ships a **workbook** with a live option
+  model (bytes addressed / monthly saving per strategy, K001–K004 cross-checks).
+- **Commission-close producer** (`producer_close.py`, `POST /api/studio/producers/commission-close/{eij}`): the accepted census result
+  becomes a decide pack (close or hold the commission). Live: `com-c3d53a38d18f`, build `bld-0c5ad1cefa90` released, byte-identical,
+  pptx · docx · html · xlsx, 11 page thumbnails.
+- **Page thumbnails:** every released deck is rendered pptx → PDF (LibreOffice) → PNG (poppler, 60 dpi) at build time; served per page at
+  `GET …/builds/{id}/thumbnail/{n}` (tenant-bound, `no-store`). Documents shows the grid with an enlarged page view (prev/next) so reviewers
+  answer the review questions without downloading. Outside the byte-identity contract, stated in the UI.
+- **Verification (condition C):** `tests/m6_doc_studio` **20 passed**, `tests/m6_decks` 14 passed, `tests/m6_callable_skill` 11 passed
+  (see `M6_T4_CALLABLE_SKILL_BOUNDARY_20260930.md`). Desktop 1920×800 and 390×844 checked; no page overflow.

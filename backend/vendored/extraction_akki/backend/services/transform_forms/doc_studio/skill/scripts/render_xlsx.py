@@ -30,6 +30,7 @@ def render(plan, out, content_path):
     pal = plan["look"]["palette"]
     headfill = PatternFill("solid", fgColor=pal["structure"])
     input_cells = {}
+    options_layout = {"sheet": "Options", "options": ["O1", "O2", "O3"], "derived_row": 7}
 
     def header(ws, row, labels):
         for c, l in enumerate(labels, start=1):
@@ -73,6 +74,8 @@ def render(plan, out, content_path):
                     c.number_format = "#,##0.0"
                 elif f["unit"] == "GBP":
                     c.number_format = "#,##0.00"
+                elif isinstance(f["value"], float):
+                    c.number_format = "#,##0.0"  # v1.2: fractional inputs in other units keep one decimal
                 else:
                     c.number_format = "#,##0"
                 if f["class"] != "measured":
@@ -86,16 +89,19 @@ def render(plan, out, content_path):
         elif sh["kind"] == "options_model":
             opts = sh["options"]
             header(ws, 1, ["Line", "Unit"] + [o["name"] for o in opts] + ["Class", "Receipt"])
-            base = [("Capex", "GBPm", "capex"), ("Annual saving", "GBPm", "annual_saving"), ("Lead time", "months", "lead_months"), ("Headcount change", "FTE", "headcount_delta")]
+            # v1.2: the option rows come from the spec when declared; the option-model default keeps the fixtures byte-identical.
+            base = ([(row["label"], row["unit"], row["field"], row.get("format")) for row in sh["rows"]] if sh.get("rows")
+                    else [("Capex", "GBPm", "capex", None), ("Annual saving", "GBPm", "annual_saving", None), ("Lead time", "months", "lead_months", None), ("Headcount change", "FTE", "headcount_delta", None)])
+            options_layout = {"sheet": sh["name"], "options": [o["id"] for o in opts], "derived_row": len(base) + 3}
             rowmap = {}
-            for r, (label, unit, field) in enumerate(base, start=2):
+            for r, (label, unit, field, fmt) in enumerate(base, start=2):
                 ws.cell(row=r, column=1, value=label)
                 ws.cell(row=r, column=2, value=unit)
                 for c, o in enumerate(opts, start=3):
                     cell = ws.cell(row=r, column=c, value=o[field])
                     cell.font = BLUE
                     cell.fill = KEY
-                    cell.number_format = "#,##0.0" if unit == "GBPm" else "#,##0"
+                    cell.number_format = fmt or ("#,##0.0" if unit == "GBPm" else "#,##0")
                 ws.cell(row=r, column=3 + len(opts), value="/".join(sorted({o["class"] for o in opts})))
                 ws.cell(row=r, column=4 + len(opts), value=", ".join(sorted({o["receipt"] for o in opts})))
                 rowmap[field] = r
@@ -134,14 +140,28 @@ def render(plan, out, content_path):
         elif sh["kind"] == "checks":
             header(ws, 1, ["Check", "Workbook", "Content model", "Match"])
             checks = []
-            k1, _ = content.calc("K001")
-            checks.append(("K001 revenue growth", f"=({input_cells['F003']}-{input_cells['F001']})/{input_cells['F001']}", k1))
-            k3, _ = content.calc("K003")
-            checks.append(("K003 manual cost premium", f"=({input_cells['F007']}-{input_cells['F006']})/{input_cells['F006']}", k3))
-            for i, oid in enumerate(["O1", "O2", "O3"]):
-                v, _ = content.calc("K004", option=oid)
-                col = get_column_letter(3 + i)
-                checks.append((f"K004 payback {oid}", f"=Options!{col}$7", v))
+            if sh.get("checks"):
+                # v1.2: declared checks — `formula` over Inputs.<F> cells, or `option` + `derived` row of the options sheet.
+                for ch in sh["checks"]:
+                    expected, _ = content.calc(ch["calc"], option=ch.get("option"))
+                    if "formula" in ch:
+                        f = ch["formula"]
+                        for fid, ref in input_cells.items():
+                            f = f.replace(f"Inputs.{fid}", ref)
+                        formula = "=" + f
+                    else:
+                        col = get_column_letter(3 + options_layout["options"].index(ch["option"]))
+                        formula = f"={options_layout['sheet']}!{col}${options_layout['derived_row'] + int(ch.get('derived', 0))}"
+                    checks.append((ch["label"], formula, expected))
+            else:
+                k1, _ = content.calc("K001")
+                checks.append(("K001 revenue growth", f"=({input_cells['F003']}-{input_cells['F001']})/{input_cells['F001']}", k1))
+                k3, _ = content.calc("K003")
+                checks.append(("K003 manual cost premium", f"=({input_cells['F007']}-{input_cells['F006']})/{input_cells['F006']}", k3))
+                for i, oid in enumerate(["O1", "O2", "O3"]):
+                    v, _ = content.calc("K004", option=oid)
+                    col = get_column_letter(3 + i)
+                    checks.append((f"K004 payback {oid}", f"=Options!{col}$7", v))
             for r, (label, f, expected) in enumerate(checks, start=2):
                 ws.cell(row=r, column=1, value=label)
                 ws.cell(row=r, column=2, value=f).number_format = "0.0000"

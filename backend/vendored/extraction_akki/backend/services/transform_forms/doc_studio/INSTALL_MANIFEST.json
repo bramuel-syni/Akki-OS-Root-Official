@@ -1,13 +1,23 @@
 {
  "approved_edits": [
   "scripts/build.py",
-  "scripts/qa.py"
+  "scripts/qa.py",
+  "scripts/render_xlsx.py",
+  "scripts/studio.py",
+  "schemas/workbook.schema.json"
  ],
  "changed_from_v1_0": [
+  "schemas/workbook.schema.json",
   "scripts/build.py",
-  "scripts/qa.py"
+  "scripts/qa.py",
+  "scripts/render_xlsx.py",
+  "scripts/studio.py"
  ],
- "edit_statement": "build.py and qa.py read their tool paths from DOC_STUDIO_TOOLS_DIR (owner condition A, 2026-09-30); nothing else in the package changed",
+ "edit_statement": "v1.1: build.py and qa.py read their tool paths from DOC_STUDIO_TOOLS_DIR (owner condition A, 2026-09-30) \u00b7 v1.2: render_xlsx.py: options_model rows and checks rows may be declared in the workbook spec (default = option-model shape, fixtures byte-identical); studio.py: two-line pass-through of the declared rows/checks into the resolved plan; workbook.schema.json documents the optional fields (owner ruling 3a, 2026-09-30); nothing else in the package changed",
+ "edit_statements": {
+  "1.1": "build.py and qa.py read their tool paths from DOC_STUDIO_TOOLS_DIR (owner condition A, 2026-09-30)",
+  "1.2": "render_xlsx.py: options_model rows and checks rows may be declared in the workbook spec (default = option-model shape, fixtures byte-identical); studio.py: two-line pass-through of the declared rows/checks into the resolved plan; workbook.schema.json documents the optional fields (owner ruling 3a, 2026-09-30)"
+ },
  "edit_within_approval": true,
  "environment": {
   "Pillow": "12.3.0",
@@ -27,7 +37,48 @@
   "tools_dir": "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/tools"
  },
  "install_path": "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill",
- "installed_at": "2026-09-30T16:31:20.057119Z",
+ "installed_at": "2026-09-30T18:06:14.021684Z",
+ "installed_files_sha256": {
+  "SKILL.md": "d5e4cb0bfff92ff60347a6f075a68d67367290a1cca6ce540cf6ff3116d3b246",
+  "evals/evals.json": "ea8abff9057cf9dd2cd9c729f37bd0e8ff7e717a7d964e6ae9c479436b4864fd",
+  "fixtures/board-pack/brief.json": "ce16a3fbde4fb7a9c6bf744e50c1f7857cb460a6faf179c2016aac716aa15eb4",
+  "fixtures/board-pack/content.json": "7939dc5bd2554c5805097c295d49d8fa02c9237a79927bef0939ce31f2d08541",
+  "fixtures/board-pack/deck.json": "47ad9c14555bd41458b94a491b72fad3ddb841efae15983a26fb12ff500491b5",
+  "fixtures/board-pack/paper.json": "e30e6f012197b46bef596c2a611c1529d273e40cfb09b61b5bde9646f784a816",
+  "fixtures/board-pack/verdict.json": "6cc1f9839c895c1ecdef931fafa0daf1c36e785dbf0995951193fa0e4266e0bb",
+  "fixtures/board-pack/workbook.json": "68dc91c4dd7e0290055b17ded927b8c1ee9bc56e04443ffa987864332740813b",
+  "fixtures/launch-keynote/brief.json": "5ec69e78fc7a2f6a04a6edd11bb02bcc7401414f58d17e4fe24b7b428c9cdd03",
+  "fixtures/launch-keynote/content.json": "7939dc5bd2554c5805097c295d49d8fa02c9237a79927bef0939ce31f2d08541",
+  "fixtures/launch-keynote/deck.json": "c4494b7fbd4778c1089a8d65d64d119443f36a6599f95a2e9b6d039b06174a33",
+  "fixtures/launch-keynote/verdict.json": "8227ddabe7a912e090e191379383387da6700351ecfde69a6026c8389133f3ef",
+  "references/brief.md": "cdb9c599ba1839519b622cd550018324322df399f1081bf0007198cf3c2742ba",
+  "references/determinism.md": "3df338511a51c9145794d6ef3bf73386bbcccb5fd65a206f67b36de0a8f4f1bd",
+  "references/directions.md": "8523db045c492c19de9cd4bc768d868ccad789d1111c5d4d30e35844280a7ee8",
+  "references/ir.md": "5cd42078bc9e3e87e1d00af650ae18527620eaf4ba8fb1c3d813ad343e504f96",
+  "references/plates.md": "7757755307d10b02c9a6665a53fc0fd8582756ef2da7d5db6bf97462cf5c2621",
+  "references/qa.md": "f5e037a365d9fc7c246cc3decf7dca96a2f022eb8fbd73565f6f626881ad11ef",
+  "references/taxonomy.md": "7f722c3f377e65f4b42fc4db82f07dbcad4d7f83e3d99142fe43f1fde04a7bc2",
+  "schemas/brief.schema.json": "933a7d25ad83bebf3c74570e3e040620a61a274c49239258b9858ba97d0f7a18",
+  "schemas/content.schema.json": "65da825ff82a0b49746ae9e980b5be15d20d7e0b2ec08248f6b234710ca67214",
+  "schemas/deck.schema.json": "f25aaaf04a4b9eb916e177286d63bd6ff3f34aee0b739d9128e5f9dd09a849a7",
+  "schemas/paper.schema.json": "8bdb06c110ad6a773e48eeda4bb7f58f005733fda3fa828362979f50ea5f1de9",
+  "schemas/verdict.schema.json": "c0ad1acb088ae92158b54f16b27a22044c236161c5169e43ac1fadcbfef9d2fb",
+  "schemas/workbook.schema.json": "078a762f0d65a06cc8e38abc8c41b8eaf73069189d71038a17930164f91b6d53",
+  "scripts/build.py": "dfc4040d20cbb69a6b3a424f648d2e1deb8487a086a2a973536f2127997220a9",
+  "scripts/charts.py": "0162218ecfaa21c65b9d096c81d872ed9347520e01c737e93555955291d56ae6",
+  "scripts/freeze.py": "a35090d4095ec4db09d5a16fb55cb89ffbeff1ddbbc6e1cbb13e4a24495be282",
+  "scripts/qa.py": "a1f8399b894ef1b17f6c3bd87ff6c1f44f2f44619fd145f2b2b88015dd4d827b",
+  "scripts/render_docx.py": "c8c4fe53e5cdefa6585cc4199c173effdd5fad9a649c014c02e1989ef6ca6a58",
+  "scripts/render_html.py": "037c5022acdef0556b2e8a3ade45e2dee36576aa9967fbb490be6ca587771381",
+  "scripts/render_pptx.py": "00850804ea626729ff0234279ebe5aca09c6718f9169cf4a33f05c099fee155f",
+  "scripts/render_xlsx.py": "3c41dd50c4dd170d9073790d9c622cbaa9c07e8366460482e65242a3d2394b26",
+  "scripts/revise.py": "bb35caf7c0c7288b5ec7e78e1f9089d29b74f42bfb9ca89ba634090899304fc3",
+  "scripts/studio.py": "880ef9f9b9c9b0e38429eb45656e6f4c2b604fec3b5aa700d062b9fed847f25c",
+  "scripts/validate.py": "7290804530b91b33c8916160f593ee051783adba84b2b179c894319c9505e17b",
+  "themes/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+  "voices/keynote-cinematic.json": "1f3b28ee0833735e0ab1b5eae7c5f4c5ef93ce669ff0ac3ae930df5a7dbfb7b2",
+  "voices/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85"
+ },
  "owner_zip_sha256": "8f920f9f70c771a4e4edabf9ab85e142aa6b5ab1554de094818f3039cba56840",
  "role": "Akki primary production skill for document production; reference implementation of the Deck Rendering Engine (DR-R1\u2013R14) per owner ruling 2026-09-30 (2)",
  "skill": "doc-studio",
@@ -103,7 +154,7 @@
   "schemas/deck.schema.json": "f25aaaf04a4b9eb916e177286d63bd6ff3f34aee0b739d9128e5f9dd09a849a7",
   "schemas/paper.schema.json": "8bdb06c110ad6a773e48eeda4bb7f58f005733fda3fa828362979f50ea5f1de9",
   "schemas/verdict.schema.json": "c0ad1acb088ae92158b54f16b27a22044c236161c5169e43ac1fadcbfef9d2fb",
-  "schemas/workbook.schema.json": "0a6a6078ed24b94f61eadf3aef05dad2c3968b91a67fc15e8de93dc514312ee7",
+  "schemas/workbook.schema.json": "078a762f0d65a06cc8e38abc8c41b8eaf73069189d71038a17930164f91b6d53",
   "scripts/build.py": "dfc4040d20cbb69a6b3a424f648d2e1deb8487a086a2a973536f2127997220a9",
   "scripts/charts.py": "0162218ecfaa21c65b9d096c81d872ed9347520e01c737e93555955291d56ae6",
   "scripts/freeze.py": "a35090d4095ec4db09d5a16fb55cb89ffbeff1ddbbc6e1cbb13e4a24495be282",
@@ -111,13 +162,13 @@
   "scripts/render_docx.py": "c8c4fe53e5cdefa6585cc4199c173effdd5fad9a649c014c02e1989ef6ca6a58",
   "scripts/render_html.py": "037c5022acdef0556b2e8a3ade45e2dee36576aa9967fbb490be6ca587771381",
   "scripts/render_pptx.py": "00850804ea626729ff0234279ebe5aca09c6718f9169cf4a33f05c099fee155f",
-  "scripts/render_xlsx.py": "a198834a9317d145bb6458738d189b37e073dd109a0454a93824d9400c942d21",
+  "scripts/render_xlsx.py": "3c41dd50c4dd170d9073790d9c622cbaa9c07e8366460482e65242a3d2394b26",
   "scripts/revise.py": "bb35caf7c0c7288b5ec7e78e1f9089d29b74f42bfb9ca89ba634090899304fc3",
-  "scripts/studio.py": "060dc0e7eb5bcdf5eac5ef1f2de264f7418304e2b8d50d9005f93be672da13e0",
+  "scripts/studio.py": "880ef9f9b9c9b0e38429eb45656e6f4c2b604fec3b5aa700d062b9fed847f25c",
   "scripts/validate.py": "7290804530b91b33c8916160f593ee051783adba84b2b179c894319c9505e17b",
   "themes/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
   "voices/keynote-cinematic.json": "1f3b28ee0833735e0ab1b5eae7c5f4c5ef93ce669ff0ac3ae930df5a7dbfb7b2",
   "voices/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85"
  },
- "version": "1.1"
+ "version": "1.2"
 }

@@ -1,0 +1,66 @@
+{
+  "audience": {
+    "detail": "summary with an evidence appendix",
+    "knowledge": "high on the business, mixed on the data estate",
+    "priorities": [
+      "what was delivered",
+      "what remains open",
+      "evidence and usage"
+    ],
+    "who": "Estate owner · RMS"
+  },
+  "brand": {
+    "expressiveness": "restrained",
+    "formality": "formal",
+    "house": "house-neutral",
+    "variation_allowed": "within-family"
+  },
+  "brief_id": "BR-2026-09-30-close-eij-1b359b3cbd2e",
+  "constraints": {
+    "confidentiality": "Tenant confidential",
+    "max_deck_slides": 12,
+    "page_size": "A4"
+  },
+  "content": {
+    "appendix": true,
+    "diagrams": false,
+    "evidence": true,
+    "financial": false,
+    "imagery": false,
+    "narrative": true
+  },
+  "content_ref": "commission-close-eij-1b359b3cbd2e@1",
+  "outputs": [
+    {
+      "editable_charts": true,
+      "format": "pptx",
+      "role": "presented deck"
+    },
+    {
+      "editable_charts": false,
+      "format": "docx",
+      "role": "paper for read-ahead"
+    },
+    {
+      "editable_charts": false,
+      "format": "xlsx",
+      "role": "delivery measures and cross-checks"
+    },
+    {
+      "editable_charts": false,
+      "format": "html",
+      "role": "review surface"
+    }
+  ],
+  "purpose": {
+    "kind": "decide",
+    "statement": "Accept the delivered estate-intelligence census eij-1b359b3cbd2e and close the commission, or hold it open until the blocked connections are read."
+  },
+  "setting": {
+    "mode": "read-ahead then presented",
+    "ongoing_use": false,
+    "presentation_minutes": 10,
+    "printed": true,
+    "read_unattended": true
+  }
+}

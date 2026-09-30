@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { artifactBlob, downloadArtifact, releaseClass, short, stamp } from './useStudio';
+import { DeckThumbnails } from './DeckThumbnails';
 
 function ReviewPreview({ commission, build }) {
   const [url, setUrl] = useState(null);
@@ -16,7 +17,7 @@ function ReviewPreview({ commission, build }) {
   </div>;
 }
 
-export function CommissionBuilds({ commission, canOperate, busy, onBuild, onExport }) {
+export function CommissionBuilds({ commission, canOperate, busy, onBuild, onExport, onThumbnails }) {
   const builds = commission.builds || [];
   const [open, setOpen] = useState(null);
   const shown = open || builds[builds.length - 1]?.build_id;
@@ -49,6 +50,7 @@ export function CommissionBuilds({ commission, canOperate, busy, onBuild, onExpo
           {build.exports?.pdf && !build.exports.pdf.exported && <p className="estate-alert" role="alert">PDF export refused: {build.exports.pdf.refusal}</p>}
         </div>
       </div>
+      <DeckThumbnails commission={commission} build={build} canOperate={canOperate} busy={busy} onRender={onThumbnails} />
       <ReviewPreview commission={commission} build={build} />
     </div>}
   </section>;

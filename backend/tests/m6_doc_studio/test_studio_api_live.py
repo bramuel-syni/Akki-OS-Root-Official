@@ -45,8 +45,8 @@ def test_skill_state(operator):
     r = requests.get(f"{BASE_URL}/api/studio/skill", headers=operator, timeout=30)
     assert r.status_code == 200
     s = r.json()
-    assert s["skill"] == "doc-studio" and s["version"] == "1.1" and s["edit_within_approval"] is True
-    assert s["changed_from_v1_0"] == ["scripts/build.py", "scripts/qa.py"]
+    assert s["skill"] == "doc-studio" and s["version"] == "1.2" and s["edit_within_approval"] is True
+    assert set(s["changed_from_v1_0"]) == {"scripts/build.py", "scripts/qa.py", "scripts/render_xlsx.py", "scripts/studio.py", "schemas/workbook.schema.json"}
     assert s["environment"]["libreoffice"].startswith("LibreOffice") and s["direction_stage"]["llm_chokepoint_path"].startswith("none")
 
 
@@ -73,7 +73,7 @@ def test_downloads_carry_media_types(operator, state):
     for o in b["outputs"]:
         r = requests.get(f"{BASE_URL}/api/studio/commissions/{state['id']}/builds/{b['build_id']}/artifact/{o['name']}", headers=operator, timeout=60)
         assert r.status_code == 200 and len(r.content) == o["size"], o["name"]
-        assert {"pptx": "presentationml", "docx": "wordprocessingml", "html": "text/html"}[o["format"]] in r.headers["content-type"]
+        assert {"pptx": "presentationml", "docx": "wordprocessingml", "html": "text/html", "xlsx": "spreadsheetml"}[o["format"]] in r.headers["content-type"]
     r = requests.get(f"{BASE_URL}/api/studio/commissions/{state['id']}/builds/{b['build_id']}/artifact/build-manifest.json", headers=operator, timeout=30)
     assert r.status_code == 200 and set(r.json()["outputs_sha256"]) == {o["name"] for o in b["outputs"]}
     assert requests.get(f"{BASE_URL}/api/studio/commissions/{state['id']}/builds/{b['build_id']}/artifact/secret.txt", headers=operator, timeout=30).status_code == 404
@@ -101,3 +101,36 @@ def test_mutations_are_refused_for_bad_paths_without_touching_the_record(operato
     assert requests.post(f"{BASE_URL}/api/studio/commissions/{cid}/reverdict", headers=operator, timeout=T).status_code == 422, "no strike pending → refused"
     after = requests.get(f"{BASE_URL}/api/studio/commissions/{cid}", headers=operator, timeout=30).json()["commission"]
     assert after["current_content_version"] == before["current_content_version"] and len(after["revisions"]) == len(before["revisions"])
+
+
+def test_released_deck_pages_are_served_as_thumbnails(operator, analyst, state):
+    """Every page of the released deck is readable in Documents without downloading; tenant-bound, PNG, no store."""
+    b = state["build"]
+    thumbs = b.get("exports", {}).get("thumbnails")
+    if not thumbs:
+        c = requests.post(f"{BASE_URL}/api/studio/commissions/{state['id']}/builds/{b['build_id']}/thumbnails", headers=operator, timeout=T)
+        assert c.status_code == 201, c.text
+        thumbs = next(x for x in c.json()["commission"]["builds"] if x["build_id"] == b["build_id"])["exports"]["thumbnails"]
+    assert thumbs["rendered"] is True and thumbs["count"] == len(thumbs["pages"]) >= 10
+    first, last = thumbs["pages"][0], thumbs["pages"][-1]
+    for page, headers in ((first, operator), (last, analyst)):
+        r = requests.get(f"{BASE_URL}/api/studio/commissions/{state['id']}/builds/{b['build_id']}/thumbnail/{page['n']}", headers=headers, timeout=60)
+        assert r.status_code == 200 and r.headers["content-type"] == "image/png" and r.content[:8] == b"\x89PNG\r\n\x1a\n"
+        assert len(r.content) == page["size"] and "no-store" in r.headers["cache-control"]
+    assert requests.get(f"{BASE_URL}/api/studio/commissions/{state['id']}/builds/{b['build_id']}/thumbnail/{thumbs['count'] + 1}", headers=operator, timeout=30).status_code == 404
+    assert requests.get(f"{BASE_URL}/api/studio/commissions/{state['id']}/builds/{b['build_id']}/thumbnail/1", timeout=30).status_code == 401
+
+
+def test_commission_close_producer_ships_deck_paper_workbook_and_pages(operator):
+    """The accepted census result becomes a decide pack (close or hold the commission); idempotent per day; xlsx via the v1.2 declared option rows."""
+    r = requests.post(f"{BASE_URL}/api/studio/producers/commission-close/{JOB}", headers=operator, json={}, timeout=T)
+    assert r.status_code == 201, r.text
+    c = r.json()["commission"]
+    assert c["producer"] == "commission_close" and c["source_ref"] == JOB and c["frame_ref"] == "FR-strategy-decide-v1"
+    assert all(v["binding"] in ("platform", "declared") for v in c["receipts"].values()) and c["receipt_blockers"] == []
+    released = [b for b in c["builds"] if b["status"] == "released"]
+    assert released and c["release"]["state"] == "clear", c["release"]
+    b = released[-1]
+    assert {o["format"] for o in b["outputs"]} == {"pptx", "docx", "html", "xlsx"} and b["prove"]["byte_identical"] is True
+    assert b["exports"]["thumbnails"]["rendered"] is True and b["exports"]["thumbnails"]["count"] >= 8
+    assert requests.post(f"{BASE_URL}/api/studio/producers/not-a-producer/{JOB}", headers=operator, json={}, timeout=30).status_code == 404

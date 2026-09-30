@@ -58,13 +58,15 @@ def get_commission(commission_id: str, actor=Depends(census_identity)):
     return _full(actor, record)
 
 
-@router.post("/producers/estate-intelligence/{job_id}", status_code=201, response_model=Envelope)
-def commission_estate(job_id: str, body: dict = Body(default={}), actor=Depends(census_identity)):
+@router.post("/producers/{producer}/{job_id}", status_code=201, response_model=Envelope)
+def commission_from_producer(producer: str, job_id: str, body: dict = Body(default={}), actor=Depends(census_identity)):
     _operator(actor)
+    if producer not in service.PRODUCERS:
+        raise HTTPException(404, "No producer with that name is installed.")
     if actor["tenant_id"] != "RMS" or not re.fullmatch(r"eij-[a-f0-9]{12}", job_id):
         raise HTTPException(404, "No estate intelligence census with that reference is available in your tenant.")
     try:
-        record, created = service.create_from_estate(job_id, actor["tenant_id"], actor["principal_id"])
+        record, created = service.create_from_producer(producer, job_id, actor["tenant_id"], actor["principal_id"])
     except LookupError as exc:
         raise HTTPException(404, str(exc)) from None
     if created and body.get("build", True):
@@ -117,6 +119,25 @@ def export_pdf(commission_id: str, build_id: str, actor=Depends(census_identity)
     except LookupError as exc:
         raise HTTPException(404, str(exc)) from None
     return _full(actor, record)
+
+
+@router.post("/commissions/{commission_id}/builds/{build_id}/thumbnails", status_code=201, response_model=Envelope)
+def render_thumbnails(commission_id: str, build_id: str, actor=Depends(census_identity)):
+    _operator(actor); _guard(commission_id, build_id)
+    try:
+        record = service.render_thumbnails(actor["tenant_id"], commission_id, build_id, actor["principal_id"])
+    except LookupError as exc:
+        raise HTTPException(404, str(exc)) from None
+    return _full(actor, record)
+
+
+@router.get("/commissions/{commission_id}/builds/{build_id}/thumbnail/{n}")
+def thumbnail(commission_id: str, build_id: str, n: int, actor=Depends(census_identity)):
+    _guard(commission_id, build_id)
+    data = service.thumbnail(actor["tenant_id"], commission_id, build_id, n) if 0 < n < 500 else None
+    if data is None:
+        raise HTTPException(404, "No thumbnail on record for that page.")
+    return Response(content=data, media_type="image/png", headers={"Cache-Control": "private, no-store"})
 
 
 @router.get("/commissions/{commission_id}/builds/{build_id}/artifact/{name}")

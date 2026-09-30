@@ -20,7 +20,18 @@ M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → 
 - English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
 - M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-## CURRENT — 2026-09-30 M6: doc-studio v1.1 installed as the primary production skill (owner-approved rulings 1–4, conditions A–D)
+## CURRENT — 2026-09-30 M6 follow-on: v1.2 workbook, commission-close, page thumbnails, M6-T4 boundary (owner rulings 1a/2b/3b/4b/5a)
+
+Evidence: `notes/m6_execution/M6_DOC_STUDIO_INSTALL_20260930.md` (addendum) and `notes/m6_execution/M6_T4_CALLABLE_SKILL_BOUNDARY_20260930.md`.
+
+- **doc-studio v1.2** (ruling 3a): `render_xlsx.py`/`studio.py`/`workbook.schema.json` accept declared option rows; estate commission now ships a workbook with a live option model. INSTALL_MANIFEST lists five approved edits; 34 files byte-identical to the owner package.
+- **Commission-close producer** `POST /api/studio/producers/commission-close/{eij}` → decide pack (close/hold). Live `com-c3d53a38d18f` released, byte-identical, pptx·docx·html·xlsx.
+- **Page thumbnails**: rendered at build (LibreOffice → poppler, 60 dpi), served per page; `components/studio/DeckThumbnails.jsx` grid + enlarged page view in WORKSTUDIO · Documents. Verified at 1920×800 and 390×844.
+- **M6-T4 boundary proven to a receipted hold**: DIGICOW operator holds key grant `6090156f3b936c22e8267fff` (external · governed_extract · utterance · digicow_rds, grantor `owner-ruling:M6-T4:2026-09-30:2b`); skill `1a03977aeac14421a980890f6622c91f` is write-once bound to `akki://artifact/DIGICOW/req-97999a0b46d2f51564b85dcd05d871a2/qualified-units`. Live `POST /api/callable_skill/{id}/query` → 409 `held · SKILL_NATIVE_PLAN_REQUIRED`, intent + view receipted on the tenant Ledger; duplicate key → no duplicate effect; anonymous 401 / no grant 403 / unknown 404 / no key 422. **Grounded result HELD by owner rulings 3b/4b** (no QA executor admitted, no `skill` kinds/permissions on the runtimes). Tool: `tools/m6_skill_binding.py` (idempotent).
+- **Verification (condition C, terminal pytest)**: `tests/m6_doc_studio` 20 passed · `tests/m6_decks` 14 passed · `tests/m6_callable_skill` 11 passed. Finding on record: `POST /api/transform/callable_skill/provision` has no identity gate (unchanged, pending ruling).
+- **To unhold M6-T4**: owner admits a QA-capable executor → DIGICOW ceremony with `kinds=[source, skill]` + `skill_response`/`anchor` permissions → skill commission (Plan/approvals), `skill/solva` adapter, eligibility + handoff providers → worker skill mode + inspector anchors → same live suite must return `200 · ready · GROUNDED_SKILL_RESULT_VERIFIED`.
+
+## PREVIOUS — 2026-09-30 M6: doc-studio v1.1 installed as the primary production skill (owner-approved rulings 1–4, conditions A–D)
 
 Owner uploaded `files (21).zip` (doc-studio skill: brief → content model → CIF verdict → format specs → build --prove → freeze → QA → deliver → revise) and ruled it the primary production skill for document production. Evidence: `assessment_workspace/notes/m6_execution/M6_DOC_STUDIO_INSTALL_20260930.md`.
 
