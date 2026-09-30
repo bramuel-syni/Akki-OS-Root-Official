@@ -1,5 +1,26 @@
 # Akki implementation history
 
+## 2026-09-30 — M7/M8 requirements/repository readiness, read-only
+
+- Reverified main heads for Executive-Core, RMS-IQ-Core-2, OS-V1 and OS-Root;
+  traced actual native/donor paths against all ten current M7/M8 acceptance packs.
+  Wrote readiness report and source manifest under
+  `assessment_workspace/notes/m7_m8_readiness_20260930/`; downloadable report in briefs.
+- Verdict: both not acceptance-ready. Concrete rule atomicity/scope/UI/commercial
+  gaps and physical recovery/notification/withdrawal proof gaps recorded. Existing
+  principal-scoped reads, event-time billing, native Ledger and recovery primitives
+  retained. No app behavior, authentication, rules or training jobs changed.
+- Tests:91 isolated checks +12 corrected external-preview checks passed; normal
+  sign-in and desktop/mobile read surfaces verified. Fixed only the new test's
+  obsolete census response/ID assumptions and removed embedded test credentials.
+  Raw iteration68 retained with explicit adjudication of generic auth suggestions.
+- PRD compacted into current requirements/state; roadmap/changelog retain their
+  separate purposes. Complete old723-line PRD archived byte-for-byte at
+  `memory/archive/PRD_20260930_before_M7_M8.md`, SHA256
+  `f7a397cca925f59863a257481f59620f6de887fec3acde85890f17287ef29775`.
+- Background M9/census files and inherited changes were not reverted or treated
+  as assessment edits. M6 UI, M9 certificate/serving and paused UI work remain separate.
+
 ## 2026-09-29 — M1 repair proofs; M2 scoped records, not milestone closure
 
 Fixed external SSH completion loop/diagnostic retention, source catalogue click/

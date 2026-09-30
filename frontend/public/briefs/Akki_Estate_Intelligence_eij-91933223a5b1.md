@@ -1,6 +1,6 @@
 # Akki Estate Intelligence — RMS MySQL estate
 
-Job `eij-91933223a5b1` · status **partial** · measured 2026-09-29T18:49:55.453268Z · built 2026-09-29T22:55:38.511183Z
+Job `eij-91933223a5b1` · status **partial** · measured 2026-09-29T18:49:55.453268Z · built 2026-09-30T03:43:16.437485Z
 
 Census only: rows were measured on the jump host and discarded; this brief carries aggregates, sketches and hashes — no row, cell or identifier value.
 
@@ -68,7 +68,7 @@ Never-populated columns: 539 of 4,167 measured (12.9%). Columns never populated 
 | viupay / viupay | 69.4% | 20 / 264 | 11 | 2,088 days | 0 days ago | 0 | — |
 | iebc_forms / viupay | 67.5% | 22 / 248 | 21 | 1,098 days | 625 days ago | 0 | — |
 | citizen_digital / db_visitors | 37.6% | 55 / 418 | 8 | 21,947 days | 0 days ago | 0 | — |
-| iebc_forms / viutickets | 25.4% | 38 / 479 | 38 | 1,041 days | 546 days ago | 0 | — |
+| iebc_forms / viutickets | 25.4% | 38 / 479 | 38 | 1,041 days | 547 days ago | 0 | — |
 | viupay / viutickets | 23.2% | 39 / 489 | 19 | 4,821 days | 0 days ago | 0 | — |
 | Razuna (Library Content) & Newsvault (Radio News content) / razuna | 2.6% | 107 / 532 | 17 | 4,292 days | 13 days ago | 0 | — |
 | citizen-pulse / saa | 1.7% | 16 / 159 | 7 | 1,368 days | 0 days ago | 0 | — |
@@ -172,19 +172,41 @@ Aggregated audience and civic-participation indices by geography; strictly aggre
 
 ## Strategies to reduce cost
 
-No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COST_PER_GB_MONTH to price them.
+Priced with database storage at USD 0.1095/GB-month and object storage at USD 0.023/GB-month (reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month); overlaps between strategies are possible, so the total is an upper bound.
 
-| Strategy | Reclaimable | Share | Action |
-|---|---|---|---|
-| Move tables not written for over a year to cold storage | 6.5 GiB | 50.6% | Export to compressed object storage, keep a schema stub and a pointer; restore on demand. |
-| Remove redundant (prefix-covered) indexes | 204.0 MiB | 1.6% | Drop each non-unique index whose columns are a leading prefix of another index on the same table. |
-| De-duplicate exact repeated rows inside tables | 87.6 MiB | 0.7% | Add uniqueness constraints or a merge step at ingestion; archive the historical duplicates. |
-| Consolidate duplicate and staging copies of the same tables | 55.5 MiB | 0.4% | Retire or snapshot-then-drop the smaller copy of each same-schema pair with measured content overlap; keep one system of record. |
-| Drop or archive empty tables | 10.9 MiB | 0.1% | Remove empty tables and their indexes after a 30-day observation window. |
-| Repair or purge orphaned references | not a storage saving | — | Reconcile foreign-key candidates whose sampled values are missing in the target table; purge rows that reference nothing. |
-| Minimise PII-dense tables that no product needs | not a storage saving | — | Tokenise or drop personal columns in analytics copies; keep raw identifiers only in the system of record. |
+| Strategy | Reclaimable | Share | Saving / month | Action |
+|---|---|---|---|---|
+| Move buckets not written for over a year to archive-class storage | 41.9 TiB | — | USD 986.49 | Apply a lifecycle rule (Standard → Archive/Cold) on buckets whose last object write is older than a year; keep listing metadata hot. |
+| Reconcile duplicate objects across OBS buckets | 7.7 TiB | — | USD 180.31 | Confirm ETag+size candidates by object hash, keep one copy per bucket and replace the rest with references or lifecycle-delete them. |
+| Move tables not written for over a year to cold storage | 6.5 GiB | 50.6% | USD 0.71 | Export to compressed object storage, keep a schema stub and a pointer; restore on demand. |
+| Remove redundant (prefix-covered) indexes | 204.0 MiB | 1.6% | USD 0.02 | Drop each non-unique index whose columns are a leading prefix of another index on the same table. |
+| De-duplicate exact repeated rows inside tables | 87.6 MiB | 0.7% | USD 0.01 | Add uniqueness constraints or a merge step at ingestion; archive the historical duplicates. |
+| Consolidate duplicate and staging copies of the same tables | 55.5 MiB | 0.4% | USD 0.01 | Retire or snapshot-then-drop the smaller copy of each same-schema pair with measured content overlap; keep one system of record. |
+| Drop or archive empty tables | 10.9 MiB | 0.1% | USD 0.00 | Remove empty tables and their indexes after a 30-day observation window. |
+| Repair or purge orphaned references | not a storage saving | — | unpriced | Reconcile foreign-key candidates whose sampled values are missing in the target table; purge rows that reference nothing. |
+| Minimise PII-dense tables that no product needs | not a storage saving | — | unpriced | Tokenise or drop personal columns in analytics copies; keep raw identifiers only in the system of record. |
+
+Priced strategies total ≈ USD 1,167.55 per month (upper bound; overlaps possible).
 
 ### Evidence per strategy
+
+**Move buckets not written for over a year to archive-class storage** — risk: Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee.
+
+- music-bucket-rms · last write 916 days before the census · 4.9 TiB
+- na7p43do · last write 908 days before the census · 4.1 TiB
+- na7p43js · last write 909 days before the census · 3.6 TiB
+- na7p434j · last write 908 days before the census · 3.5 TiB
+- na7p41hj · last write 915 days before the census · 3.5 TiB
+- na7p42xe · last write 907 days before the census · 3.4 TiB
+
+**Reconcile duplicate objects across OBS buckets** — risk: Candidates share ETag and size, which for multipart uploads is not a content hash; bytes are candidates × mean object size, an estimate. Confirm before deleting.
+
+- na7p43do · 197,528 candidates · ≈1.7 TiB
+- na7p4oco · 166,328 candidates · ≈1.0 TiB
+- na7p434j · 2,890 candidates · ≈674.1 GiB
+- na7p42yg · 4,197 candidates · ≈501.9 GiB
+- music-bucket-rms · 14,696 candidates · ≈485.3 GiB
+- 2024offairrecs · 16,589 candidates · ≈461.8 GiB
 
 **Move tables not written for over a year to cold storage** — risk: Staleness is read from the latest timestamp column; tables without timestamps are not counted as stale.
 
@@ -252,6 +274,48 @@ No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COS
 - viupay_agent_staging.agent_api_logs · 100.0% of sampled rows
 - news_vault.audits · 100.0% of sampled rows
 
+## Object and file estate (OBS buckets, NAS shares)
+
+**OBS object store** — census `cr-f1415e395361` (partial, 2026-09-29T04:25:35.113924+00:00): 66 of 106 sources complete, 22,975,591 objects, 130.3 TiB; 1,139,768 duplicate candidates (5.0% of objects), ≈7.7 TiB estimated; 43 sources not written for over a year (41.9 TiB). Frontier complete: yes.
+
+Duplicate candidates are objects whose ETag+size fingerprint was already seen in the same store; duplicate bytes = candidates × mean object size of the bucket (estimate). Not proven byte duplicates.
+
+| Source | Status | Units | Bytes | Duplicate candidates | Last write | Formats |
+|---|---|---|---|---|---|---|
+| 2024offairrecs | complete | 3,174,515 | 86.3 TiB | 16589 | 2026-09-29T03:00:04.630000Z | .mp4 3,131,277, .mp3 27,002, no_extension 15,658, .mpt 408 |
+| music-bucket-rms | complete | 152,801 | 4.9 TiB | 14696 | 2024-03-26T05:26:00.449000Z | .mp4 146,617, .txt 1,183, .flx 1,086, .rpt 610 |
+| na7p43do | complete | 484,480 | 4.1 TiB | 197528 | 2024-04-04T02:11:50.597000Z | .mp3 326,105, .mts 39,439, .vis 39,437, .wav 12,472 |
+| na7p43js | complete | 307,998 | 3.6 TiB | 27187 | 2024-04-02T06:06:20.407000Z | .ogg 118,600, .mp3 85,079, .adf 25,484, .vis 21,622 |
+| na7p434j | complete | 15,377 | 3.5 TiB | 2890 | 2024-04-04T00:20:28.559000Z | .mov 5,427, .avi 4,258, .jpg 2,157, .txt 1,767 |
+| na7p41hj | complete | 15,885 | 3.5 TiB | 1852 | 2024-03-27T08:11:46.711000Z | .mov 10,488, .mp4 2,347, .txt 1,519, .avi 1,198 |
+| na7p42xe | complete | 13,965 | 3.4 TiB | 1120 | 2024-04-04T09:56:20.886000Z | .mp4 6,241, .mov 5,519, .txt 1,434, .avi 309 |
+| na7p42xw | complete | 25,088 | 3.4 TiB | 2391 | 2024-03-31T09:49:02.340000Z | .mov 15,321, .txt 3,389, .avi 3,065, .mp4 1,289 |
+| na7p42yg | complete | 28,059 | 3.3 TiB | 4197 | 2024-03-31T01:51:47.474000Z | .mov 21,920, .txt 3,169, .jpg 1,446, .avi 995 |
+| na7p43d3 | complete | 16,396 | 2.9 TiB | 1395 | 2024-03-30T14:39:39.933000Z | .mov 10,623, .txt 2,032, .avi 1,270, .mp4 1,099 |
+| na7p4oco | complete | 468,637 | 2.9 TiB | 166328 | 2024-04-03T20:50:57.931000Z | .mp3 218,902, .mts 36,886, .vis 36,878, .tmp 15,781 |
+| rmsbroadcast | complete | 142,739 | 1.5 TiB | 5060 | 2024-03-24T09:25:18.604000Z | .mp3 127,221, .mp4 9,923, .mov 1,916, .m4v 1,550 |
+
+Blocked sources (40): apr252017 (NoSuchBucket); citizen-vod (NoSuchBucket); elections (ClientError); feb272017 (NoSuchBucket); instore-radio-items (ClientError); iso-rms-storage (NoSuchBucket); librarydirectupload2 (NoSuchBucket); na7p4100 (NoSuchBucket); na7p410c (NoSuchBucket); na7p419y (NoSuchBucket); na7p41ab (NoSuchBucket); na7p41f4 (NoSuchBucket) …
+
+**NAS file shares** — census `cr-cf4eef79995b` (complete, 2026-09-29T03:48:16.100915+00:00): 16 of 16 sources complete, 1,456,787 files, 43.6 TiB; duplication unmeasured (no fingerprints in this pass); 0 sources not written for over a year (0 B). Frontier complete: yes.
+
+This enumeration recorded no content fingerprints (stat/listing only), so duplication is unmeasured; sizes and dates were read, bodies were not.
+
+| Source | Status | Units | Bytes | Duplicate candidates | Last write | Formats |
+|---|---|---|---|---|---|---|
+| channel01 | complete | 95,122 | 6.9 TiB | — | 2026-09-29T03:25:01.311178Z | .mp4 95,108, .rmd 6, .mpt 3, .db 1 |
+| channel02 | complete | 95,134 | 6.9 TiB | — | 2026-09-29T03:25:05.819412Z | .mp4 95,129, .db 1, .jpg 1, .rep 1 |
+| channel16 | complete | 94,597 | 6.8 TiB | — | 2026-09-29T03:45:03.715768Z | .mp4 94,592, .db 1, .jpg 1, .rep 1 |
+| Channel15 | complete | 95,635 | 1.9 TiB | — | 2026-09-29T03:22:57.737248Z | .mp4 95,627, .rmd 3, .db 1, .jpg 1 |
+| Channel14 | complete | 95,615 | 1.9 TiB | — | 2026-09-29T03:18:10.574562Z | .mp4 95,609, .rmd 2, .db 1, .jpg 1 |
+| Channel11 | complete | 95,602 | 1.9 TiB | — | 2026-09-29T03:12:09.048574Z | .mp4 95,592, .rmd 6, .db 1, .jpg 1 |
+| Channel12 | complete | 95,600 | 1.9 TiB | — | 2026-09-29T03:15:28.913646Z | .mp4 95,590, .rmd 6, .db 1, .jpg 1 |
+| channel07 | complete | 95,550 | 1.9 TiB | — | 2026-09-29T03:36:51.270784Z | .mp4 95,546, .db 1, .jpg 1, .rep 1 |
+| channel06 | complete | 95,548 | 1.9 TiB | — | 2026-09-29T03:35:21.881683Z | .mp4 95,544, .db 1, .jpg 1, .rep 1 |
+| channel05 | complete | 95,494 | 1.9 TiB | — | 2026-09-29T03:34:34.485438Z | .mp4 95,490, .db 1, .jpg 1, .rep 1 |
+| channel04 | complete | 95,475 | 1.9 TiB | — | 2026-09-29T03:30:03.144274Z | .mp4 95,470, .db 1, .jpg 1, .rep 1 |
+| channel03 | complete | 95,419 | 1.9 TiB | — | 2026-09-29T03:29:36.059011Z | .mp4 95,415, .db 1, .jpg 1, .rep 1 |
+
 ## Where it falls short
 
 - Connection `iebc_forms` database `viusasa_staging`: PULL_SEAM_WORKER_FAILED:
@@ -277,4 +341,4 @@ No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COS
 
 Ratios are measured on complete passes (tables ≤100k rows) or stratified keyset samples (8×5k rows) and disclosed per table; cross-table overlap is a bottom-256 sketch Jaccard estimate over same-schema tables; no row values were retained or returned.
 
-RMS MySQL only (owner order 1-a). OBS object and NAS file duplication follow from the enumeration frontier; languages, rights and semantic (embedding) similarity were not measured. Text near-duplicates use MinHash on the jump host so row text never left the estate.
+RMS MySQL measured in depth (owner order 1-a). OBS object and NAS file estates are read from their retained enumeration receipts (listing and stat only: sizes, dates, ETag+size duplicate candidates; no object or file body); languages, rights and semantic (embedding) similarity were not measured. Text near-duplicates use MinHash on the jump host so row text never left the estate.

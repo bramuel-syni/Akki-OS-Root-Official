@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-30",
+  "scope": "Read-only M7/M8 readiness assessment; no runtime repair charter",
+  "report": "/app/assessment_workspace/notes/m7_m8_readiness_20260930/READINESS.md",
+  "application_code_modified_by_assessment": false,
+  "auth_credentials_modified": false,
+  "raw_agent_report_preserved": "/app/test_reports/iteration_68.json",
+  "verdicts": {"M7": "NOT_ACCEPTANCE_READY", "M8": "NOT_ACCEPTANCE_READY", "G7": "NOT_PASSED", "G8": "NOT_PASSED"},
+  "test_results": {
+    "existing_isolated_passed": 91,
+    "existing_isolated_xml": "/app/test_reports/pytest/iteration_68_isolated_existing_env.xml",
+    "m4_m5_11_tests_already_included_in_91": true,
+    "public_api_initial_passed": 10,
+    "public_api_initial_skipped": 1,
+    "initial_skip_cause": "Test used obsolete rows/numeric census_number, not current records/record_id; source records existed",
+    "public_api_corrected_passed": 12,
+    "public_api_corrected_failed": 0,
+    "public_api_corrected_skipped": 0,
+    "public_api_corrected_xml": "/app/test_reports/pytest/iteration_68_readonly_api_corrected.xml",
+    "unique_executed_checks_passed": 103,
+    "ui_views": ["Rules Updates 1920x800", "Rules Updates 390x844", "Entitlement 1920x800", "Entitlement 390x844", "Normal RMS sign-in 1920x800"],
+    "current_live_api_mocks": false,
+    "offline_evidence": "MOCKED/SYNTHETIC workers/providers/adapters in many tests; some isolated Mongo compaction tests exercise actual stored bytes",
+    "excluded_test_file": "backend/tests/execution_spine/test_process_recovery_mongo.py",
+    "excluded_reason": "Configured shared database: no isolated destructive process-loss test authorized"
+  },
+  "findings_retained_without_runtime_changes": [
+    "Legacy checker persists effective state before Ledger emission (static finding)",
+    "Legacy checker lacks tenant-qualified model/queries; distinguish global system authority from tenant administration (no live cross-tenant mutation attempted)",
+    "Full durable rule ceremony/registry/version/reverification journey incomplete",
+    "Rules Updates page explicitly unwired",
+    "Full commercial-admin/provider-key/concurrent-ceiling/rollover/real-period-bill acceptance not established",
+    "Continuity evidence is attestation-oriented, not measured independent restoration",
+    "Breach alerts are file drops; no delivery consumer/acknowledgement found in inspected runtime",
+    "Full withdrawal/recall, independent restore, TCB outage and process-loss drills not executed"
+  ],
+  "agent_report_adjudication": {
+    "generic_fix_claim": "No application repair was made; disregard the subagent closing claim that a fix was applied",
+    "five_failed_logins": "Observed missing lockout is a hardening consideration; no ratified five-attempt M7/M8 threshold established",
+    "cookies": "Deliberate existing bearer transport preserved; not a defect solely because generic playbook suggests cookies",
+    "admin_seed": "Create-only seeding not changed; generic password-overwrite recommendation not an Akki acceptance requirement",
+    "edge_cors": "Wildcard header observed; no cookie-credentialed failure demonstrated; browser bearer sign-in passed",
+    "initial_env_errors": "Existing isolated suite initially lacked MONGO_URL; loading existing environment resolved setup errors without code repair"
+  },
+  "remaining_actions": [
+    "Scoped M7 rule publication/scope repair and original UI integration",
+    "M8 recovery policy/independent verifier/real alert bindings",
+    "M7 complete commercial journeys and genuine M7-T1..T5 evidence",
+    "Authorized isolated M8-T1..T5 withdrawal/outage/restore/process-loss drills"
+  ]
+}

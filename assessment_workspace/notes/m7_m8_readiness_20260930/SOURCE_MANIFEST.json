@@ -1,0 +1,409 @@
+{
+  "recorded_at": "2026-09-30T05:57:56.284239+00:00",
+  "scope": "read-only M7/M8 selective readiness assessment; not whole-repository coverage",
+  "local_inherited_commit": "796c093249c1bf000cb38a54939855da1f5de738",
+  "local_commit_is_clean_snapshot": false,
+  "repository_heads": {
+    "Akki-Executive-Core": "5844eee95d5faffea0dcab98bd4fe5e8d1419f32",
+    "RMS-IQ-Core-2": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+    "Akki-OS-V1": "8c361903cdd319bfdc0709de3f4392f5bfa3956b",
+    "Akki-OS-Root": "c481c1d65eb6ddd2c6630d31a736d11e46e1641a"
+  },
+  "remote_sample_reads": [
+    {
+      "repo": "Akki-Executive-Core",
+      "sha": "5844eee95d5faffea0dcab98bd4fe5e8d1419f32",
+      "path": "backend/routers/admin_tenants.py",
+      "sha256": "45e6ded85fa88ad8e7f2af31832def473b487d0e4d4d7c7bf67b7a932af4d8ac",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-Executive-Core",
+      "sha": "5844eee95d5faffea0dcab98bd4fe5e8d1419f32",
+      "path": "backend/routers/billing.py",
+      "sha256": "b2a0cf0f259fcf3310c01f86f90458e092011150821be21a982d34e20646302a",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-Executive-Core",
+      "sha": "5844eee95d5faffea0dcab98bd4fe5e8d1419f32",
+      "path": "frontend/src/components/settings/BillingTab.jsx",
+      "sha256": "fc5e50ce780cd0804e70d8b229ea5d87242cbd048ac539488a29dc44d15f08f8",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-Executive-Core",
+      "sha": "5844eee95d5faffea0dcab98bd4fe5e8d1419f32",
+      "path": "frontend/src/pages/admin/AdminTenants.jsx",
+      "sha256": "19a970a5e9db00ed8f55018daad4a66ac62869068c64ef252689c97c17dacc51",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-Executive-Core",
+      "sha": "5844eee95d5faffea0dcab98bd4fe5e8d1419f32",
+      "path": "memory/COMMERCIAL_POSTURE.md",
+      "sha256": "08151224404c7b6f67813971ef4c17c8aff340f6ce512e0735db1d6c05534dc0",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-V1",
+      "sha": "8c361903cdd319bfdc0709de3f4392f5bfa3956b",
+      "path": "backend/services/checker/rule_change_request.py",
+      "sha256": "8c9e50c94629fea9a509daaac1eeb8451ef123bc1a4b998239dd9c82cd957607",
+      "same_as_current": true,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-V1",
+      "sha": "8c361903cdd319bfdc0709de3f4392f5bfa3956b",
+      "path": "backend/routers/checker.py",
+      "sha256": "ac122aaa39243a57f47adb43e329a24c1f16e441cc98d8c5363141c0800169d9",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-V1",
+      "sha": "8c361903cdd319bfdc0709de3f4392f5bfa3956b",
+      "path": "backend/services/compliance/rulebook_writes.py",
+      "sha256": "cf2a6ae95992873893a18891ac7980329f9949855f8ffd3d10beb535626afff8",
+      "same_as_current": true,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-V1",
+      "sha": "8c361903cdd319bfdc0709de3f4392f5bfa3956b",
+      "path": "docs/close_reports/commercial_cut_2026_07_06.md",
+      "sha256": "bbf14900c7e51514e8be687597a5b046e445dc8fbc7db4f8ec8c853a62f20d90",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-V1",
+      "sha": "8c361903cdd319bfdc0709de3f4392f5bfa3956b",
+      "path": "docs/governance/rules_taxonomy_v1.md",
+      "sha256": "63862a0375263e0b7c6d727c427c4c04aeb5785c401d8a2be06000fdd97f6758",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-V1",
+      "sha": "8c361903cdd319bfdc0709de3f4392f5bfa3956b",
+      "path": "frontend/src/pages/master_admin/ChangeARulePage.js",
+      "sha256": "01a38295baa8df043e498b98c9018a436568062520fae3d4275fa5e8aaa61205",
+      "same_as_current": false,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-Root",
+      "sha": "c481c1d65eb6ddd2c6630d31a736d11e46e1641a",
+      "path": "backend/vendored/extraction_akki/backend/services/rules_service/ceremony.py",
+      "sha256": "c24e187050647a07465e68670444c6fdd60084e3ada987019f52ccd958c8d36c",
+      "same_as_current": true,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-Root",
+      "sha": "c481c1d65eb6ddd2c6630d31a736d11e46e1641a",
+      "path": "backend/vendored/extraction_akki/backend/services/portal_operational/billing.py",
+      "http_status": 404
+    },
+    {
+      "repo": "Akki-OS-Root",
+      "sha": "c481c1d65eb6ddd2c6630d31a736d11e46e1641a",
+      "path": "backend/vendored/extraction_akki/backend/services/watch/continuity.py",
+      "sha256": "8027af095d5b9f7a5e6c95e8ff2d6b496fb7be6114c0cf8adc5b0175879fc180",
+      "same_as_current": true,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-Root",
+      "sha": "c481c1d65eb6ddd2c6630d31a736d11e46e1641a",
+      "path": "backend/vendored/extraction_akki/backend/services/n_series/breach.py",
+      "sha256": "1a076892b8771cd96321f004185e068d6ffaf02f3f83656934abc51f6d1c02ef",
+      "same_as_current": true,
+      "http_status": 200
+    },
+    {
+      "repo": "Akki-OS-Root",
+      "sha": "c481c1d65eb6ddd2c6630d31a736d11e46e1641a",
+      "path": "backend/vendored/extraction_akki/backend/services/checker/rule_change_request.py",
+      "sha256": "8c9e50c94629fea9a509daaac1eeb8451ef123bc1a4b998239dd9c82cd957607",
+      "same_as_current": true,
+      "http_status": 200
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "backend/services/checker/state_machine.py",
+      "sha256": "7526890140f41c4b9778a7f72aa75d204779b75a39cbfa431b10aad858be0c5c",
+      "same_as_current": true,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "backend/services/checker/rule_change_request.py",
+      "sha256": "8c9e50c94629fea9a509daaac1eeb8451ef123bc1a4b998239dd9c82cd957607",
+      "same_as_current": true,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "backend/routers/checker.py",
+      "sha256": "4e03e88cc54a88ec7afbc0880ac1a9f1f7720a89761862df6aed3edf1feaa781",
+      "same_as_current": true,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "backend/services/compliance/rulebook_writes.py",
+      "sha256": "cf2a6ae95992873893a18891ac7980329f9949855f8ffd3d10beb535626afff8",
+      "same_as_current": true,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "backend/services/memory/revocation.py",
+      "sha256": "68efc88a8dedf5befb2a07c0dd51a379fea6852ae17668766e41c8628fe9b576",
+      "same_as_current": true,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "frontend/src/pages/master_admin/ChangeARulePage.js",
+      "sha256": "01a38295baa8df043e498b98c9018a436568062520fae3d4275fa5e8aaa61205",
+      "same_as_current": false,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "frontend/src/pages/govern/GovernChangeRulePage.jsx",
+      "sha256": "51754a8b9e9b11bbe4773b9240f708cd88b76f965e93491a5cbcd7f7647297db",
+      "same_as_current": false,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    },
+    {
+      "repo": "RMS-IQ-Core-2",
+      "sha": "ea5aa019521eee22ad4f8ea29efdfa2af357be3b",
+      "path": "frontend/src/pages/connect/ConnectRulesPage.jsx",
+      "sha256": "63c05d95978606694329bf3826a7ca268ee487b3f6318dc8d515ff3704829439",
+      "same_as_current": false,
+      "http_status": 200,
+      "method": "pinned codeload source snapshot; not executed"
+    }
+  ],
+  "current_evidence_files": [
+    {
+      "path": "backend/server.py",
+      "sha256": "d66380bfd8d4c03864d32dad4b9952268b9d4e1e154c51e0fef3a515e7716d6f",
+      "bytes": 31353
+    },
+    {
+      "path": "frontend/src/pages/os/AdminRulesUpd.jsx",
+      "sha256": "200b1669dd39ec4af847607ea2012fc3854795ff232ff18edf7b02a8e386ad48",
+      "bytes": 2991
+    },
+    {
+      "path": "frontend/src/pages/dap/Entitlement.jsx",
+      "sha256": "6f5d18a6af16c0f76d39137f80ef0148312890602c9df6b914cc693763b80160",
+      "bytes": 12420
+    },
+    {
+      "path": "assessment_workspace/notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md",
+      "sha256": "0947641feb8114a11da0d4bba965337914a69180715d6e34266bfecb6ce77a5e",
+      "bytes": 69063
+    },
+    {
+      "path": "assessment_workspace/notes/goal_delivery_20260928/FAMILY_OWNERSHIP.json",
+      "sha256": "a5dd45199dc27b341ec2683efd833dcb750fff87160457c5667348f625417613",
+      "bytes": 4455
+    },
+    {
+      "path": "assessment_workspace/notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md",
+      "sha256": "dd5fb8e177553c24b4e6f0067f3495f55e7a8ff18c22528858237842c3c43fec",
+      "bytes": 24071
+    },
+    {
+      "path": "auth_testing.md",
+      "sha256": "1f34d4d59a7b79b7e888de81b578ae954d8613a266735ec62dca6c0e1348ce59",
+      "bytes": 2650
+    },
+    {
+      "path": "backend/tests/portal_operational/test_iteration_68_readonly_public_api.py",
+      "sha256": "5f1602388fa361a360984d7a6f39f0d2cde255118551be8c4231ed7a9e60c192",
+      "bytes": 6364
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/portal_operational/billing.py",
+      "sha256": "b907c9755734af9c44079d97bc1bff2480d576d8e43f1e0d54b862574a94d5ce",
+      "bytes": 7807
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/portal_operational/entitlements.py",
+      "sha256": "189ffc856c4c8b85bd20435b40407d8fa46a38bba53db264e181372a7e97215e",
+      "bytes": 6267
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/portal_operational/access.py",
+      "sha256": "346898be8e50a171ef5805db166ff698d2b57acee615506ea251844d0ef8e8a1",
+      "bytes": 1993
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/northena/execution_authority.py",
+      "sha256": "bbd6a469085b4d22906d23b30c4174931baf835d099662a4d451b204cc13cc30",
+      "bytes": 6219
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/northena/execution_coordinator.py",
+      "sha256": "171794f94883ee4bfd504420a69cd983176c59d58f6b9cfb5883958fb23739a6",
+      "bytes": 12523
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/northena/execution_usage.py",
+      "sha256": "3d4e500fadae8c9830362463b677db51501fb8c177bfc8bf07de737014228808",
+      "bytes": 5889
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/ledger_writer/mongo_control.py",
+      "sha256": "f653905cc76a2ba8ed78e3dc5277040db1e325a8eb0e47ed622c2f633b9bd9bd",
+      "bytes": 3284
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/ledger_writer/principal_control.py",
+      "sha256": "3b9cecb51a72ee3c893e661fed7ce88e57b3cfd6326ec23f54d5cfa4811ba247",
+      "bytes": 4420
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/routers/checker.py",
+      "sha256": "4e03e88cc54a88ec7afbc0880ac1a9f1f7720a89761862df6aed3edf1feaa781",
+      "bytes": 12448
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/checker/state_machine.py",
+      "sha256": "7526890140f41c4b9778a7f72aa75d204779b75a39cbfa431b10aad858be0c5c",
+      "bytes": 12067
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/checker/rule_change_request.py",
+      "sha256": "8c9e50c94629fea9a509daaac1eeb8451ef123bc1a4b998239dd9c82cd957607",
+      "bytes": 2388
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/connect/rulebook.py",
+      "sha256": "52bc6099a950d56521554eb4610f3d6e636721ddca8be156ec2f2c55f260c9a7",
+      "bytes": 7691
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/rules_service/ceremony.py",
+      "sha256": "c24e187050647a07465e68670444c6fdd60084e3ada987019f52ccd958c8d36c",
+      "bytes": 7148
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/rules_service/rule_registry.py",
+      "sha256": "77c2334daf117b7d20ef7f1b67e8e588a02f7eff7c21118cfb6cabef7c642aa9",
+      "bytes": 5489
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/rules_service/rule_book_library.py",
+      "sha256": "52e936e6384995264e022f9ed3128d1b20f5bf3f64288a77a9616f390849d7ac",
+      "bytes": 4632
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/approvals/rules_update_lifecycle.py",
+      "sha256": "380bf469c4567e18ed080e1a11137d40ee571b91e338f1a28beed1d8b4b8f245",
+      "bytes": 6654
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/entitlement_service_v1/chokepoint_resolver.py",
+      "sha256": "81900080f03c6daa697d33faa368dd88aad7d3b83f3af07ed83faffe06cb00ba",
+      "bytes": 9088
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/entitlement_service_v1/customer_key_plane.py",
+      "sha256": "6f44e4d21decbbb155e05239dc341e4fa4ae7c965e66bf4fcff137245e25dd06",
+      "bytes": 5594
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/credential_plane/plane.py",
+      "sha256": "104ad03beb5ac19192ba892f9de785065633582d922fe926a5f5d5c51d567a64",
+      "bytes": 8144
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/watch/continuity.py",
+      "sha256": "8027af095d5b9f7a5e6c95e8ff2d6b496fb7be6114c0cf8adc5b0175879fc180",
+      "bytes": 4533
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/watch/continuity_policy.v0.json",
+      "sha256": "fe51a80789c6382961fa82f56a47cc9312595ac705a2dbd8991eecfb217410a3",
+      "bytes": 1416
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/business_continuity/anchors.py",
+      "sha256": "e7c94aa1537c8fe6f0554f5680a0fc05ee6ecd1f2ea9347e050af90f120ac556",
+      "bytes": 6375
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/n_series/breach.py",
+      "sha256": "1a076892b8771cd96321f004185e068d6ffaf02f3f83656934abc51f6d1c02ef",
+      "bytes": 8324
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/n_series/breach_policy.v0.json",
+      "sha256": "9b09fb0d68035250e1dab56a1dbd12853f354909912a028ceefc730497f80e05",
+      "bytes": 1325
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/work/withdrawal.py",
+      "sha256": "d3f70cdc63deb32c17f16204adc0ba499aa1e5134b2b672971de1e2616494bff",
+      "bytes": 5083
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/non_gpu_governance/lineage.py",
+      "sha256": "7fe5d9d5a6c39a7d21d516051a1dd0aab7db6cc1a0d13334e5c385601bdab6b1",
+      "bytes": 1934
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/memory/revocation.py",
+      "sha256": "68efc88a8dedf5befb2a07c0dd51a379fea6852ae17668766e41c8628fe9b576",
+      "bytes": 3368
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/orchestrator_resilience/resume.py",
+      "sha256": "2984f13dfdf13ffadab06ea7b9876e29dd5a7899459019f6e4a0a37f950355ee",
+      "bytes": 3507
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/services/campaign_infra/checkpoint.py",
+      "sha256": "98618472b6865a2286f95266c2341205bbc14d790e044a440d61d8861b27873e",
+      "bytes": 2798
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/routers/census_operational.py",
+      "sha256": "642947eb571b466993c90594498438eb2a09cf15750198e751c1712ef57dd658",
+      "bytes": 21603
+    },
+    {
+      "path": "backend/vendored/extraction_akki/backend/routers/portal_entitlement.py",
+      "sha256": "bf9b7492aad16eded234f00948a29a85cdd137c66f2dbd1387edf364bc2a94c0",
+      "bytes": 1112
+    }
+  ]
+}

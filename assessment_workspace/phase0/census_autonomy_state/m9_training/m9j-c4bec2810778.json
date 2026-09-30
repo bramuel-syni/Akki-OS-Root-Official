@@ -57,7 +57,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-c4bec2810778",
   "pid": 740121
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-3ee14aebfc8f",
@@ -70,32 +70,38 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_calibrate_daemonised:pid=740121"
+  },
+  {
+   "row_id": "led-0e810b5fb8d5",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_calibrate_completed"
   }
  ],
  "code_sha256": "1be7ba3316a09d262f6cccde3916caf13ea0023042f33e62c12420a422ef65f3",
  "started_at": "2026-09-29T22:48:59.859797Z",
  "last_status_rpc": {
-  "at": "2026-09-29T23:04:04.507379Z",
+  "at": "2026-09-29T23:35:17.682177Z",
   "rc": 0,
-  "receipt_id": "gpurcp-ec22b2fdd123"
+  "receipt_id": "gpurcp-3cf83a8c35d7"
  },
  "remote_state": {
   "phase": "calibrate",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-09-29T22:48:59Z",
   "progress": {
-   "stage": "training calibrate:qwen3-8b-base:v0.125",
-   "step": 60,
-   "total_steps": 341,
+   "stage": "training calibrate:qwen3-8b-base:v0.5",
+   "step": 1340,
+   "total_steps": 1346,
    "epoch": 1,
-   "loss": 4.41587,
-   "tokens_per_second": 4754.4,
-   "padded_tokens_per_step": 4020,
+   "loss": 3.40371,
+   "tokens_per_second": 6750.5,
+   "padded_tokens_per_step": 4068,
    "rows_last_step": 85,
-   "recent_step_seconds": 0.56,
-   "gpu_memory_gb": 78.97,
+   "recent_step_seconds": 0.516,
+   "gpu_memory_gb": 92.02,
    "resumed": null,
-   "elapsed_seconds": 45
+   "elapsed_seconds": 701
   },
   "stages": {
    "calibration:qwen3-1.7b-base:v0.125": {
@@ -112,14 +118,794 @@
     "at": "2026-09-29T23:01:37Z",
     "held_macro": 0.95966,
     "gpu_hours": 0.0722
+   },
+   "calibration:qwen3-8b-base:v0.125": {
+    "at": "2026-09-29T23:08:48Z",
+    "held_macro": 0.94668,
+    "gpu_hours": 0.0557
+   },
+   "calibration:qwen3-8b-base:v0.25": {
+    "at": "2026-09-29T23:18:29Z",
+    "held_macro": 0.96634,
+    "gpu_hours": 0.0994
+   },
+   "calibration:qwen3-8b-base:v0.5": {
+    "at": "2026-09-29T23:33:59Z",
+    "held_macro": 0.97366,
+    "gpu_hours": 0.1957
    }
   },
   "events": [],
   "job_id": "m9j-c4bec2810778",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-09-29T23:04:01Z"
+  "updated_at": "2026-09-29T23:33:59Z",
+  "finished_at": "2026-09-29T23:33:59Z",
+  "receipt_sha256": "24166e94ccdb989ea60219744570e53d93d868d65f7ecee302a1a596b3d26c4d"
  },
- "worker_log_tail": "Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7774.71it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-c4bec2810778/worker.zip/services/training_runner/m9_worker.py:619: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * cfg[\"grad_accum\"]); trained_tokens += int(mask.sum()); padded_tokens += x.numel(); batch_index += 1\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6769.44it/s]\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7047.80it/s]\n\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 5927.37it/s]",
- "process_alive": true
+ "worker_log_tail": "Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7774.71it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-c4bec2810778/worker.zip/services/training_runner/m9_worker.py:619: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * cfg[\"grad_accum\"]); trained_tokens += int(mask.sum()); padded_tokens += x.numel(); batch_index += 1\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6769.44it/s]\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7047.80it/s]\n\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 5927.37it/s]\n\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 6423.52it/s]\n\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 6472.97it/s]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-c4bec2810778",
+  "phase": "calibrate",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-29T22:48:59Z",
+  "code_sha256": "1be7ba3316a09d262f6cccde3916caf13ea0023042f33e62c12420a422ef65f3",
+  "status": "completed",
+  "result": {
+   "corpus_id": "rms-transcripts-v1",
+   "manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+   "task": "text_lid",
+   "fractions": [
+    0.125,
+    0.25,
+    0.5
+   ],
+   "runs": [
+    {
+     "base": "qwen3-1.7b-base",
+     "fraction": 0.125,
+     "train_units": 16388,
+     "train_tokens": 1189453,
+     "steps": 116,
+     "wallclock_seconds": 94,
+     "gpu_hours": 0.0262,
+     "tokens_per_second": 12628.2,
+     "gpu_max_memory_gb": 86.56,
+     "held": {
+      "guz": [
+       0.94194,
+       88.4616
+      ],
+      "kam": [
+       0.71429,
+       49.1893
+      ],
+      "kik": [
+       0.9685,
+       39.3577
+      ],
+      "kln": [
+       0.98851,
+       84.8495
+      ],
+      "luo": [
+       0.73333,
+       125.1463
+      ],
+      "lwg": [
+       0.86932,
+       58.5837
+      ],
+      "swa": [
+       0.97765,
+       36.3606
+      ]
+     },
+     "held_macro_accuracy": 0.88479,
+     "held_min_stratum": 0.71429,
+     "base_macro_accuracy": 0.14577,
+     "base_min_stratum": 0.0
+    },
+    {
+     "base": "qwen3-1.7b-base",
+     "fraction": 0.25,
+     "train_units": 32636,
+     "train_tokens": 2370322,
+     "steps": 226,
+     "wallclock_seconds": 140,
+     "gpu_hours": 0.0388,
+     "tokens_per_second": 16950.1,
+     "gpu_max_memory_gb": 90.07,
+     "held": {
+      "guz": [
+       0.9697,
+       66.1379
+      ],
+      "kam": [
+       0.88021,
+       39.5999
+      ],
+      "kik": [
+       0.95082,
+       30.5371
+      ],
+      "kln": [
+       0.97409,
+       63.3582
+      ],
+      "luo": [
+       0.9418,
+       92.8145
+      ],
+      "lwg": [
+       0.86842,
+       45.7741
+      ],
+      "swa": [
+       0.99474,
+       31.1212
+      ]
+     },
+     "held_macro_accuracy": 0.93997,
+     "held_min_stratum": 0.86842,
+     "base_macro_accuracy": 0.14577,
+     "base_min_stratum": 0.0
+    },
+    {
+     "base": "qwen3-1.7b-base",
+     "fraction": 0.5,
+     "train_units": 65132,
+     "train_tokens": 4754984,
+     "steps": 450,
+     "wallclock_seconds": 260,
+     "gpu_hours": 0.0722,
+     "tokens_per_second": 18300.4,
+     "gpu_max_memory_gb": 90.07,
+     "held": {
+      "guz": [
+       0.97475,
+       49.9148
+      ],
+      "kam": [
+       0.91327,
+       32.5741
+      ],
+      "kik": [
+       0.96907,
+       24.8767
+      ],
+      "kln": [
+       0.99495,
+       47.1017
+      ],
+      "luo": [
+       0.97382,
+       67.529
+      ],
+      "lwg": [
+       0.89175,
+       37.5515
+      ],
+      "swa": [
+       1.0,
+       27.3294
+      ]
+     },
+     "held_macro_accuracy": 0.95966,
+     "held_min_stratum": 0.89175,
+     "base_macro_accuracy": 0.14577,
+     "base_min_stratum": 0.0
+    },
+    {
+     "base": "qwen3-8b-base",
+     "fraction": 0.125,
+     "train_units": 16388,
+     "train_tokens": 1189453,
+     "steps": 341,
+     "wallclock_seconds": 201,
+     "gpu_hours": 0.0557,
+     "tokens_per_second": 5932.3,
+     "gpu_max_memory_gb": 78.97,
+     "held": {
+      "guz": [
+       0.96482,
+       53.0442
+      ],
+      "kam": [
+       0.89444,
+       32.9608
+      ],
+      "kik": [
+       0.95288,
+       25.7015
+      ],
+      "kln": [
+       0.9949,
+       51.0981
+      ],
+      "luo": [
+       0.95263,
+       73.2249
+      ],
+      "lwg": [
+       0.87755,
+       38.0393
+      ],
+      "swa": [
+       0.98953,
+       21.254
+      ]
+     },
+     "held_macro_accuracy": 0.94668,
+     "held_min_stratum": 0.87755,
+     "base_macro_accuracy": 0.30268,
+     "base_min_stratum": 0.0
+    },
+    {
+     "base": "qwen3-8b-base",
+     "fraction": 0.25,
+     "train_units": 32636,
+     "train_tokens": 2370322,
+     "steps": 673,
+     "wallclock_seconds": 358,
+     "gpu_hours": 0.0994,
+     "tokens_per_second": 6624.6,
+     "gpu_max_memory_gb": 92.02,
+     "held": {
+      "guz": [
+       0.97,
+       41.2923
+      ],
+      "kam": [
+       0.91795,
+       27.8972
+      ],
+      "kik": [
+       0.99487,
+       21.4456
+      ],
+      "kln": [
+       1.0,
+       39.6428
+      ],
+      "luo": [
+       0.9898,
+       57.3395
+      ],
+      "lwg": [
+       0.89175,
+       31.9187
+      ],
+      "swa": [
+       1.0,
+       19.5255
+      ]
+     },
+     "held_macro_accuracy": 0.96634,
+     "held_min_stratum": 0.89175,
+     "base_macro_accuracy": 0.30268,
+     "base_min_stratum": 0.0
+    },
+    {
+     "base": "qwen3-8b-base",
+     "fraction": 0.5,
+     "train_units": 65132,
+     "train_tokens": 4754984,
+     "steps": 1346,
+     "wallclock_seconds": 704,
+     "gpu_hours": 0.1957,
+     "tokens_per_second": 6750.3,
+     "gpu_max_memory_gb": 92.02,
+     "held": {
+      "guz": [
+       0.9898,
+       34.2077
+      ],
+      "kam": [
+       0.92347,
+       23.5581
+      ],
+      "kik": [
+       0.99492,
+       18.4595
+      ],
+      "kln": [
+       1.0,
+       32.6138
+      ],
+      "luo": [
+       0.9949,
+       45.5882
+      ],
+      "lwg": [
+       0.91795,
+       27.4793
+      ],
+      "swa": [
+       0.99457,
+       17.9735
+      ]
+     },
+     "held_macro_accuracy": 0.97366,
+     "held_min_stratum": 0.91795,
+     "base_macro_accuracy": 0.30268,
+     "base_min_stratum": 0.0
+    }
+   ],
+   "quotes": {
+    "qwen3-1.7b-base": {
+     "curves": {
+      "guz": {
+       "a": 0.99494,
+       "b": 0.02367,
+       "predicted_full_volume": 0.99494,
+       "interval_2sigma": [
+        0.9764,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.94194
+        ],
+        [
+         0.25,
+         0.9697
+        ],
+        [
+         0.5,
+         0.97475
+        ]
+       ]
+      },
+      "kam": {
+       "a": 1.0349,
+       "b": 0.14353,
+       "predicted_full_volume": 1.0,
+       "interval_2sigma": [
+        0.92642,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.71429
+        ],
+        [
+         0.25,
+         0.88021
+        ],
+        [
+         0.5,
+         0.91327
+        ]
+       ]
+      },
+      "kik": {
+       "a": 0.96337,
+       "b": 0.00041,
+       "predicted_full_volume": 0.96337,
+       "interval_2sigma": [
+        0.93403,
+        0.9927
+       ],
+       "points": [
+        [
+         0.125,
+         0.9685
+        ],
+        [
+         0.25,
+         0.95082
+        ],
+        [
+         0.5,
+         0.96907
+        ]
+       ]
+      },
+      "kln": {
+       "a": 0.99229,
+       "b": 0.00465,
+       "predicted_full_volume": 0.99229,
+       "interval_2sigma": [
+        0.96348,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.98851
+        ],
+        [
+         0.25,
+         0.97409
+        ],
+        [
+         0.5,
+         0.99495
+        ]
+       ]
+      },
+      "luo": {
+       "a": 1.12347,
+       "b": 0.17348,
+       "predicted_full_volume": 1.0,
+       "interval_2sigma": [
+        0.9794,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.73333
+        ],
+        [
+         0.25,
+         0.9418
+        ],
+        [
+         0.5,
+         0.97382
+        ]
+       ]
+      },
+      "lwg": {
+       "a": 0.89893,
+       "b": 0.01618,
+       "predicted_full_volume": 0.89893,
+       "interval_2sigma": [
+        0.87914,
+        0.91871
+       ],
+       "points": [
+        [
+         0.125,
+         0.86932
+        ],
+        [
+         0.25,
+         0.86842
+        ],
+        [
+         0.5,
+         0.89175
+        ]
+       ]
+      },
+      "swa": {
+       "a": 1.01315,
+       "b": 0.01612,
+       "predicted_full_volume": 1.0,
+       "interval_2sigma": [
+        1.00349,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.97765
+        ],
+        [
+         0.25,
+         0.99474
+        ],
+        [
+         0.5,
+         1.0
+        ]
+       ]
+      }
+     },
+     "predicted_min_stratum_full": 0.89893,
+     "strata_predicted_to_clear": {
+      "guz": true,
+      "kam": true,
+      "kik": true,
+      "kln": true,
+      "luo": true,
+      "lwg": false,
+      "swa": true
+     },
+     "tokens_per_second": {
+      "mean": 15959.6,
+      "sd": 2963.0
+     },
+     "full_run_gpu_hours_quote": {
+      "estimate": 0.495,
+      "interval": [
+       0.361,
+       0.787
+      ],
+      "basis": "3 epochs over the full train split at the measured throughput; CI from \u00b12\u03c3 throughput"
+     }
+    },
+    "qwen3-8b-base": {
+     "curves": {
+      "guz": {
+       "a": 0.99985,
+       "b": 0.01802,
+       "predicted_full_volume": 0.99985,
+       "interval_2sigma": [
+        0.98792,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.96482
+        ],
+        [
+         0.25,
+         0.97
+        ],
+        [
+         0.5,
+         0.9898
+        ]
+       ]
+      },
+      "kam": {
+       "a": 0.94098,
+       "b": 0.02094,
+       "predicted_full_volume": 0.94098,
+       "interval_2sigma": [
+        0.92629,
+        0.95567
+       ],
+       "points": [
+        [
+         0.125,
+         0.89444
+        ],
+        [
+         0.25,
+         0.91795
+        ],
+        [
+         0.5,
+         0.92347
+        ]
+       ]
+      },
+      "kik": {
+       "a": 1.02293,
+       "b": 0.03033,
+       "predicted_full_volume": 1.0,
+       "interval_2sigma": [
+        0.98869,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.95288
+        ],
+        [
+         0.25,
+         0.99487
+        ],
+        [
+         0.5,
+         0.99492
+        ]
+       ]
+      },
+      "kln": {
+       "a": 1.0034,
+       "b": 0.00368,
+       "predicted_full_volume": 1.0,
+       "interval_2sigma": [
+        0.99924,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.9949
+        ],
+        [
+         0.25,
+         1.0
+        ],
+        [
+         0.5,
+         1.0
+        ]
+       ]
+      },
+      "luo": {
+       "a": 1.02138,
+       "b": 0.03049,
+       "predicted_full_volume": 1.0,
+       "interval_2sigma": [
+        0.99519,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.95263
+        ],
+        [
+         0.25,
+         0.9898
+        ],
+        [
+         0.5,
+         0.9949
+        ]
+       ]
+      },
+      "lwg": {
+       "a": 0.93615,
+       "b": 0.02914,
+       "predicted_full_volume": 0.93615,
+       "interval_2sigma": [
+        0.92635,
+        0.94595
+       ],
+       "points": [
+        [
+         0.125,
+         0.87755
+        ],
+        [
+         0.25,
+         0.89175
+        ],
+        [
+         0.5,
+         0.91795
+        ]
+       ]
+      },
+      "swa": {
+       "a": 0.99974,
+       "b": 0.00364,
+       "predicted_full_volume": 0.99974,
+       "interval_2sigma": [
+        0.98676,
+        1.0
+       ],
+       "points": [
+        [
+         0.125,
+         0.98953
+        ],
+        [
+         0.25,
+         1.0
+        ],
+        [
+         0.5,
+         0.99457
+        ]
+       ]
+      }
+     },
+     "predicted_min_stratum_full": 0.93615,
+     "strata_predicted_to_clear": {
+      "guz": true,
+      "kam": true,
+      "kik": true,
+      "kln": true,
+      "luo": true,
+      "lwg": true,
+      "swa": true
+     },
+     "tokens_per_second": {
+      "mean": 6435.7,
+      "sd": 440.5
+     },
+     "full_run_gpu_hours_quote": {
+      "estimate": 1.227,
+      "interval": [
+       1.079,
+       1.422
+      ],
+      "basis": "3 epochs over the full train split at the measured throughput; CI from \u00b12\u03c3 throughput"
+     }
+    }
+   },
+   "base_selected_by_calibration": "qwen3-8b-base",
+   "selection_rule": "highest predicted minimum-stratum accuracy at full volume; ties \u2192 cheaper quote (A20.13)",
+   "proposed_milestones": [
+    {
+     "milestone": "corpus sealed",
+     "done_condition": "manifest + test_set_seal on host before training",
+     "owner": "training runner",
+     "done": true
+    },
+    {
+     "milestone": "calibration curve",
+     "done_condition": "3 volumes \u00d7 2 bases measured per stratum",
+     "owner": "training runner",
+     "done": true
+    },
+    {
+     "milestone": "optimizer parity",
+     "done_condition": "two arms, identical conditions, M-a/M-b parity reported",
+     "owner": "training runner",
+     "done": false
+    },
+    {
+     "milestone": "full governed run",
+     "done_condition": "adapter trained within the quoted GPU-hour band",
+     "owner": "training runner",
+     "done": false
+    },
+    {
+     "milestone": "MOAC on sealed held-out",
+     "done_condition": "six criteria measured; per-stratum floors gate release",
+     "owner": "admission ceremony",
+     "done": false
+    },
+    {
+     "milestone": "DAP-31 egress distance",
+     "done_condition": "extraction + canary probes within disclosed thresholds",
+     "owner": "training runner",
+     "done": false
+    },
+    {
+     "milestone": "DAP-37 pruned artefact",
+     "done_condition": "pruned adapter re-measured as a new hash",
+     "owner": "training runner",
+     "done": false
+    },
+    {
+     "milestone": "registry admission",
+     "done_condition": "admitted or refused on record; never auto-served",
+     "owner": "admission ceremony",
+     "done": false
+    }
+   ],
+   "recipe": {
+    "optimizer": "adamw",
+    "lr": 0.0002,
+    "muon_lr": 0.01,
+    "muon_momentum": 0.95,
+    "weight_decay": 0.01,
+    "epochs": 1,
+    "max_steps": 0,
+    "batch_size": 512,
+    "grad_accum": 1,
+    "max_seq_len": 256,
+    "tokens_per_batch": 12288,
+    "gradient_checkpointing": false,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+     "q_proj",
+     "k_proj",
+     "v_proj",
+     "o_proj",
+     "gate_proj",
+     "up_proj",
+     "down_proj"
+    ],
+    "warmup_steps": 20,
+    "max_grad_norm": 1.0,
+    "seed": 41,
+    "checkpoint_every": 0,
+    "eval_every": 0
+   }
+  },
+  "finished_at": "2026-09-29T23:33:59Z",
+  "receipt_sha256": "24166e94ccdb989ea60219744570e53d93d868d65f7ecee302a1a596b3d26c4d",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-29T23:33:59Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-c4bec2810778",
+  "started_at_utc": "2026-09-29T22:48:59.859797Z",
+  "finished_at_utc": "2026-09-29T23:33:59Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-c4bec2810778"
+ }
 }

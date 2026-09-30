@@ -1,0 +1,83 @@
+{
+ "deck_id": "deck-estate-eij-1b359b3cbd2e",
+ "tenant_id": "RMS",
+ "spec_version": "v1",
+ "register": "R4",
+ "title": "Estate intelligence \u2014 eij-1b359b3cbd2e",
+ "sample_deck": false,
+ "slides": 8,
+ "exhibits": 7,
+ "current_spec_hash": "fcc6bdec8431435b8a4a31909f683da6ae0e0b5806c694cf88ebb4b6157aeebd",
+ "token_version": "v1",
+ "engine_version": "1.0.0",
+ "producer": "estate_intelligence",
+ "rendered_by": "6ab56dd48894abb269135ca2",
+ "created_at": "2026-09-30T04:00:12.818024Z",
+ "updated_at": "2026-09-30T04:00:12.818034Z",
+ "receipts_resolved": {
+  "eij-1b359b3cbd2e": {
+   "kind": "eij",
+   "status": "partial",
+   "verified": true
+  },
+  "cr-f1415e395361": {
+   "kind": "census_run",
+   "status": null,
+   "verified": true
+  },
+  "cr-cf4eef79995b": {
+   "kind": "census_run",
+   "status": null,
+   "verified": true
+  }
+ },
+ "lint": [],
+ "errors": [],
+ "live_motion": false,
+ "pdf_capability": {
+  "available": true,
+  "binary": "/bin/google-chrome",
+  "method": "headless browser print pipeline from the same HTML (DR-R9)"
+ },
+ "versions": [
+  {
+   "spec_hash": "fcc6bdec8431435b8a4a31909f683da6ae0e0b5806c694cf88ebb4b6157aeebd",
+   "token_version": "v1",
+   "engine_version": "1.0.0",
+   "first_rendered_at": "2026-09-30T04:00:11.661980Z",
+   "render_count": 1,
+   "artifact": {
+    "html": {
+     "path": "/app/assessment_workspace/phase0/deck_engine_state/RMS/deck-estate-eij-1b359b3cbd2e/fcc6bdec8431435b-v1-1.0.0.html",
+     "sha256": "8a5892ceee2f28b8db5a95b3f08329050780c67636689b1be578019e1a90e539",
+     "size": 19619
+    },
+    "pdf": {
+     "exported": true,
+     "path": "/app/assessment_workspace/phase0/deck_engine_state/RMS/deck-estate-eij-1b359b3cbd2e/fcc6bdec8431435b-v1-1.0.0.pdf",
+     "sha256": "608086a2471f9ea82ccc08ae172a28c44341114888196c8da7efb99c6c979895",
+     "size": 131806,
+     "check": {
+      "checked": true,
+      "survives": true,
+      "missing": [],
+      "pages": 1
+     },
+     "determinism_note": "PDF bytes carry producer metadata; determinism is asserted on the HTML artifact of record"
+    }
+   },
+   "authoring": {
+    "tokens": 0,
+    "source": "deterministic producer estate_intelligence_deck; no model authored the spec"
+   },
+   "last_rendered_at": "2026-09-30T04:00:11.661994Z",
+   "byte_identical_rerender": null
+  }
+ ],
+ "economics": {
+  "authoring_tokens_total": 0,
+  "renders_total": 1,
+  "rerender_authoring_tokens": 0,
+  "note": "re-renders and register switches invoke no authoring model by construction (DR-R12); tokens are read from the producer's chokepoint receipt, never estimated"
+ }
+}

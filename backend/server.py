@@ -522,6 +522,11 @@ app.include_router(portal_census_autonomy_producer_router.router)
 from routers import dap_buildskill as dap_buildskill_router  # noqa: E402
 app.include_router(dap_buildskill_router.router)  # router path carries /api/dap/buildskill/provisioning-records
 
+# M6.1 · Deck Rendering Engine v1 (DR-R1–R14): deterministic, token-bound rendering of DeckSpec_v1 — routes /api/decks/*
+from routers import decks as decks_router  # noqa: E402
+app.include_router(decks_router.router)
+
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}

@@ -2,9 +2,9 @@
  "job_id": "eij-91933223a5b1",
  "status": "partial",
  "measured_at": "2026-09-29T18:49:55.453268Z",
- "built_at": "2026-09-29T22:55:38.511183Z",
+ "built_at": "2026-09-30T03:43:16.437485Z",
  "reading": "19 databases and 703 tables (12.8 GiB, \u224825,599,098 rows) were measured; 0.3% of rows repeat exactly, 11.1% carry damage, 35.6% have empty required-looking fields and 61.1% of sampled rows carry personal-data markers. About 358.0 MiB (2.7%) looks reclaimable.",
- "report_version": 2,
+ "report_version": 3,
  "headline": {
   "connections": 5,
   "databases": 19,
@@ -3638,9 +3638,51 @@
   }
  ],
  "cost_strategies": {
-  "currency_note": "No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COST_PER_GB_MONTH to price them.",
+  "currency_note": "Priced with database storage at USD 0.1095/GB-month and object storage at USD 0.023/GB-month (reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month); overlaps between strategies are possible, so the total is an upper bound.",
   "same_schema_groups": 80,
   "items": [
+   {
+    "key": "obs_cold_buckets",
+    "store": "object",
+    "title": "Move buckets not written for over a year to archive-class storage",
+    "bytes": 46053848308678,
+    "action": "Apply a lifecycle rule (Standard \u2192 Archive/Cold) on buckets whose last object write is older than a year; keep listing metadata hot.",
+    "evidence": [
+     "music-bucket-rms \u00b7 last write 916 days before the census \u00b7 4.9 TiB",
+     "na7p43do \u00b7 last write 908 days before the census \u00b7 4.1 TiB",
+     "na7p43js \u00b7 last write 909 days before the census \u00b7 3.6 TiB",
+     "na7p434j \u00b7 last write 908 days before the census \u00b7 3.5 TiB",
+     "na7p41hj \u00b7 last write 915 days before the census \u00b7 3.5 TiB",
+     "na7p42xe \u00b7 last write 907 days before the census \u00b7 3.4 TiB"
+    ],
+    "risk": "Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee.",
+    "share_of_estate": null,
+    "monthly_saving": 986.49,
+    "bytes_label": "41.9 TiB",
+    "saving_basis": "upper bound at the full Standard tariff (set ESTATE_ARCHIVE_STORAGE_COST_PER_GB_MONTH for the tiering delta)",
+    "currency": "USD"
+   },
+   {
+    "key": "obs_duplicate_objects",
+    "store": "object",
+    "title": "Reconcile duplicate objects across OBS buckets",
+    "bytes": 8417550655111,
+    "action": "Confirm ETag+size candidates by object hash, keep one copy per bucket and replace the rest with references or lifecycle-delete them.",
+    "evidence": [
+     "na7p43do \u00b7 197,528 candidates \u00b7 \u22481.7 TiB",
+     "na7p4oco \u00b7 166,328 candidates \u00b7 \u22481.0 TiB",
+     "na7p434j \u00b7 2,890 candidates \u00b7 \u2248674.1 GiB",
+     "na7p42yg \u00b7 4,197 candidates \u00b7 \u2248501.9 GiB",
+     "music-bucket-rms \u00b7 14,696 candidates \u00b7 \u2248485.3 GiB",
+     "2024offairrecs \u00b7 16,589 candidates \u00b7 \u2248461.8 GiB"
+    ],
+    "risk": "Candidates share ETag and size, which for multipart uploads is not a content hash; bytes are candidates \u00d7 mean object size, an estimate. Confirm before deleting.",
+    "share_of_estate": null,
+    "monthly_saving": 180.31,
+    "bytes_label": "7.7 TiB",
+    "saving_basis": null,
+    "currency": "USD"
+   },
    {
     "key": "archive_stale",
     "title": "Move tables not written for over a year to cold storage",
@@ -3655,9 +3697,12 @@
      "viutickets.media \u00b7 613 days \u00b7 152.7 MiB"
     ],
     "risk": "Staleness is read from the latest timestamp column; tables without timestamps are not counted as stale.",
+    "store": "database",
     "share_of_estate": 0.5061,
-    "monthly_saving": null,
-    "bytes_label": "6.5 GiB"
+    "monthly_saving": 0.71,
+    "bytes_label": "6.5 GiB",
+    "saving_basis": null,
+    "currency": "USD"
    },
    {
     "key": "redundant_indexes",
@@ -3673,9 +3718,12 @@
      "saa.questions \u00b7 idx_questionnaire_id covered by idx_questionnaire_order"
     ],
     "risk": "Write amplification falls immediately; verify no query hints name the dropped index.",
+    "store": "database",
     "share_of_estate": 0.0156,
-    "monthly_saving": null,
-    "bytes_label": "204.0 MiB"
+    "monthly_saving": 0.02,
+    "bytes_label": "204.0 MiB",
+    "saving_basis": null,
+    "currency": "USD"
    },
    {
     "key": "within_table_dedup",
@@ -3691,9 +3739,12 @@
      "viutickets.movie_shows \u00b7 12.6% repeated \u00b7 3.5 MiB"
     ],
     "risk": "Duplicates measured on complete passes or stratified samples; the primary key was excluded from the comparison.",
+    "store": "database",
     "share_of_estate": 0.0067,
-    "monthly_saving": null,
-    "bytes_label": "87.6 MiB"
+    "monthly_saving": 0.01,
+    "bytes_label": "87.6 MiB",
+    "saving_basis": null,
+    "currency": "USD"
    },
    {
     "key": "cross_table_consolidation",
@@ -3709,9 +3760,12 @@
      "iebc_forms/viutickets.movie_shows \u2194 viupay/viutickets.movie_shows \u00b7 overlap 80.0% \u00b7 3.5 MiB"
     ],
     "risk": "Copies may be deliberate (staging, backups). Confirm ownership before retirement; the sketch overlap is an estimate, not a row-level diff.",
+    "store": "database",
     "share_of_estate": 0.0042,
-    "monthly_saving": null,
-    "bytes_label": "55.5 MiB"
+    "monthly_saving": 0.01,
+    "bytes_label": "55.5 MiB",
+    "saving_basis": null,
+    "currency": "USD"
    },
    {
     "key": "drop_empty",
@@ -3730,9 +3784,12 @@
      "\u2026 292 more"
     ],
     "risk": "Empty by TABLE_ROWS estimate; a freshly truncated live table looks the same.",
+    "store": "database",
     "share_of_estate": 0.0008,
-    "monthly_saving": null,
-    "bytes_label": "10.9 MiB"
+    "monthly_saving": 0.0,
+    "bytes_label": "10.9 MiB",
+    "saving_basis": null,
+    "currency": "USD"
    },
    {
     "key": "orphan_repair",
@@ -3748,9 +3805,12 @@
      "viutickets.booked_concessions.booking_id \u2192 bookings \u00b7 100.0% orphaned of 3 sampled"
     ],
     "risk": "Targets were inferred from column names (x_id \u2192 x/xs); a missing target may be a naming convention, not a break.",
+    "store": "database",
     "share_of_estate": 0.0,
     "monthly_saving": null,
-    "bytes_label": "not a storage saving"
+    "bytes_label": "not a storage saving",
+    "saving_basis": null,
+    "currency": null
    },
    {
     "key": "pii_minimisation",
@@ -3766,11 +3826,755 @@
      "news_vault.audits \u00b7 100.0% of sampled rows"
     ],
     "risk": "Detector is deterministic and sampled; absence of a marker is not absence of personal data.",
+    "store": "database",
     "share_of_estate": 0.0,
     "monthly_saving": null,
-    "bytes_label": "not a storage saving"
+    "bytes_label": "not a storage saving",
+    "saving_basis": null,
+    "currency": null
    }
-  ]
+  ],
+  "tariff": {
+   "database_per_gb_month": 0.1095,
+   "object_per_gb_month": 0.023,
+   "archive_per_gb_month": null,
+   "currency": "USD",
+   "source": "reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month"
+  },
+  "monthly_saving_total": 1167.55,
+  "currency": "USD"
+ },
+ "stores": {
+  "obs": {
+   "measured": true,
+   "kind": "object",
+   "unit_name": "objects",
+   "census_run_id": "cr-f1415e395361",
+   "observed_at": "2026-09-29T04:25:35.113924+00:00",
+   "status": "partial",
+   "reason_code": "SOURCE_COVERAGE_INCOMPLETE",
+   "result_receipt": "20260929T042535Z_cr-81526aa143aa_result.json",
+   "census_run_ids": [
+    "cr-f1415e395361",
+    "cr-aa33fffba60e",
+    "cr-1d92cb65abdd",
+    "cr-81526aa143aa"
+   ],
+   "sources": 106,
+   "sources_complete": 66,
+   "sources_blocked": 40,
+   "units": 22975591,
+   "bytes": 143284816848890,
+   "bytes_label": "130.3 TiB",
+   "frontier_complete": true,
+   "duplicate_candidates": 1139768,
+   "duplicate_bytes_estimate": 8417550655111,
+   "duplicate_pct_of_units": 5.0,
+   "cold_sources": 43,
+   "cold_bytes": 46053848308678,
+   "cold_bytes_label": "41.9 TiB",
+   "blocked": [
+    {
+     "label": "apr252017",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "citizen-vod",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "elections",
+     "reason_code": "ClientError"
+    },
+    {
+     "label": "feb272017",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "instore-radio-items",
+     "reason_code": "ClientError"
+    },
+    {
+     "label": "iso-rms-storage",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "librarydirectupload2",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p4100",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p410c",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p419y",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p41ab",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p41f4",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p41j6",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p41jk",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p42ry",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p42s5",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p42s7",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p42tq",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p42tz",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p435c",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p4374",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p43d6",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p43dj",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p43hs",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p43jw",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p49pc",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p4omz",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p4oxs",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p4oy4",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "na7p4oz6",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "obituariesdata",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "one-signal-live-service",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "onesignal-logos",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "onsignal-bucket",
+     "reason_code": "ClientError"
+    },
+    {
+     "label": "private-isos",
+     "reason_code": "ClientError"
+    },
+    {
+     "label": "razuna-direct-access",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "rms-acronis-backup-bucket",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "rms-ai",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "sdatauploadroyalmedia.co.ke",
+     "reason_code": "NoSuchBucket"
+    },
+    {
+     "label": "seconddatauploadroyalmedia.co.ke",
+     "reason_code": "NoSuchBucket"
+    }
+   ],
+   "top_sources": [
+    {
+     "label": "2024offairrecs",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 3174515,
+     "bytes": 94887018147832,
+     "duplicate_candidates": 16589,
+     "duplicate_bytes_estimate": 495849206588,
+     "last_write": "2026-09-29T03:00:04.630000Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 3,131,277",
+      ".mp3 27,002",
+      "no_extension 15,658",
+      ".mpt 408"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "music-bucket-rms",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 152801,
+     "bytes": 5418511376237,
+     "duplicate_candidates": 14696,
+     "duplicate_bytes_estimate": 521138233291,
+     "last_write": "2024-03-26T05:26:00.449000Z",
+     "idle_days": 916,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 146,617",
+      ".txt 1,183",
+      ".flx 1,086",
+      ".rpt 610"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p43do",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 484480,
+     "bytes": 4509107713524,
+     "duplicate_candidates": 197528,
+     "duplicate_bytes_estimate": 1838414441126,
+     "last_write": "2024-04-04T02:11:50.597000Z",
+     "idle_days": 908,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mp3 326,105",
+      ".mts 39,439",
+      ".vis 39,437",
+      ".wav 12,472"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p43js",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 307998,
+     "bytes": 3925132031528,
+     "duplicate_candidates": 27187,
+     "duplicate_bytes_estimate": 346471615209,
+     "last_write": "2024-04-02T06:06:20.407000Z",
+     "idle_days": 909,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".ogg 118,600",
+      ".mp3 85,079",
+      ".adf 25,484",
+      ".vis 21,622"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p434j",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 15377,
+     "bytes": 3851319830532,
+     "duplicate_candidates": 2890,
+     "duplicate_bytes_estimate": 723828725384,
+     "last_write": "2024-04-04T00:20:28.559000Z",
+     "idle_days": 908,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mov 5,427",
+      ".avi 4,258",
+      ".jpg 2,157",
+      ".txt 1,767"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p41hj",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 15885,
+     "bytes": 3823658684997,
+     "duplicate_candidates": 1852,
+     "duplicate_bytes_estimate": 445792627297,
+     "last_write": "2024-03-27T08:11:46.711000Z",
+     "idle_days": 915,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mov 10,488",
+      ".mp4 2,347",
+      ".txt 1,519",
+      ".avi 1,198"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p42xe",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 13965,
+     "bytes": 3782751436312,
+     "duplicate_candidates": 1120,
+     "duplicate_bytes_estimate": 303378561308,
+     "last_write": "2024-04-04T09:56:20.886000Z",
+     "idle_days": 907,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 6,241",
+      ".mov 5,519",
+      ".txt 1,434",
+      ".avi 309"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p42xw",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 25088,
+     "bytes": 3737793105483,
+     "duplicate_candidates": 2391,
+     "duplicate_bytes_estimate": 356228607908,
+     "last_write": "2024-03-31T09:49:02.340000Z",
+     "idle_days": 911,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mov 15,321",
+      ".txt 3,389",
+      ".avi 3,065",
+      ".mp4 1,289"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p42yg",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 28059,
+     "bytes": 3603126472325,
+     "duplicate_candidates": 4197,
+     "duplicate_bytes_estimate": 538947282666,
+     "last_write": "2024-03-31T01:51:47.474000Z",
+     "idle_days": 912,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mov 21,920",
+      ".txt 3,169",
+      ".jpg 1,446",
+      ".avi 995"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p43d3",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 16396,
+     "bytes": 3192413625433,
+     "duplicate_candidates": 1395,
+     "duplicate_bytes_estimate": 271616065350,
+     "last_write": "2024-03-30T14:39:39.933000Z",
+     "idle_days": 912,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mov 10,623",
+      ".txt 2,032",
+      ".avi 1,270",
+      ".mp4 1,099"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "na7p4oco",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 468637,
+     "bytes": 3140010812698,
+     "duplicate_candidates": 166328,
+     "duplicate_bytes_estimate": 1114448322378,
+     "last_write": "2024-04-03T20:50:57.931000Z",
+     "idle_days": 908,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mp3 218,902",
+      ".mts 36,886",
+      ".vis 36,878",
+      ".tmp 15,781"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    },
+    {
+     "label": "rmsbroadcast",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 142739,
+     "bytes": 1635886676680,
+     "duplicate_candidates": 5060,
+     "duplicate_bytes_estimate": 57991064698,
+     "last_write": "2024-03-24T09:25:18.604000Z",
+     "idle_days": 918,
+     "cold": true,
+     "reason_code": null,
+     "top_formats": [
+      ".mp3 127,221",
+      ".mp4 9,923",
+      ".mov 1,916",
+      ".m4v 1,550"
+     ],
+     "pending": null,
+     "content_measurement": "unmeasured"
+    }
+   ],
+   "method": "External S3-compatible ListObjectsV2, all returned pages, 16 bounded concurrent bucket listings; continuation tokens and page sums are checkpointed on the worker so successive bounded runs resume; ETag+size candidates are not proven byte duplicates; no object bodies read",
+   "duplication_note": "Duplicate candidates are objects whose ETag+size fingerprint was already seen in the same store; duplicate bytes = candidates \u00d7 mean object size of the bucket (estimate). Not proven byte duplicates."
+  },
+  "nas": {
+   "measured": true,
+   "kind": "file",
+   "unit_name": "files",
+   "census_run_id": "cr-cf4eef79995b",
+   "observed_at": "2026-09-29T03:48:16.100915+00:00",
+   "status": "complete",
+   "reason_code": null,
+   "result_receipt": "20260929T034816Z_cr-cf4eef79995b_result.json",
+   "census_run_ids": [
+    "cr-cf4eef79995b"
+   ],
+   "sources": 16,
+   "sources_complete": 16,
+   "sources_blocked": 0,
+   "units": 1456787,
+   "bytes": 47990537059397,
+   "bytes_label": "43.6 TiB",
+   "frontier_complete": true,
+   "duplicate_candidates": null,
+   "duplicate_bytes_estimate": null,
+   "duplicate_pct_of_units": null,
+   "cold_sources": 0,
+   "cold_bytes": 0,
+   "cold_bytes_label": "0 B",
+   "blocked": [],
+   "top_sources": [
+    {
+     "label": "channel01",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95122,
+     "bytes": 7558110616363,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:25:01.311178Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,108",
+      ".rmd 6",
+      ".mpt 3",
+      ".db 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "channel02",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95134,
+     "bytes": 7554077911793,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:25:05.819412Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,129",
+      ".db 1",
+      ".jpg 1",
+      ".rep 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "channel16",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 94597,
+     "bytes": 7489448038139,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:45:03.715768Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 94,592",
+      ".db 1",
+      ".jpg 1",
+      ".rep 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "Channel15",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95635,
+     "bytes": 2096880514969,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:22:57.737248Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,627",
+      ".rmd 3",
+      ".db 1",
+      ".jpg 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "Channel14",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95615,
+     "bytes": 2096466549824,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:18:10.574562Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,609",
+      ".rmd 2",
+      ".db 1",
+      ".jpg 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "Channel11",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95602,
+     "bytes": 2096134190700,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:12:09.048574Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,592",
+      ".rmd 6",
+      ".db 1",
+      ".jpg 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "Channel12",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95600,
+     "bytes": 2095896659085,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:15:28.913646Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,590",
+      ".rmd 6",
+      ".db 1",
+      ".jpg 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "channel07",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95550,
+     "bytes": 2094943913872,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:36:51.270784Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,546",
+      ".db 1",
+      ".jpg 1",
+      ".rep 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "channel06",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95548,
+     "bytes": 2094764444407,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:35:21.881683Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,544",
+      ".db 1",
+      ".jpg 1",
+      ".rep 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "channel05",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95494,
+     "bytes": 2093749701140,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:34:34.485438Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,490",
+      ".db 1",
+      ".jpg 1",
+      ".rep 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "channel04",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95475,
+     "bytes": 2093115689535,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:30:03.144274Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,470",
+      ".db 1",
+      ".jpg 1",
+      ".rep 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    },
+    {
+     "label": "channel03",
+     "status": "complete",
+     "enumeration": "full",
+     "units": 95419,
+     "bytes": 2092023249379,
+     "duplicate_candidates": null,
+     "duplicate_bytes_estimate": 0,
+     "last_write": "2026-09-29T03:29:36.059011Z",
+     "idle_days": 0,
+     "cold": false,
+     "reason_code": null,
+     "top_formats": [
+      ".mp4 95,415",
+      ".db 1",
+      ".jpg 1",
+      ".rep 1"
+     ],
+     "pending": 0,
+     "content_measurement": "sampled"
+    }
+   ],
+   "method": "External read-only directory/stat enumeration on the admitted mount, 2 bounded concurrent walkers over a shared queue; directories are committed only when fully scanned and the frontier is checkpointed on the worker so successive bounded runs resume until the share is complete; path-hash-pinned sample of up to three media per channel, ffprobe; duration covers inspected sample only",
+   "duplication_note": "This enumeration recorded no content fingerprints (stat/listing only), so duplication is unmeasured; sizes and dates were read, bodies were not."
+  }
  },
  "degradation": {
   "kinds": {
@@ -3953,7 +4757,7 @@
     "degraded_ratio": 0.2545,
     "dead_column_share": 0.0793,
     "write_span_days": 1041,
-    "days_since_last_write": 546,
+    "days_since_last_write": 547,
     "growth": {
      "rows_delta": null,
      "bytes_delta": null,
@@ -5472,9 +6276,9 @@
    "code": "PULL_SEAM_WORKER_FAILED:pymysql.err.OperationalError: 1045 Access denied for user bramuel159.138.173.250 using password:"
   }
  ],
- "coverage_note": "RMS MySQL only (owner order 1-a). OBS object and NAS file duplication follow from the enumeration frontier; languages, rights and semantic (embedding) similarity were not measured. Text near-duplicates use MinHash on the jump host so row text never left the estate.",
+ "coverage_note": "RMS MySQL measured in depth (owner order 1-a). OBS object and NAS file estates are read from their retained enumeration receipts (listing and stat only: sizes, dates, ETag+size duplicate candidates; no object or file body); languages, rights and semantic (embedding) similarity were not measured. Text near-duplicates use MinHash on the jump host so row text never left the estate.",
  "method_note": "Ratios are measured on complete passes (tables \u2264100k rows) or stratified keyset samples (8\u00d75k rows) and disclosed per table; cross-table overlap is a bottom-256 sketch Jaccard estimate over same-schema tables; no row values were retained or returned.",
  "row_values_retained": false,
  "brief_path": "/briefs/Akki_Estate_Intelligence_eij-91933223a5b1.md",
- "brief_sha256": "ba7e33704ab55edd668bc5b6bcef40582e8612d0a7d049982d1d6f7d95e4da3f"
+ "brief_sha256": "13b88e5a5837907b8c1b03ee668eb6ca732e8821cd011a834ccb6542fc5e05de"
 }

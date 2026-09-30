@@ -1,0 +1,309 @@
+{
+ "owner_order": "2026-09-30 owner choice 2a: launch a milder DP sweep on akki-vm (lower noise multiplier, adversary 0.2-0.5, same corpus/split/seed) - explicit recipe-change authorisation after the pinned 4b recipe (A3/B3) was measured NOT ADMISSIBLE.",
+ "design_note": "Anchored on the measured runs: A2 (lcj-401ba1ef4f7f: adversary 0.2, bottleneck 128, no bottleneck noise, lr 3e-4, noise 1.0, 20 epochs) reached 0.774 judged accuracy at eps 3.47 and was still improving at epoch 20; A3/B3 (lr 1e-3, bottleneck 16-32, bottleneck noise 0.5-1.0, adversary 1.0-2.0) were unstable or collapsed. The sweep keeps lr 3e-4 and 40 epochs, adds logit adjustment for the minority languages (lwg/kam), a 64-dim bottleneck with light noise, and varies the DP noise multiplier 1.0 (control) / 0.7 / 0.5 at clip 1.0. Arm C4 tests a stronger speaker constraint at the middle noise. Two arms run concurrently (one per H200); the rest queue.",
+ "plan": {
+  "host": "akki-vm",
+  "gpu_slots": [
+   0,
+   1
+  ],
+  "owner_order_ref": "owner-order 2026-09-30 2a: milder DP recipe sweep on akki-vm (noise multiplier 1.0/0.7/0.5 at clip 1.0, adversary 0.2-0.5, bottleneck 64, bottleneck noise 0.1-0.25, logit adjustment 1.0, lr 3e-4, 40 epochs; same corpus, split and seed)",
+  "common": {
+   "baseline_job_id": "lcj-f96c86a16312",
+   "seed": 41,
+   "epochs": 40,
+   "batch_size": 2048,
+   "physical_batch_size": 1024,
+   "max_windows_per_file": 180,
+   "parallelism": 24,
+   "lr": 0.0003,
+   "max_grad_norm": 1.0,
+   "delta": 1e-06,
+   "smoke_steps": 0,
+   "logit_adjustment_tau": 1.0,
+   "condition_loss_weight": 0.05
+  }
+ },
+ "arms": [
+  {
+   "name": "C2-dp0.7-mild",
+   "params": {
+    "noise_multiplier": 0.7,
+    "adversary_strength": 0.2,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.1,
+    "speaker_loss_weight": 0.2
+   },
+   "job_id": "lcj-e80e727f40d6",
+   "gpu_index": 0,
+   "status": "completed",
+   "submitted_at": "2026-09-30T03:29:03.667576Z",
+   "params_submitted": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "seed": 41,
+    "epochs": 40,
+    "batch_size": 2048,
+    "physical_batch_size": 1024,
+    "max_windows_per_file": 180,
+    "parallelism": 24,
+    "lr": 0.0003,
+    "max_grad_norm": 1.0,
+    "delta": 1e-06,
+    "smoke_steps": 0,
+    "logit_adjustment_tau": 1.0,
+    "condition_loss_weight": 0.05,
+    "noise_multiplier": 0.7,
+    "adversary_strength": 0.2,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.1,
+    "speaker_loss_weight": 0.2,
+    "gpu_index": 0,
+    "owner_order_ref": "owner-order 2026-09-30 2a: milder DP recipe sweep on akki-vm (noise multiplier 1.0/0.7/0.5 at clip 1.0, adversary 0.2-0.5, bottleneck 64, bottleneck noise 0.1-0.25, logit adjustment 1.0, lr 3e-4, 40 epochs; same corpus, split and seed)"
+   },
+   "reason": null,
+   "finished_at": "2026-09-30T04:18:39Z",
+   "process_alive": false,
+   "summary": {
+    "verdict": "NOT ADMISSIBLE \u2014 research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance",
+    "epsilon": 11.552532348787715,
+    "held_out": {
+     "guz": [
+      0.67466,
+      0.07494
+     ],
+     "kam": [
+      0.59792,
+      0.12088
+     ],
+     "kik": [
+      0.83732,
+      0.04489
+     ],
+     "kln": [
+      0.87553,
+      0.05652
+     ],
+     "luo": [
+      0.85304,
+      0.05528
+     ],
+     "lwg": [
+      0.09499,
+      0.1492
+     ],
+     "swa": [
+      0.86893,
+      0.06066
+     ]
+    },
+    "overall_accuracy_on_judged": 0.80112,
+    "overall_abstention": 0.06708,
+    "archive_test_accuracy": 0.67087,
+    "best_dev_epoch": 30,
+    "steps": 3560,
+    "windows_per_second": 2707.0,
+    "elapsed_seconds": 2965,
+    "probe_guz": {
+     "bottleneck": [
+      0.5283,
+      0.0556,
+      0.2992
+     ],
+     "artefact_output_logits": [
+      0.4005,
+      0.0556,
+      0.2992
+     ],
+     "encoder_representation": [
+      0.7033,
+      0.0556,
+      0.2992
+     ]
+    },
+    "egress_at_chance_all_languages": false,
+    "internal_at_chance": false,
+    "meets_default": 0.9,
+    "artefact_sha256": "5b96caeea46f68085ffc2fa113d5898844fea91eb2b17ff0311e1732e8979abd"
+   }
+  },
+  {
+   "name": "C3-dp0.5-mild",
+   "params": {
+    "noise_multiplier": 0.5,
+    "adversary_strength": 0.2,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.1,
+    "speaker_loss_weight": 0.2
+   },
+   "job_id": "lcj-aeebac849949",
+   "gpu_index": 1,
+   "status": "completed",
+   "submitted_at": "2026-09-30T03:29:10.667923Z",
+   "params_submitted": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "seed": 41,
+    "epochs": 40,
+    "batch_size": 2048,
+    "physical_batch_size": 1024,
+    "max_windows_per_file": 180,
+    "parallelism": 24,
+    "lr": 0.0003,
+    "max_grad_norm": 1.0,
+    "delta": 1e-06,
+    "smoke_steps": 0,
+    "logit_adjustment_tau": 1.0,
+    "condition_loss_weight": 0.05,
+    "noise_multiplier": 0.5,
+    "adversary_strength": 0.2,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.1,
+    "speaker_loss_weight": 0.2,
+    "gpu_index": 1,
+    "owner_order_ref": "owner-order 2026-09-30 2a: milder DP recipe sweep on akki-vm (noise multiplier 1.0/0.7/0.5 at clip 1.0, adversary 0.2-0.5, bottleneck 64, bottleneck noise 0.1-0.25, logit adjustment 1.0, lr 3e-4, 40 epochs; same corpus, split and seed)"
+   },
+   "reason": null,
+   "finished_at": "2026-09-30T04:18:44Z",
+   "process_alive": false,
+   "summary": {
+    "verdict": "NOT ADMISSIBLE \u2014 research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance",
+    "epsilon": 33.289122350880085,
+    "held_out": {
+     "guz": [
+      0.63075,
+      0.16262
+     ],
+     "kam": [
+      0.41985,
+      0.39444
+     ],
+     "kik": [
+      0.88235,
+      0.09243
+     ],
+     "kln": [
+      0.8738,
+      0.13977
+     ],
+     "luo": [
+      0.8448,
+      0.15635
+     ],
+     "lwg": [
+      0.12684,
+      0.39787
+     ],
+     "swa": [
+      0.89201,
+      0.14301
+     ]
+    },
+    "overall_accuracy_on_judged": 0.79732,
+    "overall_abstention": 0.17612,
+    "archive_test_accuracy": 0.61809,
+    "best_dev_epoch": 12,
+    "steps": 3560,
+    "windows_per_second": 2706.4,
+    "elapsed_seconds": 2963,
+    "probe_guz": {
+     "bottleneck": [
+      0.5446,
+      0.0556,
+      0.2992
+     ],
+     "artefact_output_logits": [
+      0.4128,
+      0.0556,
+      0.2992
+     ],
+     "encoder_representation": [
+      0.6975,
+      0.0556,
+      0.2992
+     ]
+    },
+    "egress_at_chance_all_languages": false,
+    "internal_at_chance": false,
+    "meets_default": 0.9,
+    "artefact_sha256": "5954043178d404c2f9e13a01ee33613ed58feeb4b800ff6eaa135a20e0f4d596"
+   }
+  },
+  {
+   "name": "C1-dp1.0-mild-control",
+   "params": {
+    "noise_multiplier": 1.0,
+    "adversary_strength": 0.2,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.1,
+    "speaker_loss_weight": 0.2
+   },
+   "job_id": "lcj-8f389a806e45",
+   "gpu_index": 0,
+   "status": "running",
+   "submitted_at": "2026-09-30T04:22:52.944877Z",
+   "params_submitted": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "seed": 41,
+    "epochs": 40,
+    "batch_size": 2048,
+    "physical_batch_size": 1024,
+    "max_windows_per_file": 180,
+    "parallelism": 24,
+    "lr": 0.0003,
+    "max_grad_norm": 1.0,
+    "delta": 1e-06,
+    "smoke_steps": 0,
+    "logit_adjustment_tau": 1.0,
+    "condition_loss_weight": 0.05,
+    "noise_multiplier": 1.0,
+    "adversary_strength": 0.2,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.1,
+    "speaker_loss_weight": 0.2,
+    "gpu_index": 0,
+    "owner_order_ref": "owner-order 2026-09-30 2a: milder DP recipe sweep on akki-vm (noise multiplier 1.0/0.7/0.5 at clip 1.0, adversary 0.2-0.5, bottleneck 64, bottleneck noise 0.1-0.25, logit adjustment 1.0, lr 3e-4, 40 epochs; same corpus, split and seed)"
+   },
+   "reason": null,
+   "finished_at": null,
+   "process_alive": true
+  },
+  {
+   "name": "C4-dp0.7-medium",
+   "params": {
+    "noise_multiplier": 0.7,
+    "adversary_strength": 0.5,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.25,
+    "speaker_loss_weight": 0.5
+   },
+   "job_id": "lcj-f2b615e032c4",
+   "gpu_index": 1,
+   "status": "running",
+   "submitted_at": "2026-09-30T04:22:59.412960Z",
+   "params_submitted": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "seed": 41,
+    "epochs": 40,
+    "batch_size": 2048,
+    "physical_batch_size": 1024,
+    "max_windows_per_file": 180,
+    "parallelism": 24,
+    "lr": 0.0003,
+    "max_grad_norm": 1.0,
+    "delta": 1e-06,
+    "smoke_steps": 0,
+    "logit_adjustment_tau": 1.0,
+    "condition_loss_weight": 0.05,
+    "noise_multiplier": 0.7,
+    "adversary_strength": 0.5,
+    "bottleneck_dim": 64,
+    "bottleneck_noise": 0.25,
+    "speaker_loss_weight": 0.5,
+    "gpu_index": 1,
+    "owner_order_ref": "owner-order 2026-09-30 2a: milder DP recipe sweep on akki-vm (noise multiplier 1.0/0.7/0.5 at clip 1.0, adversary 0.2-0.5, bottleneck 64, bottleneck noise 0.1-0.25, logit adjustment 1.0, lr 3e-4, 40 epochs; same corpus, split and seed)"
+   },
+   "reason": null,
+   "finished_at": null,
+   "process_alive": true
+  }
+ ]
+}

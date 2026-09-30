@@ -134,9 +134,46 @@
  "stages": {
   "calibrate": {
    "job_id": "m9j-c4bec2810778",
-   "status": "running",
+   "status": "completed",
    "reason": null,
-   "finished_at": null
+   "finished_at": "2026-09-29T23:33:59Z",
+   "result_keys": [
+    "base_selected_by_calibration",
+    "corpus_id",
+    "fractions",
+    "manifest_sha256",
+    "proposed_milestones",
+    "quotes",
+    "recipe",
+    "runs",
+    "selection_rule",
+    "task"
+   ],
+   "base_selected": "qwen3-8b-base",
+   "quotes": {
+    "qwen3-1.7b-base": {
+     "predicted_min_stratum_full": 0.89893,
+     "gpu_hours": {
+      "estimate": 0.495,
+      "interval": [
+       0.361,
+       0.787
+      ],
+      "basis": "3 epochs over the full train split at the measured throughput; CI from \u00b12\u03c3 throughput"
+     }
+    },
+    "qwen3-8b-base": {
+     "predicted_min_stratum_full": 0.93615,
+     "gpu_hours": {
+      "estimate": 1.227,
+      "interval": [
+       1.079,
+       1.422
+      ],
+      "basis": "3 epochs over the full train split at the measured throughput; CI from \u00b12\u03c3 throughput"
+     }
+    }
+   }
   },
   "compare": {
    "job_id": "m9j-1e1b97ce8e1c",
@@ -177,6 +214,190 @@
       "gpu_hours_to_convergence": 0.0441,
       "moac_m_e_calibration": 0.01562
      }
+    }
+   }
+  },
+  "train_selected": {
+   "job_id": "m9j-74af7cef0a85",
+   "status": "completed",
+   "base": "qwen3-8b-base",
+   "optimizer": "adamw",
+   "reason": null,
+   "finished_at": "2026-09-30T00:48:34Z",
+   "result_keys": [
+    "adapter_eval",
+    "artefact",
+    "base_eval",
+    "checkpoint",
+    "corpus",
+    "corpus_id",
+    "dev_curve",
+    "distance_probe",
+    "labels",
+    "manifest_sha256",
+    "moac",
+    "pruning",
+    "task",
+    "training"
+   ],
+   "certificate": {
+    "moac": {
+     "m_a_improvement": 0.68213,
+     "m_b_non_target_regression": -0.09094,
+     "m_e_calibration_ece": 0.00848
+    },
+    "per_stratum": {
+     "guz": [
+      0.98237,
+      0.01124,
+      true
+     ],
+     "kam": [
+      0.91349,
+      0.0,
+      true
+     ],
+     "kik": [
+      0.99246,
+      0.2449,
+      true
+     ],
+     "kln": [
+      0.99749,
+      0.1194,
+      true
+     ],
+     "luo": [
+      0.9949,
+      0.62651,
+      true
+     ],
+     "lwg": [
+      0.93473,
+      0.04348,
+      true
+     ],
+     "swa": [
+      0.9895,
+      0.98446,
+      false
+     ]
+    },
+    "egress_permitted": true,
+    "refusals": [],
+    "admission": {
+     "attempted": true,
+     "outcome": "refused",
+     "reason": "moac_criterion_below_floor",
+     "refusal_note": "MOAC criterion 'coverage_strata' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+     "registry_version_after": null
+    },
+    "pruned": {
+     "outcome": "refused",
+     "reason": "moac_criterion_below_floor",
+     "registry_version_after": null
+    },
+    "compute": {
+     "steps": 5372,
+     "epochs_completed": 2,
+     "wallclock_seconds": 2945,
+     "gpu_hours": 0.8182,
+     "tokens_per_second": 5853.9,
+     "padded_tokens_per_step": null,
+     "gpu_max_memory_gb": 92.44,
+     "final_loss": 3.03259
+    }
+   }
+  },
+  "train_runner_up": {
+   "job_id": "m9j-6af6e8c370f9",
+   "status": "completed",
+   "base": "qwen3-1.7b-base",
+   "optimizer": "adamw",
+   "reason": null,
+   "finished_at": "2026-09-30T00:14:33Z",
+   "result_keys": [
+    "adapter_eval",
+    "artefact",
+    "base_eval",
+    "checkpoint",
+    "corpus",
+    "corpus_id",
+    "dev_curve",
+    "distance_probe",
+    "labels",
+    "manifest_sha256",
+    "moac",
+    "pruning",
+    "task",
+    "training"
+   ],
+   "certificate": {
+    "moac": {
+     "m_a_improvement": 0.82922,
+     "m_b_non_target_regression": -0.36499,
+     "m_e_calibration_ece": 0.00997
+    },
+    "per_stratum": {
+     "guz": [
+      0.9898,
+      0.0,
+      true
+     ],
+     "kam": [
+      0.92347,
+      0.0,
+      true
+     ],
+     "kik": [
+      0.99494,
+      0.02116,
+      true
+     ],
+     "kln": [
+      0.99749,
+      0.00275,
+      true
+     ],
+     "luo": [
+      0.99488,
+      0.0059,
+      true
+     ],
+     "lwg": [
+      0.96354,
+      0.0,
+      true
+     ],
+     "swa": [
+      0.96774,
+      0.99748,
+      false
+     ]
+    },
+    "egress_permitted": true,
+    "refusals": [],
+    "admission": {
+     "attempted": true,
+     "outcome": "refused",
+     "reason": "moac_criterion_below_floor",
+     "refusal_note": "MOAC criterion 'coverage_strata' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+     "registry_version_after": null
+    },
+    "pruned": {
+     "outcome": "refused",
+     "reason": "moac_criterion_below_floor",
+     "registry_version_after": null
+    },
+    "compute": {
+     "steps": 2682,
+     "epochs_completed": 3,
+     "wallclock_seconds": 1660,
+     "gpu_hours": 0.4611,
+     "tokens_per_second": 15899.5,
+     "padded_tokens_per_step": null,
+     "gpu_max_memory_gb": 90.31,
+     "final_loss": 3.35503
     }
    }
   }

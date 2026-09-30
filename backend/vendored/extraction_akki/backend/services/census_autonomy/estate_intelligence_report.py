@@ -14,7 +14,7 @@ from services.census_autonomy import estate_intelligence_dispatch as dispatch
 from services.census_autonomy.estate_intelligence_worker import TIMESTAMP_TYPES, NUMERIC_TYPES, rollup
 
 TERMINAL_WITH_RESULT = ("completed", "partial")
-REPORT_VERSION = 2  # bump when build() gains sections so cached reports are rebuilt from the banked detail
+REPORT_VERSION = 3  # bump when build() gains sections so cached reports are rebuilt from the banked detail
 BRIEF_DIR = Path(__file__).resolve().parents[6] / "frontend" / "public" / "briefs"
 DEGRADATION_KINDS = ("mojibake_ratio", "placeholder_ratio", "truncation_ratio", "invalid_format_ratio", "whitespace_ratio")
 
@@ -343,12 +343,152 @@ def _fingerprints(tables):
     return {f"{t['connection']}/{t['database']}.{t['table']}": t.get("schema_fingerprint") for t in tables if t.get("schema_fingerprint")}
 
 
-def cost_strategies(summary, tables, total_bytes):
-    unit = os.environ.get("ESTATE_STORAGE_COST_PER_GB_MONTH")
-    price = float(unit) if unit else None
+def tariff():
+    """Storage tariff [SLOT] from the environment; savings are priced at READ time so a tariff change never needs a re-census."""
+    def num(key):
+        value = os.environ.get(key)
+        return float(value) if value else None
+    return {"database_per_gb_month": num("ESTATE_STORAGE_COST_PER_GB_MONTH"), "object_per_gb_month": num("ESTATE_OBJECT_STORAGE_COST_PER_GB_MONTH"),
+            "archive_per_gb_month": num("ESTATE_ARCHIVE_STORAGE_COST_PER_GB_MONTH"),
+            "currency": os.environ.get("ESTATE_STORAGE_COST_CURRENCY") or "USD", "source": os.environ.get("ESTATE_STORAGE_COST_SOURCE") or None}
 
+
+def price_strategies(report):
+    """Attach monthly savings to each strategy (database tables at the database tariff, object stores at the object tariff;
+    archive tiering is the Standard→Archive delta when an archive tariff is set, else an upper bound at the full tariff)."""
+    t = tariff()
+    items = report["cost_strategies"]["items"]
+    for item in items:
+        rate = t["object_per_gb_month"] if item.get("store") == "object" else t["database_per_gb_month"]
+        item["saving_basis"] = None
+        if item["key"] == "obs_cold_buckets" and rate:
+            if t["archive_per_gb_month"] is not None:
+                rate = max(0.0, rate - t["archive_per_gb_month"]); item["saving_basis"] = "Standard minus archive-class tariff; retrieval fees not included"
+            else:
+                item["saving_basis"] = "upper bound at the full Standard tariff (set ESTATE_ARCHIVE_STORAGE_COST_PER_GB_MONTH for the tiering delta)"
+        item["monthly_saving"] = round(rate * item["bytes"] / 1024 ** 3, 2) if rate and item["bytes"] else None
+        item["currency"] = t["currency"] if item["monthly_saving"] is not None else None
+    priced = [i["monthly_saving"] for i in items if i["monthly_saving"] is not None]
+    parts = []
+    if t["database_per_gb_month"]:
+        parts.append(f"database storage at {t['currency']} {t['database_per_gb_month']}/GB-month")
+    if t["object_per_gb_month"]:
+        parts.append(f"object storage at {t['currency']} {t['object_per_gb_month']}/GB-month")
+    report["cost_strategies"].update(
+        tariff=t, monthly_saving_total=round(sum(priced), 2) if priced else None, currency=t["currency"],
+        currency_note=("Priced with " + " and ".join(parts) + (f" ({t['source']})" if t["source"] else "") + "; overlaps between strategies are possible, so the total is an upper bound.")
+        if parts else "No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COST_PER_GB_MONTH (databases) and ESTATE_OBJECT_STORAGE_COST_PER_GB_MONTH (object stores) to price them.")
+    return report
+
+
+def _latest_store_outcome(source_id, tenant_id):
+    """Retained deep-census outcomes for an object/file source, merged per source label (newest observation of each
+    bucket/share wins, so a re-check of blocked buckets does not hide the full inventory). Cached results only; never a remote read."""
+    from services.census_autonomy import engine
+    docs = []
+    for path in (engine.CENSUS_STATE_DIR / engine.RESULTS_SUBDIR).glob("*_result.json"):
+        try:
+            doc = json.loads(path.read_text())
+        except (OSError, ValueError):
+            continue
+        if doc.get("tenant_id") != tenant_id:
+            continue
+        for outcome in (doc.get("payload") or {}).get("outcomes") or []:
+            if outcome.get("source_id") == source_id and outcome.get("sources"):
+                docs.append((doc.get("completed_at_utc", ""), path.name, outcome))
+    if not docs:
+        return None
+    docs.sort(key=lambda d: d[0])
+    merged, runs = {}, []
+    for _, name, outcome in docs:
+        runs.append(outcome.get("census_run_id"))
+        for s in outcome["sources"]:
+            merged[s.get("label")] = s
+    latest = docs[-1][2]
+    fullest = max(docs, key=lambda d: len(d[2]["sources"]))[2]
+    return {**fullest, "sources": list(merged.values()), "observed_at": latest.get("observed_at"), "census_run_id": fullest.get("census_run_id"),
+            "census_run_ids": runs, "result_receipt": docs[-1][1]}
+
+
+def _store_rows(outcome, kind, cold_after_days=365):
+    observed = outcome.get("observed_at") or now()
+    observed_dt = datetime.fromisoformat(observed.replace("Z", "+00:00"))
+    rows = []
+    for s in outcome["sources"]:
+        units = s.get("object_count") if kind == "object" else s.get("file_count")
+        units = units or 0
+        mean = (s.get("volume_bytes") or 0) / units if units else 0
+        candidates = s.get("duplicate_candidates")
+        last = s.get("date_max")
+        if isinstance(last, (int, float)):
+            last_dt = datetime.fromtimestamp(last, tz=timezone.utc)
+        elif isinstance(last, str):
+            last_dt = datetime.fromisoformat(last.replace("Z", "+00:00"))
+        else:
+            last_dt = None
+        idle_days = (observed_dt - last_dt).days if last_dt else None
+        formats = sorted((s.get("formats") or {}).items(), key=lambda kv: -kv[1])[:4]
+        rows.append({"label": s.get("label"), "status": s.get("status"), "enumeration": s.get("enumeration"), "units": units, "bytes": s.get("volume_bytes") or 0,
+                     "duplicate_candidates": candidates, "duplicate_bytes_estimate": int(candidates * mean) if candidates else 0,
+                     "last_write": last_dt.isoformat().replace("+00:00", "Z") if last_dt else None, "idle_days": idle_days,
+                     "cold": bool(idle_days is not None and idle_days > cold_after_days and (s.get("volume_bytes") or 0) > 0),
+                     "reason_code": s.get("reason_code"), "top_formats": [f"{ext} {n:,}" for ext, n in formats], "pending": s.get("directories_pending"),
+                     "content_measurement": s.get("content_measurement")})
+    rows.sort(key=lambda r: -r["bytes"])
+    return rows
+
+
+def store_estate(tenant_id="RMS"):
+    """Object (OBS) and file (NAS) estate from the retained enumeration receipts: inventory, ETag+size duplicate candidates, cold sources.
+    Duplicate BYTES are candidates × the source's mean object size — an estimate disclosed as such; no object body was read."""
+    stores = {}
+    for key, source_id, kind, unit_name in (("obs", "rms_obs", "object", "objects"), ("nas", "rms_nas", "file", "files")):
+        outcome = _latest_store_outcome(source_id, tenant_id)
+        if not outcome:
+            stores[key] = {"measured": False, "kind": kind, "unit_name": unit_name, "note": "No retained enumeration receipt for this store."}
+            continue
+        rows = _store_rows(outcome, kind)
+        complete = [r for r in rows if r["status"] == "complete"]
+        blocked = [r for r in rows if r["status"] != "complete"]
+        total = sum(r["bytes"] for r in rows)
+        dup_bytes = sum(r["duplicate_bytes_estimate"] for r in rows)
+        cold = [r for r in rows if r["cold"]]
+        fingerprinted = any(r["duplicate_candidates"] is not None for r in rows)
+        stores[key] = {"measured": True, "kind": kind, "unit_name": unit_name, "census_run_id": outcome.get("census_run_id"), "observed_at": outcome.get("observed_at"),
+                       "status": outcome.get("status"), "reason_code": outcome.get("reason_code"), "result_receipt": outcome.get("result_receipt"), "census_run_ids": outcome.get("census_run_ids"),
+                       "sources": len(rows), "sources_complete": len(complete), "sources_blocked": len(blocked), "units": sum(r["units"] for r in rows),
+                       "bytes": total, "bytes_label": _fmt_bytes(total), "frontier_complete": all((r["pending"] or 0) == 0 for r in complete) and all(r["enumeration"] == "full" for r in complete),
+                       "duplicate_candidates": sum(r["duplicate_candidates"] or 0 for r in rows) if fingerprinted else None,
+                       "duplicate_bytes_estimate": dup_bytes if fingerprinted else None, "duplicate_pct_of_units": _pct(sum(r["duplicate_candidates"] or 0 for r in rows) / sum(r["units"] for r in rows)) if fingerprinted and sum(r["units"] for r in rows) else None,
+                       "cold_sources": len(cold), "cold_bytes": sum(r["bytes"] for r in cold), "cold_bytes_label": _fmt_bytes(sum(r["bytes"] for r in cold)),
+                       "blocked": [{"label": r["label"], "reason_code": r["reason_code"]} for r in blocked][:40],
+                       "top_sources": rows[:12], "method": (outcome["sources"][0].get("method") if outcome["sources"] else None),
+                       "duplication_note": ("Duplicate candidates are objects whose ETag+size fingerprint was already seen in the same store; duplicate bytes = candidates × mean object size of the bucket (estimate). Not proven byte duplicates."
+                                            if fingerprinted else "This enumeration recorded no content fingerprints (stat/listing only), so duplication is unmeasured; sizes and dates were read, bodies were not.")}
+    return stores
+
+
+def store_strategies(stores):
+    obs = stores.get("obs") or {}
+    if not obs.get("measured"):
+        return []
+    dup_rows = sorted([r for r in obs["top_sources"] if r["duplicate_bytes_estimate"]], key=lambda r: -r["duplicate_bytes_estimate"])
+    cold_rows = sorted([r for r in obs["top_sources"] if r["cold"]], key=lambda r: -r["bytes"])
+    return [
+        {"key": "obs_duplicate_objects", "store": "object", "title": "Reconcile duplicate objects across OBS buckets", "bytes": obs["duplicate_bytes_estimate"] or 0,
+         "action": "Confirm ETag+size candidates by object hash, keep one copy per bucket and replace the rest with references or lifecycle-delete them.",
+         "evidence": [f"{r['label']} · {r['duplicate_candidates']:,} candidates · ≈{_fmt_bytes(r['duplicate_bytes_estimate'])}" for r in dup_rows[:6]],
+         "risk": "Candidates share ETag and size, which for multipart uploads is not a content hash; bytes are candidates × mean object size, an estimate. Confirm before deleting."},
+        {"key": "obs_cold_buckets", "store": "object", "title": "Move buckets not written for over a year to archive-class storage", "bytes": obs["cold_bytes"] or 0,
+         "action": "Apply a lifecycle rule (Standard → Archive/Cold) on buckets whose last object write is older than a year; keep listing metadata hot.",
+         "evidence": [f"{r['label']} · last write {r['idle_days']:,} days before the census · {_fmt_bytes(r['bytes'])}" for r in cold_rows[:6]],
+         "risk": "Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee."},
+    ]
+
+
+def cost_strategies(summary, tables, total_bytes, stores=None):
     def money(bytes_):
-        return round(price * bytes_ / 1024 ** 3, 2) if price else None
+        return None  # priced at read time by price_strategies()
 
     storage, dup = summary["storage"], summary["duplication"]
     empty = [t for t in tables if not t.get("rows_estimate")]
@@ -388,14 +528,14 @@ def cost_strategies(summary, tables, total_bytes):
          "evidence": [f"{t['database']}.{t['table']} · {_pct(t['pii_row_ratio'], 0)}% of sampled rows" for t in (summary["quality"].get("top_pii") or [])[:6]],
          "risk": "Detector is deterministic and sampled; absence of a marker is not absence of personal data."},
     ]
+    items += store_strategies(stores or {})
     for item in items:
-        item["share_of_estate"] = round(item["bytes"] / total_bytes, 4) if total_bytes else None
+        item.setdefault("store", "database")
+        item["share_of_estate"] = round(item["bytes"] / total_bytes, 4) if total_bytes and item["store"] == "database" else None
         item["monthly_saving"] = money(item["bytes"])
         item["bytes_label"] = _fmt_bytes(item["bytes"]) if item["bytes"] else "not a storage saving"
     items.sort(key=lambda i: -i["bytes"])
-    return {"currency_note": ("priced with ESTATE_STORAGE_COST_PER_GB_MONTH=" + unit) if price else
-            "No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COST_PER_GB_MONTH to price them.",
-            "same_schema_groups": groups, "items": items}
+    return {"currency_note": "unpriced until read", "same_schema_groups": groups, "items": items}
 
 
 def condition_bytes(tables):
@@ -456,7 +596,8 @@ def build(job, detail, previous=None):
         grades[_table_quality(t)["grade"]] = grades.get(_table_quality(t)["grade"], 0) + 1
     profiles = database_profiles(tables)
     products = data_products(tables)
-    strategies = cost_strategies(summary, tables, total_bytes)
+    stores = store_estate(job.get("tenant_id") or "RMS")
+    strategies = cost_strategies(summary, tables, total_bytes, stores)
     errors = (job.get("receipt") or {}).get("result", {}).get("errors") or []
     headline = {
         "connections": len({t["connection"] for t in tables}), "databases": len(detail["databases"]), "tables": summary["tables_total"],
@@ -477,6 +618,7 @@ def build(job, detail, previous=None):
     within = sorted([t for t in measured if (t.get("exact_duplicate_ratio") or 0) >= 0.01], key=lambda t: -(t["exact_duplicate_ratio"] * (t.get("data_bytes") or 0)))
     return {"job_id": job["job_id"], "status": job["status"], "measured_at": job.get("finished_at"), "built_at": now(), "reading": reading, "report_version": REPORT_VERSION,
             "headline": headline, "summary": summary, "databases": profiles, "data_products": products, "cost_strategies": strategies,
+            "stores": stores,
             "degradation": degradation(tables, previous, headline),
             "within_table_duplicates": [{"connection": t["connection"], "database": t["database"], "table": t["table"], "exact_duplicate_ratio": t["exact_duplicate_ratio"],
                                          "normalised_duplicate_ratio": t.get("normalised_duplicate_ratio"), "rows_estimate": t.get("rows_estimate"), "data_bytes": t.get("data_bytes"),
@@ -484,7 +626,8 @@ def build(job, detail, previous=None):
             "condition_bytes": condition_bytes(tables),
             "connections": _connection_detail(job, detail, tables),
             "schema_fingerprints": {f"{t['connection']}/{t['database']}.{t['table']}": t.get("schema_fingerprint") for t in tables if t.get("schema_fingerprint")},
-            "errors": errors, "coverage_note": "RMS MySQL only (owner order 1-a). OBS object and NAS file duplication follow from the enumeration frontier; "
+            "errors": errors, "coverage_note": "RMS MySQL measured in depth (owner order 1-a). OBS object and NAS file estates are read from their retained enumeration receipts "
+            "(listing and stat only: sizes, dates, ETag+size duplicate candidates; no object or file body); "
             "languages, rights and semantic (embedding) similarity were not measured. Text near-duplicates use MinHash on the jump host so row text never left the estate.",
             "method_note": summary["method_note"], "row_values_retained": False}
 
@@ -498,8 +641,11 @@ def compact(report):
             "connections": _connection_bytes(report), "top_pairs": report["summary"]["duplication"]["top_pairs"][:5],
             "top_degraded": report["summary"]["quality"]["top_degraded"][:5], "top_pii": report["summary"]["quality"]["top_pii"][:5],
             "data_products": [{k: c[k] for k in ("key", "title", "use", "tables", "rows_estimate", "readiness_grade", "databases", "blockers")} for c in report["data_products"][:8]],
-            "cost_strategies": [{k: s[k] for k in ("key", "title", "bytes", "bytes_label", "share_of_estate", "action", "monthly_saving")} for s in report["cost_strategies"]["items"]],
-            "currency_note": report["cost_strategies"]["currency_note"], "databases": [{k: p[k] for k in ("connection", "database", "tables", "rows_estimate", "bytes", "readiness", "dimensions", "failed_tables")} for p in report["databases"]],
+            "cost_strategies": [{k: s.get(k) for k in ("key", "title", "bytes", "bytes_label", "share_of_estate", "action", "monthly_saving", "currency", "store")} for s in report["cost_strategies"]["items"]],
+            "currency_note": report["cost_strategies"]["currency_note"], "monthly_saving_total": report["cost_strategies"].get("monthly_saving_total"),
+            "stores": {k: {kk: v.get(kk) for kk in ("measured", "kind", "unit_name", "sources", "sources_complete", "units", "bytes", "bytes_label", "duplicate_candidates", "duplicate_bytes_estimate", "cold_bytes", "census_run_id")}
+                       for k, v in (report.get("stores") or {}).items()},
+            "databases": [{k: p[k] for k in ("connection", "database", "tables", "rows_estimate", "bytes", "readiness", "dimensions", "failed_tables")} for p in report["databases"]],
             "coverage_note": report["coverage_note"], "brief_path": report.get("brief_path"), "dossier": report.get("dossier")}
 
 
@@ -560,14 +706,35 @@ def render_markdown(report):
                   f"- Top tables: " + "; ".join(f"{t['table']} ({t['rows_estimate']:,} rows, {t['grade']})" for t in c["top_tables"][:4]),
                   "- Blockers: " + " · ".join(c["blockers"]), ""]
     lines += ["## Strategies to reduce cost", "", report["cost_strategies"]["currency_note"], "",
-              "| Strategy | Reclaimable | Share | Action |", "|---|---|---|---|"]
+              "| Strategy | Reclaimable | Share | Saving / month | Action |", "|---|---|---|---|---|"]
     for s in report["cost_strategies"]["items"]:
         share = f"{_pct(s['share_of_estate'])}%" if s["share_of_estate"] is not None and s["bytes"] else "—"
-        lines.append(f"| {s['title']} | {s['bytes_label']} | {share} | {s['action']} |")
+        saving = f"{s.get('currency')} {s['monthly_saving']:,.2f}" if s.get("monthly_saving") is not None else "unpriced"
+        lines.append(f"| {s['title']} | {s['bytes_label']} | {share} | {saving} | {s['action']} |")
+    if report["cost_strategies"].get("monthly_saving_total") is not None:
+        lines += ["", f"Priced strategies total ≈ {report['cost_strategies']['currency']} {report['cost_strategies']['monthly_saving_total']:,.2f} per month (upper bound; overlaps possible)."]
     lines += ["", "### Evidence per strategy", ""]
     for s in report["cost_strategies"]["items"]:
         if s["evidence"]:
             lines += [f"**{s['title']}** — risk: {s['risk']}", ""] + [f"- {e}" for e in s["evidence"]] + [""]
+    lines += ["## Object and file estate (OBS buckets, NAS shares)", ""]
+    for key, label in (("obs", "OBS object store"), ("nas", "NAS file shares")):
+        st = (report.get("stores") or {}).get(key) or {}
+        if not st.get("measured"):
+            lines += [f"**{label}:** {st.get('note', 'not measured')}", ""]
+            continue
+        dup = (f"{st['duplicate_candidates']:,} duplicate candidates ({st['duplicate_pct_of_units']}% of {st['unit_name']}), ≈{_fmt_bytes(st['duplicate_bytes_estimate'])} estimated"
+               if st.get("duplicate_candidates") is not None else "duplication unmeasured (no fingerprints in this pass)")
+        lines += [f"**{label}** — census `{st['census_run_id']}` ({st['status']}, {st['observed_at']}): {st['sources_complete']} of {st['sources']} sources complete, "
+                  f"{st['units']:,} {st['unit_name']}, {st['bytes_label']}; {dup}; {st['cold_sources']} sources not written for over a year ({st['cold_bytes_label']}). "
+                  f"Frontier complete: {'yes' if st['frontier_complete'] else 'no'}.", "", st["duplication_note"], "",
+                  "| Source | Status | Units | Bytes | Duplicate candidates | Last write | Formats |", "|---|---|---|---|---|---|---|"]
+        for r in st["top_sources"]:
+            lines.append(f"| {r['label']} | {r['status']}{(' · ' + r['reason_code']) if r['reason_code'] else ''} | {r['units']:,} | {_fmt_bytes(r['bytes'])} | "
+                         f"{r['duplicate_candidates'] if r['duplicate_candidates'] is not None else '—'} | {r['last_write'] or '—'} | {', '.join(r['top_formats'])} |")
+        if st["blocked"]:
+            lines += ["", f"Blocked sources ({len(st['blocked'])}): " + "; ".join(f"{b['label']} ({b['reason_code']})" for b in st["blocked"][:12]) + (" …" if len(st["blocked"]) > 12 else "")]
+        lines.append("")
     q = report["summary"]["quality"]
     lines += ["## Where it falls short", ""]
     for e in report["errors"]:
@@ -616,7 +783,7 @@ def report_for(job_id, rebuild=False, cached_only=False):
     if path.exists() and not rebuild:
         cached = json.loads(path.read_text())
         if cached.get("report_version") == REPORT_VERSION:
-            return cached
+            return price_strategies(cached)
     if cached_only and not detail_cached(job_id):
         return None
     detail = detail_for(job)
@@ -626,6 +793,7 @@ def report_for(job_id, rebuild=False, cached_only=False):
     dossier_path = dispatch._jobs_dir() / f"{job_id}.dossier.json"
     if dossier_path.exists():
         report["dossier"] = json.loads(dossier_path.read_text())
+    price_strategies(report)
     report["brief_path"], report["brief_sha256"] = publish(report)
     path.write_text(json.dumps(report, indent=1, default=str))
     return report
@@ -662,7 +830,10 @@ async def compose_dossier(job_id, actor, tenant_id, model="gpt-5-mini", provider
         return None
     prompt = json.dumps({k: report[k] for k in ("reading", "headline", "databases", "coverage_note")} |
                         {"data_products": [{k: c[k] for k in ("title", "use", "tables", "rows_estimate", "readiness_grade", "databases", "blockers", "licensable_units")} for c in report["data_products"]],
-                         "cost_strategies": [{k: s[k] for k in ("title", "bytes_label", "share_of_estate", "action", "risk")} for s in report["cost_strategies"]["items"]],
+                         "cost_strategies": [{k: s.get(k) for k in ("title", "bytes_label", "share_of_estate", "action", "risk", "monthly_saving", "currency")} for s in report["cost_strategies"]["items"]],
+                         "tariff_note": report["cost_strategies"]["currency_note"],
+                         "object_and_file_estate": {k: {kk: v.get(kk) for kk in ("kind", "sources", "sources_complete", "sources_blocked", "units", "bytes_label", "duplicate_candidates", "duplicate_pct_of_units", "duplicate_bytes_estimate", "cold_sources", "cold_bytes_label", "frontier_complete", "duplication_note")}
+                                                    for k, v in (report.get("stores") or {}).items() if v.get("measured")},
                          "degradation": {k: report["degradation"][k] for k in ("kinds", "kinds_note", "dead_columns", "columns_measured", "dead_column_share", "trend", "trend_note")},
                          "top_duplicate_pairs": report["summary"]["duplication"]["top_pairs"][:8],
                          "top_degraded": report["summary"]["quality"]["top_degraded"][:8], "top_pii": report["summary"]["quality"]["top_pii"][:8],

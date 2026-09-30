@@ -1,0 +1,382 @@
+{
+ "appendix": {
+  "exhibit_index_auto": true,
+  "extra_slides": []
+ },
+ "coverage_and_limits": {
+  "covered_basis_ref": "eij-1b359b3cbd2e",
+  "limits": [
+   {
+    "closing_condition": "A complete-pass census on the sampled tables.",
+    "reason": "sampled_only",
+    "statement": "Duplicate, damage, empty-field and PII ratios come from complete passes where the table allowed it and stratified samples elsewhere."
+   },
+   {
+    "closing_condition": "Rights declared at Connect and bound to each candidate.",
+    "reason": "rights_withheld",
+    "statement": "Rights, licences and semantic similarity were not measured; candidates are dimensional readiness only."
+   },
+   {
+    "closing_condition": "Owner grants read access; re-census.",
+    "reason": "blocked_source",
+    "statement": "Connection artists_app could not be read (MySQL GRANT pending)."
+   },
+   {
+    "closing_condition": "A fingerprinting pass over the NAS shares.",
+    "reason": "unmeasured",
+    "statement": "NAS duplication is unmeasured: the enumeration recorded sizes and dates, not content fingerprints."
+   },
+   {
+    "closing_condition": "Bucket inventory reconciled with the provider.",
+    "reason": "blocked_source",
+    "statement": "40 of 106 OBS buckets were unreachable (NoSuchBucket / client errors)."
+   }
+  ]
+ },
+ "deck_id": "deck-estate-eij-1b359b3cbd2e",
+ "meta": {
+  "audience_line": "Estate owner and operators \u00b7 RMS",
+  "date": "2026-09-29",
+  "rights_posture_ref": "census-only; no extraction or release right is granted by this deck",
+  "sample_deck": false,
+  "title": "Estate intelligence \u2014 eij-1b359b3cbd2e"
+ },
+ "register": "R4",
+ "selection_manifest": {
+  "overrides": [],
+  "register_why": "DR-R10: a completed governed census is a commission close \u2192 R4"
+ },
+ "slides": [
+  {
+   "kicker": "Estate intelligence \u00b7 commission close",
+   "notes": "Composed deterministically from the banked, digest-verified census report; no row value is present.",
+   "title": "20 databases and 1,006 tables (351.3 GiB, \u2248259,273,874 rows) were measured.",
+   "type": "title"
+  },
+  {
+   "figures": [
+    {
+     "class": "measured",
+     "label": "data + index",
+     "receipt_refs": [
+      "eij-1b359b3cbd2e"
+     ],
+     "unit": "GiB",
+     "value": 351.3
+    }
+   ],
+   "kicker": "What is held",
+   "plate": "P11",
+   "so_what": "About 15.2 GiB (4.3%) looks reclaimable before pricing.",
+   "title": "351.3 GiB of data and index sit in 20 databases and 1,006 tables.",
+   "type": "big_number"
+  },
+  {
+   "data": {
+    "columns": [
+     "Condition",
+     "Share",
+     "Basis"
+    ],
+    "rows": [
+     [
+      "Exact duplicate rows",
+      "1.5%",
+      "complete passes or stratified samples, primary key excluded"
+     ],
+     [
+      "Degraded rows",
+      "23.0%",
+      "placeholder \u00b7 mojibake \u00b7 truncation \u00b7 invalid format"
+     ],
+     [
+      "Rows with empty required-looking fields",
+      "81.7%",
+      "row-weighted across measured tables"
+     ],
+     [
+      "Sampled rows with PII markers",
+      "71.8%",
+      "1,011,330 sampled rows, deterministic detector"
+     ],
+     [
+      "Bytes not written for over a year",
+      "15.4%",
+      "latest timestamp column per table"
+     ]
+    ]
+   },
+   "figures": [
+    {
+     "class": "estimated",
+     "receipt_refs": [
+      "eij-1b359b3cbd2e"
+     ],
+     "unit": "% exact duplicates",
+     "value": 1.5
+    },
+    {
+     "class": "estimated",
+     "receipt_refs": [
+      "eij-1b359b3cbd2e"
+     ],
+     "unit": "% rows with PII markers",
+     "value": 71.8
+    }
+   ],
+   "kicker": "Condition",
+   "plate": "P3",
+   "receipt_refs": [
+    "eij-1b359b3cbd2e"
+   ],
+   "title": "Duplication, damage and personal data are measured on the estate, not assumed.",
+   "type": "table"
+  },
+  {
+   "data": {
+    "series": [
+     {
+      "class": "measured",
+      "label": "viusasa_staging (D)",
+      "value": 338.5
+     },
+     {
+      "class": "measured",
+      "label": "razuna (D)",
+      "value": 4.5
+     },
+     {
+      "class": "measured",
+      "label": "db_visitors (D)",
+      "value": 2.7
+     },
+     {
+      "class": "measured",
+      "label": "kra_reports (D)",
+      "value": 1.5
+     },
+     {
+      "class": "measured",
+      "label": "viupay_agent_staging (A)",
+      "value": 1.2
+     },
+     {
+      "class": "measured",
+      "label": "news_vault (C)",
+      "value": 0.9
+     },
+     {
+      "class": "measured",
+      "label": "local (D)",
+      "value": 0.5
+     },
+     {
+      "class": "measured",
+      "label": "viutickets (B)",
+      "value": 0.4
+     }
+    ],
+    "unit": "GiB"
+   },
+   "kicker": "Where the bytes are",
+   "plate": "P4",
+   "receipt_refs": [
+    "eij-1b359b3cbd2e"
+   ],
+   "title": "Eight databases hold most of the estate.",
+   "type": "exhibit"
+  },
+  {
+   "data": {
+    "columns": [
+     "Candidate",
+     "Grade",
+     "Tables",
+     "Rows (est.)",
+     "Blockers"
+    ],
+    "rows": [
+     [
+      "Reference and master-data licensing",
+      "C",
+      87,
+      "123,394,159",
+      "62.0% of supporting tables carry PII markers: de-identify or aggregate before any release \u00b7 use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+     ],
+     [
+      "Content catalogue, recommendation and licensing corpus",
+      "C",
+      98,
+      "157,855,990",
+      "74.0% of supporting tables carry PII markers: de-identify or aggregate before any release \u00b7 use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+     ],
+     [
+      "Channel / telco engagement analytics (USSD, SMS, app)",
+      "C",
+      57,
+      "116,781,903",
+      "79.0% of supporting tables carry PII markers: de-identify or aggregate before any release \u00b7 use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+     ],
+     [
+      "Customer / subscriber 360 and segmentation",
+      "D",
+      76,
+      "158,914,844",
+      "80.0% of supporting tables carry PII markers: de-identify or aggregate before any release \u00b7 most supporting tables have not been written for over a year: value is historical, not live"
+     ],
+     [
+      "Time-series forecasting datasets",
+      "C",
+      82,
+      "80,750,307",
+      "77.0% of supporting tables carry PII markers: de-identify or aggregate before any release \u00b7 use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+     ],
+     [
+      "Transaction & revenue analytics",
+      "C",
+      82,
+      "80,750,307",
+      "77.0% of supporting tables carry PII markers: de-identify or aggregate before any release \u00b7 use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+     ]
+    ]
+   },
+   "figures": [
+    {
+     "class": "measured",
+     "receipt_refs": [
+      "eij-1b359b3cbd2e"
+     ],
+     "unit": "candidates",
+     "value": 8
+    }
+   ],
+   "kicker": "What the data can do",
+   "plate": "P3",
+   "receipt_refs": [
+    "eij-1b359b3cbd2e"
+   ],
+   "so_what": "Rights are declared at Connect, not measured by the census; every candidate is aggregate or de-identified.",
+   "title": "Aggregate and de-identified products rank by rows, readiness and dimensions.",
+   "type": "table"
+  },
+  {
+   "data": {
+    "series": [
+     {
+      "class": "estimated",
+      "label": "Move buckets not written for over a year to arch",
+      "value": 42891.0
+     },
+     {
+      "class": "estimated",
+      "label": "Reconcile duplicate objects across OBS buckets",
+      "value": 7839.5
+     },
+     {
+      "class": "estimated",
+      "label": "Move tables not written for over a year to cold ",
+      "value": 54.1
+     },
+     {
+      "class": "estimated",
+      "label": "Remove redundant (prefix-covered) indexes",
+      "value": 14.0
+     },
+     {
+      "class": "estimated",
+      "label": "De-duplicate exact repeated rows inside tables",
+      "value": 1.2
+     },
+     {
+      "class": "estimated",
+      "label": "Consolidate duplicate and staging copies of the ",
+      "value": 0.1
+     },
+     {
+      "class": "estimated",
+      "label": "Drop or archive empty tables",
+      "value": 0.0
+     }
+    ],
+    "unit": "GiB"
+   },
+   "kicker": "Cost",
+   "plate": "P4",
+   "receipt_refs": [
+    "eij-1b359b3cbd2e",
+    "cr-f1415e395361",
+    "cr-cf4eef79995b"
+   ],
+   "so_what": "Priced with database storage at USD 0.1095/GB-month and object storage at USD 0.023/GB-month (reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month); overlaps between strategies are possible, so the total is an upper bound.",
+   "title": "Archive tiering and de-duplication carry most of the reclaimable bytes.",
+   "type": "exhibit"
+  },
+  {
+   "figures": [
+    {
+     "class": "estimated",
+     "receipt_refs": [
+      "eij-1b359b3cbd2e",
+      "cr-f1415e395361",
+      "cr-cf4eef79995b"
+     ],
+     "unit": "USD / month",
+     "value": 1174.4
+    }
+   ],
+   "kicker": "Priced",
+   "plate": "P11",
+   "so_what": "Upper bound at reference list prices; overlaps between strategies are possible.",
+   "title": "Priced strategies bound the monthly saving from above.",
+   "type": "big_number"
+  },
+  {
+   "data": {
+    "columns": [
+     "Store",
+     "Units",
+     "Bytes",
+     "Duplicate candidates"
+    ],
+    "rows": [
+     [
+      "OBS buckets",
+      "22,975,591 objects",
+      "130.3 TiB",
+      "1,139,768 (5.0%)"
+     ],
+     [
+      "NAS shares",
+      "1,456,787 files",
+      "43.6 TiB",
+      {
+       "caption": "no fingerprints in this pass",
+       "unmeasured": true,
+       "value": null
+      }
+     ]
+    ]
+   },
+   "figures": [
+    {
+     "class": "measured",
+     "receipt_refs": [
+      "cr-f1415e395361"
+     ],
+     "unit": "GiB in OBS",
+     "value": 133444.4
+    }
+   ],
+   "kicker": "Object and file estate",
+   "plate": "P3",
+   "receipt_refs": [
+    "eij-1b359b3cbd2e",
+    "cr-f1415e395361",
+    "cr-cf4eef79995b"
+   ],
+   "title": "Object storage dwarfs the databases; duplication is measured where fingerprints exist.",
+   "type": "table"
+  }
+ ],
+ "spec_version": "v1"
+}

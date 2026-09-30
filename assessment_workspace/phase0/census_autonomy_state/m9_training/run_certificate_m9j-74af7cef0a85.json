@@ -1,0 +1,373 @@
+{
+ "job_id": "m9j-74af7cef0a85",
+ "host": "akki-vm-ii",
+ "receipt_sha256": "152a4e117f8baa4fc14c4f741d385cfaf6933eaf2c682b2dcbccf4bcff298f6c",
+ "corpus": {
+  "units": 157513,
+  "splits": {
+   "archive_test": 269,
+   "dev": 8280,
+   "held": 18980,
+   "train": 129984
+  },
+  "per_stratum": {
+   "guz": {
+    "archive_test": 102,
+    "dev": 1094,
+    "groups_held": 39,
+    "groups_train": 249,
+    "held": 2217,
+    "train": 18443
+   },
+   "kam": {
+    "archive_test": 121,
+    "dev": 931,
+    "groups_held": 39,
+    "groups_train": 210,
+    "held": 2422,
+    "train": 8746
+   },
+   "kik": {
+    "archive_test": 1,
+    "dev": 924,
+    "groups_held": 37,
+    "groups_train": 163,
+    "held": 3573,
+    "train": 13846
+   },
+   "kln": {
+    "archive_test": 38,
+    "dev": 1667,
+    "groups_held": 53,
+    "groups_train": 400,
+    "held": 3253,
+    "train": 27483
+   },
+   "luo": {
+    "archive_test": 7,
+    "dev": 1131,
+    "groups_held": 33,
+    "groups_train": 265,
+    "held": 2455,
+    "train": 18681
+   },
+   "lwg": {
+    "archive_test": 0,
+    "dev": 1496,
+    "groups_held": 238,
+    "groups_train": 2065,
+    "held": 3006,
+    "train": 25350
+   },
+   "swa": {
+    "archive_test": 0,
+    "dev": 1037,
+    "groups_held": 77,
+    "groups_train": 242,
+    "held": 2054,
+    "train": 17435
+   }
+  },
+  "test_set_seal": {
+   "corpus_id": "rms-transcripts-v1",
+   "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+   "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+   "held_unit_count": 18980,
+   "rule": "sealed before any training step; never re-drawn",
+   "sealed_at": "2026-09-29T21:55:14Z",
+   "strata": [
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "swa"
+   ]
+  },
+  "rights_ref": "owner-supplied google-transcripts datasets (RMS tenant custody) \u00b7 authorised for language-cognition training 2026-09-29 \u00b7 text modality of the same authorised corpus",
+  "kind": "transcript_text"
+ },
+ "manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+ "training_manifest_sha256": "6a823e91cff5e85e028f4d8bf2943c2325185f679ac0a2c2f529781e118c2233",
+ "test_set_seal": {
+  "corpus_id": "rms-transcripts-v1",
+  "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+  "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+  "held_unit_count": 18980,
+  "rule": "sealed before any training step; never re-drawn",
+  "sealed_at": "2026-09-29T21:55:14Z",
+  "strata": [
+   "guz",
+   "kam",
+   "kik",
+   "kln",
+   "luo",
+   "lwg",
+   "swa"
+  ]
+ },
+ "test_set_seal_banked_at": null,
+ "compute": {
+  "train_units": 130124,
+  "train_tokens": 9502124,
+  "steps": 5372,
+  "epochs_completed": 2,
+  "total_steps_planned": 5372,
+  "wallclock_seconds": 2945,
+  "gpu_hours": 0.8182,
+  "tokens_per_second": 5853.9,
+  "gpu_max_memory_gb": 92.44,
+  "final_loss": 3.03259,
+  "device": "NVIDIA H200",
+  "recipe": {
+   "optimizer": "adamw",
+   "lr": 0.0001,
+   "muon_lr": 0.01,
+   "muon_momentum": 0.95,
+   "weight_decay": 0.01,
+   "epochs": 2,
+   "max_steps": 0,
+   "batch_size": 256,
+   "grad_accum": 1,
+   "max_seq_len": 256,
+   "tokens_per_batch": 4096,
+   "gradient_checkpointing": false,
+   "lora_r": 16,
+   "lora_alpha": 32,
+   "lora_dropout": 0.05,
+   "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+   ],
+   "warmup_steps": 100,
+   "max_grad_norm": 1.0,
+   "seed": 41,
+   "checkpoint_every": 500,
+   "eval_every": 1500
+  },
+  "base": {
+   "registry_id": "qwen3-8b-base",
+   "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803"
+  }
+ },
+ "artefact_sha256": "e973b373d27f9f5d5fd8d15cc5cd7e4b8ccca5de566b919dfdd7c235c70ca969",
+ "cited_units": 129984,
+ "per_stratum": {
+  "guz": {
+   "accuracy": 0.98237,
+   "base_accuracy": 0.01124,
+   "perplexity": 25.5185,
+   "base_perplexity": 390.0209,
+   "abstention_rate": 0.0075,
+   "units": 400,
+   "meets_m_a": true
+  },
+  "kam": {
+   "accuracy": 0.91349,
+   "base_accuracy": 0.0,
+   "perplexity": 18.4722,
+   "base_perplexity": 129.8035,
+   "abstention_rate": 0.0175,
+   "units": 400,
+   "meets_m_a": true
+  },
+  "kik": {
+   "accuracy": 0.99246,
+   "base_accuracy": 0.2449,
+   "perplexity": 14.9967,
+   "base_perplexity": 161.0858,
+   "abstention_rate": 0.005,
+   "units": 400,
+   "meets_m_a": true
+  },
+  "kln": {
+   "accuracy": 0.99749,
+   "base_accuracy": 0.1194,
+   "perplexity": 26.2869,
+   "base_perplexity": 512.1385,
+   "abstention_rate": 0.005,
+   "units": 400,
+   "meets_m_a": true
+  },
+  "luo": {
+   "accuracy": 0.9949,
+   "base_accuracy": 0.62651,
+   "perplexity": 34.8613,
+   "base_perplexity": 666.8629,
+   "abstention_rate": 0.02,
+   "units": 400,
+   "meets_m_a": true
+  },
+  "lwg": {
+   "accuracy": 0.93473,
+   "base_accuracy": 0.04348,
+   "perplexity": 21.8205,
+   "base_perplexity": 257.4331,
+   "abstention_rate": 0.0425,
+   "units": 400,
+   "meets_m_a": true
+  },
+  "swa": {
+   "accuracy": 0.9895,
+   "base_accuracy": 0.98446,
+   "perplexity": 15.2046,
+   "base_perplexity": 70.0302,
+   "abstention_rate": 0.0475,
+   "units": 400,
+   "meets_m_a": false
+  }
+ },
+ "moac": {
+  "m_a_improvement": 0.68213,
+  "m_b_non_target_regression": -0.09094,
+  "m_e_calibration_ece": 0.00848,
+  "floors_class": "DEFAULT (M-a +5 pts, M-b 2 %, per-stratum gates release) \u2014 disclosed, not curated",
+  "card": {
+   "candidate_model_id": "m9j-74af7cef0a85",
+   "evidence_source_kind": "uncurated_estate_sample",
+   "evidence_purpose_id": "m9-governed-training:m9j-74af7cef0a85",
+   "accuracy_uncurated": {
+    "measured_value": 0.97213,
+    "unit": "accuracy_fraction",
+    "method_of_measurement": "Macro accuracy on the sealed, uncurated held-out set (group-disjoint), abstentions excluded from the judged count and reported separately.",
+    "floor_value": 0.34,
+    "canon_anchor": "\u00a726.1 \u00b7 MOAC M-a improvement over base (+5 pts DEFAULT)"
+   },
+   "coverage_strata": {
+    "measured_value": 0.857143,
+    "unit": "fraction_of_strata_meeting_floor",
+    "method_of_measurement": "Share of target strata whose held-out accuracy beats the base by the M-a margin; gate_policy GATES release (A17.19b).",
+    "floor_value": 1.0,
+    "canon_anchor": "\u00a726.2 \u00b7 per-stratum acceptance"
+   },
+   "refusal_behaviour": {
+    "measured_value": 1.090939,
+    "unit": "one_minus_non_target_perplexity_regression",
+    "method_of_measurement": "Non-target held-out perplexity of the adapter relative to the base (MOAC M-b); reported abstention on the target set.",
+    "floor_value": 0.98,
+    "canon_anchor": "\u00a726.3 \u00b7 MOAC M-b no collateral regression (2 % DEFAULT)"
+   },
+   "provenance_integrity": {
+    "measured_value": 1.0,
+    "unit": "fraction",
+    "method_of_measurement": "Every training example resolves to a unit id in the sealed manifest; manifest sha verified at run open.",
+    "floor_value": 1.0,
+    "canon_anchor": "\u00a726.4 \u00b7 A17.16 ingredient manifest"
+   },
+   "cost_per_operation": {
+    "measured_value": 1.051786,
+    "unit": "gpu_seconds_per_evaluated_unit",
+    "method_of_measurement": "Wall GPU seconds of the run divided by evaluated units (metering input; floor unset).",
+    "floor_value": null,
+    "canon_anchor": "\u00a726.5"
+   },
+   "time_to_answer_p95": {
+    "measured_value": 0.04433,
+    "unit": "seconds_per_unit_mean",
+    "method_of_measurement": "Mean evaluation latency per unit on the training host (p95 not yet instrumented; floor unset).",
+    "floor_value": null,
+    "canon_anchor": "\u00a726.6"
+   },
+   "training_lineage_resolved": true,
+   "training_lineage_note": "recipe + base weight sha + sealed corpus manifest sha recorded on the run receipt",
+   "computed_at": "2026-09-30T00:43:59Z"
+  }
+ },
+ "distance_probe": {
+  "method": "DAP-31 egress distance: greedy-continuation extraction on training vs held-out units + secret-sharer canary exposure",
+  "train": {
+   "samples": 120,
+   "memorised_share": 0.0,
+   "max_lcs_ratio": 0.3333,
+   "max_verbatim_chars": 13
+  },
+  "held": {
+   "samples": 120,
+   "memorised_share": 0.0,
+   "max_lcs_ratio": 0.2759,
+   "max_verbatim_chars": 19
+  },
+  "memorisation_gap": 0.0,
+  "canary_exposure_bits_by_repeats": {
+   "1": {
+    "count": 20,
+    "mean": 1.15,
+    "max": 3.755
+   },
+   "2": {
+    "count": 20,
+    "mean": 1.437,
+    "max": 6.34
+   },
+   "4": {
+    "count": 20,
+    "mean": 1.488,
+    "max": 4.34
+   }
+  },
+  "canary_reference_count": 80,
+  "max_possible_exposure_bits": 6.34,
+  "extractable_exposure_floor_bits": 5.34,
+  "thresholds": {
+   "memorised_lcs_ratio": 0.75,
+   "memorisation_gap_refuse": 0.05,
+   "verbatim_chars_refuse": 100,
+   "class": "DEFAULT \u2014 disclosed, revisable on evidence"
+  },
+  "egress_permitted": true,
+  "refusals": []
+ },
+ "checkpoint": {
+  "path": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-74af7cef0a85/full/checkpoint.pt",
+  "every_steps": 500,
+  "rng_and_optimizer_saved": true,
+  "resume_proof": {
+   "at_step": 500,
+   "adapter_sha256_in_memory": "825ab17006c6c5be54793f5ddc30cb82efc8cbe9677600f863a2c75ef2946b1e",
+   "checkpoint_adapter_sha256": "825ab17006c6c5be54793f5ddc30cb82efc8cbe9677600f863a2c75ef2946b1e",
+   "optimizer_state_sha256": "4720690c69cfe4836fcc3ebe536c574d98b90c37efff572fc7f94ed979f8f009",
+   "resumed_adapter_sha256": "825ab17006c6c5be54793f5ddc30cb82efc8cbe9677600f863a2c75ef2946b1e",
+   "adapter_state_parity": true,
+   "work_lost_steps": 0,
+   "work_loss_bound_steps": 500,
+   "resumed_from_step": 500
+  }
+ },
+ "pruned_artefact": {
+  "sparsity": 0.3,
+  "artefact_sha256": "6fb4b3eeae35ab74cd1116dc40c31b90ea222e25390f0a490d8e83d32d63eac4",
+  "m_a_improvement": 0.6818,
+  "m_b_non_target_regression": -0.15579,
+  "admission": {
+   "outcome": "refused",
+   "reason": "moac_criterion_below_floor",
+   "registry_version_after": null
+  }
+ },
+ "admission": {
+  "attempted": true,
+  "outcome": "refused",
+  "reason": "moac_criterion_below_floor",
+  "refusal_note": "MOAC criterion 'coverage_strata' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+  "registry_version_after": null
+ },
+ "whitepaper": {
+  "drafted": true,
+  "whitepaper_id": "wp_m9j_74af7cef0a85"
+ },
+ "calibration": null,
+ "optimizer_comparison": null,
+ "dp_sgd": {
+  "applied": false,
+  "reason": "optional arm per owner decision 3a; not commissioned in this run"
+ },
+ "final_model": false,
+ "serving": "not served; admission record only (M9.4 serving is a separate step)",
+ "certified_at": "2026-09-30T03:30:57.462709Z"
+}

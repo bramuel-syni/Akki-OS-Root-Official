@@ -1,677 +1,94 @@
 # Akki — product requirements and current continuity
 
-## CURRENT — 2026-09-29 M4 governed memory-backed chat LIVE · M5 durable sessions/compaction LIVE · M5.1 work/team/goals/board IN PROGRESS
+## Original product goals
 
-Owner directive: "1-a, 2-a … run M5 immediately when done" (all three parts of the M4/M5 plan approved; live reads of the
-sealed DIGICOW artefact allowed; then proceed straight into M5). Standing directive: **everything here is GENERAL** —
-no logic keyed to `digicow`/`rms`; tenant and principal come only from the signed-in identity; qualified units are
-whatever sealed, independently inspected, rights-bearing artefacts that tenant holds.
+- Increase batch throughput and H200 utilization for language-cognition and generalized M9 training, without weakening privacy, quality or admission requirements.
+- Build the generalized M9 model pipeline beyond audio: qualified data, reproducible training, evaluation, certificates, admission and separately governed serving.
+- Provide deep RMS data-estate intelligence: duplication, quality, degradation, dimensional monetization and evidence-backed cost reduction.
+- M6: produce useful artifacts, deterministic decks and callable skills from qualified work.
+- Deliver the broader Akki promise through identity-bound governed work: Registry/census, Watch, request-to-delivery, grounded answers, durable memory, collaboration, commercial controls and recovery. Functional outcomes and evidence—not scaffolds or old seals—determine completion.
 
-**Built and proven (backend `services/chat/*`, `services/memory/compaction_v1/mongo_storage.py`):**
-- `POST /api/chat/ask` (identity-scoped via `portal_scope`, optional `session_id`) → `journey.ask`: one decision per turn
-  on the Northena gate (`warm` | `fresh` | `refused`, ledger row each); warm = bounded whole-unit read from the sealed
-  artefact on the admitted runtime (`unit_select`, **zero source reads**), deterministic CC-4/5/6 window measured by
-  `tiktoken o200k_base` (6000-token [SLOT] budget, reserve for reply), grounded JSON answer with citations checked
-  against the window, loss statement appended to the answer, working-set hits/misses, critic seam attestation.
-  fresh = best-matching censused table → ONE idempotent draft commission (operators only; never dispatched). refused =
-  out of scope, nothing read. Held → existing 409 disclosure.
-- Sessions (`chat_sessions`): frozen objective at first question, durable turns with full evidence.
-  `GET /api/chat/sessions`, `GET …/{id}`, `POST …/{id}/compact` (MEM v1: facts/receipts by pointer, ledger row on the ONE
-  chain BEFORE bytes, Mongo artefact, lineage pointer to the previous artefact, `compaction_history`), `GET …/{id}/reload`
-  (hash-verified or refused; cross-tenant refused), `POST …/{id}/archive`. Auto-compaction after 12 open turns [SLOT
-  `AKKI_CHAT_COMPACT_AFTER_TURNS`].
-- Fixed latent bug: `chain_integration.append_compaction_row_to_chain` passed `artifact_ref=None` (ValidationError);
-  now names the compacted run as `objective_request`. Installed `spacy` + `en_core_web_sm` (shield's permitted fallback;
-  chokepoint was failing closed with 500 → now refusals surface verbatim, `ServiceUnavailable` is a refusal).
-- Frontend `/os/work/chat` (`pages/os/WorkChat.jsx`, `components/workchat/*`): sign-in gate (CensusAccess), session
-  rail, frozen-objective bar, durable-memory bar (compact / verify reload / archive), TurnCards with decision badge,
-  citations, context-loss line, "See the working" (source dispatches = 0, store reads, window tokens, memory hits,
-  model, grounding, ledger row, receipt, critic). Desktop + 390px verified, zero overflow.
-- **Live measurements (DIGICOW operator, real model calls):** first warm turn 200 units read (341,643 B) → 55 candidates
-  → 33 whole units / 4,898 of 4,973 tokens, 22 excluded (disclosed), 8 citations in window, ~24 s; follow-ups ~18–36 s
-  with memory hits; compaction 31 claims → 7,993 B artefact, reload verified after backend restart; out-of-scope refused
-  in ~6 s with zero reads. RMS (no artefacts) → fresh/refused honestly.
-- **Tests:** offline `backend/tests/m4_m5/test_m4_window_m5_compaction.py` 11/11 (determinism, heavy shrink, oversized
-  load-bearing unit excluded whole, nothing-fits refusal, Mongo compaction/reload/tamper/cross-tenant, session lineage);
-  live `backend/tests/m4_m5/test_chat_live.py` 9/9; testing agent iteration 66 (frontend 95%, two UI items fixed:
-  compact race + "nothing to compact" reachability). No API mocked.
+## Governing roadmap and authority
 
-**Standing limits:** relevance is term overlap (a weak match can route warm and answer narrowly with
-`sufficient:false` — a policy slot, not silently thresholded); fresh-slice choice is name-match ranking; publication
-threshold [SLOT] still unset (refuses loud, correct); R-21 personal memory stays OFF; M4 acceptance packs M4-T1–T5 and
-G4 not formally run.
+`assessment_workspace/notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md` is the owner-approved goal-based roadmap. Its current meanings are:
 
-**NEXT (M5, in progress):** M5.2 handoffs from a turn (save as durable task / document with objective, citations,
-rights receipts, source versions, loss statement); M5-T5 withdrawal (signed revocation → dependent sessions/tasks marked
-stale, reuse refused); M5.1 general durable tasks / team assignment & contribution / goals with stated measure /
-versioned board packs & decisions bound into the existing My Work prototype tabs; then M5-T1–T5 runs.
+M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → M4 useful grounded answers/context → M5 durable memory/collaborative work/goals/board → M6 artifacts/decks/callable skills → M7 tenant/rule/entitlement/commercial operation → M8 failure/withdrawal/continuity/recovery → M9 activated media/model/training capability → M10 independent integrated acceptance.
 
-## Prior checkpoint — 2026-09-29 M4/M5 readiness reviewed; M9 corrective background campaign launched
+- `FAMILY_OWNERSHIP.json` routes the historical56 families/648 rows. Routing is not fresh clause-level closure. Prior milestone numbering is not transferable acceptance evidence.
+- Preserve proven work; reopen only demonstrated regression, invalidated evidence or an explicitly changed requirement. No invented completion percentages, approval gates, timers, recipes or thresholds.
+- Banked owner UI/prototypes remain the design authority. Connect original interactions rather than replace them with generic surfaces.
+- English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
+- M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-Owner parked the four post-M3 journey proposals until journeys are shared. Current request: confirm heavy context shrinkage/meaning preservation and rapid-access memory avoiding whole-estate work for short questions; review M4/M5 jointly; retrain language cognition before M9. Owner selected background execution: **"B - maximum utilization, no spend limit"**.
+## CURRENT — 2026-09-30 M7/M8 read-only readiness completed
 
-- **Review complete, not M4/M5 implementation/acceptance.** Doc7#19, Doc8#20/#21, MEM-1–11 and CC-4–9/15–16 explicitly cover both concerns. Reuse whole-unit gates, warm/fresh routing, scoped working sets, publication and compaction, but complete active bindings, durable reload, canonical five-ring validation, measured severe-reduction/semantic recovery and warm no-source-read proof. Report: `assessment_workspace/notes/goal_delivery_20260928/M4_M5_READINESS_20260929.md`. Governing roadmap M4-T3/T4 and shared M4/M5 seam now make these obligations explicit. Personal memory R-21 stays OFF.
-- **Important review corrections:** `/api/chat/ask` exists and is mounted, but only receives one question, without a session/retrieved-window contract. Service-1 warm data/conclusion branches exist; not every branch is a stub. Current My Work uses `AdminEstate`, not old `WorkTasks.jsx`. Team/goals/board feeds still largely unbound. No M4/M5 UI/model/policy change was implemented.
-- **Corrective research implemented on existing host/runtime:** `audio_plane_v1/corrective_{data,model,training}.py` and `train_corrective` phase. Distinct-window expansion/loss balancing, archive + legacy-held protection, training-only dev, Whisper LoRA/bottleneck + conditional speaker/condition adversaries (no frozen Vox bypass), real Opacus Poisson DP-SGD for all trainable paths, optimiser/accountant/RNG checkpoints. Existing baseline unchanged. No automatic promotion/replacement.
-- **Real smoke verified:** `lcj-07c848c58923` completed, digest verified; H200 executed two private logical steps; per-example gradients, clipping/noise/accountant and checkpoint accounting verified. Pipeline proof only, not quality/privacy acceptance.
-- **Full asynchronous campaign submitted via normal authenticated Akki API:** `lcj-a6ea5b4bcdf6` GPU0 and `lcj-e365bce78871` GPU1 on **akki-vm-ii**, 20 epochs each, batch512, same corpus/split/seed, adversary0.2/0.5. No spend/wall-clock cap, no new hardware/services. Both observed alive processing the authorised local corpus. Current measurements and job status: `assessment_workspace/notes/m9_corrective_training/EXECUTION_20260929.md`. Worker runs independently of this chat; read API refresh banks terminal receipts, no automatic notification claimed.
-- **Final admission still blocked:** missing English/Sheng/verified code-switch spans; speaker leakage requires terminal measurement. DP is fixed-window-example accounting, NOT presenter/end-to-end privacy certification; secure RNG absent. Final clean-monolingual-only commission still refuses. No RMS estate extraction; E1 remains control-plane only. No M9 pass inferred from a training job.
-- **Tests:** final focused suite **42 passed, 1 skipped**, including live authenticated GETs; `test_reports/iteration_65.json`. App preview smoke loads. Receipt digest/job/phase integrity and dead-worker/stale-progress handling hardened/tested. No new APIs mocked. Credentials unchanged.
+Latest user sequence: asked for another M6/M9 requirements/repos sweep, redirected to **“Do a readiness run for M7/M8”**, then **“Proceed with your plan.”** Approved plan was read-only; no application behavior, authentication configuration, training jobs, rules or tenant business records were changed.
 
-**Verified 17:31Z:** both full trials reached actual DP-SGD on separate H200s (epoch1/20; A step40, B step50; per-example DP verified). Ten-second utilisation averages 45%/24.8%, peaks99%/100%; both ~50,635MiB resident. Sustained saturation is NOT achieved/claimed. Evidence receipts `gpurcp-9498314f7d92`, `gpurcp-f32616badfe0` and execution note above.
+**Verdict:** M7 and M8 are **not acceptance-ready**; useful foundations exist and targeted implementation can proceed under its own scope. G7/G8 remain unpassed; no current acceptance pack was fabricated from historical seals.
 
-**Next actions:** P0 monitor two trials, profile under-utilisation without weakening DP/changing pinned recipe silently, and review actual terminal Luhya/conditions/privacy/speaker results without auto-promotion. P1 implement shared M4/M5 memory/retrieval spine and severe-shrink/no-estate-rerun tests when authorised, then owner-supplied journeys. P2 M6–M10 retain governing gates; independent M9/privacy/corpus qualification and full interruption-resume parity remain open. Enhancement idea: show memory hit/miss, source reads avoided and context loss in the answer's existing evidence view.
+Evidence and deliverables:
+- `assessment_workspace/notes/m7_m8_readiness_20260930/READINESS.md` — full requirements/reuse matrix, ten acceptance packs, UI integration gaps, P0/P1/P2 sequence.
+- `.../SOURCE_MANIFEST.json` —24 selective pinned donor-source reads and39 current evidence-file hashes; not whole-repository coverage.
+- `frontend/public/briefs/Akki_M7_M8_Readiness_20260930.md` — downloadable report copy.
+- `test_reports/iteration_68.json` — raw testing-agent report; **read `iteration_68_resolution.json` before acting on its generic auth recommendations**.
 
-## Prior checkpoint — 2026-09-29 M3 request→verified result PROVEN LIVE on DIGICOW · M3.3 delivery = ruled rest-in-store · UI wiring OPEN
+Repository heads reverified:
+- Akki-Executive-Core: `5844eee95d5faffea0dcab98bd4fe5e8d1419f32`.
+- RMS-IQ-Core-2: `ea5aa019521eee22ad4f8ea29efdfa2af357be3b`.
+- Akki-OS-V1: `8c361903cdd319bfdc0709de3f4392f5bfa3956b`.
+- Akki-OS-Root: `c481c1d65eb6ddd2c6630d31a736d11e46e1641a`.
+- Current native billing/execution work is ahead of Root; RMS-IQ's sampled checker/revocation mechanisms already match the current vendored code. Executive-Core billing is explicitly coming-soon, not a usable current commercial implementation. OS-V1 commercial code was cut/archived. Do not overwrite current work or import a parallel authority.
 
-Owner directives this increment: "a" (proceed autonomously with the 4-step plan); "switch — remember you
-cannot extract data from rms" (RMS is census-only; extraction scope stays DIGICOW / AKKI-TEST). English only.
-E1 stayed control plane: bytes moved akki-vm → `/mnt/akki-storage-3388s`; E1 saw metadata + signed receipts.
+### Verified in this run
 
-**Live proof (deployed backend, operator `demo.operator@demo.digicow.example.com`, see
-`assessment_workspace/notes/m3_execution/M3_LIVE_EXECUTION_20260929.md`):**
-- M3-T1 `req-97999a0b46d2f51564b85dcd05d871a2` (`digicow_live.training_questions`, max 200): warm feasibility →
-  zero-rate quote → requester + interim stand-in approvals → cpu-class dispatch to akki-vm → envelope ack →
-  200 scanned / 200 qualified / 2 PII-floor redactions → sealed 341,643 B → independent inspection on
-  akki-vm-ii → registry → rights follow lineage → settled + metered → **terminal `ready · VERIFIED_RESULT_RECORDED`
-  (measured)**; identical after 11 retrievals and a backend restart.
-- M3-T3 `req-393db89ef35ac94ccae17770f52b1c1f` (`shortcode_response`, max 20,000): sizing now MEASURED from 2
-  settled runs; `running` → requester stop → cancelled at 2,500 rows, usage metered, nothing published.
-- M3-T5: DELETE/UPDATE/DROP/INSERT refused on akki-vm before any connection, 4 signed refusal receipts banked.
-- M3-T4: widened intent → version 2 (v1 immutable); revise-commissioned 409; un-censused → `unknown`; `users`
-  floored on 6 personal columns; withdrawn/duplicate freeze 409; cross-tenant 404, analyst 403, anon 401.
-- M3.3: `POST /delivery` → custodian verified size then **held `CUSTODY_ORIGIN_UNAVAILABLE`** (shared store has
-  no HTTPS origin — the ruled pilot state; artefact rests in the tenant's store).
+- **103 scoped automated checks passed:91 existing isolated tests +12 corrected public-preview API tests.** Separate11-test M4/M5 XML is already included in91.
+- Both existing tenant operators: login and `/api/auth/me`200; missing-auth reads refused; tenant-bound overview and live entitlement/billing reads work; retained census detail denies the other tenant in both directions.
+- Normal RMS browser sign-in passes. Rules Updates and Entitlement render at1920×800 and390×844; inspected entitlement view has no mobile overflow.
+- Historical403 not reproduced. Correct login result key is `access_token`, not `token`. Existing allowlist was already permissive; no gate/config change or strict-ingress assurance.
+- Testing-agent cross-tenant test used the obsolete `rows`/numeric-ID envelope. Corrected to `records`/`record_id`, retested12/12 with no skip. Test credentials now injected through environment; no users created or modified.
+- Offline evidence uses **MOCKED/SYNTHETIC workers/providers/adapters** in many suites; isolated compaction also exercises stored Mongo bytes. No preview API was mocked. No live outage, restore, notification, provider spend, GPU interruption or serving admission was performed.
 
-**Fixed this increment (each surfaced live):** NEW `extraction_runtime/derived_rights.py` — rights authority
-extends the source grant to a verified artefact along worker-signed lineage (idempotent; withdrawn parent
-holds), called from `IndependentInspector.inspect` before the registry is written (publish gate was holding
-every completed run at `NATIVE_RIGHTS_PROOF_REQUIRED`); inspector freshness stamp = recorded inspection time
-(was `now()` → `ARTIFACT_REGISTRATION_CHANGED` on every revalidate); `_REQUIRED` holds are `Interrupted`
-(retryable) not `Blocked`; custodian `Held` propagates from `custody_delivery/service.py` with honest
-disclosures; run-view `active_compute` consumed mapped. Offline `tests/m3_commission` 10/10 (+ lineage-rights
-test); regression 170 pass over m3_commission/non_gpu governance/execution_spine/portal_operational.
-Two live legacy tests (`test_entitlement_allowance_without_licence…`, `test_execution_advance_held_unbound…`)
-assert the pre-ceremony world (no RMS licence / no bindings) — superseded, not regressions.
-`test_non_gpu_worker.py` failures are pre-existing at git HEAD.
+### Open M7/M8 findings
 
-**Standing limits:** `req-c1f2738b3449081569aebfbfd537e2a6` (first completion, pre-fix) is `Blocked` on
-`ARTIFACT_REGISTRATION_CHANGED` (now disclosed honestly) — registry written before rights existed with a
-call-time stamp, immutable; rights later extended by `m3_extend_rights.py`; real work metered.
-Testing agent iteration 64 (13/15; the 2 "failures" were my brief's wrong expectation of `Interrupted` for
-this refusal) → suite `tests/m3_commission/test_m3_live_bindings.py` aligned, 15/15 live.
-DIGICOW custody grant needs an HTTPS-origin ruling (or delivery by mount); `CustodyBinding` is single-tenant
-(RMS origin). Quality matrix threshold pending the first human-verified sample. DigiCow authorities unseated
-(stand-in cited on every approval). No commissioning UI yet. M2 Watch inventory must be rerun for the new
-`dap.commission` / `dap.delivery` gates.
+- **M7/P0:** checker publishes effective state before its Ledger emission; legacy requests lack tenant scope; global system rules need explicit authority rather than reuse as tenant rules. Three partial lifecycle paths need convergence onto durable native Ledger/ROC/RBM publication. These are source-traced findings, not a live mutation exploit.
+- **M7/P1:** Rules Updates remains an explicitly unwired page. Full seat/agent/profile, licence/catalog ceremony, customer-provider-key custody, organization ceiling concurrency, rollover/top-up and real nonempty usage-bill acceptance remain.
+- Both operator catalogue views showed zero admitted rows; RMS period bill was resolved but empty, `scope=principal`, `financial_invoice_issued=false`. Successful empty reads do not prove commercial operation.
+- **M8/P0:** continuity service records attestations, not measured restoration; breach service writes local alert files, with no delivery/ack consumer found. Need independent verifier, actual storage recovery and real recipient acknowledgements.
+- **M8/P1:** interrupted graph-wide rights withdrawal/model recall, warm-memory re-derivation, TCB outage matrix, containment persistence, isolated process-loss/single-effect and full GPU-state checkpoint restore proofs remain.
+- Existing Ledger recovery objective is3600s and qualifying-breach window72h. BC-3/BC-4 require owner-ratified dynamic tiers per `notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md`, not invented static RPO values.
+- Generic five-failure lockout, new cookie transport and password-overwriting seed behavior are not current Akki acceptance contracts. Missing rate limiting is a separately tracked hardening consideration; no auth repair was made.
 
-**NEXT:** P1 wire DAP Request / My Work UI to `/api/portal/commission/*` (drafts, feasibility, freeze,
-advance, run view, deliveries) with prototype fidelity; rerun M2 inventory; then M4 grounded answers on the
-verified DIGICOW units.
+## Inherited implementation snapshot — not re-certified by this assessment
 
-## SUPERSEDED — 2026-09-29 (evening) M2 Grey Mirror / Watch CLOSED — G2 PASS on the admitted inventory · M3 OPEN
+### M9 generalized training / language cognition
 
-Owner directive: "Did you follow the three steps … readiness review, implementation, testing with
-the same rigour as M1? If so finish M2 cleanly in one autonomous run. Use the same depth of front
-end as you did in registry." English only. E1 stays a control plane.
+- Throughput work in `services/training_runner/m9_worker.py`: token-budget batching, quantized-width ladder, per-base recipes, gradient-checkpointing control and padding metrics. Prior measured1.7B throughput16.6k–18.3k tokens/s;8B6.7k tokens/s. See `notes/m9_execution/M9_GENERALISED_TRAINING_20260929.md`.
+- API-only campaign `assessment_workspace/tools/m9_campaign.py`; records in `notes/m9_execution/campaign_20260929_full.json`; API `/api/training/m9/*`. Review terminal certificates and actual retained state before claiming completion. No jobs were queried, altered or relaunched for this M7/M8 run.
+- Last recorded LC fixed-recipe A3 `lcj-427526d3a19a` and B3 `lcj-2add4984931e` completed60epochs; both **NOT ADMISSIBLE** (accuracy/abstention and speaker leakage; B3 class collapse). Throughput is not quality acceptance. Recipe sweep awaits owner decision; `notes/m9_corrective_training/EXECUTION_20260929.md` is the live evidence authority.
+- M9.4 serving is separate, not started in this assessment. M9 gates/certificates/admission remain required.
 
-**Readiness:** Canon 8 read in full; every `services/watch` + `services/cif` module, contracts,
-drills and the Nexus `mirror`/`watch` fragments read before code. Crosswalk + limits:
-`assessment_workspace/notes/m2_execution/M2_WATCH_READINESS_AND_CLOSURE_20260929.md` (public copy
-`frontend/public/briefs/Akki_Watch_Readiness_M2.md`; both roadmap copies link it under Gate G2).
+### Estate intelligence and M6
 
-**Implemented (reuse-first, no new engine/grammar):**
-- `commission_gate.py`: mark/sever state evaluated FIRST on every pass at the 3 protected
-  boundaries (403 hold, effect receipt); tripwire hook; expired containments reconciled on every
-  READ (not only the subject's next crossing) with a release row + notice; witness digest
-  attestation at every mint; verdicts name `requirements=vN` or `thresholds=DEFAULT_PENDING_OWNER_RULING`;
-  contain-release-contain anomaly flag; console reads receipted.
-- NEW `tripwire.py`: operator plants a decoy one-way (hash only) after a MEASURED isolation check of
-  the mirage store against 7 production stores; touching it at a gate → `mirage_incrimination`
-  signal (closed registry) → `structural_certainty` verdict → `sever` (holds) → `MarkV0` (6
-  dimensions: principal, session_ref, device_ref one-way, behavioural digest, content hashes) →
-  witness → detection/effect rows → pre-opened Decisions item → notice.
-- NEW `decisions.py`: reserved human set; approve needs TWO DISTINCT operator/master_admin
-  principals (same approver twice → 409, empty note → 409); acknowledge changes nothing; decline
-  keeps protection; execution = `release_sever` (real restoration, gate admits again) or
-  `learning_loop.ratify`.
-- NEW `notices.py` (notify posture, owner default), `learning_loop.py` (finding → `services.cif`
-  detection→acceptance point→L-4 routing → `research_queue` → grounding by citation resolution →
-  Decisions → `watch_requirements/v{n}.json`; detectors read the ratified version, history keeps
-  its label), `witness_binding.py` (`wi_gate_record_witness`, digest attestations, standing
-  break-in via production writer — must refuse), `console_projection.py` (tiles, charts, patterns,
-  mirage, marked, decisions panel, walks, budgets).
-- Routes (tenant-bound): GET `/api/portal/watch/state` (+legacy aliases, same envelope), GET
-  `/api/portal/watch/notices` (own), POST `/api/portal/watch/decisions/{id}`, `/requests/demark`,
-  `/requests/redeclaration`, `/learning/propose`, `/mirage/plant`, `/witness/break-in`. Legacy
-  `/api/watch/*` mutations stay 401/409.
-- Frontend (prototype DOM/CSS unchanged; bindings + testids only): State tiles/G2/G3/chart/budget
-  gauges/ledger walks; Record lanes + "The notice we sent →" + six-step evidence walk ("Walk
-  incomplete" when a step is missing); Under watch curves (inline SVG), Watch closer, re-declaration
-  notice, mirage findings, real Marked lines (L7300 sample text replaced), de-mark request →
-  Decisions; Decisions Review/Approve(n of 2)/Decline/Acknowledge with side-by-side records; bell
-  merges Watch notices. `OwnerMarkup` exact-binding interpolation now trims whitespace.
+- Deep report and `/os/admin/estate/intelligence` exist, including duplication, degradation, grain/licensable-unit candidates, monetization blockers, cost strategies and governed dossier. Huawei OBS/NAS metrics and source limitations remain evidence-based.
+- Last documented RMS census `eij-1b359b3cbd2e`:20db/1006tables/351.3GiB/~259M estimated rows; artists_app blocked. Earlier tests iteration67:backend16/16 and desktop/mobile verified. This run did not repeat all analytics tests.
+- M6 deterministic deck backend exists under `services/transform_forms/deck_engine/`, routes `routers/decks.py`; prior handoff reports offline tests. Deck generation/view/download UI integration remains open; no new deck work was done here.
 
-**Drill pack (live, deployed backend; nothing dispatched to any worker):** T1 (iter 62 + sever
-`ma_gate_505031dd5f5e`), T2 (benign zero verdicts; 8 refusals → contain never sever; dual-control
-release `wd_1be2814bcdf4` → DPO's next crossing reached the handler), T3 (decoy
-`mr_gate_ce1aa789274a`, touch `mt_gate_505031dd5f5e`, mark `mark_gate_505031dd5f5e` checked at all
-3 gates, reads unaffected, no dimension leaks), T4 (503 fail-closed offline; break-in `passed` live;
-drift → tamper alarm offline; acknowledge leaves protection), T5 (`cif_watch_71a04299eb53` →
-`wd_6ac4580d762a` → `watch_requirements/v1.json`; new verdicts cite v1, old keep DEFAULT).
-Tests: offline 14 (`test_watch_commission_gate.py`, `test_watch_m2_full_loop.py`), live drill 8/8
-(`test_watch_m2_live_drill.py`), iteration 63: 29/29 live backend + all four panels desktop/mobile,
-zero overflow; frontend unit 31/31. Drill subject: demo.dpo (severed then released).
+### M3 / M4 / M5 inherited evidence
 
-**Standing limits (recorded in the closure note, not hidden):** inventory = 3 commission gates +
-console (auth/invocation/egress mark checks not yet in inventory); independent watchdog not placed
-(record witness runs in-pod); learned detectors/behavioural signature not built; mirage entry
-above containment not autonomous (owner ruling pending — highest bar holds); jittered bands not
-implemented; budget gauges measure drill traffic (friction gauge will show the analyst's drill
-effects as friction once released clean — a standing §19 finding on drill traffic). Each
-`learning/propose` call while an identical finding is open returns the open item (no duplicate
-proposal). Testing agent left ONE open `requirement_ratification` (`wd_9f099816b25f`, v2 candidate)
-and one extra live decoy (`mr_gate_8d182331a121`, TTL 600 s).
+- M3 DIGICOW live source→verified artifact, cancellation, write refusal and stable retrieval evidence is in `notes/m3_execution/M3_LIVE_EXECUTION_20260929.md`. RMS not extracted. DIGICOW time-boxed HTTPS custody origin remains a separate ruling/binding; shared-mount result is not an HTTPS delivery link.
+- M4 governed chat (`services/chat/*`, `POST /api/chat/ask`) is identity-scoped, uses qualified whole-unit windows and warm/fresh/refused decisions with evidence; fresh routes to a draft, not automatic dispatch. `/os/work/chat` exists.
+- Durable sessions/compaction/reload/tamper/lineage exist; M5 task/document/goal/board/withdrawal backend references in `services/work/*`. User paused M5 UI. R-21 personal memory remainsOFF; no formal G4/G5 closure is inferred here.
 
-**NEXT: M3.1** — intent → saved draft → feasibility → review → commission made durable on the
-existing DAP/Northena path; M3-T1 first bounded extraction scope to confirm with owner (RMS MySQL is
-the fully-censused candidate). Rerun the M2 inventory as M3 adds gates (G2 says later milestones
-extend and rerun it).
+## Architecture and key boundaries
 
-## SUPERSEDED — 2026-09-29 (late) M2 language cognition TRAINED on akki-vm-ii (measured, not final)
+- React frontend + FastAPI wrapper `backend/server.py` + vendored implementation at `backend/vendored/extraction_akki/backend/` + MongoDB. Mounted route order matters: native tenant-scoped routers precede or quarantine legacy unscoped aliases.
+- Native control events: `services/ledger_writer/mongo_control.py` and `principal_control.py`; atomic row+payload, tenant-qualified uniqueness, authenticated actor binding. Legacy JSON/JSONL ledgers and RAM registries still exist; their mere presence does not prove shared durable runtime authority.
+- Native orchestration: `services/northena/execution_*`; portal read/write composition: `services/portal_operational/*`; source admission: `services/estate_admission/*`; training/extraction execute on existing governed remote workers, not in E1.
+- Environment is authoritative: frontend `REACT_APP_BACKEND_URL`; backend `MONGO_URL` and unchanged `DB_NAME`. Keep supervised ports and existing credentials. Read `memory/test_credentials.md` and `auth_testing.md`; do not seed/reset accounts to make tests pass.
+- Default M7/M8 follow-up is scoped repair then genuine acceptance drills, not adding another billing database, policy store, scheduler or notification-success mock.
 
-Owner directive: "Akki trains language cognition model on akki-vm ii … Run M2
-autonomously. Maintain same rigour." Owner inputs this increment: 2 h+ budget;
-train on the extracted `google-transcripts/datasets` clean-cut labelled audio; other
-material tests model success; audio is a database (AIP §1.1); use the repo's
-biometric (speaker) layer. Owner said "Proceed without check in 1-5". English only.
+## Continuity documents
 
-**Done this increment (all phases ran as daemonised jobs on akki-vm-ii through
-`services/audio_plane_v1/language_cognition_dispatch.py`; E1 never a data path):**
-- Worker fixed/hardened (`language_cognition_worker.py`): `win` NameError; real
-  layout `datasets/<code>/<session>/{audio,transcript,metadata}`; files are MP3 in
-  `.wav` containers → ffprobe facts (duration/codec/sample rate); prefix-marker
-  objects skipped; 262 archive-only sessions unpacked + per-session origin index;
-  corpus read as a database (`corpus_db/files.jsonl` 3,958 rows, `segments.jsonl`
-  351,021 rows). NEW phase `speaker_linkage` (ECAPA speaker embeddings → presenters;
-  embeddings destroyed after clustering, AIP §6.2.4). `train_baseline` now splits by
-  PRESENTER (MUST-DO §3), keeps archive-only sessions as a second test set, reports
-  per-language + per-condition (sample-rate) accuracy with abstention, runs the
-  no-speaker-ID linear probe (MUST-DO §4), checkpoints, banks manifest hash.
-- Control plane: `_bank_run_certificate` (AIP §11.6) checks receipts against SEALED
-  defaults (`WINDOW_AND_SPAN_RULE_DEFAULT`, `SPEAKER_DISJOINT_SPLIT_CONTRACT_DEFAULT`,
-  `LANGUAGE_COGNITION_MOAC_CONTRACT_DEFAULT`) — no silent re-thresholding.
-- Receipts (digest-verified, Northena admit/gate/converge + Track-4 rows):
-  corpus_census `lcj-1851c62aee3b` — 15,899 objects/54.1 GB; 529.5 h audio, 828.6 h
-  segment time, 8 languages with audio (guz/kam/kik/kln/luo/lwg/swa/bxk), English +
-  Sheng absent, no per-span labels. speaker_linkage `lcj-e16f26a43d22` — e.g. kik
-  1,372 session-local ids → 203 presenters; all 7 transcribed languages meet N≥20.
-  gate_eval `lcj-4e9283997834` — pre-trained Whisper-LID/VoxLingua107 label every
-  Kenyan language `sw` (agreement 1.00 swa, 0.00 elsewhere): the overlay cannot
-  deliver the census distribution. train_baseline smoke `lcj-229ca62fe5cb` proved the
-  pipeline. FULL RUN `lcj-f96c86a16312` (05:22–07:07 UTC, 14,511 steps/8 epochs/6,405 s
-  on one H200, 124,273 train windows): held-out PRESENTERS 32,781 windows → overall
-  accuracy on judged **0.940**, abstention 1.9 %; kik 0.976 · kln 0.957 · kam 0.951 ·
-  guz 0.944 · swa 0.939 · luo 0.925 (all ≥ 0.90 default) · **lwg 0.592 (fails; 43 train
-  presenters)**; archive-only sessions 0.954; per-condition reported (22/48 kHz weakest).
-  **No-speaker-ID probe MEASURED FAIL** (encoder rep. 0.77–0.84 presenter-ID; output
-  logits above chance in kam/kik/kln) → `no_speaker_id_probe_passed: False`. Verdict NOT
-  ADMISSIBLE (MUST-NOT §1 + MUST-DO §4); artefact `d2cd0497…` on host, not admitted;
-  certificate `run_certificate_lcj-f96c86a16312.json` banked against sealed defaults.
-- Tests: offline worker (10) + dispatch (8) pass; live API suite iteration 61 9/9
-  (`tests/census_operational/test_language_cognition_api.py`). Operator tool:
-  `assessment_workspace/tools/m2_language_cognition_run.py`. Evidence:
-  `assessment_workspace/notes/m2_execution/LANGUAGE_COGNITION_RUN_20260929.md`.
-
-**Standing facts / not done:** artefact is `final_model: False` (MUST-NOT §1 — no
-labelled code-switched spans; English/Sheng absent; DP-SGD not applied, DQ-24
-recorded). No UI surface exists for LC jobs (AIP §13: milestones surface; none
-invented). Roadmap M2 (Grey Mirror/Watch) and M9 (final LC qualification) remain as
-sequenced. Never POST a valid phase from tests — it spawns real GPU jobs.
-
-## SUPERSEDED — 2026-09-29 (pm) M1 P0 pull-seam census now consumes fully
-
-Owner P0/P1: "holistic Census on akki-vm (entire deep census as designed) consume
-fully; train language cognition on akki-vm-ii." E1 stays control plane; akki-vm is
-worker of record and hops to the jump host via the pull seam (NAS/MySQL reachable
-only there). No estate bytes on E1 or the GPU host.
-
-**M1 P0 FIXED and PROVEN LIVE (this increment):**
-- Root causes: (1) CIFS directory listing on the jump is RTT-bound (57 ms) and does
-  NOT scale with threads on one session (~95 files/s ceiling, 1 vCPU) — a multi-TB
-  share cannot be walked in one bounded pass; (2) MySQL receipt truncated at 3×64 KiB
-  because paramiko `exit_status_ready()` fired before stdout drained → `JSONDecodeError`.
-- `deep_files.py` rewritten to **resumable** enumeration: durable frontier
-  (NAS directory paths; OBS continuation tokens + 16-byte ETag+size fingerprints)
-  checkpointed on the worker every 30 s; shared work queue commits a dir only when
-  fully scanned; per-pass cumulative totals + `directories_pending`/`progress_this_run`
-  + `epoch`; flock refuses concurrent same-scope runs; completing a share opens a
-  fresh re-census epoch. `CENSUS_REMOTE_STATE_DIR` added to backend/.env.
-- `deep_dispatch.py` + `deep_pull.py`: drain to channel EOF (`eof_received`) not just
-  exit-status (fixes MySQL truncation); SSH `set_keepalive(30)` for hour-long jobs.
-- `operational_runner.continue_if_resumable()`: progressive-consumption cadence now
-  supervised by the DESIGNED Supervision Plane engine `services/work_supervisor/
-  runtime_supervisor.py` (reuse, not proliferation): each finished pass records a
-  `ProgressSignal` (cumulative files+objects, volume bytes) into a progress ring and
-  the canon `output_verification_watchdog` decides continue-vs-halt. A scope keeps
-  scooping while coverage grows; a flatlined scope HALTS + banks `scope_halt`
-  (STANDING ORDER §3.2 "NO RUN WITHOUT A PROGRESS SIGNAL / alive ≠ done") instead of
-  looping. Unit-tested: grows→continue, flatline→halt+escalate.
-- Read word-for-word the designed engines that own progressive consumption:
-  Targeta (deterministic eligibility+ranking → reproducible MiningPlan of ordered
-  target regions; yield layer gated admitted=False), Northena (admit crossing +
-  execution coordinator), CIF (Doc-9 Conditioned Ideation Faculty: detection.author_
-  proposal → acceptance_point.is_accepted single-experiment gate → output_routing to
-  L-4/L-5; proposes-never-ratifies), Solva (reasoning/critic seam), and the harvest
-  roadmap recursion principle (archive=programme=file are all estates; census applies
-  at every scale = the shovel). NEXT: originate the census scoop ORDER through Targeta
-  and coordinate through Northena rather than the bespoke census_scoop_planner
-  (anti-proliferation §1.2) — scope to confirm with owner (touches census↔Northena).
-- Bespoke `census_scoop_planner.py` + `POST /api/portal/census/plan` exist and work
-  (1 TB bin-packed ordered scoops + cadence estimate) but OVERLAP Targeta's MiningPlan;
-  slated to collapse into Targeta origination per the owner's engine directive.
-- LIVE: MySQL `cr-3b6b013458de` 6/7 scopes COMPLETE — **20 db, 1013 tables, ~239.6M
-  rows** (was 1/7); only `artists_app` blocked (needs MySQL GRANT — owner dep, banked).
-  NAS consuming via scheduler: epoch 1, 84,616 files/16 channels, 4,844 dirs pending,
-  checkpoint advancing; probes showed cumulative growth 4,388→13,794 files. OBS
-  resumable by continuation token (99+ buckets). Evidence:
-  `assessment_workspace/notes/m1_execution/PULL_SEAM_CONSUME_FULLY_20260929.md`.
-- Tests: pull-seam-hop, deep-dispatch-transport, Watch-M2 mocked suites pass; 116
-  census_operational pass. Pre-existing `test_execution.py` t08/t09 fail identically
-  at git HEAD (legacy aggregate protocol) — not introduced here.
-
-**M1 remaining (not a mock): NAS/OBS "fully" is many autonomous bounded passes**
-(now lossless via worker checkpoint); artists_app GRANT; full designed producers
-beyond metadata+sampled-media; D6 duplicate-label identity reconciliation; M1-T1–T5.
-
-**M2 language-cognition training on akki-vm-ii — HONEST WALL (real SSH telemetry):**
-2× H200 143 GB idle, no GPU procs, `nvcc` off PATH; torch/torchaudio/transformers/
-peft/speechbrain/datasets/accelerate ALL MISSING (system + census venv); 5.9 TB
-volume empty; no base weights / no labelled corpus / no split on disk. The
-`commission_language_cognition_training_run` callable returns a handle, not job
-pickup. A REAL run cannot launch until framework is provisioned, a base model
-(Whisper/VoxLingua107) is registered, and a labelled code-switched speaker-disjoint
-corpus is assembled — none may be mocked (MUST-NOT §9). Owner direction requested
-before provisioning (cost/data/base-model choice). Final training acceptance is M9.
-
-## SUPERSEDED — 2026-09-29 M1 repairs / independent M2 preparation
-
-Latest owner directive: “Akki trains language cognition model on akki-vm ii,
-holistc Census on akii-vm (entire deep census as initially designed) consume fully.
-Fix P1 +P0. Close this and commence M2. Run M2 autonomously. Maintain same rigour
-in the structure shaped in M1”. Owner confirmed “Proceed”. Do not repeat a
-blanket planning/approval loop; preserve the existing10-milestone roadmap.
-
-**M1 NOT CLOSED; G1 NOT PASSED. M2 preparation/scoped reader started; G2 NOT RUN.**
-No full-census/training/enforcement completion claim is supported by this repair.
-English only. E1 remains the control plane, not a source/corpus/weights data path.
-
-Verified this increment:
-- SSH worker completion recognizes exit-status after draining both streams,
-  recalculates remaining budget after connection, preserves transport diagnostics.
-  Original failed runs retained. Five MOCKED transport tests are not live gate proof.
-- Source category/legend/row/child CTA/profile bindings and async-close race repaired;
-  original Nexus source catalogue made responsive and populated from retained data
-  instead of hardcoded prototype totals. Single child click sends one source read.
-- Credentialed CORS now uses explicit configured frontend + observed proxy alias,
-  not wildcard; unrelated origins denied. Auth/accounts/credentials unchanged.
-- New implicit census jobs select env `CENSUS_PRIMARY_WORKER=akki-vm`. Verified
-  idempotent replay returns original SQL successor with no extra dispatch.
-- M2 original Grey Mirror/Watch reads tenant-bound retained observations/records;
-  old unadmitted Watch HTTP mutation paths are authenticated409, not authority
-  minting. No detector/physical effect/witness qualification inferred from records.
-  Overview ledger/filters, refresh and evidence→selected census work. Duplicate
-  outer OS drawer obstruction and mobile Watch/overview layout repaired.
-- Final targeted backend28 pass; existing frontend9 pass; real UI source/profile,
-  Watch record/drawer/overview verified at1920×800 and390×844, overflow[].
-
-Actual successor census placement/status:
-- `cr-d5d34eb632a9`, akki-vm, PARTIAL: external43.385s,1/7 scopes complete;
-  five MySQL scopes unreachable, artists_app authentication failure.
-- `cr-b13eaacdc4bb`, akki-vm, REFUSED: external0.05s, NAS root absent/not mounted.
-- `cr-b47b981d2035`, akki-vm, PENDING/executing at final read; OBS not yet verified.
-  Existing supervised dispatcher continues it; do not submit a duplicate blindly.
-
-Training target is **akki-vm-ii**; **NOT LAUNCHED**. Remote readiness observed expected
-hostnames, no GPU processes at that instant and no torch/transformers/peft in system
-Python (not proof about other environments). The fully read language-cognition
-commission function returns a handle, not job-pickup evidence. Recover/qualify
-existing base/corpus/speaker-disjoint split/frozen MOAC references and wire actual
-Akki-native language training; do not use text LoRA or legacy MOCKED training as
-a substitute. Preserve original biometric/DP/abstention/custody rules and M9's
-independent acceptance; pending owner defaults are not measured passes.
-
-P0/P1 next: restore akki-vm NAS/MySQL access; inspect OBS terminal receipt; complete
-all40source clauses/deep producer integration and M1-T1–T5. D6 duplicate-label SQL
-source identity still needs descriptor-safe historical reconciliation. Current
-metadata/64-row samples/object lists/media probes are not the full designed census.
-M2 next: finish full reuse/callsite/readiness crosswalk, bind real detection→bounded
-physical effect→record→independent witness→notice→legitimate restoration; then T1–T5.
-P2: M3–M10 unchanged, with M9 final language-cognition qualification.
-
-Evidence:
-- `assessment_workspace/notes/m1_execution/REPAIR_AND_SUCCESSOR_STATUS_20260929.md`
-- `assessment_workspace/notes/m2_readiness_20260929/READINESS_AND_PROGRESS.md`
-- `test_reports/iteration_59_resolution.md` and passing pytest XML; original
-  iteration58/59 reports preserved. No five-attempt lockout policy invented.
-
-## Original problem statement
-
-Deeply understand, assess and operate Akki Extraction under strict architectural
-and governance rules. Wire DAP requests, work history and entitlement lifecycles
-to actual engines; reconcile the 648-row requirements assessment against genuine
-closure evidence rather than fixtures or claims. Preserve frozen Canon contracts,
-one authoritative append-only ledger, and 100% fidelity to owner HTML prototypes.
-
-## Users and boundaries
-
-- Estate owners/tenant approving authorities commission governed read-only census
-  and separately scoped extraction, answers, evaluation and delivery.
-- Work users consume scoped results/history; operators administer controls and
-  independent inspectors establish evidence without inheriting worker authority.
-- **E1 is NEVER the estate-data execution path.** E1 wires admitted descriptors;
-  a local subprocess or HTTPS source SDK does not itself establish an external
-  admitted runtime. Do not manufacture admissions, signatures or trust roots.
-- Owner authorises independent non-GPU work; no fresh blanket approval is needed.
-  GPU/SSH CONNECTED 2026-09-28 17:15 UTC via GPU CRED 3 workbook (password auth).
-- English only. Keep source credentials in ignored custody, not chat/reports/UI.
-- Source requirement text is immutable; hardening is a versioned derivative.
-- A schema, chat ruling, ordinary login or historical fixture is not a live
-  signed approval. Use existing rulings/defaults before requesting owner decisions.
-
-## Architecture
-
-- React frontend, FastAPI, MongoDB. URLs/credentials/database configuration use
-  existing environment variables. API routes use `/api`.
-- Bootstrap: `/app/backend/server.py`; runtime:
-  `/app/backend/vendored/extraction_akki/backend/`.
-- Canonical ledger: `services/ledger_writer/{principal_control,mongo_control}.py`.
-- Coordination: `services/northena/execution_*.py`; Mkondo native handoffs;
-  Mtafiti registry; `services/activation/`; `services/non_gpu_governance/`.
-- DAP: `routers/portal_requests.py`, `services/portal_operational/`.
-- Census: `services/census_autonomy/` including `census_router.py`,
-  `jump_dispatch.py`, `rds_data_dispatch.py`, `obs_dispatch.py`,
-  `non_gpu_census_worker.py`, `census_dq_producer.py`.
-- UI: owner prototype/OwnerMarkup composition. Do not redesign CSS/layout/DOM.
-- Credentials unchanged: `/app/memory/test_credentials.md`; estate access is
-  held in ignored `/app/backend/estate_keys/owner_20260928/`.
-
-## Current checkpoint — 2026-09-28, M1 Registry readiness revision 2
-
-Owner accepts roadmap but rejects flattened Registry report. Three new screenshots
-show selected Census4, successive scroll: exact Discovery Summary/GPU Spend/
-Conversation with Agent/Discovery Details; five-category condition bar; Coverage,
-Condition, Readiness with13 annotated value/delta rows. Source is latest Nexus
-HTML0330a171… (not sample values as runtime data). Original design must remain full.
-Every milestone readiness now explicitly includes FRONTEND source/UI/UX capture,
-backend integration mapping and prior-gap closure reconciliation. Once a scoped
-correction is verified, keep it closed unless specific regression/evidence change/
-new requirement justifies reopening. No arbitrary recurring re-audit/new gates.
-
-Current readiness report: `notes/registry_readiness_ui_20260928/REGISTRY_READINESS.md`;
-companion `CLAUSE_MAP.md` maps all22Doc9/10+15DQ+3trust-domain rows (coverage, not
-closure). Full Doc9/10 source texts recovered26Sep and read; never ask again based
-on15Sep missing-document note. Historical audit D1–D11 and original11field gaps
-reconciled without overwriting original evidence. Ready-to-implement delta includes
-complete UI/interaction AND backend functions; no cosmetic-only fix accepted.
-
-Concrete mismatch: OwnerOSPage still uses generated/os.json, source a0a6df580…;
-Nexus fragment generator excludes Registry. historyModel explicitly renames tabs,
-replaces3groups with Inventory/Execution outcome, omits actor/coverage, changes
-pagination to8 and GPU rows, forces no conversation; Census #undefined persists.
-Full original Registry/source/report/compute/model/Connect markup and report/
-Connect model transitions reviewed. Preserve source styles, responsive adaptation,
-all fields/controls and non-fabricated states; use existing renderer.
-
-Verified narrow closures: D3 fictional DAP pages no longer mounted; D10 facts is
-authenticated scoped200 (NOT blanket409); census4 read/date visibility retained.
-D1/D2/D7/D8 unsafe legacy exposure quarantined—not corresponding capabilities
-complete. D6 conflicting asset overwrite still open; D11 actual sensitivity,
-RDS/OBS off-E1, deeper profiles/coverage, durable source Registry, NAS/worker and
-full UI/compute/response integration remain open. Existing Canon source writer,
-Measurement/Unmeasured, stratum, activation, classifier, enumerator, NAS inventory,
-two-layer composition, quality bitmap consumer and brief generator MUST be reused.
-Quality consumer is not profiler; name-FK scaffold not all4ruled linkage types.
-
-Evidence iteration55:16scoped API tests PASS,24offline tests PASS (SYNTHETIC/MOCKED),
-actual census4 desktop1920x800/mobile390x844 comparison: fidelity FAIL, no overflow.
-Ignore arbitrary tester percent scores/global backend-healthy statement beyond
-its read-path tests. Known defects deliberately not fixed in this readiness-only
-request. No app/UI/auth/credential/config edits, no source/GPU calls or new census.
-Published readiness report, clause map and revised roadmap verified exact against
-canonical HTTP downloads. VALIDATION.json banks source/screenshot links, hashes,
-all13rows, originalD1–D11, all40exactclauseIDs and unchanged runtime/source checks.
-Ten milestones/51packs preserved; M1 acceptance NOT RUN. Remaining full dependency
-reads explicitly listed; no exhaustive repository-read claim. Next work when
-implementation begins: M1.2 external effects and M1.3 whole designed Registry
-integration together, then M1.4 all5acceptance packs and closure. No new questionnaire.
-
-## Previous checkpoint — 2026-09-28, M1.1 second verification / readiness revision 1
-
-Owner clarifies “2nd review” means the proposed verification, then rollout within
-the governing milestone framework. Explicitly requires a full relevant-repository
-reuse review in EVERY milestone's readiness phase: read built implementations,
-alternatives, dependencies, tests and actual callers before proposing new code.
-Keep all communications/questions/refusals/recommendations tied to that outcome;
-no detached P0/P1/P2 approval questionnaire and no repeated blanket consent ask.
-
-Updated canonical `notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md` and matching
-public brief: readiness revision 1, ten milestones / 51 packs preserved. Added
-readiness homes M1.1–M10.1, explicit full-read/reuse/change justification, and both
-non-GPU and GPU-hosted worker verification within M1-T1–T5. GPU host access is not
-GPU acceleration proof. Use already-qualified GPU census functions where applicable;
-new model/perception/training qualification remains M9. Do not defer M1 adapter gaps
-to M9. No claim that all repo files or even all relevant M1 candidates are now read.
-
-Report: `notes/m1_second_verification/READINESS_REVIEW.md`.
-Current baseline: RMS overview seven retained records, zero PENDING; latest
-`cr-dd05196d837f`; historical blocked `cr-809561ad5643` and `cr-a29e3b7b16ae` remain.
-Owner's precise intended pending card is not conclusively identified. Reconcile
-the existing history; never invent a pending job or rewrite old refusals.
-
-Confirmed M1 work: RDS/OBS SDKs still execute in E1 with incorrect akki_host claim;
-local subprocess fallback is not off-E1 either. GPU remote worker is mysql_metadata
-only, NAS falls to it. Deeper Mtafiti composition/quality/sampling code exists and
-must be reused after dependency review. Current compute tab/GPU spend are not wired;
-public gpu-spend and response-required routes return intentional 409 quarantine.
-Do not unquarantine unsafe/stub producers. Existing receipt hydration must be
-qualified on durable custody/all consumers, not replaced with another Registry.
-Current owner history has an observed `Census #undefined` result-ID mapping defect
-for records without census_number; M1.3 repair remains open.
-
-Verification: source review + external-preview owner history at 1920x800/390x844,
-no horizontal overflow; 24 isolated offline contract tests pass (SYNTHETIC/MOCKED);
-12 read-only live API tests pass after correcting a stale historical-count test.
-Preserved owner census4 expected values on record4; latest checks its own detail.
-Reports `iteration_54.json` and `iteration_54_resolution.json`. Published readiness
-revision verified accessible; canonical/public copies match and still contain
-ten milestones, 51 unique packs and all ten explicit readiness review homes.
-No runtime/auth/
-credential/config/UI changes, no new source/GPU calls, no census commission or
-service restart. All M1–M10 live gates remain NOT RUN. Next: M1.1 full review/card/
-descriptor reconciliation → M1.2 external workers → M1.3 deep Registry/compute
-bindings → M1.4 acceptance/repair. M2–M10 follow the same readiness discipline.
-
-## Previous checkpoint — 2026-09-28 17:15 UTC, GPU hosts CONNECTED
-
-Owner supplied `GPU CRED 3.xlsx` and said: "Connect GPUs first then we activate the
-2nd review, then roll out." Both GPU VMs now authenticate through Akki's existing
-governed seam (`services/gpu_direct` workbook → pinned server key → password →
-`training_runner.ssh_seam.execute_remote_command` with redacted receipts).
-`capture_gpu_spend()` returns CAPTURED for akki-vm and akki-vm-ii. Provider had
-re-assigned public IPs (akki-vm .230, akki-vm-ii .244); env + known_hosts updated.
-Hardware per host: 2× H200, 36 vCPU, 460 GB RAM, 5.9 TB data volume. Prior notes
-report CUDA 12.8 and no docker/pip/torch; the inspected connection receipts show
-`nvcc: command not found`, so compiler-on-PATH/runtime readiness is not established.
-GPU/SSH is NO LONGER PARKED. Details and
-custody path in `test_credentials.md`. `/api/portal/census/gpu-spend` remains an
-intentionally 409-quarantined legacy unscoped route; the seam proof ran in-process.
-
-## Previous checkpoint — 2026-09-28, governing goal-based delivery roadmap
-
-Owner requests goal-based milestones with outcome/performance test runs opening
-the next milestone; readiness gaps must become tasks within that milestone. Start
-with Registry/deep non-GPU census commissioned through Akki by the agent acting
-as objective-shaping wizard; Grey Mirror and all core functions follow. Exact
-direction: "The plan you will develope is canon going forward." Function and
-integrity serve the promise; eliminate unanchored invented restrictions/timers,
-not ratified safeguards. GPU credentials/additional datasets stay with owner.
-Planning only: do not begin source runs or implementation during this turn.
-
-**Governing execution document:**
-`assessment_workspace/notes/goal_delivery_20260928/AKKI_GOAL_ROADMAP_v1.md`.
-Companion `FAMILY_OWNERSHIP.json` routes all historical 56 families / 648 rows,
-and E01–E14 experiences. Routing is not clause-level adjudication or closure.
-Ten milestones / 51 acceptance packs, all NOT RUN:
-M1 Registry + deep census → M2 Grey Mirror/Watch → M3 request-to-delivery →
-M4 useful grounded answers/context → M5 memory/collaborative work/goals/board →
-M6 artifacts/decks/callable skills → M7 tenant/rules/commercial operation →
-M8 resilience/withdrawal/recovery → M9 activated media/model/training capability →
-M10 integrated independent acceptance. Independent preparations can overlap;
-mandatory FAIL/BLOCKED runs never count as PASS. GPU preparation runs in parallel.
-No new percentage, arbitrary milestone duration or test threshold. Source-default
-metrics require prior-ruling reconciliation; informational findings are not
-silently made into blocking gates. Existing UI fidelity and E1 isolation stand.
-
-Owner added explicit deep reuse review of https://github.com/bramuel-syni/Akki-OS-Root.
-Pinned main `c481c1d65eb6ddd2c6630d31a736d11e46e1641a`. Root recursive API listing
-was truncated; complete backend/frontend/memory subtrees fetched separately.
-Backend + frontend/src comparison: 1,215 donor paths, 1,200 identical current
-blobs, 15 different, zero donor-only. 1,204 selected source/docs materialised;
-1,005 Python files statically indexed without execution. Root links Core/OS/
-Extraction/RMS-IQ as gitlinks. No claim that all archive/submodule code was read.
-
-**Reuse review:** `notes/goal_delivery_20260928/ROOT_REUSE_REVIEW.md`.
-Current workspace is ahead of Root in operational census, execution/activation,
-custody/native skill queries, billing joins and UI. Do NOT overwrite with Root.
-Existing memory, Watch action/mirage/witness, registry, skill provisioning,
-training/WPW and single-effect mechanisms must be reused. Old async dispatcher's
-NotImplemented branch is not proof that current native skill queries are absent.
-
-Concrete milestone tasks from read-only review: deepen census; qualify external
-worker/provider placement; retain tenant-bound `/api/portal/census/run`; old
-unscoped routes are intentionally 409-quarantined and shape-only COMPLETE is not
-success. Verify durable receipt custody and RAM registry hydration/all consumers;
-workspace-based state needs persistent-runtime qualification. Watch has mutation
-mechanisms but recorded actions do not prove effects. Solva equal-weight scaffold
-and synthetic quality/memory tests do not establish useful live answers. Team/
-goal feeds have explicit empty placeholders. Repair these within owning milestones.
-
-Verification: documentary/source/identity coverage and static review only; no
-application tests, estate/GPU/model calls, state/config/auth/UI modification or
-live milestone pass. Broader positives remain SYNTHETIC/MOCKED where unproved.
-Next execution is M1.1 readiness and objective shaping, then commissioning the
-deep non-GPU census through Akki—not direct source execution from E1.
-
-## Previous checkpoint — 2026-09-28, reuse-first closure plan
-
-Owner works on GPUs; asks to plan closure of the previously estimated 65% gap.
-Supplied Supplement 2 ZIP, Streaming Voice Training Capacity DOCX and Deck Engine
-v1 DOCX; points to Akki-Executive-Core and Akki-OS-V1 for reuse. Says "skip" for
-tenant authority submissions and artists_app permission: park, do not waive gates.
-
-Current report: `notes/owner_closure_plan_20260928/PLAN.md`. Originals and pinned
-repository snapshots: `assessment_workspace/incoming/owner_closure_plan/`.
-All 24 historical source-unresolved clause bodies recovered (11 SV, 11 ROC, two
-deck). This closes source recovery only, not implementation or live acceptance.
-Voice remains PROPOSED/NOT YET MERGED in source; LT-2/3 OPEN there. ROC source draft
-must reconcile existing 2026-09-09 BANKED-DERIVED approved working default.
-
-Important recovered prior rulings in `STATE/DECISIONS.md`:
-- A18.6 already ADOPTED on 2026-08-27; current runtime adoption record exists.
-- EP-4 mandatory dual-judge/register precondition already directed; guard exists.
-- BC-3/4 on 2026-09-15 explicitly reject a blanket static recovery number and
-  direct a tiered dynamic-recovery packet. Full packet ratification not established.
-  New 24h estate / near-zero Ledger / 72h-after-unit-arrival defaults were offered
-  ONLY absent a prior ruling, so do not silently bind them over this direction.
-- Older QA workbook has a 2026-09-20 V1–V7 ruling; owner now references Audit
-  Standards v2 V1–V8. Pin/version/crosswalk actual definitions, never invent V8 or
-  overwrite auditor verdicts. EP-1–3 adoption/mapping needs precise reconciliation.
-
-Both public main trees fetched without truncation: Core `5844eee95d5faffea0dcab98bd4fe5e8d1419f32`,
-OS `8c361903cdd319bfdc0709de3f4392f5bfa3956b`. Targeted inspection found existing
-deck async jobs, async accepted/estimate/state/refusal, current rules register and
-EP guard. Donor OS async dispatch explicitly lacks callable-skill support there;
-current DeckSpec is only a frozen two-field shell. Reuse candidates are not proof
-of active current full-spec conformity; trace ownership and extend, do not duplicate.
-
-Next: evidence-linked reuse/call-path crosswalk; six-schema descriptor/admission
-integration; NAS verification on an admitted EXTERNAL worker; genuine governed
-non-GPU path; parallel rules/deck/async deltas; remaining product/live proofs.
-GPU/SSH stays with owner; no retries. Never scan NAS/source data from E1.
-
-Verification: all three originals hashed/read; direct OOXML extraction confirms
-24 expected clause IDs; historical baseline confirmed 648 rows; targeted code and
-prior-ruling reads. Planning/docs only: no app, auth, config, credential, UI or
-estate changes; no new tests/live certification. Broader positives remain
-SYNTHETIC/MOCKED without live evidence. No completion percentage recomputed.
-
-## Previous checkpoint — 2026-09-28, descriptor requirements review
-
-Owner: “Attached are some of the requirements. NAS - mounted on: /mnt/nfs-share.
-You now have data to close alot of the gaps. What is pending from me?”
-Then quoted the previous “everything verified”, ~35% and live census report.
-
-Reviewed files (20).zip: six JSON schemas (source/query/worker/inspection/custody
-descriptors and admission record) plus an 18-entry inventory. All six schemas
-pass Draft 2020-12 meta-validation. Direct workbook inspection: all 18 location
-cells and all 18 status cells blank. These are contracts/inventory, not populated
-verified descriptors or signed admissions. Originals retained unchanged at
-`assessment_workspace/incoming/requirements_files20/`, hashes in report below.
-
-Historical owner-action reconciliation (superseded above where changed):
-`assessment_workspace/notes/descriptor_requirements_20260928/OWNER_PENDING.md`.
-
-### Owner dependencies, limited to affected work
-- Workbook explicitly lacks identity drops for RMS Fred Afune / Muthoni Kiarie /
-  Samuel Kibacia and DigiCow Vincent Kimani / Peninah Wanja. Recover custody refs
-  first; missing identity/mandate evidence goes through existing tenant custody.
-- artists_app previously denied; owner earlier said “ok”. Do not assert GRANT was
-  applied. Only continuing denial after confirmed update needs narrow admin access.
-- Historical missing-source clauses: SV extension 11, ROC 11, deck DR-R10/R13 two.
-  New archive contains none. Recovery is E1's first task, then precise owner sources.
-- Seven historical decision rows are EP-1–4 adoption, A18.6 async delivery, BC-3/4
-  continuity policy — NOT seven numeric thresholds. Reconcile existing rulings;
-  only genuinely missing policy decisions return to owner at their affected gate.
-- AISCA/GPU administrator dependency stays parked, not a non-GPU blanket blocker.
-
-### Engineering work, not more owner inputs
-- Verify NAS mount host/admitted-worker/read-only scope; mount path alone proves
-  neither NFS/CIFS nor successful census. Do not request SMB password by default.
-- Populate descriptor inventory and pin recovered actual worker/inspection/custody
-  evidence; recover D-18 pilot and AKKI-TEST records, not replace existing authority.
-- Platform-principal MT-13 workflow and explicitly SYNTHETIC test estates are E1
-  build tasks; DigiCow tenant web access is engineering/admission wiring.
-- Qualify worker separation/admissions, real DQ/extraction/answers/metering/delivery.
-
-### Evidence corrections
-- Prior report records real aggregate reads: RMS 20 databases/1,015 tables/~257M
-  estimated rows on six hosts; DigiCow 239 tables/~5.9M estimated rows; OBS 106
-  bucket listing. These are HISTORICAL, not rerun in this review, not full content
-  census or full product/security/admitted-runtime certification.
-- Current RDS/OBS dispatchers call SDKs directly; hash-derived worker receipt IDs
-  and execution_location strings are not signed runtime admission/independence.
-  These findings are engineering follow-up, not credential requests or live fixes.
-- ~35% is an unreconciled estimate; old remaining shares total 93%. Do not assert
-  built-and-proven programme percentage until row-level reconciliation. No new %.
-- Broader positive answer/model/custody/governance fixtures remain
-  **SYNTHETIC/MOCKED**; live end-to-end acceptance is not established.
-- This turn changed assessment/continuity documentation only. No app/config/auth/
-  credentials/UI changed, no source/GPU reads, no new admission or certificate.
-  Prior 733-test result is historical, not a new regression run.
-
-## Continuity and priorities
-
-- `ROADMAP.md`: latest P0/P1/P2 ownership and historical roadmap.
-- `CHANGELOG.md`: implementation/review history and verification.
-- `ARCHIVE_PRD_BEFORE_DESCRIPTOR_REVIEW.md`: exact prior 761-line PRD preserved;
-  includes detailed 2026-09-27/28 controls/UI/non-GPU implementation checkpoints.
-- `ARCHIVE_PRD_BEFORE_ACTIVATION_CONTROLS.md`: earlier history.
-- Original audit: `notes/full_requirements_gap_20260926/REQUIREMENT_GAPS_648.csv`.
-- Decision ownership: `notes/consolidated_fix_plan_20260926/DECISION_AND_BLOCKER_REGISTER.md`.
-- Accepted owner v1.1 activation inputs remain final desk handoff; no generic
-  revision questionnaire. See `notes/live_activation_v1_3_artifact_review/revision_v1_1/`.
-- Next: versioned descriptor/admission integration and evidence reconciliation,
-  admitted non-GPU mount/source verification, then real governed path proofs.
-  Preserve current authority and prototype fidelity. GPU connectivity is available;
-  qualify census-worker bindings under the current M1 scope above, not old parked notes.
+- `memory/ROADMAP.md`: prioritized next actions and retained backlog.
+- `memory/CHANGELOG.md`: dated progress notes.
+- The former723-line PRD mixed historical checkpoints with current state. Its complete byte-preserved copy is `memory/archive/PRD_20260930_before_M7_M8.md` (SHA256 `f7a397cca925f59863a257481f59620f6de887fec3acde85890f17287ef29775`). It contains all older implementation details and source pointers; read current sections here first.

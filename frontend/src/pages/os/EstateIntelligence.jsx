@@ -12,6 +12,7 @@ import { usePrototypeSession } from '@/components/prototype/usePrototypeSession'
 import { EstateHeadline } from '@/components/estate/EstateHeadline';
 import { EstateDatabases } from '@/components/estate/EstateDatabases';
 import { EstateDuplication } from '@/components/estate/EstateDuplication';
+import { EstateStores } from '@/components/estate/EstateStores';
 import { EstateQuality } from '@/components/estate/EstateQuality';
 import { EstateProducts } from '@/components/estate/EstateProducts';
 import { EstateStrategies } from '@/components/estate/EstateStrategies';
@@ -47,6 +48,7 @@ export default function EstateIntelligence() {
         <EstateHeadline report={report} />
         <EstateDatabases report={report} />
         <EstateDuplication report={report} />
+        <EstateStores report={report} />
         <EstateQuality report={report} />
         <EstateProducts report={report} />
         <EstateStrategies report={report} />

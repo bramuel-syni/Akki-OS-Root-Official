@@ -74,7 +74,7 @@ def wait(doc, path, keys):
                                                        "per_stratum": {s: (r["accuracy"], r["base_accuracy"], r["meets_m_a"]) for s, r in cert["per_stratum"].items()},
                                                        "egress_permitted": cert["distance_probe"]["egress_permitted"], "refusals": cert["distance_probe"]["refusals"],
                                                        "admission": cert["admission"], "pruned": cert["pruned_artefact"].get("admission"),
-                                                       "compute": {kk: cert["compute"][kk] for kk in ("steps", "epochs_completed", "wallclock_seconds", "gpu_hours", "tokens_per_second", "padded_tokens_per_step", "gpu_max_memory_gb", "final_loss")}}
+                                                       "compute": {kk: cert["compute"].get(kk) for kk in ("steps", "epochs_completed", "wallclock_seconds", "gpu_hours", "tokens_per_second", "padded_tokens_per_step", "gpu_max_memory_gb", "final_loss")}}
                 log(f"{k} terminal: {json.dumps(doc['stages'][k], default=str)[:1500]}")
             save(path, doc)
         time.sleep(POLL)

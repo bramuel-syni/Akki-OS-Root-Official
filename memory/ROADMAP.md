@@ -1,6 +1,35 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-29 joint M4/M5 review and corrective M9 research campaign
+## CURRENT — 2026-09-30 M7/M8 readiness assessment (no implementation authorization inferred)
+
+User redirected the repository sweep to M7/M8, then approved the read-only plan.
+Full evidence: `assessment_workspace/notes/m7_m8_readiness_20260930/READINESS.md`.
+Both milestones are NOT ACCEPTANCE-READY; G7/G8 remain unpassed. Preserve the
+existing goal-roadmap numbering and prior verified foundations.
+
+- **P0/M7:** converge legacy checker and partial rule lifecycle paths onto durable
+  native rule/Ledger/version publication; make system-global vs tenant authority
+  explicit; fault-test the state-before-evidence gap before exposing tenant changes.
+- **P0/M8:** bind independent restoration verification and actual alert delivery;
+  reconcile/ratify the dynamic recovery packet, preserving3600s Ledger objective
+  and72h notification window. File drops and attestation records alone are not proof.
+- **P1/M7:** complete existing Rules Updates journey; seats/agents/profile adoption,
+  licence/catalog changes, customer-key custody, ceiling concurrency, rollover and
+  top-up; produce a nonempty real event-derived period bill; run M7-T1–T5/G7.
+- **P1/M8:** graph-wide withdrawal/recall and lawful re-derivation, containment
+  persistence, dependency outage matrix and isolated process-loss/single-effect
+  drills; real independent restore/notification proofs; run M8-T1–T5/G8.
+- **P1 existing tracks:** M6 deck UI remains open. M9 terminal certificates and
+  admission/serving require their separate wrap-up; current LC fixed-recipe results
+  are NOT ADMISSIBLE, recipe sweep requires owner choice. This run did not alter jobs.
+- **P2:** keep paused M3/M5 journeys, broader site-loss/GPU restore acceptance and
+  M10 independent integrated acceptance separate. No production outage or active
+  GPU interruption was authorized by this readiness request.
+- **Verification:**91 isolated +12 external-preview API checks pass; desktop/mobile
+  Rules Updates/Entitlement rendering checked. APIs not mocked; much offline worker
+  evidence is MOCKED/SYNTHETIC. Read `test_reports/iteration_68_resolution.json`.
+
+## Prior — 2026-09-29 joint M4/M5 review and corrective M9 research campaign
 
 - Four post-M3 journey proposals parked pending owner journeys; not waived/accepted.
 - M4/M5 reviewed jointly: explicitly retain heavy shrinkage, rapid-access qualified memory and short-inquiry zero-estate-rerun obligations. Integration needed, no G4/G5 pass. Report: `assessment_workspace/notes/goal_delivery_20260928/M4_M5_READINESS_20260929.md`. Shared spine lands in M4 and is reused in M5; R-21 OFF.

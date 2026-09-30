@@ -1,0 +1,26 @@
+{
+  "summary": "Iteration 67 - Full backend + frontend verification of the new Estate Intelligence report (v2) and read-only M9 training endpoints. 16/16 pytest tests pass. Frontend /os/admin/estate/intelligence renders every specified data-testid (surface, title, lead, meta with census eij-1b359b3cbd2e, 10 tiles matching all target values, condition bar, 20-row databases table with viusasa_staging row, sort chips rows/bytes/grade that reorder the table, duplication section with both tables, quality section incl. degradation-kinds/dead-columns/trend showing previous job eij-91933223a5b1/orphans/top-degraded/top-pii, 8 product cards with reference_data grain expanded and toggles that expand/collapse others, 7 strategies with evidence+Risk on toggle, dossier meta showing gpt-5-mini with dossier text rendered as HTML (no raw ** markers), method+errors section mentioning artists_app, reload button, download-brief with correct href /briefs/Akki_Estate_Intelligence_eij-1b359b3cbd2e.md, back-registry link, and compose-dossier button visible for the operator (NOT clicked to avoid the real LLM call)). Registry drawer at /os/admin/estate?app=registry opens 'What your data can do' via the intelligence opportunity card and now contains 'Open the full report' + 'Download the brief' actions; clicking 'Open the full report' navigates to /os/admin/estate/intelligence. Mobile 390x844: no horizontal overflow (documentElement.scrollWidth == 390), all 10 tiles stack to a single column at 316px, all three tables (databases, duplicate-pairs, within-duplicates) are wrapped in scroll containers. Backend tenant scoping and RBAC all verified: DIGICOW operator gets report:null and jobs:[]; anonymous 401; analyst 403 on compose; unknown job ids 404; invalid phase POST returns 422.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_iteration67_estate_and_m9.py",
+    "/app/test_reports/pytest/iteration_67.xml",
+    "/app/test_reports/screenshots/estate_intel_desktop.jpeg",
+    "/app/test_reports/screenshots/registry_drawer.jpeg",
+    "/app/test_reports/screenshots/estate_intel_mobile.jpeg"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Report contract note: /api/training/m9/jobs/<id> exposes run_certificate.per_stratum at the certificate root while moac holds only m_a_improvement / m_b / m_e / floors_class / card. The review request text put per_stratum inside moac; the actual (and reasonable) shape is per_stratum alongside moac. Consider adding per_stratum key to the moac object too (or updating the doc) so the contract matches the phrasing."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_iteration67_estate_and_m9.py"
+  ],
+  "success_rate": {"backend": "100% (16/16)", "frontend": "100%"},
+  "test_credentials": "RMS operator demo.operator@demo.rms.example.com / demo-operator-pw; RMS analyst demo.analyst@demo.rms.example.com / demo-analyst-pw; DIGICOW operator demo.operator@demo.digicow.example.com / demo-digicow-operator-pw",
+  "seed_data_creation": "None. All calls were read-only (no valid /jobs POSTs to /api/training/m9/jobs or /api/portal/census/estate-intelligence/jobs; no operator dossier compose). Only allowed writes were the invalid-phase 422 probe and the analyst 403 compose probe.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Estate Intelligence v2 is stable end-to-end. Backend test module: /app/backend/tests/census_operational/test_iteration67_estate_and_m9.py can be reused for regression. Notable: report meta shows status 'partial', and dossier text is rendered from markdown into HTML (headings/lists/paragraphs), NOT emitted as raw markdown. Grade sort of databases table changes row order (viusasa_staging is initial first; after grade sort, miniapps/viupay/correspondents were the first three visible rows). Compose-dossier button is present but was not clicked per instructions (real ~50s LLM call). Two M9 background training jobs are still running on the hosts; only GET endpoints were exercised.",
+  "rca of the issue": "N/A - no defects found."
+}

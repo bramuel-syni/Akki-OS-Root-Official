@@ -1,0 +1,85 @@
+{
+  "summary": "Read-only M7/M8 readiness run completed. Executed requested isolated backend suites (excluding process_recovery_mongo per isolation rule), added public authenticated portal/API regression tests against REACT_APP_BACKEND_URL, and validated /os/admin/rulesupd + /dap/entitlement at 1920x800 and 390x844. Confirmed both RMS and DIGICOW operators have resolved licence with zero listed catalog rows; billing endpoint is mounted and readable.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "Brute-force lockout contract not enforced: 6 wrong-password attempts still return 401 and immediate correct login still succeeds (no 5-fail lockout).",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "/api/checker/countersign/{request_id}",
+        "issue": "State transition to EFFECTIVE occurs in state_machine before emit_countersign_ledger_row in router; ledger-write failure can leave effective state without matching ledger row (non-atomic ceremony/evidence split).",
+        "priority": "HIGH"
+      },
+      {
+        "endpoint": "/api/checker/*",
+        "issue": "RuleChangeRequest model/state machine has no tenant_id and collection access is request_id-only, creating cross-tenant collision/isolation risk for deterministic IDs.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "App auth does not set an application session cookie (only bearer token in JSON TokenPair; observed Set-Cookie was Cloudflare bot cookie)."
+      },
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "Response header included access-control-allow-origin: * on POST response path (edge behavior), while credentialed CORS should remain explicit-origin only."
+      },
+      {
+        "endpoint": "services.auth.user_store.seed_admin_if_absent",
+        "issue": "Seeder is create-only and does not update existing admin password when changed, so seed_admin update-idempotency contract is not satisfied."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "/os/admin/rulesupd",
+        "issue": "Page is explicitly HONEST-GAP surface only (backend not wired). This is a functional journey gap, not a rendering defect.",
+        "affected_selectors": [
+          "[data-testid='admin-rulesupd-honest-gap']"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/portal_operational/test_iteration_68_readonly_public_api.py",
+    "/app/test_reports/pytest/iteration_68_isolated_existing_env.xml",
+    "/app/test_reports/pytest/iteration_68_readonly_api.xml",
+    "/app/test_reports/screenshots/iteration_68_ui/rulesupd_desktop_1920x800.jpeg",
+    "/app/test_reports/screenshots/iteration_68_ui/rulesupd_mobile_390x844.jpeg",
+    "/app/test_reports/screenshots/iteration_68_ui/entitlement_desktop_1920x800.jpeg",
+    "/app/test_reports/screenshots/iteration_68_ui/entitlement_mobile_390x844.jpeg"
+  ],
+  "action_items": [
+    "Implement/verify auth lockout after 5 failed login attempts per playbook.",
+    "Make checker transition + ledger emission atomic (or compensating rollback) so EFFECTIVE cannot exist without evidence row.",
+    "Add tenant scoping to checker request persistence/queries and deterministic ID conflict boundary.",
+    "Decide whether auth transport remains bearer-only or needs first-party httpOnly cookie flow; align tests/docs accordingly.",
+    "Verify ingress/proxy CORS header rewriting on credentialed auth responses so wildcard origin is never emitted on protected flows.",
+    "If required by milestone contract, connect rules_update_lifecycle apply/recheck outputs to effective policy publication path."
+  ],
+  "critical_code_review_comments": [
+    "rules_service.rule_registry is process-local singleton with in-memory append-only state; no durable/shared publication semantics at this layer.",
+    "approvals.rules_update_lifecycle persists countdown/apply/recheck files but does not itself publish effective runtime rule policy.",
+    "business_continuity anchors pin 3600s and continuity attestations, but continuity module is attestation-only; restore execution path is not implemented in this service.",
+    "n_series.breach writes realtime alert files for DPO/witness and stores receipt paths, but no delivery-consumer/acknowledgement loop is present in inspected runtime paths."
+  ],
+  "updated_files": [
+    "/app/backend/tests/portal_operational/test_iteration_68_readonly_public_api.py",
+    "/app/test_reports/iteration_68.json"
+  ],
+  "success_rate": {
+    "backend": "100% on executed requested suites (91/91) + 10/10 public-read tests; 1 skipped cross-tenant retained-id check due no retained census rows exposed; process_recovery_mongo intentionally not executed",
+    "frontend": "100% for requested read-only UI checks"
+  },
+  "seed_data_creation": "None. No user/account seeding, no production/preview business-record writes, no rule/apply commission actions.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Process-recovery test file (/app/backend/tests/execution_spine/test_process_recovery_mongo.py) was skipped because it uses shared configured Mongo DB_NAME rather than an isolated temporary database. Public API read-only suite asserts: both operators login/me=200, unauthenticated refusals, entitlement licence resolved + catalog count 0 for RMS and DIGICOW, billing endpoint 200. Cross-tenant retained-ID read check is present but skipped when /api/portal/census/records has no rows.",
+  "rca of the issue": "Auth lockout gap RCA: router/auth + user_store implement stateless credential verification with no failed-attempt counter, lock timestamp, or denylist path, so repeated failures never transition account/session into lockout state. Checker atomicity RCA: router calls state_machine.countersign() first (persisting EFFECTIVE), then separately emits ledger row; any post-state ledger failure causes state/evidence divergence."
+}

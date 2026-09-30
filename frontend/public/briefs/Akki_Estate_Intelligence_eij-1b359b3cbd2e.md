@@ -1,6 +1,6 @@
 # Akki Estate Intelligence — RMS MySQL estate
 
-Job `eij-1b359b3cbd2e` · status **partial** · measured 2026-09-29T19:12:15.151993Z · built 2026-09-29T22:55:38.885808Z
+Job `eij-1b359b3cbd2e` · status **partial** · measured 2026-09-29T19:12:15.151993Z · built 2026-09-30T03:41:37.310403Z
 
 Census only: rows were measured on the jump host and discarded; this brief carries aggregates, sketches and hashes — no row, cell or identifier value.
 
@@ -49,6 +49,47 @@ Census only: rows were measured on the jump host and discarded; this brief carri
 | citizen-pulse / correspondents | 10 | 169 | 304.0 KiB | D (51.0) | identity 7, measure 6, time 6, entity 3, money 1, geo 1 |
 | iebc_forms / miniapps | 21 | 54 | 944.0 KiB | D (42.9) | identity 21, time 17, measure 17, entity 8, content 6, product 6 |
 
+## Degradation and trend
+
+Row-weighted share of measured rows whose worst column shows the kind; a row can carry several kinds.
+
+| Damage kind | Share of measured rows |
+|---|---|
+| mojibake | 0.0% |
+| placeholder | 1.3% |
+| truncation | 21.9% |
+| invalid_format | 6.3% |
+| whitespace | 0.9% |
+
+Never-populated columns: 983 of 7,563 measured (13.0%). Columns never populated (null on ≥99.9 % of measured rows, primary key excluded): schema carried without data.
+
+| Connection / database | Degraded rows | Dead columns | Stale tables | Writes span | Last write | Schema drift | Rows Δ |
+|---|---|---|---|---|---|---|---|
+| iebc_forms / miniapps | 71.4% | 16 / 52 | 4 | 1,409 days | 657 days ago | 0 | +0 |
+| viupay / viupay | 69.4% | 20 / 264 | 11 | 2,088 days | 0 days ago | 0 | +6 |
+| iebc_forms / viupay | 67.5% | 22 / 248 | 21 | 1,098 days | 625 days ago | 0 | +0 |
+| citizen_digital / db_visitors | 37.6% | 55 / 418 | 8 | 21,947 days | 0 days ago | 0 | +47 |
+| iebc_forms / viutickets | 25.4% | 38 / 479 | 38 | 1,041 days | 547 days ago | 0 | +0 |
+| iebc_forms / viusasa_staging | 24.2% | 444 / 3396 | 82 | 746,245 days | 0 days ago | 0 | — |
+| viupay / viutickets | 23.2% | 39 / 489 | 19 | 4,821 days | 0 days ago | 0 | +4 |
+| Razuna (Library Content) & Newsvault (Radio News content) / razuna | 2.6% | 107 / 532 | 17 | 4,292 days | 13 days ago | 0 | +0 |
+| citizen-pulse / saa | 1.7% | 16 / 159 | 7 | 1,368 days | 0 days ago | 0 | +0 |
+| iebc_forms / kra_reports | 1.2% | 11 / 93 | 6 | 542 days | 991 days ago | 0 | +0 |
+| iebc_forms / viusasa_artists | 0.4% | 14 / 70 | 6 | 214 days | 1,649 days ago | 0 | +0 |
+| iebc_forms / ecommerce_tafaria | 0.2% | 93 / 390 | 33 | 11,593 days | 1,827 days ago | 0 | +0 |
+| iebc_forms / viusasa_miniapps_prod | 0.0% | 31 / 134 | 6 | 2,066 days | 0 days ago | 0 | +0 |
+| iebc_forms / iebc_forms | 0.0% | 2 / 31 | 0 | no timestamps | — | 0 | +0 |
+| iebc_forms / viupay_agent_staging | 0.0% | 39 / 402 | 19 | 601 days | 1,534 days ago | 0 | +0 |
+| viupay / kra_reports | 0.0% | 19 / 159 | 2 | 1,533 days | 0 days ago | 0 | +139 |
+| citizen_digital / local | 0.0% | 4 / 73 | 5 | 488 days | 567 days ago | 0 | +0 |
+| citizen-pulse / citizen-pulse | —% | 0 / 0 | 0 | no timestamps | — | 0 | +0 |
+| citizen-pulse / correspondents | 0.0% | 3 / 19 | 0 | 273 days | 292 days ago | 0 | +0 |
+| Razuna (Library Content) & Newsvault (Radio News content) / news_vault | 0.0% | 10 / 155 | 6 | 1,462 days | 13 days ago | 0 | +0 |
+
+Deltas against the previous verified estate intelligence census over the same connections.
+
+Against `eij-91933223a5b1` (2026-09-29T18:49:55.453268Z): bytes_total +363,494,031,360; rows_estimate +233,674,776; tables +303; tables_measured +239; exact_duplicate_pct +1.2; degraded_pct +11.9; null_bearing_pct +46.1; pii_pct +10.7; stale_pct_of_bytes -35.2; reclaimable_bytes +15,988,100,306; empty_tables +68; failed_tables +0; duplicate_table_pairs +9; 0 tables changed schema; 4 databases grew, 0 shrank.
+
 ## What the data can do — dimensional monetisation candidates
 
 Ranked by rows × readiness × supporting dimensions. Every candidate is an aggregate or de-identified product; rights are declared at Connect, not measured here.
@@ -59,6 +100,7 @@ Clean product / catalogue / form reference tables licensable as master data wher
 
 - Dimensions required: product; supporting: content, identity
 - 87 supporting tables, ≈123,394,159 rows across 11 databases
+- Licensable grain: ≈4,037,354 distinct content values (iebc_forms/viusasa_staging.playback_stagings.content_length); ≈34,331,240 distinct identity values (iebc_forms/viusasa_staging.playback_stagings.id); ≈6,163,376 distinct product values (iebc_forms/viusasa_staging.subscriptions.order_id); history 2020-08-14 → 2038-01-18 (6,366 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: iebc_forms/viusasa_staging.mpesa_stk_requests (6,558,280 rows, B); iebc_forms/viusasa_staging.model_has_platforms (514,007 rows, A); iebc_forms/viusasa_staging.media (145,302 rows, A); iebc_forms/viusasa_staging.episodes_revenue_share (636,131 rows, B)
 - Blockers: 62.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -68,6 +110,7 @@ Catalogue metadata, engagement-weighted recommendation features and licensable a
 
 - Dimensions required: content; supporting: engagement, time
 - 98 supporting tables, ≈157,855,990 rows across 14 databases
+- Licensable grain: ≈4,037,354 distinct content values (iebc_forms/viusasa_staging.playback_stagings.content_length); ≈33,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key); history 1950-01-01 → 2026-09-29 (28,030 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at)
 - Top tables: iebc_forms/viusasa_staging.mpesa_stk_requests (6,558,280 rows, B); viupay/viutickets.movie_seats (1,158,096 rows, A); iebc_forms/viutickets.movie_seats (834,440 rows, A); iebc_forms/viusasa_staging.continue_watchings (5,053,836 rows, C)
 - Blockers: 74.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -77,6 +120,7 @@ Channel performance, shortcode and campaign attribution, response-rate benchmark
 
 - Dimensions required: channel, time; supporting: engagement, entity
 - 57 supporting tables, ≈116,781,903 rows across 10 databases
+- Licensable grain: ≈6,698,441 distinct channel values (iebc_forms/viusasa_staging.orders.sms_sent_at); ≈33,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key); ≈6,629,698 distinct entity values (iebc_forms/viusasa_staging.orders.user_id); history 1950-01-01 → 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.subscriptions.subscribed_on); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: iebc_forms/viusasa_staging.subscriptions (6,163,376 rows, C); iebc_forms/viusasa_staging.continue_watchings (5,053,836 rows, C); iebc_forms/viusasa_staging.model_has_platforms (514,007 rows, A); iebc_forms/viupay_agent_staging.agent_api_logs (522,652 rows, B)
 - Blockers: 79.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -86,6 +130,7 @@ Segmentation, lifetime value and retention modelling across products; requires d
 
 - Dimensions required: engagement, entity; supporting: channel, geo
 - 76 supporting tables, ≈158,914,844 rows across 13 databases
+- Licensable grain: ≈33,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key); ≈6,949,398 distinct entity values (iebc_forms/viusasa_staging.sms.user_id); history 1950-01-01 → 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.episode_views.created_at); ≈6,698,441 distinct channel values (iebc_forms/viusasa_staging.orders.sms_sent_at); ≈6,687,726 distinct geo values (iebc_forms/viusasa_staging.playback_stagings.latitude); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: iebc_forms/viusasa_staging.episode_views (5,561,526 rows, B); iebc_forms/viusasa_staging.mpesa_stk_requests (6,558,280 rows, B); iebc_forms/viusasa_staging.subscriptions (6,163,376 rows, C); iebc_forms/viusasa_staging.playback_stagings (34,331,240 rows, D)
 - Blockers: 80.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · supporting tables grade D/E on completeness, duplication or degradation: cleanse first · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -95,6 +140,7 @@ Daily/weekly demand and revenue series for forecasting products and planning ben
 
 - Dimensions required: money, time; supporting: geo, product
 - 82 supporting tables, ≈80,750,307 rows across 9 databases
+- Licensable grain: ≈6,113,578 distinct money values (iebc_forms/viusasa_staging.users.wallet_account_alias); ≈6,852,215 distinct product values (iebc_forms/viusasa_staging.payment_requests.cart_id); history 1950-01-01 → 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at); ≈5,234,407 distinct geo values (iebc_forms/viusasa_staging.payment_requests.longitude); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: iebc_forms/viusasa_staging.mpesa_stk_requests (6,558,280 rows, B); iebc_forms/viusasa_staging.content_performance_metrics (68,843 rows, A); iebc_forms/viusasa_staging.subscriptions (6,163,376 rows, C); iebc_forms/viusasa_staging.users (6,113,578 rows, C)
 - Blockers: 77.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -104,6 +150,7 @@ Revenue, fee and settlement analytics; cohort and churn views once the entity di
 
 - Dimensions required: money, time; supporting: entity
 - 82 supporting tables, ≈80,750,307 rows across 9 databases
+- Licensable grain: ≈6,949,398 distinct entity values (iebc_forms/viusasa_staging.sms.user_id); ≈6,113,578 distinct money values (iebc_forms/viusasa_staging.users.wallet_account_alias); history 1950-01-01 → 2038-01-18 (32,159 days; iebc_forms/viusasa_staging.mpesa_stk_requests.updated_at); latest timestamp lies in the future: placeholder dates are present in the time dimension
 - Top tables: iebc_forms/viusasa_staging.mpesa_stk_requests (6,558,280 rows, B); iebc_forms/viusasa_staging.content_performance_metrics (68,843 rows, A); iebc_forms/viusasa_staging.subscriptions (6,163,376 rows, C); viupay/viupay.mpesa_stk_requests (20,889 rows, A)
 - Blockers: 77.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -113,6 +160,7 @@ County / constituency level demand, penetration and service-coverage maps sold a
 
 - Dimensions required: geo, time; supporting: engagement, money
 - 36 supporting tables, ≈107,686,180 rows across 9 databases
+- Licensable grain: ≈33,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key); ≈6,687,726 distinct geo values (iebc_forms/viusasa_staging.playback_stagings.latitude); ≈6,113,578 distinct money values (iebc_forms/viusasa_staging.users.wallet_account_alias); history 1950-01-01 → 2026-07-06 (27,945 days; iebc_forms/viusasa_staging.users.dob)
 - Top tables: iebc_forms/viusasa_staging.users (6,113,578 rows, C); iebc_forms/viusasa_staging.users_staging (6,049,518 rows, D); iebc_forms/viusasa_staging.playback_stagings (34,331,240 rows, D); iebc_forms/viusasa_staging.playback_qualified_streams (15,794,152 rows, D)
 - Blockers: 78.0% of supporting tables carry PII markers: de-identify or aggregate before any release · most supporting tables have not been written for over a year: value is historical, not live · supporting tables grade D/E on completeness, duplication or degradation: cleanse first · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
@@ -122,24 +170,47 @@ Aggregated audience and civic-participation indices by geography; strictly aggre
 
 - Dimensions required: entity, geo; supporting: content, engagement
 - 28 supporting tables, ≈107,484,230 rows across 9 databases
+- Licensable grain: ≈7,224,427 distinct content values (iebc_forms/viusasa_staging.sms.api_message_id); ≈33,023,220 distinct engagement values (iebc_forms/viusasa_staging.playback_stagings.session_key); ≈6,949,398 distinct entity values (iebc_forms/viusasa_staging.sms.user_id); ≈6,687,726 distinct geo values (iebc_forms/viusasa_staging.playback_stagings.latitude); history 1950-01-01 → 2026-08-23 (27,993 days; iebc_forms/viusasa_staging.playback_stagings.created_at)
 - Top tables: iebc_forms/viusasa_staging.playback_stagings (34,331,240 rows, D); iebc_forms/viusasa_staging.playback_qualified_streams (15,794,152 rows, D); iebc_forms/viusasa_staging.users (6,113,578 rows, C); iebc_forms/viusasa_staging.users_staging (6,049,518 rows, D)
 - Blockers: 86.0% of supporting tables carry PII markers: de-identify or aggregate before any release · supporting tables grade D/E on completeness, duplication or degradation: cleanse first · use rights are declared at Connect, not measured: a release needs its own grant and purpose
 
 ## Strategies to reduce cost
 
-No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COST_PER_GB_MONTH to price them.
+Priced with database storage at USD 0.1095/GB-month and object storage at USD 0.023/GB-month (reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month); overlaps between strategies are possible, so the total is an upper bound.
 
-| Strategy | Reclaimable | Share | Action |
-|---|---|---|---|
-| Move tables not written for over a year to cold storage | 54.1 GiB | 15.4% | Export to compressed object storage, keep a schema stub and a pointer; restore on demand. |
-| Remove redundant (prefix-covered) indexes | 14.0 GiB | 4.0% | Drop each non-unique index whose columns are a leading prefix of another index on the same table. |
-| De-duplicate exact repeated rows inside tables | 1.2 GiB | 0.4% | Add uniqueness constraints or a merge step at ingestion; archive the historical duplicates. |
-| Consolidate duplicate and staging copies of the same tables | 54.0 MiB | 0.0% | Retire or snapshot-then-drop the smaller copy of each same-schema pair with measured content overlap; keep one system of record. |
-| Drop or archive empty tables | 13.7 MiB | 0.0% | Remove empty tables and their indexes after a 30-day observation window. |
-| Repair or purge orphaned references | not a storage saving | — | Reconcile foreign-key candidates whose sampled values are missing in the target table; purge rows that reference nothing. |
-| Minimise PII-dense tables that no product needs | not a storage saving | — | Tokenise or drop personal columns in analytics copies; keep raw identifiers only in the system of record. |
+| Strategy | Reclaimable | Share | Saving / month | Action |
+|---|---|---|---|---|
+| Move buckets not written for over a year to archive-class storage | 41.9 TiB | — | USD 986.49 | Apply a lifecycle rule (Standard → Archive/Cold) on buckets whose last object write is older than a year; keep listing metadata hot. |
+| Reconcile duplicate objects across OBS buckets | 7.7 TiB | — | USD 180.31 | Confirm ETag+size candidates by object hash, keep one copy per bucket and replace the rest with references or lifecycle-delete them. |
+| Move tables not written for over a year to cold storage | 54.1 GiB | 15.4% | USD 5.93 | Export to compressed object storage, keep a schema stub and a pointer; restore on demand. |
+| Remove redundant (prefix-covered) indexes | 14.0 GiB | 4.0% | USD 1.53 | Drop each non-unique index whose columns are a leading prefix of another index on the same table. |
+| De-duplicate exact repeated rows inside tables | 1.2 GiB | 0.4% | USD 0.13 | Add uniqueness constraints or a merge step at ingestion; archive the historical duplicates. |
+| Consolidate duplicate and staging copies of the same tables | 54.0 MiB | 0.0% | USD 0.01 | Retire or snapshot-then-drop the smaller copy of each same-schema pair with measured content overlap; keep one system of record. |
+| Drop or archive empty tables | 13.7 MiB | 0.0% | USD 0.00 | Remove empty tables and their indexes after a 30-day observation window. |
+| Repair or purge orphaned references | not a storage saving | — | unpriced | Reconcile foreign-key candidates whose sampled values are missing in the target table; purge rows that reference nothing. |
+| Minimise PII-dense tables that no product needs | not a storage saving | — | unpriced | Tokenise or drop personal columns in analytics copies; keep raw identifiers only in the system of record. |
+
+Priced strategies total ≈ USD 1,174.40 per month (upper bound; overlaps possible).
 
 ### Evidence per strategy
+
+**Move buckets not written for over a year to archive-class storage** — risk: Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee.
+
+- music-bucket-rms · last write 916 days before the census · 4.9 TiB
+- na7p43do · last write 908 days before the census · 4.1 TiB
+- na7p43js · last write 909 days before the census · 3.6 TiB
+- na7p434j · last write 908 days before the census · 3.5 TiB
+- na7p41hj · last write 915 days before the census · 3.5 TiB
+- na7p42xe · last write 907 days before the census · 3.4 TiB
+
+**Reconcile duplicate objects across OBS buckets** — risk: Candidates share ETag and size, which for multipart uploads is not a content hash; bytes are candidates × mean object size, an estimate. Confirm before deleting.
+
+- na7p43do · 197,528 candidates · ≈1.7 TiB
+- na7p4oco · 166,328 candidates · ≈1.0 TiB
+- na7p434j · 2,890 candidates · ≈674.1 GiB
+- na7p42yg · 4,197 candidates · ≈501.9 GiB
+- music-bucket-rms · 14,696 candidates · ≈485.3 GiB
+- 2024offairrecs · 16,589 candidates · ≈461.8 GiB
 
 **Move tables not written for over a year to cold storage** — risk: Staleness is read from the latest timestamp column; tables without timestamps are not counted as stale.
 
@@ -207,6 +278,48 @@ No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COS
 - viusasa_staging.ussd_hits · 100.0% of sampled rows
 - viusasa_staging.playback_qualified_streams · 58.0% of sampled rows
 
+## Object and file estate (OBS buckets, NAS shares)
+
+**OBS object store** — census `cr-f1415e395361` (partial, 2026-09-29T04:25:35.113924+00:00): 66 of 106 sources complete, 22,975,591 objects, 130.3 TiB; 1,139,768 duplicate candidates (5.0% of objects), ≈7.7 TiB estimated; 43 sources not written for over a year (41.9 TiB). Frontier complete: yes.
+
+Duplicate candidates are objects whose ETag+size fingerprint was already seen in the same store; duplicate bytes = candidates × mean object size of the bucket (estimate). Not proven byte duplicates.
+
+| Source | Status | Units | Bytes | Duplicate candidates | Last write | Formats |
+|---|---|---|---|---|---|---|
+| 2024offairrecs | complete | 3,174,515 | 86.3 TiB | 16589 | 2026-09-29T03:00:04.630000Z | .mp4 3,131,277, .mp3 27,002, no_extension 15,658, .mpt 408 |
+| music-bucket-rms | complete | 152,801 | 4.9 TiB | 14696 | 2024-03-26T05:26:00.449000Z | .mp4 146,617, .txt 1,183, .flx 1,086, .rpt 610 |
+| na7p43do | complete | 484,480 | 4.1 TiB | 197528 | 2024-04-04T02:11:50.597000Z | .mp3 326,105, .mts 39,439, .vis 39,437, .wav 12,472 |
+| na7p43js | complete | 307,998 | 3.6 TiB | 27187 | 2024-04-02T06:06:20.407000Z | .ogg 118,600, .mp3 85,079, .adf 25,484, .vis 21,622 |
+| na7p434j | complete | 15,377 | 3.5 TiB | 2890 | 2024-04-04T00:20:28.559000Z | .mov 5,427, .avi 4,258, .jpg 2,157, .txt 1,767 |
+| na7p41hj | complete | 15,885 | 3.5 TiB | 1852 | 2024-03-27T08:11:46.711000Z | .mov 10,488, .mp4 2,347, .txt 1,519, .avi 1,198 |
+| na7p42xe | complete | 13,965 | 3.4 TiB | 1120 | 2024-04-04T09:56:20.886000Z | .mp4 6,241, .mov 5,519, .txt 1,434, .avi 309 |
+| na7p42xw | complete | 25,088 | 3.4 TiB | 2391 | 2024-03-31T09:49:02.340000Z | .mov 15,321, .txt 3,389, .avi 3,065, .mp4 1,289 |
+| na7p42yg | complete | 28,059 | 3.3 TiB | 4197 | 2024-03-31T01:51:47.474000Z | .mov 21,920, .txt 3,169, .jpg 1,446, .avi 995 |
+| na7p43d3 | complete | 16,396 | 2.9 TiB | 1395 | 2024-03-30T14:39:39.933000Z | .mov 10,623, .txt 2,032, .avi 1,270, .mp4 1,099 |
+| na7p4oco | complete | 468,637 | 2.9 TiB | 166328 | 2024-04-03T20:50:57.931000Z | .mp3 218,902, .mts 36,886, .vis 36,878, .tmp 15,781 |
+| rmsbroadcast | complete | 142,739 | 1.5 TiB | 5060 | 2024-03-24T09:25:18.604000Z | .mp3 127,221, .mp4 9,923, .mov 1,916, .m4v 1,550 |
+
+Blocked sources (40): apr252017 (NoSuchBucket); citizen-vod (NoSuchBucket); elections (ClientError); feb272017 (NoSuchBucket); instore-radio-items (ClientError); iso-rms-storage (NoSuchBucket); librarydirectupload2 (NoSuchBucket); na7p4100 (NoSuchBucket); na7p410c (NoSuchBucket); na7p419y (NoSuchBucket); na7p41ab (NoSuchBucket); na7p41f4 (NoSuchBucket) …
+
+**NAS file shares** — census `cr-cf4eef79995b` (complete, 2026-09-29T03:48:16.100915+00:00): 16 of 16 sources complete, 1,456,787 files, 43.6 TiB; duplication unmeasured (no fingerprints in this pass); 0 sources not written for over a year (0 B). Frontier complete: yes.
+
+This enumeration recorded no content fingerprints (stat/listing only), so duplication is unmeasured; sizes and dates were read, bodies were not.
+
+| Source | Status | Units | Bytes | Duplicate candidates | Last write | Formats |
+|---|---|---|---|---|---|---|
+| channel01 | complete | 95,122 | 6.9 TiB | — | 2026-09-29T03:25:01.311178Z | .mp4 95,108, .rmd 6, .mpt 3, .db 1 |
+| channel02 | complete | 95,134 | 6.9 TiB | — | 2026-09-29T03:25:05.819412Z | .mp4 95,129, .db 1, .jpg 1, .rep 1 |
+| channel16 | complete | 94,597 | 6.8 TiB | — | 2026-09-29T03:45:03.715768Z | .mp4 94,592, .db 1, .jpg 1, .rep 1 |
+| Channel15 | complete | 95,635 | 1.9 TiB | — | 2026-09-29T03:22:57.737248Z | .mp4 95,627, .rmd 3, .db 1, .jpg 1 |
+| Channel14 | complete | 95,615 | 1.9 TiB | — | 2026-09-29T03:18:10.574562Z | .mp4 95,609, .rmd 2, .db 1, .jpg 1 |
+| Channel11 | complete | 95,602 | 1.9 TiB | — | 2026-09-29T03:12:09.048574Z | .mp4 95,592, .rmd 6, .db 1, .jpg 1 |
+| Channel12 | complete | 95,600 | 1.9 TiB | — | 2026-09-29T03:15:28.913646Z | .mp4 95,590, .rmd 6, .db 1, .jpg 1 |
+| channel07 | complete | 95,550 | 1.9 TiB | — | 2026-09-29T03:36:51.270784Z | .mp4 95,546, .db 1, .jpg 1, .rep 1 |
+| channel06 | complete | 95,548 | 1.9 TiB | — | 2026-09-29T03:35:21.881683Z | .mp4 95,544, .db 1, .jpg 1, .rep 1 |
+| channel05 | complete | 95,494 | 1.9 TiB | — | 2026-09-29T03:34:34.485438Z | .mp4 95,490, .db 1, .jpg 1, .rep 1 |
+| channel04 | complete | 95,475 | 1.9 TiB | — | 2026-09-29T03:30:03.144274Z | .mp4 95,470, .db 1, .jpg 1, .rep 1 |
+| channel03 | complete | 95,419 | 1.9 TiB | — | 2026-09-29T03:29:36.059011Z | .mp4 95,415, .db 1, .jpg 1, .rep 1 |
+
 ## Where it falls short
 
 - Connection `artists_app`: PULL_SEAM_WORKER_FAILED:pymysql.err.OperationalError: (1045, Access denied for user bramuel159.138.173.250 (using passwo
@@ -231,7 +344,7 @@ No storage tariff on record: savings are stated in bytes. Set ESTATE_STORAGE_COS
 
 Ratios are measured on complete passes (tables ≤100k rows) or stratified keyset samples (8×5k rows) and disclosed per table; cross-table overlap is a bottom-256 sketch Jaccard estimate over same-schema tables; no row values were retained or returned.
 
-RMS MySQL only (owner order 1-a). OBS object and NAS file duplication follow from the enumeration frontier; languages, rights and semantic (embedding) similarity were not measured. Text near-duplicates use MinHash on the jump host so row text never left the estate.
+RMS MySQL measured in depth (owner order 1-a). OBS object and NAS file estates are read from their retained enumeration receipts (listing and stat only: sizes, dates, ETag+size duplicate candidates; no object or file body); languages, rights and semantic (embedding) similarity were not measured. Text near-duplicates use MinHash on the jump host so row text never left the estate.
 
 ## Governed dossier (LLM-composed from these aggregates only)
 
