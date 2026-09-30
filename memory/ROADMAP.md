@@ -1,6 +1,13 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-30 after M6 follow-on (thumbnails, workbook, commission-close, M6-T4 boundary) · M6-T4 grounded result HELD by owner
+## CURRENT — 2026-09-30 M10 UI/UX mandate; training status read at 19:09 UTC
+
+- **P0 · M10 standalone UI/UX overhaul (NOT STARTED):** review and revise the entire system for editorial clarity; remove technical noise and feature-explanation copy; replace user-visible raw IDs with semantic document/artifact names; modernize plain deck presentation. Begin with Documents, Census and Estate Intelligence, then cover remaining screens. Preserve original workflows, evidence, gates and truthful unavailable states. Track responsive desktop/mobile verification and screen-level completion separately from whole-product acceptance.
+- **Training status:** no active training jobs in current M9/LC lists. 8B text language classifier admitted and freshly verified serving; pruned 8B admitted but not served; 1.7B remains refused. Audio's later authorized 40-epoch recipe sweep DID complete by 05:12:40Z; all candidates remain NOT ADMISSIBLE. Do not repeat the stale “sweep not launched” claim. Audio reactivation needs missing labelled data through M1 plus calibration/training/admission; no launch authorized by the status question.
+- **P1:** M1 frontier/permissions/acceptance; M3 commissioning and HTTPS delivery; M4 evaluations; M7 rule publication and real usage bill. M6 grounded executor activation remains held under owner rulings.
+- **P2:** M5 only after explicit unpause; deferred site restore/real notification delivery; M10 independent integrated acceptance after the presentation work and remaining product journeys.
+
+## PREVIOUS — 2026-09-30 after M6 follow-on (thumbnails, workbook, commission-close, M6-T4 boundary) · M6-T4 grounded result HELD by owner
 
 Verification is terminal pytest only (owner condition C) — do not call the testing agent for M6 work. Rulings this wave: 1a DIGICOW artefact · 2b existing operator + key grant · **3b hold the answering executor until a QA model is admitted** · **4b no re-admission ceremony yet** · 5a phased order.
 

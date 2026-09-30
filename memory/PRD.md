@@ -6,6 +6,7 @@
 - Build the generalized M9 model pipeline beyond audio: qualified data, reproducible training, evaluation, certificates, admission and separately governed serving.
 - Provide deep RMS data-estate intelligence: duplication, quality, degradation, dimensional monetization and evidence-backed cost reduction.
 - M6: produce useful artifacts, deterministic decks and callable skills from qualified work.
+- M10 standalone requirement: system-wide UI/UX review and revision—declutter technical noise, use editorial/direct copy rather than feature explanations, replace visible token-like IDs with meaningful document/artifact names, and modernize deck presentation while preserving workflows and safeguards.
 - Deliver the broader Akki promise through identity-bound governed work: Registry/census, Watch, request-to-delivery, grounded answers, durable memory, collaboration, commercial controls and recovery. Functional outcomes and evidence—not scaffolds or old seals—determine completion.
 
 ## Governing roadmap and authority
@@ -20,7 +21,16 @@ M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → 
 - English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
 - M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-## CURRENT — 2026-09-30 M6 follow-on: v1.2 workbook, commission-close, page thumbnails, M6-T4 boundary (owner rulings 1a/2b/3b/4b/5a)
+## CURRENT — 2026-09-30 19:09 UTC training status and M10 presentation mandate
+
+- Owner requested milestone percentages and a standalone M10 system-wide UI/UX overhaul, then asked “What is the status of the training?”. UI implementation has NOT started. Prioritize Documents, Census and Estate Intelligence, then inventory remaining screens; M5 remains paused and skill executor activation held.
+- Reported directional implementation estimates: M1 ~80%; M2 ~80% broader scope / 100% signed-off slice; M3 ~70%; M4 ~75%; M5 ~55%; M6 ~80%; M7 ~45%; M8 100% of agreed nondeferred scope; M9 100% of activated text scope; M10 ~10%. These are planning estimates, not fresh acceptance scores. M8 site restore/notification and M9 dormant modalities are NOT claimed complete.
+- Fresh authenticated external-preview GETs: M9 jobs/models/capabilities/readjudications and LC jobs all 200. No nonterminal training job appears in either job list. Both main text runs completed; 8B full/pruned admitted, 1.7B full/pruned refused for Swahili regression. Full 8B macro held-out accuracy 0.97213, coverage 7/7; this is text language identification, NOT a QA executor.
+- Fresh host-backed 8B health GET: serving, registry admitted, artefact unaltered; 1,174 texts served / 331 requests. Load-test status refresh banked its completed terminal receipt (finished 07:23:21Z), superseding the stale list label “running”. No training/start/stop/classification request was issued.
+- Important LC continuity correction: the older “recipe sweep awaits owner decision” note is stale. Live job records contain an owner-authorized milder-recipe sweep, four later 40-epoch runs completed by 05:12:40Z on 30 Sep. Each ~2,698–2,707 windows/s, batch 2,048, physical batch 1,024, ~50.73 GB. All remain NOT ADMISSIBLE: per-language quality gaps, speaker leakage and missing labelled code-switch/English/Sheng data. Latest four archive-test accuracy on judged windows ~61.56–68.83%, with differing abstention rates; not an acceptance pass. Audio stays dormant/research-only under the later 2a completion ruling.
+- This was a status read, not a new GPU-utilization sample or whole-product test. No application code, training recipe, job launch, credential, admission or owner hold changed.
+
+## PREVIOUS — 2026-09-30 M6 follow-on: v1.2 workbook, commission-close, page thumbnails, M6-T4 boundary (owner rulings 1a/2b/3b/4b/5a)
 
 Evidence: `notes/m6_execution/M6_DOC_STUDIO_INSTALL_20260930.md` (addendum) and `notes/m6_execution/M6_T4_CALLABLE_SKILL_BOUNDARY_20260930.md`.
 
