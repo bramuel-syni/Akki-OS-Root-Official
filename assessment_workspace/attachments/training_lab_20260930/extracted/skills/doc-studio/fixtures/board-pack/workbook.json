@@ -1,0 +1,24 @@
+{
+  "spec_type": "workbook",
+  "spec_id": "WB-northline-2026-10",
+  "content_ref": "northline-depot-automation@1",
+  "brief_ref": "BR-2026-09-30-001",
+  "verdict_ref": "V-2026-09-30-001",
+  "objective": "decide",
+  "family": "strategy",
+  "voice": "strategy-house",
+  "seed": "northline-depot-automation/board/2026-10-14",
+  "build_stamp": "2026-09-30T00:00:00Z",
+  "sheets": [
+    {"name": "Cover", "kind": "cover"},
+    {"name": "Inputs", "kind": "inputs", "facts": ["F001","F002","F003","F004","F005","F006","F007","F008","F009","F010"]},
+    {"name": "Options", "kind": "options_model", "options": ["O1","O2","O3"],
+     "derived": [
+       {"label": "Simple payback (years)", "formula": "capex / annual_saving", "calc": "K004", "format": "0.0"},
+       {"label": "Three-year net (GBPm)", "formula": "3 * annual_saving - capex", "format": "0.0"},
+       {"label": "Within headcount ceiling?", "formula": "IF(ABS(headcount_delta) < Inputs.F009, \"Yes\", \"No\")", "format": "@"}
+     ]},
+    {"name": "Series", "kind": "series", "series": ["S001","S002","S003"]},
+    {"name": "Checks", "kind": "checks"}
+  ]
+}

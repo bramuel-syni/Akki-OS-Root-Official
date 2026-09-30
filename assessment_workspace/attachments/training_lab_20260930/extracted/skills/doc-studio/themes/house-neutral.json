@@ -1,0 +1,29 @@
+{
+  "theme_id": "house-neutral",
+  "version": 1,
+  "constant": {
+    "comment": "The stable core. Every output carries these regardless of family, voice or seed.",
+    "type_roles": {"number": "Courier New"},
+    "number_format": {"thousands": ",", "decimal": ".", "negative": "parens", "pct_places": 1},
+    "furniture": {"page_number": true, "doc_id": true, "receipt_line": true, "figure_class_badge": true},
+    "safe_fonts": ["Arial", "Calibri", "Cambria", "Times New Roman", "Courier New", "Bookman Old Style", "Century Schoolbook"]
+  },
+  "variation_space": {
+    "comment": "Curated axes. A seed picks one point per axis; compatibility rules in the voice may veto a combination, in which case the resolver steps to the next point deterministically.",
+    "palettes": {
+      "graphite": {"field": "FFFFFF", "structure": "1F2A44", "muted": "8A94A6", "rule": "D5DAE3", "accent": "C8102E", "hatch": "E9ECF1"},
+      "slate":    {"field": "FFFFFF", "structure": "22313F", "muted": "7F8C9A", "rule": "D8DEE5", "accent": "0E7C86", "hatch": "EAEEF2"},
+      "ink":      {"field": "FFFFFF", "structure": "1B1B1F", "muted": "6E6E73", "rule": "DADADD", "accent": "B8860B", "hatch": "EFEFF1"},
+      "harbour":  {"field": "FFFFFF", "structure": "14324A", "muted": "70879A", "rule": "D3DCE4", "accent": "E8772E", "hatch": "E8EEF3"},
+      "moss":     {"field": "FFFFFF", "structure": "1F3A2E", "muted": "6F8579", "rule": "D4DED8", "accent": "B4413E", "hatch": "E8EFEB"}
+    },
+    "type_pairs": {
+      "cambria-calibri": {"title": "Cambria", "body": "Calibri"},
+      "century-arial": {"title": "Century Schoolbook", "body": "Arial"},
+      "bookman-calibri": {"title": "Bookman Old Style", "body": "Calibri"},
+      "arial-arial": {"title": "Arial", "body": "Arial"}
+    },
+    "cover_compositions": ["title-left-low", "title-left-high", "title-centred-band"],
+    "divider_treatments": ["number-large", "number-small-rule", "inverted-field"]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "priors_id": "priors", "version": 1,
+  "note": "Sample-efficiency and variance priors per task family. Ranges, with a class; a house-observed entry supersedes for this estate. Author's reading as of mid-2026; verify.",
+  "task_families": {
+    "asr-adapter": {"metric": "accuracy (1-WER)", "power_law": {"exponent_b": [0.15, 0.35], "irreducible_c_above_baseline": [0.02, 0.06]}, "examples_per_point_from_baseline_0.6_0.8": [150, 400], "seed_sd": [0.004, 0.010], "class": "practice-anchored", "note": "b lower for lexically driven registers (Sheng) than acoustically driven ones"},
+    "document-classification": {"metric": "accuracy", "power_law": {"exponent_b": [0.25, 0.5], "irreducible_c_above_baseline": [0.01, 0.03]}, "examples_per_point_from_baseline_0.6_0.9": [40, 150], "seed_sd": [0.003, 0.008], "class": "practice-anchored"},
+    "text-classification": {"metric": "macro-F1", "power_law": {"exponent_b": [0.25, 0.5], "irreducible_c_above_baseline": [0.01, 0.04]}, "examples_per_point_from_baseline_0.6_0.9": [30, 120], "seed_sd": [0.005, 0.012], "class": "literature-anchored", "source": "few-shot fine-tuning curves in the BERT-era literature"},
+    "llm-instruction-finetune": {"metric": "task metric / win rate", "power_law": {"exponent_b": [0.1, 0.3], "irreducible_c_above_baseline": [0.02, 0.08]}, "examples_per_point": "quality-dominated; 1k curated ≈ 50k noisy (LIMA-class finding)", "seed_sd": [0.01, 0.03], "class": "literature-anchored", "source": "Zhou et al. 2023 and follow-ups"},
+    "tabular": {"metric": "AUC / RMSE", "power_law": {"exponent_b": [0.2, 0.5], "irreducible_c_above_baseline": [0.0, 0.02]}, "examples_per_point": "feature-limited more often than row-limited", "seed_sd": [0.002, 0.006], "class": "literature-anchored", "source": "Grinsztajn et al. 2022"},
+    "embeddings-retrieval": {"metric": "recall@k", "power_law": {"exponent_b": [0.2, 0.4], "irreducible_c_above_baseline": [0.02, 0.05]}, "examples_per_point": "pair-limited; hard negatives dominate", "seed_sd": [0.005, 0.015], "class": "practice-anchored"}
+  },
+  "evaluation": {"confidence": 0.90, "mde_method": "two-proportion normal approximation with continuity; bootstrap when items available", "min_seeds_for_distribution_comparison": 3, "annotator_agreement_floor": 0.80},
+  "recipe_defaults_by_base_class": {
+    "whisper-tiny-class": {"lora_rank": [8, 16], "targets": ["q_proj", "v_proj", "fc1"], "lr": [1e-4, 3e-4], "warmup_pct": 0.05, "class": "practice-anchored"},
+    "document-encoder-class": {"lora_rank": [8, 32], "lr": [5e-5, 2e-4], "warmup_pct": 0.05, "class": "practice-anchored"},
+    "7b-llm-class": {"lora_rank": [16, 64], "lr": [1e-4, 2e-4], "warmup_pct": 0.03, "class": "practice-anchored"}
+  }
+}

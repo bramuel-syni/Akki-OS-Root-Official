@@ -1,0 +1,190 @@
+{
+  "policy_id": "run-policy",
+  "version": 1,
+  "calibration": {
+    "volumes": [
+      250,
+      500,
+      1000
+    ],
+    "small_stratum_floor_examples": 300,
+    "epochs_per_volume": 2,
+    "gpu_hours_per_1000_examples_epoch": 1.2,
+    "eval_gpu_hours_per_stratum": 0.15,
+    "selection": "deterministic: examples ordered by sha256(example_id); first N per stratum; each volume is a superset of the previous"
+  },
+  "scaling_fit": {
+    "form": "log-linear",
+    "min_points": 3,
+    "ci_level": 0.9,
+    "ci_method": "residual-bootstrap-fixed-seed",
+    "extrapolation_cap_examples": 60000,
+    "min_points_for_ci": 4,
+    "below_min_points": "CI not reported; quote carries the policy indicative band, class estimated"
+  },
+  "comparison": {
+    "arms": 2,
+    "parity_tolerance": 0.005,
+    "report_compute": true,
+    "compute_is_gating": false,
+    "candidates": [
+      "AdamW",
+      "Muon"
+    ],
+    "eligibility": "B must not trail A on M-a by more than parity_tolerance; both arms' M-b must be within objective.acceptance.non_target_regression_max; compute is reported, never gating"
+  },
+  "quote": {
+    "contingency": 0.15,
+    "over_cap_action": "route to named person; never proceed",
+    "indicative_band": 0.25,
+    "indicative_band_class": "estimated"
+  },
+  "reproducibility": {
+    "contract": "seed-fixed re-run within tolerance",
+    "tolerance_accuracy": 0.002,
+    "tolerance_coverage": 0.002,
+    "canon": "C.8 standard training criteria; C.20.10 reproducibility test"
+  },
+  "manifest": {
+    "required_fields": [
+      "source",
+      "stratum",
+      "examples",
+      "class",
+      "lawful_basis",
+      "hash",
+      "receipt"
+    ],
+    "lawful_bases": [
+      "consent",
+      "licence",
+      "contract",
+      "public-task"
+    ],
+    "per_example_fields": [
+      "example_id",
+      "source",
+      "stratum",
+      "class",
+      "lawful_basis",
+      "basis_ref",
+      "content_hash",
+      "duration_s",
+      "selected_for"
+    ],
+    "index_file": "materials-index.jsonl"
+  },
+  "report": {
+    "skeleton": [
+      "problem-and-objective",
+      "data-statement",
+      "baseline-record",
+      "method",
+      "setup-and-reproducibility",
+      "results-held-out",
+      "ablations",
+      "limitations",
+      "negative-results"
+    ]
+  },
+  "repair": {
+    "max_passes": 3
+  },
+  "stub": {
+    "note": "Stub metrics are a deterministic function of the seed and the volume; they exist to exercise the pipeline and carry no evidential weight. train_gap is the stub's train/held-out gap; it exists so the diagnosis stage has something to test.",
+    "gain_per_log2_volume": {
+      "ST1": 0.012,
+      "ST2": 0.018,
+      "ST3": 0.031,
+      "ST4": 0.027
+    },
+    "coverage_gain_per_log2_volume": 0.006,
+    "noise": 0.004,
+    "train_gap": 0.01
+  },
+  "full_run": {
+    "epochs": 3,
+    "examples_cap": 60000,
+    "gpu_hours_per_1000_examples_epoch": 1.2,
+    "eval_gpu_hours_per_stratum": 0.15
+  },
+  "interruption": {
+    "status": "interrupted",
+    "report_allowed": "only with partial_ruling_ref from the objective owner, else blocked",
+    "retain": "partial record retained (WPW-7)"
+  },
+  "notebook": {
+    "chain": "sha256(prev_hash + canonical(entry))",
+    "classes": [
+      "measured",
+      "estimated",
+      "observed"
+    ],
+    "event_set": [
+      "commissioning_reflection",
+      "baseline_record",
+      "checkpoint",
+      "criterion_transition",
+      "cif_ideation",
+      "human_contribution",
+      "anomaly",
+      "cost_checkpoint"
+    ],
+    "time": "build_stamp + seq (no wall clock in the record)"
+  },
+  "moac_pack": {
+    "criteria": [
+      {
+        "id": "M-a",
+        "name": "target-stratum improvement",
+        "source": "A17.6"
+      },
+      {
+        "id": "M-b",
+        "name": "non-target regression",
+        "source": "A17.6"
+      },
+      {
+        "id": "M-d",
+        "name": "lineage: recipe_version, base model, rights lineage",
+        "source": "A17.3"
+      },
+      {
+        "id": "C8-held-out",
+        "name": "held-out evaluation thresholds per task",
+        "source": "C.8.4"
+      },
+      {
+        "id": "C8-repro",
+        "name": "seed-fixed reproducibility within tolerance",
+        "source": "C.8.4"
+      },
+      {
+        "id": "C8-provenance",
+        "name": "provenance completeness: 100% classed with lawful basis",
+        "source": "C.8.4"
+      },
+      {
+        "id": "C8-admission",
+        "name": "admission-test pre-check for the artefact",
+        "source": "C.8.4"
+      }
+    ],
+    "note": "MOAC's full criteria set is versioned by ceremony (C.8 I-1); this pack supplies evidence per criterion and never a pass/fail"
+  },
+  "completion_certificate": {
+    "fields": [
+      "run_id",
+      "objective_ref",
+      "recipe_version",
+      "compute_consumed_gpu_hours",
+      "data_touched_examples",
+      "manifest_hash",
+      "per_stratum_results",
+      "strata_failed",
+      "execution_mode",
+      "backend"
+    ],
+    "issued_when": "full run completes; never for calibration alone"
+  }
+}

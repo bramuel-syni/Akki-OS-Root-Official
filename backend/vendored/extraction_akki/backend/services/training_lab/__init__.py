@@ -1,0 +1,1 @@
+"""Evidence-first callable training laboratory; no automatic training authority."""

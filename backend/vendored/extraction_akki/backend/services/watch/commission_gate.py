@@ -22,6 +22,8 @@ from pathlib import Path
 from fastapi import HTTPException
 
 PROTECTED_BOUNDARIES = {
+    "training_lab.assessment": "POST /api/training/lab/runs",
+    "training_lab.watch": "PUT /api/training/lab/watch",
     "census.commission": "POST /api/portal/census/run",
     "census.plan": "POST /api/portal/census/plan",
     "language_cognition.commission": "POST /api/portal/census/language-cognition/jobs",

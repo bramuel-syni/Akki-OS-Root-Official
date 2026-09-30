@@ -268,6 +268,8 @@ def train(control, state):
         score = (min(scores), sum(scores)/len(scores))
         epsilon = privacy.get_epsilon(control['delta'])
         curve.append({'epoch': epoch + 1, 'step': steps, 'dev': dev, 'epsilon': epsilon, 'selection_score': score})
+        # Durable development-only checkpoint for the lab; no held-out data used for feedback.
+        state.update(lab_checkpoint={'epoch':epoch+1,'step':steps,'dev':dev,'epsilon':epsilon})
         if score > best:
             best, best_epoch = score, epoch + 1
             torch.save({k: v.detach().cpu() for k, v in model.state_dict().items()}, art / 'best_internal.pt')

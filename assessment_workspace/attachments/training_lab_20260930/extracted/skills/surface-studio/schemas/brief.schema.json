@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "brief_id",
+    "page_state_ref",
+    "purpose",
+    "audience",
+    "setting",
+    "content",
+    "brand",
+    "outputs",
+    "constraints"
+  ],
+  "properties": {
+    "purpose": {
+      "type": "object",
+      "required": [
+        "kind",
+        "statement"
+      ],
+      "properties": {
+        "kind": {
+          "const": "surface"
+        }
+      }
+    },
+    "audience": {
+      "type": "object",
+      "required": [
+        "role",
+        "who",
+        "knowledge",
+        "priorities",
+        "detail"
+      ]
+    },
+    "setting": {
+      "type": "object",
+      "required": [
+        "page",
+        "device",
+        "read_unattended",
+        "printed",
+        "ongoing_use"
+      ]
+    },
+    "constraints": {
+      "type": "object",
+      "required": [
+        "aggregate_only",
+        "max_blocks"
+      ]
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "page_state_id": "board360-rms",
+  "version": 1,
+  "page": "board360",
+  "tenant": "rms-pilot",
+  "as_of": "2026-10-06T06:00:00Z",
+  "receipts": {
+    "R01": {
+      "resolves_to": "Ledger aggregate LA-2026-10-06-01: admitted objectives, extraction runs, model runs, by status"
+    },
+    "R02": {
+      "resolves_to": "Cost Ledger CL-2026-Q3: spend against tenant ceiling, £"
+    },
+    "R03": {
+      "resolves_to": "Spend Requests queue SR-2026-10-05, items awaiting a named seat"
+    },
+    "R04": {
+      "resolves_to": "Watch summary WS-2026-W40: annotate/shape/contain/sever counts, aggregate"
+    },
+    "R05": {
+      "resolves_to": "Opportunity Brief OB-2026-10-02-03 (advisory), Estate Intelligence"
+    },
+    "R06": {
+      "resolves_to": "MOAC admission record MA-0931 vs MA-0904, per-stratum results",
+      "causal": true
+    },
+    "R07": {
+      "resolves_to": "Estate registry census 2026-09-22; rights-status shares"
+    }
+  },
+  "facts": {
+    "F001": {
+      "label": "Objectives admitted this quarter",
+      "value": 14,
+      "unit": "count",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F002": {
+      "label": "Objectives completed this quarter",
+      "value": 9,
+      "unit": "count",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F003": {
+      "label": "Spend against ceiling",
+      "value": 0.62,
+      "unit": "pct",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "F004": {
+      "label": "Tenant spend ceiling",
+      "value": 48000,
+      "unit": "GBP",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "F005": {
+      "label": "Estate share with recorded rights",
+      "value": 0.83,
+      "unit": "pct",
+      "class": "measured",
+      "receipt": "R07"
+    },
+    "F006": {
+      "label": "Estate share rights-unknown",
+      "value": 0.17,
+      "unit": "pct",
+      "class": "measured",
+      "receipt": "R07"
+    },
+    "F007": {
+      "label": "Watch severs this week",
+      "value": 0,
+      "unit": "count",
+      "class": "measured",
+      "receipt": "R04"
+    },
+    "F008": {
+      "label": "Watch contains this week",
+      "value": 2,
+      "unit": "count",
+      "class": "measured",
+      "receipt": "R04"
+    },
+    "F009": {
+      "label": "Quoted full-run cost",
+      "value": 1240,
+      "unit": "GBP",
+      "class": "estimated",
+      "receipt": "R03"
+    }
+  },
+  "deltas": {
+    "D001": {
+      "label": "Objectives completed",
+      "prior": 5,
+      "current": 9,
+      "unit": "count",
+      "since": "2026-09-01",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "D002": {
+      "label": "Spend against ceiling",
+      "prior": 0.41,
+      "current": 0.62,
+      "unit": "pct",
+      "since": "2026-09-01",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "D003": {
+      "label": "Sheng transcription accuracy (admitted model)",
+      "prior": 0.61,
+      "current": 0.77,
+      "unit": "pct",
+      "since": "2026-09-17",
+      "class": "measured",
+      "receipt": "R06"
+    }
+  },
+  "pending": {
+    "P001": {
+      "kind": "decision_pending",
+      "what": "Full training run for the register adapter, quoted",
+      "seat": "Board (capital)",
+      "mechanism": "Spend Requests over-ceiling item",
+      "due": "2026-10-14",
+      "amount_ref": "F009",
+      "receipt": "R03"
+    },
+    "P002": {
+      "kind": "advisory",
+      "what": "Three depots' rights-unknown material could be recorded under the existing consent form",
+      "brief_ref": "OB-2026-10-02-03",
+      "receipt": "R05"
+    },
+    "P003": {
+      "kind": "anomaly",
+      "what": "Two containment actions on one connector",
+      "watch_ref": "WS-2026-W40#c2",
+      "receipt": "R04"
+    }
+  },
+  "silence": {
+    "S001": {
+      "label": "Rights status for 17% of the estate",
+      "reason": "not yet declared by source owners",
+      "closes_with": "onboarding completion for three depots",
+      "receipt": "R07"
+    }
+  },
+  "aggregate_only_check": {
+    "individual_fields_present": false
+  },
+  "source": "snapshot",
+  "unavailable_sources": []
+}

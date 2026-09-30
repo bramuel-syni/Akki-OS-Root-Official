@@ -1,0 +1,11 @@
+{
+  "spec_type": "surface_spec", "spec_id": "SS-board360-rms-001", "page_state_ref": "board360-rms@1", "brief_ref": "SB-2026-10-06-001", "verdict_ref": "SV-2026-10-06-001",
+  "role": "board", "page": "board360", "seed": "board360-rms/board/2026-10-06", "build_stamp": "2026-10-06T00:00:00Z",
+  "blocks": [
+    {"id": "B1", "move": "interpret", "title": "Where the pilot stands", "text": "{F002} of {F001} objectives admitted this quarter are complete, with spend at {F003} of the {F004} ceiling.", "refs": ["F001", "F002", "F003", "F004"]},
+    {"id": "B2", "move": "trigger", "kind": "decision_pending", "pending_ref": "P001", "title": "Waiting on the board", "text": "{P001.what}: {F009}, above the auto-approve ceiling. {P001.phrasing}, due {P001.due}, through {P001.mechanism}.", "refs": ["P001", "F009"]},
+    {"id": "B3", "move": "report", "title": "What moved", "text": "Completed objectives rose from {D001.prior} to {D001.current} since {D001.since}; spend moved from {D002.prior} to {D002.current} of ceiling. Sheng transcription accuracy on the admitted model moved from {D003.prior} to {D003.current} because the register adapter was admitted on {D003.since}.", "refs": ["D001", "D002", "D003"], "causal_ref": "R06"},
+    {"id": "B4", "move": "trigger", "kind": "advisory", "pending_ref": "P002", "title": "Worth opening (advisory)", "text": "{P002.what}. {P002.phrasing}.", "refs": ["P002"]},
+    {"id": "B5", "move": "silence", "silence_ref": "S001", "title": "What the platform cannot yet say", "text": "{S001.label}: {S001.reason}; closes with {S001.closes_with}. Until then {F006} of the estate reads as unmeasured here, not as clear.", "refs": ["S001", "F006"]}
+  ]
+}

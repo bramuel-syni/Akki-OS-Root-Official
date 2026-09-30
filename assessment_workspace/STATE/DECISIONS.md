@@ -1,5 +1,11 @@
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+## 2026-09-30 — audio-first training lab, inspection and concurrent advisory research
+
+Owner verbatim: "1 - recommended, 2 - recommended, 3 - mix of both - use model concurrently to support continous improvementand research other than realizing at the end that its not performing, 4 - recommended - work to be done in background, with Akki + GPUs"
+
+Choices resolve to audio-first; inspect existing authorized datasets and report gaps; hybrid deterministic/model advisory skills; implement and test then present plan before retraining. Add exact LLM purpose `training_lab.advisory_review` for aggregate-only specialist reviews through the sole existing chokepoint. No new corpus export, raw RMS sampling, training launch, automatic recipe change or admission is authorized. Plan and test criteria: `notes/training_lab_20260930/PLAN.md`.
+
 ## Current owner continuation — 2026-09-25 · census operational recovery
 
 Owner verbatim: "Go ahead - dont change anything in your initial plan, mine was just to see how your plan ties up the requirements. Primary objective is to ensure requirements are met but they work. Akki OS and DAP have to be functional and deliver their promise". Latest confirmation: "You can pick it up".

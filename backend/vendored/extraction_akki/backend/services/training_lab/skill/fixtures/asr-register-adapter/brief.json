@@ -1,0 +1,15 @@
+{
+  "brief_id": "TB-2026-10-02-001",
+  "objective_ref": "asr-register-adapter@1",
+  "purpose": {"kind": "train", "statement": "Produce a LoRA adapter that lifts call-recording transcription accuracy across four spoken registers so that the answering service can serve the RMS pilot's contact-centre archive."},
+  "audience": {"who": "Objective owner (Head of Data, RMS pilot) and the Owner seat for the two-arm verdict", "knowledge": "high on the archive, medium on training", "priorities": ["no stratum left behind", "quoted cost before commitment", "rights-clean corpus"], "detail": "per-stratum numbers, plainly"},
+  "setting": {"mode": "commissioned run with staged reports", "read_unattended": true, "printed": false, "ongoing_use": true},
+  "content": {"materials": true, "test_set": true, "baseline": true, "rights_declaration": true},
+  "brand": {"house": "house-neutral", "formality": "formal", "expressiveness": "restrained", "variation_allowed": "none"},
+  "outputs": [
+    {"format": "run-record", "role": "calibration and full-run records"},
+    {"format": "report-md", "role": "technical report (WPW-8 skeleton)"},
+    {"format": "moac-pack", "role": "evidence pack for admission (request, not verdict)"}
+  ],
+  "constraints": {"budget_cap_gbp": 1800, "compute_class": "gpu_training", "gate_policy": "gates", "min_group_n": "platform_seam"}
+}

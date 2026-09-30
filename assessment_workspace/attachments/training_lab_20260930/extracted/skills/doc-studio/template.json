@@ -1,0 +1,15 @@
+{
+  "template": "akki-skill",
+  "version": "1.0",
+  "skill": "doc-studio",
+  "domain": "C.22 Documents suite / Deck Rendering Engine DR-R1\u2013R14",
+  "policy_dirs": [
+    "themes",
+    "voices"
+  ],
+  "scripts": {
+    "resolve": "studio.py",
+    "produce": "render_pptx.py"
+  },
+  "evals_runner": "manual"
+}

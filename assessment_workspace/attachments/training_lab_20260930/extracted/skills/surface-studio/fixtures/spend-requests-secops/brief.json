@@ -1,0 +1,10 @@
+{
+  "brief_id": "SB-2026-10-06-002", "page_state_ref": "spend-requests-secops@1",
+  "purpose": {"kind": "surface", "statement": "Compose the Spend Requests page copy for the security officer: what is waiting on a named seat, what the Watch has recorded on the same objects, and what changed since the last look."},
+  "audience": {"role": "security_officer", "who": "Tenant security officer", "knowledge": "high on the platform", "priorities": ["decisions pending", "anomalies", "custody"], "detail": "one line per item"},
+  "setting": {"page": "spend_requests", "device": "desktop", "read_unattended": false, "printed": false, "ongoing_use": true},
+  "content": {"records": true, "deltas": true, "pending": true, "advisories": false},
+  "brand": {"house": "house-neutral", "formality": "operational", "expressiveness": "none", "variation_allowed": "none"},
+  "outputs": [{"format": "content-record", "role": "frozen copy per block"}, {"format": "preview-html", "role": "page with copy in place"}],
+  "constraints": {"aggregate_only": false, "max_blocks": 5}
+}

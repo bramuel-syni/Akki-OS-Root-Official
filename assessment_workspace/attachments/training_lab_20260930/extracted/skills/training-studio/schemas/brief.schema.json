@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "brief_id",
+    "objective_ref",
+    "purpose",
+    "audience",
+    "setting",
+    "content",
+    "brand",
+    "outputs",
+    "constraints"
+  ],
+  "properties": {
+    "purpose": {
+      "type": "object",
+      "required": [
+        "kind",
+        "statement"
+      ],
+      "properties": {
+        "kind": {
+          "const": "train"
+        }
+      }
+    },
+    "setting": {
+      "type": "object",
+      "required": [
+        "mode",
+        "read_unattended",
+        "printed",
+        "ongoing_use"
+      ]
+    },
+    "constraints": {
+      "type": "object",
+      "required": [
+        "budget_cap_gbp",
+        "compute_class",
+        "gate_policy"
+      ],
+      "properties": {
+        "gate_policy": {
+          "enum": [
+            "gates",
+            "ships-documented"
+          ]
+        }
+      }
+    }
+  }
+}

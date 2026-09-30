@@ -549,6 +549,8 @@ from routers.watch_operational import install as install_operational_watch
 install_operational_watch(app)
 from routers.m9_training import router as m9_training_router  # noqa: E402
 app.include_router(m9_training_router)
+from routers.training_lab import router as training_lab_router  # noqa: E402
+app.include_router(training_lab_router)
 # M8 · continuity: ratified tiered recovery policy, control-Ledger WORM archive and PITR restore drill — routes /api/continuity/*
 from routers.continuity import router as continuity_router  # noqa: E402
 app.include_router(continuity_router)

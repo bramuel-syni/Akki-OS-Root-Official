@@ -33,6 +33,8 @@ def m9_submit(body: dict = Body(...), actor=Depends(census_identity)):
         try:
             path, _ = admission_path()
             params = {k: v for k, v in body.items() if k not in ("phase", "host", "tenant_id")}
+            if body.get('phase') == 'lab_inspect':
+                raise ValueError('Use the tenant-scoped training lab assessment; inspection paths are server-owned.')
             job = m9.submit(body.get("phase"), params, body.get("host"), actor["principal_id"], str(path))
         except (ValueError, TypeError) as exc:
             raise HTTPException(422, str(exc)) from exc

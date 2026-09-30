@@ -1,0 +1,339 @@
+{
+  "voice_id": "keynote-cinematic",
+  "family": "keynote",
+  "objectives": [
+    "inspire",
+    "persuade"
+  ],
+  "description": "One idea, one line, one figure per slide. Full-bleed structure field on statement slides, white field on evidence slides. Large type, long margins, no bullets. Built for a room, not a read-ahead.",
+  "structural": {
+    "title_style": "statement",
+    "title_max_chars": 70,
+    "title_max_lines": 2,
+    "exhibits_per_slide": 1,
+    "words_per_slide_max": 30,
+    "requires": [
+      "hero",
+      "closing",
+      "coverage_limits"
+    ],
+    "no_winner_marked": true,
+    "so_what_required_on_exhibits": true,
+    "coverage_title": "What we know, what we don't, and what would close the gap"
+  },
+  "compatibility": {
+    "allowed_palettes": [
+      "graphite",
+      "slate",
+      "ink",
+      "harbour",
+      "moss"
+    ],
+    "allowed_type_pairs": [
+      "arial-arial",
+      "century-arial",
+      "cambria-calibri"
+    ],
+    "veto": [
+      {
+        "palette": "ink",
+        "type_pair": "century-arial",
+        "why": "gold accent on near-black with a bookish serif reads as a wine label"
+      },
+      {
+        "palette": "graphite",
+        "cover": "title-left-high",
+        "why": "red accent needs the lower cover composition to avoid a warning-sign read"
+      }
+    ],
+    "printed_requires_field": "FFFFFF"
+  },
+  "sizes_pt": {
+    "kicker": 12,
+    "title": 30,
+    "body": 18,
+    "small": 10,
+    "big_number": 120,
+    "section_number": 96,
+    "section_title": 36,
+    "cover_title": 54,
+    "cover_sub": 20,
+    "hero": 44,
+    "closing": 40,
+    "table": 14
+  },
+  "grid": {
+    "slide_w": 13.333,
+    "slide_h": 7.5,
+    "cols": 12,
+    "rows": 16,
+    "margin_x": 1.1,
+    "margin_y": 0.6,
+    "gutter": 0.2
+  },
+  "layouts": {
+    "comment": "Wider margins than strategy; statement zones are centred vertically. hero/closing/section draw on the structure field.",
+    "cover": {
+      "title": {
+        "col": 0,
+        "span": 10,
+        "row": 5,
+        "rspan": 5
+      },
+      "subtitle": {
+        "col": 0,
+        "span": 8,
+        "row": 10,
+        "rspan": 2
+      },
+      "org": {
+        "col": 0,
+        "span": 6,
+        "row": 14,
+        "rspan": 1
+      }
+    },
+    "hero": {
+      "statement": {
+        "col": 1,
+        "span": 10,
+        "row": 4,
+        "rspan": 8
+      },
+      "kicker": {
+        "col": 1,
+        "span": 10,
+        "row": 2,
+        "rspan": 1
+      }
+    },
+    "big_number": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 1
+      },
+      "number": {
+        "col": 0,
+        "span": 12,
+        "row": 3,
+        "rspan": 6
+      },
+      "label": {
+        "col": 2,
+        "span": 8,
+        "row": 9,
+        "rspan": 2
+      },
+      "so_what": {
+        "col": 2,
+        "span": 8,
+        "row": 11,
+        "rspan": 2
+      },
+      "receipt": {
+        "col": 0,
+        "span": 12,
+        "row": 14,
+        "rspan": 1
+      }
+    },
+    "section": {
+      "number": {
+        "col": 0,
+        "span": 3,
+        "row": 5,
+        "rspan": 5
+      },
+      "title": {
+        "col": 3,
+        "span": 9,
+        "row": 6,
+        "rspan": 4
+      }
+    },
+    "assertion_exhibit": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "exhibit": {
+        "col": 1,
+        "span": 10,
+        "row": 4,
+        "rspan": 8
+      },
+      "so_what": {
+        "col": 0,
+        "span": 12,
+        "row": 12,
+        "rspan": 2
+      },
+      "receipt": {
+        "col": 0,
+        "span": 12,
+        "row": 14,
+        "rspan": 1
+      }
+    },
+    "assertion_points": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "points": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 10
+      }
+    },
+    "comparison": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "table": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 8
+      },
+      "so_what": {
+        "col": 0,
+        "span": 12,
+        "row": 12,
+        "rspan": 1
+      },
+      "receipt": {
+        "col": 0,
+        "span": 12,
+        "row": 14,
+        "rspan": 1
+      }
+    },
+    "coverage_limits": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "body": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 10
+      }
+    },
+    "closing": {
+      "statement": {
+        "col": 1,
+        "span": 10,
+        "row": 4,
+        "rspan": 7
+      },
+      "sub": {
+        "col": 1,
+        "span": 10,
+        "row": 11,
+        "rspan": 2
+      }
+    },
+    "furniture": {
+      "page_no": {
+        "col": 11,
+        "span": 1,
+        "row": 15,
+        "rspan": 1
+      },
+      "doc_id": {
+        "col": 0,
+        "span": 6,
+        "row": 15,
+        "rspan": 1
+      },
+      "confidentiality": {
+        "col": 6,
+        "span": 5,
+        "row": 15,
+        "rspan": 1
+      }
+    }
+  },
+  "plate_policy": {
+    "bar": {
+      "pptx": "native",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "line": {
+      "pptx": "native",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "stacked_bar": {
+      "pptx": "native",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "big_number": {
+      "pptx": "shapes",
+      "docx": "text",
+      "html": "text",
+      "editable": true
+    },
+    "comparison_table": {
+      "pptx": "shapes",
+      "docx": "table",
+      "html": "table",
+      "editable": true
+    },
+    "mekko": {
+      "pptx": "svg",
+      "docx": "svg",
+      "html": "svg",
+      "editable": false
+    },
+    "flow": {
+      "pptx": "svg",
+      "docx": "svg",
+      "html": "svg",
+      "editable": false
+    }
+  }
+}

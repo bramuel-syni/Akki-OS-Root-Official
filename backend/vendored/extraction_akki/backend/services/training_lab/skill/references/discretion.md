@@ -1,0 +1,6 @@
+# Permitted choices and reserved decisions
+**Permitted within the commission (no escalation):** calibration volumes within policy; a small-stratum sampling floor; which stratum hosts the comparison (policy rule: smallest valid); milestone wording and owners proposed; report wording; which limitations to list; bounded repair of a mechanical defect (≤3 passes, each a spec or policy change followed by a full rebuild).
+**Escalate to the objective owner:** a stratum not reachable within available material (documented miss vs more material); any change to floors; a quote outside the CI the owner agreed.
+**Lens rule:** lenses argue in the record; a lens objection is classed and routed, never enforced, except the professor's MDE finding (arithmetic). The objective owner may overrule any objection on the record (`verdict.objections_overruled`).
+**Reserved, never a skill output:** the comparison verdict (Owner, A17.6); recipe adoption and filling the recipe seat (A17.2/A17.4 evidence rule); MOAC acceptance (#22, no human in the path); model admission (C.6); release and eligibility (C.9); spend over cap (#11); naming a production base model before census (A17.11); any change to acceptance criteria (ceremony).
+Outputs are proposals, reports and requests. There is no decision output type.

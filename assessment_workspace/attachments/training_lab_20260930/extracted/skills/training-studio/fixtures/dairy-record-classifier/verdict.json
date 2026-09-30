@@ -1,0 +1,106 @@
+{
+  "verdict_id": "TV-2026-10-04-002",
+  "brief_ref": "TB-2026-10-04-002",
+  "goal": "Clear a two-dimensional floor on all four form types, including breeding records at 10% share, within £600, with every image pseudonymised and the occupation field never transcribed.",
+  "frame_ref": "FR-training-calibrate-first-v1",
+  "candidates": [
+    {
+      "idea_id": "T1",
+      "name": "Calibrate-then-full, uniform recipe",
+      "assembly": {
+        "stage_plan": "calibration-3-volumes-then-full",
+        "sampling": "proportional-to-share-with-small-stratum-floor",
+        "comparison": "two-arm-optimizer-on-smallest-valid-stratum",
+        "evaluation": "sealed-test-set-per-stratum"
+      },
+      "verdict": "adopt",
+      "rationale": "Breeding records bind (16pp gap at 10% share); the small-stratum floor protects them; one comparison fills the recipe seat.",
+      "lens": "professor"
+    },
+    {
+      "idea_id": "T4",
+      "name": "Warm-start from the RMS adapter",
+      "assembly": {
+        "stage_plan": "warm-start-from-prior-adapter",
+        "sampling": "proportional-to-share-with-small-stratum-floor",
+        "comparison": "two-arm-with-vs-without-warm-start",
+        "evaluation": "sealed-test-set-per-stratum"
+      },
+      "verdict": "reject",
+      "rationale": "Different modality (audio adapter, document task); no lineage argument survives A17.3.",
+      "lens": "researcher"
+    },
+    {
+      "idea_id": "T2",
+      "name": "Per-stratum adapters",
+      "assembly": {
+        "stage_plan": "four-independent-calibrations",
+        "sampling": "per-stratum",
+        "comparison": "none",
+        "evaluation": "sealed-test-set-per-stratum"
+      },
+      "verdict": "defer",
+      "conditions": "Re-enter if the uniform adapter clears ST1–ST3 but fails ST4 after the full run.",
+      "lens": "industry"
+    }
+  ],
+  "adopted": "T1",
+  "manifest": [
+    {
+      "id": "M1",
+      "assumption": "A sealed, stratified, uncurated test set exists for all four form types",
+      "class": "fact",
+      "source": "objective.population.strata[*].test_set_ref",
+      "flips": [
+        "target_admissible",
+        "evaluation_plan"
+      ]
+    },
+    {
+      "id": "M2",
+      "assumption": "Budget cap is £600",
+      "class": "fact",
+      "source": "brief.constraints.budget_cap_gbp",
+      "flips": [
+        "calibration_volumes",
+        "full_run_feasibility"
+      ]
+    },
+    {
+      "id": "M3",
+      "assumption": "Material is under the DigiCow DPA and pseudonymised; the occupation field is masked",
+      "class": "fact",
+      "source": "objective.materials[*].lawful_basis, objective.collection_schema",
+      "flips": [
+        "manifest_admissible",
+        "labelling_protocol"
+      ]
+    },
+    {
+      "id": "M4",
+      "assumption": "Breeding records (ST4) are the binding stratum",
+      "class": "inferred",
+      "source": "objective.baseline, objective.acceptance",
+      "flips": [
+        "comparison_stratum",
+        "sampling_floor"
+      ]
+    }
+  ],
+  "confirmed_by": "objective owner (operator seat, standing frame)",
+  "confirmed_at": "2026-10-04T09:00:00Z",
+  "objections_accepted": [
+    {
+      "lens": "industry",
+      "objection": "photo vs scan hidden axis",
+      "action": "capture mix monitored; augmentation ranges bounded to production"
+    }
+  ],
+  "objections_overruled": [
+    {
+      "lens": "entrepreneur",
+      "objection": "phase ST1 first by value ratio",
+      "reason": "the objective owner wants all four strata evaluated in one calibration before phasing; recorded"
+    }
+  ]
+}

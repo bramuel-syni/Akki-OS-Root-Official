@@ -1337,7 +1337,11 @@ def execute(control):
     try:
         if socket.gethostname() != control["hostname_expected"]:
             raise ValueError("HOST_IDENTITY_MISMATCH")
-        receipt["result"] = PHASES[control["phase"]](control, state)
+        if control['phase'] == 'lab_inspect':
+            from services.training_lab.inspection_worker import inspect_corpus
+            receipt['result'] = inspect_corpus(control, state)
+        else:
+            receipt["result"] = PHASES[control["phase"]](control, state)
         receipt["status"] = "completed"
     except Exception as exc:
         receipt["error"] = {"type": type(exc).__name__, "message": str(exc)[:500], "trace": traceback.format_exc()[-3000:]}

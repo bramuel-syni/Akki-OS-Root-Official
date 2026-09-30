@@ -1,0 +1,268 @@
+{
+  "objective_id": "asr-register-adapter",
+  "version": 1,
+  "title": "ASR register adapter for the RMS contact-centre archive",
+  "task": "speech-to-text",
+  "modality": "audio",
+  "base_model": {
+    "registry_ref": "models_registry.v0#whisper-tiny",
+    "role": "ci-fixture-only",
+    "production_selection": "deferred to first census activation (A17.11)"
+  },
+  "receipts": {
+    "R01": {
+      "resolves_to": "Estate registry census 2026-09-22, register strata counts, table 4"
+    },
+    "R02": {
+      "resolves_to": "Stratified test set TS-ASR-04 v2, sealed 2026-09-25, 1,200 utterances, uncurated held-out"
+    },
+    "R03": {
+      "resolves_to": "Baseline evaluation run BL-0917 on TS-ASR-04 v2, per-stratum WER, 2026-09-17"
+    },
+    "R04": {
+      "resolves_to": "Rights declaration RD-RMS-07, owner-signed 2026-09-20, lawful basis per source"
+    },
+    "R05": {
+      "resolves_to": "Compute price list v3, gpu_training class, GBP per GPU-hour, 2026-09-01"
+    },
+    "R06": {
+      "resolves_to": "Objective owner sign-off memo OO-2026-09-29"
+    }
+  },
+  "population": {
+    "register_axis": "spoken register",
+    "strata": {
+      "ST1": {
+        "label": "Kenyan English",
+        "share": 0.46,
+        "test_set_ref": "R02",
+        "test_n": 520,
+        "class": "measured",
+        "receipt": "R01"
+      },
+      "ST2": {
+        "label": "Kiswahili",
+        "share": 0.31,
+        "test_set_ref": "R02",
+        "test_n": 360,
+        "class": "measured",
+        "receipt": "R01"
+      },
+      "ST3": {
+        "label": "Sheng",
+        "share": 0.14,
+        "test_set_ref": "R02",
+        "test_n": 190,
+        "class": "measured",
+        "receipt": "R01"
+      },
+      "ST4": {
+        "label": "Code-switched",
+        "share": 0.09,
+        "test_set_ref": "R02",
+        "test_n": 130,
+        "class": "measured",
+        "receipt": "R01"
+      }
+    }
+  },
+  "baseline": {
+    "run_ref": "R03",
+    "metric": "accuracy (1 - WER)",
+    "per_stratum": {
+      "ST1": 0.86,
+      "ST2": 0.78,
+      "ST3": 0.61,
+      "ST4": 0.66
+    },
+    "coverage": {
+      "ST1": 0.97,
+      "ST2": 0.95,
+      "ST3": 0.88,
+      "ST4": 0.9
+    },
+    "class": "measured",
+    "receipt": "R03"
+  },
+  "acceptance": {
+    "kind": "two-dimensional per stratum",
+    "per_stratum": {
+      "ST1": {
+        "accuracy_floor": 0.9,
+        "coverage_floor": 0.97
+      },
+      "ST2": {
+        "accuracy_floor": 0.85,
+        "coverage_floor": 0.95
+      },
+      "ST3": {
+        "accuracy_floor": 0.75,
+        "coverage_floor": 0.9
+      },
+      "ST4": {
+        "accuracy_floor": 0.78,
+        "coverage_floor": 0.92
+      }
+    },
+    "gate_policy": "gates",
+    "non_target_regression_max": 0.01,
+    "class": "estimated",
+    "receipt": "R06"
+  },
+  "materials": {
+    "M01": {
+      "source": "contact-centre recordings 2024–2026, consented",
+      "stratum": "ST1",
+      "examples": 1200,
+      "class": "measured",
+      "lawful_basis": "consent",
+      "hash": "sha256:7c1e…a2",
+      "receipt": "R04",
+      "basis_ref": "CONSENT-RMS-2024-A"
+    },
+    "M02": {
+      "source": "contact-centre recordings 2024–2026, consented",
+      "stratum": "ST2",
+      "examples": 1200,
+      "class": "measured",
+      "lawful_basis": "consent",
+      "hash": "sha256:9b04…f1",
+      "receipt": "R04",
+      "basis_ref": "CONSENT-RMS-2024-A"
+    },
+    "M03": {
+      "source": "community radio call-ins, licensed",
+      "stratum": "ST3",
+      "examples": 1200,
+      "class": "measured",
+      "lawful_basis": "licence",
+      "hash": "sha256:3d7a…0c",
+      "receipt": "R04",
+      "basis_ref": "LIC-CRN-2025-03"
+    },
+    "M04": {
+      "source": "contact-centre recordings 2024–2026, consented",
+      "stratum": "ST4",
+      "examples": 1200,
+      "class": "measured",
+      "lawful_basis": "consent",
+      "hash": "sha256:e55b…77",
+      "receipt": "R04",
+      "basis_ref": "CONSENT-RMS-2024-A"
+    }
+  },
+  "cost": {
+    "gpu_hour_gbp": 3.2,
+    "class": "measured",
+    "receipt": "R05"
+  },
+  "calculations": {
+    "K001": {
+      "label": "Baseline gap to floor per stratum",
+      "formula": "acceptance.per_stratum[s].accuracy_floor - baseline.per_stratum[s]",
+      "unit": "pp"
+    },
+    "K002": {
+      "label": "Total available examples",
+      "formula": "sum(materials[*].examples)",
+      "unit": "examples"
+    }
+  },
+  "coverage": {
+    "covers": "All four registers in the census; baseline on the sealed test set; consented or licensed material only.",
+    "cannot_say": [
+      {
+        "gap": "Production base model",
+        "reason": "named only at first census activation (A17.11)",
+        "closes_with": "registry bump after census"
+      },
+      {
+        "gap": "Generalisation to non-RMS archives",
+        "reason": "test set is RMS-only",
+        "closes_with": "a second sealed test set from another estate"
+      }
+    ]
+  },
+  "collection_schema": {
+    "unit": "utterance",
+    "fields": {
+      "example_id": "string, stable",
+      "audio_ref": "artifact-store key, pseudonymised path",
+      "transcript": "verbatim, register-preserving",
+      "register": "ST1|ST2|ST3|ST4 from the census axis",
+      "speaker_pseudonym": "inner-perimeter pseudonym, never an identity",
+      "duration_s": "float",
+      "consent_ref": "consent or licence record id",
+      "content_hash": "sha256 of audio bytes"
+    },
+    "quality_gates": {
+      "duration_s": [
+        1.0,
+        30.0
+      ],
+      "sample_rate_hz": 16000,
+      "transcript_non_empty": true
+    },
+    "labelling_protocol": "register assigned by two annotators; disagreement resolved by the census classification authority, recorded as a human contribution event",
+    "admission": "an example enters the manifest only with class, lawful basis and content hash; otherwise it is refused and the refusal counted",
+    "class": "estimated",
+    "receipt": "R06"
+  },
+  "task_family": "asr-adapter",
+  "modality_key": "audio",
+  "value": {
+    "per_stratum": {
+      "ST1": {
+        "gbp": 9000,
+        "basis": "calls served: 46% of 61k monthly calls × £0.32 handling saved per auto-served call, annualised at the floor"
+      },
+      "ST2": {
+        "gbp": 6100,
+        "basis": "same basis, 31% share"
+      },
+      "ST3": {
+        "gbp": 4200,
+        "basis": "same basis, 14% share; the client's stated pain point"
+      },
+      "ST4": {
+        "gbp": 1800,
+        "basis": "same basis, 9% share"
+      }
+    },
+    "class": "estimated",
+    "receipt": "R06"
+  },
+  "production": {
+    "capture_condition": {
+      "ST1": "phone line, contact-centre headset",
+      "ST2": "phone line",
+      "ST3": "phone line and community-radio call-in (calibration material is radio; production is phone)",
+      "ST4": "phone line"
+    },
+    "monitor": {
+      "ST1": "coverage rate weekly; confidence distribution",
+      "ST2": "same",
+      "ST3": "same, plus register-classifier share",
+      "ST4": "same"
+    },
+    "owner_seat": "answering-service seat, RMS pilot",
+    "rollback": "previous admitted adapter MA-0904",
+    "retrain_cadence": "quarterly or on trigger",
+    "class": "recalled",
+    "receipt": "R06"
+  },
+  "annotator_agreement": {
+    "ST1": 0.94,
+    "ST2": 0.91,
+    "ST3": 0.78,
+    "ST4": 0.86,
+    "class": "measured",
+    "receipt": "R02"
+  },
+  "test_set_custody": {
+    "sealed_by": "objective owner",
+    "seen_by_training_decisions": false,
+    "reuse_count": 0,
+    "receipt": "R02"
+  }
+}

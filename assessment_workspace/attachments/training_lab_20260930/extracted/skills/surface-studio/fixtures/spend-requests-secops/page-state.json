@@ -1,0 +1,108 @@
+{
+  "page_state_id": "spend-requests-secops",
+  "version": 1,
+  "page": "spend_requests",
+  "tenant": "rms-pilot",
+  "as_of": "2026-10-06T08:30:00Z",
+  "receipts": {
+    "R01": {
+      "resolves_to": "Spend Requests queue SR-2026-10-06, items with seat, quote, due"
+    },
+    "R02": {
+      "resolves_to": "Cost Ledger CL-2026-Q3: committed vs ceiling"
+    },
+    "R03": {
+      "resolves_to": "Watch record WR-2026-10-05-17 on connector conn-nas-03: contain, reason code"
+    },
+    "R04": {
+      "resolves_to": "Auto-approve ceiling A6 configuration, tenant rms-pilot"
+    }
+  },
+  "facts": {
+    "F001": {
+      "label": "Items awaiting a seat",
+      "value": 3,
+      "unit": "count",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F002": {
+      "label": "Auto-approve ceiling",
+      "value": 500,
+      "unit": "GBP",
+      "class": "measured",
+      "receipt": "R04"
+    },
+    "F003": {
+      "label": "Committed spend this quarter",
+      "value": 29760,
+      "unit": "GBP",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "F004": {
+      "label": "Quote: register adapter full run",
+      "value": 1240,
+      "unit": "GBP",
+      "class": "estimated",
+      "receipt": "R01"
+    },
+    "F005": {
+      "label": "Quote: census re-run, three depots",
+      "value": 310,
+      "unit": "GBP",
+      "class": "estimated",
+      "receipt": "R01"
+    },
+    "F006": {
+      "label": "Quote: connector re-scan conn-nas-03",
+      "value": 90,
+      "unit": "GBP",
+      "class": "estimated",
+      "receipt": "R01"
+    }
+  },
+  "deltas": {
+    "D001": {
+      "label": "Items awaiting a seat",
+      "prior": 1,
+      "current": 3,
+      "unit": "count",
+      "since": "2026-10-03",
+      "class": "measured",
+      "receipt": "R01"
+    }
+  },
+  "pending": {
+    "P001": {
+      "kind": "decision_pending",
+      "what": "Register adapter full run",
+      "seat": "Board (capital)",
+      "mechanism": "over-ceiling routing (#11)",
+      "due": "2026-10-14",
+      "amount_ref": "F004",
+      "receipt": "R01"
+    },
+    "P002": {
+      "kind": "decision_pending",
+      "what": "Census re-run for three depots",
+      "seat": "Tenant admin",
+      "mechanism": "auto-approve; below ceiling but flagged by requester",
+      "due": "2026-10-08",
+      "amount_ref": "F005",
+      "receipt": "R01"
+    },
+    "P003": {
+      "kind": "anomaly",
+      "what": "Connector conn-nas-03 contained; re-scan quote attached to a contained object",
+      "watch_ref": "WR-2026-10-05-17",
+      "receipt": "R03"
+    }
+  },
+  "silence": {},
+  "aggregate_only_check": {
+    "individual_fields_present": true
+  },
+  "source": "snapshot",
+  "unavailable_sources": []
+}

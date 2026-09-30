@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shared content model",
+  "type": "object",
+  "required": [
+    "content_id",
+    "version",
+    "title",
+    "organisation",
+    "receipts",
+    "facts",
+    "claims",
+    "coverage"
+  ],
+  "properties": {
+    "content_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string"
+    },
+    "organisation": {
+      "type": "string"
+    },
+    "receipts": {
+      "type": "object",
+      "patternProperties": {
+        "^R\\d{2,}$": {
+          "type": "object",
+          "required": [
+            "resolves_to"
+          ],
+          "properties": {
+            "resolves_to": {
+              "type": "string",
+              "minLength": 8
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "facts": {
+      "type": "object",
+      "patternProperties": {
+        "^F\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "label",
+            "value",
+            "unit",
+            "class",
+            "receipt"
+          ],
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "class": {
+              "enum": [
+                "measured",
+                "estimated",
+                "sample"
+              ]
+            },
+            "receipt": {
+              "type": "string",
+              "pattern": "^R\\d{2,}$"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "series": {
+      "type": "object",
+      "patternProperties": {
+        "^S\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "label",
+            "categories",
+            "values",
+            "unit",
+            "class",
+            "receipt"
+          ],
+          "properties": {
+            "class": {
+              "enum": [
+                "measured",
+                "estimated",
+                "sample"
+              ]
+            },
+            "categories": {
+              "type": "array",
+              "minItems": 1
+            },
+            "values": {
+              "type": "object",
+              "minProperties": 1
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "options": {
+      "type": "object",
+      "patternProperties": {
+        "^O\\d+$": {
+          "type": "object",
+          "required": [
+            "name",
+            "class",
+            "receipt"
+          ],
+          "properties": {
+            "class": {
+              "enum": [
+                "measured",
+                "estimated",
+                "sample"
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "calculations": {
+      "type": "object",
+      "patternProperties": {
+        "^K\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "label",
+            "formula",
+            "inputs"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "claims": {
+      "type": "object",
+      "patternProperties": {
+        "^C\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "text",
+            "supports"
+          ],
+          "properties": {
+            "supports": {
+              "type": "array",
+              "minItems": 1
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "covers",
+        "cannot_say"
+      ],
+      "properties": {
+        "cannot_say": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "gap",
+              "reason",
+              "closes_with"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "content_id": "northline-depot-automation",
+  "version": 1,
+  "title": "Depot automation programme: decision pack",
+  "organisation": "Northline Logistics",
+  "receipts": {
+    "R01": {
+      "resolves_to": "Northline management accounts FY24–FY26, P&L summary, rows 4–9"
+    },
+    "R02": {
+      "resolves_to": "Depot cost ledger export 2026-09-12, cost-per-parcel by site"
+    },
+    "R03": {
+      "resolves_to": "Vendor quotations Q3-2026 (Kardex, Swisslog, Dematic), capex schedules"
+    },
+    "R04": {
+      "resolves_to": "Operations planning model v7, tab 'Savings', signed off by COO 2026-09-18"
+    },
+    "R05": {
+      "resolves_to": "Board paper BP-2026-07, approved headcount ceiling"
+    }
+  },
+  "facts": {
+    "F001": {
+      "label": "FY24 revenue",
+      "value": 118.4,
+      "unit": "GBPm",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F002": {
+      "label": "FY25 revenue",
+      "value": 127.9,
+      "unit": "GBPm",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F003": {
+      "label": "FY26 revenue",
+      "value": 142.3,
+      "unit": "GBPm",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F004": {
+      "label": "FY26 operating margin",
+      "value": 0.061,
+      "unit": "pct",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F005": {
+      "label": "FY24 operating margin",
+      "value": 0.083,
+      "unit": "pct",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "F006": {
+      "label": "Network average cost per parcel",
+      "value": 1.42,
+      "unit": "GBP",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "F007": {
+      "label": "Manual-depot cost per parcel",
+      "value": 1.71,
+      "unit": "GBP",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "F008": {
+      "label": "Parcels handled FY26",
+      "value": 61.2,
+      "unit": "m",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "F009": {
+      "label": "Headcount ceiling FY27",
+      "value": 2140,
+      "unit": "FTE",
+      "class": "measured",
+      "receipt": "R05"
+    },
+    "F010": {
+      "label": "Vendor lead time",
+      "value": 11,
+      "unit": "months",
+      "class": "estimated",
+      "receipt": "R03"
+    }
+  },
+  "series": {
+    "S001": {
+      "label": "Revenue and operating margin, FY24–FY26",
+      "categories": [
+        "FY24",
+        "FY25",
+        "FY26"
+      ],
+      "values": {
+        "Revenue (GBPm)": [
+          118.4,
+          127.9,
+          142.3
+        ]
+      },
+      "unit": "GBPm",
+      "class": "measured",
+      "receipt": "R01"
+    },
+    "S002": {
+      "label": "Cost per parcel by depot type",
+      "categories": [
+        "Manual (6 sites)",
+        "Semi-automated (3 sites)",
+        "Automated (1 site)"
+      ],
+      "values": {
+        "GBP per parcel": [
+          1.71,
+          1.38,
+          0.94
+        ]
+      },
+      "unit": "GBP",
+      "class": "measured",
+      "receipt": "R02"
+    },
+    "S003": {
+      "label": "Operating margin, FY24–FY26",
+      "categories": [
+        "FY24",
+        "FY25",
+        "FY26"
+      ],
+      "values": {
+        "Operating margin": [
+          0.083,
+          0.074,
+          0.061
+        ]
+      },
+      "unit": "pct",
+      "class": "measured",
+      "receipt": "R01"
+    }
+  },
+  "options": {
+    "O1": {
+      "name": "Full automation, 6 manual sites",
+      "capex": 48.0,
+      "annual_saving": 14.6,
+      "lead_months": 11,
+      "headcount_delta": -310,
+      "class": "estimated",
+      "receipt": "R03"
+    },
+    "O2": {
+      "name": "Phased: 3 sites now, 3 in FY28",
+      "capex": 26.0,
+      "annual_saving": 7.9,
+      "lead_months": 11,
+      "headcount_delta": -160,
+      "class": "estimated",
+      "receipt": "R03"
+    },
+    "O3": {
+      "name": "Semi-automate all 6 sites",
+      "capex": 19.5,
+      "annual_saving": 6.1,
+      "lead_months": 7,
+      "headcount_delta": -120,
+      "class": "estimated",
+      "receipt": "R04"
+    }
+  },
+  "calculations": {
+    "K001": {
+      "label": "Revenue growth FY24–FY26",
+      "formula": "(F003 - F001) / F001",
+      "inputs": [
+        "F001",
+        "F003"
+      ],
+      "unit": "pct"
+    },
+    "K002": {
+      "label": "Margin erosion FY24–FY26",
+      "formula": "F005 - F004",
+      "inputs": [
+        "F004",
+        "F005"
+      ],
+      "unit": "pp"
+    },
+    "K003": {
+      "label": "Manual-site cost premium vs network",
+      "formula": "(F007 - F006) / F006",
+      "inputs": [
+        "F006",
+        "F007"
+      ],
+      "unit": "pct"
+    },
+    "K004": {
+      "label": "Simple payback, years",
+      "formula": "option.capex / option.annual_saving",
+      "inputs": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "unit": "years"
+    }
+  },
+  "claims": {
+    "C001": {
+      "text": "Revenue grew {K001} over two years while operating margin fell {K002}",
+      "supports": [
+        "F001",
+        "F003",
+        "F004",
+        "F005"
+      ]
+    },
+    "C002": {
+      "text": "Manual depots cost {K003} more per parcel than the network average",
+      "supports": [
+        "F006",
+        "F007"
+      ]
+    },
+    "C003": {
+      "text": "Three automation options are costed; simple payback runs from {K004:min} to {K004:max} years",
+      "supports": [
+        "O1",
+        "O2",
+        "O3"
+      ]
+    },
+    "C004": {
+      "text": "Every option stays inside the FY27 headcount ceiling of {F009}",
+      "supports": [
+        "F009"
+      ]
+    },
+    "C005": {
+      "text": "Volume growth is outrunning the manual network's cost base",
+      "supports": [
+        "F008",
+        "F003"
+      ]
+    },
+    "C006": {
+      "text": "The automated site handles parcels at {F006:F007:ratio} of the manual unit cost",
+      "supports": [
+        "S002"
+      ]
+    },
+    "C007": {
+      "text": "Margin has declined in each of the last two years",
+      "supports": [
+        "S003"
+      ]
+    },
+    "C008": {
+      "text": "Lead time of {F010} months means the earliest saving lands in FY28 on any full-automation path",
+      "supports": [
+        "F010"
+      ]
+    }
+  },
+  "coverage": {
+    "covers": "FY24–FY26 actuals for all ten depots and vendor-quoted capex for the six manual sites.",
+    "cannot_say": [
+      {
+        "gap": "Savings beyond year three",
+        "reason": "outside scope of the COO model",
+        "closes_with": "extend the operations planning model to a five-year horizon"
+      },
+      {
+        "gap": "Implementation risk by vendor",
+        "reason": "not measured; no reference-site visits completed",
+        "closes_with": "two reference-site visits per shortlisted vendor before contract"
+      },
+      {
+        "gap": "Union consultation timeline",
+        "reason": "rights-restricted until the consultation notice is issued",
+        "closes_with": "HR to confirm notice date"
+      }
+    ]
+  }
+}

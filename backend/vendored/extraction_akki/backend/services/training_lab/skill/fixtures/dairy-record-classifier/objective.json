@@ -1,0 +1,262 @@
+{
+  "objective_id": "dairy-record-classifier",
+  "version": 1,
+  "title": "Form-type classifier for DigiCow field records",
+  "task": "document-classification",
+  "modality": "document",
+  "base_model": {
+    "registry_ref": "models_registry.v0#document-ocr-candidates",
+    "role": "PROPOSED-class candidates; resolved deterministically at wizard compile time (A20.12–14)",
+    "production_selection": "calibration decides among eligible candidates on measured fit (A20.13)"
+  },
+  "receipts": {
+    "R01": {
+      "resolves_to": "DigiCow estate census 2026-09-26, form-type strata counts, table 2"
+    },
+    "R02": {
+      "resolves_to": "Stratified test set TS-DOC-02 v1, sealed 2026-09-28, 800 images, uncurated held-out"
+    },
+    "R03": {
+      "resolves_to": "Baseline evaluation BL-0929 on TS-DOC-02 v1, per-form-type accuracy"
+    },
+    "R04": {
+      "resolves_to": "Data-processing agreement DPA-DIGICOW-2025-11 and rights declaration RD-DC-02, owner-signed 2026-09-24"
+    },
+    "R05": {
+      "resolves_to": "Compute price list v3, gpu_training class, GBP per GPU-hour, 2026-09-01"
+    },
+    "R06": {
+      "resolves_to": "Objective owner sign-off memo OO-DC-2026-10-01"
+    },
+    "R07": {
+      "resolves_to": "Classification ruling: occupation-boolean field held on cautious default PII; masked at every crossing (parked ruling #2)"
+    }
+  },
+  "population": {
+    "register_axis": "form type",
+    "strata": {
+      "ST1": {
+        "label": "Milk log",
+        "share": 0.52,
+        "test_set_ref": "R02",
+        "test_n": 410,
+        "class": "measured",
+        "receipt": "R01"
+      },
+      "ST2": {
+        "label": "Vet visit",
+        "share": 0.21,
+        "test_set_ref": "R02",
+        "test_n": 170,
+        "class": "measured",
+        "receipt": "R01"
+      },
+      "ST3": {
+        "label": "Feed purchase",
+        "share": 0.17,
+        "test_set_ref": "R02",
+        "test_n": 140,
+        "class": "measured",
+        "receipt": "R01"
+      },
+      "ST4": {
+        "label": "Breeding record",
+        "share": 0.1,
+        "test_set_ref": "R02",
+        "test_n": 80,
+        "class": "measured",
+        "receipt": "R01"
+      }
+    }
+  },
+  "baseline": {
+    "run_ref": "R03",
+    "metric": "accuracy",
+    "per_stratum": {
+      "ST1": 0.91,
+      "ST2": 0.82,
+      "ST3": 0.79,
+      "ST4": 0.64
+    },
+    "coverage": {
+      "ST1": 0.99,
+      "ST2": 0.97,
+      "ST3": 0.96,
+      "ST4": 0.91
+    },
+    "class": "measured",
+    "receipt": "R03"
+  },
+  "acceptance": {
+    "kind": "two-dimensional per stratum",
+    "per_stratum": {
+      "ST1": {
+        "accuracy_floor": 0.95,
+        "coverage_floor": 0.99
+      },
+      "ST2": {
+        "accuracy_floor": 0.9,
+        "coverage_floor": 0.97
+      },
+      "ST3": {
+        "accuracy_floor": 0.88,
+        "coverage_floor": 0.96
+      },
+      "ST4": {
+        "accuracy_floor": 0.8,
+        "coverage_floor": 0.94
+      }
+    },
+    "gate_policy": "gates",
+    "non_target_regression_max": 0.01,
+    "class": "estimated",
+    "receipt": "R06"
+  },
+  "collection_schema": {
+    "unit": "document image",
+    "fields": {
+      "example_id": "string, stable",
+      "image_ref": "artifact-store key; faces and names masked at the inner perimeter",
+      "form_type": "ST1|ST2|ST3|ST4 from the census axis",
+      "farm_pseudonym": "inner-perimeter pseudonym",
+      "capture": "scan|photo",
+      "content_hash": "sha256 of image bytes",
+      "basis_ref": "DPA clause reference"
+    },
+    "quality_gates": {
+      "min_long_edge_px": 1200,
+      "max_skew_deg": 15,
+      "legible_by_annotator": true
+    },
+    "labelling_protocol": "form type by one annotator with a second on a 10% audit sample; disagreements to the classification authority as human contribution events; the occupation-boolean field is never transcribed (R07)",
+    "admission": "an image enters the manifest only with class, lawful basis, basis_ref and content hash; otherwise refused and counted",
+    "class": "estimated",
+    "receipt": "R06"
+  },
+  "materials": {
+    "M01": {
+      "source": "DigiCow field records 2025–2026, scanned",
+      "stratum": "ST1",
+      "examples": 900,
+      "class": "measured",
+      "lawful_basis": "contract",
+      "basis_ref": "DPA-DIGICOW-2025-11 §4.2",
+      "hash": "sha256:a1b2…10",
+      "receipt": "R04"
+    },
+    "M02": {
+      "source": "DigiCow field records 2025–2026, scanned",
+      "stratum": "ST2",
+      "examples": 900,
+      "class": "measured",
+      "lawful_basis": "contract",
+      "basis_ref": "DPA-DIGICOW-2025-11 §4.2",
+      "hash": "sha256:c3d4…22",
+      "receipt": "R04"
+    },
+    "M03": {
+      "source": "DigiCow field records 2025–2026, photographed",
+      "stratum": "ST3",
+      "examples": 900,
+      "class": "measured",
+      "lawful_basis": "contract",
+      "basis_ref": "DPA-DIGICOW-2025-11 §4.2",
+      "hash": "sha256:e5f6…3a",
+      "receipt": "R04"
+    },
+    "M04": {
+      "source": "DigiCow field records 2025–2026, photographed",
+      "stratum": "ST4",
+      "examples": 900,
+      "class": "measured",
+      "lawful_basis": "contract",
+      "basis_ref": "DPA-DIGICOW-2025-11 §4.2",
+      "hash": "sha256:0718…4c",
+      "receipt": "R04"
+    }
+  },
+  "cost": {
+    "gpu_hour_gbp": 3.2,
+    "class": "measured",
+    "receipt": "R05"
+  },
+  "calculations": {
+    "K001": {
+      "label": "Baseline gap to floor per stratum",
+      "formula": "acceptance.per_stratum[s].accuracy_floor - baseline.per_stratum[s]",
+      "unit": "pp"
+    }
+  },
+  "coverage": {
+    "covers": "Four form types in the census; baseline on the sealed test set; material under the DigiCow DPA only; the occupation-boolean field masked throughout (R07).",
+    "cannot_say": [
+      {
+        "gap": "Handwritten variants outside the four form types",
+        "reason": "not in the census axis",
+        "closes_with": "census re-run with an 'other' form type"
+      },
+      {
+        "gap": "Production document model",
+        "reason": "resolved at compile time among PROPOSED candidates",
+        "closes_with": "calibration outcome recorded per A20.13"
+      }
+    ]
+  },
+  "task_family": "document-classification",
+  "modality_key": "document",
+  "value": {
+    "per_stratum": {
+      "ST1": {
+        "gbp": 5200,
+        "basis": "forms auto-classified: 52% of 24k forms/yr × £0.42 manual classification"
+      },
+      "ST2": {
+        "gbp": 2100,
+        "basis": "same basis, 21%"
+      },
+      "ST3": {
+        "gbp": 1700,
+        "basis": "same basis, 17%"
+      },
+      "ST4": {
+        "gbp": 1000,
+        "basis": "same basis, 10%; feeds breeding-record extraction downstream"
+      }
+    },
+    "class": "estimated",
+    "receipt": "R06"
+  },
+  "production": {
+    "capture_condition": {
+      "ST1": "scan",
+      "ST2": "scan",
+      "ST3": "photo",
+      "ST4": "photo"
+    },
+    "monitor": {
+      "ST1": "recall on weekly audited sample",
+      "ST2": "same",
+      "ST3": "same, capture mix",
+      "ST4": "same, capture mix"
+    },
+    "owner_seat": "census classification seat, DigiCow",
+    "rollback": "rule-based classifier v3",
+    "retrain_cadence": "on new form version (census signal)",
+    "class": "recalled",
+    "receipt": "R06"
+  },
+  "annotator_agreement": {
+    "ST1": 0.96,
+    "ST2": 0.9,
+    "ST3": 0.88,
+    "ST4": 0.83,
+    "class": "measured",
+    "receipt": "R02"
+  },
+  "test_set_custody": {
+    "sealed_by": "objective owner",
+    "seen_by_training_decisions": false,
+    "reuse_count": 0,
+    "receipt": "R02"
+  }
+}

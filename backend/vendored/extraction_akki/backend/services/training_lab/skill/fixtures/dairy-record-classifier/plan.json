@@ -1,0 +1,18 @@
+{
+  "spec_type": "run_plan", "spec_id": "RP-dairy-record-classifier-001", "objective_ref": "dairy-record-classifier@1", "brief_ref": "TB-2026-10-04-002", "verdict_ref": "TV-2026-10-04-002",
+  "backend": "stub", "seed": "dairy-record-classifier/calibration/2026-10-04", "build_stamp": "2026-10-04T00:00:00Z",
+  "recipe": {"training_params_ref": "training_params@v0", "state": "empty", "note": "recipe seat ships empty (A17.2)"},
+  "stages": [
+    {"stage": "calibration", "volumes_per_stratum": "{policy.calibration.volumes}", "strata": ["ST1", "ST2", "ST3", "ST4"], "evaluate_on": "{objective.population.strata[*].test_set_ref}"},
+    {"stage": "comparison", "kind": "two-arm", "stratum": "{K:smallest_valid_stratum}", "arms": [{"arm": "A", "optimizer": "AdamW"}, {"arm": "B", "optimizer": "Muon"}], "identical": ["data", "base_model", "eval_set", "compute_cap"], "parity_required_on": ["M-a", "M-b"]},
+    {"stage": "quote", "from": "calibration.scaling_curve", "with": "confidence_interval"},
+    {"stage": "full", "conditional_on": "quote.within_budget AND owner_verdict.recorded", "volumes": "{quote.recommended_examples}"}
+  ],
+  "milestones": [
+    {"id": "MS1", "done_when": "calibration evaluated on all four form types", "owner": "training manager"},
+    {"id": "MS2", "done_when": "two-arm comparison laid side by side with eligibility test", "owner": "training manager"},
+    {"id": "MS3", "done_when": "quote with range delivered and milestone list agreed", "owner": "objective owner"},
+    {"id": "MS4", "done_when": "MOAC pack assembled for the full run", "owner": "training manager"}
+  ],
+  "outputs": ["run-record", "report-md", "moac-pack"]
+}

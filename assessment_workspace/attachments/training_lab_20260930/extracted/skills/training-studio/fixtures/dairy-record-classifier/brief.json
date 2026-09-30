@@ -1,0 +1,11 @@
+{
+  "brief_id": "TB-2026-10-04-002",
+  "objective_ref": "dairy-record-classifier@1",
+  "purpose": {"kind": "train", "statement": "Adapt a document model to classify scanned and photographed DigiCow field records by form type so that census classification and lawful-basis tagging can run per form rather than per image batch."},
+  "audience": {"who": "Objective owner (DigiCow programme lead) and the Owner seat", "knowledge": "high on the forms, low on document models", "priorities": ["no form type left behind", "pseudonymised throughout", "cost before commitment"], "detail": "per-form-type numbers"},
+  "setting": {"mode": "commissioned run with staged reports", "read_unattended": true, "printed": true, "ongoing_use": true},
+  "content": {"materials": true, "test_set": true, "baseline": true, "rights_declaration": true},
+  "brand": {"house": "house-neutral", "formality": "formal", "expressiveness": "restrained", "variation_allowed": "none"},
+  "outputs": [{"format": "run-record", "role": "calibration record"}, {"format": "report-md", "role": "technical report"}, {"format": "moac-pack", "role": "evidence pack (request)"}],
+  "constraints": {"budget_cap_gbp": 600, "compute_class": "gpu_training", "gate_policy": "gates", "min_group_n": "platform_seam"}
+}

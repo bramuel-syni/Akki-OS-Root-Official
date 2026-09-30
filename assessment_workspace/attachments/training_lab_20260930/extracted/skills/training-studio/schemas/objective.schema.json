@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TargetOutcome + materials",
+  "type": "object",
+  "required": [
+    "objective_id",
+    "version",
+    "title",
+    "task",
+    "modality",
+    "base_model",
+    "receipts",
+    "population",
+    "baseline",
+    "acceptance",
+    "materials",
+    "cost",
+    "coverage",
+    "collection_schema",
+    "task_family",
+    "modality_key",
+    "value",
+    "production",
+    "annotator_agreement",
+    "test_set_custody"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "receipts": {
+      "type": "object",
+      "patternProperties": {
+        "^R\\d{2,}$": {
+          "type": "object",
+          "required": [
+            "resolves_to"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "population": {
+      "type": "object",
+      "required": [
+        "register_axis",
+        "strata"
+      ],
+      "properties": {
+        "strata": {
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            "^ST\\d+$": {
+              "type": "object",
+              "required": [
+                "label",
+                "share",
+                "test_set_ref",
+                "test_n",
+                "class",
+                "receipt"
+              ],
+              "properties": {
+                "class": {
+                  "enum": [
+                    "measured",
+                    "estimated",
+                    "sample",
+                    "observed"
+                  ]
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "required": [
+        "run_ref",
+        "metric",
+        "per_stratum",
+        "coverage",
+        "class",
+        "receipt"
+      ]
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "kind",
+        "per_stratum",
+        "gate_policy",
+        "non_target_regression_max",
+        "class",
+        "receipt"
+      ],
+      "properties": {
+        "gate_policy": {
+          "enum": [
+            "gates",
+            "ships-documented"
+          ]
+        }
+      }
+    },
+    "materials": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^M\\d+$": {
+          "type": "object",
+          "required": [
+            "source",
+            "stratum",
+            "examples",
+            "class",
+            "lawful_basis",
+            "hash",
+            "receipt",
+            "basis_ref"
+          ],
+          "properties": {
+            "class": {
+              "enum": [
+                "measured",
+                "estimated",
+                "sample",
+                "observed"
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "covers",
+        "cannot_say"
+      ]
+    },
+    "collection_schema": {
+      "type": "object",
+      "required": [
+        "unit",
+        "fields",
+        "quality_gates",
+        "labelling_protocol",
+        "admission",
+        "class",
+        "receipt"
+      ]
+    },
+    "task_family": {
+      "enum": [
+        "asr-adapter",
+        "document-classification",
+        "text-classification",
+        "llm-instruction-finetune",
+        "tabular",
+        "embeddings-retrieval"
+      ]
+    },
+    "modality_key": {
+      "enum": [
+        "audio",
+        "document",
+        "text",
+        "tabular",
+        "embeddings"
+      ]
+    },
+    "value": {
+      "type": "object",
+      "required": [
+        "per_stratum",
+        "class",
+        "receipt"
+      ]
+    },
+    "production": {
+      "type": "object",
+      "required": [
+        "capture_condition",
+        "monitor",
+        "owner_seat",
+        "rollback",
+        "retrain_cadence",
+        "class",
+        "receipt"
+      ]
+    },
+    "annotator_agreement": {
+      "type": "object",
+      "required": [
+        "class",
+        "receipt"
+      ]
+    },
+    "test_set_custody": {
+      "type": "object",
+      "required": [
+        "sealed_by",
+        "seen_by_training_decisions",
+        "reuse_count",
+        "receipt"
+      ]
+    }
+  }
+}

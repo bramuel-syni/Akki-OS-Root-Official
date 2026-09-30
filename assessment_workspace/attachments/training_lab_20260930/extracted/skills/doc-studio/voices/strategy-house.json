@@ -1,0 +1,336 @@
+{
+  "voice_id": "strategy-house",
+  "family": "strategy",
+  "objectives": [
+    "decide"
+  ],
+  "description": "Sparse, exhibit-driven, assertion titles. One idea per slide; the exhibit proves the title; the so-what is printed. No imagery, no decoration.",
+  "structural": {
+    "title_style": "assertion",
+    "title_max_chars": 95,
+    "title_max_lines": 2,
+    "exhibits_per_slide": 1,
+    "words_per_slide_max": 90,
+    "requires": [
+      "exec_summary",
+      "coverage_limits",
+      "appendix"
+    ],
+    "no_winner_marked": true,
+    "so_what_required_on_exhibits": true
+  },
+  "compatibility": {
+    "allowed_palettes": [
+      "graphite",
+      "slate",
+      "ink",
+      "harbour",
+      "moss"
+    ],
+    "allowed_type_pairs": [
+      "cambria-calibri",
+      "century-arial",
+      "bookman-calibri"
+    ],
+    "veto": [
+      {
+        "palette": "harbour",
+        "type_pair": "bookman-calibri",
+        "why": "warm accent with a heavy serif reads as editorial, not analytical"
+      },
+      {
+        "palette": "moss",
+        "cover": "title-centred-band",
+        "why": "band composition needs a cooler structure colour"
+      }
+    ],
+    "printed_requires_field": "FFFFFF"
+  },
+  "sizes_pt": {
+    "kicker": 11,
+    "title": 26,
+    "body": 14,
+    "small": 10,
+    "big_number": 60,
+    "section_number": 96,
+    "section_title": 32,
+    "cover_title": 40,
+    "cover_sub": 18,
+    "table": 13
+  },
+  "grid": {
+    "slide_w": 13.333,
+    "slide_h": 7.5,
+    "cols": 12,
+    "rows": 16,
+    "margin_x": 0.65,
+    "margin_y": 0.45,
+    "gutter": 0.2
+  },
+  "layouts": {
+    "comment": "Zones in grid units: col/span across 12 columns, row/rspan across 16 rows. The resolver converts to inches.",
+    "cover": {
+      "title": {
+        "col": 0,
+        "span": 8,
+        "row": 6,
+        "rspan": 4
+      },
+      "subtitle": {
+        "col": 0,
+        "span": 8,
+        "row": 10,
+        "rspan": 2
+      },
+      "org": {
+        "col": 0,
+        "span": 6,
+        "row": 13,
+        "rspan": 1
+      }
+    },
+    "exec_summary": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "body": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 10
+      }
+    },
+    "section": {
+      "number": {
+        "col": 0,
+        "span": 3,
+        "row": 4,
+        "rspan": 5
+      },
+      "title": {
+        "col": 3,
+        "span": 9,
+        "row": 5,
+        "rspan": 4
+      }
+    },
+    "assertion_exhibit": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "exhibit": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 9
+      },
+      "so_what": {
+        "col": 0,
+        "span": 9,
+        "row": 13,
+        "rspan": 1
+      },
+      "receipt": {
+        "col": 0,
+        "span": 12,
+        "row": 14,
+        "rspan": 1
+      }
+    },
+    "assertion_points": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "points": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 10
+      }
+    },
+    "comparison": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "table": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 8
+      },
+      "so_what": {
+        "col": 0,
+        "span": 12,
+        "row": 12,
+        "rspan": 1
+      },
+      "receipt": {
+        "col": 0,
+        "span": 12,
+        "row": 14,
+        "rspan": 1
+      }
+    },
+    "coverage_limits": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "body": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 10
+      }
+    },
+    "appendix": {
+      "kicker": {
+        "col": 0,
+        "span": 12,
+        "row": 0,
+        "rspan": 1
+      },
+      "title": {
+        "col": 0,
+        "span": 12,
+        "row": 1,
+        "rspan": 3
+      },
+      "body": {
+        "col": 0,
+        "span": 12,
+        "row": 4,
+        "rspan": 10
+      }
+    },
+    "furniture": {
+      "page_no": {
+        "col": 11,
+        "span": 1,
+        "row": 15,
+        "rspan": 1
+      },
+      "doc_id": {
+        "col": 0,
+        "span": 6,
+        "row": 15,
+        "rspan": 1
+      },
+      "confidentiality": {
+        "col": 6,
+        "span": 5,
+        "row": 15,
+        "rspan": 1
+      }
+    }
+  },
+  "plate_policy": {
+    "comment": "Per plate: backend per output. 'native' = Office chart object; 'shapes' = native shapes/text; 'svg' = vector image. 'editable' says whether the delivered object can be edited in Office.",
+    "bar": {
+      "pptx": "native",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "line": {
+      "pptx": "native",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "stacked_bar": {
+      "pptx": "native",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "waterfall": {
+      "pptx": "native-stacked",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true,
+      "note": "python-pptx has no waterfall chart type; built as stacked bar with a transparent base series"
+    },
+    "comparison_table": {
+      "pptx": "shapes",
+      "docx": "table",
+      "html": "table",
+      "editable": true
+    },
+    "big_number": {
+      "pptx": "shapes",
+      "docx": "text",
+      "html": "text",
+      "editable": true
+    },
+    "harvey": {
+      "pptx": "shapes",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "driver_tree": {
+      "pptx": "shapes",
+      "docx": "svg",
+      "html": "svg",
+      "editable": true
+    },
+    "mekko": {
+      "pptx": "svg",
+      "docx": "svg",
+      "html": "svg",
+      "editable": false,
+      "note": "no native form; composition must change if the brief demands editable"
+    },
+    "flow": {
+      "pptx": "svg",
+      "docx": "svg",
+      "html": "svg",
+      "editable": false
+    }
+  }
+}

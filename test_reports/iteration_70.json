@@ -1,0 +1,84 @@
+{
+  "summary": "Backend-only testing completed for training-lab scope. Added and ran live regression tests for auth/roles, skills catalogue, stats/music/value/postmortem contracts, RMS-vs-DIGICOW access boundaries, cron auth+idempotency, and M8/M9 offline completion regression. Also executed the supplied 14 mechanical skill evals with required PYTHONPATH.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "training_lab/skill build path (evals 1,2,3,9,12)",
+        "issue": "Mechanical eval suite fails 5/14. Root failure: scripts/report.py expects monitor fields (e.g., 'window') that are absent in current monitor payload, raising KeyError('window') during scripts/build.py. This aborts build/revise output generation (technical-report.md / revision-report.json missing).",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "/api/training/lab/runs",
+        "issue": "Rapid repeated duplicate submission with same idempotency key can be temporarily blocked by Watch shaping (HTTP 429) before eventual idempotent 202/created=false response."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_training_lab_audio_scope_live_iteration70.py",
+    "/app/backend/tests/m8_m9_completion/test_completion_offline.py",
+    "/app/test_reports/pytest/iteration_70_training_lab.xml",
+    "/app/test_reports/pytest/iteration_70_skill_evals.log",
+    "/app/backend/vendored/extraction_akki/backend/services/training_lab/skill/evals/last-run.json"
+  ],
+  "action_items": [
+    "Fix training-lab skill report renderer/build contract drift: align monitor fields consumed in scripts/report.py with produced run-record monitor shape (or guard missing fields).",
+    "Re-run supplied 14 mechanical evals and confirm all pass (currently 1,2,3,9,12 fail).",
+    "If idempotent duplicate /runs must always return immediate original row under load, reconcile Watch shape policy with idempotency contract expectations."
+  ],
+  "critical_code_review_comments": [
+    "reviews() and service.process() correctly return honest unavailable outcomes on provider exceptions (no fabricated advice), but full advisory-complete path in this run could not be validated end-to-end against live provider due mocked contract test scope.",
+    "store.claim() stale-dispatch hold behavior exists in code, but direct method-level lease test was skipped in this shell because test process MONGO_URL was not a valid Mongo URI string (API-level queue behavior still validated)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_training_lab_audio_scope_live_iteration70.py",
+    "/app/test_reports/iteration_70.json"
+  ],
+  "success_rate": {
+    "backend": "Pytest: 21 passed, 1 skipped (new live+offline suite); Mechanical evals: 9/14 passed",
+    "frontend": "n/a (backend-only request)"
+  },
+  "seed_data_creation": "No account/role seeding. Temporary TEST_TL_IT70 queue records are cleaned in-test where DB method path is executable.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Use REACT_APP_BACKEND_URL public preview URL. Core live API contracts in this scope are passing (authz boundaries, deterministic skills, cron auth/idempotency, RMS-only run access). Main blocker is mechanical eval package failures tied to build/report contract drift causing KeyError('window').",
+  "rca of the issue": "RCA for 5 failing mechanical evals: scripts/build.py exits with KeyError('window') inside scripts/report.py when rendering monitor table rows. Because build exits before artifact write completion, expected files (technical-report.md / revision-report.json) are absent, cascading failures in eval checks that depend on those outputs. Reproduction: PYTHONPATH=/app/backend/vendored/extraction_akki/backend python scripts/build.py fixtures/asr-register-adapter /tmp/evprobe/e1 --prove",
+  "main_agent_retest": {
+    "at": "2026-09-30T20:26:53.597510+00:00",
+    "result": "pass",
+    "pytest_passed": 24,
+    "pytest_skipped": 0,
+    "mechanical_evals_passed": 14,
+    "xml": "/app/test_reports/pytest/iteration_70_training_lab_final.xml",
+    "fixes": [
+      "Report handles uncalibrated monitors",
+      "Infeasible forecast remains uncapped but excluded from partial recommendation; full-run budget cannot pass",
+      "Duplicate submission replay no longer creates Watch commission or receives shaping 429",
+      "Quoted .env parsing fixed so Mongo lease test runs; test provider no longer silently misses configuration",
+      "MDE not treated as significance/adoption; owner milestone not auto-closed",
+      "Original live review numeric/unit confusion retained with flags; five-role correction followup complete"
+    ],
+    "live_evidence": {
+      "inspection_files": 3958,
+      "audio_hours": 529.3379,
+      "bytes": 36516920948,
+      "transcript_files": 3939,
+      "inspection_gpu": "NVIDIA H200",
+      "head_smoke": "SYNTHETIC random tensors only",
+      "live_specialist_followup_complete": 5,
+      "trained_music_detector": false
+    },
+    "remaining_limits": [
+      "Automatic recurring scheduler delivery not observed; authenticated webhook manually verified",
+      "No live mid-training checkpoint existed for end-to-end feedback validation; development projection and durable hook tested",
+      "Independent specialist validation and real model quality acceptance not established",
+      "No new training launched; music labels and approved contract missing"
+    ]
+  }
+}

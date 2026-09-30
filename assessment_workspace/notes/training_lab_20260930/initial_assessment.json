@@ -1,0 +1,791 @@
+{
+  "run_id": "lab-34569b6b04eb44fa",
+  "tenant_id": "RMS",
+  "request": {
+    "title": "Audio cognition and music readiness",
+    "host": "akki-vm",
+    "inspect_existing_data": true,
+    "model_reviews": true
+  },
+  "kind": "assessment",
+  "title": "Audio cognition and music readiness",
+  "status": "partial",
+  "created_at": "2026-09-30T20:07:31.974174+00:00",
+  "updated_at": "2026-09-30T20:09:40.189222+00:00",
+  "attempts": 2,
+  "training_authorized": false,
+  "training_started": false,
+  "model_admission": "not_requested",
+  "inspection_job_id": "m9j-3e0dcb1bd16e",
+  "inspection": {
+    "scope": "authorized staged language-cognition corpus only; not the whole RMS estate",
+    "evidence_class": "measured_headers",
+    "per_language_folder": {
+      "bxk": {
+        "files": 14,
+        "bytes": 70351255,
+        "transcripts": 0,
+        "transcript_bytes": 0,
+        "unreadable_headers": 0,
+        "hours": 1.0724
+      },
+      "guz": {
+        "files": 732,
+        "bytes": 7701496619,
+        "transcripts": 730,
+        "transcript_bytes": 6271508,
+        "unreadable_headers": 0,
+        "hours": 92.2269
+      },
+      "kam": {
+        "files": 1166,
+        "bytes": 4835367839,
+        "transcripts": 1165,
+        "transcript_bytes": 5108701,
+        "unreadable_headers": 0,
+        "hours": 85.3711
+      },
+      "kik": {
+        "files": 584,
+        "bytes": 5502345879,
+        "transcripts": 583,
+        "transcript_bytes": 5463769,
+        "unreadable_headers": 0,
+        "hours": 82.0832
+      },
+      "kln": {
+        "files": 295,
+        "bytes": 6358996154,
+        "transcripts": 295,
+        "transcript_bytes": 7583858,
+        "unreadable_headers": 0,
+        "hours": 89.725
+      },
+      "luo": {
+        "files": 558,
+        "bytes": 3787335823,
+        "transcripts": 557,
+        "transcript_bytes": 6025590,
+        "unreadable_headers": 0,
+        "hours": 81.9929
+      },
+      "lwg": {
+        "files": 60,
+        "bytes": 770609384,
+        "transcripts": 60,
+        "transcript_bytes": 739106,
+        "unreadable_headers": 0,
+        "hours": 9.1942
+      },
+      "swa": {
+        "files": 549,
+        "bytes": 7490417995,
+        "transcripts": 549,
+        "transcript_bytes": 6000242,
+        "unreadable_headers": 0,
+        "hours": 87.6722
+      }
+    },
+    "files": 3958,
+    "sample_rate_counts": {
+      "44100": 3126,
+      "48000": 162,
+      "22050": 49,
+      "11025": 597,
+      "16000": 22,
+      "32000": 2
+    },
+    "unreadable_headers": 0,
+    "music_labels": {
+      "status": "not_established",
+      "verified_labelled_examples": null,
+      "reason": "Existing corpus supplies language/transcript labels, not a verified speech/music/mixed annotation contract."
+    },
+    "quality": {
+      "studio_or_telephony": "unknown",
+      "note": "Sample rate is a capture property, not proof of recording quality."
+    },
+    "training_started": false,
+    "raw_media_exported": false,
+    "music_head_smoke": {
+      "evidence_class": "SYNTHETIC",
+      "device": "NVIDIA H200",
+      "outputs": 2,
+      "finite_gradients": true,
+      "quality_claim": false,
+      "weights_saved": false
+    }
+  },
+  "inspection_receipt_sha256": "c65ecf890c64cf4c784d472165ba3e952f4b146cc8ace080e2fc6864b19107b4",
+  "deterministic": {
+    "status": "held_before_retraining",
+    "training_started": false,
+    "blockers": [
+      {
+        "ref": "music_labels",
+        "title": "Verified speech, music and mixed-audio labels are required"
+      },
+      {
+        "ref": "evaluation_contract",
+        "title": "Music precision/recall floors and coverage targets need owner review"
+      },
+      {
+        "ref": "independent_test",
+        "title": "Reserve a new independent test set; historical test results are already known"
+      },
+      {
+        "ref": "recipe_approval",
+        "title": "Approve the data, recipe and evaluation plan before GPU retraining"
+      }
+    ],
+    "proposed_sequence": [
+      "Verify annotation rights and agreement by language and recording condition",
+      "Calibrate speech/music thresholds; keep mixed and uncertain audio explicit",
+      "Compare a separate music head with joint training using development-only feedback",
+      "Review weaker-language accuracy, coverage and speaker leakage at checkpoints",
+      "Evaluate once on the sealed final set; admission and serving remain separate"
+    ],
+    "unsupported_models": "Other task families require their own qualified adapter and evaluation contract; not universally trainable."
+  },
+  "evidence": {
+    "historical_audio": [
+      {
+        "ref": "historical_audio_1",
+        "evidence_class": "historical_measured_not_blind",
+        "per_language": {
+          "guz": {
+            "accuracy": 0.66127,
+            "abstention_rate": 0.11151,
+            "windows": 6672
+          },
+          "kam": {
+            "accuracy": 0.56441,
+            "abstention_rate": 0.22061,
+            "windows": 6006
+          },
+          "kik": {
+            "accuracy": 0.88933,
+            "abstention_rate": 0.07357,
+            "windows": 3765
+          },
+          "kln": {
+            "accuracy": 0.8763,
+            "abstention_rate": 0.05463,
+            "windows": 10031
+          },
+          "luo": {
+            "accuracy": 0.83042,
+            "abstention_rate": 0.05171,
+            "windows": 15702
+          },
+          "lwg": {
+            "accuracy": 0.20577,
+            "abstention_rate": 0.29218,
+            "windows": 1126
+          },
+          "swa": {
+            "accuracy": 0.8545,
+            "abstention_rate": 0.22626,
+            "windows": 14523
+          }
+        },
+        "compute": {
+          "epochs_completed": 40,
+          "windows_per_second": 2697.9,
+          "gpu_max_memory_gb": 50.73,
+          "batch_size": 2048
+        },
+        "epsilon": 11.552532348787715,
+        "speaker_privacy_passed": false,
+        "code_switch_labels_present": false
+      },
+      {
+        "ref": "historical_audio_2",
+        "evidence_class": "historical_measured_not_blind",
+        "per_language": {
+          "guz": {
+            "accuracy": 0.68917,
+            "abstention_rate": 0.09637,
+            "windows": 6672
+          },
+          "kam": {
+            "accuracy": 0.49898,
+            "abstention_rate": 0.17982,
+            "windows": 6006
+          },
+          "kik": {
+            "accuracy": 0.81751,
+            "abstention_rate": 0.0656,
+            "windows": 3765
+          },
+          "kln": {
+            "accuracy": 0.84234,
+            "abstention_rate": 0.07935,
+            "windows": 10031
+          },
+          "luo": {
+            "accuracy": 0.79079,
+            "abstention_rate": 0.07884,
+            "windows": 15702
+          },
+          "lwg": {
+            "accuracy": 0.16183,
+            "abstention_rate": 0.20426,
+            "windows": 1126
+          },
+          "swa": {
+            "accuracy": 0.93737,
+            "abstention_rate": 0.03918,
+            "windows": 14523
+          }
+        },
+        "compute": {
+          "epochs_completed": 40,
+          "windows_per_second": 2704.8,
+          "gpu_max_memory_gb": 50.73,
+          "batch_size": 2048
+        },
+        "epsilon": 4.877905487357285,
+        "speaker_privacy_passed": false,
+        "code_switch_labels_present": false
+      },
+      {
+        "ref": "historical_audio_3",
+        "evidence_class": "historical_measured_not_blind",
+        "per_language": {
+          "guz": {
+            "accuracy": 0.63075,
+            "abstention_rate": 0.16262,
+            "windows": 6672
+          },
+          "kam": {
+            "accuracy": 0.41985,
+            "abstention_rate": 0.39444,
+            "windows": 6006
+          },
+          "kik": {
+            "accuracy": 0.88235,
+            "abstention_rate": 0.09243,
+            "windows": 3765
+          },
+          "kln": {
+            "accuracy": 0.8738,
+            "abstention_rate": 0.13977,
+            "windows": 10031
+          },
+          "luo": {
+            "accuracy": 0.8448,
+            "abstention_rate": 0.15635,
+            "windows": 15702
+          },
+          "lwg": {
+            "accuracy": 0.12684,
+            "abstention_rate": 0.39787,
+            "windows": 1126
+          },
+          "swa": {
+            "accuracy": 0.89201,
+            "abstention_rate": 0.14301,
+            "windows": 14523
+          }
+        },
+        "compute": {
+          "epochs_completed": 40,
+          "windows_per_second": 2706.4,
+          "gpu_max_memory_gb": 50.73,
+          "batch_size": 2048
+        },
+        "epsilon": 33.289122350880085,
+        "speaker_privacy_passed": false,
+        "code_switch_labels_present": false
+      },
+      {
+        "ref": "historical_audio_4",
+        "evidence_class": "historical_measured_not_blind",
+        "per_language": {
+          "guz": {
+            "accuracy": 0.67466,
+            "abstention_rate": 0.07494,
+            "windows": 6672
+          },
+          "kam": {
+            "accuracy": 0.59792,
+            "abstention_rate": 0.12088,
+            "windows": 6006
+          },
+          "kik": {
+            "accuracy": 0.83732,
+            "abstention_rate": 0.04489,
+            "windows": 3765
+          },
+          "kln": {
+            "accuracy": 0.87553,
+            "abstention_rate": 0.05652,
+            "windows": 10031
+          },
+          "luo": {
+            "accuracy": 0.85304,
+            "abstention_rate": 0.05528,
+            "windows": 15702
+          },
+          "lwg": {
+            "accuracy": 0.09499,
+            "abstention_rate": 0.1492,
+            "windows": 1126
+          },
+          "swa": {
+            "accuracy": 0.86893,
+            "abstention_rate": 0.06066,
+            "windows": 14523
+          }
+        },
+        "compute": {
+          "epochs_completed": 40,
+          "windows_per_second": 2707.0,
+          "gpu_max_memory_gb": 50.73,
+          "batch_size": 2048
+        },
+        "epsilon": 11.552532348787715,
+        "speaker_privacy_passed": false,
+        "code_switch_labels_present": false
+      }
+    ],
+    "authority": {
+      "ref": "owner_scope",
+      "training_authorized": false,
+      "new_estate_sampling_authorized": false,
+      "music_detector_admitted": false
+    },
+    "inspection": {
+      "ref": "staged_corpus_headers",
+      "evidence_class": "measured_headers",
+      "per_language": {
+        "bxk": {
+          "files": 14,
+          "bytes": 70351255,
+          "hours": 1.0724,
+          "transcripts": 0,
+          "transcript_bytes": 0,
+          "unreadable_headers": 0
+        },
+        "guz": {
+          "files": 732,
+          "bytes": 7701496619,
+          "hours": 92.2269,
+          "transcripts": 730,
+          "transcript_bytes": 6271508,
+          "unreadable_headers": 0
+        },
+        "kam": {
+          "files": 1166,
+          "bytes": 4835367839,
+          "hours": 85.3711,
+          "transcripts": 1165,
+          "transcript_bytes": 5108701,
+          "unreadable_headers": 0
+        },
+        "kik": {
+          "files": 584,
+          "bytes": 5502345879,
+          "hours": 82.0832,
+          "transcripts": 583,
+          "transcript_bytes": 5463769,
+          "unreadable_headers": 0
+        },
+        "kln": {
+          "files": 295,
+          "bytes": 6358996154,
+          "hours": 89.725,
+          "transcripts": 295,
+          "transcript_bytes": 7583858,
+          "unreadable_headers": 0
+        },
+        "luo": {
+          "files": 558,
+          "bytes": 3787335823,
+          "hours": 81.9929,
+          "transcripts": 557,
+          "transcript_bytes": 6025590,
+          "unreadable_headers": 0
+        },
+        "lwg": {
+          "files": 60,
+          "bytes": 770609384,
+          "hours": 9.1942,
+          "transcripts": 60,
+          "transcript_bytes": 739106,
+          "unreadable_headers": 0
+        },
+        "swa": {
+          "files": 549,
+          "bytes": 7490417995,
+          "hours": 87.6722,
+          "transcripts": 549,
+          "transcript_bytes": 6000242,
+          "unreadable_headers": 0
+        }
+      },
+      "sample_rate_counts": {
+        "44100": 3126,
+        "48000": 162,
+        "22050": 49,
+        "11025": 597,
+        "16000": 22,
+        "32000": 2
+      },
+      "music_label_contract_verified": false,
+      "recording_quality_measured": false,
+      "scope": "staged_authorized_corpus_not_whole_estate"
+    }
+  },
+  "finished_at": "2026-09-30T20:09:40.189216+00:00",
+  "outcome": "held_before_retraining",
+  "reviews": [
+    {
+      "role": "knowledge_expert",
+      "status": "complete",
+      "review": {
+        "role": "knowledge_expert",
+        "findings": [
+          {
+            "severity": "blocker",
+            "evidence_refs": [
+              "owner_scope",
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "Use is out of scope and privacy evidence is failing: training_authorized=false, new_estate_sampling_authorized=false, and all historical runs report speaker_privacy_passed=false. These results are historical measured not blind, so they do not establish acceptable deployment readiness.",
+            "recommendation": "Do not proceed on these data. Require an independently annotated blind reference set within authorized scope, plus documented speaker-overlap controls across splits and languages before any further model claims.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4",
+              "staged_corpus_headers"
+            ],
+            "observation": "Label/coverage risks are material. Code-switch labels are absent in all historical runs, a new language label bxk appears in staged headers but has no historical evaluation, and performance is highly uneven by language, especially lwg versus stronger languages. This suggests ontology and out-of-distribution risk rather than a stable language-only capability.",
+            "recommendation": "Audit the label ontology and add independently annotated evaluation for bxk, code-switched speech, and explicit out-of-distribution audio. Report results separately by language and keep unknown/abstain outputs explicit.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "staged_corpus_headers",
+              "owner_scope"
+            ],
+            "observation": "Audio-type and condition controls are incomplete. music_label_contract_verified=false and music_detector_admitted=false, so mixed speech/music status is unknown. recording_quality_measured=false, and sample-rate variation alone does not establish recording condition. Transcript presence also does not determine whether content is speech-only or mixed.",
+            "recommendation": "Separate annotations for event type (speech, music, mixed), recording condition, topic, presentation format, and language. Validate on an independently annotated reference set covering these factors, and mark all unsupported factors as unknown until measured.",
+            "evidence_class": "measured"
+          }
+        ],
+        "uncertainties": [
+          "Cross-language speaker overlap is not reported; leakage risk across languages and splits is unknown.",
+          "Event-type composition of the staged corpus is unknown because music verification is absent.",
+          "Recording condition, topic, and presentation-format distributions are unknown from the provided evidence.",
+          "Blindness and independent annotation status for the staged corpus reference data are not provided."
+        ],
+        "advisory_only": true
+      },
+      "receipt_id": "rcp-b602cf9ca8af",
+      "model": "gpt-5.4",
+      "tokens_in": 2367,
+      "tokens_out": 509,
+      "latency_ms": 11031,
+      "independent_expert_validation": false,
+      "live_literature_search": false,
+      "quality_flags": [],
+      "semantic_validation": "retrospective bounded machine checks; not independent expert validation"
+    },
+    {
+      "role": "ml_ops_engineer",
+      "status": "review_required",
+      "review": {
+        "role": "ml_ops_engineer",
+        "findings": [
+          {
+            "severity": "blocker",
+            "evidence_refs": [
+              "owner_scope",
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "Training authorization is false, new estate sampling is not authorized, and all historical runs failed speaker privacy despite spending similar compute (~2698-2707 GPU-hours, batch 2048, 40 epochs). Quality is also uneven by language at similar cost: lwg accuracy stays very low (0.09499-0.20577) while swa ranges 0.8545-0.93737 and kam varies 0.41985-0.59792. Recommend stop/review only on development checkpoints; do not advance any live recipe.",
+            "recommendation": "Hold further training or deployment decisions pending owner review. Restrict analysis to development-only checkpoints and produce a review packet comparing per-language accuracy/abstention versus epsilon for the four historical conditions to decide whether any condition is acceptable for offline research only. Because speaker privacy failed in every run, require explicit review of per-example DP clipping/accounting and checkpoint restoration of optimizer/RNG/accountant state before any resumed experiment is considered.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "staged_corpus_headers",
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "Data balance and condition coverage likely drive part of the quality spread. Staged hours are highly uneven, especially lwg at 9.1942 h and bxk at 1.0724 h versus ~82-92 h for most other languages; historical evaluation also lacks code-switch labels in all runs. This aligns with persistently poor lwg outcomes and unstable kam/guz results. Compute cost is near-constant across runs, so lower-performing conditions are not cheaper in a meaningful way.",
+            "recommendation": "Run a development-only review on loader and token/window budgets per language to confirm whether accelerator utilization is being spent on underrepresented or mismatched data. Compare quality per language and abstention against exposure hours/files, and keep bxk out of any comparable training decision until transcript coverage and task fit are reviewed. Do not mutate production recipes; use the review to decide stop/continue for offline experiments only.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "staged_corpus_headers",
+              "historical_audio_2"
+            ],
+            "observation": "Reproducibility and monitoring evidence is incomplete from the provided records: sample rates are mixed (11025/16000/22050/32000/44100/48000), music label contract verification is false, recording quality was not measured, and no artifact hashes or environment manifests are provided. Historical_audio_2 appears to offer the best privacy-utility tradeoff among the four measured conditions (lowest epsilon among the set with strongest swa, but weaker kam/lwg), yet there is no calibration record to set monitor thresholds or estimate false-alarm rates.",
+            "recommendation": "Before any further dev-only rerun or resume, require a reproducibility review that verifies artifact hashes, environment pinning, and restoration of optimizer/RNG/privacy accountant state from checkpoints. For monitoring, derive thresholds only after a labeled calibration pass on development checkpoints: for example, set per-language alert bands from observed abstention/accuracy distributions and report expected false alarms explicitly from that calibration set; absent such records, keep monitoring decisions in review-only status.",
+            "evidence_class": "unknown"
+          }
+        ],
+        "uncertainties": [
+          "No direct evidence was provided for data-loader throughput, accelerator utilization, token budgets, or window packing efficiency.",
+          "No direct evidence was provided for per-example DP clipping configuration, accountant implementation details, or whether accountant state is restored on resume.",
+          "No artifact hashes, container/environment manifests, or checkpoint inventory were provided, so reproducibility cannot be verified from the supplied evidence.",
+          "No blind evaluation or calibration records were provided, so monitor thresholds and false-alarm rates cannot be quantified beyond recommending a calibration procedure.",
+          "Historical results are marked not blind, so absolute quality comparisons may be optimistic or condition-biased."
+        ],
+        "advisory_only": true
+      },
+      "receipt_id": "rcp-e918b192e509",
+      "model": "gpt-5.4",
+      "tokens_in": 2368,
+      "tokens_out": 851,
+      "latency_ms": 17498,
+      "independent_expert_validation": false,
+      "live_literature_search": false,
+      "quality_flags": [
+        {
+          "finding_index": 0,
+          "code": "numeric_claim_requires_evidence_table",
+          "message": "Numerical claims belong in measured evidence, not unverified model prose."
+        },
+        {
+          "finding_index": 1,
+          "code": "numeric_claim_requires_evidence_table",
+          "message": "Numerical claims belong in measured evidence, not unverified model prose."
+        },
+        {
+          "finding_index": 2,
+          "code": "numeric_claim_requires_evidence_table",
+          "message": "Numerical claims belong in measured evidence, not unverified model prose."
+        }
+      ],
+      "semantic_validation": "retrospective bounded machine checks; not independent expert validation"
+    },
+    {
+      "role": "researcher",
+      "status": "review_required",
+      "review": {
+        "role": "researcher",
+        "findings": [
+          {
+            "severity": "blocker",
+            "evidence_refs": [
+              "owner_scope",
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "Measured historical runs are out of scope for new training decisions because training_authorized=false and new_estate_sampling_authorized=false. All four historical audio runs also failed speaker privacy, so they should be treated as non-authorizing background evidence only, not as a basis to proceed.",
+            "recommendation": "Advisory only: freeze any plan that depends on additional training or estate-wide sampling. If analysis continues, limit it to offline diagnostics on already-permitted artifacts. Pre-register expected effects before any further evaluation, then compare postmortems against those expectations without changing data scope. Do not treat historical gains as permission to operationalize.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4",
+              "staged_corpus_headers"
+            ],
+            "observation": "Performance instability is large and language-skewed across repeated runs, with especially weak LWG despite low abstention in one run. Examples across seeds/runs: LWG accuracy ranges 0.09499-0.20577 on 1126 windows, KAM 0.41985-0.59792, while KLN stays 0.84234-0.87630. Coverage also shifts materially, e.g. KAM abstention 0.12088-0.39444. A competing cause is data scarcity/imbalance for LWG (9.1942 h; 60 files) versus another cause of evaluation leakage or split dependence because results are historical_measured_not_blind.",
+            "recommendation": "Run a controlled one-factor comparison on authorized staged data only: keep architecture, optimizer, epochs, and threshold fixed; vary only split protocol from current setup to group-disjoint speaker/file splits. Use multiple seeds and paired item evaluation on the same items to estimate per-language deltas in both accuracy and abstention. Pre-log expectation: if scarcity is primary, LWG remains worst under both split protocols with high seed variance; if leakage/split dependence is primary, non-LWG languages should drop notably under group-disjoint splits while variance patterns change.",
+            "evidence_class": "hypothesis"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "staged_corpus_headers",
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "Dataset coverage and label quality appear incomplete for realistic deployment conditions: sample rates are heterogeneous, recording_quality_measured=false, music_label_contract_verified=false, code_switch_labels_present=false in all historical runs, and BXK appears in staged headers but not in historical evaluations. This supports competing causes for abstention/error beyond model capacity: acoustic mismatch versus missing label taxonomy for code-switching/music.",
+            "recommendation": "Within authorized data, perform a one-factor diagnostic by holding model and split fixed and varying only input normalization/resampling policy; evaluate with multiple seeds and paired items, reporting per-language coverage/abstention changes. Separately add an abstention-focused audit slice for suspected music/code-switch cases if such labels already exist in permitted metadata; if they do not, record that as an unresolved measurement gap rather than backfilling labels. Pre-log expectation: normalization should reduce cross-language abstention spread if acoustic mismatch dominates; little change would favor missing-label or domain-taxonomy causes.",
+            "evidence_class": "hypothesis"
+          }
+        ],
+        "uncertainties": [
+          "Historical evidence is explicitly not blind, so the size of any split leakage or tuning bias is unknown.",
+          "No speaker identity/group metadata were provided here, so true group-disjoint evaluation feasibility is unconfirmed.",
+          "No paired item outcomes, confidence intervals, or seed identifiers were provided, limiting variance attribution.",
+          "BXK is present in staged headers but absent from historical results; its intended task role is unclear.",
+          "Music and code-switch effects are only indirectly indicated because verified labels/contracts are absent."
+        ],
+        "advisory_only": true
+      },
+      "receipt_id": "rcp-3166e4d5ac19",
+      "model": "gpt-5.4",
+      "tokens_in": 2366,
+      "tokens_out": 829,
+      "latency_ms": 18115,
+      "independent_expert_validation": false,
+      "live_literature_search": false,
+      "quality_flags": [
+        {
+          "finding_index": 1,
+          "code": "numeric_claim_requires_evidence_table",
+          "message": "Numerical claims belong in measured evidence, not unverified model prose."
+        }
+      ],
+      "semantic_validation": "retrospective bounded machine checks; not independent expert validation"
+    },
+    {
+      "role": "entrepreneur",
+      "status": "review_required",
+      "review": {
+        "role": "entrepreneur",
+        "findings": [
+          {
+            "severity": "blocker",
+            "evidence_refs": [
+              "owner_scope",
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "No investment verdict can be supported because training authority is false, new estate sampling is unauthorized, and all historical runs failed speaker privacy checks. Risk-adjusted benefit is further discounted by non-blind evidence and no code-switch labels, so expected adoption is constrained for real deployment even where some languages score well.",
+            "recommendation": "Do not commit to additional annotation, compute, serving, or operational expansion from this evidence alone. Break-even condition: obtain explicit training and sampling authorization plus a privacy-passing evaluation gate. Stop-loss condition: halt if authorization remains absent or privacy continues to fail after the next approved validation cycle.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4",
+              "staged_corpus_headers"
+            ],
+            "observation": "Performance is uneven across languages: kik/kln/luo/swa are relatively strong in several runs, while lwg is consistently very weak and kam/guz are unstable. Each run used roughly similar training compute (~2698-2707 measured units, 40 epochs, 50.73 GB max memory), implying incremental retraining cost is repeatable but likely yields limited broad-coverage benefit without targeted data work. Time-to-value is moderate for a narrow-language launch and poor for portfolio-wide adoption.",
+            "recommendation": "If authorization is later granted, prioritize a narrow deployment hypothesis only for stronger languages and exclude lwg from initial scope. Break-even condition: discounted utility from the selected languages must exceed the added annotation, retraining, serving, and support burden of maintaining a multilingual stack. Stop-loss condition: if approved pilot metrics for target languages do not materially outperform abstention-heavy current baselines, revert to the next-best queued objective.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "staged_corpus_headers",
+              "owner_scope",
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "Operational uncertainty is high: sample rates are heterogeneous, music-label contract verification is false, recording quality is unmeasured, corpus scope is only staged rather than whole estate, and bxk has almost no transcript coverage. These factors increase serving and support risk, lengthen integration time, and lower adoption probability because field behavior may diverge from historical results.",
+            "recommendation": "Queue data/ops validation as the next-best objective ahead of new model investment: verify media rights assumptions, measure recording quality, define resampling standards, and audit transcript completeness by language. Break-even condition: operational cleanup should reduce deployment uncertainty enough to justify any subsequent model spend. Stop-loss condition: if these checks reveal rights, quality, or coverage gaps that cannot be remediated within approved scope, avoid proceeding.",
+            "evidence_class": "measured"
+          }
+        ],
+        "uncertainties": [
+          "No monetary inputs were provided, so risk-adjusted discounted benefits cannot be compared quantitatively against annotation, compute, serving, and operational cost.",
+          "Historical evidence is measured but not blind, so generalization and adoption probability are uncertain.",
+          "No code-switch labels are present, which may materially reduce real-world utility in multilingual usage.",
+          "Speaker privacy failed in all historical runs, making deployability uncertain even for high-accuracy languages.",
+          "Recording quality was not measured, so field performance variance and support burden are unknown.",
+          "Authority evidence indicates training and new sampling are not authorized, preventing a valid investment recommendation."
+        ],
+        "advisory_only": true
+      },
+      "receipt_id": "rcp-1676846f72d6",
+      "model": "gpt-5.4",
+      "tokens_in": 2366,
+      "tokens_out": 746,
+      "latency_ms": 15843,
+      "independent_expert_validation": false,
+      "live_literature_search": false,
+      "quality_flags": [
+        {
+          "finding_index": 1,
+          "code": "numeric_claim_requires_evidence_table",
+          "message": "Numerical claims belong in measured evidence, not unverified model prose."
+        }
+      ],
+      "semantic_validation": "retrospective bounded machine checks; not independent expert validation"
+    },
+    {
+      "role": "professor",
+      "status": "complete",
+      "review": {
+        "role": "professor",
+        "findings": [
+          {
+            "severity": "blocker",
+            "evidence_refs": [
+              "owner_scope",
+              "staged_corpus_headers"
+            ],
+            "observation": "The available authority evidence says training is not authorized, new estate sampling is not authorized, and music-detector use is not admitted. The inspected corpus scope is only a staged authorized subset, not the whole estate, and the music-label contract is not verified.",
+            "recommendation": "Do not treat any modeling or evaluation result as deployment-ready or independently validated. Restrict conclusions to advisory analysis on the staged subset, obtain explicit training and sampling authorization, and verify any music/rights constraints before further data use or claims.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4"
+            ],
+            "observation": "The reported accuracies are historical measured-but-not-blind results on the same language set, but no estimand is defined for abstentions, no item/group resampling or paired comparison design is provided, and no uncertainty intervals or multiple-testing/sequential-look controls are shown across four runs and seven languages. Large variation across languages and runs, especially very weak lwg performance, cannot be converted into significance or robustness claims from these summaries alone.",
+            "recommendation": "Define the target estimand explicitly, such as accuracy conditional on non-abstention versus selective-risk/coverage, and evaluate with paired per-item comparisons plus speaker/file-level or cluster resampling. Report uncertainty intervals and adjust for multiplicity across languages and repeated runs; if the holdout has been viewed repeatedly, treat it as exploratory and require a fresh sealed independent final set for any confirmatory claim.",
+            "evidence_class": "measured"
+          },
+          {
+            "severity": "review",
+            "evidence_refs": [
+              "historical_audio_1",
+              "historical_audio_2",
+              "historical_audio_3",
+              "historical_audio_4",
+              "staged_corpus_headers"
+            ],
+            "observation": "Several diagnostics relevant to failure analysis are unvalidated or missing: speaker privacy failed in all historical runs, code-switch labels are absent, recording quality is unmeasured, and music-label verification is false. Without validated diagnostic labels or known false-diagnosis rates, any heuristic attribution of errors to privacy, music, or code switching would remain speculative.",
+            "recommendation": "Avoid causal error-source claims based on ad hoc heuristics. Add validated diagnostic annotations or independently measured probes for code switching, music presence, and quality, quantify false-diagnosis rates, and separate these analyses from headline performance claims until verified.",
+            "evidence_class": "measured"
+          }
+        ],
+        "uncertainties": [
+          "No fresh sealed independent final evaluation set is described.",
+          "No evidence of speaker-level independence or group-aware split design is provided.",
+          "The summaries do not show per-item predictions, so paired tests and calibrated uncertainty cannot be checked.",
+          "Abstention handling is ambiguous, so the primary performance estimand is unclear.",
+          "Historical evaluations are explicitly not blind, which may bias model or threshold selection."
+        ],
+        "advisory_only": true
+      },
+      "receipt_id": "rcp-51a18ede0edc",
+      "model": "gpt-5.4",
+      "tokens_in": 2366,
+      "tokens_out": 601,
+      "latency_ms": 12637,
+      "independent_expert_validation": false,
+      "live_literature_search": false,
+      "quality_flags": [],
+      "semantic_validation": "retrospective bounded machine checks; not independent expert validation"
+    }
+  ],
+  "specialist_reviews_complete": 2,
+  "quality_checked_at": "2026-09-30T20:20:09.085852+00:00"
+}

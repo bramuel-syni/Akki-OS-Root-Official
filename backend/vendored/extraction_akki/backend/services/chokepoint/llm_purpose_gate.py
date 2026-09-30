@@ -69,6 +69,8 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     # Estate Intelligence dossier (Owner ruling 2026-09-29 "2 — add any relevant meaningful datapoint … go autonomous":
     # LLM-written monetisation / cost-reduction dossier composed ONLY from census aggregates, no row content):
     "census.estate_intelligence_dossier",
+    # Owner 2026-09-30 hybrid training laboratory; aggregate advisory reviews only.
+    "training_lab.advisory_review",
 })
 
 

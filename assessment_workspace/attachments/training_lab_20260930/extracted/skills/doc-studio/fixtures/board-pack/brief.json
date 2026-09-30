@@ -1,0 +1,16 @@
+{
+  "brief_id": "BR-2026-09-30-001",
+  "content_ref": "northline-depot-automation@1",
+  "purpose": {"kind": "decide", "statement": "Enable the board to choose between three depot automation options, or defer, at the 14 October meeting."},
+  "audience": {"who": "Northline board (8 non-executive, 3 executive)", "knowledge": "high on the business, low on automation technology", "priorities": ["capital discipline", "headcount ceiling", "margin recovery"], "detail": "summary with an evidence appendix"},
+  "setting": {"mode": "read-ahead then presented", "presentation_minutes": 15, "read_unattended": true, "printed": true, "ongoing_use": false},
+  "content": {"evidence": true, "narrative": true, "financial": true, "diagrams": false, "imagery": false, "appendix": true},
+  "brand": {"house": "house-neutral", "formality": "formal", "expressiveness": "restrained", "variation_allowed": "within-family"},
+  "outputs": [
+    {"format": "pptx", "role": "presented deck", "editable_charts": true},
+    {"format": "docx", "role": "board paper for read-ahead", "editable_charts": false},
+    {"format": "xlsx", "role": "supporting option model", "editable_charts": false},
+    {"format": "html", "role": "review surface", "editable_charts": false}
+  ],
+  "constraints": {"max_deck_slides": 14, "page_size": "A4", "confidentiality": "Board confidential"}
+}

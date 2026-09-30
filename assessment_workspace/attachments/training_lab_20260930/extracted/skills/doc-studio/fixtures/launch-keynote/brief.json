@@ -1,0 +1,11 @@
+{
+  "brief_id": "BR-2026-10-20-002",
+  "content_ref": "northline-depot-automation@1",
+  "purpose": {"kind": "inspire", "statement": "Open the all-hands on the automation programme so depot teams understand why it is happening and what it means for them."},
+  "audience": {"who": "All Northline staff, ~2,100, majority depot floor", "knowledge": "high on daily operations, low on the financials", "priorities": ["job security", "what changes on my shift", "whether the company is in trouble"], "detail": "headline only; no appendix"},
+  "setting": {"mode": "presented live in a warehouse hall and streamed", "presentation_minutes": 12, "read_unattended": false, "printed": false, "ongoing_use": false},
+  "content": {"evidence": true, "narrative": true, "financial": true, "diagrams": false, "imagery": false, "appendix": false},
+  "brand": {"house": "house-neutral", "formality": "plain", "expressiveness": "expressive", "variation_allowed": "within-family"},
+  "outputs": [{"format": "pptx", "role": "presented deck", "editable_charts": true}, {"format": "html", "role": "review surface", "editable_charts": false}],
+  "constraints": {"max_deck_slides": 12, "confidentiality": "Internal"}
+}

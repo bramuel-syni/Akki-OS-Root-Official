@@ -425,10 +425,15 @@ async def invoke(
     # Optional model selection — emergentintegrations LlmChat exposes .with_model()
     if hasattr(client, "with_model") and provider and model:
         try:
-            client = client.with_model(provider, model)
+            sdk_provider = os.environ['TRAINING_LAB_MODEL_PROVIDER'] if purpose == 'training_lab.advisory_review' and provider == 'emergent' else provider
+            client = client.with_model(sdk_provider, model)
         except Exception:  # noqa: BLE001
+            if purpose == 'training_lab.advisory_review':
+                raise LLMShieldFailure('Training lab model selection failed; no fallback allowed')
             # If provider/model combo is not selectable, fall back to defaults.
             pass
+    if purpose == 'training_lab.advisory_review' and hasattr(client, 'with_params'):
+        client = client.with_params(max_completion_tokens=2200)
 
     # 6. Send + measure.  The prompt sent is the REDACTED prompt — raw
     # estate content never leaves under a query (DAP-7).

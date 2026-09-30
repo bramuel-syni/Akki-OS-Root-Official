@@ -1,0 +1,15 @@
+{
+  "verdict_id": "SV-2026-10-06-002", "brief_ref": "SB-2026-10-06-002",
+  "goal": "The security officer should see, in order, what is waiting on which seat, what the Watch has recorded on the same objects, and what changed since the last look; nothing else.",
+  "frame_ref": "FR-surface-spend-requests-v1",
+  "candidates": [
+    {"idea_id": "S1", "name": "Trigger-led, seat by seat", "assembly": {"lead": "trigger", "order": ["trigger", "trigger", "anomaly", "report"], "voice": "operational", "density": "compact"}, "verdict": "adopt", "rationale": "Page policy leads Spend Requests with trigger; the officer's first priority is decisions pending."},
+    {"idea_id": "S2", "name": "Interpret-led", "assembly": {"lead": "interpret", "order": ["interpret", "trigger"], "voice": "operational", "density": "compact"}, "verdict": "reject", "rationale": "Interpretation on a queue page delays the one thing the reader came for."}
+  ],
+  "adopted": "S1",
+  "manifest": [
+    {"id": "M1", "assumption": "Reader is the security officer; decisions pending come first", "class": "fact", "source": "brief.audience.role", "flips": ["lead_move", "voice"]},
+    {"id": "M2", "assumption": "Page is not aggregate-only; individual items are shown", "class": "fact", "source": "brief.constraints.aggregate_only", "flips": ["field_admissibility"]}
+  ],
+  "confirmed_by": "operator seat under standing frame", "confirmed_at": "2026-10-06T08:35:00Z"
+}

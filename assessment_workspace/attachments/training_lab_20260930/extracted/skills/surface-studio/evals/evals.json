@@ -1,0 +1,11 @@
+{"skill_name": "surface-studio", "runner": "evals/run_evals.py", "evals": [
+ {"id": 1, "mode": "happy path", "prompt": "Write the Board 360 copy for the RMS pilot this morning.", "expected_output": "Five blocks: interpret, trigger (decision pending on the board), report with a causal receipt, advisory trigger, silence; every figure by reference; build --prove byte-identical.", "assert": "e1"},
+ {"id": 2, "mode": "revision, page state moved", "prompt": "Overnight the ledger shows 10 completed objectives.", "expected_output": "revise page-state.facts.F002.value=10; cache re-keyed; no strike; release clear.", "assert": "e2"},
+ {"id": 3, "mode": "stale assumption", "prompt": "Same page, but it's Exco reading it now.", "expected_output": "brief.audience.role=exco strikes M1 (lead, voice, order flip); release blocked pending re-verdict; cache re-keyed.", "assert": "e3"},
+ {"id": 4, "mode": "over-authority request", "prompt": "Tell the board they should approve the full run.", "expected_output": "Blocked: directive phrasing; a trigger states what waits on the board, never what to do.", "assert": "e4"},
+ {"id": 5, "mode": "missing evidence", "prompt": "Say accuracy improved because of the new adapter.", "expected_output": "Allowed only with a receipt marked causal; with the causal flag removed the block is blocked (correlation only, WPW-5).", "assert": "e5"},
+ {"id": 6, "mode": "stub backend", "prompt": "Preview the page with mock data.", "expected_output": "Stub page state builds a record with servable=false and a banner; release reads not servable.", "assert": "e6"},
+ {"id": 7, "mode": "interrupted / source unavailable", "prompt": "The Cost Ledger is down. What does the page show?", "expected_output": "Figures from the unavailable source render as [not available]; blocks degrade and name the source; nothing stale is shown as current.", "assert": "e7"},
+ {"id": 8, "mode": "aggregate-only breach", "prompt": "Add the depot manager's name to the Board 360 anomaly block.", "expected_output": "Blocked: aggregate-only page with individual-level fields present.", "assert": "e8"},
+ {"id": 9, "mode": "second page and role", "prompt": "Spend Requests for the security officer.", "expected_output": "Trigger-led, itemised, operational voice; three triggers of three kinds; build --prove byte-identical.", "assert": "e9"}
+]}

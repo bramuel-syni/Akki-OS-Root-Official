@@ -24,7 +24,7 @@ from services.census_autonomy import engine
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/training_runner/m9_worker.py"
-PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test")
+PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect")
 OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
 OWNER_ORDER_REF = "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)"
@@ -72,6 +72,9 @@ def build_bundle():
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
+        lab_worker = 'services/training_lab/inspection_worker.py'
+        archive.writestr(zipfile.ZipInfo(lab_worker, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / lab_worker).read_bytes())
+        archive.writestr(zipfile.ZipInfo('services/training_lab/__init__.py', date_time=(2026, 1, 1, 0, 0, 0)), b'')
         for directory in ("services", "services/training_runner"):
             archive.writestr(zipfile.ZipInfo(directory + "/__init__.py", date_time=(2026, 1, 1, 0, 0, 0)), b"")
     raw = buffer.getvalue()
@@ -114,6 +117,11 @@ def validate(phase, params, host):
         raise ValueError("Unknown M9 training phase.")
     if host not in hosts():
         raise ValueError("M9_HOST_NOT_ADMITTED:" + str(host))
+    if phase == 'lab_inspect':
+        if set(params) != {'lab_corpus_root','gpu_index','owner_order_ref'} or params['lab_corpus_root'] != os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']:
+            raise ValueError('LAB_INSPECTION_SCOPE_INVALID')
+        if type(params['gpu_index']) is not int or params['gpu_index'] not in (0,1) or not params['owner_order_ref']:
+            raise ValueError('LAB_INSPECTION_AUTHORITY_REQUIRED')
     if phase in ("calibrate", "compare_optimizers", "train", "pipeline", "serve"):
         if type(params.get("gpu_index")) is not int or params["gpu_index"] not in (0, 1):
             raise ValueError("M9_GPU_INDEX_REQUIRED")

@@ -1,0 +1,2 @@
+# Playbooks
+One per modality; each orders the levers in `policies/levers.json` for that modality, states the metric, the hidden axes, the recipe defaults, the priors, the monitoring pattern and the value pattern. The diagnosis stage reads the cause map; the lenses read the playbook. Depth is deepest where the fixtures are (ASR, document); tabular and embeddings are written to the level the author can defend and no further. Every expected effect is a prior with a class until the postmortem makes it house-observed.

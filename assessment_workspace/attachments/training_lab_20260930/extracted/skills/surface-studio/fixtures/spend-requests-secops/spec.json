@@ -1,0 +1,10 @@
+{
+  "spec_type": "surface_spec", "spec_id": "SS-spend-requests-secops-001", "page_state_ref": "spend-requests-secops@1", "brief_ref": "SB-2026-10-06-002", "verdict_ref": "SV-2026-10-06-002",
+  "role": "security_officer", "page": "spend_requests", "seed": "spend-requests/secops/2026-10-06", "build_stamp": "2026-10-06T00:00:00Z",
+  "blocks": [
+    {"id": "B1", "move": "trigger", "kind": "decision_pending", "pending_ref": "P001", "title": "Over ceiling", "text": "{P001.what}: {F004}, above the {F002} auto-approve ceiling. {P001.phrasing}, due {P001.due}, via {P001.mechanism}.", "refs": ["P001", "F004", "F002"]},
+    {"id": "B2", "move": "trigger", "kind": "decision_pending", "pending_ref": "P002", "title": "Flagged below ceiling", "text": "{P002.what}: {F005}. {P002.phrasing}, due {P002.due}; {P002.mechanism}.", "refs": ["P002", "F005"]},
+    {"id": "B3", "move": "trigger", "kind": "anomaly", "pending_ref": "P003", "title": "Watch record on a queued object", "text": "{P003.what} ({F006}). {P003.phrasing}; the request stays queued until the containment is lifted.", "refs": ["P003", "F006"]},
+    {"id": "B4", "move": "report", "title": "Since your last look", "text": "Items awaiting a seat went from {D001.prior} to {D001.current} since {D001.since}. Committed spend this quarter stands at {F003}.", "refs": ["D001", "F003"]}
+  ]
+}

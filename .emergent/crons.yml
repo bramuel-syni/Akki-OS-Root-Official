@@ -1,0 +1,8 @@
+crons:
+  - name: training-lab-review
+    description: "Reviews new training checkpoints and resumes queued lab assessments"
+    cron: "*/15 * * * *"
+    endpoint: "{{BASE_URL}}/api/training/lab/cron"
+    # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    method: POST
+    enabled: true

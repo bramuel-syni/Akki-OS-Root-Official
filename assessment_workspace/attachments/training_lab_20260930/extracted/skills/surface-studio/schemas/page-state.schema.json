@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Page state \u2014 the model for a surface commission",
+  "type": "object",
+  "required": [
+    "page_state_id",
+    "version",
+    "page",
+    "tenant",
+    "as_of",
+    "receipts",
+    "facts",
+    "aggregate_only_check",
+    "source",
+    "unavailable_sources"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "receipts": {
+      "type": "object",
+      "patternProperties": {
+        "^R\\d{2,}$": {
+          "type": "object",
+          "required": [
+            "resolves_to"
+          ],
+          "properties": {
+            "causal": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "facts": {
+      "type": "object",
+      "patternProperties": {
+        "^F\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "label",
+            "value",
+            "unit",
+            "class",
+            "receipt"
+          ],
+          "properties": {
+            "class": {
+              "enum": [
+                "measured",
+                "estimated",
+                "sample",
+                "observed"
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "deltas": {
+      "type": "object",
+      "patternProperties": {
+        "^D\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "label",
+            "prior",
+            "current",
+            "unit",
+            "since",
+            "class",
+            "receipt"
+          ],
+          "properties": {
+            "class": {
+              "enum": [
+                "measured",
+                "estimated",
+                "sample",
+                "observed"
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "pending": {
+      "type": "object",
+      "patternProperties": {
+        "^P\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "kind",
+            "what",
+            "receipt"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "decision_pending",
+                "advisory",
+                "anomaly"
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "silence": {
+      "type": "object",
+      "patternProperties": {
+        "^S\\d{3,}$": {
+          "type": "object",
+          "required": [
+            "label",
+            "reason",
+            "closes_with",
+            "receipt"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "aggregate_only_check": {
+      "type": "object",
+      "required": [
+        "individual_fields_present"
+      ]
+    },
+    "source": {
+      "enum": [
+        "live",
+        "snapshot",
+        "stub"
+      ]
+    },
+    "unavailable_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "map_id": "cause-map", "version": 1,
+  "causes": {
+    "leakage":              {"test": "near-duplicate / n-gram overlap between training material and the sealed set above threshold; held-out implausibly above train", "order": 0, "levers": ["data.dedup_leakage", "model.text.contamination_check", "data.tabular.leakage_time"], "note": "checked first; blocker"},
+    "undetectable":         {"test": "gap to floor < MDE at test_n", "order": 1, "levers": ["eval.enlarge_test", "eval.embed.sealed_queries"], "note": "professor blocker; nothing else is worth trying until the floor can be verified"},
+    "label-noise-limited":  {"test": "annotator agreement < floor, or held-out plateaus below floor with train/held-out gap small and confident-learning flag rate > 3%", "order": 2, "levers": ["data.clean.confident_learning", "data.text.instruction_quality"], "note": "fix labels before any training lever"},
+    "distribution-shifted": {"test": "per-source or per-capture breakdown diverges from per-stratum by more than seed_sd × 3; production condition differs from calibration material", "order": 3, "levers": ["data.restratify", "aug.audio.noise_rir", "aug.image.geometric_photometric"]},
+    "data-limited":         {"test": "curve still rising at the last volume (slope > 0.5 × first-segment slope) and train/held-out gap small", "order": 4, "levers": ["aug.audio.speed_perturb", "aug.audio.specaugment", "aug.image.geometric_photometric", "data.class_imbalance", "data.target_label", "model.embed.hard_negatives"]},
+    "overfit":              {"test": "train/held-out gap > 2 × seed_sd and growing with volume", "order": 5, "levers": ["aug.audio.specaugment", "model.lora.rank"]},
+    "method-limited":       {"test": "curve flat (slope < 0.25 × first-segment slope) with small gap and clean labels", "order": 6, "levers": ["model.audio.lm_bias", "model.document.layout_vs_ocrfree", "model.lora.rank", "model.schedule", "model.optimizer", "model.tabular.gbdt_first"]}
+  },
+  "comparison_rule": "the recipe seat's single comparison is the highest-expected-effect lever for the binding stratum's diagnosed cause, run with-vs-without; the optimizer comparison is the default only when the cause is method-limited and rank and schedule are settled"
+}

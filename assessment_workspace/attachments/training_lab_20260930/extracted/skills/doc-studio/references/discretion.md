@@ -1,0 +1,5 @@
+# Permitted choices and reserved decisions
+**Permitted within an adopted direction (no escalation):** plate for a stated message (per `plates.md`); slide order and section grouping; wording of kickers, titles and so-what lines within the claim they reference; which slide type carries a claim; table row order; the look seed's outcome (never hand-picked); bounded repair of a layout defect (≤3 passes, each a voice or spec change followed by a full rebuild, never an edit to a rendered file).
+**Escalate to the commissioning operator:** a change to the brief's audience, setting or purpose; a claim with no receipt (the claim is dropped or the receipt is found; the skill does not invent one); a request for a plate the voice cannot render editably when the brief demands editable.
+**Reserved, never a skill output:** document tier and eligibility (C.9, WPW-11); external release (WPW-15, an egress crossing with named sign-off); marking a winner among options; changing a voice's structural rules outside a recorded correction; any figure class other than the content model's.
+Outputs are files, review questions and requests. There is no decision output type.

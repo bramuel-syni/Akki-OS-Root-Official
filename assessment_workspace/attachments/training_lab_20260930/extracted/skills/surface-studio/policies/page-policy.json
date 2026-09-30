@@ -1,0 +1,212 @@
+{
+  "policy_id": "page-policy",
+  "version": 1,
+  "moves": {
+    "interpret": "what this means for someone with your priorities",
+    "report": "what changed since you last looked, and why it matters",
+    "trigger": "what is waiting on you, and what is worth opening"
+  },
+  "pages": {
+    "board360": {
+      "lead": "interpret",
+      "then": [
+        "trigger",
+        "report"
+      ],
+      "aggregate_only": true,
+      "max_blocks": 5
+    },
+    "exco360": {
+      "lead": "interpret",
+      "then": [
+        "report",
+        "trigger"
+      ],
+      "aggregate_only": true,
+      "max_blocks": 6
+    },
+    "registry": {
+      "lead": "interpret",
+      "then": [
+        "report"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 5
+    },
+    "watch_state": {
+      "lead": "report",
+      "then": [
+        "trigger"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 6
+    },
+    "manage_rules": {
+      "lead": "report",
+      "then": [
+        "trigger"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 5
+    },
+    "model_admission": {
+      "lead": "trigger",
+      "then": [
+        "report"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 5
+    },
+    "training_run": {
+      "lead": "report",
+      "then": [
+        "interpret"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 6
+    },
+    "spend_requests": {
+      "lead": "trigger",
+      "then": [
+        "report"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 5
+    },
+    "documents": {
+      "lead": "report",
+      "then": [
+        "trigger"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 4
+    },
+    "thinklab": {
+      "lead": "interpret",
+      "then": [
+        "trigger"
+      ],
+      "aggregate_only": false,
+      "max_blocks": 5
+    },
+    "estate_intel": {
+      "lead": "interpret",
+      "then": [
+        "report",
+        "trigger"
+      ],
+      "aggregate_only": true,
+      "max_blocks": 6
+    }
+  },
+  "roles": {
+    "board": {
+      "voice": "plain-executive",
+      "priorities": [
+        "capital",
+        "margin",
+        "risk"
+      ],
+      "words_per_block_max": 40,
+      "jargon": "none"
+    },
+    "exco": {
+      "voice": "plain-executive",
+      "priorities": [
+        "delivery",
+        "exceptions",
+        "spend"
+      ],
+      "words_per_block_max": 45,
+      "jargon": "light"
+    },
+    "security_officer": {
+      "voice": "operational",
+      "priorities": [
+        "decisions pending",
+        "anomalies",
+        "custody"
+      ],
+      "words_per_block_max": 35,
+      "jargon": "full"
+    },
+    "operator": {
+      "voice": "operational",
+      "priorities": [
+        "runs",
+        "blockers",
+        "cost"
+      ],
+      "words_per_block_max": 45,
+      "jargon": "full"
+    },
+    "depot_lead": {
+      "voice": "plain-floor",
+      "priorities": [
+        "what changes on my shift",
+        "job security"
+      ],
+      "words_per_block_max": 30,
+      "jargon": "none"
+    }
+  },
+  "trigger_kinds": {
+    "decision_pending": {
+      "requires": [
+        "seat",
+        "mechanism",
+        "due"
+      ],
+      "phrasing": "Waiting on <seat>"
+    },
+    "advisory": {
+      "requires": [
+        "brief_ref"
+      ],
+      "phrasing": "Advisory, marked as such; not a directive"
+    },
+    "anomaly": {
+      "requires": [
+        "watch_ref"
+      ],
+      "phrasing": "Recorded by the Watch; the verdict is the Watch's"
+    }
+  },
+  "language": {
+    "directive_phrases": [
+      "you should",
+      "you must",
+      "we recommend",
+      "recommended",
+      "approve this",
+      "reject this"
+    ],
+    "causal_markers": [
+      "because",
+      "due to",
+      "caused by",
+      "led to",
+      "driven by",
+      "as a result of"
+    ],
+    "causal_requires": "a fact or delta whose receipt is marked causal: true",
+    "silence": "unmeasured territory reads as 'unmeasured' or 'not yet recorded'; never blank, never zero"
+  },
+  "cache": {
+    "key": "sha256(page_state_hash + role + voice + spec_hash + policy_version)",
+    "note": "same key → same content record; regeneration only on a key change (warm-serve, #19)"
+  },
+  "receipts": {
+    "walk_affordance": "Walk this →",
+    "every_figure": true
+  },
+  "sources": {
+    "kinds": [
+      "live",
+      "snapshot",
+      "stub"
+    ],
+    "stub": "a stub page state produces a content record marked stub=true that is never served; preview carries a banner",
+    "unavailable": "a block whose every figure comes from an unavailable source is degraded to a silence block reading 'not available at <as_of>'; a block with some figures available renders those and names the missing source"
+  }
+}

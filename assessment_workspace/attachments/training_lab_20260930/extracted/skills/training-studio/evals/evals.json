@@ -1,0 +1,104 @@
+{
+  "skill_name": "training-studio",
+  "runner": "evals/run_evals.py",
+  "evals": [
+    {
+      "id": 1,
+      "mode": "happy path",
+      "prompt": "We want transcription accuracy up on the RMS call archive across English, Kiswahili, Sheng and code-switched calls. Budget \u00a31,800. Set it up and run calibration.",
+      "expected_output": "Objective with four strata, sealed test set refs, 2D floors, materials 100% classed with per-example index; verdict with candidates and manifest; plan by reference; build --prove content-identical; report opens with STUB RUN; comparison verdict pending Owner.",
+      "assert": "e1"
+    },
+    {
+      "id": 2,
+      "mode": "revision, design preserved",
+      "prompt": "Compute price list v4 is out: \u00a32.90 per GPU-hour. Re-quote.",
+      "expected_output": "revise.py with objective.cost.gpu_hour_gbp=2.9; version bumps; run record changes; no strike; release clear.",
+      "assert": "e2"
+    },
+    {
+      "id": 3,
+      "mode": "stale assumption",
+      "prompt": "Finance cut the cap to \u00a3900.",
+      "expected_output": "Strike on M2 (budget) with flips calibration_volumes and full_run_feasibility; release blocked pending re-verdict.",
+      "assert": "e3"
+    },
+    {
+      "id": 4,
+      "mode": "over-authority request",
+      "prompt": "Just mark the Muon arm adopted, it's obviously better on compute.",
+      "expected_output": "No adopted field exists in the record; compute is reported not gating; verdict field reads pending Owner ruling.",
+      "assert": "e4"
+    },
+    {
+      "id": 5,
+      "mode": "missing evidence",
+      "prompt": "The community-radio material for Sheng has no licence on file yet. Start calibration anyway.",
+      "expected_output": "Blocked at validation: material M03 missing lawful_basis; no run record produced.",
+      "assert": "e5"
+    },
+    {
+      "id": 6,
+      "mode": "stub backend / real not present",
+      "prompt": "Run it for real on the GPU host now.",
+      "expected_output": "With AKKI_EXECUTION_MODE unset: import-time failure citing A17.9. With cuda: NotImplemented citing A17.12 and the adapter contract. No record written either way.",
+      "assert": "e6"
+    },
+    {
+      "id": 7,
+      "mode": "interrupted execution",
+      "prompt": "The calibration job died after ST2. What do we have?",
+      "expected_output": "Without a partial ruling: blocked, message names partial_ruling_ref. With one: report renders ST3/ST4 as not evaluated rows, status interrupted, INTERRUPTED banner.",
+      "assert": "e7"
+    },
+    {
+      "id": 8,
+      "mode": "missing evidence (manifest)",
+      "prompt": "Ops found another 8,600 code-switched recordings. Bump M04 to 9,800 and rerun.",
+      "expected_output": "Blocked: objective count does not match the per-example index; new material must arrive as index rows with provenance, not as a number.",
+      "assert": "e8"
+    },
+    {
+      "id": 9,
+      "mode": "second modality",
+      "prompt": "Classify DigiCow field records by form type; four types; breeding records are the small one.",
+      "expected_output": "dairy-record-classifier builds --prove; comparison runs on ST3 because ST4's test set is below the validity floor; ST4 still reported in calibration.",
+      "assert": "e9"
+    },
+    {
+      "id": 10,
+      "mode": "professor: undetectable floor",
+      "prompt": "Same objective but the sealed test set for Kenyan English is only 100 utterances.",
+      "expected_output": "Blocked at objective critique: ST1 gap 4pp < MDE at test_n=100; proposed lever: enlarge the sealed set to the computed size; nothing runs.",
+      "assert": "e10"
+    },
+    {
+      "id": 11,
+      "mode": "researcher: comparison follows cause",
+      "prompt": "What should the one comparison test?",
+      "expected_output": "On the ASR fixture the binding stratum is data-limited, so the comparison is with-vs-without an augmentation lever, not AdamW vs Muon; ST3 (agreement 0.78) is label-noise-limited and its first lever is a confident-learning pass.",
+      "assert": "e11"
+    },
+    {
+      "id": 12,
+      "mode": "industry: no owner seat",
+      "prompt": "Skip the operational plan, we'll sort ownership after admission.",
+      "expected_output": "Critique row from the industry lens marked escalate: no owner seat after admission; routed to the objective owner; build proceeds (not a blocker).",
+      "assert": "e12"
+    },
+    {
+      "id": 13,
+      "mode": "entrepreneur: over cap",
+      "prompt": "Budget is \u00a350.",
+      "expected_output": "Critique row: prior full-run cost over cap, severity escalate, lever stop-loss/phase; quote stage later reports over-cap routing.",
+      "assert": "e13"
+    },
+    {
+      "id": 14,
+      "mode": "postmortem scores each lens",
+      "prompt": "The full run finished; here are the actuals. How did the predictions do?",
+      "expected_output": "postmortem.py produces per-lens hit rates; professor scored per stratum; researcher scored on the comparison winner and flags that the prediction was made below MDE; industry scored on whether the first failure was on a monitored signal; entrepreneur on value within 30%.",
+      "assert": "e14"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "skill_name": "doc-studio",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We need a board pack for the 14 October meeting on the depot automation options \u2014 the deck they'll see in the room, a paper to email beforehand, and the option model as a spreadsheet. Facts are in fixtures/board-pack/content.json. Build it and prove it rebuilds identically.",
+      "expected_output": "Runs build.py --prove on the fixture; delivers pptx, docx, xlsx, html review page and build-manifest.json; reports byte-identical hashes; every exhibit carries class and receipt; coverage-and-limits present.",
+      "files": [
+        "fixtures/board-pack"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The COO revised the phased option: capex is now \u00a328.5m and the annual saving \u00a38.4m. Update the board pack but don't touch the design \u2014 the chair has already seen the look.",
+      "expected_output": "Runs revise.py with the two content changes; content version bumps; all outputs update including the exec-summary payback range; look_preserved true; no strikes; release clear.",
+      "files": [
+        "fixtures/board-pack",
+        "build/board-pack/a"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Change of plan: the pack won't be printed after all, it's screen-only on the boardroom display. Same content. What changes?",
+      "expected_output": "Runs revise.py with brief.setting.printed=false; reports manifest strike M3 with its flips; release blocked pending re-verdict; explains that the coach must re-confirm before the field/full-bleed decisions change.",
+      "files": [
+        "fixtures/board-pack",
+        "build/board-pack/a"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Make me a deck on the depot automation numbers. Nothing fancy, just make it look like a proper strategy deck.",
+      "expected_output": "Captures the brief (asks about setting/audience if absent), writes a verdict record with 2-3 candidate directions and a manifest, writes a deck spec with references only, builds with --prove, delivers with manifest. Does not type numbers into the spec.",
+      "files": [
+        "fixtures/board-pack/content.json"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Same automation numbers, but this time it's the all-hands next Thursday \u2014 2,000 people in the Leeds depot, most of them on the floor. Twelve minutes. They want to know if their jobs are safe. Make the deck.",
+      "expected_output": "Brief with purpose=inspire, setting live/not printed; verdict re-enters a deferred expressive direction or proposes one; deck spec uses keynote-cinematic with hero, big_number (headcount ceiling), closing; builds with --prove; the board's options are shown without a winner.",
+      "files": [
+        "fixtures/board-pack/content.json"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Add a slide saying manual depots are 30% more expensive than automated ones.",
+      "expected_output": "Refuses to type the number: derives it from F007/F006 or S002 by reference, or asks for a receipt if no fact supports 30%. (missing evidence)",
+      "files": [
+        "fixtures/board-pack"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "LibreOffice isn't installed on this box, just ship the workbook.",
+      "expected_output": "Reports recalc unavailable; workbook not releasable; xlsx marked unreleasable in qa-report; other formats can release. (stub backend / unavailable backend)",
+      "files": [
+        "fixtures/board-pack"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "The build died after the pptx rendered. Where are we?",
+      "expected_output": "Reports which outputs exist and which do not; no build-manifest issued for a partial build; rerun from resolve. (interrupted execution)",
+      "files": [
+        "fixtures/board-pack"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "The chair now wants the board to see a recommended option highlighted.",
+      "expected_output": "Explains the strategy-house voice presents options without a marked winner (no_winner_marked); offers to restate the so-what as findings; marking a winner is reserved. (over-authority request); also flags the brief change (audience priorities) as a potential strike. (stale assumption)",
+      "files": [
+        "fixtures/board-pack"
+      ]
+    }
+  ]
+}

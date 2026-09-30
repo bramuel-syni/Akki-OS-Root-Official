@@ -1,0 +1,17 @@
+{
+  "verdict_id": "SV-2026-10-06-001", "brief_ref": "SB-2026-10-06-001",
+  "goal": "A director should read five blocks and know: how the pilot is doing, what moved, what is waiting on the board, and what the platform cannot yet say.",
+  "frame_ref": "FR-surface-board360-v1",
+  "candidates": [
+    {"idea_id": "S1", "name": "Interpret-led, capital first", "assembly": {"lead": "interpret", "order": ["interpret", "trigger", "report", "silence"], "voice": "plain-executive", "density": "headline"}, "verdict": "adopt", "rationale": "Board priorities are capital, margin, risk; the page policy leads Board 360 with interpret; the one decision pending is a capital item, so trigger comes second."},
+    {"idea_id": "S2", "name": "Trigger-led", "assembly": {"lead": "trigger", "order": ["trigger", "interpret", "report"], "voice": "plain-executive", "density": "headline"}, "verdict": "defer", "conditions": "Re-enter when more than one decision is pending on the board seat, or one is overdue."},
+    {"idea_id": "S3", "name": "Report-led", "assembly": {"lead": "report", "order": ["report", "interpret", "trigger"], "voice": "plain-executive", "density": "compact"}, "verdict": "reject", "rationale": "Board 360 is not a status board; report leads on Watch State and Training Run pages, not here (page policy)."}
+  ],
+  "adopted": "S1",
+  "manifest": [
+    {"id": "M1", "assumption": "Reader is a board director with capital/margin/risk priorities", "class": "fact", "source": "brief.audience.role, brief.audience.priorities", "flips": ["lead_move", "voice", "block_order"]},
+    {"id": "M2", "assumption": "Page is aggregate-only", "class": "fact", "source": "brief.constraints.aggregate_only", "flips": ["field_admissibility"]},
+    {"id": "M3", "assumption": "Exactly one decision is pending on the board seat", "class": "recalled", "source": "page-state.pending", "flips": ["trigger_position"]}
+  ],
+  "confirmed_by": "operator seat under standing frame", "confirmed_at": "2026-10-06T06:05:00Z"
+}
