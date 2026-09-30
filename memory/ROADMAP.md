@@ -1,5 +1,18 @@
 # Akki — current engineering order
 
+## Reporting update — 2026-09-30 owner-requested percentage recap
+
+See `assessment_workspace/notes/goal_delivery_20260928/M1_M10_PROGRESS_20260930.md`
+for all ten milestones, explicit estimated implementation percentages and exact
+remaining work. Percentages are owner-requested planning judgments, not gate scores
+or work-hour forecasts. Preserve G2 PASS on its prior admitted slice.
+
+Freshly read M9 campaign/certificates show both full jobs completed; both original
+and pruned admissions refused on6/7 versus7/7 required strata. Next M9 work is
+admission-criterion/quality reconciliation and the separate LC corpus/recipe
+decision, not merely waiting for these jobs or adding more epochs. Serving remains
+unstarted for refused candidates. No implementation or job change made by the recap.
+
 ## CURRENT — 2026-09-30 M7/M8 readiness assessment (no implementation authorization inferred)
 
 User redirected the repository sweep to M7/M8, then approved the read-only plan.

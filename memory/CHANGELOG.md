@@ -1,5 +1,21 @@
 # Akki implementation history
 
+## 2026-09-30 — Owner-requested M1–M10 progress reflection
+
+- Created a full milestone recap with explicitly estimated implementation
+  percentages, delivered behavior and outstanding acceptance/journey tasks. No
+  application behavior, model admission, jobs or paused work were changed.
+- Restored the scoped G2 PASS to current continuity; broader/new-path work is
+  distinct from the three-gate/console slice already signed off.
+- Reconciled campaign and actual admission records: both full M9 text jobs have
+  completed, but both original/pruned variants refused the per-stratum criterion
+  (6/7 versus7/7); recorded checkpoint parity/whitepapers do not imply serving or
+  site-loss acceptance. LC fixed-recipe candidates remain not admissible.
+- Corrected M7/M8 readiness report's canonical acceptance-pack labels and clarified
+  M6's actual `/api/decks/*` route and HTML-only byte-determinism claim. Findings and
+  gate requirements remain unchanged. Existing implementation/test evidence was
+  reviewed; no new full-platform or GPU drill was run for this reporting request.
+
 ## 2026-09-30 — M7/M8 requirements/repository readiness, read-only
 
 - Reverified main heads for Executive-Core, RMS-IQ-Core-2, OS-V1 and OS-Root;

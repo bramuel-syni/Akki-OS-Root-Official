@@ -33,3 +33,26 @@ Stage 1 in parallel: `calibrate` (GPU0, bases qwen3-1.7b-base + qwen3-8b-base, f
 ## 3. Not claimed
 
 No model is served or admitted by this note; admission is the ceremony's record on each run certificate. MOAC floors are the disclosed DEFAULTS (M-a +5 pts, M-b 2 %). Grain, rights and language qualification for the audio plane remain M9's separate acceptance.
+
+## 4. Terminal-record reconciliation — 2026-09-30 progress recap
+
+This appendix records already-retained results, not a new training/probe run.
+`campaign_20260929_full.json` is newer than the earlier prose above:
+
+- Calibration `m9j-c4bec2810778` completed2026-09-29T23:33:59Z and selected the8B base.
+- Selected8B `m9j-74af7cef0a85` completed2026-09-30T00:48:34Z:2 epochs,5372 steps,
+  2945s wall,0.8182 GPU-hours,5853.9 tok/s,92.44GB max memory.
+- Runner-up1.7B `m9j-6af6e8c370f9` completed2026-09-30T00:14:33Z:3 epochs,2682 steps,
+  1660s wall,0.4611 GPU-hours,15899.5 tok/s,90.31GB max memory.
+- Both actual model-admission records, and both pruned variants, say **refused**:
+  `moac_criterion_below_floor`, `coverage_strata=0.857143`, required1.0. Six of seven
+  strata meet the relative-improvement criterion; Swahili does not. High aggregate
+  accuracy is not a substitute. Reconcile the criterion against the pinned objective
+  and high base accuracy; do not silently weaken a floor or prescribe more epochs.
+- Certificates under `phase0/census_autonomy_state/m9_training/` record adapter
+  checkpoint/resume hash parity (steps500 and200), optimizer/RNG saved and drafted
+  Whitepaper Wizard records. This is narrower than independently verified full-state
+  restoration after physical process/site loss.
+- Neither candidate gained a registry version or serving admission. LC A3/B3 are
+  separate completed, not-admissible acoustic-cognition runs. No accepted-model or
+  whole-M9 completion claim is made.

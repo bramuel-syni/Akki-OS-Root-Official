@@ -15,12 +15,24 @@
 M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → M4 useful grounded answers/context → M5 durable memory/collaborative work/goals/board → M6 artifacts/decks/callable skills → M7 tenant/rule/entitlement/commercial operation → M8 failure/withdrawal/continuity/recovery → M9 activated media/model/training capability → M10 independent integrated acceptance.
 
 - `FAMILY_OWNERSHIP.json` routes the historical56 families/648 rows. Routing is not fresh clause-level closure. Prior milestone numbering is not transferable acceptance evidence.
-- Preserve proven work; reopen only demonstrated regression, invalidated evidence or an explicitly changed requirement. No invented completion percentages, approval gates, timers, recipes or thresholds.
+- Preserve proven work; reopen only demonstrated regression, invalidated evidence or an explicitly changed requirement. No invented approval gates, timers, recipes or thresholds. The owner authorized explicitly labelled implementation-percentage estimates on30Sep; these are planning judgments, never measured acceptance or replacement gate criteria.
 - Banked owner UI/prototypes remain the design authority. Connect original interactions rather than replace them with generic surfaces.
 - English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
 - M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-## CURRENT — 2026-09-30 M7/M8 read-only readiness completed
+## CURRENT — 2026-09-30 owner-requested M1–M10 progress recap
+
+Owner asked: “Reflect back all the milestones and give me % status progress for each and state the details and to dos for each thats not done.” Approved estimated-implementation reporting with “Go ahead.” No application or training changes authorized by this report.
+
+- Full recap: `assessment_workspace/notes/goal_delivery_20260928/M1_M10_PROGRESS_20260930.md`; public copy `frontend/public/briefs/Akki_Milestone_Progress_20260930.md`.
+- Directional estimates: **M1~80%; M2 signed-off slice100% / broader coverage~80%; M3~70%; M4~75%; M5~55%; M6~50%; M7~45%; M8~35%; M9~65%; M10~10%**. Not calculated from tests/files/epochs, not an overall-readiness average and not remaining-work-hour estimates.
+- **Preserve scoped G2 PASS:** `notes/m2_execution/M2_WATCH_READINESS_AND_CLOSURE_20260929.md` verifies three commission gates + four-panel console. New paths and documented independent-watchdog/learned-detector/profile gaps remain extensions, not erasure of that sign-off.
+- **Freshly reconciled M9 terminal evidence:** both full text jobs completed; both original/pruned candidates refused admission on `coverage_strata`6/7 vs required7/7. Neither registered/served. Certificates contain checkpoint adapter-state parity and drafted whitepapers; physical full-state/process-loss recovery remains narrower/unclosed. Earlier “full runs awaiting terminal” prose is stale.
+- **M6 correction:** active router is `/api/decks/*`. Code asserts determinism on HTML, not PDF bytes. PDF export exists; PPTX and UI/callable-skill acceptance remain open.
+- Corrected earlier M7/M8 report's acceptance-pack ID mapping to the canonical roadmap (M7-T3 usage, T4 limits, T5 attribution; M8-T1 interruption, T2 critical failure, T3 Ledger restore, T4 site restore, T5 recall/notifications). Findings/gate verdicts unchanged; note recorded in the report.
+- Reporting validation: cross-checked the roadmap, retained milestone/test notes, current deck code, campaign JSON and actual model-admission records. No fresh whole-platform acceptance test or GPU probe was performed.
+
+## Recent evidence — 2026-09-30 M7/M8 read-only readiness completed
 
 Latest user sequence: asked for another M6/M9 requirements/repos sweep, redirected to **“Do a readiness run for M7/M8”**, then **“Proceed with your plan.”** Approved plan was read-only; no application behavior, authentication configuration, training jobs, rules or tenant business records were changed.
 
@@ -63,7 +75,7 @@ Repository heads reverified:
 ### M9 generalized training / language cognition
 
 - Throughput work in `services/training_runner/m9_worker.py`: token-budget batching, quantized-width ladder, per-base recipes, gradient-checkpointing control and padding metrics. Prior measured1.7B throughput16.6k–18.3k tokens/s;8B6.7k tokens/s. See `notes/m9_execution/M9_GENERALISED_TRAINING_20260929.md`.
-- API-only campaign `assessment_workspace/tools/m9_campaign.py`; records in `notes/m9_execution/campaign_20260929_full.json`; API `/api/training/m9/*`. Review terminal certificates and actual retained state before claiming completion. No jobs were queried, altered or relaunched for this M7/M8 run.
+- API-only campaign `assessment_workspace/tools/m9_campaign.py`; records in `notes/m9_execution/campaign_20260929_full.json`; API `/api/training/m9/*`. Recap inspection found selected8B `m9j-74af7cef0a85` completed00:48:34Z and runner-up1.7B `m9j-6af6e8c370f9` completed00:14:33Z on30Sep. Both full/pruned admissions refused `moac_criterion_below_floor` on `coverage_strata=0.857143`, floor1.0; no registry version. Terminal completion is not model acceptance. No job was altered or relaunched.
 - Last recorded LC fixed-recipe A3 `lcj-427526d3a19a` and B3 `lcj-2add4984931e` completed60epochs; both **NOT ADMISSIBLE** (accuracy/abstention and speaker leakage; B3 class collapse). Throughput is not quality acceptance. Recipe sweep awaits owner decision; `notes/m9_corrective_training/EXECUTION_20260929.md` is the live evidence authority.
 - M9.4 serving is separate, not started in this assessment. M9 gates/certificates/admission remain required.
 
@@ -71,7 +83,7 @@ Repository heads reverified:
 
 - Deep report and `/os/admin/estate/intelligence` exist, including duplication, degradation, grain/licensable-unit candidates, monetization blockers, cost strategies and governed dossier. Huawei OBS/NAS metrics and source limitations remain evidence-based.
 - Last documented RMS census `eij-1b359b3cbd2e`:20db/1006tables/351.3GiB/~259M estimated rows; artists_app blocked. Earlier tests iteration67:backend16/16 and desktop/mobile verified. This run did not repeat all analytics tests.
-- M6 deterministic deck backend exists under `services/transform_forms/deck_engine/`, routes `routers/decks.py`; prior handoff reports offline tests. Deck generation/view/download UI integration remains open; no new deck work was done here.
+- M6 deck backend exists under `services/transform_forms/deck_engine/`, routes `routers/decks.py` mounted at `/api/decks/*`; prior handoff reports offline tests. Current determinism claim is HTML artifact bytes, not PDF bytes; PDF export exists, PPTX not built. Deck generation/view/download UI and real callable-skill acceptance remain open; no new deck work was done here.
 
 ### M3 / M4 / M5 inherited evidence
 
