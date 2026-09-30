@@ -1,0 +1,36 @@
+{
+  "verdict_id": "V-2026-10-20-002",
+  "brief_ref": "BR-2026-10-20-002",
+  "goal": "Give 2,100 people, most of them on a depot floor, one clear reason and one clear reassurance in twelve minutes, without hiding the numbers.",
+  "frame_ref": "FR-keynote-inspire-v1",
+  "candidates": [
+    {
+      "idea_id": "D2", "name": "Future-state",
+      "re_entered_from": "V-2026-09-30-001",
+      "assembly": {"narrative": "vision-then-journey", "compositions": ["cover", "hero", "big_number", "assertion_exhibit", "section", "assertion_points", "coverage_limits", "closing"], "treatment": "expressive", "density": "sparse", "imagery": "none"},
+      "verdict": "adopt",
+      "rationale": "Deferred on the board pack with the condition 'purpose is to persuade a programme audience'. That condition has arrived. Vision first, then the evidence at headline depth, then what changes for people."
+    },
+    {
+      "idea_id": "D1", "name": "Evidence-led",
+      "assembly": {"narrative": "recommendation-and-evidence", "compositions": ["cover", "exec_summary", "assertion_exhibit", "comparison", "coverage_limits"], "treatment": "restrained", "density": "sparse", "imagery": "none"},
+      "verdict": "reject",
+      "rationale": "An SCQA executive summary and an options table answer a board's question, not a depot team's."
+    },
+    {
+      "idea_id": "D4", "name": "Testimonial",
+      "assembly": {"narrative": "stakeholder-journey", "compositions": ["cover", "hero", "persona", "journey", "closing"], "treatment": "warm", "density": "sparse", "imagery": "photographic"},
+      "verdict": "defer",
+      "conditions": "Re-enter once the first automated site has staff who can speak to the change; no such voices exist yet."
+    }
+  ],
+  "adopted": "D2",
+  "manifest": [
+    {"id": "M1", "assumption": "Audience is the whole company, mostly depot floor, live in a hall", "class": "fact", "source": "brief.audience, brief.setting.mode", "flips": ["density", "type_scale", "jargon_policy"]},
+    {"id": "M2", "assumption": "Deck is not read unattended and not printed", "class": "fact", "source": "brief.setting.read_unattended, brief.setting.printed", "flips": ["full_bleed_allowed", "so_what_brevity", "no_paper_output"]},
+    {"id": "M3", "assumption": "Job security is the audience's first question and must be answered with a number, not a promise", "class": "inferred", "source": "brief.audience.priorities", "flips": ["big_number_slot", "headcount_slide_position"]},
+    {"id": "M4", "assumption": "No option has been chosen yet; the board decides on 14 October", "class": "recalled", "source": "brief.purpose", "flips": ["options_shown_without_winner", "closing_statement_wording"]}
+  ],
+  "confirmed_by": "coach",
+  "confirmed_at": "2026-10-20T08:30:00Z"
+}

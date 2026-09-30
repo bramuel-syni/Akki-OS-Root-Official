@@ -477,3 +477,18 @@ their current defect status. See ROADMAP.md for next work and honest package sta
   read-only (Re-read records, per-model Check health → live GPU serving telemetry).
 - Testing agent iteration_69: frontend 100% at 1920×800 and 390×844, no overflow,
   Estate Intelligence regression OK. No accounts, jobs or backend files changed.
+
+## 2026-09-30 — M6: doc-studio v1.1 installed as the primary production skill
+
+- Owner package (`files (21).zip`, sha 8f920f9f…) read line for line and installed verbatim at
+  `services/transform_forms/doc_studio/skill/`; INSTALL_MANIFEST.json records v1.0 vs v1.1 hashes
+  (only build.py/qa.py changed: tool paths from DOC_STUDIO_TOOLS_DIR — condition A).
+- Environment of record: LibreOffice 7.4.7.2, python-pptx 1.0.2, matplotlib 3.11.2 (apt/pip; requirements frozen).
+- Adapter + `/api/studio/*`: file-backed tenant commission store, standing frame FR-strategy-decide-v1,
+  brief-generated verdict manifest, census→commission producer (deck+paper+html; no workbook — recorded limit),
+  platform_ref receipts resolved at build, prove-build, revise/strike, re-verdict, PDF export, downloads.
+- UI: WORKSTUDIO · Documents is the studio; Estate Intelligence "Commission board pack".
+- Verification (terminal pytest only): tests/m6_doc_studio 19 passed (evals 1–3 in-pod; eval-1 pptx hash equals
+  the owner's shipped manifest), tests/m6_decks 14 passed. Visual QA caught and fixed a producer ratio defect
+  (strategy bytes vs DB-only reclaimable); polluted dev commission removed and re-commissioned clean.
+- New env keys: AKKI_STUDIO_STORE_DIR, DOC_STUDIO_TOOLS_DIR. No accounts changed.

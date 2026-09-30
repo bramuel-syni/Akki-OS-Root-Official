@@ -1,0 +1,130 @@
+{
+  "brief_ref": "BR-2026-09-30-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T16:44:01Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-09-30",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "Commission close · measured {content.measured_on}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C006}. {C012}. {C008}. The decision is the estate owner's; this pack sets out the measured evidence.",
+      "complication": "{C002}. {C003}.",
+      "kicker": "Executive summary",
+      "question": "Which cost-reduction strategies and product candidates should the estate owner take forward?",
+      "situation": "{C001}. {C011}.",
+      "title": "The estate is large, repetitive in places and mostly personal; reclaimable bytes are known",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "What the estate holds and how it is conditioned",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C001}",
+        "y_format": "num"
+      },
+      "kicker": "Where the bytes are",
+      "title": "{C005}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C007}",
+        "y_format": "pct"
+      },
+      "kicker": "Condition",
+      "title": "{C002}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Personal data and staleness",
+      "points": [
+        "{C004}",
+        "{C009}",
+        "{C008}"
+      ],
+      "title": "{C003}",
+      "type": "assertion_points"
+    },
+    {
+      "number": 2,
+      "title": "What it costs to keep, and what it could become",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C012}",
+        "y_format": "num"
+      },
+      "kicker": "Cost",
+      "title": "{C013}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "columns": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "kicker": "Strategies",
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "num1",
+          "label": "Bytes addressed (GiB)"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "num1",
+          "label": "Monthly saving (USD)"
+        },
+        {
+          "calc": "K003",
+          "format": "pct",
+          "label": "Share of bytes addressed"
+        }
+      ],
+      "so_what": "{C006}",
+      "title": "Three costed strategies sit side by side; the estate owner chooses the order",
+      "type": "comparison"
+    },
+    {
+      "kicker": "Products",
+      "points": [
+        "{C021}",
+        "{C022}",
+        "{C023}"
+      ],
+      "title": "{C010}",
+      "type": "assertion_points"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-09-30-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

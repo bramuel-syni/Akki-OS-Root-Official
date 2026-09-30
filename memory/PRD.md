@@ -20,7 +20,18 @@ M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → 
 - English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
 - M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-## CURRENT — 2026-09-30 M8/M9 completion (backend + Model Approval UI)
+## CURRENT — 2026-09-30 M6: doc-studio v1.1 installed as the primary production skill (owner-approved rulings 1–4, conditions A–D)
+
+Owner uploaded `files (21).zip` (doc-studio skill: brief → content model → CIF verdict → format specs → build --prove → freeze → QA → deliver → revise) and ruled it the primary production skill for document production. Evidence: `assessment_workspace/notes/m6_execution/M6_DOC_STUDIO_INSTALL_20260930.md`.
+
+- **Installed verbatim** at `services/transform_forms/doc_studio/skill/` with `INSTALL_MANIFEST.json` (v1.0 owner hashes vs v1.1 installed; only `scripts/build.py`+`scripts/qa.py` changed — they read `DOC_STUDIO_TOOLS_DIR`; condition A). In-repo office tools under `doc_studio/tools/`. LibreOffice 7.4.7.2 + python-pptx 1.0.2 + matplotlib 3.11.2 installed; the environment is pinned in every build manifest (ruling 1).
+- **Deck engine** `/api/decks/*` kept read-only for its one recorded deck; doc-studio recorded as the DRE reference implementation (ruling 2). **Direction stage**: operator-authored verdicts under standing frame `FR-strategy-decide-v1`; non-routine → CIF ideas endpoint (not mounted → refused); no LLM path (ruling 3). Defaults `house-neutral` / "Tenant confidential" / seed = content_id/purpose/date / build_stamp frozen at creation (ruling 4).
+- **Adapter** (`doc_studio/{install,store,frames,manifest_template,producer_estate,receipts,service}.py`, `routers/studio.py` → `/api/studio/*`): file-backed tenant store (condition D), census→commission producer whose verdict manifest is generated from the brief (condition B), `platform_ref` receipts resolved at build (unresolvable → blocker), prove-build, revise (strike detection), re-verdict, PDF export, downloads.
+- **UI**: WORKSTUDIO · Documents (`/os/work/documents`) is the studio; Estate Intelligence has "Commission board pack".
+- **Verification (condition C, no testing agent)**: `pytest tests/m6_doc_studio -n 0` 19 passed — evals 1–3 in-pod (eval 1 byte-identical, pptx hash equals the owner's shipped manifest; html/docx/xlsx differ by environment as expected), lifecycle offline, live API reads/refusals. `tests/m6_decks` 14 passed.
+- **Limits on record**: no workbook for the estate commission (studio Options/Checks sheets are bound to the option-model shape); in-repo validators are not OOXML schema validators; PDF outside byte-identity; G6 still open (M6-T4 external skill call, M6-T5 async/late refusal not exercised).
+
+## PREVIOUS — 2026-09-30 M8/M9 completion (backend + Model Approval UI)
 
 Owner asked “Can we complete M8 and M9 fully”, ruled 1a/2a/3d/4c/5a (recorded in `assessment_workspace/notes/m8_m9_completion_20260930/OWNER_RULINGS_20260930.md`), then chose plan A for the UI. Owner's stated next wave after this: **M6 (~50%) and M5 (~55%) pending work**.
 

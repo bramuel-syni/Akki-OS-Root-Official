@@ -1,0 +1,44 @@
+{
+  "spec_type": "deck",
+  "spec_id": "DK-northline-2026-10",
+  "content_ref": "northline-depot-automation@1",
+  "brief_ref": "BR-2026-09-30-001",
+  "verdict_ref": "V-2026-09-30-001",
+  "objective": "decide",
+  "family": "strategy",
+  "voice": "strategy-house",
+  "seed": "northline-depot-automation/board/2026-10-14",
+  "build_stamp": "2026-09-30T00:00:00Z",
+  "furniture": {"deck_id": "BP-2026-10-A", "confidentiality": "Board confidential"},
+  "slides": [
+    {"type": "cover", "title": "{content.title}", "subtitle": "Board meeting, 14 October 2026", "org": "{content.organisation}"},
+    {"type": "exec_summary", "kicker": "Executive summary",
+     "title": "Volume growth is outrunning the manual network; three costed options are on the table",
+     "situation": "{C005}", "complication": "{C001}", "question": "Which automation path, if any, should the board approve?",
+     "answer": "{C003}. {C004}. The decision is the board's; this pack sets out the evidence for each path."},
+    {"type": "section", "number": 1, "title": "The margin problem is structural, not cyclical"},
+    {"type": "assertion_exhibit", "kicker": "Situation", "title": "{C001}",
+     "exhibit": {"plate": "line", "series_ref": "S003", "y_format": "pct", "so_what": "{C007}"}},
+    {"type": "assertion_exhibit", "kicker": "Situation", "title": "{C002}",
+     "exhibit": {"plate": "bar", "series_ref": "S002", "y_format": "gbp", "so_what": "{C006}"}},
+    {"type": "section", "number": 2, "title": "Three paths, each inside the headcount ceiling"},
+    {"type": "comparison", "kicker": "Options", "title": "{C003}",
+     "columns": ["O1", "O2", "O3"],
+     "rows": [
+       {"label": "Capex (GBPm)", "field": "capex", "format": "num1"},
+       {"label": "Annual saving (GBPm)", "field": "annual_saving", "format": "num1"},
+       {"label": "Simple payback (years)", "calc": "K004", "format": "num1"},
+       {"label": "Lead time (months)", "field": "lead_months", "format": "int"},
+       {"label": "Headcount change (FTE)", "field": "headcount_delta", "format": "int"}
+     ],
+     "so_what": "{C008}"},
+    {"type": "assertion_points", "kicker": "Options", "title": "{C004}",
+     "points": [
+       "Ceiling of {F009} FTE was approved in BP-2026-07 and binds FY27 planning",
+       "The largest reduction, {O1.headcount_delta} FTE under full automation, is below the ceiling headroom",
+       "Reductions are phased with vendor lead time of {F010} months, so no FY27 exit is forced"
+     ]},
+    {"type": "coverage_limits"},
+    {"type": "appendix"}
+  ]
+}

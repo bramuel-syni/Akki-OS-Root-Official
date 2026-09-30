@@ -1,0 +1,36 @@
+{
+  "verdict_id": "V-2026-09-30-001",
+  "brief_ref": "BR-2026-09-30-001",
+  "goal": "Select a creative direction that lets a time-poor board decide between costed options from a read-ahead pack and a 15-minute presentation.",
+  "frame_ref": "FR-strategy-decide-v1",
+  "candidates": [
+    {
+      "idea_id": "D1", "name": "Evidence-led",
+      "assembly": {"narrative": "recommendation-and-evidence", "compositions": ["cover", "exec_summary", "section", "assertion_exhibit", "comparison", "coverage_limits", "appendix"], "treatment": "restrained", "density": "sparse", "imagery": "none"},
+      "verdict": "adopt",
+      "rationale": "Board priorities are capital discipline and headcount; every slide must carry a costed exhibit. Read-ahead use means exhibits must be self-explaining."
+    },
+    {
+      "idea_id": "D2", "name": "Future-state",
+      "assembly": {"narrative": "vision-then-journey", "compositions": ["cover", "hero_statement", "system_diagram", "journey", "comparison"], "treatment": "expressive", "density": "medium", "imagery": "abstract"},
+      "verdict": "defer",
+      "conditions": "Re-enter when the deck's purpose is to persuade a sales or programme audience rather than to decide capital allocation."
+    },
+    {
+      "idea_id": "D3", "name": "Human-centred",
+      "assembly": {"narrative": "stakeholder-journey", "compositions": ["cover", "persona", "journey", "benefits", "evidence"], "treatment": "warm", "density": "medium", "imagery": "photographic"},
+      "verdict": "reject",
+      "rationale": "No stakeholder research in the content model; the direction would require evidence that does not exist."
+    }
+  ],
+  "adopted": "D1",
+  "manifest": [
+    {"id": "M1", "assumption": "Audience is a time-poor board deciding capital allocation", "class": "fact", "source": "brief.purpose, brief.audience", "flips": ["density", "narrative", "exhibit_per_slide"]},
+    {"id": "M2", "assumption": "Pack is read unattended before the meeting", "class": "fact", "source": "brief.setting.read_unattended", "flips": ["so_what_lines", "self_explaining_exhibits", "docx_output"]},
+    {"id": "M3", "assumption": "Pack will be printed", "class": "fact", "source": "brief.setting.printed", "flips": ["palette_field", "full_bleed_disallowed"]},
+    {"id": "M4", "assumption": "Board is unfamiliar with automation technology", "class": "recalled", "source": "brief.audience.knowledge", "flips": ["jargon_policy", "glossary_in_appendix"]},
+    {"id": "M5", "assumption": "Every option must be shown without a recommended winner", "class": "inferred", "source": "house policy: findings not directives", "flips": ["comparison_plate_no_winner"]}
+  ],
+  "confirmed_by": "coach",
+  "confirmed_at": "2026-09-30T09:00:00Z"
+}

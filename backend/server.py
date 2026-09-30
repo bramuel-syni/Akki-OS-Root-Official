@@ -526,6 +526,10 @@ app.include_router(dap_buildskill_router.router)  # router path carries /api/dap
 from routers import decks as decks_router  # noqa: E402
 app.include_router(decks_router.router)
 
+# M6 · doc-studio v1.1 — Akki's primary production skill for document production (owner approval 2026-09-30); routes /api/studio/*
+from routers import studio as studio_router  # noqa: E402
+app.include_router(studio_router.router)
+
 
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):

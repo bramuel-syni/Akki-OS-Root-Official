@@ -1,0 +1,458 @@
+{
+  "calculations": {
+    "K001": {
+      "formula": "F003 / F002",
+      "inputs": [
+        "F002",
+        "F003"
+      ],
+      "label": "Share of tables measured",
+      "unit": "pct"
+    },
+    "K002": {
+      "formula": "F016 / F004",
+      "inputs": [
+        "F004",
+        "F016"
+      ],
+      "label": "Share of bytes in the largest databases",
+      "unit": "pct"
+    },
+    "K003": {
+      "formula": "option.reclaimable_gib / F021",
+      "inputs": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "label": "Share of bytes addressed by all strategies",
+      "unit": "pct"
+    },
+    "K004": {
+      "formula": "F020 / F021",
+      "inputs": [
+        "F020",
+        "F021"
+      ],
+      "label": "Three largest strategies' share of bytes addressed",
+      "unit": "pct"
+    }
+  },
+  "census_ref": "eij-1b359b3cbd2e",
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001",
+        "F002",
+        "F004"
+      ],
+      "text": "{F004} GiB sit in {F001} databases and {F002} tables"
+    },
+    "C002": {
+      "supports": [
+        "F007",
+        "F008",
+        "F009"
+      ],
+      "text": "Exact duplicates are {F007} of rows; degraded rows {F008}; empty required fields {F009}"
+    },
+    "C003": {
+      "supports": [
+        "F010",
+        "F011"
+      ],
+      "text": "{F010} of {F011} sampled rows carry PII markers"
+    },
+    "C004": {
+      "supports": [
+        "F012",
+        "F015"
+      ],
+      "text": "{F012} of bytes have not been written for over a year; {F015} tables are empty"
+    },
+    "C005": {
+      "supports": [
+        "F004",
+        "F016"
+      ],
+      "text": "The largest databases hold {K002} of the estate's bytes"
+    },
+    "C006": {
+      "supports": [
+        "F005",
+        "F006"
+      ],
+      "text": "About {F005} GiB ({F006} of database bytes) looks reclaimable in the databases before pricing"
+    },
+    "C007": {
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "Measures cover {K001} of tables; the remaining ratios are estimated from stratified samples"
+    },
+    "C008": {
+      "supports": [
+        "F010"
+      ],
+      "text": "Rights are declared at Connect, not measured by the census; every candidate is aggregate or de-identified"
+    },
+    "C009": {
+      "supports": [
+        "F017"
+      ],
+      "text": "Dead columns are {F017} of measured columns"
+    },
+    "C010": {
+      "supports": [
+        "F018"
+      ],
+      "text": "{F018} product candidates rank by rows, readiness and dimensions"
+    },
+    "C011": {
+      "supports": [
+        "F013",
+        "F014"
+      ],
+      "text": "{F013} rows are held; {F014} table pairs duplicate each other"
+    },
+    "C012": {
+      "supports": [
+        "F019"
+      ],
+      "text": "Priced strategies bound the monthly saving at {F019} USD at reference list prices"
+    },
+    "C013": {
+      "supports": [
+        "F020",
+        "F021"
+      ],
+      "text": "Three strategies address {K004} of the {F021} GiB that all cost strategies reach"
+    },
+    "C021": {
+      "supports": [
+        "F018"
+      ],
+      "text": "Reference and master-data licensing: grade C, 87 tables, 123,394,159 rows (est.); blockers: 62.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+    },
+    "C022": {
+      "supports": [
+        "F018"
+      ],
+      "text": "Content catalogue, recommendation and licensing corpus: grade C, 98 tables, 157,855,990 rows (est.); blockers: 74.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+    },
+    "C023": {
+      "supports": [
+        "F018"
+      ],
+      "text": "Channel / telco engagement analytics (USSD, SMS, app): grade C, 57 tables, 116,781,903 rows (est.); blockers: 79.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+    }
+  },
+  "content_id": "estate-intelligence-eij-1b359b3cbd2e",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "a complete-pass census on the sampled tables",
+        "gap": "Duplicate, damage, empty-field and PII ratios on sampled tables",
+        "reason": "complete passes where the table allowed it, stratified samples elsewhere"
+      },
+      {
+        "closes_with": "rights declared at Connect and bound to each candidate",
+        "gap": "Rights, licences and semantic similarity",
+        "reason": "not measured; candidates are dimensional readiness only"
+      },
+      {
+        "closes_with": "owner grants read access; re-census",
+        "gap": "Connection artists_app",
+        "reason": "could not be read (MySQL GRANT pending)"
+      },
+      {
+        "closes_with": "a fingerprinting pass over the NAS shares",
+        "gap": "NAS duplication",
+        "reason": "the enumeration recorded sizes and dates, not content fingerprints"
+      },
+      {
+        "closes_with": "bucket inventory reconciled with the provider",
+        "gap": "40 of 106 OBS buckets",
+        "reason": "unreachable (NoSuchBucket / client errors)"
+      }
+    ],
+    "covers": "20 databases, 1,006 tables and 351.3 GiB measured by census eij-1b359b3cbd2e; ratios are complete-pass where the table allowed it and stratified samples elsewhere. No row value is present in this pack."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Databases",
+      "receipt": "R01",
+      "unit": "databases",
+      "value": 20
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Tables",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 1006
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Tables measured",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 638
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Data and index held",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 351.3
+    },
+    "F005": {
+      "class": "estimated",
+      "label": "Reclaimable before pricing",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 15.2
+    },
+    "F006": {
+      "class": "estimated",
+      "label": "Reclaimable share of bytes",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.043
+    },
+    "F007": {
+      "class": "estimated",
+      "label": "Exact duplicate rows",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.015
+    },
+    "F008": {
+      "class": "estimated",
+      "label": "Degraded rows",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.23
+    },
+    "F009": {
+      "class": "estimated",
+      "label": "Rows with empty required-looking fields",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.817
+    },
+    "F010": {
+      "class": "estimated",
+      "label": "Sampled rows with PII markers",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.718
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Rows sampled for PII",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 1.0
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Bytes not written for over a year",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.154
+    },
+    "F013": {
+      "class": "estimated",
+      "label": "Rows held",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 259.3
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Duplicate table pairs",
+      "receipt": "R01",
+      "unit": "pairs",
+      "value": 71
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Empty tables",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 368
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Bytes in the largest databases",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 350.3
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Dead columns share",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.13
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Product candidates",
+      "receipt": "R03",
+      "unit": "candidates",
+      "value": 8
+    },
+    "F019": {
+      "class": "estimated",
+      "label": "Priced monthly saving (USD)",
+      "receipt": "R02",
+      "unit": "USD",
+      "value": 1174.4
+    },
+    "F020": {
+      "class": "estimated",
+      "label": "Bytes addressed by the three largest strategies",
+      "receipt": "R02",
+      "unit": "GiB",
+      "value": 50784.6
+    },
+    "F021": {
+      "class": "estimated",
+      "label": "Bytes addressed by all cost strategies (databases, object and file stores)",
+      "receipt": "R02",
+      "unit": "GiB",
+      "value": 50799.8
+    }
+  },
+  "measured_on": "2026-09-29",
+  "options": {
+    "O1": {
+      "class": "estimated",
+      "monthly_saving_usd": 986.5,
+      "name": "Move buckets not written for over a year to archive-class st",
+      "receipt": "R02",
+      "reclaimable_gib": 42891.0
+    },
+    "O2": {
+      "class": "estimated",
+      "monthly_saving_usd": 180.3,
+      "name": "Reconcile duplicate objects across OBS buckets",
+      "receipt": "R02",
+      "reclaimable_gib": 7839.5
+    },
+    "O3": {
+      "class": "estimated",
+      "monthly_saving_usd": 5.9,
+      "name": "Move tables not written for over a year to cold storage",
+      "receipt": "R02",
+      "reclaimable_gib": 54.1
+    }
+  },
+  "organisation": "RMS",
+  "receipts": {
+    "R01": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures"
+    },
+    "R02": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month"
+    },
+    "R03": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)"
+    },
+    "R04": {
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+    },
+    "R05": {
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+    }
+  },
+  "series": {
+    "S001": {
+      "categories": [
+        "viusasa_staging (D)",
+        "razuna (D)",
+        "db_visitors (D)",
+        "kra_reports (D)",
+        "viupay_agent_staging (A)",
+        "news_vault (C)",
+        "local (D)",
+        "viutickets (B)"
+      ],
+      "class": "measured",
+      "label": "Data and index by database, GiB",
+      "receipt": "R01",
+      "unit": "GiB",
+      "values": {
+        "GiB": [
+          338.5,
+          4.5,
+          2.7,
+          1.5,
+          1.2,
+          0.9,
+          0.5,
+          0.4
+        ]
+      }
+    },
+    "S002": {
+      "categories": [
+        "Exact duplicates",
+        "Degraded",
+        "Empty required fields",
+        "PII markers (sampled)",
+        "Stale bytes"
+      ],
+      "class": "estimated",
+      "label": "Condition of measured rows",
+      "receipt": "R01",
+      "unit": "pct",
+      "values": {
+        "Share": [
+          0.015,
+          0.23,
+          0.817,
+          0.718,
+          0.154
+        ]
+      }
+    },
+    "S003": {
+      "categories": [
+        "Move buckets not written for over a year",
+        "Reconcile duplicate objects across OBS b",
+        "Move tables not written for over a year ",
+        "Remove redundant (prefix-covered) indexe",
+        "De-duplicate exact repeated rows inside ",
+        "Consolidate duplicate and staging copies",
+        "Drop or archive empty tables"
+      ],
+      "class": "estimated",
+      "label": "Reclaimable GiB by cost strategy",
+      "receipt": "R02",
+      "unit": "GiB",
+      "values": {
+        "GiB": [
+          42891.0,
+          7839.5,
+          54.1,
+          14.0,
+          1.2,
+          0.1,
+          0.0
+        ]
+      }
+    }
+  },
+  "title": "Estate intelligence — eij-1b359b3cbd2e",
+  "version": 1
+}

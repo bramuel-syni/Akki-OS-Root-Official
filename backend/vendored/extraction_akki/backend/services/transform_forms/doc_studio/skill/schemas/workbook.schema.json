@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Workbook format spec",
+  "type": "object",
+  "required": [
+    "spec_type",
+    "spec_id",
+    "content_ref",
+    "brief_ref",
+    "verdict_ref",
+    "objective",
+    "family",
+    "voice",
+    "seed",
+    "build_stamp",
+    "sheets"
+  ],
+  "properties": {
+    "spec_type": {
+      "const": "workbook"
+    },
+    "content_ref": {
+      "type": "string",
+      "pattern": "@\\d+$"
+    },
+    "seed": {
+      "type": "string",
+      "minLength": 4
+    },
+    "build_stamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$"
+    },
+    "sheets": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "cover",
+              "inputs",
+              "options_model",
+              "series",
+              "checks"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

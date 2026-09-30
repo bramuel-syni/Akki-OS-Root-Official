@@ -1,0 +1,25 @@
+{
+  "spec_type": "deck",
+  "spec_id": "DK-northline-allhands-2026-10",
+  "content_ref": "northline-depot-automation@1",
+  "brief_ref": "BR-2026-10-20-002",
+  "verdict_ref": "V-2026-10-20-002",
+  "objective": "inspire",
+  "family": "keynote",
+  "voice": "keynote-cinematic",
+  "seed": "northline-depot-automation/all-hands/2026-10-22",
+  "build_stamp": "2026-10-20T00:00:00Z",
+  "furniture": {"deck_id": "AH-2026-10", "confidentiality": "Internal"},
+  "slides": [
+    {"type": "cover", "title": "What automation means for Northline", "subtitle": "All-hands, 22 October 2026", "org": "{content.organisation}"},
+    {"type": "hero", "kicker": "Why now", "statement": "{C005}"},
+    {"type": "big_number", "kicker": "The number behind it", "fact_ref": "F008", "label": "parcels handled last year, a record", "so_what": "{C001}"},
+    {"type": "assertion_exhibit", "kicker": "Where the cost is", "title": "{C002}", "exhibit": {"plate": "bar", "series_ref": "S002", "y_format": "gbp", "so_what": "{C006}"}},
+    {"type": "section", "number": 1, "title": "What is being decided"},
+    {"type": "assertion_points", "kicker": "The paths", "title": "Three paths are on the table; the board decides on 14 October",
+     "points": ["{O1.name}: {O1.lead_months} months to build", "{O2.name}: {O2.lead_months} months to build", "{O3.name}: {O3.lead_months} months to build"]},
+    {"type": "big_number", "kicker": "Your first question", "fact_ref": "F009", "label": "FTE ceiling for FY27, already approved. Every path stays inside it.", "so_what": "{C004}"},
+    {"type": "coverage_limits"},
+    {"type": "closing", "statement": "Nothing changes on your shift until the board decides. When it does, you will hear it here first.", "sub": "Questions now, or to your depot lead this week"}
+  ]
+}

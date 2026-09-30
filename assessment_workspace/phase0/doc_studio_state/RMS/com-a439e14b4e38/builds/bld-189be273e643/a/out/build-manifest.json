@@ -1,0 +1,33 @@
+{
+  "build_stamp": "2026-09-30T16:44:01Z",
+  "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+  "environment": {
+    "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+    "matplotlib": "3.11.2",
+    "openpyxl": "3.1.5",
+    "python": "3.11.16",
+    "python-docx": "1.2.0",
+    "python-pptx": "1.0.2"
+  },
+  "inputs_sha256": {
+    "deck.resolved.json": "d5d44fb028545b92b499125068cbd762b458d62f84d2c84d9ef33e2be832b36b",
+    "deck.resolved/brief.json": "62249ed7cc9bd1cd2e80ba477426d7746436e0ee4c37f99a06087a1f5f3a2399",
+    "deck.resolved/content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+    "deck.resolved/deck.json": "7d1e55ba6eddd5ca8ef3efba5d64cd16220d699fb334aa7fb677475b3835d69f",
+    "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "deck.resolved/verdict.json": "c21cdf7a9c822726daccb66109e2eaf6b7ca33e534abbc971f4c7f9faae90662",
+    "paper.resolved.json": "3c7692d5ad21f48bfaa10b9cd5c1ea9234ea63b3a9e5c787d5cfa1de4aafc70b",
+    "paper.resolved/brief.json": "62249ed7cc9bd1cd2e80ba477426d7746436e0ee4c37f99a06087a1f5f3a2399",
+    "paper.resolved/content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+    "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.resolved/paper.json": "00328c0da87c005961d7e6cbd1b22af3d2aa77f36415059f375a6561a24f31d9",
+    "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "paper.resolved/verdict.json": "c21cdf7a9c822726daccb66109e2eaf6b7ca33e534abbc971f4c7f9faae90662"
+  },
+  "outputs_sha256": {
+    "estate-intelligence-eij-1b359b3cbd2e-review.html": "bf8b935f965fae9552bbba89c96d293b3a8040364f3ea03e7de90d803a4ccdbb",
+    "estate-intelligence-eij-1b359b3cbd2e.docx": "55d40386135e3ac15772f2c99624fbd4a84751421bef54d52ed90634133797e3",
+    "estate-intelligence-eij-1b359b3cbd2e.pptx": "dc97c0e18f8b96e63abaac31a02ef62391b6ef1377f17df18a7095f0cbb14fb9"
+  }
+}

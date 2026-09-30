@@ -1,0 +1,39 @@
+{
+  "spec_type": "paper",
+  "spec_id": "PP-northline-2026-10",
+  "content_ref": "northline-depot-automation@1",
+  "brief_ref": "BR-2026-09-30-001",
+  "verdict_ref": "V-2026-09-30-001",
+  "objective": "decide",
+  "family": "strategy",
+  "voice": "strategy-house",
+  "seed": "northline-depot-automation/board/2026-10-14",
+  "build_stamp": "2026-09-30T00:00:00Z",
+  "furniture": {"paper_id": "BP-2026-10-A (paper)", "confidentiality": "Board confidential"},
+  "title": "{content.title}",
+  "subtitle": "Board paper for the meeting of 14 October 2026",
+  "sections": [
+    {"heading": "Summary", "blocks": [
+      {"para": "{C005}. {C001}."},
+      {"para": "{C003}. {C004}. This paper sets out the evidence for each path; the decision is for the board."}
+    ]},
+    {"heading": "1. The margin problem is structural", "blocks": [
+      {"para": "{C007}. {C002}."},
+      {"figure": {"plate": "line", "series_ref": "S003", "y_format": "pct", "caption": "{C001}"}},
+      {"table": {"series_ref": "S002", "caption": "Cost per parcel by depot type"}}
+    ]},
+    {"heading": "2. Three paths, each inside the headcount ceiling", "blocks": [
+      {"para": "{C003}. {C008}."},
+      {"options_table": {"columns": ["O1", "O2", "O3"], "rows": [
+        {"label": "Capex (GBPm)", "field": "capex", "format": "num1"},
+        {"label": "Annual saving (GBPm)", "field": "annual_saving", "format": "num1"},
+        {"label": "Simple payback (years)", "calc": "K004", "format": "num1"},
+        {"label": "Lead time (months)", "field": "lead_months", "format": "int"},
+        {"label": "Headcount change (FTE)", "field": "headcount_delta", "format": "int"}
+      ], "caption": "Costed options; all figures estimated, receipts in appendix"}},
+      {"para": "{C004}."}
+    ]},
+    {"heading": "3. Coverage and limits", "blocks": [{"coverage_limits": true}]},
+    {"heading": "Appendix: receipts", "blocks": [{"receipts": true}]}
+  ]
+}

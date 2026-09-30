@@ -1,0 +1,41 @@
+{
+  "build_stamp": "2026-09-30T00:00:00Z",
+  "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+  "environment": {
+    "libreoffice": "LibreOffice 24.2.7.2 420(Build:2)",
+    "matplotlib": "3.10.8",
+    "openpyxl": "3.1.5",
+    "python": "3.12.3",
+    "python-docx": "1.2.0",
+    "python-pptx": "1.0.2"
+  },
+  "inputs_sha256": {
+    "deck.resolved.json": "d19843484697d033a6b92490506e81b33af59b6c2d98d9060587133986db4f4e",
+    "deck.resolved/brief.json": "ce16a3fbde4fb7a9c6bf744e50c1f7857cb460a6faf179c2016aac716aa15eb4",
+    "deck.resolved/content.json": "7939dc5bd2554c5805097c295d49d8fa02c9237a79927bef0939ce31f2d08541",
+    "deck.resolved/deck.json": "47ad9c14555bd41458b94a491b72fad3ddb841efae15983a26fb12ff500491b5",
+    "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "deck.resolved/verdict.json": "6cc1f9839c895c1ecdef931fafa0daf1c36e785dbf0995951193fa0e4266e0bb",
+    "paper.resolved.json": "3923bf15e99ad9770803bb342d4348d5673864f47aca5f9ba3e06680ae9f32d1",
+    "paper.resolved/brief.json": "ce16a3fbde4fb7a9c6bf744e50c1f7857cb460a6faf179c2016aac716aa15eb4",
+    "paper.resolved/content.json": "7939dc5bd2554c5805097c295d49d8fa02c9237a79927bef0939ce31f2d08541",
+    "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.resolved/paper.json": "e30e6f012197b46bef596c2a611c1529d273e40cfb09b61b5bde9646f784a816",
+    "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "paper.resolved/verdict.json": "6cc1f9839c895c1ecdef931fafa0daf1c36e785dbf0995951193fa0e4266e0bb",
+    "workbook.resolved.json": "267707bed235f194c0c3302f3e57376d9cbd93b1354e904df355f4384f5a0c95",
+    "workbook.resolved/brief.json": "ce16a3fbde4fb7a9c6bf744e50c1f7857cb460a6faf179c2016aac716aa15eb4",
+    "workbook.resolved/content.json": "7939dc5bd2554c5805097c295d49d8fa02c9237a79927bef0939ce31f2d08541",
+    "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "workbook.resolved/verdict.json": "6cc1f9839c895c1ecdef931fafa0daf1c36e785dbf0995951193fa0e4266e0bb",
+    "workbook.resolved/workbook.json": "68dc91c4dd7e0290055b17ded927b8c1ee9bc56e04443ffa987864332740813b"
+  },
+  "outputs_sha256": {
+    "northline-depot-automation-review.html": "c63a9d4eb1dcda310c8bc03b00bfaf0680fe1fdbe1b9b0fb106ee8831ad099be",
+    "northline-depot-automation.docx": "2f9ed76240c4813aca81f00c4e2e94064917397f4e241b5d17b2eaf696a74f2e",
+    "northline-depot-automation.pptx": "64b946b9768b18adfe0c02ea9bb1492d6377bb6246d2cfcc327922c7a573d9db",
+    "northline-depot-automation.xlsx": "d1d743d3c80ea9d5d72a49bf2f81504b302f108388a1dffb053fbc1860b6fb87"
+  }
+}

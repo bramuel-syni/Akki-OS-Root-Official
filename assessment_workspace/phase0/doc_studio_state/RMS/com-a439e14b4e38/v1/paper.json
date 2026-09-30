@@ -1,0 +1,132 @@
+{
+  "brief_ref": "BR-2026-09-30-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T16:44:01Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "EI-eij-1b359b3cbd2e (paper)"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "{C001}. {C011}."
+        },
+        {
+          "para": "{C006}. {C008}. This paper sets out the measured evidence; the decision is the estate owner's."
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C005}. {C002}."
+        },
+        {
+          "figure": {
+            "caption": "{C007}",
+            "plate": "bar",
+            "series_ref": "S002",
+            "y_format": "pct"
+          }
+        },
+        {
+          "table": {
+            "caption": "Data and index by database",
+            "series_ref": "S001"
+          }
+        },
+        {
+          "para": "{C003}. {C004}. {C009}."
+        }
+      ],
+      "heading": "1. What the estate holds and how it is conditioned"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C006}. {C012}."
+        },
+        {
+          "figure": {
+            "caption": "{C013}",
+            "plate": "bar",
+            "series_ref": "S003",
+            "y_format": "num"
+          }
+        },
+        {
+          "options_table": {
+            "caption": "Costed strategies; all figures estimated at reference list prices, receipts in appendix",
+            "columns": [
+              "O1",
+              "O2",
+              "O3"
+            ],
+            "rows": [
+              {
+                "field": "reclaimable_gib",
+                "format": "num1",
+                "label": "Bytes addressed (GiB)"
+              },
+              {
+                "field": "monthly_saving_usd",
+                "format": "num1",
+                "label": "Monthly saving (USD)"
+              },
+              {
+                "calc": "K003",
+                "format": "pct",
+                "label": "Share of bytes addressed"
+              }
+            ]
+          }
+        }
+      ],
+      "heading": "2. What it costs to keep"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C010}. {C008}."
+        },
+        {
+          "para": "{C021}."
+        },
+        {
+          "para": "{C022}."
+        },
+        {
+          "para": "{C023}."
+        }
+      ],
+      "heading": "3. What the data can do"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "4. Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-09-30",
+  "spec_id": "PP-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "Commission-close paper for the estate owner",
+  "title": "{content.title}",
+  "verdict_ref": "V-2026-09-30-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

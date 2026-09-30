@@ -1,0 +1,669 @@
+{
+  "brief_ref": "BR-2026-09-30-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T16:44:01Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "furniture_zones": {
+    "confidentiality": {
+      "h": 0.412,
+      "w": 4.897,
+      "x": 6.767,
+      "y": 6.638
+    },
+    "doc_id": {
+      "h": 0.412,
+      "w": 5.916,
+      "x": 0.65,
+      "y": 6.638
+    },
+    "page_no": {
+      "h": 0.412,
+      "w": 0.819,
+      "x": 11.864,
+      "y": 6.638
+    }
+  },
+  "inputs_sha256": {
+    "brief.json": "62249ed7cc9bd1cd2e80ba477426d7746436e0ee4c37f99a06087a1f5f3a2399",
+    "content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+    "deck.json": "7d1e55ba6eddd5ca8ef3efba5d64cd16220d699fb334aa7fb677475b3835d69f",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "c21cdf7a9c822726daccb66109e2eaf6b7ca33e534abbc971f4c7f9faae90662"
+  },
+  "look": {
+    "cover_composition": "title-centred-band",
+    "divider_treatment": "inverted-field",
+    "fonts": {
+      "body": "Arial",
+      "number": "Courier New",
+      "title": "Century Schoolbook"
+    },
+    "palette": {
+      "accent": "E8772E",
+      "field": "FFFFFF",
+      "hatch": "E8EEF3",
+      "muted": "70879A",
+      "rule": "D3DCE4",
+      "structure": "14324A"
+    },
+    "palette_id": "harbour",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "century-arial",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "organisation": "RMS",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-09-30",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "slide_h": 7.5,
+  "slide_w": 13.333,
+  "slides": [
+    {
+      "n": 1,
+      "org": "RMS",
+      "subtitle": "Commission close · measured 2026-09-29",
+      "title": "Estate intelligence — eij-1b359b3cbd2e",
+      "title_chars": 38,
+      "type": "cover",
+      "zones": {
+        "org": {
+          "h": 0.412,
+          "w": 5.916,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "subtitle": {
+          "h": 0.825,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 4.575
+        },
+        "title": {
+          "h": 1.65,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 2.925
+        }
+      }
+    },
+    {
+      "kicker": "Executive summary",
+      "n": 2,
+      "scqa": [
+        [
+          "Situation",
+          "351.3 GiB sit in 20 databases and 1006 tables. 259.3m rows are held; 71 table pairs duplicate each other."
+        ],
+        [
+          "Complication",
+          "Exact duplicates are 1.5% of rows; degraded rows 23.0%; empty required fields 81.7%. 71.8% of 1.0m sampled rows carry PII markers."
+        ],
+        [
+          "Question",
+          "Which cost-reduction strategies and product candidates should the estate owner take forward?"
+        ],
+        [
+          "Answer",
+          "About 15.2 GiB (4.3% of database bytes) looks reclaimable in the databases before pricing. Priced strategies bound the monthly saving at 1,174.4 USD at reference list prices. Rights are declared at Connect, not measured by the census; every candidate is aggregate or de-identified. The decision is the estate owner's; this pack sets out the measured evidence."
+        ]
+      ],
+      "title": "The estate is large, repetitive in places and mostly personal; reclaimable bytes are known",
+      "title_chars": 90,
+      "type": "exec_summary",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 3,
+      "number": 1,
+      "title": "What the estate holds and how it is conditioned",
+      "title_chars": 47,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "viusasa_staging (D)",
+          "razuna (D)",
+          "db_visitors (D)",
+          "kra_reports (D)",
+          "viupay_agent_staging (A)",
+          "news_vault (C)",
+          "local (D)",
+          "viutickets (B)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Data and index by database, GiB",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+        "so_what": "351.3 GiB sit in 20 databases and 1006 tables",
+        "unit": "GiB",
+        "values": {
+          "GiB": [
+            338.5,
+            4.5,
+            2.7,
+            1.5,
+            1.2,
+            0.9,
+            0.5,
+            0.4
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Where the bytes are",
+      "n": 4,
+      "title": "The largest databases hold 99.7% of the estate's bytes",
+      "title_chars": 54,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Exact duplicates",
+          "Degraded",
+          "Empty required fields",
+          "PII markers (sampled)",
+          "Stale bytes"
+        ],
+        "class": "estimated",
+        "editable": true,
+        "label": "Condition of measured rows",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+        "so_what": "Measures cover 63.4% of tables; the remaining ratios are estimated from stratified samples",
+        "unit": "pct",
+        "values": {
+          "Share": [
+            0.015,
+            0.23,
+            0.817,
+            0.718,
+            0.154
+          ]
+        },
+        "y_format": "pct"
+      },
+      "kicker": "Condition",
+      "n": 5,
+      "title": "Exact duplicates are 1.5% of rows; degraded rows 23.0%; empty required fields 81.7%",
+      "title_chars": 83,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Personal data and staleness",
+      "n": 6,
+      "points": [
+        "15.4% of bytes have not been written for over a year; 368 tables are empty",
+        "Dead columns are 13.0% of measured columns",
+        "Rights are declared at Connect, not measured by the census; every candidate is aggregate or de-identified"
+      ],
+      "title": "71.8% of 1.0m sampled rows carry PII markers",
+      "title_chars": 44,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 7,
+      "number": 2,
+      "title": "What it costs to keep, and what it could become",
+      "title_chars": 47,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Move buckets not written for over a year",
+          "Reconcile duplicate objects across OBS b",
+          "Move tables not written for over a year ",
+          "Remove redundant (prefix-covered) indexe",
+          "De-duplicate exact repeated rows inside ",
+          "Consolidate duplicate and staging copies",
+          "Drop or archive empty tables"
+        ],
+        "class": "estimated",
+        "editable": true,
+        "label": "Reclaimable GiB by cost strategy",
+        "plate": "bar",
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "so_what": "Priced strategies bound the monthly saving at 1,174.4 USD at reference list prices",
+        "unit": "GiB",
+        "values": {
+          "GiB": [
+            42891.0,
+            7839.5,
+            54.1,
+            14.0,
+            1.2,
+            0.1,
+            0.0
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Cost",
+      "n": 8,
+      "title": "Three strategies address 100.0% of the 50,799.8 GiB that all cost strategies reach",
+      "title_chars": 82,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Strategies",
+      "n": 9,
+      "table": {
+        "caption": "",
+        "class": "estimated",
+        "columns": [
+          "Move buckets not written for over a year to archive-class st",
+          "Reconcile duplicate objects across OBS buckets",
+          "Move tables not written for over a year to cold storage"
+        ],
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "receipts": [
+          "R02"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "42,891.0",
+              "7,839.5",
+              "54.1"
+            ],
+            "label": "Bytes addressed (GiB)"
+          },
+          {
+            "cells": [
+              "986.5",
+              "180.3",
+              "5.9"
+            ],
+            "label": "Monthly saving (USD)"
+          },
+          {
+            "cells": [
+              "84.4%",
+              "15.4%",
+              "0.1%"
+            ],
+            "label": "Share of bytes addressed"
+          }
+        ],
+        "so_what": "About 15.2 GiB (4.3% of database bytes) looks reclaimable in the databases before pricing"
+      },
+      "title": "Three costed strategies sit side by side; the estate owner chooses the order",
+      "title_chars": 76,
+      "type": "comparison",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Products",
+      "n": 10,
+      "points": [
+        "Reference and master-data licensing: grade C, 87 tables, 123,394,159 rows (est.); blockers: 62.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose",
+        "Content catalogue, recommendation and licensing corpus: grade C, 98 tables, 157,855,990 rows (est.); blockers: 74.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose",
+        "Channel / telco engagement analytics (USSD, SMS, app): grade C, 57 tables, 116,781,903 rows (est.); blockers: 79.0% of supporting tables carry PII markers: de-identify or aggregate before any release · use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+      ],
+      "title": "8 product candidates rank by rows, readiness and dimensions",
+      "title_chars": 59,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "coverage": {
+        "cannot_say": [
+          {
+            "closes_with": "a complete-pass census on the sampled tables",
+            "gap": "Duplicate, damage, empty-field and PII ratios on sampled tables",
+            "reason": "complete passes where the table allowed it, stratified samples elsewhere"
+          },
+          {
+            "closes_with": "rights declared at Connect and bound to each candidate",
+            "gap": "Rights, licences and semantic similarity",
+            "reason": "not measured; candidates are dimensional readiness only"
+          },
+          {
+            "closes_with": "owner grants read access; re-census",
+            "gap": "Connection artists_app",
+            "reason": "could not be read (MySQL GRANT pending)"
+          },
+          {
+            "closes_with": "a fingerprinting pass over the NAS shares",
+            "gap": "NAS duplication",
+            "reason": "the enumeration recorded sizes and dates, not content fingerprints"
+          },
+          {
+            "closes_with": "bucket inventory reconciled with the provider",
+            "gap": "40 of 106 OBS buckets",
+            "reason": "unreachable (NoSuchBucket / client errors)"
+          }
+        ],
+        "covers": "20 databases, 1,006 tables and 351.3 GiB measured by census eij-1b359b3cbd2e; ratios are complete-pass where the table allowed it and stratified samples elsewhere. No row value is present in this pack."
+      },
+      "kicker": "Coverage and limits",
+      "n": 11,
+      "title": "What this pack covers, what it cannot say, and what would close each gap",
+      "title_chars": 72,
+      "type": "coverage_limits",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Appendix",
+      "n": 12,
+      "receipts": [
+        {
+          "id": "R01",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures"
+        },
+        {
+          "id": "R02",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month"
+        },
+        {
+          "id": "R03",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)"
+        },
+        {
+          "id": "R04",
+          "text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+        },
+        {
+          "id": "R05",
+          "text": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+        }
+      ],
+      "title": "Exhibit index with receipts",
+      "title_chars": 27,
+      "type": "appendix",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "title": "Estate intelligence — eij-1b359b3cbd2e",
+  "verdict_ref": "V-2026-09-30-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

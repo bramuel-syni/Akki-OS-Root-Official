@@ -18,6 +18,7 @@ import { EstateProducts } from '@/components/estate/EstateProducts';
 import { EstateStrategies } from '@/components/estate/EstateStrategies';
 import { EstateDossier, EstateMethod } from '@/components/estate/EstateDossier';
 import { useEstateReport, stamp } from '@/components/estate/useEstateReport';
+import { studioRequest } from '@/components/studio/useStudio';
 import '@/components/census/census.css';
 import '@/components/estate/estate.css';
 
@@ -26,6 +27,14 @@ export default function EstateIntelligence() {
   const signedIn = Boolean(session.data);
   const canCompose = Boolean(session.data?.roles?.some(r => ['operator', 'master_admin'].includes(r)));
   const { report, running, loading, error, composing, refusal, reload, compose } = useEstateReport(signedIn);
+  const [pack, setPack] = React.useState({ busy: false, commission: null, error: null });
+  const commissionPack = async () => {
+    setPack({ busy: true, commission: null, error: null });
+    try {
+      const result = await studioRequest(`/producers/estate-intelligence/${report.job_id}`, { method: 'POST', body: JSON.stringify({}) });
+      setPack({ busy: false, commission: result.commission, error: null, created: result.created });
+    } catch (e) { setPack({ busy: false, commission: null, error: e.message }); }
+  };
   return <div className="estate" data-testid="estate-intelligence-surface">
     <header className="estate-header">
       <div>
@@ -37,10 +46,13 @@ export default function EstateIntelligence() {
       {signedIn && <div className="estate-actions">
         <button className="estate-btn" onClick={reload} disabled={loading} data-testid="estate-reload">{loading ? 'Reading…' : 'Re-read report'}</button>
         {report?.brief_path && <a className="estate-btn" href={report.brief_path} target="_blank" rel="noopener noreferrer" data-testid="estate-download-brief">Download the brief (.md)</a>}
+        {report && canCompose && <button className="estate-btn primary" onClick={commissionPack} disabled={pack.busy} data-testid="estate-commission-pack">{pack.busy ? 'Commissioning…' : 'Commission board pack'}</button>}
       </div>}
     </header>
     {!signedIn && <CensusAccess error={session.error} loading={session.loading} retry={session.reload} />}
     {signedIn && <div className="estate-body">
+      {pack.error && <p className="estate-alert" role="alert" data-testid="estate-pack-error">{pack.error}</p>}
+      {pack.commission && <div className="estate-running" data-testid="estate-pack-result">{pack.created ? 'Board pack commissioned' : 'Board pack already on record for today'}: <code>{pack.commission.commission_id}</code> · {pack.commission.release.state} — {pack.commission.release.reason}. <a href={`/os/work/documents?commission=${pack.commission.commission_id}`} data-testid="estate-pack-open">Open in Documents</a></div>}
       {running && <div className="estate-running" data-testid="estate-running">Census <code>{running.job_id}</code> is measuring the estate now ({running.databases_done} databases so far); this report stays on the last verified receipt until the new one is banked.</div>}
       {error && <p className="estate-alert" role="alert" data-testid="estate-error">{error}</p>}
       {!report && !loading && !error && <div className="estate-empty" data-testid="estate-empty">No verified estate intelligence census is on record for your tenant. Figures stay unmeasured until a census completes and its receipt is digest-verified; the Registry's “Run census” commissions one.</div>}

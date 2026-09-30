@@ -1,0 +1,282 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "source": "deterministic producer estate_intelligence; no model authored the brief, content or specs",
+    "tokens": 0
+  },
+  "brief_id": "BR-2026-09-30-eij-1b359b3cbd2e",
+  "build_stamp": "2026-09-30T16:44:01Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-09-30T16:44:01Z",
+      "build_id": "bld-189be273e643",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 1,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "pdf": {
+          "at": "2026-09-30T16:44:07Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "check": {
+            "checked": true,
+            "missing": [],
+            "pages": 1,
+            "survives": true
+          },
+          "exported": true,
+          "name": "review.pdf",
+          "note": "browser PDF carries producer metadata; determinism is proven on the pptx/docx/xlsx/html bytes",
+          "sha256": "4a9359f158bce7723a72650cb793eb9e18ec466e68dbecb4b30ed04b5e8a3620",
+          "size": 949698
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-a439e14b4e38/builds/bld-189be273e643/log.txt",
+      "look": {
+        "cover_composition": "title-centred-band",
+        "divider_treatment": "inverted-field",
+        "palette_id": "harbour",
+        "type_pair_id": "century-arial"
+      },
+      "manifest": {
+        "build_stamp": "2026-09-30T16:44:01Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "d5d44fb028545b92b499125068cbd762b458d62f84d2c84d9ef33e2be832b36b",
+          "deck.resolved/brief.json": "62249ed7cc9bd1cd2e80ba477426d7746436e0ee4c37f99a06087a1f5f3a2399",
+          "deck.resolved/content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+          "deck.resolved/deck.json": "7d1e55ba6eddd5ca8ef3efba5d64cd16220d699fb334aa7fb677475b3835d69f",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "c21cdf7a9c822726daccb66109e2eaf6b7ca33e534abbc971f4c7f9faae90662",
+          "paper.resolved.json": "3c7692d5ad21f48bfaa10b9cd5c1ea9234ea63b3a9e5c787d5cfa1de4aafc70b",
+          "paper.resolved/brief.json": "62249ed7cc9bd1cd2e80ba477426d7746436e0ee4c37f99a06087a1f5f3a2399",
+          "paper.resolved/content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "00328c0da87c005961d7e6cbd1b22af3d2aa77f36415059f375a6561a24f31d9",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "c21cdf7a9c822726daccb66109e2eaf6b7ca33e534abbc971f4c7f9faae90662"
+        },
+        "outputs_sha256": {
+          "estate-intelligence-eij-1b359b3cbd2e-review.html": "bf8b935f965fae9552bbba89c96d293b3a8040364f3ea03e7de90d803a4ccdbb",
+          "estate-intelligence-eij-1b359b3cbd2e.docx": "55d40386135e3ac15772f2c99624fbd4a84751421bef54d52ed90634133797e3",
+          "estate-intelligence-eij-1b359b3cbd2e.pptx": "dc97c0e18f8b96e63abaac31a02ef62391b6ef1377f17df18a7095f0cbb14fb9"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-review.html",
+          "sha256": "bf8b935f965fae9552bbba89c96d293b3a8040364f3ea03e7de90d803a4ccdbb",
+          "size": 195660
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.docx",
+          "sha256": "55d40386135e3ac15772f2c99624fbd4a84751421bef54d52ed90634133797e3",
+          "size": 110221
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.pptx",
+          "sha256": "dc97c0e18f8b96e63abaac31a02ef62391b6ef1377f17df18a7095f0cbb14fb9",
+          "size": 68023
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 4: is the title a full-sentence assertion? \"The largest databases hold 99.7% of the estate's bytes\"",
+          "slide 9: is the title a full-sentence assertion? \"Three costed strategies sit side by side; the estate owner chooses the order\"",
+          "slide 10: is the title a full-sentence assertion? \"8 product candidates rank by rows, readiness and dimensions\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-a439e14b4e38",
+  "content_id": "estate-intelligence-eij-1b359b3cbd2e",
+  "created_at": "2026-09-30T16:44:01Z",
+  "created_by": "6ab56dd48894abb269135ca2",
+  "current_content_version": 1,
+  "economics": {
+    "authoring_tokens_total": 0,
+    "builds_total": 1,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 2,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Estate owner and operators · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is high on the business, mixed on the data estate",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are cost reduction, personal-data exposure and quality, monetisable products",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    },
+    {
+      "assumption": "Every option is shown without a recommended winner",
+      "class": "inferred",
+      "flips": [
+        "comparison_plate_no_winner"
+      ],
+      "id": "M6",
+      "source": "house policy: findings not directives"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "pptx",
+    "docx",
+    "html"
+  ],
+  "producer": "estate_intelligence",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+      "status": "partial",
+      "verified": true
+    },
+    "R02": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+      "status": "partial",
+      "verified": true
+    },
+    "R03": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)",
+      "status": "partial",
+      "verified": true
+    },
+    "R04": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+      "status": null,
+      "verified": true
+    },
+    "R05": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
+      "status": null,
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "build bld-189be273e643 byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-09-30",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "eij-1b359b3cbd2e",
+  "specs": [
+    "deck.json",
+    "paper.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Estate intelligence — eij-1b359b3cbd2e",
+  "updated_at": "2026-09-30T16:44:07Z",
+  "verdict_id": "V-2026-09-30-eij-1b359b3cbd2e",
+  "versions": [
+    {
+      "at": "2026-09-30T16:44:01Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "commissioned from the verified census report",
+      "version": 1
+    }
+  ],
+  "voice": "strategy-house"
+}

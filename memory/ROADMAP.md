@@ -1,6 +1,15 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-30 after M8/M9 completion · owner's next wave: M6 then M5
+## CURRENT — 2026-09-30 after doc-studio install · M6 remaining, then M5
+
+doc-studio v1.1 is installed and proven (evals 1–3 in-pod, estate commission released, UI live). See `notes/m6_execution/M6_DOC_STUDIO_INSTALL_20260930.md`. Verification is terminal pytest only (owner condition C) — do not call the testing agent for M6 work.
+
+- **P0 · M6 remaining (ask owner before each):** (1) M6-T4 skill really callable — a permitted external-style caller invokes a provisioned skill over the DIGICOW sealed artefact through `/api/callable_skill/*`; needs the owner's ruling on caller identity/key grant. (2) M6-T5 async/duplicate/late-refusal/withdrawal on that path. (3) More doc-studio producers (memo-to-deck from banked briefs; commission-close from M3 result `req-97999a0b46d2f51564b85dcd05d871a2`) — each under a standing frame; a workbook needs a producer whose content carries the option-model shape or an owner-approved v1.2 renderer change. (4) CIF ideas endpoint for non-routine briefs (owner owns CIF; not to be built as an LLM path). (5) RMS house theme (later work, owner-stated).
+- **P0 · M5 (~55%) — after M6, only when owner unpauses:** chat→document/task handoff and save/reopen in My Work; team assignment/contributions/activity feeds; goal measures linked to real delivery evidence; versioned board packs/decisions/follow-ups (doc-studio is now the natural producer for board packs); cross-app restart + source withdrawal; close G5. R-21 personal memory stays OFF.
+- **P1:** M1 NAS/OBS frontier + artists_app exclusion + five G1 packs; M3 ordinary commissioning UI + HTTPS delivery binding; M4 200-task benchmark + weak-subject-match fix; M7 rule-publication atomicity, Rules Updates journey, nonempty real usage bill.
+- **P2:** M8-T4 site restore / M8-T5 real notification (owner-deferred), broader GPU full-state restore, M10 independent whole-product acceptance.
+
+## PREVIOUS — 2026-09-30 after M8/M9 completion · owner's next wave: M6 then M5
 
 M8/M9 backend and the Model Approval UI are done and tested (`test_reports/iteration_69.json`). Owner-deferred M8-T4/T5 stay deferred. Do not relaunch or promote M9 jobs; the 8B adapter is admitted and served.
 
