@@ -1,0 +1,11 @@
+{
+  "attestation_id": "ca_20260930_071824_ledger_pitr",
+  "attested_at": "2026-09-30T07:18:29Z",
+  "attested_by": "wi_akki_vm_ledger_countersigner",
+  "attested_scope": "all",
+  "rto_target_seconds": "3600",
+  "verification_mechanism": "independent_backup_check",
+  "witness_signature": "ed25519:mTpB24URVvmBFmbK4xo4w4mIUkRdMKsqbUjG47y6sKhirNlKu8YyTnldYfKKZ34RIgThz3JfbPRXGybHMwB/Cg==",
+  "outcome": "matches",
+  "summary": "Restored 3506 control-Ledger rows (153 tenants) from WORM archive 20260930T071807Z_e2862e412a75.json.gz into isolated test_database_bc_drill in 0.349s; chain intact; heads match; committed rows written after the archive: 0; countersigned on akki-vm (Ed25519 4a65382f2a46eb65)."
+}

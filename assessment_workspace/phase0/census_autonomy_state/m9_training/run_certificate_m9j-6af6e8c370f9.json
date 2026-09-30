@@ -166,7 +166,8 @@
    "base_perplexity": 437.677,
    "abstention_rate": 0.02,
    "units": 400,
-   "meets_m_a": true
+   "meets_m_a": true,
+   "meets_outcome_floor_no_regression": true
   },
   "kam": {
    "accuracy": 0.92347,
@@ -175,7 +176,8 @@
    "base_perplexity": 171.7701,
    "abstention_rate": 0.02,
    "units": 400,
-   "meets_m_a": true
+   "meets_m_a": true,
+   "meets_outcome_floor_no_regression": true
   },
   "kik": {
    "accuracy": 0.99494,
@@ -184,7 +186,8 @@
    "base_perplexity": 204.4778,
    "abstention_rate": 0.0125,
    "units": 400,
-   "meets_m_a": true
+   "meets_m_a": true,
+   "meets_outcome_floor_no_regression": true
   },
   "kln": {
    "accuracy": 0.99749,
@@ -193,7 +196,8 @@
    "base_perplexity": 636.628,
    "abstention_rate": 0.005,
    "units": 400,
-   "meets_m_a": true
+   "meets_m_a": true,
+   "meets_outcome_floor_no_regression": true
   },
   "luo": {
    "accuracy": 0.99488,
@@ -202,7 +206,8 @@
    "base_perplexity": 849.7367,
    "abstention_rate": 0.0225,
    "units": 400,
-   "meets_m_a": true
+   "meets_m_a": true,
+   "meets_outcome_floor_no_regression": true
   },
   "lwg": {
    "accuracy": 0.96354,
@@ -211,7 +216,8 @@
    "base_perplexity": 314.9879,
    "abstention_rate": 0.04,
    "units": 400,
-   "meets_m_a": true
+   "meets_m_a": true,
+   "meets_outcome_floor_no_regression": true
   },
   "swa": {
    "accuracy": 0.96774,
@@ -220,7 +226,8 @@
    "base_perplexity": 115.8424,
    "abstention_rate": 0.1475,
    "units": 400,
-   "meets_m_a": false
+   "meets_m_a": false,
+   "meets_outcome_floor_no_regression": false
   }
  },
  "moac": {
@@ -348,6 +355,31 @@
    "outcome": "refused",
    "reason": "moac_criterion_below_floor",
    "registry_version_after": null
+  },
+  "readjudications": [
+   {
+    "ruling_ref": "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17\u201319 \u00b7 \u00a726.2)",
+    "outcome_floor": 0.9,
+    "floor_source": "campaign_20260929_full.json plan.calibrate.acceptance_floor (Outcome definition \u00b7 2026-09-29)",
+    "coverage_strata": 0.857143,
+    "readjudicated": {
+     "outcome": "refused",
+     "reason": "moac_criterion_below_floor",
+     "refusal_note": "MOAC criterion 'coverage_strata' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+     "registry_version_after": null,
+     "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-6af6e8c370f9-pruned_2026-09-30T07:12:25Z_940fe68a.json",
+     "computed_at": "2026-09-30T07:12:25Z"
+    },
+    "at": "2026-09-30T07:12:25.130678Z"
+   }
+  ],
+  "admission_current": {
+   "outcome": "refused",
+   "reason": "moac_criterion_below_floor",
+   "refusal_note": "MOAC criterion 'coverage_strata' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+   "registry_version_after": null,
+   "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-6af6e8c370f9-pruned_2026-09-30T07:12:25Z_940fe68a.json",
+   "computed_at": "2026-09-30T07:12:25Z"
   }
  },
  "admission": {
@@ -369,5 +401,30 @@
  },
  "final_model": false,
  "serving": "not served; admission record only (M9.4 serving is a separate step)",
- "certified_at": "2026-09-30T03:31:45.286756Z"
+ "certified_at": "2026-09-30T03:31:45.286756Z",
+ "readjudications": [
+  {
+   "ruling_ref": "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17\u201319 \u00b7 \u00a726.2)",
+   "outcome_floor": 0.9,
+   "floor_source": "campaign_20260929_full.json plan.calibrate.acceptance_floor (Outcome definition \u00b7 2026-09-29)",
+   "coverage_strata": 0.857143,
+   "readjudicated": {
+    "outcome": "refused",
+    "reason": "moac_criterion_below_floor",
+    "refusal_note": "MOAC criterion 'coverage_strata' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+    "registry_version_after": null,
+    "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-6af6e8c370f9_2026-09-30T07:12:24Z_3d6088a7.json",
+    "computed_at": "2026-09-30T07:12:24Z"
+   },
+   "at": "2026-09-30T07:12:24.997060Z"
+  }
+ ],
+ "admission_current": {
+  "outcome": "refused",
+  "reason": "moac_criterion_below_floor",
+  "refusal_note": "MOAC criterion 'coverage_strata' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+  "registry_version_after": null,
+  "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-6af6e8c370f9_2026-09-30T07:12:24Z_3d6088a7.json",
+  "computed_at": "2026-09-30T07:12:24Z"
+ }
 }

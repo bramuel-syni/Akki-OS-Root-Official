@@ -26,6 +26,9 @@ ABSTAIN_CONFIDENCE = 0.6
 M_A_IMPROVEMENT_DEFAULT = 0.05      # MOAC M-a: beat the base by 5 points on the target strata (DEFAULT)
 M_B_REGRESSION_TOLERANCE = 0.02     # MOAC M-b: non-target perplexity may not worsen by more than 2 % (DEFAULT)
 PARITY_TOLERANCE = 0.005            # A17.5 quality parity band for the candidate optimizer (DEFAULT)
+RPO_GPU_COMPUTE_SECONDS = 900       # BC Tier 1 (owner-ratified 2026-09-30 · 5a): never lose more than ~10–15 min of GPU compute
+MTBF_BOOTSTRAP_SECONDS = 86400      # Young/Daly bootstrap MTBF until the host cluster has its own failure history
+PER_STRATUM_RULING = "owner ruling 2026-09-30 (1a): per-stratum acceptance = held-out accuracy ≥ the Outcome's recorded floor AND no regression below the base (Docs 17–19 · §26.2)"
 
 
 def now():
@@ -537,19 +540,65 @@ class InterruptForResumeProof(Exception):
     pass
 
 
-def _save_checkpoint(path, model, optimizer, step, epoch, batch_index, generator_seed, extra):
+def _digest_state(h, obj):
+    if hasattr(obj, "detach"):
+        h.update(obj.detach().cpu().float().numpy().tobytes())
+    elif isinstance(obj, dict):
+        for k in sorted(obj, key=str):
+            h.update(str(k).encode()); _digest_state(h, obj[k])
+    elif isinstance(obj, (list, tuple)):
+        for v in obj:
+            _digest_state(h, v)
+    else:
+        h.update(repr(obj).encode())
+
+
+def _optimizer_digest(optimizer):
+    h = hashlib.sha256(); _digest_state(h, optimizer.state_dict()); return h.hexdigest()
+
+
+def _rng_digest():
+    import numpy as np
+    import torch
+    h = hashlib.sha256()
+    h.update(repr(random.getstate()).encode())
+    np_state = np.random.get_state(); h.update(str(np_state[0]).encode()); h.update(np_state[1].tobytes()); h.update(repr(np_state[2:]).encode())
+    h.update(torch.get_rng_state().numpy().tobytes())
+    for s in torch.cuda.get_rng_state_all():
+        h.update(s.numpy().tobytes())
+    return h.hexdigest()
+
+
+def _next_batch_digest(ids, cfg, epoch, batch_index):
+    buckets = _batches(ids, cfg["batch_size"], cfg["seed"], epoch, cfg.get("tokens_per_batch", 0))
+    return sha256_text(json.dumps(buckets[batch_index][0] if batch_index < len(buckets) else []))
+
+
+RESUME_CARRIERS = ("weights", "optimizer", "scheduler", "data_offset", "rng")
+
+
+def _carriers(model, optimizer, ids, cfg, step, epoch, batch_index):
+    """BC Tier 1 five-carrier resume invariant (BC-1-GPU-INV-01/02): weights · optimizer · LR-scheduler step · data-pipeline offset · RNG."""
+    return {"weights": _adapter_hash(model), "optimizer": _optimizer_digest(optimizer), "scheduler": {"step": step, "warmup_steps": cfg["warmup_steps"]},
+            "data_offset": {"epoch": epoch, "batch_index": batch_index, "seed": cfg["seed"], "next_batch_sha256": _next_batch_digest(ids, cfg, epoch, batch_index)},
+            "rng": _rng_digest()}
+
+
+def _save_checkpoint(path, model, optimizer, step, epoch, batch_index, generator_seed, extra, ids=None, cfg=None):
     import numpy as np
     import torch
     from peft import get_peft_model_state_dict
+    carriers = _carriers(model, optimizer, ids, cfg, step, epoch, batch_index) if ids is not None and cfg is not None else None
     state = {"adapter": {k: v.detach().cpu().float() for k, v in get_peft_model_state_dict(model).items()}, "optimizer": optimizer.state_dict(),
              "step": step, "epoch": epoch, "batch_index": batch_index, "generator_seed": generator_seed,
              "python_rng": random.getstate(), "numpy_rng": np.random.get_state(), "torch_rng": torch.get_rng_state(),
-             "cuda_rng": torch.cuda.get_rng_state_all(), **extra}
+             "cuda_rng": torch.cuda.get_rng_state_all(), "carriers": carriers, **extra}
     tmp = path.with_suffix(".tmp"); torch.save(state, tmp); os.replace(tmp, path)
     return hashlib.sha256(b"".join(v.numpy().tobytes() for v in state["adapter"].values())).hexdigest()
 
 
-def _load_checkpoint(path, model, optimizer):
+def _load_checkpoint(path, model, optimizer, ids=None, cfg=None):
+    """Restore all five carriers and prove it: a resume that cannot re-derive the saved carrier digests refuses (BC-1-GPU-INV-02)."""
     import numpy as np
     import torch
     from peft import set_peft_model_state_dict
@@ -558,7 +607,13 @@ def _load_checkpoint(path, model, optimizer):
     optimizer.load_state_dict(saved["optimizer"])
     random.setstate(saved["python_rng"]); np.random.set_state(saved["numpy_rng"]); torch.set_rng_state(saved["torch_rng"])
     torch.cuda.set_rng_state_all(saved["cuda_rng"])
-    return saved
+    parity = None
+    if saved.get("carriers") and ids is not None and cfg is not None:
+        live = _carriers(model, optimizer, ids, cfg, saved["step"], saved["epoch"], saved["batch_index"])
+        parity = {k: live[k] == saved["carriers"][k] for k in RESUME_CARRIERS}
+        if not all(parity.values()):
+            raise ValueError("RESUME_CARRIER_MISMATCH:" + ",".join(k for k, ok in parity.items() if not ok))
+    return saved, parity
 
 
 def _adapter_hash(model):
@@ -596,11 +651,44 @@ def train_arm(cfg, base, train_units, eval_sets, task, labels, out_dir, state, t
             g["lr"] = b * max(scale, 0.05)
 
     checkpoint = out_dir / "checkpoint.pt"
+    cadence_receipts = out_dir / "checkpoint_cadence_receipt.jsonl"
     step, epoch, batch_index, resumed, curve, losses = 0, 0, 0, None, [], []
     if cfg.get("resume") and checkpoint.exists():
-        saved = _load_checkpoint(checkpoint, model, optimizer)
+        saved, parity = _load_checkpoint(checkpoint, model, optimizer, ids, cfg)
         step, epoch, batch_index, curve = saved["step"], saved["epoch"], saved["batch_index"], saved.get("curve", [])
-        resumed = {"from_step": step, "adapter_sha256": _adapter_hash(model)}
+        resumed = {"from_step": step, "adapter_sha256": _adapter_hash(model), "carriers_restored": parity, "checkpoint_sha256": sha256_file(checkpoint)}
+    elif cfg.get("resume"):
+        raise ValueError("RESUME_CHECKPOINT_ABSENT:" + str(checkpoint))
+    next_checkpoint_step = step + cfg["checkpoint_every"] if cfg["checkpoint_every"] else None
+    durable_dir = Path(cfg["durable_checkpoint_dir"]) / out_dir.parent.name / out_dir.name if cfg.get("durable_checkpoint_dir") else None
+    cadence = {"rule": cfg.get("checkpoint_cadence", "young_daly"), "rpo_seconds": RPO_GPU_COMPUTE_SECONDS, "mtbf_seconds": MTBF_BOOTSTRAP_SECONDS, "receipts": 0, "last": None}
+
+    def checkpoint_now():
+        """Write the checkpoint, replicate it to the durable tier if configured, then set the next boundary by Young/Daly τ ≈ √(2·C·MTBF), capped by the RPO."""
+        t0 = time.monotonic()
+        digest = _save_checkpoint(checkpoint, model, optimizer, step, epoch, batch_index, cfg["seed"], {"curve": curve, "tag": tag}, ids, cfg)
+        write_seconds = time.monotonic() - t0
+        replicate_seconds = None
+        if durable_dir is not None:
+            import shutil
+            t1 = time.monotonic(); durable_dir.mkdir(parents=True, exist_ok=True)
+            tmp = durable_dir / "checkpoint.pt.tmp"; shutil.copyfile(checkpoint, tmp); os.replace(tmp, durable_dir / "checkpoint.pt")
+            replicate_seconds = time.monotonic() - t1
+        cost = write_seconds + (replicate_seconds or 0.0)
+        step_seconds = sum(step_times[-50:]) / max(1, len(step_times[-50:])) if step_times else None
+        if cadence["rule"] == "young_daly" and step_seconds:
+            tau = min(RPO_GPU_COMPUTE_SECONDS, math.sqrt(2 * max(cost, 1e-3) * MTBF_BOOTSTRAP_SECONDS))
+            interval = max(1, int(tau / step_seconds))
+        else:
+            tau, interval = None, cfg["checkpoint_every"]
+        receipt = {"at": now(), "step": step, "epoch": epoch, "checkpoint_adapter_sha256": digest, "write_seconds": round(write_seconds, 3), "replicate_seconds": None if replicate_seconds is None else round(replicate_seconds, 3),
+                   "durable_copy": str(durable_dir / "checkpoint.pt") if durable_dir is not None else None, "step_seconds": None if step_seconds is None else round(step_seconds, 4),
+                   "tau_seconds": None if tau is None else round(tau, 1), "next_checkpoint_step": step + interval, "rule": cadence["rule"], "rpo_seconds": RPO_GPU_COMPUTE_SECONDS, "mtbf_seconds": MTBF_BOOTSTRAP_SECONDS}
+        with open(cadence_receipts, "a") as f:
+            f.write(json.dumps(receipt) + "\n")
+        cadence["receipts"] += 1; cadence["last"] = receipt
+        return digest, step + interval
+
     started, trained_tokens, padded_tokens, step_times, gpu_seconds = time.monotonic(), 0, 0, [], 0.0
     interrupted = None
     torch.cuda.reset_peak_memory_stats()
@@ -626,12 +714,13 @@ def train_arm(cfg, base, train_units, eval_sets, task, labels, out_dir, state, t
                                        "loss": round(sum(losses[-20:]) / len(losses[-20:]), 5), "tokens_per_second": round(trained_tokens / max(1e-6, elapsed), 1),
                                        "padded_tokens_per_step": round(padded_tokens / max(1, step)), "rows_last_step": len(buckets[batch_index - 1][0]),
                                        "recent_step_seconds": round(sum(step_times[-20:]) / len(step_times[-20:]), 3),
-                                       "gpu_memory_gb": round(torch.cuda.max_memory_allocated() / 1e9, 2), "resumed": resumed, "elapsed_seconds": round(elapsed)})
-            if cfg["checkpoint_every"] and step % cfg["checkpoint_every"] == 0:
-                digest = _save_checkpoint(checkpoint, model, optimizer, step, epoch, batch_index, cfg["seed"], {"curve": curve, "tag": tag})
+                                       "gpu_memory_gb": round(torch.cuda.max_memory_allocated() / 1e9, 2), "resumed": resumed, "elapsed_seconds": round(elapsed),
+                                       "next_checkpoint_step": next_checkpoint_step, "last_checkpoint_step": (cadence["last"] or {}).get("step")})
+            if next_checkpoint_step and step >= next_checkpoint_step:
+                digest, next_checkpoint_step = checkpoint_now()
                 if cfg.get("interrupt_after_steps") and step >= cfg["interrupt_after_steps"] and not resumed:
                     interrupted = {"at_step": step, "adapter_sha256_in_memory": _adapter_hash(model), "checkpoint_adapter_sha256": digest,
-                                   "optimizer_state_sha256": hashlib.sha256(json.dumps(str(optimizer.state_dict()), sort_keys=True).encode()).hexdigest()}
+                                   "optimizer_state_sha256": _optimizer_digest(optimizer)}
                     raise InterruptForResumeProof(json.dumps(interrupted))
             if cfg["eval_every"] and step % cfg["eval_every"] == 0 and "dev" in eval_sets:
                 model.eval(); dev = evaluate(model, tokenizer, eval_sets["dev"], task, labels, device, cfg, f"{tag}:dev@{step}"); model.train()
@@ -648,17 +737,18 @@ def train_arm(cfg, base, train_units, eval_sets, task, labels, out_dir, state, t
               "wallclock_seconds": round(wall), "gpu_hours": round(wall / 3600, 4), "tokens_per_second": round(trained_tokens / max(1e-6, wall), 1),
               "padded_tokens_per_step": round(padded_tokens / max(1, step)), "padding_efficiency": round(trained_tokens / max(1, padded_tokens), 4),
               "gpu_max_memory_gb": round(torch.cuda.max_memory_allocated() / 1e9, 2), "final_loss": round(sum(losses[-20:]) / max(1, len(losses[-20:])), 5),
-              "base_eval": base_eval, "adapter_eval": final, "dev_curve": curve, "resumed": resumed,
+              "base_eval": base_eval, "adapter_eval": final, "dev_curve": curve, "resumed": resumed, "checkpoint_cadence": cadence,
               "adapter_sha256": _adapter_hash(model), "adapter_dir": str(adapter_dir), "device": torch.cuda.get_device_name(0)}
     return result, (model, tokenizer)
 
 
 RECIPE_KEYS = ("optimizer", "lr", "muon_lr", "muon_momentum", "weight_decay", "epochs", "max_steps", "batch_size", "grad_accum", "max_seq_len", "tokens_per_batch", "gradient_checkpointing",
-               "lora_r", "lora_alpha", "lora_dropout", "target_modules", "warmup_steps", "max_grad_norm", "seed", "checkpoint_every", "eval_every")
+               "lora_r", "lora_alpha", "lora_dropout", "target_modules", "warmup_steps", "max_grad_norm", "seed", "checkpoint_every", "eval_every", "checkpoint_cadence", "durable_checkpoint_dir")
 RECIPE_DEFAULTS = {"optimizer": "adamw", "lr": 2e-4, "muon_lr": 0.01, "muon_momentum": 0.95, "weight_decay": 0.01, "epochs": 1, "max_steps": 0,
                    "batch_size": 16, "grad_accum": 2, "max_seq_len": 384, "tokens_per_batch": 0, "gradient_checkpointing": True, "lora_r": 16, "lora_alpha": 32, "lora_dropout": 0.05,
                    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"], "warmup_steps": 20,
-                   "max_grad_norm": 1.0, "seed": 41, "checkpoint_every": 100, "eval_every": 0, "eval_batch_size": 16, "eval_cap_per_stratum": 400}
+                   "max_grad_norm": 1.0, "seed": 41, "checkpoint_every": 100, "eval_every": 0, "eval_batch_size": 16, "eval_cap_per_stratum": 400,
+                   "checkpoint_cadence": "young_daly", "durable_checkpoint_dir": None}
 
 
 def _recipe(control, **overrides):
@@ -765,11 +855,13 @@ def prune_adapter(model, fraction):
     return {"fraction_requested": fraction, "weights_zeroed": zeroed, "adapter_weights": total, "sparsity": round(zeroed / max(1, total), 4)}
 
 
-def moac_card(run_id, base_eval, adapter_eval, non_target_base, non_target_adapter, provenance_ok, gpu_seconds, eval_units, computed_at):
-    """Six MOAC criteria in the ModelAcceptanceCard_v0 shape; floors are the disclosed DEFAULTS, never curated."""
+def moac_card(run_id, base_eval, adapter_eval, non_target_base, non_target_adapter, provenance_ok, gpu_seconds, eval_units, computed_at, outcome_floor):
+    """Six MOAC criteria in the ModelAcceptanceCard_v0 shape; floors are the disclosed DEFAULTS, never curated.
+    Per-stratum acceptance is the Outcome's recorded threshold plus no regression below the base (Docs 17–19; owner ruling 2026-09-30 1a);
+    the +5-point M-a margin is the aggregate criterion (§26.1) and is not applied per stratum, where a fluent base makes it unreachable."""
     held_base, held = base_eval["held"], adapter_eval["held"]
     strata = [s for s in held["per_stratum"] if held["per_stratum"][s]["accuracy"] is not None]
-    per_stratum_pass = {s: held["per_stratum"][s]["accuracy"] >= (held_base["per_stratum"][s]["accuracy"] or 0) + M_A_IMPROVEMENT_DEFAULT for s in strata}
+    per_stratum_pass = {s: held["per_stratum"][s]["accuracy"] >= outcome_floor and held["per_stratum"][s]["accuracy"] >= (held_base["per_stratum"][s]["accuracy"] or 0) for s in strata}
     m_a = held["macro_accuracy"] - held_base["macro_accuracy"]
     regression = (non_target_adapter["mean_perplexity"] - non_target_base["mean_perplexity"]) / max(1e-9, non_target_base["mean_perplexity"])
 
@@ -780,7 +872,8 @@ def moac_card(run_id, base_eval, adapter_eval, non_target_base, non_target_adapt
             "accuracy_uncurated": crit(held["macro_accuracy"], "accuracy_fraction", "Macro accuracy on the sealed, uncurated held-out set (group-disjoint), abstentions excluded from the judged count and reported separately.",
                                        round(held_base["macro_accuracy"] + M_A_IMPROVEMENT_DEFAULT, 6), "§26.1 · MOAC M-a improvement over base (+5 pts DEFAULT)"),
             "coverage_strata": crit(sum(per_stratum_pass.values()) / max(1, len(strata)), "fraction_of_strata_meeting_floor",
-                                    "Share of target strata whose held-out accuracy beats the base by the M-a margin; gate_policy GATES release (A17.19b).", 1.0, "§26.2 · per-stratum acceptance"),
+                                    f"Share of target strata whose held-out accuracy meets the Outcome's recorded per-stratum floor ({outcome_floor}) without regressing below the base. {PER_STRATUM_RULING}. gate_policy GATES release (A17.19b).",
+                                    1.0, "§26.2 · per-stratum acceptance · Docs 17–19 threshold recorded on the Outcome"),
             "refusal_behaviour": crit(1.0 - regression, "one_minus_non_target_perplexity_regression", "Non-target held-out perplexity of the adapter relative to the base (MOAC M-b); reported abstention on the target set.",
                                       round(1.0 - M_B_REGRESSION_TOLERANCE, 6), "§26.3 · MOAC M-b no collateral regression (2 % DEFAULT)"),
             "provenance_integrity": crit(1.0 if provenance_ok else 0.0, "fraction", "Every training example resolves to a unit id in the sealed manifest; manifest sha verified at run open.", 1.0, "§26.4 · A17.16 ingredient manifest"),
@@ -788,7 +881,7 @@ def moac_card(run_id, base_eval, adapter_eval, non_target_base, non_target_adapt
             "time_to_answer_p95": crit(held["seconds_per_unit_mean"], "seconds_per_unit_mean", "Mean evaluation latency per unit on the training host (p95 not yet instrumented; floor unset).", None, "§26.6"),
             "training_lineage_resolved": True, "training_lineage_note": "recipe + base weight sha + sealed corpus manifest sha recorded on the run receipt",
             "computed_at": computed_at}
-    return card, {"m_a_improvement": round(m_a, 5), "m_b_non_target_regression": round(regression, 5), "per_stratum_pass": per_stratum_pass,
+    return card, {"m_a_improvement": round(m_a, 5), "m_b_non_target_regression": round(regression, 5), "per_stratum_pass": per_stratum_pass, "outcome_floor": outcome_floor,
                   "m_e_calibration_ece": held.get("ece"), "abstention_rate": {s: held["per_stratum"][s].get("abstention_rate") for s in strata}}
 
 
@@ -803,6 +896,9 @@ def _base(control, registry_id):
 def _corpus_sets(control, cfg):
     root = Path(control["root"])
     units, manifest, canaries, manifest_sha = load_corpus(root, control["corpus_id"])
+    excluded = set(control.get("excluded_unit_ids") or [])
+    if excluded:  # rights withdrawn on a training dependency: the unit takes no part anywhere in the re-derivation (M9-T5)
+        units = [u for u in units if u["id"] not in excluded]
     real = [u for u in units if u["stratum"] != "__canary__"]
     task = control.get("task", "text_lid" if manifest["kind"] == "transcript_text" else "text_lm")
     labels = _label_names(real)
@@ -952,11 +1048,17 @@ def train(control, state):
     try:
         import torch
         cfg = _recipe(control)
+        outcome_floor = control.get("acceptance_floor")
+        if not isinstance(outcome_floor, (int, float)):
+            raise ValueError("OUTCOME_PER_STRATUM_FLOOR_REQUIRED")  # Docs 17–19: an Outcome without a per-stratum acceptance threshold is rejected at definition
         units, manifest, canaries, manifest_sha, task, labels, train_units, eval_sets = _corpus_sets(control, cfg)
         if manifest_sha != sha256_text(json.dumps({k: v for k, v in manifest.items()}, sort_keys=True)):
             raise ValueError("CORPUS_MANIFEST_TAMPERED")
         base = _base(control, control["base"])
-        out = Path(control["root"]) / "runs" / control["job_id"] / "full"
+        run_job = control.get("resume_from_job_id") or control["job_id"]
+        out = Path(control["root"]) / "runs" / run_job / "full"
+        if control.get("resume_from_job_id"):
+            cfg["resume"] = True  # physical process loss: the killed run's checkpoint on the host volume is the only continuation
         resume_proof = None
         try:
             result, bundle = train_arm(cfg, base, train_units, eval_sets, task, labels, out, state, "full")
@@ -967,7 +1069,10 @@ def train(control, state):
             result, bundle = train_arm({**cfg, "resume": True}, base, train_units, eval_sets, task, labels, out, state, "full")
             resume_proof = {**interrupted, "resumed_adapter_sha256": result["resumed"]["adapter_sha256"],
                             "adapter_state_parity": result["resumed"]["adapter_sha256"] == interrupted["adapter_sha256_in_memory"],
-                            "work_lost_steps": 0, "work_loss_bound_steps": cfg["checkpoint_every"], "resumed_from_step": result["resumed"]["from_step"]}
+                            "work_lost_steps": 0, "work_loss_bound_steps": cfg["checkpoint_every"], "resumed_from_step": result["resumed"]["from_step"], "kind": "in_process_exception"}
+        if control.get("resume_from_job_id") and result.get("resumed"):
+            resume_proof = {"kind": "physical_process_loss", "resumed_from_step": result["resumed"]["from_step"], "carriers_restored": result["resumed"]["carriers_restored"],
+                            "checkpoint_sha256": result["resumed"]["checkpoint_sha256"], "resumed_adapter_sha256": result["resumed"]["adapter_sha256"], "killed_job_id": control["resume_from_job_id"]}
         model, tokenizer = bundle
         held_units = eval_sets["held"]
         nt_key = "non_target" if eval_sets.get("non_target") else "held"
@@ -976,17 +1081,18 @@ def train(control, state):
         probe = distance_probe(model, tokenizer, train_units, held_units, canaries, cfg, "cuda", out)
         computed_at = now()
         card, moac_extra = moac_card(control["job_id"], result["base_eval"], result["adapter_eval"], result["base_eval"][nt_key],
-                                     result["adapter_eval"][nt_key], True, result["wallclock_seconds"], len(held_units), computed_at)
+                                     result["adapter_eval"][nt_key], True, result["wallclock_seconds"], len(held_units), computed_at, outcome_floor)
         state.update(progress={"stage": "DAP-37 pruning pass"})
         pruning = prune_adapter(model, control.get("prune_fraction", 0.3))
         model.eval()
         pruned_eval = {name: evaluate(model, tokenizer, us, task, labels, "cuda", cfg, f"pruned:{name}") for name, us in eval_sets.items() if us}
         pruned_dir = out / "pruned_adapter"; model.save_pretrained(str(pruned_dir))
         pruned_card, pruned_extra = moac_card(control["job_id"] + "-pruned", result["base_eval"], pruned_eval, result["base_eval"][nt_key],
-                                              pruned_eval[nt_key], True, result["wallclock_seconds"], len(held_units), now())
+                                              pruned_eval[nt_key], True, result["wallclock_seconds"], len(held_units), now(), outcome_floor)
         pruned_sha = _adapter_hash(model)
         training_manifest = {"artefact_id": control["job_id"], "corpus_id": control["corpus_id"], "corpus_manifest_sha256": manifest_sha, "rights_ref": manifest["rights_ref"],
                              "cited_units": sorted(u["id"] for u in train_units if u["stratum"] != "__canary__"), "was_sisa_sharded": False,
+                             "excluded_unit_ids": sorted(control.get("excluded_unit_ids") or []), "rederived_from": control.get("rederived_from"),
                              "base": {"registry_id": base["registry_id"], "repo": base["repo"], "weight_sha256": base["weight_sha256"], "licence": base["licence_verified"]},
                              "recipe": result["recipe"], "guarantee": "provenance of ingredients only (A17.16); never provenance of assertions"}
         (out / "training_manifest.json").write_text(json.dumps(training_manifest, sort_keys=True))
@@ -999,8 +1105,9 @@ def train(control, state):
         return {"corpus_id": control["corpus_id"], "task": task, "labels": labels, "manifest_sha256": manifest_sha, "corpus": {k: manifest[k] for k in ("units", "splits", "per_stratum", "test_set_seal", "rights_ref", "kind")},
                 "training": {k: result[k] for k in ("train_units", "train_tokens", "steps", "epochs_completed", "total_steps_planned", "wallclock_seconds", "gpu_hours", "tokens_per_second", "gpu_max_memory_gb", "final_loss", "device", "recipe", "base")},
                 "dev_curve": result.get("dev_curve", []), "base_eval": result["base_eval"], "adapter_eval": result["adapter_eval"],
-                "moac": {"card": card, **moac_extra, "floors_class": "DEFAULT (M-a +5 pts, M-b 2 %, per-stratum gates release) — disclosed, not curated"},
-                "distance_probe": probe, "checkpoint": {"path": str(out / "checkpoint.pt"), "every_steps": cfg["checkpoint_every"], "rng_and_optimizer_saved": True, "resume_proof": resume_proof},
+                "moac": {"card": card, **moac_extra, "floors_class": f"DEFAULT (M-a +5 pts aggregate, M-b 2 %, per-stratum: Outcome floor {outcome_floor} + no regression below base) — disclosed, not curated"},
+                "distance_probe": probe, "checkpoint": {"path": str(out / "checkpoint.pt"), "every_steps": cfg["checkpoint_every"], "cadence": result.get("checkpoint_cadence"), "rng_and_optimizer_saved": True, "resume_proof": resume_proof},
+                "run_dir": str(out), "resume_from_job_id": control.get("resume_from_job_id"), "drill": bool(control.get("drill")),
                 "pruning": {**pruning, "adapter_sha256": pruned_sha, "artefact_sha256": pruned_tree_sha, "eval": pruned_eval, "moac_card": pruned_card, **pruned_extra,
                             "anchor": "DAP-37: pruned artefact is a new hash; it must re-pass MOAC on its own numbers"},
                 "artefact": {"path": str(out / "adapter"), "sha256": artefact_sha, "adapter_sha256": result["adapter_sha256"], "training_manifest_sha256": sha256_text((out / "training_manifest.json").read_text()),
@@ -1023,12 +1130,203 @@ def pipeline(control, state):
     stages["compare"] = compare_optimizers(cmp_control, state); state.stage("compare", {"verdict": stages["compare"]["recommended_verdict"]})
     optimizer = "muon" if stages["compare"]["recommended_verdict"] == "adopted" else "adamw"
     full_control = {**control, **control["train"], "corpus_id": corpus["corpus_id"], "base": base,
+                    "acceptance_floor": control["train"].get("acceptance_floor", cal_control.get("acceptance_floor")),
                     "recipe": {**control.get("recipe", {}), **control["train"].get("recipe", {}), "optimizer": optimizer}}
     stages["train"] = train(full_control, state)
     return {"stages": stages, "base_selected": base, "optimizer_selected": optimizer}
 
 
-PHASES = {"acquire_bases": acquire_bases, "assemble": assemble, "calibrate": calibrate, "compare_optimizers": compare_optimizers, "train": train, "pipeline": pipeline}
+# ------------------------------------------------------------------ M9.4 governed serving (registered artefact only · revocable · measured under load)
+def _load_served(base, adapter_dir, device="cuda"):
+    import torch
+    from peft import PeftModel
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    tokenizer = AutoTokenizer.from_pretrained(base["local_path"], local_files_only=True)
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    model = AutoModelForCausalLM.from_pretrained(base["local_path"], dtype=torch.bfloat16, attn_implementation="sdpa", local_files_only=True).to(device)
+    model = PeftModel.from_pretrained(model, str(adapter_dir), is_trainable=False)
+    model.eval(); model.config.use_cache = False
+    return tokenizer, model
+
+
+def _percentiles(values):
+    if not values:
+        return None
+    s = sorted(values)
+    pick = lambda p: round(s[min(len(s) - 1, int(p * len(s)))], 4)
+    return {"p50": pick(0.5), "p95": pick(0.95), "p99": pick(0.99), "max": round(s[-1], 4), "n": len(s)}
+
+
+def serve(control, state):
+    """Serve ONE registered artefact on the tenant host loopback: hash-verified at load, lineage on every answer, refusal the moment E1
+    revokes the serving authority (revoked.json), stop on stop.json. The adapter hash is re-derived on health reads so load/precision
+    pressure cannot silently alter the registered artefact (M9-T3)."""
+    import threading
+    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    import torch
+    lock = _gpu_lock(control)
+    try:
+        root = Path(control["root"]); run_dir = Path(control["run_dir"])
+        adapter_dir = run_dir / ("pruned_adapter" if control.get("variant") == "pruned" else "adapter")
+        artefact_sha = tree_sha256(adapter_dir)
+        if artefact_sha != control["artefact_sha256"]:
+            raise ValueError("ARTEFACT_HASH_MISMATCH:registry=" + control["artefact_sha256"][:16] + ":host=" + artefact_sha[:16])
+        manifest = json.loads((run_dir / "training_manifest.json").read_text())
+        base = _base(control, manifest["base"]["registry_id"])
+        if base["weight_sha256"] != manifest["base"]["weight_sha256"]:
+            raise ValueError("BASE_WEIGHT_SHA_MISMATCH")
+        labels = {code: LANGUAGES.get(code, code) for code in control["labels"]}
+        codes = list(labels)
+        state.update(progress={"stage": "loading registered artefact", "artefact_sha256": artefact_sha})
+        tokenizer, model = _load_served(base, adapter_dir)
+        loaded_sha = _adapter_hash(model)
+        job_dir = Path(control["job_dir"]); revoked, stop = job_dir / "revoked.json", job_dir / "stop.json"
+        authority = control["authority"]
+        lineage = {"model_id": authority["model_id"], "artefact_sha256": artefact_sha, "registry_version": authority["registry_version"], "base": manifest["base"]["registry_id"],
+                   "base_weight_sha256": manifest["base"]["weight_sha256"], "training_manifest_sha256": sha256_text((run_dir / "training_manifest.json").read_text()),
+                   "corpus_manifest_sha256": manifest["corpus_manifest_sha256"], "cited_units": len(manifest["cited_units"]), "excluded_unit_ids": manifest.get("excluded_unit_ids", []),
+                   "rederived_from": manifest.get("rederived_from"), "host": socket.gethostname(), "precision": "bfloat16 base · float32 adapter"}
+        infer = threading.Lock()
+        counters = {"served": 0, "refused": 0, "abstained": 0, "latency": [], "requests": 0}
+        max_batch, max_chars, batch_size = int(control.get("max_batch", 64)), int(control.get("max_chars", 2000)), int(control.get("batch_size", 16))
+
+        def classify(texts):
+            with infer:
+                scores = _score_labels(model, tokenizer, [f"Text: {t}\nLanguage:" for t in texts], [labels[c] for c in codes], "cuda", batch_size)
+            out = []
+            for s in scores:
+                probs = torch.softmax(torch.tensor(s), -1); conf, pred = float(probs.max()), codes[int(probs.argmax())]
+                out.append({"label": pred, "language": labels[pred], "confidence": round(conf, 5), "abstained": conf < ABSTAIN_CONFIDENCE})
+            return out
+
+        def revocation():
+            try:
+                return json.loads(revoked.read_text()) if revoked.exists() else None
+            except ValueError:
+                return {"reason": "revocation record unreadable; refusing by construction"}
+
+        class Handler(BaseHTTPRequestHandler):
+            def log_message(self, *args):
+                pass
+
+            def _send(self, code, body):
+                raw = json.dumps(body).encode()
+                self.send_response(code); self.send_header("Content-Type", "application/json"); self.send_header("Content-Length", str(len(raw))); self.end_headers(); self.wfile.write(raw)
+
+            def do_GET(self):
+                if self.path != "/health":
+                    return self._send(404, {"error": "not found"})
+                rev = revocation()
+                self._send(200, {"status": "revoked" if rev else "serving", "revocation": rev, **lineage, "loaded_adapter_sha256": loaded_sha, "adapter_sha256_now": _adapter_hash(model),
+                                 "artefact_unaltered": _adapter_hash(model) == loaded_sha, "served_texts": counters["served"], "refused_requests": counters["refused"],
+                                 "requests": counters["requests"], "abstained": counters["abstained"], "latency_seconds": _percentiles(counters["latency"][-2000:])})
+
+            def do_POST(self):
+                if self.path != "/classify":
+                    return self._send(404, {"error": "not found"})
+                counters["requests"] += 1
+                try:
+                    body = json.loads(self.rfile.read(int(self.headers.get("Content-Length") or 0)) or b"{}")
+                except ValueError:
+                    return self._send(422, {"error": "body must be JSON"})
+                rev = revocation()
+                if rev:
+                    counters["refused"] += 1
+                    return self._send(403, {"refused": "SERVING_AUTHORITY_REVOKED", "revocation": rev, "model_id": lineage["model_id"]})
+                texts = [str(t)[:max_chars] for t in (body.get("texts") or []) if str(t).strip()][:max_batch]
+                if not texts:
+                    return self._send(422, {"error": "texts required"})
+                t0 = time.monotonic(); rows = classify(texts); dt = time.monotonic() - t0
+                counters["served"] += len(texts); counters["abstained"] += sum(r["abstained"] for r in rows); counters["latency"].append(dt)
+                self._send(200, {"results": rows, "lineage": lineage, "seconds": round(dt, 4)})
+
+        server = ThreadingHTTPServer(("127.0.0.1", int(control["port"])), Handler)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        started = time.monotonic()
+        state.update(progress={"stage": "serving", "port": control["port"], **lineage, "loaded_adapter_sha256": loaded_sha})
+        state.stage("serving_started", {"port": control["port"], "artefact_sha256": artefact_sha, "loaded_adapter_sha256": loaded_sha})
+        tick = 0
+        while not stop.exists():
+            time.sleep(2); tick += 1
+            if tick % 15 == 0:
+                state.update(progress={"stage": "serving", "port": control["port"], **lineage, "loaded_adapter_sha256": loaded_sha, "served_texts": counters["served"], "requests": counters["requests"],
+                                       "refused_requests": counters["refused"], "revoked": revoked.exists(), "uptime_seconds": round(time.monotonic() - started)})
+        server.shutdown()
+        try:
+            stop_reason = json.loads(stop.read_text()).get("reason")
+        except ValueError:
+            stop_reason = None
+        return {**lineage, "loaded_adapter_sha256": loaded_sha, "adapter_sha256_at_stop": _adapter_hash(model), "artefact_unaltered": _adapter_hash(model) == loaded_sha,
+                "requests": counters["requests"], "served_texts": counters["served"], "refused_requests": counters["refused"], "abstained": counters["abstained"],
+                "latency_seconds": _percentiles(counters["latency"]), "uptime_seconds": round(time.monotonic() - started), "stop_reason": stop_reason, "revoked_at_stop": revocation()}
+    finally:
+        lock.close()
+
+
+def load_test(control, state):
+    """Measured quality under load (M9-T3/M9.4): sequential baseline labels on sealed held-out texts, then concurrent batched requests to the
+    same loopback server; reports latency percentiles, throughput, label determinism versus the sequential baseline and artefact-hash constancy."""
+    import threading
+    import urllib.error
+    import urllib.request
+    root = Path(control["root"])
+    units, _manifest, _c, _sha = load_corpus(root, control["corpus_id"])
+    seed = control.get("seed", 41)
+    held = _sample([u for u in units if u["split"] == "held" and u["stratum"] != "__canary__"], int(control.get("per_stratum", 30)), seed)
+    url = f"http://127.0.0.1:{int(control['port'])}"
+
+    def call(texts):
+        req = urllib.request.Request(url + "/classify", data=json.dumps({"texts": texts}).encode(), headers={"Content-Type": "application/json"}, method="POST")
+        t0 = time.monotonic()
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                body, code = json.loads(r.read()), r.status
+        except urllib.error.HTTPError as e:
+            body, code = json.loads(e.read() or b"{}"), e.code
+        return code, body, time.monotonic() - t0
+
+    state.update(progress={"stage": "sequential baseline", "units": len(held)})
+    baseline, base_latency = {}, []
+    for u in held:
+        code, body, dt = call([u["text"]]); base_latency.append(dt)
+        baseline[u["id"]] = body["results"][0]["label"] if code == 200 else None
+    concurrency, per_thread, batch = int(control.get("concurrency", 8)), int(control.get("requests_per_thread", 20)), int(control.get("batch", 8))
+    rows, guard = [], threading.Lock()
+
+    def worker(k):
+        rng = random.Random(f"{seed}:{k}")
+        for _ in range(per_thread):
+            picked = rng.sample(held, min(len(held), batch))
+            code, body, dt = call([u["text"] for u in picked])
+            pairs = [(u["id"], u["stratum"], r["label"]) for u, r in zip(picked, body.get("results", []))] if code == 200 else []
+            with guard:
+                rows.append({"code": code, "seconds": dt, "pairs": pairs, "sha": (body.get("lineage") or {}).get("artefact_sha256")})
+
+    state.update(progress={"stage": "concurrent load", "concurrency": concurrency, "requests": concurrency * per_thread})
+    threads = [threading.Thread(target=worker, args=(k,)) for k in range(concurrency)]
+    t0 = time.monotonic()
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    wall = time.monotonic() - t0
+    ok = [r for r in rows if r["code"] == 200]
+    pairs = [p for r in ok for p in r["pairs"]]
+    mismatches = sum(1 for uid, _s, lab in pairs if baseline.get(uid) != lab)
+    correct = sum(1 for _u, s, lab in pairs if s == lab)
+    shas = sorted({r["sha"] for r in ok if r["sha"]})
+    return {"port": int(control["port"]), "sample_units": len(held), "sequential": {"requests": len(held), "latency_seconds": _percentiles(base_latency),
+                                                                                  "accuracy": round(sum(1 for u in held if baseline.get(u["id"]) == u["stratum"]) / max(1, len(held)), 5)},
+            "load": {"concurrency": concurrency, "requests_per_thread": per_thread, "batch": batch, "requests": len(rows), "ok": len(ok), "errors": len(rows) - len(ok),
+                     "wall_seconds": round(wall, 2), "texts_per_second": round(len(pairs) / max(1e-6, wall), 2), "latency_seconds": _percentiles([r["seconds"] for r in rows]),
+                     "accuracy_under_load": round(correct / max(1, len(pairs)), 5)},
+            "determinism": {"labels_compared": len(pairs), "label_mismatches_vs_sequential": mismatches, "identical": mismatches == 0},
+            "artefact_sha256_constant": len(shas) == 1, "artefact_sha256_seen": shas, "error_codes": sorted({r["code"] for r in rows if r["code"] != 200})}
+
+
+PHASES = {"acquire_bases": acquire_bases, "assemble": assemble, "calibrate": calibrate, "compare_optimizers": compare_optimizers, "train": train, "pipeline": pipeline,
+          "serve": serve, "load_test": load_test}
 
 
 def execute(control):

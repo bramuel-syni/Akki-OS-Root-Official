@@ -1,90 +1,50 @@
 /*
- * AdminModelAdmission.jsx — v2 OS · admin tab · APPROVALS Model Approval leaf.
- * R-101 preserved WHAT · Turn 4 sub-slice 4e GREEN · 2026-09-22T08:52:00Z
- * R-103 amendment: single continuous run to completion.
- * HONEST-GAP · SO §5 honest-gap-never-fake.
+ * AdminModelAdmission.jsx — v2 OS · admin tab · APPROVALS Model Approval leaf · LIVE.
+ *
+ * Registry of trained adapters with their admission on record, re-adjudication decisions under the owner's
+ * per-stratum ruling, the G9 capability account, and the M8 failure/recovery drill receipts against the ratified
+ * recovery tiers. Everything is read from banked records under /api/training/m9/* and /api/continuity/*;
+ * the only live action is a health read against a served model.
  */
-
-import React from "react";
+import React from 'react';
+import { CensusAccess } from '@/components/census/CensusAccess';
+import { usePrototypeSession } from '@/components/prototype/usePrototypeSession';
+import { ModelRegistry } from '@/components/models/ModelRegistry';
+import { ModelAdmissions, ModelCapabilities } from '@/components/models/ModelAdmissions';
+import { RecoveryDrills } from '@/components/models/RecoveryDrills';
+import { useModelApproval, stamp } from '@/components/models/useModelApproval';
+import '@/components/census/census.css';
+import '@/components/estate/estate.css';
 
 export default function AdminModelAdmission() {
-  return (
-    <div
-      data-testid="admin-modeladmission-surface"
-      style={{
-        minHeight: "100vh",
-        background: "var(--surface, #f7f5ef)",
-        color: "var(--ink, #12121a)",
-        padding: "48px 64px",
-        fontFamily: "'Charter', 'Iowan Old Style', Georgia, serif",
-      }}
-    >
-      <header style={{ marginBottom: 32 }}>
-        <div
-          data-testid="admin-modeladmission-breadcrumb"
-          style={{
-            fontSize: 12,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "var(--ink3, #6b6b78)",
-            marginBottom: 8,
-          }}
-        >
-          APPROVALS · Model Approval
-        </div>
-        <h1
-          data-testid="admin-modeladmission-title"
-          style={{ fontSize: 40, fontWeight: 300, margin: 0, letterSpacing: "-0.02em" }}
-        >
-          Model Approval
-        </h1>
-      </header>
-      <section
-        data-testid="admin-modeladmission-lead"
-        style={{ maxWidth: 720, fontSize: 17, lineHeight: 1.6 }}
-      >
-        <p style={{ margin: "0 0 24px 0" }}>
-          New models seeking admission. Each carries its evaluation, its lineage, its declared purpose and the authority admitting it.
-        </p>
-      </section>
-      <section
-        data-testid="admin-modeladmission-honest-gap"
-        style={{
-          marginTop: 40,
-          padding: "24px 28px",
-          background: "rgba(176,141,46,.07)",
-          border: "1px solid var(--brass, #b08d2e)",
-          borderRadius: 4,
-          maxWidth: 720,
-        }}
-      >
-        <div
-          data-testid="admin-modeladmission-honest-gap-label"
-          style={{
-            fontSize: 11,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "var(--brass, #b08d2e)",
-            fontWeight: 600,
-            marginBottom: 8,
-          }}
-        >
-          Honest gap · surface only
-        </div>
-        <div data-testid="admin-modeladmission-honest-gap-body" style={{ fontSize: 15, lineHeight: 1.5 }}>
-          Backend for Model Approval not yet wired. This surface reveals the design-of-record
-          structure honestly; no fabricated data is shown. Wire lands at PHASE 3
-          Census Productization + PHASE 4 feature build-out per R-102 MASTER DIRECTIVE
-          + R-103 amendment (single continuous run).
-        </div>
-        <div
-          data-testid="admin-modeladmission-honest-gap-see-working"
-          style={{ marginTop: 16, fontSize: 13, color: "var(--ink3, #6b6b78)" }}
-        >
-          See the working: NAV admin.modeladmission at App.js const NAV · surface at
-          pages/os/AdminModelAdmission.jsx.
-        </div>
-      </section>
-    </div>
-  );
+  const session = usePrototypeSession();
+  const signedIn = Boolean(session.data);
+  const { models, capabilities, drills, policy, readjudications, loading, error, health, checking, reload, checkHealth } = useModelApproval(signedIn);
+  const adapters = models?.trained_adapters || [];
+  const served = adapters.filter(m => m.serving?.status === 'running').length;
+  const loaded = Boolean(models || capabilities || drills || policy || readjudications);
+  return <div className="estate" data-testid="admin-modeladmission-surface">
+    <header className="estate-header">
+      <div>
+        <div className="estate-crumb" data-testid="admin-modeladmission-breadcrumb">APPROVALS · Model Approval{models?.tenant_id ? ` · ${models.tenant_id}` : ''}</div>
+        <h1 className="estate-title" data-testid="admin-modeladmission-title">Model Approval</h1>
+        <p className="estate-lead" data-testid="admin-modeladmission-lead">New models seeking admission. Each carries its evaluation, its lineage, its declared purpose and the authority admitting it — and, once admitted, the evidence that it survives failure, withdrawal and recovery without losing the Ledger.</p>
+        {models && <div className="estate-meta" data-testid="admin-modeladmission-meta"><span>registry <code>{models.registry_version}</code></span><span>{adapters.length} admitted adapter{adapters.length === 1 ? '' : 's'}</span><span>{served} served</span><span>{(drills || []).length} drill receipt{(drills || []).length === 1 ? '' : 's'}</span>{capabilities?.as_of && <span>capability account {stamp(capabilities.as_of)}</span>}</div>}
+      </div>
+      {signedIn && <div className="estate-actions">
+        <button className="estate-btn" onClick={reload} disabled={loading} data-testid="admin-modeladmission-reload">{loading ? 'Reading…' : 'Re-read records'}</button>
+      </div>}
+    </header>
+    {!signedIn && <CensusAccess error={session.error} loading={session.loading} retry={session.reload} />}
+    {signedIn && <div className="estate-body">
+      {error && <p className="estate-alert" role="alert" data-testid="admin-modeladmission-error">{error}</p>}
+      {!loaded && loading && <div className="estate-empty" data-testid="admin-modeladmission-loading">Reading the registry, admission records, capability account and drill receipts…</div>}
+      {loaded && <>
+        <ModelRegistry models={models} health={health} checking={checking} onCheck={checkHealth} />
+        <ModelAdmissions records={readjudications} />
+        <ModelCapabilities capabilities={capabilities} />
+        <RecoveryDrills drills={drills} policy={policy} />
+      </>}
+    </div>}
+  </div>;
 }

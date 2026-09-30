@@ -1,0 +1,1737 @@
+{
+ "job_id": "m9j-fe3e72c42d48",
+ "phase": "train",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-30T07:21:09.746327Z",
+ "params": {
+  "gpu_index": 0,
+  "corpus_id": "rms-transcripts-v1",
+  "non_target_corpus_id": "digicow-sealed-units-v1",
+  "base": "qwen3-1.7b-base",
+  "acceptance_floor": 0.9,
+  "drill": true,
+  "prune_fraction": 0.3,
+  "distance_probe": {
+   "samples": 40,
+   "max_new_tokens": 24
+  },
+  "recipe": {
+   "lr": 0.0002,
+   "epochs": 1,
+   "max_steps": 320,
+   "batch_size": 512,
+   "grad_accum": 1,
+   "max_seq_len": 256,
+   "tokens_per_batch": 12288,
+   "gradient_checkpointing": false,
+   "warmup_steps": 20,
+   "checkpoint_every": 100,
+   "checkpoint_cadence": "young_daly",
+   "durable_checkpoint_dir": "/mnt/akki-storage-3388s/akki-m9-durable",
+   "eval_every": 0,
+   "eval_batch_size": 64,
+   "eval_cap_per_stratum": 100
+  },
+  "resume_from_job_id": "m9j-f4bf3ad279bc"
+ },
+ "northena_run_id": "run-d0cce74fc054",
+ "northena_trace_id": "trc-6a1014bd4438",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-fe3e72c42d48"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-fe3e72c42d48",
+  "pid": 750278
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-f07184121b56",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_train_admitted"
+  },
+  {
+   "row_id": "led-a99487748d42",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_train_daemonised:pid=750278"
+  },
+  {
+   "row_id": "led-2a8302f821f3",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_train_completed"
+  }
+ ],
+ "code_sha256": "0a5b6a08d261039dbe51ba7c26c13c46ddc3cf8764e01621a2b96d4f7142c5bc",
+ "started_at": "2026-09-30T07:21:14.493813Z",
+ "last_status_rpc": {
+  "at": "2026-09-30T07:26:54.894643Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-6701fe420aea"
+ },
+ "remote_state": {
+  "phase": "train",
+  "status": "completed",
+  "started_at": "2026-09-30T07:21:14Z",
+  "progress": {
+   "stage": "DAP-37 pruning pass"
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-fe3e72c42d48",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-30T07:26:27Z",
+  "finished_at": "2026-09-30T07:26:27Z",
+  "receipt_sha256": "e7caf1653ae9ffd1616e520807dbfc300752b0717edc186c6079acaece87f0dd"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7313.19it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-fe3e72c42d48/worker.zip/services/training_runner/m9_worker.py:707: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * cfg[\"grad_accum\"]); trained_tokens += int(mask.sum()); padded_tokens += x.numel(); batch_index += 1",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-fe3e72c42d48",
+  "phase": "train",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-30T07:21:14Z",
+  "code_sha256": "0a5b6a08d261039dbe51ba7c26c13c46ddc3cf8764e01621a2b96d4f7142c5bc",
+  "status": "completed",
+  "result": {
+   "corpus_id": "rms-transcripts-v1",
+   "task": "text_lid",
+   "labels": {
+    "guz": "Kisii",
+    "kam": "Kikamba",
+    "kik": "Kikuyu",
+    "kln": "Kalenjin",
+    "luo": "Luo",
+    "lwg": "Luhya",
+    "swa": "Kiswahili"
+   },
+   "manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+   "corpus": {
+    "units": 157513,
+    "splits": {
+     "archive_test": 269,
+     "dev": 8280,
+     "held": 18980,
+     "train": 129984
+    },
+    "per_stratum": {
+     "guz": {
+      "archive_test": 102,
+      "dev": 1094,
+      "groups_held": 39,
+      "groups_train": 249,
+      "held": 2217,
+      "train": 18443
+     },
+     "kam": {
+      "archive_test": 121,
+      "dev": 931,
+      "groups_held": 39,
+      "groups_train": 210,
+      "held": 2422,
+      "train": 8746
+     },
+     "kik": {
+      "archive_test": 1,
+      "dev": 924,
+      "groups_held": 37,
+      "groups_train": 163,
+      "held": 3573,
+      "train": 13846
+     },
+     "kln": {
+      "archive_test": 38,
+      "dev": 1667,
+      "groups_held": 53,
+      "groups_train": 400,
+      "held": 3253,
+      "train": 27483
+     },
+     "luo": {
+      "archive_test": 7,
+      "dev": 1131,
+      "groups_held": 33,
+      "groups_train": 265,
+      "held": 2455,
+      "train": 18681
+     },
+     "lwg": {
+      "archive_test": 0,
+      "dev": 1496,
+      "groups_held": 238,
+      "groups_train": 2065,
+      "held": 3006,
+      "train": 25350
+     },
+     "swa": {
+      "archive_test": 0,
+      "dev": 1037,
+      "groups_held": 77,
+      "groups_train": 242,
+      "held": 2054,
+      "train": 17435
+     }
+    },
+    "test_set_seal": {
+     "corpus_id": "rms-transcripts-v1",
+     "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+     "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+     "held_unit_count": 18980,
+     "rule": "sealed before any training step; never re-drawn",
+     "sealed_at": "2026-09-29T21:55:14Z",
+     "strata": [
+      "guz",
+      "kam",
+      "kik",
+      "kln",
+      "luo",
+      "lwg",
+      "swa"
+     ]
+    },
+    "rights_ref": "owner-supplied google-transcripts datasets (RMS tenant custody) \u00b7 authorised for language-cognition training 2026-09-29 \u00b7 text modality of the same authorised corpus",
+    "kind": "transcript_text"
+   },
+   "training": {
+    "train_units": 130124,
+    "train_tokens": 9502124,
+    "steps": 320,
+    "epochs_completed": 0,
+    "total_steps_planned": 320,
+    "wallclock_seconds": 143,
+    "gpu_hours": 0.0398,
+    "tokens_per_second": 16383.4,
+    "gpu_max_memory_gb": 86.56,
+    "final_loss": 4.01156,
+    "device": "NVIDIA H200",
+    "recipe": {
+     "optimizer": "adamw",
+     "lr": 0.0002,
+     "muon_lr": 0.01,
+     "muon_momentum": 0.95,
+     "weight_decay": 0.01,
+     "epochs": 1,
+     "max_steps": 320,
+     "batch_size": 512,
+     "grad_accum": 1,
+     "max_seq_len": 256,
+     "tokens_per_batch": 12288,
+     "gradient_checkpointing": false,
+     "lora_r": 16,
+     "lora_alpha": 32,
+     "lora_dropout": 0.05,
+     "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+     ],
+     "warmup_steps": 20,
+     "max_grad_norm": 1.0,
+     "seed": 41,
+     "checkpoint_every": 100,
+     "eval_every": 0,
+     "checkpoint_cadence": "young_daly",
+     "durable_checkpoint_dir": "/mnt/akki-storage-3388s/akki-m9-durable"
+    },
+    "base": {
+     "registry_id": "qwen3-1.7b-base",
+     "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+    }
+   },
+   "dev_curve": [],
+   "base_eval": {
+    "dev": {
+     "tag": "full:base:dev",
+     "units": 700,
+     "per_stratum": {
+      "guz": {
+       "units": 100,
+       "nll": 6.17621,
+       "token_accuracy": 0.13076,
+       "judged": 86,
+       "correct": 0,
+       "abstain": 14,
+       "perplexity": 481.1645,
+       "accuracy": 0.0,
+       "abstention_rate": 0.14
+      },
+      "kam": {
+       "units": 100,
+       "nll": 5.01958,
+       "token_accuracy": 0.21215,
+       "judged": 85,
+       "correct": 0,
+       "abstain": 15,
+       "perplexity": 151.3472,
+       "accuracy": 0.0,
+       "abstention_rate": 0.15
+      },
+      "kik": {
+       "units": 100,
+       "nll": 5.35875,
+       "token_accuracy": 0.21611,
+       "judged": 37,
+       "correct": 2,
+       "abstain": 63,
+       "perplexity": 212.4583,
+       "accuracy": 0.05405,
+       "abstention_rate": 0.63
+      },
+      "kln": {
+       "units": 100,
+       "nll": 6.56545,
+       "token_accuracy": 0.15504,
+       "judged": 95,
+       "correct": 0,
+       "abstain": 5,
+       "perplexity": 710.1339,
+       "accuracy": 0.0,
+       "abstention_rate": 0.05
+      },
+      "luo": {
+       "units": 100,
+       "nll": 6.66625,
+       "token_accuracy": 0.12787,
+       "judged": 83,
+       "correct": 0,
+       "abstain": 17,
+       "perplexity": 785.4466,
+       "accuracy": 0.0,
+       "abstention_rate": 0.17
+      },
+      "lwg": {
+       "units": 100,
+       "nll": 5.87449,
+       "token_accuracy": 0.15828,
+       "judged": 92,
+       "correct": 0,
+       "abstain": 8,
+       "perplexity": 355.8446,
+       "accuracy": 0.0,
+       "abstention_rate": 0.08
+      },
+      "swa": {
+       "units": 100,
+       "nll": 4.60867,
+       "token_accuracy": 0.2656,
+       "judged": 99,
+       "correct": 99,
+       "abstain": 1,
+       "perplexity": 100.3501,
+       "accuracy": 1.0,
+       "abstention_rate": 0.01
+      }
+     },
+     "mean_perplexity": 315.0625,
+     "macro_accuracy": 0.15058,
+     "min_stratum_accuracy": 0.0,
+     "ece": 0.57751,
+     "eval_seconds": 17.6,
+     "seconds_per_unit_mean": 0.0252
+    },
+    "held": {
+     "tag": "full:base:held",
+     "units": 700,
+     "per_stratum": {
+      "guz": {
+       "units": 100,
+       "nll": 6.05383,
+       "token_accuracy": 0.12732,
+       "judged": 88,
+       "correct": 0,
+       "abstain": 12,
+       "perplexity": 425.7418,
+       "accuracy": 0.0,
+       "abstention_rate": 0.12
+      },
+      "kam": {
+       "units": 100,
+       "nll": 5.11808,
+       "token_accuracy": 0.20456,
+       "judged": 79,
+       "correct": 0,
+       "abstain": 21,
+       "perplexity": 167.0136,
+       "accuracy": 0.0,
+       "abstention_rate": 0.21
+      },
+      "kik": {
+       "units": 100,
+       "nll": 5.32585,
+       "token_accuracy": 0.21212,
+       "judged": 53,
+       "correct": 2,
+       "abstain": 47,
+       "perplexity": 205.5834,
+       "accuracy": 0.03774,
+       "abstention_rate": 0.47
+      },
+      "kln": {
+       "units": 100,
+       "nll": 6.42856,
+       "token_accuracy": 0.16059,
+       "judged": 86,
+       "correct": 0,
+       "abstain": 14,
+       "perplexity": 619.283,
+       "accuracy": 0.0,
+       "abstention_rate": 0.14
+      },
+      "luo": {
+       "units": 100,
+       "nll": 6.76487,
+       "token_accuracy": 0.12314,
+       "judged": 84,
+       "correct": 0,
+       "abstain": 16,
+       "perplexity": 866.8551,
+       "accuracy": 0.0,
+       "abstention_rate": 0.16
+      },
+      "lwg": {
+       "units": 100,
+       "nll": 5.78283,
+       "token_accuracy": 0.16691,
+       "judged": 96,
+       "correct": 0,
+       "abstain": 4,
+       "perplexity": 324.6761,
+       "accuracy": 0.0,
+       "abstention_rate": 0.04
+      },
+      "swa": {
+       "units": 100,
+       "nll": 4.84188,
+       "token_accuracy": 0.26161,
+       "judged": 100,
+       "correct": 100,
+       "abstain": 0,
+       "perplexity": 126.7079,
+       "accuracy": 1.0,
+       "abstention_rate": 0.0
+      }
+     },
+     "mean_perplexity": 317.1628,
+     "macro_accuracy": 0.14825,
+     "min_stratum_accuracy": 0.0,
+     "ece": 0.58078,
+     "eval_seconds": 8.0,
+     "seconds_per_unit_mean": 0.01147
+    },
+    "archive_test": {
+     "tag": "full:base:archive_test",
+     "units": 246,
+     "per_stratum": {
+      "guz": {
+       "units": 100,
+       "nll": 6.53397,
+       "token_accuracy": 0.11598,
+       "judged": 86,
+       "correct": 0,
+       "abstain": 14,
+       "perplexity": 688.1251,
+       "accuracy": 0.0,
+       "abstention_rate": 0.14
+      },
+      "kam": {
+       "units": 100,
+       "nll": 4.92518,
+       "token_accuracy": 0.22213,
+       "judged": 79,
+       "correct": 0,
+       "abstain": 21,
+       "perplexity": 137.7139,
+       "accuracy": 0.0,
+       "abstention_rate": 0.21
+      },
+      "kik": {
+       "units": 1,
+       "nll": 5.21727,
+       "token_accuracy": 0.25424,
+       "judged": 1,
+       "correct": 0,
+       "abstain": 0,
+       "perplexity": 184.4297,
+       "accuracy": 0.0,
+       "abstention_rate": 0.0
+      },
+      "kln": {
+       "units": 38,
+       "nll": 6.17803,
+       "token_accuracy": 0.17601,
+       "judged": 36,
+       "correct": 0,
+       "abstain": 2,
+       "perplexity": 482.0423,
+       "accuracy": 0.0,
+       "abstention_rate": 0.05263
+      },
+      "luo": {
+       "units": 7,
+       "nll": 5.65278,
+       "token_accuracy": 0.19327,
+       "judged": 7,
+       "correct": 0,
+       "abstain": 0,
+       "perplexity": 285.0838,
+       "accuracy": 0.0,
+       "abstention_rate": 0.0
+      }
+     },
+     "mean_perplexity": 328.5144,
+     "macro_accuracy": 0.0,
+     "min_stratum_accuracy": 0.0,
+     "ece": 0.75041,
+     "eval_seconds": 5.6,
+     "seconds_per_unit_mean": 0.02287
+    },
+    "non_target": {
+     "tag": "full:base:non_target",
+     "units": 2,
+     "per_stratum": {
+      "training_other": {
+       "units": 2,
+       "nll": 5.33054,
+       "token_accuracy": 0.37778,
+       "judged": 0,
+       "correct": 0,
+       "abstain": 2,
+       "perplexity": 206.5493,
+       "accuracy": null,
+       "abstention_rate": 1.0
+      }
+     },
+     "mean_perplexity": 206.5493,
+     "macro_accuracy": 0.0,
+     "min_stratum_accuracy": null,
+     "ece": 0.48308,
+     "eval_seconds": 1.2,
+     "seconds_per_unit_mean": 0.59373
+    }
+   },
+   "adapter_eval": {
+    "dev": {
+     "tag": "full:adapter:dev",
+     "units": 700,
+     "per_stratum": {
+      "guz": {
+       "units": 100,
+       "nll": 4.07317,
+       "token_accuracy": 0.31076,
+       "judged": 82,
+       "correct": 78,
+       "abstain": 18,
+       "perplexity": 58.7427,
+       "accuracy": 0.95122,
+       "abstention_rate": 0.18
+      },
+      "kam": {
+       "units": 100,
+       "nll": 3.72612,
+       "token_accuracy": 0.33126,
+       "judged": 77,
+       "correct": 48,
+       "abstain": 23,
+       "perplexity": 41.5178,
+       "accuracy": 0.62338,
+       "abstention_rate": 0.23
+      },
+      "kik": {
+       "units": 100,
+       "nll": 3.33711,
+       "token_accuracy": 0.3978,
+       "judged": 94,
+       "correct": 93,
+       "abstain": 6,
+       "perplexity": 28.1376,
+       "accuracy": 0.98936,
+       "abstention_rate": 0.06
+      },
+      "kln": {
+       "units": 100,
+       "nll": 4.20058,
+       "token_accuracy": 0.34097,
+       "judged": 85,
+       "correct": 80,
+       "abstain": 15,
+       "perplexity": 66.725,
+       "accuracy": 0.94118,
+       "abstention_rate": 0.15
+      },
+      "luo": {
+       "units": 100,
+       "nll": 4.58802,
+       "token_accuracy": 0.28643,
+       "judged": 93,
+       "correct": 91,
+       "abstain": 7,
+       "perplexity": 98.2996,
+       "accuracy": 0.97849,
+       "abstention_rate": 0.07
+      },
+      "lwg": {
+       "units": 100,
+       "nll": 4.01339,
+       "token_accuracy": 0.32406,
+       "judged": 95,
+       "correct": 89,
+       "abstain": 5,
+       "perplexity": 55.3344,
+       "accuracy": 0.93684,
+       "abstention_rate": 0.05
+      },
+      "swa": {
+       "units": 100,
+       "nll": 3.4603,
+       "token_accuracy": 0.38107,
+       "judged": 98,
+       "correct": 98,
+       "abstain": 2,
+       "perplexity": 31.8266,
+       "accuracy": 1.0,
+       "abstention_rate": 0.02
+      }
+     },
+     "mean_perplexity": 50.1039,
+     "macro_accuracy": 0.91721,
+     "min_stratum_accuracy": 0.62338,
+     "ece": 0.06032,
+     "eval_seconds": 12.7,
+     "seconds_per_unit_mean": 0.01819
+    },
+    "held": {
+     "tag": "full:adapter:held",
+     "units": 700,
+     "per_stratum": {
+      "guz": {
+       "units": 100,
+       "nll": 4.20562,
+       "token_accuracy": 0.28857,
+       "judged": 87,
+       "correct": 81,
+       "abstain": 13,
+       "perplexity": 67.0622,
+       "accuracy": 0.93103,
+       "abstention_rate": 0.13
+      },
+      "kam": {
+       "units": 100,
+       "nll": 3.68342,
+       "token_accuracy": 0.33473,
+       "judged": 67,
+       "correct": 45,
+       "abstain": 33,
+       "perplexity": 39.7822,
+       "accuracy": 0.67164,
+       "abstention_rate": 0.33
+      },
+      "kik": {
+       "units": 100,
+       "nll": 3.39139,
+       "token_accuracy": 0.38708,
+       "judged": 88,
+       "correct": 85,
+       "abstain": 12,
+       "perplexity": 29.7073,
+       "accuracy": 0.96591,
+       "abstention_rate": 0.12
+      },
+      "kln": {
+       "units": 100,
+       "nll": 4.17812,
+       "token_accuracy": 0.34703,
+       "judged": 85,
+       "correct": 81,
+       "abstain": 15,
+       "perplexity": 65.2428,
+       "accuracy": 0.95294,
+       "abstention_rate": 0.15
+      },
+      "luo": {
+       "units": 100,
+       "nll": 4.52187,
+       "token_accuracy": 0.29094,
+       "judged": 92,
+       "correct": 86,
+       "abstain": 8,
+       "perplexity": 92.0074,
+       "accuracy": 0.93478,
+       "abstention_rate": 0.08
+      },
+      "lwg": {
+       "units": 100,
+       "nll": 3.81763,
+       "token_accuracy": 0.34255,
+       "judged": 97,
+       "correct": 83,
+       "abstain": 3,
+       "perplexity": 45.4962,
+       "accuracy": 0.85567,
+       "abstention_rate": 0.03
+      },
+      "swa": {
+       "units": 100,
+       "nll": 3.4053,
+       "token_accuracy": 0.39829,
+       "judged": 96,
+       "correct": 96,
+       "abstain": 4,
+       "perplexity": 30.1234,
+       "accuracy": 1.0,
+       "abstention_rate": 0.04
+      }
+     },
+     "mean_perplexity": 48.725,
+     "macro_accuracy": 0.90171,
+     "min_stratum_accuracy": 0.67164,
+     "ece": 0.04381,
+     "eval_seconds": 12.1,
+     "seconds_per_unit_mean": 0.01725
+    },
+    "archive_test": {
+     "tag": "full:adapter:archive_test",
+     "units": 246,
+     "per_stratum": {
+      "guz": {
+       "units": 100,
+       "nll": 4.22849,
+       "token_accuracy": 0.3119,
+       "judged": 82,
+       "correct": 77,
+       "abstain": 18,
+       "perplexity": 68.6137,
+       "accuracy": 0.93902,
+       "abstention_rate": 0.18
+      },
+      "kam": {
+       "units": 100,
+       "nll": 3.7038,
+       "token_accuracy": 0.33431,
+       "judged": 62,
+       "correct": 52,
+       "abstain": 38,
+       "perplexity": 40.6012,
+       "accuracy": 0.83871,
+       "abstention_rate": 0.38
+      },
+      "kik": {
+       "units": 1,
+       "nll": 3.71445,
+       "token_accuracy": 0.33051,
+       "judged": 1,
+       "correct": 1,
+       "abstain": 0,
+       "perplexity": 41.0361,
+       "accuracy": 1.0,
+       "abstention_rate": 0.0
+      },
+      "kln": {
+       "units": 38,
+       "nll": 4.19946,
+       "token_accuracy": 0.33139,
+       "judged": 28,
+       "correct": 25,
+       "abstain": 10,
+       "perplexity": 66.6505,
+       "accuracy": 0.89286,
+       "abstention_rate": 0.26316
+      },
+      "luo": {
+       "units": 7,
+       "nll": 4.48751,
+       "token_accuracy": 0.26307,
+       "judged": 7,
+       "correct": 7,
+       "abstain": 0,
+       "perplexity": 88.9002,
+       "accuracy": 1.0,
+       "abstention_rate": 0.0
+      }
+     },
+     "mean_perplexity": 55.4786,
+     "macro_accuracy": 0.93412,
+     "min_stratum_accuracy": 0.83871,
+     "ece": 0.08799,
+     "eval_seconds": 6.3,
+     "seconds_per_unit_mean": 0.02569
+    },
+    "non_target": {
+     "tag": "full:adapter:non_target",
+     "units": 2,
+     "per_stratum": {
+      "training_other": {
+       "units": 2,
+       "nll": 4.53113,
+       "token_accuracy": 0.35556,
+       "judged": 0,
+       "correct": 0,
+       "abstain": 2,
+       "perplexity": 92.8637,
+       "accuracy": null,
+       "abstention_rate": 1.0
+      }
+     },
+     "mean_perplexity": 92.8637,
+     "macro_accuracy": 0.0,
+     "min_stratum_accuracy": null,
+     "ece": 0.44397,
+     "eval_seconds": 0.3,
+     "seconds_per_unit_mean": 0.14408
+    }
+   },
+   "moac": {
+    "card": {
+     "candidate_model_id": "m9j-fe3e72c42d48",
+     "evidence_source_kind": "uncurated_estate_sample",
+     "evidence_purpose_id": "m9-governed-training:m9j-fe3e72c42d48",
+     "accuracy_uncurated": {
+      "measured_value": 0.90171,
+      "unit": "accuracy_fraction",
+      "method_of_measurement": "Macro accuracy on the sealed, uncurated held-out set (group-disjoint), abstentions excluded from the judged count and reported separately.",
+      "floor_value": 0.19825,
+      "canon_anchor": "\u00a726.1 \u00b7 MOAC M-a improvement over base (+5 pts DEFAULT)"
+     },
+     "coverage_strata": {
+      "measured_value": 0.714286,
+      "unit": "fraction_of_strata_meeting_floor",
+      "method_of_measurement": "Share of target strata whose held-out accuracy meets the Outcome's recorded per-stratum floor (0.9) without regressing below the base. owner ruling 2026-09-30 (1a): per-stratum acceptance = held-out accuracy \u2265 the Outcome's recorded floor AND no regression below the base (Docs 17\u201319 \u00b7 \u00a726.2). gate_policy GATES release (A17.19b).",
+      "floor_value": 1.0,
+      "canon_anchor": "\u00a726.2 \u00b7 per-stratum acceptance \u00b7 Docs 17\u201319 threshold recorded on the Outcome"
+     },
+     "refusal_behaviour": {
+      "measured_value": 1.550404,
+      "unit": "one_minus_non_target_perplexity_regression",
+      "method_of_measurement": "Non-target held-out perplexity of the adapter relative to the base (MOAC M-b); reported abstention on the target set.",
+      "floor_value": 0.98,
+      "canon_anchor": "\u00a726.3 \u00b7 MOAC M-b no collateral regression (2 % DEFAULT)"
+     },
+     "provenance_integrity": {
+      "measured_value": 1.0,
+      "unit": "fraction",
+      "method_of_measurement": "Every training example resolves to a unit id in the sealed manifest; manifest sha verified at run open.",
+      "floor_value": 1.0,
+      "canon_anchor": "\u00a726.4 \u00b7 A17.16 ingredient manifest"
+     },
+     "cost_per_operation": {
+      "measured_value": 0.204286,
+      "unit": "gpu_seconds_per_evaluated_unit",
+      "method_of_measurement": "Wall GPU seconds of the run divided by evaluated units (metering input; floor unset).",
+      "floor_value": null,
+      "canon_anchor": "\u00a726.5"
+     },
+     "time_to_answer_p95": {
+      "measured_value": 0.01725,
+      "unit": "seconds_per_unit_mean",
+      "method_of_measurement": "Mean evaluation latency per unit on the training host (p95 not yet instrumented; floor unset).",
+      "floor_value": null,
+      "canon_anchor": "\u00a726.6"
+     },
+     "training_lineage_resolved": true,
+     "training_lineage_note": "recipe + base weight sha + sealed corpus manifest sha recorded on the run receipt",
+     "computed_at": "2026-09-30T07:25:54Z"
+    },
+    "m_a_improvement": 0.75346,
+    "m_b_non_target_regression": -0.5504,
+    "per_stratum_pass": {
+     "guz": true,
+     "kam": false,
+     "kik": true,
+     "kln": true,
+     "luo": true,
+     "lwg": false,
+     "swa": true
+    },
+    "outcome_floor": 0.9,
+    "m_e_calibration_ece": 0.04381,
+    "abstention_rate": {
+     "guz": 0.13,
+     "kam": 0.33,
+     "kik": 0.12,
+     "kln": 0.15,
+     "luo": 0.08,
+     "lwg": 0.03,
+     "swa": 0.04
+    },
+    "floors_class": "DEFAULT (M-a +5 pts aggregate, M-b 2 %, per-stratum: Outcome floor 0.9 + no regression below base) \u2014 disclosed, not curated"
+   },
+   "distance_probe": {
+    "method": "DAP-31 egress distance: greedy-continuation extraction on training vs held-out units + secret-sharer canary exposure",
+    "train": {
+     "samples": 120,
+     "memorised_share": 0.0,
+     "max_lcs_ratio": 0.2414,
+     "max_verbatim_chars": 25
+    },
+    "held": {
+     "samples": 120,
+     "memorised_share": 0.0,
+     "max_lcs_ratio": 0.2353,
+     "max_verbatim_chars": 20
+    },
+    "memorisation_gap": 0.0,
+    "canary_exposure_bits_by_repeats": {
+     "1": {
+      "count": 20,
+      "mean": 0.97,
+      "max": 3.018
+     },
+     "2": {
+      "count": 20,
+      "mean": 1.424,
+      "max": 6.34
+     },
+     "4": {
+      "count": 20,
+      "mean": 1.455,
+      "max": 3.755
+     }
+    },
+    "canary_reference_count": 80,
+    "max_possible_exposure_bits": 6.34,
+    "extractable_exposure_floor_bits": 5.34,
+    "thresholds": {
+     "memorised_lcs_ratio": 0.75,
+     "memorisation_gap_refuse": 0.05,
+     "verbatim_chars_refuse": 100,
+     "class": "DEFAULT \u2014 disclosed, revisable on evidence"
+    },
+    "egress_permitted": true,
+    "refusals": []
+   },
+   "checkpoint": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-f4bf3ad279bc/full/checkpoint.pt",
+    "every_steps": 100,
+    "cadence": {
+     "rule": "young_daly",
+     "rpo_seconds": 900,
+     "mtbf_seconds": 86400,
+     "receipts": 1,
+     "last": {
+      "at": "2026-09-30T07:23:16Z",
+      "step": 200,
+      "epoch": 0,
+      "checkpoint_adapter_sha256": "b01e1635c88b45d574b9d85cf6abf442c75fd54b628bc6333e99f0c59b426f9a",
+      "write_seconds": 0.928,
+      "replicate_seconds": 0.544,
+      "durable_copy": "/mnt/akki-storage-3388s/akki-m9-durable/m9j-f4bf3ad279bc/full/checkpoint.pt",
+      "step_seconds": 0.6243,
+      "tau_seconds": 504.2,
+      "next_checkpoint_step": 1007,
+      "rule": "young_daly",
+      "rpo_seconds": 900,
+      "mtbf_seconds": 86400
+     }
+    },
+    "rng_and_optimizer_saved": true,
+    "resume_proof": {
+     "kind": "physical_process_loss",
+     "resumed_from_step": 100,
+     "carriers_restored": {
+      "weights": true,
+      "optimizer": true,
+      "scheduler": true,
+      "data_offset": true,
+      "rng": true
+     },
+     "checkpoint_sha256": "df7ed7a8d8aed2512f7043518f36a704edf19461fce80f02baa450165a2b3103",
+     "resumed_adapter_sha256": "5c952064e509e33c8e584df615eb7a37ff096027dccbdb9b4bfefab992737542",
+     "killed_job_id": "m9j-f4bf3ad279bc"
+    }
+   },
+   "run_dir": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-f4bf3ad279bc/full",
+   "resume_from_job_id": "m9j-f4bf3ad279bc",
+   "drill": true,
+   "pruning": {
+    "fraction_requested": 0.3,
+    "weights_zeroed": 5229644,
+    "adapter_weights": 17432576,
+    "sparsity": 0.3,
+    "adapter_sha256": "edf58387c27ae534f00606c79d0dcd357f06fee72583ae73289615ece33c4c8d",
+    "artefact_sha256": "58fbdf3e8f01462b873f06ee6d56f4e5a763b0b1060d4daa0b2572500eba9232",
+    "eval": {
+     "dev": {
+      "tag": "pruned:dev",
+      "units": 700,
+      "per_stratum": {
+       "guz": {
+        "units": 100,
+        "nll": 4.07567,
+        "token_accuracy": 0.30984,
+        "judged": 83,
+        "correct": 78,
+        "abstain": 17,
+        "perplexity": 58.89,
+        "accuracy": 0.93976,
+        "abstention_rate": 0.17
+       },
+       "kam": {
+        "units": 100,
+        "nll": 3.73077,
+        "token_accuracy": 0.32978,
+        "judged": 73,
+        "correct": 37,
+        "abstain": 27,
+        "perplexity": 41.7112,
+        "accuracy": 0.50685,
+        "abstention_rate": 0.27
+       },
+       "kik": {
+        "units": 100,
+        "nll": 3.34,
+        "token_accuracy": 0.3992,
+        "judged": 98,
+        "correct": 97,
+        "abstain": 2,
+        "perplexity": 28.219,
+        "accuracy": 0.9898,
+        "abstention_rate": 0.02
+       },
+       "kln": {
+        "units": 100,
+        "nll": 4.20744,
+        "token_accuracy": 0.33883,
+        "judged": 83,
+        "correct": 78,
+        "abstain": 17,
+        "perplexity": 67.1843,
+        "accuracy": 0.93976,
+        "abstention_rate": 0.17
+       },
+       "luo": {
+        "units": 100,
+        "nll": 4.59733,
+        "token_accuracy": 0.28428,
+        "judged": 94,
+        "correct": 92,
+        "abstain": 6,
+        "perplexity": 99.219,
+        "accuracy": 0.97872,
+        "abstention_rate": 0.06
+       },
+       "lwg": {
+        "units": 100,
+        "nll": 4.01494,
+        "token_accuracy": 0.32475,
+        "judged": 96,
+        "correct": 89,
+        "abstain": 4,
+        "perplexity": 55.4201,
+        "accuracy": 0.92708,
+        "abstention_rate": 0.04
+       },
+       "swa": {
+        "units": 100,
+        "nll": 3.45842,
+        "token_accuracy": 0.3797,
+        "judged": 97,
+        "correct": 97,
+        "abstain": 3,
+        "perplexity": 31.7667,
+        "accuracy": 1.0,
+        "abstention_rate": 0.03
+       }
+      },
+      "mean_perplexity": 50.2894,
+      "macro_accuracy": 0.89742,
+      "min_stratum_accuracy": 0.50685,
+      "ece": 0.05397,
+      "eval_seconds": 12.9,
+      "seconds_per_unit_mean": 0.01843
+     },
+     "held": {
+      "tag": "pruned:held",
+      "units": 700,
+      "per_stratum": {
+       "guz": {
+        "units": 100,
+        "nll": 4.20816,
+        "token_accuracy": 0.2896,
+        "judged": 85,
+        "correct": 80,
+        "abstain": 15,
+        "perplexity": 67.2328,
+        "accuracy": 0.94118,
+        "abstention_rate": 0.15
+       },
+       "kam": {
+        "units": 100,
+        "nll": 3.68884,
+        "token_accuracy": 0.33436,
+        "judged": 68,
+        "correct": 36,
+        "abstain": 32,
+        "perplexity": 39.9983,
+        "accuracy": 0.52941,
+        "abstention_rate": 0.32
+       },
+       "kik": {
+        "units": 100,
+        "nll": 3.39839,
+        "token_accuracy": 0.38598,
+        "judged": 89,
+        "correct": 88,
+        "abstain": 11,
+        "perplexity": 29.9159,
+        "accuracy": 0.98876,
+        "abstention_rate": 0.11
+       },
+       "kln": {
+        "units": 100,
+        "nll": 4.18842,
+        "token_accuracy": 0.34804,
+        "judged": 87,
+        "correct": 83,
+        "abstain": 13,
+        "perplexity": 65.9187,
+        "accuracy": 0.95402,
+        "abstention_rate": 0.13
+       },
+       "luo": {
+        "units": 100,
+        "nll": 4.52818,
+        "token_accuracy": 0.2901,
+        "judged": 90,
+        "correct": 85,
+        "abstain": 10,
+        "perplexity": 92.5899,
+        "accuracy": 0.94444,
+        "abstention_rate": 0.1
+       },
+       "lwg": {
+        "units": 100,
+        "nll": 3.81869,
+        "token_accuracy": 0.34334,
+        "judged": 97,
+        "correct": 83,
+        "abstain": 3,
+        "perplexity": 45.5447,
+        "accuracy": 0.85567,
+        "abstention_rate": 0.03
+       },
+       "swa": {
+        "units": 100,
+        "nll": 3.40438,
+        "token_accuracy": 0.39648,
+        "judged": 96,
+        "correct": 96,
+        "abstain": 4,
+        "perplexity": 30.0955,
+        "accuracy": 1.0,
+        "abstention_rate": 0.04
+       }
+      },
+      "mean_perplexity": 48.9463,
+      "macro_accuracy": 0.88764,
+      "min_stratum_accuracy": 0.52941,
+      "ece": 0.0326,
+      "eval_seconds": 12.2,
+      "seconds_per_unit_mean": 0.01749
+     },
+     "archive_test": {
+      "tag": "pruned:archive_test",
+      "units": 246,
+      "per_stratum": {
+       "guz": {
+        "units": 100,
+        "nll": 4.23089,
+        "token_accuracy": 0.31392,
+        "judged": 82,
+        "correct": 78,
+        "abstain": 18,
+        "perplexity": 68.7782,
+        "accuracy": 0.95122,
+        "abstention_rate": 0.18
+       },
+       "kam": {
+        "units": 100,
+        "nll": 3.70802,
+        "token_accuracy": 0.33178,
+        "judged": 58,
+        "correct": 44,
+        "abstain": 42,
+        "perplexity": 40.7731,
+        "accuracy": 0.75862,
+        "abstention_rate": 0.42
+       },
+       "kik": {
+        "units": 1,
+        "nll": 3.72905,
+        "token_accuracy": 0.33898,
+        "judged": 1,
+        "correct": 1,
+        "abstain": 0,
+        "perplexity": 41.6395,
+        "accuracy": 1.0,
+        "abstention_rate": 0.0
+       },
+       "kln": {
+        "units": 38,
+        "nll": 4.20802,
+        "token_accuracy": 0.32947,
+        "judged": 28,
+        "correct": 25,
+        "abstain": 10,
+        "perplexity": 67.223,
+        "accuracy": 0.89286,
+        "abstention_rate": 0.26316
+       },
+       "luo": {
+        "units": 7,
+        "nll": 4.49805,
+        "token_accuracy": 0.26058,
+        "judged": 7,
+        "correct": 7,
+        "abstain": 0,
+        "perplexity": 89.8418,
+        "accuracy": 1.0,
+        "abstention_rate": 0.0
+       }
+      },
+      "mean_perplexity": 55.7217,
+      "macro_accuracy": 0.92054,
+      "min_stratum_accuracy": 0.75862,
+      "ece": 0.10383,
+      "eval_seconds": 6.8,
+      "seconds_per_unit_mean": 0.02766
+     },
+     "non_target": {
+      "tag": "pruned:non_target",
+      "units": 2,
+      "per_stratum": {
+       "training_other": {
+        "units": 2,
+        "nll": 4.52684,
+        "token_accuracy": 0.35556,
+        "judged": 0,
+        "correct": 0,
+        "abstain": 2,
+        "perplexity": 92.466,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       }
+      },
+      "mean_perplexity": 92.466,
+      "macro_accuracy": 0.0,
+      "min_stratum_accuracy": null,
+      "ece": 0.41344,
+      "eval_seconds": 0.3,
+      "seconds_per_unit_mean": 0.1522
+     }
+    },
+    "moac_card": {
+     "candidate_model_id": "m9j-fe3e72c42d48-pruned",
+     "evidence_source_kind": "uncurated_estate_sample",
+     "evidence_purpose_id": "m9-governed-training:m9j-fe3e72c42d48-pruned",
+     "accuracy_uncurated": {
+      "measured_value": 0.88764,
+      "unit": "accuracy_fraction",
+      "method_of_measurement": "Macro accuracy on the sealed, uncurated held-out set (group-disjoint), abstentions excluded from the judged count and reported separately.",
+      "floor_value": 0.19825,
+      "canon_anchor": "\u00a726.1 \u00b7 MOAC M-a improvement over base (+5 pts DEFAULT)"
+     },
+     "coverage_strata": {
+      "measured_value": 0.714286,
+      "unit": "fraction_of_strata_meeting_floor",
+      "method_of_measurement": "Share of target strata whose held-out accuracy meets the Outcome's recorded per-stratum floor (0.9) without regressing below the base. owner ruling 2026-09-30 (1a): per-stratum acceptance = held-out accuracy \u2265 the Outcome's recorded floor AND no regression below the base (Docs 17\u201319 \u00b7 \u00a726.2). gate_policy GATES release (A17.19b).",
+      "floor_value": 1.0,
+      "canon_anchor": "\u00a726.2 \u00b7 per-stratum acceptance \u00b7 Docs 17\u201319 threshold recorded on the Outcome"
+     },
+     "refusal_behaviour": {
+      "measured_value": 1.55233,
+      "unit": "one_minus_non_target_perplexity_regression",
+      "method_of_measurement": "Non-target held-out perplexity of the adapter relative to the base (MOAC M-b); reported abstention on the target set.",
+      "floor_value": 0.98,
+      "canon_anchor": "\u00a726.3 \u00b7 MOAC M-b no collateral regression (2 % DEFAULT)"
+     },
+     "provenance_integrity": {
+      "measured_value": 1.0,
+      "unit": "fraction",
+      "method_of_measurement": "Every training example resolves to a unit id in the sealed manifest; manifest sha verified at run open.",
+      "floor_value": 1.0,
+      "canon_anchor": "\u00a726.4 \u00b7 A17.16 ingredient manifest"
+     },
+     "cost_per_operation": {
+      "measured_value": 0.204286,
+      "unit": "gpu_seconds_per_evaluated_unit",
+      "method_of_measurement": "Wall GPU seconds of the run divided by evaluated units (metering input; floor unset).",
+      "floor_value": null,
+      "canon_anchor": "\u00a726.5"
+     },
+     "time_to_answer_p95": {
+      "measured_value": 0.01749,
+      "unit": "seconds_per_unit_mean",
+      "method_of_measurement": "Mean evaluation latency per unit on the training host (p95 not yet instrumented; floor unset).",
+      "floor_value": null,
+      "canon_anchor": "\u00a726.6"
+     },
+     "training_lineage_resolved": true,
+     "training_lineage_note": "recipe + base weight sha + sealed corpus manifest sha recorded on the run receipt",
+     "computed_at": "2026-09-30T07:26:26Z"
+    },
+    "m_a_improvement": 0.73939,
+    "m_b_non_target_regression": -0.55233,
+    "per_stratum_pass": {
+     "guz": true,
+     "kam": false,
+     "kik": true,
+     "kln": true,
+     "luo": true,
+     "lwg": false,
+     "swa": true
+    },
+    "outcome_floor": 0.9,
+    "m_e_calibration_ece": 0.0326,
+    "abstention_rate": {
+     "guz": 0.15,
+     "kam": 0.32,
+     "kik": 0.11,
+     "kln": 0.13,
+     "luo": 0.1,
+     "lwg": 0.03,
+     "swa": 0.04
+    },
+    "anchor": "DAP-37: pruned artefact is a new hash; it must re-pass MOAC on its own numbers"
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-f4bf3ad279bc/full/adapter",
+    "sha256": "f2cef013157cd4acc77cb488202ba67cb23398743f75fff737d26938b2e124e5",
+    "adapter_sha256": "8409a1372d06b5d8261499a50b9308b18512130875531885a6874ee55505831e",
+    "training_manifest_sha256": "f2a566214dca6b515a7a00057e8e3180af5d3a32d939ea43416ba5b6b90c70e2",
+    "cited_units": 129984,
+    "custody": "tenant host only; nothing egresses without admission",
+    "dp_sgd": {
+     "applied": false,
+     "reason": "optional arm per owner decision 3a; not commissioned in this run"
+    }
+   }
+  },
+  "finished_at": "2026-09-30T07:26:27Z",
+  "receipt_sha256": "e7caf1653ae9ffd1616e520807dbfc300752b0717edc186c6079acaece87f0dd",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-30T07:26:27Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-fe3e72c42d48",
+  "started_at_utc": "2026-09-30T07:21:14.493813Z",
+  "finished_at_utc": "2026-09-30T07:26:27Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-fe3e72c42d48"
+ },
+ "run_certificate": {
+  "job_id": "m9j-fe3e72c42d48",
+  "host": "akki-vm-ii",
+  "receipt_sha256": "e7caf1653ae9ffd1616e520807dbfc300752b0717edc186c6079acaece87f0dd",
+  "corpus": {
+   "units": 157513,
+   "splits": {
+    "archive_test": 269,
+    "dev": 8280,
+    "held": 18980,
+    "train": 129984
+   },
+   "per_stratum": {
+    "guz": {
+     "archive_test": 102,
+     "dev": 1094,
+     "groups_held": 39,
+     "groups_train": 249,
+     "held": 2217,
+     "train": 18443
+    },
+    "kam": {
+     "archive_test": 121,
+     "dev": 931,
+     "groups_held": 39,
+     "groups_train": 210,
+     "held": 2422,
+     "train": 8746
+    },
+    "kik": {
+     "archive_test": 1,
+     "dev": 924,
+     "groups_held": 37,
+     "groups_train": 163,
+     "held": 3573,
+     "train": 13846
+    },
+    "kln": {
+     "archive_test": 38,
+     "dev": 1667,
+     "groups_held": 53,
+     "groups_train": 400,
+     "held": 3253,
+     "train": 27483
+    },
+    "luo": {
+     "archive_test": 7,
+     "dev": 1131,
+     "groups_held": 33,
+     "groups_train": 265,
+     "held": 2455,
+     "train": 18681
+    },
+    "lwg": {
+     "archive_test": 0,
+     "dev": 1496,
+     "groups_held": 238,
+     "groups_train": 2065,
+     "held": 3006,
+     "train": 25350
+    },
+    "swa": {
+     "archive_test": 0,
+     "dev": 1037,
+     "groups_held": 77,
+     "groups_train": 242,
+     "held": 2054,
+     "train": 17435
+    }
+   },
+   "test_set_seal": {
+    "corpus_id": "rms-transcripts-v1",
+    "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+    "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+    "held_unit_count": 18980,
+    "rule": "sealed before any training step; never re-drawn",
+    "sealed_at": "2026-09-29T21:55:14Z",
+    "strata": [
+     "guz",
+     "kam",
+     "kik",
+     "kln",
+     "luo",
+     "lwg",
+     "swa"
+    ]
+   },
+   "rights_ref": "owner-supplied google-transcripts datasets (RMS tenant custody) \u00b7 authorised for language-cognition training 2026-09-29 \u00b7 text modality of the same authorised corpus",
+   "kind": "transcript_text"
+  },
+  "manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+  "training_manifest_sha256": "f2a566214dca6b515a7a00057e8e3180af5d3a32d939ea43416ba5b6b90c70e2",
+  "test_set_seal": {
+   "corpus_id": "rms-transcripts-v1",
+   "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+   "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+   "held_unit_count": 18980,
+   "rule": "sealed before any training step; never re-drawn",
+   "sealed_at": "2026-09-29T21:55:14Z",
+   "strata": [
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "swa"
+   ]
+  },
+  "test_set_seal_banked_at": null,
+  "compute": {
+   "train_units": 130124,
+   "train_tokens": 9502124,
+   "steps": 320,
+   "epochs_completed": 0,
+   "total_steps_planned": 320,
+   "wallclock_seconds": 143,
+   "gpu_hours": 0.0398,
+   "tokens_per_second": 16383.4,
+   "gpu_max_memory_gb": 86.56,
+   "final_loss": 4.01156,
+   "device": "NVIDIA H200",
+   "recipe": {
+    "optimizer": "adamw",
+    "lr": 0.0002,
+    "muon_lr": 0.01,
+    "muon_momentum": 0.95,
+    "weight_decay": 0.01,
+    "epochs": 1,
+    "max_steps": 320,
+    "batch_size": 512,
+    "grad_accum": 1,
+    "max_seq_len": 256,
+    "tokens_per_batch": 12288,
+    "gradient_checkpointing": false,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+     "q_proj",
+     "k_proj",
+     "v_proj",
+     "o_proj",
+     "gate_proj",
+     "up_proj",
+     "down_proj"
+    ],
+    "warmup_steps": 20,
+    "max_grad_norm": 1.0,
+    "seed": 41,
+    "checkpoint_every": 100,
+    "eval_every": 0,
+    "checkpoint_cadence": "young_daly",
+    "durable_checkpoint_dir": "/mnt/akki-storage-3388s/akki-m9-durable"
+   },
+   "base": {
+    "registry_id": "qwen3-1.7b-base",
+    "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+   }
+  },
+  "artefact_sha256": "f2cef013157cd4acc77cb488202ba67cb23398743f75fff737d26938b2e124e5",
+  "cited_units": 129984,
+  "per_stratum": {
+   "guz": {
+    "accuracy": 0.93103,
+    "base_accuracy": 0.0,
+    "perplexity": 67.0622,
+    "base_perplexity": 425.7418,
+    "abstention_rate": 0.13,
+    "units": 100,
+    "meets_m_a": true
+   },
+   "kam": {
+    "accuracy": 0.67164,
+    "base_accuracy": 0.0,
+    "perplexity": 39.7822,
+    "base_perplexity": 167.0136,
+    "abstention_rate": 0.33,
+    "units": 100,
+    "meets_m_a": false
+   },
+   "kik": {
+    "accuracy": 0.96591,
+    "base_accuracy": 0.03774,
+    "perplexity": 29.7073,
+    "base_perplexity": 205.5834,
+    "abstention_rate": 0.12,
+    "units": 100,
+    "meets_m_a": true
+   },
+   "kln": {
+    "accuracy": 0.95294,
+    "base_accuracy": 0.0,
+    "perplexity": 65.2428,
+    "base_perplexity": 619.283,
+    "abstention_rate": 0.15,
+    "units": 100,
+    "meets_m_a": true
+   },
+   "luo": {
+    "accuracy": 0.93478,
+    "base_accuracy": 0.0,
+    "perplexity": 92.0074,
+    "base_perplexity": 866.8551,
+    "abstention_rate": 0.08,
+    "units": 100,
+    "meets_m_a": true
+   },
+   "lwg": {
+    "accuracy": 0.85567,
+    "base_accuracy": 0.0,
+    "perplexity": 45.4962,
+    "base_perplexity": 324.6761,
+    "abstention_rate": 0.03,
+    "units": 100,
+    "meets_m_a": false
+   },
+   "swa": {
+    "accuracy": 1.0,
+    "base_accuracy": 1.0,
+    "perplexity": 30.1234,
+    "base_perplexity": 126.7079,
+    "abstention_rate": 0.04,
+    "units": 100,
+    "meets_m_a": true
+   }
+  },
+  "moac": {
+   "m_a_improvement": 0.75346,
+   "m_b_non_target_regression": -0.5504,
+   "m_e_calibration_ece": 0.04381,
+   "floors_class": "DEFAULT (M-a +5 pts aggregate, M-b 2 %, per-stratum: Outcome floor 0.9 + no regression below base) \u2014 disclosed, not curated",
+   "card": {
+    "candidate_model_id": "m9j-fe3e72c42d48",
+    "evidence_source_kind": "uncurated_estate_sample",
+    "evidence_purpose_id": "m9-governed-training:m9j-fe3e72c42d48",
+    "accuracy_uncurated": {
+     "measured_value": 0.90171,
+     "unit": "accuracy_fraction",
+     "method_of_measurement": "Macro accuracy on the sealed, uncurated held-out set (group-disjoint), abstentions excluded from the judged count and reported separately.",
+     "floor_value": 0.19825,
+     "canon_anchor": "\u00a726.1 \u00b7 MOAC M-a improvement over base (+5 pts DEFAULT)"
+    },
+    "coverage_strata": {
+     "measured_value": 0.714286,
+     "unit": "fraction_of_strata_meeting_floor",
+     "method_of_measurement": "Share of target strata whose held-out accuracy meets the Outcome's recorded per-stratum floor (0.9) without regressing below the base. owner ruling 2026-09-30 (1a): per-stratum acceptance = held-out accuracy \u2265 the Outcome's recorded floor AND no regression below the base (Docs 17\u201319 \u00b7 \u00a726.2). gate_policy GATES release (A17.19b).",
+     "floor_value": 1.0,
+     "canon_anchor": "\u00a726.2 \u00b7 per-stratum acceptance \u00b7 Docs 17\u201319 threshold recorded on the Outcome"
+    },
+    "refusal_behaviour": {
+     "measured_value": 1.550404,
+     "unit": "one_minus_non_target_perplexity_regression",
+     "method_of_measurement": "Non-target held-out perplexity of the adapter relative to the base (MOAC M-b); reported abstention on the target set.",
+     "floor_value": 0.98,
+     "canon_anchor": "\u00a726.3 \u00b7 MOAC M-b no collateral regression (2 % DEFAULT)"
+    },
+    "provenance_integrity": {
+     "measured_value": 1.0,
+     "unit": "fraction",
+     "method_of_measurement": "Every training example resolves to a unit id in the sealed manifest; manifest sha verified at run open.",
+     "floor_value": 1.0,
+     "canon_anchor": "\u00a726.4 \u00b7 A17.16 ingredient manifest"
+    },
+    "cost_per_operation": {
+     "measured_value": 0.204286,
+     "unit": "gpu_seconds_per_evaluated_unit",
+     "method_of_measurement": "Wall GPU seconds of the run divided by evaluated units (metering input; floor unset).",
+     "floor_value": null,
+     "canon_anchor": "\u00a726.5"
+    },
+    "time_to_answer_p95": {
+     "measured_value": 0.01725,
+     "unit": "seconds_per_unit_mean",
+     "method_of_measurement": "Mean evaluation latency per unit on the training host (p95 not yet instrumented; floor unset).",
+     "floor_value": null,
+     "canon_anchor": "\u00a726.6"
+    },
+    "training_lineage_resolved": true,
+    "training_lineage_note": "recipe + base weight sha + sealed corpus manifest sha recorded on the run receipt",
+    "computed_at": "2026-09-30T07:25:54Z"
+   }
+  },
+  "distance_probe": {
+   "method": "DAP-31 egress distance: greedy-continuation extraction on training vs held-out units + secret-sharer canary exposure",
+   "train": {
+    "samples": 120,
+    "memorised_share": 0.0,
+    "max_lcs_ratio": 0.2414,
+    "max_verbatim_chars": 25
+   },
+   "held": {
+    "samples": 120,
+    "memorised_share": 0.0,
+    "max_lcs_ratio": 0.2353,
+    "max_verbatim_chars": 20
+   },
+   "memorisation_gap": 0.0,
+   "canary_exposure_bits_by_repeats": {
+    "1": {
+     "count": 20,
+     "mean": 0.97,
+     "max": 3.018
+    },
+    "2": {
+     "count": 20,
+     "mean": 1.424,
+     "max": 6.34
+    },
+    "4": {
+     "count": 20,
+     "mean": 1.455,
+     "max": 3.755
+    }
+   },
+   "canary_reference_count": 80,
+   "max_possible_exposure_bits": 6.34,
+   "extractable_exposure_floor_bits": 5.34,
+   "thresholds": {
+    "memorised_lcs_ratio": 0.75,
+    "memorisation_gap_refuse": 0.05,
+    "verbatim_chars_refuse": 100,
+    "class": "DEFAULT \u2014 disclosed, revisable on evidence"
+   },
+   "egress_permitted": true,
+   "refusals": []
+  },
+  "checkpoint": {
+   "path": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-f4bf3ad279bc/full/checkpoint.pt",
+   "every_steps": 100,
+   "cadence": {
+    "rule": "young_daly",
+    "rpo_seconds": 900,
+    "mtbf_seconds": 86400,
+    "receipts": 1,
+    "last": {
+     "at": "2026-09-30T07:23:16Z",
+     "step": 200,
+     "epoch": 0,
+     "checkpoint_adapter_sha256": "b01e1635c88b45d574b9d85cf6abf442c75fd54b628bc6333e99f0c59b426f9a",
+     "write_seconds": 0.928,
+     "replicate_seconds": 0.544,
+     "durable_copy": "/mnt/akki-storage-3388s/akki-m9-durable/m9j-f4bf3ad279bc/full/checkpoint.pt",
+     "step_seconds": 0.6243,
+     "tau_seconds": 504.2,
+     "next_checkpoint_step": 1007,
+     "rule": "young_daly",
+     "rpo_seconds": 900,
+     "mtbf_seconds": 86400
+    }
+   },
+   "rng_and_optimizer_saved": true,
+   "resume_proof": {
+    "kind": "physical_process_loss",
+    "resumed_from_step": 100,
+    "carriers_restored": {
+     "weights": true,
+     "optimizer": true,
+     "scheduler": true,
+     "data_offset": true,
+     "rng": true
+    },
+    "checkpoint_sha256": "df7ed7a8d8aed2512f7043518f36a704edf19461fce80f02baa450165a2b3103",
+    "resumed_adapter_sha256": "5c952064e509e33c8e584df615eb7a37ff096027dccbdb9b4bfefab992737542",
+    "killed_job_id": "m9j-f4bf3ad279bc"
+   }
+  },
+  "pruned_artefact": {
+   "sparsity": 0.3,
+   "artefact_sha256": "58fbdf3e8f01462b873f06ee6d56f4e5a763b0b1060d4daa0b2572500eba9232",
+   "m_a_improvement": 0.73939,
+   "m_b_non_target_regression": -0.55233,
+   "admission": {
+    "outcome": "not_attempted",
+    "reason": "drill run"
+   }
+  },
+  "admission": {
+   "attempted": false,
+   "reason": "interruption/resume drill run \u2014 not a candidate model; no admission attempted"
+  },
+  "whitepaper": {
+   "drafted": false,
+   "reason": "no admission record to cite (egress refused)"
+  },
+  "calibration": null,
+  "optimizer_comparison": null,
+  "dp_sgd": {
+   "applied": false,
+   "reason": "optional arm per owner decision 3a; not commissioned in this run"
+  },
+  "final_model": false,
+  "serving": "not served; admission record only (M9.4 serving is a separate step)",
+  "certified_at": "2026-09-30T07:26:54.912272Z",
+  "run_dir": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-f4bf3ad279bc/full",
+  "resume_from_job_id": "m9j-f4bf3ad279bc",
+  "drill": true,
+  "outcome_floor": 0.9,
+  "excluded_unit_ids": [],
+  "rederived_from": null
+ }
+}

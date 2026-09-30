@@ -1,0 +1,68 @@
+{
+ "drill": "M8-T3 Ledger recovery (point-in-time restore \u00b7 independent countersign)",
+ "at": "2026-09-30T07:18:24Z",
+ "actor": "6ab56dd48894abb269135ca2",
+ "archive": {
+  "key": "20260930T071807Z_e2862e412a75.json.gz",
+  "sha256": "e2862e412a75cb7bbc0bcbcc71f69021c7a180d57c2074816de6938aad46d9e2",
+  "row_count": 3506,
+  "archived_at": "2026-09-30T07:18:07Z",
+  "off_infrastructure_copy": {
+   "host": "akki-vm",
+   "remote_path": "~/akki_worm/ledger_v1_control_events/20260930T071807Z_e2862e412a75.json.gz",
+   "rc": 0,
+   "remote_sha256": "e2862e412a75cb7bbc0bcbcc71f69021c7a180d57c2074816de6938aad46d9e2",
+   "verified": true
+  }
+ },
+ "measured": {
+  "restore_seconds": 0.349,
+  "total_drill_seconds": 4.8,
+  "tier2_rto_same_host_seconds": 300,
+  "s10_ledger_rto_seconds": 3600,
+  "within_tier2_rto": true,
+  "within_s10": true,
+  "committed_write_loss_vs_live": {},
+  "committed_rows_after_archive_total": 0,
+  "live_row_count": 3506
+ },
+ "integrity_checks": {
+  "row_count_archive": 3506,
+  "row_count_restored": 3506,
+  "row_counts_match": true,
+  "heads_match_archive": true,
+  "chain_intact": true,
+  "chain_breaks": [],
+  "archive_checksum_verified": true,
+  "archive_key": "20260930T071807Z_e2862e412a75.json.gz",
+  "archive_sha256": "e2862e412a75cb7bbc0bcbcc71f69021c7a180d57c2074816de6938aad46d9e2"
+ },
+ "countersign": {
+  "witness_host": "akki-vm",
+  "witness_hostname": "akki-vm",
+  "signature_ed25519_b64": "mTpB24URVvmBFmbK4xo4w4mIUkRdMKsqbUjG47y6sKhirNlKu8YyTnldYfKKZ34RIgThz3JfbPRXGybHMwB/Cg==",
+  "public_key_fingerprint": "4a65382f2a46eb65987bd1a3715930b6",
+  "statement_sha256": "cc34f85ba7b40413a0e5c36fe2ef82a198d01acbdd3751d913c6eaa7f5bfc3ca",
+  "verified_in_e1": true,
+  "rc": 0,
+  "receipt_id": "gpurcp-760f155c47e1"
+ },
+ "witness_id": "wi_akki_vm_ledger_countersigner",
+ "attestation": {
+  "attestation_id": "ca_20260930_071824_ledger_pitr",
+  "attested_at": "2026-09-30T07:18:29Z",
+  "attested_by": "wi_akki_vm_ledger_countersigner",
+  "attested_scope": "all",
+  "rto_target_seconds": "3600",
+  "verification_mechanism": "independent_backup_check",
+  "witness_signature": "ed25519:mTpB24URVvmBFmbK4xo4w4mIUkRdMKsqbUjG47y6sKhirNlKu8YyTnldYfKKZ34RIgThz3JfbPRXGybHMwB/Cg==",
+  "outcome": "matches",
+  "summary": "Restored 3506 control-Ledger rows (153 tenants) from WORM archive 20260930T071807Z_e2862e412a75.json.gz into isolated test_database_bc_drill in 0.349s; chain intact; heads match; committed rows written after the archive: 0; countersigned on akki-vm (Ed25519 4a65382f2a46eb65)."
+ },
+ "isolation": {
+  "restored_into": "test_database_bc_drill",
+  "live_database_untouched": true
+ },
+ "policy_ref": "owner ruling 2026-09-30 (5a): ratify BC_DYNAMIC_RECOVERY_PACKET_20260915 tiers as proposed \u00b7 recorded in assessment_workspace/notes/m8_m9_completion_20260930/OWNER_RULINGS_20260930.md",
+ "verdict": "PASS"
+}

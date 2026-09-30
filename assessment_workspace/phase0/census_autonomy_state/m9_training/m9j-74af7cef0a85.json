@@ -1502,7 +1502,8 @@
     "base_perplexity": 390.0209,
     "abstention_rate": 0.0075,
     "units": 400,
-    "meets_m_a": true
+    "meets_m_a": true,
+    "meets_outcome_floor_no_regression": true
    },
    "kam": {
     "accuracy": 0.91349,
@@ -1511,7 +1512,8 @@
     "base_perplexity": 129.8035,
     "abstention_rate": 0.0175,
     "units": 400,
-    "meets_m_a": true
+    "meets_m_a": true,
+    "meets_outcome_floor_no_regression": true
    },
    "kik": {
     "accuracy": 0.99246,
@@ -1520,7 +1522,8 @@
     "base_perplexity": 161.0858,
     "abstention_rate": 0.005,
     "units": 400,
-    "meets_m_a": true
+    "meets_m_a": true,
+    "meets_outcome_floor_no_regression": true
    },
    "kln": {
     "accuracy": 0.99749,
@@ -1529,7 +1532,8 @@
     "base_perplexity": 512.1385,
     "abstention_rate": 0.005,
     "units": 400,
-    "meets_m_a": true
+    "meets_m_a": true,
+    "meets_outcome_floor_no_regression": true
    },
    "luo": {
     "accuracy": 0.9949,
@@ -1538,7 +1542,8 @@
     "base_perplexity": 666.8629,
     "abstention_rate": 0.02,
     "units": 400,
-    "meets_m_a": true
+    "meets_m_a": true,
+    "meets_outcome_floor_no_regression": true
    },
    "lwg": {
     "accuracy": 0.93473,
@@ -1547,7 +1552,8 @@
     "base_perplexity": 257.4331,
     "abstention_rate": 0.0425,
     "units": 400,
-    "meets_m_a": true
+    "meets_m_a": true,
+    "meets_outcome_floor_no_regression": true
    },
    "swa": {
     "accuracy": 0.9895,
@@ -1556,7 +1562,8 @@
     "base_perplexity": 70.0302,
     "abstention_rate": 0.0475,
     "units": 400,
-    "meets_m_a": false
+    "meets_m_a": false,
+    "meets_outcome_floor_no_regression": true
    }
   },
   "moac": {
@@ -1684,6 +1691,31 @@
     "outcome": "refused",
     "reason": "moac_criterion_below_floor",
     "registry_version_after": null
+   },
+   "readjudications": [
+    {
+     "ruling_ref": "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17\u201319 \u00b7 \u00a726.2)",
+     "outcome_floor": 0.9,
+     "floor_source": "campaign_20260929_full.json plan.calibrate.acceptance_floor (Outcome definition \u00b7 2026-09-29)",
+     "coverage_strata": 1.0,
+     "readjudicated": {
+      "outcome": "admitted",
+      "reason": "",
+      "refusal_note": "",
+      "registry_version_after": 2,
+      "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-74af7cef0a85-pruned_2026-09-30T07:12:24Z_678fbba8.json",
+      "computed_at": "2026-09-30T07:12:24Z"
+     },
+     "at": "2026-09-30T07:12:24.833531Z"
+    }
+   ],
+   "admission_current": {
+    "outcome": "admitted",
+    "reason": "",
+    "refusal_note": "",
+    "registry_version_after": 2,
+    "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-74af7cef0a85-pruned_2026-09-30T07:12:24Z_678fbba8.json",
+    "computed_at": "2026-09-30T07:12:24Z"
    }
   },
   "admission": {
@@ -1705,6 +1737,31 @@
   },
   "final_model": false,
   "serving": "not served; admission record only (M9.4 serving is a separate step)",
-  "certified_at": "2026-09-30T03:30:57.462709Z"
+  "certified_at": "2026-09-30T03:30:57.462709Z",
+  "readjudications": [
+   {
+    "ruling_ref": "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17\u201319 \u00b7 \u00a726.2)",
+    "outcome_floor": 0.9,
+    "floor_source": "campaign_20260929_full.json plan.calibrate.acceptance_floor (Outcome definition \u00b7 2026-09-29)",
+    "coverage_strata": 1.0,
+    "readjudicated": {
+     "outcome": "admitted",
+     "reason": "",
+     "refusal_note": "",
+     "registry_version_after": 1,
+     "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-74af7cef0a85_2026-09-30T07:12:24Z_e85188eb.json",
+     "computed_at": "2026-09-30T07:12:24Z"
+    },
+    "at": "2026-09-30T07:12:24.667105Z"
+   }
+  ],
+  "admission_current": {
+   "outcome": "admitted",
+   "reason": "",
+   "refusal_note": "",
+   "registry_version_after": 1,
+   "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-74af7cef0a85_2026-09-30T07:12:24Z_e85188eb.json",
+   "computed_at": "2026-09-30T07:12:24Z"
+  }
  }
 }

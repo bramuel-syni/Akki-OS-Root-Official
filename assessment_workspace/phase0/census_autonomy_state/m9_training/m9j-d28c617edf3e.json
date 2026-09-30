@@ -1,0 +1,139 @@
+{
+ "job_id": "m9j-d28c617edf3e",
+ "phase": "train",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-30T07:15:05.728927Z",
+ "params": {
+  "gpu_index": 0,
+  "corpus_id": "rms-transcripts-v1",
+  "non_target_corpus_id": "digicow-sealed-units-v1",
+  "base": "qwen3-1.7b-base",
+  "acceptance_floor": 0.9,
+  "drill": true,
+  "prune_fraction": 0.3,
+  "distance_probe": {
+   "samples": 40,
+   "max_new_tokens": 24
+  },
+  "recipe": {
+   "lr": 0.0002,
+   "epochs": 1,
+   "max_steps": 320,
+   "batch_size": 512,
+   "grad_accum": 1,
+   "max_seq_len": 256,
+   "tokens_per_batch": 12288,
+   "gradient_checkpointing": false,
+   "warmup_steps": 20,
+   "checkpoint_every": 100,
+   "checkpoint_cadence": "young_daly",
+   "durable_checkpoint_dir": "/mnt/akki-storage-3388s/akki-m9-durable",
+   "eval_every": 0,
+   "eval_batch_size": 64,
+   "eval_cap_per_stratum": 100
+  }
+ },
+ "northena_run_id": "run-37c233553916",
+ "northena_trace_id": "trc-b64e6b08c79f",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-d28c617edf3e"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d28c617edf3e",
+  "pid": 748592
+ },
+ "status": "failed",
+ "ledger_rows": [
+  {
+   "row_id": "led-23525a852e65",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_train_admitted"
+  },
+  {
+   "row_id": "led-5a1ece676ed1",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_train_daemonised:pid=748592"
+  },
+  {
+   "row_id": "led-c559ecac2629",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_train_failed"
+  }
+ ],
+ "code_sha256": "0a5b6a08d261039dbe51ba7c26c13c46ddc3cf8764e01621a2b96d4f7142c5bc",
+ "started_at": "2026-09-30T07:15:11.082858Z",
+ "last_status_rpc": {
+  "at": "2026-09-30T07:17:10.933348Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-db7c3dc553a7"
+ },
+ "remote_state": {
+  "phase": "train",
+  "status": "failed",
+  "started_at": "2026-09-30T07:15:11Z",
+  "progress": {
+   "stage": "training full",
+   "step": 100,
+   "total_steps": 320,
+   "epoch": 1,
+   "loss": 4.38845,
+   "tokens_per_second": 15899.6,
+   "padded_tokens_per_step": 12201,
+   "rows_last_step": 96,
+   "recent_step_seconds": 0.546,
+   "gpu_memory_gb": 86.56,
+   "resumed": null,
+   "elapsed_seconds": 66,
+   "next_checkpoint_step": 100,
+   "last_checkpoint_step": null
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-d28c617edf3e",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-30T07:16:55Z",
+  "finished_at": "2026-09-30T07:16:55Z",
+  "receipt_sha256": "4c4457ed8c7751f6334f842ada54d084e6272b0324a4709bc5f4983ca461af2d"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7485.73it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d28c617edf3e/worker.zip/services/training_runner/m9_worker.py:707: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * cfg[\"grad_accum\"]); trained_tokens += int(mask.sum()); padded_tokens += x.numel(); batch_index += 1",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-d28c617edf3e",
+  "phase": "train",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-09-30T07:15:11Z",
+  "code_sha256": "0a5b6a08d261039dbe51ba7c26c13c46ddc3cf8764e01621a2b96d4f7142c5bc",
+  "status": "failed",
+  "error": {
+   "type": "PermissionError",
+   "message": "[Errno 13] Permission denied: '/mnt/akki-storage-3388s/akki-m9-durable'",
+   "trace": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/pathlib.py\", line 1313, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/mnt/akki-storage-3388s/akki-m9-durable/m9j-d28c617edf3e/full'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/lib/python3.12/pathlib.py\", line 1313, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/mnt/akki-storage-3388s/akki-m9-durable/m9j-d28c617edf3e'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d28c617edf3e/worker.zip/services/training_runner/m9_worker.py\", line 1340, in execute\n    receipt[\"result\"] = PHASES[control[\"phase\"]](control, state)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d28c617edf3e/worker.zip/services/training_runner/m9_worker.py\", line 1064, in train\n    result, bundle = train_arm(cfg, base, train_units, eval_sets, task, labels, out, state, \"full\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d28c617edf3e/worker.zip/services/training_runner/m9_worker.py\", line 720, in train_arm\n    digest, next_checkpoint_step = checkpoint_now()\n                                   ^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d28c617edf3e/worker.zip/services/training_runner/m9_worker.py\", line 674, in checkpoint_now\n    t1 = time.monotonic(); durable_dir.mkdir(parents=True, exist_ok=True)\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1317, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/lib/python3.12/pathlib.py\", line 1317, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/lib/python3.12/pathlib.py\", line 1313, in mkdir\n    os.mkdir(self, mode)\nPermissionError: [Errno 13] Permission denied: '/mnt/akki-storage-3388s/akki-m9-durable'\n"
+  },
+  "stages_completed": {},
+  "finished_at": "2026-09-30T07:16:55Z",
+  "receipt_sha256": "4c4457ed8c7751f6334f842ada54d084e6272b0324a4709bc5f4983ca461af2d",
+  "digest_verified": true
+ },
+ "finished_at": "2026-09-30T07:16:55Z",
+ "reason": "PermissionError: [Errno 13] Permission denied: '/mnt/akki-storage-3388s/akki-m9-durable'",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-d28c617edf3e",
+  "started_at_utc": "2026-09-30T07:15:11.082858Z",
+  "finished_at_utc": "2026-09-30T07:16:55Z",
+  "status": "failed",
+  "provenance_ref": "m9_training://run_log/m9j-d28c617edf3e"
+ }
+}

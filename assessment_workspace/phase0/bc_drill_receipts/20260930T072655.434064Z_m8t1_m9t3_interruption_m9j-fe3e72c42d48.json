@@ -1,0 +1,125 @@
+{
+ "drill": "M8-T1 interrupt-and-resume \u00b7 M9-T3 checkpoint restore",
+ "kind": "physical_process_loss_sigkill",
+ "at": "2026-09-30T07:26:55.434064Z",
+ "actor": "6ab56dd48894abb269135ca2",
+ "killed_job": {
+  "job_id": "m9j-f4bf3ad279bc",
+  "host": "akki-vm-ii",
+  "pid": 749269,
+  "signal": "SIGKILL",
+  "kill_receipt_id": "gpurcp-a3a9d336179f",
+  "observed_step_at_kill": 210,
+  "observation_granularity_steps": 10,
+  "last_checkpoint_step_on_host": 100,
+  "step_seconds_at_kill": 0.614,
+  "ledger_rows": [
+   {
+    "row_id": "led-023d641bbdb0",
+    "stage": "admit",
+    "decision": "admitted",
+    "reason": "m9_train_admitted"
+   },
+   {
+    "row_id": "led-9da47eb62809",
+    "stage": "gate",
+    "decision": "warm",
+    "reason": "m9_train_daemonised:pid=749269"
+   },
+   {
+    "row_id": "led-2dd1c13deb74",
+    "stage": "converge",
+    "decision": "terminate_budget",
+    "reason": "m9_train_interrupted_sigkill:M8-T1/M9-T3 physical process-loss drill (SIGKILL)"
+   }
+  ]
+ },
+ "resumed_job": {
+  "job_id": "m9j-fe3e72c42d48",
+  "host": "akki-vm-ii",
+  "status": "completed",
+  "resumed_from_step": 100,
+  "carriers_restored": {
+   "weights": true,
+   "optimizer": true,
+   "scheduler": true,
+   "data_offset": true,
+   "rng": true
+  },
+  "checkpoint_sha256": "df7ed7a8d8aed2512f7043518f36a704edf19461fce80f02baa450165a2b3103",
+  "resumed_adapter_sha256": "5c952064e509e33c8e584df615eb7a37ff096027dccbdb9b4bfefab992737542",
+  "steps_completed": 320,
+  "planned_steps": 320,
+  "artefact_sha256": "f2cef013157cd4acc77cb488202ba67cb23398743f75fff737d26938b2e124e5",
+  "receipt_sha256": "e7caf1653ae9ffd1616e520807dbfc300752b0717edc186c6079acaece87f0dd",
+  "track4_run_receipt": {
+   "job_kind": "training_runs",
+   "run_id": "m9j-fe3e72c42d48",
+   "started_at_utc": "2026-09-30T07:21:14.493813Z",
+   "finished_at_utc": "2026-09-30T07:26:27Z",
+   "status": "completed",
+   "provenance_ref": "m9_training://run_log/m9j-fe3e72c42d48"
+  },
+  "ledger_rows": [
+   {
+    "row_id": "led-f07184121b56",
+    "stage": "admit",
+    "decision": "admitted",
+    "reason": "m9_train_admitted"
+   },
+   {
+    "row_id": "led-a99487748d42",
+    "stage": "gate",
+    "decision": "warm",
+    "reason": "m9_train_daemonised:pid=750278"
+   },
+   {
+    "row_id": "led-2a8302f821f3",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "reason": "m9_train_completed"
+   }
+  ]
+ },
+ "measured": {
+  "work_lost_steps": 110,
+  "work_lost_seconds": 67.5,
+  "rpo_bound_seconds": 900,
+  "within_rpo": true,
+  "five_carriers_restored": true,
+  "checkpoint_cadence_rule": "young_daly",
+  "cadence_receipts": 1,
+  "last_cadence_receipt": {
+   "at": "2026-09-30T07:23:16Z",
+   "step": 200,
+   "epoch": 0,
+   "checkpoint_adapter_sha256": "b01e1635c88b45d574b9d85cf6abf442c75fd54b628bc6333e99f0c59b426f9a",
+   "write_seconds": 0.928,
+   "replicate_seconds": 0.544,
+   "durable_copy": "/mnt/akki-storage-3388s/akki-m9-durable/m9j-f4bf3ad279bc/full/checkpoint.pt",
+   "step_seconds": 0.6243,
+   "tau_seconds": 504.2,
+   "next_checkpoint_step": 1007,
+   "rule": "young_daly",
+   "rpo_seconds": 900,
+   "mtbf_seconds": 86400
+  }
+ },
+ "single_effect": {
+  "completed_runs": 1,
+  "killed_run_terminal_receipt": false,
+  "usage_receipts": [
+   {
+    "job_kind": "training_runs",
+    "run_id": "m9j-fe3e72c42d48",
+    "started_at_utc": "2026-09-30T07:21:14.493813Z",
+    "finished_at_utc": "2026-09-30T07:26:27Z",
+    "status": "completed",
+    "provenance_ref": "m9_training://run_log/m9j-fe3e72c42d48"
+   }
+  ],
+  "note": "the killed process left no terminal receipt and no artefact; exactly one certificate and one usage receipt exist for the continued run"
+ },
+ "policy_ref": "owner ruling 2026-09-30 (5a): ratify BC_DYNAMIC_RECOVERY_PACKET_20260915 tiers as proposed \u00b7 recorded in assessment_workspace/notes/m8_m9_completion_20260930/OWNER_RULINGS_20260930.md",
+ "verdict": "PASS"
+}

@@ -24,7 +24,8 @@ from services.census_autonomy import engine
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/training_runner/m9_worker.py"
-PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline")
+PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test")
+OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
 OWNER_ORDER_REF = "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)"
 BOOTSTRAP = '''import sys,json,base64,pathlib,hashlib,os
@@ -113,9 +114,15 @@ def validate(phase, params, host):
         raise ValueError("Unknown M9 training phase.")
     if host not in hosts():
         raise ValueError("M9_HOST_NOT_ADMITTED:" + str(host))
-    if phase in ("calibrate", "compare_optimizers", "train", "pipeline"):
+    if phase in ("calibrate", "compare_optimizers", "train", "pipeline", "serve"):
         if type(params.get("gpu_index")) is not int or params["gpu_index"] not in (0, 1):
             raise ValueError("M9_GPU_INDEX_REQUIRED")
+    if phase == "train" and not isinstance(params.get("acceptance_floor"), (int, float)):
+        raise ValueError("OUTCOME_PER_STRATUM_FLOOR_REQUIRED")  # Docs 17–19: no training without the Outcome's per-stratum acceptance threshold
+    if phase == "serve" and not all(params.get(k) for k in ("run_dir", "artefact_sha256", "labels", "port", "authority")):
+        raise ValueError("M9_SERVE_REQUIRES_run_dir_artefact_sha256_labels_port_authority")
+    if phase == "load_test" and not all(params.get(k) for k in ("port", "corpus_id")):
+        raise ValueError("M9_LOAD_TEST_REQUIRES_port_corpus_id")
     if phase == "acquire_bases" and not params.get("bases"):
         raise ValueError("M9_BASES_REQUIRED")
     if phase == "assemble" and not all(params.get(k) for k in ("corpus_id", "kind", "rights_ref")):
@@ -197,13 +204,43 @@ def cancel(job_id, reason):
     return save_job(job)
 
 
+def interrupt(job_id, reason, observed_step=None):
+    """Physical process loss for the M8-T1 / M9-T3 drill: SIGKILL only — no graceful stop, no in-process hook. The job is recorded as
+    `interrupted` with the last step E1 observed on the host; continuation is only possible from the checkpoint on the host volume."""
+    from services.training_runner.ssh_seam import execute_remote_command
+    job = refresh(job_id)
+    if not job or job["status"] != "running":
+        return job
+    pid = int(job["remote"].get("pid") or 0)
+    if pid <= 0:
+        raise ValueError("INTERRUPT_REQUIRES_A_KNOWN_WORKER_PID")
+    state_path = shlex.quote(job["remote"]["job_dir"] + "/state.json")
+    command = f"kill -KILL {pid} 2>/dev/null; sleep 0.5; kill -0 {pid} 2>/dev/null && echo still_alive || echo killed; echo __STATE__; cat {state_path} 2>/dev/null"
+    result = execute_remote_command(job["host"], command, purpose=f"m9_interrupt:{job_id}", timeout=45)
+    verdict, _, state_text = result.stdout_redacted.partition("__STATE__")
+    try:
+        host_state = json.loads(state_text.strip()) if state_text.strip() else None
+    except ValueError:
+        host_state = None
+    progress = (host_state or {}).get("progress") or {}
+    job["interrupt_rpc"] = {"at": now(), "rc": result.rc, "receipt_id": result.receipt_id, "outcome": verdict.strip().splitlines()[-1] if verdict.strip() else "unknown", "reason": reason,
+                            "signal": "SIGKILL", "observed_step_at_kill": progress.get("step"), "observation_granularity_steps": 10,
+                            "last_checkpoint_step_on_host": progress.get("last_checkpoint_step"), "next_checkpoint_step_on_host": progress.get("next_checkpoint_step")}
+    if result.rc != 0 or job["interrupt_rpc"]["outcome"] != "killed":
+        job["interrupt_rpc"]["error"] = result.stderr_redacted[:300]
+        return save_job(job)
+    job.update(status="interrupted", reason=reason, finished_at=now(), remote_state=host_state)
+    _ledger(job, "converge", "terminate_budget", f"m9_{job['phase']}_interrupted_sigkill:{reason}"[:200], {"pid": pid, "interrupt_receipt_id": result.receipt_id, "observed_step": progress.get("step")})
+    return save_job(job)
+
+
 def refresh(job_id):
     """One bounded status RPC: host state + receipt (digest-verified) + log tail + liveness."""
     from services.training_runner.ssh_seam import execute_remote_command
     job = load_job(job_id)
     if not job:
         return None
-    if job["status"] in ("completed", "failed", "refused", "cancelled"):
+    if job["status"] in ("completed", "failed", "refused", "cancelled", "interrupted"):
         return job
     job_dir = job["remote"]["job_dir"]
     command = (f"cat {shlex.quote(job_dir + '/state.json')} 2>/dev/null; echo; echo __RECEIPT__; cat {shlex.quote(job_dir + '/receipt.json')} 2>/dev/null; "
@@ -269,6 +306,10 @@ def _close(job):
         if job["phase"] in ("train", "pipeline"):
             run = result["stages"]["train"] if job["phase"] == "pipeline" else result
             job["run_certificate"] = _bank_run_certificate(job, run, (result.get("stages") or {}).get("calibrate"))
+        if job["phase"] == "serve":
+            job["serving_summary"] = result
+        if job["phase"] == "load_test":
+            job["load_test"] = result
     _ledger(job, "converge", "terminate_success" if status == "completed" else "terminate_budget", f"m9_{job['phase']}_{status}",
             {"receipt_sha256": (job.get("receipt") or {}).get("receipt_sha256")})
 
@@ -312,6 +353,17 @@ def _bank_optimizer_comparison(job, comparison):
         return {"comparison_id": comparison_id, "error": f"{type(exc).__name__}: {str(exc)[:300]}"}
 
 
+def adapter_registry_entry(job, run, model_id, artefact_sha, adapter_dir, ruling_ref):
+    """Registry entry for a trained adapter: A17.3 recipe_version, artefact hash, host custody path, corpus lineage — read from the registry, never from whoever ran the job."""
+    recipe = run["training"]["recipe"]
+    return {"provider": "trained_on_this_estate", "custody_kind": "estate_trained", "role": "trained_adapter",
+            "recipe_version": "recipe-sha256:" + hashlib.sha256(json.dumps(recipe, sort_keys=True).encode()).hexdigest(), "recipe": recipe,
+            "base": run["training"]["base"], "artefact_sha256": artefact_sha, "host": job["host"], "adapter_path": f"{job['host']}://{adapter_dir}", "run_dir": run.get("run_dir") or str(Path(run["artefact"]["path"]).parent),
+            "training_manifest_sha256": run["artefact"]["training_manifest_sha256"], "corpus_id": run["corpus_id"], "corpus_manifest_sha256": run["manifest_sha256"],
+            "cited_units": run["artefact"]["cited_units"], "task": run["task"], "labels": run["labels"], "training_job_id": job["job_id"], "variant": "pruned" if model_id.endswith("-pruned") else "full",
+            "excluded_unit_ids": (run.get("training_manifest") or {}).get("excluded_unit_ids") or [], "rederived_from": run.get("rederived_from"), "owner_ruling_ref": ruling_ref, "status": "admitted", "serving": None, "recall": None}
+
+
 def _bank_run_certificate(job, run, calibration=None):
     """Completion certificate (Doc 17 §17.4 machine-facing): compute, data touched, manifest hash, per-stratum results,
     DAP-31 egress verdict, DAP-37 pruned artefact, and the admission ceremony outcome — admitted OR refused on record."""
@@ -319,17 +371,19 @@ def _bank_run_certificate(job, run, calibration=None):
     moac = run["moac"]
     egress = run["distance_probe"]["egress_permitted"]
     admission = {"attempted": False, "reason": "DAP-31 egress refused: " + "; ".join(run["distance_probe"]["refusals"])} if not egress else None
-    if egress:
+    pruned = None
+    if run.get("drill"):
+        admission = {"attempted": False, "reason": "interruption/resume drill run — not a candidate model; no admission attempted"}
+        pruned = {"outcome": "not_attempted", "reason": "drill run"}
+    elif egress:
         try:
-            outcome = ceremony.run_admission(moac["card"])
-            admission = {"attempted": True, "outcome": outcome.outcome, "reason": outcome.reason, "refusal_note": outcome.refusal_note, "registry_version_after": outcome.registry_version_after}
+            outcome = ceremony.run_admission(moac["card"], adapter_registry_entry(job, run, job["job_id"], run["artefact"]["sha256"], run["artefact"]["path"], OWNER_RULING_20260930))
+            admission = {"attempted": True, "outcome": outcome.outcome, "reason": outcome.reason, "refusal_note": outcome.refusal_note, "registry_version_after": outcome.registry_version_after, "record_ref": outcome.record_ref}
         except Exception as exc:
             admission = {"attempted": True, "outcome": "error", "reason": f"{type(exc).__name__}: {str(exc)[:300]}"}
-    pruned = None
-    if egress:
         try:
-            outcome = ceremony.run_admission(run["pruning"]["moac_card"])
-            pruned = {"outcome": outcome.outcome, "reason": outcome.reason, "registry_version_after": outcome.registry_version_after}
+            outcome = ceremony.run_admission(run["pruning"]["moac_card"], adapter_registry_entry(job, run, job["job_id"] + "-pruned", run["pruning"]["artefact_sha256"], str(Path(run["artefact"]["path"]).parent / "pruned_adapter"), OWNER_RULING_20260930))
+            pruned = {"outcome": outcome.outcome, "reason": outcome.reason, "registry_version_after": outcome.registry_version_after, "record_ref": outcome.record_ref}
         except Exception as exc:
             pruned = {"outcome": "error", "reason": f"{type(exc).__name__}: {str(exc)[:300]}"}
     whitepaper = _draft_whitepaper(job, run, admission)
@@ -347,7 +401,9 @@ def _bank_run_certificate(job, run, calibration=None):
                    "pruned_artefact": {k: run["pruning"][k] for k in ("sparsity", "artefact_sha256", "m_a_improvement", "m_b_non_target_regression")} | {"admission": pruned},
                    "admission": admission, "whitepaper": whitepaper, "calibration": {k: calibration[k] for k in ("base_selected_by_calibration", "quotes", "proposed_milestones")} if calibration else None,
                    "optimizer_comparison": job.get("optimizer_comparison"), "dp_sgd": run["artefact"]["dp_sgd"],
-                   "final_model": False, "serving": "not served; admission record only (M9.4 serving is a separate step)", "certified_at": now()}
+                   "final_model": False, "serving": "not served; admission record only (M9.4 serving is a separate step)", "certified_at": now(),
+                   "run_dir": run.get("run_dir"), "resume_from_job_id": run.get("resume_from_job_id"), "drill": bool(run.get("drill")),
+                   "outcome_floor": moac.get("outcome_floor"), "excluded_unit_ids": (job.get("params") or {}).get("excluded_unit_ids") or [], "rederived_from": (job.get("params") or {}).get("rederived_from")}
     (_jobs_dir() / f"run_certificate_{job['job_id']}.json").write_text(json.dumps(certificate, indent=1, default=str))
     return certificate
 

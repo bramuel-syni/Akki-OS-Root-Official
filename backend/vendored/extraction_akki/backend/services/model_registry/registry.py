@@ -179,3 +179,32 @@ def register_adapter(model_id: str, entry: Dict[str, Any]) -> int:
             "or empty recipe_version breaks MOAC's M-d lineage criterion."
         )
     return register_model(model_id, entry)
+
+
+def annotate_model(model_id: str, patch: Dict[str, Any], authority_source: str) -> int:
+    """Additive v(N)→v(N+1) bump that carries a changed entry for an existing
+    model (status · serving · recall). v(N) stays byte-identical; the change
+    is a new entry that names its authority (Canon 8 §43 correction-by-new-entry).
+    Refuses an unknown model_id."""
+    n, models = current_registry_version()
+    if model_id not in models:
+        raise ValueError(f"model {model_id!r} not in models_registry; nothing to annotate.")
+    history = list(models[model_id].get("annotations") or [])
+    history.append({"registry_version": f"v{n + 1}", "authority_source": authority_source, "patch": patch})
+    new_models = {**models, model_id: {**models[model_id], **patch, "annotations": history}}
+    new_n = n + 1
+    payload = {
+        "version": f"v{new_n}",
+        "extends": f"v{n}",
+        "annotated_model_id": model_id,
+        "authority_source": authority_source,
+        "models": new_models,
+    }
+    (_REGISTRY_DIR / f"models_registry.v{new_n}.json").write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+    return new_n
+
+
+def trained_adapters() -> Dict[str, Any]:
+    return {mid: e for mid, e in load_registry().items() if e.get("role") == TRAINED_ADAPTER_ROLE}

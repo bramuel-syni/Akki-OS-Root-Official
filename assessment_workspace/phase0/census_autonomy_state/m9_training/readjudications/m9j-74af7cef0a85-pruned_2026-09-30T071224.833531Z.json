@@ -1,0 +1,130 @@
+{
+ "job_id": "m9j-74af7cef0a85",
+ "model_id": "m9j-74af7cef0a85-pruned",
+ "variant": "pruned",
+ "ruling_ref": "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17\u201319 \u00b7 \u00a726.2)",
+ "outcome_floor": 0.9,
+ "floor_source": "campaign_20260929_full.json plan.calibrate.acceptance_floor (Outcome definition \u00b7 2026-09-29)",
+ "actor": "6ab56dd48894abb269135ca2",
+ "per_stratum": {
+  "guz": {
+   "accuracy": 0.98237,
+   "base_accuracy": 0.01124,
+   "meets_outcome_floor": true,
+   "no_regression_below_base": true,
+   "passes": true
+  },
+  "kam": {
+   "accuracy": 0.91349,
+   "base_accuracy": 0.0,
+   "meets_outcome_floor": true,
+   "no_regression_below_base": true,
+   "passes": true
+  },
+  "kik": {
+   "accuracy": 0.99246,
+   "base_accuracy": 0.2449,
+   "meets_outcome_floor": true,
+   "no_regression_below_base": true,
+   "passes": true
+  },
+  "kln": {
+   "accuracy": 0.99749,
+   "base_accuracy": 0.1194,
+   "meets_outcome_floor": true,
+   "no_regression_below_base": true,
+   "passes": true
+  },
+  "luo": {
+   "accuracy": 0.9949,
+   "base_accuracy": 0.62651,
+   "meets_outcome_floor": true,
+   "no_regression_below_base": true,
+   "passes": true
+  },
+  "lwg": {
+   "accuracy": 0.93229,
+   "base_accuracy": 0.04348,
+   "meets_outcome_floor": true,
+   "no_regression_below_base": true,
+   "passes": true
+  },
+  "swa": {
+   "accuracy": 0.98958,
+   "base_accuracy": 0.98446,
+   "meets_outcome_floor": true,
+   "no_regression_below_base": true,
+   "passes": true
+  }
+ },
+ "coverage_strata": 1.0,
+ "original_admission": {
+  "outcome": "refused",
+  "reason": "moac_criterion_below_floor",
+  "registry_version_after": null
+ },
+ "artefact_sha256": "6fb4b3eeae35ab74cd1116dc40c31b90ea222e25390f0a490d8e83d32d63eac4",
+ "at": "2026-09-30T07:12:24.833531Z",
+ "readjudicated": {
+  "outcome": "admitted",
+  "reason": "",
+  "refusal_note": "",
+  "registry_version_after": 2,
+  "record_ref": "/app/assessment_workspace/phase0/model_admission_records/admit_m9j-74af7cef0a85-pruned_2026-09-30T07:12:24Z_678fbba8.json",
+  "computed_at": "2026-09-30T07:12:24Z"
+ },
+ "moac_card": {
+  "candidate_model_id": "m9j-74af7cef0a85-pruned",
+  "evidence_source_kind": "uncurated_estate_sample",
+  "evidence_purpose_id": "m9-governed-training:m9j-74af7cef0a85-pruned",
+  "accuracy_uncurated": {
+   "measured_value": 0.9718,
+   "unit": "accuracy_fraction",
+   "method_of_measurement": "Macro accuracy on the sealed, uncurated held-out set (group-disjoint), abstentions excluded from the judged count and reported separately.",
+   "floor_value": 0.34,
+   "canon_anchor": "\u00a726.1 \u00b7 MOAC M-a improvement over base (+5 pts DEFAULT)"
+  },
+  "coverage_strata": {
+   "measured_value": 1.0,
+   "unit": "fraction_of_strata_meeting_floor",
+   "method_of_measurement": "Share of target strata whose held-out accuracy meets the Outcome's recorded per-stratum floor (0.9; source: campaign_20260929_full.json plan.calibrate.acceptance_floor (Outcome definition \u00b7 2026-09-29)) without regressing below the base. owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17\u201319 \u00b7 \u00a726.2). gate_policy GATES release (A17.19b). Re-adjudicated from the banked certificate; no retraining.",
+   "floor_value": 1.0,
+   "canon_anchor": "\u00a726.2 \u00b7 per-stratum acceptance \u00b7 Docs 17\u201319 threshold recorded on the Outcome"
+  },
+  "refusal_behaviour": {
+   "measured_value": 1.155786,
+   "unit": "one_minus_non_target_perplexity_regression",
+   "method_of_measurement": "Non-target held-out perplexity of the adapter relative to the base (MOAC M-b); reported abstention on the target set.",
+   "floor_value": 0.98,
+   "canon_anchor": "\u00a726.3 \u00b7 MOAC M-b no collateral regression (2 % DEFAULT)"
+  },
+  "provenance_integrity": {
+   "measured_value": 1.0,
+   "unit": "fraction",
+   "method_of_measurement": "Every training example resolves to a unit id in the sealed manifest; manifest sha verified at run open.",
+   "floor_value": 1.0,
+   "canon_anchor": "\u00a726.4 \u00b7 A17.16 ingredient manifest"
+  },
+  "cost_per_operation": {
+   "measured_value": 1.051786,
+   "unit": "gpu_seconds_per_evaluated_unit",
+   "method_of_measurement": "Wall GPU seconds of the run divided by evaluated units (metering input; floor unset).",
+   "floor_value": null,
+   "canon_anchor": "\u00a726.5"
+  },
+  "time_to_answer_p95": {
+   "measured_value": 0.04439,
+   "unit": "seconds_per_unit_mean",
+   "method_of_measurement": "Mean evaluation latency per unit on the training host (p95 not yet instrumented; floor unset).",
+   "floor_value": null,
+   "canon_anchor": "\u00a726.6"
+  },
+  "training_lineage_resolved": true,
+  "training_lineage_note": "recipe + base weight sha + sealed corpus manifest sha recorded on the run receipt",
+  "computed_at": "2026-09-30T07:12:24.833544Z"
+ },
+ "whitepaper": {
+  "drafted": true,
+  "whitepaper_id": "wp_m9j_74af7cef0a85_pruned_readj_20260930"
+ }
+}

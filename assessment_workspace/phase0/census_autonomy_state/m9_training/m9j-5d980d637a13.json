@@ -1,0 +1,71 @@
+{
+ "job_id": "m9j-5d980d637a13",
+ "phase": "load_test",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-09-30T07:14:17.344800Z",
+ "params": {
+  "port": 8611,
+  "corpus_id": "rms-transcripts-v1",
+  "concurrency": 8,
+  "requests_per_thread": 15,
+  "batch": 8,
+  "per_stratum": 30,
+  "model_id": "m9j-74af7cef0a85",
+  "serving_job_id": "m9j-934daf924154"
+ },
+ "northena_run_id": "run-18984cf2bd35",
+ "northena_trace_id": "trc-8002f1e5505b",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-5d980d637a13"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-5d980d637a13",
+  "pid": 748495
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-173c0dfd2f05",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_load_test_admitted"
+  },
+  {
+   "row_id": "led-c3ea4d03f3b4",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_load_test_daemonised:pid=748495"
+  }
+ ],
+ "code_sha256": "0a5b6a08d261039dbe51ba7c26c13c46ddc3cf8764e01621a2b96d4f7142c5bc",
+ "started_at": "2026-09-30T07:14:22.504298Z",
+ "last_status_rpc": {
+  "at": "2026-09-30T07:21:00.093086Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-6a05c9836cf7"
+ },
+ "remote_state": {
+  "phase": "load_test",
+  "status": "running",
+  "started_at": "2026-09-30T07:14:22Z",
+  "progress": {
+   "stage": "concurrent load",
+   "concurrency": 8,
+   "requests": 120
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-5d980d637a13",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-09-30T07:19:57Z"
+ },
+ "worker_log_tail": "",
+ "process_alive": true
+}

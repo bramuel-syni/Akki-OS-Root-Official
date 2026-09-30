@@ -30,6 +30,17 @@ PROTECTED_BOUNDARIES = {
     "estate_intelligence.cancel": "POST /api/portal/census/estate-intelligence/jobs/{job_id}/cancel",
     "m9_training.commission": "POST /api/training/m9/jobs",
     "m9_training.cancel": "POST /api/training/m9/jobs/{job_id}/cancel",
+    # M8/M9 completion (owner rulings 2026-09-30): admission re-adjudication, governed serving, interruption drills, rights withdrawal, continuity drills.
+    "m9_training.readjudicate": "POST /api/training/m9/certificates/{job_id}/readjudicate",
+    "m9_training.interrupt": "POST /api/training/m9/jobs/{job_id}/interrupt",
+    "m9_training.drill_receipt": "POST /api/training/m9/drills/interruption",
+    "m9_training.revoke_unit": "POST /api/training/m9/rights/revoke-unit",
+    "m9_serving.start": "POST /api/training/m9/serving/{model_id}/start",
+    "m9_serving.withdraw": "POST /api/training/m9/serving/{model_id}/withdraw",
+    "m9_serving.stop": "POST /api/training/m9/serving/{model_id}/stop",
+    "m9_serving.load_test": "POST /api/training/m9/serving/{model_id}/load-test",
+    "continuity.ledger_archive": "POST /api/continuity/ledger/archive",
+    "continuity.ledger_restore_drill": "POST /api/continuity/ledger/restore-drill",
     # M3 · a request becomes completed, delivered work: three more commission gates on the same inventory.
     "dap.commission": "POST /api/portal/commission/drafts/{draft_id}/freeze",
     "dap.approval": "POST /api/portal/approvals/{request_id}/decide",

@@ -1,0 +1,401 @@
+{
+ "job_id": "m9j-fe3e72c42d48",
+ "host": "akki-vm-ii",
+ "receipt_sha256": "e7caf1653ae9ffd1616e520807dbfc300752b0717edc186c6079acaece87f0dd",
+ "corpus": {
+  "units": 157513,
+  "splits": {
+   "archive_test": 269,
+   "dev": 8280,
+   "held": 18980,
+   "train": 129984
+  },
+  "per_stratum": {
+   "guz": {
+    "archive_test": 102,
+    "dev": 1094,
+    "groups_held": 39,
+    "groups_train": 249,
+    "held": 2217,
+    "train": 18443
+   },
+   "kam": {
+    "archive_test": 121,
+    "dev": 931,
+    "groups_held": 39,
+    "groups_train": 210,
+    "held": 2422,
+    "train": 8746
+   },
+   "kik": {
+    "archive_test": 1,
+    "dev": 924,
+    "groups_held": 37,
+    "groups_train": 163,
+    "held": 3573,
+    "train": 13846
+   },
+   "kln": {
+    "archive_test": 38,
+    "dev": 1667,
+    "groups_held": 53,
+    "groups_train": 400,
+    "held": 3253,
+    "train": 27483
+   },
+   "luo": {
+    "archive_test": 7,
+    "dev": 1131,
+    "groups_held": 33,
+    "groups_train": 265,
+    "held": 2455,
+    "train": 18681
+   },
+   "lwg": {
+    "archive_test": 0,
+    "dev": 1496,
+    "groups_held": 238,
+    "groups_train": 2065,
+    "held": 3006,
+    "train": 25350
+   },
+   "swa": {
+    "archive_test": 0,
+    "dev": 1037,
+    "groups_held": 77,
+    "groups_train": 242,
+    "held": 2054,
+    "train": 17435
+   }
+  },
+  "test_set_seal": {
+   "corpus_id": "rms-transcripts-v1",
+   "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+   "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+   "held_unit_count": 18980,
+   "rule": "sealed before any training step; never re-drawn",
+   "sealed_at": "2026-09-29T21:55:14Z",
+   "strata": [
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "swa"
+   ]
+  },
+  "rights_ref": "owner-supplied google-transcripts datasets (RMS tenant custody) \u00b7 authorised for language-cognition training 2026-09-29 \u00b7 text modality of the same authorised corpus",
+  "kind": "transcript_text"
+ },
+ "manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+ "training_manifest_sha256": "f2a566214dca6b515a7a00057e8e3180af5d3a32d939ea43416ba5b6b90c70e2",
+ "test_set_seal": {
+  "corpus_id": "rms-transcripts-v1",
+  "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+  "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+  "held_unit_count": 18980,
+  "rule": "sealed before any training step; never re-drawn",
+  "sealed_at": "2026-09-29T21:55:14Z",
+  "strata": [
+   "guz",
+   "kam",
+   "kik",
+   "kln",
+   "luo",
+   "lwg",
+   "swa"
+  ]
+ },
+ "test_set_seal_banked_at": null,
+ "compute": {
+  "train_units": 130124,
+  "train_tokens": 9502124,
+  "steps": 320,
+  "epochs_completed": 0,
+  "total_steps_planned": 320,
+  "wallclock_seconds": 143,
+  "gpu_hours": 0.0398,
+  "tokens_per_second": 16383.4,
+  "gpu_max_memory_gb": 86.56,
+  "final_loss": 4.01156,
+  "device": "NVIDIA H200",
+  "recipe": {
+   "optimizer": "adamw",
+   "lr": 0.0002,
+   "muon_lr": 0.01,
+   "muon_momentum": 0.95,
+   "weight_decay": 0.01,
+   "epochs": 1,
+   "max_steps": 320,
+   "batch_size": 512,
+   "grad_accum": 1,
+   "max_seq_len": 256,
+   "tokens_per_batch": 12288,
+   "gradient_checkpointing": false,
+   "lora_r": 16,
+   "lora_alpha": 32,
+   "lora_dropout": 0.05,
+   "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+   ],
+   "warmup_steps": 20,
+   "max_grad_norm": 1.0,
+   "seed": 41,
+   "checkpoint_every": 100,
+   "eval_every": 0,
+   "checkpoint_cadence": "young_daly",
+   "durable_checkpoint_dir": "/mnt/akki-storage-3388s/akki-m9-durable"
+  },
+  "base": {
+   "registry_id": "qwen3-1.7b-base",
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+  }
+ },
+ "artefact_sha256": "f2cef013157cd4acc77cb488202ba67cb23398743f75fff737d26938b2e124e5",
+ "cited_units": 129984,
+ "per_stratum": {
+  "guz": {
+   "accuracy": 0.93103,
+   "base_accuracy": 0.0,
+   "perplexity": 67.0622,
+   "base_perplexity": 425.7418,
+   "abstention_rate": 0.13,
+   "units": 100,
+   "meets_m_a": true
+  },
+  "kam": {
+   "accuracy": 0.67164,
+   "base_accuracy": 0.0,
+   "perplexity": 39.7822,
+   "base_perplexity": 167.0136,
+   "abstention_rate": 0.33,
+   "units": 100,
+   "meets_m_a": false
+  },
+  "kik": {
+   "accuracy": 0.96591,
+   "base_accuracy": 0.03774,
+   "perplexity": 29.7073,
+   "base_perplexity": 205.5834,
+   "abstention_rate": 0.12,
+   "units": 100,
+   "meets_m_a": true
+  },
+  "kln": {
+   "accuracy": 0.95294,
+   "base_accuracy": 0.0,
+   "perplexity": 65.2428,
+   "base_perplexity": 619.283,
+   "abstention_rate": 0.15,
+   "units": 100,
+   "meets_m_a": true
+  },
+  "luo": {
+   "accuracy": 0.93478,
+   "base_accuracy": 0.0,
+   "perplexity": 92.0074,
+   "base_perplexity": 866.8551,
+   "abstention_rate": 0.08,
+   "units": 100,
+   "meets_m_a": true
+  },
+  "lwg": {
+   "accuracy": 0.85567,
+   "base_accuracy": 0.0,
+   "perplexity": 45.4962,
+   "base_perplexity": 324.6761,
+   "abstention_rate": 0.03,
+   "units": 100,
+   "meets_m_a": false
+  },
+  "swa": {
+   "accuracy": 1.0,
+   "base_accuracy": 1.0,
+   "perplexity": 30.1234,
+   "base_perplexity": 126.7079,
+   "abstention_rate": 0.04,
+   "units": 100,
+   "meets_m_a": true
+  }
+ },
+ "moac": {
+  "m_a_improvement": 0.75346,
+  "m_b_non_target_regression": -0.5504,
+  "m_e_calibration_ece": 0.04381,
+  "floors_class": "DEFAULT (M-a +5 pts aggregate, M-b 2 %, per-stratum: Outcome floor 0.9 + no regression below base) \u2014 disclosed, not curated",
+  "card": {
+   "candidate_model_id": "m9j-fe3e72c42d48",
+   "evidence_source_kind": "uncurated_estate_sample",
+   "evidence_purpose_id": "m9-governed-training:m9j-fe3e72c42d48",
+   "accuracy_uncurated": {
+    "measured_value": 0.90171,
+    "unit": "accuracy_fraction",
+    "method_of_measurement": "Macro accuracy on the sealed, uncurated held-out set (group-disjoint), abstentions excluded from the judged count and reported separately.",
+    "floor_value": 0.19825,
+    "canon_anchor": "\u00a726.1 \u00b7 MOAC M-a improvement over base (+5 pts DEFAULT)"
+   },
+   "coverage_strata": {
+    "measured_value": 0.714286,
+    "unit": "fraction_of_strata_meeting_floor",
+    "method_of_measurement": "Share of target strata whose held-out accuracy meets the Outcome's recorded per-stratum floor (0.9) without regressing below the base. owner ruling 2026-09-30 (1a): per-stratum acceptance = held-out accuracy \u2265 the Outcome's recorded floor AND no regression below the base (Docs 17\u201319 \u00b7 \u00a726.2). gate_policy GATES release (A17.19b).",
+    "floor_value": 1.0,
+    "canon_anchor": "\u00a726.2 \u00b7 per-stratum acceptance \u00b7 Docs 17\u201319 threshold recorded on the Outcome"
+   },
+   "refusal_behaviour": {
+    "measured_value": 1.550404,
+    "unit": "one_minus_non_target_perplexity_regression",
+    "method_of_measurement": "Non-target held-out perplexity of the adapter relative to the base (MOAC M-b); reported abstention on the target set.",
+    "floor_value": 0.98,
+    "canon_anchor": "\u00a726.3 \u00b7 MOAC M-b no collateral regression (2 % DEFAULT)"
+   },
+   "provenance_integrity": {
+    "measured_value": 1.0,
+    "unit": "fraction",
+    "method_of_measurement": "Every training example resolves to a unit id in the sealed manifest; manifest sha verified at run open.",
+    "floor_value": 1.0,
+    "canon_anchor": "\u00a726.4 \u00b7 A17.16 ingredient manifest"
+   },
+   "cost_per_operation": {
+    "measured_value": 0.204286,
+    "unit": "gpu_seconds_per_evaluated_unit",
+    "method_of_measurement": "Wall GPU seconds of the run divided by evaluated units (metering input; floor unset).",
+    "floor_value": null,
+    "canon_anchor": "\u00a726.5"
+   },
+   "time_to_answer_p95": {
+    "measured_value": 0.01725,
+    "unit": "seconds_per_unit_mean",
+    "method_of_measurement": "Mean evaluation latency per unit on the training host (p95 not yet instrumented; floor unset).",
+    "floor_value": null,
+    "canon_anchor": "\u00a726.6"
+   },
+   "training_lineage_resolved": true,
+   "training_lineage_note": "recipe + base weight sha + sealed corpus manifest sha recorded on the run receipt",
+   "computed_at": "2026-09-30T07:25:54Z"
+  }
+ },
+ "distance_probe": {
+  "method": "DAP-31 egress distance: greedy-continuation extraction on training vs held-out units + secret-sharer canary exposure",
+  "train": {
+   "samples": 120,
+   "memorised_share": 0.0,
+   "max_lcs_ratio": 0.2414,
+   "max_verbatim_chars": 25
+  },
+  "held": {
+   "samples": 120,
+   "memorised_share": 0.0,
+   "max_lcs_ratio": 0.2353,
+   "max_verbatim_chars": 20
+  },
+  "memorisation_gap": 0.0,
+  "canary_exposure_bits_by_repeats": {
+   "1": {
+    "count": 20,
+    "mean": 0.97,
+    "max": 3.018
+   },
+   "2": {
+    "count": 20,
+    "mean": 1.424,
+    "max": 6.34
+   },
+   "4": {
+    "count": 20,
+    "mean": 1.455,
+    "max": 3.755
+   }
+  },
+  "canary_reference_count": 80,
+  "max_possible_exposure_bits": 6.34,
+  "extractable_exposure_floor_bits": 5.34,
+  "thresholds": {
+   "memorised_lcs_ratio": 0.75,
+   "memorisation_gap_refuse": 0.05,
+   "verbatim_chars_refuse": 100,
+   "class": "DEFAULT \u2014 disclosed, revisable on evidence"
+  },
+  "egress_permitted": true,
+  "refusals": []
+ },
+ "checkpoint": {
+  "path": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-f4bf3ad279bc/full/checkpoint.pt",
+  "every_steps": 100,
+  "cadence": {
+   "rule": "young_daly",
+   "rpo_seconds": 900,
+   "mtbf_seconds": 86400,
+   "receipts": 1,
+   "last": {
+    "at": "2026-09-30T07:23:16Z",
+    "step": 200,
+    "epoch": 0,
+    "checkpoint_adapter_sha256": "b01e1635c88b45d574b9d85cf6abf442c75fd54b628bc6333e99f0c59b426f9a",
+    "write_seconds": 0.928,
+    "replicate_seconds": 0.544,
+    "durable_copy": "/mnt/akki-storage-3388s/akki-m9-durable/m9j-f4bf3ad279bc/full/checkpoint.pt",
+    "step_seconds": 0.6243,
+    "tau_seconds": 504.2,
+    "next_checkpoint_step": 1007,
+    "rule": "young_daly",
+    "rpo_seconds": 900,
+    "mtbf_seconds": 86400
+   }
+  },
+  "rng_and_optimizer_saved": true,
+  "resume_proof": {
+   "kind": "physical_process_loss",
+   "resumed_from_step": 100,
+   "carriers_restored": {
+    "weights": true,
+    "optimizer": true,
+    "scheduler": true,
+    "data_offset": true,
+    "rng": true
+   },
+   "checkpoint_sha256": "df7ed7a8d8aed2512f7043518f36a704edf19461fce80f02baa450165a2b3103",
+   "resumed_adapter_sha256": "5c952064e509e33c8e584df615eb7a37ff096027dccbdb9b4bfefab992737542",
+   "killed_job_id": "m9j-f4bf3ad279bc"
+  }
+ },
+ "pruned_artefact": {
+  "sparsity": 0.3,
+  "artefact_sha256": "58fbdf3e8f01462b873f06ee6d56f4e5a763b0b1060d4daa0b2572500eba9232",
+  "m_a_improvement": 0.73939,
+  "m_b_non_target_regression": -0.55233,
+  "admission": {
+   "outcome": "not_attempted",
+   "reason": "drill run"
+  }
+ },
+ "admission": {
+  "attempted": false,
+  "reason": "interruption/resume drill run \u2014 not a candidate model; no admission attempted"
+ },
+ "whitepaper": {
+  "drafted": false,
+  "reason": "no admission record to cite (egress refused)"
+ },
+ "calibration": null,
+ "optimizer_comparison": null,
+ "dp_sgd": {
+  "applied": false,
+  "reason": "optional arm per owner decision 3a; not commissioned in this run"
+ },
+ "final_model": false,
+ "serving": "not served; admission record only (M9.4 serving is a separate step)",
+ "certified_at": "2026-09-30T07:26:54.912272Z",
+ "run_dir": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-f4bf3ad279bc/full",
+ "resume_from_job_id": "m9j-f4bf3ad279bc",
+ "drill": true,
+ "outcome_floor": 0.9,
+ "excluded_unit_ids": [],
+ "rederived_from": null
+}

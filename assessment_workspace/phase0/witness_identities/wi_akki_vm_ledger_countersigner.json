@@ -1,0 +1,7 @@
+{
+  "witness_id": "wi_akki_vm_ledger_countersigner",
+  "registered_at": "2026-09-30T07:18:29Z",
+  "signing_material_ref": "ed25519:4a65382f2a46eb65987bd1a3715930b6 · private key held only on akki-vm (~/.akki_witness/ed25519.pem, 0600)",
+  "independent_of_authorities": true,
+  "registration_note": "Ledger continuity countersigner on custody host akki-vm: separate machine from the application pod and from the MongoDB Ledger writer; holds no Watch credentials and no governance credentials; signs restored-head statements only; cannot act on the estate."
+}

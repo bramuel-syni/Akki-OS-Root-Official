@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from contracts.model_acceptance_card import ModelAcceptanceCard_v0
-from services.model_registry.registry import register_model
+from services.model_registry.registry import register_adapter, register_model
 
 log = logging.getLogger(__name__)
 
@@ -46,6 +46,7 @@ class AdmissionOutcome:
     registry_version_after: Optional[int]   # None on refusal
     ca1_011_watch_seam: str = CA1_011_WATCH_SEAM
     computed_at: str = ""
+    record_ref: str = ""              # on-disk admission record path (append-only)
 
 
 def _admits_dir() -> Path:
@@ -95,7 +96,7 @@ def _check_floors(card: ModelAcceptanceCard_v0) -> Optional[str]:
     return None
 
 
-def _write_record(payload: Dict[str, Any]) -> None:
+def _write_record(payload: Dict[str, Any]) -> str:
     d = _admits_dir()
     d.mkdir(parents=True, exist_ok=True)
     filename = (
@@ -103,6 +104,7 @@ def _write_record(payload: Dict[str, Any]) -> None:
         f"{uuid.uuid4().hex[:8]}.json"
     )
     (d / filename).write_text(json.dumps(payload, indent=2, ensure_ascii=False))
+    return str(d / filename)
 
 
 def _record_payload(
@@ -123,12 +125,17 @@ def _record_payload(
     }
 
 
-def run_admission(card_payload: Dict[str, Any]) -> AdmissionOutcome:
+def run_admission(card_payload: Dict[str, Any], registry_entry: Optional[Dict[str, Any]] = None) -> AdmissionOutcome:
     """Fire the Model Admission ceremony against a MOAC card payload.
 
     Accepts a dict (constructs the ModelAcceptanceCard_v0 internally so
     pydantic's validation surface is the first refusal path — curated
     benchmarks are unrepresentable at the type level per C4-038).
+
+    `registry_entry` (optional) carries the trained-adapter lineage the
+    registry must hold on admission (A17.3 recipe_version, artefact sha,
+    host custody path). With role='trained_adapter' the additive bump goes
+    through `register_adapter`, which refuses a missing recipe_version.
 
     Order of refusal checks (owner-facing narration):
       1. Contract validation (Literal / Field constraints).
@@ -161,8 +168,8 @@ def run_admission(card_payload: Dict[str, Any]) -> AdmissionOutcome:
             registry_version_after=None,
             computed_at=computed_at,
         )
-        _write_record(_record_payload(card, outcome))
-        return outcome
+        ref = _write_record(_record_payload(card, outcome))
+        return AdmissionOutcome(**{**asdict(outcome), "record_ref": ref})
 
     # 3. Training lineage resolved (§28).
     if not card.training_lineage_resolved:
@@ -178,8 +185,8 @@ def run_admission(card_payload: Dict[str, Any]) -> AdmissionOutcome:
             registry_version_after=None,
             computed_at=computed_at,
         )
-        _write_record(_record_payload(card, outcome))
-        return outcome
+        ref = _write_record(_record_payload(card, outcome))
+        return AdmissionOutcome(**{**asdict(outcome), "record_ref": ref})
 
     # 4. Floors (owner-supplied · honest gap on absence).
     missed = _check_floors(card)
@@ -196,8 +203,8 @@ def run_admission(card_payload: Dict[str, Any]) -> AdmissionOutcome:
             registry_version_after=None,
             computed_at=computed_at,
         )
-        _write_record(_record_payload(card, outcome))
-        return outcome
+        ref = _write_record(_record_payload(card, outcome))
+        return AdmissionOutcome(**{**asdict(outcome), "record_ref": ref})
 
     # Admitted · register_model bumps v(N) → v(N+1).
     # CA1-011 W7 half: stamp re_check_due_at on the trained-adapter
@@ -219,7 +226,12 @@ def run_admission(card_payload: Dict[str, Any]) -> AdmissionOutcome:
         "evidence_source_kind": card.evidence_source_kind,
         "re_check_due_at": re_check_due,
     }
-    new_n = register_model(card.candidate_model_id, entry)
+    if registry_entry:
+        entry = {**entry, **registry_entry}
+    if entry.get("role") == "trained_adapter" and entry.get("recipe_version"):
+        new_n = register_adapter(card.candidate_model_id, entry)
+    else:
+        new_n = register_model(card.candidate_model_id, entry)
 
     outcome = AdmissionOutcome(
         outcome="admitted",
@@ -229,5 +241,5 @@ def run_admission(card_payload: Dict[str, Any]) -> AdmissionOutcome:
         registry_version_after=new_n,
         computed_at=computed_at,
     )
-    _write_record(_record_payload(card, outcome))
-    return outcome
+    ref = _write_record(_record_payload(card, outcome))
+    return AdmissionOutcome(**{**asdict(outcome), "record_ref": ref})

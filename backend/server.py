@@ -545,6 +545,9 @@ from routers.watch_operational import install as install_operational_watch
 install_operational_watch(app)
 from routers.m9_training import router as m9_training_router  # noqa: E402
 app.include_router(m9_training_router)
+# M8 · continuity: ratified tiered recovery policy, control-Ledger WORM archive and PITR restore drill — routes /api/continuity/*
+from routers.continuity import router as continuity_router  # noqa: E402
+app.include_router(continuity_router)
 
 _cors_origins = [origin.strip() for origin in os.environ['CORS_ORIGINS'].split(',') if origin.strip()]
 if not _cors_origins or '*' in _cors_origins:
