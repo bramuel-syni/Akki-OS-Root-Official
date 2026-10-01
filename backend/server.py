@@ -557,12 +557,13 @@ app.include_router(media_library_router)
 @app.on_event('startup')
 async def initialize_media_storage():
     import asyncio
-    from services.media_library import storage
+    from services.media_library import storage, acoustics
     try:
         await asyncio.to_thread(storage.initialize)
     except storage.StorageError:
         import logging
         logging.getLogger('media').warning('Media storage unavailable at startup; existing app remains available')
+    acoustics.start_worker()
 # M8 · continuity: ratified tiered recovery policy, control-Ledger WORM archive and PITR restore drill — routes /api/continuity/*
 from routers.continuity import router as continuity_router  # noqa: E402
 app.include_router(continuity_router)

@@ -14,7 +14,10 @@ from pymongo import ReturnDocument
 from services.enforce.census_identity import census_identity
 from services.watch import commission_gate
 from services.training_lab import store as lab
-from services.media_library import contracts as c,store,storage,formats,assessment
+from services.media_library import contracts as c,store,storage,formats,assessment,acoustics
+from services.audio_plane_v1 import acoustic_observables as ao
+from services.audio_plane_v1.channel_condition_profiler import CHANNEL_CONDITION_VALUES
+from services.audio_plane_v1.measured_backends import MEASURED_REGISTRY
 
 router=APIRouter(prefix='/api/media',tags=['file-media-storage'])
 _transfers=asyncio.Semaphore(4)
@@ -183,3 +186,58 @@ def assess(body:c.Selection,idempotency_key:str=Header(...,min_length=8,max_leng
 def assessments(actor=Depends(census_identity)):
     rows=lab.db().training_lab_runs.find({'tenant_id':actor['tenant_id'],'kind':'dataset_readiness'},{'_id':0}).sort('created_at',-1).limit(20)
     return {'tenant_id':actor['tenant_id'],'runs':[lab.public(row) for row in rows]}
+
+
+@router.get('/acoustics/register',response_model=c.Envelope)
+def acoustic_register(actor=Depends(census_identity)):
+    return {'tenant_id':actor['tenant_id'],'profile_version':ao.PROFILE_VERSION,'analysis_band_hz':[0,ao.SR//2],'window_seconds':ao.WINDOW_SECONDS,
+            'observables':ao.register(),'classes':list(acoustics.CLASSES),'channel_conditions':sorted(CHANNEL_CONDITION_VALUES),
+            'backends':[{'seam':e.seam_name,'backend':e.backend_name,'state':e.ratification_state,'anchor':e.canon_anchor} for e in MEASURED_REGISTRY.entries]}
+
+
+@router.get('/acoustics',response_model=c.Envelope)
+def acoustic_list(actor=Depends(census_identity)):
+    return {'tenant_id':actor['tenant_id'],'measurements':acoustics.summaries(actor['tenant_id'])}
+
+
+@router.get('/acoustics/patterns',response_model=c.Envelope)
+def acoustic_patterns(actor=Depends(census_identity)):
+    return {'tenant_id':actor['tenant_id'],**acoustics.patterns(actor['tenant_id'])}
+
+
+def measurable(row):
+    live(row)
+    if row['kind']!='audio': raise HTTPException(422,'Only audio files can be measured')
+
+
+@router.get('/files/{file_id}/acoustics',response_model=c.Envelope)
+def acoustic_profile(file_id:str,actor=Depends(census_identity)):
+    row=row_for(actor,file_id); job=acoustics.get(actor['tenant_id'],file_id)
+    if not job: raise HTTPException(404,'This file has not been measured yet')
+    return {'tenant_id':actor['tenant_id'],'file':store.public(row),'measurement':acoustics.public(job)}
+
+
+@router.post('/files/{file_id}/acoustics',status_code=202,response_model=c.Envelope)
+def acoustic_request(file_id:str,actor=Depends(census_identity)):
+    operator(actor); row=row_for(actor,file_id); measurable(row)
+    with commission_gate.crossing(actor,'media.acoustics',{'file_id':file_id,'sha256':row['sha256']}):
+        job,created=acoustics.request(actor,row)
+        if created: store.audit(actor,'acoustics_requested',file_id,row['revision'],{'sha256':row['sha256']})
+    acoustics.start_worker()
+    return {'tenant_id':actor['tenant_id'],'measurement':acoustics.public(job),'created':created}
+
+
+@router.post('/acoustics/batch',status_code=202,response_model=c.Envelope)
+def acoustic_batch(body:c.Selection,actor=Depends(census_identity)):
+    operator(actor); queued=[]; skipped=[]
+    for file_id in sorted(set(body.file_ids)):
+        row=store.get(actor['tenant_id'],file_id)
+        if not row: skipped.append({'file_id':file_id,'reason':'File not found'}); continue
+        try: measurable(row)
+        except HTTPException as exc: skipped.append({'file_id':file_id,'title':row['title'],'reason':exc.detail}); continue
+        with commission_gate.crossing(actor,'media.acoustics',{'file_id':file_id,'sha256':row['sha256']}):
+            job,created=acoustics.request(actor,row)
+            if created: store.audit(actor,'acoustics_requested',file_id,row['revision'],{'sha256':row['sha256']})
+        queued.append(acoustics.summary(job))
+    if queued: acoustics.start_worker()
+    return {'tenant_id':actor['tenant_id'],'measurements':queued,'skipped':skipped}
