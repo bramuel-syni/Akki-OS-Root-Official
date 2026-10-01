@@ -1,0 +1,53 @@
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Archive, ArrowLeft, AudioLines, ClipboardCheck, Plus, RefreshCw, Search } from 'lucide-react';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { CensusAccess } from '@/components/census/CensusAccess';
+import { usePrototypeSession } from '@/components/prototype/usePrototypeSession';
+import { MediaFiles } from '@/components/media/MediaFiles';
+import { MediaUpload } from '@/components/media/MediaUpload';
+import { MediaMetadata } from '@/components/media/MediaMetadata';
+import { MediaAssessment } from '@/components/media/MediaAssessment';
+import { mediaRequest, useMediaLibrary, bytes } from '@/components/media/useMediaLibrary';
+import '@/components/census/census.css';
+import '@/components/estate/estate.css';
+import '@/components/media/media.css';
+
+export default function WorkMedia() {
+  const session = usePrototypeSession(); const identity = session.data?.principal_id;
+  const canOperate = session.data?.roles?.some(r => ['operator', 'master_admin'].includes(r));
+  const lib = useMediaLibrary(identity);
+  const [uploadOpen, setUploadOpen] = useState(false), [editing, setEditing] = useState(null), [archiving, setArchiving] = useState(null);
+  const [query, setQuery] = useState(''), [type, setType] = useState('all'), [rights, setRights] = useState('all');
+  const [selected, setSelected] = useState([]), [busy, setBusy] = useState(''), [result, setResult] = useState(null), [history, setHistory] = useState([]), [notice, setNotice] = useState('');
+  useEffect(() => { setSelected([]); setEditing(null); setArchiving(null); setResult(null); setUploadOpen(false); setHistory([]); setNotice(''); }, [identity]);
+  const readHistory = async () => { const token = sessionStorage.getItem('akki_access_token'); const data = await mediaRequest('/assessments'); if (token === sessionStorage.getItem('akki_access_token')) setHistory(data.runs); };
+  useEffect(() => { let active = true; if (identity) mediaRequest('/assessments').then(data => { if (active) setHistory(data.runs); }).catch(() => { if (active) lib.setError('Assessment history could not be loaded. Please refresh.'); }); return () => { active = false; }; }, [identity]);
+  const visible = lib.files.filter(file => (type === 'archived' ? file.is_deleted : !file.is_deleted && (type === 'all' || file.kind === type)) && (rights === 'all' || file.rights_status === rights) && `${file.title} ${file.filename} ${file.language}`.toLowerCase().includes(query.toLowerCase()));
+  const activeFiles = lib.files.filter(f => !f.is_deleted && f.status === 'available');
+  const refresh = async () => { await lib.reload(); await readHistory(); };
+  const perform = async (key, action) => { const token = sessionStorage.getItem('akki_access_token'); const current = () => token === sessionStorage.getItem('akki_access_token'); setBusy(key); lib.setError(''); try { await action(current); } catch (e) { if (current()) lib.setError(e.message); } finally { if (current()) setBusy(''); } };
+  const archive = () => perform('archive', async current => { await mediaRequest(`/files/${archiving.file_id}/archive`, { method: 'POST', body: JSON.stringify({ revision: archiving.revision, retention_acknowledged: true }) }); if (!current()) return; setSelected(ids => ids.filter(id => id !== archiving.file_id)); setArchiving(null); setNotice('File archived. Stored bytes have not been erased.'); await refresh(); });
+  const assess = () => perform('assess', async current => { const data = await mediaRequest('/assessments', { method: 'POST', headers: { 'Idempotency-Key': crypto.randomUUID() }, body: JSON.stringify({ file_ids: selected, title: 'Music dataset readiness' }) }); if (!current()) return; setResult(data.run); await readHistory(); });
+  return <main className="estate media-library" data-testid="work-media-surface">
+    <Link className="media-back" to="/os" data-testid="work-media-back"><ArrowLeft size={14} />WorkStudio</Link>
+    <header className="estate-header media-header"><div><div className="estate-crumb" data-testid="work-media-breadcrumb">WORKSTUDIO · {session.data?.tenant_id || 'Private library'}</div><h1 className="estate-title" data-testid="work-media-title">Media library</h1></div>
+      {identity && <div className="estate-actions"><button className="estate-btn" onClick={() => perform('refresh', refresh)} disabled={lib.loading || !!busy} data-testid="work-media-refresh"><RefreshCw size={15} />Refresh</button>{canOperate && <button className="estate-btn primary" onClick={() => setUploadOpen(true)} disabled={!lib.config?.storage_ready || lib.uploading} data-testid="work-media-upload-btn"><Plus size={16} />{lib.uploading ? 'Uploading…' : 'Add files'}</button>}</div>}
+    </header>
+    {!identity ? <CensusAccess error={session.error} loading={session.loading} retry={session.reload} /> : <div className="media-body">
+      <section className="media-totals" aria-label="Library totals"><span data-testid="work-media-total-files"><b>{activeFiles.length}</b> stored files</span><span data-testid="work-media-total-size"><b>{bytes(activeFiles.reduce((sum, f) => sum + f.size_bytes, 0))}</b> active library</span><span data-testid="work-media-needs-rights"><b>{activeFiles.filter(f => f.rights_status === 'pending').length}</b> awaiting rights review</span></section>
+      {lib.error && <p role="alert" className="estate-alert" data-testid="work-media-error">{lib.error}</p>}{notice && <p role="status" className="media-notice" data-testid="work-media-notice">{notice}</p>}
+      {lib.config && !lib.config.storage_ready && <p className="estate-alert" role="alert" data-testid="work-media-storage-unavailable">Storage is unavailable. Existing library records remain visible.</p>}
+      <section className="media-toolbar" aria-label="Filter library"><label className="media-search"><Search size={16} /><input placeholder="Search files" value={query} onChange={e => setQuery(e.target.value)} data-testid="work-media-search" aria-label="Search files" /></label><label className="media-filter">Type<select value={type} onChange={e => setType(e.target.value)} data-testid="work-media-type-filter"><option value="all">All files</option><option value="audio">Audio</option><option value="transcript">Transcripts</option><option value="labels">Label manifests</option><option value="archived">Archived</option></select></label><label className="media-filter">Rights<select value={rights} onChange={e => setRights(e.target.value)} data-testid="work-media-rights-filter"><option value="all">All rights states</option><option value="pending">Needs review</option><option value="declared">Rights declared</option><option value="withdrawn">Withdrawn</option></select></label></section>
+      {lib.loading && !lib.files.length ? <p className="media-note" data-testid="work-media-loading">Reading your library…</p> : visible.length ? <MediaFiles files={visible} selected={selected} onToggle={id => setSelected(old => old.includes(id) ? old.filter(x => x !== id) : [...old, id])} onEdit={setEditing} onArchive={setArchiving} onDownload={file => perform(file.file_id, () => lib.download(file))} canOperate={canOperate} busy={busy} /> : <section className="media-empty" data-testid="work-media-empty"><AudioLines size={40} strokeWidth={1} /><h2 data-testid="work-media-empty-title">{lib.files.length ? 'No matching files' : 'Your library is empty'}</h2>{canOperate && !lib.files.length && <button className="estate-btn" onClick={() => setUploadOpen(true)} disabled={!lib.config?.storage_ready} data-testid="work-media-empty-upload"><Plus size={15} />Add your first files</button>}</section>}
+      {selected.length > 0 && <section className="media-selection" data-testid="work-media-selection"><span data-testid="work-media-selected-count">{selected.length} selected</span><div className="media-actions"><button className="estate-btn" onClick={() => setSelected([])} data-testid="work-media-clear-selection">Clear</button><button className="estate-btn primary" onClick={assess} disabled={!!busy || selected.length > 100} data-testid="work-media-assess"><ClipboardCheck size={16} />{busy === 'assess' ? 'Reviewing…' : 'Assess for training lab'}</button></div></section>}
+      {lib.queue.length > 0 && <button className="media-text-button" onClick={() => setUploadOpen(true)} data-testid="work-media-view-upload-progress">View upload progress</button>}
+      {history.length > 0 && <section className="media-history" data-testid="work-media-assessment-history"><h2 data-testid="work-media-history-title">Recent assessments</h2>{history.map(run => <button key={run.run_id} data-testid={`work-media-history-${run.run_id}`} onClick={() => perform(run.run_id, async current => { const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/training/lab/runs/${run.run_id}`, { headers: { Authorization: `Bearer ${sessionStorage.getItem('akki_access_token')}` } }); if (!data.ok) throw new Error('Assessment unavailable'); const body = await data.json(); if (current()) setResult(body.run); })}><span>{run.title}</span><small>{run.current_validity?.stale ? 'Needs a fresh review' : `${run.dataset_assessment?.file_count || 0} files · Training held`}</small></button>)}</section>}
+      <footer className="media-footer"><span data-testid="work-media-private-status">Private · {session.data.tenant_id}</span><p data-testid="work-media-retention-notice">Archive removes access in Akki; it does not permanently delete stored files.</p></footer>
+    </div>}
+    {identity && lib.config && <MediaUpload open={uploadOpen} onClose={() => setUploadOpen(false)} library={lib} />}
+    {editing && <MediaMetadata key={editing.file_id} file={editing} onClose={() => setEditing(null)} onSaved={async () => { setSelected([]); await refresh(); }} />}
+    {archiving && <Dialog open onOpenChange={value => !value && setArchiving(null)}><DialogContent className="media-dialog" data-testid="work-media-archive-dialog"><DialogTitle data-testid="work-media-archive-title">Archive “{archiving.title}”?</DialogTitle><DialogDescription data-testid="work-media-archive-retention">Downloads and new assessments will be blocked. Stored bytes and previously downloaded copies will not be erased.</DialogDescription><button className="estate-btn" onClick={archive} disabled={!!busy} data-testid="work-media-confirm-archive"><Archive size={16} />{busy === 'archive' ? 'Archiving…' : 'Archive file'}</button></DialogContent></Dialog>}
+    {result && <MediaAssessment run={result} onClose={() => setResult(null)} />}
+  </main>;
+}

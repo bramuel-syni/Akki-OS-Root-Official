@@ -1,0 +1,62 @@
+{
+  "summary": "Completed backend+frontend live testing for media storage integration using public preview URL. Real managed storage upload/download worked with byte/hash verification for synthetic WAV/MP3/TXT/JSON/CSV fixtures; permissions, metadata, assessments, archival, and requested regressions were executed.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/media/uploads",
+        "issue": "Idempotency key replay with different request body returns 422 instead of expected conflict 409.",
+        "priority": "HIGH/CRITICAL"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/census_operational/test_media_library_live_iteration71.py",
+    "/app/test_reports/pytest/iteration_71_media.xml",
+    "/app/test_reports/pytest/iteration_71_regression_training_lab.xml",
+    "/app/test_reports/pytest/iteration_71_regression_m8m9.xml"
+  ],
+  "action_items": [
+    "Map idempotency-body mismatch in /api/media/uploads to HTTP 409 conflict (current broad ValueError handling emits 422).",
+    "Re-run media live suite after status-code correction."
+  ],
+  "critical_code_review_comments": [
+    "In media router prepare(), ValueError from store.replay() is grouped with format validation and converted to 422, which masks idempotency conflict semantics.",
+    "Public response sanitization is correctly applied for media file envelopes (storage_path/upload_token not exposed)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/census_operational/test_media_library_live_iteration71.py",
+    "/app/test_reports/iteration_71.json"
+  ],
+  "success_rate": {
+    "backend": "97% (33/34 passing: media live suite 9/10, requested regressions 24/24)",
+    "frontend": "90% (critical flows exercised; sign-in/upload/retry/edit/archive/filter/responsive/navigation passed)"
+  },
+  "seed_data_creation": "Created synthetic test fixtures (UI_IT71_* and TEST_IT71_*). Uploaded objects were archived (not deleted) per retention constraints.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Storage provider was exercised live (no happy-path mock). Retry negative path in UI used one intercepted failed upload request \u2014 explicitly MOCKED for retry-button behavior only. Required desktop/mobile screenshots captured at /app/test_reports/screenshots/iteration_71_ui/work_media_desktop_1920x800.jpeg and /app/test_reports/screenshots/iteration_71_ui/work_media_mobile_390x844.jpeg. Overflow offenders list was empty; width checks 320/768/1024/1440 showed no horizontal overflow.",
+  "rca of the issue": "Reproduction: POST /api/media/uploads with a fresh idempotency key succeeds; replay same key with changed filename/body returns 422. Root cause: routers/media_library.py prepare() catches ValueError from both formats.describe() and store.replay() in one block and always raises HTTPException(422). Idempotency mismatch from store.replay() should be differentiated and mapped to conflict 409.",
+  "main_agent_retest": {
+    "result": "pass",
+    "media_tests_passed": 10,
+    "media_tests_failed": 0,
+    "existing_regressions_previously_passed": 24,
+    "xml": "/app/test_reports/pytest/iteration_71_media_retest.xml",
+    "fix": "Separate format validation422 from idempotency mismatch409",
+    "cleanup": "All TEST_IT71_/UI_IT71_ file records archived. Metadata retained; provider bytes not physically deleted.",
+    "integration": "REAL managed storage",
+    "mocked": "Only UI retry failure injection; test file contents SYNTHETIC",
+    "limits": [
+      "25 MB audio, 2 MB text/label file, 20 files per client batch; limits are application configuration, not a documented provider maximum",
+      "Archive is access revocation, not physical deletion",
+      "Readiness is metadata-only, not music detection or rights verification",
+      "Google Drive remains unconnected; no training started"
+    ]
+  }
+}

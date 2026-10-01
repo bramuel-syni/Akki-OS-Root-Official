@@ -1,6 +1,14 @@
 # Akki — current engineering order
 
-## CURRENT — 2026-09-30 audio-first training laboratory v1
+## CURRENT — 2026-10-01 private media library ready for owner uploads
+
+- **Completed/verified:** real File & Media Storage at WorkStudio `/os/work/media`; 10 media tests +24 existing regressions; desktop/mobile flows and no-overflow checks. Batch upload, authenticated downloads, metadata/rights declarations, archive access revocation and training-lab metadata readiness. All synthetic verification files archived; provider bytes retained.
+- **P0 · Owner dataset:** upload authorized music (current app 25MB/audio file, 2MB/text or label file, 20/batch), declare training rights and reviewed labels. Readiness checks declarations only; no audio quality, true music labels or legal clearance inferred from storage.
+- **P0 · Training approval unchanged:** qualified speech/music/mixed annotation contract, fresh independent final evaluation, privacy/music/coverage floors and bounded recipe/compute approval remain prerequisites. Nothing uploaded starts training automatically.
+- **P1 · Storage capability:** Google Drive not connected. Larger/resumable transfers and physical deletion require a storage capability decision—the current provider exposes neither presigned/resumable upload nor delete. Never describe Archive as physical deletion. Current 1GB tenant reservation cap includes archives/pending reservations.
+- **P1/P2 continuity:** worker-side audio quality/label evaluation; verify periodic checkpoint scheduling; general model-family adapters; M10 standalone UI cleanup (new library follows editorial rules but system-wide review not done); M5 remains paused.
+
+## PREVIOUS — 2026-09-30 audio-first training laboratory v1
 
 - **P0 · Before retraining:** present/approve `notes/training_lab_20260930/RETRAINING_PLAN.md`. Verified staged inventory 529.3379 hours; music annotations not established; weak-language imbalance and speaker privacy failure persist. No new raw RMS sampling, labels invented, training launched, candidate admitted or serving changed. Music detector is NOT trained; the H200 check was SYNTHETIC arithmetic only.
 - **Implemented/verified:** five concurrent GPT-5.4 specialist roles, four callable deterministic tools, guarded real background inspection, durable queue and bounded follow-up, corrected package statistics/forecast/quote/report paths. 24 pytest +14 mechanical evals pass; live five-role correction follow-up complete, initial misleading numeric advice retained with flags. Scope/authority/evidence classes remain explicit.

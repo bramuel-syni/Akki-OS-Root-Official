@@ -27,7 +27,7 @@ def db():
     return database
 
 
-def enqueue(tenant,actor,key,request,*,kind='assessment',evidence=None):
+def enqueue(tenant,actor,key,request,*,kind='assessment',evidence=None,dataset_assessment=None):
     fingerprint = hashlib.sha256(json.dumps(request,sort_keys=True).encode()).hexdigest()
     row = {'run_id':'lab-'+uuid.uuid4().hex[:16],'tenant_id':tenant,'actor':actor,'idempotency_key':key,
            'request_hash':fingerprint,'request':request,'kind':kind,'title':request.get('title','Training checkpoint review'),
@@ -35,6 +35,9 @@ def enqueue(tenant,actor,key,request,*,kind='assessment',evidence=None):
            'training_authorized':False,'training_started':False,'model_admission':'not_requested'}
     if evidence is not None:
         row['evidence'] = evidence
+    if kind=='dataset_readiness':
+        if dataset_assessment is None: raise ValueError('Dataset readiness report required')
+        row.update(status='complete',dataset_assessment=dataset_assessment,finished_at=now(),outcome='held_before_retraining')
     try:
         db().training_lab_runs.insert_one(dict(row))
         return row,True
@@ -59,7 +62,11 @@ def replay(tenant,key,request):
 
 
 def public(row):
-    return {k:v for k,v in row.items() if k not in {'_id','actor','idempotency_key','request_hash','lease_token','lease_until'}}
+    result={k:v for k,v in row.items() if k not in {'_id','actor','idempotency_key','request_hash','lease_token','lease_until'}}
+    if row.get('kind')=='dataset_readiness':
+        from services.media_library.assessment import validity
+        result['current_validity']=validity(row)
+    return result
 
 
 def claim(tenant='RMS'):
@@ -71,7 +78,7 @@ def claim(tenant='RMS'):
         {'$set':{'status':'held','hold_reason':'Review interrupted; no automatic repeated provider spend','updated_at':stamp}})
     token = uuid.uuid4().hex
     return db().training_lab_runs.find_one_and_update(
-        {'tenant_id':tenant,'status':{'$in':['queued','inspecting']},'$or':[{'lease_until':{'$exists':False}},{'lease_until':{'$lt':stamp}}]},
+        {'tenant_id':tenant,'kind':{'$ne':'dataset_readiness'},'status':{'$in':['queued','inspecting']},'$or':[{'lease_until':{'$exists':False}},{'lease_until':{'$lt':stamp}}]},
         {'$set':{'lease_token':token,'lease_until':(datetime.now(timezone.utc)+timedelta(minutes=10)).isoformat()},'$inc':{'attempts':1}},
         projection={'_id':0},sort=[('created_at',1)],return_document=ReturnDocument.AFTER)
 

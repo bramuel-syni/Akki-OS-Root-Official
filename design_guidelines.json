@@ -1,143 +1,135 @@
 {
-  "project_title": "Enterprise AI OS - Non-GPU Backlog Clearance & Application Hierarchy Blueprint",
-  "version": "1.0.0",
-  "date": "2026-07-01",
+  "project_title": "Enterprise AI OS - File & Media Storage Integration Blueprint",
+  "version": "2.0.0",
+  "date": "2026-10-01",
   "file_type": "JavaScript (.js / .jsx)",
   "overview": {
-    "objective": "Clear non-GPU backlog, establish strict application hierarchy alignment with HTML prototypes, define 5 deferred enhancement proposals, and specify visual, accessibility, and navigation guidelines for main agent implementation.",
-    "top_level_apps": [
-      "My Work",
-      "Grey Mirror",
-      "ThinkLab",
-      "DAP / Data Estates",
-      "Admin / Governance"
-    ],
-    "app_hierarchy_updates": {
-      "my_work": {
-        "parent": "My Work",
-        "nested_capabilities": [
-          "Board",
-          "My Team",
-          "Company Goals"
-        ],
-        "rules": "Board, My Team, and Company Goals MUST be rendered as delivery support subcomponents inside 'My Work', not as standalone top-level application launcher items."
-      },
-      "grey_mirror": {
-        "parent": "Grey Mirror",
-        "nested_app": "The Watch",
-        "watch_subitems": [
-          "State",
-          "Record",
-          "Under Watch",
-          "Decisions"
-        ],
-        "rules": "State, Record, Under Watch, and Decisions are capabilities/subitems of 'The Watch' inside 'Grey Mirror'. Remove State, Record, Under Watch, and Decisions from standalone top-level launcher presentation."
+    "objective": "Add an additive, editorial-grade File & Media Storage integration to WorkStudio under route /os/work/media (or /os/work/storage). It supports private audio/music library management, transcript and label manifest pairing, batch uploading with progress/retry, speech/music/mixed rights metadata editing, authenticated downloads, explicit retention notice archiving, and Training-Lab readiness assessment selection without violating RMS tenant isolation or retraining approval gates.",
+    "editorial_principle": "NO token-looking UUID numbers as primary document titles (e.g. avoid '3f82a910-482c-41b9-8e2b-102931a0'). All items must be identified by editorial human titles, plain-English collection names, clear asset types (Audio Stem, Speech Take, Transcript VTT, Label Manifest), and readable metadata tags."
+  },
+  "route_and_navigation": {
+    "parent_section": "WorkStudio",
+    "route_path": "/os/work/media",
+    "nav_key": "media",
+    "nav_label": "Media Library",
+    "breadcrumb": "WORKSTUDIO · Media & Asset Library",
+    "page_title": "Media & Asset Library"
+  },
+  "visual_language_of_record": {
+    "css_theme_file": "/app/frontend/src/components/estate/estate.css",
+    "style_variables": {
+      "--paper": "#f5f2ea",
+      "--surface": "#f0ece1",
+      "--surface2": "#ede8da",
+      "--line": "#e4dfd3",
+      "--ink": "#1b1f27",
+      "--ink2": "#3d4350",
+      "--ink3": "#5b6270",
+      "--blue": "#16274a",
+      "--oxblood": "#b8395b",
+      "--brass": "#b08d2e",
+      "--sage": "#1d7a6e",
+      "--head": "'Iowan Old Style', Georgia, serif",
+      "--body": "'Söhne', 'Helvetica Neue', Arial, sans-serif",
+      "--mono": "ui-monospace, Menlo, Consolas, monospace"
+    },
+    "typography": {
+      "headline_font": "var(--head)",
+      "body_font": "var(--body)",
+      "mono_font": "var(--mono)",
+      "hierarchy": {
+        "title": "font-family: var(--head); font-size: clamp(28px, 4vw, 40px); font-weight: 300;",
+        "section_head": "font-family: var(--head); font-size: 20px; font-weight: 400;",
+        "label": "font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #8b8371;",
+        "crumb": "font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;"
       }
     }
   },
-  "deferred_enhancement_proposals": [
-    {
-      "id": "ENH-01",
-      "name": "Cross-Application Context Continuity",
-      "description": "Preserve active context (selected model, session token, active task) seamlessly when moving between My Work, Grey Mirror, and ThinkLab.",
-      "status": "Deferred until holistic test"
+  "key_components_and_features": {
+    "private_library": {
+      "tabs": ["All Assets", "Audio & Music", "Transcripts", "Label Manifests", "Archived"],
+      "filters": ["Search by editorial title or tag", "Content Type (Speech / Music / Mixed)", "Rights Status (Cleared / Held / Withdrawn)", "Readiness Grade (Grade A / B / C / Blocked)"],
+      "batch_upload": {
+        "modal_or_drawer": "Batch Upload Drawer",
+        "dropzone_types": "Audio (.wav, .mp3, .flac), Transcripts (.vtt, .txt, .json), Manifests (.json, .csv)",
+        "features": "Multi-file queue with progress percentage, retry failed items, verified transfer checksum and basic file-format checks. No audio-quality or duration inference in the control plane."
+      }
     },
-    {
-      "id": "ENH-02",
-      "name": "In-Place Blocker Resolution",
-      "description": "Allow users to request or resolve DAP access approvals directly within current view without navigate-away redirects.",
-      "status": "Deferred until holistic test"
+    "metadata_editor": {
+      "panel_type": "Compact side slide-over / expandable drawer",
+      "fields": [
+        "Editorial Asset Name (e.g., Kilifi Morning Choir - Vocal Stem 01)",
+        "Asset Category (Audio, Transcript, Manifest)",
+        "Audio Subtype (Speech, Music, Mixed)",
+        "Language & Dialect (e.g., Swahili / Coastal Dialect, Amharic)",
+        "Rights & License Agreement (e.g., Direct Artist Grant, Public Domain, Restricted Research)",
+        "Rights Withdrawal Status (Active Clearance vs. Rights Withdrawn)",
+        "Performer / Contributor Notes"
+      ]
     },
-    {
-      "id": "ENH-03",
-      "name": "Goal-Linked Delivery Matrix",
-      "description": "Connect Board tasks and Team activities directly to active Company Goals with visual metric progress bars.",
-      "status": "Deferred until holistic test"
+    "readiness_assessment": {
+      "workflow_note": "Select files for metadata-only training-lab readiness assessment (NOT model training). Rights and labels are operator declarations; duration, SNR, recording quality and alignment remain unmeasured until an authorized worker evaluates them.",
+      "blocker_checks": [
+        "Rights withdrawal check",
+        "RMS Tenant isolation check",
+        "Declared labels and missing human review",
+        "Manifest taxonomy/alignment still require verification"
+      ],
+      "verdict_badges": {
+        "pending": "Needs rights review",
+        "declared": "Rights declared; not independently verified",
+        "withdrawn": "Rights withdrawn; access held",
+        "archived": "Archived; stored bytes retained"
+      }
     },
-    {
-      "id": "ENH-04",
-      "name": "Actionable Watch Audit Drill-Down",
-      "description": "Enable 1-click execution trace inspection from Grey Mirror -> The Watch -> Decisions directly into Governance Audit Log.",
-      "status": "Deferred until holistic test"
-    },
-    {
-      "id": "ENH-05",
-      "name": "Truthful Responsive Progress & System Telemetry",
-      "description": "Provide live indicator badges distinguishing bound operational features from unbound runtime features with clear empty-state actions.",
-      "status": "Deferred until holistic test"
+    "archive_and_retention": {
+      "retention_notice": "Archiving revokes Akki access. Stored bytes and previously downloaded copies are not erased; the provider exposes no physical-delete API. Do not claim immutable retention or an unverified compliance policy.",
+      "action_label": "Archive Asset (With Retention Notice)"
     }
+  },
+  "data_testid_inventory": [
+    "work-media-surface",
+    "work-media-breadcrumb",
+    "work-media-title",
+    "work-media-lead",
+    "work-media-upload-btn",
+    "work-media-batch-drawer",
+    "work-media-dropzone",
+    "work-media-upload-progress",
+    "work-media-retry-btn",
+    "work-media-search-input",
+    "work-media-type-filter",
+    "work-media-rights-filter",
+    "work-media-table",
+    "work-media-item-row-{id}",
+    "work-media-item-title-{id}",
+    "work-media-item-download-btn-{id}",
+    "work-media-item-assess-checkbox-{id}",
+    "work-media-item-edit-btn-{id}",
+    "work-media-item-archive-btn-{id}",
+    "work-media-metadata-drawer",
+    "work-media-meta-title-input",
+    "work-media-meta-subtype-select",
+    "work-media-meta-rights-select",
+    "work-media-meta-save-btn",
+    "work-media-assess-bar",
+    "work-media-run-assessment-btn",
+    "work-media-assessment-results-modal",
+    "work-media-retention-notice",
+    "work-media-empty-state"
   ],
-  "typography": {
-    "headline_font": "Outfit, sans-serif",
-    "body_font": "Inter, sans-serif",
-    "mono_font": "JetBrains Mono, monospace",
-    "hierarchy": {
-      "h1": "text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100",
-      "h2": "text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100",
-      "h3": "text-xl sm:text-2xl font-medium text-slate-800 dark:text-slate-200",
-      "h4": "text-lg sm:text-xl font-medium text-slate-800 dark:text-slate-200",
-      "body": "text-base text-slate-600 dark:text-slate-300 leading-relaxed",
-      "small_label": "text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
-    }
-  },
-  "colors": {
-    "mode": "hybrid",
-    "theme": {
-      "bg_primary": "bg-slate-950 dark:bg-slate-950 light:bg-slate-50",
-      "bg_surface": "bg-slate-900/90 dark:bg-slate-900/90 light:bg-white",
-      "border_default": "border-slate-800 dark:border-slate-800 light:border-slate-200",
-      "primary_accent": "#007AFF",
-      "status_success": "#10B981",
-      "status_warning": "#F59E0B",
-      "status_error": "#EF4444",
-      "text_main": "text-slate-100 dark:text-slate-100 light:text-slate-900",
-      "text_muted": "text-slate-400 dark:text-slate-400 light:text-slate-500"
-    },
-    "forbidden_colors": [
-      "#7351B7",
-      "#1B93A4"
-    ]
-  },
-  "visual_enhancers": {
-    "glassmorphism": "backdrop-blur-xl bg-slate-900/80 border border-slate-800/80 shadow-2xl",
-    "card_style": "rounded-xl border border-slate-800 bg-slate-900/60 p-6 shadow-sm hover:border-slate-700 transition-all duration-200",
-    "active_indicator": "ring-2 ring-blue-500/50 bg-blue-500/10 text-blue-400"
-  },
-  "grids": {
-    "dashboard_grid": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
-    "app_launcher_grid": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-  },
-  "layouts": {
-    "header_height": "h-16",
-    "sidebar_width": "w-64",
-    "content_padding": "p-6 lg:p-8"
-  },
-  "motion": {
-    "transition_standard": "transition-colors duration-200 ease-in-out",
-    "hover_lift": "hover:-translate-y-0.5 transition-transform duration-150 ease-out",
-    "reduced_motion": "motion-reduce:transition-none motion-reduce:transform-none"
-  },
-  "accessibility": {
-    "contrast_ratio": "WCAG AA minimum 4.5:1 for normal text, 3:1 for large text",
-    "test_id_required": true,
-    "test_id_convention": "kebab-case data-testid attributes on all interactive elements, tabs, buttons, and app launchers"
-  },
-  "media": {
-    "image_urls": {}
-  },
   "instructions_to_main_agent": [
-    "Ensure 100% UI fidelity to source HTML prototypes (public/prototype/dap_latest.html and v2_os.html).",
-    "Do NOT edit pinned source markup directly; apply application layout and hierarchy composition changes cleanly.",
-    "Implement My Work as parent app with subcomponents: Board, My Team, and Company Goals.",
-    "Implement Grey Mirror as parent app containing 'The Watch', with nested sub-views: State, Record, Under Watch, and Decisions.",
-    "Remove State, Record, Under Watch, Decisions, Board, My Team, and Company Goals from standalone top-level launcher.",
-    "Provide clear honest empty states (e.g. using src/components/shared/HonestEmpty.jsx) for unbound backend features.",
-    "Maintain back navigation, breadcrumbs, and responsive drawer/mobile layouts.",
-    "Keep source file extensions as .js / .jsx (not .tsx)."
+    "Integrate route /os/work/media into /app/frontend/src/App.js within NAV under WorkStudio.",
+    "Use existing estate.css theme styling and variables without introducing dark-mode gradient mismatches or generic blue buttons.",
+    "Implement WorkMedia.jsx component at /app/frontend/src/pages/os/WorkMedia.jsx.",
+    "Provide plain-English editorial asset titles for default items (no token/uuid strings as asset names).",
+    "Ensure responsiveness for 390px mobile viewports (stacked layout, scrollable table or cards) and desktop grid.",
+    "Include explicit retention notice near Archive: access is revoked but stored bytes and previously downloaded copies are not erased.",
+    "Include full data-testid coverage as specified in data_testid_inventory."
   ],
   "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
     "Always include data-testid attributes on interactive components.",
-    "Maintain high UI sharpness, dark-mode elegance, and consistent padding.",
+    "Maintain high UI sharpness, editorial elegance, and consistent padding.",
     "Never rely on pure transparent backgrounds for headers or floating menus.",
     "Do not introduce fake backend data; display explicit unbound/pending notices where live APIs are absent."
   ]

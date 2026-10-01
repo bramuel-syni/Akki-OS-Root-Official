@@ -22,6 +22,10 @@ from pathlib import Path
 from fastapi import HTTPException
 
 PROTECTED_BOUNDARIES = {
+    "media.upload": "POST /api/media/uploads",
+    "media.metadata": "PATCH /api/media/files/{file_id}",
+    "media.archive": "POST /api/media/files/{file_id}/archive",
+    "media.assess": "POST /api/media/assessments",
     "training_lab.assessment": "POST /api/training/lab/runs",
     "training_lab.watch": "PUT /api/training/lab/watch",
     "census.commission": "POST /api/portal/census/run",

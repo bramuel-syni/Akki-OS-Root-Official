@@ -19,7 +19,7 @@ export const tabs = [
   ['work', 'Work'], ['build', 'Build'], ['apps', '3rd Party Apps'], ['admin', 'Admin'],
 ];
 export const groups = {
-  work: [{ key: 'workstudio', label: 'WorkStudio', items: [['Chat', '/os/work/chat'], ['Data Suite', '/os/work/analyze'], ['Documents', '/os/work/documents'], ['My Work', '/os/work/tasks']] },
+  work: [{ key: 'workstudio', label: 'WorkStudio', items: [['Chat', '/os/work/chat'], ['Data Suite', '/os/work/analyze'], ['Documents', '/os/work/documents'], ['Media Library', '/os/work/media'], ['My Work', '/os/work/tasks']] },
     { key: 'thinklab', label: 'ThinkLab', items: [['Seek Clarity', '/os/work/clarity'], ['Develop Strategy', '/os/work/strategy'], ['Test Hypothesis', '/os/work/hypothesis'], ['Get Perspective', '/os/work/perspective']] },
     { key: 'collab', label: 'Collab', items: [['Mentions', '/os/work/mentions'], ['Emails', '/os/work/emails'], ['Projects/Tasks', '/os/work/projects'], ['HR Stuff', '/os/work/hrstuff']] }],
   admin: [{ key: 'estate', label: 'Manage Estate', items: [['Registry', '/os/admin/estate'], ['Shield', '/os/admin/govern'], ['Grey Mirror', '/os/admin/greymirror'], ['Approvals', '/os/admin/spendreq']] }],

@@ -551,6 +551,18 @@ from routers.m9_training import router as m9_training_router  # noqa: E402
 app.include_router(m9_training_router)
 from routers.training_lab import router as training_lab_router  # noqa: E402
 app.include_router(training_lab_router)
+from routers.media_library import router as media_library_router  # noqa: E402
+app.include_router(media_library_router)
+
+@app.on_event('startup')
+async def initialize_media_storage():
+    import asyncio
+    from services.media_library import storage
+    try:
+        await asyncio.to_thread(storage.initialize)
+    except storage.StorageError:
+        import logging
+        logging.getLogger('media').warning('Media storage unavailable at startup; existing app remains available')
 # M8 · continuity: ratified tiered recovery policy, control-Ledger WORM archive and PITR restore drill — routes /api/continuity/*
 from routers.continuity import router as continuity_router  # noqa: E402
 app.include_router(continuity_router)

@@ -6,7 +6,7 @@
  * Every document in view carries its lineage: brief, direction verdict, manifest, receipts and the environment of record.
  */
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { CensusAccess } from '@/components/census/CensusAccess';
 import { usePrototypeSession } from '@/components/prototype/usePrototypeSession';
 import { censusRequest } from '@/components/census/useCensusWorkspace';
@@ -40,6 +40,7 @@ export default function WorkDocuments() {
         {skill && <div className="estate-meta" data-testid="work-documents-meta"><span>studio <code>{skill.skill} v{skill.version}</code></span><span>{(commissions || []).length} commission{(commissions || []).length === 1 ? '' : 's'}</span><span>{skill.environment?.libreoffice}</span><span>installed {stamp(skill.installed_at)}</span></div>}
       </div>
       {signedIn && <div className="estate-actions">
+        <Link className="estate-btn" to="/os/work/media" data-testid="work-documents-media-library">Media library</Link>
         <button className="estate-btn" onClick={() => reload(selected)} disabled={loading} data-testid="work-documents-reload">{loading ? 'Reading…' : 'Re-read'}</button>
         {canOperate && <button className="estate-btn primary" onClick={commissionLatest} disabled={Boolean(busy)} data-testid="work-documents-commission-census">{busy === 'Commission board pack' ? 'Commissioning…' : 'Commission board pack from latest census'}</button>}
       </div>}

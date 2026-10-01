@@ -28,6 +28,7 @@ import WorkChat from "@/pages/os/WorkChat";
 import EstateIntelligence from "@/pages/os/EstateIntelligence";
 import WorkAnalyze from "@/pages/os/WorkAnalyze";
 import WorkDocuments from "@/pages/os/WorkDocuments";
+import WorkMedia from "@/pages/os/WorkMedia";
 import WorkTasks from "@/pages/os/WorkTasks";
 import MonitorSignals from "@/pages/os/MonitorSignals";
 import MonitorIdeas from "@/pages/os/MonitorIdeas";
@@ -108,6 +109,7 @@ const NAV = [
       { key:'chat',        label:'Chat' },
       { key:'analyze',     label:'Data Suite' },
       { key:'documents',   label:'Documents' },
+      { key:'media',       label:'Media Library' },
       { key:'tasks',       label:'My Work' },
       { key:'team',        label:'My Team' },
       { key:'performance', label:'Company Goals' },
@@ -1293,6 +1295,7 @@ function App() {
           <Route path="/os/work/chat" element={<WorkChat />} />
           <Route path="/os/work/analyze" element={<WorkAnalyze />} />
           <Route path="/os/work/documents" element={<WorkDocuments />} />
+          <Route path="/os/work/media" element={<WorkMedia />} />
           <Route path="/os/work/tasks" element={<AdminEstate />} />
           {workSections.slice(1).map(section => <Route key={section.key} path={section.path} element={<AdminEstate />} />)}
           {Object.entries(legacyFeaturePaths).map(([from, to]) => <Route key={from} path={from} element={<LegacyFeatureRedirect to={to} />} />)}
