@@ -19,6 +19,7 @@ from services.transform_forms.doc_studio.install import environment, read_manife
 from services.transform_forms.doc_studio.manifest_template import manifest_from_brief
 from services.transform_forms.doc_studio.producer_close import commission_from_job
 from services.transform_forms.doc_studio.producer_estate import commission_from_report
+from services.transform_forms.doc_studio.producer_training import commission_from_training
 from services.transform_forms.doc_studio.receipts import bind_receipts
 from services.transform_forms.doc_studio.skill_env import SCRIPTS_DIR, build_env, skill_module
 
@@ -49,10 +50,13 @@ def _estate_plan(job_id: str, tenant_id: str, principal_id: str, now_: datetime)
     report = eir.report_for(job_id, cached_only=True)
     if not report:
         raise LookupError("No verified estate intelligence report is banked for that census.")
-    return commission_from_report(report, tenant_id, principal_id, now_)
+    from services.census_autonomy.estate_skill import package
+    plan = commission_from_report(report, tenant_id, principal_id, now_)
+    plan['files']['content.json']['production_plan'] = package(report)
+    return plan
 
 
-PRODUCERS = {"estate-intelligence": _estate_plan, "commission-close": commission_from_job}
+PRODUCERS = {"estate-intelligence": _estate_plan, "commission-close": commission_from_job, "training-whitepaper": commission_from_training}
 
 
 def create_from_producer(producer: str, job_id: str, tenant_id: str, principal_id: str) -> Tuple[Dict[str, Any], bool]:
@@ -62,6 +66,22 @@ def create_from_producer(producer: str, job_id: str, tenant_id: str, principal_i
     plan = PRODUCERS[producer](job_id, tenant_id, principal_id, now())
     existing = store.load_record(tenant_id, plan["commission_id"])
     if existing:
+        if producer == 'training-whitepaper' and existing.get('release', {}).get('state') == 'blocked' and not existing.get('revisions'):
+            old = _read(store.version_dir(tenant_id, plan['commission_id'], existing['current_content_version']) / 'content.json')
+            if old.get('producer_revision') != plan['files']['content.json'].get('producer_revision'):
+                # Retain the failed version and its evidence; never rewrite a release or owner edit.
+                version, _, destination = _new_version(tenant_id, plan['commission_id'], existing)
+                content_ref = f"{plan['content_id']}@{version}"
+                for name, document in plan['files'].items():
+                    if name == 'content.json': document['version'] = version
+                    if 'content_ref' in document: document['content_ref'] = content_ref
+                    if 'build_stamp' in document: document['build_stamp'] = existing['build_stamp']
+                    if 'seed' in document: document['seed'] = existing['seed']
+                    store.write_json(destination / name, document)
+                existing['current_content_version'] = version
+                existing['versions'].append({'version': version, 'at': stamp(), 'by': principal_id, 'reason': 'Correct source-bound figures in the unreleased generated paper'})
+                existing['release'] = {'state': 'unbuilt', 'reason': 'corrected source binding awaits a new build'}
+                return store.save_record(existing), False
         return existing, False
     vdir = store.version_dir(tenant_id, plan["commission_id"], 1)
     for name, doc in plan["files"].items():

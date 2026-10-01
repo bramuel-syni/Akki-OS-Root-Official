@@ -17,7 +17,7 @@ section = lambda name: next(n for n in nodes if n['attributes'].get('value') == 
 shell = {**at(29), 'children': [at(31), {**at(42), 'children': [{**at(96), 'children': []}]}]}
 payload = {'source_sha256': hashlib.sha256(raw).hexdigest(), 'source': 'frontend/public/prototype/v2_os.html',
            'shell': {'nodes': [shell]}, 'header': {'nodes': [at(165), at(195)]},
-           **{name: {'nodes': [section(flag)]} for name, flag in [('chat', 'isChatActive'), ('documents', 'isDocumentsActive'), ('approvals', 'isApprovalsGroup')]}}
+           **{name: {'nodes': [section(flag)]} for name, flag in [('chat', 'isChatActive'), ('documents', 'isDocumentsActive'), ('approvals', 'isApprovalsGroup'), ('analyze', 'isAnalyzeActive'), ('thinklab', 'isThinklabActive'), ('collab', 'isCollabGroup'), ('monitor', 'isMonitorGroup'), ('trust', 'isTrustGroup'), ('build', 'isBuildGroup'), ('apps', 'isThirdpartyGroup'), ('buildrun', 'isBuildRunPage')]}}
 target = ROOT / 'frontend/src/components/prototype/generated/owner-workspaces.json'
 target.write_text(json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
 print('Extracted unchanged workspace markup. Source SHA256:', payload['source_sha256'])

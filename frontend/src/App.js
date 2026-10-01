@@ -1,4 +1,5 @@
 import "@/App.css";
+import OwnerDeferredWorkspace from '@/components/prototype/OwnerDeferredWorkspace';
 import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -1292,23 +1293,23 @@ function App() {
              render at "/" and "/*" until subsequent sub-slices (4e-4g) land more native surfaces. */}
           <Route path="/os" element={<AdminEstate />} />
           <Route path="/os/work/chat" element={<WorkChat />} />
-          <Route path="/os/work/analyze" element={<WorkAnalyze />} />
+          <Route path="/os/work/analyze" element={<OwnerDeferredWorkspace />} />
           <Route path="/os/work/documents" element={<WorkDocuments />} />
           <Route path="/os/work/media" element={<WorkMedia />} />
           <Route path="/os/work/tasks" element={<AdminEstate />} />
           {workSections.slice(1).map(section => <Route key={section.key} path={section.path} element={<AdminEstate />} />)}
           {Object.entries(legacyFeaturePaths).map(([from, to]) => <Route key={from} path={from} element={<LegacyFeatureRedirect to={to} />} />)}
-          <Route path="/os/monitor/signals" element={<MonitorSignals />} />
-          <Route path="/os/monitor/ideas" element={<MonitorIdeas />} />
+          <Route path="/os/monitor/signals" element={<OwnerDeferredWorkspace />} />
+          <Route path="/os/monitor/ideas" element={<OwnerDeferredWorkspace />} />
 
           {/* Sub-slice 4e · ThinkLab (Work tab) + Admin tab groups (estate/approvals/watch) */}
-          <Route path="/os/work/clarity" element={<ThinkLabClarity />} />
-          <Route path="/os/work/strategy" element={<ThinkLabStrategy />} />
-          <Route path="/os/work/hypothesis" element={<ThinkLabHypothesis />} />
-          <Route path="/os/work/perspective" element={<ThinkLabPerspective />} />
+          <Route path="/os/work/clarity" element={<OwnerDeferredWorkspace />} />
+          <Route path="/os/work/strategy" element={<OwnerDeferredWorkspace />} />
+          <Route path="/os/work/hypothesis" element={<OwnerDeferredWorkspace />} />
+          <Route path="/os/work/perspective" element={<OwnerDeferredWorkspace />} />
           <Route path="/os/admin/estate" element={<AdminEstate />} />
           <Route path="/os/admin/estate/intelligence" element={<EstateIntelligence />} />
-          <Route path="/os/admin/govern" element={<AdminGovern />} />
+          <Route path="/os/admin/govern" element={<OwnerDeferredWorkspace />} />
           <Route path="/os/admin/greymirror" element={<AdminEstate />} />
           <Route path="/os/admin/greymirror/watch" element={<LegacyFeatureRedirect to="/os/admin/greymirror/watch/state" />} />
           {watchSections.map(section => <Route key={section.key} path={section.path} element={<AdminEstate />} />)}
@@ -1318,23 +1319,13 @@ function App() {
 
           {/* Sub-slice 4f · Build/Buildlib (build tab) + Collab (work tab) + 3rdParty (apps tab) */}
           <Route path="/os/build/train" element={<AdminEstate />} />
-          <Route path="/os/build/agentbuild" element={<BuildAgent />} />
-          <Route path="/os/build/buildskill" element={<BuildSkill />} />
-          <Route path="/os/build/extract" element={<BuildExtract />} />
-          <Route path="/os/build/youragents" element={<BuildlibAgents />} />
-          <Route path="/os/build/yourmodels" element={<BuildlibModels />} />
-          <Route path="/os/work/mentions" element={<CollabMentions />} />
-          <Route path="/os/work/emails" element={<CollabEmails />} />
-          <Route path="/os/work/projects" element={<CollabProjects />} />
-          <Route path="/os/work/hrstuff" element={<CollabHrStuff />} />
-          <Route path="/os/apps/new" element={<AppsNew />} />
-          <Route path="/os/apps/frequent" element={<AppsFrequent />} />
-          <Route path="/os/apps/connected" element={<AppsConnected />} />
-          <Route path="/os/apps/requests" element={<AppsRequests />} />
+          {['agentbuild', 'buildskill', 'extract', 'youragents', 'yourmodels'].map(leaf => <Route key={leaf} path={`/os/build/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
+          {['mentions', 'emails', 'projects', 'hrstuff'].map(leaf => <Route key={leaf} path={`/os/work/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
+          {['new', 'frequent', 'connected', 'requests'].map(leaf => <Route key={leaf} path={`/os/apps/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
 
           {/* Sub-slice 4h · 2 DAP LATEST view classes (view 10 + 11) — reachable at top-level /dap/... */}
-          <Route path="/dap/approvals-ledger" element={<AdminApprovalsLedger />} />
-          <Route path="/dap/watch-trail-bridge" element={<AdminWatchTrailBridge />} />
+          <Route path="/dap/approvals-ledger" element={<Navigate to="/os/admin/modeladmission" replace />} />
+          <Route path="/dap/watch-trail-bridge" element={<Navigate to="/os/admin/greymirror/watch/state" replace />} />
           {/* PHASE 4 (c-vi) · CP-SKILLS-LAYER-SERIES-CLOSE · Slice 5 · DAP buildskill surface */}
           <Route path="/dap/buildskill" element={<DapBuildSkill />} />
 

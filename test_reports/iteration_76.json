@@ -1,0 +1,88 @@
+{
+  "summary": "Completed one full-stack pass on public URL with backend pytest + live API checks + frontend desktop/mobile smoke. Core requirement-alignment checks mostly passed on UI (model-approval text, route families, redirects, overflow) but critical backend production-route failures and one frontend runtime crash were found.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/training/lab/production/runs/{run_id}/definition",
+        "issue": "Returns 500 Internal Server Error. Backend log shows ModuleNotFoundError: No module named 'backend' raised from services/wizard/objective_compile.py import path during production.validate_definition.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "POST /api/training/lab/board/m9j-9a46b862f339/actions {action:white_paper}",
+        "issue": "Returns 404 'No training run with that reference is on your board' so whitepaper handoff from requested historical run cannot execute via board action.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "POST /api/training/lab/board/new",
+        "issue": "Intermittent/operational 409 Watch suspension ('commissioning capability is suspended ...'). This caused flaky create-run tests in combined rerun."
+      },
+      {
+        "endpoint": "POST /api/auth/login",
+        "issue": "Auth hardening observation: after 6 failed logins there was no lockout (6x401, next correct login still 200)."
+      },
+      {
+        "endpoint": "POST /api/auth/login (response headers)",
+        "issue": "CORS response observed as Access-Control-Allow-Origin: *; app-level httpOnly auth cookie was not observed in login response (Cloudflare cookie present only)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "OwnerDeferredWorkspace / Your Models",
+        "issue": "Route /os/build/yourmodels triggers React runtime crash: 'Objects are not valid as a React child (found: object with keys {registry_id, weight_sha256})'.",
+        "selector": "/os/build/yourmodels",
+        "priority": "CRITICAL"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "DAP BuildSkill signed-out/signed-in",
+        "issue": "Signed-out correctly shows backend refusal ('Request refused (status 401). Prior view preserved.'). Signed-in correctly shows honest empty state; no false successful empty store while signed-out.",
+        "affected_selectors": [
+          "[data-testid='dap-buildskill-error-block']",
+          "[data-testid='dap-buildskill-honest-gap-block']"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_requirement_alignment_production.py",
+    "/app/backend/tests/test_training_lab_board.py",
+    "/app/backend/tests/test_training_lab_production_live_iteration76.py",
+    "/app/test_reports/pytest/iteration_76_training_alignment.xml",
+    "/app/test_reports/pytest/iteration_76_production_live.xml",
+    "/app/test_reports/pytest/iteration_76_combined.xml",
+    "/root/.emergent/automation_output/20261001_180852/console_20261001_180852.log",
+    "/root/.emergent/automation_output/20261001_180944/console_20261001_180944.log",
+    "/root/.emergent/automation_output/20261001_180958/console_20261001_180958.log"
+  ],
+  "action_items": [
+    "Fix training production import path in services/wizard/objective_compile.py so /production/runs/{id}/definition does not crash (ModuleNotFoundError backend.*).",
+    "Implement/restore board-action white_paper support for requested historical run m9j-9a46b862f339 (or provide explicit supported handoff path with parity).",
+    "Fix /os/build/yourmodels rendering by normalizing model fields before rendering (do not render objects directly).",
+    "Stabilize test/ops handling for Watch suspension 409 on board/new (deterministic skip or explicit precondition check in test suites).",
+    "If auth lockout/cookie/CORS hardening is required by product policy, implement explicit lockout and credentialed CORS policy; otherwise document this as accepted behavior."
+  ],
+  "critical_code_review_comments": [
+    "Runtime import defect: production.validate_definition relies on services.wizard.objective_compile which imports backend.contracts.*; this module path is unresolved in deployed runtime and causes 500.",
+    "Whitepaper path mismatch: board action is strictly board-run keyed, but requested historical training run id is not present in board index; current API cannot satisfy requested handoff path.",
+    "OwnerDeferredWorkspace maps yourModelsView.origin from m.base object; downstream render path treats it as React child string and crashes page."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_training_lab_production_live_iteration76.py",
+    "/app/test_reports/iteration_76.json"
+  ],
+  "success_rate": {
+    "backend": "83% (29/35 in combined rerun; major failing slice is production-route + whitepaper path)",
+    "frontend": "90% (core load/routes/overflow/dap auth behavior passed; one critical yourmodels crash)"
+  },
+  "seed_data_creation": "None. Only temporary board runs were attempted; cleanup delete was executed where creation succeeded.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "v2_os.html hash verified unchanged: 9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199. Model Admission surface no longer shows 'Run 200-question check' or Recovery checks text. 21 deferred route families loaded and DAP redirects worked. Overflow checks passed on widths 320/768/1024/1440. Critical blockers remain on production definition endpoint and board whitepaper action with historical run id.",
+  "rca of the issue": "(1) Production-definition 500 reproduces with: login operator -> POST /api/training/lab/board/new -> POST /api/training/lab/production/runs/{shape}/definition. Backend stacktrace points to bad absolute import (`from backend.contracts...`) in objective_compile chain. (2) Whitepaper handoff via board action fails because _board_run searches board.runs(tenant) and cannot find m9j-9a46b862f339 in board listing; endpoint hard-fails 404 before producer call. (3) yourmodels crash occurs when model row contains object-valued base field; page attempts direct render of object, causing React invariant violation."
+}

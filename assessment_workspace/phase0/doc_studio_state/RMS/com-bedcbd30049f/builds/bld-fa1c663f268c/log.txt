@@ -1,0 +1,25 @@
+[build] resolved ['paper']; look slate/cambria-calibri
+
+--- stderr ---
+Traceback (most recent call last):
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/build.py", line 87, in <module>
+    main()
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/build.py", line 77, in main
+    a = build_once(fixture_dir, build_dir / "a", log)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/build.py", line 40, in build_once
+    if va.main(fixture_dir, resolved) != 0:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/validate.py", line 102, in main
+    schema_check(kind, load(fixture_dir / fn))
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/validate.py", line 23, in schema_check
+    jsonschema.validate(data, schema)
+  File "/root/.venv/lib/python3.11/site-packages/jsonschema/validators.py", line 1332, in validate
+    raise error
+jsonschema.exceptions.ValidationError: 'recorded' is not one of ['measured', 'estimated', 'sample']
+
+Failed validating 'enum' in schema['properties']['facts']['patternProperties']['^F\\d{3,}$']['properties']['class']:
+    {'enum': ['measured', 'estimated', 'sample']}
+
+On instance['facts']['F042']['class']:
+    'recorded'

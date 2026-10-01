@@ -18,12 +18,12 @@ from __future__ import annotations
 
 from typing import Any, Mapping, Optional, Tuple
 
-from backend.contracts.target_outcome_v0 import (
+from contracts.target_outcome_v0 import (
     GATE_POLICIES,
     StratumAcceptance_v0,
     TargetOutcome_v0,
 )
-from backend.contracts.collection_schema_v0 import (
+from contracts.collection_schema_v0 import (
     CUSTODY_VIOLATING_TOKENS,
     CollectionSchema_v0,
 )

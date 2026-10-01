@@ -1,5 +1,13 @@
 # Akki implementation history
 
+## 2026-10-01 — requirement-alignment corrections, training evidence workflow and document handoff
+- Removed engineering benchmark and recovery close-out UI; restored 21 routes to extracted owner sections and two legacy redirects. Your Models displays actual adapters. Preserved `v2_os.html`; no fabricated availability or redesign.
+- Fixed DAP skill session reuse/error-vs-empty states and implementation-oriented copy. Native contract imports now resolve in the running application.
+- Added Training production artifacts/plan/evidence/recipe/MOAC request APIs, full-definition conversational drafting, conditional CI/budget checks and strict same-base evidence binding. Added objective-bound dataset preparation and Estate production packaging using existing services.
+- Training white paper now commissions through existing Documents and releases DOCX/HTML. Actual 8B paper `com-bedcbd30049f`, v3, download verified. Retained earlier build evidence; did not weaken numeric provenance or QA validators.
+- One full-stack verification pass; corrected test reference mistakes rather than weakening product rules. Final 23 targeted tests pass, including live two-turn drafting and document download; frontend builds and required desktop/mobile checks pass.
+- Generic training execution, prospective controls/qualified datasets and complete skill-manifest integration remain unfinished. No new training/compute or admission was commissioned; no new milestone declared complete. Watch hold respected. Details: `assessment_workspace/notes/requirements_alignment_20261001/CORRECTION_SWEEP.md`.
+
 ## 2026-10-01 — requirements-alignment audit and skills assessment (no product changes)
 - Paused the M1/M6 swipe per latest user directive; audited live routes and service boundaries against frozen owner HTML and attached final Skills Brief.
 - Confirmed engineering benchmark UI, milestone reporting and 23 implementation-placeholder pages; recorded routes/source traces, required corrections and legitimate evidence that must remain.

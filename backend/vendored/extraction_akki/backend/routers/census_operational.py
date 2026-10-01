@@ -314,7 +314,9 @@ def estate_intelligence_latest_report(actor=Depends(census_identity)):
     if actor["tenant_id"] != "RMS":
         return {"tenant_id": actor["tenant_id"], "report": None, "running": None}
     projection = eir.overview_projection()
-    return {"tenant_id": actor["tenant_id"], "report": eir.latest_report(), "running": projection["running"]}
+    from services.census_autonomy.estate_skill import package
+    report = eir.latest_report()
+    return {"tenant_id": actor["tenant_id"], "report": ({**report, 'production': package(report)} if report else None), "running": projection["running"]}
 
 
 @router.get("/api/portal/census/estate-intelligence/jobs/{job_id}/report", response_model=CensusEnvelope)
@@ -325,7 +327,8 @@ def estate_intelligence_job_report(job_id: str, actor=Depends(census_identity)):
     report = eir.report_for(job_id)
     if not report:
         raise HTTPException(409, "No verified terminal receipt is banked for this job yet; the report is built only from a digest-verified result.")
-    return {"tenant_id": actor["tenant_id"], "report": report}
+    from services.census_autonomy.estate_skill import package
+    return {"tenant_id": actor["tenant_id"], "report": {**report, 'production': package(report)}}
 
 
 @router.post("/api/portal/census/estate-intelligence/jobs/{job_id}/dossier", response_model=CensusEnvelope)

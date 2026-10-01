@@ -11,19 +11,19 @@ import BackendPending from "@/components/shared/BackendPending";
 const VIEWS = {
   key: {
     title: "Workspace API Key",
-    detail: "Issue and revoke a workspace key. No endpoint exists for API key management. The 'shown once, never stored' guarantee is a backend property that must be confirmed.",
+    detail: "Workspace key management is not available yet. No key has been issued.",
   },
   agents: {
     title: "Your AI Agent",
-    detail: "Register an AI agent with its own account and monitoring. No route exists for agent registration.",
+    detail: "Agent registration is not available yet. No agent has been connected.",
   },
   compute: {
     title: "Your Compute",
-    detail: "POST /api/connect/gpu returns the declaration → hardening → acceptance handshake. This endpoint exists but requires a form submission flow. Wiring deferred to full request lifecycle integration.",
+    detail: "Connecting additional compute is not available from this workspace yet. Existing compute is unchanged.",
   },
   models: {
     title: "Your Models & Recipes",
-    detail: "POST /api/connect/intent records a model/recipe connection intent. This endpoint exists but requires a form submission flow. Wiring deferred to full request lifecycle integration.",
+    detail: "Connecting an outside model or recipe is not available from this workspace yet. Existing models are unchanged.",
   },
 };
 

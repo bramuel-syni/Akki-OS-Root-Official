@@ -63,12 +63,15 @@ def commission_from_producer(producer: str, job_id: str, body: dict = Body(defau
     _operator(actor)
     if producer not in service.PRODUCERS:
         raise HTTPException(404, "No producer with that name is installed.")
-    if actor["tenant_id"] != "RMS" or not re.fullmatch(r"eij-[a-f0-9]{12}", job_id):
-        raise HTTPException(404, "No estate intelligence census with that reference is available in your tenant.")
+    pattern = r"(?:m9j|lcj)-[a-f0-9]{12}" if producer == 'training-whitepaper' else r"eij-[a-f0-9]{12}"
+    if actor["tenant_id"] != "RMS" or not re.fullmatch(pattern, job_id):
+        raise HTTPException(404, "No source record with that reference is available in your tenant.")
     try:
         record, created = service.create_from_producer(producer, job_id, actor["tenant_id"], actor["principal_id"])
     except LookupError as exc:
         raise HTTPException(404, str(exc)) from None
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from None
     if created and body.get("build", True):
         record = service.build(actor["tenant_id"], record["commission_id"], actor["principal_id"])
     return {**_full(actor, record), "created": created}

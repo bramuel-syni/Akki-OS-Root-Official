@@ -104,9 +104,9 @@ def _text_runs():
         learnings = ''
         if checks:
             weakest = min(checks, key=lambda c: number(strata.get(next(k for k in strata if NAMES.get(k, k) == c['n']), {}).get('accuracy')) or 0)
-            learnings = (f"Most languages cleared the floor comfortably; {weakest['n']} carried the smallest margin. "
+            learnings = (f"{sum(c['passes'] for c in checks)} of {len(checks)} measured language strata met the recorded accuracy/no-regression criteria. {weakest['n']} had the lowest measured accuracy. "
                          + ('The owner\'s per-stratum ruling admitted the adapter after re-reading each language against the base. ' if admission.get('outcome') == 'admitted' else '')
-                         + 'This is our read of one run, not a measured finding.')
+                         + 'These observations describe this run; they do not establish general cognition or causation.')
         messages = [_msg(job.get('submitted_at'), f"Training started on {job.get('host', 'the GPU host')} from {BASE_NAMES.get(params.get('base'), params.get('base') or 'the base model')}: {recipe.get('epochs', '—')} epochs over the RMS transcript corpus, held-out set sealed before the first step.",
                         think=['The held-out set was sealed before training and never re-drawn.', 'Rights reference recorded with the corpus; no new source was read.'])]
         for event in ((job.get('remote_state') or {}).get('events') or [])[:3]:
@@ -114,7 +114,7 @@ def _text_runs():
         if job.get('finished_at') and training:
             messages.append(_msg(job['finished_at'], f"Training compute finished — {_duration(training.get('wallclock_seconds'))} on one {training.get('device', 'GPU')}. The per-language checks ran against the sealed held-out set; nobody can override the result, including me.", widget='checks'))
         if status == 'Refused':
-            messages.append(_msg(cert.get('certified_at') or job.get('finished_at'), 'One language fell below its acceptance line, so the run stops here.', widget='refused'))
+            messages.append(_msg(cert.get('certified_at') or job.get('finished_at'), reason or 'The recorded acceptance decision refused this candidate.', widget='refused'))
         elif status == 'In service':
             messages.append(_msg(admission.get('computed_at') or job.get('finished_at'), f"Admitted under the owner's per-stratum ruling. Here is the full record.", widget='record'))
             if (cert.get('whitepaper') or {}).get('drafted'):
@@ -160,7 +160,7 @@ def _audio_runs():
         else: status, reason = 'Retired', {'failed': 'The run stopped before producing a result.', 'cancelled': 'Cancelled before completion.'}.get(job['status'], 'Stopped.')
         strata = cert.get('per_stratum') or {}
         checks = [{'n': NAMES.get(k, k), 'v': f"{pct(v.get('accuracy'))} · floor 90% · abstained {pct(v.get('abstention_rate'))}", 's': 'settled', 'passes': (number(v.get('accuracy')) or 0) >= 0.9}
-                  for k, v in sorted(strata.items()) if isinstance(v, dict) and number(v.get('accuracy')) is not None]
+                  for k, v in sorted(strata.items()) if isinstance(v, dict)]
         touched = ((cert.get('data_touched') or {}).get('per_language') or {})
         windows = sum(number(v.get('windows_train')) or 0 for v in touched.values() if isinstance(v, dict))
         record_rows = []
@@ -170,6 +170,10 @@ def _audio_runs():
                            ['Compute', f"{_duration(compute.get('elapsed_seconds'))}" + (f" · {_n(compute.get('windows_per_second'))} windows/s" if compute.get('windows_per_second') else '') + (f" · peak {compute.get('gpu_max_memory_gb')} GB GPU memory" if compute.get('gpu_max_memory_gb') else '')],
                            ['Checks', f"{sum(c['passes'] for c in checks)} of {len(checks)} languages at or above the floor"]]
             if (cert.get('dp_sgd') or {}).get('epsilon') is not None: record_rows.append(['Privacy budget', f"ε {cert['dp_sgd']['epsilon']}"])
+            privacy = (cert.get('sealed_contract_check') or {}).get('no_speaker_id_probe') or {}
+            if privacy:
+                reading = privacy.get('strict_chance_met')
+                record_rows.append(['Speaker privacy', 'Chance-level criterion met' if reading is True else 'Speaker recovery remained above the required chance level' if reading is False else 'Not established by this record'])
         messages = [_msg(job.get('submitted_at'), f"{'Baseline' if job['phase'] == 'train_baseline' else 'Corrective'} audio run started on the GPU host over the staged corpus" + (f" · {epochs} epochs" if epochs else '') + '.')]
         if job.get('finished_at') and checks:
             messages.append(_msg(job['finished_at'], 'Training finished; per-language accuracy on the sealed held-out set, abstention beside it.', widget='checks'))
@@ -313,6 +317,7 @@ def _versioned(rows):
 # ----------------------------------------------------------------------------- runs the owner opened here
 def _owner_runs(tenant):
     from services.training_lab import board_runs
+    from services.training_lab import production
     out = []
     for doc in board_runs.list_runs(tenant):
         fields = doc.get('fields') or {}
@@ -321,6 +326,17 @@ def _owner_runs(tenant):
         status = doc['status']
         reflect = [{'k': label, 'v': value, 't': 'you said'} for label, value in filled]
         rows = [[label, value] for label, value in filled]
+        plan = production.for_run(tenant, doc['run_id'])
+        definition = doc.get('definition') or {}
+        if definition:
+            target = definition['target_outcome']
+            artifact_rows = [['Target outcome', target['task']], ['Population', target['population_register_ref']],
+                ['Per-stratum acceptance', '; '.join(f"{k}: accuracy {v['accuracy']:.1%}, coverage {v['coverage']:.1%}" for k, v in target['acceptance'].items())],
+                ['Collection schema', ', '.join(definition['collection_schema']['baseline_tier'] + definition['collection_schema']['objective_tier'])]]
+            rows.extend(artifact_rows)
+            reflect.extend({'k': k, 'v': v, 't': 'you said'} for k, v in artifact_rows)
+        if plan:
+            rows.extend([['Production plan', plan['plan_id']], ['Next step', plan['status'].replace('_', ' ')]])
         if doc.get('lineage'): rows.append(['Lineage', 'Opened from an earlier run; that run keeps its own record'])
         messages = []
         if status == 'In Approval':
@@ -330,9 +346,9 @@ def _owner_runs(tenant):
                         reflect_rows=reflect, record_rows=rows, messages=messages, meta='opened here · ' + (f'{len(filled)} of {len(board_runs.FIELDS)} fields set' if status == 'Shaping' else 'held training request'),
                         eta='ready to record' if ready and status == 'Shaping' else _eta(status), started_at=doc.get('created_at'),
                         actions=['record_training_request'] if ready and status == 'Shaping' else [],
-                        approval={'line': 'Held for your approval · the five fields are recorded', 'reviews': 'not yet asked'} if status == 'In Approval' else None,
+                        approval={'line': 'Target outcome and collection schema recorded; calibration precedes the full-run quote.', 'reviews': 'not yet asked'} if status == 'In Approval' else None,
                         evidence={'status': status, 'fields': fields, 'fields_needed': [label for key, label in board_runs.FIELDS if not fields.get(key)], 'ready': ready, 'lineage': doc.get('lineage'),
-                                  'training_authorized': False, 'compute_spent': False}, deletable=status == 'Shaping', ready=ready))
+                                  'definition': definition, 'production': plan, 'training_authorized': False, 'compute_spent': False}, deletable=status == 'Shaping', ready=ready))
     return out
 
 

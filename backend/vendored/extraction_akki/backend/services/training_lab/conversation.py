@@ -10,6 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Literal
 
 from services.training_lab import store as lab
+from services.training_lab.production_contracts import Definition
 
 ACTIONS = {
     'run_music_baseline': 'Measure the music-identification baseline on the labelled recordings in the library (no training).',
@@ -24,11 +25,13 @@ SYSTEM = ('You are Akki, the owner\'s training collaborator in the Train Models 
           'You cannot start, stop, approve or admit training. If asked to train, explain that the request stays held until the owner approves it through Model Approval, and offer record_training_request only when the run allows it. '
           'When the owner asks you to do something that matches an allowed action, propose exactly that action and say what it will do; otherwise action is null. '
           'Think in two to four short steps the owner can inspect. Return ONLY JSON matching the schema. No markdown.')
-SHAPING = ('This run is still being shaped. Five things are needed before anything can be recorded, in this order: what it produces; what material it reads '
-           '(only the estate\'s existing authorized data — RMS transcripts, staged RMS audio, the private media library); how we\'ll know it worked (a number or a clear pass-or-fail on held-out material); '
-           'the spend limit in GPU-hours; and the legal basis for using that data. Ask for exactly one missing field per turn and never fill one in yourself — if you guessed, the owner would be committing to a decision they never made. '
-           'When the owner\'s message gives one or more fields, return them in `fields` in their own words, tightened. Once what it produces is known, propose a short plain-English `name` for the run (four words or fewer, no version numbers). '
-           'When every field is present, say what they are committing to in one short paragraph and that it stays held until approved through Model Approval; offer record_training_request only then.')
+SHAPING = ('Draft two distinct artifacts: TargetOutcome and CollectionSchema. Use only registered population and sealed-set references supplied in the catalogue. '
+           'Ask one missing question at a time: business outcome, population, accuracy AND coverage for EVERY stratum, release policy, latency/compute/deployment constraints, '
+           'collection columns and qualification provenance, lawful basis, epochs and GPU-hour cap. Never invent references, floors, consent or measurements. '
+           'Five summary fields are not a complete definition. Return definition only when the owner has actually supplied all decisions; otherwise null. '
+           'Prior observed test sets are historical/exploratory: do not claim independent acceptance after recipe selection on them. '
+           'Explain calibration before the full-run quote, followed by a controlled two-arm comparison. Model advice never changes a running recipe or authorizes execution. '
+           'The owner can record the complete definition through the existing control; do not propose record_training_request solely because you drafted it.')
 
 
 class Fields(BaseModel):
@@ -47,6 +50,7 @@ class Turn(BaseModel):
     action: Literal['run_music_baseline', 'measure_staged_corpus', 'import_reference_recordings', 'ask_specialists', 'record_training_request'] | None = None
     fields: Fields | None = None
     name: str | None = Field(default=None, max_length=80)
+    definition: Definition | None = None
 
 
 def collection():
@@ -106,6 +110,7 @@ async def turn(tenant, actor, run, text):
     allowed = {k: ACTIONS[k] for k in run.get('actions', [])}
     if run['status'] == 'In Approval': allowed['record_training_request'] = ACTIONS['record_training_request']
     shaping = run.get('family') == 'owner' and run['status'] == 'Shaping'
+    from services.training_lab.production_evidence import catalogue
     if shaping and run.get('ready'): allowed['record_training_request'] = ACTIONS['record_training_request']
     try:
         response = await asyncio.wait_for(invoke(
@@ -114,12 +119,17 @@ async def turn(tenant, actor, run, text):
             session_id=f"train-models:{run['run_id']}", system_message=SYSTEM + (' ' + SHAPING if shaping else ''),
             prompt=json.dumps({'schema': Turn.model_json_schema(), 'run': {'name': run['name'], 'status': run['status'], 'objective': run['objective'], 'record': run.get('evidence'),
                                                                                'record_rows': run.get('record_rows'), 'checks': [{'name': c['n'], 'value': c['v']} for c in run.get('checks', [])], 'reason': run.get('reason')},
+                               'registered_populations': catalogue(tenant) if shaping else [],
                                'allowed_actions': allowed, 'recent_messages': [{'role': m['role'], 'text': m['text']} for m in history], 'owner_says': text})), timeout=120)
         raw = response.text.strip()
         if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
         parsed = Turn.model_validate_json(raw)
         fields = {k: v for k, v in (parsed.fields.model_dump() if parsed.fields else {}).items() if v} if shaping else {}
         if shaping and (fields or parsed.name): board_runs.update(tenant, run['run_id'], fields=fields, name=parsed.name if run['name'] == 'New model' else None)
+        if shaping and parsed.definition:
+            from services.training_lab.production import validate_definition
+            validate_definition(tenant, parsed.definition.model_dump())
+            board_runs.collection().update_one({'tenant_id': tenant, 'run_id': run['run_id'], 'status': 'Shaping'}, {'$set': {'definition': parsed.definition.model_dump()}})
         action = parsed.action if parsed.action in allowed else None
         if action == 'record_training_request' and shaping and not board_runs.ready(board_runs.get(tenant, run['run_id']) or {}): action = None
         flags = unverified_figures(parsed.reply, {'record': run.get('evidence'), 'rows': run.get('record_rows'), 'checks': run.get('checks'), 'owner_says': text, 'fields': fields})

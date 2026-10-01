@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import { usePrototypeSession } from '@/components/prototype/usePrototypeSession';
 import { ModelRegistry, modelName } from '@/components/models/ModelRegistry';
 import { ModelAdmissions, ModelCapabilities } from '@/components/models/ModelAdmissions';
-import { RecoveryDrills } from '@/components/models/RecoveryDrills';
-import { AnswerQuality } from '@/components/models/AnswerQuality';
 import { useModelApproval, stamp } from '@/components/models/useModelApproval';
 import { PresentationDetails, readableText } from '@/components/shared/PresentationDetails';
 import { OwnerWorkspace } from '@/components/prototype/OwnerWorkspace';
@@ -41,8 +39,6 @@ export default function AdminModelAdmission() {
       {loaded && <>
         <ModelRegistry models={models} health={health} checking={checking} onCheck={checkHealth} />
         <PresentationDetails id="models-capabilities" title="Capabilities & activation requirements"><ModelCapabilities capabilities={capabilities} /></PresentationDetails>
-        <PresentationDetails id="models-recovery" title="Recovery checks & deferred work"><RecoveryDrills drills={drills} policy={policy} /></PresentationDetails>
-        <PresentationDetails id="models-answer-quality" title="Answer quality (governed chat)"><AnswerQuality signedIn={signedIn} canRun={Boolean(session.data?.can_run)} /></PresentationDetails>
       </>}
   </div></OwnerWorkspace>;
 }

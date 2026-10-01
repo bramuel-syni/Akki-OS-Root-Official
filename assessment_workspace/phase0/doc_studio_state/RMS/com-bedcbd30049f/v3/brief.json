@@ -1,0 +1,54 @@
+{
+  "audience": {
+    "detail": "evidence with limitations",
+    "knowledge": "familiar with the objective; mixed technical depth",
+    "priorities": [
+      "per-stratum performance",
+      "coverage",
+      "privacy and next work"
+    ],
+    "who": "Model owner and reviewers · RMS"
+  },
+  "brand": {
+    "expressiveness": "restrained",
+    "formality": "formal",
+    "house": "house-neutral",
+    "variation_allowed": "within-family"
+  },
+  "brief_id": "BR-2026-10-01-m9j-74af7cef0a85",
+  "constraints": {
+    "confidentiality": "Tenant confidential",
+    "page_size": "A4"
+  },
+  "content": {
+    "appendix": true,
+    "diagrams": false,
+    "evidence": true,
+    "financial": false,
+    "imagery": false,
+    "narrative": true
+  },
+  "content_ref": "training-m9j-74af7cef0a85@3",
+  "outputs": [
+    {
+      "editable_charts": false,
+      "format": "docx",
+      "role": "training findings and decision paper"
+    },
+    {
+      "editable_charts": false,
+      "format": "html",
+      "role": "review surface"
+    }
+  ],
+  "purpose": {
+    "kind": "decide",
+    "statement": "Decide the next model or dataset improvement from the recorded measurements and limitations."
+  },
+  "setting": {
+    "mode": "read-ahead",
+    "ongoing_use": false,
+    "printed": true,
+    "read_unattended": true
+  }
+}

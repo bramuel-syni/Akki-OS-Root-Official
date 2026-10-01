@@ -1,0 +1,10 @@
+# Main-agent adjudication and verification after iteration 76
+
+- Fixed actual production import-path defect in the native Objective Wizard contract adapter and object-valued model-base rendering.
+- The reported missing historical whitepaper run was a **test-reference mistake**: `m9j-9a46b862f339` is assembly; `m9j-74af7cef0a85` is the admitted 8B training run. No fabricated historical-run fallback added.
+- Correct comparator is `m9j-1e1b97ce8e1c` (1.7B). The test's earlier alleged comparison was actually training. Do not alter the manager to accept a mismatched calibrated base. The real mismatch is a prospective completion blocker, not a failing app bug.
+- Fixed the newly exposed whitepaper boundary registration and document-source numeric/classification issues. Existing validation remained unchanged. Real released commission is `com-bedcbd30049f`, version3; download verified.
+- Existing RMS operator Watch hold is an observed operational control, not a test flake to bypass. It was not released. Existing master-admin identity independently verified permitted artifact/document operations.
+- Tester auth-hardening observations did not establish new product requirements; no new lockout/cookie/auth system introduced. These should not drive unrequested UI features or policy changes.
+- Final self-retest suite: 23 passed, `pytest/requirements_alignment_final.xml`; includes two real governed conversation turns with no invented definition and actual Documents release/download. Production build passes; corrected Your Models works desktop/mobile with no overflow. Original HTML checksum unchanged.
+- Temporary test objectives/plans/conversations cleaned; fixtures remain test-only. No new model training, remote census or admission started. Generic prospective training/skill-runner completion remains open; see the implementation report.

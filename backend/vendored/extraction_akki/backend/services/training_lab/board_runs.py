@@ -7,8 +7,8 @@ from services.training_lab import store as lab
 
 FIELDS = [('produces', 'What it produces'), ('material', 'What it reads'), ('acceptance', 'How we\'ll know'),
           ('spend_limit', 'Spend limit'), ('legal_basis', 'Legal basis')]
-OPENING = ('Say what the model should do — what it produces. I\'ll ask for the other four things one at a time: what material it reads, '
-           'how we\'ll know it worked, what you\'re willing to spend, and your legal basis. Nothing runs, and no compute is spent, until you freeze the objective.')
+OPENING = ('What should the model do for the business? We will define its target outcome and collection schema, including the registered population, '
+           'accuracy and coverage for each stratum, a sealed evaluation set, constraints and lawful sources. Calibration comes before the full-run quote. No training starts from this conversation.')
 NEXT_VERSION = ('New run opened from {parent}. {parent} is untouched — it keeps its record, its status and its reason. '
                 'Its objective carries over. What should change in this version?')
 ADJUST = ('New run opened from {parent} so the refusal stays on record. Tell me what to adjust — recipe, data or acceptance — '
@@ -67,7 +67,12 @@ def update(tenant, run_id, *, fields=None, name=None):
 
 
 def ready(doc):
-    return all((doc.get('fields') or {}).get(key) for key, _ in FIELDS)
+    from services.training_lab.production_contracts import Definition
+    try:
+        Definition.model_validate(doc.get('definition'))
+        return True
+    except ValueError:
+        return False
 
 
 def hold(tenant, run_id):

@@ -54,7 +54,7 @@ export default function WorkCommission() {
             marginBottom: 8,
           }}
         >
-          WORKSTUDIO · Commission · Canon 5 §14 Shaping Wizard
+          WORKSTUDIO · Commission
         </div>
         <h1
           data-testid="work-commission-title"
@@ -66,10 +66,7 @@ export default function WorkCommission() {
           data-testid="work-commission-lead"
           style={{ fontSize: 15, lineHeight: 1.55, color: "var(--ink2, #444)", marginTop: 12, maxWidth: 720 }}
         >
-          A chat pane on one side, a draft rail on the other. Mandatory fields — reach,
-          the four output fields, done-condition, budget, lawful basis — are asked, never
-          pre-filled. Preference fields may carry agent recommendations. Every turn is
-          grounded in a real estate read; no fabricated availability, ever.
+          Define the objective, authorised sources, delivery and budget.
         </p>
       </header>
       <section data-testid="work-commission-wizard-mount">

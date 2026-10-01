@@ -1,0 +1,48 @@
+[build] resolved ['paper']; look slate/cambria-calibri
+{
+  "blockers": [
+    "paper.sections[2].blocks[0].para: literal number '2' in \"Recipe: LoRA r16 \u00b7 2 epochs \u00b7 adamw \u00b7 learning rate 0.0001 (\"",
+    "paper.sections[3].blocks[0].para: literal number '130,124' in \"Data: RMS transcripts \u00b7 130,124 training units \u00b7 9,502,124 t\"",
+    "paper.sections[3].blocks[0].para: literal number '9,502,124' in \"Data: RMS transcripts \u00b7 130,124 training units \u00b7 9,502,124 t\"",
+    "paper.sections[3].blocks[0].para: literal number '2,800' in \"Data: RMS transcripts \u00b7 130,124 training units \u00b7 9,502,124 t\"",
+    "paper.sections[4].blocks[0].para: literal number '49' in \"Compute & time: 0.8182 GPU-hours on one NVIDIA H200 \u00b7 49 min\"",
+    "paper.sections[5].blocks[0].para: literal number '7' in \"Checks: 7 of 7 languages at or above the floor with no regre\"",
+    "paper.sections[5].blocks[0].para: literal number '7' in \"Checks: 7 of 7 languages at or above the floor with no regre\"",
+    "paper.sections[6].blocks[0].para: literal number '68.2' in \"Improvement over the base: +68.2 points macro accuracy \u00b7 cal\"",
+    "paper.sections[9].blocks[0].para: literal number '98.2' in \"Ekegusii: 98.2% \u00b7 floor 90% \u00b7 base 1.1% \u00b7 abstained 0.8%. (S\"",
+    "paper.sections[9].blocks[0].para: literal number '90' in \"Ekegusii: 98.2% \u00b7 floor 90% \u00b7 base 1.1% \u00b7 abstained 0.8%. (S\"",
+    "paper.sections[9].blocks[0].para: literal number '1.1' in \"Ekegusii: 98.2% \u00b7 floor 90% \u00b7 base 1.1% \u00b7 abstained 0.8%. (S\"",
+    "paper.sections[9].blocks[0].para: literal number '0.8' in \"Ekegusii: 98.2% \u00b7 floor 90% \u00b7 base 1.1% \u00b7 abstained 0.8%. (S\"",
+    "paper.sections[10].blocks[0].para: literal number '91.3' in \"Kikamba: 91.3% \u00b7 floor 90% \u00b7 base 0.0% \u00b7 abstained 1.8%. (So\"",
+    "paper.sections[10].blocks[0].para: literal number '90' in \"Kikamba: 91.3% \u00b7 floor 90% \u00b7 base 0.0% \u00b7 abstained 1.8%. (So\"",
+    "paper.sections[10].blocks[0].para: literal number '0.0' in \"Kikamba: 91.3% \u00b7 floor 90% \u00b7 base 0.0% \u00b7 abstained 1.8%. (So\"",
+    "paper.sections[10].blocks[0].para: literal number '1.8' in \"Kikamba: 91.3% \u00b7 floor 90% \u00b7 base 0.0% \u00b7 abstained 1.8%. (So\"",
+    "paper.sections[11].blocks[0].para: literal number '99.2' in \"Gikuyu: 99.2% \u00b7 floor 90% \u00b7 base 24.5% \u00b7 abstained 0.5%. (So\"",
+    "paper.sections[11].blocks[0].para: literal number '90' in \"Gikuyu: 99.2% \u00b7 floor 90% \u00b7 base 24.5% \u00b7 abstained 0.5%. (So\"",
+    "paper.sections[11].blocks[0].para: literal number '24.5' in \"Gikuyu: 99.2% \u00b7 floor 90% \u00b7 base 24.5% \u00b7 abstained 0.5%. (So\"",
+    "paper.sections[11].blocks[0].para: literal number '0.5' in \"Gikuyu: 99.2% \u00b7 floor 90% \u00b7 base 24.5% \u00b7 abstained 0.5%. (So\"",
+    "paper.sections[12].blocks[0].para: literal number '99.7' in \"Kalenjin: 99.7% \u00b7 floor 90% \u00b7 base 11.9% \u00b7 abstained 0.5%. (\"",
+    "paper.sections[12].blocks[0].para: literal number '90' in \"Kalenjin: 99.7% \u00b7 floor 90% \u00b7 base 11.9% \u00b7 abstained 0.5%. (\"",
+    "paper.sections[12].blocks[0].para: literal number '11.9' in \"Kalenjin: 99.7% \u00b7 floor 90% \u00b7 base 11.9% \u00b7 abstained 0.5%. (\"",
+    "paper.sections[12].blocks[0].para: literal number '0.5' in \"Kalenjin: 99.7% \u00b7 floor 90% \u00b7 base 11.9% \u00b7 abstained 0.5%. (\"",
+    "paper.sections[13].blocks[0].para: literal number '99.5' in \"Dholuo: 99.5% \u00b7 floor 90% \u00b7 base 62.7% \u00b7 abstained 2.0%. (So\"",
+    "paper.sections[13].blocks[0].para: literal number '90' in \"Dholuo: 99.5% \u00b7 floor 90% \u00b7 base 62.7% \u00b7 abstained 2.0%. (So\"",
+    "paper.sections[13].blocks[0].para: literal number '62.7' in \"Dholuo: 99.5% \u00b7 floor 90% \u00b7 base 62.7% \u00b7 abstained 2.0%. (So\"",
+    "paper.sections[13].blocks[0].para: literal number '2.0' in \"Dholuo: 99.5% \u00b7 floor 90% \u00b7 base 62.7% \u00b7 abstained 2.0%. (So\"",
+    "paper.sections[14].blocks[0].para: literal number '93.5' in \"Luhya (Wanga): 93.5% \u00b7 floor 90% \u00b7 base 4.3% \u00b7 abstained 4.2\"",
+    "paper.sections[14].blocks[0].para: literal number '90' in \"Luhya (Wanga): 93.5% \u00b7 floor 90% \u00b7 base 4.3% \u00b7 abstained 4.2\"",
+    "paper.sections[14].blocks[0].para: literal number '4.3' in \"Luhya (Wanga): 93.5% \u00b7 floor 90% \u00b7 base 4.3% \u00b7 abstained 4.2\"",
+    "paper.sections[14].blocks[0].para: literal number '4.2' in \"Luhya (Wanga): 93.5% \u00b7 floor 90% \u00b7 base 4.3% \u00b7 abstained 4.2\"",
+    "paper.sections[15].blocks[0].para: literal number '99.0' in \"Kiswahili: 99.0% \u00b7 floor 90% \u00b7 base 98.4% \u00b7 abstained 4.8%. \"",
+    "paper.sections[15].blocks[0].para: literal number '90' in \"Kiswahili: 99.0% \u00b7 floor 90% \u00b7 base 98.4% \u00b7 abstained 4.8%. \"",
+    "paper.sections[15].blocks[0].para: literal number '98.4' in \"Kiswahili: 99.0% \u00b7 floor 90% \u00b7 base 98.4% \u00b7 abstained 4.8%. \"",
+    "paper.sections[15].blocks[0].para: literal number '4.8' in \"Kiswahili: 99.0% \u00b7 floor 90% \u00b7 base 98.4% \u00b7 abstained 4.8%. \""
+  ],
+  "review": [
+    "Does the paper read as an argument when read unattended, without the deck?"
+  ],
+  "status": "FAIL"
+}
+
+--- stderr ---
+validation blockers; build stopped

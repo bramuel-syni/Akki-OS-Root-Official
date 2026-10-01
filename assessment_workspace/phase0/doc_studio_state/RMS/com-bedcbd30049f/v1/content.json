@@ -1,0 +1,135 @@
+{
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001"
+      ],
+      "text": "{F001} language strata were measured in this record."
+    }
+  },
+  "content_id": "training-m9j-74af7cef0a85",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "An independently designed evaluation",
+        "gap": "General cognition or performance outside the measured strata",
+        "reason": "Not established by this run"
+      },
+      {
+        "closes_with": "Fresh independently labelled and sealed final material",
+        "gap": "Independent final acceptance after further recipe selection",
+        "reason": "These results have been inspected"
+      },
+      {
+        "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+        "gap": "Complete objective-to-production lineage",
+        "reason": "No new production plan is linked to this historical run"
+      }
+    ],
+    "covers": "Retained model measurements and decisions from m9j-74af7cef0a85 only."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Measured language strata",
+      "receipt": "R01",
+      "unit": "strata",
+      "value": 7
+    }
+  },
+  "narrative_evidence": {
+    "C002": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Baseline: Qwen3 8B base · licence verified at acquisition"
+    },
+    "C003": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001"
+    },
+    "C004": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units"
+    },
+    "C005": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min"
+    },
+    "C006": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Checks: 7 of 7 languages at or above the floor with no regression below the base"
+    },
+    "C007": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848"
+    },
+    "C008": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Admission: admitted"
+    },
+    "C009": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Serving: full adapter served on akki-vm-ii, pruned adapter admitted, not served"
+    },
+    "C100": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%."
+    },
+    "C101": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%."
+    },
+    "C102": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%."
+    },
+    "C103": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%."
+    },
+    "C104": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%."
+    },
+    "C105": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%."
+    },
+    "C106": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%."
+    },
+    "decision": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation."
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "production_plan": null,
+  "receipts": {
+    "R01": {
+      "platform_ref": "m9j-74af7cef0a85",
+      "resolves_to": "Measured training receipt and retained acceptance record for m9j-74af7cef0a85"
+    }
+  },
+  "series": {},
+  "title": "Training findings — Language identification · 8B text model",
+  "version": 1
+}

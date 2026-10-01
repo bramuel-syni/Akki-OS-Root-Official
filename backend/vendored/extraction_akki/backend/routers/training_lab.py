@@ -255,8 +255,12 @@ async def _perform(actor,run,action,value,background):
             text='Asked the five specialists to review the plan. Their advice is advisory and machine-checked for ungrounded figures; it arrives in this thread.'
         elif action=='record_training_request':
             if run.get('family')=='owner':
-                if not run.get('ready'): raise ValueError('all five fields must be set before the request can be recorded')
-                with commission_gate.crossing(actor,'training_lab.training_request',{'run_id':run['run_id']}): board_runs.hold(tenant,run['run_id'])
+                if not run.get('ready'): raise ValueError('the target outcome and collection schema need their full population, acceptance, source and budget definitions')
+                from services.training_lab import production
+                doc = board_runs.get(tenant, run['run_id'])
+                with commission_gate.crossing(actor,'training_lab.training_request',{'run_id':run['run_id']}):
+                    production.compile_plan(tenant, actor, run['run_id'], doc.get('definition'))
+                    board_runs.hold(tenant,run['run_id'])
             text='Recorded: you are asking for this training. The request stays held until the recipe, compute cap and evaluation contract are approved through Model Approval; nothing has started.'
         elif action=='use_baseline':
             text=f"Starting point recorded: {'the learned baseline on the measured observables' if value=='learned' else 'the acoustic reading'}. A detector only earns its place by beating it on recordings it has not seen."
@@ -266,10 +270,18 @@ async def _perform(actor,run,action,value,background):
             with commission_gate.crossing(actor,'training_lab.retire',{'run_id':run['run_id']}): board_runs.retire(tenant,actor,run['run_id'])
             text='Retired. The record, the checks and the reason stay exactly as written; only the status changed.'
         else:
-            paper=run.get('whitepaper')
-            text=('A white paper was drafted from this run\'s own record; it cites the admission and the baseline line. Producing it as a finished document through the studio is not connected yet.' if paper else 'No white paper exists for this run; one is drafted only from an admission on record.')
-    except ValueError as exc:
-        text=f"Not done: {exc}."
+            from services.transform_forms.doc_studio import service as studio
+            with commission_gate.crossing(actor,'training_lab.whitepaper',{'run_id':run['run_id']}):
+                document, created = await asyncio.to_thread(studio.create_from_producer, 'training-whitepaper', run['run_id'], tenant, actor['principal_id'])
+            text='The white paper is prepared in Documents from this run’s measured record, decisions and limitations. It can now be built and reviewed there.'
+            note=conversation.note(tenant,text,widget='doc',action=action,commission_id=document['commission_id'])
+            conversation.record(tenant,run['run_id'],note)
+            return note
+    except (ValueError, LookupError) as exc:
+        if 'unknown protected boundary' in str(exc):
+            text='The action could not be completed. No training or admission was started.'
+        else:
+            text=f"Not done: {exc}."
     note=conversation.note(tenant,text,widget='action',action=action)
     conversation.record(tenant,run['run_id'],note)
     return note
@@ -298,7 +310,7 @@ async def board_new(body:BoardNew,actor=Depends(census_identity)):
     with commission_gate.crossing(actor,'training_lab.shape_run',{'from_run':body.from_run,'mode':body.mode}):
         doc=board_runs.create(tenant,actor,parent=parent,mode=body.mode,name=name)
     opening=board_runs.OPENING if not parent else (board_runs.ADJUST if body.mode=='adjust' else board_runs.NEXT_VERSION).format(parent=parent['name'])
-    conversation.record(tenant,doc['run_id'],conversation.note(tenant,opening,think=['Nothing runs, and no compute is spent, until the five fields are set and the request is approved.'] + (['The earlier run keeps its own record and status.'] if parent else [])))
+    conversation.record(tenant,doc['run_id'],conversation.note(tenant,opening,think=['The outcome and collection schema remain separate. Calibration must precede the full-run quote.'] + (['The earlier run keeps its own record and status.'] if parent else [])))
     return {'tenant_id':tenant,'run_id':doc['run_id'],'name':doc['name'],'status':doc['status'],'training_started':False}
 
 

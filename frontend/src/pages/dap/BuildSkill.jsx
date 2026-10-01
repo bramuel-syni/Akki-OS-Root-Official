@@ -32,7 +32,7 @@ import { useBuildSkillProvisioning } from "@/hooks/useBuildSkillProvisioning";
 function readJwtFromLocalStorage() {
   try {
     return typeof window !== "undefined"
-      ? window.localStorage?.getItem?.("dap_jwt") || null
+      ? window.sessionStorage?.getItem?.("akki_access_token") || null
       : null;
   } catch (_e) {
     return null;
@@ -109,7 +109,7 @@ export default function BuildSkill() {
   const { records, count, loading, error, lastFetchedAt, triggerRefetch } =
     useBuildSkillProvisioning(jwt, { autoPoll: true });
 
-  const showEmptyState = !loading && count === 0;
+  const showEmptyState = !loading && !error && Boolean(lastFetchedAt) && count === 0;
 
   return (
     <div
@@ -159,9 +159,7 @@ export default function BuildSkill() {
           overwritten — new material always yields a new skill.
         </p>
         <p style={{ margin: "0 0 24px 0", color: "var(--ink2, #33333f)" }}>
-          Below is the current list of skills your tenant has
-          provisioned. Values are read fresh from the platform on every
-          load — no cache, no mock.
+          Provisioned skills for your estate.
         </p>
       </section>
 

@@ -1,0 +1,333 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "source": "deterministic producer training-whitepaper; no model authored the brief, content or specs",
+    "tokens": 0
+  },
+  "brief_id": "BR-2026-10-01-m9j-74af7cef0a85",
+  "build_stamp": "2026-10-01T18:15:26Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-10-01T18:15:26Z",
+      "build_id": "bld-b326ba9b7e43",
+      "by": "6ab56dd48894abb269135ca0",
+      "content_version": 1,
+      "environment": {
+        "Pillow": "12.3.0",
+        "headless_browser": "/bin/google-chrome",
+        "jsonschema": "4.26.0",
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "office_tools": {
+          "recalc": "headless LibreOffice convert + cached-value error scan (in-repo)",
+          "validate": "package/relationship/reopen checks (in-repo; not an OOXML schema validator)"
+        },
+        "openpyxl": "3.1.5",
+        "pdftoppm": true,
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2",
+        "tools_dir": "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/tools"
+      },
+      "error": "validation blockers; build stopped",
+      "exports": {},
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-bedcbd30049f/builds/bld-b326ba9b7e43/log.txt",
+      "look": {
+        "cover_composition": "title-centred-band",
+        "divider_treatment": "number-small-rule",
+        "palette_id": "slate",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": null,
+      "outputs": [],
+      "prove": null,
+      "qa": null,
+      "status": "blocked",
+      "validate": {
+        "blockers": [
+          "paper.sections[2].blocks[0].para: literal number '2' in \"Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (\"",
+          "paper.sections[3].blocks[0].para: literal number '130,124' in \"Data: RMS transcripts · 130,124 training units · 9,502,124 t\"",
+          "paper.sections[3].blocks[0].para: literal number '9,502,124' in \"Data: RMS transcripts · 130,124 training units · 9,502,124 t\"",
+          "paper.sections[3].blocks[0].para: literal number '2,800' in \"Data: RMS transcripts · 130,124 training units · 9,502,124 t\"",
+          "paper.sections[4].blocks[0].para: literal number '49' in \"Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min\"",
+          "paper.sections[5].blocks[0].para: literal number '7' in \"Checks: 7 of 7 languages at or above the floor with no regre\"",
+          "paper.sections[5].blocks[0].para: literal number '7' in \"Checks: 7 of 7 languages at or above the floor with no regre\"",
+          "paper.sections[6].blocks[0].para: literal number '68.2' in \"Improvement over the base: +68.2 points macro accuracy · cal\"",
+          "paper.sections[9].blocks[0].para: literal number '98.2' in \"Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (S\"",
+          "paper.sections[9].blocks[0].para: literal number '90' in \"Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (S\"",
+          "paper.sections[9].blocks[0].para: literal number '1.1' in \"Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (S\"",
+          "paper.sections[9].blocks[0].para: literal number '0.8' in \"Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (S\"",
+          "paper.sections[10].blocks[0].para: literal number '91.3' in \"Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (So\"",
+          "paper.sections[10].blocks[0].para: literal number '90' in \"Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (So\"",
+          "paper.sections[10].blocks[0].para: literal number '0.0' in \"Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (So\"",
+          "paper.sections[10].blocks[0].para: literal number '1.8' in \"Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (So\"",
+          "paper.sections[11].blocks[0].para: literal number '99.2' in \"Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (So\"",
+          "paper.sections[11].blocks[0].para: literal number '90' in \"Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (So\"",
+          "paper.sections[11].blocks[0].para: literal number '24.5' in \"Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (So\"",
+          "paper.sections[11].blocks[0].para: literal number '0.5' in \"Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (So\"",
+          "paper.sections[12].blocks[0].para: literal number '99.7' in \"Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (\"",
+          "paper.sections[12].blocks[0].para: literal number '90' in \"Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (\"",
+          "paper.sections[12].blocks[0].para: literal number '11.9' in \"Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (\"",
+          "paper.sections[12].blocks[0].para: literal number '0.5' in \"Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (\"",
+          "paper.sections[13].blocks[0].para: literal number '99.5' in \"Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (So\"",
+          "paper.sections[13].blocks[0].para: literal number '90' in \"Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (So\"",
+          "paper.sections[13].blocks[0].para: literal number '62.7' in \"Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (So\"",
+          "paper.sections[13].blocks[0].para: literal number '2.0' in \"Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (So\"",
+          "paper.sections[14].blocks[0].para: literal number '93.5' in \"Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2\"",
+          "paper.sections[14].blocks[0].para: literal number '90' in \"Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2\"",
+          "paper.sections[14].blocks[0].para: literal number '4.3' in \"Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2\"",
+          "paper.sections[14].blocks[0].para: literal number '4.2' in \"Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2\"",
+          "paper.sections[15].blocks[0].para: literal number '99.0' in \"Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. \"",
+          "paper.sections[15].blocks[0].para: literal number '90' in \"Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. \"",
+          "paper.sections[15].blocks[0].para: literal number '98.4' in \"Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. \"",
+          "paper.sections[15].blocks[0].para: literal number '4.8' in \"Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. \""
+        ],
+        "review": [
+          "Does the paper read as an argument when read unattended, without the deck?"
+        ],
+        "status": "FAIL"
+      }
+    },
+    {
+      "at": "2026-10-01T18:18:01Z",
+      "build_id": "bld-fa1c663f268c",
+      "by": "6ab56dd48894abb269135ca0",
+      "content_version": 2,
+      "environment": {
+        "Pillow": "12.3.0",
+        "headless_browser": "/bin/google-chrome",
+        "jsonschema": "4.26.0",
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "office_tools": {
+          "recalc": "headless LibreOffice convert + cached-value error scan (in-repo)",
+          "validate": "package/relationship/reopen checks (in-repo; not an OOXML schema validator)"
+        },
+        "openpyxl": "3.1.5",
+        "pdftoppm": true,
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2",
+        "tools_dir": "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/tools"
+      },
+      "error": "    'recorded'",
+      "exports": {},
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-bedcbd30049f/builds/bld-fa1c663f268c/log.txt",
+      "look": {
+        "cover_composition": "title-centred-band",
+        "divider_treatment": "number-small-rule",
+        "palette_id": "slate",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": null,
+      "outputs": [],
+      "prove": null,
+      "qa": null,
+      "status": "failed",
+      "validate": null
+    },
+    {
+      "at": "2026-10-01T18:21:03Z",
+      "build_id": "bld-1f9bd69ef5bf",
+      "by": "6ab56dd48894abb269135ca0",
+      "content_version": 3,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-01T18:21:06Z",
+          "by": "6ab56dd48894abb269135ca0",
+          "refusal": "no pptx output",
+          "rendered": false
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-bedcbd30049f/builds/bld-1f9bd69ef5bf/log.txt",
+      "look": {
+        "cover_composition": "title-centred-band",
+        "divider_treatment": "number-small-rule",
+        "palette_id": "slate",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-01T18:15:26Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "paper.resolved.json": "a60844d1bc2815db018fb4729491f8e6e04b8cd363e5bb50dffb465d256536ca",
+          "paper.resolved/brief.json": "793cd3ff1c5de8cc891741b43d352d7ed271c1bae694b76a47b57f844c88732a",
+          "paper.resolved/content.json": "47293670c4b4163e206d748670e66c191486dc64bd4dacd64e5e30894f2659db",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "72a1a1e1dbab95bbbde9802e727bd69303b6f76a2adbd441c437aea8bb276efb",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "e58412c8021d05db69b4e5251989276812bfe64874775dc46d02eea5a4ac2f09"
+        },
+        "outputs_sha256": {
+          "training-m9j-74af7cef0a85.docx": "b2ae6e85689cdfb753e7b59dbcdd07098cb010f459d4f83f5f57d3673c821718"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "training-m9j-74af7cef0a85.docx",
+          "sha256": "b2ae6e85689cdfb753e7b59dbcdd07098cb010f459d4f83f5f57d3673c821718",
+          "size": 38907
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "Does the paper read as an argument when read unattended, without the deck?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-bedcbd30049f",
+  "content_id": "training-m9j-74af7cef0a85",
+  "created_at": "2026-10-01T18:15:26Z",
+  "created_by": "6ab56dd48894abb269135ca0",
+  "current_content_version": 3,
+  "economics": {
+    "authoring_tokens_total": 0,
+    "builds_total": 3,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 2,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Model owner and reviewers · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is familiar with the objective; mixed technical depth",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are per-stratum performance, coverage, privacy and next work",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "docx",
+    "html"
+  ],
+  "producer": "training-whitepaper",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "m9j",
+      "platform_ref": "m9j-74af7cef0a85",
+      "resolves_to": "Measured training receipt and retained acceptance record for m9j-74af7cef0a85",
+      "status": "completed",
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "build bld-1f9bd69ef5bf byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "training-m9j-74af7cef0a85/decide/2026-10-01",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "m9j-74af7cef0a85",
+  "specs": [
+    "paper.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Training findings — Language identification · 8B text model",
+  "updated_at": "2026-10-01T18:21:06Z",
+  "verdict_id": "V-2026-10-01-m9j-74af7cef0a85",
+  "versions": [
+    {
+      "at": "2026-10-01T18:15:26Z",
+      "by": "6ab56dd48894abb269135ca0",
+      "reason": "commissioned by producer training-whitepaper from m9j-74af7cef0a85",
+      "version": 1
+    },
+    {
+      "at": "2026-10-01T18:18:01Z",
+      "by": "6ab56dd48894abb269135ca0",
+      "reason": "Correct source-bound figures in the unreleased generated paper",
+      "version": 2
+    },
+    {
+      "at": "2026-10-01T18:21:03Z",
+      "by": "6ab56dd48894abb269135ca0",
+      "reason": "Correct source-bound figures in the unreleased generated paper",
+      "version": 3
+    }
+  ],
+  "voice": "strategy-house"
+}

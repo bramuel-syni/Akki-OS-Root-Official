@@ -1,5 +1,10 @@
 # Existing JWT consumer regression — 2026-09-26
 
+## 2026-10-01 — legacy DAP skill session consumer
+- Preserve the existing JWT transport and credentials. DAP Build Skill reads `sessionStorage.akki_access_token`, not obsolete `localStorage.dap_jwt`.
+- Existing operator: provisioning GET must return its real records. Signed-out/invalid token: retain backend refusal and show the error, never a successful empty-store message.
+- A malformed response is an error, not zero records. No backend authentication, password, account, cookie, role or ceremony changes.
+
 ## M1 regression addition — 2026-09-28
 
 The observed sign-in stall was an app reload waiting on long-running census

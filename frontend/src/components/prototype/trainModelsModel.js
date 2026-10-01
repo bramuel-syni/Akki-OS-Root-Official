@@ -74,7 +74,7 @@ export function threadItems(run, { state, names, pendingText, canOperate, toggle
     const key = m.id || `${run.run_id}-${i}`;
     const thinkKey = `${run.run_id}:${key}`;
     out.push({
-      key, stage, isDivider: false, isMsg: true, who: user ? 'You' : 'Akki', text: m.text || '', ts: relative(m.at), align: user ? 'flex-end' : 'flex-start',
+      key, stage, isDivider: false, isMsg: true, who: user ? 'You' : 'Akki', text: m.text?.includes('unknown protected boundary') ? 'The action could not be completed at that time. No training or admission was started.' : m.text || '', ts: relative(m.at), align: user ? 'flex-end' : 'flex-start',
       bubbleBg: user ? 'rgba(76,95,213,.07)' : m.status === 'unavailable' ? 'rgba(176,141,46,.10)' : 'var(--surface)', bubbleBorder: user ? 'rgba(76,95,213,.20)' : 'var(--line)', hasBubble: Boolean(m.text),
       hasThink: think.length > 0, thinkLabel: `How I got here · ${think.length} step${think.length === 1 ? '' : 's'}`, thinkOpen: Boolean(state.tmThink?.[thinkKey]), thinkClosed: !state.tmThink?.[thinkKey], onThink: () => toggleThink(thinkKey),
       thinkSteps: think.map((t, j) => ({ key: `k${j}`, t, line: j === think.length - 1 ? 'transparent' : 'var(--line)', pad: j === think.length - 1 ? '0' : '14px' })),

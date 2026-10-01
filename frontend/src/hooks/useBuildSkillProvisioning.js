@@ -44,7 +44,7 @@ export function useBuildSkillProvisioning(jwtToken, { autoPoll = true } = {}) {
     setLoading(true);
     setError(null);
     try {
-      const base = process.env.REACT_APP_BACKEND_URL || "";
+      const base = process.env.REACT_APP_BACKEND_URL;
       const url = `${base}${PROVISIONING_RECORDS_ROUTE_PATH}`;
       const headers = { Accept: "application/json" };
       if (jwtToken) {
@@ -61,7 +61,8 @@ export function useBuildSkillProvisioning(jwtToken, { autoPoll = true } = {}) {
       const body = await resp.json();
       // Never fabricates: only set state from the body shape the sealed
       // store produced. Missing keys yield empty arrays / zero count.
-      const fetchedRecords = Array.isArray(body?.records) ? body.records : [];
+      if (!Array.isArray(body?.records)) throw new Error('Invalid provisioning response');
+      const fetchedRecords = body.records;
       const fetchedCount =
         typeof body?.count === "number" ? body.count : fetchedRecords.length;
       setRecords(fetchedRecords);

@@ -1,0 +1,575 @@
+{
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001"
+      ],
+      "text": "{F001} language strata were measured in this record."
+    },
+    "C500": {
+      "supports": [
+        "F002"
+      ],
+      "text": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation. (Source: R01)"
+    },
+    "C510": {
+      "supports": [
+        "F003"
+      ],
+      "text": "Baseline: Qwen3 8B base · licence verified at acquisition (Source: R01)"
+    },
+    "C520": {
+      "supports": [
+        "F004",
+        "F005"
+      ],
+      "text": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)"
+    },
+    "C530": {
+      "supports": [
+        "F006",
+        "F007",
+        "F008"
+      ],
+      "text": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)"
+    },
+    "C540": {
+      "supports": [
+        "F009",
+        "F010"
+      ],
+      "text": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)"
+    },
+    "C550": {
+      "supports": [
+        "F011",
+        "F012"
+      ],
+      "text": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)"
+    },
+    "C560": {
+      "supports": [
+        "F013",
+        "F014"
+      ],
+      "text": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)"
+    },
+    "C590": {
+      "supports": [
+        "F015",
+        "F016",
+        "F017",
+        "F018"
+      ],
+      "text": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)"
+    },
+    "C600": {
+      "supports": [
+        "F019",
+        "F020",
+        "F021",
+        "F022"
+      ],
+      "text": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)"
+    },
+    "C610": {
+      "supports": [
+        "F023",
+        "F024",
+        "F025",
+        "F026"
+      ],
+      "text": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)"
+    },
+    "C620": {
+      "supports": [
+        "F027",
+        "F028",
+        "F029",
+        "F030"
+      ],
+      "text": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)"
+    },
+    "C630": {
+      "supports": [
+        "F031",
+        "F032",
+        "F033",
+        "F034"
+      ],
+      "text": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)"
+    },
+    "C640": {
+      "supports": [
+        "F035",
+        "F036",
+        "F037",
+        "F038"
+      ],
+      "text": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)"
+    },
+    "C650": {
+      "supports": [
+        "F039",
+        "F040",
+        "F041",
+        "F042"
+      ],
+      "text": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)"
+    }
+  },
+  "content_id": "training-m9j-74af7cef0a85",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "An independently designed evaluation",
+        "gap": "General cognition or performance outside the measured strata",
+        "reason": "Not established by this run"
+      },
+      {
+        "closes_with": "Fresh independently labelled and sealed final material",
+        "gap": "Independent final acceptance after further recipe selection",
+        "reason": "These results have been inspected"
+      },
+      {
+        "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+        "gap": "Complete objective-to-production lineage",
+        "reason": "No new production plan is linked to this historical run"
+      }
+    ],
+    "covers": "Retained model measurements and decisions from m9j-74af7cef0a85 only."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Measured language strata",
+      "receipt": "R01",
+      "unit": "strata",
+      "value": 7
+    },
+    "F002": {
+      "class": "recorded",
+      "label": "Outcome and decision · recorded value",
+      "receipt": "R01",
+      "source_statement": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 8
+    },
+    "F003": {
+      "class": "recorded",
+      "label": "Baseline · recorded value",
+      "receipt": "R01",
+      "source_statement": "Baseline: Qwen3 8B base · licence verified at acquisition (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 8
+    },
+    "F004": {
+      "class": "recorded",
+      "label": "Recipe · recorded value",
+      "receipt": "R01",
+      "source_statement": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2
+    },
+    "F005": {
+      "class": "recorded",
+      "label": "Recipe · recorded value",
+      "receipt": "R01",
+      "source_statement": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.0001
+    },
+    "F006": {
+      "class": "recorded",
+      "label": "Data · recorded value",
+      "receipt": "R01",
+      "source_statement": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 130124
+    },
+    "F007": {
+      "class": "recorded",
+      "label": "Data · recorded value",
+      "receipt": "R01",
+      "source_statement": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 9502124
+    },
+    "F008": {
+      "class": "recorded",
+      "label": "Data · recorded value",
+      "receipt": "R01",
+      "source_statement": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2800
+    },
+    "F009": {
+      "class": "recorded",
+      "label": "Compute & time · recorded value",
+      "receipt": "R01",
+      "source_statement": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.8182
+    },
+    "F010": {
+      "class": "recorded",
+      "label": "Compute & time · recorded value",
+      "receipt": "R01",
+      "source_statement": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 49
+    },
+    "F011": {
+      "class": "recorded",
+      "label": "Checks · recorded value",
+      "receipt": "R01",
+      "source_statement": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 7
+    },
+    "F012": {
+      "class": "recorded",
+      "label": "Checks · recorded value",
+      "receipt": "R01",
+      "source_statement": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 7
+    },
+    "F013": {
+      "class": "recorded",
+      "label": "Improvement over the base · recorded value",
+      "receipt": "R01",
+      "source_statement": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 68.2
+    },
+    "F014": {
+      "class": "recorded",
+      "label": "Improvement over the base · recorded value",
+      "receipt": "R01",
+      "source_statement": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.00848
+    },
+    "F015": {
+      "class": "recorded",
+      "label": "Ekegusii · recorded value",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 98.2
+    },
+    "F016": {
+      "class": "recorded",
+      "label": "Ekegusii · recorded value",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F017": {
+      "class": "recorded",
+      "label": "Ekegusii · recorded value",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 1.1
+    },
+    "F018": {
+      "class": "recorded",
+      "label": "Ekegusii · recorded value",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.8
+    },
+    "F019": {
+      "class": "recorded",
+      "label": "Kikamba · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 91.3
+    },
+    "F020": {
+      "class": "recorded",
+      "label": "Kikamba · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F021": {
+      "class": "recorded",
+      "label": "Kikamba · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.0
+    },
+    "F022": {
+      "class": "recorded",
+      "label": "Kikamba · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 1.8
+    },
+    "F023": {
+      "class": "recorded",
+      "label": "Gikuyu · recorded value",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.2
+    },
+    "F024": {
+      "class": "recorded",
+      "label": "Gikuyu · recorded value",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F025": {
+      "class": "recorded",
+      "label": "Gikuyu · recorded value",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 24.5
+    },
+    "F026": {
+      "class": "recorded",
+      "label": "Gikuyu · recorded value",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.5
+    },
+    "F027": {
+      "class": "recorded",
+      "label": "Kalenjin · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.7
+    },
+    "F028": {
+      "class": "recorded",
+      "label": "Kalenjin · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F029": {
+      "class": "recorded",
+      "label": "Kalenjin · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 11.9
+    },
+    "F030": {
+      "class": "recorded",
+      "label": "Kalenjin · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.5
+    },
+    "F031": {
+      "class": "recorded",
+      "label": "Dholuo · recorded value",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.5
+    },
+    "F032": {
+      "class": "recorded",
+      "label": "Dholuo · recorded value",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F033": {
+      "class": "recorded",
+      "label": "Dholuo · recorded value",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 62.7
+    },
+    "F034": {
+      "class": "recorded",
+      "label": "Dholuo · recorded value",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2.0
+    },
+    "F035": {
+      "class": "recorded",
+      "label": "Luhya (Wanga) · recorded value",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 93.5
+    },
+    "F036": {
+      "class": "recorded",
+      "label": "Luhya (Wanga) · recorded value",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F037": {
+      "class": "recorded",
+      "label": "Luhya (Wanga) · recorded value",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 4.3
+    },
+    "F038": {
+      "class": "recorded",
+      "label": "Luhya (Wanga) · recorded value",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 4.2
+    },
+    "F039": {
+      "class": "recorded",
+      "label": "Kiswahili · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.0
+    },
+    "F040": {
+      "class": "recorded",
+      "label": "Kiswahili · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F041": {
+      "class": "recorded",
+      "label": "Kiswahili · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 98.4
+    },
+    "F042": {
+      "class": "recorded",
+      "label": "Kiswahili · recorded value",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 4.8
+    }
+  },
+  "narrative_evidence": {
+    "C002": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Baseline: Qwen3 8B base · licence verified at acquisition"
+    },
+    "C003": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001"
+    },
+    "C004": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units"
+    },
+    "C005": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min"
+    },
+    "C006": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Checks: 7 of 7 languages at or above the floor with no regression below the base"
+    },
+    "C007": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848"
+    },
+    "C008": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Admission: admitted"
+    },
+    "C009": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Serving: full adapter served on akki-vm-ii, pruned adapter admitted, not served"
+    },
+    "C100": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%."
+    },
+    "C101": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%."
+    },
+    "C102": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%."
+    },
+    "C103": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%."
+    },
+    "C104": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%."
+    },
+    "C105": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%."
+    },
+    "C106": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%."
+    },
+    "decision": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation."
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "producer_revision": 2,
+  "production_plan": null,
+  "receipts": {
+    "R01": {
+      "platform_ref": "m9j-74af7cef0a85",
+      "resolves_to": "Measured training receipt and retained acceptance record for m9j-74af7cef0a85"
+    }
+  },
+  "series": {},
+  "title": "Training findings — Language identification · 8B text model",
+  "version": 2
+}

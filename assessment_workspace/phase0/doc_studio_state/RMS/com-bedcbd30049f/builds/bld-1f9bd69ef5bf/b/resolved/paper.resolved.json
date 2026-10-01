@@ -1,0 +1,253 @@
+{
+  "brief_ref": "BR-2026-10-01-m9j-74af7cef0a85",
+  "build_stamp": "2026-10-01T18:15:26Z",
+  "content_ref": "training-m9j-74af7cef0a85@3",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "m9j-74af7cef0a85"
+  },
+  "inputs_sha256": {
+    "brief.json": "793cd3ff1c5de8cc891741b43d352d7ed271c1bae694b76a47b57f844c88732a",
+    "content.json": "47293670c4b4163e206d748670e66c191486dc64bd4dacd64e5e30894f2659db",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "72a1a1e1dbab95bbbde9802e727bd69303b6f76a2adbd441c437aea8bb276efb",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "e58412c8021d05db69b4e5251989276812bfe64874775dc46d02eea5a4ac2f09"
+  },
+  "look": {
+    "cover_composition": "title-centred-band",
+    "divider_treatment": "number-small-rule",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "0E7C86",
+      "field": "FFFFFF",
+      "hatch": "EAEEF2",
+      "muted": "7F8C9A",
+      "rule": "D8DEE5",
+      "structure": "22313F"
+    },
+    "palette_id": "slate",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation. (Source: R01)"
+        }
+      ],
+      "heading": "Outcome and decision"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Baseline: Qwen3 8B base · licence verified at acquisition (Source: R01)"
+        }
+      ],
+      "heading": "Baseline"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)"
+        }
+      ],
+      "heading": "Recipe"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)"
+        }
+      ],
+      "heading": "Data"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)"
+        }
+      ],
+      "heading": "Compute & time"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)"
+        }
+      ],
+      "heading": "Checks"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)"
+        }
+      ],
+      "heading": "Improvement over the base"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Admission: admitted (Source: R01)"
+        }
+      ],
+      "heading": "Admission"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Serving: full adapter served on akki-vm-ii, pruned adapter admitted, not served (Source: R01)"
+        }
+      ],
+      "heading": "Serving"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)"
+        }
+      ],
+      "heading": "Ekegusii"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)"
+        }
+      ],
+      "heading": "Kikamba"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)"
+        }
+      ],
+      "heading": "Gikuyu"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)"
+        }
+      ],
+      "heading": "Kalenjin"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)"
+        }
+      ],
+      "heading": "Dholuo"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)"
+        }
+      ],
+      "heading": "Luhya (Wanga)"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)"
+        }
+      ],
+      "heading": "Kiswahili"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "An independently designed evaluation",
+              "gap": "General cognition or performance outside the measured strata",
+              "reason": "Not established by this run"
+            },
+            {
+              "closes_with": "Fresh independently labelled and sealed final material",
+              "gap": "Independent final acceptance after further recipe selection",
+              "reason": "These results have been inspected"
+            },
+            {
+              "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+              "gap": "Complete objective-to-production lineage",
+              "reason": "No new production plan is linked to this historical run"
+            }
+          ],
+          "covers": "Retained model measurements and decisions from m9j-74af7cef0a85 only.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Measured training receipt and retained acceptance record for m9j-74af7cef0a85"
+            }
+          ]
+        }
+      ],
+      "heading": "Evidence references"
+    }
+  ],
+  "seed": "training-m9j-74af7cef0a85/decide/2026-10-01",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-m9j-74af7cef0a85",
+  "spec_type": "paper",
+  "subtitle": "Measurements, decisions and limits",
+  "title": "Training findings — Language identification · 8B text model",
+  "verdict_ref": "V-2026-10-01-m9j-74af7cef0a85",
+  "voice": "strategy-house"
+}

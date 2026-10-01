@@ -551,6 +551,8 @@ from routers.m9_training import router as m9_training_router  # noqa: E402
 app.include_router(m9_training_router)
 from routers.training_lab import router as training_lab_router  # noqa: E402
 app.include_router(training_lab_router)
+from routers.training_production import router as training_production_router  # noqa: E402
+app.include_router(training_production_router)
 from routers.media_library import router as media_library_router  # noqa: E402
 app.include_router(media_library_router)
 

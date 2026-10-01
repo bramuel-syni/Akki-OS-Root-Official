@@ -22,7 +22,7 @@ export default function BackendPending({ surface, detail }) {
         className="text-base font-semibold mb-2"
         style={{ color: "var(--ink, #1b1f27)" }}
       >
-        Backend pending
+        Not available yet
       </h3>
       <p
         data-testid="backend-pending-surface"

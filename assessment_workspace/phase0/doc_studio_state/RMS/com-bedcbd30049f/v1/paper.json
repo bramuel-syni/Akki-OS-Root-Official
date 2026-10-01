@@ -1,0 +1,164 @@
+{
+  "brief_ref": "BR-2026-10-01-m9j-74af7cef0a85",
+  "build_stamp": "2026-10-01T18:15:26Z",
+  "content_ref": "training-m9j-74af7cef0a85@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "m9j-74af7cef0a85"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation. (Source: R01)"
+        }
+      ],
+      "heading": "Outcome and decision"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Baseline: Qwen3 8B base · licence verified at acquisition (Source: R01)"
+        }
+      ],
+      "heading": "Baseline"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)"
+        }
+      ],
+      "heading": "Recipe"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)"
+        }
+      ],
+      "heading": "Data"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)"
+        }
+      ],
+      "heading": "Compute & time"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)"
+        }
+      ],
+      "heading": "Checks"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)"
+        }
+      ],
+      "heading": "Improvement over the base"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Admission: admitted (Source: R01)"
+        }
+      ],
+      "heading": "Admission"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Serving: full adapter served on akki-vm-ii, pruned adapter admitted, not served (Source: R01)"
+        }
+      ],
+      "heading": "Serving"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)"
+        }
+      ],
+      "heading": "Ekegusii"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)"
+        }
+      ],
+      "heading": "Kikamba"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)"
+        }
+      ],
+      "heading": "Gikuyu"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)"
+        }
+      ],
+      "heading": "Kalenjin"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)"
+        }
+      ],
+      "heading": "Dholuo"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)"
+        }
+      ],
+      "heading": "Luhya (Wanga)"
+    },
+    {
+      "blocks": [
+        {
+          "para": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)"
+        }
+      ],
+      "heading": "Kiswahili"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Evidence references"
+    }
+  ],
+  "seed": "training-m9j-74af7cef0a85/decide/2026-10-01",
+  "spec_id": "PP-m9j-74af7cef0a85",
+  "spec_type": "paper",
+  "subtitle": "Measurements, decisions and limits",
+  "title": "Training findings — Language identification · 8B text model",
+  "verdict_ref": "V-2026-10-01-m9j-74af7cef0a85",
+  "voice": "strategy-house"
+}

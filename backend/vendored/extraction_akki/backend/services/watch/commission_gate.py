@@ -34,6 +34,7 @@ PROTECTED_BOUNDARIES = {
     "training_lab.reinforcement_plan": "POST /api/training/lab/languages/reinforcement",
     "training_lab.shape_run": "POST /api/training/lab/board/new",
     "training_lab.training_request": "POST /api/training/lab/board/{run_id}/actions",
+    "training_lab.whitepaper": "POST /api/training/lab/board/{run_id}/actions",
     "training_lab.retire": "POST /api/training/lab/board/{run_id}/actions",
     "media.reference_import": "POST /api/media/reference/import",
     "census.commission": "POST /api/portal/census/run",

@@ -1,5 +1,14 @@
 # Akki — current engineering order
 
+## Priority override — after the 2026-10-01 correction sweep
+- **Delivered:** major test-reporting/engineering-copy corrections in live UI, original prototype sections on affected routes, DAP session fix, actual Your Models rows; two-artifact production/evidence APIs; released 8B training white paper; Estate package and Perception preparation binding. Verified, but NOT full Training/skill execution completion.
+- **P0:** Finish existing Training skill RealBackend/runner adapter and prospective stage controls in original conversational slots. Retain full two-artifact contract, calibration-first quote/CI/cap, qualified registry population, same-base two-arm comparison, complete per-example/classed manifest, recipe evidence, deterministic eligibility/yield/MOAC and real document handoff.
+- **P0 evidence gap:** the retained optimizer comparison is 1.7B, whereas successful calibration selected 8B. New manager correctly refuses that substitution. Do not weaken gates or backdate a plan onto the admitted historical run. Fresh independent labelled/sealed final material remains necessary for prospective acceptance.
+- **P1:** Complete Estate→Perception preparation/execution under actual rights and annotation evidence. Current package/preparation is a held proposal, not autonomous cleanup or an admitted dataset.
+- **P1:** Verify operator commissioning after its existing Watch hold expires (observed expiry 2026-10-01 19:10:19 UTC); no bypass or automatic release was performed. Legacy countdown presentation still requires its verbatim-data authority to be respected.
+- **Deferred:** resume M1/M6 only after requested Training/Estate completion; standalone M6 import still pending. M5/M7/M8 and unrelated work remain deferred.
+- Current evidence/status/handoff: `assessment_workspace/notes/requirements_alignment_20261001/CORRECTION_SWEEP.md` and `test_reports/pytest/requirements_alignment_final.xml` (23 targeted passes, not a product completion score).
+
 ## Priority override — 2026-10-01 audit before implementation
 - **P0:** Correct confirmed engineering-test/milestone leakage in Model Approval and 23 live implementation-placeholder routes, using banked HTML structures. Preserve legitimate domain evidence and requirements. Audit done; remediation not implemented.
 - **P0:** Do not close M4 comparison or general Training on narrower benchmark/fixture/carrier evidence. Reconcile original requirements and actual end-to-end evidence; do not adopt test-defined replacement features.
