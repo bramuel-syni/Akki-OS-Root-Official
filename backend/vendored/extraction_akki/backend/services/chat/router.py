@@ -17,10 +17,11 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
 
 from core import db
-from services.chat import journey, sessions
+from services.chat import evaluation, journey, sessions
 from services.northena.execution_models import Held
 from services.portal_operational.access import portal_scope
 from services.portal_operational.hold_reasons import disclosure
+from services.watch import commission_gate
 
 router = APIRouter(tags=['chat'])
 PRIVATE = {'Cache-Control': 'private, no-store', 'Pragma': 'no-cache'}
@@ -95,3 +96,37 @@ async def archive_session(session_id: str, request: Request):
         await _session_or_404(scope, session_id)
         await sessions.update(scope, session_id, {'archived': True})
         return JSONResponse({'status': 'archived', 'session_id': session_id}, headers=PRIVATE)
+
+
+class EvaluationRequest(BaseModel):
+    model_config = ConfigDict(extra='ignore')
+    size: int = Field(default=200, ge=evaluation.MIN_SIZE, le=evaluation.MAX_SIZE)
+    seed: int = Field(default=20261001, ge=0)
+
+
+@router.get('/api/chat/evaluations')
+async def list_evaluations(request: Request):
+    async with portal_scope(request) as scope:
+        rows = await evaluation.listing(scope)
+        return JSONResponse({'rows': rows, 'count': len(rows), 'rule': evaluation.RULE}, headers=PRIVATE)
+
+
+@router.get('/api/chat/evaluations/{evaluation_id}')
+async def get_evaluation(evaluation_id: str, request: Request):
+    async with portal_scope(request) as scope:
+        doc = await evaluation.get(scope, evaluation_id)
+        if doc is None:
+            raise HTTPException(404, 'No such evaluation in your estate.')
+        return JSONResponse(doc, headers=PRIVATE)
+
+
+@router.post('/api/chat/evaluations', status_code=202)
+async def start_evaluation(body: EvaluationRequest, request: Request):
+    """Operator-only: runs a bounded benchmark through the live answering journey in the background; model spend is real."""
+    async with portal_scope(request, write=True) as scope:
+        with commission_gate.crossing(scope, 'chat.evaluation', body.model_dump()):
+            try:
+                doc = await evaluation.start(scope, size=body.size, seed=body.seed)
+            except Held as exc:
+                return _held(exc)
+            return JSONResponse(doc, status_code=202, headers=PRIVATE)

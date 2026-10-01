@@ -59,6 +59,13 @@ PROTECTED_BOUNDARIES = {
     "dap.commission": "POST /api/portal/commission/drafts/{draft_id}/freeze",
     "dap.approval": "POST /api/portal/approvals/{request_id}/decide",
     "dap.delivery": "POST /api/portal/requests/{request_id}/deliveries/{delivery_id}/retrieve",
+    # M6-T4 invocation boundary: a permitted caller's query against a provisioned callable skill.
+    "skill.query": "POST /api/callable_skill/{skill_id}/query",
+    # M4 · a benchmark run spends real model calls on the tenant's behalf.
+    "chat.evaluation": "POST /api/chat/evaluations",
+    # M2 extension · authentication (observed under the account's own identity; never blocks sign-in) and egress.
+    "auth.login": "POST /api/auth/login",
+    "media.download": "GET /api/media/files/{file_id}/download",
 }
 DETECTORS = {
     "fast_violation": {"count": ("WATCH_GATE_FAST_REFUSALS", 3), "window_s": ("WATCH_GATE_FAST_WINDOW_S", 60),
@@ -70,6 +77,12 @@ DETECTORS = {
 }
 SHAPE_WINDOW = ("WATCH_GATE_SHAPE_WINDOW_S", 600)
 SHAPE_MIN_INTERVAL = ("WATCH_GATE_SHAPE_MIN_INTERVAL_S", 30)
+# Hysteresis after a release (DEFAULT until ruled): each release of this subject inside the band raises the detector's
+# re-mint threshold by one hit (capped at +2), so a subject hovering at the band does not flap contain → release → contain.
+HYSTERESIS = ("WATCH_GATE_HYSTERESIS_S", 3600)
+# Jittered bands (DEFAULT until ruled): the detection window is stretched or shrunk by up to this percentage, derived
+# per subject and detector from the record itself, so the exact band is not learnable from the published defaults.
+JITTER_PCT = ("WATCH_GATE_JITTER_PCT", 10)
 RESPONDER = "mkono.commission_gate"
 SEVER_MESSAGE = ("Your commissioning capability is severed by the Watch (action {action}). It holds rather than expires; "
                  "restoration requires a dual-control decision by your estate's operators. Reading your estate's records is unaffected.")
@@ -245,6 +258,19 @@ def _enforce(actor, boundary, now):
                                      f"(action {s['action_id']}): wait {_param(SHAPE_MIN_INTERVAL)} s between commissions.")
 
 
+def _jittered_window(principal, name, window_s):
+    pct = _param(JITTER_PCT)
+    if pct <= 0:
+        return window_s
+    seed = int(hashlib.sha256(f"{principal}|{name}".encode()).hexdigest()[:8], 16)
+    return max(1, int(round(window_s * (1 + ((seed % (2 * pct + 1)) - pct) / 100))))
+
+
+def _hysteresis_extra(mine, now):
+    band = now - timedelta(seconds=_param(HYSTERESIS))
+    return min(2, sum(1 for r in mine if r["kind"] == "release" and _parse(r["at"]) >= band))
+
+
 def _detect(actor, boundary, digest, now):
     """Macho reads the feed; Mkono maps; the witness attests the digest; nothing here can reach sever."""
     from services.watch import learning_loop, witness_binding
@@ -253,17 +279,20 @@ def _detect(actor, boundary, digest, now):
     tenant, principal = actor["tenant_id"], actor["principal_id"]
     all_rows = rows(tenant)
     mine = [r for r in all_rows if r.get("principal_id") == principal]
+    extra = _hysteresis_extra(mine, now)
     for name, spec in DETECTORS.items():
-        window_start = now - timedelta(seconds=_param(spec["window_s"]))
+        window_s = _jittered_window(principal, name, _param(spec["window_s"]))
+        window_start = now - timedelta(seconds=window_s)
+        threshold = _param(spec["count"]) + extra
         hits = [r for r in mine if r["kind"] == "crossing" and r["outcome"] == spec["outcome"] and _parse(r["at"]) >= window_start
                 and (not spec.get("same_digest") or (r["digest"] == digest and r["boundary"] == boundary))]
-        if len(hits) < _param(spec["count"]):
+        if len(hits) < threshold:
             continue
         if any(r["kind"] == "detection" and r["detector"] == name and _parse(r["at"]) >= window_start for r in mine):
             continue  # one verdict per detector per window
         verdict_id, action_id = f"mv_gate_{uuid.uuid4().hex[:12]}", f"ma_gate_{uuid.uuid4().hex[:12]}"
         evidence = (f"watch_observations://{tenant}/{principal}?detector={name}&boundary={boundary}&count={len(hits)}"
-                    f"&threshold={_param(spec['count'])}&window_s={_param(spec['window_s'])}&{learning_loop.label()}")
+                    f"&threshold={threshold}&window_s={window_s}&hysteresis={extra}&{learning_loop.label()}")
         try:
             verdict = mint_macho_verdict(MachoVerdict(verdict_id=verdict_id, verdict_class="externally_steerable",
                                                       subject_ref=subject_ref(principal), evidence_ref=evidence,
@@ -283,6 +312,7 @@ def _detect(actor, boundary, digest, now):
                          "boundary": boundary, "verdict_id": verdict.verdict_id, "action_id": action.action_id,
                          "action_class": action.action_class, "ttl_seconds": action.ttl_seconds, "evidence_ref": evidence,
                          "witness_attestation": witness, "requirements": learning_loop.label(),
+                         "threshold": threshold, "window_s": window_s, "hysteresis_extra": extra,
                          **({"anomaly": "contain_release_contain"} if action.action_class == "contain" and prior_release else {})})
 
 
@@ -353,6 +383,7 @@ def owned_records(tenant_id):
 
 
 def boundary_register():
-    return [{"boundary": k, "route": v, "observed": True, "mark_check": True,
-             "effector": "gate (sever → hold until dual-control release · contain → suspend commissioning · shape → throttle)"}
+    observe_only = {"auth.login": "observe only · sign-in is never blocked; detections act on the subject's commissioning"}
+    return [{"boundary": k, "route": v, "observed": True, "mark_check": k not in observe_only,
+             "effector": observe_only.get(k, "gate (sever → hold until dual-control release · contain → suspend commissioning · shape → throttle)")}
             for k, v in PROTECTED_BOUNDARIES.items()]

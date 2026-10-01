@@ -19,6 +19,7 @@ AdmissionRefusal_v0 discriminator.
 """
 from __future__ import annotations
 
+import logging
 from typing import Optional
 
 from fastapi import APIRouter, Request
@@ -102,11 +103,34 @@ async def login(body: LoginRequest):
     """Verify credentials + issue tokens. Wrong-password → 401 auth_missing."""
     identity = await user_store.authenticate(str(body.email), body.password)
     if identity is None:
+        await _observe_authentication(str(body.email), None)
         return auth_refusal.emit(
             "auth_missing",
             detail="Invalid credentials.",
         )
+    await _observe_authentication(str(body.email), identity)
     return _issue_token_pair(identity)
+
+
+async def _observe_authentication(email, identity):
+    """M2 authentication boundary: a sign-in attempt against an admitted tenant account is a crossing the Watch sees
+    under that account's own identity (refused on a wrong password, admitted on success). Observation only — the
+    gate never blocks sign-in; detections act on the subject's commissioning, reads stay unaffected. Unknown
+    e-mails have no admitted identity to observe and are not recorded."""
+    import hashlib
+    import time
+    from services.census_autonomy.operational_scope import CANONICAL_TENANT_IDS
+    from services.watch import commission_gate
+    try:
+        doc = await user_store.get_by_email(email)
+        if not doc or doc.get("tenant_id") not in CANONICAL_TENANT_IDS:
+            return
+        actor = {"tenant_id": doc["tenant_id"], "principal_id": str(doc["_id"]), "roles": doc.get("roles", [])}
+        # refusals share one digest (the detectors count them); each admitted sign-in is its own event, not a repeat.
+        digest = hashlib.sha256((f"login:{doc['_id']}" + (f":{time.time_ns()}" if identity else "")).encode()).hexdigest()
+        commission_gate.observe(actor, "auth.login", "admitted" if identity else "refused", 200 if identity else 401, digest)
+    except Exception:  # the record, not the sign-in, is what fails here; it is logged, never fatal to authentication
+        logging.getLogger(__name__).exception("auth boundary observation failed")
 
 
 @router.post("/refresh", response_model=TokenPair)

@@ -411,7 +411,11 @@ MODES = {'attest': attest, 'admit_limits': admit_limits, 'submit': submit, 'stat
 def execute(control):
     if control.get('hostname_expected') and socket.gethostname() != control['hostname_expected']:
         raise ValueError('REMOTE_IDENTITY_MISMATCH')
-    return _receipted({'protocol': PROTOCOL, 'mode': control['mode'], **MODES[control['mode']](control)})
+    mode = control['mode']
+    if mode not in MODES:
+        from services.extraction_runtime import skill_worker  # grounded-retrieval skill modes, same runtime, same identity
+        return _receipted({'protocol': PROTOCOL, 'mode': mode, **skill_worker.MODES[mode](control)})
+    return _receipted({'protocol': PROTOCOL, 'mode': mode, **MODES[mode](control)})
 
 
 def _result(control, state, reason, *, artifacts=(), usage=None, progress=None, extra=None):

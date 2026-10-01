@@ -14,7 +14,7 @@ from services.watch.router import _load_kind
 LANE = {"annotate": "noted", "shape": "acted", "contain": "acted", "sever": "held"}
 
 
-def state_for(actor):
+def state_for(actor, independent=None):
     tenant = actor['tenant_id']
     now = datetime.now(timezone.utc)
     commission_gate.reconcile_expired(tenant, now)
@@ -83,6 +83,9 @@ def state_for(actor):
                      'census_run_id': None, 'effect_verified': bool(d['executed']), 'walk': None, 'notice': None,
                      'basis': f"Reserved human decision · {len(d['approvers'])} of {d['approvals_needed']} approvals · blast {d['blast']}"})
     live_requirements = console_projection.learning(feed)
+    watchdog = independent or {'placed': False, 'statement': 'Independent watchdog state not read on this pass'}
+    witness_status = ('Record witness attests gate action digests and runs the break-in test from the application pod. '
+                      + watchdog['statement'] + '.')
     return {
         'tenant_id': tenant, 'records': sorted(rows, key=lambda r: r.get('observed_at') or '', reverse=True),
         'counts': {'observations': len(runs), 'gate_crossings': gate['counts']['crossings'], 'gate_admitted': gate['counts']['admitted'],
@@ -92,11 +95,13 @@ def state_for(actor):
         'tiles': console_projection.tiles(feed, items, now), 'charts': console_projection.charts(feed),
         'patterns': console_projection.patterns(feed, now), 'mirage': console_projection.mirage(feed, now),
         'marked': console_projection.marked(tenant, feed), 'decisions': console_projection.panel(tenant, items),
-        'witness': witness_binding.summary(), 'learning': live_requirements, 'budgets': console_projection.budgets(feed, now),
+        'witness': {**witness_binding.summary(), 'independent': watchdog}, 'learning': live_requirements, 'budgets': console_projection.budgets(feed, now),
         'protected_boundaries': commission_gate.boundary_register(),
         'coverage': 'Census commissions, commission-gate crossings and explicitly tenant-owned Watch records only',
         'enforcement_status': 'Commission gates enforce sever/contain/shape with effect receipts and evaluate mark state on every pass; other effectors not qualified',
-        'detector_status': f"Deterministic gate detectors (fast_violation, slow_play, permitted_but_misused) under {live_requirements['label']}; tripwire conviction is structural; learned detectors not wired",
-        'witness_status': 'Record witness attests gate action digests and runs the break-in test from the application pod; a separately deployed watchdog is not yet placed',
-        'never_all_clear': 'Detection thresholds are seam defaults until ruled; the independent watchdog is not placed; this panel is built never to render all-clear.',
+        'detector_status': f"Deterministic gate detectors (fast_violation, slow_play, permitted_but_misused) under {live_requirements['label']} with hysteresis after release; tripwire conviction is structural; learned detectors not wired",
+        'witness_status': witness_status,
+        'never_all_clear': ('Detection thresholds are seam defaults until ruled; '
+                            + ('the independent watchdog reports silence' if watchdog.get('silent') else 'the independent watchdog has recorded a divergence' if watchdog.get('divergences_on_record') else 'learned detectors are not wired')
+                            + '; this panel is built never to render all-clear.'),
     }

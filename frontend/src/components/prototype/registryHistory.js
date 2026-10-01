@@ -14,7 +14,7 @@ const bgOf = row => statusOf(row) === 'Running' ? 'rgba(22,39,74,.10)' : statusO
 const idOf = row => row?.record_id || row?.census_run_id;
 const coverage = row => row?.coverage ? `${row.coverage.completed} of ${row.coverage.declared} source scopes completed` : `${row?.source_count ?? row?.source_ids?.length ?? 'Unrecorded'} source groups`;
 const duration = row => row?.status === 'PENDING' ? 'running now' : row?.duration_seconds != null ? `${Math.floor(row.duration_seconds / 60)}m ${Math.round(row.duration_seconds % 60)}s` : 'duration not recorded';
-const exclusions = row => row?.source_details?.filter(s => s.status !== 'complete').map(s => `${s.label}: ${s.reason_code || s.status}`).join('; ') || row?.reason_code || '';
+const exclusions = row => row?.source_details?.filter(s => s.status !== 'complete').map(s => `${s.label}: ${s.exclusion?.plain || s.reason_code || s.status}`).join('; ') || row?.reason_code || '';
 const description = {
   data_held: 'Total volume across every connected source', sources_full: 'Counted only when every row or file header was reached',
   share_measured: 'Read directly this census, not carried from an earlier run', duplicates: 'Byte-identical or near-identical copies found across sources',

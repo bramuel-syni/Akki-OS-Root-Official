@@ -18,6 +18,7 @@ def isolated(monkeypatch, tmp_path):
                      ("WATCH_NOTICES_DIR", "notices"), ("WATCH_DECISIONS_DIR", "decisions"), ("WATCH_REQUIREMENTS_DIR", "requirements")):
         monkeypatch.setenv(key, str(tmp_path / sub))
     monkeypatch.setenv("WATCH_CONTAIN_DEFAULT_TTL_SECONDS", "3600")
+    monkeypatch.setenv("WATCH_GATE_JITTER_PCT", "0")  # exact bands for the timing proofs below; jitter has its own test
     return tmp_path
 
 
@@ -149,4 +150,35 @@ def test_unobservable_crossing_fails_closed(isolated, monkeypatch):
     with pytest.raises(HTTPException) as exc, gate.crossing(OPERATOR, "census.commission", {}):
         pass
     assert exc.value.status_code == 503 and "not landed" in exc.value.detail
-    assert [b["boundary"] for b in gate.boundary_register()] == ["census.commission", "census.plan", "language_cognition.commission"]
+    register = [b["boundary"] for b in gate.boundary_register()]
+    assert {"census.commission", "census.plan", "language_cognition.commission", "dap.commission", "dap.approval", "dap.delivery", "skill.query"} <= set(register)
+    assert register == list(gate.PROTECTED_BOUNDARIES)
+
+
+def test_hysteresis_raises_the_band_after_a_release(isolated, monkeypatch):
+    """A subject released inside the hysteresis band needs one more hit than the default before the same detector re-mints."""
+    clock = [T0]
+    monkeypatch.setattr(gate, "_now", lambda: clock[0])
+    gate._append("RMS", {"kind": "release", "at": gate._iso(T0 - timedelta(minutes=5)), "tenant_id": "RMS", "principal_id": "p-analyst",
+                         "action_ref": "ma_gate_previous", "outcome": "expired_clean"})
+    for n in range(3):  # three refusals: the DEFAULT fast band, no longer enough after a release
+        clock[0] = T0 + timedelta(seconds=n)
+        with pytest.raises(HTTPException), gate.crossing(ACTOR, "census.commission", {"n": n}):
+            raise HTTPException(403, "no")
+    assert not any(r["kind"] == "detection" for r in gate.rows("RMS"))
+    clock[0] = T0 + timedelta(seconds=4)
+    with pytest.raises(HTTPException), gate.crossing(ACTOR, "census.commission", {"n": 4}):
+        raise HTTPException(403, "no")
+    detections = [r for r in gate.rows("RMS") if r["kind"] == "detection"]
+    assert len(detections) == 1 and detections[0]["threshold"] == 4 and detections[0]["hysteresis_extra"] == 1
+    assert "hysteresis=1" in detections[0]["evidence_ref"] and detections[0]["action_class"] == "shape"
+
+
+def test_jittered_band_is_deterministic_per_subject_and_bounded(isolated, monkeypatch):
+    monkeypatch.setenv("WATCH_GATE_JITTER_PCT", "10")
+    a, b = gate._jittered_window("p-analyst", "fast_violation", 60), gate._jittered_window("p-analyst", "fast_violation", 60)
+    assert a == b and 54 <= a <= 66
+    windows = {gate._jittered_window(f"p-{i}", "fast_violation", 60) for i in range(40)}
+    assert len(windows) > 1 and all(54 <= w <= 66 for w in windows)
+    monkeypatch.setenv("WATCH_GATE_JITTER_PCT", "0")
+    assert gate._jittered_window("p-analyst", "fast_violation", 60) == 60

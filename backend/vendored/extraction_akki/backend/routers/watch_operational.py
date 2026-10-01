@@ -1,9 +1,16 @@
 """Ordinary tenant-bound Watch reader and the reserved human set; no public authority-minting endpoints."""
-from fastapi import APIRouter, Body, Depends, HTTPException
-from pydantic import BaseModel, ConfigDict
+import hmac
+import os
+import re
+from datetime import datetime, timezone
 
+from fastapi import APIRouter, BackgroundTasks, Body, Depends, Header, HTTPException, Request
+from pydantic import BaseModel, ConfigDict
+from pymongo.errors import DuplicateKeyError
+
+from core import db
 from services.enforce.census_identity import census_identity
-from services.watch import decisions, learning_loop, notices, tripwire, witness_binding
+from services.watch import decisions, independent_witness, learning_loop, notices, tripwire, witness_binding
 from services.watch.operational_reads import state_for
 from services.watch import commission_gate
 
@@ -24,8 +31,8 @@ def _operator(actor):
 @router.get('/api/portal/watch/state', response_model=WatchEnvelope)
 @router.get('/api/watch/state', response_model=WatchEnvelope)
 @router.get('/api/grey_mirror/state', response_model=WatchEnvelope)
-def state(actor=Depends(census_identity)):
-    return state_for(_operator(actor))
+async def state(actor=Depends(census_identity)):
+    return state_for(_operator(actor), independent=await independent_witness.status(db))
 
 
 @router.get('/api/portal/watch/notices', response_model=WatchEnvelope)
@@ -112,6 +119,45 @@ def break_in(body: dict = Body(default={}), actor=Depends(census_identity)):
     result = witness_binding.break_in(target)
     commission_gate._append(actor['tenant_id'], {'kind': 'break_in', 'tenant_id': actor['tenant_id'], 'principal_id': actor['principal_id'], **result})
     return {'tenant_id': actor['tenant_id'], 'break_in': result}
+
+
+@router.get('/api/portal/watch/witness', response_model=WatchEnvelope)
+async def witness_status(actor=Depends(census_identity)):
+    """The independent watchdog's state: host, last countersigned pass, findings, and whether it has gone silent."""
+    _operator(actor)
+    return {'tenant_id': actor['tenant_id'], **await independent_witness.status(db)}
+
+
+@router.post('/api/portal/watch/witness/pass', response_model=WatchEnvelope)
+async def witness_pass(actor=Depends(census_identity)):
+    """Run one witness pass now (estate operator). The host judges and signs; this only verifies and banks."""
+    _operator(actor)
+    result = await independent_witness.run_pass(db, actor=actor['principal_id'])
+    return {'tenant_id': actor['tenant_id'], 'pass': {k: v for k, v in result.items() if k != 'statement'}}
+
+
+@router.post('/api/watch/witness/cron')
+async def witness_cron(request: Request, background: BackgroundTasks, authorization: str | None = Header(default=None), x_webhook_id: str | None = Header(default=None)):
+    # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    expected = os.environ['WEBHOOK_CRON_SECRET']
+    supplied = authorization[7:] if authorization and authorization.startswith('Bearer ') else ''
+    if not supplied or not hmac.compare_digest(supplied, expected):
+        raise HTTPException(401, 'Invalid scheduler authorization')
+    try:
+        body = await request.json()
+        if not isinstance(body, dict) or body.get('event') != 'schedule.triggered' or not isinstance(body.get('run_id'), str) or not body['run_id'] or body.get('data') is not None:
+            raise ValueError()
+        key = x_webhook_id or body['run_id']
+        if not re.fullmatch(r'[a-zA-Z0-9_.:-]{1,150}', key):
+            raise ValueError()
+    except Exception as exc:
+        raise HTTPException(400, 'Invalid schedule envelope') from exc
+    try:
+        await db.watch_witness_webhooks.insert_one({'_id': key, 'received_at': datetime.now(timezone.utc).isoformat()})
+    except DuplicateKeyError:
+        return {'accepted': True, 'duplicate': True}
+    background.add_task(independent_witness.run_pass, db, 'scheduler')
+    return {'accepted': True, 'duplicate': False}
 
 
 def unbound_authority(actor=Depends(census_identity)):

@@ -44,6 +44,20 @@ def rms_analyst_headers():
     return {"Authorization": f"Bearer {tok}", "Content-Type": "application/json"}
 
 
+@pytest.fixture(scope="module")
+def current_ready(digicow_headers):
+    """The newest ready request whose plan authority is still current (plans sign retrieval for 30 days).
+    The historical 29 Sep request stays readable but its result is honestly held as expired."""
+    rows = requests.get(f"{BASE_URL}/api/portal/requests", headers=digicow_headers, timeout=60).json().get("rows", [])
+    for row in rows:
+        if row.get("state") != "ready":
+            continue
+        r = requests.get(f"{BASE_URL}/api/portal/requests/{row['request_id']}/result", headers=digicow_headers, timeout=60)
+        if r.status_code == 200:
+            return row["request_id"]
+    pytest.skip("no ready DIGICOW request with a current plan authority; commission one through the DAP UI first")
+
+
 # ---------- 1. READ-ONLY /run on ready request ----------
 class TestReadyRunView:
     def test_run_view_phases_and_terminal(self, digicow_headers):
@@ -107,12 +121,17 @@ class TestReadyRequestViews:
         pa = body.get("permitted_actions") or []
         assert pa == ["result"], f"permitted_actions={pa}"
 
-    def test_result_view(self, digicow_headers):
-        r = requests.get(f"{BASE_URL}/api/portal/requests/{REQ_READY}/result", headers=digicow_headers, timeout=60)
+    def test_result_view(self, digicow_headers, current_ready):
+        r = requests.get(f"{BASE_URL}/api/portal/requests/{current_ready}/result", headers=digicow_headers, timeout=60)
         assert r.status_code == 200, r.text
         body = r.json()
         assert body.get("execution_verified") is True
         assert body.get("delivery_verified") is False
+
+    def test_historical_result_held_as_expired_authority(self, digicow_headers):
+        r = requests.get(f"{BASE_URL}/api/portal/requests/{REQ_READY}/result", headers=digicow_headers, timeout=60)
+        assert r.status_code == 409, r.text
+        assert "SIGNER_OR_RECEIPT_NOT_CURRENT" in r.text
 
     def test_commission_view_matches_run(self, digicow_headers):
         r_c = requests.get(f"{BASE_URL}/api/portal/requests/{REQ_READY}/commission", headers=digicow_headers, timeout=60)
@@ -148,10 +167,10 @@ class TestReadyRequestViews:
 
 # ---------- 3. Idempotent re-advance on ready request ----------
 class TestIdempotentAdvance:
-    def test_advance_three_times_stable(self, digicow_headers):
-        first_freshness = None
+    def test_advance_three_times_stable(self, digicow_headers, current_ready):
+        before = requests.get(f"{BASE_URL}/api/portal/requests/{current_ready}/run", headers=digicow_headers, timeout=60).json()
         for i in range(3):
-            r = requests.post(f"{BASE_URL}/api/portal/commission/{REQ_READY}/advance",
+            r = requests.post(f"{BASE_URL}/api/portal/commission/{current_ready}/advance",
                               headers=digicow_headers, json={}, timeout=LONG_TIMEOUT)
             assert r.status_code == 200, f"call {i}: {r.status_code} {r.text[:400]}"
             body = r.json()
@@ -162,10 +181,11 @@ class TestIdempotentAdvance:
             assert reason == "VERIFIED_RESULT_RECORDED", f"call {i} reason={reason}"
 
         # freshness_stamp unchanged
-        r = requests.get(f"{BASE_URL}/api/portal/requests/{REQ_READY}/run", headers=digicow_headers, timeout=60)
+        r = requests.get(f"{BASE_URL}/api/portal/requests/{current_ready}/run", headers=digicow_headers, timeout=60)
         assert r.status_code == 200
         fs = (r.json().get("registry") or {}).get("records", [{}])[0].get("freshness_stamp", {})
-        assert fs.get("logged_date") == "2026-09-29T15:38:40+00:00", f"freshness drifted: {fs}"
+        first = (before.get("registry") or {}).get("records", [{}])[0].get("freshness_stamp", {})
+        assert fs.get("logged_date") and fs.get("logged_date") == first.get("logged_date"), f"freshness drifted: {first} -> {fs}"
 
 
 # ---------- 4. Stopped run view ----------
@@ -227,13 +247,13 @@ class TestLegacyRegistrationBlocked:
 
 # ---------- 6. Delivery held honestly ----------
 class TestDeliveryHeld:
-    def test_delivery_held_custody_origin_unavailable(self, digicow_headers):
+    def test_delivery_held_custody_origin_unavailable(self, digicow_headers, current_ready):
         idem = f"qa-delivery-{int(time.time())}-{uuid.uuid4().hex[:6]}"
         body = {
-            "artifact_ref": f"akki://artifact/DIGICOW/{REQ_READY}/qualified-units",
+            "artifact_ref": f"akki://artifact/DIGICOW/{current_ready}/qualified-units",
             "idempotency_key": idem,
         }
-        r = requests.post(f"{BASE_URL}/api/portal/requests/{REQ_READY}/delivery",
+        r = requests.post(f"{BASE_URL}/api/portal/requests/{current_ready}/delivery",
                           headers=digicow_headers, json=body, timeout=LONG_TIMEOUT)
         assert r.status_code == 409, f"expected 409 got {r.status_code}: {r.text[:400]}"
         try:

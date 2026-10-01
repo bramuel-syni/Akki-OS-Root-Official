@@ -12,12 +12,13 @@ from __future__ import annotations
 import uuid
 from typing import Any, Dict
 
-from fastapi import APIRouter, Body, Request
+from fastapi import APIRouter, Body, HTTPException, Request
 from fastapi.responses import JSONResponse
 
 from services.transform_forms.callable_skill_gate import require_governed_skill_query
 from services.portal_operational.skill_query import SkillQuery, refuse_unadmitted
 from services.portal_operational.access import portal_scope
+from services.watch import commission_gate
 from services.transform_forms.callable_skill_persistence import provision_skill
 from services.transform_forms.knowledge_artifact import build_knowledge_artifact
 from core import db
@@ -46,31 +47,37 @@ async def produce_knowledge_artifact(body: Dict[str, Any] = Body(...)):
 
 
 @router.post("/transform/callable_skill/provision")
-async def provision_callable_skill(body: Dict[str, Any] = Body(...)):
+async def provision_callable_skill(request: Request, body: Dict[str, Any] = Body(...)):
     """TF-R2: provision a callable skill. Write-once slice-freeze.
 
-    `skill_id` is minted server-side (uuid.hex). `corpus_slice_ref` +
-    `key_grant_id` + `floor` + `scope` + `endpoint_path` are caller-supplied.
+    Owner ruling 2026-10-01 (3a): provisioning requires an authenticated operator identity, and the corpus slice must
+    belong to the operator's own tenant. Provisioning grants nothing by itself; every query is gated on the caller's
+    own key grant. `skill_id` is minted server-side (uuid.hex).
     """
-    try:
-        skill_id = uuid.uuid4().hex
-        record = await provision_skill(
-            db,
-            skill_id=skill_id,
-            corpus_slice_ref=body["corpus_slice_ref"],
-            key_grant_id=body["key_grant_id"],
-            floor=body["floor"],
-            scope=body["scope"],
-            endpoint_path=body.get(
-                "endpoint_path", f"/api/callable_skill/{skill_id}/query"
-            ),
-        )
-    except KeyError as exc:
-        return JSONResponse(
-            status_code=400,
-            content={"outcome": "invalid_input", "detail": f"missing field: {exc}"},
-        )
-    return record.model_dump()
+    async with portal_scope(request, write=True) as scope:
+        corpus = str(body.get("corpus_slice_ref", ""))
+        if not corpus.startswith(f"akki://artifact/{scope['tenant_id']}/"):
+            return JSONResponse(status_code=403, content={"outcome": "refused", "reason_code": "SKILL_CORPUS_OUTSIDE_TENANT",
+                                                          "detail": "A skill may only be provisioned over a sealed artefact of your own tenant."})
+        try:
+            skill_id = uuid.uuid4().hex
+            record = await provision_skill(
+                db,
+                skill_id=skill_id,
+                corpus_slice_ref=corpus,
+                key_grant_id=body["key_grant_id"],
+                floor=body["floor"],
+                scope=body["scope"],
+                endpoint_path=body.get(
+                    "endpoint_path", f"/api/callable_skill/{skill_id}/query"
+                ),
+            )
+        except KeyError as exc:
+            return JSONResponse(
+                status_code=400,
+                content={"outcome": "invalid_input", "detail": f"missing field: {exc}"},
+            )
+        return record.model_dump()
 
 
 @router.post("/callable_skill/{skill_id}/query")
@@ -81,36 +88,54 @@ async def query_callable_skill(
 ):
     """TF-E4 gate first. No fabricated answer or caller-asserted defensibility.
 
-    A future admitted executor must supply its own evidence-derived class to
-    ensure_response_carries_class. No executor is wired here yet; refusal is
-    first-class and receipted, not a pretend floor-level answer.
+    With the native runtime bound, the intent is commissioned (Plan, approvals, worker-measured quality/context
+    receipts) and advanced through the ordinary execution spine; the deterministic unit-retrieval executor answers
+    with whole sealed units and its grounding is verified before anything is returned. Without a runtime the
+    refusal stays first-class and receipted.
     """
     gate_result = await require_governed_skill_query(request, skill_id, db)
     if isinstance(gate_result, JSONResponse):
+        if gate_result.status_code == 403:
+            await _observe_refused_invocation(request, skill_id)
         return gate_result
     async with portal_scope(request) as scope:
         state = getattr(getattr(request, 'app', None), 'state', None)
         runtime = getattr(state, 'native_runtime', None)
         if runtime is not None:
-            from services.portal_operational import query_intents, query_execution
+            from services.portal_operational import query_intents, query_execution, skill_commission
             from services.northena.execution_models import Held
             from routers.skill_queries import fail, PRIVATE
             key = request.headers.get('Idempotency-Key')
             if not key:
                 return JSONResponse({'outcome':'held','reason_code':'SKILL_QUERY_IDEMPOTENCY_REQUIRED',
                     'execution_verified':False,'delivery_verified':False},status_code=422,headers=PRIVATE)
-            try:
-                intent_body = query_intents.QueryIntentBody(query=body.query,idempotency_key=key)
-                intent = await query_intents.submit(db,scope,skill_id,gate_result,intent_body)
-                result = await query_execution.advance(db,scope,skill_id,intent['row']['run_id'],gate_result,runtime)
-                current = await require_governed_skill_query(request, skill_id, db)
-                if isinstance(current, JSONResponse):
-                    return current
-                query_intents.require_current_provisioning(intent,current)
-                return JSONResponse(result,status_code=409 if result['outcome']=='held' else 200,headers=PRIVATE)
-            except Held as exc:
-                return fail(exc)
-            except ValueError:
-                return JSONResponse({'outcome':'held','reason_code':'SKILL_QUERY_IDEMPOTENCY_INVALID'},status_code=422,headers=PRIVATE)
+            with commission_gate.crossing(scope, 'skill.query', {'skill_id': skill_id, 'idempotency_key': key}):
+                try:
+                    intent_body = query_intents.QueryIntentBody(query=body.query,idempotency_key=key)
+                    intent = await query_intents.submit(db,scope,skill_id,gate_result,intent_body)
+                    await skill_commission.ensure(db, scope, gate_result, intent, body.query)
+                    result = await query_execution.advance(db,scope,skill_id,intent['row']['run_id'],gate_result,runtime)
+                    current = await require_governed_skill_query(request, skill_id, db)
+                    if isinstance(current, JSONResponse):
+                        return current
+                    query_intents.require_current_provisioning(intent,current)
+                    return JSONResponse(result,status_code=409 if result['outcome']=='held' else 200,headers=PRIVATE)
+                except Held as exc:
+                    return fail(exc)
+                except ValueError:
+                    return JSONResponse({'outcome':'held','reason_code':'SKILL_QUERY_IDEMPOTENCY_INVALID'},status_code=422,headers=PRIVATE)
         refusal = await refuse_unadmitted(db, scope, skill_id, body)
         return JSONResponse(status_code=409, content=refusal)
+
+
+async def _observe_refused_invocation(request, skill_id):
+    """An authenticated caller without the grant is a refused crossing of the invocation boundary; the Watch
+    sees it under the caller's own identity. Anonymous callers have no identity to observe."""
+    import hashlib
+    import json
+    try:
+        async with portal_scope(request) as scope:
+            digest = hashlib.sha256(json.dumps({'skill_id': skill_id}, sort_keys=True).encode()).hexdigest()
+            commission_gate.observe(scope, 'skill.query', 'refused', 403, digest)
+    except (HTTPException, commission_gate.GateUnobservable):
+        return

@@ -18,8 +18,9 @@ export function watchStateModel({ data, error, state, setState, show }) {
   const t = data.tiles || {};
   const chart = state.chart || 'activity';
   const rows = data.charts?.[chart] || [];
-  const witness = () => show({ title: 'Is the watch itself working', code: data.witness?.identity ? 'Measured' : 'Not placed',
-    body: `${data.witness_status}. ${count(data.witness?.attestations)} digest attestations · ${count(data.witness?.tamper_alarms)} tamper alarms · placement: ${data.witness?.placement}. ${data.learning?.label}.`,
+  const dog = data.witness?.independent;
+  const witness = () => show({ title: 'Is the watch itself working', code: dog?.placed ? (dog.silent ? 'Watchdog silent' : dog.last_pass?.verdict === 'divergence' ? 'Divergence' : 'Measured') : data.witness?.identity ? 'Measured' : 'Not placed',
+    body: `${data.witness_status} ${count(data.witness?.attestations)} digest attestations · ${count(data.witness?.tamper_alarms)} tamper alarms · record witness placement: ${data.witness?.placement}.${dog?.placed ? ` Independent watchdog on ${dog.host}: ${count(dog.passes_on_record)} countersigned passes, ${count(dog.divergences_on_record)} divergences${dog.last_pass ? `, last pass ${dog.last_pass.verdict} at ${dog.last_pass.at}` : ''}.` : ''} ${data.learning?.label}.`,
     next: data.never_all_clear });
   return {
     gmTopEyebrow: 'The Watch — State',

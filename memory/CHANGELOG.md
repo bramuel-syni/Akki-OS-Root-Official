@@ -1,5 +1,12 @@
 # Akki implementation history
 
+## 2026-10-01 — requirements-alignment audit and skills assessment (no product changes)
+- Paused the M1/M6 swipe per latest user directive; audited live routes and service boundaries against frozen owner HTML and attached final Skills Brief.
+- Confirmed engineering benchmark UI, milestone reporting and 23 implementation-placeholder pages; recorded routes/source traces, required corrections and legitimate evidence that must remain.
+- Assessed Training, Estate, Rules/Registry, Compliance evidence, Perception datasets and UI Content manager for reuse. General Training orchestration and surface-studio runtime are not complete; no new integration/framework installed.
+- Verification: desktop/mobile browser inspection, external OpenAPI, one completed read-only verification pass (`iteration_75.json`) plus main-agent adjudication. M6 import failure reproduced; PYTHONPATH collection succeeds only, no fix or worker execution claimed.
+- Saved audit/assessment under `assessment_workspace/notes/requirements_alignment_20261001/`; banked source DOCX. No prototype/application/auth/runtime/data changes. No milestone or requirements-completion percentage closed.
+
 ## 2026-10-01 — Measured sound observables layer (owner-directed)
 
 - Added `services/audio_plane_v1/acoustic_observables.py` (streaming DSP engine, ~58 registered observables, 4 s-window signature, channel condition with basis, artefact detection) and `measured_backends.py` (ratified §4.3/§4.4 seam backends; refusal for unmeasured segments).

@@ -101,3 +101,7 @@ def disclosure(code, *, receipt_ref=None):
     value = public_reason(code)
     return {"reason_code": value.code, "reason": value.message,
             "next_action": value.next_action, "reason_receipt_ref": receipt_ref}
+
+
+_group('CHAT_EVALUATION_ALREADY_RUNNING', 'An answer-quality evaluation is already running for this estate.',
+       'Wait for it to finish or stop reporting before starting another; results are kept per run.')

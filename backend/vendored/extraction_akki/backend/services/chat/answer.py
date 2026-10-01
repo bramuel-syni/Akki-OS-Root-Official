@@ -48,7 +48,7 @@ def parse(text):
 def ground(parsed, selected_refs, raw_text):
     """Mechanical grounding: citations must name units in the window; unparsable replies are marked, not smoothed."""
     if parsed is None:
-        return {'answer': raw_text.strip()[:4000], 'cited_refs': [], 'sufficient': False, 'grounding': 'unverified_format',
+        return {'answer': raw_text.strip()[:4000], 'cited_refs': [], 'sufficient': False, 'grounding': 'unverified_format', 'citations_dropped': 0,
                 'unsupported': 'The model did not return the required citation structure; treat this text as unverified.'}
     cited = [c for c in parsed.get('cited_units') or [] if isinstance(c, str)]
     known = [c for c in dict.fromkeys(cited) if c in selected_refs]

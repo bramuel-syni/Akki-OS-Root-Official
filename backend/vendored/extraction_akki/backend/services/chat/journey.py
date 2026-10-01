@@ -101,8 +101,10 @@ async def ask(db, scope, *, question, session_id=None, model=DEFAULT_MODEL, prov
         turn.update({'answer': decision['acknowledgement'], 'kind': 'fresh_acknowledgement'})
     else:
         subject = decision['sub_objective']
-        turn.update({'refused': True, 'refusal_reason': f"Out of scope ({subject}): no qualified unit and no censused table of the {scope['tenant_id']} estate names this subject. Nothing was read or dispatched."
-                     if subject == 'unresolved' else f"Refused by the gate: {decision['reason']}."})
+        weak = (decision.get('subject_match') or {}).get('weak_regions') or []
+        aside = f" {len(weak)} loosely matching unit set(s) in {', '.join(weak)} were set aside under rule {deciding.SUBJECT_RULE}: the question does not name that subject." if weak else ''
+        turn.update({'refused': True, 'refusal_reason': (f"Out of scope ({subject}): no qualified unit and no censused table of the {scope['tenant_id']} estate names this subject.{aside} Nothing was read or dispatched."
+                     if subject == 'unresolved' else f"Refused by the gate: {decision['reason']}.")})
     return await _close(scope, session['session_id'], turn, started)
 
 

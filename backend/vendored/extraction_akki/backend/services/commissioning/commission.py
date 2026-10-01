@@ -26,6 +26,10 @@ from services.work_orders import packaging
 from services.work_orders.kind_profiles import profile_for_operation
 
 DEADLINE_SECONDS = 24 * 3600
+# The plan is retrieval authority as well as dispatch authority: it lives as long as the approvals that sign it
+# (30 days). Dispatch is bounded separately by request.deadline_epoch (EXECUTION_DEADLINE_EXPIRED); a verified
+# result must stay retrievable through the ordinary gate after the dispatch window closes (M3-T5).
+PLAN_TTL_SECONDS = 30 * 86400
 PLANNER_KEY = 'northena-planner'
 SCOPE_GROUP = 'scope.requester'
 STAND_IN_REASON = 'INTERIM_PILOT_ADMISSION_STAND_IN'
@@ -140,7 +144,7 @@ async def commission(db, scope, draft_id, idempotency_key):
         'dial_versions': dials['dial_versions'], 'policy_versions': dials['policy_versions'],
         'termination_grace_seconds': int(bounds.get('termination_grace_seconds', 60))}))
     plan_receipt = signing.sign_receipt(tenant, planner['principal_id'], PLANNER_KEY, 'plan', plan.model_dump(mode='json'),
-                                        scope_refs=request.scope_refs, request_sha256=request.digest(), ttl_seconds=DEADLINE_SECONDS + 3600)
+                                        scope_refs=request.scope_refs, request_sha256=request.digest(), ttl_seconds=PLAN_TTL_SECONDS)
     plan_ref = await receipts.record(plan_receipt)
     approvals = await sign_approvals(db, receipts, scope, request, plan, plan_ref, stand_ins)
     selection = {'source_id': envelope['units'][0], 'source_ref': table['source_ref'], 'database': table['database'],

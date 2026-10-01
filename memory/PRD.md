@@ -1,5 +1,19 @@
 # Akki — product requirements and current continuity
 
+## Current priority — requirement alignment before implementation (2026-10-01)
+- Latest user directive: audit end to end for engineering tests/milestone reporting promoted to product UI; do not flatten requirements or redesign the banked HTML. User approved assessment first. Previous M1/M6 swipe is paused, not completed.
+- Read the supplied **Akki_Skills_Brief_Final (1).docx**. Original retained at `assessment_workspace/incoming/skills_brief_20261001/Akki_Skills_Brief_Final.docx`.
+- Audit verdict: **not fully aligned**. Browser-confirmed Model Approval engineering benchmark launcher and recovery milestone prose; 23 live placeholder routes expose internal implementation notes; additional DAP/commissioning presentation issues. Application/prototypes/auth were not changed.
+- Findings, source traces, verification limits and corrected priorities: `assessment_workspace/notes/requirements_alignment_20261001/AUDIT.md`. Domain-skill reuse and expert/manager/deterministic/LLM boundaries: sibling `SKILLS_ASSESSMENT.md`.
+- Preserve required product evidence: per-stratum accuracy × coverage, held-out sets, calibration/CI quote, MOAC, provenance, model decisions, document QA and release evidence. Do not globally remove “test”, “checks”, rule IDs or progress controls. Prototype itself defines training stage-weighted percentages.
+- Handoff correction: Registry already reads `/api/portal/census/overview` and consumes frontier data via `registryEstate.js`; `CensusWorkspace.jsx` is not the mounted Registry. Do not create duplicate UI/wiring.
+- Training has real specialized runners and reusable contracts, but owner-created “Begin training” records a held request, not general training execution. Complete the two-artifact Objective Wizard→calibration→quote CI→plan_id→recipes/manifest→per-stratum evaluation→MOAC/whitepaper flow rather than counting typed carriers or fixtures as delivery.
+- Six proposed skill areas have substantial reusable foundations. Training first, Estate next; Perception initially supports dataset production. Rules/Evidence wrap existing authority. Supplied surface-studio exists as an attachment, not an installed product service; content editing cannot redesign `v2_os.html`.
+- User said “1-a, 2-a, 3-a unnecessary though, 4-a”. Do not record this as unqualified consent to an extra identity ceremony. Existing tenant/identity protections remain unchanged; deterministic M6 retrieval/no LLM and original UI authority still stand.
+- Verification: browser desktop/mobile + source/API tracing; read-only report `test_reports/iteration_75.json`, with mandatory corrections in `test_reports/requirements_audit_adjudication_20261001.md`. Reject its advice to restore unwanted milestone prose. M6 plain pytest collection still fails missing `services`; temporary command-local PYTHONPATH collects seven tests. No worker tests or real benchmark/compute/approval actions run.
+- **MOCKED/SYNTHETIC:** training skill fixture backend and unmounted perception sample stub are not real acceptance evidence. No new mocks introduced.
+- Next: correct engineering leakage and prototype bindings, then verify original milestone requirements before resuming M1/M6 or expanding skills. No new milestone closure or completion percentage claimed. Existing M5/M7/M8 and M9 audio/generalization backlog remains where not already delivered.
+
 ## Original product goals
 
 - Increase batch throughput and H200 utilization for language-cognition and generalized M9 training, without weakening privacy, quality or admission requirements.

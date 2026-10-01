@@ -5,6 +5,8 @@ import { registryIntelligence } from './registryIntelligence';
 export function registryEstate({data,params,setParams,state,setState,show,run}) {
   const latest = data?.records?.[0];
   const sources = data?.source_details || [];
+  const frontier = data?.frontier;
+  const exclusionNote = frontier?.excluded_scopes ? `Declared exclusions: ${Object.entries(frontier.exclusion_classes_total || {}).map(([k,v])=>`${v} ${k.replaceAll('_',' ')}`).join(', ') || 'see each source for its cause'}` : 'Every declared scope completed';
   const metrics = latest?.report?.metrics || {};
   const section = params.get('section') || 'data';
   const groups = [...new Set(sources.map(s=>s.kind))];
@@ -29,9 +31,9 @@ export function registryEstate({data,params,setParams,state,setState,show,run}) 
     estateCatalogueCount:`${sources.length} source scopes in the retained Registry`,
     estateCatalogueTitle:`${volume} enumerated across ${sources.length} source scopes.`,
     estateCatalogueBasis:latest?`Latest retained census: ${latest.record_id}`:'No census retained',
-    efTopline:[{l:'Source scopes',v:String(sources.length),n:'Retained Registry scope'},{l:'Volume enumerated',v:volume,n:'Observed bytes; incomplete sources remain explicit'},{l:'Kinds',v:String(groups.length),n:'Observed source kinds'},{l:'Incomplete scopes',v:String(sources.filter(s=>s.status!=='complete').length),n:'Inspect each source for its cause'},{l:'Share measured',v:metricValue(metrics.share_measured),n:metrics.share_measured?.method || 'Not measured'}],
+    efTopline:[{l:'Source scopes',v:String(sources.length),n:'Retained Registry scope'},{l:'Volume enumerated',v:volume,n:'Observed bytes; incomplete sources remain explicit'},{l:'Kinds',v:String(groups.length),n:'Observed source kinds'},{l:'Incomplete scopes',v:frontier?String(frontier.excluded_scopes):String(sources.filter(s=>s.status!=='complete').length),n:frontier?exclusionNote:'Inspect each source for its cause'},{l:'Share measured',v:metricValue(metrics.share_measured),n:metrics.share_measured?.method || 'Not measured'}],
     efNoSelection:!category,efHasSelection:Boolean(category),
-    regFigures:[{l:'Source scopes',v:String(sources.length)},{l:'Volume enumerated',v:volume},{l:'Condition',v:'See assessed coverage'}],
+    regFigures:[{l:'Source scopes',v:String(sources.length)},{l:'Volume enumerated',v:volume},{l:'Condition',v:frontier?frontier.pinned_accessible_scope:'See assessed coverage'}],
     efCatsView:[{label:'Overview',count:String(sources.length),blurb:'All retained source scopes',tags:[],onClick:()=>setState(s=>({...s,category:null})),bg:!category?'var(--surface)':'#fff',color:'var(--ink)'},...groups.map(kind=>({label:kind,count:String(sources.filter(s=>s.kind===kind).length),blurb:'Measured source records',tags:[],onClick:()=>setState(s=>({...s,category:kind})),bg:category===kind?'var(--surface)':'#fff',color:'var(--ink)'}))],
     efGroupsView:groups.filter(kind=>!category||kind===category).map(kind=>({name:kind,count:`${sources.filter(s=>s.kind===kind).length} sources`,blurb:'Open a source for method, schema, sampling and rights evidence.',rows:sources.filter(s=>s.kind===kind).map(s=>({key:s.source_ref,source:s.label,meta:`${s.status} · ${s.worker_id || 'worker not recorded'}`,size:registryBytes(s.volume_bytes),rightsLabel:'Census scope',rightsColor:'var(--brass)',rightsBg:'rgba(176,141,46,.12)',dupFlagged:false,onOpen:()=>sourceInfo(s)}))})),
   };

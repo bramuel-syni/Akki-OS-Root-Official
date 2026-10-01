@@ -6,3 +6,10 @@ crons:
     # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
     method: POST
     enabled: true
+  - name: watch-witness
+    description: "Independent watchdog pass: akki-vm countersigns Ledger heads and the Watch feed every 15 minutes"
+    cron: "*/15 * * * *"
+    endpoint: "{{BASE_URL}}/api/watch/witness/cron"
+    # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    method: POST
+    enabled: true

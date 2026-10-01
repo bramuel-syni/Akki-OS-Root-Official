@@ -29,7 +29,8 @@ def overview(actor=Depends(census_identity)):
         values = reads.records(actor["tenant_id"])
         from services.census_autonomy.registry_surfaces import inventory,conversations,source_summary,record_summary,run_summary
         surfaces=inventory(actor['tenant_id'],values)
-        surfaces['source_details']=[source_summary(s) for s in surfaces['source_details']]
+        from services.census_autonomy import frontier as frontier_reads
+        surfaces['source_details']=frontier_reads.annotate([source_summary(s) for s in surfaces['source_details']])
         values=[record_summary(r) for r in values]
         estate_intelligence=None
         if actor['tenant_id']=='RMS':
@@ -38,7 +39,11 @@ def overview(actor=Depends(census_identity)):
                 estate_intelligence=eir.overview_projection()
                 values=sorted(values+eir.census_records(),key=lambda r:r.get('finished_at') or r.get('created_at') or '',reverse=True)
             except (OSError,ValueError,KeyError): estate_intelligence={'latest':None,'running':None,'error':'projection unavailable'}
+        for r in values:
+            frontier_reads.annotate(r.get('source_details') or [])
+        coverage_frontier=frontier_reads.frontier(values)
         return {**actor, "records": values, "latest": values[0] if values else None, "estate_intelligence": estate_intelligence,
+                "frontier": coverage_frontier,
                 "runs": [run_summary(reads.run_view(r)) for r in store.runs(actor["tenant_id"])],
                 "can_run": bool({"operator", "master_admin"}.intersection(actor["roles"])),
                 "sources": [{"source_id": s, "label": SOURCE_LABELS[s], "scope": "External read-only enumeration and declared sampled checks"}
@@ -47,6 +52,17 @@ def overview(actor=Depends(census_identity)):
                 "omission_note": "Mixed-tenant or unassigned historical records are withheld until ownership is established.",
                 "schedule": {"mode": "on_demand", "automatic_schedule_active": False},
                 "data_sources": [], "storage_backends": [], 'conversations':conversations(actor['tenant_id']), **surfaces}
+
+
+@router.get("/api/portal/census/frontier", response_model=CensusEnvelope)
+def coverage_frontier(actor=Depends(census_identity)):
+    """Declared-coverage reconciliation: latest terminal census per source family; exclusions stay in the denominator."""
+    from services.census_autonomy import frontier as frontier_reads
+    with principal_context(actor["principal_id"]):
+        values = reads.records(actor["tenant_id"])
+        for r in values:
+            frontier_reads.annotate(r.get('source_details') or [])
+        return {"tenant_id": actor["tenant_id"], "frontier": frontier_reads.frontier(values)}
 
 
 @router.get("/api/portal/census/records", response_model=CensusEnvelope)

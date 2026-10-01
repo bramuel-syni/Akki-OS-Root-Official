@@ -22,10 +22,17 @@ from services.ledger_writer.principal_control import append_event
 PLANNER_PERMISSIONS = ('activation:plan',)
 RUNTIME_PERMISSIONS = {
     'worker': ('activation:worker', 'activation:observation:runtime', 'activation:observation:measurements',
-               'activation:observation:lineage', 'activation:observation:refusal'),
-    'inspector': ('activation:worker', 'activation:observation:independence'),
+               'activation:observation:lineage', 'activation:observation:refusal',
+               # skill mode (owner ruling 2026-10-01, 2a): the worker measures quality/context over the sealed corpus
+               # and signs the grounding of its own answer; anchors are never signed by the worker.
+               'activation:observation:quality_population', 'activation:observation:quality_register',
+               'activation:observation:context_window', 'activation:observation:skill_response'),
+    'inspector': ('activation:worker', 'activation:observation:independence', 'activation:observation:anchor'),
     'custodian': ('activation:worker', 'activation:observation:delivery_grant', 'activation:observation:delivery_completion'),
 }
+QUALITY_AUTHORITY_SCOPE = 'estate:quality-authority'
+QUALITY_AUTHORITY_KEY = 'estate-quality-authority'
+QUALITY_AUTHORITY_PERMISSIONS = ('activation:observation:quality_policy', 'activation:observation:context_policy')
 STAND_IN_SCOPE = 'pilot:interim-admission'
 YEAR = 365 * 86400
 
@@ -215,8 +222,55 @@ async def admit_runtime(db, tenant, descriptor, units):
     return record, worker_ref
 
 
+async def admit_catalogue_row(db, tenant, org_id, row, ceremony_receipt_ref):
+    """ENT-13: only the ceremony writes a catalogue row. The row is the entitlement read model's single source;
+    re-admitting an identical row is idempotent."""
+    from services.entitlement_service_v1.catalog import CatalogRow
+    record = CatalogRow.model_validate(row).model_dump(mode='json')
+    event = await append_event(db, tenant_id=tenant, run_id=f"catalog:{record['model_identifier']}:{record['access_class']}",
+        command_id=digest({'catalog': tenant, 'row': record, 'ceremony': ceremony_receipt_ref}),
+        event_type='entitlement_catalog.admitted', resource_type='entitlement_catalog', decision='listed',
+        reason_code='ESTATE_CEREMONY', payload={'catalog_row': record, 'ceremony_receipt_ref': ceremony_receipt_ref,
+                                                'organisation_principal_id': org_id})
+    return event['row']['hash']
+
+
+async def admit_runtime_principal(db, tenant, org_id, runtime_id, admitted_by):
+    """The runtime as a principal of record, so a handoff receiver resolves through the ordinary principal gate."""
+    return await admit_member(db, tenant, org_id, 'runtime:' + runtime_id, f'Admitted runtime {runtime_id} (handoff receiver of record)',
+                              admitted_by, kind='agent', autonomy_scope='runtime:' + runtime_id)
+
+
 def period_bounds(now=None):
     now = now or datetime.now(timezone.utc)
     start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
     end = (start + timedelta(days=32)).replace(day=1)
     return start.isoformat(), end.isoformat(), start.strftime('%Y-%m')
+
+
+async def roll_licence_period(db, tenant, now=None):
+    """Bank the current period under an already-admitted monthly licence. The licence, its admission receipt and
+    its terms are restated byte-for-byte; only the period moves. Refuses when no licence exists, when it is not
+    active, when its renewal date has passed, or when the current period is already banked (idempotent)."""
+    from services.ledger_writer.principal_control import read_events
+    now = now or datetime.now(timezone.utc)
+    events = await read_events(db, {'row.tenant_id': tenant, 'row.resource_type': 'entitlement_licence'})
+    if not events:
+        return {'outcome': 'refused', 'reason_code': 'LICENCE_NOT_ADMITTED'}
+    current = events[-1]['payload']
+    licence = current['licence']
+    if licence.get('status') != 'active':
+        return {'outcome': 'refused', 'reason_code': f"LICENCE_{str(licence.get('status')).upper()}"}
+    if licence.get('period') != 'month':
+        return {'outcome': 'refused', 'reason_code': 'LICENCE_PERIOD_NOT_MONTHLY'}
+    renewal = datetime.fromisoformat(licence['renewal_date'])
+    if renewal <= now:
+        return {'outcome': 'refused', 'reason_code': 'LICENCE_RENEWAL_DUE', 'renewal_date': licence['renewal_date']}
+    start, end, iso = period_bounds(now)
+    if any(e['payload'].get('period_iso') == iso for e in events):
+        return {'outcome': 'unchanged', 'reason_code': 'PERIOD_ALREADY_BANKED', 'period_iso': iso,
+                'previous_period_iso': current['period_iso'], 'terms_identifier': licence['terms_identifier']}
+    ref = await bank_licence(db, tenant, licence, current['admission_receipt_ref'], start, end, iso)
+    return {'outcome': 'rolled', 'reason_code': 'LICENCE_PERIOD_ROLLED', 'period_iso': iso, 'previous_period_iso': current['period_iso'],
+            'period_start': start, 'period_end': end, 'terms_identifier': licence['terms_identifier'],
+            'admission_receipt_ref': current['admission_receipt_ref'], 'ledger_ref': ref}

@@ -11,6 +11,8 @@ export function TurnWorking({ turn }) {
     <ul className="workchat-lines" data-testid={`workchat-answer-limits-${turn.turn_id}`}>
       <li><b>Decision</b> {readableText(detail.reason || turn.refusal_reason || 'No explanation recorded.')}</li>
       {detail.slice && <li><b>Data needed</b> {detail.slice.database}.{detail.slice.table}{detail.draft ? ' · Request drafted, not sent.' : ''}</li>}
+      {detail.draft?.draft_id && <li><a className="workchat-link" data-testid={`workchat-review-request-${turn.turn_id}`} href={`/dap/extract/processed?draft=${encodeURIComponent(detail.draft.draft_id)}`}>Review and submit this data request →</a></li>}
+      {detail.subject_match && !detail.subject_match.on_subject && detail.subject_match.matched_units > 0 && <li><b>Set aside</b> {detail.subject_match.matched_units} loosely matching unit(s) in {detail.subject_match.weak_regions.join(', ')}: the question does not name that subject.</li>}
       {ev.window?.loss_statement && <li><b>Context limits</b> {readableText(ev.window.loss_statement)}</li>}
       {grounding.unsupported && <li><b>Not supported</b> {readableText(grounding.unsupported)}</li>}
       {ev.reads?.failures?.length > 0 && <li><b>Unavailable sources</b> {ev.reads.failures.length}. The answer may be incomplete.</li>}

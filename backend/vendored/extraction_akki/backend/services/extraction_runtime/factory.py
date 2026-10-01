@@ -30,11 +30,18 @@ def custody_mirrors():
 
 
 async def build(db):
+    from services.extraction_runtime.skill_adapter import build_skill_adapter
+    from services.extraction_runtime.skill_providers import SkillEligibility, SkillHandoff
+    from services.mkondo.execution_handoff import MkondoHandoff
     timeout = float(os.environ.get('AKKI_NATIVE_RUNTIME_TIMEOUT_SECONDS', '30'))
     receipts = NativeReceipts(db, LedgerAdmittedSigners(db), timeout_seconds=timeout)
+    # The skill executor is the deterministic unit-retrieval worker (owner ruling 2026-10-01, 2a): eligibility reads the
+    # worker-signed quality register, the handoff receiver is the admitted worker runtime acknowledging on its own host.
     bindings = NativeExecutionBindings(
         decisions=LedgerActivationDecisions(receipts), inspector=IndependentInspector(db, receipts),
-        executors={'source': build_source_adapter(db, receipts)}, eligibility=InputEligibility(None),
+        executors={'source': build_source_adapter(db, receipts), 'skill': build_skill_adapter(db, receipts)},
+        eligibility=InputEligibility(None, SkillEligibility(db, receipts), timeout),
+        handoffs=MkondoHandoff(None, None, SkillHandoff(db, receipts), timeout),
         gate_timeout_seconds=timeout, principal_lookup=ledger_principal_lookup(db))
     custody = None
     mirrors = [(tenant, record) for tenant, record in custody_mirrors() if record.get('endpoint_origin')]

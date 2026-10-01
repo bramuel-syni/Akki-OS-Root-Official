@@ -564,6 +564,12 @@ async def initialize_media_storage():
         import logging
         logging.getLogger('media').warning('Media storage unavailable at startup; existing app remains available')
     acoustics.start_worker()
+    from services.chat import evaluation as chat_evaluation
+    try:
+        await chat_evaluation.resume_all()
+    except Exception:
+        import logging
+        logging.getLogger('chat').exception('chat evaluation resume failed at startup; service continues')
 # M8 · continuity: ratified tiered recovery policy, control-Ledger WORM archive and PITR restore drill — routes /api/continuity/*
 from routers.continuity import router as continuity_router  # noqa: E402
 app.include_router(continuity_router)

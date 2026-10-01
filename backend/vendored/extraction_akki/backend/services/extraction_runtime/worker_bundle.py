@@ -12,6 +12,7 @@ MODULES = [
     'services/extraction_runtime/units.py',
     'services/extraction_runtime/inner_hop.py',
     'services/extraction_runtime/structured_records_worker.py',
+    'services/extraction_runtime/skill_worker.py',
 ]
 
 

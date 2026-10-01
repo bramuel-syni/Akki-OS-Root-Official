@@ -1,5 +1,14 @@
 # Akki — current engineering order
 
+## Priority override — 2026-10-01 audit before implementation
+- **P0:** Correct confirmed engineering-test/milestone leakage in Model Approval and 23 live implementation-placeholder routes, using banked HTML structures. Preserve legitimate domain evidence and requirements. Audit done; remediation not implemented.
+- **P0:** Do not close M4 comparison or general Training on narrower benchmark/fixture/carrier evidence. Reconcile original requirements and actual end-to-end evidence; do not adopt test-defined replacement features.
+- **P1:** Complete prototype-constrained connection/commissioning states; investigate DAP Build Skill's observed 401 plus false empty-state combination without extra auth ceremonies or bypasses. Reconcile legacy literal countdown evidence directive before changing presentation.
+- **P1:** Resume M1/M6 after requirement corrections. Existing Registry overview/frontier wiring must not be duplicated. M6 plain test collection still needs local import fix; deterministic worker retrieval remains required.
+- **P1:** Training expert+manager over existing services: TargetOutcome + Collection Schema, calibrated CI quote, plan_id continuity, two-arm comparison, per-stratum accuracy × coverage, classified manifest, recipe revisions, MOAC and whitepaper handoff. Then Estate; Perception datasets support Training.
+- **P2:** Rules/Registry and compliance-evidence skills around existing authority; content-only surface-studio integration respecting frozen HTML. No new multi-agent platform. Existing M5, M7, M8 and M9 audio/generalization backlog remains.
+- Assessment and limits: `assessment_workspace/notes/requirements_alignment_20261001/AUDIT.md` and `SKILLS_ASSESSMENT.md`; reject obsolete-placeholder recommendations in `test_reports/iteration_75.json` per its adjudication.
+
 ## CURRENT — 2026-10-01 measured sound observables live in the media library (owner-directed capability)
 
 - Owner disagreed that acoustic extraction was "placeholder only" and directed: research every measurable observable of recorded sound (wavelength → tone → energy → frequency), register it as data, and identify the patterns behind general classifications. Built and verified: `services/audio_plane_v1/acoustic_observables.py` (numpy/scipy + static ffmpeg via imageio-ffmpeg, soundfile installed), ~58 registered observables in six chains (wave, frequency, tone, energy/rhythm, timbre, channel) with units and methods; heuristic 4 s-window signature {speech, music, mixed, noise, silence}; channel condition {studio, field, telephone_band} with a stated basis; artefacts (clipping, DC, band-limited, 50/60 Hz hum, low sample rate).

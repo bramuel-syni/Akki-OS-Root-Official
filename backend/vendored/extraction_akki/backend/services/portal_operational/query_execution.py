@@ -22,9 +22,13 @@ async def advance(db, scope, skill_id, query_id, provisioning, runtime):
         else:
             result = await coordinator.advance(request)
             if not result.execution_verified:
+                late = None
+                if result.phase == 'failed':
+                    # A terminal worker refusal (OUT_OF_SCOPE) is a first-class, receipted outcome, not a hold.
+                    late = await asyncio.wait_for(query_evidence.refusal(runtime.receipts, request, intent), runtime.evidence_timeout_seconds)
                 code = public_reason(result.reason_code).code
-                view = {'outcome': 'running' if result.phase == 'running' else 'held', 'reason_code': code,
-                        'execution_verified': False, 'delivery_verified': False}
+                view = late or {'outcome': 'running' if result.phase == 'running' else 'held', 'reason_code': code,
+                                'execution_verified': False, 'delivery_verified': False}
             else:
                 view = await asyncio.wait_for(query_evidence.grounding(runtime, coordinator, request), runtime.evidence_timeout_seconds)
                 await coordinator.release_gates(request, 'retrieve')

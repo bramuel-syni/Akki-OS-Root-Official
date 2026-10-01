@@ -10,6 +10,7 @@ from services.commissioning import shaping, commission as freeze, approvals, run
 from services.commissioning.census_profile import tables_for
 from services.commissioning.shaping import DraftBody
 from services.custody_delivery.service import CustodyDelivery
+from services.estate_admission.records import latest
 from services.estate_admission.runtimes import admitted_runtimes
 from services.extraction_runtime.custody_provider import record_retrieval
 from services.northena.execution_bindings import build_coordinator
@@ -68,6 +69,24 @@ async def source_profile(source_id: str, request: Request):
         return {'source_id': source_id, 'count': len(rows), 'tables': [
             {k: r[k] for k in ('source_ref', 'label', 'database', 'table', 'row_count', 'column_count', 'primary_key',
                                'personal_columns', 'census_run_id', 'observed_at')} for r in rows]}
+
+
+@router.get('/commission/destinations')
+async def commission_destinations(request: Request):
+    """The delivery destinations verified at the estate's admission ceremony — provider, origin and custodian only;
+    bucket, prefix and every secret stay server-side. No origin means retrieval is held, not that nothing exists."""
+    async with portal_scope(request) as scope:
+        record = await latest(db, scope['tenant_id'], 'custody_descriptor', 'default')
+        if record is None:
+            return {'rows': [], 'count': 0, 'reason_code': 'CUSTODY_DESCRIPTOR_UNRESOLVED'}
+        custody = record['payload']['record']
+        origin = custody.get('endpoint_origin')
+        rows = [{'destination_id': 'default', 'provider': custody['provider'], 'region': custody.get('region'),
+                 'custodian_runtime_id': custody['custodian_runtime_id'], 'retrieval_origin': origin,
+                 'retrievable_over_https': bool(origin), 'state': 'offered' if origin else 'held',
+                 'reason_code': None if origin else 'CUSTODY_ORIGIN_UNAVAILABLE',
+                 'basis': custody.get('basis'), 'ledger_ref': record['row']['hash']}]
+        return {'rows': rows, 'count': len(rows)}
 
 
 @router.get('/commission/drafts')

@@ -126,8 +126,9 @@ async def content(file_id:str,request:Request,actor=Depends(census_identity)):
 @router.get('/files/{file_id}/download')
 def download(file_id:str,actor=Depends(census_identity)):
     row=row_for(actor,file_id); live(row)
-    try: response=storage.download(row['storage_path'])
-    except storage.StorageError as exc: raise unavailable(exc) from exc
+    with commission_gate.crossing(actor,'media.download',{'file_id':file_id,'sha256':row['sha256']}):
+        try: response=storage.download(row['storage_path'])
+        except storage.StorageError as exc: raise unavailable(exc) from exc
     def stream():
         try:
             for chunk in response.iter_content(65536):
