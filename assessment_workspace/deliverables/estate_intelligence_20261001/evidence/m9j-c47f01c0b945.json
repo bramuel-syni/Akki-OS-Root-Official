@@ -1,0 +1,69 @@
+{
+  "job_id": "m9j-c47f01c0b945",
+  "phase": "lab_measure",
+  "host": "akki-vm",
+  "principal_id": "6ab56dd48894abb269135ca2",
+  "submitted_at": "2026-10-01T04:21:32.372421Z",
+  "params": {
+    "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+    "workers": 16,
+    "max_seconds": 5400.0,
+    "max_files_per_language": 0,
+    "owner_order_ref": "owner-direction-2026-10-01: measure staged corpus observables as the music-identification test set; no training"
+  },
+  "northena_run_id": "run-9a3f3e6f28d9",
+  "northena_trace_id": "trc-6bbb8d9f5e8a",
+  "governing_artifact_ref": {
+    "artifact_type": "objective_request",
+    "artifact_id": "M9-GOVERNED-TRAINING",
+    "version": "m9j-c47f01c0b945"
+  },
+  "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+  "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+  "remote": {
+    "root": "/mnt/volume_dkgjrkx/akki-m9",
+    "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-c47f01c0b945",
+    "pid": 634537
+  },
+  "status": "running",
+  "ledger_rows": [
+    {
+      "row_id": "led-770df2b75575",
+      "stage": "admit",
+      "decision": "admitted",
+      "reason": "m9_lab_measure_admitted"
+    },
+    {
+      "row_id": "led-fb86de61c4b3",
+      "stage": "gate",
+      "decision": "warm",
+      "reason": "m9_lab_measure_daemonised:pid=634537"
+    }
+  ],
+  "code_sha256": "b6c9ca87f347e4d61798ef8e62f19b6a4cd19ef39176a9886cde11e36d74d480",
+  "started_at": "2026-10-01T04:21:38.422046Z",
+  "last_status_rpc": {
+    "at": "2026-10-01T04:33:25.432609Z",
+    "rc": 0,
+    "receipt_id": "gpurcp-83bae0f72acf"
+  },
+  "remote_state": {
+    "phase": "lab_measure",
+    "status": "running",
+    "started_at": "2026-10-01T04:21:38Z",
+    "progress": {
+      "stage": "measuring staged audio",
+      "files": 1900,
+      "of": 3958,
+      "elapsed_s": 685
+    },
+    "stages": {},
+    "events": [],
+    "job_id": "m9j-c47f01c0b945",
+    "hostname": "akki-vm",
+    "runtime_id": "akki-vm",
+    "updated_at": "2026-10-01T04:33:04Z"
+  },
+  "worker_log_tail": "",
+  "process_alive": true
+}

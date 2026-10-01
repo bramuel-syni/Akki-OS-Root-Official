@@ -1,5 +1,10 @@
 # Akki — current engineering order
 
+## Owner report request — fulfilled 2026-10-01
+- Combined rigorous PPTX/Word report pair delivered as direct attachments; no UI embedding. Exact paths and verified output hashes in `assessment_workspace/deliverables/estate_intelligence_20261001/README.md`.
+- Report-specific next evidence work, **not newly commissioned**: reconcile source coverage and asset joins; independently qualify language/music, speech quality, transcript fidelity, alignment and onward rights; then produce lab-ready eligible quantities with design-aware uncertainty.
+- Existing Training/Estate implementation and M1/M6/backlog order below remains unchanged. The report does not close those milestones or commission more model training.
+
 ## Priority override — after the 2026-10-01 correction sweep
 - **Delivered:** major test-reporting/engineering-copy corrections in live UI, original prototype sections on affected routes, DAP session fix, actual Your Models rows; two-artifact production/evidence APIs; released 8B training white paper; Estate package and Perception preparation binding. Verified, but NOT full Training/skill execution completion.
 - **P0:** Finish existing Training skill RealBackend/runner adapter and prospective stage controls in original conversational slots. Retain full two-artifact contract, calibration-first quote/CI/cap, qualified registry population, same-base two-arm comparison, complete per-example/classed manifest, recipe evidence, deterministic eligibility/yield/MOAC and real document handoff.

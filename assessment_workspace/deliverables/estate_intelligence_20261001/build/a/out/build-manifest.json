@@ -1,0 +1,33 @@
+{
+  "build_stamp": "2026-10-01T19:12:00Z",
+  "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+  "environment": {
+    "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+    "matplotlib": "3.11.2",
+    "openpyxl": "3.1.5",
+    "python": "3.11.16",
+    "python-docx": "1.2.0",
+    "python-pptx": "1.0.2"
+  },
+  "inputs_sha256": {
+    "deck.resolved.json": "f626175a9a15cdeff06adb618136d7a1a138793b67070631ae097eb80b2fa349",
+    "deck.resolved/brief.json": "8d38494d82b84698b534bfc40599e98459826cdd353e7744d4eddb64a643438f",
+    "deck.resolved/content.json": "81aaddca2b4f24e11de9f65115581cd27b52b6ea8eeb156ede3a0c1417cc675b",
+    "deck.resolved/deck.json": "35004a43b04630ab728502041218a6d1792ac8a2e191d8c17db18a43264a0de6",
+    "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "deck.resolved/verdict.json": "24927bf1017dc25c0277b4860cf813f4df370c0e369effb07991963fea9ee0c2",
+    "paper.resolved.json": "cbec0aa4924ca958e830b12b1c723a9ddddb67ec0318d4b2bf20194ba018e040",
+    "paper.resolved/brief.json": "8d38494d82b84698b534bfc40599e98459826cdd353e7744d4eddb64a643438f",
+    "paper.resolved/content.json": "81aaddca2b4f24e11de9f65115581cd27b52b6ea8eeb156ede3a0c1417cc675b",
+    "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.resolved/paper.json": "f2fb1677109db4038b269635aa3c7f957aa2713f6cbab0a7c0120f7fd3960f28",
+    "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "paper.resolved/verdict.json": "24927bf1017dc25c0277b4860cf813f4df370c0e369effb07991963fea9ee0c2"
+  },
+  "outputs_sha256": {
+    "rms-estate-and-local-language-opportunities-review.html": "894cf4b5ad6819ca474b03431f03ff14f4f777198240d9397af59461cead7f69",
+    "rms-estate-and-local-language-opportunities.docx": "1461269a35ce3af55698ee636115ca5a3fceacbc8cef101131eb73b94ba664d9",
+    "rms-estate-and-local-language-opportunities.pptx": "46c8fbfe8e5db6e2c6bf8057812b05e196d4dabfa6a29f88c6d0f7bdfc46ca04"
+  }
+}

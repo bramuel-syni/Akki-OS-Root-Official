@@ -1,0 +1,125 @@
+{
+  "verdict_id": "V-RMS-ESTATE-20261001",
+  "brief_ref": "BR-RMS-ESTATE-20261001",
+  "goal": "Select a direction that lets Estate owner, executive stakeholders and global AI-lab technical/research partners decide from this pack: Understand estate condition, establish a defensible local-language corpus claim, and select responsible commercial and public-interest options.",
+  "frame_ref": "FR-strategy-decide-v1",
+  "candidates": [
+    {
+      "idea_id": "D1",
+      "name": "Evidence-led",
+      "assembly": {
+        "narrative": "recommendation-and-evidence",
+        "compositions": [
+          "cover",
+          "exec_summary",
+          "section",
+          "assertion_exhibit",
+          "assertion_points",
+          "comparison",
+          "coverage_limits",
+          "appendix"
+        ],
+        "treatment": "restrained",
+        "density": "sparse",
+        "imagery": "none"
+      },
+      "verdict": "adopt",
+      "rationale": "Audience priorities are quantitative honesty, traceability, quality and rights, commercial and ecosystem utility; every slide must carry a receipted exhibit. Read-ahead use means exhibits must be self-explaining."
+    },
+    {
+      "idea_id": "D2",
+      "name": "Future-state",
+      "assembly": {
+        "narrative": "vision-then-journey",
+        "compositions": [
+          "cover",
+          "hero",
+          "big_number",
+          "assertion_exhibit",
+          "closing"
+        ],
+        "treatment": "expressive",
+        "density": "medium",
+        "imagery": "abstract"
+      },
+      "verdict": "defer",
+      "conditions": "Re-enter when the purpose is to persuade or inspire a programme or all-hands audience rather than to decide."
+    },
+    {
+      "idea_id": "D3",
+      "name": "Human-centred",
+      "assembly": {
+        "narrative": "stakeholder-journey",
+        "compositions": [
+          "cover",
+          "persona",
+          "journey",
+          "benefits",
+          "evidence"
+        ],
+        "treatment": "warm",
+        "density": "medium",
+        "imagery": "photographic"
+      },
+      "verdict": "reject",
+      "rationale": "No stakeholder research exists in the content model; the direction would require evidence that does not exist."
+    }
+  ],
+  "adopted": "D1",
+  "manifest": [
+    {
+      "id": "M1",
+      "assumption": "Audience is Estate owner, executive stakeholders and global AI-lab technical/research partners; the pack must let them decide",
+      "class": "fact",
+      "source": "brief.purpose, brief.audience",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ]
+    },
+    {
+      "id": "M2",
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "source": "brief.setting.read_unattended",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ]
+    },
+    {
+      "id": "M3",
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "source": "brief.setting.printed",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ]
+    },
+    {
+      "id": "M4",
+      "assumption": "Audience knowledge is mixed executive and expert; detailed scrutiny expected",
+      "class": "recalled",
+      "source": "brief.audience.knowledge",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ]
+    },
+    {
+      "id": "M5",
+      "assumption": "Audience priorities are quantitative honesty, traceability, quality and rights, commercial and ecosystem utility",
+      "class": "fact",
+      "source": "brief.audience.priorities",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ]
+    }
+  ],
+  "confirmed_by": "owner-approved combined rigorous briefing; standing strategy frame",
+  "confirmed_at": "2026-10-01T19:12:00Z"
+}

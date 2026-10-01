@@ -1,0 +1,210 @@
+{
+  "job_id": "m9j-9a46b862f339",
+  "phase": "assemble",
+  "host": "akki-vm-ii",
+  "principal_id": "6ab56dd48894abb269135ca2",
+  "submitted_at": "2026-09-29T21:54:52.582388Z",
+  "params": {
+    "corpus_id": "rms-transcripts-v1",
+    "kind": "transcript_text",
+    "source_root": "/mnt/volume_dkgjrkx/akki-lc",
+    "rights_ref": "owner-supplied google-transcripts datasets (RMS tenant custody) \u00b7 authorised for language-cognition training 2026-09-29 \u00b7 text modality of the same authorised corpus",
+    "seed": 41,
+    "min_chars": 40,
+    "max_chars": 600,
+    "held_fraction": 0.1,
+    "canary_count": 20,
+    "canary_repeats": [
+      1,
+      2,
+      4
+    ]
+  },
+  "northena_run_id": "run-183b9a4344f6",
+  "northena_trace_id": "trc-f1592abf4b00",
+  "governing_artifact_ref": {
+    "artifact_type": "objective_request",
+    "artifact_id": "M9-GOVERNED-TRAINING",
+    "version": "m9j-9a46b862f339"
+  },
+  "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+  "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+  "remote": {
+    "root": "/mnt/volume_dkgjrkx/akki-m9",
+    "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-9a46b862f339",
+    "pid": 735870
+  },
+  "status": "completed",
+  "ledger_rows": [
+    {
+      "row_id": "led-e1235a6aae7a",
+      "stage": "admit",
+      "decision": "admitted",
+      "reason": "m9_assemble_admitted"
+    },
+    {
+      "row_id": "led-40b339709dd5",
+      "stage": "gate",
+      "decision": "warm",
+      "reason": "m9_assemble_daemonised:pid=735870"
+    },
+    {
+      "row_id": "led-d0107514b414",
+      "stage": "converge",
+      "decision": "terminate_success",
+      "reason": "m9_assemble_completed"
+    }
+  ],
+  "code_sha256": "04231337ccaf017c2bace23c851c581d2b9d66b1e7812b4b185bf0c33bed5b70",
+  "started_at": "2026-09-29T21:54:57.887340Z",
+  "last_status_rpc": {
+    "at": "2026-09-29T21:56:16.490504Z",
+    "rc": 0,
+    "receipt_id": "gpurcp-812934b86d0e"
+  },
+  "remote_state": {
+    "phase": "assemble",
+    "status": "completed",
+    "started_at": "2026-09-29T21:54:57Z",
+    "progress": {
+      "stage": "deduplicating",
+      "units": 160038
+    },
+    "stages": {},
+    "events": [],
+    "job_id": "m9j-9a46b862f339",
+    "hostname": "akki-vm-ii",
+    "runtime_id": "akki-vm-ii",
+    "updated_at": "2026-09-29T21:55:14Z",
+    "finished_at": "2026-09-29T21:55:14Z",
+    "receipt_sha256": "e3517a13130e9f455ea79f359fb6c77adc3aae75a996e8d5414fc9bb6069e4c7"
+  },
+  "worker_log_tail": "",
+  "process_alive": false,
+  "receipt": {
+    "protocol": "akki-m9-governed-training-v1",
+    "job_id": "m9j-9a46b862f339",
+    "phase": "assemble",
+    "runtime_id": "akki-vm-ii",
+    "hostname": "akki-vm-ii",
+    "started_at": "2026-09-29T21:54:57Z",
+    "code_sha256": "04231337ccaf017c2bace23c851c581d2b9d66b1e7812b4b185bf0c33bed5b70",
+    "status": "completed",
+    "result": {
+      "corpus_id": "rms-transcripts-v1",
+      "kind": "transcript_text",
+      "rights_ref": "owner-supplied google-transcripts datasets (RMS tenant custody) \u00b7 authorised for language-cognition training 2026-09-29 \u00b7 text modality of the same authorised corpus",
+      "source": {
+        "files": 4521
+      },
+      "units": 157513,
+      "duplicates_removed": 2525,
+      "chars": 27329904,
+      "splits": {
+        "train": 129984,
+        "dev": 8280,
+        "held": 18980,
+        "archive_test": 269
+      },
+      "per_stratum": {
+        "guz": {
+          "train": 18443,
+          "dev": 1094,
+          "held": 2217,
+          "archive_test": 102,
+          "groups_train": 249,
+          "groups_held": 39
+        },
+        "kam": {
+          "train": 8746,
+          "dev": 931,
+          "held": 2422,
+          "archive_test": 121,
+          "groups_train": 210,
+          "groups_held": 39
+        },
+        "kik": {
+          "train": 13846,
+          "dev": 924,
+          "held": 3573,
+          "archive_test": 1,
+          "groups_train": 163,
+          "groups_held": 37
+        },
+        "kln": {
+          "train": 27483,
+          "dev": 1667,
+          "held": 3253,
+          "archive_test": 38,
+          "groups_train": 400,
+          "groups_held": 53
+        },
+        "luo": {
+          "train": 18681,
+          "dev": 1131,
+          "held": 2455,
+          "archive_test": 7,
+          "groups_train": 265,
+          "groups_held": 33
+        },
+        "lwg": {
+          "train": 25350,
+          "dev": 1496,
+          "held": 3006,
+          "archive_test": 0,
+          "groups_train": 2065,
+          "groups_held": 238
+        },
+        "swa": {
+          "train": 17435,
+          "dev": 1037,
+          "held": 2054,
+          "archive_test": 0,
+          "groups_train": 242,
+          "groups_held": 77
+        }
+      },
+      "test_set_seal": {
+        "corpus_id": "rms-transcripts-v1",
+        "held_unit_count": 18980,
+        "held_ids_sha256": "04db807b22d53dd6b7c48d22c8a2f89d245504ad2b8ad3da0c034a8d7e2578ed",
+        "held_text_sha256": "cd056fccb34b0bab76d17a37be08be82faaf58566e4c46741e8c11c6bb462838",
+        "strata": [
+          "guz",
+          "kam",
+          "kik",
+          "kln",
+          "luo",
+          "lwg",
+          "swa"
+        ],
+        "sealed_at": "2026-09-29T21:55:14Z",
+        "rule": "sealed before any training step; never re-drawn"
+      },
+      "canaries": {
+        "inserted": 60,
+        "repeats": [
+          1,
+          2,
+          4
+        ],
+        "reference": 80
+      },
+      "assembled_at": "2026-09-29T21:55:14Z",
+      "split_rule": "group-disjoint per stratum (presenter for transcripts, unit for sealed records); archive sessions \u2192 archive_test",
+      "manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146"
+    },
+    "finished_at": "2026-09-29T21:55:14Z",
+    "receipt_sha256": "e3517a13130e9f455ea79f359fb6c77adc3aae75a996e8d5414fc9bb6069e4c7",
+    "digest_verified": true
+  },
+  "finished_at": "2026-09-29T21:55:14Z",
+  "track4_run_receipt": {
+    "job_kind": "training_runs",
+    "run_id": "m9j-9a46b862f339",
+    "started_at_utc": "2026-09-29T21:54:57.887340Z",
+    "finished_at_utc": "2026-09-29T21:55:14Z",
+    "status": "completed",
+    "provenance_ref": "m9_training://run_log/m9j-9a46b862f339"
+  }
+}

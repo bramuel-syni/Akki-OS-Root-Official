@@ -1,0 +1,1790 @@
+{
+  "brief_ref": "BR-RMS-ESTATE-20261001",
+  "build_stamp": "2026-10-01T19:12:00Z",
+  "content_ref": "rms-estate-and-local-language-opportunities@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Owner confidential · controlled circulation"
+  },
+  "furniture_zones": {
+    "confidentiality": {
+      "h": 0.412,
+      "w": 4.897,
+      "x": 6.767,
+      "y": 6.638
+    },
+    "doc_id": {
+      "h": 0.412,
+      "w": 5.916,
+      "x": 0.65,
+      "y": 6.638
+    },
+    "page_no": {
+      "h": 0.412,
+      "w": 0.819,
+      "x": 11.864,
+      "y": 6.638
+    }
+  },
+  "inputs_sha256": {
+    "brief.json": "8d38494d82b84698b534bfc40599e98459826cdd353e7744d4eddb64a643438f",
+    "content.json": "4b3db9cd37257a874c815a790b481f048d5234fbb4d22c45dbc4e4f8fe8b6fae",
+    "deck.json": "35004a43b04630ab728502041218a6d1792ac8a2e191d8c17db18a43264a0de6",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "24927bf1017dc25c0277b4860cf813f4df370c0e369effb07991963fea9ee0c2"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "number-large",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "C8102E",
+      "field": "FFFFFF",
+      "hatch": "E9ECF1",
+      "muted": "8A94A6",
+      "rule": "D5DAE3",
+      "structure": "1F2A44"
+    },
+    "palette_id": "graphite",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "Royal Media Services · Owner briefing",
+  "seed": "rms/estate-language-opportunities/20261001",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "slide_h": 7.5,
+  "slide_w": 13.333,
+  "slides": [
+    {
+      "n": 1,
+      "org": "Royal Media Services · Owner briefing",
+      "subtitle": "Evidence-led owner and AI-lab briefing · 1 October 2026",
+      "title": "RMS estate & language intelligence",
+      "title_chars": 34,
+      "type": "cover",
+      "zones": {
+        "org": {
+          "h": 0.412,
+          "w": 5.916,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "subtitle": {
+          "h": 0.825,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 4.575
+        },
+        "title": {
+          "h": 1.65,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 2.925
+        }
+      }
+    },
+    {
+      "kicker": "The answer in brief · R03/R04",
+      "n": 2,
+      "scqa": [
+        [
+          "Situation",
+          "The authorised staged subset contains 529.34 audio hours and 3,958 files. A separate transcript build contains 157,513 natural text units. These are candidate inventories, not an estate-wide qualified total."
+        ],
+        [
+          "Complication",
+          "Language-folder labels do not prove linguistic purity. Music exclusion, independent quality distributions, audio–text alignment and onward rights remain unresolved."
+        ],
+        [
+          "Question",
+          "What should be protected, qualified and productised—and what can responsibly be offered to an AI lab?"
+        ],
+        [
+          "Answer",
+          "Treat estate stewardship, corpus qualification and product development as separate workstreams. Pilot controlled-access products while building a defensible data card; do not sell a storage total as training-ready language data."
+        ]
+      ],
+      "title": "The estate has valuable language assets, but its eligible corpus is not yet certified",
+      "title_chars": 85,
+      "type": "exec_summary",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "How to read this report · R07",
+      "n": 3,
+      "points": [
+        "Measured, estimated, proposed and unknown are different evidence classes.",
+        "Each number has a named population; database rows are not text examples.",
+        "File duration is not speech-only duration; unknown is not zero.",
+        "Storage units and snapshot dates are explicit throughout."
+      ],
+      "title": "The accounting rules prevent a large inventory from becoming an inflated AI claim",
+      "title_chars": 81,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 4,
+      "number": 1,
+      "title": "Estate intelligence: condition, duplication and stewardship",
+      "title_chars": 59,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Database catalogue",
+          "OBS objects",
+          "NAS files"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Listed storage by separate inventory; not additive unique content",
+        "plate": "bar",
+        "receipt": "R02",
+        "receipt_text": "OBS and NAS retained listings embedded in the census; 29 September 2026. Metadata scope, not language or music analysis.",
+        "so_what": "These are separate storage inventories. Overlap is unresolved; no unique-estate total is asserted.",
+        "unit": "TB",
+        "values": {
+          "Decimal TB": [
+            0.377,
+            143.285,
+            47.991
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Part I · The estate is three overlapping inventories, not one clean corpus · R01/R02",
+      "n": 5,
+      "title": "Most observed storage is media infrastructure, not a qualified language corpus",
+      "title_chars": 78,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Coverage is substantial but not complete or perfectly reconciled · R01/R02",
+      "n": 6,
+      "points": [
+        "Relational methods mix full reads, stratified samples and head samples.",
+        "OBS: 66 of 106 sources completed; 40 blocked or missing.",
+        "NAS: 16 of 16 registered roots enumerated; content qualification is separate.",
+        "Method counts and failure flags need reconciliation before statistical certification."
+      ],
+      "title": "Access coverage and content coverage must be reported separately",
+      "title_chars": 64,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Readiness grades of measured relational-table entries only",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "RMS estate census, eij-1b359b3cbd2e; measured 29 September 2026. Exact source hashes in the Word appendix.",
+        "so_what": "The grades describe relational stewardship only; they do not classify speech quality, transcript accuracy or legal eligibility.",
+        "unit": "tables",
+        "values": {
+          "Tables": [
+            171,
+            62,
+            191,
+            189,
+            25
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Relational readiness is uneven and is not an audio-quality assessment · R01",
+      "n": 7,
+      "title": "The readiness grades prioritise remediation; they do not certify a training dataset",
+      "title_chars": 83,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Quality and privacy signals are material, but their denominators differ · R01",
+      "n": 8,
+      "points": [
+        "Null-bearing is not the same as missing a mandatory field.",
+        "PII markers are a risk-screening signal, not a legal determination.",
+        "Degradation and stale-byte measures overlap; do not sum them.",
+        "Audio and transcript quality need their own independent measurements."
+      ],
+      "title": "The measured warning signals justify targeted inspection, not blanket rejection",
+      "title_chars": 79,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Duplication has several meanings and several confidence levels · R01/R04",
+      "n": 9,
+      "points": [
+        "Exact, normalised, sketch-near and semantic overlap are not interchangeable.",
+        "Relational candidates and transcript-cleaning counts are different populations.",
+        "Retain a canonical asset and lineage before retiring any copy.",
+        "Use identity controls to protect evaluation independence as well as storage."
+      ],
+      "title": "Duplicate candidates are an investigation queue, not a deletion instruction",
+      "title_chars": 75,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Object-store overlap and archive candidates offer leverage with qualifications · R02",
+      "n": 10,
+      "points": [
+        "1.14 million object candidates are flagged by ETag and size, not universal hashes.",
+        "46.054 TB of old-write storage is an archive candidate, not proven unused.",
+        "Read demand, restore time, retrieval fees and retention must be checked.",
+        "Identity validation and reversible pilots precede reclamation."
+      ],
+      "title": "Archive and duplicate candidates are substantial, but net savings are not yet proven",
+      "title_chars": 84,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Freshness and growth need field-level interpretation · R01",
+      "n": 11,
+      "points": [
+        "Selected timestamps can represent events rather than writes.",
+        "Future dates and sentinel values need explicit treatment.",
+        "Storage deltas are not automatically business growth rates.",
+        "Freshness must be defined for each intended product."
+      ],
+      "title": "Freshness is a product-specific property, not a universal timestamp rule",
+      "title_chars": 72,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Storage economics should be quoted as conditional bounds · R01/R02/R07",
+      "n": 12,
+      "points": [
+        "Use the owner’s effective tariff and actual billing units.",
+        "Gross standard-tier cost is not net archive savings.",
+        "Do not add overlapping reclamation and tiering opportunities.",
+        "Model restore, egress, retention and migration costs explicitly."
+      ],
+      "title": "The economics are useful bounds, not an invoice-backed savings commitment",
+      "title_chars": 73,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Stewardship priorities should protect value before removing cost · R07",
+      "n": 13,
+      "points": [
+        "Establish ownership and canonical identity first.",
+        "Validate read workloads and restore obligations before tiering.",
+        "Review index candidates against real queries, not schema shape alone.",
+        "Run corpus qualification alongside—not behind—the entire cleanup programme."
+      ],
+      "title": "Stewardship and corpus qualification can proceed together without conflating their goals",
+      "title_chars": 88,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 14,
+      "number": 2,
+      "title": "Non-English, non-music audio and text: a defensible accounting",
+      "title_chars": 62,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "kicker": "Part II · The precise answer is a bounded candidate inventory · R03/R04",
+      "n": 15,
+      "points": [
+        "529.34 staged audio hours; 36.52 GB; music and language purity unverified.",
+        "157,513 natural text units; 27.33 million characters; separate source population.",
+        "Estate-wide eligible totals and quality distributions remain unmeasured.",
+        "The uncertainty is a qualification gap, not evidence that suitable data is absent."
+      ],
+      "title": "The verified inventory is sizeable; the strictly eligible total remains unknown",
+      "title_chars": 79,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Bukusu (folder label) (bxk)",
+          "Ekegusii (guz)",
+          "Kikamba (kam)",
+          "Kikuyu (kik)",
+          "Kalenjin (kln)",
+          "Dholuo (luo)",
+          "Wanga / Luhya label (lwg)",
+          "Kiswahili (swa)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Measured staged-audio duration by folder label, not certified speech hours",
+        "plate": "bar",
+        "receipt": "R03",
+        "receipt_text": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification.",
+        "so_what": "Folder labels are provisional linguistic metadata; file duration is not isolated speech time.",
+        "unit": "hours",
+        "values": {
+          "Hours": [
+            1.07,
+            92.23,
+            85.37,
+            82.08,
+            89.72,
+            81.99,
+            9.19,
+            87.67
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "The audio-duration distribution is highly uneven · R03/R04",
+      "n": 16,
+      "title": "The smallest audio strata need deliberate qualification, not pooled reporting",
+      "title_chars": 77,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "11.025 kHz",
+          "16 kHz",
+          "22.05 kHz",
+          "32 kHz",
+          "44.1 kHz",
+          "48 kHz"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Staged-audio file counts by sample rate; not a quality grade",
+        "plate": "bar",
+        "receipt": "R03",
+        "receipt_text": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification.",
+        "so_what": "Sample rate and readable headers are observed properties, not a measured clean-speech distribution.",
+        "unit": "files",
+        "values": {
+          "Files": [
+            597,
+            22,
+            49,
+            2,
+            3126,
+            162
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Capture properties are measurable; quality grades are not yet established · R03",
+      "n": 17,
+      "title": "The evidence describes capture formats, not yet the quality of usable speech",
+      "title_chars": 76,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "The waveform measurement record is incomplete and stale · R06",
+      "n": 18,
+      "points": [
+        "The retained progress counter is not a completed measurement dataset.",
+        "Its stale heartbeat cannot establish current remote process health.",
+        "No completed quality-band percentages are defensible from that record.",
+        "Finish and reconcile the measurement receipt before publishing distributions."
+      ],
+      "title": "A stale progress record cannot stand in for a completed quality measurement",
+      "title_chars": 75,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Define non-English and non-music at the segment level · R07",
+      "n": 19,
+      "points": [
+        "Count segments, not entire programmes, for strict eligibility.",
+        "Separate English-only, code-switched and local-language-only speech.",
+        "Separate music-only and speech-with-music; keep unresolved content explicit.",
+        "Agree the recipient’s acceptance definition before producing the final quantity."
+      ],
+      "title": "The target corpus is an intersection of verified properties, not a folder selection",
+      "title_chars": 83,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Ekegusii (guz)",
+          "Kikamba (kam)",
+          "Kikuyu (kik)",
+          "Kalenjin (kln)",
+          "Dholuo (luo)",
+          "Wanga / Luhya label (lwg)",
+          "Kiswahili (swa)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Natural assembled text units by language label",
+        "plate": "bar",
+        "receipt": "R04",
+        "receipt_text": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries.",
+        "so_what": "The text-unit inventory is verified within this build; token mass and alignment require their own definitions.",
+        "unit": "units",
+        "values": {
+          "Natural units": [
+            21856,
+            12220,
+            18344,
+            32441,
+            22274,
+            29852,
+            20526
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Text quantity is real, but units, characters and tokens are different · R04/R05",
+      "n": 20,
+      "title": "Text units establish a corpus inventory, not a universal token or speech equivalent",
+      "title_chars": 83,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Train",
+          "Development",
+          "Held-out",
+          "Archive test"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Natural text partition counts; added synthetic canaries excluded",
+        "plate": "bar",
+        "receipt": "R04",
+        "receipt_text": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries.",
+        "so_what": "Partition integrity, speaker independence and final-evaluation blindness are separate requirements.",
+        "unit": "units",
+        "values": {
+          "Natural units": [
+            129984,
+            8280,
+            18980,
+            269
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "The existing partitions provide useful structure, not final independence proof · R04",
+      "n": 21,
+      "title": "A sealed evaluation file is not automatically an untouched final benchmark",
+      "title_chars": 74,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Transcript quality and aligned speech hours are still open · R03/R04/R07",
+      "n": 22,
+      "points": [
+        "WER/CER and clean paired hours are not measured in the current record.",
+        "Language-ID accuracy does not validate every transcript.",
+        "Audio–text joins need timestamps, hashes, provenance and rights.",
+        "Qualify by intended task rather than inventing a single “good data” grade."
+      ],
+      "title": "The transcript corpus is promising, but supervised-speech quality is not yet quantified",
+      "title_chars": 87,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Ekegusii",
+          "Kikamba",
+          "Kikuyu",
+          "Kalenjin",
+          "Dholuo",
+          "Wanga / Luhya label",
+          "Kiswahili"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Text-ID measured conditional accuracy and coverage on equal strata",
+        "plate": "bar",
+        "receipt": "R05",
+        "receipt_text": "Text language-ID run, m9j-74af7cef0a85; measured per-stratum results. Not an ASR or general-language certificate.",
+        "so_what": "Conditional accuracy must be read with coverage and independent source-quality evidence.",
+        "unit": "percent",
+        "values": {
+          "Accuracy among judged (%)": [
+            98.24,
+            91.35,
+            99.25,
+            99.75,
+            99.49,
+            93.47,
+            98.95
+          ],
+          "Coverage (%)": [
+            99.25,
+            98.25,
+            99.5,
+            99.5,
+            98.0,
+            95.75,
+            95.25
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "The text model proves a narrow capability, not corpus-wide quality · R05",
+      "n": 23,
+      "title": "The admitted text classifier validates one task; it does not certify the whole estate",
+      "title_chars": 85,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Compute eligible hours with an auditable segment ledger · R07",
+      "n": 24,
+      "points": [
+        "Eligible hours are the duration-weighted intersection of explicit gates.",
+        "Separate included, excluded and unresolved duration.",
+        "Stratify by language, source, time, programme and acoustic condition.",
+        "Use design-aware uncertainty; do not multiply marginal percentages."
+      ],
+      "title": "An auditable ledger can turn the candidate inventory into a credible lab offer",
+      "title_chars": 78,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "A sampling illustration is not a substitute for the actual design · R07",
+      "n": 25,
+      "points": [
+        "Illustrative sample formulas assume independence and a defined population.",
+        "Correlated recordings and rare strata change the effective sample size.",
+        "No detected contamination is not proof of zero contamination.",
+        "Tolerance, adjudication and release policy must be agreed explicitly."
+      ],
+      "title": "The qualification design should expose uncertainty rather than hide it",
+      "title_chars": 70,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "What a global AI lab should receive · R07/R08",
+      "n": 26,
+      "points": [
+        "A data card, manifest and rights matrix must travel with the corpus.",
+        "Provide per-stratum quality, uncertainty and failure counts—not one pooled score.",
+        "Supply independently reproducible partitions and evaluation evidence.",
+        "Offer controlled qualification before promising unrestricted licensing."
+      ],
+      "title": "A lab-ready offer is a reproducible evidence package, not a storage statistic",
+      "title_chars": 77,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 27,
+      "number": 3,
+      "title": "A broader portfolio: commercial services and local-language enablement",
+      "title_chars": 70,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "kicker": "Part III · Data value depends on the product and the permitted use · R07",
+      "n": 28,
+      "points": [
+        "Enterprise services, research products and ecosystem investment have different economics.",
+        "Start with a narrow qualified slice and a named user problem.",
+        "Do not equate an attractive use case with present eligibility.",
+        "Validate willingness to pay before treating the portfolio as revenue."
+      ],
+      "title": "The estate supports several product hypotheses—not one undifferentiated data sale",
+      "title_chars": 81,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Context as a service · R07",
+      "n": 29,
+      "points": [
+        "Offer: Versioned, cited retrieval of authorised local context through a governed interface; language routing, provenance, freshness and correction are part of the product.",
+        "Users: Enterprise assistants, newsrooms, research teams and approved local-language applications.",
+        "Value model: Subscription, usage or enterprise agreement; validate retention, citation utility, answer coverage and workflow savings.",
+        "Gate: Source rights for retrieval and excerpting; publication updates; factual review; privacy and content-access boundaries."
+      ],
+      "title": "Cited context can support bounded enterprise workflows",
+      "title_chars": 54,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Local-language transcription, captions and media accessibility · R07",
+      "n": 30,
+      "points": [
+        "Offer: Task-specific ASR, captions, alignment and searchable timecodes for qualified language/acoustic strata.",
+        "Users: Broadcasters, archives, public-service content teams and accessibility programmes.",
+        "Value model: Per-minute processing, managed service or enterprise contract; quality-linked acceptance and rework costs determine margin.",
+        "Gate: Clean paired segments, independently checked references, lawful processing and a supported rather than assumed model capability."
+      ],
+      "title": "Transcription services require validated speech–text alignment",
+      "title_chars": 62,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Independent local-language benchmark and evaluation service · R07",
+      "n": 31,
+      "points": [
+        "Offer: A controlled, blind benchmark with per-language/dialect scoring, abstention and coverage, leakage checks and human adjudication.",
+        "Users: Model developers, global AI labs and local-language application buyers.",
+        "Value model: Evaluation engagements, secure benchmark access or recurring independent assessments.",
+        "Gate: Independent labels and partitions; benchmark rights; conflict-of-interest controls. The current language-ID score alone is not a benchmark product."
+      ],
+      "title": "Independent evaluation can turn language coverage into a service",
+      "title_chars": 64,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Rights-cleared research corpus licensing · R07",
+      "n": 32,
+      "points": [
+        "Offer: Versioned corpus slices with a data card, manifest, permissible-use terms, correction/withdrawal process and documented quality.",
+        "Users: AI labs and research institutions with a defined training or evaluation objective.",
+        "Value model: Scoped licence, time-bound access, support or recurring updates, subject to actual rights and demonstrated buyer need.",
+        "Gate: Onward-use rights, contributor and programme permissions, privacy review, geographic transfer terms and verified quality. Not cleared by internal training authorisation alone."
+      ],
+      "title": "Corpus licensing is a rights-and-assurance product, not a raw data sale",
+      "title_chars": 71,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Secure research enclave and compute-to-data access · R07",
+      "n": 33,
+      "points": [
+        "Offer: Approved code executes against a controlled dataset slice; reviewed metrics and permitted outputs leave the environment.",
+        "Users: Research partners unable to receive unrestricted source copies.",
+        "Value model: Project access, managed research environment or jointly funded programme.",
+        "Gate: Approved partner and purpose, adequate controls, contractual liability and a qualified dataset. This is not a loophole around data-protection law."
+      ],
+      "title": "Compute-to-data access limits raw-data movement, not the underlying obligations",
+      "title_chars": 79,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Open-source local-language enablement and heritage access · R07",
+      "n": 34,
+      "points": [
+        "Offer: Open tools, schemas, evaluation harnesses and documentation; separately approved dataset or model releases where rights allow.",
+        "Users: Local researchers, universities, developers and language communities.",
+        "Value model: Grant or consortium support, sponsorship, hosted/support services and partnership adoption; open-source itself is not a guaranteed revenue stream.",
+        "Gate: Licence compatibility, release-specific rights, community stewardship, hosting support and an explicit sustainability plan."
+      ],
+      "title": "Open-source tools can build an ecosystem without premature corpus release",
+      "title_chars": 73,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "The wider portfolio extends beyond corpus sales and context APIs · R07",
+      "n": 35,
+      "points": [
+        "Private archive search and terminology resources can build on smaller curated slices.",
+        "Localisation and adapters need task-specific evidence, not broad model claims.",
+        "Annotation and independent evaluation improve the defensibility of later offers.",
+        "Voice synthesis and unmarked synthetic augmentation are not shortcuts around rights."
+      ],
+      "title": "The strongest portfolio combines services, assurance and local-language capability",
+      "title_chars": 82,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Context as a service needs a product contract, not just a vector index · R07",
+      "n": 36,
+      "points": [
+        "Define domains, languages, freshness, citation and abstention behaviour.",
+        "Carry source permissions into retrieval, caches and generated answers.",
+        "Evaluate faithful answers separately from retrieval relevance.",
+        "Price the full cost of an accepted answer, including curation and escalation."
+      ],
+      "title": "A defensible context service sells trustworthy workflow support, not raw retrieval",
+      "title_chars": 82,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "An open ecosystem and a commercial service can coexist · R07/R08",
+      "n": 37,
+      "points": [
+        "Open code, open data, open weights and a hosted service are different choices.",
+        "Start with reproducible tools and clear documentation; clear data separately.",
+        "Native-speaker participation and correction channels are part of the product.",
+        "Assign funding and ownership for maintenance, not just launch."
+      ],
+      "title": "Openness is a set of deliberate release decisions, not a single licence label",
+      "title_chars": 77,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Rights, privacy and community legitimacy constrain the offer · R08/R07",
+      "n": 38,
+      "points": [
+        "Internal authorisation does not establish onward licensing or open-release rights.",
+        "Assess source, performer, transcript, personal-data and derived-output rights separately.",
+        "Cross-border processing requires a documented legal and operational review.",
+        "Community participation and correction rights strengthen long-term legitimacy."
+      ],
+      "title": "Rights and stewardship must be designed into each offer, not appended at release",
+      "title_chars": 80,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Commercial validation should precede a revenue forecast · R07",
+      "n": 39,
+      "points": [
+        "Validate a named buyer problem and acceptance criteria in a scoped pilot.",
+        "Use accepted outputs—not raw gigabytes—as the economic unit.",
+        "Include rights, annotation, review, maintenance and support costs.",
+        "No revenue forecast is justified before yield, demand and delivery costs are measured."
+      ],
+      "title": "A paid qualification or workflow pilot is stronger evidence than a speculative valuation",
+      "title_chars": 88,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "A staged programme turns the inventory into a responsible offer · R07",
+      "n": 40,
+      "points": [
+        "Establish source identity, coverage and rights before a sale claim.",
+        "Qualify segments and alignments with independent native-speaker evidence.",
+        "Pilot one bounded commercial workflow and a separately cleared open track.",
+        "Scale only after measured quality, demand, correction and unit economics are credible."
+      ],
+      "title": "The next investment should buy qualification and a pilot, not a larger unverified claim",
+      "title_chars": 87,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Decisions for the owner and prospective partner · R07",
+      "n": 41,
+      "points": [
+        "Select the intended use, target strata and release model.",
+        "Agree treatment of mixed content and unresolved quality.",
+        "Name accountable owners for rights, language validation and delivery.",
+        "Approve the qualification programme and a bounded pilot—not unsupported totals."
+      ],
+      "title": "The next decision is the first defensible product and its qualification contract",
+      "title_chars": 80,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "coverage": {
+        "cannot_say": [
+          {
+            "closes_with": "Complete the coverage ledger and stratified content qualification",
+            "gap": "Estate-wide non-English, non-music eligible audio hours",
+            "reason": "No joined asset inventory with verified segment-level language, music and rights labels"
+          },
+          {
+            "closes_with": "Versioned exports, tokenizer-specific counts, alignments and independent audits",
+            "gap": "Estate-wide non-English natural-text tokens or clean aligned speech–text hours",
+            "reason": "Database storage is not natural-text volume; text and audio populations are not joined"
+          },
+          {
+            "closes_with": "Measured observables plus task-specific human-reference evaluation",
+            "gap": "Studio/telephone quality or transcript error-rate distributions",
+            "reason": "Header properties do not establish audio quality; no final waveform/annotation certificate"
+          },
+          {
+            "closes_with": "Rights review, actual invoices, retrieval charges and paid pilot validation",
+            "gap": "External licensing, open release or realised savings and revenue",
+            "reason": "Internal custody and indicative tariffs do not establish onward rights or commercial demand"
+          }
+        ],
+        "covers": "Retained RMS relational census, OBS/NAS listings, an authorised staged-audio subset, a separately assembled transcript corpus and a narrow language-identification evaluation. Evidence cut: 1 October 2026, 19:12 UTC."
+      },
+      "kicker": "Coverage and limits",
+      "n": 42,
+      "title": "What this pack covers, what it cannot say, and what would close each gap",
+      "title_chars": 72,
+      "type": "coverage_limits",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Appendix",
+      "n": 43,
+      "receipts": [
+        {
+          "id": "R01",
+          "text": "RMS estate census, eij-1b359b3cbd2e; measured 29 September 2026. Exact source hashes in the Word appendix."
+        },
+        {
+          "id": "R02",
+          "text": "OBS and NAS retained listings embedded in the census; 29 September 2026. Metadata scope, not language or music analysis."
+        },
+        {
+          "id": "R03",
+          "text": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification."
+        },
+        {
+          "id": "R04",
+          "text": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries."
+        },
+        {
+          "id": "R05",
+          "text": "Text language-ID run, m9j-74af7cef0a85; measured per-stratum results. Not an ASR or general-language certificate."
+        },
+        {
+          "id": "R06",
+          "text": "Measurement status, m9j-c47f01c0b945; last retained heartbeat 1 October 2026 at 04:33 UTC. No final quality receipt."
+        },
+        {
+          "id": "R07",
+          "text": "Report analysis and explicitly labelled planning calculations, derived from the pinned evidence; not forecasts or new measurements."
+        },
+        {
+          "id": "R08",
+          "text": "Documentation and governance references: Datasheets, Data Cards, NIST AI RMF and Kenya data-protection law; full references in Word."
+        }
+      ],
+      "title": "Exhibit index with receipts",
+      "title_chars": 27,
+      "type": "appendix",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    }
+  ],
+  "spec_id": "DK-RMS-ESTATE-20261001",
+  "spec_type": "deck",
+  "title": "RMS estate & language intelligence",
+  "verdict_ref": "V-RMS-ESTATE-20261001",
+  "voice": "strategy-house"
+}

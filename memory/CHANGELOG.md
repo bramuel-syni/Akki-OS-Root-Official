@@ -1,5 +1,11 @@
 # Akki implementation history
 
+## 2026-10-01 — owner estate/data opportunity report pair
+- Produced a combined 43-slide PPTX and 24-page Word document covering estate intelligence, AI-lab-grade accounting of non-English/non-music candidate audio/text, and twelve commercial/public-interest options. Duplication stays primarily in estate intelligence.
+- Included per-language volumes and hours, separate quality evidence/unknowns, explicit denominators and rights limits, reproducible calculations, source hashes and documentation/governance references. No invented eligible hours, quality bands or revenue forecasts.
+- Published through two exact entries in the existing downloadable-deliverables allowlist, with correct OOXML MIME/attachment headers. No UI embedding or new app screen.
+- Native build/QA and reproducibility proof passed; independent file/API verification plus final 9-check self-retest passed. Corrected Word metadata and replaced an ambiguous model-score visual with explicit conditional/coverage/correct-of-all values. Source/builds remain under `assessment_workspace/deliverables/estate_intelligence_20261001/`.
+
 ## 2026-10-01 — requirement-alignment corrections, training evidence workflow and document handoff
 - Removed engineering benchmark and recovery close-out UI; restored 21 routes to extracted owner sections and two legacy redirects. Your Models displays actual adapters. Preserved `v2_os.html`; no fabricated availability or redesign.
 - Fixed DAP skill session reuse/error-vs-empty states and implementation-oriented copy. Native contract imports now resolve in the running application.

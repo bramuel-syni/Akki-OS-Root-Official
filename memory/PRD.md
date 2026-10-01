@@ -1,5 +1,13 @@
 # Akki — product requirements and current continuity
 
+## Latest owner deliverables — 2026-10-01
+- User requested a combined rigorous, easy-to-follow PPTX and Word report: (1) estate intelligence, with duplication mainly here; (2) non-English/non-music audio+text quantities, hours, volumes and quality, suitable for global AI-lab scrutiny; (3) a wider opportunity portfolio than context services and open-source alone. **Simple downloads, no UI embedding.**
+- Delivered **43-slide PPTX and 24-page DOCX** via existing allowlisted `/api/deliverables/RMS_Estate_Intelligence_and_Language_Opportunities.{pptx,docx}`. No UI changes or new product dashboard. Twelve opportunities, per-language inventories, quality/rights limitations, methodology, provenance and references.
+- Sources pinned under `assessment_workspace/deliverables/estate_intelligence_20261001/evidence`. Staged candidate audio: 3,958 files / 529.3379 header-hours / 36,516,920,948 bytes. Separate natural text: 157,513 units / 27,329,904 characters / 4,521 source files. Strictly qualified non-English, non-music totals remain unknown; do not rebrand candidate inventory as certified eligible speech. Companion text population is separate.
+- Reproducible native document-studio build and validation/QA PASS; Word metadata statistics corrected without body changes. One independent delivery verification pass, then **9 final checks passed** for download/API integrity, actual OOXML/openability and contents. See `test_reports/iteration_77.json` and `test_reports/pytest/iteration_77_finalized.xml`.
+- Final source/build/checksum and file paths: `assessment_workspace/deliverables/estate_intelligence_20261001/README.md` and `finalized_release_manifest.json`. Artifacts and evidence persist under `/app`. No credentials changed, no model/census job launched, no new mocked measurements.
+- Development backlog below remains unchanged. Next evidence work, if requested: independent language/music/quality/rights qualification and source joins before quoting a lab-ready licensable corpus.
+
 ## Latest implementation — 2026-10-01 correction sweep and production foundations
 - User approved correcting requirement/UI drift, completing Training artifacts/evidence flow, and extending Estate with Perception; other backlog deferred. They also asked whether cognition completed and mentioned a remembered discovery.
 - Corrected live engineering benchmark/milestone leakage, 21 prototype-bound unavailable/library pages + two ledger/watch redirects, misleading connection/commissioning prose, and DAP skill session/error handling. The frozen HTML SHA remains unchanged. Unavailable workflows are NOT claimed complete.

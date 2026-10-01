@@ -1,0 +1,194 @@
+{
+  "job_id": "m9j-3e0dcb1bd16e",
+  "phase": "lab_inspect",
+  "host": "akki-vm",
+  "principal_id": "6ab56dd48894abb269135ca2",
+  "submitted_at": "2026-09-30T20:07:31.995934Z",
+  "params": {
+    "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+    "gpu_index": 0,
+    "owner_order_ref": "owner-training-lab-20260930-inspection-only"
+  },
+  "northena_run_id": "run-6650fa165b4a",
+  "northena_trace_id": "trc-a080cfcdfcdc",
+  "governing_artifact_ref": {
+    "artifact_type": "objective_request",
+    "artifact_id": "M9-GOVERNED-TRAINING",
+    "version": "m9j-3e0dcb1bd16e"
+  },
+  "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+  "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+  "remote": {
+    "root": "/mnt/volume_dkgjrkx/akki-m9",
+    "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3e0dcb1bd16e",
+    "pid": 632197
+  },
+  "status": "completed",
+  "ledger_rows": [
+    {
+      "row_id": "led-346312a8b82f",
+      "stage": "admit",
+      "decision": "admitted",
+      "reason": "m9_lab_inspect_admitted"
+    },
+    {
+      "row_id": "led-1838cf966d00",
+      "stage": "gate",
+      "decision": "warm",
+      "reason": "m9_lab_inspect_daemonised:pid=632197"
+    },
+    {
+      "row_id": "led-267e6e6ceaea",
+      "stage": "converge",
+      "decision": "terminate_success",
+      "reason": "m9_lab_inspect_completed"
+    }
+  ],
+  "code_sha256": "abff0b7c59d48fc1f7434b78867cd5069659be4bb084582647d0de1e168f440c",
+  "started_at": "2026-09-30T20:07:37.839249Z",
+  "last_status_rpc": {
+    "at": "2026-09-30T20:08:33.012969Z",
+    "rc": 0,
+    "receipt_id": "gpurcp-8a04c63ee5b1"
+  },
+  "remote_state": {
+    "phase": "lab_inspect",
+    "status": "completed",
+    "started_at": "2026-09-30T20:07:37Z",
+    "progress": {
+      "stage": "inspection complete",
+      "files": 3958
+    },
+    "stages": {},
+    "events": [],
+    "job_id": "m9j-3e0dcb1bd16e",
+    "hostname": "akki-vm",
+    "runtime_id": "akki-vm",
+    "updated_at": "2026-09-30T20:07:41Z",
+    "finished_at": "2026-09-30T20:07:41Z",
+    "receipt_sha256": "c65ecf890c64cf4c784d472165ba3e952f4b146cc8ace080e2fc6864b19107b4"
+  },
+  "worker_log_tail": "",
+  "process_alive": false,
+  "receipt": {
+    "protocol": "akki-m9-governed-training-v1",
+    "job_id": "m9j-3e0dcb1bd16e",
+    "phase": "lab_inspect",
+    "runtime_id": "akki-vm",
+    "hostname": "akki-vm",
+    "started_at": "2026-09-30T20:07:37Z",
+    "code_sha256": "abff0b7c59d48fc1f7434b78867cd5069659be4bb084582647d0de1e168f440c",
+    "status": "completed",
+    "result": {
+      "scope": "authorized staged language-cognition corpus only; not the whole RMS estate",
+      "evidence_class": "measured_headers",
+      "per_language_folder": {
+        "bxk": {
+          "files": 14,
+          "bytes": 70351255,
+          "transcripts": 0,
+          "transcript_bytes": 0,
+          "unreadable_headers": 0,
+          "hours": 1.0724
+        },
+        "guz": {
+          "files": 732,
+          "bytes": 7701496619,
+          "transcripts": 730,
+          "transcript_bytes": 6271508,
+          "unreadable_headers": 0,
+          "hours": 92.2269
+        },
+        "kam": {
+          "files": 1166,
+          "bytes": 4835367839,
+          "transcripts": 1165,
+          "transcript_bytes": 5108701,
+          "unreadable_headers": 0,
+          "hours": 85.3711
+        },
+        "kik": {
+          "files": 584,
+          "bytes": 5502345879,
+          "transcripts": 583,
+          "transcript_bytes": 5463769,
+          "unreadable_headers": 0,
+          "hours": 82.0832
+        },
+        "kln": {
+          "files": 295,
+          "bytes": 6358996154,
+          "transcripts": 295,
+          "transcript_bytes": 7583858,
+          "unreadable_headers": 0,
+          "hours": 89.725
+        },
+        "luo": {
+          "files": 558,
+          "bytes": 3787335823,
+          "transcripts": 557,
+          "transcript_bytes": 6025590,
+          "unreadable_headers": 0,
+          "hours": 81.9929
+        },
+        "lwg": {
+          "files": 60,
+          "bytes": 770609384,
+          "transcripts": 60,
+          "transcript_bytes": 739106,
+          "unreadable_headers": 0,
+          "hours": 9.1942
+        },
+        "swa": {
+          "files": 549,
+          "bytes": 7490417995,
+          "transcripts": 549,
+          "transcript_bytes": 6000242,
+          "unreadable_headers": 0,
+          "hours": 87.6722
+        }
+      },
+      "files": 3958,
+      "sample_rate_counts": {
+        "44100": 3126,
+        "48000": 162,
+        "22050": 49,
+        "11025": 597,
+        "16000": 22,
+        "32000": 2
+      },
+      "unreadable_headers": 0,
+      "music_labels": {
+        "status": "not_established",
+        "verified_labelled_examples": null,
+        "reason": "Existing corpus supplies language/transcript labels, not a verified speech/music/mixed annotation contract."
+      },
+      "quality": {
+        "studio_or_telephony": "unknown",
+        "note": "Sample rate is a capture property, not proof of recording quality."
+      },
+      "training_started": false,
+      "raw_media_exported": false,
+      "music_head_smoke": {
+        "evidence_class": "SYNTHETIC",
+        "device": "NVIDIA H200",
+        "outputs": 2,
+        "finite_gradients": true,
+        "quality_claim": false,
+        "weights_saved": false
+      }
+    },
+    "finished_at": "2026-09-30T20:07:41Z",
+    "receipt_sha256": "c65ecf890c64cf4c784d472165ba3e952f4b146cc8ace080e2fc6864b19107b4",
+    "digest_verified": true
+  },
+  "finished_at": "2026-09-30T20:07:41Z",
+  "track4_run_receipt": {
+    "job_kind": "training_runs",
+    "run_id": "m9j-3e0dcb1bd16e",
+    "started_at_utc": "2026-09-30T20:07:37.839249Z",
+    "finished_at_utc": "2026-09-30T20:07:41Z",
+    "status": "completed",
+    "provenance_ref": "m9_training://run_log/m9j-3e0dcb1bd16e"
+  }
+}

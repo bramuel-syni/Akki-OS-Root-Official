@@ -1,0 +1,28 @@
+[
+  {
+    "measurement_id": "cm-808205ed2f80",
+    "tenant_id": "RMS",
+    "actor": "6ab56dd48894abb269135ca2",
+    "host": "akki-vm",
+    "params": {
+      "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+      "workers": 16,
+      "max_seconds": 5400.0,
+      "max_files_per_language": 0,
+      "owner_order_ref": "owner-direction-2026-10-01: measure staged corpus observables as the music-identification test set; no training"
+    },
+    "submitted_at": "2026-10-01T04:21:32.370817+00:00",
+    "updated_at": "2026-10-01T04:33:25.432867+00:00",
+    "status": "running",
+    "job_id": "m9j-c47f01c0b945",
+    "rows_stored": 0,
+    "training_started": false,
+    "raw_media_exported": false,
+    "progress": {
+      "stage": "measuring staged audio",
+      "files": 1900,
+      "of": 3958,
+      "elapsed_s": 685
+    }
+  }
+]

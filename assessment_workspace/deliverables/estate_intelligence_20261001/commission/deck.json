@@ -1,0 +1,443 @@
+{
+  "content_ref": "rms-estate-and-local-language-opportunities@1",
+  "brief_ref": "BR-RMS-ESTATE-20261001",
+  "verdict_ref": "V-RMS-ESTATE-20261001",
+  "objective": "decide",
+  "family": "strategy",
+  "voice": "strategy-house",
+  "seed": "rms/estate-language-opportunities/20261001",
+  "build_stamp": "2026-10-01T19:12:00Z",
+  "furniture": {
+    "confidentiality": "Owner confidential · controlled circulation"
+  },
+  "spec_type": "deck",
+  "spec_id": "DK-RMS-ESTATE-20261001",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "{content.title}",
+      "subtitle": "Evidence-led owner and AI-lab briefing · 1 October 2026",
+      "org": "{content.organisation}"
+    },
+    {
+      "type": "exec_summary",
+      "kicker": "The answer in brief · R03/R04",
+      "title": "The estate has valuable language assets, but its eligible corpus is not yet certified",
+      "situation": "{C001}",
+      "complication": "{C002}",
+      "question": "What should be protected, qualified and productised—and what can responsibly be offered to an AI lab?",
+      "answer": "Treat estate stewardship, corpus qualification and product development as separate workstreams. Pilot controlled-access products while building a defensible data card; do not sell a storage total as training-ready language data."
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "How to read this report · R07",
+      "title": "{C009}",
+      "points": [
+        "{C010}",
+        "{C011}",
+        "{C012}",
+        "{C013}"
+      ]
+    },
+    {
+      "type": "section",
+      "number": 1,
+      "title": "Estate intelligence: condition, duplication and stewardship"
+    },
+    {
+      "type": "assertion_exhibit",
+      "kicker": "Part I · The estate is three overlapping inventories, not one clean corpus · R01/R02",
+      "title": "{C017}",
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C018}"
+      }
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Coverage is substantial but not complete or perfectly reconciled · R01/R02",
+      "title": "{C022}",
+      "points": [
+        "{C023}",
+        "{C024}",
+        "{C025}",
+        "{C026}"
+      ]
+    },
+    {
+      "type": "assertion_exhibit",
+      "kicker": "Relational readiness is uneven and is not an audio-quality assessment · R01",
+      "title": "{C030}",
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C031}"
+      }
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Quality and privacy signals are material, but their denominators differ · R01",
+      "title": "{C035}",
+      "points": [
+        "{C036}",
+        "{C037}",
+        "{C038}",
+        "{C039}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Duplication has several meanings and several confidence levels · R01/R04",
+      "title": "{C043}",
+      "points": [
+        "{C044}",
+        "{C045}",
+        "{C046}",
+        "{C047}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Object-store overlap and archive candidates offer leverage with qualifications · R02",
+      "title": "{C051}",
+      "points": [
+        "{C052}",
+        "{C053}",
+        "{C054}",
+        "{C055}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Freshness and growth need field-level interpretation · R01",
+      "title": "{C059}",
+      "points": [
+        "{C060}",
+        "{C061}",
+        "{C062}",
+        "{C063}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Storage economics should be quoted as conditional bounds · R01/R02/R07",
+      "title": "{C067}",
+      "points": [
+        "{C068}",
+        "{C069}",
+        "{C070}",
+        "{C071}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Stewardship priorities should protect value before removing cost · R07",
+      "title": "{C075}",
+      "points": [
+        "{C076}",
+        "{C077}",
+        "{C078}",
+        "{C079}"
+      ]
+    },
+    {
+      "type": "section",
+      "number": 2,
+      "title": "Non-English, non-music audio and text: a defensible accounting"
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Part II · The precise answer is a bounded candidate inventory · R03/R04",
+      "title": "{C084}",
+      "points": [
+        "{C085}",
+        "{C086}",
+        "{C087}",
+        "{C088}"
+      ]
+    },
+    {
+      "type": "assertion_exhibit",
+      "kicker": "The audio-duration distribution is highly uneven · R03/R04",
+      "title": "{C092}",
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C093}"
+      }
+    },
+    {
+      "type": "assertion_exhibit",
+      "kicker": "Capture properties are measurable; quality grades are not yet established · R03",
+      "title": "{C097}",
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S004",
+        "so_what": "{C098}"
+      }
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "The waveform measurement record is incomplete and stale · R06",
+      "title": "{C102}",
+      "points": [
+        "{C103}",
+        "{C104}",
+        "{C105}",
+        "{C106}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Define non-English and non-music at the segment level · R07",
+      "title": "{C110}",
+      "points": [
+        "{C111}",
+        "{C112}",
+        "{C113}",
+        "{C114}"
+      ]
+    },
+    {
+      "type": "assertion_exhibit",
+      "kicker": "Text quantity is real, but units, characters and tokens are different · R04/R05",
+      "title": "{C118}",
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S005",
+        "so_what": "{C119}"
+      }
+    },
+    {
+      "type": "assertion_exhibit",
+      "kicker": "The existing partitions provide useful structure, not final independence proof · R04",
+      "title": "{C123}",
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S006",
+        "so_what": "{C124}"
+      }
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Transcript quality and aligned speech hours are still open · R03/R04/R07",
+      "title": "{C128}",
+      "points": [
+        "{C129}",
+        "{C130}",
+        "{C131}",
+        "{C132}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "The text model proves a narrow capability, not corpus-wide quality · R05",
+      "title": "{C136}",
+      "points": [
+        "{C137}",
+        "{C138}",
+        "{C139}",
+        "{C140}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Compute eligible hours with an auditable segment ledger · R07",
+      "title": "{C144}",
+      "points": [
+        "{C145}",
+        "{C146}",
+        "{C147}",
+        "{C148}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "A sampling illustration is not a substitute for the actual design · R07",
+      "title": "{C152}",
+      "points": [
+        "{C153}",
+        "{C154}",
+        "{C155}",
+        "{C156}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "What a global AI lab should receive · R07/R08",
+      "title": "{C160}",
+      "points": [
+        "{C161}",
+        "{C162}",
+        "{C163}",
+        "{C164}"
+      ]
+    },
+    {
+      "type": "section",
+      "number": 3,
+      "title": "A broader portfolio: commercial services and local-language enablement"
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Part III · Data value depends on the product and the permitted use · R07",
+      "title": "{C168}",
+      "points": [
+        "{C169}",
+        "{C170}",
+        "{C171}",
+        "{C172}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Context as a service · R07",
+      "title": "{C178}",
+      "points": [
+        "{C179}",
+        "{C180}",
+        "{C181}",
+        "{C182}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Local-language transcription, captions and media accessibility · R07",
+      "title": "{C193}",
+      "points": [
+        "{C194}",
+        "{C195}",
+        "{C196}",
+        "{C197}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Independent local-language benchmark and evaluation service · R07",
+      "title": "{C203}",
+      "points": [
+        "{C204}",
+        "{C205}",
+        "{C206}",
+        "{C207}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Rights-cleared research corpus licensing · R07",
+      "title": "{C213}",
+      "points": [
+        "{C214}",
+        "{C215}",
+        "{C216}",
+        "{C217}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Secure research enclave and compute-to-data access · R07",
+      "title": "{C223}",
+      "points": [
+        "{C224}",
+        "{C225}",
+        "{C226}",
+        "{C227}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Open-source local-language enablement and heritage access · R07",
+      "title": "{C258}",
+      "points": [
+        "{C259}",
+        "{C260}",
+        "{C261}",
+        "{C262}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "The wider portfolio extends beyond corpus sales and context APIs · R07",
+      "title": "{C266}",
+      "points": [
+        "{C267}",
+        "{C268}",
+        "{C269}",
+        "{C270}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Context as a service needs a product contract, not just a vector index · R07",
+      "title": "{C274}",
+      "points": [
+        "{C275}",
+        "{C276}",
+        "{C277}",
+        "{C278}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "An open ecosystem and a commercial service can coexist · R07/R08",
+      "title": "{C282}",
+      "points": [
+        "{C283}",
+        "{C284}",
+        "{C285}",
+        "{C286}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Rights, privacy and community legitimacy constrain the offer · R08/R07",
+      "title": "{C290}",
+      "points": [
+        "{C291}",
+        "{C292}",
+        "{C293}",
+        "{C294}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Commercial validation should precede a revenue forecast · R07",
+      "title": "{C298}",
+      "points": [
+        "{C299}",
+        "{C300}",
+        "{C301}",
+        "{C302}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "A staged programme turns the inventory into a responsible offer · R07",
+      "title": "{C307}",
+      "points": [
+        "{C308}",
+        "{C309}",
+        "{C310}",
+        "{C311}"
+      ]
+    },
+    {
+      "type": "assertion_points",
+      "kicker": "Decisions for the owner and prospective partner · R07",
+      "title": "{C315}",
+      "points": [
+        "{C316}",
+        "{C317}",
+        "{C318}",
+        "{C319}"
+      ]
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ]
+}

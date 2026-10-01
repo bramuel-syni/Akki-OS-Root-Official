@@ -157,6 +157,8 @@ DELIVERABLES_DIR = ROOT_DIR / 'deliverables'
 DELIVERABLES_ALLOWLIST = {
     'BUILD_STRATEGY.md',
     'REUSE_ASSESSMENT.md',
+    'RMS_Estate_Intelligence_and_Language_Opportunities.pptx',
+    'RMS_Estate_Intelligence_and_Language_Opportunities.docx',
 }
 
 # MongoDB connection · env-only (fail loud on missing; both are hard-required
@@ -268,12 +270,7 @@ async def get_status_checks():
 
 @api_router.get("/deliverables/{filename}")
 async def get_deliverable(filename: str):
-    """Serve read-only snapshots of Chunk-4 deliverables.
-
-    Snapshot commit: 7ae3b1b (fixture-arrival cycle CLOSED; see /app/assessment_workspace STATE/CONTEXT.md).
-    Allowlist-guarded; no path traversal. Served as text/markdown so browsers
-    render / download cleanly.
-    """
+    """Serve explicitly allowlisted read-only deliverables as direct attachments."""
     if filename not in DELIVERABLES_ALLOWLIST:
         raise HTTPException(status_code=404, detail="deliverable not found")
     file_path = DELIVERABLES_DIR / filename
@@ -281,7 +278,8 @@ async def get_deliverable(filename: str):
         raise HTTPException(status_code=404, detail="deliverable missing on disk")
     return FileResponse(
         path=str(file_path),
-        media_type="text/markdown; charset=utf-8",
+        media_type={'.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                    '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}.get(file_path.suffix, 'text/markdown; charset=utf-8'),
         filename=filename,
     )
 
