@@ -24,6 +24,16 @@ def plan_findings(data):
 async def process(row):
     try:
         request = row['request']
+        if row['kind'] == 'weak_language_plan':
+            from services.training_lab import languages
+            data, bundle = languages.evidence(request.get('floor', 0.9))
+            if bundle is None:
+                store.update(row,status='held',hold_reason='No measured audio baseline certificate is available to read',report=data); return
+            store.update(row,status='reviewing',evidence=bundle['aggregate'],report=bundle['report'],plan=bundle['plan'],deterministic={'status':'held_before_retraining','training_started':False,'below_floor':data['below_floor'],'at_risk':data['at_risk']})
+            outcomes = await reviews(bundle['aggregate'],tenant=row['tenant_id'],actor=row['actor'],run_id=row['run_id']) if request.get('model_reviews',True) else []
+            complete = sum(r['status']=='complete' for r in outcomes)
+            store.update(row,status='complete' if not outcomes or complete==5 else 'partial',reviews=outcomes,specialist_reviews_complete=complete,finished_at=store.now(),outcome='held_before_retraining')
+            return
         if row['kind']=='assessment' and request['inspect_existing_data'] and not row.get('inspection_job_id'):
             from services.training_runner import m9_dispatch
             from services.census_autonomy.operational_runner import admission_path

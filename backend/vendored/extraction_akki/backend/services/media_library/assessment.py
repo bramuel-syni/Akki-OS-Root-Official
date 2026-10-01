@@ -10,11 +10,13 @@ def snapshot(rows):
         if row['kind']=='audio' and (row['event_label']=='unknown' or row['label_status']!='human_reviewed'):
             issues.append('Speech/music labels need human review')
         if row['kind']=='labels': issues.append('Label taxonomy and file alignment need verification')
+        if row.get('reference'): issues.append('Public-domain reference audio is excluded from training data')
         checks.append({'file_id':row['file_id'],'title':row['title'],'revision':row['revision'],'kind':row['kind'],
                        'issues':issues,'rights_independently_verified':False,'quality':'not_measured'})
     return {'scope':'uploaded_file_metadata_only','files':checks,'file_count':len(rows),
             'total_bytes':sum(row['size_bytes'] for row in rows),
             'audio_files':sum(row['kind']=='audio' for row in rows),
+            'reference_files_excluded':sum(bool(row.get('reference')) for row in rows),
             'status':'held_before_retraining','training_started':False,
             'blockers':['Independently verify rights and annotations','Measure audio quality and duration on an authorized worker',
                         'Approve the evaluation contract and training recipe'],

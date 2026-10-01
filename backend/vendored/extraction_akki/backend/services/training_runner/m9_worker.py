@@ -1340,6 +1340,9 @@ def execute(control):
         if control['phase'] == 'lab_inspect':
             from services.training_lab.inspection_worker import inspect_corpus
             receipt['result'] = inspect_corpus(control, state)
+        elif control['phase'] == 'lab_measure':
+            from services.training_lab.measurement_worker import measure_corpus
+            receipt['result'] = measure_corpus(control, state)
         else:
             receipt["result"] = PHASES[control["phase"]](control, state)
         receipt["status"] = "completed"

@@ -52,7 +52,6 @@ import { LegacyFeatureRedirect } from "@/components/prototype/LegacyFeatureRedir
 // v2 OS Prototype · Turn 4 sub-slice 4f GREEN · Frontend rebuild slice 4 ·
 // Build 4 + Buildlib 2 + Collab 4 + 3rdParty 4 = 14 honest-gap surfaces ·
 // completes 37 of 37 OS leaves. R-103 amendment.
-import BuildTrain from "@/pages/os/BuildTrain";
 import BuildAgent from "@/pages/os/BuildAgent";
 import BuildSkill from "@/pages/os/BuildSkill";
 import BuildExtract from "@/pages/os/BuildExtract";
@@ -1318,7 +1317,7 @@ function App() {
           <Route path="/os/admin/modeladmission" element={<AdminModelAdmission />} />
 
           {/* Sub-slice 4f · Build/Buildlib (build tab) + Collab (work tab) + 3rdParty (apps tab) */}
-          <Route path="/os/build/train" element={<BuildTrain />} />
+          <Route path="/os/build/train" element={<AdminEstate />} />
           <Route path="/os/build/agentbuild" element={<BuildAgent />} />
           <Route path="/os/build/buildskill" element={<BuildSkill />} />
           <Route path="/os/build/extract" element={<BuildExtract />} />

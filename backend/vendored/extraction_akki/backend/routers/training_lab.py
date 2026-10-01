@@ -1,9 +1,13 @@
 """Callable lab skills under existing tenant/operator identity and Watch boundaries."""
+import asyncio
 import hmac
 import os
 import re
+import uuid
+from typing import Literal
 
 from fastapi import APIRouter, BackgroundTasks, Depends, Header, HTTPException, Request
+from pydantic import Field
 from pymongo.errors import DuplicateKeyError
 
 from services.enforce.census_identity import census_identity
@@ -84,6 +88,72 @@ def postmortem(body:c.PostmortemRequest,actor=Depends(census_identity)):
     return {'tenant_id':actor['tenant_id'],'result':result}
 
 
+@router.post('/baselines/music',status_code=202,response_model=c.Envelope)
+def music_baseline(body:c.MusicBaseline,idempotency_key:str=Header(...,min_length=8,max_length=100),actor=Depends(census_identity)):
+    operator(actor)
+    from services.training_lab import baseline
+    try: previous=store.replay(actor['tenant_id'],idempotency_key,body.model_dump())
+    except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    if previous: return {'tenant_id':actor['tenant_id'],'run':store.public(previous),'created':False}
+    with commission_gate.crossing(actor,'training_lab.baseline',body.model_dump()):
+        try: row,new=baseline.submit(actor,idempotency_key,body.model_dump())
+        except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    return {'tenant_id':actor['tenant_id'],'run':store.public(row),'created':new}
+
+
+@router.get('/baselines/music',response_model=c.Envelope)
+def music_baselines(actor=Depends(census_identity)):
+    rows=store.db().training_lab_runs.find({'tenant_id':actor['tenant_id'],'kind':'music_baseline'},{'_id':0}).sort('created_at',-1).limit(20)
+    return {'tenant_id':actor['tenant_id'],'runs':[store.public(row) for row in rows]}
+
+
+@router.post('/corpus-measurements',status_code=202,response_model=c.Envelope)
+def corpus_measurement_dispatch(body:c.CorpusMeasurement,actor=Depends(census_identity)):
+    operator(actor)
+    if actor['tenant_id']!='RMS': raise HTTPException(403,'The staged corpus is RMS custody')
+    from services.training_lab import corpus_measurement
+    with commission_gate.crossing(actor,'training_lab.corpus_measurement',body.model_dump()):
+        try: doc=corpus_measurement.dispatch(actor,body.model_dump())
+        except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    return {'tenant_id':actor['tenant_id'],'measurement':doc}
+
+
+@router.get('/corpus-measurements',response_model=c.Envelope)
+async def corpus_measurement_status(actor=Depends(census_identity)):
+    from services.training_lab import corpus_measurement
+    doc=corpus_measurement.latest(actor['tenant_id'])
+    if doc and doc['status']=='running': doc=await corpus_measurement.refresh_async(doc)
+    return {'tenant_id':actor['tenant_id'],'measurement':corpus_measurement.public(doc) if doc else None}
+
+
+@router.get('/languages/weak',response_model=c.Envelope)
+def weak_languages(floor:float=0.9,actor=Depends(census_identity)):
+    from services.training_lab import languages
+    if not 0.5<=floor<=0.999: raise HTTPException(422,'Floor must be between 0.5 and 0.999')
+    data=languages.report(floor)
+    return {'tenant_id':actor['tenant_id'],'report':data,'plan':languages.plan(data) if data['status']=='measured' else None,'training_authorized':False}
+
+
+@router.post('/languages/reinforcement',status_code=202,response_model=c.Envelope)
+def reinforcement(body:c.Reinforcement,background:BackgroundTasks,idempotency_key:str=Header(...,min_length=8,max_length=100),actor=Depends(census_identity)):
+    operator(actor)
+    if actor['tenant_id']!='RMS': raise HTTPException(403,'Audio cognition evidence is RMS custody')
+    try: previous=store.replay(actor['tenant_id'],idempotency_key,body.model_dump())
+    except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    if previous: return {'tenant_id':actor['tenant_id'],'run':store.public(previous),'created':False}
+    with commission_gate.crossing(actor,'training_lab.reinforcement_plan',body.model_dump()):
+        try: row,new=store.enqueue(actor['tenant_id'],actor['principal_id'],idempotency_key,body.model_dump(),kind='weak_language_plan')
+        except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    background.add_task(service.tick)
+    return {'tenant_id':actor['tenant_id'],'run':store.public(row),'created':new}
+
+
+@router.get('/languages/reinforcement',response_model=c.Envelope)
+def reinforcement_runs(actor=Depends(census_identity)):
+    rows=store.db().training_lab_runs.find({'tenant_id':actor['tenant_id'],'kind':'weak_language_plan'},{'_id':0}).sort('created_at',-1).limit(10)
+    return {'tenant_id':actor['tenant_id'],'runs':[store.public(row) for row in rows]}
+
+
 @router.get('/runs',response_model=c.Envelope)
 def runs(actor=Depends(census_identity)):
     rows=store.db().training_lab_runs.find({'tenant_id':actor['tenant_id']},{'_id':0}).sort('created_at',-1).limit(30)
@@ -132,6 +202,135 @@ def watch(body:c.Watch,actor=Depends(census_identity)):
 def watch_status(actor=Depends(census_identity)):
     row=store.db().training_lab_watch.find_one({'tenant_id':actor['tenant_id']},{'_id':0,'actor':0})
     return {'tenant_id':actor['tenant_id'],'watch':row or {'enabled':False}}
+
+
+# ----------------------------------------------------------------------------- the owner's Train Models studio
+class BoardMessage(c.Closed):
+    text:str=Field(min_length=1,max_length=2000)
+
+
+class BoardAction(c.Closed):
+    action:Literal['run_music_baseline','measure_staged_corpus','import_reference_recordings','ask_specialists','record_training_request','use_baseline','white_paper','retire']
+    value:str|None=Field(default=None,max_length=120)
+
+
+class BoardNew(c.Closed):
+    from_run:str|None=Field(default=None,max_length=80)
+    mode:Literal['new','next_version','adjust']='new'
+
+
+def _board_run(tenant,run_id):
+    from services.training_lab import board
+    run=next((r for r in board.runs(tenant) if r['run_id']==run_id),None)
+    if not run: raise HTTPException(404,'No training run with that reference is on your board')
+    return run
+
+
+async def _perform(actor,run,action,value,background):
+    """The control plane performs the bounded action itself and reports back in Akki's voice. Training is never performed."""
+    from services.training_lab import conversation, board_runs
+    tenant=actor['tenant_id']; key='train-models:'+uuid.uuid4().hex[:12]
+    try:
+        if action=='run_music_baseline':
+            from services.training_lab import baseline
+            body={'unlabelled_library_audio':'music','include_synthetic':True,'include_corpus_test':True}
+            with commission_gate.crossing(actor,'training_lab.baseline',body): row,_=baseline.submit(actor,key,body)
+            ref=row.get('reference_set') or {}; pending=len(ref.get('pending') or [])
+            text=(f"Baseline requested on {ref.get('measured',0)} labelled recordings." + (f" {pending} still need their sound profile measured first; it completes on its own." if pending else ' It is being established now.'))
+        elif action=='measure_staged_corpus':
+            from services.training_lab import corpus_measurement
+            if tenant!='RMS': raise ValueError('The staged corpus is RMS custody')
+            body={'host':'akki-vm','workers':16,'max_seconds':5400,'max_files_per_language':0}
+            with commission_gate.crossing(actor,'training_lab.corpus_measurement',body): corpus_measurement.dispatch(actor,body)
+            text='Measuring the staged corpus on akki-vm — readings only, no training, no media leaves the host. I will report here as it progresses.'
+        elif action=='import_reference_recordings':
+            from services.media_library import reference_import as reference
+            with commission_gate.crossing(actor,'media.reference_import',{'catalogue_items':len(reference.CATALOGUE)}): doc,created=reference.start(actor)
+            text='Importing the public-domain reference recordings into the library; they stay apart from your music and are never counted as training data.' if created else 'The reference import is already running.'
+        elif action=='ask_specialists':
+            if tenant!='RMS': raise ValueError('Audio cognition evidence is RMS custody')
+            body={'title':'Weak-language reinforcement plan','floor':0.9,'model_reviews':True}
+            with commission_gate.crossing(actor,'training_lab.reinforcement_plan',body): store.enqueue(tenant,actor['principal_id'],key,body,kind='weak_language_plan')
+            background.add_task(service.tick)
+            text='Asked the five specialists to review the plan. Their advice is advisory and machine-checked for ungrounded figures; it arrives in this thread.'
+        elif action=='record_training_request':
+            if run.get('family')=='owner':
+                if not run.get('ready'): raise ValueError('all five fields must be set before the request can be recorded')
+                with commission_gate.crossing(actor,'training_lab.training_request',{'run_id':run['run_id']}): board_runs.hold(tenant,run['run_id'])
+            text='Recorded: you are asking for this training. The request stays held until the recipe, compute cap and evaluation contract are approved through Model Approval; nothing has started.'
+        elif action=='use_baseline':
+            text=f"Starting point recorded: {'the learned baseline on the measured observables' if value=='learned' else 'the acoustic reading'}. A detector only earns its place by beating it on recordings it has not seen."
+        elif action=='retire':
+            if run['status'] not in ('Refused','In service'): raise ValueError('only a refused or served run can be retired')
+            if run.get('health'): raise ValueError('a served model is retired through Model Approval, where its calls are disabled first')
+            with commission_gate.crossing(actor,'training_lab.retire',{'run_id':run['run_id']}): board_runs.retire(tenant,actor,run['run_id'])
+            text='Retired. The record, the checks and the reason stay exactly as written; only the status changed.'
+        else:
+            paper=run.get('whitepaper')
+            text=('A white paper was drafted from this run\'s own record; it cites the admission and the baseline line. Producing it as a finished document through the studio is not connected yet.' if paper else 'No white paper exists for this run; one is drafted only from an admission on record.')
+    except ValueError as exc:
+        text=f"Not done: {exc}."
+    note=conversation.note(tenant,text,widget='action',action=action)
+    conversation.record(tenant,run['run_id'],note)
+    return note
+
+
+@router.get('/board',response_model=c.Envelope)
+async def board_view(actor=Depends(census_identity)):
+    from services.training_lab import board, conversation
+    data=await asyncio.to_thread(board.board,actor['tenant_id'])
+    for run in data['runs']:
+        run['messages']=run['messages']+conversation.messages(actor['tenant_id'],run['run_id'])
+    return {'tenant_id':actor['tenant_id'],**data}
+
+
+@router.post('/board/new',status_code=201,response_model=c.Envelope)
+async def board_new(body:BoardNew,actor=Depends(census_identity)):
+    operator(actor)
+    from services.training_lab import board, board_runs, conversation
+    tenant=actor['tenant_id']; parent=None; name=None
+    rows=await asyncio.to_thread(board.runs,tenant)
+    if body.from_run:
+        parent=next((r for r in rows if r['run_id']==body.from_run),None)
+        if not parent: raise HTTPException(404,'No training run with that reference is on your board')
+        if body.mode=='new': raise HTTPException(422,'Choose next_version or adjust when opening from an earlier run')
+        name=board_runs.next_version(parent['name'],[r['name'] for r in rows])
+    with commission_gate.crossing(actor,'training_lab.shape_run',{'from_run':body.from_run,'mode':body.mode}):
+        doc=board_runs.create(tenant,actor,parent=parent,mode=body.mode,name=name)
+    opening=board_runs.OPENING if not parent else (board_runs.ADJUST if body.mode=='adjust' else board_runs.NEXT_VERSION).format(parent=parent['name'])
+    conversation.record(tenant,doc['run_id'],conversation.note(tenant,opening,think=['Nothing runs, and no compute is spent, until the five fields are set and the request is approved.'] + (['The earlier run keeps its own record and status.'] if parent else [])))
+    return {'tenant_id':tenant,'run_id':doc['run_id'],'name':doc['name'],'status':doc['status'],'training_started':False}
+
+
+@router.delete('/board/{run_id}',status_code=204)
+async def board_delete(run_id:str,actor=Depends(census_identity)):
+    operator(actor)
+    from services.training_lab import board_runs
+    if not board_runs.delete(actor['tenant_id'],run_id): raise HTTPException(409,'Only a run still being shaped here can be deleted; recorded runs keep their record')
+    return None
+
+
+@router.post('/board/{run_id}/messages',response_model=c.Envelope)
+async def board_message(run_id:str,body:BoardMessage,background:BackgroundTasks,actor=Depends(census_identity)):
+    operator(actor)
+    from services.training_lab import conversation
+    run=await asyncio.to_thread(_board_run,actor['tenant_id'],run_id)
+    user,reply=await conversation.turn(actor['tenant_id'],actor,run,body.text)
+    out=[user,reply]
+    if reply.get('action'): out.append(await _perform(actor,run,reply['action'],None,background))
+    return {'tenant_id':actor['tenant_id'],'messages':out,'training_started':False}
+
+
+@router.post('/board/{run_id}/actions',response_model=c.Envelope)
+async def board_action(run_id:str,body:BoardAction,background:BackgroundTasks,actor=Depends(census_identity)):
+    operator(actor)
+    from services.training_lab import conversation
+    run=await asyncio.to_thread(_board_run,actor['tenant_id'],run_id)
+    labels={'run_music_baseline':'Run the baseline','measure_staged_corpus':'Measure the staged corpus','import_reference_recordings':'Import the reference recordings','ask_specialists':'Ask the five specialists',
+            'record_training_request':'Begin training','use_baseline':'Start from this','white_paper':'Prepare white paper','retire':'Retire this attempt'}
+    decided=conversation.decision(actor['tenant_id'],labels[body.action],action=body.action,value=body.value)
+    conversation.record(actor['tenant_id'],run['run_id'],decided)
+    return {'tenant_id':actor['tenant_id'],'messages':[decided,await _perform(actor,run,body.action,body.value,background)],'training_started':False}
 
 
 @router.post('/cron')

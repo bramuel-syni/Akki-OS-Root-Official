@@ -1,11 +1,11 @@
 import React from 'react';
-import { Database, MessageSquare, FileText, ShieldCheck, LayoutGrid, Users, FlaskConical, Box, Workflow } from 'lucide-react';
+import { Database, MessageSquare, FileText, ShieldCheck, LayoutGrid, Users, FlaskConical, Box, Workflow, BrainCircuit } from 'lucide-react';
 import { count, stamp, initials, tile, unmeasuredBar, measuredWays, tabs, groups } from './evidence';
 import { historyModel } from './historyModel';
 
-const icons = { Registry: Database, Chat: MessageSquare, Documents: FileText, Shield: ShieldCheck, Board: LayoutGrid, 'My Work': Workflow, 'My Team': Users, 'Seek Clarity': FlaskConical };
+const icons = { Registry: Database, Chat: MessageSquare, Documents: FileText, Shield: ShieldCheck, Board: LayoutGrid, 'My Work': Workflow, 'My Team': Users, 'Seek Clarity': FlaskConical, 'Train Models': BrainCircuit };
 
-export function osModel({ data, user, portal, navTab, setNavTab, selected, setSelected, params, setParams, navigate, disclosure, toggle, openRun, notice }) {
+export function osModel({ data, user, portal, navTab, setNavTab, selected, setSelected, params, setParams, navigate, disclosure, toggle, openRun, notice, trainCounts }) {
   const latest = data?.latest;
   const history = params.get('view') === 'history';
   const estate = params.get('view') === 'sources';
@@ -13,6 +13,8 @@ export function osModel({ data, user, portal, navTab, setNavTab, selected, setSe
   const Icon = icons[selected.label] || Box;
   const status = data?.runs?.[0];
   const running = Boolean(data?.runs?.some(r => r.status === 'PENDING'));
+  const train = selected.label === 'Train Models';
+  const tc = key => (trainCounts || {})[key] ?? 0;
   const tabProps = ([key, label]) => ({ key, label, color: key === navTab ? 'var(--ink)' : 'var(--ink3)', weight: key === navTab ? '600' : '500', bg: key === navTab ? '#fff' : 'transparent', onClick: () => setNavTab(key) });
   const scope = {
     portalMode: portal, appMode: !portal, anyFullPage: history || estate || mixed,
@@ -27,10 +29,12 @@ export function osModel({ data, user, portal, navTab, setNavTab, selected, setSe
     }) })),
     landingGroupLabel: selected.group, landingAppName: selected.label, landingIcon: <Icon size={17} strokeWidth={1.6} />,
     landingIconBg: 'rgba(22,39,74,.08)', landingIconColor: 'var(--blue)',
-    landingGreeting: selected.label === 'Registry' ? `The ${data?.tenant_id || 'admitted'} estate: census records, what is known, and what remains unmeasured.` : `Open ${selected.label} in your admitted workspace. Census evidence and access remain bound to your identity.`,
-    landingHasStats: true, landingStats: selected.label === 'Registry' ? [{ v: count(latest?.database_count), l: 'databases recorded' }, { v: count(latest?.table_count), l: 'tables recorded' }, { v: String(data?.records?.length ?? 0), l: 'tenant-attributed census records' }] : [{ v: 'Not measured', l: 'activity for this workspace' }],
+    landingGreeting: selected.label === 'Registry' ? `The ${data?.tenant_id || 'admitted'} estate: census records, what is known, and what remains unmeasured.` : train ? 'Every model on record, with the conversation that produced it. Shape a run in plain language; nothing trains until you approve it.' : `Open ${selected.label} in your admitted workspace. Census evidence and access remain bound to your identity.`,
+    landingHasStats: true, landingStats: selected.label === 'Registry' ? [{ v: count(latest?.database_count), l: 'databases recorded' }, { v: count(latest?.table_count), l: 'tables recorded' }, { v: String(data?.records?.length ?? 0), l: 'tenant-attributed census records' }]
+      : train ? [{ v: String(tc('Shaping') + tc('In Approval') + tc('Queued') + tc('In training') + tc('Testing')), l: 'Running' }, { v: String(tc('Refused')), l: 'Need attention' }, { v: String(tc('In service') + tc('Retired')), l: 'Complete' }] : [{ v: 'Not measured', l: 'activity for this workspace' }],
     landingHasHistory: false, landingHasTips: true,
-    landingTips: selected.label === 'Registry' ? ['Census metadata estimates are distinguished from counted rows.', 'The registry shows retained evidence—not inferred permissions or fresh source availability.'] : ['Your existing workspace opens with your current identity.', 'No sample activity is presented as your operational history.'],
+    landingTips: selected.label === 'Registry' ? ['Census metadata estimates are distinguished from counted rows.', 'The registry shows retained evidence—not inferred permissions or fresh source availability.']
+      : train ? ['Each run carries its own record: recipe, data, checks and the reason it stopped or was admitted.', 'A refused run is never overwritten; a new version opens beside it.'] : ['Your existing workspace opens with your current identity.', 'No sample activity is presented as your operational history.'],
     landingCtaLabel: `Go to ${selected.label} →`, landingContinue: () => navigate(selected.path),
     appTitle: 'Registry', appGroupLabel: 'Manage Estate', exitApp: () => navigate('/os?nav=admin&app=registry'),
     openShieldReport: () => notice('Shield report', 'This census view enforces admitted tenant access and validates result evidence. A system-wide Shield assurance report is not established by these checks.'),

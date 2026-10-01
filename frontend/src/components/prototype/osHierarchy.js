@@ -19,10 +19,12 @@ export const legacyFeaturePaths = {
   '/os/admin/wrecord': watchSections[1].path,
   '/os/admin/wunder': watchSections[2].path,
   '/os/admin/wdecisions': watchSections[3].path,
+  '/os/work/training': '/os/build/train',
 };
 export function featureRoute(pathname) {
   const work = workSections.find(section => section.path === pathname);
   if (work) return { family: 'work', section: work.key, label: work.label };
+  if (pathname === '/os/build/train') return { family: 'build', section: 'train', label: 'Train Models' };
   if (pathname === '/os/admin/greymirror') return { family: 'mirror', section: 'overview', label: 'Grey Mirror' };
   if (pathname === '/os/admin/greymirror/watch') return { family: 'mirror', section: 'state', label: 'State' };
   const watch = watchSections.find(section => section.path === pathname);

@@ -1,0 +1,54 @@
+.training-lab .lab-body{display:flex;flex-direction:column;gap:28px}
+.lab-intro{font-size:14px;color:#3d4350;margin:0;max-width:720px;line-height:1.6}
+.lab-card{background:#fbf9f3;border:1px solid #e4dfd3;border-radius:10px;padding:22px 24px;display:flex;flex-direction:column;gap:16px}
+.lab-card header h2{display:flex;align-items:center;gap:10px;font-family:'Iowan Old Style',Georgia,serif;font-size:21px;font-weight:400;margin:0 0 6px}
+.lab-card header p{margin:0;font-size:13px;color:#5b6270;line-height:1.55;max-width:680px}
+.lab-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.lab-controls{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:end}
+.lab-controls label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#3d4350}
+.lab-controls select{font:inherit;font-size:13px;padding:7px 10px;border:1px solid #d7d1c4;border-radius:6px;background:#fff;color:#1b1f27}
+.lab-controls .lab-check{flex-direction:row;align-items:center;gap:8px;padding-bottom:9px}
+.lab-run{display:flex;flex-direction:column;gap:12px}
+.lab-status{font-size:13px;margin:0;color:#1d7a6e;font-weight:500}
+.lab-hold{font-size:13px;border-left:3px solid #b08d2e;padding:8px 12px;background:rgba(176,141,46,.08);margin:0}
+.lab-lede{font-size:15px;line-height:1.55;margin:0;color:#1b1f27}
+.lab-method{font-size:12px;color:#5b6270;margin:0 0 8px;line-height:1.5}
+.lab-footnote{font-size:12px;color:#5b6270;margin:0;line-height:1.55}
+.lab-baselines{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.lab-baseline{background:#f0ece1;border-radius:8px;padding:14px 16px}
+.lab-baseline h4,.lab-corpus-test h4,.lab-plan h4,.lab-reviews h4{font-family:'Iowan Old Style',Georgia,serif;font-size:17px;font-weight:400;margin:0 0 6px}
+.lab-baseline dl{margin:8px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+.lab-metric dt{font-size:11px;color:#5b6270;text-transform:uppercase;letter-spacing:.04em}
+.lab-metric dd{margin:2px 0 0;font-size:16px;font-variant-numeric:tabular-nums;color:#1b1f27}
+.lab-card table{width:100%;border-collapse:collapse;font-size:12.5px}
+.lab-card th,.lab-card td{text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid #e4dfd3;vertical-align:top;font-weight:400}
+.lab-card thead th{font-size:11px;color:#5b6270;text-transform:uppercase;letter-spacing:.04em}
+.lab-card td{font-variant-numeric:tabular-nums}
+.lab-card td small,.lab-card li small{display:block;color:#5b6270;font-size:11px}
+.lab-card tr.miss td{color:#a62e4e}
+.lab-card tr.below_floor td{background:rgba(166,46,78,.06)}
+.lab-verdict{font-size:11px;padding:2px 8px;border-radius:999px;background:#e4dfd3;color:#3d4350;white-space:nowrap}
+.lab-verdict.below_floor{background:#a62e4e;color:#fff}.lab-verdict.at_risk{background:#b08d2e;color:#fff}.lab-verdict.meets_floor{background:#1d7a6e;color:#fff}
+.lab-details summary{cursor:pointer;font-size:13px;color:#16274a;padding:4px 0}
+.lab-details ul{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 18px;font-size:12.5px}
+.lab-details li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(228,223,211,.7);padding:4px 0}
+.lab-details li em{font-style:normal;color:#1d7a6e;font-size:11px}
+.lab-limits{margin:4px 0 0;padding-left:18px;font-size:12px;color:#5b6270;line-height:1.6}
+.lab-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px 18px;font-size:12.5px}
+.lab-list li{display:flex;flex-direction:column;border-bottom:1px solid rgba(228,223,211,.7);padding:5px 0}
+.lab-list li.failed,.lab-list li.unavailable{color:#a62e4e}
+.lab-plan{border-left:3px solid #16274a;padding:6px 0 6px 16px;display:flex;flex-direction:column;gap:12px}
+.lab-plan article p{margin:0 0 6px;font-size:13.5px;line-height:1.55}
+.lab-plan ul{margin:0;padding-left:18px;font-size:12.5px;line-height:1.6;color:#3d4350}
+.lab-request{display:flex;gap:12px;background:rgba(176,141,46,.1);border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.55}
+.lab-request p{margin:4px 0 0}
+.lab-reviews{display:flex;flex-direction:column;gap:12px}
+.lab-review{background:#f0ece1;border-radius:8px;padding:12px 16px}
+.lab-review h5{margin:0 0 6px;font-size:13px;text-transform:capitalize;display:flex;gap:10px;align-items:baseline}
+.lab-review h5 small{text-transform:none;color:#5b6270;font-weight:400}
+.lab-review.unavailable{opacity:.7}
+.lab-finding{margin:0 0 8px;font-size:12.5px;line-height:1.55}
+.lab-finding em{display:block;font-style:normal;color:#16274a;margin-top:2px}
+.lab-severity{font-size:10px;text-transform:uppercase;letter-spacing:.05em;background:#e4dfd3;border-radius:4px;padding:1px 6px;margin-right:8px}
+.lab-finding.blocker .lab-severity{background:#a62e4e;color:#fff}.lab-finding.review .lab-severity{background:#b08d2e;color:#fff}
+@media(max-width:700px){.lab-card{padding:16px}.lab-card table{display:block;overflow-x:auto}.lab-baseline dl{grid-template-columns:1fr}}

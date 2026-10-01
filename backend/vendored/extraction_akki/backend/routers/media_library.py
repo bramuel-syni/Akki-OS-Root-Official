@@ -188,6 +188,21 @@ def assessments(actor=Depends(census_identity)):
     return {'tenant_id':actor['tenant_id'],'runs':[lab.public(row) for row in rows]}
 
 
+@router.post('/reference/import',status_code=202,response_model=c.Envelope)
+def reference_import(actor=Depends(census_identity)):
+    operator(actor)
+    from services.media_library import reference_import as reference
+    with commission_gate.crossing(actor,'media.reference_import',{'catalogue_items':len(reference.CATALOGUE)}):
+        doc,created=reference.start(actor)
+    return {'tenant_id':actor['tenant_id'],'import':doc,'created':created,'catalogue':[{k:v for k,v in item.items() if k!='take'} for item in reference.CATALOGUE]}
+
+
+@router.get('/reference/import',response_model=c.Envelope)
+def reference_import_status(actor=Depends(census_identity)):
+    from services.media_library import reference_import as reference
+    return {'tenant_id':actor['tenant_id'],'import':reference.latest(actor['tenant_id']),'catalogue':[{k:v for k,v in item.items() if k!='take'} for item in reference.CATALOGUE]}
+
+
 @router.get('/acoustics/register',response_model=c.Envelope)
 def acoustic_register(actor=Depends(census_identity)):
     return {'tenant_id':actor['tenant_id'],'profile_version':ao.PROFILE_VERSION,'analysis_band_hz':[0,ao.SR//2],'window_seconds':ao.WINDOW_SECONDS,

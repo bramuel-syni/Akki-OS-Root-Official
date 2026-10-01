@@ -14,6 +14,27 @@ class Assessment(Closed):
     model_reviews: bool = True
 
 
+class MusicBaseline(Closed):
+    title: str = Field(default='Music identification baseline',min_length=1,max_length=100)
+    unlabelled_library_audio: Literal['music','excluded'] = 'music'
+    include_synthetic: bool = True
+    include_corpus_test: bool = True
+
+
+class CorpusMeasurement(Closed):
+    host: Literal['akki-vm','akki-vm-ii'] = 'akki-vm'
+    workers: int = Field(default=16,ge=1,le=32)
+    max_seconds: float = Field(default=5400,ge=60,le=7200)
+    max_files_per_language: int = Field(default=0,ge=0,le=5000)
+
+
+class Reinforcement(Closed):
+    title: str = Field(default='Weak-language reinforcement plan',min_length=1,max_length=100)
+    floor: float = Field(default=0.9,ge=0.5,le=0.999)
+    model_reviews: bool = True
+
+
+
 class Watch(Closed):
     enabled: bool
     max_checkpoints_per_job: int = Field(default=4,ge=1,le=8)

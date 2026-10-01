@@ -71,6 +71,8 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     "census.estate_intelligence_dossier",
     # Owner 2026-09-30 hybrid training laboratory; aggregate advisory reviews only.
     "training_lab.advisory_review",
+    # Owner 2026-10-01 Train Models studio: per-run conversation grounded in the run's own record; bounded actions only.
+    "training_lab.conversation",
 })
 
 

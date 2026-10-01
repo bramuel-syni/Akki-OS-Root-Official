@@ -91,6 +91,8 @@ from services.chokepoint.masking_tier import (
     validate_tier,
 )
 
+TRAINING_LAB_PURPOSES = ('training_lab.advisory_review', 'training_lab.conversation')
+
 log = logging.getLogger(__name__)
 
 
@@ -425,14 +427,14 @@ async def invoke(
     # Optional model selection — emergentintegrations LlmChat exposes .with_model()
     if hasattr(client, "with_model") and provider and model:
         try:
-            sdk_provider = os.environ['TRAINING_LAB_MODEL_PROVIDER'] if purpose == 'training_lab.advisory_review' and provider == 'emergent' else provider
+            sdk_provider = os.environ['TRAINING_LAB_MODEL_PROVIDER'] if purpose in TRAINING_LAB_PURPOSES and provider == 'emergent' else provider
             client = client.with_model(sdk_provider, model)
         except Exception:  # noqa: BLE001
-            if purpose == 'training_lab.advisory_review':
+            if purpose in TRAINING_LAB_PURPOSES:
                 raise LLMShieldFailure('Training lab model selection failed; no fallback allowed')
             # If provider/model combo is not selectable, fall back to defaults.
             pass
-    if purpose == 'training_lab.advisory_review' and hasattr(client, 'with_params'):
+    if purpose in TRAINING_LAB_PURPOSES and hasattr(client, 'with_params'):
         client = client.with_params(max_completion_tokens=2200)
 
     # 6. Send + measure.  The prompt sent is the REDACTED prompt — raw

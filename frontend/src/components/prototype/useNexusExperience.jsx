@@ -12,10 +12,7 @@ import { watchStateModel } from './watchStateModel';
 import { watchUnderModel } from './watchUnderModel';
 import { watchDecisionsModel } from './watchDecisionsModel';
 
-export function useNexusExperience({ feature, work, session, navigate, params, setParams, baseModel, account }) {
-  const principal = session.data?.principal_id;
-  const watch = useWatchRecords(principal,feature?.family==='mirror');
-  const watchNotices = useWatchNotices(principal);
+export function useOwnerSurfaceState(principal) {
   const [storedState,setStoredState] = useState({owner:null,value:{}});
   const state = storedState.owner === principal ? storedState.value : {};
   const setState = update => setStoredState(old=>({owner:principal,value:update(old.owner===principal?old.value:{})}));
@@ -26,14 +23,23 @@ export function useNexusExperience({ feature, work, session, navigate, params, s
   const currentDrawer = drawer?.owner === principal ? drawer : null;
   const show = value => { setBell(false);setDrawer({...value,owner:principal}); };
   const unavailable = (title, body='This operation requires its connected service and authorisation. No work was started or state changed.')=>show({title,body,code:'Not connected'});
-  const active = Boolean(feature && session.data);
+  return { state,setState,drawer:currentDrawer,setDrawer,show,unavailable,bell,setBell,read,setRead,drawerModel:ownerDrawer(currentDrawer,()=>setDrawer(null)) };
+}
+
+export function useNexusExperience({ feature, work, session, navigate, params, setParams, baseModel, account, surface }) {
+  const principal = session.data?.principal_id;
+  const watch = useWatchRecords(principal,feature?.family==='mirror');
+  const watchNotices = useWatchNotices(principal);
+  const own = useOwnerSurfaceState(principal);
+  const { state,setState,drawer:currentDrawer,setDrawer,show,unavailable,bell,setBell,read,setRead } = surface || own;
+  const active = Boolean(feature && session.data && ['work','mirror'].includes(feature.family));
   useEffect(()=>{
     if(!bell)return undefined;
     const outside=event=>{const root=document.querySelector('[data-proto-line="nexus-37"]');if(root&&!root.contains(event.target))setBell(false);};
     const escape=event=>{if(event.key==='Escape'){setBell(false);document.querySelector('[data-proto-line="nexus-38"]')?.focus();}};
     document.addEventListener('pointerdown',outside);document.addEventListener('keydown',escape);
     return()=>{document.removeEventListener('pointerdown',outside);document.removeEventListener('keydown',escape);};
-  },[bell]);
+  },[bell,setBell]);
   const model = { ...baseModel,
     ...(feature?.family==='work'?nexusWorkModel({work,section:feature.section,state,setState,params,navigate,setParams,unavailable,show}):{}),
     ...(feature?.family==='work'?supportModel({section:feature.section,state,setState,unavailable}):{}),
@@ -128,7 +134,7 @@ export function useNexusExperience({ feature, work, session, navigate, params, s
     }};
     document.addEventListener('keydown',key);return()=>{document.removeEventListener('keydown',key);
       if(previous?.isConnected&&previous!==document.body)previous.focus?.();else document.querySelector('[data-testid="owner-work-notices-trigger"]')?.focus();};
-  },[currentDrawer]);
+  },[currentDrawer,setDrawer]);
   const common={model,enhance,replace,onUnbound:action=>unavailable(String(action||'Action').replace(/([a-z])([A-Z])/g,'$1 $2'))};
   const supportSlots=feature?.family==='work'&&['board','goals'].includes(feature.section)?{2465:<NexusFragment name={feature.section==='board'?'board':'company'} {...common}/>} : {};
   const content=feature?.family==='work'?<NexusFragment name="work" {...common} slots={supportSlots}/>:<>

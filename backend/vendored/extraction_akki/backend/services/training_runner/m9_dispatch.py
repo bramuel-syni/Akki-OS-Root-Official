@@ -24,7 +24,7 @@ from services.census_autonomy import engine
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/training_runner/m9_worker.py"
-PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect")
+PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect", "lab_measure")
 OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
 OWNER_ORDER_REF = "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)"
@@ -72,10 +72,9 @@ def build_bundle():
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
-        lab_worker = 'services/training_lab/inspection_worker.py'
-        archive.writestr(zipfile.ZipInfo(lab_worker, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / lab_worker).read_bytes())
-        archive.writestr(zipfile.ZipInfo('services/training_lab/__init__.py', date_time=(2026, 1, 1, 0, 0, 0)), b'')
-        for directory in ("services", "services/training_runner"):
+        for module in ('services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/audio_plane_v1/acoustic_observables.py'):
+            archive.writestr(zipfile.ZipInfo(module, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / module).read_bytes())
+        for directory in ("services", "services/training_runner", "services/training_lab", "services/audio_plane_v1"):
             archive.writestr(zipfile.ZipInfo(directory + "/__init__.py", date_time=(2026, 1, 1, 0, 0, 0)), b"")
     raw = buffer.getvalue()
     return base64.b64encode(raw).decode(), hashlib.sha256(raw).hexdigest()
@@ -122,6 +121,13 @@ def validate(phase, params, host):
             raise ValueError('LAB_INSPECTION_SCOPE_INVALID')
         if type(params['gpu_index']) is not int or params['gpu_index'] not in (0,1) or not params['owner_order_ref']:
             raise ValueError('LAB_INSPECTION_AUTHORITY_REQUIRED')
+    if phase == 'lab_measure':
+        if set(params) != {'lab_corpus_root', 'workers', 'max_seconds', 'max_files_per_language', 'owner_order_ref'} or params['lab_corpus_root'] != os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']:
+            raise ValueError('LAB_MEASUREMENT_SCOPE_INVALID')
+        if type(params['workers']) is not int or not 1 <= params['workers'] <= 32 or type(params['max_files_per_language']) is not int or params['max_files_per_language'] < 0:
+            raise ValueError('LAB_MEASUREMENT_BOUNDS_INVALID')
+        if type(params['max_seconds']) not in (int, float) or not 60 <= params['max_seconds'] <= 7200 or not params['owner_order_ref']:
+            raise ValueError('LAB_MEASUREMENT_AUTHORITY_REQUIRED')
     if phase in ("calibrate", "compare_optimizers", "train", "pipeline", "serve"):
         if type(params.get("gpu_index")) is not int or params["gpu_index"] not in (0, 1):
             raise ValueError("M9_GPU_INDEX_REQUIRED")
@@ -189,6 +195,18 @@ def submit(phase, params, host, principal_id, lawful_ref, timeout=60):
         if client is not None:
             client.close()
     return save_job(job)
+
+
+def fetch_artifact(job_id, name, max_bytes=12_000_000):
+    """One bounded RPC for a named result file written by the worker into its job directory."""
+    from services.training_runner.ssh_seam import execute_remote_command
+    job = load_job(job_id)
+    if not job or not re.fullmatch(r"[a-z_]+\.json", name):
+        raise ValueError("ARTIFACT_FETCH_REQUIRES_A_KNOWN_JOB_AND_JSON_NAME")
+    result = execute_remote_command(job["host"], f"head -c {int(max_bytes)} {shlex.quote(job['remote']['job_dir'] + '/' + name)}", purpose=f"m9_fetch:{job_id}:{name[:-5]}", timeout=180)
+    if result.rc != 0:
+        raise ValueError("ARTIFACT_FETCH_FAILED:" + result.stderr_redacted[:200])
+    return result.stdout_redacted
 
 
 def cancel(job_id, reason):

@@ -108,6 +108,11 @@ def measure(job):
     _finish(job, status='measured', profile=profile, error=None, measured_at=lab.now())
     db().media_events.insert_one({'tenant_id': job['tenant_id'], 'actor': job.get('requested_by'), 'action': 'acoustics_measured', 'file_id': job['file_id'],
                                   'revision': row['revision'], 'at': lab.now(), 'details': {'profile_version': profile['profile_version'], 'reads_as': profile['signature']['reads_as']}})
+    try:
+        from services.training_lab import baseline
+        baseline.advance(job['tenant_id'])
+    except Exception:
+        log.exception('baseline advance failed after measuring %s', job['file_id'])
 
 
 def _loop():

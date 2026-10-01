@@ -131,6 +131,9 @@ class DecodeError(Exception):
 
 
 def _ffmpeg():
+    import shutil
+    found = os.environ.get('AKKI_FFMPEG') or shutil.which('ffmpeg')
+    if found: return found
     import imageio_ffmpeg
     return imageio_ffmpeg.get_ffmpeg_exe()
 
@@ -477,3 +480,41 @@ def measure_file(path: str, *, max_seconds: float | None = None) -> dict:
 
 def register() -> list[dict]:
     return [{'chain': c, 'key': k, 'label': l, 'unit': u, 'method': m} for c, k, l, u, m in REGISTER]
+
+
+FEATURE_PATHS = ('wave.rms_dbfs', 'wave.crest_factor_db', 'wave.dynamic_range_db', 'wave.silence_ratio', 'wave.low_energy_frame_ratio',
+                 'wave.zero_crossing_rate_hz.p50', 'wave.zero_crossing_rate_hz.std', 'frequency.spectral_centroid_hz.p50', 'frequency.spectral_centroid_hz.std',
+                 'frequency.spectral_bandwidth_hz.p50', 'frequency.spectral_rolloff95_hz.p50', 'frequency.effective_bandwidth_hz', 'frequency.spectral_flatness.p50',
+                 'frequency.spectral_entropy.p50', 'frequency.spectral_flux.p50', 'frequency.spectral_flux.std', 'frequency.spectral_tilt_db_per_octave',
+                 'frequency.alpha_ratio_db', 'frequency.hammarberg_index_db', 'frequency.telephone_band_energy_ratio', 'tone.f0_median_hz', 'tone.f0_range_semitones',
+                 'tone.f0_std_semitones', 'tone.voiced_ratio', 'tone.harmonicity', 'tone.pitch_jump_semitones', 'tone.sustained_tone_ratio', 'tone.pitch_class_entropy',
+                 'tone.stable_partial_ratio', 'energy.modulation_4hz_ratio', 'energy.modulation_peak_hz', 'energy.onset_rate_per_s', 'energy.tempo_bpm',
+                 'energy.pulse_clarity', 'energy.voiced_run_mean_s', 'energy.pause_mean_s', 'energy.pause_rate_per_min', 'energy.syllable_rate_proxy_hz',
+                 'timbre.brightness', 'timbre.arousal_proxy')
+FEATURE_NAMES = FEATURE_PATHS + tuple(f'timbre.mfcc_mean.{i}' for i in range(13)) + tuple(f'timbre.mfcc_std.{i}' for i in range(13))
+WINDOW_CUES = ('modulation_4hz_ratio', 'low_energy_frame_ratio', 'dynamic_range_db', 'stable_partial_ratio', 'chroma_stability', 'voiced_ratio', 'harmonicity',
+               'pitch_jump_semitones', 'sustained_tone_ratio', 'pitch_class_entropy', 'pulse_clarity', 'tempo_bpm', 'spectral_flatness', 'spectral_flux_std', 'zcr_cv')
+
+
+def features(profile: dict) -> dict:
+    """Flat, fixed-order scalar features of one measured profile (None where not measurable)."""
+    out = {}
+    for path in FEATURE_PATHS:
+        node = profile['observables']
+        for part in path.split('.'):
+            node = node.get(part) if isinstance(node, dict) else None
+        out[path] = node if isinstance(node, (int, float)) and not isinstance(node, bool) else None
+    for stat in ('mfcc_mean', 'mfcc_std'):
+        values = profile['observables']['timbre'].get(stat) or []
+        for i in range(13): out[f'timbre.{stat}.{i}'] = values[i] if i < len(values) else None
+    return out
+
+
+def compact(profile: dict) -> dict:
+    """Small per-file record for corpus-scale exports: reading, channel, features; no paths, no raw audio."""
+    sig, channel = profile['signature'], profile['observables']['channel']
+    windows = sig['timeline']
+    return {'profile_version': profile['profile_version'], 'duration_s': profile['observables']['wave']['duration_seconds'], 'reads_as': sig['reads_as'],
+            'confidence': sig['confidence'], 'window_shares': sig['window_shares'], 'windows': sig['windows'],
+            'music_windows': sum(w['reads_as'] == 'music' for w in windows), 'speech_windows': sum(w['reads_as'] == 'speech' for w in windows),
+            'channel_condition': channel['channel_condition'], 'artefacts': channel['transmission_artefacts'], 'features': features(profile)}
