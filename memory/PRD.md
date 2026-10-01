@@ -22,7 +22,12 @@ M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → 
 - English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
 - M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-## CURRENT — 2026-10-01 upload limits: 55 MB for all supported files, 100 per batch
+## CURRENT — 2026-10-01 measured sound observables (owner-directed audio capability)
+
+- Owner direction: Akki must measure every queryable observable of recorded sound (wavelength → tone → energy → frequency), register it as data and surface the patterns behind general classifications. Delivered as a real DSP layer (numpy/scipy, static ffmpeg decode) with ~58 registered observables in six chains, a heuristic speech/music/mixed/noise/silence signature per 4 s window, channel condition with stated basis, artefact detection, concrete ratified §4.3/§4.4 seam backends, durable per-file jobs with an in-process worker, a pattern register, and a Media Library UI (sound profile dialog, batch measure, sound patterns). Details and limits in `memory/ROADMAP.md` (current section) and `assessment_workspace/notes/training_lab_20260930/ACOUSTIC_OBSERVABLES_20261001.md`.
+- Verified: engine 11 tests incl. two 20 s public-domain fixtures, seam tests 4, media suite 10, testing agent iteration 72 backend 17/17 + frontend desktop/mobile. Real owner songs read as music (89–100 %); public-domain speech reads as speech (98–100 %). Classification is cue scoring, **not a trained model**; language/speaker/mood are not identified. New env keys `MEDIA_ACOUSTICS_MAX_SECONDS`, `MEDIA_ACOUSTICS_POLL_SECONDS`; new packages scipy, soundfile, imageio-ffmpeg.
+
+## PREVIOUS — 2026-10-01 upload limits: 55 MB for all supported files, 100 per batch
 
 - User requested "adjust limit to 55mb per file" then confirmed "Yes. Increase all including batch limit to 100 files". Updated `MEDIA_MAX_FILE_BYTES=55000000`, `MEDIA_MAX_TEXT_BYTES=55000000`, `MEDIA_MAX_BATCH_FILES=100`; backend restarted for env. Existing 1GB tenant reservation allowance remains unchanged and was explicitly disclosed; 100 maximum-size files would exceed it.
 - Upload dialog reads live configuration and displays 55MB/file +100/batch. Invalid replacement selections now clear the previous selection instead of leaving old files uploadable. All existing formats/rights/retention/training guards unchanged.

@@ -1,5 +1,14 @@
 # Akki implementation history
 
+## 2026-10-01 — Measured sound observables layer (owner-directed)
+
+- Added `services/audio_plane_v1/acoustic_observables.py` (streaming DSP engine, ~58 registered observables, 4 s-window signature, channel condition with basis, artefact detection) and `measured_backends.py` (ratified §4.3/§4.4 seam backends; refusal for unmeasured segments).
+- Added `services/media_library/acoustics.py` (Mongo `media_acoustics` jobs, leased claims, daemon worker, pattern register) and six `/api/media` acoustic endpoints; Watch boundary `media.acoustics`; worker started at app startup.
+- Media Library UI: sound profile dialog with spectrum/energy/band/pitch-class charts and six measurement groups, row readings, batch "Measure sound", "Sound patterns" register. No raw IDs shown.
+- Dependencies: scipy, soundfile, imageio-ffmpeg. Env: `MEDIA_ACOUSTICS_MAX_SECONDS=5400`, `MEDIA_ACOUSTICS_POLL_SECONDS=3`.
+- Tests: `tests/census_operational/test_acoustic_observables.py` (11), `test_measured_backends.py` (4), testing-agent `test_media_acoustics_iteration72.py` (17 passed, 2 skipped); public-domain 20 s fixtures under `tests/fixtures/audio` with `SOURCES.md`. Report `/app/test_reports/iteration_72.json`.
+- Honest limits recorded: heuristic cue scoring, 0–8 kHz analysis band, no language/speaker/mood identification, control-plane execution for library files only.
+
 ## 2026-09-30 — Owner-requested M1–M10 progress reflection
 
 - Created a full milestone recap with explicitly estimated implementation
