@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-01T01:08:44.033216+00:00",
+  "per_file_bytes": 55000000,
+  "batch_files": 100,
+  "format_boundaries_checked": 10,
+  "test_data": "SYNTHETIC",
+  "provider_integration": "REAL",
+  "library_allowance_bytes": 1000000000,
+  "upload_seconds": 2.76,
+  "upload_verified": true,
+  "download_verified": true,
+  "sha256_match": true,
+  "test_fixture_archived": true,
+  "physical_deletion": false,
+  "browser_checks": {
+    "100_file_selection": "pass",
+    "101_file_rejection": "pass",
+    "oversize_file_rejection": "pass",
+    "previous_selection_cleared_on_invalid_batch": "pass",
+    "desktop_1920x800_overflow": [],
+    "mobile_390x844_overflow": [],
+    "100_file_transfer_load_test": "not_performed"
+  },
+  "focused_configuration_pytest": "1 passed"
+}

@@ -152,7 +152,9 @@ def test_media_config_ready_and_limits(auth_tokens):
     assert body["storage_ready"] is True
     assert body["hard_delete_supported"] is False
     assert body["direct_upload_supported"] is False
-    assert body["max_batch_files"] == 20
+    assert body["max_batch_files"] == 100
+    assert body["max_file_bytes"] == 55000000
+    assert body["max_text_bytes"] == 55000000
 
 
 def test_permissions_anonymous_and_read_only(auth_tokens):

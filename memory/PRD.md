@@ -22,7 +22,14 @@ M1 Registry/deep census → M2 Grey Mirror/Watch → M3 request-to-delivery → 
 - English only. E1 is the control plane: no dataset extraction, training or heavyweight data processing here. RMS remains census-only unless its owner explicitly authorizes otherwise.
 - M5 UI is paused under the existing “skip m5” direction; four post-M3 journey proposals remain parked. A readiness request does not unpause implementation.
 
-## CURRENT — 2026-10-01 private File & Media Storage integration
+## CURRENT — 2026-10-01 upload limits: 55 MB for all supported files, 100 per batch
+
+- User requested "adjust limit to 55mb per file" then confirmed "Yes. Increase all including batch limit to 100 files". Updated `MEDIA_MAX_FILE_BYTES=55000000`, `MEDIA_MAX_TEXT_BYTES=55000000`, `MEDIA_MAX_BATCH_FILES=100`; backend restarted for env. Existing 1GB tenant reservation allowance remains unchanged and was explicitly disclosed; 100 maximum-size files would exceed it.
+- Upload dialog reads live configuration and displays 55MB/file +100/batch. Invalid replacement selections now clear the previous selection instead of leaving old files uploadable. All existing formats/rights/retention/training guards unchanged.
+- Verified live config; all10 format boundaries at55,000,000 vs55,000,001 bytes; live oversize refusal for audio/transcript/JSON; **real55MB synthetic TXT upload + authenticated download with exact SHA256**, archived afterward (bytes retained). Desktop1920×800/mobile390×844:100 files accepted for selection,101 refused, oversize browser selection refused, no horizontal overflow. One focused configuration pytest passed. No100-file transfer/load test claimed. Evidence `/app/test_reports/media_limit_55mb_100files.json`. No provider mocks; **SYNTHETIC** test content, not music training data.
+- Next: owner uploads authorized music within remaining library allowance. Larger aggregate capacity, Google Drive import and worker-side content/quality assessment remain separate; training approval still held.
+
+## PREVIOUS — 2026-10-01 private File & Media Storage integration
 
 - User requested "Add the File & media storage integration to my app." and answered "yes" to music/audio plus transcripts/label manifests, private batch library, rights/labels checks and training-lab readiness selection. **This is file upload/storage, NOT a Google Drive connection or training approval.** Detailed record: `notes/training_lab_20260930/MEDIA_STORAGE_20261001.md`.
 - Live `/os/work/media` Media Library (WorkStudio launcher + Documents link), real managed object storage, batch progress/retry, search/type/rights filters, authenticated downloads, metadata/rights editor, archive with retention notice, selected-file metadata assessments + history. Existing editorial styling, plain-English titles, unique test IDs, responsive desktop/mobile.

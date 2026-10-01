@@ -16,7 +16,7 @@ User replied "yes" to recommended music/audio + transcripts/label manifests; bat
 ## Provider constraints and application limits
 - **No hard-delete API.** Archive revokes future app access; it does not physically erase provider bytes or downloaded copies. Do not call Archive "Delete" or claim compliance retention/immutability.
 - No presigned/direct/resumable upload API in the verified provider contract. Transfers are bounded authenticated backend relays.
-- Current app-configured limits: **25,000,000 bytes per audio file; 2,000,000 bytes per transcript/label file; 20 files per browser batch; 1,000,000,000 bytes per tenant reservations including archived files**. These are configured application limits, not asserted provider maximums. Incomplete reservations conservatively retain their allowance.
+- Current app-configured limits (owner update 1 October): **55,000,000 bytes per supported file, including audio/transcripts/labels; 100 files per browser batch; 1,000,000,000 bytes per tenant reservations including archived files**. These are configured application limits, not asserted provider maximums. Incomplete reservations conservatively retain their allowance. The aggregate allowance was not raised;100 maximum-size files need5.5GB and would exceed it.
 - Audio: WAV, MP3, FLAC, OGG, M4A. Transcripts: TXT, VTT, SRT. Label manifests: JSON, CSV. Archives/ZIP import and Google Drive are not supported by this upload flow.
 - Format checks are not full media decoding, music detection, antivirus scanning or legal clearance. Uploaded files are served as attachments, not executed.
 
@@ -34,4 +34,6 @@ Config: `INTEGRATION_PROXY_URL`, existing server integration credential; `MEDIA_
 - Existing frontend lacks an ESLint configuration; CLI lint could not run. Live frontend compilation/browser workflows passed. Screenshot paths: `test_reports/screenshots/iteration_71_ui/`.
 
 ## Next
+
+Limit-change verification: live55MB SYNTHETIC TXT transfer/download SHA256 match; all10 formats checked at size boundary; live oversize rejections;100/101 browser selection boundary and55MB+1 refusal; desktop/mobile no overflow. Fixture archived, provider bytes retained. One focused config pytest passed. No100-file full-transfer test claimed. Report: `/app/test_reports/media_limit_55mb_100files.json`.
 User uploads authorized music, records rights/labels, selects a metadata readiness assessment. Actual worker-side music/quality evaluation, dataset annotation agreement, independent sealed evaluation and any GPU retraining still require the separately approved plan. Google Drive import and larger/resumable transfers remain backlog.

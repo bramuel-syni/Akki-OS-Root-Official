@@ -7,7 +7,7 @@ export const MediaUpload = ({ open, onClose, library }) => {
   const [chosen, setChosen] = useState([]), [confirmed, setConfirmed] = useState(false), [error, setError] = useState('');
   const input = useRef(null); const { config, queue, uploading, upload, retry } = library;
   const choose = incoming => {
-    const files = Array.from(incoming); setError('');
+    const files = Array.from(incoming); setError(''); setChosen([]);
     if (files.length > config.max_batch_files) { setError(`Choose up to ${config.max_batch_files} files per batch.`); return; }
     for (const file of files) {
       const ext = `.${file.name.split('.').pop().toLowerCase()}`;
@@ -20,7 +20,7 @@ export const MediaUpload = ({ open, onClose, library }) => {
   const begin = async () => { const batch = chosen; setChosen([]); await upload(batch); };
   return <Dialog open={open} onOpenChange={value => !value && onClose()}><DialogContent className="media-dialog" data-testid="work-media-upload-dialog">
     <DialogTitle data-testid="work-media-upload-title">Add files</DialogTitle>
-    <DialogDescription data-testid="work-media-upload-limit">Audio up to {bytes(config?.max_file_bytes || 0)} · Text and labels up to {bytes(config?.max_text_bytes || 0)}</DialogDescription>
+    <DialogDescription data-testid="work-media-upload-limit">{config?.max_file_bytes === config?.max_text_bytes ? `Up to ${bytes(config?.max_file_bytes || 0)} per file` : `Audio up to ${bytes(config?.max_file_bytes || 0)} · Text and labels up to ${bytes(config?.max_text_bytes || 0)}`} · {config?.max_batch_files} files per batch</DialogDescription>
     <input ref={input} className="media-file-input" type="file" multiple accept={config?.extensions.join(',')} onChange={e => choose(e.target.files)} disabled={uploading} data-testid="work-media-file-input" aria-label="Choose files" />
     <button type="button" className="media-dropzone" disabled={uploading} data-testid="work-media-dropzone" onClick={() => input.current.click()} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); if (!uploading) choose(e.dataTransfer.files); }}>
       <Upload size={26} strokeWidth={1.4} /><strong>Choose files or drop them here</strong><span>WAV, MP3, FLAC, OGG, M4A · TXT, VTT, SRT · JSON, CSV</span>
