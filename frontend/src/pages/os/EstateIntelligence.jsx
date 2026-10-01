@@ -19,6 +19,8 @@ import { EstateStrategies } from '@/components/estate/EstateStrategies';
 import { EstateDossier, EstateMethod } from '@/components/estate/EstateDossier';
 import { useEstateReport, stamp } from '@/components/estate/useEstateReport';
 import { studioRequest } from '@/components/studio/useStudio';
+import { PresentationDetails, readableText } from '@/components/shared/PresentationDetails';
+import { OwnerWorkspace } from '@/components/prototype/OwnerWorkspace';
 import '@/components/census/census.css';
 import '@/components/estate/estate.css';
 
@@ -35,38 +37,38 @@ export default function EstateIntelligence() {
       setPack({ busy: false, commission: result.commission, error: null, created: result.created });
     } catch (e) { setPack({ busy: false, commission: null, error: e.message }); }
   };
-  return <div className="estate" data-testid="estate-intelligence-surface">
+  return <OwnerWorkspace session={session} title="Estate intelligence" group="Registry" returnTo="/os/admin/estate"><div className="estate" data-testid="estate-intelligence-surface">
     <header className="estate-header">
       <div>
         <div className="estate-crumb" data-testid="estate-breadcrumb"><a href="/os/admin/estate?app=registry" data-testid="estate-back-registry">MANAGE ESTATE · Registry</a> · Estate intelligence{session.data?.tenant_id ? ` · ${session.data.tenant_id}` : ''}</div>
         <h1 className="estate-title" data-testid="estate-title">Estate intelligence</h1>
-        <p className="estate-lead" data-testid="estate-lead">{report ? report.reading : 'What the estate holds, how much of it repeats, decays or carries risk, what it could become, and what it costs to keep — measured on the estate, reported as aggregates.'}</p>
-        {report && <div className="estate-meta" data-testid="estate-meta"><span>census <code>{report.job_id}</code></span><span>status {report.status}</span><span>measured {stamp(report.measured_at)}</span><span>report built {stamp(report.built_at)}</span><span>row values retained: none</span></div>}
+        {report && <div className="estate-meta" data-testid="estate-meta"><span>Measured {stamp(report.measured_at)}</span><span>{report.status === 'complete' ? 'Census complete' : 'Partial coverage'}</span></div>}
       </div>
       {signedIn && <div className="estate-actions">
-        <button className="estate-btn" onClick={reload} disabled={loading} data-testid="estate-reload">{loading ? 'Reading…' : 'Re-read report'}</button>
+        <button className="estate-btn" onClick={reload} disabled={loading} data-testid="estate-reload">{loading ? 'Refreshing…' : 'Refresh'}</button>
         {report?.brief_path && <a className="estate-btn" href={report.brief_path} target="_blank" rel="noopener noreferrer" data-testid="estate-download-brief">Download the brief (.md)</a>}
         {report && canCompose && <button className="estate-btn primary" onClick={commissionPack} disabled={pack.busy} data-testid="estate-commission-pack">{pack.busy ? 'Commissioning…' : 'Commission board pack'}</button>}
       </div>}
     </header>
     {!signedIn && <CensusAccess error={session.error} loading={session.loading} retry={session.reload} />}
     {signedIn && <div className="estate-body">
-      {pack.error && <p className="estate-alert" role="alert" data-testid="estate-pack-error">{pack.error}</p>}
-      {pack.commission && <div className="estate-running" data-testid="estate-pack-result">{pack.created ? 'Board pack commissioned' : 'Board pack already on record for today'}: <code>{pack.commission.commission_id}</code> · {pack.commission.release.state} — {pack.commission.release.reason}. <a href={`/os/work/documents?commission=${pack.commission.commission_id}`} data-testid="estate-pack-open">Open in Documents</a></div>}
-      {running && <div className="estate-running" data-testid="estate-running">Census <code>{running.job_id}</code> is measuring the estate now ({running.databases_done} databases so far); this report stays on the last verified receipt until the new one is banked.</div>}
-      {error && <p className="estate-alert" role="alert" data-testid="estate-error">{error}</p>}
-      {!report && !loading && !error && <div className="estate-empty" data-testid="estate-empty">No verified estate intelligence census is on record for your tenant. Figures stay unmeasured until a census completes and its receipt is digest-verified; the Registry's “Run census” commissions one.</div>}
+      {pack.error && <p className="estate-alert" role="alert" data-testid="estate-pack-error">The board pack could not be created. Refresh this report and try again.</p>}
+      {pack.commission && <div className="estate-running" data-testid="estate-pack-result">{pack.created ? 'Board pack created' : 'Today’s board pack is available'} · {readableText(pack.commission.release.state)}. <a href={`/os/work/documents?commission=${pack.commission.commission_id}`} data-testid="estate-pack-open">Open in Documents</a></div>}
+      {running && <div className="estate-running" data-testid="estate-running">Census in progress · {running.databases_done} databases checked. Showing the last verified report.</div>}
+      {error && <p className="estate-alert" role="alert" data-testid="estate-error">The latest report could not be refreshed. {report ? 'The last loaded report remains below. ' : ''}Try Refresh; if it still fails, ask your estate operator to review source access.</p>}
+      {loading && !report && <p data-testid="estate-loading">Loading the latest report…</p>}
+      {!report && !loading && !error && <div className="estate-empty" data-testid="estate-empty">No verified report yet. <a href="/os/admin/estate?app=registry" data-testid="estate-empty-registry">Open Registry</a> to review census coverage.</div>}
       {report && <>
         <EstateHeadline report={report} />
-        <EstateDatabases report={report} />
-        <EstateDuplication report={report} />
-        <EstateStores report={report} />
-        <EstateQuality report={report} />
-        <EstateProducts report={report} />
         <EstateStrategies report={report} />
-        <EstateDossier report={report} canCompose={canCompose} composing={composing} refusal={refusal} onCompose={compose} />
-        <EstateMethod report={report} />
+        <PresentationDetails id="estate-duplication-evidence" title="Compare duplicate table locations"><EstateDuplication report={report} /></PresentationDetails>
+        <PresentationDetails id="estate-storage-evidence" title="Object stores & file shares"><EstateStores report={report} /></PresentationDetails>
+        <PresentationDetails id="estate-quality-evidence" title="Quality issues & changes since the last census"><EstateQuality report={report} /></PresentationDetails>
+        <PresentationDetails id="estate-product-evidence" title="Potential data products & what blocks them"><EstateProducts report={report} /></PresentationDetails>
+        <PresentationDetails id="estate-database-evidence" title="Database inventory"><EstateDatabases report={report} /></PresentationDetails>
+        <PresentationDetails id="estate-written-brief" title="Written assessment"><EstateDossier report={report} canCompose={canCompose} composing={composing} refusal={refusal} onCompose={compose} /></PresentationDetails>
+        <PresentationDetails id="estate-method-evidence" title="Coverage & measurement limits"><EstateMethod report={report} /></PresentationDetails>
       </>}
     </div>}
-  </div>;
+  </div></OwnerWorkspace>;
 }

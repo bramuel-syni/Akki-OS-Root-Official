@@ -1,0 +1,66 @@
+{
+  "audience": {
+    "detail": "summary with an evidence appendix",
+    "knowledge": "high on the business, mixed on the data estate",
+    "priorities": [
+      "cost reduction",
+      "personal-data exposure and quality",
+      "monetisable products"
+    ],
+    "who": "Estate owner and operators · RMS"
+  },
+  "brand": {
+    "expressiveness": "restrained",
+    "formality": "formal",
+    "house": "house-neutral",
+    "variation_allowed": "within-family"
+  },
+  "brief_id": "BR-2026-10-01-eij-1b359b3cbd2e",
+  "constraints": {
+    "confidentiality": "Tenant confidential",
+    "max_deck_slides": 14,
+    "page_size": "A4"
+  },
+  "content": {
+    "appendix": true,
+    "diagrams": false,
+    "evidence": true,
+    "financial": true,
+    "imagery": false,
+    "narrative": true
+  },
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@1",
+  "outputs": [
+    {
+      "editable_charts": true,
+      "format": "pptx",
+      "role": "presented deck"
+    },
+    {
+      "editable_charts": false,
+      "format": "docx",
+      "role": "paper for read-ahead"
+    },
+    {
+      "editable_charts": false,
+      "format": "xlsx",
+      "role": "model workbook: inputs, options, series and cross-checks"
+    },
+    {
+      "editable_charts": false,
+      "format": "html",
+      "role": "review surface"
+    }
+  ],
+  "purpose": {
+    "kind": "decide",
+    "statement": "Enable the estate owner to choose which cost-reduction strategies and data-product candidates to take forward from census eij-1b359b3cbd2e, or to defer."
+  },
+  "setting": {
+    "mode": "read-ahead then presented",
+    "ongoing_use": false,
+    "presentation_minutes": 15,
+    "printed": true,
+    "read_unattended": true
+  }
+}

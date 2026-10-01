@@ -1,0 +1,36 @@
+{
+  "summary": "Full backend + frontend validation of Train Models (BUILD → Train Models) wired to real training_lab board. 16/16 pytest backend tests pass (after one tiny coding-bug fix). Frontend desktop + mobile flows verified: run list grouped by status with counts, run selection shows thread + Overview/Learning Report tabs with widgets (checks, record, reflect, sources), +New shaping flow, delete, Adjust-and-resubmit, journal, search, portal card counts align with board, legacy /os/work/training redirects to /os/build/train, Training Lab tile removed, nexus regressions still render. No horizontal overflow at 1920 or 390.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/training/lab/board/new {from_run,mode:next_version}", "issue": "500 crash in services/training_lab/board_runs.py:next_version when an existing sibling name has no 'vN' suffix (TypeError: int(None)). Fixed in this session (1-line change); please review the fix and keep it."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_training_lab_board.py",
+    "/app/test_reports/pytest/pytest_training_lab_board.xml"
+  ],
+  "action_items": [
+    "Confirm the small fix in /app/backend/vendored/extraction_akki/backend/services/training_lab/board_runs.py line 36-37 (treat regex group None as version 1 so next_version works when the parent run has no 'vN' suffix). This unblocks '+ New version' from any un-versioned served/refused run including m9j-74af7cef0a85."
+  ],
+  "critical_code_review_comments": [
+    "board_runs.next_version used a list-comprehension that passed None through to int(), guaranteed to crash whenever any existing run matched the base name without a 'vN' suffix. Needs stricter typing / unit coverage.",
+    "No other critical findings — endpoints use env vars, Pydantic validation returns 422 cleanly, Mongo _id is excluded, 401/403/404/409 codes are proper."
+  ],
+  "updated_files": [
+    "/app/backend/vendored/extraction_akki/backend/services/training_lab/board_runs.py",
+    "/app/backend/tests/test_training_lab_board.py"
+  ],
+  "success_rate": {"backend": "100% (16/16 after fix)", "frontend": "100% of critical flows"},
+  "test_credentials": "demo.operator@demo.rms.example.com / demo-operator-pw (RMS operator); demo.analyst@demo.rms.example.com / demo-analyst-pw (RMS analyst). Login POST /api/auth/login returns access_token (bearer). Frontend sign-in form rendered by CensusAccess on OS pages when no session.",
+  "seed_data_creation": "None. Created transient shape-* runs during tests and deleted them. One real LLM message was issued on m9j-74af7cef0a85 (within the ≤3 budget). Safe bounded actions tested: use_baseline (music), record_training_request (lwg), retire (m9j — server correctly refused with 'Not done...'). Avoided real-work actions (run_music_baseline, measure_staged_corpus, import_reference_recordings, ask_specialists).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Backend board tests live in /app/backend/tests/test_training_lab_board.py (pytest; 16 tests). They call the real LLM only in TestConversation.test_message_grounded (one call ≈5s). Operator token: sessionStorage key akki_access_token after login. The LWG 'Begin Training' button disappears once the training request is recorded on-board; it was already recorded by the backend test suite (test_record_training_request_lwg), so a fresh frontend check for the button needs a FRESH run or server reset. Observed counts this session: Shaping 3, In Approval 1, In training 0, In service 1, Refused 14, Retired 2 (portal maps correctly to Running 4 / Need attention 14 / Complete 3). Grounded Kikamba 91.3% answer confirmed from the governed LLM.",
+  "rca of the issue": "Request 'POST /board/new {from_run:m9j-74af7cef0a85, mode:next_version}' returned 500. Backend log traceback pointed at /app/backend/vendored/extraction_akki/backend/services/training_lab/board_runs.py line 36. The regex `re.escape(base) + r'(?:\\s+v(\\d+))?'` optionally matches a trailing 'vN'; when the parent 'Language identification · 8B text model' matches with no suffix, `m.group(1)` is None and `int(None)` raises TypeError. Fix (applied): compute `int(m.group(1)) if m.group(1) else 1` inside the comprehension so unversioned names count as v1, then `max(versions + [1]) + 1`. Verified: the endpoint now returns 201 with name '... v2'."
+}

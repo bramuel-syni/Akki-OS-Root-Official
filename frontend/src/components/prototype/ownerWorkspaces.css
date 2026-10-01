@@ -1,0 +1,44 @@
+/* Desktop dimensions, typography, colours and controls come verbatim from v2_os.html.
+   Only data overflow, missing-service states and narrow-screen behaviour live here. */
+.owner-workspace{min-width:0;text-align:left}.owner-workspace [data-proto-line="96"]{min-width:0}
+.owner-workspace button:disabled{opacity:.45;cursor:not-allowed}
+.owner-workspace [data-proto-line="750"]{scroll-behavior:smooth;overflow-wrap:anywhere}
+.owner-workspace .owner-status{font:12px/1.6 var(--body);padding:8px 0;color:var(--ink3)}
+.owner-workspace .owner-status[role=alert]{color:var(--oxblood)}
+.owner-workspace .owner-document-detail{padding:22px 28px 40px;overflow-y:auto;min-height:0;overflow-wrap:anywhere}
+.owner-workspace .owner-document-detail .estate-section:first-child{border:0;padding-top:0}
+.owner-workspace .owner-document-detail .estate-head{flex-wrap:wrap}
+.owner-workspace .owner-document-detail .estate-head h2{font:400 26px/1.2 var(--head)}
+.owner-workspace .owner-document-detail .studio-thumb-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr))}
+.owner-workspace .owner-document-detail .studio-thumb-focus{padding:0;border:0;background:transparent}
+.owner-workspace .estate{padding:0;min-height:0;font-family:var(--body);background:transparent}
+.owner-workspace .estate-title{font:400 26px/1.2 var(--head);letter-spacing:0}
+.owner-workspace .estate-header{margin-bottom:20px}.owner-workspace .estate-crumb{display:none}
+.owner-workspace .media-back{display:none}
+.owner-prototype-dap .estate{padding:30px 38px;min-height:0;background:transparent}.owner-prototype-dap .estate-title{font:400 26px/1.2 var(--head)}
+.owner-workspace .estate-head h2{font-family:var(--head);font-weight:400;font-size:20px}
+.owner-workspace .estate-decision-summary>h2{font:400 26px/1.3 var(--head)}
+.owner-workspace .estate-decision-metric strong{font:400 28px/1.2 var(--head)}
+.owner-workspace .estate-decision-metric{border:0;padding-left:0}
+.owner-workspace .estate-btn{font-size:12px;border-radius:7px;min-height:34px}
+.owner-workspace .workchat-working{font:11.5px/1.55 var(--body);overflow-wrap:anywhere}
+.owner-workspace .workchat-working summary{cursor:pointer;margin-bottom:12px}
+.owner-workspace .workchat-lines{padding:0;list-style:none}.owner-workspace .workchat-lines li{margin-bottom:14px}.owner-workspace .workchat-lines b{display:block;font-weight:600}
+.owner-workspace .workchat-btn{border:1px solid var(--line);background:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer}
+.owner-workspace .workchat-memory{display:flex;flex-direction:column;gap:12px;font-size:11.5px;border-top:1px solid var(--line);padding-top:16px;margin-top:20px}
+@media(max-width:900px){
+ .owner-workspace [data-proto-line="704"],.owner-workspace [data-proto-line="1552"]{height:auto!important;min-height:calc(100dvh - 180px);margin:0!important;flex-wrap:wrap;overflow:visible!important;gap:0}
+ .owner-workspace [data-proto-line="748"]{padding:8px 0 0!important;flex-basis:calc(100% - 80px)!important}
+ .owner-workspace [data-proto-line="750"]{min-height:300px;max-height:60dvh;padding:8px!important}
+ .owner-workspace [data-proto-line="874"]{padding:8px!important}.owner-workspace [data-proto-line="878"]{flex-wrap:wrap}
+ .owner-workspace [data-proto-line="934"]{display:none}
+ .owner-workspace [data-proto-line="712"],.owner-workspace [data-proto-line="950"]{width:100%!important;max-height:330px;border:0!important;border-bottom:1px solid var(--line)!important;padding:12px 0!important;margin:0!important}
+ .owner-workspace [data-proto-line="943"]{margin-left:0!important;width:30px!important}
+ .owner-workspace [data-proto-line="1562"],.owner-workspace [data-proto-line="2195"]{width:100%!important;max-width:none!important;min-width:0!important;max-height:320px;border:0!important;border-bottom:1px solid var(--line)!important;padding:12px 0!important}
+ .owner-workspace [data-proto-line="1632"]{min-width:0!important;flex-basis:100%!important}
+ .owner-workspace [data-proto-line="2110"]{padding:22px 0!important}.owner-workspace [data-proto-line="2151"]{grid-template-columns:minmax(0,1fr)!important}
+ .owner-workspace [data-proto-line="173"]{max-width:100%}.owner-workspace [data-proto-line="178"]{max-width:180px}
+ .owner-workspace [data-proto-line="4298"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}.owner-workspace [data-proto-line="4310"]{flex-wrap:wrap}
+ .owner-workspace .owner-document-detail{padding:22px 0}.owner-workspace .estate-decision-summary>h2{font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){.owner-workspace *{scroll-behavior:auto!important}}

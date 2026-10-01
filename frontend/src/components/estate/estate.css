@@ -113,3 +113,48 @@
 .studio-thumb-focus img{display:block;width:100%;max-height:70vh;object-fit:contain;margin-top:12px;border:1px solid var(--line);border-radius:6px;background:#fff}
 .studio-thumb-focus figcaption{margin-top:8px;font-size:11px;color:var(--ink3);word-break:break-all}
 @media (max-width:900px){.studio-thumb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* M10: retain the OS palette and typography; lead with decisions, not stacked panels. */
+.estate{padding:40px 48px 72px}.estate *{box-sizing:border-box;letter-spacing:0;min-width:0}
+.estate-header{margin-bottom:32px;align-items:start}.estate-title{font-size:48px;letter-spacing:0}
+.estate-crumb,.estate-label,.estate-section h3,.estate-table th{font-family:var(--body);letter-spacing:0}
+.estate-meta{font-family:var(--body);font-size:12px;line-height:1.6}
+.estate-body{gap:0}.estate-section{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:28px 0}
+.estate-head h2{font-size:18px}.estate-section h3{font-size:13px;text-transform:none;color:var(--ink2)}
+.estate-head p{max-width:720px}.estate-btn{min-height:38px}.estate-actions{align-items:center}
+.estate :is(button,a,input,select,summary):focus-visible{outline:2px solid var(--sage);outline-offset:3px}
+.estate-table{table-layout:fixed}.estate-table :is(th,td){white-space:normal;overflow-wrap:anywhere}.estate-table td small{max-width:none}
+.estate-columns,.estate-columns.three{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.estate-tiles{grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:18px}
+.estate-tile{background:transparent;border:0;border-left:2px solid var(--line);border-radius:0;padding:6px 14px}
+.presentation-details{border-top:1px solid var(--line,#d9d4c9);min-width:0}
+.presentation-details>summary{padding:18px 0;cursor:pointer;font-size:14px;font-weight:600;line-height:1.5;color:var(--ink,#1b1f27);transition:color .15s}
+.presentation-details>summary:hover{color:var(--sage,#1d7a6e)}
+.presentation-details-body{padding:0 0 20px;font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+.presentation-details-body>.estate-section{border:0;padding:8px 0 12px}
+.estate-decision-summary{padding:0 0 28px}.estate-decision-summary>h2{font:400 24px/1.4 var(--head);margin:0 0 24px}
+.estate-decision-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.estate-decision-metric{border-left:2px solid var(--brass);padding-left:18px}
+.estate-decision-metric>span{font-size:12px;color:var(--ink2)}.estate-decision-metric strong{display:block;font:400 36px/1.3 var(--head);margin:9px 0}
+.estate-decision-metric p,.estate-scope-note{font-size:12px;color:var(--ink3);line-height:1.65;margin:0}
+.estate-scope-note{margin-top:24px;max-width:980px}.estate-inline-facts{display:flex;gap:12px 30px;flex-wrap:wrap;padding-top:18px;font-size:12px;color:var(--ink3)}.estate-inline-facts b{color:var(--ink2)}
+.estate-strategy{padding:18px 0}.estate-strategy-row{grid-template-columns:minmax(0,1fr) auto;align-items:start}
+.estate-strategy-title h3{margin:0 0 8px;font-size:15px;color:var(--ink)}.estate-strategy-title p{font-size:13px;line-height:1.6;color:var(--ink2);margin:0;max-width:740px}
+.estate-strategy-bytes b{font-size:24px}.estate-strategy-bytes small{white-space:normal;display:block}
+.estate-strategy .presentation-details{border:0;margin-top:4px}.estate-strategy .presentation-details>summary{padding:8px 0;font-size:12px;color:var(--sage)}
+.estate-strategy .presentation-details-body{padding:12px 0 0;max-width:900px}.estate-destination{margin:0 0 16px;padding-left:14px;border-left:2px solid var(--brass)}
+.estate-destination b{display:block}.estate-strategy h4{font-size:12px;margin:0 0 6px}.estate-strategy ul{padding-left:18px}
+.studio-document-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.entitlement-facts{margin:16px 0}.entitlement-facts>div{display:grid;grid-template-columns:minmax(90px,.5fr) minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}.entitlement-facts dt{color:var(--ink3)}.entitlement-facts dd{margin:0;overflow-wrap:anywhere}
+.studio-document-button{display:flex;justify-content:space-between;align-items:center;gap:20px;width:100%;background:transparent;text-align:left;padding:18px;border:1px solid var(--line);border-radius:6px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.studio-document-button:hover,.studio-document-button[aria-pressed=true]{background:#fff;border-color:var(--sage)}
+.studio-document-button b{font:400 20px/1.4 var(--head);display:block}.studio-document-button small{display:block;color:var(--ink3);font-size:12px;margin-top:6px}
+.studio-version-button{border:0;background:transparent;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:8px 0;width:100%}
+.studio-output-list{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.studio-output-list .estate-btn{background:#fff}
+.studio-thumb-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:20px}
+.studio-thumb-grid button{border-radius:4px;background:#fff}.studio-thumb-grid li small{font-family:var(--body);font-size:12px}
+.studio-thumb-focus{padding:20px;border-radius:4px;background:#fff}.studio-thumb-focus figcaption{font-family:var(--body);word-break:normal}
+@media(max-width:1100px){.estate-table,.estate-table tbody{display:block}.estate-table thead{display:none}.estate-table tr{display:block;padding:14px 0;border-bottom:1px solid var(--line)}.estate-table td{display:grid;grid-template-columns:minmax(90px,.4fr) minmax(0,1fr);gap:4px 12px;padding:6px 0;border:0}.estate-table td::before{content:attr(data-label);font-size:11px;color:var(--ink3);grid-column:1;grid-row:1/4}.estate-table td small{grid-column:2}.estate-table td:empty{display:none}}
+@media(max-width:700px){.estate{padding:28px 20px 48px}.estate-title{font-size:36px}.estate-header{margin-bottom:28px}.estate-actions{justify-content:flex-start}.estate-decision-metrics{grid-template-columns:1fr;gap:24px}.estate-decision-metric strong{font-size:30px;margin:5px 0}.estate-decision-summary>h2{font-size:18px}.estate-strategy-row{grid-template-columns:1fr;gap:12px}.estate-strategy-bytes{text-align:left}.estate-strategy-bytes b{font-size:20px}.studio-document-button{align-items:flex-start;flex-wrap:wrap}.studio-thumb-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.estate-section{padding:24px 0}.estate-head h2{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.estate-section,.studio-thumb-focus{animation:none}.estate *{transition:none!important}}
+@media(max-width:1100px){.estate-table td.estate-dims>span{grid-column:2;justify-self:start}.estate-table td.estate-dims::before{grid-row:1}}

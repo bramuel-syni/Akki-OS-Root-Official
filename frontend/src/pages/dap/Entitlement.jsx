@@ -1,275 +1,56 @@
-import React, { useState, useEffect } from "react";
-import BackendPending from "@/components/shared/BackendPending";
-import LoadingState from "@/components/shared/LoadingState";
-import { useAuth } from "@/pages/dap/DAPLayout";
-import { tryGet } from "@/lib/apiClient";
-import {
-  ENT_23_COST_NOT_MEASURED,
-  ENT_26_FRONTIER_EXHAUSTION,
-  ENT_34_FRONTIER_UNAVAILABLE,
-  ENT_43_BADGE_INCLUDED_LOCAL,
-  ENT_43_BADGE_CREDITS_FRONTIER,
-  ENT_43_BADGE_YOUR_KEY,
-  ENT_43_BADGE_AUTO,
-} from "@/strings/entitlementStrings";
-import { Award, CreditCard, Package, Tag, Shield, AlertCircle } from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { RefreshCw } from 'lucide-react';
+import { useAuth } from '@/pages/dap/DAPLayout';
+import { tryGet } from '@/lib/apiClient';
+import { readableText } from '@/components/shared/PresentationDetails';
+import '@/components/estate/estate.css';
 
-/**
- * Entitlement — DAP Portal entitlement surfaces.
- *
- * Wired to:
- *   GET /api/portal/entitlement/licence         — principal-scoped licence read
- *   GET /api/portal/entitlement/catalog/listed   — CatalogRow status=listed
- *   GET /api/portal/entitlement/allowance        — derived allowance (ENT-22)
- *   GET /api/portal/entitlement/badges           — picker badges filtered via dial-admit
- *
- * BINDING constraints:
- *   - Allowance figure displayed as-is (never compute/cache client-side) (ENT-22)
- *   - Badges show ONLY rows the licence's dials admit (ENT-3/ENT-43)
- *   - Excluded catalog rows ABSENT, not greyed/disabled
- *   - NO remaining-budget reason lines (DAP-35)
- *   - ENT-43 badge strings from entitlementStrings.js
- */
-
-const BADGE_COLORS = {
-  [ENT_43_BADGE_INCLUDED_LOCAL]: { bg: "rgba(29,122,110,.10)", color: "var(--sage)" },
-  [ENT_43_BADGE_CREDITS_FRONTIER]: { bg: "rgba(22,39,74,.10)", color: "var(--blue)" },
-  [ENT_43_BADGE_YOUR_KEY]: { bg: "rgba(176,141,46,.10)", color: "var(--brass)" },
-  [ENT_43_BADGE_AUTO]: { bg: "rgba(27,31,39,.06)", color: "var(--ink2)" },
+const label = value => {
+  if (value == null) return 'Not recorded';
+  if (typeof value === 'object') return Object.entries(value).map(([k, v]) => `${k.replaceAll('_', ' ')}: ${label(v)}`).join(' · ');
+  return readableText(value).replaceAll('_', ' ').replaceAll('.', ' · ');
 };
+const issue = (data, what) => data?.reason_code === 'PERIOD_UNRESOLVED' ? 'The billing period needs to be reconciled. Contact your account administrator.' : `${what} is not available. Contact your account administrator to review access.`;
 
-function BadgeChip({ badge }) {
-  const colors = BADGE_COLORS[badge] || BADGE_COLORS[ENT_43_BADGE_AUTO];
-  return (
-    <span
-      data-testid={`badge-${badge.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-      className="inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full"
-      style={{ background: colors.bg, color: colors.color }}
-    >
-      <Tag size={10} className="mr-1" />
-      {badge}
-    </span>
-  );
-}
-
-function BindingStringsReference() {
-  return (
-    <div data-testid="ent-binding-strings" className="rounded-lg border p-4 mb-6" style={{ borderColor: "var(--line)", background: "white" }}>
-      <h3 className="text-xs font-medium mb-3" style={{ color: "var(--ink)" }}>Binding copy (entitlement strings)</h3>
-      <div className="space-y-2 text-xs" style={{ color: "var(--ink2)" }}>
-        <div data-testid="ent-string-23">
-          <span className="font-mono text-[10px]" style={{ color: "var(--ink3)" }}>ENT-23:</span>
-          <span className="ml-2">{ENT_23_COST_NOT_MEASURED}</span>
-        </div>
-        <div data-testid="ent-string-26">
-          <span className="font-mono text-[10px]" style={{ color: "var(--ink3)" }}>ENT-26:</span>
-          <span className="ml-2">{ENT_26_FRONTIER_EXHAUSTION}</span>
-        </div>
-        <div data-testid="ent-string-34">
-          <span className="font-mono text-[10px]" style={{ color: "var(--ink3)" }}>ENT-34:</span>
-          <span className="ml-2">{ENT_34_FRONTIER_UNAVAILABLE}</span>
-        </div>
-      </div>
-      <div className="flex flex-wrap gap-2 mt-3">
-        <BadgeChip badge={ENT_43_BADGE_AUTO} />
-        <BadgeChip badge={ENT_43_BADGE_INCLUDED_LOCAL} />
-        <BadgeChip badge={ENT_43_BADGE_CREDITS_FRONTIER} />
-        <BadgeChip badge={ENT_43_BADGE_YOUR_KEY} />
-      </div>
-    </div>
-  );
-}
-
-function LicenceCard({ data, loading, error }) {
-  if (loading) return <LoadingState message="Reading licence\u2026" />;
-  if (error === 404) return (
-    <div data-testid="licence-pending" className="rounded-lg border p-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
-      <p className="text-xs" style={{ color: "var(--brass)" }}>
-        <AlertCircle size={12} className="inline mr-1" />
-        Endpoint not yet mounted (GET /api/portal/entitlement/licence returns 404).
-      </p>
-    </div>
-  );
-
-  return (
-    <div data-testid="licence-card" className="rounded-lg border p-5" style={{ borderColor: "var(--line)", background: "white" }}>
-      <div className="flex items-center gap-2 mb-3">
-        <Award size={16} style={{ color: "var(--sage)" }} />
-        <h3 className="text-sm font-medium" style={{ color: "var(--ink)" }}>Licence</h3>
-      </div>
-      {data?.licence ? (
-        <div className="space-y-2 text-sm" style={{ color: "var(--ink2)" }}>
-          <p>Terms ID: <span className="font-mono text-xs">{data.licence.terms_id || data.licence.licence_terms_id || "N/A"}</span></p>
-          {data.licence.compute_dial != null && <p>Compute dial: {JSON.stringify(data.licence.compute_dial)}</p>}
-          {data.licence.frontier_dial != null && <p>Frontier dial: {JSON.stringify(data.licence.frontier_dial)}</p>}
-        </div>
-      ) : (
-        <p className="text-sm" style={{ color: "var(--ink3)" }}>No licence on record for this principal.</p>
-      )}
-      {data?.authority && <p className="text-[10px] mt-3 font-mono" style={{ color: "var(--ink3)" }}>{data.authority}</p>}
-    </div>
-  );
-}
-
-function AllowanceCard({ data, loading, error }) {
-  if (loading) return <LoadingState message="Deriving allowance\u2026" />;
-  if (error === 404) return (
-    <div data-testid="allowance-pending" className="rounded-lg border p-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
-      <p className="text-xs" style={{ color: "var(--brass)" }}>
-        <AlertCircle size={12} className="inline mr-1" />
-        Endpoint not yet mounted (GET /api/portal/entitlement/allowance returns 404).
-      </p>
-    </div>
-  );
-
-  const state = data?.allowance_state;
-  return (
-    <div data-testid="allowance-card" className="rounded-lg border p-5" style={{ borderColor: "var(--line)", background: "white" }}>
-      <div className="flex items-center gap-2 mb-3">
-        <CreditCard size={16} style={{ color: "var(--blue)" }} />
-        <h3 className="text-sm font-medium" style={{ color: "var(--ink)" }}>Allowance</h3>
-      </div>
-      {state ? (
-        <div className="space-y-2 text-sm" style={{ color: "var(--ink2)" }}>
-          <p>Period: <span className="font-medium">{state.period_iso}</span></p>
-          <p>Credits allowance: <span className="font-semibold">{state.credits_allowance}</span></p>
-          <p>Credits debited: <span className="font-semibold">{state.credits_debited}</span></p>
-          {/* DAP-35: NEVER display "remaining budget" — allowance is a derived figure only */}
-        </div>
-      ) : (
-        <p className="text-sm" style={{ color: "var(--ink3)" }}>No allowance state available.</p>
-      )}
-      {data?.authority && <p className="text-[10px] mt-3 font-mono" style={{ color: "var(--ink3)" }}>{data.authority}</p>}
-    </div>
-  );
-}
-
-function CatalogPicker({ catalogData, badgesData, loading, error }) {
-  if (loading) return <LoadingState message="Reading catalog\u2026" />;
-  if (error === 404) return (
-    <div data-testid="catalog-pending" className="rounded-lg border p-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
-      <p className="text-xs" style={{ color: "var(--brass)" }}>
-        <AlertCircle size={12} className="inline mr-1" />
-        Endpoint not yet mounted (GET /api/portal/entitlement/catalog/listed returns 404).
-      </p>
-    </div>
-  );
-
-  const rows = catalogData?.rows || [];
-  const badges = badgesData?.badges || [];
-
-  return (
-    <div data-testid="catalog-picker" className="rounded-lg border p-5" style={{ borderColor: "var(--line)", background: "white" }}>
-      <div className="flex items-center gap-2 mb-3">
-        <Package size={16} style={{ color: "var(--brass)" }} />
-        <h3 className="text-sm font-medium" style={{ color: "var(--ink)" }}>
-          Catalog ({rows.length} listed)
-        </h3>
-      </div>
-
-      {/* Badges — ONLY what the endpoint returns (ENT-3/ENT-43) */}
-      {badges.length > 0 ? (
-        <div data-testid="catalog-badges" className="mb-4">
-          <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: "var(--ink3)" }}>Picker badges</p>
-          <div className="flex flex-wrap gap-2">
-            {badges.map((b, i) => (
-              <BadgeChip key={i} badge={b.badge || b.name || b} />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <p className="text-xs mb-4" style={{ color: "var(--ink3)" }}>
-          No badges returned. Excluded rows are absent from the response.
-        </p>
-      )}
-
-      {/* Catalog rows — excluded rows are ABSENT, not greyed/disabled */}
-      {rows.length > 0 ? (
-        <div className="space-y-2">
-          {rows.map((row, i) => (
-            <div key={i} data-testid={`catalog-row-${i}`} className="flex items-center justify-between rounded border p-3" style={{ borderColor: "var(--line)" }}>
-              <div>
-                <p className="text-sm font-medium" style={{ color: "var(--ink)" }}>{row.name || row.row_id || `Row ${i + 1}`}</p>
-                {row.description && <p className="text-xs" style={{ color: "var(--ink3)" }}>{row.description}</p>}
-              </div>
-              {row.badge && <BadgeChip badge={row.badge} />}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-sm" style={{ color: "var(--ink3)" }}>No catalog rows listed for this principal.</p>
-      )}
-
-      {catalogData?.authority && <p className="text-[10px] mt-3 font-mono" style={{ color: "var(--ink3)" }}>{catalogData.authority}</p>}
-    </div>
-  );
+function ReadState({ state, id, children }) {
+  if (state.loading) return <p data-testid={`${id}-loading`}>Loading…</p>;
+  if (state.error) return <p className="estate-alert" role="alert" data-testid={`${id}-error`}>Could not load this information. Refresh to try again.</p>;
+  return children;
 }
 
 export default function Entitlement() {
   const { user } = useAuth();
-  const [licence, setLicence] = useState({ data: null, loading: false, error: null });
-  const [allowance, setAllowance] = useState({ data: null, loading: false, error: null });
-  const [catalog, setCatalog] = useState({ data: null, loading: false, error: null });
-  const [badges, setBadges] = useState({ data: null, loading: false, error: null });
-
+  const [reads, setReads] = useState({}), [revision, setRevision] = useState(0);
   useEffect(() => {
     if (!user) return;
-
-    // Licence
-    setLicence((s) => ({ ...s, loading: true }));
-    tryGet("/api/portal/entitlement/licence").then((res) => {
-      setLicence({ data: res.ok ? res.data : null, loading: false, error: res.ok ? null : res.status });
+    let active = true;
+    const paths = { licence: 'licence', allowance: 'allowance', catalog: 'catalog/listed', badges: 'badges' };
+    setReads(Object.fromEntries(Object.keys(paths).map(key => [key, { loading: true }])));
+    Object.entries(paths).forEach(([key, path]) => {
+      tryGet(`/api/portal/entitlement/${path}`).then(res => { if (active) setReads(old => ({ ...old, [key]: { data: res.ok ? res.data : null, error: !res.ok, loading: false } })); }).catch(() => { if (active) setReads(old => ({ ...old, [key]: { error: true, loading: false } })); });
     });
-
-    // Allowance
-    setAllowance((s) => ({ ...s, loading: true }));
-    tryGet("/api/portal/entitlement/allowance").then((res) => {
-      setAllowance({ data: res.ok ? res.data : null, loading: false, error: res.ok ? null : res.status });
-    });
-
-    // Catalog
-    setCatalog((s) => ({ ...s, loading: true }));
-    tryGet("/api/portal/entitlement/catalog/listed").then((res) => {
-      setCatalog({ data: res.ok ? res.data : null, loading: false, error: res.ok ? null : res.status });
-    });
-
-    // Badges
-    setBadges((s) => ({ ...s, loading: true }));
-    tryGet("/api/portal/entitlement/badges").then((res) => {
-      setBadges({ data: res.ok ? res.data : null, loading: false, error: res.ok ? null : res.status });
-    });
-  }, [user]);
-
-  if (!user) {
-    return (
-      <div data-testid="entitlement-page" className="max-w-5xl mx-auto px-8 py-10">
-        <h1 className="text-xl font-semibold mb-4" style={{ color: "var(--ink)", fontFamily: "var(--head)" }}>Entitlement</h1>
-        <BindingStringsReference />
-        <div className="rounded-lg border p-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
-          <p className="text-xs" style={{ color: "var(--brass)" }}>Sign in to view entitlement surfaces. All endpoints require JWT authentication.</p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div data-testid="entitlement-page" className="max-w-5xl mx-auto px-8 py-10">
-      <h1 className="text-xl font-semibold mb-1" style={{ color: "var(--ink)", fontFamily: "var(--head)" }}>
-        <Shield size={20} className="inline mr-2" />
-        Entitlement
-      </h1>
-      <p className="text-sm mb-6" style={{ color: "var(--ink3)" }}>
-        Licence terms, catalog access, and allowance for your principal.
-      </p>
-
-      <BindingStringsReference />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-        <LicenceCard {...licence} />
-        <AllowanceCard {...allowance} />
-      </div>
-
-      <CatalogPicker catalogData={catalog.data} badgesData={badges.data} loading={catalog.loading} error={catalog.error} />
-    </div>
-  );
+    return () => { active = false; };
+  }, [user, revision]);
+  const state = key => reads[key] || { loading: true };
+  const licence = reads.licence?.data?.licence, allowance = reads.allowance?.data?.allowance_state;
+  const rows = reads.catalog?.data?.rows || [], badges = reads.badges?.data?.badges || [];
+  return <main className="estate" data-testid="entitlement-page">
+    <header className="estate-header"><div><div className="estate-crumb" data-testid="entitlement-breadcrumb">ACCOUNT</div><h1 className="estate-title" data-testid="entitlement-title">Entitlement</h1></div>
+      {user && <button className="estate-btn" onClick={() => setRevision(v => v + 1)} disabled={Object.values(reads).some(s => s.loading)} data-testid="entitlement-refresh"><RefreshCw size={15} />Refresh</button>}</header>
+    {!user ? <p data-testid="entitlement-signin-needed">Sign in to view your licence, credits and available services.</p> : <div className="estate-body">
+      <div className="estate-columns"><section className="estate-section" data-testid="licence-card"><div className="estate-head"><h2>Licence</h2></div><ReadState state={state('licence')} id="licence">
+        {licence ? <><p data-testid="licence-status">{label(licence.status)} · {label(licence.plan_identifier || licence.name || 'Licence on record')}</p>
+          <dl className="entitlement-facts">{[['Seats', licence.seat_count], ['Compute', licence.compute_dial], ['External models', licence.frontier_dial], ['Renewal', licence.renewal_date ? new Date(licence.renewal_date).toLocaleDateString('en-GB') : null]].map(([key, value], i) => <div key={key}><dt>{key}</dt><dd data-testid={`licence-fact-${i}`}>{label(value)}</dd></div>)}</dl></> : <p data-testid="licence-empty">No licence on record. Ask your account administrator to confirm your access.</p>}
+      </ReadState></section>
+      <section className="estate-section" data-testid="allowance-card"><div className="estate-head"><h2>Credits</h2></div><ReadState state={state('allowance')} id="allowance">
+        {allowance ? <dl className="entitlement-facts"><div><dt>Period</dt><dd data-testid="allowance-period">{allowance.period_iso}</dd></div><div><dt>Allowance</dt><dd data-testid="allowance-credits">{allowance.credits_allowance}</dd></div><div><dt>Used</dt><dd data-testid="allowance-used">{allowance.credits_debited}</dd></div></dl> : <p data-testid="allowance-unavailable">{issue(reads.allowance?.data, 'Credit information')}</p>}
+      </ReadState></section></div>
+      <section className="estate-section" data-testid="catalog-picker"><div className="estate-head"><h2>Available services</h2></div><ReadState state={state('catalog')} id="catalog">
+        {rows.length ? <ul className="estate-list">{rows.map((row, i) => <li key={row.row_id || i} data-testid={`catalog-row-${i}`}><span><b>{readableText(row.name || `Service ${i + 1}`)}</b>{row.description && <small>{readableText(row.description)}</small>}</span>{row.badge && <span className="estate-status" data-testid={`catalog-row-badge-${i}`}>{row.badge}</span>}</li>)}</ul> : <p data-testid="catalog-empty">{issue(reads.catalog?.data, 'Services for this account')}</p>}
+      </ReadState>
+      {reads.badges?.error && <p className="estate-note" role="alert" data-testid="catalog-badges-error">Service pricing labels could not be loaded. Refresh to try again.</p>}
+      {badges.length > 0 && <div className="estate-inline-facts" data-testid="catalog-badges">{badges.map((badge, i) => <span className="estate-status" key={i} data-testid={`catalog-badge-${i}`}>{badge.badge || badge.name || badge}</span>)}</div>}
+      </section>
+    </div>}
+  </main>;
 }

@@ -1,0 +1,368 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "source": "deterministic producer estate_intelligence; no model authored the brief, content or specs",
+    "tokens": 0
+  },
+  "brief_id": "BR-2026-10-01-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-01T06:57:00Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-10-01T06:57:00Z",
+      "build_id": "bld-6a60c3887357",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 1,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-01T06:57:10Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "count": 12,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "a6bed8766f138eaffe26de4f157666c839a09111c7af8c8a73cfcf943f76f905",
+              "size": 20465
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "47c96b50455f1c6ac1b44353df626a8bc397f9ffa430513c2ff62f3dc1548695",
+              "size": 66289
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "c4970ba728189ba80eff09c930116d6bdf65db9013dbaf0367b46a50ca2f9d66",
+              "size": 15113
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "4b76eade43d2be2f7a1dc871acc5355539fa1f64cd55b6d32f845a8fd6d421b7",
+              "size": 38413
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "d7627901460229cc9f0146166bf6ddf70f37ed6b9d9f9ecd0f6310c7581da4f8",
+              "size": 45541
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "3d52163cb24ec43b420863053968b33588a4368d9e6185b3783f4ed6154638b4",
+              "size": 31647
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "39f7513a182f1458a292ba3292864f1db34822b381140959400d5e5d64c3910a",
+              "size": 16167
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "b89204fb878e3bb6a106a8579088e63c9b630bcde50004bda15c1e9828f19190",
+              "size": 53221
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "6e47c4f9ae2bff9cb3d15e216e168c309f68a704fcc82f0321d40bbe4c42241d",
+              "size": 50354
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "80fd332d90ade288b06cd1eb1e4604757e366b1f8fa1c2c743406acc95e83713",
+              "size": 65237
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "5263a788ad8f62abdb65a59794ada74d1d7d9d7c7dfa4a0b0dbea186d53bd2b1",
+              "size": 60210
+            },
+            {
+              "n": 12,
+              "name": "page-12.png",
+              "sha256": "595212086ed21496841b6298d89e24ae218f2ccea64baca5d43f5072c4c4b147",
+              "size": 48518
+            }
+          ],
+          "rendered": true,
+          "source": "estate-intelligence-eij-1b359b3cbd2e.pptx"
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-19134afc6d4c/builds/bld-6a60c3887357/log.txt",
+      "look": {
+        "cover_composition": "title-left-high",
+        "divider_treatment": "number-large",
+        "palette_id": "ink",
+        "type_pair_id": "century-arial"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-01T06:57:00Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "57e3fda1dc963a0e6443d9c87aa986a56a8c146f7837b2f7e9632dbe8675b12e",
+          "deck.resolved/brief.json": "d9d725e0ea0848e36393755e97cd8523e8d67c62d346cf7c524b21ae30d09655",
+          "deck.resolved/content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+          "deck.resolved/deck.json": "2f247af576033e987ef484280bb02c2528d734b9108671fa60cc1d1f202d2708",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "944227690f0a0be245a273b57965be1169ae2cc05f28028396f35fe3999c0230",
+          "paper.resolved.json": "23427bb2aa06655d45a247c25038e6f1a60b0ce25633fc739b44523687e92fde",
+          "paper.resolved/brief.json": "d9d725e0ea0848e36393755e97cd8523e8d67c62d346cf7c524b21ae30d09655",
+          "paper.resolved/content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "07ff1342511dc137fdf37cfa3d180a59da5e1fb48dd71e5704a2bdfe8b774dc2",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "944227690f0a0be245a273b57965be1169ae2cc05f28028396f35fe3999c0230",
+          "workbook.resolved.json": "c4e89dbfc96d7b8f665a739ba68e761a52c2c2bb8af410c3d7cb8446f0399f22",
+          "workbook.resolved/brief.json": "d9d725e0ea0848e36393755e97cd8523e8d67c62d346cf7c524b21ae30d09655",
+          "workbook.resolved/content.json": "cfcc6f27e422db7201ad720d1242fda54c7bcbd355b76e341ba23fa1597c21fa",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "944227690f0a0be245a273b57965be1169ae2cc05f28028396f35fe3999c0230",
+          "workbook.resolved/workbook.json": "1885bdfc85e00ec540cb5b62ff4e6d49ea6a00400361ff14f5d7475c926c8090"
+        },
+        "outputs_sha256": {
+          "estate-intelligence-eij-1b359b3cbd2e-review.html": "91f5b640c2324ad6bf384fd2a03aa76b1cb568acac206bf82c4bf6b66548e265",
+          "estate-intelligence-eij-1b359b3cbd2e.docx": "9f9c8a55ac28ca3499844723ea9d62c952d45e9923ea1d10c9a8d023803f47a4",
+          "estate-intelligence-eij-1b359b3cbd2e.pptx": "8c3ebc3e03dbc8d83ff49e2a85efad1eaa2500c6bd2ae374df3c12d48a31f24b",
+          "estate-intelligence-eij-1b359b3cbd2e.xlsx": "dc1dd753783d1a4ec37fee84b9ea414688c9d3b4c7599605e93a595d09f7a120"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-review.html",
+          "sha256": "91f5b640c2324ad6bf384fd2a03aa76b1cb568acac206bf82c4bf6b66548e265",
+          "size": 195653
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.docx",
+          "sha256": "9f9c8a55ac28ca3499844723ea9d62c952d45e9923ea1d10c9a8d023803f47a4",
+          "size": 108304
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.pptx",
+          "sha256": "8c3ebc3e03dbc8d83ff49e2a85efad1eaa2500c6bd2ae374df3c12d48a31f24b",
+          "size": 68052
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.xlsx",
+          "sha256": "dc1dd753783d1a4ec37fee84b9ea414688c9d3b4c7599605e93a595d09f7a120",
+          "size": 13268
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 4: is the title a full-sentence assertion? \"The largest databases hold 99.7% of the estate's bytes\"",
+          "slide 9: is the title a full-sentence assertion? \"Three costed strategies sit side by side; the estate owner chooses the order\"",
+          "slide 10: is the title a full-sentence assertion? \"8 product candidates rank by rows, readiness and dimensions\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-19134afc6d4c",
+  "content_id": "estate-intelligence-eij-1b359b3cbd2e",
+  "created_at": "2026-10-01T06:57:00Z",
+  "created_by": "6ab56dd48894abb269135ca2",
+  "current_content_version": 1,
+  "economics": {
+    "authoring_tokens_total": 0,
+    "builds_total": 1,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 2,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Estate owner and operators · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is high on the business, mixed on the data estate",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are cost reduction, personal-data exposure and quality, monetisable products",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    },
+    {
+      "assumption": "Every option is shown without a recommended winner",
+      "class": "inferred",
+      "flips": [
+        "comparison_plate_no_winner"
+      ],
+      "id": "M6",
+      "source": "house policy: findings not directives"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "pptx",
+    "docx",
+    "xlsx",
+    "html"
+  ],
+  "producer": "estate_intelligence",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+      "status": "partial",
+      "verified": true
+    },
+    "R02": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+      "status": "partial",
+      "verified": true
+    },
+    "R03": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)",
+      "status": "partial",
+      "verified": true
+    },
+    "R04": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+      "status": null,
+      "verified": true
+    },
+    "R05": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
+      "status": null,
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "build bld-6a60c3887357 byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-01",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "eij-1b359b3cbd2e",
+  "specs": [
+    "deck.json",
+    "paper.json",
+    "workbook.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Estate intelligence — eij-1b359b3cbd2e",
+  "updated_at": "2026-10-01T06:57:10Z",
+  "verdict_id": "V-2026-10-01-eij-1b359b3cbd2e",
+  "versions": [
+    {
+      "at": "2026-10-01T06:57:00Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "commissioned by producer estate_intelligence from eij-1b359b3cbd2e",
+      "version": 1
+    }
+  ],
+  "voice": "strategy-house"
+}

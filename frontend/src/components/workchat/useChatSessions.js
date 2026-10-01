@@ -27,9 +27,9 @@ export function useChatSessions(enabled) {
   const ask = useCallback(async (question) => {
     setError(''); setPending(question);
     const r = await tryPost('/api/chat/ask', { question, session_id: active?.session_id || null });
+    if (!r.ok) { setPending(''); setError(failure(r, 'The question could not be answered.')); return null; }
+    await open(r.data.session_id); await refresh();
     setPending('');
-    if (!r.ok) { setError(failure(r, 'The question could not be answered.')); return null; }
-    await open(r.data.session_id); refresh();
     return r.data;
   }, [active, open, refresh]);
 

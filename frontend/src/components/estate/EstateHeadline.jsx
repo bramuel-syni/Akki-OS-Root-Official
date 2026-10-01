@@ -1,34 +1,34 @@
 import React from 'react';
-import { bytes, count, pctValue } from './useEstateReport';
+import { bytes, count, pct, pctValue } from './useEstateReport';
 
-const Tile = ({ id, label, value, note, tone }) => <div className={`estate-tile${tone ? ` ${tone}` : ''}`} data-testid={`estate-tile-${id}`}>
-  <span className="estate-label">{label}</span><b>{value}</b><small>{note}</small></div>;
+const Metric = ({ id, label, value, children }) => <div className="estate-decision-metric" data-testid={`estate-tile-${id}`}>
+  <span>{label}</span><strong>{value}</strong><p>{children}</p>
+</div>;
 
 export function EstateHeadline({ report }) {
   const h = report.headline;
-  const cb = report.condition_bytes;
-  const total = cb.total || 1;
-  const bar = [['clean', 'No flagged condition', cb.clean, 'var(--sage)'], ['duplicate', 'Exact duplicates', cb.duplicate, 'var(--brass)'], ['degraded', 'Degraded', cb.degraded, 'var(--oxblood)'],
-    ['incomplete', 'Rows with empty fields', cb.incomplete, '#c9a24a'], ['not_read', 'Not read / unmeasured', cb.not_read + cb.unmeasured, '#b8b0a0']];
-  return <section className="estate-section" data-testid="estate-headline">
-    <div className="estate-tiles">
-      <Tile id="bytes" label="Data held" value={h.bytes_label} note={`data + index across ${h.connections} connections`} />
-      <Tile id="databases" label="Databases" value={count(h.databases)} note={h.blocked_connections.length ? `${h.blocked_connections.join(', ')} blocked` : 'every reachable connection measured'} />
-      <Tile id="tables" label="Tables" value={count(h.tables)} note={`${count(h.tables_measured)} measured · ${count(h.empty_tables)} empty · ${count(h.failed_tables)} failed`} />
-      <Tile id="rows" label="Rows (estimate)" value={count(h.rows_estimate)} note={`${count(h.rows_measured)} rows actually measured`} />
-      <Tile id="duplicates" label="Exact duplicate rows" value={pctValue(h.exact_duplicate_pct)} note={`normalised ${pctValue(h.normalised_duplicate_pct)} · ${count(h.duplicate_table_pairs)} same-schema table pairs`} tone="brass" />
-      <Tile id="degraded" label="Degraded rows" value={pctValue(h.degraded_pct)} note="placeholder · mojibake · truncation · invalid format" tone="oxblood" />
-      <Tile id="incomplete" label="Rows with empty fields" value={pctValue(h.null_bearing_pct)} note="at least one empty required-looking field" />
-      <Tile id="pii" label="Rows with PII markers" value={pctValue(h.pii_pct)} note={`of ${count(h.pii_rows_checked)} sampled rows`} tone="oxblood" />
-      <Tile id="stale" label="Stale bytes" value={pctValue(h.stale_pct_of_bytes)} note="in tables not written for over a year" />
-      <Tile id="reclaimable" label="Reclaimable" value={h.reclaimable_label} note={`${pctValue(h.reclaimable_pct)} of the estate, before pricing`} tone="sage" />
+  const dup = report.summary.duplication;
+  const obs = report.stores?.obs;
+  const nas = report.stores?.nas;
+  const objectDuplicates = obs?.measured && obs.duplicate_bytes_estimate != null;
+  return <section className="estate-decision-summary" data-testid="estate-headline">
+    <h2 data-testid="estate-takeaway">{objectDuplicates && obs.duplicate_bytes_estimate > 0 ? 'Start with duplicate objects. Verify before removing.' : 'Review duplicate candidates before making changes.'}</h2>
+    <div className="estate-decision-metrics">
+      <Metric id="object-duplicates" label="Object-store duplicate candidates" value={objectDuplicates ? bytes(obs.duplicate_bytes_estimate) : 'Not measured'}>
+        {objectDuplicates ? <>{obs.bytes > 0 ? `${pct(obs.duplicate_bytes_estimate / obs.bytes)} of ${bytes(obs.bytes)} listed` : 'Storage share not measured'} · {count(obs.duplicate_candidates)} candidates. Matching metadata, not confirmed copies.</> : 'No verified duplicate measurement is available.'}
+      </Metric>
+      <Metric id="duplicates" label="Repeated database rows · estimate" value={bytes(dup.within_table_duplicate_bytes_estimate)}>
+        {h.bytes_total > 0 && dup.within_table_duplicate_bytes_estimate != null ? `${pct(dup.within_table_duplicate_bytes_estimate / h.bytes_total, 2)} of ${bytes(h.bytes_total)} database storage. ` : ''}Within-table repeats; not a deletion allowance.
+      </Metric>
+      <Metric id="nas-duplicates" label="File-share duplication" value={nas?.measured && nas.duplicate_bytes_estimate != null ? bytes(nas.duplicate_bytes_estimate) : 'Not measured'}>
+        {nas?.measured ? `${bytes(nas.bytes)} of files listed. ` : ''}{nas?.duplicate_candidates == null ? 'Content comparison is still needed.' : 'Candidate copies need verification.'}
+      </Metric>
     </div>
-    <div className="estate-bar" data-testid="estate-condition-bar" aria-label="Byte-weighted condition of what was read">
-      {bar.filter(([, , v]) => v > 0).map(([key, label, v, color]) => <span key={key} style={{ width: `${Math.max(0.5, (v / total) * 100)}%`, background: color }} title={`${label} · ${bytes(v)}`} />)}
+    <p className="estate-scope-note" data-testid="estate-decision-scope">These are separate storage scopes, not a whole-estate duplicate percentage. {obs?.sources_blocked ? `${count(obs.sources_blocked)} object-store sources could not be read. ` : ''}{h.blocked_connections?.length ? `Database access blocked: ${h.blocked_connections.join(', ')}. ` : ''}{h.failed_tables ? `${count(h.failed_tables)} tables failed measurement.` : ''}</p>
+    <div className="estate-inline-facts" data-testid="estate-secondary-findings">
+      <span><b>{bytes(report.summary.storage?.redundant_index_bytes_estimate)}</b> estimated redundant indexes</span>
+      <span><b>{pctValue(h.degraded_pct)}</b> estimated degraded database rows</span>
+      <span><b>{count(h.tables_measured)} / {count(h.tables)}</b> tables measured</span>
     </div>
-    <ul className="estate-legend">
-      {bar.map(([key, label, v, color]) => <li key={key}><i style={{ background: color }} />{label} <b>{((v / total) * 100).toFixed(1)}%</b> <small>{bytes(v)}</small></li>)}
-    </ul>
-    <p className="estate-note">Byte-weighted; a row can carry more than one condition, so “no flagged condition” is the remainder. Grades across measured tables: {Object.entries(h.grades).map(([g, n]) => `${g} ${count(n)}`).join(' · ')}.</p>
   </section>;
 }

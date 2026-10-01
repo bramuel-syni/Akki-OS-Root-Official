@@ -23,10 +23,10 @@ export async function artifactBlob(commissionId, buildId, name) {
   return response.blob();
 }
 
-export async function downloadArtifact(commissionId, buildId, name) {
+export async function downloadArtifact(commissionId, buildId, name, downloadName = name) {
   const blob = await artifactBlob(commissionId, buildId, name);
   const url = URL.createObjectURL(blob);
-  const a = Object.assign(document.createElement('a'), { href: url, download: name });
+  const a = Object.assign(document.createElement('a'), { href: url, download: downloadName });
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 5000);
 }

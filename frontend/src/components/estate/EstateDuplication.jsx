@@ -12,14 +12,14 @@ export function EstateDuplication({ report }) {
         <h3>Same-schema pairs with content overlap</h3>
         <div className="estate-table-wrap"><table className="estate-table" data-testid="estate-duplicate-pairs">
           <thead><tr><th>Copy A</th><th>Copy B</th><th>Overlap</th><th>Smaller copy</th></tr></thead>
-          <tbody>{dup.top_pairs.slice(0, 15).map((p, i) => <tr key={i}><td>{p.a}</td><td>{p.b}</td><td>{pct(p.content_overlap_estimate, 0)}</td><td>{bytes(p.bytes_smaller)}<small>{count(p.rows_smaller)} rows</small></td></tr>)}</tbody>
+          <tbody>{dup.top_pairs.slice(0, 15).map((p, i) => <tr key={i}><td data-label="Copy A">{p.a}</td><td data-label="Copy B">{p.b}</td><td data-label="Overlap">{pct(p.content_overlap_estimate, 0)}</td><td data-label="Smaller copy">{bytes(p.bytes_smaller)}<small>{count(p.rows_smaller)} rows</small></td></tr>)}</tbody>
         </table></div>
       </div>
       <div>
         <h3>Exact repeats inside a table</h3>
         <div className="estate-table-wrap"><table className="estate-table" data-testid="estate-within-duplicates">
           <thead><tr><th>Table</th><th>Exact</th><th>Normalised</th><th>Rows est.</th><th>Data</th></tr></thead>
-          <tbody>{within.slice(0, 15).map((t, i) => <tr key={i}><td><b>{t.table}</b><small>{t.database} · {t.method.replace(/_/g, ' ')}</small></td><td>{pct(t.exact_duplicate_ratio)}</td><td>{t.normalised_duplicate_ratio == null ? '—' : pct(t.normalised_duplicate_ratio)}</td><td>{count(t.rows_estimate)}</td><td>{bytes(t.data_bytes)}</td></tr>)}</tbody>
+          <tbody>{within.slice(0, 15).map((t, i) => <tr key={i}><td data-label="Table"><b>{t.table}</b><small>{t.database} · {t.method.replace(/_/g, ' ')}</small></td><td data-label="Exact repeats">{pct(t.exact_duplicate_ratio)}</td><td data-label="Normalised repeats">{t.normalised_duplicate_ratio == null ? '—' : pct(t.normalised_duplicate_ratio)}</td><td data-label="Estimated rows">{count(t.rows_estimate)}</td><td data-label="Data">{bytes(t.data_bytes)}</td></tr>)}</tbody>
         </table></div>
         {!within.length && <p className="estate-note">No measured table repeats more than 1% of its rows exactly.</p>}
       </div>

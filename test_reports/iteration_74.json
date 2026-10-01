@@ -1,0 +1,82 @@
+{
+  "summary": "Frontend-only fidelity sweep completed against https://pensive-goodall-6.preview.emergentagent.com using owner HTML routes (desktop 1920x800 and mobile 390x844). Source hash check passed for frontend/public/prototype/v2_os.html (9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199). Major gaps found in WorkDocuments runtime behavior and mobile estate table labeling; estate error text currently leaks backend/seam internals.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/portal/census/estate-intelligence/report",
+        "issue": "Error payload details are surfaced directly in UI (estate alert includes seam/internal DB error string with host/user fragments: 'PULL_SEAM_WORKER_FAILED... Access denied for user ...'). Needs server-side/edge sanitization before returning user-facing message.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "WorkDocuments",
+        "issue": "Runtime error 'setSelected is not a function' when opening a document row; selected detail pane fails (blank title / missing expected download controls during row-open flow).",
+        "selector": "[data-testid^='studio-select-']",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "Estate tables (mobile stacked view)",
+        "issue": "All checked estate table cells lack data-label (523/523 td missing), so mobile stacked rows have unlabeled values and weak readability.",
+        "selector": "table.estate-table td",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Estate database row testids",
+        "issue": "Duplicate data-testid values found (e.g., estate-db-row-viutickets, estate-db-row-kra_reports, estate-db-row-viupay each repeated), violating uniqueness requirement.",
+        "selector": "[data-testid^='estate-db-row-']",
+        "priority": "MEDIUM"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Documents: overview row -> selected detail",
+        "issue": "Frontend state setter mismatch prevents reliable detail rendering and controls for selected commission.",
+        "affected_selectors": [
+          "[data-testid^='studio-select-']",
+          "[data-testid='studio-document-title']",
+          "[data-testid^='studio-download-']"
+        ]
+      }
+    ],
+    "design_issues": [
+      {
+        "screen": "Estate intelligence mobile",
+        "issues": [
+          "Stacked table rows lack per-cell labels due to missing data-label attributes, reducing scanability on 390x844."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/root/.emergent/automation_output/20261001_065045/console_20261001_065045.log",
+    "/root/.emergent/automation_output/20261001_065241/console_20261001_065241.log"
+  ],
+  "action_items": [
+    "Fix WorkDocuments state wiring: use the hook's returned selector function instead of undefined setSelected path.",
+    "Sanitize estate-report backend error responses so sensitive internal seam/DB details are not shown in UI alerts.",
+    "Add data-label attributes to estate table td cells (or equivalent responsive labeling) for mobile stacked layouts.",
+    "Ensure generated/assigned estate row data-testid values are unique per row instance."
+  ],
+  "critical_code_review_comments": [
+    "WorkDocuments.jsx destructures setSelected from useStudio(), but useStudio returns select; this mismatch aligns with runtime PAGE ERROR 'setSelected is not a function'.",
+    "EstateIntelligence renders backend error string directly; this leaks internal operational detail to end users.",
+    "Prototype fidelity anchors validated: chat header measured exactly 52px, no horizontal overflow detected on tested pages/viewport set."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_74.json"
+  ],
+  "success_rate": {
+    "backend": "N/A (frontend-focused run)",
+    "frontend": "80%"
+  },
+  "test_credentials": "demo.operator@demo.rms.example.com / demo-operator-pw from /app/memory/test_credentials.md",
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Desktop + mobile screenshots captured under /app/test_reports/screenshots/iteration_74_ui (chat/documents/estate/model/rules/media/entitlement). Estate cleanup CSV download validated (Estate-cleanup-review.csv). Chat checks passed for sessionStorage keys, send-disable on empty draft, conversation rail toggle, no raw token-like IDs visible in chat text. Legacy routes /os, /os/admin/estate, /os/build/train still load unchanged shell markers.",
+  "rca of the issue": "Primary frontend failure: WorkDocuments uses setSelected in choose(), but useStudio hook exposes select. Repro: sign in -> /os/work/documents -> click any row ([data-testid^='studio-select-']) -> console PAGE ERROR 'setSelected is not a function'. Result: selected document detail path is unstable/blank and expected selected-document controls are not reliably rendered. Secondary risk: estate report errors are passed through directly from backend, causing internal seam/DB failure strings to appear in user UI; mitigation is backend sanitization + frontend generic-safe message mapping."
+}

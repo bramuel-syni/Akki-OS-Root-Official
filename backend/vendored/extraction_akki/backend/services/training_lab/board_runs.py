@@ -33,8 +33,8 @@ def base_name(name):
 
 def next_version(name, existing_names):
     base = base_name(name)
-    versions = [int(m.group(1)) for n in existing_names for m in [re.fullmatch(re.escape(base) + r'(?:\s+v(\d+))?', n or '')] if m]
-    return f"{base} v{max([v or 1 for v in versions] + [1]) + 1}"
+    versions = [int(m.group(1)) if m.group(1) else 1 for n in existing_names for m in [re.fullmatch(re.escape(base) + r'(?:\s+v(\d+))?', n or '')] if m]
+    return f"{base} v{max(versions + [1]) + 1}"
 
 
 def create(tenant, actor, *, parent=None, mode='new', name=None):

@@ -4,6 +4,7 @@ import { Archive, ArrowLeft, AudioLines, ClipboardCheck, Plus, Radar, RefreshCw,
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { CensusAccess } from '@/components/census/CensusAccess';
 import { usePrototypeSession } from '@/components/prototype/usePrototypeSession';
+import { OwnerWorkspace } from '@/components/prototype/OwnerWorkspace';
 import { MediaFiles } from '@/components/media/MediaFiles';
 import { MediaUpload } from '@/components/media/MediaUpload';
 import { MediaMetadata } from '@/components/media/MediaMetadata';
@@ -35,7 +36,7 @@ export default function WorkMedia() {
   const selectedAudio = selected.filter(id => lib.files.find(f => f.file_id === id)?.kind === 'audio');
   const measureSelected = () => perform('measure', async current => { const data = await acoustics.batch(selectedAudio); if (!current()) return; setNotice(`${data.measurements.length} ${data.measurements.length === 1 ? 'recording' : 'recordings'} queued for sound measurement${data.skipped.length ? `; ${data.skipped.length} skipped` : ''}.`); });
   const assess = () => perform('assess', async current => { const data = await mediaRequest('/assessments', { method: 'POST', headers: { 'Idempotency-Key': crypto.randomUUID() }, body: JSON.stringify({ file_ids: selected, title: 'Music dataset readiness' }) }); if (!current()) return; setResult(data.run); await readHistory(); });
-  return <main className="estate media-library" data-testid="work-media-surface">
+  return <OwnerWorkspace session={session} title="Media Library" group="WorkStudio"><main className="estate media-library" data-testid="work-media-surface">
     <Link className="media-back" to="/os" data-testid="work-media-back"><ArrowLeft size={14} />WorkStudio</Link>
     <header className="estate-header media-header"><div><div className="estate-crumb" data-testid="work-media-breadcrumb">WORKSTUDIO · {session.data?.tenant_id || 'Private library'}</div><h1 className="estate-title" data-testid="work-media-title">Media library</h1></div>
       {identity && <div className="estate-actions"><button className="estate-btn" onClick={() => perform('refresh', refresh)} disabled={lib.loading || !!busy} data-testid="work-media-refresh"><RefreshCw size={15} />Refresh</button>{canOperate && <button className="estate-btn primary" onClick={() => setUploadOpen(true)} disabled={!lib.config?.storage_ready || lib.uploading} data-testid="work-media-upload-btn"><Plus size={16} />{lib.uploading ? 'Uploading…' : 'Add files'}</button>}</div>}
@@ -57,5 +58,5 @@ export default function WorkMedia() {
     {result && <MediaAssessment run={result} onClose={() => setResult(null)} />}
     {sound && <MediaAcoustics key={sound.file_id} file={lib.files.find(f => f.file_id === sound.file_id) || sound} acoustics={acoustics} canOperate={canOperate} onClose={() => setSound(null)} />}
     {patternsOpen && <MediaPatterns onClose={() => setPatternsOpen(false)} />}
-  </main>;
+  </main></OwnerWorkspace>;
 }

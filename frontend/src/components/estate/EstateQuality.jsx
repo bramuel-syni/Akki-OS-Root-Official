@@ -23,7 +23,7 @@ export function EstateQuality({ report }) {
       <div data-testid="estate-trend">
         <h3>Trend against the previous census</h3>
         {trend ? <>
-          <p className="estate-note">Previous <code>{trend.previous_job_id}</code> measured {stamp(trend.previous_measured_at)}.{trend.coverage_changed ? ' Coverage changed between the two censuses, so deltas include newly reached tables, not only decay.' : ''}</p>
+          <p className="estate-note" data-testid="estate-trend-date">Previous census: {stamp(trend.previous_measured_at)}.{trend.coverage_changed ? ' Coverage changed; differences include newly reached tables, not only data changes.' : ''}</p>
           <ul className="estate-deltas">{Object.entries(trend.deltas).filter(([, v]) => v != null).map(([k, v]) => <li key={k}><span>{deltaLabels[k]?.[0] || k}</span><b className={v > 0 ? 'up' : v < 0 ? 'down' : ''}>{signed(v, deltaLabels[k]?.[1] || count)}</b></li>)}</ul>
           <p className="estate-note">{count(trend.schema_drift_tables)} tables changed schema · {count(trend.databases_grown)} databases grew · {count(trend.databases_shrunk)} shrank.</p>
         </> : <p className="estate-note">{d.trend_note}</p>}

@@ -1,32 +1,33 @@
 import React from 'react';
 import { stamp, statusClass } from './useModelApproval';
+import { modelName } from './ModelRegistry';
+import { readableText } from '../shared/PresentationDetails';
 
-export function ModelAdmissions({ records }) {
+const languages = { guz: 'Gusii', kam: 'Kamba', kik: 'Kikuyu', kln: 'Kalenjin', luo: 'Luo', lwg: 'Luhya', swa: 'Swahili' };
+
+export function ModelAdmissions({ records, models }) {
   const rows = records || [];
+  const jobs = [...new Set(rows.map(r => r.job_id))];
   return <section className="estate-section" data-testid="models-admissions">
-    <div className="estate-head"><div><h2>Admission decisions</h2><p>Per-stratum acceptance is the Outcome's recorded threshold plus no regression below the base (Docs 17–19 · owner ruling 2026-09-30 1a). The aggregate +5-point M-a criterion stays global. Original refusals remain on file; each decision here is a new record.</p></div></div>
-    {!rows.length && <div className="estate-note" data-testid="models-admissions-empty">No re-adjudication is on record.</div>}
-    {rows.length > 0 && <div className="estate-table-wrap"><table className="estate-table" data-testid="models-admissions-table">
-      <thead><tr><th>Candidate</th><th>Decision</th><th>Strata meeting floor</th><th>Per stratum (adapter / base)</th><th>Floor</th><th>Decided</th></tr></thead>
-      <tbody>{rows.map(r => <tr key={`${r.model_id}-${r.at}`} data-testid={`models-admission-${r.model_id}`}>
-        <td><b>{r.model_id}</b><small>{r.variant} artefact · run {r.job_id}</small></td>
-        <td><span className={`estate-status ${statusClass(r.readjudicated?.outcome)}`}>{r.readjudicated?.outcome}</span>{r.readjudicated?.registry_version_after != null && <small>registry v{r.readjudicated.registry_version_after}</small>}{r.readjudicated?.reason && <small>{r.readjudicated.reason}</small>}</td>
-        <td><b>{Math.round((r.coverage_strata || 0) * 100)}%</b><small>{Object.values(r.per_stratum || {}).filter(s => s.passes).length} of {Object.keys(r.per_stratum || {}).length}</small></td>
-        <td className="estate-dims">{Object.entries(r.per_stratum || {}).map(([s, v]) => <span key={s} style={v.passes ? undefined : { background: 'rgba(184,57,91,.12)', color: 'var(--oxblood)' }}>{s} {(v.accuracy * 100).toFixed(1)} / {(v.base_accuracy * 100).toFixed(1)}</span>)}</td>
-        <td>{r.outcome_floor}<small>{r.floor_source}</small></td>
-        <td>{stamp(r.at)}</td>
-      </tr>)}</tbody>
-    </table></div>}
+    <div className="estate-head"><h2>Evaluation decisions</h2></div>
+    {!rows.length && <p data-testid="models-admissions-empty">No evaluation decisions recorded.</p>}
+    {rows.length > 0 && <table className="estate-table" data-testid="models-admissions-table">
+      <thead><tr><th>Candidate</th><th>Decision & next step</th><th>Languages passed</th><th>Accuracy · candidate / base</th><th>Minimum</th></tr></thead>
+      <tbody>{rows.map((r, i) => { const model = models?.trained_adapters?.find(m => m.model_id === r.model_id); const failed = Object.entries(r.per_stratum || {}).filter(([, s]) => !s.passes); return <tr key={`${r.model_id}-${r.at}`} data-testid={`models-admission-${r.model_id}-${i}`}>
+        <td data-label="Candidate"><b>{model ? modelName(model) : `Language candidate ${jobs.indexOf(r.job_id) + 1}`} · {r.variant === 'pruned' ? 'Reduced' : 'Full'}</b><small>{stamp(r.at)}</small></td>
+        <td data-label="Decision"><span className={`estate-status ${statusClass(r.readjudicated?.outcome)}`}>{r.readjudicated?.outcome}</span><small data-testid={`models-admission-next-${i}`}>{failed.length ? `Review ${failed.map(([key, s]) => `${languages[key] || key}: ${!s.no_regression_below_base ? 'below base performance' : 'below required accuracy'}`).join('; ')} before resubmission.` : r.readjudicated?.outcome === 'admitted' ? 'Approved. Serving is managed separately.' : readableText(r.readjudicated?.refusal_note || r.readjudicated?.reason || 'Review the evaluation before resubmission.')}</small></td>
+        <td data-label="Languages passed">{Object.values(r.per_stratum || {}).filter(s => s.passes).length} of {Object.keys(r.per_stratum || {}).length}</td>
+        <td data-label="Accuracy" className="estate-dims">{Object.entries(r.per_stratum || {}).map(([s, v]) => <span key={s} style={v.passes ? undefined : { background: 'rgba(184,57,91,.12)', color: 'var(--oxblood)' }}>{languages[s] || s} {(v.accuracy * 100).toFixed(1)}% / {(v.base_accuracy * 100).toFixed(1)}%</span>)}</td>
+        <td data-label="Minimum">{r.outcome_floor == null ? 'Not recorded' : `${(r.outcome_floor * 100).toFixed(0)}%`}<small>No regression below the base</small></td>
+      </tr>; })}</tbody>
+    </table>}
   </section>;
 }
 
 export function ModelCapabilities({ capabilities }) {
   if (!capabilities) return null;
-  return <section className="estate-section" data-testid="models-capabilities">
-    <div className="estate-head"><div><h2>Capability account for G9</h2><p>{capabilities.owner_ruling_ref}</p></div></div>
-    <div className="estate-columns">
-      <div><h3>Activated</h3><ul className="estate-list">{capabilities.activated.map(c => <li key={c.capability} data-testid="models-capability-activated"><span><b>{c.capability}</b><small>{c.evidence}</small><small>admitted {c.admitted_models.join(', ') || 'none'} · served {c.served_models.join(', ') || 'none'}</small></span><small><span className="estate-status complete">{c.modality}</span></small></li>)}</ul></div>
-      <div><h3>Dormant · not claimed</h3><ul className="estate-list">{capabilities.dormant.map(c => <li key={c.capability} data-testid="models-capability-dormant"><span><b>{c.capability}</b><small>{c.status}</small><small>{c.why}</small>{c.reactivation && <small>Reactivation: {c.reactivation}</small>}{c.arms_on_record?.length ? <small>{c.arms_on_record.length} research arms on record, all NOT ADMISSIBLE</small> : null}</span><small><span className="estate-status blocked">{c.modality}</span></small></li>)}</ul></div>
-    </div>
+  return <section className="estate-section" data-testid="models-capabilities"><div className="estate-head"><h2>Available capabilities</h2></div>
+    <div className="estate-columns"><div><h3>Active</h3><ul className="estate-list">{capabilities.activated.map((c, i) => <li key={c.capability} data-testid={`models-capability-activated-${i}`}><span><b>{readableText(c.capability).replaceAll('_', ' ')}</b><small>{c.admitted_models.length} approved models · {c.served_models.length} serving</small></span><small>{c.modality}</small></li>)}</ul></div>
+      <div><h3>Not activated</h3><ul className="estate-list">{capabilities.dormant.map((c, i) => <li key={c.capability} data-testid={`models-capability-dormant-${i}`}><span><b>{readableText(c.capability).replaceAll('_', ' ')}</b><small>{readableText(c.why)}</small>{c.reactivation && <small>Before activation: {readableText(c.reactivation)}</small>}</span></li>)}</ul></div></div>
   </section>;
 }

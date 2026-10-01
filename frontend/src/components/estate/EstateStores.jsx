@@ -8,7 +8,7 @@ function Store({ id, title, st }) {
   if (!st?.measured) return <div data-testid={`estate-store-${id}`}><h3>{title}</h3><p className="estate-note">{st?.note || 'Not measured.'}</p></div>;
   const fingerprinted = st.duplicate_candidates != null;
   return <div data-testid={`estate-store-${id}`}>
-    <h3>{title} <small>census <code>{st.census_run_id}</code> · {st.status} · {stamp(st.observed_at)}</small></h3>
+    <h3 data-testid={`estate-store-heading-${id}`}>{title} <small>{st.status} · {stamp(st.observed_at)}</small></h3>
     <div className="estate-tiles">
       <Tile id={`${id}-bytes`} label="Bytes held" value={st.bytes_label} note={`${count(st.units)} ${st.unit_name} in ${count(st.sources_complete)} of ${count(st.sources)} sources`} />
       <Tile id={`${id}-duplicates`} label="Duplicate candidates" value={fingerprinted ? count(st.duplicate_candidates) : 'Unmeasured'} note={fingerprinted ? `${pctValue(st.duplicate_pct_of_units)} of ${st.unit_name} · ≈${bytes(st.duplicate_bytes_estimate)} (estimate)` : 'no fingerprints in this pass'} tone={fingerprinted ? 'brass' : undefined} />
@@ -18,15 +18,15 @@ function Store({ id, title, st }) {
     <div className="estate-table-wrap"><table className="estate-table" data-testid={`estate-store-table-${id}`}>
       <thead><tr><th>Source</th><th>Status</th><th>{st.unit_name}</th><th>Bytes</th><th>Duplicates</th><th>Last write</th><th>Formats</th></tr></thead>
       <tbody>{st.top_sources.map(r => <tr key={r.label}>
-        <td><b>{r.label}</b></td>
-        <td>{r.status}{r.reason_code ? <small>{r.reason_code}</small> : null}</td>
-        <td>{count(r.units)}</td><td>{bytes(r.bytes)}</td>
-        <td>{r.duplicate_candidates == null ? '—' : <>{count(r.duplicate_candidates)}<small>≈{bytes(r.duplicate_bytes_estimate)}</small></>}</td>
-        <td>{r.last_write ? <>{stamp(r.last_write)}{r.cold ? <small>cold · {count(r.idle_days)} days idle</small> : null}</> : '—'}</td>
-        <td><small>{r.top_formats.join(' · ') || '—'}</small></td>
+        <td data-label="Source"><b>{r.label}</b></td>
+        <td data-label="Status">{r.status}{r.reason_code ? <small>Source needs an access review</small> : null}</td>
+        <td data-label={st.unit_name}>{count(r.units)}</td><td data-label="Storage">{bytes(r.bytes)}</td>
+        <td data-label="Duplicate candidates">{r.duplicate_candidates == null ? 'Not measured' : <>{count(r.duplicate_candidates)}<small>≈{bytes(r.duplicate_bytes_estimate)}</small></>}</td>
+        <td data-label="Last write">{r.last_write ? <>{stamp(r.last_write)}{r.cold ? <small>{count(r.idle_days)} days since last write</small> : null}</> : '—'}</td>
+        <td data-label="Formats"><small>{r.top_formats.join(' · ') || '—'}</small></td>
       </tr>)}</tbody>
     </table></div>
-    {st.blocked?.length ? <p className="estate-note" data-testid={`estate-store-blocked-${id}`}>Blocked: {st.blocked.slice(0, 10).map(b => `${b.label} (${b.reason_code})`).join('; ')}{st.blocked.length > 10 ? ` … ${st.blocked.length - 10} more` : ''}</p> : null}
+    {st.blocked?.length ? <p className="estate-note" data-testid={`estate-store-blocked-${id}`}>Needs source-owner review: {st.blocked.slice(0, 10).map(b => b.label).join('; ')}{st.blocked.length > 10 ? ` … ${st.blocked.length - 10} more` : ''}</p> : null}
     <p className="estate-note">{st.duplication_note}</p>
   </div>;
 }

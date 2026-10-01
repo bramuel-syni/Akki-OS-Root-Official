@@ -1,5 +1,6 @@
 import React from 'react';
 import { stamp, statusClass } from './useModelApproval';
+import { readableText } from '../shared/PresentationDetails';
 
 function measure(r) {
   const m = r.measured || {};
@@ -13,10 +14,10 @@ export function RecoveryDrills({ drills, policy }) {
   const rows = drills || [];
   const tiers = policy?.tiers ? Object.entries(policy.tiers) : [];
   return <section className="estate-section" data-testid="models-recovery">
-    <div className="estate-head"><div><h2>Failure and recovery evidence</h2><p>Drill receipts are measurements, not attestations: work actually lost against the ratified bound, rows actually restored, an Ed25519 countersign from a host that is not the Ledger writer. Deferred items are named as deferred.</p></div>
+    <div className="estate-head"><div><h2>Recovery checks</h2></div>
       {policy && <span className="estate-status" data-testid="models-policy-ref">tiers ratified · 2026-09-30</span>}</div>
     {!rows.length && <div className="estate-note" data-testid="models-recovery-empty">No drill receipt on record.</div>}
-    {rows.length > 0 && <ul className="estate-list" data-testid="models-drill-list">{rows.slice().reverse().map(r => <li key={r.receipt_path} data-testid="models-drill-row"><span><b>{r.drill}</b><small>{measure(r)}</small><small>{stamp(r.at)} · {r.kind || r.store || r.isolation?.restored_into || ''}</small></span><small><span className={`estate-status ${statusClass(r.verdict)}`}>{r.verdict || 'recorded'}</span></small></li>)}</ul>}
+    {rows.length > 0 && <ul className="estate-list" data-testid="models-drill-list">{rows.slice().reverse().map((r, i) => <li key={r.receipt_path} data-testid={`models-drill-row-${i}`}><span><b>{readableText(r.drill)}</b><small>{measure(r)}</small><small>{stamp(r.at)}</small></span><small><span className={`estate-status ${statusClass(r.verdict)}`}>{r.verdict || 'recorded'}</span></small></li>)}</ul>}
     {tiers.length > 0 && <>
       <h3>Ratified recovery tiers</h3>
       <div className="estate-tiles" data-testid="models-tiers">{tiers.map(([key, t]) => <div key={key} className={`estate-tile ${key.includes('tier_4') ? 'brass' : 'sage'}`} data-testid={`models-tier-${key}`}>

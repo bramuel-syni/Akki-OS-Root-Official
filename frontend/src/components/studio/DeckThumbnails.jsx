@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { stamp } from './useStudio';
+import { documentTitle } from '../shared/PresentationDetails';
+
+const EMPTY_PAGES = [];
 
 const token = () => sessionStorage.getItem('akki_access_token');
 const thumbUrl = (commissionId, buildId, n) => `${process.env.REACT_APP_BACKEND_URL}/api/studio/commissions/${commissionId}/builds/${buildId}/thumbnail/${n}`;
@@ -10,10 +13,14 @@ function usePageBlobs(commissionId, buildId, pages) {
     let active = true; const made = [];
     setUrls({});
     Promise.all(pages.map(async p => {
-      const response = await fetch(thumbUrl(commissionId, buildId, p.n), { headers: token() ? { Authorization: `Bearer ${token()}` } : {} });
-      if (!response.ok) return [p.n, null];
-      const url = URL.createObjectURL(await response.blob()); made.push(url);
-      return [p.n, url];
+      try {
+        const response = await fetch(thumbUrl(commissionId, buildId, p.n), { headers: token() ? { Authorization: `Bearer ${token()}` } : {} });
+        if (!response.ok) return [p.n, null];
+        const blob = await response.blob();
+        if (!active) return [p.n, null];
+        const url = URL.createObjectURL(blob); made.push(url);
+        return [p.n, url];
+      } catch { return [p.n, null]; }
     })).then(entries => { if (active) setUrls(Object.fromEntries(entries)); });
     return () => { active = false; made.forEach(u => URL.revokeObjectURL(u)); };
   }, [commissionId, buildId, pages]);
@@ -22,7 +29,7 @@ function usePageBlobs(commissionId, buildId, pages) {
 
 export function DeckThumbnails({ commission, build, canOperate, busy, onRender }) {
   const thumbs = build.exports?.thumbnails;
-  const pages = thumbs?.pages || [];
+  const pages = thumbs?.pages || EMPTY_PAGES;
   const urls = usePageBlobs(commission.commission_id, build.build_id, pages);
   const [focus, setFocus] = useState(null);
   useEffect(() => { setFocus(null); }, [build.build_id]);
@@ -32,8 +39,8 @@ export function DeckThumbnails({ commission, build, canOperate, busy, onRender }
   const focused = focus && pages.find(p => p.n === focus);
   return <div className="studio-thumbs" data-testid="studio-thumbnails">
     <div className="estate-head" style={{ marginTop: 14 }}>
-      <div><h3>Pages · {deck.name}</h3><p>Every page of the released deck, rendered from the recorded pptx through the environment of record so a reviewer can answer the review questions without downloading. A visual-QA export — outside the byte-identity contract.</p></div>
-      {thumbs?.rendered && <span className="estate-status complete" data-testid="studio-thumbnails-count">{thumbs.count} page{thumbs.count === 1 ? '' : 's'} · {thumbs.dpi} dpi</span>}
+      <h3>Deck preview</h3>
+      {thumbs?.rendered && <span className="estate-status complete" data-testid="studio-thumbnails-count">{thumbs.count} pages</span>}
     </div>
     {!thumbs && <div className="estate-actions" style={{ marginTop: 10, justifyContent: "flex-start" }}>
       <span className="estate-note" style={{ margin: 0 }} data-testid="studio-thumbnails-empty">No page thumbnails on record for this build.</span>
@@ -48,7 +55,7 @@ export function DeckThumbnails({ commission, build, canOperate, busy, onRender }
               : urls[p.n] === null ? <span className="studio-thumb-wait">Not on record</span>
                 : <img src={urls[p.n]} alt={`Page ${p.n} of ${deck.name}`} loading="lazy" />}
           </button>
-          <small><b>{p.n}</b> · {p.sha256.slice(0, 10)}…</small>
+          <small data-testid={`studio-page-label-${p.n}`}>Page {p.n}</small>
         </li>)}
       </ol>
       {focused && urls[focused.n] && <figure className="studio-thumb-focus" data-testid="studio-thumbnail-focus">
@@ -59,7 +66,7 @@ export function DeckThumbnails({ commission, build, canOperate, busy, onRender }
           <button className="estate-btn" onClick={() => setFocus(null)} data-testid="studio-thumbnail-close">Close</button>
         </div>
         <img src={urls[focused.n]} alt={`Page ${focused.n} of ${deck.name}, enlarged`} />
-        <figcaption><code>{focused.name}</code> · sha256 <code>{focused.sha256}</code> · {focused.size?.toLocaleString('en-GB')} B · rendered {stamp(thumbs.at)}</figcaption>
+        <figcaption data-testid="studio-page-caption">{documentTitle(commission)} · Page {focused.n} · Rendered {stamp(thumbs.at)}</figcaption>
       </figure>}
     </>}
   </div>;

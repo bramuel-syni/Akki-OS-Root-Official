@@ -1,5 +1,6 @@
 import React from 'react';
 import { stamp } from './useEstateReport';
+import { readableText } from '../shared/PresentationDetails';
 
 // Minimal Markdown → blocks for the governed dossier (headings, lists, paragraphs, bold); no HTML is ever injected.
 function inline(text) {
@@ -27,15 +28,14 @@ export function Markdown({ text, testId }) {
 export function EstateDossier({ report, canCompose, composing, refusal, onCompose }) {
   const d = report.dossier;
   return <section className="estate-section" data-testid="estate-dossier">
-    <header className="estate-head"><div><h2>Estate-handling dossier</h2>
-      <p>A narrative brief composed by a governed model from these aggregates only — no row, cell or identifier value crosses the chokepoint. It cites the figures above; where a figure is unmeasured it says so.</p></div>
+    <header className="estate-head"><div><h2>Written assessment</h2></div>
       {canCompose && <button className="estate-btn primary" onClick={onCompose} disabled={composing} data-testid="estate-compose-dossier">{composing ? 'Composing…' : d ? 'Recompose dossier' : 'Compose dossier'}</button>}
     </header>
-    {refusal && <p className="estate-alert" role="alert" data-testid="estate-dossier-refusal">The chokepoint refused: {refusal}</p>}
+    {refusal && <p className="estate-alert" role="alert" data-testid="estate-dossier-refusal">The assessment could not be generated. The recorded findings remain available; ask your estate operator to review the request.</p>}
     {d ? <>
-      <p className="estate-note" data-testid="estate-dossier-meta">Model {d.model_id} via {d.provider} · receipt <code>{d.receipt_id}</code> · {stamp(d.at)} · {d.tokens_in} tokens in / {d.tokens_out} out · prompt sha {String(d.prompt_sha256).slice(0, 12)}…</p>
-      <Markdown text={d.text} testId="estate-dossier-text" />
-    </> : <p className="estate-note" data-testid="estate-dossier-empty">No dossier has been composed for this census yet.{canCompose ? ' Composing sends the aggregate figures — never rows — through the governed chokepoint and banks the receipt.' : ' An admitted operator can compose it.'}</p>}
+      <p className="estate-note" data-testid="estate-dossier-meta">Generated {stamp(d.at)} · {d.provider}</p>
+      <Markdown text={readableText(d.text)} testId="estate-dossier-text" />
+    </> : <p className="estate-note" data-testid="estate-dossier-empty">No written assessment for this census yet.{!canCompose && ' An estate operator can create one.'}</p>}
   </section>;
 }
 
@@ -45,9 +45,9 @@ export function EstateMethod({ report }) {
     <p>{report.method_note}</p>
     <p>{report.coverage_note}</p>
     <ul className="estate-list plain">
-      {report.connections.map(c => <li key={c.source_ref}><span><b>{c.label}</b><small>{c.database_count} databases · {c.table_count} tables</small></span><em className={`estate-status ${c.status}`}>{c.status}</em>{c.reason_code ? <small>{c.reason_code}</small> : null}</li>)}
+      {report.connections.map(c => <li key={c.source_ref}><span><b>{c.label}</b><small>{c.database_count} databases · {c.table_count} tables</small></span><em className={`estate-status ${c.status}`}>{c.status}</em>{c.reason_code ? <small>Ask the source owner to review access.</small> : null}</li>)}
     </ul>
-    {report.errors?.length ? <ul className="estate-errors" data-testid="estate-errors">{report.errors.map((e, i) => <li key={i}><b>{e.connection}</b>{e.database ? ` · ${e.database}` : ''}: {e.code}</li>)}</ul> : null}
+    {report.errors?.length ? <ul className="estate-errors" data-testid="estate-errors">{report.errors.map((e, i) => <li key={i}><b>{e.connection}</b>{e.database ? ` · ${e.database}` : ''}: Measurement did not complete. The estate operator needs to review source access and rerun the census.</li>)}</ul> : null}
     <p className="estate-note">Row values retained: {report.row_values_retained ? 'yes' : 'none'} — the census returned aggregates, sketches and hashes only.</p>
   </section>;
 }
