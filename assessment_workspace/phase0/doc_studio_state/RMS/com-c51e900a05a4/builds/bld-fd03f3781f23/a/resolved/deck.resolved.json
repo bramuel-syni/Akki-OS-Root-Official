@@ -1,0 +1,4846 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T07:26:31Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@4",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "furniture_zones": {
+    "confidentiality": {
+      "h": 0.412,
+      "w": 4.897,
+      "x": 6.767,
+      "y": 6.638
+    },
+    "doc_id": {
+      "h": 0.412,
+      "w": 5.916,
+      "x": 0.65,
+      "y": 6.638
+    },
+    "page_no": {
+      "h": 0.412,
+      "w": 0.819,
+      "x": 11.864,
+      "y": 6.638
+    }
+  },
+  "inputs_sha256": {
+    "brief.json": "f6bbe000d8e6a734bdd47e9e774977fec7476577ff4b48ce5297ee45ac5b2c3d",
+    "content.json": "85fecc723c05e79ad46c2d508308d20d439be35ecd5e4a0238d5377033eb8486",
+    "deck.json": "0fb9c77501e07a89e81e8d237e4865eb2619027e89bde718a2e1ffe0115272bd",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "4585d5d72b3fe7aa9ca3b42e07624ef2101219e5f7a5b8a684f5fff510ce705e"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "number-small-rule",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "E8772E",
+      "field": "FFFFFF",
+      "hatch": "E8EEF3",
+      "muted": "70879A",
+      "rule": "D3DCE4",
+      "structure": "14324A"
+    },
+    "palette_id": "harbour",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "organisation": "RMS",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "slide_h": 7.5,
+  "slide_w": 13.333,
+  "slides": [
+    {
+      "n": 1,
+      "org": "RMS",
+      "subtitle": "Databases, object store, file shares and language holdings, for one owner decision",
+      "title": "Estate-wide intelligence: cut, fix and prepare first",
+      "title_chars": 52,
+      "type": "cover",
+      "zones": {
+        "org": {
+          "h": 0.412,
+          "w": 5.916,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "subtitle": {
+          "h": 0.825,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 4.575
+        },
+        "title": {
+          "h": 1.65,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 2.925
+        }
+      }
+    },
+    {
+      "kicker": "Executive summary",
+      "n": 2,
+      "scqa": [
+        [
+          "Situation",
+          "The estate holds 174.3 TiB: 130.3 TiB in the object store, 43.6 TiB in file shares and 351.3 GiB in 20 databases and 1006 tables. The owner has declared every right to use the data established, so the questions are cost, condition and preparation."
+        ],
+        [
+          "Complication",
+          "Priced strategies bound the monthly saving at 1,174.4 USD at list prices, but most of it rests on cold-looking object buckets whose read use was not measured. 40 of 106 buckets could not be read, and database ratios rest on 638 measured tables out of 1006."
+        ],
+        [
+          "Question",
+          "What should the owner do first to reduce carrying cost and stand up the first data products?"
+        ],
+        [
+          "Answer",
+          "Verify and tier the cold buckets first, with an upper bound of 986.5 USD a month. Hash the duplicate candidates before removing anything. Reconcile the unreadable buckets. Then prepare reference data and the content catalogue, using de-identification or aggregation as a preparation step."
+        ]
+      ],
+      "title": "Most of the priced saving sits in cold object storage, not in the databases",
+      "title_chars": 75,
+      "type": "exec_summary",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Plain English",
+      "n": 3,
+      "terms": [
+        {
+          "meaning": "Space that could be removed or stored more cheaply once the check named beside it has been done. It is not space already freed, and it is not a guaranteed saving — the monthly figures are upper bounds at list prices.",
+          "term": "Reclaimable"
+        },
+        {
+          "meaning": "Nothing new has been written to that bucket or table for more than a year, judged by the newest write date we could see. It says nothing about whether anyone still reads it — that was not measured.",
+          "term": "Cold (not written for over a year)"
+        },
+        {
+          "meaning": "Two objects whose size and storage fingerprint (ETag) match inside the same store. For large uploads that fingerprint is not a content hash, so a candidate must be confirmed by hashing before any copy is removed.",
+          "term": "Duplicate candidate"
+        },
+        {
+          "meaning": "Database rows that are identical in every measured column. 'Normalised' duplicates also match after trimming spaces and case.",
+          "term": "Exact duplicate rows"
+        },
+        {
+          "meaning": "A row whose worst column shows damage: text cut short, a placeholder such as 'N/A' or 'test', an invalid format, stray whitespace or garbled characters.",
+          "term": "Degraded row"
+        },
+        {
+          "meaning": "Blank values in columns whose name or pattern suggests they should always be filled (for example an identifier or a date). The database may not formally require them; the census flags them so an owner can decide.",
+          "term": "Empty required-looking fields"
+        }
+      ],
+      "title": "What the terms in this pack mean",
+      "title_chars": 32,
+      "type": "glossary",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Plain English",
+      "n": 4,
+      "terms": [
+        {
+          "meaning": "A column that is empty on practically every row: schema carried without data.",
+          "term": "Dead column"
+        },
+        {
+          "meaning": "A sampled value that looks like an email, phone number, national ID or similar. It is a condition of the data, not a judgement about rights — the owner has declared all rights established.",
+          "term": "Personal-data marker"
+        },
+        {
+          "meaning": "A cheaper storage tier for data that is kept but rarely opened. Retrieval is slower and carries its own fee, which is why the saving is stated as an upper bound.",
+          "term": "Archive-class storage"
+        },
+        {
+          "meaning": "Where this pack suggests data should live or how it should be tiered. Every destination here is a proposal for the executive to approve; this pack moved and deleted nothing.",
+          "term": "Proposed destination"
+        },
+        {
+          "meaning": "Recorded hours multiplied by the share of two-second windows the admitted music detector did not call music. Silence is set aside first.",
+          "term": "Speech hours (estimate)"
+        },
+        {
+          "meaning": "The share of labelled windows (or transcript passages) where the model's language label matched the folder the recording was filed under. It is a model reading, not a human verification.",
+          "term": "Agrees with folder"
+        }
+      ],
+      "title": "What the terms in this pack mean",
+      "title_chars": 32,
+      "type": "glossary",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Plain English",
+      "n": 5,
+      "terms": [
+        {
+          "meaning": "Windows where the language model's confidence fell below its threshold, so it gave no language rather than guess.",
+          "term": "Declined to label"
+        },
+        {
+          "meaning": "A calendar date on which a station has at least one news script in the archive, and the distinct hour slots scripted that day. The archive does not carry a script for every hour of every day; the tables show exactly which days and hours it does.",
+          "term": "Scripted day / bulletin hour"
+        },
+        {
+          "meaning": "The retained Akki record (census run, GPU job or database reading) that every figure in this pack is traced to. The appendix lists them; the workbook carries the row-level evidence.",
+          "term": "Receipt"
+        }
+      ],
+      "title": "What the terms in this pack mean",
+      "title_chars": 32,
+      "type": "glossary",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 6,
+      "number": 1,
+      "title": "Where the bytes sit",
+      "title_chars": 19,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Databases",
+          "Object store (OBS)",
+          "File shares (NAS)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Estate bytes by store, TiB",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+        "so_what": "Cost attention belongs to storage scale; the databases, at 0.3 TiB, matter for reuse value rather than for bytes.",
+        "unit": "TiB",
+        "values": {
+          "TiB": [
+            0.34,
+            130.32,
+            43.65
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Estate by store",
+      "n": 7,
+      "title": "The object store and file shares hold almost all of the estate; databases are marginal",
+      "title_chars": 86,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "2024offairrecs",
+          "music-bucket-rms (cold)",
+          "na7p43do (cold)",
+          "na7p43js (cold)",
+          "na7p434j (cold)",
+          "na7p41hj (cold)",
+          "na7p42xe (cold)",
+          "na7p42xw (cold)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Largest OBS buckets, TiB",
+        "plate": "bar",
+        "receipt": "R04",
+        "receipt_text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+        "so_what": "Review the largest buckets first, but size alone does not show waste; the table of buckets under review gives each one's last write.",
+        "unit": "TiB",
+        "values": {
+          "TiB": [
+            86.3,
+            4.93,
+            4.1,
+            3.57,
+            3.5,
+            3.48,
+            3.44,
+            3.4
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Object-store concentration",
+      "n": 8,
+      "title": "One bucket holds 66.2% of the object store, and several of the next largest are cold",
+      "title_chars": 84,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Whole-estate holdings",
+      "n": 9,
+      "points": [
+        "The object store holds 130.3 TiB, 74.8% of the estate, in 106 buckets and 23.0m objects.",
+        "File shares hold 43.6 TiB, 25.0% of the estate, in 16 shares and 1.5m files.",
+        "Databases hold 351.3 GiB, 0.2% of the estate, in 20 databases. Store totals are rounded, not an exact reconciliation.",
+        "40 buckets were unreadable, so the object-store figure covers readable buckets only."
+      ],
+      "title": "The estate holds 174.3 TiB, nearly all of it in object storage and file shares",
+      "title_chars": 78,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 10,
+      "number": 2,
+      "title": "What is under review",
+      "title_chars": 20,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "kicker": "Exact sources under review",
+      "n": 11,
+      "points": [
+        "41.9 TiB of the object store has not been written for over a year, across 43 buckets. No-write age is not read demand.",
+        "7.7 TiB, 5.0% of objects, are duplicate candidates, not yet confirmed by content hash.",
+        "40 of 106 buckets returned errors when listed and need reconciling with the provider.",
+        "Database strategy bytes are strategy totals, not table sizes. File-share duplication is unmeasured."
+      ],
+      "title": "Cold buckets, duplicate candidates and unreadable buckets define the review list",
+      "title_chars": 80,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 12,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Bucket",
+          "Held (TiB)",
+          "Last write",
+          "Idle days",
+          "Duplicate candidates",
+          "Classification",
+          "Proposed action"
+        ],
+        "id": "T010",
+        "label": "Exact object-store buckets under review (largest first)",
+        "note": "Every bucket named here was enumerated object by object; the classification follows from its last write date and its duplicate-candidate count. Destinations are proposals.",
+        "raw_rows": [
+          [
+            "2024offairrecs",
+            86.3,
+            "2026-09-29",
+            0,
+            "16,589",
+            "active — keep hot; heavy duplicate candidates",
+            "hash-confirm duplicate candidates, keep one copy"
+          ],
+          [
+            "music-bucket-rms",
+            4.93,
+            "2024-03-26",
+            916,
+            "14,696",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p43do",
+            4.1,
+            "2024-04-04",
+            908,
+            "197,528",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p43js",
+            3.57,
+            "2024-04-02",
+            909,
+            "27,187",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p434j",
+            3.5,
+            "2024-04-04",
+            908,
+            "2,890",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p41hj",
+            3.48,
+            "2024-03-27",
+            915,
+            "1,852",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p42xe",
+            3.44,
+            "2024-04-04",
+            907,
+            "1,120",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p42xw",
+            3.4,
+            "2024-03-31",
+            911,
+            "2,391",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p42yg",
+            3.28,
+            "2024-03-31",
+            912,
+            "4,197",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ]
+        ],
+        "receipt": "R04",
+        "receipt_text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+        "receipts": [
+          "R04"
+        ],
+        "right_align_from": 1,
+        "rows": [
+          [
+            "2024offairrecs",
+            "86.3",
+            "2026-09-29",
+            "0",
+            "16,589",
+            "active — keep hot; heavy duplicate candidates",
+            "hash-confirm duplicate candidates, keep one copy"
+          ],
+          [
+            "music-bucket-rms",
+            "4.93",
+            "2024-03-26",
+            "916",
+            "14,696",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p43do",
+            "4.1",
+            "2024-04-04",
+            "908",
+            "197,528",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p43js",
+            "3.57",
+            "2024-04-02",
+            "909",
+            "27,187",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p434j",
+            "3.5",
+            "2024-04-04",
+            "908",
+            "2,890",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p41hj",
+            "3.48",
+            "2024-03-27",
+            "915",
+            "1,852",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p42xe",
+            "3.44",
+            "2024-04-04",
+            "907",
+            "1,120",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p42xw",
+            "3.4",
+            "2024-03-31",
+            "911",
+            "2,391",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p42yg",
+            "3.28",
+            "2024-03-31",
+            "912",
+            "4,197",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 12,
+        "so_what": "Every bucket named here was enumerated object by object; the classification follows from its last write date and its duplicate-candidate count."
+      },
+      "title": "Exact object-store buckets under review (largest first)",
+      "title_chars": 55,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 13,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Bucket",
+          "Held (TiB)",
+          "Last write",
+          "Idle days",
+          "Duplicate candidates",
+          "Classification",
+          "Proposed action"
+        ],
+        "id": "T010",
+        "label": "Exact object-store buckets under review (largest first)",
+        "note": "Every bucket named here was enumerated object by object; the classification follows from its last write date and its duplicate-candidate count. Destinations are proposals.",
+        "raw_rows": [
+          [
+            "na7p43d3",
+            2.9,
+            "2024-03-30",
+            912,
+            "1,395",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p4oco",
+            2.86,
+            "2024-04-03",
+            908,
+            "166,328",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "rmsbroadcast",
+            1.49,
+            "2024-03-24",
+            918,
+            "5,060",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ]
+        ],
+        "receipt": "R04",
+        "receipt_text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+        "receipts": [
+          "R04"
+        ],
+        "right_align_from": 1,
+        "rows": [
+          [
+            "na7p43d3",
+            "2.9",
+            "2024-03-30",
+            "912",
+            "1,395",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "na7p4oco",
+            "2.86",
+            "2024-04-03",
+            "908",
+            "166,328",
+            "cold — archive candidate; heavy duplicate candidates",
+            "lifecycle rule Standard → Archive after read-log check"
+          ],
+          [
+            "rmsbroadcast",
+            "1.49",
+            "2024-03-24",
+            "918",
+            "5,060",
+            "cold — archive candidate",
+            "lifecycle rule Standard → Archive after read-log check"
+          ]
+        ],
+        "rows_from": 9,
+        "rows_total": 12,
+        "so_what": "Every bucket named here was enumerated object by object; the classification follows from its last write date and its duplicate-candidate count."
+      },
+      "title": "Exact object-store buckets under review (largest first)",
+      "title_chars": 55,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 14,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Table (database.table)",
+          "Finding",
+          "Measured detail",
+          "Proposed action"
+        ],
+        "id": "T011",
+        "label": "Exact database tables under review, by finding",
+        "note": "Each row names a table the census measured and the finding that puts it on the list; the bytes column is the strategy total the table belongs to, not the table alone.",
+        "raw_rows": [
+          [
+            "viusasa_staging.audits",
+            "not written for over a year",
+            "666 days · 18.6 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.master_payments",
+            "not written for over a year",
+            "438 days · 4.2 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "razuna.raz1_videos",
+            "not written for over a year",
+            "1341 days · 3.0 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.payment_requests",
+            "not written for over a year",
+            "664 days · 2.8 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.sms",
+            "not written for over a year",
+            "583 days · 2.7 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.mpesa_stk_requests",
+            "not written for over a year",
+            "724 days · 1.4 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.search_lookups",
+            "repeated rows inside the table",
+            "5.9% repeated · 8.7 GiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.playback_qualified_streams",
+            "repeated rows inside the table",
+            "5.1% repeated · 4.6 GiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.episode_views",
+            "repeated rows inside the table",
+            "22.0% repeated · 764.0 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ]
+        ],
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "receipts": [
+          "R02"
+        ],
+        "right_align_from": 4,
+        "rows": [
+          [
+            "viusasa_staging.audits",
+            "not written for over a year",
+            "666 days · 18.6 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.master_payments",
+            "not written for over a year",
+            "438 days · 4.2 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "razuna.raz1_videos",
+            "not written for over a year",
+            "1341 days · 3.0 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.payment_requests",
+            "not written for over a year",
+            "664 days · 2.8 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.sms",
+            "not written for over a year",
+            "583 days · 2.7 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.mpesa_stk_requests",
+            "not written for over a year",
+            "724 days · 1.4 GiB",
+            "export to compressed object storage with a schema stub (proposed); restore on demand"
+          ],
+          [
+            "viusasa_staging.search_lookups",
+            "repeated rows inside the table",
+            "5.9% repeated · 8.7 GiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.playback_qualified_streams",
+            "repeated rows inside the table",
+            "5.1% repeated · 4.6 GiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.episode_views",
+            "repeated rows inside the table",
+            "22.0% repeated · 764.0 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 44,
+        "so_what": "Each row names a table the census measured and the finding that puts it on the list; the bytes column is the strategy total the table belongs to, not the table alone."
+      },
+      "title": "Exact database tables under review, by finding",
+      "title_chars": 46,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 15,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Table (database.table)",
+          "Finding",
+          "Measured detail",
+          "Proposed action"
+        ],
+        "id": "T011",
+        "label": "Exact database tables under review, by finding",
+        "note": "Each row names a table the census measured and the finding that puts it on the list; the bytes column is the strategy total the table belongs to, not the table alone.",
+        "raw_rows": [
+          [
+            "kra_reports.external_credit_notes",
+            "repeated rows inside the table",
+            "25.0% repeated · 277.8 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.new_episode_views",
+            "repeated rows inside the table",
+            "66.1% repeated · 98.7 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.ussd_hits",
+            "repeated rows inside the table",
+            "8.5% repeated · 573.0 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "iebc_forms/viupay.failed_jobs ↔ viupay/viupay.failed_jobs",
+            "two copies of the same table across connections",
+            "overlap 78.0% · 31.6 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.movies ↔ viupay/viutickets.movies",
+            "two copies of the same table across connections",
+            "overlap 84.0% · 6.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.ussd_hits ↔ viupay/viutickets.ussd_hits",
+            "two copies of the same table across connections",
+            "overlap 100.0% · 6.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.payment_processings ↔ viupay/viutickets.payment_processings",
+            "two copies of the same table across connections",
+            "overlap 65.0% · 4.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viupay.payment_requests ↔ viupay/viupay.payment_requests",
+            "two copies of the same table across connections",
+            "overlap 50.0% · 3.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.movie_shows ↔ viupay/viutickets.movie_shows",
+            "two copies of the same table across connections",
+            "overlap 80.0% · 3.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ]
+        ],
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "receipts": [
+          "R02"
+        ],
+        "right_align_from": 4,
+        "rows": [
+          [
+            "kra_reports.external_credit_notes",
+            "repeated rows inside the table",
+            "25.0% repeated · 277.8 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.new_episode_views",
+            "repeated rows inside the table",
+            "66.1% repeated · 98.7 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "viusasa_staging.ussd_hits",
+            "repeated rows inside the table",
+            "8.5% repeated · 573.0 MiB",
+            "de-duplicate in place after a keyed comparison; keep the newest row"
+          ],
+          [
+            "iebc_forms/viupay.failed_jobs ↔ viupay/viupay.failed_jobs",
+            "two copies of the same table across connections",
+            "overlap 78.0% · 31.6 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.movies ↔ viupay/viutickets.movies",
+            "two copies of the same table across connections",
+            "overlap 84.0% · 6.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.ussd_hits ↔ viupay/viutickets.ussd_hits",
+            "two copies of the same table across connections",
+            "overlap 100.0% · 6.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.payment_processings ↔ viupay/viutickets.payment_processings",
+            "two copies of the same table across connections",
+            "overlap 65.0% · 4.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viupay.payment_requests ↔ viupay/viupay.payment_requests",
+            "two copies of the same table across connections",
+            "overlap 50.0% · 3.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ],
+          [
+            "iebc_forms/viutickets.movie_shows ↔ viupay/viutickets.movie_shows",
+            "two copies of the same table across connections",
+            "overlap 80.0% · 3.5 MiB",
+            "name one authoritative copy; retire or redirect the other"
+          ]
+        ],
+        "rows_from": 9,
+        "rows_total": 44,
+        "so_what": "Each row names a table the census measured and the finding that puts it on the list; the bytes column is the strategy total the table belongs to, not the table alone."
+      },
+      "title": "Exact database tables under review, by finding",
+      "title_chars": 46,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 16,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Share",
+          "Enumeration",
+          "Held (TiB)",
+          "Files",
+          "Last write",
+          "Main formats",
+          "Proposed action"
+        ],
+        "id": "T012",
+        "label": "Exact file shares (NAS) enumerated",
+        "note": "Sizes and dates were recorded; content fingerprints were not, so duplication across the channel shares is not yet measured.",
+        "raw_rows": [
+          [
+            "channel01",
+            "complete",
+            6.87,
+            "95,122",
+            "2026-09-29",
+            ".mp4 95,108, .rmd 6, .mpt 3",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel02",
+            "complete",
+            6.87,
+            "95,134",
+            "2026-09-29",
+            ".mp4 95,129, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel16",
+            "complete",
+            6.81,
+            "94,597",
+            "2026-09-29",
+            ".mp4 94,592, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel15",
+            "complete",
+            1.91,
+            "95,635",
+            "2026-09-29",
+            ".mp4 95,627, .rmd 3, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel14",
+            "complete",
+            1.91,
+            "95,615",
+            "2026-09-29",
+            ".mp4 95,609, .rmd 2, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel11",
+            "complete",
+            1.91,
+            "95,602",
+            "2026-09-29",
+            ".mp4 95,592, .rmd 6, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel12",
+            "complete",
+            1.91,
+            "95,600",
+            "2026-09-29",
+            ".mp4 95,590, .rmd 6, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel07",
+            "complete",
+            1.91,
+            "95,550",
+            "2026-09-29",
+            ".mp4 95,546, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel06",
+            "complete",
+            1.91,
+            "95,548",
+            "2026-09-29",
+            ".mp4 95,544, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ]
+        ],
+        "receipt": "R05",
+        "receipt_text": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
+        "receipts": [
+          "R05"
+        ],
+        "right_align_from": 2,
+        "rows": [
+          [
+            "channel01",
+            "complete",
+            "6.87",
+            "95,122",
+            "2026-09-29",
+            ".mp4 95,108, .rmd 6, .mpt 3",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel02",
+            "complete",
+            "6.87",
+            "95,134",
+            "2026-09-29",
+            ".mp4 95,129, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel16",
+            "complete",
+            "6.81",
+            "94,597",
+            "2026-09-29",
+            ".mp4 94,592, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel15",
+            "complete",
+            "1.91",
+            "95,635",
+            "2026-09-29",
+            ".mp4 95,627, .rmd 3, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel14",
+            "complete",
+            "1.91",
+            "95,615",
+            "2026-09-29",
+            ".mp4 95,609, .rmd 2, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel11",
+            "complete",
+            "1.91",
+            "95,602",
+            "2026-09-29",
+            ".mp4 95,592, .rmd 6, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "Channel12",
+            "complete",
+            "1.91",
+            "95,600",
+            "2026-09-29",
+            ".mp4 95,590, .rmd 6, .db 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel07",
+            "complete",
+            "1.91",
+            "95,550",
+            "2026-09-29",
+            ".mp4 95,546, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel06",
+            "complete",
+            "1.91",
+            "95,548",
+            "2026-09-29",
+            ".mp4 95,544, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 12,
+        "so_what": "Sizes and dates were recorded; content fingerprints were not, so duplication across the channel shares is not yet measured."
+      },
+      "title": "Exact file shares (NAS) enumerated",
+      "title_chars": 34,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 17,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Share",
+          "Enumeration",
+          "Held (TiB)",
+          "Files",
+          "Last write",
+          "Main formats",
+          "Proposed action"
+        ],
+        "id": "T012",
+        "label": "Exact file shares (NAS) enumerated",
+        "note": "Sizes and dates were recorded; content fingerprints were not, so duplication across the channel shares is not yet measured.",
+        "raw_rows": [
+          [
+            "channel05",
+            "complete",
+            1.9,
+            "95,494",
+            "2026-09-29",
+            ".mp4 95,490, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel04",
+            "complete",
+            1.9,
+            "95,475",
+            "2026-09-29",
+            ".mp4 95,470, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel03",
+            "complete",
+            1.9,
+            "95,419",
+            "2026-09-29",
+            ".mp4 95,415, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ]
+        ],
+        "receipt": "R05",
+        "receipt_text": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
+        "receipts": [
+          "R05"
+        ],
+        "right_align_from": 2,
+        "rows": [
+          [
+            "channel05",
+            "complete",
+            "1.9",
+            "95,494",
+            "2026-09-29",
+            ".mp4 95,490, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel04",
+            "complete",
+            "1.9",
+            "95,475",
+            "2026-09-29",
+            ".mp4 95,470, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ],
+          [
+            "channel03",
+            "complete",
+            "1.9",
+            "95,419",
+            "2026-09-29",
+            ".mp4 95,415, .db 1, .jpg 1",
+            "fingerprint pass to measure duplication; then tier by channel"
+          ]
+        ],
+        "rows_from": 9,
+        "rows_total": 12,
+        "so_what": "Sizes and dates were recorded; content fingerprints were not, so duplication across the channel shares is not yet measured."
+      },
+      "title": "Exact file shares (NAS) enumerated",
+      "title_chars": 34,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 18,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Bucket",
+          "Error returned",
+          "Proposed action"
+        ],
+        "id": "T015",
+        "label": "Object-store buckets that could not be read",
+        "note": "These names are in the bucket inventory but returned an error when listed; each needs reconciling with the provider — deleted, renamed or access withdrawn.",
+        "raw_rows": [
+          [
+            "apr252017",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "citizen-vod",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "elections",
+            "ClientError",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "feb272017",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "instore-radio-items",
+            "ClientError",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "iso-rms-storage",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "librarydirectupload2",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p4100",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p410c",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ]
+        ],
+        "receipt": "R04",
+        "receipt_text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+        "receipts": [
+          "R04"
+        ],
+        "right_align_from": 3,
+        "rows": [
+          [
+            "apr252017",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "citizen-vod",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "elections",
+            "ClientError",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "feb272017",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "instore-radio-items",
+            "ClientError",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "iso-rms-storage",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "librarydirectupload2",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p4100",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p410c",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 40,
+        "so_what": "These names are in the bucket inventory but returned an error when listed; each needs reconciling with the provider — deleted, renamed or access withdrawn."
+      },
+      "title": "Object-store buckets that could not be read",
+      "title_chars": 43,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 19,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Bucket",
+          "Error returned",
+          "Proposed action"
+        ],
+        "id": "T015",
+        "label": "Object-store buckets that could not be read",
+        "note": "These names are in the bucket inventory but returned an error when listed; each needs reconciling with the provider — deleted, renamed or access withdrawn.",
+        "raw_rows": [
+          [
+            "na7p419y",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41ab",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41f4",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41j6",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41jk",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42ry",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42s5",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42s7",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42tq",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ]
+        ],
+        "receipt": "R04",
+        "receipt_text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+        "receipts": [
+          "R04"
+        ],
+        "right_align_from": 3,
+        "rows": [
+          [
+            "na7p419y",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41ab",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41f4",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41j6",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p41jk",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42ry",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42s5",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42s7",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ],
+          [
+            "na7p42tq",
+            "NoSuchBucket",
+            "reconcile with provider; remove from inventory if gone"
+          ]
+        ],
+        "rows_from": 9,
+        "rows_total": 40,
+        "so_what": "These names are in the bucket inventory but returned an error when listed; each needs reconciling with the provider — deleted, renamed or access withdrawn."
+      },
+      "title": "Object-store buckets that could not be read",
+      "title_chars": 43,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 20,
+      "number": 3,
+      "title": "Where cost can fall",
+      "title_chars": 19,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Move buckets not written for over a year",
+          "Reconcile duplicate objects across OBS b",
+          "Move tables not written for over a year ",
+          "Remove redundant (prefix-covered) indexe",
+          "De-duplicate exact repeated rows inside ",
+          "Consolidate duplicate and staging copies",
+          "Drop or archive empty tables"
+        ],
+        "class": "estimated",
+        "editable": true,
+        "label": "Reclaimable GiB by cost strategy",
+        "plate": "bar",
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "so_what": "The three largest strategies address 100.0% of the 50,799.8 GiB that all strategies reach, and archive-class tiering is a cheaper tier, not deletion.",
+        "unit": "GiB",
+        "values": {
+          "GiB": [
+            42891.0,
+            7839.5,
+            54.1,
+            14.0,
+            1.2,
+            0.1,
+            0.0
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Reclaimable bytes by strategy",
+      "n": 21,
+      "title": "Two object-store moves address nearly all reclaimable bytes; database moves are marginal",
+      "title_chars": 88,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Three priced moves",
+      "n": 22,
+      "table": {
+        "caption": "",
+        "class": "estimated",
+        "columns": [
+          "Move buckets not written for over a year to archive-class st",
+          "Reconcile duplicate objects across OBS buckets",
+          "Move tables not written for over a year to cold storage"
+        ],
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "receipts": [
+          "R02"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "42,891.0",
+              "7,839.5",
+              "54.1"
+            ],
+            "label": "Reclaimable gib"
+          },
+          {
+            "cells": [
+              "986.5",
+              "180.3",
+              "5.9"
+            ],
+            "label": "Monthly saving usd"
+          }
+        ],
+        "so_what": "Monthly upper bounds at list prices are 986.5, 180.3 and 5.9 USD; each needs its own verification before action."
+      },
+      "title": "The three priced moves differ sharply in size and in the check each needs",
+      "title_chars": 73,
+      "type": "comparison",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 23,
+      "number": 4,
+      "title": "Condition of the database rows",
+      "title_chars": 30,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Exact duplicates",
+          "Degraded",
+          "Empty required fields",
+          "PII markers (sampled)",
+          "Stale bytes"
+        ],
+        "class": "estimated",
+        "editable": true,
+        "label": "Condition of measured rows",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+        "so_what": "Completeness is the main repair task: 81.7% of rows carry empty required-looking fields against 1.5% exact duplicates; the bases differ, so the shares must not be added.",
+        "unit": "pct",
+        "values": {
+          "Share": [
+            0.015,
+            0.23,
+            0.817,
+            0.718,
+            0.154
+          ]
+        },
+        "y_format": "pct"
+      },
+      "kicker": "Row condition",
+      "n": 24,
+      "title": "Empty fields and damage, not duplication, are the main condition problems in the rows",
+      "title_chars": 85,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "viusasa_staging (D)",
+          "razuna (D)",
+          "db_visitors (D)",
+          "kra_reports (D)",
+          "viupay_agent_staging (A)",
+          "news_vault (C)",
+          "local (D)",
+          "viutickets (B)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Data and index by database, GiB",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+        "so_what": "The largest databases hold 99.7% of the 351.3 GiB; treat this as a map for effort, not proof that one database causes every condition finding.",
+        "unit": "GiB",
+        "values": {
+          "GiB": [
+            338.5,
+            4.5,
+            2.7,
+            1.5,
+            1.2,
+            0.9,
+            0.5,
+            0.4
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Database concentration",
+      "n": 25,
+      "title": "A few large databases hold nearly all database bytes, so cleanup should start there",
+      "title_chars": 83,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Row condition",
+      "n": 26,
+      "points": [
+        "Exact duplicates are an estimated 1.5% of rows; degraded rows are an estimated 23.0%.",
+        "81.7% of rows carry empty required-looking fields. These are heuristic flags, so decide per product which matter.",
+        "71.8% of 1.0m sampled rows carry personal-data markers: a de-identification or aggregation task, not a rights question.",
+        "15.4% of bytes are unwritten for over a year; dead columns are 13.0% of measured columns."
+      ],
+      "title": "Rows need completeness repair and de-identification or aggregation before products use them",
+      "title_chars": 91,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 27,
+      "number": 5,
+      "title": "Language audio",
+      "title_chars": 14,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Ekegusii (Kisii)",
+          "Kalenjin",
+          "Kiswahili",
+          "Kikamba (Kamba)",
+          "Gikuyu (Kikuyu)",
+          "Dholuo (Luo)",
+          "Wanga (Luhya)",
+          "Bukusu (Luhya)"
+        ],
+        "class": "estimated",
+        "editable": true,
+        "label": "Speech hours by language folder (estimate, music windows removed)",
+        "plate": "bar",
+        "receipt": "R06",
+        "receipt_text": "Estate language reading m9j-9e8fcb46a809 on akki-vm (2 GPUs, 1.034 GPU-h): audio language model lcj-7128593897d4 sha256 5c1feb8497e8…, music detector m9j-686de001bfe7 sha256 0fea3eee0393…; model readings, not human labels",
+        "so_what": "Six larger folders carry most of the speech; the two smallest folders hold too little to support a pilot on their own.",
+        "unit": "hours",
+        "values": {
+          "Hours": [
+            76.7,
+            73.2,
+            78.5,
+            67.8,
+            65.9,
+            51.7,
+            6.8,
+            0.7
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Speech by language folder",
+      "n": 28,
+      "title": "An estimated 421.4 speech hours sit in 8 language folders once music is removed",
+      "title_chars": 79,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Ekegusii (Kisii)",
+          "Kalenjin",
+          "Kiswahili",
+          "Kikamba (Kamba)",
+          "Gikuyu (Kikuyu)",
+          "Dholuo (Luo)",
+          "Wanga (Luhya)",
+          "Bukusu (Luhya)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Share of judged windows agreeing with the folder language",
+        "plate": "bar",
+        "receipt": "R06",
+        "receipt_text": "Estate language reading m9j-9e8fcb46a809 on akki-vm (2 GPUs, 1.034 GPU-h): audio language model lcj-7128593897d4 sha256 5c1feb8497e8…, music detector m9j-686de001bfe7 sha256 0fea3eee0393…; model readings, not human labels",
+        "so_what": "Overall 82.3% of judged windows agree with the folder; the model declined to label 10.7%. These are model readings, not human verification.",
+        "unit": "pct",
+        "values": {
+          "Share": [
+            0.8609,
+            0.8991,
+            0.7869,
+            0.7092,
+            0.7981,
+            0.8949,
+            0.8867,
+            0
+          ]
+        },
+        "y_format": "pct"
+      },
+      "kicker": "Language agreement",
+      "n": 29,
+      "title": "Folder-language agreement varies by folder, so language checks must precede any packaging",
+      "title_chars": 89,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Audio in the staged corpus",
+      "n": 30,
+      "points": [
+        "The staged audio is 529.5 hours in 3958 files; an estimated 421.4 hours are speech and 108.2 hours music.",
+        "Music is the majority in 539 files; filter these before any speech product.",
+        "82.3% of judged windows agree with the folder language, but folders differ; check language before packaging.",
+        "Noise and intelligibility were not scored; take a human listening sample first."
+      ],
+      "title": "The estate holds 529.5 recorded audio hours, of which an estimated 421.4 are speech",
+      "title_chars": 83,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 31,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Language",
+          "Files",
+          "Hours recorded",
+          "Speech hours (est.)",
+          "Music hours (est.)",
+          "Agrees with folder"
+        ],
+        "id": "T020",
+        "label": "Audio held by language folder — what both GPUs read",
+        "note": "Hours are recorded duration; speech and music hours split those hours by the music detector; agreement is the share of labelled windows whose language matched the folder name. Model readings, not human labels.",
+        "raw_rows": [
+          [
+            "Ekegusii (Kisii)",
+            732,
+            92.2,
+            76.7,
+            15.6,
+            "86.1%"
+          ],
+          [
+            "Kalenjin",
+            295,
+            89.8,
+            73.2,
+            16.6,
+            "89.9%"
+          ],
+          [
+            "Kiswahili",
+            549,
+            87.7,
+            78.5,
+            9.2,
+            "78.7%"
+          ],
+          [
+            "Kikamba (Kamba)",
+            1166,
+            85.4,
+            67.8,
+            17.6,
+            "70.9%"
+          ],
+          [
+            "Gikuyu (Kikuyu)",
+            584,
+            82.1,
+            65.9,
+            16.2,
+            "79.8%"
+          ],
+          [
+            "Dholuo (Luo)",
+            558,
+            82.1,
+            51.7,
+            30.4,
+            "89.5%"
+          ],
+          [
+            "Wanga (Luhya)",
+            60,
+            9.2,
+            6.8,
+            2.3,
+            "88.7%"
+          ],
+          [
+            "Bukusu (Luhya)",
+            14,
+            1.1,
+            0.7,
+            0.3,
+            "0.0%"
+          ]
+        ],
+        "receipt": "R06",
+        "receipt_text": "Estate language reading m9j-9e8fcb46a809 on akki-vm (2 GPUs, 1.034 GPU-h): audio language model lcj-7128593897d4 sha256 5c1feb8497e8…, music detector m9j-686de001bfe7 sha256 0fea3eee0393…; model readings, not human labels",
+        "receipts": [
+          "R06"
+        ],
+        "right_align_from": 2,
+        "rows": [
+          [
+            "Ekegusii (Kisii)",
+            "732",
+            "92.2",
+            "76.7",
+            "15.6",
+            "86.1%"
+          ],
+          [
+            "Kalenjin",
+            "295",
+            "89.8",
+            "73.2",
+            "16.6",
+            "89.9%"
+          ],
+          [
+            "Kiswahili",
+            "549",
+            "87.7",
+            "78.5",
+            "9.2",
+            "78.7%"
+          ],
+          [
+            "Kikamba (Kamba)",
+            "1166",
+            "85.4",
+            "67.8",
+            "17.6",
+            "70.9%"
+          ],
+          [
+            "Gikuyu (Kikuyu)",
+            "584",
+            "82.1",
+            "65.9",
+            "16.2",
+            "79.8%"
+          ],
+          [
+            "Dholuo (Luo)",
+            "558",
+            "82.1",
+            "51.7",
+            "30.4",
+            "89.5%"
+          ],
+          [
+            "Wanga (Luhya)",
+            "60",
+            "9.2",
+            "6.8",
+            "2.3",
+            "88.7%"
+          ],
+          [
+            "Bukusu (Luhya)",
+            "14",
+            "1.1",
+            "0.7",
+            "0.3",
+            "0.0%"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 8,
+        "so_what": "Hours are recorded duration; speech and music hours split those hours by the music detector; agreement is the share of labelled windows whose language matched the folder name."
+      },
+      "title": "Audio held by language folder — what both GPUs read",
+      "title_chars": 51,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 32,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Language",
+          "Files",
+          "Decode failures",
+          "Music-majority files",
+          "Mixed-language files",
+          "Low-confidence files",
+          "Mean confidence"
+        ],
+        "id": "T024",
+        "label": "Audio quality signals by language folder",
+        "note": "Decode failures, digital silence, music-dominated files, mixed-language files (no language reaches sixty percent of labelled windows) and low-confidence files are the quality signals the reading can measure; noise and intelligibility were not scored.",
+        "raw_rows": [
+          [
+            "Ekegusii (Kisii)",
+            732,
+            0,
+            46,
+            29,
+            1,
+            "0.905"
+          ],
+          [
+            "Kalenjin",
+            295,
+            0,
+            18,
+            5,
+            0,
+            "0.912"
+          ],
+          [
+            "Kiswahili",
+            549,
+            0,
+            26,
+            44,
+            0,
+            "0.875"
+          ],
+          [
+            "Kikamba (Kamba)",
+            1166,
+            0,
+            192,
+            232,
+            12,
+            "0.870"
+          ],
+          [
+            "Gikuyu (Kikuyu)",
+            584,
+            0,
+            71,
+            89,
+            32,
+            "0.817"
+          ],
+          [
+            "Dholuo (Luo)",
+            558,
+            0,
+            169,
+            27,
+            0,
+            "0.939"
+          ],
+          [
+            "Wanga (Luhya)",
+            60,
+            0,
+            13,
+            3,
+            0,
+            "0.922"
+          ],
+          [
+            "Bukusu (Luhya)",
+            14,
+            0,
+            4,
+            11,
+            0,
+            "0.866"
+          ]
+        ],
+        "receipt": "R06",
+        "receipt_text": "Estate language reading m9j-9e8fcb46a809 on akki-vm (2 GPUs, 1.034 GPU-h): audio language model lcj-7128593897d4 sha256 5c1feb8497e8…, music detector m9j-686de001bfe7 sha256 0fea3eee0393…; model readings, not human labels",
+        "receipts": [
+          "R06"
+        ],
+        "right_align_from": 1,
+        "rows": [
+          [
+            "Ekegusii (Kisii)",
+            "732",
+            "0",
+            "46",
+            "29",
+            "1",
+            "0.905"
+          ],
+          [
+            "Kalenjin",
+            "295",
+            "0",
+            "18",
+            "5",
+            "0",
+            "0.912"
+          ],
+          [
+            "Kiswahili",
+            "549",
+            "0",
+            "26",
+            "44",
+            "0",
+            "0.875"
+          ],
+          [
+            "Kikamba (Kamba)",
+            "1166",
+            "0",
+            "192",
+            "232",
+            "12",
+            "0.870"
+          ],
+          [
+            "Gikuyu (Kikuyu)",
+            "584",
+            "0",
+            "71",
+            "89",
+            "32",
+            "0.817"
+          ],
+          [
+            "Dholuo (Luo)",
+            "558",
+            "0",
+            "169",
+            "27",
+            "0",
+            "0.939"
+          ],
+          [
+            "Wanga (Luhya)",
+            "60",
+            "0",
+            "13",
+            "3",
+            "0",
+            "0.922"
+          ],
+          [
+            "Bukusu (Luhya)",
+            "14",
+            "0",
+            "4",
+            "11",
+            "0",
+            "0.866"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 8,
+        "so_what": "Decode failures, digital silence, music-dominated files, mixed-language files (no language reaches sixty percent of labelled windows) and low-confidence files are the quality signals the reading can measure; noise and intelligibility were not scored."
+      },
+      "title": "Audio quality signals by language folder",
+      "title_chars": 40,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 33,
+      "number": 6,
+      "title": "Written text",
+      "title_chars": 12,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Muuga FM · Meru",
+          "Radio Citizen · Kiswahili",
+          "Chamgei · Kalenjin",
+          "Mulembe FM · Luhya",
+          "Wimwaro FM · Embu",
+          "Hot 96 · English",
+          "Egesa · Kisii",
+          "Musyi FM · Akamba",
+          "Sulwe FM · Bukusu",
+          "Bahari FM · Kiswahili",
+          "Inooro FM · Kikuyu",
+          "Vuuka · Maragoli",
+          "Ramogi FM · Luo"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Live news scripts by station",
+        "plate": "bar",
+        "receipt": "R08",
+        "receipt_text": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
+        "so_what": "Holdings total 248841 scripts from 13 stations; the language shown is the station's broadcast language, not a reading of each script.",
+        "unit": "scripts",
+        "values": {
+          "Scripts": [
+            27467,
+            27240,
+            26787,
+            22191,
+            19664,
+            18136,
+            17606,
+            17581,
+            16749,
+            16177,
+            15376,
+            15336,
+            8013
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "News scripts by station",
+      "n": 34,
+      "title": "News script holdings are uneven across stations, so coverage differs by language",
+      "title_chars": 80,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Muuga FM",
+          "Radio Citizen",
+          "Chamgei",
+          "Mulembe FM",
+          "Wimwaro FM",
+          "Hot 96",
+          "Egesa",
+          "Musyi FM",
+          "Sulwe FM",
+          "Bahari FM",
+          "Inooro FM",
+          "Vuuka",
+          "Ramogi FM"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Distinct bulletin hours per scripted day, by station (mean)",
+        "plate": "bar",
+        "receipt": "R08",
+        "receipt_text": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
+        "so_what": "Scripts exist on only 226 dates across 1432 days (15.8%), so coverage cannot be assumed continuous; the day-level tables show exactly which hours exist.",
+        "unit": "hours",
+        "values": {
+          "Hours": [
+            17.98,
+            18.18,
+            18.75,
+            15.0,
+            15.76,
+            15.08,
+            11.3,
+            17.69,
+            11.95,
+            16.8,
+            15.03,
+            14.51,
+            6.98
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Bulletin-hour coverage",
+      "n": 35,
+      "title": "Even on scripted days, no station averages a full day of bulletin hours",
+      "title_chars": 71,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Three separate text inventories",
+      "n": 36,
+      "points": [
+        "News scripts: 248841 live scripts from 13 stations, on 226 dates across 1432 days (15.8%).",
+        "38.0% of script rows are revisions; 159100 distinct texts remain (63.9%). Deduplicate before use.",
+        "The text model read 2245 transcripts; 99.4% of passages match the folder language; 1694 were not reached.",
+        "The workbench registers 83014 recordings and 12,290.6 hours, and may overlap the staged corpus."
+      ],
+      "title": "News scripts, transcripts and the workbench are separate inventories, never added together",
+      "title_chars": 90,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 37,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Station",
+          "Broadcast language",
+          "Live scripts",
+          "Scripted days",
+          "Scripts per scripted day",
+          "Bulletin hours per scripted day",
+          "Characters"
+        ],
+        "id": "T022",
+        "label": "Hourly news scripts by station (news_vault.stories)",
+        "note": "A scripted day is a calendar date with at least one script for the station; bulletin hours are the distinct hour slots scripted that day. The script texts themselves were not read; the language is the station's broadcast language as recorded in the estate.",
+        "raw_rows": [
+          [
+            "Muuga FM",
+            "Meru",
+            27467,
+            221,
+            127.53,
+            17.98,
+            14128382
+          ],
+          [
+            "Radio Citizen",
+            "Kiswahili",
+            27240,
+            219,
+            126.98,
+            18.18,
+            22231911
+          ],
+          [
+            "Chamgei",
+            "Kalenjin",
+            26787,
+            224,
+            130.68,
+            18.75,
+            20538503
+          ],
+          [
+            "Mulembe FM",
+            "Luhya",
+            22191,
+            225,
+            102.58,
+            15.0,
+            15496412
+          ],
+          [
+            "Wimwaro FM",
+            "Embu",
+            19664,
+            223,
+            90.1,
+            15.76,
+            12408784
+          ],
+          [
+            "Hot 96",
+            "English",
+            18136,
+            225,
+            83.18,
+            15.08,
+            12470183
+          ],
+          [
+            "Egesa",
+            "Kisii",
+            17606,
+            219,
+            84.36,
+            11.3,
+            14458656
+          ],
+          [
+            "Musyi FM",
+            "Akamba",
+            17581,
+            199,
+            91.48,
+            17.69,
+            16521768
+          ],
+          [
+            "Sulwe FM",
+            "Bukusu",
+            16749,
+            225,
+            76.6,
+            11.95,
+            14484808
+          ]
+        ],
+        "receipt": "R08",
+        "receipt_text": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
+        "receipts": [
+          "R08"
+        ],
+        "right_align_from": 2,
+        "rows": [
+          [
+            "Muuga FM",
+            "Meru",
+            "27467",
+            "221",
+            "127.53",
+            "17.98",
+            "14128382"
+          ],
+          [
+            "Radio Citizen",
+            "Kiswahili",
+            "27240",
+            "219",
+            "126.98",
+            "18.18",
+            "22231911"
+          ],
+          [
+            "Chamgei",
+            "Kalenjin",
+            "26787",
+            "224",
+            "130.68",
+            "18.75",
+            "20538503"
+          ],
+          [
+            "Mulembe FM",
+            "Luhya",
+            "22191",
+            "225",
+            "102.58",
+            "15.0",
+            "15496412"
+          ],
+          [
+            "Wimwaro FM",
+            "Embu",
+            "19664",
+            "223",
+            "90.1",
+            "15.76",
+            "12408784"
+          ],
+          [
+            "Hot 96",
+            "English",
+            "18136",
+            "225",
+            "83.18",
+            "15.08",
+            "12470183"
+          ],
+          [
+            "Egesa",
+            "Kisii",
+            "17606",
+            "219",
+            "84.36",
+            "11.3",
+            "14458656"
+          ],
+          [
+            "Musyi FM",
+            "Akamba",
+            "17581",
+            "199",
+            "91.48",
+            "17.69",
+            "16521768"
+          ],
+          [
+            "Sulwe FM",
+            "Bukusu",
+            "16749",
+            "225",
+            "76.6",
+            "11.95",
+            "14484808"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 14,
+        "so_what": "A scripted day is a calendar date with at least one script for the station; bulletin hours are the distinct hour slots scripted that day."
+      },
+      "title": "Hourly news scripts by station (news_vault.stories)",
+      "title_chars": 51,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 38,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Station",
+          "Broadcast language",
+          "Live scripts",
+          "Scripted days",
+          "Scripts per scripted day",
+          "Bulletin hours per scripted day",
+          "Characters"
+        ],
+        "id": "T022",
+        "label": "Hourly news scripts by station (news_vault.stories)",
+        "note": "A scripted day is a calendar date with at least one script for the station; bulletin hours are the distinct hour slots scripted that day. The script texts themselves were not read; the language is the station's broadcast language as recorded in the estate.",
+        "raw_rows": [
+          [
+            "Bahari FM",
+            "Kiswahili",
+            16177,
+            222,
+            77.55,
+            16.8,
+            12789664
+          ],
+          [
+            "Inooro FM",
+            "Kikuyu",
+            15376,
+            209,
+            75.0,
+            15.03,
+            11946715
+          ],
+          [
+            "Vuuka",
+            "Maragoli",
+            15336,
+            222,
+            70.78,
+            14.51,
+            12773790
+          ],
+          [
+            "Ramogi FM",
+            "Luo",
+            8013,
+            222,
+            39.8,
+            6.98,
+            8574493
+          ],
+          [
+            "unassigned hour",
+            "—",
+            518,
+            31,
+            17.55,
+            3.65,
+            481289
+          ]
+        ],
+        "receipt": "R08",
+        "receipt_text": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
+        "receipts": [
+          "R08"
+        ],
+        "right_align_from": 2,
+        "rows": [
+          [
+            "Bahari FM",
+            "Kiswahili",
+            "16177",
+            "222",
+            "77.55",
+            "16.8",
+            "12789664"
+          ],
+          [
+            "Inooro FM",
+            "Kikuyu",
+            "15376",
+            "209",
+            "75.0",
+            "15.03",
+            "11946715"
+          ],
+          [
+            "Vuuka",
+            "Maragoli",
+            "15336",
+            "222",
+            "70.78",
+            "14.51",
+            "12773790"
+          ],
+          [
+            "Ramogi FM",
+            "Luo",
+            "8013",
+            "222",
+            "39.8",
+            "6.98",
+            "8574493"
+          ],
+          [
+            "unassigned hour",
+            "—",
+            "518",
+            "31",
+            "17.55",
+            "3.65",
+            "481289"
+          ]
+        ],
+        "rows_from": 9,
+        "rows_total": 14,
+        "so_what": "A scripted day is a calendar date with at least one script for the station; bulletin hours are the distinct hour slots scripted that day."
+      },
+      "title": "Hourly news scripts by station (news_vault.stories)",
+      "title_chars": 51,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 39,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Language",
+          "Transcripts read",
+          "Characters",
+          "Words",
+          "Agrees with folder",
+          "Files whose top label matches"
+        ],
+        "id": "T021",
+        "label": "Transcripts by language folder — read by the served text language model",
+        "note": "Passages of up to fifteen hundred characters were labelled by the admitted text model; agreement is the share of passages whose label matched the folder language. Transcripts the capped pass did not reach are counted as not read.",
+        "raw_rows": [
+          [
+            "Ekegusii (Kisii)",
+            698,
+            4474462,
+            638478,
+            "99.6%",
+            697
+          ],
+          [
+            "Gikuyu (Kikuyu)",
+            298,
+            1767236,
+            272741,
+            "99.3%",
+            296
+          ],
+          [
+            "Dholuo (Luo)",
+            298,
+            2347383,
+            417575,
+            "99.9%",
+            298
+          ],
+          [
+            "Kiswahili",
+            298,
+            2599230,
+            411682,
+            "99.6%",
+            298
+          ],
+          [
+            "Kikamba (Kamba)",
+            298,
+            1058430,
+            173388,
+            "99.7%",
+            298
+          ],
+          [
+            "Kalenjin",
+            295,
+            4674494,
+            747249,
+            "99.0%",
+            290
+          ],
+          [
+            "Wanga (Luhya)",
+            60,
+            491139,
+            73194,
+            "98.3%",
+            59
+          ]
+        ],
+        "receipt": "R07",
+        "receipt_text": "Served text language model m9j-74af7cef0a85 readings of the staged transcripts: jobs m9j-2d43ed6cf567, m9j-8cf6702f8718 (2,245 transcripts read, 3939 present)",
+        "receipts": [
+          "R07"
+        ],
+        "right_align_from": 1,
+        "rows": [
+          [
+            "Ekegusii (Kisii)",
+            "698",
+            "4474462",
+            "638478",
+            "99.6%",
+            "697"
+          ],
+          [
+            "Gikuyu (Kikuyu)",
+            "298",
+            "1767236",
+            "272741",
+            "99.3%",
+            "296"
+          ],
+          [
+            "Dholuo (Luo)",
+            "298",
+            "2347383",
+            "417575",
+            "99.9%",
+            "298"
+          ],
+          [
+            "Kiswahili",
+            "298",
+            "2599230",
+            "411682",
+            "99.6%",
+            "298"
+          ],
+          [
+            "Kikamba (Kamba)",
+            "298",
+            "1058430",
+            "173388",
+            "99.7%",
+            "298"
+          ],
+          [
+            "Kalenjin",
+            "295",
+            "4674494",
+            "747249",
+            "99.0%",
+            "290"
+          ],
+          [
+            "Wanga (Luhya)",
+            "60",
+            "491139",
+            "73194",
+            "98.3%",
+            "59"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 7,
+        "so_what": "Passages of up to fifteen hundred characters were labelled by the admitted text model; agreement is the share of passages whose label matched the folder language."
+      },
+      "title": "Transcripts by language folder — read by the served text language model",
+      "title_chars": 71,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 40,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Language",
+          "Station",
+          "Recordings",
+          "Audio hours",
+          "Transcript segments",
+          "Transcribed hours"
+        ],
+        "id": "T023",
+        "label": "Transcription workbench by language (local.uploaded_files, local.transcripts)",
+        "note": "The workbench registers recordings per language with their length and whether a transcript was produced; transcript hours are the summed segment spans. This is a separate inventory from the staged corpus and may overlap it — the two are not added together anywhere in this pack.",
+        "raw_rows": [
+          [
+            "kiswahili",
+            "Radio citizen",
+            4006,
+            836.2,
+            54516,
+            101.0
+          ],
+          [
+            "Bukusu",
+            "sulwe",
+            8223,
+            806.4,
+            0,
+            0.0
+          ],
+          [
+            "Kikuyu",
+            "Inooro",
+            3640,
+            670.9,
+            11034,
+            20.3
+          ],
+          [
+            "Maragoli",
+            "Vuuka",
+            5503,
+            559.7,
+            0,
+            0.0
+          ],
+          [
+            "Embu",
+            "wimwaro",
+            2000,
+            504.3,
+            0,
+            0.0
+          ],
+          [
+            "Kalenjin",
+            "Chamgei",
+            1280,
+            500.6,
+            59507,
+            129.1
+          ],
+          [
+            "Luo",
+            "Ramogi",
+            3693,
+            492.5,
+            44184,
+            711.1
+          ],
+          [
+            "Kisii",
+            "Egesa",
+            2503,
+            491.0,
+            44470,
+            75.1
+          ],
+          [
+            "luhya",
+            "mulembe",
+            2253,
+            420.1,
+            53287,
+            7.4
+          ]
+        ],
+        "receipt": "R08",
+        "receipt_text": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
+        "receipts": [
+          "R08"
+        ],
+        "right_align_from": 2,
+        "rows": [
+          [
+            "kiswahili",
+            "Radio citizen",
+            "4006",
+            "836.2",
+            "54516",
+            "101.0"
+          ],
+          [
+            "Bukusu",
+            "sulwe",
+            "8223",
+            "806.4",
+            "0",
+            "0.0"
+          ],
+          [
+            "Kikuyu",
+            "Inooro",
+            "3640",
+            "670.9",
+            "11034",
+            "20.3"
+          ],
+          [
+            "Maragoli",
+            "Vuuka",
+            "5503",
+            "559.7",
+            "0",
+            "0.0"
+          ],
+          [
+            "Embu",
+            "wimwaro",
+            "2000",
+            "504.3",
+            "0",
+            "0.0"
+          ],
+          [
+            "Kalenjin",
+            "Chamgei",
+            "1280",
+            "500.6",
+            "59507",
+            "129.1"
+          ],
+          [
+            "Luo",
+            "Ramogi",
+            "3693",
+            "492.5",
+            "44184",
+            "711.1"
+          ],
+          [
+            "Kisii",
+            "Egesa",
+            "2503",
+            "491.0",
+            "44470",
+            "75.1"
+          ],
+          [
+            "luhya",
+            "mulembe",
+            "2253",
+            "420.1",
+            "53287",
+            "7.4"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 50,
+        "so_what": "The workbench registers recordings per language with their length and whether a transcript was produced; transcript hours are the summed segment spans."
+      },
+      "title": "Transcription workbench by language (local.uploaded_files, local.transcripts)",
+      "title_chars": 77,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 41,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Language",
+          "Station",
+          "Recordings",
+          "Audio hours",
+          "Transcript segments",
+          "Transcribed hours"
+        ],
+        "id": "T023",
+        "label": "Transcription workbench by language (local.uploaded_files, local.transcripts)",
+        "note": "The workbench registers recordings per language with their length and whether a transcript was produced; transcript hours are the summed segment spans. This is a separate inventory from the staged corpus and may overlap it — the two are not added together anywhere in this pack.",
+        "raw_rows": [
+          [
+            "Kikuyu",
+            "inooro",
+            853,
+            401.7,
+            2456,
+            9.1
+          ],
+          [
+            "Meru",
+            "muuga",
+            3215,
+            384.2,
+            0,
+            0.0
+          ],
+          [
+            "Akamba",
+            "musyi",
+            3257,
+            376.9,
+            7815,
+            -26.1
+          ],
+          [
+            "Luhya",
+            "mulembe",
+            3344,
+            371.8,
+            13849,
+            21.5
+          ],
+          [
+            "Luo",
+            "Ramogi",
+            3228,
+            359.9,
+            22805,
+            320.6
+          ],
+          [
+            "Maragoli",
+            "Vuuka",
+            3017,
+            311.6,
+            0,
+            0.0
+          ],
+          [
+            "Kalenjin",
+            "Chamgei",
+            841,
+            300.8,
+            22301,
+            18.0
+          ],
+          [
+            "Meru",
+            "Muuga",
+            1973,
+            282.6,
+            0,
+            0.0
+          ],
+          [
+            "Embu",
+            "wimwaro",
+            1501,
+            276.4,
+            0,
+            0.0
+          ]
+        ],
+        "receipt": "R08",
+        "receipt_text": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
+        "receipts": [
+          "R08"
+        ],
+        "right_align_from": 2,
+        "rows": [
+          [
+            "Kikuyu",
+            "inooro",
+            "853",
+            "401.7",
+            "2456",
+            "9.1"
+          ],
+          [
+            "Meru",
+            "muuga",
+            "3215",
+            "384.2",
+            "0",
+            "0.0"
+          ],
+          [
+            "Akamba",
+            "musyi",
+            "3257",
+            "376.9",
+            "7815",
+            "-26.1"
+          ],
+          [
+            "Luhya",
+            "mulembe",
+            "3344",
+            "371.8",
+            "13849",
+            "21.5"
+          ],
+          [
+            "Luo",
+            "Ramogi",
+            "3228",
+            "359.9",
+            "22805",
+            "320.6"
+          ],
+          [
+            "Maragoli",
+            "Vuuka",
+            "3017",
+            "311.6",
+            "0",
+            "0.0"
+          ],
+          [
+            "Kalenjin",
+            "Chamgei",
+            "841",
+            "300.8",
+            "22301",
+            "18.0"
+          ],
+          [
+            "Meru",
+            "Muuga",
+            "1973",
+            "282.6",
+            "0",
+            "0.0"
+          ],
+          [
+            "Embu",
+            "wimwaro",
+            "1501",
+            "276.4",
+            "0",
+            "0.0"
+          ]
+        ],
+        "rows_from": 9,
+        "rows_total": 50,
+        "so_what": "The workbench registers recordings per language with their length and whether a transcript was produced; transcript hours are the summed segment spans."
+      },
+      "title": "Transcription workbench by language (local.uploaded_files, local.transcripts)",
+      "title_chars": 77,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 42,
+      "number": 7,
+      "title": "First data products",
+      "title_chars": 19,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "kicker": "Product shortlist",
+      "n": 43,
+      "points": [
+        "The census scores 8 candidates on dimensional readiness only, which shows neither demand nor revenue.",
+        "Proposed first: reference and master-data licensing, and the content catalogue corpus, each needing canonical keys, completeness checks and de-identification or aggregation.",
+        "If a buyer leads, aggregated channel engagement analytics is the alternative; the order is a planning judgement needing buyer-side review.",
+        "Subscriber segmentation, geospatial and civic panels need cleansing first. Rights are settled and are not a gate."
+      ],
+      "title": "Reference data and the content catalogue are the proposed first products",
+      "title_chars": 72,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 44,
+      "number": 8,
+      "title": "Decisions requested",
+      "title_chars": 19,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "kicker": "What the executive decides",
+      "n": 45,
+      "points": [
+        "Storage decisions rest on 41.9 TiB of cold object data, 7.7 TiB of duplicate candidates and 40 unreadable buckets.",
+        "The benefit is an upper bound of 1,174.4 USD a month at list prices, not current spend.",
+        "The audio opportunity is 529.5 recorded hours, of which an estimated 421.4 are speech, to filter and language-check first.",
+        "Nothing has been moved, deleted or released."
+      ],
+      "title": "The executive is asked to approve verification and preparation, not migration or deletion",
+      "title_chars": 89,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 46,
+      "table": {
+        "class": "estimated",
+        "columns": [
+          "No.",
+          "Decision requested",
+          "Exact source",
+          "Proposed destination or rule",
+          "Responsible role",
+          "Expected benefit"
+        ],
+        "id": "T013",
+        "label": "Executive decisions requested — one row each",
+        "note": "Each decision names the exact source it rests on, the action, the proposed destination or rule, who carries it, the benefit stated as an upper bound where it is money, the evidence it rests on and what still has to be verified. Nothing here has been executed.",
+        "raw_rows": [
+          [
+            "D1",
+            "Approve archive tiering of the cold object-store buckets",
+            "43 buckets, e.g. music-bucket-rms, na7p43do, na7p43js, na7p434j, na7p41hj",
+            "same buckets, archive storage class (proposed)",
+            "Head of Technology (storage owner)",
+            "up to 986 USD a month at list price"
+          ],
+          [
+            "D2",
+            "Approve hash confirmation and removal of duplicate objects",
+            "na7p43do, na7p4oco, music-bucket-rms, 2024offairrecs (1,139,768 candidates across the store)",
+            "keeper stays in its bucket; duplicates removed after confirmation (proposed)",
+            "Head of Technology with the content librarian",
+            "up to 180 USD a month at list price"
+          ],
+          [
+            "D3",
+            "Instruct reconciliation of the unreadable buckets",
+            "40 buckets, e.g. apr252017, citizen-vod, elections, feb272017, instore-radio-items",
+            "inventory register corrected (proposed)",
+            "Cloud account owner",
+            "an inventory the next census can trust"
+          ],
+          [
+            "D4",
+            "Approve cold-table archiving in the databases",
+            "6 tables, e.g. viusasa_staging.audits, viusasa_staging.master_payments, razuna.raz1_videos, viusasa_staging.payment_requests",
+            "object store, archive class, one prefix per database (proposed)",
+            "Database administrator",
+            "up to 6 USD a month at list price"
+          ],
+          [
+            "D5",
+            "Decide one authoritative copy for each duplicated table pair",
+            "71 pairs, e.g. iebc_forms/viupay.failed_jobs ↔ viupay/viupay.failed_jobs; iebc_forms/viutickets.movies ↔ viupay/viutickets.movies; iebc_forms/viutickets.ussd_hits ↔ viupay/viutickets.ussd_hits",
+            "master stays; copy retired (proposed)",
+            "Database administrator with the application owners",
+            "up to 0 USD a month at list price"
+          ],
+          [
+            "D6",
+            "Approve the housekeeping list: empty tables, redundant indexes, repeated rows",
+            "368 empty tables; redundant indexes and repeated rows named in the table list",
+            "no destination — removal in place after confirmation (proposed)",
+            "Database administrator",
+            "up to 2 USD a month at list price plus up to 0 USD a month at list price"
+          ],
+          [
+            "D7",
+            "Order a fingerprint pass over the file shares",
+            "16 NAS shares holding 43.6 TiB (channel01 … channel16)",
+            "none yet — measurement first",
+            "Head of Technology",
+            "a measured duplication figure for the largest unmeasured store"
+          ],
+          [
+            "D8",
+            "Adopt naming and ownership rules for storage",
+            "machine-named buckets (na7p4…), channel shares, staging copies",
+            "register maintained by the storage owner (proposed)",
+            "Chief Operating Officer",
+            "fewer orphaned stores and faster decisions at the next census"
+          ],
+          [
+            "D9",
+            "Register the language assets as governed data products",
+            "staged corpus by language folder (T020), news scripts by station (T022), transcription workbench (T023)",
+            "governed asset register (proposed)",
+            "Head of Data with the newsroom",
+            "a licensable, evidenced inventory of non-English speech and text"
+          ]
+        ],
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "receipts": [
+          "R02"
+        ],
+        "right_align_from": 6,
+        "rows": [
+          [
+            "D1",
+            "Approve archive tiering of the cold object-store buckets",
+            "43 buckets, e.g. music-bucket-rms, na7p43do, na7p43js, na7p434j, na7p41hj",
+            "same buckets, archive storage class (proposed)",
+            "Head of Technology (storage owner)",
+            "up to 986 USD a month at list price"
+          ],
+          [
+            "D2",
+            "Approve hash confirmation and removal of duplicate objects",
+            "na7p43do, na7p4oco, music-bucket-rms, 2024offairrecs (1,139,768 candidates across the store)",
+            "keeper stays in its bucket; duplicates removed after confirmation (proposed)",
+            "Head of Technology with the content librarian",
+            "up to 180 USD a month at list price"
+          ],
+          [
+            "D3",
+            "Instruct reconciliation of the unreadable buckets",
+            "40 buckets, e.g. apr252017, citizen-vod, elections, feb272017, instore-radio-items",
+            "inventory register corrected (proposed)",
+            "Cloud account owner",
+            "an inventory the next census can trust"
+          ],
+          [
+            "D4",
+            "Approve cold-table archiving in the databases",
+            "6 tables, e.g. viusasa_staging.audits, viusasa_staging.master_payments, razuna.raz1_videos, viusasa_staging.payment_requests",
+            "object store, archive class, one prefix per database (proposed)",
+            "Database administrator",
+            "up to 6 USD a month at list price"
+          ],
+          [
+            "D5",
+            "Decide one authoritative copy for each duplicated table pair",
+            "71 pairs, e.g. iebc_forms/viupay.failed_jobs ↔ viupay/viupay.failed_jobs; iebc_forms/viutickets.movies ↔ viupay/viutickets.movies; iebc_forms/viutickets.ussd_hits ↔ viupay/viutickets.ussd_hits",
+            "master stays; copy retired (proposed)",
+            "Database administrator with the application owners",
+            "up to 0 USD a month at list price"
+          ],
+          [
+            "D6",
+            "Approve the housekeeping list: empty tables, redundant indexes, repeated rows",
+            "368 empty tables; redundant indexes and repeated rows named in the table list",
+            "no destination — removal in place after confirmation (proposed)",
+            "Database administrator",
+            "up to 2 USD a month at list price plus up to 0 USD a month at list price"
+          ],
+          [
+            "D7",
+            "Order a fingerprint pass over the file shares",
+            "16 NAS shares holding 43.6 TiB (channel01 … channel16)",
+            "none yet — measurement first",
+            "Head of Technology",
+            "a measured duplication figure for the largest unmeasured store"
+          ],
+          [
+            "D8",
+            "Adopt naming and ownership rules for storage",
+            "machine-named buckets (na7p4…), channel shares, staging copies",
+            "register maintained by the storage owner (proposed)",
+            "Chief Operating Officer",
+            "fewer orphaned stores and faster decisions at the next census"
+          ],
+          [
+            "D9",
+            "Register the language assets as governed data products",
+            "staged corpus by language folder (T020), news scripts by station (T022), transcription workbench (T023)",
+            "governed asset register (proposed)",
+            "Head of Data with the newsroom",
+            "a licensable, evidenced inventory of non-English speech and text"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 10,
+        "so_what": "Each decision names the exact source it rests on, the action, the proposed destination or rule, who carries it, the benefit stated as an upper bound where it is money, the evidence it rests on and what still has to be verified."
+      },
+      "title": "Executive decisions requested — one row each",
+      "title_chars": 44,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 47,
+      "table": {
+        "class": "estimated",
+        "columns": [
+          "No.",
+          "Decision requested",
+          "Exact source",
+          "Proposed destination or rule",
+          "Responsible role",
+          "Expected benefit"
+        ],
+        "id": "T013",
+        "label": "Executive decisions requested — one row each",
+        "note": "Each decision names the exact source it rests on, the action, the proposed destination or rule, who carries it, the benefit stated as an upper bound where it is money, the evidence it rests on and what still has to be verified. Nothing here has been executed.",
+        "raw_rows": [
+          [
+            "D10",
+            "Commission the de-identified reference products the census ranks first",
+            "the three leading product candidates in the census",
+            "product workspace (proposed)",
+            "Head of Data",
+            "first revenue-bearing use of the estate's data"
+          ]
+        ],
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "receipts": [
+          "R02"
+        ],
+        "right_align_from": 6,
+        "rows": [
+          [
+            "D10",
+            "Commission the de-identified reference products the census ranks first",
+            "the three leading product candidates in the census",
+            "product workspace (proposed)",
+            "Head of Data",
+            "first revenue-bearing use of the estate's data"
+          ]
+        ],
+        "rows_from": 9,
+        "rows_total": 10,
+        "so_what": "Each decision names the exact source it rests on, the action, the proposed destination or rule, who carries it, the benefit stated as an upper bound where it is money, the evidence it rests on and what still has to be verified."
+      },
+      "title": "Executive decisions requested — one row each",
+      "title_chars": 44,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 48,
+      "number": 9,
+      "title": "What is still unmeasured",
+      "title_chars": 24,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "kicker": "Coverage boundary",
+      "n": 49,
+      "points": [
+        "Database measures cover 638 of 1006 tables; a complete-pass census would firm up sampled ratios.",
+        "40 buckets are unreachable; reconcile the inventory with the provider.",
+        "File shares hold 43.6 TiB in 1.5m files, but only sizes and dates were recorded; fingerprinting would measure duplication.",
+        "1694 transcripts were unread, script language was not read, and workbench overlap is unjoined.",
+        "One database connection awaits a read grant."
+      ],
+      "title": "Database ratios, unreadable buckets and file-share duplication remain unmeasured",
+      "title_chars": 80,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Evidence by name",
+      "n": 50,
+      "table": {
+        "class": "measured",
+        "columns": [
+          "Role",
+          "Model",
+          "Family",
+          "Job"
+        ],
+        "id": "T036",
+        "label": "Who wrote this pack — model roles by task strength",
+        "note": "Planner and reviewer come from different model families so the review does not share the planner's blind spots; every call crosses the Shield chokepoint. Arithmetic, evidence binding and the build stay deterministic.",
+        "raw_rows": [
+          [
+            "assistant",
+            "gpt-6-astra",
+            "openai",
+            "planning collaborator in Train Models: reads the run record, plans the next bounded step, proposes one action"
+          ],
+          [
+            "planner",
+            "gpt-6-astra",
+            "openai",
+            "plans and orchestrates multi-step work (document story, measurement order, task decomposition)"
+          ],
+          [
+            "reviewer",
+            "claude-fable-5-1",
+            "anthropic",
+            "independent review of complex outputs against source evidence and acceptance criteria; a different family from the planner"
+          ],
+          [
+            "writer",
+            "claude-sonnet-5-5",
+            "anthropic",
+            "writes every sentence the reader sees from evidence tokens under the content-manager gate"
+          ]
+        ],
+        "receipt": "R09",
+        "receipt_text": "Model role assignments evaluated 2026-10-02: integration model catalogue plus published task benchmarks reviewed on the day; planner/reviewer families kept distinct so the review does not share the planner's blind spots. Not claimed: no independent head-to-head benchmark was run on owner data; assignments are disclosed configuration, re-evaluated when a role under-performs on its own gate",
+        "receipts": [
+          "R09"
+        ],
+        "right_align_from": 4,
+        "rows": [
+          [
+            "assistant",
+            "gpt-6-astra",
+            "openai",
+            "planning collaborator in Train Models: reads the run record, plans the next bounded step, proposes one action"
+          ],
+          [
+            "planner",
+            "gpt-6-astra",
+            "openai",
+            "plans and orchestrates multi-step work (document story, measurement order, task decomposition)"
+          ],
+          [
+            "reviewer",
+            "claude-fable-5-1",
+            "anthropic",
+            "independent review of complex outputs against source evidence and acceptance criteria; a different family from the planner"
+          ],
+          [
+            "writer",
+            "claude-sonnet-5-5",
+            "anthropic",
+            "writes every sentence the reader sees from evidence tokens under the content-manager gate"
+          ]
+        ],
+        "rows_from": 0,
+        "rows_total": 4,
+        "so_what": "Planner and reviewer come from different model families so the review does not share the planner's blind spots; every call crosses the Shield chokepoint."
+      },
+      "title": "Who wrote this pack — model roles by task strength",
+      "title_chars": 50,
+      "type": "table",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "What to do first",
+      "n": 51,
+      "points": [
+        "First, check read use and retrieval fees on 43 cold buckets before tiering; up to 986.5 USD a month.",
+        "Second, hash 7.7 TiB of duplicate candidates before removal; up to 180.3 USD a month.",
+        "Third, reconcile 40 unreadable buckets and fingerprint 43.6 TiB of file shares.",
+        "Fourth, prepare reference data and the content catalogue; database cleanup is bounded by 15.2 GiB."
+      ],
+      "title": "Verify cold data first, close the gaps, then prepare two products",
+      "title_chars": 65,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "What we cannot yet say",
+      "n": 52,
+      "points": [
+        "Database ratios rest on 638 of 1006 tables.",
+        "Personal-data markers appear in 71.8% of sampled rows; absence of a marker is not absence of personal data.",
+        "The 7.7 TiB of duplicates are candidates until content hashing confirms them.",
+        "The 1,174.4 USD figure is a list-price upper bound, and cold bytes may still be read.",
+        "Language, noise and intelligibility were not human-verified."
+      ],
+      "title": "Savings, coverage and privacy conclusions carry limits that specific checks would close",
+      "title_chars": 87,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "coverage": {
+        "cannot_say": [
+          {
+            "closes_with": "a complete-pass census on the sampled tables",
+            "gap": "Duplicate, damage, empty-field and PII ratios on sampled tables",
+            "reason": "complete passes where the table allowed it, stratified samples elsewhere"
+          },
+          {
+            "closes_with": "a buyer-side review of each candidate against its intended use",
+            "gap": "Semantic similarity between candidate datasets and the market",
+            "reason": "not measured; candidates are dimensional readiness only"
+          },
+          {
+            "closes_with": "owner grants read access; re-census",
+            "gap": "Connection artists_app",
+            "reason": "could not be read (MySQL GRANT pending)"
+          },
+          {
+            "closes_with": "a fingerprinting pass over the NAS shares",
+            "gap": "NAS duplication",
+            "reason": "the enumeration recorded sizes and dates, not content fingerprints"
+          },
+          {
+            "closes_with": "bucket inventory reconciled with the provider",
+            "gap": "40 of 106 OBS buckets",
+            "reason": "unreachable (NoSuchBucket / client errors)"
+          },
+          {
+            "closes_with": "a text-model pass over the script column under the same aggregate-only seam",
+            "gap": "Language of each news script",
+            "reason": "the scripts were counted and sized, not read; the language shown is the station's broadcast language from the estate's own table"
+          },
+          {
+            "closes_with": "a hash join of workbench file locations against the staged corpus paths",
+            "gap": "Overlap between the workbench recordings and the staged corpus",
+            "reason": "both inventories were counted on their own; no file-level join was made"
+          }
+        ],
+        "covers": "The admitted estate as measured by census eij-1b359b3cbd2e: 20 databases, 1,006 tables (351.3 GiB), the object store, the file shares, the staged language corpus read by both GPUs and the written-word databases read as aggregates. No row value, script or transcript text is in this pack."
+      },
+      "kicker": "Coverage and limits",
+      "n": 53,
+      "title": "What this pack covers, what it cannot say, and what would close each gap",
+      "title_chars": 72,
+      "type": "coverage_limits",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Appendix",
+      "n": 54,
+      "receipts": [
+        {
+          "id": "R01",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures"
+        },
+        {
+          "id": "R02",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month"
+        },
+        {
+          "id": "R03",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)"
+        },
+        {
+          "id": "R04",
+          "text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+        },
+        {
+          "id": "R05",
+          "text": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+        },
+        {
+          "id": "R06",
+          "text": "Estate language reading m9j-9e8fcb46a809 on akki-vm (2 GPUs, 1.034 GPU-h): audio language model lcj-7128593897d4 sha256 5c1feb8497e8…, music detector m9j-686de001bfe7 sha256 0fea3eee0393…; model readings, not human labels"
+        },
+        {
+          "id": "R07",
+          "text": "Served text language model m9j-74af7cef0a85 readings of the staged transcripts: jobs m9j-2d43ed6cf567, m9j-8cf6702f8718 (2,245 transcripts read, 3939 present)"
+        },
+        {
+          "id": "R08",
+          "text": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)"
+        },
+        {
+          "id": "R09",
+          "text": "Model role assignments evaluated 2026-10-02: integration model catalogue plus published task benchmarks reviewed on the day; planner/reviewer families kept distinct so the review does not share the planner's blind spots. Not claimed: no independent head-to-head benchmark was run on owner data; assignments are disclosed configuration, re-evaluated when a role under-performs on its own gate"
+        }
+      ],
+      "title": "Exhibit index with receipts",
+      "title_chars": 27,
+      "type": "appendix",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "title": "Estate-wide intelligence: cut, fix and prepare first",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

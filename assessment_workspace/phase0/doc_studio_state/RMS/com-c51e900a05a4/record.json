@@ -4,95 +4,107 @@
     "gate": {
       "issues": [],
       "passed": true,
-      "plan_slots": 50,
-      "repairs": 1
+      "plan_slots": 51,
+      "repairs": 2
     },
-    "latency_ms": 63508,
+    "latency_ms": 77994,
     "model": "claude-sonnet-5-5",
     "pipeline": "frontier",
     "planner": {
       "cautions": [
-        "Preserve every outline slot, exhibit and deterministic table; unresolved references must be flagged for binding rather than silently repaired, dropped or populated with invented evidence.",
-        "Several outline needs and mandatory citations are aliases absent from the supplied evidence definitions, including {F018}, {F052}, {T011}, {T012}, {S002}, {F008}, {S013}, {T022}, {F021} and {F004}; the chapter notes identify available supporting evidence without establishing those alias mappings.",
-        "The owner's declaration settles ownership and use rights; disregard contrary rights-clearance conditions in the contextual production plan, while retaining de-identification, aggregation and other preparation checks.",
-        "Use the defined evidence model ahead of conflicting contextual producer prose: total estate holdings are measured, database concentration is not estate-wide concentration, and savings remain estimated rather than immediate or realised.",
-        "No current invoice-based holding cost is supplied; {F019} is a reference-list-price savings upper bound, not the current bill, an approved budget or a guaranteed net saving after retrieval and implementation costs.",
-        "Do not equate tiered bytes with deleted bytes, add potentially overlapping strategy estimates into a new total, or reconcile {F005} with the broader strategy scope through unsupported arithmetic.",
-        "The descriptions of object duplicate matching differ between the fact scope and glossary; retain the common conclusion that {F034} is candidate-only and requires content-hash confirmation rather than asserting an unambiguous matching method.",
-        "Database condition ratios overlap and include sampled estimates; empty required-looking fields are not necessarily constraint violations, personal-data markers are not rights findings, and absence of markers does not prove absence of personal data."
+        "Preserve the supplied outline and exhibits; unresolved evidence bindings are production issues, not permission to rename slots, repair evidence silently or invent missing values.",
+        "Several outline needs, table references and mandatory citations have no matching evidence key, including {F052}, {T011}, {T012}, {S002}, {F008}, {S013}, {T022}, {F018}, {F021} and {F004}; flag these for deterministic binding resolution before publication.",
+        "Producer claims also contain unresolved aliases and scope errors; use authoritative facts and valid series rather than copying those claims, and keep {K002} explicitly within database bytes.",
+        "The owner's declaration settles ownership and use rights; ignore contradictory legacy recommendations for new rights clearance, while retaining de-identification or aggregation as product preparation and distinguishing rights from operational execution approval.",
+        "No current whole-estate invoice or carrying-cost baseline is supplied; {F019} is an estimated reference-list-price monthly upper bound, not current spend, realised savings or guaranteed net benefit.",
+        "Keep {F005} and {F006} scoped to database reclaimability before pricing, and {F021} scoped to bytes addressed by cost strategies; do not sum overlapping opportunities or equate tiering with deletion.",
+        "The evidence describes object duplicate-candidate matching inconsistently across the fact scope and glossary; retain candidate status and require content-hash confirmation without inventing a reconciled matching method.",
+        "No-write age does not measure read demand, absence of personal-data markers does not prove absence of personal data, and required-looking fields are heuristic rather than necessarily enforced constraints."
       ],
       "chapter_notes": {
-        "actions": "Lead with a sequenced proposal to validate object-store economics and duplicates, close inventory gaps, then prepare a bounded product pilot, using {T013}, {F036}, {F034}, {F019} and {F018}. Retain database cleanup as a narrower workstream supported by {F005} and {F006}, not an estate-wide saving, and do not import unsupported deadlines, performance targets or execution claims from contextual planning material.",
-        "chapter1": "Lead with total estate holdings {F050}, then object storage {F030}, file shares {F040} and databases {F052}, using {K005} and {K006} to explain their relative importance. The takeaway is to manage the whole estate rather than optimise databases alone; distinguish measured holdings from unreadable inventory and do not invent a current storage bill.",
-        "chapter2": "Lead with the exact-source review tables {T010}, {T011}, {T012} and {T015}, using {F036}, {F037} and {F034} to separate write-inactive buckets from duplicate candidates and {F033} to expose unreadable inventory. Direct the owner toward source-specific checks and proposed destinations, without inventing table rows, treating strategy bytes as individual table sizes or implying that anything has moved.",
-        "chapter4": "Lead with the preparation burden carried by {F008}, {F009} and {F010}, contrasting it with exact duplicates {F007} and stating the personal-data sampling scope through {F011}. The executive should prioritise product-relevant completeness, cleansing and de-identification; required-looking fields are heuristic, {F012} concerns database write inactivity, and rights are already settled.",
-        "chapter5": "Lead with recorded audio {F060} and its estimated speech and music split {F061} and {F062}, then use {T020} and {T024} to identify language-specific preparation needs. Recommend music filtering and language and quality validation before product packaging; detector readings do not establish intelligibility, noise quality or verified speech duration.",
-        "chapter6": "Lead with distinct written-text inventories: news scripts {F080}, stations {F081}, scripted dates {F082}, text volume {F084} and revision burden {F085}, supported by {T022}; then distinguish model-read transcripts {F070}, {F071}, {F075} and {T021} from the workbench inventory {F090}, {F091}, {F092}, {F093}, {F094} and {T023}. The owner should commission corpus-specific preparation, not combine potentially overlapping inventories, assume uninterrupted news coverage or generalise transcript language agreement beyond the capped pass.",
-        "chapter7": "Lead with a proposed initial specification shortlist of reference and master data, content catalogue and channel engagement products using {F018}, {C021}, {C022} and {C023}, making clear that prioritisation is a recommendation rather than a measured commercial ranking. State each product's first preparation task—canonical reference fields and completeness checks, catalogue reconciliation and identifier removal, or channel/time aggregation and metric validation—and require a buyer-side use-case review without reopening settled rights or claiming revenue, semantic fit or release readiness.",
-        "chapter8": "Lead with the decisions recorded in {T013}, anchored by write-inactive object bytes {F036}, duplicate candidates {F034}, unreadable buckets {F033}, estimated savings {F019} and staged audio {F060}. Ask the executive to approve named validation and preparation work with accountable roles and acceptance checks, keeping destinations provisional, financial benefits bounded and execution explicitly unauthorised until approved.",
-        "chapter9": "Lead with bounded coverage: measured versus inventoried tables {F003} and {F002}, unreadable buckets {F033}, enumerated file shares {F040} and {F041}, and unread transcripts {F075}. Pair each gap with its closing task—complete-pass census, provider reconciliation, file fingerprinting, expanded model reading, script-language assessment, inventory hash joins or buyer review—without presenting missing measurements as adverse findings or rights uncertainty.",
-        "compare": "Lead with the relative opportunity and verification burden of {O1}, {O2} and {O3}, then anchor the overall priced opportunity in {F019}. Recommend validating archive economics and duplicate identity before execution; list-price savings are upper bounds rather than the owner's current bill or a guaranteed net reduction.",
-        "exhibit_S001": "Lead with database storage concentration in {S001}, supported by {F004}, {F016} and {K002}, to locate the operational footprint behind the condition discussion. This exhibit does not establish that the largest database has the worst quality, and its concentration denominator is database bytes rather than the whole estate.",
-        "exhibit_S002": "Lead with completeness, degradation and personal-data preparation needs using {S002}, {F007}, {F008}, {F009}, {F010} and {F011}. Explain that these overlapping indicators have different denominators and sampling bases, are not additive, and describe database evidence rather than every store.",
-        "exhibit_S003": "Lead with {S003} to show that object-store tiering and duplicate reconciliation dominate estimated addressable bytes, supported by {F036}, {K009} and {F034}. Explain that these are strategy estimates, not money already saved or uniquely removable bytes, and that write inactivity does not establish that nobody uses the data.",
-        "exhibit_S004": "Lead with the whole-estate distribution in {S004}, anchored by {F050}, {F030}, {F040} and {F052}, so the owner sees that object storage and file shares dominate the storage agenda. Keep database condition findings separate from estate-wide byte shares and do not imply complete access to every inventoried store.",
-        "exhibit_S005": "Lead with object-store concentration using {S005}, {F038} and {K008}, showing why bucket-level decisions deserve executive attention. The largest bucket is not automatically an archive or deletion candidate, and a cold label establishes write inactivity rather than absence of reads.",
-        "exhibit_S010": "Lead with the distribution of estimated non-music speech hours across language folders in {S010}, anchored by recorded duration {F060}, estimated speech {F061} and estimated music {F062}. Use this to scope language-specific preparation rather than promise a verified, balanced or training-ready speech corpus.",
-        "exhibit_S011": "Lead with variation in folder-language agreement using {S011}, placing {F072} alongside the declined-label measure {F066}. The takeaway is to target language validation by folder, not equate agreement among labelled windows with human-verified accuracy or coverage of every window.",
-        "exhibit_S012": "Lead with live script distribution by station in {S012}, anchored by {F080} and {F081}, and qualify temporal coverage with {F082} and {F083}. Present a substantial but discontinuous written archive, with language inherited from station metadata rather than verified from script text.",
-        "exhibit_S013": "Lead with observed bulletin-hour coverage on scripted days using {S013}, interpreted through {T022}, {T032} and {T033}. Explain that this measures distinct scripted hour slots, not continuous daily coverage, broadcast duration or an average over days without scripts.",
-        "risks": "Lead with risks to the decision's reliability: incomplete database coverage {F003} against {F002}, unreadable buckets {F033}, estimated duplicate bytes {F034}, sampled personal-data markers {F010} and bounded pricing {F019}. Separate operational verification and product preparation from settled ownership rights, and avoid extrapolating database findings or model-read subsets to the entire estate."
+        "actions": "Lead with an ordered work programme: verify the object-store opportunities, close access and fingerprinting gaps, and prepare the shortlisted products through {T013}. Keep database cleanup bounded by {F005} and {F006}, measure outcomes against {F019} and the condition baselines, and distinguish proposed responsibilities from authorised execution or promised savings.",
+        "chapter1": "Lead with {F050} across object storage {F030}, file shares {F040} and databases {F004}, using {K005} and {K006} to explain where estate-wide attention belongs. The takeaway is to prioritise storage-scale opportunities without overlooking database reuse value, while describing the holdings as measured coverage rather than a complete account of inaccessible sources.",
+        "chapter2": "Lead with the exact-source review in {T010}, {T011}, {T012} and {T015}, anchored by cold holdings {F036}, cold buckets {F037} and duplicate-candidate bytes {F034}. Distinguish measured findings from proposed destinations: database strategy bytes are not individual table sizes, file-share duplication is unmeasured, and unreadable buckets require inventory reconciliation rather than assumed deletion.",
+        "chapter4": "Lead with estimated exact duplication {F007}, degradation {F008} and empty required-looking fields {F009}, then distinguish sampled personal-data markers {F010} over {F011} from no-write byte age {F012}. The executive should fund targeted completeness repair and de-identification or aggregation, without interpreting heuristic fields as mandatory schema constraints or personal-data markers as unresolved rights.",
+        "chapter5": "Lead with recorded audio {F060} and its estimated speech/music split {F061} and {F062}, then use {T020}, {T024}, {F066} and {F072} to connect each language folder to preparation needs. Recommend music filtering, language checks and human usability review for a bounded pilot, without claiming that noise, intelligibility or sale-ready speech quality was measured.",
+        "chapter6": "Lead with separate inventories: news scripts {F080}, stations {F081} and scripted dates {F082}; model-read transcripts {F070} and {F071}; and workbench registrations {F090}, {F091} and {F092}. Use {T022}, {T021} and {T023} to explain preparation, including revisions {F085}, distinct texts {F086} and unread transcripts {F075}, without adding potentially overlapping corpora or equating language agreement with transcript correctness.",
+        "chapter7": "Lead with the candidate portfolio {F018} and propose reference/master-data and content-catalogue specifications as the initial shortlist from {C021} and {C022}, with aggregate channel engagement {C023} as a buyer-led alternative. Make the sequence an explicit planning judgement requiring canonicalisation, completeness checks, de-identification or aggregation and buyer-side validation; dimensional readiness establishes neither market demand nor revenue, and rights are already settled.",
+        "chapter8": "Lead with the decisions in {T013}, grounding storage priorities in {F036}, {F034} and unreadable buckets {F033}, with {F019} for bounded financial benefit and {F060} for the audio preparation opportunity. Ask for approval of accountable verification and preparation work using the table's actual roles and checks, without inventing unseen row details or implying that approval, migration, deletion or product release has already occurred.",
+        "chapter9": "Lead with the coverage boundary using {F003} against {F002}, unreadable buckets {F033}, enumerated file shares {F040} and {F041}, and transcripts still unread {F075}. Pair each gap with its stated closing measurement, including complete-pass sampling checks, provider reconciliation, file fingerprinting, script-language reading and corpus overlap joins; use {T036} only for authoring-role transparency, not independent validation of the estate.",
+        "compare": "Compare {O1}, {O2} and {O3} on estimated benefit and required verification, with {F019} identifying the overall priced monthly upper bound. Recommend validating object-store tiering first and hashing duplicate candidates before removal, without calling list-price estimates invoice savings or inventing a current carrying-cost baseline.",
+        "exhibit_S001": "Lead with database concentration in {S001}, using {F004} and {K002} to explain where database-scale investigation should focus. Treat the exhibit as a prioritisation map, not evidence that the largest database causes every aggregate condition finding or holds most whole-estate bytes.",
+        "exhibit_S002": "Lead with completeness and damage as preparation priorities using {S002}, {F009} and {F008}, alongside exact duplication {F007} and sampled personal-data markers {F010}. Keep row, sampled-row and byte denominators distinct, and do not add overlapping condition measures or extend database ratios to the whole estate.",
+        "exhibit_S003": "Lead with {S003} to show that object-store tiering and duplicate reconciliation dominate addressed bytes, supported by {F036}, {K009} and {F034}. Explain that addressed bytes include cheaper storage rather than only removal, and that no-write age does not establish absence of reads.",
+        "exhibit_S004": "Lead with the whole-estate distribution in {S004}, anchored by {F050}, {F030} and {F040}, so the owner sees that object storage and file shares dominate capacity. Keep database holdings in view through {F052}, without presenting rounded store totals as an exact reconciliation.",
+        "exhibit_S005": "Lead with object-store concentration in {S005} and {F038}, using {F030} as the store denominator. Direct attention to the largest buckets for operational review, without implying that size alone establishes waste or suitability for archival.",
+        "exhibit_S010": "Lead with the language-folder distribution in {S010}, anchored by recorded duration {F060}, estimated speech {F061} and estimated music {F062}. Show where a bounded audio pilot could draw material, but describe non-music duration as a detector-based proxy rather than verified usable speech.",
+        "exhibit_S011": "Lead with variation in folder-language agreement from {S011}, explaining the labelled-window denominator through {F072} and the declined share through {F066}. The takeaway is to prioritise language review before packaging, not to interpret model agreement as human verification, transcription accuracy or intelligibility.",
+        "exhibit_S012": "Lead with station-level script holdings in {S012}, supported by {F080} and {F081}, and place the archive's temporal coverage in context using {F082} and {F083}. Treat broadcast language as station metadata, not a language reading of each script, and avoid implying continuous daily coverage.",
+        "exhibit_S013": "Lead with bulletin-hour coverage conditional on scripted days in {S013}, using {T033} and {T032} for detailed traceability. Explain that activity on days carrying scripts is not evidence of complete coverage across the archive's date span or of a script at every configured hour.",
+        "risks": "Lead with risks to decision confidence rather than reopening rights: incomplete database coverage {F003} against {F002}, sampled personal-data markers {F010}, duplicate candidates {F034} and list-price savings {F019}. Require operational dependency checks, retrieval-cost validation and product-specific privacy preparation, without labelling all cold bytes unused, all candidate copies disposable or all marked rows unsuitable for reuse."
       },
-      "latency_ms": 50008,
+      "latency_ms": 46533,
       "model": "gpt-6-astra",
       "provider": "emergent",
-      "receipt_id": "rcp-da0f89f1a000",
-      "title_direction": "Frame RMS's whole estate as an owner decision about where storage savings are most credible, which condition issues need preparation and which product specifications to develop first, without implying realised savings or proven demand.",
-      "tokens_in": 20313,
-      "tokens_out": 2226
+      "receipt_id": "rcp-187f424563a1",
+      "title_direction": "Frame the estate-wide account as an owner decision on where to reduce carrying costs and which products to prepare first, separating measured holdings, bounded savings and remaining preparation.",
+      "tokens_in": 20539,
+      "tokens_out": 2094
     },
     "provider": "emergent",
-    "receipt_id": "rcp-9a7b8e2573a1",
+    "receipt_id": "rcp-9a4b1683a30d",
     "review": {
       "blocking": [],
       "findings": [
         {
-          "fix": "Say 'All priced strategies together are bounded at {F019} USD a month; these three account for almost all of it.'",
-          "issue": "The three priced moves listed (986.5 + 180.3 + 5.9 = 1,172.7 USD) are followed immediately by 'The priced total is {F019} USD a month' (1,174.4). F019 is the total across all priced strategies including index, row-dedupe and copy consolidation, so a reader may think the three sum to it or that 1.7 USD is missing.",
-          "path": "paper.sections.compare.paragraphs[0]",
+          "fix": "Replace the placeholders with {F082} and {F018}; confirm F001→Databases 20, F033→40 unreadable buckets, F035→5.0% duplicate-candidate objects, F065→20.4% music windows, F083→1,432 days, K004, K011, K012 bind before build.",
+          "issue": "Two figures are written with placeholder tokens rather than fact ids: {F082} here (and in chapter6.points) stands for the 226 scripted dates (F082), and {F018} in paper.sections.chapter7 stands for the 8 candidates (F018). The draft also cites F001, F033, F035, F065, F083, K004, K011 and K012 whose evidence keys appear only under redacted names; the quantities match their labels, but the binder must confirm every one resolves.",
+          "path": "draft.slots.exhibit_S013.so_what",
           "severity": "advisory"
         },
         {
-          "fix": "Replace 'leaving' with 'and' so the two measures stand on their own.",
-          "issue": "'{F085} of script rows are revisions, leaving {F086} distinct texts ({K012} of live rows)' implies the distinct-text count follows arithmetically from the revision share. They are separately measured (1 − 38.0% = 62.0% vs K012 = 63.9%), and the evidence statement C044 joins them with 'and', not a causal link. Same wording in paper.sections.chapter6.paragraphs[0].",
-          "path": "draft.slots.chapter6.points[1]",
+          "fix": "State the scope: 'about 15.2 GiB (4.3%) looks reclaimable inside the databases before pricing; the 54.1 GiB cold-table move is tiering, not removal' — or drop 'bounded' and cite both figures with their labels. Apply the same to paper.sections.actions.",
+          "issue": "'Database cleanup is bounded by {F005} GiB' (15.2 GiB) sits in the same pack as the cold-table move O3 at 54.1 GiB and index removal at 14.0 GiB, both database strategies. The owner will read 15.2 as contradicting 54.1 unless the two scopes are distinguished.",
+          "path": "draft.slots.actions.points",
           "severity": "advisory"
         },
         {
-          "fix": "Say 'these are estimates priced separately; the pack does not sum them beyond the {F021} GiB combined figure' rather than asserting possible overlap.",
-          "issue": "'the strategies may overlap' is a caution the evidence does not state; S003 and F021 present the strategies as priced separately with a single combined addressed-bytes figure.",
-          "path": "draft.slots.exhibit_S003.so_what",
+          "fix": "Write 'declined to label {F066} of speech windows' here and in paper.sections.exhibit_S011.",
+          "issue": "F066 is labelled as a share of speech windows, but the draft says 'the model declined to label {F066}' without a base, inviting the reading that 10.7% of all windows (or of judged windows) were declined.",
+          "path": "draft.slots.exhibit_S011.so_what",
           "severity": "advisory"
         },
         {
-          "fix": "Name Kikamba and Kiswahili explicitly and qualify the Bukusu nil as a tiny-sample reading.",
-          "issue": "Names two specific folders as lowest agreement among the large ones; the series shows Kikamba (0.709) and Kiswahili (0.787) as the two lowest non-zero shares. Ensure the rendered folder names match those categories exactly, and note the nil value in the smallest folder (Bukusu, 0.7 h) may reflect too few labelled windows rather than disagreement.",
-          "path": "paper.sections.exhibit_S011.paragraphs[0]",
+          "fix": "Say 'the 13 named stations shown hold almost all of the {F080} live scripts' or note that the station table beside the chapter carries the full set.",
+          "issue": "The caption says holdings total {F080} (248,841) scripts, but the 13 bars of S012 sum to 248,323; T022 carries 14 rows, so a station or remainder of 518 scripts is not shown in the chart.",
+          "path": "draft.slots.exhibit_S012.so_what",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Add one point: '{F015} tables are empty and {F014} table pairs duplicate each other across {F013} rows held; both are retirement candidates once ownership is confirmed.'",
+          "issue": "The chapter on database condition omits structural findings the evidence plainly carries: {F015} 368 empty tables, {F014} 71 duplicate table pairs and {F013} 259.3m rows held, all measured in R01 and relevant to the cleanup the actions propose.",
+          "path": "draft.slots.chapter4.points",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Either state the reason (e.g. larger row count and catalogue reuse value) or order the shortlist by readiness score and keep the buyer-side review as the deciding step. Rights wording is correct and should stay as is.",
+          "issue": "The content catalogue corpus (readiness 56.8, grade C) is proposed as a first product ahead of channel engagement analytics (59.7) and the forecasting and transaction datasets (57.6) on the census's own readiness score; the draft calls the order a planning judgement but gives no reason for passing over higher-scoring candidates.",
+          "path": "draft.slots.chapter7.points",
           "severity": "advisory"
         }
       ],
-      "latency_ms": 80216,
+      "latency_ms": 97830,
       "model": "claude-fable-5-1",
       "provider": "emergent",
-      "receipt_id": "rcp-4e82a931147a",
+      "receipt_id": "rcp-d7457c87a98d",
       "resolution": "accepted without blocking findings",
-      "summary": "Every figure traces to a labelled token used for its own quantity, each chapter answers its question, the owner's rights declaration is honoured throughout, and risks are drawn from coverage.cannot_say; only minor phrasing tightenings are advised around the priced total, the revision/distinct-text link and one unsupported overlap caution.",
-      "tokens_in": 24190,
-      "tokens_out": 607,
+      "summary": "Every figure is used for the quantity its label names, chapters answer their questions and the owner declarations on rights are honoured throughout; nothing would mislead the owner. The advisories concern unresolved placeholder tokens, the apparent 15.2 GiB versus 54.1 GiB database tension, an unstated base for the declined-label share, a chart-to-total gap of 518 scripts, omitted empty-table and duplicate-pair findings, and an unexplained product ordering.",
+      "tokens_in": 24174,
+      "tokens_out": 982,
       "verdict": "accept"
     },
     "source": "orchestrating planner (gpt-6-astra) → worker → content manager → frontier writer (claude-sonnet-5-5) → independent reviewer (claude-fable-5-1); gate passed",
-    "tokens": 73103
+    "tokens": 107206
   },
   "brief_id": "BR-2026-10-02-eij-1b359b3cbd2e",
   "build_stamp": "2026-10-02T07:26:31Z",
@@ -985,18 +997,495 @@
         ],
         "status": "PASS"
       }
+    },
+    {
+      "at": "2026-10-02T13:07:56Z",
+      "build_id": "bld-fd03f3781f23",
+      "by": "akki-autopilot",
+      "content_version": 4,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-02T13:08:33Z",
+          "by": "akki-autopilot",
+          "count": 54,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "32ecd48c444291ba9145c54aec56fd3c45208eba17caf869d78056e13e893e37",
+              "size": 25245
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "285bd261d74bf75658d391820da03e1a7b52a356043577284eb8bfade9980342",
+              "size": 71244
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "d692733a64077a7338ac7d9f854033fe7060c781e650aaa02295ad18daa11e25",
+              "size": 75880
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "fc8f628670f73bfad4cd577647ae00a109dad097e30829a7b48c0313728e4388",
+              "size": 65823
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "df55176ad506c0e48c391df8321ee2d76aab91bbbcf3b916c0340e0d4ad74086",
+              "size": 39624
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "85c13eaa45780f92caeef35b6e1acd938ece844838f2abb2048a99a60c610459",
+              "size": 8967
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "ab5fa98fcdc9a1c1de0f2db1717619a8d1ff0066185dd893b3c5ae7ab89fa7c3",
+              "size": 35553
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "af354beccc413d1ea1c9565c62f8f4f298347167838476a41767d1c3d2a0ae0e",
+              "size": 43466
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "a923a47be6f9deba35f5f5ba00bd76ffd440ca2761c1b6fef49442444a808869",
+              "size": 43938
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "a1c8c200cc618cf3479f707b4fe55f256d51bbb02811e6c03f6e1f142f39d66c",
+              "size": 9923
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "ac6f739b2e3d1efe90d7601f4be7ad2c88f23e51bb92daef44834bd95d9b3bf7",
+              "size": 43794
+            },
+            {
+              "n": 12,
+              "name": "page-12.png",
+              "sha256": "f3deddb7a4ac8d517e8b312c10daa6d103bc0ac23838d1f4a24b91a2af1ff485",
+              "size": 91564
+            },
+            {
+              "n": 13,
+              "name": "page-13.png",
+              "sha256": "412f14150c32a652a1e367cfc73f520fda6262c8eb56163511feef1b0cc28ccf",
+              "size": 55594
+            },
+            {
+              "n": 14,
+              "name": "page-14.png",
+              "sha256": "2302dbe609c433c097ccd55dd4635bfd2994c540842e273b464f2f0ac0078971",
+              "size": 114135
+            },
+            {
+              "n": 15,
+              "name": "page-15.png",
+              "sha256": "2fb1618c546f86becd32f54f302a47a797f2a5c894ca2cbd4e10504a1359afbb",
+              "size": 118308
+            },
+            {
+              "n": 16,
+              "name": "page-16.png",
+              "sha256": "ce90ac85b40abab8c68c4bcc30a0d889b9375340e781e6c0f4c12aff51e582cd",
+              "size": 90199
+            },
+            {
+              "n": 17,
+              "name": "page-17.png",
+              "sha256": "158de0a803457e27923fac1d6ae1a6032f69e99fe8e544087cce1b2618436a76",
+              "size": 51249
+            },
+            {
+              "n": 18,
+              "name": "page-18.png",
+              "sha256": "fc8c61ae2ddd7b10c182a433f3ba7de83f3619f6f2f5a1bf6332357534697884",
+              "size": 67942
+            },
+            {
+              "n": 19,
+              "name": "page-19.png",
+              "sha256": "0e1bc9bac06e1fb91a05312b743db33377f48fe3278112c77a8a3d695a609fb1",
+              "size": 69175
+            },
+            {
+              "n": 20,
+              "name": "page-20.png",
+              "sha256": "c044331f423ab30f99fa81a27f4fe51ec358ca713d3456b6f1da36d989bd693f",
+              "size": 10217
+            },
+            {
+              "n": 21,
+              "name": "page-21.png",
+              "sha256": "f989a54c78525cfccc2e35a6a3b10f8c338b916ccf51b7627f694bad955cb2ee",
+              "size": 55826
+            },
+            {
+              "n": 22,
+              "name": "page-22.png",
+              "sha256": "f8f1e2dfbc1050891562b77f45ae0c217814f3bcef85a6a50cfdd6e72e89709e",
+              "size": 47953
+            },
+            {
+              "n": 23,
+              "name": "page-23.png",
+              "sha256": "bd6f9d52fcaf113b2767cdb6e9a4f234ab7e02ad94eac5e0b4e9035968a359aa",
+              "size": 11771
+            },
+            {
+              "n": 24,
+              "name": "page-24.png",
+              "sha256": "a5115fd4d19acf26ea64f9562310b5b5ed326035bd8885b814b5f1272c58c3c8",
+              "size": 45244
+            },
+            {
+              "n": 25,
+              "name": "page-25.png",
+              "sha256": "d4a8dc463f0be11606b8042f6625cb5b2fcbf1813cd9e66edb6fc2ee02715f21",
+              "size": 46144
+            },
+            {
+              "n": 26,
+              "name": "page-26.png",
+              "sha256": "9d40d6e4684d5bd2a19a2265a53bbf166397a5c006c55313d0736371403e4dfa",
+              "size": 47186
+            },
+            {
+              "n": 27,
+              "name": "page-27.png",
+              "sha256": "7780c7a0aa990b3a217f1063f4cf4856ba07aabd07d1abff6f654e0f494d4da7",
+              "size": 9032
+            },
+            {
+              "n": 28,
+              "name": "page-28.png",
+              "sha256": "5ba97424ca8397a5fe30bcdee645400afd6d8c27660c4da1a73e7206b0136ac9",
+              "size": 43527
+            },
+            {
+              "n": 29,
+              "name": "page-29.png",
+              "sha256": "670eea8172f8c1d62bd49c9e0b80dfdbf4b95e8d190d59ee4267d6d71d187f28",
+              "size": 52394
+            },
+            {
+              "n": 30,
+              "name": "page-30.png",
+              "sha256": "564211298445e6793c91f499dbfb215466bc5ade1bd9b53f2200f2b358df9ce8",
+              "size": 44843
+            },
+            {
+              "n": 31,
+              "name": "page-31.png",
+              "sha256": "cde7b208046c1f7149a94d74e8e1a1878ba502ef2ed04daf9d3c244c3f456c5c",
+              "size": 55241
+            },
+            {
+              "n": 32,
+              "name": "page-32.png",
+              "sha256": "47e911c0db60ceb5b2d8a2a098d10644a08240849056ee80f858743a0a6bd337",
+              "size": 57471
+            },
+            {
+              "n": 33,
+              "name": "page-33.png",
+              "sha256": "860c174b00accf805f32c6488548e516f94a6239054c467afc4a455c10b0ebeb",
+              "size": 8340
+            },
+            {
+              "n": 34,
+              "name": "page-34.png",
+              "sha256": "cb433a2281693192dd06a467a75baf0972b3b07750e78a127acbac5b01a9b3b9",
+              "size": 56897
+            },
+            {
+              "n": 35,
+              "name": "page-35.png",
+              "sha256": "599e61bfb6e77e7f4dae0cb7f1e6bc20d24c05c6b6b06925251f12bc030b5f3f",
+              "size": 50340
+            },
+            {
+              "n": 36,
+              "name": "page-36.png",
+              "sha256": "793eff97db650df78803b64bc9a1e9184ade062ce8678f1b1783870bef2b8301",
+              "size": 49864
+            },
+            {
+              "n": 37,
+              "name": "page-37.png",
+              "sha256": "f7c7541e3d459cfd85af743f7852cbceeee07d4a7bcf882d8e37e3d79db559ce",
+              "size": 60250
+            },
+            {
+              "n": 38,
+              "name": "page-38.png",
+              "sha256": "1144c67195d9c06617e3506d463df8ba470c4fc5eee3cf3c47868f0954b302b9",
+              "size": 50439
+            },
+            {
+              "n": 39,
+              "name": "page-39.png",
+              "sha256": "a55485776bba5dad1a242b22192e8c6d4b1c44fa9110137d78f3e96944965825",
+              "size": 55187
+            },
+            {
+              "n": 40,
+              "name": "page-40.png",
+              "sha256": "dac0f3e69a0d4876fe84ab88473ed5a9cbeb8a8d602665d884ad722db581194b",
+              "size": 57144
+            },
+            {
+              "n": 41,
+              "name": "page-41.png",
+              "sha256": "43f90b353dadf652b86d37984d2f31e33cbdf168d0fa1b29492bf7ff1880bf07",
+              "size": 56458
+            },
+            {
+              "n": 42,
+              "name": "page-42.png",
+              "sha256": "4b3efa60735e01cc6ecd8efe69fa8d36fc9062683abcc2a3bd993a87da053dd6",
+              "size": 9252
+            },
+            {
+              "n": 43,
+              "name": "page-43.png",
+              "sha256": "60ffadee06bd68c50b9ae075a8abda616c4bca293a4fb440226c271c1ae59450",
+              "size": 46547
+            },
+            {
+              "n": 44,
+              "name": "page-44.png",
+              "sha256": "270fe4bdaf7950a3f8f07fb228724378c43dcb8bc2719768793dc74e5e6d6964",
+              "size": 10798
+            },
+            {
+              "n": 45,
+              "name": "page-45.png",
+              "sha256": "9fa9c1042161d1fcd347dd96e0440bd1a413a0600859f41d166b65eb1fa2a6b1",
+              "size": 44058
+            },
+            {
+              "n": 46,
+              "name": "page-46.png",
+              "sha256": "bf8e2c921cbb9bf9b15f4676671ace9103b43adcc2f5be0e83d2c8b80b3f6323",
+              "size": 108904
+            },
+            {
+              "n": 47,
+              "name": "page-47.png",
+              "sha256": "9b2a0020b5ccbc54062a49b8dc36ffb104de8de9123f677c7c2e79e3d8b97608",
+              "size": 48448
+            },
+            {
+              "n": 48,
+              "name": "page-48.png",
+              "sha256": "36196019a5bc5ea1e9d33543981e4e596a71a7dffcf01ab3fe11469f9cd9d55e",
+              "size": 10874
+            },
+            {
+              "n": 49,
+              "name": "page-49.png",
+              "sha256": "47b28e69bdb58b96205a531dab969725a64512b3dbc480782d79f443a2c3e794",
+              "size": 48484
+            },
+            {
+              "n": 50,
+              "name": "page-50.png",
+              "sha256": "c3b8bccf9d049a5b3f4975172f1bf886b620ab33fb55db79a41066409b62ab1a",
+              "size": 61200
+            },
+            {
+              "n": 51,
+              "name": "page-51.png",
+              "sha256": "091859f9a064da4dcdf4ea30d2029d2cb98ed8ad4ad4e6e5609d1b49b1837cf4",
+              "size": 43635
+            },
+            {
+              "n": 52,
+              "name": "page-52.png",
+              "sha256": "8479710ab85a0b9542f649aaf7ecba74f740850f756f5d47493f75392bf30a6f",
+              "size": 46568
+            },
+            {
+              "n": 53,
+              "name": "page-53.png",
+              "sha256": "1e3c7b70586d237f87f348a7d2bda1fb86f65a7bb9e4432ba2b204b0f2798d77",
+              "size": 64937
+            },
+            {
+              "n": 54,
+              "name": "page-54.png",
+              "sha256": "35c057a06f3a34263a86eef89b676ec98b9b38bac5a8b355aed50db0d81930ad",
+              "size": 88032
+            }
+          ],
+          "rendered": true,
+          "source": "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx"
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-c51e900a05a4/builds/bld-fd03f3781f23/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "number-small-rule",
+        "palette_id": "harbour",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T07:26:31Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "39ec7b1b47102f2e9f75f867967ce8e575e940569467fa1fbd8488a1873d9786",
+          "deck.resolved/brief.json": "f6bbe000d8e6a734bdd47e9e774977fec7476577ff4b48ce5297ee45ac5b2c3d",
+          "deck.resolved/content.json": "85fecc723c05e79ad46c2d508308d20d439be35ecd5e4a0238d5377033eb8486",
+          "deck.resolved/deck.json": "0fb9c77501e07a89e81e8d237e4865eb2619027e89bde718a2e1ffe0115272bd",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "4585d5d72b3fe7aa9ca3b42e07624ef2101219e5f7a5b8a684f5fff510ce705e",
+          "paper.resolved.json": "0cc0daa88b66cdefaccf4cc3b2aa5343961fd50fe4f8bfa0267c6e24bdfd12f2",
+          "paper.resolved/brief.json": "f6bbe000d8e6a734bdd47e9e774977fec7476577ff4b48ce5297ee45ac5b2c3d",
+          "paper.resolved/content.json": "85fecc723c05e79ad46c2d508308d20d439be35ecd5e4a0238d5377033eb8486",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "8305e9ee977caa0e178e4a3db711f2942a750844e1a417050dd84329cbbe91a7",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "4585d5d72b3fe7aa9ca3b42e07624ef2101219e5f7a5b8a684f5fff510ce705e",
+          "workbook.resolved.json": "0578d1b54726bcff7c3ec2f8448bc48d9b8ae29f72f938835b1c6e2bbe7e6667",
+          "workbook.resolved/brief.json": "f6bbe000d8e6a734bdd47e9e774977fec7476577ff4b48ce5297ee45ac5b2c3d",
+          "workbook.resolved/content.json": "85fecc723c05e79ad46c2d508308d20d439be35ecd5e4a0238d5377033eb8486",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "4585d5d72b3fe7aa9ca3b42e07624ef2101219e5f7a5b8a684f5fff510ce705e",
+          "workbook.resolved/workbook.json": "91d3c9584ca88e33a2e6ef65ca8527f2a92e5c66506560d650e82c7c3757d53f"
+        },
+        "outputs_sha256": {
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html": "311365006809330e073acb847fe0c6e44ed5863ec2420eb780c5ff9d4b5e4454",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.docx": "6bb1f234ca96ebdf08c68f33c735558324e1da0c484bac6702c1d935703bed3e",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx": "a913a547a7e4f97055827a9f922d468b5eeef698d8dc24175a8abf481d4c18ca",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx": "1f227b1dd42f48f55753b243e040984b089543adae0ae72b9ae2809ca15af3d3"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html",
+          "sha256": "311365006809330e073acb847fe0c6e44ed5863ec2420eb780c5ff9d4b5e4454",
+          "size": 637546
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.docx",
+          "sha256": "6bb1f234ca96ebdf08c68f33c735558324e1da0c484bac6702c1d935703bed3e",
+          "size": 375047
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx",
+          "sha256": "a913a547a7e4f97055827a9f922d468b5eeef698d8dc24175a8abf481d4c18ca",
+          "size": 192099
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx",
+          "sha256": "1f227b1dd42f48f55753b243e040984b089543adae0ae72b9ae2809ca15af3d3",
+          "size": 853092
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 9: is the title a full-sentence assertion? \"The estate holds 174.3 TiB, nearly all of it in object storage and file shares\"",
+          "slide 11: is the title a full-sentence assertion? \"Cold buckets, duplicate candidates and unreadable buckets define the review list\"",
+          "slide 12: dense (430 tokens); consider splitting",
+          "slide 13: dense (212 tokens); consider splitting",
+          "slide 14: dense (571 tokens); consider splitting",
+          "slide 15: dense (571 tokens); consider splitting",
+          "slide 16: dense (452 tokens); consider splitting",
+          "slide 17: dense (212 tokens); consider splitting",
+          "slide 18: dense (282 tokens); consider splitting",
+          "slide 19: dense (282 tokens); consider splitting",
+          "slide 22: is the title a full-sentence assertion? \"The three priced moves differ sharply in size and in the check each needs\"",
+          "slide 25: is the title a full-sentence assertion? \"A few large databases hold nearly all database bytes, so cleanup should start there\"",
+          "slide 26: is the title a full-sentence assertion? \"Rows need completeness repair and de-identification or aggregation before products use them\"",
+          "slide 29: is the title a full-sentence assertion? \"Folder-language agreement varies by folder, so language checks must precede any packaging\"",
+          "slide 31: dense (251 tokens); consider splitting",
+          "slide 32: dense (263 tokens); consider splitting",
+          "slide 35: is the title a full-sentence assertion? \"Even on scripted days, no station averages a full day of bulletin hours\"",
+          "slide 37: dense (296 tokens); consider splitting",
+          "slide 38: dense (234 tokens); consider splitting",
+          "slide 39: dense (236 tokens); consider splitting",
+          "slide 40: dense (257 tokens); consider splitting",
+          "slide 41: dense (255 tokens); consider splitting",
+          "slide 46: dense (874 tokens); consider splitting",
+          "slide 47: dense (232 tokens); consider splitting",
+          "slide 49: is the title a full-sentence assertion? \"Database ratios, unreadable buckets and file-share duplication remain unmeasured\"",
+          "slide 50: dense (297 tokens); consider splitting",
+          "slide 51: is the title a full-sentence assertion? \"Verify cold data first, close the gaps, then prepare two products\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
     }
   ],
   "commission_id": "com-c51e900a05a4",
   "content_id": "estate-intelligence-eij-1b359b3cbd2e-estatewide",
   "created_at": "2026-10-02T07:30:55Z",
   "created_by": "6ab56dd48894abb269135ca2",
-  "current_content_version": 3,
+  "current_content_version": 4,
   "economics": {
-    "authoring_tokens_total": 210333,
-    "builds_total": 3,
+    "authoring_tokens_total": 317539,
+    "builds_total": 4,
     "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
-    "renders_total": 4,
+    "renders_total": 6,
     "rerender_authoring_tokens": 0
   },
   "frame_ref": "FR-strategy-decide-v1",
@@ -1126,8 +1615,8 @@
     "R07": {
       "binding": "platform",
       "kind": "m9j",
-      "platform_ref": "m9j-8cf6702f8718",
-      "resolves_to": "Served text language model m9j-74af7cef0a85 readings of the staged transcripts: jobs m9j-8cf6702f8718 (399 transcripts read, 3939 present)",
+      "platform_ref": "m9j-2d43ed6cf567",
+      "resolves_to": "Served text language model m9j-74af7cef0a85 readings of the staged transcripts: jobs m9j-2d43ed6cf567, m9j-8cf6702f8718 (2,245 transcripts read, 3939 present)",
       "status": "completed",
       "verified": true
     },
@@ -1138,10 +1627,14 @@
       "resolves_to": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
       "status": "completed",
       "verified": true
+    },
+    "R09": {
+      "binding": "declared",
+      "resolves_to": "Model role assignments evaluated 2026-10-02: integration model catalogue plus published task benchmarks reviewed on the day; planner/reviewer families kept distinct so the review does not share the planner's blind spots. Not claimed: no independent head-to-head benchmark was run on owner data; assignments are disclosed configuration, re-evaluated when a role under-performs on its own gate"
     }
   },
   "release": {
-    "reason": "build bld-fdb26967b08a byte-identical across two builds; validate and QA PASS",
+    "reason": "build bld-fd03f3781f23 byte-identical across two builds; validate and QA PASS",
     "state": "clear"
   },
   "revisions": [],
@@ -1154,8 +1647,8 @@
     "workbook.json"
   ],
   "tenant_id": "RMS",
-  "title": "RMS estate: what is held, what it costs, what to do first",
-  "updated_at": "2026-10-02T11:42:19Z",
+  "title": "Estate-wide intelligence: cut, fix and prepare first",
+  "updated_at": "2026-10-02T13:08:33Z",
   "verdict_id": "V-2026-10-02-eij-1b359b3cbd2e",
   "versions": [
     {
@@ -1175,6 +1668,12 @@
       "by": "6ab56dd48894abb269135ca2",
       "reason": "authored by the frontier writer claude-sonnet-5-5 under the content manager gate",
       "version": 3
+    },
+    {
+      "at": "2026-10-02T13:07:56Z",
+      "by": "akki-autopilot",
+      "reason": "authored by the frontier writer claude-sonnet-5-5 under the content manager gate",
+      "version": 4
     }
   ],
   "voice": "strategy-house"

@@ -1,0 +1,89 @@
+[build] resolved ['deck', 'paper', 'workbook']; look harbour/cambria-calibri
+{
+  "blockers": [],
+  "review": [
+    "slide 9: is the title a full-sentence assertion? \"The estate holds 174.3 TiB, nearly all of it in object storage and file shares\"",
+    "slide 11: is the title a full-sentence assertion? \"Cold buckets, duplicate candidates and unreadable buckets define the review list\"",
+    "slide 12: dense (430 tokens); consider splitting",
+    "slide 13: dense (212 tokens); consider splitting",
+    "slide 14: dense (571 tokens); consider splitting",
+    "slide 15: dense (571 tokens); consider splitting",
+    "slide 16: dense (452 tokens); consider splitting",
+    "slide 17: dense (212 tokens); consider splitting",
+    "slide 18: dense (282 tokens); consider splitting",
+    "slide 19: dense (282 tokens); consider splitting",
+    "slide 22: is the title a full-sentence assertion? \"The three priced moves differ sharply in size and in the check each needs\"",
+    "slide 25: is the title a full-sentence assertion? \"A few large databases hold nearly all database bytes, so cleanup should start there\"",
+    "slide 26: is the title a full-sentence assertion? \"Rows need completeness repair and de-identification or aggregation before products use them\"",
+    "slide 29: is the title a full-sentence assertion? \"Folder-language agreement varies by folder, so language checks must precede any packaging\"",
+    "slide 31: dense (251 tokens); consider splitting",
+    "slide 32: dense (263 tokens); consider splitting",
+    "slide 35: is the title a full-sentence assertion? \"Even on scripted days, no station averages a full day of bulletin hours\"",
+    "slide 37: dense (296 tokens); consider splitting",
+    "slide 38: dense (234 tokens); consider splitting",
+    "slide 39: dense (236 tokens); consider splitting",
+    "slide 40: dense (257 tokens); consider splitting",
+    "slide 41: dense (255 tokens); consider splitting",
+    "slide 46: dense (874 tokens); consider splitting",
+    "slide 47: dense (232 tokens); consider splitting",
+    "slide 49: is the title a full-sentence assertion? \"Database ratios, unreadable buckets and file-share duplication remain unmeasured\"",
+    "slide 50: dense (297 tokens); consider splitting",
+    "slide 51: is the title a full-sentence assertion? \"Verify cold data first, close the gaps, then prepare two products\"",
+    "Read only the titles in order: do they tell the whole story?",
+    "Does each exhibit prove its title, or merely decorate it?",
+    "Does the paper read as an argument when read unattended, without the deck?",
+    "Are the yellow key assumptions the ones the board would want to change?"
+  ],
+  "status": "PASS"
+}
+[build] recalc: success
+[build] frozen: estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html=311365006809, estate-intelligence-eij-1b359b3cbd2e-estatewide.docx=6bb1f234ca96, estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx=a913a547a7e4, estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx=1f227b1dd42f
+{
+  "blockers": [],
+  "status": "PASS"
+}
+[build] resolved ['deck', 'paper', 'workbook']; look harbour/cambria-calibri
+{
+  "blockers": [],
+  "review": [
+    "slide 9: is the title a full-sentence assertion? \"The estate holds 174.3 TiB, nearly all of it in object storage and file shares\"",
+    "slide 11: is the title a full-sentence assertion? \"Cold buckets, duplicate candidates and unreadable buckets define the review list\"",
+    "slide 12: dense (430 tokens); consider splitting",
+    "slide 13: dense (212 tokens); consider splitting",
+    "slide 14: dense (571 tokens); consider splitting",
+    "slide 15: dense (571 tokens); consider splitting",
+    "slide 16: dense (452 tokens); consider splitting",
+    "slide 17: dense (212 tokens); consider splitting",
+    "slide 18: dense (282 tokens); consider splitting",
+    "slide 19: dense (282 tokens); consider splitting",
+    "slide 22: is the title a full-sentence assertion? \"The three priced moves differ sharply in size and in the check each needs\"",
+    "slide 25: is the title a full-sentence assertion? \"A few large databases hold nearly all database bytes, so cleanup should start there\"",
+    "slide 26: is the title a full-sentence assertion? \"Rows need completeness repair and de-identification or aggregation before products use them\"",
+    "slide 29: is the title a full-sentence assertion? \"Folder-language agreement varies by folder, so language checks must precede any packaging\"",
+    "slide 31: dense (251 tokens); consider splitting",
+    "slide 32: dense (263 tokens); consider splitting",
+    "slide 35: is the title a full-sentence assertion? \"Even on scripted days, no station averages a full day of bulletin hours\"",
+    "slide 37: dense (296 tokens); consider splitting",
+    "slide 38: dense (234 tokens); consider splitting",
+    "slide 39: dense (236 tokens); consider splitting",
+    "slide 40: dense (257 tokens); consider splitting",
+    "slide 41: dense (255 tokens); consider splitting",
+    "slide 46: dense (874 tokens); consider splitting",
+    "slide 47: dense (232 tokens); consider splitting",
+    "slide 49: is the title a full-sentence assertion? \"Database ratios, unreadable buckets and file-share duplication remain unmeasured\"",
+    "slide 50: dense (297 tokens); consider splitting",
+    "slide 51: is the title a full-sentence assertion? \"Verify cold data first, close the gaps, then prepare two products\"",
+    "Read only the titles in order: do they tell the whole story?",
+    "Does each exhibit prove its title, or merely decorate it?",
+    "Does the paper read as an argument when read unattended, without the deck?",
+    "Are the yellow key assumptions the ones the board would want to change?"
+  ],
+  "status": "PASS"
+}
+[build] recalc: success
+[build] frozen: estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html=311365006809, estate-intelligence-eij-1b359b3cbd2e-estatewide.docx=6bb1f234ca96, estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx=a913a547a7e4, estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx=1f227b1dd42f
+{
+  "blockers": [],
+  "status": "PASS"
+}
+[prove] byte-identical across two builds: 4 outputs

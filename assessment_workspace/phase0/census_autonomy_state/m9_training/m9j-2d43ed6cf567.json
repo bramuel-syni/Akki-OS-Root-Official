@@ -428,7 +428,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-2d43ed6cf567",
   "pid": 772331
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-31147dbd6cb6",
@@ -441,32 +441,187 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_lab_text_lid_daemonised:pid=772331"
+  },
+  {
+   "row_id": "led-d0f26ee99e85",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_lab_text_lid_completed"
   }
  ],
  "code_sha256": "d00e0e20ba96e76834f8d30f6a12e7689549c27e2a4917aa24d9c8cd71541a3f",
  "started_at": "2026-10-02T10:20:21.442067Z",
  "last_status_rpc": {
-  "at": "2026-10-02T12:00:22.479509Z",
+  "at": "2026-10-02T13:00:14.045629Z",
   "rc": 0,
-  "receipt_id": "gpurcp-6fc767603a48"
+  "receipt_id": "gpurcp-f8a8b2a3ea53"
  },
  "remote_state": {
   "phase": "lab_text_lid",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-02T10:20:21Z",
   "progress": {
    "stage": "classifying transcripts through the served text model",
-   "files": 1226,
+   "files": 1826,
    "of": 3540,
-   "elapsed_s": 5977
+   "elapsed_s": 8911
   },
   "stages": {},
   "events": [],
   "job_id": "m9j-2d43ed6cf567",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-02T12:00:00Z"
+  "updated_at": "2026-10-02T12:50:25Z",
+  "finished_at": "2026-10-02T12:50:25Z",
+  "receipt_sha256": "e86b142ac1388b63daa89ec840a8c4ac38da09279997394455da0be60fd32bfd"
  },
  "worker_log_tail": "",
- "process_alive": true
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-2d43ed6cf567",
+  "phase": "lab_text_lid",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-02T10:20:21Z",
+  "code_sha256": "d00e0e20ba96e76834f8d30f6a12e7689549c27e2a4917aa24d9c8cd71541a3f",
+  "status": "completed",
+  "result": {
+   "scope": "transcripts of the authorized staged corpus on this host",
+   "evidence_class": "served_text_model_readings",
+   "model": {
+    "served_port": 8611,
+    "artefact_sha256_seen": [
+     "e973b373d27f9f5d5fd8d15cc5cd7e4b8ccca5de566b919dfdd7c235c70ca969"
+    ]
+   },
+   "files": 3540,
+   "read": 1846,
+   "not_reached": 1694,
+   "skipped_already_read": 399,
+   "interleaved": true,
+   "per_language": {
+    "guz": {
+     "files": 299,
+     "chars": 1780294,
+     "words": 253025,
+     "units": 1340,
+     "judged_units": 1340,
+     "predicted_language_share": {
+      "guz": 0.997,
+      "swa": 0.003
+     },
+     "agrees_with_folder_label": 0.997,
+     "files_top_language_matches_folder": 298
+    },
+    "kam": {
+     "files": 298,
+     "chars": 1058430,
+     "words": 173388,
+     "units": 851,
+     "judged_units": 851,
+     "predicted_language_share": {
+      "kam": 0.9965,
+      "swa": 0.0024,
+      "kln": 0.0012
+     },
+     "agrees_with_folder_label": 0.9965,
+     "files_top_language_matches_folder": 298
+    },
+    "kik": {
+     "files": 298,
+     "chars": 1767236,
+     "words": 272741,
+     "units": 1323,
+     "judged_units": 1323,
+     "predicted_language_share": {
+      "kik": 0.9932,
+      "swa": 0.0053,
+      "luo": 0.0015
+     },
+     "agrees_with_folder_label": 0.9932,
+     "files_top_language_matches_folder": 296
+    },
+    "kln": {
+     "files": 295,
+     "chars": 4674494,
+     "words": 747249,
+     "units": 3258,
+     "judged_units": 3258,
+     "predicted_language_share": {
+      "kln": 0.9899,
+      "swa": 0.0095,
+      "guz": 0.0006
+     },
+     "agrees_with_folder_label": 0.9899,
+     "files_top_language_matches_folder": 290
+    },
+    "luo": {
+     "files": 298,
+     "chars": 2347383,
+     "words": 417575,
+     "units": 1717,
+     "judged_units": 1717,
+     "predicted_language_share": {
+      "luo": 0.9988,
+      "kam": 0.0006,
+      "kik": 0.0006
+     },
+     "agrees_with_folder_label": 0.9988,
+     "files_top_language_matches_folder": 298
+    },
+    "lwg": {
+     "files": 60,
+     "chars": 491139,
+     "words": 73194,
+     "units": 356,
+     "judged_units": 356,
+     "predicted_language_share": {
+      "lwg": 0.9831,
+      "swa": 0.014,
+      "luo": 0.0028
+     },
+     "agrees_with_folder_label": 0.9831,
+     "files_top_language_matches_folder": 59
+    },
+    "swa": {
+     "files": 298,
+     "chars": 2599230,
+     "words": 411682,
+     "units": 1884,
+     "judged_units": 1884,
+     "predicted_language_share": {
+      "swa": 0.9958,
+      "lwg": 0.0016,
+      "kik": 0.0016,
+      "luo": 0.0011
+     },
+     "agrees_with_folder_label": 0.9958,
+     "files_top_language_matches_folder": 298
+    }
+   },
+   "compute": {
+    "wall_seconds": 9003.8,
+    "cap_gpu_hours": 2.5,
+    "note": "served adapter already resident on its GPU; this job adds inference load only"
+   },
+   "compact_rows_sha256": "b2128e0fffe2eaf231817d5fa1ed2e0974516fa921240eb1ec5057751d9469fa",
+   "compact_rows_bytes": 349275,
+   "training_started": false,
+   "raw_media_exported": false,
+   "paths_exported": false
+  },
+  "finished_at": "2026-10-02T12:50:25Z",
+  "receipt_sha256": "e86b142ac1388b63daa89ec840a8c4ac38da09279997394455da0be60fd32bfd",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-02T12:50:25Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-2d43ed6cf567",
+  "started_at_utc": "2026-10-02T10:20:21.442067Z",
+  "finished_at_utc": "2026-10-02T12:50:25Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-2d43ed6cf567"
+ }
 }
