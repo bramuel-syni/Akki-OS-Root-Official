@@ -43,6 +43,32 @@ def pull_seam_hop():
             'hostname_expected':os.environ['CENSUS_JUMP_HOSTNAME'],'python':os.environ['CENSUS_REMOTE_PYTHON'],
             'known_hosts':Path(os.environ['AKKI_CENSUS_JUMP_KNOWN_HOSTS']).read_text()}
 
+def content_settings(source=None):
+    """Full-content pass bindings: the admitted audio-language and music models (by job id and artefact hash), the GPU venv that
+    hosts them, and the host-volume directories for the durable inventory/rows and the purged scratch. No caps: the only bound is
+    the engine's bounded run, which the resumable frontier chains until every readable object is read."""
+    from services.training_lab import estate_language
+    models=estate_language._models()
+    nas=source=='rms_nas'   # the share is read through the jump host's SFTP: few sessions, bandwidth-bound
+    return {'gpu_python':os.environ['M9_REMOTE_PYTHON'],'lab_corpus_root':os.environ['LANGUAGE_COGNITION_REMOTE_ROOT'],
+            'audio_model_dir':models['audio']['dir'],'audio_model_sha256':models['audio']['sha256'],'audio_model_job':estate_language.AUDIO_MODEL_JOB,
+            'music_model_path':models['music']['path'],'music_model_sha256':models['music']['sha256'],'music_model_job':estate_language.MUSIC_MODEL_JOB,
+            'state_dir':os.environ['CENSUS_CONTENT_STATE_DIR'],'scratch_dir':os.environ['CENSUS_CONTENT_SCRATCH_DIR'],'nas_root':os.environ['CENSUS_NAS_ROOT'],
+            'batch_size':256,'block_windows':2048,'download_workers':2 if nas else int(os.environ.get('CENSUS_CONTENT_DOWNLOAD_WORKERS','6')),'prefetch_bytes':(2 if nas else 4)<<30,
+            'priority_labels':_priority_labels(source),
+            'owner_order_ref':'owner order 2026-10-02: run the census with Akki and both GPU hosts for the entire estate; no shortcuts; read everything'}
+
+def _priority_labels(source):
+    """Stores with the most audio files (from the retained enumeration) are listed and read first; image/web buckets last."""
+    from services.census_autonomy.estate_intelligence_report import _latest_store_outcome
+    from services.census_autonomy.deep_content import AUDIO, VIDEO
+    outcome=_latest_store_outcome(source,'RMS') if source else None
+    rows=[]
+    for s in (outcome or {}).get('sources') or []:
+        formats=s.get('formats') or {}
+        rows.append((-sum(n for ext,n in formats.items() if ext in AUDIO),-sum(n for ext,n in formats.items() if ext in VIDEO),-(s.get('volume_bytes') or 0),s['label']))
+    return [r[3] for r in sorted(rows)]
+
 def execute_source(run_id,tenant,source,lawful_hash,deadline):
     from services.training_runner.ssh_seam import list_hosts
     result={'protocol':'akki-census-deep-v1','census_run_id':run_id,'tenant_id':tenant,'source_id':source,
@@ -57,6 +83,10 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
         if runtime!='non_gpu_jump' and runtime not in hosts: raise ValueError('UNRECOGNIZED_WORKER')
         config=connector_for(run_id,tenant,source,lawful_hash)
         if cursor.get('source_refs'): config['source_refs']=cursor['source_refs']
+        # Full-content measurement (owner order 2026-10-02): the GPU worker of record reads every media object; models and host paths bind here.
+        if cursor.get('measurement')=='content_full':
+            if runtime=='non_gpu_jump': raise ValueError('CONTENT_MEASUREMENT_REQUIRES_GPU_WORKER')
+            config['content']=content_settings(source)
         # Pull seam: a GPU worker of record executes jump-governed sources through the jump host.
         if runtime!='non_gpu_jump' and source in JUMP_GOVERNED_SOURCES: config['pull_via']=pull_seam_hop()
         remaining=int(deadline-time.time())

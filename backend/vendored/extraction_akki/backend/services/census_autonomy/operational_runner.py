@@ -48,6 +48,10 @@ def _supervise_pass(current):
             files += s.get("file_count") or 0
             objects += s.get("object_count") or 0
             volume += s.get("volume_bytes") or 0
+            # Full-content passes progress by objects read and bytes verified after the listing stands still.
+            content = s.get("content") or {}
+            objects += content.get("objects_read") or 0
+            volume += content.get("bytes_read") or 0
     job_id = _scope_job_id(current)
     ring = _progress_ring()
     now = datetime.now(timezone.utc)
@@ -87,7 +91,7 @@ def continue_if_resumable(current):
         return None
     successor, created = store.enqueue(current['tenant_id'], current['principal_id'], resumable,
                                        f"{current['census_run_id']}-continue",
-                                       current['lawful_basis_admit_ref'], current.get('worker_id'), current.get('source_refs'))
+                                       current['lawful_basis_admit_ref'], current.get('worker_id'), current.get('source_refs'), current.get('measurement'))
     if created:
         _inherit_scope(current, successor)
         store.save(successor)
@@ -107,7 +111,7 @@ def defer_if_scope_busy(current):
         return None
     successor, created = store.enqueue(current['tenant_id'], current['principal_id'], current['source_ids'],
                                        f"{current['census_run_id']}-busy{attempt}",
-                                       current['lawful_basis_admit_ref'], current.get('worker_id'), current.get('source_refs'))
+                                       current['lawful_basis_admit_ref'], current.get('worker_id'), current.get('source_refs'), current.get('measurement'))
     if created:
         _inherit_scope(current, successor)
         successor.update(busy_retry_attempt=attempt,

@@ -433,7 +433,7 @@ def _store_rows(outcome, kind, cold_after_days=365):
                      "last_write": last_dt.isoformat().replace("+00:00", "Z") if last_dt else None, "idle_days": idle_days,
                      "cold": bool(idle_days is not None and idle_days > cold_after_days and (s.get("volume_bytes") or 0) > 0),
                      "reason_code": s.get("reason_code"), "top_formats": [f"{ext} {n:,}" for ext, n in formats], "pending": s.get("directories_pending"),
-                     "content_measurement": s.get("content_measurement")})
+                     "content_measurement": s.get("content_measurement"), "content": s.get("content")})
     rows.sort(key=lambda r: -r["bytes"])
     return rows
 
@@ -463,9 +463,52 @@ def store_estate(tenant_id="RMS"):
                        "cold_sources": len(cold), "cold_bytes": sum(r["bytes"] for r in cold), "cold_bytes_label": _fmt_bytes(sum(r["bytes"] for r in cold)),
                        "blocked": [{"label": r["label"], "reason_code": r["reason_code"]} for r in blocked][:40],
                        "top_sources": rows[:12], "method": (outcome["sources"][0].get("method") if outcome["sources"] else None),
+                       "content": content_rollup(rows, source_id, tenant_id),
                        "duplication_note": ("Duplicate candidates are objects whose ETag+size fingerprint was already seen in the same store; duplicate bytes = candidates × mean object size of the bucket (estimate). Not proven byte duplicates."
                                             if fingerprinted else "This enumeration recorded no content fingerprints (stat/listing only), so duplication is unmeasured; sizes and dates were read, bodies were not.")}
     return stores
+
+
+def content_rollup(rows, source_id, tenant_id):
+    """Full-content census roll-up across every bucket/share that carries a content measurement (owner order 2026-10-02): byte-level
+    read truth (listed, read, verified, denied, archived, pending) and the model readings as detections — hours decoded, speech,
+    music, silence and speech hours by language — plus the live cadence (runs in flight, throughput, estimate to finish)."""
+    from services.census_autonomy import operational_store as store
+    measured = [r for r in rows if r.get("content")]
+    cadence = [run for run in store.runs(tenant_id) if run.get("measurement") == "content_full" and source_id in (run.get("source_ids") or [])
+               and (run.get("status") == "PENDING" or run.get("continuation_run_id"))]
+    live = [{"census_run_id": run["census_run_id"], "worker_id": run.get("worker_id"), "status": run["status"], "stage": run.get("stage"), "reason_code": run.get("reason_code"),
+             "scope_sources": len(run.get("source_refs") or []), "not_before": run.get("not_before"), "started_at": run.get("started_at"), "updated_at": run.get("updated_at")}
+            for run in cadence if run.get("status") == "PENDING"]
+    if not measured and not live:
+        return {"measured": False, "note": "No full-content pass has been commissioned for this store."}
+    total = lambda key: sum((r["content"].get(key) or 0) for r in measured)  # noqa: E731
+    languages = {}
+    for r in measured:
+        for code, hours in (r["content"].get("hours_by_language") or {}).items():
+            languages[code] = round(languages.get(code, 0) + hours, 3)
+    latest = [r["content"].get("this_run") or {} for r in measured if (r["content"].get("this_run") or {}).get("objects_read")]
+    mb_per_s = sum(t.get("mb_per_s") or 0 for t in latest)
+    pending_bytes = total("bytes_pending")
+    sources = sorted([{"label": r["label"], "access": r["content"].get("access"), "measurement": r["content"].get("measurement"), "media_objects": r["content"].get("media_objects"),
+                       "media_bytes": r["content"].get("media_bytes"), "objects_read": r["content"].get("objects_read"), "bytes_read": r["content"].get("bytes_read"), "bytes_verified": r["content"].get("bytes_verified"),
+                       "objects_pending": r["content"].get("objects_pending"), "bytes_pending": r["content"].get("bytes_pending"), "objects_denied": r["content"].get("objects_denied"), "bytes_denied": r["content"].get("bytes_denied"),
+                       "objects_archived": r["content"].get("objects_archived"), "bytes_archived": r["content"].get("bytes_archived"), "objects_failed": r["content"].get("objects_failed"), "failures": r["content"].get("failures"),
+                       "hours_decoded": r["content"].get("hours_decoded"), "hours_speech": r["content"].get("hours_speech"), "hours_music": r["content"].get("hours_music"), "hours_silence": r["content"].get("hours_silence"),
+                       "hours_by_language": dict(list((r["content"].get("hours_by_language") or {}).items())[:6]), "mean_confidence": r["content"].get("mean_confidence"), "quality": r["content"].get("quality"),
+                       "inventory_complete": r["content"].get("inventory_complete"), "prefixes": r["content"].get("prefixes")} for r in measured],
+                     key=lambda s: -(s["media_bytes"] or 0))
+    return {"measured": bool(measured), "sources": len(measured), "sources_readable": sum(1 for s in sources if s["access"] == "readable"), "sources_denied": sum(1 for s in sources if s["access"] == "denied"),
+            "sources_archived": sum(1 for s in sources if s["access"] == "archived"), "sources_complete": sum(1 for s in sources if s["measurement"] in ("full", "denied", "archived", "no_media")),
+            "media_objects": total("media_objects"), "media_bytes": total("media_bytes"), "objects_read": total("objects_read"), "bytes_read": total("bytes_read"), "bytes_verified": total("bytes_verified"),
+            "objects_denied": total("objects_denied"), "bytes_denied": total("bytes_denied"), "objects_archived": total("objects_archived"), "bytes_archived": total("bytes_archived"),
+            "objects_pending": total("objects_pending"), "bytes_pending": pending_bytes, "objects_failed": total("objects_failed"),
+            "hours_decoded": round(total("hours_decoded"), 2), "hours_speech": round(total("hours_speech"), 2), "hours_music": round(total("hours_music"), 2), "hours_silence": round(total("hours_silence"), 2),
+            "hours_by_language": dict(sorted(languages.items(), key=lambda kv: -kv[1])), "windows": total("windows"),
+            "throughput_mb_per_s": round(mb_per_s, 1), "eta_hours": round(pending_bytes / (mb_per_s * 1e6) / 3600, 1) if mb_per_s and pending_bytes else None,
+            "live_runs": live, "source_rows": sources,
+            "evidence_class": {"bytes": "fact (every object read in full; sha256 and size checked against the listing, ETag where single-part)",
+                               "hours": "detected (admitted music detector and current audio language model on every two-second window; not human labels; 'clean' is a downstream judgement)"}}
 
 
 def store_strategies(stores):
@@ -783,6 +826,11 @@ def report_for(job_id, rebuild=False, cached_only=False):
     if path.exists() and not rebuild:
         cached = json.loads(path.read_text())
         if cached.get("report_version") == REPORT_VERSION:
+            # The object/file store state is a live read of retained receipts (the full-content census grows run by run); the rest is banked.
+            try:
+                cached["stores"] = store_estate(job.get("tenant_id") or "RMS")
+            except (OSError, ValueError, KeyError):
+                pass
             return price_strategies(cached)
     if cached_only and not detail_cached(job_id):
         return None

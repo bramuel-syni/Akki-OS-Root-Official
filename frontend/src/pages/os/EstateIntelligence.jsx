@@ -13,6 +13,7 @@ import { EstateHeadline } from '@/components/estate/EstateHeadline';
 import { EstateDatabases } from '@/components/estate/EstateDatabases';
 import { EstateDuplication } from '@/components/estate/EstateDuplication';
 import { EstateStores } from '@/components/estate/EstateStores';
+import { EstateContentCensus } from '@/components/estate/EstateContentCensus';
 import { EstateQuality } from '@/components/estate/EstateQuality';
 import { EstateProducts } from '@/components/estate/EstateProducts';
 import { EstateStrategies } from '@/components/estate/EstateStrategies';
@@ -60,6 +61,7 @@ export default function EstateIntelligence() {
       {!report && !loading && !error && <div className="estate-empty" data-testid="estate-empty">No verified report yet. <a href="/os/admin/estate?app=registry" data-testid="estate-empty-registry">Open Registry</a> to review census coverage.</div>}
       {report && <>
         <EstateHeadline report={report} />
+        <PresentationDetails id="estate-content-census" title="Full-content audio census · every file read" open><EstateContentCensus report={report} /></PresentationDetails>
         <EstateStrategies report={report} />
         <PresentationDetails id="estate-duplication-evidence" title="Compare duplicate table locations"><EstateDuplication report={report} /></PresentationDetails>
         <PresentationDetails id="estate-storage-evidence" title="Object stores & file shares"><EstateStores report={report} /></PresentationDetails>

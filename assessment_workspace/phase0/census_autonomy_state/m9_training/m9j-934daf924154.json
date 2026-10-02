@@ -63,9 +63,9 @@
  "code_sha256": "0a5b6a08d261039dbe51ba7c26c13c46ddc3cf8764e01621a2b96d4f7142c5bc",
  "started_at": "2026-09-30T07:12:43.345806Z",
  "last_status_rpc": {
-  "at": "2026-10-02T15:45:05.336826Z",
+  "at": "2026-10-02T17:30:14.234065Z",
   "rc": 0,
-  "receipt_id": "gpurcp-ab814d663725"
+  "receipt_id": "gpurcp-e6835391884f"
  },
  "remote_state": {
   "phase": "serve",
@@ -91,7 +91,7 @@
    "requests": 2587,
    "refused_requests": 0,
    "revoked": false,
-   "uptime_seconds": 203526
+   "uptime_seconds": 209827
   },
   "stages": {
    "serving_started": {
@@ -105,7 +105,7 @@
   "job_id": "m9j-934daf924154",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-02T15:45:01Z"
+  "updated_at": "2026-10-02T17:30:02Z"
  },
  "worker_log_tail": "red during processing of request from ('127.0.0.1', 52622)\nTraceback (most recent call last):\n  File \"/usr/lib/python3.12/socketserver.py\", line 692, in process_request_thread\n    self.finish_request(request, client_address)\n  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n    self.RequestHandlerClass(request, client_address, self)\n  File \"/usr/lib/python3.12/socketserver.py\", line 761, in __init__\n    self.handle()\n  File \"/usr/lib/python3.12/http/server.py\", line 436, in handle\n    self.handle_one_request()\n  File \"/usr/lib/python3.12/http/server.py\", line 424, in handle_one_request\n    method()\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-934daf924154/worker.zip/services/training_runner/m9_worker.py\", line 1242, in do_POST\n    self._send(200, {\"results\": rows, \"lineage\": lineage, \"seconds\": round(dt, 4)})\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-934daf924154/worker.zip/services/training_runner/m9_worker.py\", line 1215, in _send\n    self.send_response(code); self.send_header(\"Content-Type\", \"application/json\"); self.send_header(\"Content-Length\", str(len(raw))); self.end_headers(); self.wfile.write(raw)\n                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socketserver.py\", line 840, in write\n    self._sock.sendall(b)\nBrokenPipeError: [Errno 32] Broken pipe\n----------------------------------------",
  "process_alive": true

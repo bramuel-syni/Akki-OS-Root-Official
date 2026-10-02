@@ -1,0 +1,36 @@
+{
+  "census_run_id": "cr-0fe55d2e9dee",
+  "source_id": "rms_nas",
+  "at_utc": "2026-10-02T17:15:37.069593+00:00",
+  "stage": "deep_external",
+  "worker_status": "blocked",
+  "worker": {
+    "code_sha256": "d9f0fc3217053d02271149053be5b07b36f6abee901220a87ddecb74c0dbbf3a",
+    "execution_mode": "cpu",
+    "gpu_compute_hours": 0,
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "runtime_id": "akki-vm-ii",
+    "telemetry": {
+      "gpu_devices": [
+        {
+          "memory_mb": 143771,
+          "name": "NVIDIA H200",
+          "utilization_percent": 0,
+          "uuid": "GPU-c59c154d-f308-f79f-09fd-19ecae790b03"
+        },
+        {
+          "memory_mb": 143771,
+          "name": "NVIDIA H200",
+          "utilization_percent": 0,
+          "uuid": "GPU-12834670-6217-3f68-0414-905ce8699a95"
+        }
+      ],
+      "hostname": "akki-vm-ii",
+      "python": "3.12.3"
+    },
+    "wall_seconds": 1.619,
+    "transport_verified": true,
+    "server_key_sha256": "d8d266b8299717b3b74e4c1bd3dd7c9f6d20692c85ec254dee5f8713713fb82e"
+  },
+  "reason_code": "ENUMERATION_ALREADY_RUNNING"
+}

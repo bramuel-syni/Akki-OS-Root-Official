@@ -22,6 +22,11 @@ MODULES = [
     'services/census_autonomy/deep_files.py',
     'services/census_autonomy/deep_pull.py',
     'services/census_autonomy/deep_bundle.py',
+    # Full-content pass (owner order 2026-10-02): orchestrator in the census runtime, GPU reader in the language-cognition venv.
+    'services/census_autonomy/deep_content.py',
+    'services/training_lab/estate_language_worker.py',
+    'services/training_lab/music_detector_worker.py',
+    'services/audio_plane_v1/corrective_model.py',
 ]
 
 def build_bundle(modules=MODULES):

@@ -1,0 +1,464 @@
+{
+  "census_run_id": "cr-6d6962d22324",
+  "tenant_id": "RMS",
+  "completed_at_utc": "20261002T170558Z",
+  "payload": {
+    "protocol": "akki-census-aggregate-v1",
+    "outcomes": [
+      {
+        "census_run_id": "cr-6d6962d22324",
+        "database_count": 0,
+        "execution_location": "akki_host",
+        "observed_at": "2026-10-02T17:05:58.391697+00:00",
+        "protocol": "akki-census-deep-v1",
+        "row_count_estimate": 0,
+        "source_id": "rms_obs",
+        "source_rows_returned": 0,
+        "sources": [
+          {
+            "content": {
+              "abstained_windows": 26,
+              "access": "readable",
+              "access_probe": {
+                "readable": 6
+              },
+              "audio_seconds": 4611.6,
+              "bytes_archived": 0,
+              "bytes_denied": 0,
+              "bytes_pending": 0,
+              "bytes_read": 36940871,
+              "bytes_verified": 36940871,
+              "detections": [
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.media_bytes=36940871",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.bytes_read=36940871",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.bytes_verified=36940871",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.bytes_denied=0",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.bytes_archived=0",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.bytes_pending=0",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.objects_read=114",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.objects_denied=0",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "byte-read:sha256+size+etag",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "content.objects_archived=0",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "music-detector:0fea3eee039307fe",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "media_composition.music_share=0.9220",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "music-detector:0fea3eee039307fe",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "media_composition.speech_share=0.0780",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 1.0,
+                  "detector_version": "rms-threshold:1e-4",
+                  "evidence_class": "fact",
+                  "seed": null,
+                  "signal_name": "media_composition.silence_share=0.0000",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.abstained_share=0.1469",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.kik.speech_hours=0.041",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.kik.judged_share=0.4887",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.luo.speech_hours=0.019",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.luo.judged_share=0.2265",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.swa.speech_hours=0.016",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.swa.judged_share=0.1907",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.kam.speech_hours=0.006",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.kam.judged_share=0.0715",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.kln.speech_hours=0.002",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                },
+                {
+                  "confidence": 0.8125,
+                  "detector_version": "audio-language:5c1feb8497e849ae",
+                  "evidence_class": "detected",
+                  "seed": null,
+                  "signal_name": "language.kln.judged_share=0.0238",
+                  "source_ref": "source_32441fc70db17bc76f946e94"
+                }
+              ],
+              "device_reports": [
+                {
+                  "audio_hours_per_hour": 131.5,
+                  "audio_seconds": 2305.7,
+                  "bytes": 18464044,
+                  "device": 0,
+                  "elapsed_s": 17,
+                  "errors": 0,
+                  "exit_code": 0,
+                  "files": 57,
+                  "finished": true,
+                  "gpu_peak_gb": 0.42,
+                  "mb_per_s": 1.05,
+                  "not_reached": 0,
+                  "of": 57,
+                  "stage": "queue complete",
+                  "windows": 1133
+                },
+                {
+                  "audio_hours_per_hour": 135.1,
+                  "audio_seconds": 2305.8,
+                  "bytes": 18476827,
+                  "device": 1,
+                  "elapsed_s": 17,
+                  "errors": 0,
+                  "exit_code": 0,
+                  "files": 57,
+                  "finished": true,
+                  "gpu_peak_gb": 0.42,
+                  "mb_per_s": 1.08,
+                  "not_reached": 0,
+                  "of": 57,
+                  "stage": "queue complete",
+                  "windows": 1135
+                }
+              ],
+              "devices": 2,
+              "failures": {},
+              "files_top_language": {
+                "kam": 4,
+                "kik": 16,
+                "luo": 10,
+                "swa": 8
+              },
+              "hours_by_language": {
+                "kam": 0.006,
+                "kik": 0.041,
+                "kln": 0.002,
+                "luo": 0.019,
+                "swa": 0.016
+              },
+              "hours_decoded": 1.281,
+              "hours_music": 1.162,
+              "hours_silence": 0.0,
+              "hours_speech": 0.098,
+              "inventory_complete": true,
+              "judged_windows": 151,
+              "mean_confidence": 0.8125,
+              "measurement": "full",
+              "media_audio_objects": 114,
+              "media_bytes": 36940871,
+              "media_objects": 114,
+              "media_video_objects": 0,
+              "models": {
+                "audio_language": {
+                  "artefact_dir": "lcj-7128593897d4",
+                  "sha256": "5c1feb8497e849ae01c15b8355aad7a05c2ac0b81c21aa93425902719a6cf552"
+                },
+                "music_detector": {
+                  "artefact_path": "artefact",
+                  "sha256": "0fea3eee039307fe3d92d4a9489357642e53461598301697ab3a57e419654a8c"
+                }
+              },
+              "music_windows": 2091,
+              "objects_archived": 0,
+              "objects_denied": 0,
+              "objects_failed": 0,
+              "objects_pending": 0,
+              "objects_read": 114,
+              "prefixes": [
+                {
+                  "bytes_read": 35657019,
+                  "hours_by_language": {
+                    "kam": 0.006,
+                    "kik": 0.041,
+                    "kln": 0.002,
+                    "luo": 0.019,
+                    "swa": 0.016
+                  },
+                  "hours_decoded": 1.236,
+                  "hours_music": 1.118,
+                  "hours_speech": 0.098,
+                  "objects": 110,
+                  "prefix": "6981",
+                  "top_language": "kik"
+                },
+                {
+                  "bytes_read": 652516,
+                  "hours_by_language": {},
+                  "hours_decoded": 0.023,
+                  "hours_music": 0.022,
+                  "hours_speech": 0.0,
+                  "objects": 2,
+                  "prefix": "6982",
+                  "top_language": null
+                },
+                {
+                  "bytes_read": 631336,
+                  "hours_by_language": {},
+                  "hours_decoded": 0.022,
+                  "hours_music": 0.021,
+                  "hours_speech": 0.0,
+                  "objects": 2,
+                  "prefix": "6980",
+                  "top_language": null
+                }
+              ],
+              "quality": {
+                "channels": {
+                  "1": 114
+                },
+                "clipped_share": 0.00035,
+                "codecs": {
+                  "pcm_alaw": 104,
+                  "pcm_mulaw": 10
+                },
+                "formats_read": {
+                  ".wav": 114
+                },
+                "level_dbfs_mean": -14.16,
+                "sample_rates": {
+                  "8000": 114
+                }
+              },
+              "silence_windows": 0,
+              "source_kind": "object_store",
+              "speech_windows": 177,
+              "this_run": {
+                "audio_hours": 1.281,
+                "audio_hours_per_hour": 221.3,
+                "bytes_read": 36940871,
+                "gpu_seconds": 34,
+                "mb_per_s": 1.77,
+                "objects_read": 114,
+                "run_seconds": 20.8
+              },
+              "windows": 2268
+            },
+            "content_measurement": "full",
+            "database_count": 0,
+            "date_max": "2024-03-21T13:26:53.453000+00:00",
+            "date_min": "2024-03-21T13:26:03.692000+00:00",
+            "directories_complete": null,
+            "directories_pending": 0,
+            "duplicate_candidates": 1,
+            "enumeration": "full",
+            "epoch": 1,
+            "formats": {
+              ".csv": 5,
+              ".json": 179,
+              ".txt": 3,
+              ".wav": 114,
+              "no_extension": 2
+            },
+            "kind": "object_store",
+            "label": "skizaaudio",
+            "media_duration_seconds": 4611.6,
+            "media_failures": 0,
+            "media_samples": 114,
+            "method": "Full-content census on the admitted GPU host: every key listed (resumable inventory on the host volume), every media object read byte for byte and verified against the listing, decoded in full and judged on every consecutive two-second window by the admitted music detector and the current audio language model on every GPU of the host; per-object rows stay on the host; aggregates only in this receipt; successive bounded runs resume until every readable object is read. Objects the key cannot read are counted as denied or archived, never estimated.",
+            "object_count": 303,
+            "pages": 1,
+            "resumable": true,
+            "row_count_estimate": 0,
+            "runs_in_epoch": null,
+            "status": "complete",
+            "table_count": 0,
+            "volume_bytes": 44280582
+          }
+        ],
+        "status": "complete",
+        "table_count": 0,
+        "tenant_id": "RMS",
+        "worker": {
+          "code_sha256": "20d9f03e4d88890a2158af9e06f334da07d0a2f7d5c421c536b229bc56b048a0",
+          "execution_mode": "gpu",
+          "gpu_compute_hours": 0.0094,
+          "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+          "runtime_id": "akki-vm",
+          "telemetry": {
+            "gpu_devices": [
+              {
+                "memory_mb": 143771,
+                "name": "NVIDIA H200",
+                "utilization_percent": 0,
+                "uuid": "GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1"
+              },
+              {
+                "memory_mb": 143771,
+                "name": "NVIDIA H200",
+                "utilization_percent": 0,
+                "uuid": "GPU-e87acccb-7848-1573-98ae-fcf26b185c0b"
+              }
+            ],
+            "hostname": "akki-vm",
+            "python": "3.12.3"
+          },
+          "wall_seconds": 22.179,
+          "transport_verified": true,
+          "server_key_sha256": "69b1541556813e4a88cfe0b8edb8cb46f1301cef6811aa2f9fc3b5637154dd53"
+        },
+        "worker_receipt_id": "cwr-fffbfee08806435d7059ec30f09fbd69bd556cea4a8b17cbc4af6276ff6491e2",
+        "transport_diagnostic": {
+          "exit_code": 0,
+          "stdout_bytes": 9950,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "error_classes": []
+        }
+      }
+    ],
+    "registry_receipts": [
+      {
+        "record": {
+          "asset_ref": "census:RMS:cr-6d6962d22324:rms_obs",
+          "asset_class": "receipt",
+          "named_owner": {
+            "owner_id": "RMS",
+            "owner_class": "organisation",
+            "mandate_source": "CP-CENSUS-OPERATIONAL-V1; Canon-9 \u00a73"
+          },
+          "custody_class": "sensitive",
+          "freshness_stamp": {
+            "logged_date": "2026-10-02T17:05:58.391697+00:00",
+            "structural_signature": null
+          }
+        },
+        "receipt": {
+          "receipt_id": "receipt_cf77d3e7a78265ffc22c32e5",
+          "collection": "mtafiti_asset_registry_records",
+          "au_3b_defensible": false
+        }
+      }
+    ],
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "principal_id": "6ab56dd48894abb269135ca2"
+  }
+}

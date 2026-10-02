@@ -16,6 +16,8 @@ def publish(run,lawful_hash):
         added=[]
         for outcome in run.get('outcomes',[]):
             failed=[s for s in outcome.get('sources',[]) if s['status']=='blocked']
+            # A bucket the key may list but not read is an owner-answerable gap of the full-content census, banked once per bucket.
+            failed+=[{**s,'reason_code':s['content_reason_code']} for s in outcome.get('sources',[]) if s.get('content_reason_code') and s['status']!='blocked']
             if outcome['status']=='blocked' and not failed:
                 failed=[{'label':outcome['source_id'],'reason_code':outcome.get('reason_code','WORKER_UNAVAILABLE')}]
             failures=[{'host_label':s['label'],'reason_code':s.get('reason_code','SOURCE_CHECK_INCOMPLETE')} for s in failed if (outcome['source_id'],s['label']) not in known]

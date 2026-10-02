@@ -113,7 +113,7 @@ def submit(background: BackgroundTasks, body: dict = Body(...), actor=Depends(ce
                 raise ValueError("The current census budget does not permit a run.")
             path, _ = admission_path()
             row, fresh = store.enqueue(actor["tenant_id"], actor["principal_id"], sources,
-                                       body.get("idempotency_key", ""), str(path), body.get('worker_id'), body.get('source_refs'))
+                                       body.get("idempotency_key", ""), str(path), body.get('worker_id'), body.get('source_refs'), body.get('measurement'))
         except PermissionError as exc:
             raise HTTPException(403, str(exc)) from exc
         except (ValueError, TypeError) as exc:

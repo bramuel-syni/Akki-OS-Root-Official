@@ -22,11 +22,16 @@ def tenant_from_account(account):
 def validate_submission(body, tenant, roles):
     if not {"operator", "master_admin"}.intersection(roles):
         raise PermissionError("Only an admitted estate operator can commission a census.")
-    allowed = {"source_ids", "tenant_id", "idempotency_key", "worker_id", "source_refs"}
+    allowed = {"source_ids", "tenant_id", "idempotency_key", "worker_id", "source_refs", "measurement"}
     if set(body) - allowed:
         raise ValueError("Only admitted source references can be submitted. Credentials and execution commands are not accepted.")
     if body.get("tenant_id", tenant) != tenant:
         raise ValueError("The requested tenant does not match your admitted membership.")
+    if body.get('measurement') is not None:
+        if body['measurement'] not in ('enumeration', 'content_full'):
+            raise ValueError("Measurement must be 'enumeration' or 'content_full'.")
+        if body['measurement'] == 'content_full' and (body.get('worker_id') in (None, 'non_gpu_jump') or any(s not in ('rms_obs', 'rms_nas') for s in body.get('source_ids') or [])):
+            raise ValueError('Full-content measurement reads media on a GPU worker and applies to the object store and the NAS shares only.')
     if body.get('worker_id') is not None:
         from services.training_runner.ssh_seam import list_hosts
         if body['worker_id'] not in ['non_gpu_jump',*list_hosts()]:

@@ -73,12 +73,13 @@ def get(run_id, tenant):
     return row if row.get('tenant_id')==tenant else None
 
 
-def enqueue(tenant, principal, sources, key, lawful_ref, worker_id=None, source_refs=None):
+def enqueue(tenant, principal, sources, key, lawful_ref, worker_id=None, source_refs=None, measurement=None):
     if not re.fullmatch(r"[a-zA-Z0-9_-]{16,100}", key):
         raise ValueError("A valid idempotency key is required.")
     identity=[tenant, principal, sorted(sources)]
     if worker_id: identity.append(worker_id)
     if source_refs: identity.append(sorted(source_refs))
+    if measurement: identity.append('measurement='+measurement)
     fingerprint = hashlib.sha256(json.dumps(identity, separators=(",", ":")).encode()).hexdigest()
     with lock(f"submit:{tenant}:{principal}:{key}"):
         for row in runs(tenant):
@@ -90,6 +91,7 @@ def enqueue(tenant, principal, sources, key, lawful_ref, worker_id=None, source_
                       "idempotency_key": key, "fingerprint": fingerprint,
                       "lawful_basis_sha256": hashlib.sha256(Path(lawful_ref).read_bytes()).hexdigest()}
         if source_refs: descriptor['source_refs']=source_refs
+        if measurement: descriptor['measurement']=measurement
         # Recover a crash after the canonical enqueue but before the dispatch cursor write.
         job = next((j for j in engine.get_pending_scheduled_runs()
                     if j.get("tenant_id") == tenant and j.get("connect_source_descriptor") == descriptor), None)
@@ -97,7 +99,7 @@ def enqueue(tenant, principal, sources, key, lawful_ref, worker_id=None, source_
         doc = {"census_run_id": run_id, "tenant_id": tenant, "principal_id": principal,
                "source_ids": sources, "idempotency_key": key, "fingerprint": fingerprint,
                "status": "PENDING", "stage": "queued", "created_at": now(), "outcomes": [],
-               "lawful_basis_admit_ref": lawful_ref, "worker_id": worker_id, "source_refs":source_refs}
+               "lawful_basis_admit_ref": lawful_ref, "worker_id": worker_id, "source_refs":source_refs, "measurement": measurement}
         doc['job_descriptor']=next((job for job in engine.get_pending_scheduled_runs() if job['census_run_id']==run_id),None)
         save(doc)
         return doc, True

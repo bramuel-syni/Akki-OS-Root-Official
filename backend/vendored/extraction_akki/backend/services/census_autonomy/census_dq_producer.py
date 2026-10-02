@@ -18,6 +18,12 @@ from services.census_autonomy.response_required_queue import bank_response_requi
 
 def _action_for(reason_code, label):
     r = (reason_code or "").lower()
+    if "content_get_denied" in r:
+        return (f"The census key lists '{label}' but is refused GetObject on its bodies. Grant the census access key read "
+                f"(GetObject) on '{label}' in the bucket policy or IAM, then the full-content census resumes on its own.")
+    if "content_archived_restore_required" in r:
+        return (f"Objects in '{label}' are in archive (cold) storage and return InvalidObjectState until restored. Decide whether "
+                f"to restore '{label}' (provider retrieval fee applies); the census will read it once restored.")
     if "1045" in r or "access denied" in r or "credential" in r:
         return (f"Grant read (SELECT + PROCESS) to the census account on '{label}' "
                 f"for the estate census route's source IP, then re-run the census.")

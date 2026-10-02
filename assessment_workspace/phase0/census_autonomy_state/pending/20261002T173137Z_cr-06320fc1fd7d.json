@@ -1,0 +1,48 @@
+{
+  "census_run_id": "cr-06320fc1fd7d",
+  "tenant_id": "RMS",
+  "trigger": "on_demand_api",
+  "connect_source_descriptor": {
+    "version": "operational-v1",
+    "source_ids": [
+      "rms_obs"
+    ],
+    "principal_id": "6ab56dd48894abb269135ca2",
+    "idempotency_key": "cr-b3902b97e572-busy2",
+    "fingerprint": "842e7d676d59afbf1038858ed2698b66fbec7c4bf8a29a9377090eabf4deb924",
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "source_refs": [
+      "source_5506717bd058a27751f5fcbf",
+      "source_14f3bbf1f3e5fc20b46951b4",
+      "source_da410ca4bbf4f5fd39dca9b8",
+      "source_6beef2219f3fc468d899aeac",
+      "source_ee7ea6a999372de90621ec66",
+      "source_8136be2e8d9b294c265f16c3",
+      "source_58c8f15be0bed8be371551a9",
+      "source_c16327074fee102a31af98e3",
+      "source_cf3aa6a44e42de70773f0415",
+      "source_8ef2567b58f3a4c86eb95b02",
+      "source_06a70c8b9442fff5ece8a2d0",
+      "source_67ac09d7142c61ad2500badb",
+      "source_eb4741c2cba49b6de4e8ef7a",
+      "source_f91c6058e375b11b8bf7e2bd",
+      "source_4406f4179e117c7c4d2d9575",
+      "source_873cde17984c7fe3426b9841",
+      "source_f43ffb2136037336ac1c29c2",
+      "source_ca414b609570c6b160c4ad27",
+      "source_782c0077c2798f15273d4333",
+      "source_3757caa5770e5ba24ec6eca2",
+      "source_3b3b78bb815e62d63ed02ce3",
+      "source_c471490311361074b971c009",
+      "source_ac3c04b41577d4910d463141",
+      "source_291c2621cabcba2509260827",
+      "source_6a8b88ee4c8b35c637e98102",
+      "source_cee5fb799c2d8bd0a361794a",
+      "source_872dd73d8fb45749c619ff13",
+      "source_54a5727dc09529f4c6f637ef"
+    ],
+    "measurement": "content_full"
+  },
+  "lawful_basis_admit_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+  "enqueued_at_utc": "20261002T173137Z"
+}
