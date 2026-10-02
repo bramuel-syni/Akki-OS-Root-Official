@@ -1,0 +1,141 @@
+{
+ "job_id": "m9j-8cf6702f8718",
+ "phase": "lab_text_lid",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-10-02T09:36:53.361446Z",
+ "params": {
+  "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+  "port": 8611,
+  "chunk_chars": 1500,
+  "batch_size": 32,
+  "compute_cap_gpu_hours": 0.5,
+  "owner_order_ref": "owner order 2026-10-02: measure estate-held non-English, non-music audio and text by language, hours and quality on both GPUs with the current cognition models; 6 GPU-hours aggregate across both devices; evidence for the estate report; no training"
+ },
+ "northena_run_id": "run-3a1e61fa2be7",
+ "northena_trace_id": "trc-1f0d1f8b9dde",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-8cf6702f8718"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-8cf6702f8718",
+  "pid": 770533
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-859189f32521",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_lab_text_lid_admitted"
+  },
+  {
+   "row_id": "led-db434fae9080",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_lab_text_lid_daemonised:pid=770533"
+  },
+  {
+   "row_id": "led-ce8ecc060c53",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_lab_text_lid_completed"
+  }
+ ],
+ "code_sha256": "ba6023ef05d63128ef9bd59e3289222bacdf652c0e302e7cc4ad05fc54bab810",
+ "started_at": "2026-10-02T09:36:59.091104Z",
+ "last_status_rpc": {
+  "at": "2026-10-02T10:08:06.614493Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-fb537b103aeb"
+ },
+ "remote_state": {
+  "phase": "lab_text_lid",
+  "status": "completed",
+  "started_at": "2026-10-02T09:36:58Z",
+  "progress": {
+   "stage": "classifying transcripts through the served text model",
+   "files": 376,
+   "of": 3939,
+   "elapsed_s": 1691
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-8cf6702f8718",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-02T10:07:04Z",
+  "finished_at": "2026-10-02T10:07:04Z",
+  "receipt_sha256": "a0db49153cd55d56b8c03abc359bc1b28b5cf902904273db189f0cab0e7efd47"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-8cf6702f8718",
+  "phase": "lab_text_lid",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-02T09:36:58Z",
+  "code_sha256": "ba6023ef05d63128ef9bd59e3289222bacdf652c0e302e7cc4ad05fc54bab810",
+  "status": "completed",
+  "result": {
+   "scope": "transcripts of the authorized staged corpus on this host",
+   "evidence_class": "served_text_model_readings",
+   "model": {
+    "served_port": 8611,
+    "artefact_sha256_seen": [
+     "e973b373d27f9f5d5fd8d15cc5cd7e4b8ccca5de566b919dfdd7c235c70ca969"
+    ]
+   },
+   "files": 3939,
+   "read": 399,
+   "not_reached": 3540,
+   "per_language": {
+    "guz": {
+     "files": 399,
+     "chars": 2694168,
+     "words": 385453,
+     "units": 2004,
+     "judged_units": 2004,
+     "predicted_language_share": {
+      "guz": 0.9955,
+      "swa": 0.002,
+      "kln": 0.001,
+      "luo": 0.001,
+      "lwg": 0.0005
+     },
+     "agrees_with_folder_label": 0.9955,
+     "files_top_language_matches_folder": 399
+    }
+   },
+   "compute": {
+    "wall_seconds": 1804.6,
+    "cap_gpu_hours": 0.5,
+    "note": "served adapter already resident on its GPU; this job adds inference load only"
+   },
+   "compact_rows_sha256": "485c263aca56f6a22c556360d85fb0916fc7dc509b938dd94e4d16381ec402f1",
+   "compact_rows_bytes": 76902,
+   "training_started": false,
+   "raw_media_exported": false,
+   "paths_exported": false
+  },
+  "finished_at": "2026-10-02T10:07:04Z",
+  "receipt_sha256": "a0db49153cd55d56b8c03abc359bc1b28b5cf902904273db189f0cab0e7efd47",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-02T10:07:04Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-8cf6702f8718",
+  "started_at_utc": "2026-10-02T09:36:59.091104Z",
+  "finished_at_utc": "2026-10-02T10:07:04Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-8cf6702f8718"
+ }
+}

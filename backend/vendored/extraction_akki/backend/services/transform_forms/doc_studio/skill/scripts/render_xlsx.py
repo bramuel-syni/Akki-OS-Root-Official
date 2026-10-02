@@ -137,6 +137,27 @@ def render(plan, out, content_path):
                         cell.number_format = "0.0%" if s["unit"] == "pct" else "#,##0.00" if s["unit"] == "GBP" else "#,##0.0"
                 r += 3
             widths(ws, [28, 22, 22, 22])
+        elif sh["kind"] == "table":
+            t = sh["table"]
+            ws.cell(row=1, column=1, value=f'{t["id"]}  {t["label"]}').font = BOLD
+            ws.cell(row=2, column=1, value=f'[{t["class"]}] receipt {t["receipt"]}: {t["receipt_text"]}')
+            if t.get("note"):
+                ws.cell(row=3, column=1, value=t["note"])
+            header(ws, 5, t["columns"])
+            for r, row in enumerate(t.get("raw_rows", t["rows"]), start=6):
+                for c, v in enumerate(row, start=1):
+                    cell = ws.cell(row=r, column=c, value=v)
+                    cell.font = BLUE
+                    cell.alignment = Alignment(vertical="top", wrap_text=isinstance(v, str) and len(v) > 40)
+            ws.freeze_panes = "A6"
+            widths(ws, [min(60, max(12, max(len(str(row[c])) for row in [t["columns"]] + t["rows"][:200]) + 2)) for c in range(len(t["columns"]))])
+        elif sh["kind"] == "glossary":
+            header(ws, 1, ["Term", "What it means in this pack"])
+            for r, term in enumerate(sh["terms"], start=2):
+                ws.cell(row=r, column=1, value=term["term"]).font = BOLD
+                cell = ws.cell(row=r, column=2, value=term["meaning"])
+                cell.alignment = Alignment(vertical="top", wrap_text=True)
+            widths(ws, [32, 110])
         elif sh["kind"] == "checks":
             header(ws, 1, ["Check", "Workbook", "Content model", "Match"])
             checks = []

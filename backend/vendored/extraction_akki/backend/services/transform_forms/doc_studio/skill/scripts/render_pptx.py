@@ -244,6 +244,67 @@ class Deck:
         self.furniture(s, sl["n"])
         return s
 
+    def table(self, sl):
+        """v1.3 evidence table: exact locations, decisions, per-language rows — text columns left, numeric columns right."""
+        s = self.slide()
+        self.header(s, sl)
+        z = sl["zones"]["table"]
+        t = sl["table"]
+        ncol, nrow = len(t["columns"]), len(t["rows"]) + 1
+        shape = s.shapes.add_table(nrow, ncol, Inches(z["x"]), Inches(z["y"]), Inches(z["w"]), Inches(min(z["h"], 0.42 * nrow)))
+        tbl = shape.table
+        tbl.first_row = True
+        weights = [max(1.0, min(3.0, max(len(str(r[c])) for r in [t["columns"]] + t["rows"]) / 14)) for c in range(ncol)]
+        total = sum(weights)
+        for c in range(ncol):
+            tbl.columns[c].width = Inches(z["w"] * weights[c] / total)
+        size = self.sz["table"] - (1 if ncol > 4 else 0) - (1 if nrow > 7 else 0)
+
+        def cell(r, c, txt, bold=False, font=None, color=None, align=PP_ALIGN.LEFT, fill=None):
+            ce = tbl.cell(r, c)
+            ce.fill.solid()
+            ce.fill.fore_color.rgb = rgb(fill or self.pal["field"])
+            ce.margin_left = ce.margin_right = Inches(0.06)
+            ce.margin_top = ce.margin_bottom = Inches(0.03)
+            tf = ce.text_frame
+            tf.word_wrap = True
+            para = tf.paragraphs[0]
+            para.alignment = align
+            run = para.add_run()
+            run.text = txt
+            run.font.size = Pt(size)
+            run.font.bold = bold
+            run.font.name = font or self.fonts["body"]
+            run.font.color.rgb = rgb(color or self.pal["structure"])
+
+        for c, name in enumerate(t["columns"]):
+            cell(0, c, name, bold=True, fill=self.pal["hatch"])
+        for r, row in enumerate(t["rows"], start=1):
+            for c, v in enumerate(row):
+                numeric = c >= t["right_align_from"]
+                cell(r, c, v, font=self.fonts["number"] if numeric else None, align=PP_ALIGN.RIGHT if numeric else PP_ALIGN.LEFT)
+        if t["so_what"]:
+            self.text(s, sl["zones"]["so_what"], t["so_what"], self.sz["body"], color=self.pal["accent"], italic=True, anchor=MSO_ANCHOR.BOTTOM)
+        self.badge_and_receipt(s, sl["zones"]["receipt"], t["class"], t["receipt_text"], t["receipts"])
+        self.furniture(s, sl["n"])
+        return s
+
+    def glossary(self, sl):
+        """v1.3 plain-English terms: the term in the number column's place, its meaning beside it."""
+        s = self.slide()
+        self.header(s, sl)
+        z = sl["zones"]["points"]
+        n = max(1, len(sl["terms"]))
+        rowh = min(1.3, z["h"] / n)
+        termw = min(2.6, z["w"] * 0.28)
+        for i, term in enumerate(sl["terms"]):
+            y = z["y"] + i * rowh
+            self.text(s, {"x": z["x"], "y": y + 0.06, "w": termw, "h": rowh - 0.1}, term["term"], self.sz["body"], bold=True, color=self.pal["accent"])
+            self.text(s, {"x": z["x"] + termw + 0.2, "y": y + 0.06, "w": z["w"] - termw - 0.2, "h": rowh - 0.1}, term["meaning"], self.sz["body"] - 1)
+            self.rule(s, z["x"], y + rowh - 0.08, z["w"])
+        self.furniture(s, sl["n"])
+        return s
+
     def coverage_limits(self, sl):
         s = self.slide()
         self.header(s, sl)
@@ -304,11 +365,15 @@ class Deck:
         self.header(s, sl)
         z = sl["zones"]["body"]
         y = z["y"]
+        size = self.sz["body"] - 1
+        chars_per_line = max(40, int((z["w"] - 1.0) * 72 / (size * 0.5)))
         for r in sl["receipts"]:
-            self.text(s, {"x": z["x"], "y": y, "w": 0.9, "h": 0.4}, r["id"], self.sz["body"], font=self.fonts["number"], color=self.pal["accent"], bold=True)
-            self.text(s, {"x": z["x"] + 1.0, "y": y, "w": z["w"] - 1.0, "h": 0.4}, r["text"], self.sz["body"] - 1)
-            self.rule(s, z["x"], y + 0.42, z["w"])
-            y += 0.55
+            lines = max(1, -(-len(r["text"]) // chars_per_line))
+            h = max(0.4, round(lines * size * 1.2 / 72 + 0.12, 2))
+            self.text(s, {"x": z["x"], "y": y, "w": 0.9, "h": h}, r["id"], self.sz["body"], font=self.fonts["number"], color=self.pal["accent"], bold=True)
+            self.text(s, {"x": z["x"] + 1.0, "y": y, "w": z["w"] - 1.0, "h": h}, r["text"], size)
+            self.rule(s, z["x"], y + h + 0.02, z["w"])
+            y += h + 0.15
         self.furniture(s, sl["n"])
         return s
 

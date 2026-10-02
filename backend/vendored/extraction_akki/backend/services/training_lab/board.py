@@ -225,10 +225,10 @@ def _signed_state(tenant, run_id, plan, default_status):
     elif record['status'] == 'completed':
         outcome = record.get('outcome') or {}
         out['status'] = 'In service' if outcome.get('decision') == 'admitted' else 'Refused'
-        out['eta'] = 'complete' if out['status'] == 'In service' else 'stopped at acceptance'
+        out['eta'] = ('complete' if not outcome.get('scope') else f"in service for {NAMES.get(outcome['scope'].split()[0], outcome['scope'])}") if out['status'] == 'In service' else 'stopped at acceptance'
         out['reason'] = '' if out['status'] == 'In service' else 'Refused against the signed acceptance: ' + '; '.join(outcome.get('reasons') or []) + '.'
         if record['plan']['kind'] == 'audio_language_corrective':
-            out['checks'] = [{'n': NAMES.get(k, k), 'v': f"{pct(v.get('accuracy'))} · floor {pct(record['plan']['acceptance']['floor'], 0)} · abstained {pct(v.get('abstention_rate'))}", 's': 'settled', 'passes': (number(v.get('accuracy')) or 0) >= record['plan']['acceptance']['floor']}
+            out['checks'] = [{'n': NAMES.get(k, k), 'v': f"{pct(v.get('accuracy'))} · floor {pct(signoff.language_floor(record, k), 0)} · abstained {pct(v.get('abstention_rate'))}", 's': 'settled', 'passes': (number(v.get('accuracy')) or 0) >= signoff.language_floor(record, k)}
                             for k, v in sorted((outcome.get('metrics') or {}).items())]
         else:
             metrics = outcome.get('metrics') or {}
@@ -240,6 +240,9 @@ def _signed_state(tenant, run_id, plan, default_status):
                               ['Compute', f"{_duration(compute.get('elapsed_seconds'))} on {job.get('host', record['plan']['host'])} GPU {record['plan']['gpu_index']}" + (f" · peak {compute.get('gpu_max_memory_gb')} GB" if compute.get('gpu_max_memory_gb') else '')],
                               ['Acceptance', '; '.join(outcome.get('reasons') or [])]]
         if outcome.get('artefact_sha256'): out['record_rows'].append(['Artefact', f"sha256 {outcome['artefact_sha256'][:16]}… · stays on the GPU host"])
+        if outcome.get('scope'):
+            revision = (record.get('revisions') or [{}])[-1]
+            out['record_rows'].append(['Admission', f"{outcome['scope']} · floor {pct(revision.get('floor_before'), 0)} → {pct(revision.get('floor_after'), 0)} by owner order on {str(revision.get('at', ''))[:10]} · routing: {NAMES.get(outcome['scope'].split()[0], outcome['scope'])} to this run, every other language to the reference baseline"])
     elif record['status'] == 'failed':
         out['status'], out['eta'] = 'Refused', 'stopped before acceptance'
         out['reason'] = f"The signed run did not complete: {(record.get('dispatch') or {}).get('reason') or 'no result'}. The signature stays on record; open the next version to try again."

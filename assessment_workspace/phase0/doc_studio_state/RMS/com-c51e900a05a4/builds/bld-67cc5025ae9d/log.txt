@@ -1,0 +1,58 @@
+[build] resolved ['deck', 'paper', 'workbook']; look harbour/cambria-calibri
+{
+  "blockers": [],
+  "review": [
+    "slide 7: is the title a full-sentence assertion? \"The object store holds 74.8% of the estate; databases hold only 0.2%\"",
+    "slide 9: is the title a full-sentence assertion? \"The estate holds 174.3 TiB, and most of it sits outside the databases\"",
+    "slide 12: dense (433 tokens); consider splitting",
+    "slide 13: dense (215 tokens); consider splitting",
+    "slide 14: dense (571 tokens); consider splitting",
+    "slide 15: dense (571 tokens); consider splitting",
+    "slide 16: dense (452 tokens); consider splitting",
+    "slide 17: dense (212 tokens); consider splitting",
+    "slide 18: dense (282 tokens); consider splitting",
+    "slide 19: dense (282 tokens); consider splitting",
+    "slide 21: is the title a full-sentence assertion? \"Object-store tiering and duplicate reconciliation dominate the bytes any strategy reaches\"",
+    "slide 22: is the title a full-sentence assertion? \"The three priced moves differ sharply in size, certainty and reversibility\"",
+    "slide 24: is the title a full-sentence assertion? \"Empty fields, not duplication, dominate the condition of database rows\"",
+    "slide 25: is the title a full-sentence assertion? \"Database bytes concentrate heavily in a few databases\"",
+    "slide 26: is the title a full-sentence assertion? \"Completeness, cleansing and de-identification matter more than removing duplicate rows\"",
+    "slide 28: is the title a full-sentence assertion? \"Speech hours sit mainly in six language folders, with two folders very thin\"",
+    "slide 29: is the title a full-sentence assertion? \"Agreement between model language labels and folder names varies by language folder\"",
+    "slide 31: dense (256 tokens); consider splitting",
+    "slide 32: dense (263 tokens); consider splitting",
+    "slide 34: is the title a full-sentence assertion? \"Live news scripts spread across 13 stations in uneven volumes\"",
+    "slide 35: is the title a full-sentence assertion? \"Bulletin-hour coverage on scripted days differs widely between stations\"",
+    "slide 36: is the title a full-sentence assertion? \"The estate holds 248841 live news scripts, but only on 226 calendar dates\"",
+    "slide 37: dense (315 tokens); consider splitting",
+    "slide 38: dense (253 tokens); consider splitting",
+    "slide 40: dense (281 tokens); consider splitting",
+    "slide 41: dense (279 tokens); consider splitting",
+    "slide 43: is the title a full-sentence assertion? \"Three products should enter preparation first, each with a defined preparation step\"",
+    "slide 46: dense (879 tokens); consider splitting",
+    "slide 47: dense (237 tokens); consider splitting",
+    "slide 50: is the title a full-sentence assertion? \"Start with cold-bucket and duplicate validation, then prepare products and repair databases\"",
+    "slide 51: is the title a full-sentence assertion? \"Coverage, candidate duplication and reference pricing could each change a decision\"",
+    "Read only the titles in order: do they tell the whole story?",
+    "Does each exhibit prove its title, or merely decorate it?",
+    "Does the paper read as an argument when read unattended, without the deck?",
+    "Are the yellow key assumptions the ones the board would want to change?"
+  ],
+  "status": "PASS"
+}
+[build] recalc: errors_found
+[build] frozen: estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html=e485fae5741b, estate-intelligence-eij-1b359b3cbd2e-estatewide.docx=53f5ec80a134, estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx=3e3a65a9edbe, estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx=65fc7e26cbfd
+{
+  "blockers": [
+    "slide 40: text needs ~0.70in but box is 0.41in: \"The workbench registers recordings per language wi\"",
+    "slide 41: text needs ~0.70in but box is 0.41in: \"The workbench registers recordings per language wi\"",
+    "slide 52: text needs ~1.17in but box is 0.90in: \"COVERS\nThe whole admitted estate as measured by ce\"",
+    "slide 53: text needs ~0.65in but box is 0.40in: \"Aggregate-only database reading etx-81e10befe6e0: \"",
+    "xlsx Decisions: formula error #",
+    "recalc: {'file': '/app/assessment_workspace/phase0/doc_studio_state/RMS/com-c51e900a05a4/builds/bld-67cc5025ae9d/a/out/estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx', 'status': 'errors_found', 'errors': [{'sheet': 'Decisions', 'cell': 'A5', 'value': '#'}], 'libreoffice': 'LibreOffice 7.4.7.2 40(Build:2)', 'formulas': 18}"
+  ],
+  "status": "FAIL"
+}
+
+--- stderr ---
+QA blockers; not releasable

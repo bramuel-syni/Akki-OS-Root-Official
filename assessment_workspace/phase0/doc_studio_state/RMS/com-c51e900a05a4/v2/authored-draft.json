@@ -1,0 +1,413 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "What to do first, in order",
+          "paragraphs": [
+            "Begin with the object store, where the money is. Validate archive-tier moves for the {F036} TiB not written for over a year, then hash-confirm the {F034} TiB of duplicate candidates before any removal. Reconcile the unreadable buckets and fingerprint the file shares so the account of the estate is complete.",
+            "Alongside, prepare reference data, the content catalogue and channel engagement, with de-identification or aggregation. Then address database completeness and take the {F005} GiB database saving, which is {F006} of bytes, and remeasure. This is distinct from the estate-wide opportunity."
+          ]
+        },
+        "chapter1": {
+          "heading": "Holdings across the three stores",
+          "paragraphs": [
+            "Measured holdings total {F050} TiB: {F030} TiB in the object store ({K005}), {F040} TiB on file shares ({K006}) and {F052} TiB in databases ({K007}). Concentration within the databases should not be read as concentration across the estate.",
+            "The figure is measured but not a complete inventory. {F033} of {F032} object-store buckets returned errors when listed, so their contents are not in the totals. The estate is at least as large as stated."
+          ]
+        },
+        "chapter2": {
+          "heading": "Buckets, tables and shares under review",
+          "paragraphs": [
+            "The table of buckets under review lists each bucket enumerated object by object, with last write, idle days, duplicate candidates, a classification and a proposed destination. {F036} TiB has not been written for over a year, across {F037} buckets, and {F034} TiB are duplicate candidates.",
+            "Duplicate candidates match on size and storage fingerprint, which for large uploads is not a content hash. The file-share table records sizes and dates only. The database table lists findings by table; its bytes column is a strategy total, not the size of one table. The {F033} buckets that could not be listed appear in their own table."
+          ]
+        },
+        "chapter4": {
+          "heading": "What condition the rows are in",
+          "paragraphs": [
+            "Exact duplication is the smallest of the condition issues, at {F007} of rows. Degradation reaches {F008} of rows and empty required-looking fields {F009}. The census flags a field as required-looking from its name or pattern; the database may not require it, so this is a completeness question, not a constraint violation.",
+            "Personal-data markers appear in {F010} of the {F011} sampled rows. This is a condition to prepare for, through de-identification or aggregation before a product is released. It does not reopen rights, which the owner has declared settled. A missing marker does not prove the absence of personal data."
+          ]
+        },
+        "chapter5": {
+          "heading": "Audio by language and condition",
+          "paragraphs": [
+            "The staged corpus holds {F060} recorded hours in {F068} language folders across {F063} files. An estimated {F061} hours are speech and {F062} hours music; {F065} of windows were called music, and {F074} files are mostly music. Digital silence was {F073} of windows.",
+            "Before any packaging, separate music, then validate language folder by folder, using the audio tables beside this chapter. Noise and intelligibility were not scored, so clean speech is not established and no dataset is ready."
+          ]
+        },
+        "chapter6": {
+          "heading": "Separate text inventories",
+          "paragraphs": [
+            "The news archive holds {F080} live scripts and {F084} characters, with {F086} distinct texts and {F087} rows marked deleted. The staged transcripts total {F069} words; the text model read {F070} of them and found {F071} of passages agreeing with the folder language. {F075} transcripts were not reached inside the compute cap, so that result should not be generalised.",
+            "The transcription workbench registers {F090} recordings, {F091} audio hours and {F092} segments in {F094} languages. It is a separate inventory from the staged corpus and may overlap it, so the two are not added together anywhere in this pack."
+          ]
+        },
+        "chapter7": {
+          "heading": "Which products to prepare first",
+          "paragraphs": [
+            "The census scores {F018} product candidates on readiness. Reference and master data, the content catalogue and channel engagement are each graded C. This is a basis for sequencing preparation, not proof of commercial ranking, and no revenue or market fit is shown.",
+            "Reference data needs canonical fields and completeness checks. The content catalogue needs consolidated metadata and removal of personal data. Channel engagement needs validated aggregation by channel and time. Each needs de-identification or aggregation where markers appear, and a buyer-side review of intended use before release."
+          ]
+        },
+        "chapter8": {
+          "heading": "The decisions requested",
+          "paragraphs": [
+            "The decisions table gives each approval with its source, proposed rule, responsible role, expected benefit and remaining check. The first three are to validate the cold holdings of {F036} TiB, to hash-confirm the {F034} TiB of duplicate candidates, and to reconcile the {F033} unreadable buckets.",
+            "Where a benefit is money it is an upper bound, within {F019} USD a month at reference list prices. Nothing has been moved or deleted, and every destination is a proposal for approval."
+          ]
+        },
+        "chapter9": {
+          "heading": "What is still unmeasured",
+          "paragraphs": [
+            "Coverage stops in identifiable places. Only {F003} of {F002} tables were measured; the {F033} unreadable buckets are outside the totals; and the {F040} TiB across {F041} files on file shares has no content fingerprints. {F075} transcripts were not read, news-script language was not read, and workbench and corpus overlap is not joined.",
+            "Each gap has its closing step: a complete-pass census, provider reconciliation, a fingerprinting pass, a further text-model pass, a hash join, and buyer-side review. One connection awaits a read grant, which is a technical access step, not a question of ownership."
+          ]
+        },
+        "compare": {
+          "heading": "Three priced moves compared",
+          "paragraphs": [
+            "Archive tiering of idle buckets addresses {O1.reclaimable_gib} GiB for up to {O1.monthly_saving_usd} USD a month. It relocates rather than deletes, but retrieval carries its own fee and read frequency is unknown. Duplicate reconciliation addresses {O2.reclaimable_gib} GiB for up to {O2.monthly_saving_usd} USD, but removal is final, so it needs content hashing first.",
+            "Cold database tables address {O3.reclaimable_gib} GiB for up to {O3.monthly_saving_usd} USD, which is small. All priced strategies together are bounded at {F019} USD a month at reference list prices. This is an upper bound, not the cost of keeping the estate; the invoice baseline is not established."
+          ]
+        },
+        "exhibit_S001": {
+          "heading": "Database size by database",
+          "paragraphs": [
+            "The databases hold {F004} GiB, of which the largest hold {F016} GiB, or {K002}. One staging database dwarfs the rest, and the supplied grades appear beside each name.",
+            "This exhibit locates size, not quality. A large database is not shown to have the worst rows, and the databases together are a small part of the whole estate. Targeted operational review should start where the bytes are."
+          ]
+        },
+        "exhibit_S002": {
+          "heading": "Condition of measured rows",
+          "paragraphs": [
+            "The condition ratios point to completeness and personal-data preparation. {F009} of rows have empty required-looking fields, {F008} are degraded, {F010} of sampled rows carry personal-data markers and {F007} are exact duplicates. These measures overlap, so they should not be summed.",
+            "{F012} of bytes have not been written for over a year. The ratios rest on complete passes where tables allowed and on stratified samples elsewhere, so they are estimates."
+          ]
+        },
+        "exhibit_S003": {
+          "heading": "Where the reclaimable bytes are",
+          "paragraphs": [
+            "Moving idle buckets and reconciling duplicate objects dominate the addressed bytes. The three largest strategies reach {F020} GiB of the {F021} GiB that all strategies address. Database strategies are tiny by comparison.",
+            "Addressed bytes are not uniquely reclaimable bytes, because strategies may overlap. Tiering relocates data rather than deleting it, and no recent write does not mean no recent read. Read demand was not measured."
+          ]
+        },
+        "exhibit_S004": {
+          "heading": "Where the estate's bytes sit",
+          "paragraphs": [
+            "The whole estate holds {F050} TiB. The object store accounts for {F030} TiB and the file shares for {F040} TiB, while the databases hold {F052} TiB. Measured by bytes, the estate is overwhelmingly unstructured and file-based.",
+            "The consequence is simple. A programme aimed at databases would touch {K007} of the estate. Object-store and file-share decisions govern most of what is kept, and so most of what it costs to keep."
+          ]
+        },
+        "exhibit_S005": {
+          "heading": "Concentration in the object store",
+          "paragraphs": [
+            "The largest single bucket holds {F038} TiB, which is {K008} of the {F030} TiB in the object store. A review that covers the largest bucket therefore covers most of the object-store estate.",
+            "Size is not a finding about condition. The largest bucket is not shown to be cold, redundant or ready to move. It is the place where one carefully checked decision carries the most weight."
+          ]
+        },
+        "exhibit_S010": {
+          "heading": "Speech hours by language folder",
+          "paragraphs": [
+            "Six language folders carry broadly comparable estimated speech, while two are very thin. The corpus records {F060} hours in total; an estimated {F061} hours are speech once {F062} hours of music are set aside.",
+            "The split uses the share of two-second windows the music detector did not call music. It is capacity for preparation, not verified clean speech, and it is not balanced coverage of languages."
+          ]
+        },
+        "exhibit_S011": {
+          "heading": "Agreement with the folder language",
+          "paragraphs": [
+            "Overall, {F072} of judged windows agree with the language of the folder. Agreement is clearly lower for some folders, and one folder shows none, which marks where language validation should begin.",
+            "The model declined to label {F066} of speech windows rather than guess. Agreement is a model reading on labelled windows. It is not human accuracy, transcript accuracy or intelligibility."
+          ]
+        },
+        "exhibit_S012": {
+          "heading": "News scripts by station",
+          "paragraphs": [
+            "The archive holds {F080} live scripts from {F081} stations. Station volumes range from large archives to one clearly smaller series.",
+            "The broadcast language shown is the station's own recorded language, not a label read from each script. Volume is inventory; it does not show uniqueness, because {F085} of rows are revisions."
+          ]
+        },
+        "exhibit_S013": {
+          "heading": "Bulletin hours on scripted days",
+          "paragraphs": [
+            "On days that carry a script, stations differ in how many distinct bulletin hours are scripted. The larger stations cover most of the day on those days, while one station covers far less.",
+            "These are conditional averages over scripted days only. The archive spans {F083} days but carries scripts on {F082} dates, so continuous hourly coverage cannot be assumed. The supporting tables show each station, date and hour slot."
+          ]
+        },
+        "risks": {
+          "heading": "What the evidence cannot yet establish",
+          "paragraphs": [
+            "Incomplete coverage, unconfirmed duplicates, sampled personal-data markers and reference pricing could each change a decision. Only {F003} of {F002} tables were measured, {F033} buckets are unreadable, and the {F034} TiB of duplicates are candidates. The {F019} USD ceiling uses list prices, not the owner's invoice.",
+            "Retrieval fees, read demand and dependency checks remain open, and neither realised savings nor product demand is established. Rights are settled and are not among the risks; each gap above is closed by a named measurement."
+          ]
+        }
+      },
+      "summary": [
+        "RMS holds {F050} TiB across its databases, object store and file shares. The object store holds {F030} TiB, the file shares {F040} TiB and the databases only {F052} TiB. The cost question is therefore mainly an object-store question, and the largest priced lever is moving buckets not written for over a year to a cheaper tier. Of the object store, {F036} TiB has not been written for over a year.",
+        "Estimated monthly savings across all priced strategies are bounded at {F019} USD at reference list prices. This is a ceiling, not an invoice-based figure, and the current retention bill has not been established. Database clean-up is modest: {F005} GiB is reclaimable. The database rows need preparation more than removal, because {F009} have empty required-looking fields and {F010} of sampled rows carry personal-data markers.",
+        "The first move is validation: confirm read demand and retrieval costs for the cold buckets, and hash-confirm the {F034} TiB of duplicate candidates. In parallel, prepare reference data, the content catalogue and channel engagement as products. Rights are settled by the owner's declaration and condition none of this; what remains open is measurement."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "What to do first",
+        "points": [
+          "First, validate archive-tier moves for the {F036} TiB not written for over a year: check read demand and retrieval fees. This carries the largest priced saving.",
+          "Second, hash-confirm the {F034} TiB of duplicate candidates, then reconcile; size-and-fingerprint matching alone cannot justify removal.",
+          "Third, reconcile the {F033} unreadable buckets and fingerprint the file shares, so the {F050} TiB account is complete.",
+          "Fourth, prepare reference data, the content catalogue and channel engagement, de-identifying or aggregating where markers appear.",
+          "Fifth, run a complete-pass census on the {F003} measured tables, fix empty fields, take the {F005} GiB database saving, and remeasure."
+        ],
+        "title": "Start with cold-bucket and duplicate validation, then prepare products and repair databases"
+      },
+      "chapter1": {
+        "kicker": "Holdings",
+        "points": [
+          "The whole estate holds {F050} TiB, measured across databases, the object store and file shares.",
+          "The object store holds {F030} TiB, which is {K005} of the estate, and the file shares hold {F040} TiB, which is {K006}.",
+          "Databases hold {F052} TiB, or {K007} of the estate, so database tuning cannot be the main cost lever.",
+          "These are measured holdings, not a fully readable inventory: {F033} of {F032} buckets could not be listed."
+        ],
+        "title": "The estate holds {F050} TiB, and most of it sits outside the databases"
+      },
+      "chapter2": {
+        "kicker": "Sources",
+        "points": [
+          "{F036} TiB in the object store has not been written for over a year, and {F037} buckets have been cold for that long.",
+          "{F034} TiB are duplicate candidates matched on size and fingerprint only; content hashing must confirm them before any copy goes.",
+          "The table of buckets under review gives last write, idle days and a proposed action for each; every destination is a proposal.",
+          "{F033} buckets returned errors when listed and need reconciling with the provider; the file-share table records sizes and dates, not duplication."
+        ],
+        "title": "Cold and duplicate holdings are named bucket by bucket, with proposed destinations only"
+      },
+      "chapter4": {
+        "kicker": "Row condition",
+        "points": [
+          "Exact duplicate rows are only {F007} of rows, while degraded rows are {F008} and rows with empty required-looking fields are {F009}.",
+          "Personal-data markers appear in {F010} of the {F011} sampled rows; this is preparation work for products, not a rights question.",
+          "{F012} of bytes have not been written for over a year, which dates the value of some tables.",
+          "These ratios come from complete passes where possible and stratified samples elsewhere, so they are estimates."
+        ],
+        "title": "Completeness, cleansing and de-identification matter more than removing duplicate rows"
+      },
+      "chapter5": {
+        "kicker": "Audio",
+        "points": [
+          "The staged corpus records {F060} hours; an estimated {F061} hours are speech and {F062} hours music, with {F065} of windows called music.",
+          "{F074} files are mostly music, and the model declined to label {F066} of speech windows.",
+          "{F072} of judged windows agree with the folder language, so language validation is needed folder by folder before packaging.",
+          "Noise and intelligibility were not scored, so clean speech has not been established."
+        ],
+        "title": "Of {F060} recorded hours, an estimated {F061} are speech, so music must be separated first"
+      },
+      "chapter6": {
+        "kicker": "Written text",
+        "points": [
+          "{F080} live scripts and {F084} characters come from {F081} stations, on {F082} dates across a span of {F083} days.",
+          "{F085} of script rows revise an earlier script, leaving {F086} distinct texts; {F087} rows are marked deleted.",
+          "The text model read {F070} staged transcripts, with {F071} of passages agreeing with folder language; {F075} transcripts were not reached.",
+          "The workbench registers {F090} recordings and {F091} hours in {F094} languages; it is a separate inventory, not to be added to the staged corpus."
+        ],
+        "title": "The estate holds {F080} live news scripts, but only on {F082} calendar dates"
+      },
+      "chapter7": {
+        "kicker": "Products",
+        "points": [
+          "The census scores {F018} product candidates; reference and master data, the content catalogue and channel engagement are all grade C and the most advanced.",
+          "Reference and master data: fix canonical fields and completeness checks, and de-identify or aggregate where personal-data markers appear.",
+          "Content catalogue: consolidate metadata and remove personal data from supporting tables before any release.",
+          "Channel engagement: build validated channel-and-time aggregates. Buyer-side review must test each product against its use; revenue is not yet shown."
+        ],
+        "title": "Three products should enter preparation first, each with a defined preparation step"
+      },
+      "chapter8": {
+        "kicker": "Decisions",
+        "points": [
+          "Approve archive-tier validation of the cold holdings: {F036} TiB not written for over a year, with read demand and retrieval fees checked.",
+          "Approve hash confirmation of the {F034} TiB of duplicate candidates before any copy is removed.",
+          "Approve provider reconciliation of the {F033} unreadable buckets, and bounded preparation of the first products.",
+          "Benefits are ceilings: {F019} USD a month at reference list prices. The decisions table gives source, rule, responsible role and remaining check for each."
+        ],
+        "title": "The owner is asked to approve validation steps first; nothing has been moved or deleted"
+      },
+      "chapter9": {
+        "kicker": "Coverage",
+        "points": [
+          "Only {F003} of {F002} tables were measured, so ratios on sampled tables need a complete-pass census.",
+          "{F033} buckets are unreadable; reconcile the bucket inventory with the provider. One database connection awaits a read grant.",
+          "The {F040} TiB across {F041} files on file shares has sizes and dates but no content fingerprints, so duplication is unknown.",
+          "{F075} transcripts were not reached, script language was not read, and workbench and corpus overlap is not joined; each needs its own pass."
+        ],
+        "title": "Coverage stops short in named places, and each gap has a measurement that closes it"
+      },
+      "compare": {
+        "kicker": "Priced options",
+        "so_what": "Archive tiering is up to {O1.monthly_saving_usd} USD a month, duplicate reconciliation {O2.monthly_saving_usd} USD and cold tables {O3.monthly_saving_usd} USD, all at list prices.",
+        "title": "The three priced moves differ sharply in size, certainty and reversibility"
+      },
+      "exec": {
+        "answer": "Validate archive-tier moves for the cold buckets and hash-confirm the duplicate candidates first. The priced ceiling is {F019} USD a month at reference list prices, not an invoice figure. Prepare the first data products alongside, after de-identification or aggregation.",
+        "complication": "Database clean-up is small: {F005} GiB, or {F006} of bytes, looks reclaimable. The larger exposure is {F036} TiB in the object store not written for over a year, plus {F034} TiB of duplicate candidates not yet confirmed.",
+        "kicker": "Executive summary",
+        "question": "What should the owner do first, and how certain is the saving?",
+        "situation": "RMS holds {F050} TiB across three kinds of store: {F030} TiB in the object store, {F040} TiB on file shares and {F052} TiB in {F001} databases. Those databases hold {F002} tables, of which {F003} were measured.",
+        "title": "The estate's cost lever is cold object-store data, not its databases"
+      },
+      "exhibit_S001": {
+        "kicker": "Database size",
+        "so_what": "The largest databases hold {F016} GiB of {F004} GiB, or {K002}; size does not show they hold the worst rows.",
+        "title": "Database bytes concentrate heavily in a few databases"
+      },
+      "exhibit_S002": {
+        "kicker": "Row condition",
+        "so_what": "Empty fields touch {F009} of rows and degradation {F008}, against {F007} exact duplicates; these overlap and must not be added together.",
+        "title": "Empty fields, not duplication, dominate the condition of database rows"
+      },
+      "exhibit_S003": {
+        "kicker": "Cost strategies",
+        "so_what": "The three largest strategies address {F020} GiB of the {F021} GiB all strategies reach, but strategies may overlap and tiering is not deletion.",
+        "title": "Object-store tiering and duplicate reconciliation dominate the bytes any strategy reaches"
+      },
+      "exhibit_S004": {
+        "kicker": "Whole estate",
+        "so_what": "Storage priorities lie in the object store and file shares, {F030} TiB and {F040} TiB, against {F052} TiB in databases.",
+        "title": "The object store holds {K005} of the estate; databases hold only {K007}"
+      },
+      "exhibit_S005": {
+        "kicker": "Object store",
+        "so_what": "The largest bucket holds {F038} TiB of {F030} TiB; size alone does not make it cold, redundant or ready to move.",
+        "title": "One bucket holds {K008} of the object store, so bucket-level review carries weight"
+      },
+      "exhibit_S010": {
+        "kicker": "Staged audio",
+        "so_what": "Estimated speech of {F061} hours is preparation capacity, not verified clean speech or a balanced training set.",
+        "title": "Speech hours sit mainly in six language folders, with two folders very thin"
+      },
+      "exhibit_S011": {
+        "kicker": "Language agreement",
+        "so_what": "Across all folders {F072} of judged windows agree with the folder; this is a model reading, not human accuracy.",
+        "title": "Agreement between model language labels and folder names varies by language folder"
+      },
+      "exhibit_S012": {
+        "kicker": "News scripts",
+        "so_what": "Volume is inventory, not uniqueness or continuous coverage, and the language shown is the station's recorded broadcast language.",
+        "title": "Live news scripts spread across {F081} stations in uneven volumes"
+      },
+      "exhibit_S013": {
+        "kicker": "Bulletin coverage",
+        "so_what": "These averages hold only for days that carry a script and do not prove uninterrupted hourly coverage.",
+        "title": "Bulletin-hour coverage on scripted days differs widely between stations"
+      },
+      "risks": {
+        "kicker": "Limits of the evidence",
+        "points": [
+          "Only {F003} of {F002} tables were measured; ratios on sampled tables could move. A complete-pass census closes this.",
+          "{F033} buckets are unreadable. Reconciling the inventory with the provider closes this.",
+          "Duplicates of {F034} TiB are candidates, not confirmed; content hashing closes this.",
+          "The personal-data marker rate {F010} comes from a sample, and an absent marker is not absent personal data. A complete pass closes this.",
+          "The {F019} USD ceiling uses list prices, not the owner's invoice. Retrieval fees, read demand and dependencies are unchecked, and product demand is unproven."
+        ],
+        "title": "Coverage, candidate duplication and reference pricing could each change a decision"
+      },
+      "section1": {
+        "title": "Where the estate's bytes sit"
+      },
+      "section2": {
+        "title": "Exact sources under review"
+      },
+      "section3": {
+        "title": "Cost of keeping idle bytes"
+      },
+      "section4": {
+        "title": "Condition of database rows"
+      },
+      "section5": {
+        "title": "Audio: speech by language"
+      },
+      "section6": {
+        "title": "Written text: scripts and transcripts"
+      },
+      "section7": {
+        "title": "First data products"
+      },
+      "section8": {
+        "title": "Decisions requested"
+      },
+      "section9": {
+        "title": "What remains unmeasured"
+      }
+    },
+    "subtitle": "Estate-wide account of holdings, cost to keep, condition and first data products",
+    "title": "What RMS holds, what it costs and what to build first"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 50,
+      "repairs": 1
+    },
+    "latency_ms": 78765,
+    "model": "claude-sonnet-5-5",
+    "planner": {
+      "cautions": [
+        "Preserve every supplied outline slot, exhibit and deterministic table; do not create replacement chapters or silently repair unresolved evidence references.",
+        "Several outline needs, must-cite entries and table identifiers have no matching evidence key; flag them for production resolution rather than rendering invented values or assuming an alias, even where a similarly labelled source exists.",
+        "Use the structured evidence and owner declarations over conflicting legacy producer prose: rights are established, whole-estate holdings are measured, and savings remain estimates rather than immediate verified returns.",
+        "The evidence supplies estimated reduction opportunities, not the estate's current total retention bill; explicitly acknowledge that invoice-based baseline cost and net savings are not established.",
+        "Keep measured, estimated and inferred claims distinct, and preserve database, object-store, file-share, staged-corpus and workbench scopes and denominators.",
+        "Do not treat write inactivity as read inactivity, addressed bytes as uniquely reclaimable bytes, or archive tiering as physical removal; do not assume strategies are non-overlapping.",
+        "Duplicate-candidate descriptions differ between the fact scope and glossary; retain the unconfirmed-candidate qualification and require content hashing rather than asserting a reconciled detection method.",
+        "Personal-data markers are preparation signals, not rights uncertainty or proof of unlawful exposure; absence of a marker does not establish absence of personal data."
+      ],
+      "chapter_notes": {
+        "actions": "Lead with an operational sequence that validates object-store tiering and duplication first, prepares bounded products alongside targeted database repairs, and then remeasures outcomes, anchored by {T013}, {F036}, {F034}, {F003} and {F002}. Keep database reclaimability {F005} and {F006} distinct from the estate-wide strategy opportunity and avoid inventing deadlines, named owners or execution authority absent from the decision evidence.",
+        "chapter1": "Lead with total admitted holdings {F050}, then distinguish object storage {F030}, file shares {F040} and databases {F052}, using {K005} and {K006} to establish estate-wide priorities. Describe measured holdings rather than a completely accessible inventory, and do not present database concentration as concentration across the whole estate.",
+        "chapter2": "Lead with the exact-source review in {T010}, {T011}, {T012} and {T015}, anchored by cold holdings {F036}, cold buckets {F037} and duplicate-candidate bytes {F034}; the executive should understand what each proposed action rests on. Keep destinations explicitly proposed, distinguish unreadable buckets from enumerated ones, and never attribute a strategy-total byte figure to an individual database table.",
+        "chapter4": "Lead with the contrast between exact duplication {F007}, degradation {F008} and empty required-looking fields {F009}, then put personal-data markers {F010} in the context of the sampled rows {F011}. The takeaway is targeted completeness, cleansing and de-identification work, not a finding that inferred required fields violate constraints or that personal-data markers reopen settled rights.",
+        "chapter5": "Lead with the distinction between recorded audio {F060}, estimated non-music speech {F061} and music {F062}, then use {T020}, {T024}, {F066} and {F072} to identify preparation needs by language. Recommend music separation and language and quality validation before packaging, without claiming that noise, intelligibility or clean speech were fully assessed.",
+        "chapter6": "Lead with the separate text inventories: news scripts {F080}, station coverage {F081}, scripted dates {F082}, revisions {F085} and distinct texts {F086}, followed by staged transcript measures {F069}, {F070}, {F071}, {F075} and workbench measures {F090}, {F091}, {F092}, {F093}, {F094}. Use {T022}, {T021} and {T023} to distinguish counted scripts, model-read transcript passages and registered recordings; do not generalise the capped text reading or add potentially overlapping audio inventories.",
+        "chapter7": "Lead with a proposed preparation sequence of reference and master data, content catalogue, and aggregated channel engagement, using {F018} and the contextual readiness claims {C021}, {C022}, {C023} as the bounded basis rather than a proven commercial ranking. Specify canonical fields and completeness checks for reference data, metadata consolidation and personal-data removal for the catalogue, and validated channel-time aggregation for engagement; require buyer-use validation without inventing revenue, market fit or rights conditions.",
+        "chapter8": "Lead with the approvals requested in {T013}, prioritising cold-bucket validation {F036}, hash-confirmed duplicate reconciliation {F034}, unreadable-bucket reconciliation {F033} and bounded product preparation. Tie each decision to its source, responsible role, proposed rule, benefit and outstanding operational check, keeping {F019} an estimated upper bound and all moves and deletions unexecuted.",
+        "chapter9": "Lead with the coverage boundary using measured versus inventoried tables {F003} and {F002}, unreadable buckets {F033}, enumerated file shares {F040} and {F041}, and transcripts not read {F075}. Pair each gap with its closing measurement, including complete-pass checks, provider reconciliation, restored technical read access, file fingerprinting, script-language reading, corpus overlap joining and buyer-use review, without treating access gaps as unsettled ownership rights.",
+        "compare": "Compare {O1}, {O2} and {O3} by estimated financial benefit, operational checks and reversibility, making object-store archive validation the first cost workstream rather than foregrounding database cleanup. Use {F019} only as the estimated overall monthly upper bound at reference list prices, not an invoice-based saving or the total cost of keeping the estate.",
+        "exhibit_S001": "Use {S001}, {F004}, {F016} and {K002} to locate database concentration and direct targeted operational review. Keep this exhibit about database size and the supplied grades, not proof that a large database has the worst row condition or dominates whole-estate storage.",
+        "exhibit_S002": "Lead with completeness and personal-data preparation needs using {S002}, {F007}, {F008}, {F009} and {F010}, rather than presenting exact duplication as the dominant condition issue. Distinguish sampled row estimates from byte-based staleness and do not add overlapping condition percentages.",
+        "exhibit_S003": "Lead with {S003} to show that object-store tiering and duplicate reconciliation dominate the addressed bytes, supported by {F036}, {K009} and {F034}. Explain that tiering is not deletion, candidate strategies need validation, and lack of recent writes does not establish lack of reads.",
+        "exhibit_S004": "Lead with the whole-estate distribution in {S004}, anchored by {F050}, {F030}, {F040} and {F052}, so the executive sees that storage priorities extend well beyond databases. Preserve the supplied units and rounding rather than deriving a replacement total.",
+        "exhibit_S005": "Lead with object-store concentration in {S005}, using {F038}, {F030} and {K008} to explain why bucket-level review is consequential. Do not imply that the largest bucket is cold, redundant or approved for movement merely because it is large.",
+        "exhibit_S010": "Lead with estimated non-music hours by folder in {S010}, anchored by recorded duration {F060}, estimated speech {F061} and estimated music {F062}. Treat the distribution as preparation capacity, not verified clean speech, balanced language coverage or a ready training dataset.",
+        "exhibit_S011": "Lead with variation in folder-language agreement in {S011}, contextualised by {F072} and declined labels {F066}, so language-validation work can be prioritised. Agreement applies to labelled windows and is a model reading, not human accuracy, transcript accuracy or an intelligibility score.",
+        "exhibit_S012": "Lead with script distribution by station in {S012}, anchored by live scripts {F080}, stations {F081} and scripted dates {F082}. Present broadcast language as station metadata rather than a verified label for each script, and volume as inventory rather than uniqueness or continuous coverage.",
+        "exhibit_S013": "Lead with observed bulletin-hour coverage on scripted days in {S013}, using {T022}, {T032} and {T033} for the supporting coverage detail. Make clear that these conditional averages do not describe every calendar day or prove uninterrupted hourly coverage.",
+        "risks": "Lead with the limitations that could change a decision: incomplete coverage {F003} and {F002}, unreadable buckets {F033}, candidate duplication {F034}, sampled personal-data markers {F010} and reference-price savings {F019}. State that retrieval costs, read demand, dependency checks and product preparation still require validation, while rights are settled and neither realised savings nor commercial demand has been established."
+      },
+      "latency_ms": 47586,
+      "model": "gpt-6-astra",
+      "provider": "emergent",
+      "receipt_id": "rcp-ed828bcd3b7e",
+      "title_direction": "Frame the briefing as an estate-wide decision account for RMS: where holdings concentrate, which cost reductions merit validation first, and which products can move into preparation without implying guaranteed savings or launch readiness.",
+      "tokens_in": 20337,
+      "tokens_out": 2088
+    },
+    "provider": "emergent",
+    "receipt_id": "rcp-fd56181f09b3",
+    "repairs": 1,
+    "review": {
+      "blocking": [],
+      "findings": [],
+      "latency_ms": 74979,
+      "model": "claude-fable-5-1",
+      "provider": "emergent",
+      "receipt_id": "rcp-2390a7aa5fa8",
+      "resolution": "accepted without blocking findings",
+      "summary": "reviewer response was not valid JSON; recorded, not acted on",
+      "tokens_in": 24430,
+      "tokens_out": 397,
+      "verdict": "unreadable"
+    },
+    "tokens_in": 62881,
+    "tokens_out": 10865
+  }
+}

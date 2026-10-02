@@ -6,11 +6,12 @@ model WRITES every sentence the reader sees. Code never types a sentence onto th
 from __future__ import annotations
 
 import json
-import os
 import re
 from typing import Any, Dict, List, Tuple
 
 PURPOSE = 'doc_studio.author'
+PLAN_PURPOSE = 'doc_studio.plan'
+GLOSSARY_PER_SLIDE, TABLE_ROWS_PER_SLIDE, TABLE_COLUMNS_PER_SLIDE, TABLE_PAGES_PER_DECK = 6, 9, 7, 2
 TOKEN = re.compile(r'\{([A-Za-z]\w*(?:\.[A-Za-z_]\w*)?(?::[A-Za-z_]\w*)*)\}')
 DIGITS = re.compile(r'(?<![A-Za-z{\w])\d[\d,]*\.?\d*')
 URL = re.compile(r'https?://|www\.', re.I)
@@ -29,10 +30,12 @@ def plan(content: Dict[str, Any], brief: Dict[str, Any]) -> Dict[str, Any]:
     """The story the document must tell, slot by slot. A producer that knows its story declares it as ordered chapters (the question each
     chapter answers, the evidence that answers it, the exhibit that shows it); the planner turns that into the outline the writer fills.
     Without a declared story the outline falls back to one section per evidence receipt."""
-    facts, series, options = content.get('facts') or {}, content.get('series') or {}, content.get('options') or {}
+    facts, series, options, tables = content.get('facts') or {}, content.get('series') or {}, content.get('options') or {}, content.get('tables') or {}
     fact_ids = sorted(facts)
     story = content.get('story') or []
     slots: List[Dict[str, Any]] = [{'slot': 'exec', 'type': 'exec_summary', 'needs': fact_ids[:8]}]
+    for page, start in enumerate(range(0, len(content.get('glossary') or []), GLOSSARY_PER_SLIDE), 1):
+        slots.append({'slot': f'glossary{page}', 'type': 'glossary', 'rows_from': start, 'rows_to': start + GLOSSARY_PER_SLIDE})
     if story:
         for number, chapter in enumerate(story, 1):
             slots.append({'slot': f'section{number}', 'type': 'section', 'number': number, 'about': chapter['question'][:160], 'question': chapter['question']})
@@ -42,7 +45,13 @@ def plan(content: Dict[str, Any], brief: Dict[str, Any]) -> Dict[str, Any]:
             if chapter.get('kind') == 'comparison' and len(options) == 3:
                 slots.append({'slot': 'compare', 'type': 'comparison', 'columns': sorted(options), 'needs': sorted(options), 'question': chapter['question']})
             else:
-                slots.append({'slot': f'chapter{number}', 'type': 'assertion_points', 'about': chapter['question'], 'needs': needs[:6], 'question': chapter['question'], 'must_cite': needs[:3]})
+                slots.append({'slot': f'chapter{number}', 'type': 'assertion_points', 'about': chapter['question'], 'needs': needs[:6], 'question': chapter['question'], 'must_cite': needs[:3],
+                              'tables': [t for t in chapter.get('tables') or [] if t in tables]})
+            for tid in [t for t in chapter.get('tables') or [] if t in tables]:
+                # Evidence tables are deterministic: the deck shows up to two pages of the rows the owner asked to see by name, the paper and workbook carry every row.
+                columns = tables[tid].get('deck_columns') or list(tables[tid]['columns'])[:TABLE_COLUMNS_PER_SLIDE]
+                for page, start in enumerate(range(0, min(len(tables[tid]['rows']), TABLE_ROWS_PER_SLIDE * TABLE_PAGES_PER_DECK), TABLE_ROWS_PER_SLIDE), 1):
+                    slots.append({'slot': f'table_{tid}_{page}', 'type': 'table', 'table_ref': tid, 'rows_from': start, 'rows_to': start + TABLE_ROWS_PER_SLIDE, 'columns': columns, 'about': tables[tid]['label'], 'question': chapter['question']})
         slots.append({'slot': 'actions', 'type': 'assertion_points', 'about': 'what the owner should do first, in order, and why — each action tied to the chapter evidence it rests on', 'needs': fact_ids[:6]})
         slots.append({'slot': 'risks', 'type': 'assertion_points', 'about': 'what the evidence cannot yet establish and what would close each gap', 'needs': fact_ids[:4]})
     else:
@@ -100,7 +109,9 @@ def evidence(content: Dict[str, Any]) -> Dict[str, Any]:
     series = {sid: {'label': s['label'], 'categories': s['categories'], 'values': s['values'], 'unit': s['unit'], 'class': s['class']} for sid, s in (content.get('series') or {}).items()}
     options = {oid: {k: v for k, v in o.items() if k not in ('receipt',)} for oid, o in (content.get('options') or {}).items()}
     calcs = {kid: {'label': k['label'], 'formula': k['formula'], 'unit': k.get('unit')} for kid, k in (content.get('calculations') or {}).items()}
-    return {'title': content['title'], 'organisation': content['organisation'], 'facts': facts, 'series': series, 'options': options, 'calculations': calcs,
+    tables = {tid: {'label': t['label'], 'columns': t['columns'], 'rows': len(t['rows']), 'what_it_shows': t.get('note', ''), 'rendered': 'deterministic table beside its chapter; row values are not in this prompt'} for tid, t in (content.get('tables') or {}).items()}
+    return {'title': content['title'], 'organisation': content['organisation'], 'facts': facts, 'series': series, 'options': options, 'calculations': calcs, 'tables': tables,
+            'glossary': [{'term': g['term'], 'meaning': g['meaning']} for g in content.get('glossary') or []],
             'receipts': {rid: r['resolves_to'] for rid, r in (content.get('receipts') or {}).items()}, 'coverage': content.get('coverage'),
             'evidence_statements': {k: v['text'] for k, v in (content.get('narrative_evidence') or {}).items()},
             'producer_claims_for_context': {k: v['text'] for k, v in (content.get('claims') or {}).items()},
@@ -122,6 +133,8 @@ def _schema_hint(plan_: Dict[str, Any]) -> Dict[str, Any]:
 
 async def write(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str, Any], tenant: str, actor: str, session: str, issues: List[str] | None = None, previous: Dict[str, Any] | None = None) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     from services.chokepoint.llm import invoke
+    from services.chokepoint.model_roles import resolve
+    writer = resolve('writer')
     prompt = {'brief': {k: brief.get(k) for k in ('purpose', 'audience', 'setting', 'constraints')}, 'evidence': evidence(content), 'plan': plan_, 'return_exactly': _schema_hint(plan_),
               'rules': ['every figure as a supplied token; digits only for four-digit years', 'use only tokens that exist in evidence',
                         'renders_as is exactly what the reader sees for a token (percentages carry %, money carries its symbol, m means million); add a unit word only where renders_as shows none, e.g. "{F004} GiB", "{F001} databases"',
@@ -129,11 +142,14 @@ async def write(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str,
                         'plan.story is the story to tell, in order: each chapter slot must answer its question directly, lead with the answer, and cite the chapter evidence (must_cite) — an owner reading only the titles must get the whole story',
                         'brief.constraints.owner_declarations are facts the owner has stated; honour them, never contradict them, and never condition a recommendation on something the owner has already declared settled',
                         'actions: ordered, concrete, owner-level, each tied to the evidence token it rests on', 'risks: what the evidence cannot establish and what would close the gap, drawn from coverage.cannot_say',
+                        'evidence.tables are rendered beside their chapters with the exact bucket, table, share, station and language names; refer the reader to them by label (for example: the table of buckets under review) rather than naming locations yourself',
+                        'evidence.glossary is printed in the pack; use its terms in their plain-English sense and never redefine them',
+                        'plan.planner_notes, when present, are the orchestrator\'s directions on emphasis and order within each chapter; follow them unless they conflict with the evidence',
                         'no markdown, no bullets, no URLs, no "Source:"']}
     if issues:
         prompt['repair'] = {'your_previous_draft': previous, 'content_manager_rejections': issues, 'instruction': 'Fix every rejection and return the full corrected JSON.'}
     response = await invoke(purpose=PURPOSE, prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor,
-                            model=os.environ['REPORT_AUTHOR_MODEL'], provider=os.environ['REPORT_AUTHOR_CONNECTION'], tenant_id=tenant, custody_class='tenant_estate',
+                            model=writer['model'], provider=writer['connection'], tenant_id=tenant, custody_class='tenant_estate',
                             system_message=SYSTEM, session_id=session)
     raw = response.text.strip()
     if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
@@ -142,8 +158,19 @@ async def write(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str,
     try:
         draft = json.loads(raw[start:end + 1])
     except ValueError as exc:
-        draft = {'_invalid_json': f'{exc}', '_raw_excerpt': raw[max(0, getattr(exc, "pos", 0) - 160):getattr(exc, "pos", 0) + 160]}
+        draft = _lenient_json(raw[start:end + 1]) or {'_invalid_json': f'{exc}', '_raw_excerpt': raw[max(0, getattr(exc, "pos", 0) - 160):getattr(exc, "pos", 0) + 160]}
+        if '_invalid_json' not in draft: meta['json_repaired'] = str(exc)[:120]
     return draft, meta
+
+
+def _lenient_json(text: str) -> Dict[str, Any] | None:
+    """A stray unescaped quote inside one of fifty prose strings must not cost a whole authoring pass; the content manager still gates every token."""
+    try:
+        from json_repair import repair_json
+        parsed = repair_json(text, return_objects=True)
+    except Exception:  # noqa: BLE001
+        return None
+    return parsed if isinstance(parsed, dict) and parsed else None
 
 
 # ----------------------------------------------------------------------------- Document Content Manager (gate; never rewrites)
@@ -186,7 +213,7 @@ def manage(draft: Dict[str, Any], content: Dict[str, Any], plan_: Dict[str, Any]
         if 'source:' in text.lower(): issues.append(f'{path}: "Source:" strings are not permitted; receipts are printed by the studio')
     for s in plan_['slots']:
         got = draft['slots'].get(s['slot'])
-        if s['type'] in ('coverage_limits', 'appendix'): continue
+        if s['type'] in ('coverage_limits', 'appendix', 'table', 'glossary'): continue
         if not isinstance(got, dict): issues.append(f'slot {s["slot"]} missing'); continue
         title = got.get('title', '')
         if s['type'] != 'section' and (not title or len(title) > limits['title_max_chars']): issues.append(f'slot {s["slot"]}: title missing or over {limits["title_max_chars"]} characters')
@@ -262,11 +289,20 @@ def apply(files: Dict[str, Any], draft: Dict[str, Any], plan_: Dict[str, Any], m
             fields = [k for k in content['options'][s['columns'][0]] if isinstance(content['options'][s['columns'][0]][k], (int, float)) and k not in ('class',)][:3]
             slides.append({'type': 'comparison', 'kicker': got.get('kicker') or 'Options', 'title': claim(got['title']), 'columns': s['columns'],
                            'rows': [{'label': f.replace('_', ' ').capitalize(), 'field': f, 'format': 'num1'} for f in fields], 'so_what': claim(got['so_what'])})
+        elif s['type'] == 'glossary':
+            slides.append({'type': 'glossary', 'kicker': 'Plain English', 'rows_from': s['rows_from'], 'rows_to': s['rows_to']})
+            if s['rows_from'] == 0:
+                paper_sections.append({'heading': 'Plain English: the terms used in this pack', 'blocks': [{'glossary': {}}]})
+        elif s['type'] == 'table':
+            slides.append({'type': 'table', 'kicker': 'Evidence by name', 'table_ref': s['table_ref'], 'rows_from': s['rows_from'], 'rows_to': s['rows_to'], 'columns': s['columns']})
+            continue
         sec = (draft['paper'].get('sections') or {}).get(s['slot'])
         if sec:
             blocks: List[Dict[str, Any]] = [{'para': claim(p)} for p in sec['paragraphs']]
             if s['type'] == 'assertion_exhibit': blocks.append({'figure': {'plate': 'bar', 'series_ref': s['series_ref'], 'y_format': s['y_format'], 'caption': claim(got['so_what'])}})
             if s['type'] == 'comparison': blocks.append({'options_table': {'columns': s['columns'], 'rows': slides[-1]['rows'], 'caption': claim(got['so_what'])}})
+            for tid in s.get('tables') or []:
+                blocks.append({'rows_table': {'table_ref': tid}})  # every row, every column: the paper is the complete record
             paper_sections.append({'heading': sec['heading'], 'blocks': blocks})
     slides += [{'type': 'coverage_limits'}, {'type': 'appendix'}]
     paper_sections += [{'heading': 'Coverage and limits', 'blocks': [{'coverage_limits': True}]}, {'heading': 'Appendix: receipts', 'blocks': [{'receipts': True}]}]
@@ -277,14 +313,71 @@ def apply(files: Dict[str, Any], draft: Dict[str, Any], plan_: Dict[str, Any], m
     if 'docx' in outputs or 'html' in outputs:
         files['paper.json'] = {**common, 'spec_type': 'paper', 'spec_id': spec_template['spec_id'].replace('DK-', 'PP-') if spec_template['spec_id'].startswith('DK-') else spec_template['spec_id'], 'furniture': {'paper_id': spec_template.get('furniture', {}).get('paper_id') or spec_template.get('furniture', {}).get('deck_id') or 'paper', 'confidentiality': spec_template.get('furniture', {}).get('confidentiality', 'Tenant confidential')},
                                'title': '{content.title}', 'subtitle': slides[0]['subtitle'], 'sections': paper_sections}
-    content['authoring'] = {**meta, 'pipeline': 'planner → worker → content manager → frontier writer', 'claims_authored': authored}
+    content['authoring'] = {**meta, 'pipeline': 'orchestrating planner → worker → content manager → frontier writer → independent reviewer', 'claims_authored': authored}
     return files
 
 
+# ----------------------------------------------------------------------------- Orchestrating planner (LLM-shaped; the planner family, distinct from the reviewer)
+PLAN_SYSTEM = ('You are the planning orchestrator in Akki\'s document studio. You receive the evidence model (facts, series, tables by label, glossary, coverage) and the '
+               'deterministic chapter outline. You do not change the outline, the figures or the evidence. You direct the writer: for each chapter say in one or two sentences '
+               'what it must lead with, which evidence tokens carry the answer, what the executive must take away, and what must not be overstated. '
+               'Return ONLY JSON: {"title_direction": "one sentence", "chapter_notes": {"<slot>": "note"}, "cautions": ["..."]}. No markdown. Never type a figure; cite tokens such as {F060}.')
+
+
+async def plan_notes(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str, Any], tenant: str, actor: str, session: str) -> Dict[str, Any]:
+    from services.chokepoint.llm import invoke
+    from services.chokepoint.model_roles import resolve
+    planner = resolve('planner')
+    chapters = [{'slot': s['slot'], 'question': s.get('question'), 'needs': s.get('needs'), 'must_cite': s.get('must_cite'), 'tables': s.get('tables')} for s in plan_['slots'] if s['type'] in ('assertion_points', 'comparison', 'assertion_exhibit')]
+    prompt = {'brief': {k: brief.get(k) for k in ('purpose', 'audience', 'constraints')}, 'evidence': evidence(content), 'outline': chapters, 'story': plan_['story']}
+    response = await invoke(purpose=PLAN_PURPOSE, prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor, model=planner['model'],
+                            provider=planner['connection'], tenant_id=tenant, custody_class='tenant_estate', system_message=PLAN_SYSTEM, session_id=session + ':plan')
+    raw = response.text.strip()
+    if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
+    start, end = raw.find('{'), raw.rfind('}')
+    try: notes = json.loads(raw[start:end + 1])
+    except ValueError: notes = _lenient_json(raw[start:end + 1]) or {'title_direction': None, 'chapter_notes': {}, 'cautions': ['planner response was not valid JSON; deterministic outline stands']}
+    return {'model': response.model_id, 'provider': response.provider, 'receipt_id': response.receipt_id, 'tokens_in': response.tokens_in, 'tokens_out': response.tokens_out, 'latency_ms': response.latency_ms,
+            'title_direction': notes.get('title_direction'), 'chapter_notes': {k: str(v)[:600] for k, v in (notes.get('chapter_notes') or {}).items() if isinstance(k, str)}, 'cautions': [str(c)[:300] for c in (notes.get('cautions') or [])][:8]}
+
+
+# ----------------------------------------------------------------------------- Independent reviewer (different model family from the writer and planner)
+REVIEW_SYSTEM = ('You are the independent reviewer in Akki\'s document studio, from a different model family than the writer. You receive the evidence the writer was given, '
+                 'the story plan and the gated draft. Check every sentence against the evidence: a claim that the evidence does not support, a token used for a different quantity than its label, '
+                 'a recommendation that contradicts the owner declarations, a chapter that does not answer its question, or a missing material finding that the evidence plainly carries. '
+                 'Return ONLY JSON: {"verdict": "accept" | "repair", "findings": [{"path": "draft.slots.x.title", "severity": "blocking" | "advisory", "issue": "...", "fix": "..."}], "summary": "one or two sentences"}. '
+                 'Mark blocking only what would mislead the owner. At most eight findings. No markdown.')
+
+
+async def review(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str, Any], draft: Dict[str, Any], tenant: str, actor: str, session: str) -> Dict[str, Any]:
+    from services.chokepoint.llm import invoke
+    from services.chokepoint.model_roles import resolve
+    reviewer = resolve('reviewer')
+    prompt = {'brief': {k: brief.get(k) for k in ('purpose', 'audience', 'constraints')}, 'evidence': evidence(content), 'plan': plan_['story'], 'draft': draft,
+              'acceptance': ['every figure is a token that exists in evidence and is used for the quantity its label names', 'each chapter answers its question with its own evidence',
+                             'actions follow from the evidence and honour owner_declarations', 'risks name what the evidence cannot establish, from coverage.cannot_say', 'no invented price, right or cause']}
+    response = await invoke(purpose='doc_studio.review', prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor, model=reviewer['model'],
+                            provider=reviewer['connection'], tenant_id=tenant, custody_class='tenant_estate', system_message=REVIEW_SYSTEM, session_id=session + ':review')
+    raw = response.text.strip()
+    if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
+    start, end = raw.find('{'), raw.rfind('}')
+    try: verdict = json.loads(raw[start:end + 1])
+    except ValueError: verdict = _lenient_json(raw[start:end + 1]) or {'verdict': 'unreadable', 'findings': [], 'summary': 'reviewer response was not valid JSON; recorded, not acted on'}
+    findings = [f for f in (verdict.get('findings') or []) if isinstance(f, dict)]
+    return {'model': response.model_id, 'provider': response.provider, 'receipt_id': response.receipt_id, 'tokens_in': response.tokens_in, 'tokens_out': response.tokens_out, 'latency_ms': response.latency_ms,
+            'verdict': verdict.get('verdict'), 'summary': verdict.get('summary'), 'findings': findings[:8],
+            'blocking': [f"{f.get('path', 'draft')}: {f.get('issue', '')} — {f.get('fix', '')}" for f in findings if f.get('severity') == 'blocking'][:8]}
+
+
 async def compose(files: Dict[str, Any], tenant: str, actor: str, session: str) -> Tuple[Dict[str, Any] | None, Dict[str, Any], List[str]]:
-    """Plan, write, gate; one bounded repair pass. Returns (bound files or None, meta, remaining issues)."""
+    """Plan, write, gate, independent review; bounded repair passes. Returns (bound files or None, meta, remaining issues)."""
     content, brief = files['content.json'], files['brief.json']
     plan_ = plan(content, brief)
+    try:
+        planner = await plan_notes(content, brief, plan_, tenant, actor, session)
+        plan_['planner_notes'] = {'title_direction': planner.get('title_direction'), 'chapter_notes': planner.get('chapter_notes'), 'cautions': planner.get('cautions')}
+    except Exception as exc:
+        planner = {'verdict': 'unavailable', 'error': type(exc).__name__, 'resolution': 'orchestrating planner unavailable; the deterministic outline stands and the gap is disclosed'}
     draft, meta = await write(content, brief, plan_, tenant, actor, session)
     issues = manage(draft, content, plan_); repairs = 0
     while issues and repairs < MAX_REPAIRS:
@@ -292,7 +385,25 @@ async def compose(files: Dict[str, Any], tenant: str, actor: str, session: str) 
         draft, meta2 = await write(content, brief, plan_, tenant, actor, session, issues=issues, previous=draft)
         meta = {**meta2, 'tokens_in': meta['tokens_in'] + meta2['tokens_in'], 'tokens_out': meta['tokens_out'] + meta2['tokens_out'], 'repairs': repairs}
         issues = manage(draft, content, plan_)
-    meta['gate'] = {'passed': not issues, 'issues': issues, 'repairs': repairs, 'plan_slots': len(plan_['slots'])}
+    reviewed = None
+    if not issues:
+        try:
+            reviewed = await review(content, brief, plan_, draft, tenant, actor, session)
+            if reviewed['blocking']:
+                # The writer answers the reviewer once; the content manager gates the answer like any other draft. Disagreement stays on record.
+                repaired, meta2 = await write(content, brief, plan_, tenant, actor, session, issues=[f'independent reviewer ({reviewed["model"]}): {b}' for b in reviewed['blocking']], previous=draft)
+                if not manage(repaired, content, plan_):
+                    draft = repaired; meta = {**meta2, 'tokens_in': meta['tokens_in'] + meta2['tokens_in'], 'tokens_out': meta['tokens_out'] + meta2['tokens_out'], 'repairs': repairs + 1}
+                    reviewed['resolution'] = 'writer revised the draft on the reviewer\'s blocking findings; revised draft passed the content manager'
+                else:
+                    reviewed['resolution'] = 'writer\'s revision failed the content manager; the gated original stands and the disagreement is recorded'
+            else:
+                reviewed['resolution'] = 'accepted without blocking findings'
+        except Exception as exc:
+            reviewed = {'verdict': 'unavailable', 'error': type(exc).__name__, 'resolution': 'independent review unavailable; the gated draft stands and the gap is disclosed'}
+    meta['gate'] = {'passed': not issues, 'issues': issues, 'repairs': meta.get('repairs', repairs), 'plan_slots': len(plan_['slots'])}
+    meta['review'] = reviewed
+    meta['planner'] = planner
     meta['draft'] = draft
     if issues:
         return None, meta, issues

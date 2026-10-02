@@ -1,0 +1,200 @@
+{
+  "brief_ref": "BR-2026-10-02-lcj-7128593897d4",
+  "build_stamp": "2026-10-02T08:15:44Z",
+  "content_ref": "training-lcj-7128593897d4@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "lcj-7128593897d4"
+  },
+  "inputs_sha256": {
+    "brief.json": "618851c2e32a25c59457e47c7b00a43ed1e81d74d4ab7ed4675b804b270d27a5",
+    "content.json": "b9e688b9410892b16d2b18bcfbc5406ad0bfbd85b5b8a5a7b82d3d49e201a337",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "096c18bda764604a96e193196dd130e4b4b8725468d654bf76949d973370e83c",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "b14fbaa98f5503ab88e39b20939cc71f788442c5d3a13c5aea28ab1e6ccc6ef4"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "number-large",
+    "fonts": {
+      "body": "Arial",
+      "number": "Courier New",
+      "title": "Century Schoolbook"
+    },
+    "palette": {
+      "accent": "0E7C86",
+      "field": "FFFFFF",
+      "hatch": "EAEEF2",
+      "muted": "7F8C9A",
+      "rule": "D8DEE5",
+      "structure": "22313F"
+    },
+    "palette_id": "slate",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "century-arial",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The Luhya reinforcement run for audio language model v3 was refused against its signed acceptance. Luhya scored 75.8% against a floor of 90%, so the stratum it was meant to improve did not pass. Six other strata scored below their earlier results, and a speaker probe on the served output was above chance."
+        },
+        {
+          "kind": "para",
+          "text": "The sharpest regressions were Kikamba, from 95.1% to 71.3%, and Gikuyu, from 97.6% to 80.0%. Ekegusii is the only stratum above the floor, at 91.5%. The recommendation is not to serve v3, to find the cause of the regressions, and to open a next version with per-stratum guards, a speaker-leakage check and fresh sealed evaluation material."
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The decision was a refusal against the signed acceptance. The target stratum, Luhya, recorded 75.8% against a floor of 90%. The refusal does not rest on Luhya alone. Every other measured stratum regressed from its earlier score."
+        },
+        {
+          "kind": "para",
+          "text": "Ekegusii fell from 94.4% to 91.5%, Kikamba from 95.1% to 71.3%, Gikuyu from 97.6% to 80.0%, Kalenjin from 95.7% to 84.5%, luo from 92.5% to 87.3% and Kiswahili from 93.9% to 83.3%. The speaker probe on the served output also scored above chance."
+        }
+      ],
+      "heading": "The decision and what it was measured against"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Ekegusii is the only stratum above its 90% floor, at 91.5%, with 6.4% abstained. Kikamba scored 71.3% with 12.8% abstained. Gikuyu scored 80.0% with 15.8% abstained, the highest abstention rate on the record."
+        },
+        {
+          "kind": "para",
+          "text": "Kalenjin scored 84.5% with 9.1% abstained. Luo scored 87.3% with 5.8% abstained. Luhya scored 75.8% with 12.8% abstained, and Kiswahili scored 83.3% with 10.5% abstained. The record does not say whether accuracy is calculated over answered items only, so the abstention rates are context, not an adjustment."
+        }
+      ],
+      "heading": "Measurements by stratum"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The run took 27 minutes on the akki-vm host, on device 0, with peak memory of 25.4 GB. This is a modest footprint, and nothing in the record suggests that compute limited the result."
+        },
+        {
+          "kind": "para",
+          "text": "The record holds no cap figure that can be cited, so the comparison with the signed cap cannot be made here. The trained artefact stays on the compute host, which any follow-up test will need to use."
+        }
+      ],
+      "heading": "Compute"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Do not serve v3. The target stratum is below its floor at 75.8% against 90%, and serving would also expose users in other languages to lower scores than before. Ekegusii at 91.5% is nearest its floor; Kikamba at 71.3% and Gikuyu at 80.0% are furthest from theirs."
+        },
+        {
+          "kind": "para",
+          "text": "The record does not explain why the regressions occurred, so the next version should begin with a diagnosis. Further selection against these results would also weaken any later acceptance claim, because they have been inspected."
+        }
+      ],
+      "heading": "What the owner should do with this model"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "First, record the refusal and keep v3 unserved, because Luhya at 75.8% is below the 90% floor. Second, diagnose the Kikamba fall from 95.1% to 71.3% and the Gikuyu fall from 97.6% to 80.0% before changing the recipe, so the next version fixes a known cause."
+        },
+        {
+          "kind": "para",
+          "text": "Third, run a dedicated check on the speaker probe finding, since it is a privacy concern and the record holds no figure for it. Fourth, write the next acceptance with a per-stratum no-regression floor, and commission fresh, independently labelled and sealed final material."
+        }
+      ],
+      "heading": "Recommended actions, in order"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "This record covers one historical run only. It does not establish performance outside the measured strata, which would need an independently designed evaluation. It cannot support independent final acceptance, because the results have been inspected; fresh, independently labelled and sealed material would be needed."
+        },
+        {
+          "kind": "para",
+          "text": "Nor does it give a complete lineage from objective to production, because no new production plan is linked to this run. An explicitly compiled, evidence-linked objective would close that gap, and it should not be backdated."
+        }
+      ],
+      "heading": "What the record cannot yet establish"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "An independently designed evaluation",
+              "gap": "General cognition or performance outside the measured strata",
+              "reason": "Not established by this run"
+            },
+            {
+              "closes_with": "Fresh independently labelled and sealed final material",
+              "gap": "Independent final acceptance after further recipe selection",
+              "reason": "These results have been inspected"
+            },
+            {
+              "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+              "gap": "Complete objective-to-production lineage",
+              "reason": "No new production plan is linked to this historical run"
+            }
+          ],
+          "covers": "Retained model measurements and decisions from lcj-7128593897d4 only.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Measured training receipt and retained acceptance record for lcj-7128593897d4"
+            }
+          ]
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "training-lcj-7128593897d4/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-lcj-7128593897d4",
+  "spec_type": "paper",
+  "subtitle": "Per-stratum acceptance findings and next work for the audio language model v3",
+  "title": "Luhya reinforcement v3 refused; do not serve it",
+  "verdict_ref": "V-2026-10-02-lcj-7128593897d4",
+  "voice": "strategy-house"
+}

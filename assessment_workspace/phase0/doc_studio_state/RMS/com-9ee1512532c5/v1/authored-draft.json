@@ -1,0 +1,152 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "Recommended actions, in order",
+          "paragraphs": [
+            "First, record the refusal and keep v3 unserved, because Luhya at {F002}% is below the {F003}% floor. Second, diagnose the Kikamba fall from {F006}% to {F007}% and the Gikuyu fall from {F008}% to {F009}% before changing the recipe, so the next version fixes a known cause.",
+            "Third, run a dedicated check on the speaker probe finding, since it is a privacy concern and the record holds no figure for it. Fourth, write the next acceptance with a per-stratum no-regression floor, and commission fresh, independently labelled and sealed final material."
+          ]
+        },
+        "chapter1": {
+          "heading": "The decision and what it was measured against",
+          "paragraphs": [
+            "The decision was a refusal against the signed acceptance. The target stratum, Luhya, recorded {F002}% against a floor of {F003}%. The refusal does not rest on Luhya alone. Every other measured stratum regressed from its earlier score.",
+            "Ekegusii fell from {F004}% to {F005}%, Kikamba from {F006}% to {F007}%, Gikuyu from {F008}% to {F009}%, Kalenjin from {F010}% to {F011}%, luo from {F012}% to {F036}% and Kiswahili from {F014}% to {F015}%. The speaker probe on the served output also scored above chance."
+          ]
+        },
+        "chapter2": {
+          "heading": "Measurements by stratum",
+          "paragraphs": [
+            "Ekegusii is the only stratum above its {F041}% floor, at {F040}%, with {F042}% abstained. Kikamba scored {F043}% with {F045}% abstained. Gikuyu scored {F046}% with {F048}% abstained, the highest abstention rate on the record.",
+            "Kalenjin scored {F049}% with {F051}% abstained. Luo scored {F052}% with {F054}% abstained. Luhya scored {F002}% with {F057}% abstained, and Kiswahili scored {F058}% with {F060}% abstained. The record does not say whether accuracy is calculated over answered items only, so the abstention rates are context, not an adjustment."
+          ]
+        },
+        "chapter3": {
+          "heading": "Compute",
+          "paragraphs": [
+            "The run took {F022} minutes on the akki-vm host, on device {F023}, with peak memory of {F024} GB. This is a modest footprint, and nothing in the record suggests that compute limited the result.",
+            "The record holds no cap figure that can be cited, so the comparison with the signed cap cannot be made here. The trained artefact stays on the compute host, which any follow-up test will need to use."
+          ]
+        },
+        "chapter4": {
+          "heading": "What the owner should do with this model",
+          "paragraphs": [
+            "Do not serve v3. The target stratum is below its floor at {F002}% against {F003}%, and serving would also expose users in other languages to lower scores than before. Ekegusii at {F005}% is nearest its floor; Kikamba at {F007}% and Gikuyu at {F009}% are furthest from theirs.",
+            "The record does not explain why the regressions occurred, so the next version should begin with a diagnosis. Further selection against these results would also weaken any later acceptance claim, because they have been inspected."
+          ]
+        },
+        "risks": {
+          "heading": "What the record cannot yet establish",
+          "paragraphs": [
+            "This record covers one historical run only. It does not establish performance outside the measured strata, which would need an independently designed evaluation. It cannot support independent final acceptance, because the results have been inspected; fresh, independently labelled and sealed material would be needed.",
+            "Nor does it give a complete lineage from objective to production, because no new production plan is linked to this run. An explicitly compiled, evidence-linked objective would close that gap, and it should not be backdated."
+          ]
+        }
+      },
+      "summary": [
+        "The Luhya reinforcement run for audio language model v3 was refused against its signed acceptance. Luhya scored {F002}% against a floor of {F003}%, so the stratum it was meant to improve did not pass. Six other strata scored below their earlier results, and a speaker probe on the served output was above chance.",
+        "The sharpest regressions were Kikamba, from {F006}% to {F007}%, and Gikuyu, from {F008}% to {F009}%. Ekegusii is the only stratum above the floor, at {F005}%. The recommendation is not to serve v3, to find the cause of the regressions, and to open a next version with per-stratum guards, a speaker-leakage check and fresh sealed evaluation material."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "Actions",
+        "points": [
+          "First, keep v3 unserved, because Luhya at {F002}% is below the {F003}% floor. Record the refusal against the signed acceptance.",
+          "Second, investigate the Kikamba fall from {F006}% to {F007}% and the Gikuyu fall from {F008}% to {F009}%, before choosing any recipe change.",
+          "Third, investigate the speaker probe finding with its own check on the served output. It is a privacy concern, and no figure for it is recorded.",
+          "Fourth, make the next version's acceptance include a per-stratum no-regression floor, and commission fresh, independently labelled and sealed final material."
+        ],
+        "title": "Hold the model back, find the cause of the regressions, then retrain against fresh evidence"
+      },
+      "chapter1": {
+        "kicker": "Chapter 1 · Decision",
+        "points": [
+          "Luhya scored {F002}% against a signed floor of {F003}%, so the stratum the run was meant to improve did not reach acceptance.",
+          "Ekegusii fell from {F004}% to {F005}%. That is still above the floor, but it is a regression against the signed acceptance.",
+          "Kikamba fell from {F006}% to {F007}%, and Gikuyu from {F008}% to {F009}%.",
+          "Kalenjin fell from {F010}% to {F011}%, luo from {F012}% to {F036}%, and Kiswahili from {F014}% to {F015}%. The speaker probe on the served output was above chance."
+        ],
+        "title": "The run was refused: the target stratum missed its floor and the others regressed"
+      },
+      "chapter2": {
+        "kicker": "Chapter 2 · Measurements",
+        "points": [
+          "Ekegusii scored {F040}% against the {F041}% floor and abstained on {F042}% of items. It is the only measured stratum above the floor.",
+          "Kikamba scored {F043}% against the {F044}% floor, abstaining on {F045}%. This is the lowest score among the strata that had a prior result.",
+          "Gikuyu scored {F046}% and abstained on {F048}%, the highest abstention rate recorded. Kalenjin scored {F049}% and abstained on {F051}%.",
+          "Luo scored {F052}% and abstained on {F054}%. Luhya scored {F002}% and abstained on {F057}%. Kiswahili scored {F058}% and abstained on {F060}%."
+        ],
+        "title": "Only Ekegusii clears the floor, and every stratum except the target regressed"
+      },
+      "chapter3": {
+        "kicker": "Chapter 3 · Compute",
+        "points": [
+          "The run took {F022} minutes on the akki-vm host, using device {F023}.",
+          "Peak memory was {F024} GB.",
+          "The record carries no compute cap figure that I can cite, so how the run compares with the signed cap cannot be stated here.",
+          "The trained artefact stays on the compute host, so any later test of it needs access to that host."
+        ],
+        "title": "The run was small, so compute is not what held this result back"
+      },
+      "chapter4": {
+        "kicker": "Chapter 4 · Next step",
+        "points": [
+          "Serving is ruled out. Luhya at {F002}% is below the {F003}% floor, and the regressions elsewhere would reach users of those languages.",
+          "Ekegusii, at {F005}% against a {F041}% floor, is the closest to its floor. Kikamba and Gikuyu lost the most ground and need the most attention.",
+          "The record does not show why the other strata regressed. The next version should test that directly instead of assuming a cause.",
+          "Further selection on these results would weaken any later acceptance claim, because the results have been inspected."
+        ],
+        "title": "Open a next version that protects the strata already held, rather than serving this one"
+      },
+      "exec": {
+        "answer": "Do not serve it. The record supports a refusal. Open the next version with per-stratum regression guards, a speaker-leakage check and fresh sealed evaluation material, since these results have now been inspected.",
+        "complication": "Luhya reached only {F002}%, below the floor. Six other strata fell from their earlier scores, Kikamba from {F006}% to {F007}%, and a speaker probe on the served output scored above chance.",
+        "kicker": "Decision",
+        "question": "Should this model be served, or should the next effort go into evidence or into a new version?",
+        "situation": "The run tried to strengthen Luhya in audio language model v3 and was checked against a signed acceptance with a floor of {F003}% per stratum and no regression in the other strata.",
+        "title": "The Luhya reinforcement run was refused, and the target language is still below its floor"
+      },
+      "risks": {
+        "kicker": "Limits",
+        "points": [
+          "Performance outside the measured strata is not established by this run. An independently designed evaluation would close that gap.",
+          "Independent final acceptance is not possible on these results, because they have been inspected. Fresh, independently labelled and sealed material would close it.",
+          "Lineage from objective to production is incomplete, since no new production plan is linked to this historical run. An explicitly compiled, evidence-linked objective would close it.",
+          "Whether abstention rates such as {F048}% for Gikuyu feed into the accuracy figures is not stated, so the scores should be read with care."
+        ],
+        "title": "The record cannot show cause, wider performance, or independent acceptance"
+      },
+      "section1": {
+        "title": "The decision and the signed acceptance"
+      },
+      "section2": {
+        "title": "Check-by-check measurements"
+      },
+      "section3": {
+        "title": "Compute used"
+      },
+      "section4": {
+        "title": "What to do with this model"
+      }
+    },
+    "subtitle": "Per-stratum acceptance findings and next work for the audio language model v3",
+    "title": "Luhya reinforcement v3 refused; do not serve it"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 11,
+      "repairs": 0
+    },
+    "latency_ms": 37462,
+    "model": "claude-sonnet-5-5",
+    "provider": "emergent",
+    "receipt_id": "rcp-2f37a256c71e",
+    "tokens_in": 8947,
+    "tokens_out": 2290
+  }
+}

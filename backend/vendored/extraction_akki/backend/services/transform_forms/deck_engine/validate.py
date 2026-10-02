@@ -147,7 +147,7 @@ def default_resolver(ref: str) -> Optional[Dict[str, Any]]:
         return None
     root = _state_root()
     phase0 = root.parent
-    candidates = {"eij-": [root / "estate_intelligence" / f"{ref}.json"], "lcj-": [root / "language_cognition" / f"{ref}.json"],
+    candidates = {"eij-": [root / "estate_intelligence" / f"{ref}.json"], "etx-": [root / "estate_intelligence" / f"{ref}.json"], "lcj-": [root / "language_cognition" / f"{ref}.json"],
                   "m9j-": [root / "m9_training" / f"{ref}.json"], "rcp-": [phase0 / "crossing_receipts" / f"{ref}.json"]}
     for prefix, paths in candidates.items():
         if ref.startswith(prefix):

@@ -105,21 +105,38 @@ def create_from_estate(job_id: str, tenant_id: str, principal_id: str) -> Tuple[
     return create_from_producer("estate-intelligence", job_id, tenant_id, principal_id)
 
 
-async def create_authored(producer: str, job_id: str, tenant_id: str, principal_id: str) -> Tuple[Dict[str, Any], bool]:
-    """Planner → worker → content manager → frontier writer, then the deterministic build. The producer assembles the evidence; the model
-    writes every sentence; the gate decides whether a build may happen. A gated-out draft leaves the commission blocked, never auto-fixed."""
+def _evidence_newer_than(tenant_id: str, record: Dict[str, Any]) -> bool:
+    """True when an estate language / text-estate reading completed after this commission's current version was authored."""
+    since = (record.get("versions") or [{}])[-1].get("at") or record.get("updated_at") or ""
+    try:
+        from services.census_autonomy import text_estate_evidence
+        from services.training_lab import estate_language
+        stamps = [doc.get("finished_at") or doc.get("updated_at") or "" for kind in ("audio", "text") for doc, _ in estate_language.completed(tenant_id, kind)]
+        db = text_estate_evidence.latest(tenant_id)
+        if db and db.get("status") == "completed":
+            stamps.append(db.get("finished_at") or db.get("updated_at") or "")
+    except Exception:  # noqa: BLE001 — absent evidence modules never block a commission
+        return False
+    return any(str(s)[:19] > str(since)[:19] for s in stamps if s)
+
+
+async def create_authored(producer: str, job_id: str, tenant_id: str, principal_id: str, force: bool = False) -> Tuple[Dict[str, Any], bool]:
+    """Orchestrating planner → worker → content manager → frontier writer → independent reviewer, then the deterministic build. The producer assembles
+    the evidence; the model writes every sentence; the gate decides whether a build may happen. A gated-out draft leaves the commission blocked, never
+    auto-fixed. `force` authors a new version even when a clear frontier version exists; so does evidence that completed after that version."""
     from services.transform_forms.doc_studio import author
     if producer not in PRODUCERS:
         raise LookupError("No producer with that name is installed.")
     plan = PRODUCERS[producer](job_id, tenant_id, principal_id, now())
     existing = store.load_record(tenant_id, plan["commission_id"])
-    if existing and (existing.get("authoring") or {}).get("pipeline") == "frontier" and existing.get("release", {}).get("state") == "clear":
+    if existing and not force and (existing.get("authoring") or {}).get("pipeline") == "frontier" and existing.get("release", {}).get("state") == "clear" \
+            and not (producer == "estate-intelligence" and _evidence_newer_than(tenant_id, existing)):
         return existing, False
     files, meta, issues = await author.compose(plan["files"], tenant_id, principal_id, f"author:{plan['commission_id']}")
     draft = meta.pop("draft", None)
     authoring = {"tokens": int(meta.get("tokens_in") or 0) + int(meta.get("tokens_out") or 0), "pipeline": "frontier", "model": meta.get("model"), "provider": meta.get("provider"),
-                 "receipt_id": meta.get("receipt_id"), "latency_ms": meta.get("latency_ms"), "gate": meta.get("gate"),
-                 "source": f"planner → worker → content manager → frontier writer ({meta.get('model')}); gate {'passed' if not issues else 'blocked the draft'}"}
+                 "receipt_id": meta.get("receipt_id"), "latency_ms": meta.get("latency_ms"), "gate": meta.get("gate"), "review": meta.get("review"), "planner": meta.get("planner"),
+                 "source": f"orchestrating planner ({((meta.get('planner') or {}).get('model')) or 'unavailable'}) → worker → content manager → frontier writer ({meta.get('model')}) → independent reviewer ({((meta.get('review') or {}).get('model')) or 'unavailable'}); gate {'passed' if not issues else 'blocked the draft'}"}
     if issues:
         record = existing or _record_from_plan(plan, tenant_id, principal_id)
         if not existing:

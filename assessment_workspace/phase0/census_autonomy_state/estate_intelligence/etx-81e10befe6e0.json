@@ -1,0 +1,169 @@
+{
+ "job_id": "etx-81e10befe6e0",
+ "phase": "text_estate",
+ "source_id": "rms_mysql",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-10-02T10:21:17.989858Z",
+ "params": {
+  "targets": [
+   {
+    "connection_label": "Razuna (Library Content) & Newsvault (Radio News content)",
+    "database": "news_vault",
+    "query_set": "news_vault"
+   },
+   {
+    "connection_label": "citizen_digital",
+    "database": "local",
+    "query_set": "local"
+   }
+  ],
+  "max_seconds": 3600,
+  "database_seconds": 900
+ },
+ "northena_run_id": "run-b5060c387ac2",
+ "northena_trace_id": "trc-9476a3b3a159",
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-CENSUS-ESTATE-INTELLIGENCE",
+  "version": "etx-81e10befe6e0"
+ },
+ "remote": {
+  "root": "~/.akki-census/state/estate_intelligence",
+  "job_dir": "~/.akki-census/state/estate_intelligence/jobs/etx-81e10befe6e0",
+  "pid": 1190229
+ },
+ "status": "completed",
+ "scope": "census only: aggregates, sketches and hashes; no row values retained or returned",
+ "ledger_rows": [
+  {
+   "row_id": "led-c07435b50ad3",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "estate_intelligence_rms_mysql_admitted"
+  },
+  {
+   "row_id": "led-9ff012b296e4",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "estate_intelligence_daemonised:pid=1190229"
+  },
+  {
+   "row_id": "led-f8d73fd58ee8",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "estate_intelligence_completed"
+  }
+ ],
+ "connections": [
+  {
+   "label": "iebc_forms",
+   "host_fingerprint": "cd4c5390fb10"
+  },
+  {
+   "label": "artists_app",
+   "host_fingerprint": "cd57802e1444"
+  },
+  {
+   "label": "viupay",
+   "host_fingerprint": "a0a497b29fc3"
+  },
+  {
+   "label": "citizen_digital",
+   "host_fingerprint": "3de193c7b51c"
+  },
+  {
+   "label": "citizen_digital",
+   "host_fingerprint": "318772a8c6d2"
+  },
+  {
+   "label": "citizen-pulse",
+   "host_fingerprint": "b6ff240ded83"
+  },
+  {
+   "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "host_fingerprint": "8512835c0ceb"
+  }
+ ],
+ "code_sha256": "f354e295f1b9ed6fb6bf9a6f538596125ba115bcd6ee3c611ed11b8cba23ba11",
+ "started_at": "2026-10-02T10:21:23.769252Z",
+ "last_status_rpc": {
+  "at": "2026-10-02T10:31:59.122989Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-0feaf0537320"
+ },
+ "remote_state": {
+  "phase": "text_estate",
+  "job_id": "etx-81e10befe6e0",
+  "status": "completed",
+  "started_at": "2026-10-02T10:21:23.676843Z",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "progress": {
+   "stage": "reading aggregates",
+   "database": "local",
+   "at": "2026-10-02T10:21:28.397450Z"
+  },
+  "finished_at": "2026-10-02T10:21:31.582222Z",
+  "receipt_sha256": "6dcaa9512f06855638f9415be52160fcb880b4b2ee56d1de7a7f12d4764c5c0b"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-estate-intelligence/1",
+  "job_id": "etx-81e10befe6e0",
+  "phase": "text_estate",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-02T10:21:23.676843Z",
+  "code_sha256": "f354e295f1b9ed6fb6bf9a6f538596125ba115bcd6ee3c611ed11b8cba23ba11",
+  "status": "completed",
+  "result": {
+   "targets": [
+    {
+     "database": "news_vault",
+     "query_set": "news_vault",
+     "statements": 9,
+     "rows_fetched": 3656,
+     "queries": {
+      "hours": 365,
+      "news_by_date": 11,
+      "scripts_by_station_date": 2886,
+      "scripts_by_station_slot": 340,
+      "scripts_distinct": 1,
+      "scripts_overall": 1,
+      "stations": 13,
+      "types": 29,
+      "uploads_by_month": 10
+     }
+    },
+    {
+     "database": "local",
+     "query_set": "local",
+     "statements": 7,
+     "rows_fetched": 163,
+     "queries": {
+      "files_by_language": 50,
+      "files_by_status": 10,
+      "folder_language_ids": 55,
+      "folder_languages": 14,
+      "speakers": 1,
+      "transcripts_by_language": 32,
+      "transcripts_overall": 1
+     }
+    }
+   ],
+   "errors": [],
+   "detail_path": "~/.akki-census/state/estate_intelligence/jobs/etx-81e10befe6e0/detail.json",
+   "detail_sha256": "adefcb2f536559c27aef8e9df1bda991b66086f543ee84552f0b7dec546ea2f4",
+   "row_values_retained": false,
+   "execution": "jump host read aggregates; worker of record held them only"
+  },
+  "finished_at": "2026-10-02T10:21:31.582222Z",
+  "receipt_sha256": "6dcaa9512f06855638f9415be52160fcb880b4b2ee56d1de7a7f12d4764c5c0b",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-02T10:21:31.582222Z"
+}

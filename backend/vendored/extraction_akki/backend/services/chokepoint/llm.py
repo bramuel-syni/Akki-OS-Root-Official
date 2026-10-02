@@ -93,6 +93,7 @@ from services.chokepoint.masking_tier import (
 
 TRAINING_LAB_PURPOSES = ('training_lab.advisory_review', 'training_lab.conversation')
 AUTHOR_PURPOSES = ('doc_studio.author', 'census.estate_intelligence_dossier')
+GOVERNED_PURPOSES = TRAINING_LAB_PURPOSES + AUTHOR_PURPOSES + ('doc_studio.review', 'doc_studio.plan')
 
 log = logging.getLogger(__name__)
 
@@ -428,15 +429,20 @@ async def invoke(
     # Optional model selection — emergentintegrations LlmChat exposes .with_model()
     if hasattr(client, "with_model") and provider and model:
         try:
-            if purpose in TRAINING_LAB_PURPOSES and provider == 'emergent':
-                sdk_provider = os.environ['TRAINING_LAB_MODEL_PROVIDER']
-            elif purpose in AUTHOR_PURPOSES and provider == 'emergent':
-                sdk_provider = os.environ['REPORT_AUTHOR_MODEL_PROVIDER']
+            from services.chokepoint.model_roles import for_purpose
+            role = for_purpose(purpose) if provider == 'emergent' else None
+            if role is not None:
+                # Owner order 2026-10-02: the role's assigned family; a caller may not route a governed purpose to a different family.
+                if role['model'] != model:
+                    raise LLMShieldFailure(f"model_not_assigned_to_role — {purpose} is assigned {role['model']} ({role['role']}); got {model!r}")
+                sdk_provider = role['sdk_provider']
             else:
                 sdk_provider = provider
             client = client.with_model(sdk_provider, model)
+        except LLMShieldFailure:
+            raise
         except Exception:  # noqa: BLE001
-            if purpose in TRAINING_LAB_PURPOSES or purpose in AUTHOR_PURPOSES:
+            if purpose in GOVERNED_PURPOSES:
                 raise LLMShieldFailure('Governed model selection failed; no fallback allowed')
             # If provider/model combo is not selectable, fall back to defaults.
             pass
@@ -444,11 +450,16 @@ async def invoke(
         client = client.with_params(max_completion_tokens=2200)
     if purpose in AUTHOR_PURPOSES and hasattr(client, 'with_params'):
         client = client.with_params(max_tokens=16000)
+    if purpose in ('doc_studio.review', 'doc_studio.plan') and hasattr(client, 'with_params'):
+        # Reasoning families spend part of the budget thinking before the JSON; 6000 left Fable with no text (finish_reason=length).
+        client = client.with_params(max_tokens=20000)
 
     # 6. Send + measure.  The prompt sent is the REDACTED prompt — raw
     # estate content never leaves under a query (DAP-7).
     try:
         response_text = await client.send_message(UserMessage(text=redacted_prompt))
+        if response_text is None:
+            raise RuntimeError("upstream_empty_response — the model returned no text (reasoning consumed the completion budget or the response was withheld)")
     except Exception as exc:  # noqa: BLE001
         latency_ms = int((time.perf_counter() - t_start) * 1000)
         log.warning(

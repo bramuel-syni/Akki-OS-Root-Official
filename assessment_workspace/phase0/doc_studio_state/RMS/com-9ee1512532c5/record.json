@@ -1,0 +1,213 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 11,
+      "repairs": 0
+    },
+    "latency_ms": 37462,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "frontier",
+    "provider": "emergent",
+    "receipt_id": "rcp-2f37a256c71e",
+    "source": "planner → worker → content manager → frontier writer (claude-sonnet-5-5); gate passed",
+    "tokens": 11237
+  },
+  "brief_id": "BR-2026-10-02-lcj-7128593897d4",
+  "build_stamp": "2026-10-02T08:15:44Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-10-02T08:16:22Z",
+      "build_id": "bld-9a99544af4f2",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 1,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-02T08:16:25Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "refusal": "no pptx output",
+          "rendered": false
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-9ee1512532c5/builds/bld-9a99544af4f2/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "number-large",
+        "palette_id": "slate",
+        "type_pair_id": "century-arial"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T08:15:44Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "paper.resolved.json": "d23157ac2336446d772048b04e41bdc58e899bbb15c9d25bade32a70a22e7de1",
+          "paper.resolved/brief.json": "618851c2e32a25c59457e47c7b00a43ed1e81d74d4ab7ed4675b804b270d27a5",
+          "paper.resolved/content.json": "b9e688b9410892b16d2b18bcfbc5406ad0bfbd85b5b8a5a7b82d3d49e201a337",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "096c18bda764604a96e193196dd130e4b4b8725468d654bf76949d973370e83c",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "b14fbaa98f5503ab88e39b20939cc71f788442c5d3a13c5aea28ab1e6ccc6ef4"
+        },
+        "outputs_sha256": {
+          "training-lcj-7128593897d4.docx": "07a1325a9549c9a7b5b8f31993731bccbdf2def294c0dbeb1f43e62fa311281e"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "training-lcj-7128593897d4.docx",
+          "sha256": "07a1325a9549c9a7b5b8f31993731bccbdf2def294c0dbeb1f43e62fa311281e",
+          "size": 39694
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "Does the paper read as an argument when read unattended, without the deck?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-9ee1512532c5",
+  "content_id": "training-lcj-7128593897d4",
+  "created_at": "2026-10-02T08:16:22Z",
+  "created_by": "6ab56dd48894abb269135ca2",
+  "current_content_version": 1,
+  "economics": {
+    "authoring_tokens_total": 11237,
+    "builds_total": 1,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 2,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Model owner and reviewers · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is familiar with the objective; mixed technical depth",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are per-stratum performance, coverage, privacy and next work",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "docx",
+    "html"
+  ],
+  "producer": "training-whitepaper",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "lcj",
+      "platform_ref": "lcj-7128593897d4",
+      "resolves_to": "Measured training receipt and retained acceptance record for lcj-7128593897d4",
+      "status": "completed",
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "build bld-9a99544af4f2 byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "training-lcj-7128593897d4/decide/2026-10-02",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "lcj-7128593897d4",
+  "specs": [
+    "paper.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Luhya reinforcement v3 refused; do not serve it",
+  "updated_at": "2026-10-02T08:16:25Z",
+  "verdict_id": "V-2026-10-02-lcj-7128593897d4",
+  "versions": [
+    {
+      "at": "2026-10-02T08:16:22Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "commissioned by producer training-whitepaper from lcj-7128593897d4",
+      "version": 1
+    }
+  ],
+  "voice": "strategy-house"
+}

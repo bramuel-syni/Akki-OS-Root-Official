@@ -35,6 +35,11 @@ def refresh_running(max_age_s=0):
     if doc and doc['status'] == 'running' and _age(doc.get('updated_at')) >= max_age_s:
         try: corpus_measurement.refresh(doc); touched.append(doc['measurement_id'])
         except Exception as exc: log.warning('measurement refresh failed: %s', type(exc).__name__)
+    from services.training_lab import estate_language
+    for doc in estate_language.active(TENANT):
+        if _age(doc.get('updated_at')) < max_age_s: continue
+        try: estate_language.refresh(doc); touched.append(doc['estate_language_id'])
+        except Exception as exc: log.warning('estate language refresh failed: %s', type(exc).__name__)
     return touched
 
 
@@ -104,9 +109,10 @@ def dispatch_signed(tenant=TENANT):
 
 # ----------------------------------------------------------------------------- acceptance against the signed contract
 def _audio_outcome(plan, job):
-    cert = job.get('run_certificate') or {}; strata = cert.get('per_stratum') or {}; floor = plan['acceptance']['floor']
+    cert = job.get('run_certificate') or {}; strata = cert.get('per_stratum') or {}
     reasons, passes = [], True
     for code in plan['target_languages']:
+        floor = signoff.language_floor(plan, code)
         acc = (strata.get(code) or {}).get('accuracy')
         if acc is None: reasons.append(f'{code}: not measured on the held-out set'); passes = False
         elif acc < floor: reasons.append(f'{code}: {acc:.1%} below the {floor:.0%} floor'); passes = False

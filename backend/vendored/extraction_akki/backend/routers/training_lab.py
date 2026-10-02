@@ -126,6 +126,47 @@ async def corpus_measurement_status(actor=Depends(census_identity)):
     return {'tenant_id':actor['tenant_id'],'measurement':corpus_measurement.public(doc) if doc else None}
 
 
+class EstateLanguageDispatch(c.Closed):
+    compute_cap_gpu_hours:float=Field(default=6.0,gt=0,le=12)
+    max_windows_per_file:int=Field(default=900,ge=1,le=5000)
+    kind:Literal['audio','text']|None=None
+    skip_completed:bool=False
+    interleave:bool|None=None
+
+
+@router.post('/estate-language',status_code=202,response_model=c.Envelope)
+def estate_language_dispatch(body:EstateLanguageDispatch,actor=Depends(census_identity)):
+    operator(actor)
+    if actor['tenant_id']!='RMS': raise HTTPException(403,'The staged corpus is RMS custody')
+    from services.training_lab import estate_language
+    with commission_gate.crossing(actor,'training_lab.corpus_measurement',body.model_dump()):
+        try: docs=estate_language.dispatch(actor,body.model_dump())
+        except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    return {'tenant_id':actor['tenant_id'],'jobs':docs}
+
+
+@router.get('/estate-language',response_model=c.Envelope)
+async def estate_language_status(actor=Depends(census_identity)):
+    from services.census_autonomy import text_estate_evidence
+    from services.training_lab import estate_language
+    await asyncio.to_thread(estate_language.refresh_all,actor['tenant_id'])
+    text_estate=await asyncio.to_thread(lambda: text_estate_evidence.refresh(text_estate_evidence.latest(actor['tenant_id'])))
+    return {'tenant_id':actor['tenant_id'],**estate_language.status(actor['tenant_id']),'text_estate':text_estate}
+
+
+@router.post('/text-estate',status_code=202,response_model=c.Envelope)
+def text_estate_dispatch(actor=Depends(census_identity)):
+    """Aggregate-only read of the written-word stores (hourly news scripts per station, transcription workbench text per language)."""
+    operator(actor)
+    if actor['tenant_id']!='RMS': raise HTTPException(403,'The written-word stores are RMS custody')
+    from services.census_autonomy import text_estate_evidence
+    with commission_gate.crossing(actor,'training_lab.corpus_measurement',{'targets':[t['database'] for t in text_estate_evidence.TARGETS]}):
+        try: doc=text_estate_evidence.dispatch(actor)
+        except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    return {'tenant_id':actor['tenant_id'],'job':doc}
+
+
+
 @router.get('/languages/weak',response_model=c.Envelope)
 def weak_languages(floor:float=0.9,actor=Depends(census_identity)):
     from services.training_lab import languages

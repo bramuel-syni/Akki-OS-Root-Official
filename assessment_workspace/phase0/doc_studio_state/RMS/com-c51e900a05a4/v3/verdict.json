@@ -1,0 +1,134 @@
+{
+  "adopted": "D1",
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "candidates": [
+    {
+      "assembly": {
+        "compositions": [
+          "cover",
+          "exec_summary",
+          "section",
+          "assertion_exhibit",
+          "assertion_points",
+          "comparison",
+          "coverage_limits",
+          "appendix"
+        ],
+        "density": "sparse",
+        "imagery": "none",
+        "narrative": "recommendation-and-evidence",
+        "treatment": "restrained"
+      },
+      "idea_id": "D1",
+      "name": "Evidence-led",
+      "rationale": "Audience priorities are the whole estate, not one store, cost reduction with its certainty stated, data condition and personal-data exposure as preparation work, monetisable products and what each needs first; every slide must carry a receipted exhibit. Read-ahead use means exhibits must be self-explaining.",
+      "verdict": "adopt"
+    },
+    {
+      "assembly": {
+        "compositions": [
+          "cover",
+          "hero",
+          "big_number",
+          "assertion_exhibit",
+          "closing"
+        ],
+        "density": "medium",
+        "imagery": "abstract",
+        "narrative": "vision-then-journey",
+        "treatment": "expressive"
+      },
+      "conditions": "Re-enter when the purpose is to persuade or inspire a programme or all-hands audience rather than to decide.",
+      "idea_id": "D2",
+      "name": "Future-state",
+      "verdict": "defer"
+    },
+    {
+      "assembly": {
+        "compositions": [
+          "cover",
+          "persona",
+          "journey",
+          "benefits",
+          "evidence"
+        ],
+        "density": "medium",
+        "imagery": "photographic",
+        "narrative": "stakeholder-journey",
+        "treatment": "warm"
+      },
+      "idea_id": "D3",
+      "name": "Human-centred",
+      "rationale": "No stakeholder research exists in the content model; the direction would require evidence that does not exist.",
+      "verdict": "reject"
+    }
+  ],
+  "confirmed_at": "2026-10-02T11:04:02Z",
+  "confirmed_by": "6ab56dd48894abb269135ca2",
+  "frame_ref": "FR-strategy-decide-v1",
+  "goal": "Select a direction that lets Estate owner and operators · RMS decide from this pack: Give the estate owner one estate-wide account from census eij-1b359b3cbd2e — databases, object store and file shares — of what is held, what it costs to keep, what condition it is in and which data products to stand up first, so the owner can decide what to do first.",
+  "manifest": [
+    {
+      "assumption": "Audience is Estate owner and operators · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is high on the business, mixed on the data estate",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are the whole estate, not one store, cost reduction with its certainty stated, data condition and personal-data exposure as preparation work, monetisable products and what each needs first",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    },
+    {
+      "assumption": "Every option is shown without a recommended winner",
+      "class": "inferred",
+      "flips": [
+        "comparison_plate_no_winner"
+      ],
+      "id": "M6",
+      "source": "house policy: findings not directives"
+    }
+  ],
+  "verdict_id": "V-2026-10-02-eij-1b359b3cbd2e"
+}

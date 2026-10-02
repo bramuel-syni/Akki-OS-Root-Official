@@ -1,0 +1,68 @@
+{
+  "draft": {
+    "_invalid_json": "Expecting ',' delimiter: line 1 column 18607 (char 18606)",
+    "_raw_excerpt": "} of windows.\",\"Noise and intelligibility were not scored. A bounded pilot in the largest folders, with human validation of a sample, is the sound next step.\"]},\"exhibit_S012\":{\"heading\":\""
+  },
+  "issues": [
+    "response was not valid JSON (Expecting ',' delimiter: line 1 column 18607 (char 18606)); near: '} of windows.\",\"Noise and intelligibility were not scored. A bounded pilot in the largest folders, with human validation of a sample, is the sound next step.\"]},\"exhibit_S012\":{\"heading\":\"'. Escape or avoid double quotes inside strings and return one complete JSON object"
+  ],
+  "meta": {
+    "gate": {
+      "issues": [
+        "response was not valid JSON (Expecting ',' delimiter: line 1 column 18607 (char 18606)); near: '} of windows.\",\"Noise and intelligibility were not scored. A bounded pilot in the largest folders, with human validation of a sample, is the sound next step.\"]},\"exhibit_S012\":{\"heading\":\"'. Escape or avoid double quotes inside strings and return one complete JSON object"
+      ],
+      "passed": false,
+      "plan_slots": 50,
+      "repairs": 2
+    },
+    "latency_ms": 111550,
+    "model": "claude-sonnet-5-5",
+    "planner": {
+      "cautions": [
+        "Preserve every supplied outline slot and deterministic exhibit; unresolved references must be flagged rather than silently repaired, removed or assigned invented values.",
+        "Several outline needs and must-cite aliases have no matching evidence entry; obtain an authoritative alias mapping before final rendering, including the unresolved product-count, degradation, database-size, series and table references.",
+        "Use admitted facts, series, tables and coverage as the quantitative authority; contextual producer claims and the embedded expert narrative contain stale, conflicting or unresolved statements and must not override them.",
+        "The owner's declaration settles ownership and use rights; exclude inherited demands for rights grants or legal clearance as release conditions, while retaining de-identification, aggregation and operational approval as preparation requirements.",
+        "The evidence supplies estimated savings at reference prices, not a measured current estate bill, net migration economics, validated product prices or revenue forecasts.",
+        "Do not add strategy opportunities as independent realised savings without checking overlap; distinguish the database reclamation estimate from the broader tiering and consolidation strategy scope.",
+        "Object duplicate-matching descriptions differ between the fact scope and glossary; retain candidate status, disclose the methodological ambiguity if relevant and require content-hash confirmation before removal.",
+        "Cold means not recently written, not unread; retrieval demand, fees, dependencies, restore requirements and query effects still need checking before execution."
+      ],
+      "chapter_notes": {
+        "actions": "Lead with the sequence supported by {T013}: validate object-store economics and duplicates, reconcile unreadable inventory, then prepare a bounded product pilot with condition checks. Keep database reclamation {F005} and {F006} scoped to databases, assign operational responsibilities from the decision table, and invent neither deadlines nor realised outcomes.",
+        "chapter1": "Lead with total holdings {F050}, then distinguish object storage {F030}, file shares {F040} and database storage {F004}, using {K005} and {K006} for perspective. Establish an estate-wide baseline without implying that every inventoried source was readable or that rounded store totals reconcile exactly.",
+        "chapter2": "Lead with the source-specific review lists in {T010}, {T011}, {T012} and {T015}, supported by cold holdings {F036}, cold buckets {F037} and duplicate-candidate bytes {F034}. The executive should see proposed actions and destinations alongside their checks; do not invent unavailable table rows, treat strategy bytes as individual-table bytes, or present destinations as executed moves.",
+        "chapter4": "Lead with the contrast between exact duplication {F007}, degradation {F008} and empty required-looking fields {F009}, then explain sampled personal-data markers through {F010} and {F011}. The takeaway is targeted product preparation, not blanket unusability: inferred required fields are not formal constraints, {F012} concerns database write age, and ownership rights are settled.",
+        "chapter5": "Lead with the distinction between recorded hours {F060} and estimated speech and music hours {F061} and {F062}, then use {T020} and {T024} to specify language and quality preparation. Recommend a bounded, validated audio pilot without claiming that non-music windows are all usable speech or that noise, intelligibility and training readiness have been established.",
+        "chapter6": "Lead with live scripts {F080}, stations {F081} and represented dates {F082}, then distinguish revisions and distinct texts using {F085} and {F086} with {T022}. Present staged transcript readings {T021}, {F070}, {F071} and {F075} separately from the workbench inventory {T023}, {F090} and {F091}; neither extrapolate the capped text reading nor add potentially overlapping inventories.",
+        "chapter7": "Lead with a proposed initial preparation shortlist of reference/master data, content catalogue and channel engagement, using {F018} and contextual candidate descriptions {C021}, {C022} and {C023}, while distinguishing their readiness basis from the measured language assets {F060} and {F080}. For each, specify canonicalisation or revision handling, completeness and join checks where relevant, and de-identification or aggregation before buyer-side validation; treat the ordering as a recommendation, not demonstrated demand, revenue or release readiness, and impose no rights-clearance condition.",
+        "chapter8": "Lead with the decisions already enumerated in {T013}, tying archival review to {F036}, duplicate confirmation to {F034} and inventory reconciliation to {F033}. The executive should approve accountable verification and bounded preparation work with explicit benefits and checks, not interpret {F019} as guaranteed savings or approve implicit deletion, movement or training.",
+        "chapter9": "Lead with coverage boundaries using {F003} against {F002}, unreadable buckets {F033}, enumerated file holdings {F040} and {F041}, and unread transcripts {F075}. Pair each gap with its closing measurement—complete passes, provider reconciliation, file hashing, additional text reading, script-language checks or inventory joins—without treating technical access gaps as unresolved ownership rights.",
+        "compare": "Lead with {O1}, {O2} and {O3} as alternative operational levers, anchoring the overall priced opportunity with {F019}. Recommend checking archive economics and confirming duplicates first, while labelling savings as reference-list-price upper bounds rather than invoice savings, realised returns or the estate's current holding cost.",
+        "exhibit_S001": "Lead with {S001} to locate database storage concentration and use {F004} as its scope anchor. This exhibit identifies where database work may matter operationally, not which databases have the worst rows or where most whole-estate bytes reside.",
+        "exhibit_S002": "Lead with {S002} and the separate findings {F007}, {F008}, {F009} and {F010}, making completeness and personal-data preparation visible alongside duplication. These measures overlap and have different denominators, so neither add them nor portray them as a partition of estate condition.",
+        "exhibit_S003": "Lead with {S003} to show that object-store tiering and duplicate reconciliation dominate addressable bytes, supported by {F036}, {K009} and {F034}. Distinguish bytes moved to cheaper storage from bytes removed, and do not describe unwritten data as untouched or unused.",
+        "exhibit_S004": "Lead with {S004} and {F050}, showing that object storage and file shares dominate holdings while databases are a smaller storage footprint. The executive should prioritise across stores, not treat database measures as estate-wide condition measures.",
+        "exhibit_S005": "Lead with bucket concentration in {S005}, anchored by {F038} and {F030}, to locate the largest operational leverage. Size alone does not establish archival suitability, and a cold designation measures writes rather than reads.",
+        "exhibit_S010": "Lead with estimated speech availability by folder in {S010}, anchored by recorded duration {F060}, estimated speech {F061} and estimated music {F062}. Use the distribution to scope candidate language pilots, not to claim verified clean speech or balanced language coverage.",
+        "exhibit_S011": "Lead with folder-level model agreement in {S011}, explaining aggregate agreement {F072} alongside declined labels {F066}. The executive should fund language validation where needed; agreement among labelled windows is not human-verified accuracy across all audio.",
+        "exhibit_S012": "Lead with the station distribution in {S012}, supported by live scripts {F080} and stations {F081}. Make the archive's potential breadth clear, but label language as station metadata rather than a reading of each script and avoid implying continuous coverage.",
+        "exhibit_S013": "Lead with {S013} as bulletin-hour coverage conditional on a scripted day, contextualised by {F082} and the overall span {F083}. The executive should distinguish coverage density on represented days from completeness across the calendar; these are hour slots, not measured audio duration.",
+        "risks": "Lead with the limits that could change decisions: database coverage {F003} and {F002}, object duplicate uncertainty {F034}, sampled personal-data markers {F010}, and list-price savings {F019}. Distinguish execution safety, privacy preparation, incomplete measurement and buyer validation from settled ownership rights, and keep database storage {F004} separate from whole-estate holdings."
+      },
+      "latency_ms": 42336,
+      "model": "gpt-6-astra",
+      "provider": "emergent",
+      "receipt_id": "rcp-7b48115b20da",
+      "title_direction": "Frame the briefing as an estate-wide decision on storage economics, data preparation and initial product pilots, with measured holdings distinguished from estimated savings and commercial potential.",
+      "tokens_in": 20313,
+      "tokens_out": 1920
+    },
+    "provider": "emergent",
+    "receipt_id": "rcp-bfc144d7a073",
+    "repairs": 2,
+    "review": null,
+    "tokens_in": 85739,
+    "tokens_out": 8806
+  }
+}

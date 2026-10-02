@@ -296,7 +296,7 @@ def resolve_deck(spec, content, brief, verdict, theme, voice):
     slides = []
     for i, s in enumerate(spec["slides"], start=1):
         t = s["type"]
-        zones = {k: zone_inches(grid, z) for k, z in voice["layouts"][t].items()}
+        zones = {k: zone_inches(grid, z) for k, z in voice["layouts"][LAYOUT_ALIAS.get(t, t)].items()}
         r = {"n": i, "type": t, "zones": zones}
         if t == "cover":
             r.update(title=content.text(s["title"]), subtitle=content.text(s["subtitle"]), org=content.text(s["org"]))
@@ -330,6 +330,10 @@ def resolve_deck(spec, content, brief, verdict, theme, voice):
         elif t == "appendix":
             r.update(kicker="Appendix", title="Exhibit index with receipts",
                      receipts=[{"id": k, "text": v["resolves_to"]} for k, v in sorted(content.receipts.items())])
+        elif t == "table":
+            r.update(kicker=s.get("kicker", "Evidence"), title=content.text(s["title"]) if s.get("title") else resolve_table(s, content)["label"], table=resolve_table(s, content))
+        elif t == "glossary":
+            r.update(kicker=s.get("kicker", "Plain English"), title=content.text(s["title"]) if s.get("title") else "What the terms in this pack mean", terms=resolve_glossary(s, content))
         else:
             raise ValueError(f"unknown slide type {t}")
         r["title_chars"] = len(r.get("title", ""))
@@ -358,6 +362,10 @@ def resolve_paper(spec, content, brief, verdict, theme, voice):
                 blocks.append({"kind": "coverage", **coverage_block(content)})
             elif "receipts" in b:
                 blocks.append({"kind": "receipts", "receipts": [{"id": k, "text": v["resolves_to"]} for k, v in sorted(content.receipts.items())]})
+            elif "rows_table" in b:
+                blocks.append({"kind": "rows_table", **resolve_table(b["rows_table"], content), "caption": content.text(b["rows_table"].get("caption", ""))})
+            elif "glossary" in b:
+                blocks.append({"kind": "glossary", "terms": resolve_glossary(b["glossary"], content)})
         secs.append({"heading": content.text(sec["heading"]), "blocks": blocks})
     out["sections"] = secs
     return out
@@ -379,9 +387,52 @@ def resolve_workbook(spec, content, brief, verdict, theme, voice):
             r["checks"] = sh["checks"]  # v1.2: declared checks
         elif sh["kind"] == "series":
             r["series"] = [{"id": sid, **content.series[sid], "receipt_text": content.receipt_for(content.series[sid]["receipt"])} for sid in sh["series"]]
+        elif sh["kind"] == "table":
+            r["table"] = resolve_table(sh, content)
+        elif sh["kind"] == "glossary":
+            r["terms"] = resolve_glossary(sh, content)
         sheets.append(r)
     out["sheets"] = sheets
     return out
+
+
+# v1.3 (owner order 2026-10-02): evidence tables and a plain-English glossary live in the content model (content.tables / content.glossary);
+# specs reference them by id so every exact location, decision row and term definition is carried once and rendered identically everywhere.
+LAYOUT_ALIAS = {"table": "comparison", "glossary": "assertion_points"}
+
+
+def _cell(value):
+    text = "" if value is None else str(value)
+    return (" " + text) if text.startswith("#") else text
+
+
+def _first_sentence(note):
+    """The deck's one-line takeaway under a table: the note's first sentence; the full note stays in the paper and workbook."""
+    head = note.split(". ")[0].strip()
+    return head if head.endswith(".") or head == note else head + "."
+
+
+def resolve_table(ref, content):
+    table = content.d["tables"][ref["table_ref"]]
+    rows = table["rows"][int(ref.get("rows_from", 0)):ref.get("rows_to")]
+    columns = list(table["columns"])
+    right_from = int(table.get("right_align_from", len(columns)))
+    if ref.get("columns"):
+        keep = [columns.index(c) for c in ref["columns"] if c in columns]
+        rows = [[row[i] for i in keep] for row in rows]
+        numeric = [n for n, i in enumerate(keep) if i >= right_from]
+        right_from = numeric[0] if numeric and numeric == list(range(numeric[0], len(keep))) else len(keep)
+        columns = [columns[i] for i in keep]
+    return {"id": ref["table_ref"], "label": table["label"], "columns": columns, "rows": [[_cell(v) for v in row] for row in rows],
+            "raw_rows": [[(_cell(v) if isinstance(v, str) else v) for v in row] for row in rows],
+            "class": table["class"], "receipt": table["receipt"], "receipts": [table["receipt"]], "receipt_text": content.receipt_for(table["receipt"]),
+            "so_what": content.text(ref.get("so_what") or _first_sentence(table.get("note") or "")), "note": table.get("note", ""), "rows_total": len(table["rows"]),
+            "rows_from": int(ref.get("rows_from", 0)), "right_align_from": right_from}
+
+
+def resolve_glossary(ref, content):
+    terms = content.d["glossary"]
+    return [{"term": t["term"], "meaning": t["meaning"]} for t in terms[int(ref.get("rows_from", 0)):ref.get("rows_to")]]
 
 
 RESOLVERS = {"deck": resolve_deck, "paper": resolve_paper, "workbook": resolve_workbook}

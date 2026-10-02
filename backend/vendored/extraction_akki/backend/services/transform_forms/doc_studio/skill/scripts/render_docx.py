@@ -156,6 +156,14 @@ class Paper:
                                [[g["gap"], g["reason"], g["closes_with"]] for g in b["cannot_say"]], right_align_from=99)
                 elif k == "receipts":
                     self.table(["Receipt", "Resolves to"], [[r["id"], r["text"]] for r in b["receipts"]], right_align_from=99)
+                elif k == "rows_table":
+                    self.small(f'{b["id"]}  {b["label"]}', italic=False)
+                    self.table(b["columns"], b["rows"], caption=b.get("caption") or None, right_align_from=b["right_align_from"])
+                    if b.get("note"):
+                        self.small(b["note"], italic=True)
+                    self.receipt_line(b["class"], [b["receipt"]], b["receipt_text"])
+                elif k == "glossary":
+                    self.table(["Term", "What it means in this pack"], [[t["term"], t["meaning"]] for t in b["terms"]], right_align_from=99)
         cp = d.core_properties
         cp.title = self.p["title"]
         cp.author = "doc-studio"

@@ -30,7 +30,7 @@ def retyped_numbers(spec):
     def walk(o, path):
         if isinstance(o, dict):
             for k, v in o.items():
-                if k in ("seed", "build_stamp", "spec_id", "content_ref", "brief_ref", "verdict_ref", "format", "field", "calc", "plate", "y_format", "formula", "number", "deck_id", "paper_id"):
+                if k in ("seed", "build_stamp", "spec_id", "content_ref", "brief_ref", "verdict_ref", "format", "field", "calc", "plate", "y_format", "formula", "number", "deck_id", "paper_id", "table_ref", "rows_from", "rows_to"):
                     continue
                 walk(v, f"{path}.{k}")
         elif isinstance(o, list):
@@ -60,7 +60,7 @@ def lint_plan(plan, voice):
                 blockers.append(f"voice requires a '{req}' slide; none present")
         for s in plan["slides"]:
             t = s.get("title", "")
-            if s["type"] not in ("cover", "section", "closing", "big_number") and len(t) > st["title_max_chars"]:
+            if s["type"] not in ("cover", "section", "closing", "big_number", "table", "glossary") and len(t) > st["title_max_chars"]:
                 blockers.append(f"slide {s['n']}: title {len(t)} chars > {st['title_max_chars']}")
             ex = s.get("exhibit") or s.get("table")
             if ex:
@@ -75,6 +75,10 @@ def lint_plan(plan, voice):
                     blockers.append(f"slide {s['n']}: comparison marks a winner; this voice presents options without one")
             if s["type"] not in ("cover", "section") and s["type"] != "exec_summary" and t and not re.search(r"[a-z]", t[:1]):
                 pass
+            if s["type"] == "table" and (len(s["table"]["rows"]) > 9 or len(s["table"]["columns"]) > 7):
+                blockers.append(f"slide {s['n']}: evidence table {s['table']['id']} has {len(s['table']['rows'])} rows × {len(s['table']['columns'])} columns; paginate to ≤ 9 rows × 7 columns per slide")
+            if s["type"] == "glossary" and len(s["terms"]) > 6:
+                blockers.append(f"slide {s['n']}: glossary slide carries {len(s['terms'])} terms; paginate to ≤ 6 per slide")
             if s["type"] in ("assertion_exhibit", "assertion_points", "comparison"):
                 if not re.search(r"\s(is|are|was|were|has|have|cost|costs|grew|fell|runs|stays|means|carry|carries|outrun|outruns|outrunning)\b", t):
                     review.append(f"slide {s['n']}: is the title a full-sentence assertion? \"{t}\"")
@@ -86,7 +90,7 @@ def lint_plan(plan, voice):
     if plan["spec_type"] == "paper":
         for sec in plan["sections"]:
             for b in sec["blocks"]:
-                if b["kind"] in ("figure", "table", "options_table"):
+                if b["kind"] in ("figure", "table", "options_table", "rows_table"):
                     if not (b.get("receipt") or b.get("receipts")):
                         blockers.append(f"paper section '{sec['heading']}': exhibit without receipt")
         review.append("Does the paper read as an argument when read unattended, without the deck?")

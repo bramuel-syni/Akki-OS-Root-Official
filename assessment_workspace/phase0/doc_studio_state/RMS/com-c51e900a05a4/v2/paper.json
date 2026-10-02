@@ -1,0 +1,422 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T07:26:31Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@2",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "{C902}"
+        },
+        {
+          "para": "{C903}"
+        },
+        {
+          "para": "{C904}"
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "glossary": {}
+        }
+      ],
+      "heading": "Plain English: the terms used in this pack"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C913}"
+        },
+        {
+          "para": "{C914}"
+        },
+        {
+          "figure": {
+            "caption": "{C915}",
+            "plate": "bar",
+            "series_ref": "S004",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Where the estate's bytes sit"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C918}"
+        },
+        {
+          "para": "{C919}"
+        },
+        {
+          "figure": {
+            "caption": "{C920}",
+            "plate": "bar",
+            "series_ref": "S005",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Concentration in the object store"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C926}"
+        },
+        {
+          "para": "{C927}"
+        }
+      ],
+      "heading": "Holdings across the three stores"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C934}"
+        },
+        {
+          "para": "{C935}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T010"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T011"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T012"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T015"
+          }
+        }
+      ],
+      "heading": "Buckets, tables and shares under review"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C939}"
+        },
+        {
+          "para": "{C940}"
+        },
+        {
+          "figure": {
+            "caption": "{C941}",
+            "plate": "bar",
+            "series_ref": "S003",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Where the reclaimable bytes are"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C944}"
+        },
+        {
+          "para": "{C945}"
+        },
+        {
+          "options_table": {
+            "caption": "{C946}",
+            "columns": [
+              "O1",
+              "O2",
+              "O3"
+            ],
+            "rows": [
+              {
+                "field": "reclaimable_gib",
+                "format": "num1",
+                "label": "Reclaimable gib"
+              },
+              {
+                "field": "monthly_saving_usd",
+                "format": "num1",
+                "label": "Monthly saving usd"
+              }
+            ]
+          }
+        }
+      ],
+      "heading": "Three priced moves compared"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C950}"
+        },
+        {
+          "para": "{C951}"
+        },
+        {
+          "figure": {
+            "caption": "{C952}",
+            "plate": "bar",
+            "series_ref": "S002",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Condition of measured rows"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C955}"
+        },
+        {
+          "para": "{C956}"
+        },
+        {
+          "figure": {
+            "caption": "{C957}",
+            "plate": "bar",
+            "series_ref": "S001",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Database size by database"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C963}"
+        },
+        {
+          "para": "{C964}"
+        }
+      ],
+      "heading": "What condition the rows are in"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C968}"
+        },
+        {
+          "para": "{C969}"
+        },
+        {
+          "figure": {
+            "caption": "{C970}",
+            "plate": "bar",
+            "series_ref": "S010",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Speech hours by language folder"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C973}"
+        },
+        {
+          "para": "{C974}"
+        },
+        {
+          "figure": {
+            "caption": "{C975}",
+            "plate": "bar",
+            "series_ref": "S011",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Agreement with the folder language"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C981}"
+        },
+        {
+          "para": "{C982}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T020"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T024"
+          }
+        }
+      ],
+      "heading": "Audio by language and condition"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C986}"
+        },
+        {
+          "para": "{C987}"
+        },
+        {
+          "figure": {
+            "caption": "{C988}",
+            "plate": "bar",
+            "series_ref": "S012",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "News scripts by station"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C991}"
+        },
+        {
+          "para": "{C992}"
+        },
+        {
+          "figure": {
+            "caption": "{C993}",
+            "plate": "bar",
+            "series_ref": "S013",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Bulletin hours on scripted days"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C999}"
+        },
+        {
+          "para": "{C1000}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T022"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T021"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T023"
+          }
+        }
+      ],
+      "heading": "Separate text inventories"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1007}"
+        },
+        {
+          "para": "{C1008}"
+        }
+      ],
+      "heading": "Which products to prepare first"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1015}"
+        },
+        {
+          "para": "{C1016}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T013"
+          }
+        }
+      ],
+      "heading": "The decisions requested"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1023}"
+        },
+        {
+          "para": "{C1024}"
+        }
+      ],
+      "heading": "What is still unmeasured"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1031}"
+        },
+        {
+          "para": "{C1032}"
+        }
+      ],
+      "heading": "What to do first, in order"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1039}"
+        },
+        {
+          "para": "{C1040}"
+        }
+      ],
+      "heading": "What the evidence cannot yet establish"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-02",
+  "spec_id": "PP-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "{C901}",
+  "title": "{content.title}",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

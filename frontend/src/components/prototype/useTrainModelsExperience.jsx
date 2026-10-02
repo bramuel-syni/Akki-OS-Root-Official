@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTrainModels } from './useTrainModels';
 import { FINISHED, STATUS_BG, STATUS_COLOR, dashCards, familyLabel, groupsOf, journalMeta, relative, reportOf, stageDots, threadItems } from './trainModelsModel';
 
@@ -21,9 +21,9 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
   const search = (state.tmSearch || '').trim().toLowerCase();
   const filtered = runs.filter(r => !search || r.name.toLowerCase().includes(search) || (r.objective || '').toLowerCase().includes(search));
   const counts = data.board?.counts || {};
-  const tab = state.tmTab || 'overview';
+  const tab = state.tmTab || 'chat';
   const patch = useCallback(update => setState(s => ({ ...s, ...update })), [setState]);
-  const select = useCallback((id, fromJournal) => { setParams(id ? { run: id } : {}); patch({ tmComposer: '', tmTab: 'overview', tmJournalMode: Boolean(fromJournal) }); }, [setParams, patch]);
+  const select = useCallback((id, fromJournal) => { setParams(id ? { run: id } : {}); patch({ tmComposer: '', tmTab: fromJournal ? 'overview' : 'chat', tmJournalMode: Boolean(fromJournal) }); }, [setParams, patch]);
   const selKey = sel ? `${sel.run_id}:${sel.messages.length}` : '';
   useEffect(() => { if (active && selKey) scrollLog(); }, [active, selKey]);
   const guard = fn => (...args) => canOperate ? fn(...args) : unavailable('Operator access required', 'Your admitted role may read every run and its record, but may not send messages or record decisions here. No change was made.');
@@ -52,13 +52,13 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     tmGroups: groupsOf(filtered, selectedId, select, guard(r => data.remove(r.run_id).then(() => { if (r.run_id === selectedId) select(null); }).catch(failed))),
     tmPlaceholder: !sel, tmPlaceholderCopy: data.loading ? 'Reading the training record…' : 'Select a run on the left to see its full training conversation, or start a new one.', tmHasThread: Boolean(sel),
     tmThreadTitle: sel?.name || '', tmThreadStatus: sel?.status || '', tmThreadStatusColor: STATUS_COLOR[sel?.status] || 'var(--ink3)', tmThreadStatusBg: STATUS_BG[sel?.status] || 'var(--surface2)', tmThreadMeta: sel?.meta || '',
-    tmHasDetails: finished, tmTabOverview: finished && tab === 'overview', tmTabReport: finished && tab === 'report', tmSetOverview: () => patch({ tmTab: 'overview' }), tmSetReport: () => patch({ tmTab: 'report' }),
+    tmHasDetails: finished, tmTabOverview: finished && tab === 'overview', tmTabReport: finished && tab === 'report', tmSetOverview: () => patch({ tmTab: 'overview' }), tmSetReport: () => patch({ tmTab: 'report' }), tmSetChat: () => patch({ tmTab: 'chat' }),
     tmTabOvColor: tab === 'overview' ? 'var(--ink)' : 'var(--ink3)', tmTabOvLine: tab === 'overview' ? '2px solid var(--accent)' : '2px solid transparent', tmTabRpColor: tab === 'report' ? 'var(--ink)' : 'var(--ink3)', tmTabRpLine: tab === 'report' ? '2px solid var(--accent)' : '2px solid transparent',
     tmShowDots: !finished, tmStageDots: stageDots(sel, scrollLog),
     tmReportLead: report?.lead || '', tmReportSecs: report?.secs || [], tmReportObs: report?.obs || '', tmGenPaper: guard(() => act('white_paper')),
     tmObjectiveText: sel?.objective || '', tmDashCards: sel ? dashCards(sel) : [], tmDetailLearnings: sel?.learnings || '',
-    tmShowLog: Boolean(sel) && !(finished && state.tmJournalMode), tmThread: sel ? threadItems(sel, { state, names, pendingText: data.pending[sel.run_id], canOperate, toggleThink: key => patch({ tmThink: { ...(state.tmThink || {}), [key]: !state.tmThink?.[key] } }), pickBaseline: guard(value => act('use_baseline', value)) }) : [],
-    tmShowSummary: false, tmShowComposer: Boolean(sel) && canOperate, tmComposer: state.tmComposer || '', tmComposerChange: e => patch({ tmComposer: e.target.value }),
+    tmShowLog: Boolean(sel) && (!finished || tab === 'chat'), tmThread: sel ? threadItems(sel, { state, names, pendingText: data.pending[sel.run_id], canOperate, toggleThink: key => patch({ tmThink: { ...(state.tmThink || {}), [key]: !state.tmThink?.[key] } }), pickBaseline: guard(value => act('use_baseline', value)) }) : [],
+    tmShowSummary: false, tmShowComposer: Boolean(sel) && canOperate && (!finished || tab === 'chat'), tmComposer: state.tmComposer || '', tmComposerChange: e => patch({ tmComposer: e.target.value }),
     tmComposerKey: e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }, tmComposerPlaceholder: placeholder, tmSend: send, tmSending: Boolean(sel && data.pending[sel.run_id]),
     tmAttach: () => unavailable('Attach a file', 'Recordings and labels travel through the Media Library, where rights and retention are recorded. Upload there, then name the recording in this thread.'),
     tmJournalTitle: 'Trained model journal', tmJournalMeta: journalMeta(counts), tmJournalEmpty: !runs.some(r => FINISHED.includes(r.status)), tmJournalEmptyCopy: 'Nothing has finished yet. Models arrive here once they enter service, are refused, or are retired.',
@@ -70,11 +70,16 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     tmOwnBaseline: () => unavailable('Bring your own model', 'An outside model needs its licence and a security scan recorded through Model Approval before it can be a starting point. That path is not connected yet; nothing was added.'),
     tmRemodel: guard(() => openVersion('next_version')), tmResubmit: guard(() => openVersion('next_version')), tmAdjust: guard(() => openVersion('adjust')), tmRetire: guard(() => act('retire')),
   };
+  // The completed-run tab row is the prototype's own (line 297); its children are the prototype's tab style, now three: Chat · Overview · Learning Report.
+  const tabStyle = on => ({ minWidth: 0, padding: '11px 0 9px', borderBottom: on ? '2px solid var(--accent)' : '2px solid transparent', color: on ? 'var(--ink)' : 'var(--ink3)', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' });
+  const tabEl = (key, label, title) => React.createElement('div', { key, role: 'button', tabIndex: 0, title, 'data-testid': `train-tab-${key}`, 'aria-selected': tab === key, style: tabStyle(tab === key),
+    onClick: () => patch({ tmTab: key }), onKeyDown: e => { if (['Enter', ' '].includes(e.key)) { e.preventDefault(); patch({ tmTab: key }); } } }, label);
+  const slots = !active ? {} : { 297: [tabEl('chat', 'Chat', 'Training conversation'), tabEl('overview', 'Overview', 'Model Overview'), tabEl('report', 'Learning Report', 'Training & Learning Report')] };
   const enhance = !active ? {} : {
     205: { 'data-testid': 'train-new-run-empty' }, 213: { 'data-testid': 'train-new-run' }, 237: { 'data-testid': 'train-search' }, 284: { 'data-testid': 'train-new-run-placeholder' },
     250: ctx => ({ 'data-testid': `train-run-${ctx.r.key}` }), 257: ctx => ({ 'data-testid': `train-run-delete-${ctx.r.key}` }),
     290: { 'data-testid': 'train-thread-title' }, 291: { 'data-testid': 'train-thread-status' }, 293: { 'data-testid': 'train-thread-meta' },
-    298: { 'data-testid': 'train-tab-overview' }, 299: { 'data-testid': 'train-tab-report' }, 306: ctx => ({ 'data-testid': `train-stage-${ctx.d.key}` }), 331: { 'data-testid': 'train-generate-paper' },
+    298: { 'data-testid': 'train-tab-overview-proto' }, 299: { 'data-testid': 'train-tab-report-proto' }, 306: ctx => ({ 'data-testid': `train-stage-${ctx.d.key}` }), 331: { 'data-testid': 'train-generate-paper' },
     363: { 'data-testid': 'train-thread' }, 365: ctx => ({ 'data-testid': `train-thread-item-${ctx.it.key}` }), 374: ctx => ({ 'data-testid': `train-think-${ctx.it.key}` }),
     400: ctx => ({ 'data-testid': `train-bubble-${ctx.it.key}` }), 416: { 'data-testid': 'train-use-baseline' }, 420: { 'data-testid': 'train-show-alternatives' }, 447: ctx => ({ 'data-testid': `train-use-alt-${ctx.ac.key}` }),
     533: { 'data-testid': 'train-approve-plan' }, 536: { 'data-testid': 'train-signoff-label' }, 543: { 'data-testid': 'train-begin-training' }, 571: { 'data-testid': 'train-open-next-version' }, 577: { 'data-testid': 'train-prepare-paper' }, 578: { 'data-testid': 'train-not-now' }, 585: { 'data-testid': 'train-view-document' },
@@ -86,5 +91,5 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     421: ctx => `Show ${ctx.it.altCount} other option${ctx.it.altCount === 1 ? '' : 's'}`, 528: ctx => (ctx.it.signed ? 'Signed off' : 'Awaiting signature'), 533: 'Approve and start', 551: 'Run certificate', 601: ctx => ctx.it.checksTitle,
     519: 'Regulated or restricted sources lift the approval to a higher signature tier automatically.', 584: 'It is written in Documents by the frontier writer from this run\'s own record, every figure by reference.',
   };
-  return { active, model, enhance, replace, counts, loading: data.loading };
+  return { active, model, enhance, replace, slots, counts, loading: data.loading };
 }

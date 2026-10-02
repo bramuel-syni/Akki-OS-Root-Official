@@ -120,12 +120,121 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
     if obs.get("sources_blocked"):
         cannot_say.append({"gap": f"{obs['sources_blocked']} of {obs['sources']} OBS buckets", "reason": "unreachable (NoSuchBucket / client errors)", "closes_with": "bucket inventory reconciled with the provider"})
     _estate_wide(report, facts, series, calculations, claims, receipts)
-    story = _story(facts, series, options, claims)
+    tables: Dict[str, Any] = {}
+    _locations(report, tables, receipts)
+    language_chapters = _language(tenant_id, receipts, facts, series, calculations, claims, tables, cannot_say)
+    _decisions(report, facts, tables, receipts)
+    story = _story(facts, series, options, claims, tables, language_chapters)
     return {"content_id": f"estate-intelligence-{job}-estatewide", "version": 1, "title": f"Estate-wide intelligence — {job}", "organisation": tenant_id,
             "census_ref": job, "measured_on": (report.get("measured_at") or "")[:10] or "unmeasured",
             "receipts": receipts, "facts": facts, "series": series, "options": options, "calculations": calculations, "claims": claims, "story": story,
+            "tables": tables, "glossary": GLOSSARY,
             "owner_declarations": OWNER_DECLARATIONS,
-            "coverage": {"covers": f"The whole admitted estate as measured by census {job}: {h['databases']} databases and {h['tables']:,} tables ({h['bytes_label']}), the object store and the file shares enumerated by their own census runs. Ratios are complete-pass where the table allowed it and stratified samples elsewhere. No row value is present in this pack.", "cannot_say": cannot_say}}
+            "coverage": {"covers": f"The admitted estate as measured by census {job}: {h['databases']} databases, {h['tables']:,} tables ({h['bytes_label']}), the object store, the file shares, "
+                                   f"the staged language corpus read by both GPUs and the written-word databases read as aggregates. No row value, script or transcript text is in this pack.", "cannot_say": cannot_say}}
+
+
+def _language(tenant_id, receipts, facts, series, calculations, claims, tables, cannot_say):
+    from services.transform_forms.doc_studio import producer_estate_language
+    try:
+        return producer_estate_language.content(tenant_id, receipts, facts, series, calculations, claims, tables, cannot_say)
+    except Exception as exc:  # the estate pack must still build when the language reading is absent; the gap is disclosed, never papered over
+        cannot_say.append({"gap": "Non-English, non-music audio and text by language", "reason": f"the language evidence could not be assembled ({type(exc).__name__})", "closes_with": "re-run the estate language reading and rebuild"})
+        return []
+
+
+GLOSSARY = [
+    {"term": "Reclaimable", "meaning": "Space that could be removed or stored more cheaply once the check named beside it has been done. It is not space already freed, and it is not a guaranteed saving — the monthly figures are upper bounds at list prices."},
+    {"term": "Cold (not written for over a year)", "meaning": "Nothing new has been written to that bucket or table for more than a year, judged by the newest write date we could see. It says nothing about whether anyone still reads it — that was not measured."},
+    {"term": "Duplicate candidate", "meaning": "Two objects whose size and storage fingerprint (ETag) match inside the same store. For large uploads that fingerprint is not a content hash, so a candidate must be confirmed by hashing before any copy is removed."},
+    {"term": "Exact duplicate rows", "meaning": "Database rows that are identical in every measured column. 'Normalised' duplicates also match after trimming spaces and case."},
+    {"term": "Degraded row", "meaning": "A row whose worst column shows damage: text cut short, a placeholder such as 'N/A' or 'test', an invalid format, stray whitespace or garbled characters."},
+    {"term": "Empty required-looking fields", "meaning": "Blank values in columns whose name or pattern suggests they should always be filled (for example an identifier or a date). The database may not formally require them; the census flags them so an owner can decide."},
+    {"term": "Dead column", "meaning": "A column that is empty on practically every row: schema carried without data."},
+    {"term": "Personal-data marker", "meaning": "A sampled value that looks like an email, phone number, national ID or similar. It is a condition of the data, not a judgement about rights — the owner has declared all rights established."},
+    {"term": "Archive-class storage", "meaning": "A cheaper storage tier for data that is kept but rarely opened. Retrieval is slower and carries its own fee, which is why the saving is stated as an upper bound."},
+    {"term": "Proposed destination", "meaning": "Where this pack suggests data should live or how it should be tiered. Every destination here is a proposal for the executive to approve; this pack moved and deleted nothing."},
+    {"term": "Speech hours (estimate)", "meaning": "Recorded hours multiplied by the share of two-second windows the admitted music detector did not call music. Silence is set aside first."},
+    {"term": "Agrees with folder", "meaning": "The share of labelled windows (or transcript passages) where the model's language label matched the folder the recording was filed under. It is a model reading, not a human verification."},
+    {"term": "Declined to label", "meaning": "Windows where the language model's confidence fell below its threshold, so it gave no language rather than guess."},
+    {"term": "Scripted day / bulletin hour", "meaning": "A calendar date on which a station has at least one news script in the archive, and the distinct hour slots scripted that day. The archive does not carry a script for every hour of every day; the tables show exactly which days and hours it does."},
+    {"term": "Receipt", "meaning": "The retained Akki record (census run, GPU job or database reading) that every figure in this pack is traced to. The appendix lists them; the workbook carries the row-level evidence."},
+]
+
+
+def _locations(report, tables, receipts) -> None:
+    """The exact buckets, tables and shares this pack classifies, with what was measured and what is proposed for each."""
+    stores = report.get("stores") or {}
+    obs, nas = stores.get("obs") or {}, stores.get("nas") or {}
+    strategies = {s["key"]: s for s in (report.get("cost_strategies") or {}).get("items", [])}
+    if obs.get("measured"):
+        rows = []
+        for t in sorted(obs.get("top_sources") or [], key=lambda t: -t["bytes"]):
+            classification = "cold — archive candidate" if t.get("cold") else "active — keep hot"
+            if (t.get("duplicate_candidates") or 0) > 10000: classification += "; heavy duplicate candidates"
+            action = "lifecycle rule Standard → Archive after read-log check" if t.get("cold") else "hash-confirm duplicate candidates, keep one copy" if (t.get("duplicate_candidates") or 0) > 10000 else "no action; recensus quarterly"
+            rows.append([t["label"], t.get("status"), round(t["bytes"] / 2 ** 40, 2), f"{t['units']:,}", str(t.get("last_write") or "")[:10], t.get("idle_days"), f"{t.get('duplicate_candidates') or 0:,}", round((t.get("duplicate_bytes_estimate") or 0) / 2 ** 40, 2),
+                         ", ".join((t.get("top_formats") or [])[:3]), classification, action, f"same bucket, archive storage class (proposed)" if t.get("cold") else "same bucket; duplicates replaced by references (proposed)" if (t.get("duplicate_candidates") or 0) > 10000 else "unchanged"])
+        tables["T010"] = {"label": "Exact object-store buckets under review (largest first)", "class": "measured", "receipt": "R04" if "R04" in receipts else "R01", "right_align_from": 2,
+                          "note": "Every bucket named here was enumerated object by object; the classification follows from its last write date and its duplicate-candidate count. Destinations are proposals.",
+                          "columns": ["Bucket", "Enumeration", "Held (TiB)", "Objects", "Last write", "Idle days", "Duplicate candidates", "Duplicate bytes (TiB, est.)", "Main formats", "Classification", "Proposed action", "Proposed destination"],
+                          "deck_columns": ["Bucket", "Held (TiB)", "Last write", "Idle days", "Duplicate candidates", "Classification", "Proposed action"], "rows": rows}
+        blocked = obs.get("blocked") or []
+        if blocked:
+            tables["T015"] = {"label": "Object-store buckets that could not be read", "class": "measured", "receipt": "R04" if "R04" in receipts else "R01", "right_align_from": 99,
+                              "note": "These names are in the bucket inventory but returned an error when listed; each needs reconciling with the provider — deleted, renamed or access withdrawn.",
+                              "columns": ["Bucket", "Error returned", "Proposed action"], "rows": [[b["label"], b.get("reason_code"), "reconcile with provider; remove from inventory if gone"] for b in blocked]}
+    db_rows = []
+    kinds = {"archive_stale": ("not written for over a year", "export to compressed object storage with a schema stub (proposed); restore on demand"),
+             "within_table_dedup": ("repeated rows inside the table", "de-duplicate in place after a keyed comparison; keep the newest row"),
+             "cross_table_consolidation": ("two copies of the same table across connections", "name one authoritative copy; retire or redirect the other"),
+             "redundant_indexes": ("index covered by a wider index", "drop the covered index; measure write amplification before and after"),
+             "drop_empty": ("empty table", "drop after the application owner confirms it is unused"),
+             "pii_minimisation": ("high share of personal-data markers", "de-identify or aggregate before any product use; keep the master as is"),
+             "orphan_repair": ("references pointing at rows that no longer exist", "repair or remove the dangling references; add a foreign-key check")}
+    for key, (finding, action) in kinds.items():
+        s = strategies.get(key)
+        for line in (s or {}).get("evidence") or []:
+            if line.startswith("…"): continue
+            parts = [p.strip() for p in str(line).split("·")]
+            db_rows.append([parts[0], finding, " · ".join(parts[1:]) if len(parts) > 1 else "", s.get("bytes_label") if key not in ("drop_empty", "orphan_repair", "pii_minimisation") else "", action])
+    if db_rows:
+        tables["T011"] = {"label": "Exact database tables under review, by finding", "class": "measured", "receipt": "R02", "right_align_from": 99,
+                          "note": "Each row names a table the census measured and the finding that puts it on the list; the bytes column is the strategy total the table belongs to, not the table alone.",
+                          "columns": ["Table (database.table)", "Finding", "Measured detail", "Strategy bytes", "Proposed action"], "deck_columns": ["Table (database.table)", "Finding", "Measured detail", "Proposed action"], "rows": db_rows}
+    if nas.get("measured"):
+        tables["T012"] = {"label": "Exact file shares (NAS) enumerated", "class": "measured", "receipt": "R05" if "R05" in receipts else "R01", "right_align_from": 2,
+                          "note": "Sizes and dates were recorded; content fingerprints were not, so duplication across the channel shares is not yet measured.",
+                          "columns": ["Share", "Enumeration", "Held (TiB)", "Files", "Last write", "Main formats", "Proposed action"],
+                          "rows": [[t["label"], t.get("status"), round(t["bytes"] / 2 ** 40, 2), f"{t['units']:,}", str(t.get("last_write") or "")[:10], ", ".join((t.get("top_formats") or [])[:3]), "fingerprint pass to measure duplication; then tier by channel"] for t in sorted(nas.get("top_sources") or [], key=lambda t: -t["bytes"])]}
+
+
+def _decisions(report, facts, tables, receipts) -> None:
+    """What the executive is asked to decide, one row each: source, action, destination, role, benefit, evidence, what remains to verify."""
+    stores = report.get("stores") or {}
+    obs, nas = stores.get("obs") or {}, stores.get("nas") or {}
+    strategies = {s["key"]: s for s in (report.get("cost_strategies") or {}).get("items", [])}
+    cold = [t["label"] for t in sorted(obs.get("top_sources") or [], key=lambda t: -t["bytes"]) if t.get("cold")]
+    dup = sorted((t for t in obs.get("top_sources") or [] if (t.get("duplicate_candidates") or 0) > 10000), key=lambda t: -(t.get("duplicate_bytes_estimate") or 0))
+    stale = [str(l).split("·")[0].strip() for l in (strategies.get("archive_stale") or {}).get("evidence") or [] if not str(l).startswith("…")]
+    pairs = [str(l).split("·")[0].strip() for l in (strategies.get("cross_table_consolidation") or {}).get("evidence") or [] if not str(l).startswith("…")]
+    usd = lambda key: f"up to {strategies[key]['monthly_saving']:,.0f} USD a month at list price" if strategies.get(key, {}).get("monthly_saving") else "operational, not a storage saving"
+    rows = [
+        ["D1", "Approve archive tiering of the cold object-store buckets", f"{obs.get('cold_sources') or len(cold)} buckets, e.g. {', '.join(cold[:5])}", "apply a lifecycle rule Standard → Archive; keep listing metadata hot", "same buckets, archive storage class (proposed)", "Head of Technology (storage owner)", usd("obs_cold_buckets"), "R04 · T010", "read-frequency logs for ninety days before the rule applies"],
+        ["D2", "Approve hash confirmation and removal of duplicate objects", f"{', '.join(t['label'] for t in dup[:4])} ({obs.get('duplicate_candidates') or 0:,} candidates across the store)", "confirm each candidate by content hash; keep one copy per bucket; replace the rest with references or lifecycle-delete", "keeper stays in its bucket; duplicates removed after confirmation (proposed)", "Head of Technology with the content librarian", usd("obs_duplicate_objects"), "R04 · T010", "content-hash confirmation; ETag plus size is not proof for multipart uploads"],
+        ["D3", "Instruct reconciliation of the unreadable buckets", f"{obs.get('sources_blocked') or 0} buckets, e.g. {', '.join(b['label'] for b in (obs.get('blocked') or [])[:5])}", "ask the provider whether each bucket exists; remove dead names from the inventory; restore access where it should exist", "inventory register corrected (proposed)", "Cloud account owner", "an inventory the next census can trust", "R04 · T015", "provider confirmation per bucket"],
+        ["D4", "Approve cold-table archiving in the databases", f"{len(stale)} tables, e.g. {', '.join(stale[:4])}", "export to compressed object storage with a schema stub and a pointer; restore on demand", "object store, archive class, one prefix per database (proposed)", "Database administrator", usd("archive_stale"), "R02 · T011", "application owners confirm no live reads"],
+        ["D5", "Decide one authoritative copy for each duplicated table pair", f"{report['headline'].get('duplicate_table_pairs') or 0} pairs, e.g. {'; '.join(pairs[:3])}", "name the master; retire or redirect the copy; add the pair to the schema register", "master stays; copy retired (proposed)", "Database administrator with the application owners", usd("cross_table_consolidation"), "R01 · T011", "which copy the applications actually write to"],
+        ["D6", "Approve the housekeeping list: empty tables, redundant indexes, repeated rows", f"{report['headline'].get('empty_tables') or 0} empty tables; redundant indexes and repeated rows named in the table list", "drop confirmed-unused empty tables; drop covered indexes; de-duplicate keyed rows", "no destination — removal in place after confirmation (proposed)", "Database administrator", f"{usd('redundant_indexes')} plus {usd('within_table_dedup')}", "R02 · T011", "application owner sign-off per table"],
+        ["D7", "Order a fingerprint pass over the file shares", f"{nas.get('sources') or 0} NAS shares holding {nas.get('bytes_label') or '—'} (channel01 … channel16)", "compute content fingerprints so duplication across channels can be measured", "none yet — measurement first", "Head of Technology", "a measured duplication figure for the largest unmeasured store", "R05 · T012", "the pass itself; nothing is known about NAS duplication today"],
+        ["D8", "Adopt naming and ownership rules for storage", "machine-named buckets (na7p4…), channel shares, staging copies", "a register naming an owner, purpose, retention and tier for every bucket, share and database; machine names mapped to purposes", "register maintained by the storage owner (proposed)", "Chief Operating Officer", "fewer orphaned stores and faster decisions at the next census", "R04 · R05", "owner confirmation for each entry"],
+        ["D9", "Register the language assets as governed data products", "staged corpus by language folder (T020), news scripts by station (T022), transcription workbench (T023)", "record each as an asset with its hours or scripts, its evidence rows and its quality signals; keep the inventories separate until a file-level join is made", "governed asset register (proposed)", "Head of Data with the newsroom", "a licensable, evidenced inventory of non-English speech and text", "R06 · R07 · R08", "overlap between the workbench and the staged corpus; language of each script"],
+        ["D10", "Commission the de-identified reference products the census ranks first", "the three leading product candidates in the census", "prepare de-identified or aggregated reference and channel datasets under an explicit target outcome and collection schema", "product workspace (proposed)", "Head of Data", "first revenue-bearing use of the estate's data", "R03", "a signed target outcome and collection schema per product"],
+    ]
+    tables["T013"] = {"label": "Executive decisions requested — one row each", "class": "estimated", "receipt": "R02", "right_align_from": 99,
+                      "note": "Each decision names the exact source it rests on, the action, the proposed destination or rule, who carries it, the benefit stated as an upper bound where it is money, the evidence it rests on and what still has to be verified. Nothing here has been executed.",
+                      "columns": ["No.", "Decision requested", "Exact source", "Action", "Proposed destination or rule", "Responsible role", "Expected benefit", "Evidence", "Still to verify"],
+                      "deck_columns": ["No.", "Decision requested", "Exact source", "Proposed destination or rule", "Responsible role", "Expected benefit"], "rows": rows}
 
 
 OWNER_DECLARATIONS = [
@@ -185,19 +294,26 @@ def _estate_wide(report, facts, series, calculations, claims, receipts) -> None:
     claims["C032"] = {"text": "The whole estate holds {F050} TiB; the databases are {K007} of it", "supports": ["F050", "F052"]}
 
 
-def _story(facts, series, options, claims):
-    """The chapters the pack must tell, in order; each names the question it answers, the evidence that answers it and the exhibit that shows it."""
+def _story(facts, series, options, claims, tables=None, language_chapters=None):
+    """The chapters the pack must tell, in order; each names the question it answers, the evidence that answers it, the exhibit that shows it
+    and the evidence tables (exact locations, decisions, per-language rows) that are rendered beside it."""
+    tables = tables or {}
     chapters = [
         {"question": "How big is the whole estate and where do the bytes sit — databases, object store or file shares?",
          "answers_with": [t for t in ("F050", "F030", "F040", "F052", "K005", "K006", "K007", "F038", "K008") if t in facts or t in ("K005", "K006", "K007", "K008")], "exhibits": [s for s in ("S004", "S005") if s in series]},
+        {"question": "Which exact buckets, tables and shares are under review, what did we measure in each, and where is each proposed to go?",
+         "answers_with": [t for t in ("F036", "F037", "F034", "F035", "F033", "F032", "F042", "F014", "F015") if t in facts], "tables": [t for t in ("T010", "T011", "T012", "T015") if t in tables]},
         {"question": "Where is money being spent on bytes nobody touches, and how much could each move save?",
          "answers_with": [t for t in ("F036", "K009", "F034", "F035", "F037", "F019", "F020", "F021", "K004") if t in facts or t.startswith("K")], "exhibits": [s for s in ("S003",) if s in series], "kind": "comparison" if len(options) == 3 else "points"},
         {"question": "What condition are the database rows in — duplication, damage, completeness and personal-data markers?",
          "answers_with": ["F007", "F008", "F009", "F010", "F011", "F012", "F013", "F014", "F015", "F017"], "exhibits": [s for s in ("S002", "S001") if s in series]},
+        *(language_chapters or []),
         {"question": "Which data products could the estate stand up first, and what preparation does each need?",
          "answers_with": [t for t in ("F018", "C021", "C022", "C023") if t in facts or t in claims]},
+        {"question": "What exactly is the executive asked to decide, and what does each decision rest on?",
+         "answers_with": [t for t in ("F036", "F034", "F033", "F019", "F021", "F060", "F080") if t in facts], "tables": [t for t in ("T013",) if t in tables]},
         {"question": "What is still unmeasured across the estate, and what would it take to measure it?",
-         "answers_with": [t for t in ("F003", "F002", "F033", "F040", "F041") if t in facts]},
+         "answers_with": [t for t in ("F003", "F002", "F033", "F040", "F041", "F075") if t in facts]},
     ]
     return [c for c in chapters if c["answers_with"]]
 
@@ -280,8 +396,18 @@ def build_workbook(content: Dict[str, Any], brief: Dict[str, Any], verdict: Dict
         checks.append({"label": "K004 three largest strategies' share of bytes addressed", "calc": "K004", "formula": "Inputs.F020/Inputs.F021"})
         checks += [{"label": f"K003 share of bytes addressed {oid}", "calc": "K003", "option": oid, "derived": 0} for oid in ("O1", "O2", "O3")]
     sheets += [{"name": "Series", "kind": "series", "series": sorted(content["series"])}, {"name": "Checks", "kind": "checks", "checks": checks}]
+    if content.get("glossary"):
+        sheets.insert(1, {"name": "Plain English", "kind": "glossary"})
+    for tid, name in WORKBOOK_SHEETS:
+        if tid in (content.get("tables") or {}):
+            sheets.append({"name": name, "kind": "table", "table_ref": tid})
     return {"spec_type": "workbook", "spec_id": f"WB-{content['census_ref']}", "content_ref": brief["content_ref"], "brief_ref": brief["brief_id"], "verdict_ref": verdict["verdict_id"],
             "objective": "decide", "family": "strategy", "voice": voice, "seed": seed, "build_stamp": stamp, "sheets": sheets}
+
+
+WORKBOOK_SHEETS = [("T013", "Decisions"), ("T010", "Buckets under review"), ("T015", "Unreadable buckets"), ("T011", "Tables under review"), ("T012", "File shares"),
+                   ("T020", "Audio by language"), ("T024", "Audio quality"), ("T021", "Transcripts by language"), ("T022", "News scripts by station"), ("T023", "Transcription workbench"),
+                   ("T030", "Audio file evidence"), ("T031", "Transcript evidence"), ("T032", "News by station and date"), ("T033", "News hour slots"), ("T034", "Model provenance"), ("T035", "Compute")]
 
 
 def commission_from_report(report: Dict[str, Any], tenant_id: str, principal_id: str, now: datetime) -> Dict[str, Any]:

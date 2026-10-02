@@ -7,6 +7,36 @@ from services.training_lab import store as lab
 
 REFERENCE_BASELINE = 'lcj-f96c86a16312'
 SYSTEM_ACTOR = {'tenant_id': 'RMS', 'principal_id': 'akki-autopilot'}
+LANGUAGE_FLOORS = {'lwg': 0.75}  # owner order 2026-10-02: Luhya (Wanga) only; every other language keeps the 0.9 floor
+LUHYA_ORDER = 'owner order 2026-10-02: lower the admission floor for Luhya (Wanga) only, to 75%, and admit the run; every other language floor unchanged'
+
+
+def language_floor(record_or_plan, code):
+    """The floor one language is judged against: an owner revision on the record first, then the plan's per-language floors, then the plan floor."""
+    plan = record_or_plan.get('plan') or record_or_plan
+    revised = (record_or_plan.get('acceptance_revision') or {}).get('language_floors') or {}
+    return revised.get(code, (plan['acceptance'].get('language_floors') or {}).get(code, plan['acceptance']['floor']))
+
+
+def admit_language_scoped(tenant, actor, run_id, language, floor, order):
+    """Owner-ordered revision of one completed run: one language's floor changes and that language alone is re-judged. The prior
+    outcome stays on the record as a revision; the signed plan and its digest are untouched; every other language keeps routing
+    to the reference baseline."""
+    record = get(tenant, run_id)
+    if not record or record['status'] != 'completed': raise ValueError('only a completed run can be re-judged')
+    prior = record.get('outcome') or {}
+    accuracy = ((prior.get('metrics') or {}).get(language) or {}).get('accuracy')
+    if accuracy is None: raise ValueError(f'{language} was not measured on this run')
+    if (record.get('acceptance_revision') or {}).get('language_floors', {}).get(language) == floor: return record
+    met = accuracy >= floor
+    kept = [f'recorded with the run, not a condition of this {language}-only admission: {r}' for r in prior.get('reasons') or [] if not r.startswith(f'{language}:')]
+    outcome = {**prior, 'decision': 'admitted' if met else 'refused', 'scope': f'{language} only',
+               'reasons': [f"{language}: {accuracy:.1%} against the {floor:.0%} floor the owner set for {language} alone — {'met' if met else 'not met'}"] + kept,
+               'routing': {language: run_id, 'every_other_language': REFERENCE_BASELINE}, 'floor': {language: floor}, 'revised_at': lab.now(), 'revised_by': actor['principal_id'], 'order': order}
+    revision = {'at': lab.now(), 'by': actor['principal_id'], 'order': order, 'language': language, 'floor_before': language_floor(record, language), 'floor_after': floor, 'prior_outcome': prior}
+    update(tenant, run_id, outcome=outcome, acceptance_revision={'language_floors': {**((record.get('acceptance_revision') or {}).get('language_floors') or {}), language: floor}, 'order': order},
+           revisions=(record.get('revisions') or []) + [revision])
+    return get(tenant, run_id)
 
 
 def collection():
@@ -61,7 +91,7 @@ def reinforcement_plan(tenant):
               'bottleneck_dim': 64, 'bottleneck_noise': 0.25, 'speaker_loss_weight': 0.5, 'dp_enabled': False}
     return {'kind': 'audio_language_corrective', 'phase': 'train_corrective', 'host': 'akki-vm', 'gpu_index': 0, 'recipe': recipe,
             'target_languages': request['target_languages'], 'compute_cap_gpu_hours': request['compute_cap_gpu_hours'], 'stop_rule': request['stop_rule'],
-            'acceptance': {'floor': data['floor'], 'targets': request['target_languages'], 'no_regression_against': REFERENCE_BASELINE,
+            'acceptance': {'floor': data['floor'], 'language_floors': dict(LANGUAGE_FLOORS), 'targets': request['target_languages'], 'no_regression_against': REFERENCE_BASELINE,
                            'speaker_probe': 'served-output speaker probe at chance', 'statement': request['acceptance']},
             'reference_accuracy': {k: v['accuracy'] for k, v in data['languages'].items()}}
 

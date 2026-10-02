@@ -76,6 +76,10 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     # Owner 2026-10-02 ("deterministic should not write or produce anything in the system, mostly manage or gate; use a recent model"):
     # the document studio's frontier writer authors every sentence under the Content Manager gate; code never writes prose.
     "doc_studio.author",
+    # Owner 2026-10-02 task-strength assignments: an independent reviewer from a different model family checks the gated draft
+    # against the evidence; a planner may be asked to order multi-step work. Both cross the same Shield boundary.
+    "doc_studio.review",
+    "doc_studio.plan",
 })
 
 

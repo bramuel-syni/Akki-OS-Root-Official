@@ -24,7 +24,7 @@ from services.census_autonomy import engine
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/training_runner/m9_worker.py"
-PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect", "lab_measure", "lab_train_music")
+PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect", "lab_measure", "lab_train_music", "lab_classify_estate", "lab_text_lid")
 OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
 OWNER_ORDER_REF = "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)"
@@ -72,7 +72,8 @@ def build_bundle():
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
-        for module in ('services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/training_lab/music_detector_worker.py', 'services/audio_plane_v1/acoustic_observables.py'):
+        for module in ('services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/training_lab/music_detector_worker.py', 'services/audio_plane_v1/acoustic_observables.py',
+                       'services/training_lab/estate_language_worker.py', 'services/audio_plane_v1/corrective_model.py'):
             archive.writestr(zipfile.ZipInfo(module, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / module).read_bytes())
         for directory in ("services", "services/training_runner", "services/training_lab", "services/audio_plane_v1"):
             archive.writestr(zipfile.ZipInfo(directory + "/__init__.py", date_time=(2026, 1, 1, 0, 0, 0)), b"")
@@ -128,6 +129,21 @@ def validate(phase, params, host):
             raise ValueError('LAB_MEASUREMENT_BOUNDS_INVALID')
         if type(params['max_seconds']) not in (int, float) or not 60 <= params['max_seconds'] <= 7200 or not params['owner_order_ref']:
             raise ValueError('LAB_MEASUREMENT_AUTHORITY_REQUIRED')
+    if phase == 'lab_classify_estate':
+        required = {'lab_corpus_root', 'audio_model_dir', 'audio_model_sha256', 'music_model_path', 'music_model_sha256', 'compute_cap_gpu_hours', 'max_seconds_per_file', 'max_windows_per_file', 'batch_size', 'owner_order_ref'}
+        if set(params) != required or params['lab_corpus_root'] != os.environ['LANGUAGE_COGNITION_REMOTE_ROOT'] or not str(params['audio_model_dir']).startswith(os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']) or not str(params['music_model_path']).startswith(os.environ['M9_REMOTE_ROOT']):
+            raise ValueError('ESTATE_LANGUAGE_SCOPE_INVALID:' + ','.join(sorted(required ^ set(params))))
+        if not 0 < float(params['compute_cap_gpu_hours']) <= 12 or not 60 <= float(params['max_seconds_per_file']) <= 7200 or type(params['max_windows_per_file']) is not int or not 1 <= params['max_windows_per_file'] <= 5000 or type(params['batch_size']) is not int or not 1 <= params['batch_size'] <= 1024 or not params['owner_order_ref']:
+            raise ValueError('ESTATE_LANGUAGE_BOUNDS_INVALID')
+    if phase == 'lab_text_lid':
+        required = {'lab_corpus_root', 'port', 'chunk_chars', 'batch_size', 'compute_cap_gpu_hours', 'owner_order_ref'}
+        optional = {'interleave', 'skip_refs'}  # continuation passes: read every language in turn, skip transcripts already read
+        if not required <= set(params) <= required | optional or params['lab_corpus_root'] != os.environ['LANGUAGE_COGNITION_REMOTE_ROOT'] or type(params['port']) is not int or not 1024 <= params['port'] <= 65535:
+            raise ValueError('TEXT_LID_SCOPE_INVALID:' + ','.join(sorted((required | optional) ^ set(params))))
+        if type(params['chunk_chars']) is not int or not 200 <= params['chunk_chars'] <= 8000 or type(params['batch_size']) is not int or not 1 <= params['batch_size'] <= 256 or not 0 < float(params['compute_cap_gpu_hours']) <= 12 or not params['owner_order_ref']:
+            raise ValueError('TEXT_LID_BOUNDS_INVALID')
+        if type(params.get('interleave', False)) is not bool or not isinstance(params.get('skip_refs', []), list) or not all(isinstance(r, str) and len(r) == 16 for r in params.get('skip_refs', [])):
+            raise ValueError('TEXT_LID_BOUNDS_INVALID')
     if phase == 'lab_train_music':
         required = {'lab_corpus_root', 'refs_dir', 'measurement_job_dir', 'labelled_manifest', 'baseline', 'smoke', 'gpu_index', 'seed', 'epochs', 'folds', 'batch_size', 'lr',
                     'max_seconds_per_file', 'max_windows_per_file', 'weak_negatives_per_language', 'weak_positive_files', 'owner_order_ref'}

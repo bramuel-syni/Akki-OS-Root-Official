@@ -1,0 +1,424 @@
+{
+ "job_id": "m9j-9e8fcb46a809",
+ "phase": "lab_classify_estate",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-10-02T09:36:46.746259Z",
+ "params": {
+  "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+  "audio_model_dir": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-7128593897d4",
+  "audio_model_sha256": "5c1feb8497e849ae01c15b8355aad7a05c2ac0b81c21aa93425902719a6cf552",
+  "music_model_path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-686de001bfe7/artefact/music_detector.pt",
+  "music_model_sha256": "0fea3eee039307fe3d92d4a9489357642e53461598301697ab3a57e419654a8c",
+  "compute_cap_gpu_hours": 5.5,
+  "max_seconds_per_file": 5400.0,
+  "max_windows_per_file": 900,
+  "batch_size": 256,
+  "owner_order_ref": "owner order 2026-10-02: measure estate-held non-English, non-music audio and text by language, hours and quality on both GPUs with the current cognition models; 6 GPU-hours aggregate across both devices; evidence for the estate report; no training"
+ },
+ "northena_run_id": "run-c362c1c62f59",
+ "northena_trace_id": "trc-ac96cda48a52",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-9e8fcb46a809"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-9e8fcb46a809",
+  "pid": 1112782
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-ce26981e9407",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_lab_classify_estate_admitted"
+  },
+  {
+   "row_id": "led-98e357811528",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_lab_classify_estate_daemonised:pid=1112782"
+  },
+  {
+   "row_id": "led-cf914394b71b",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_lab_classify_estate_completed"
+  }
+ ],
+ "code_sha256": "ba6023ef05d63128ef9bd59e3289222bacdf652c0e302e7cc4ad05fc54bab810",
+ "started_at": "2026-10-02T09:36:52.956487Z",
+ "last_status_rpc": {
+  "at": "2026-10-02T10:08:10.545221Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-47ffc3914e68"
+ },
+ "remote_state": {
+  "phase": "lab_classify_estate",
+  "status": "completed",
+  "started_at": "2026-10-02T09:36:52Z",
+  "progress": {
+   "stage": "complete",
+   "files": 3958,
+   "of": 3958,
+   "elapsed_s": 1875
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-9e8fcb46a809",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-02T10:08:10Z",
+  "finished_at": "2026-10-02T10:08:10Z",
+  "receipt_sha256": "763dfd2dcce39679944aa1510022c3b54fb11aadcf7f4773b4ed24a2e9cc688b"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-9e8fcb46a809",
+  "phase": "lab_classify_estate",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-02T09:36:52Z",
+  "code_sha256": "ba6023ef05d63128ef9bd59e3289222bacdf652c0e302e7cc4ad05fc54bab810",
+  "status": "completed",
+  "result": {
+   "scope": "authorized staged language-cognition corpus on this host; not the whole RMS estate",
+   "evidence_class": "model_readings_not_human_labels",
+   "models": {
+    "audio_language": {
+     "artefact_dir": "lcj-7128593897d4",
+     "sha256": "5c1feb8497e849ae01c15b8355aad7a05c2ac0b81c21aa93425902719a6cf552",
+     "classes": [
+      "guz",
+      "kam",
+      "kik",
+      "kln",
+      "luo",
+      "lwg",
+      "swa"
+     ]
+    },
+    "music_detector": {
+     "artefact_path": "artefact",
+     "sha256": "0fea3eee039307fe3d92d4a9489357642e53461598301697ab3a57e419654a8c"
+    }
+   },
+   "files": 3958,
+   "read": 3958,
+   "not_reached": 0,
+   "errors": 0,
+   "per_language": {
+    "bxk": {
+     "files": 14,
+     "read": 14,
+     "errors": 0,
+     "hours_recorded": 1.0725,
+     "hours_music_estimate": 0.348,
+     "hours_speech_estimate": 0.7245,
+     "windows_read": 1923,
+     "music_windows": 624,
+     "abstained": 190,
+     "judged": 1109,
+     "predicted_language_share": {
+      "luo": 0.3886,
+      "lwg": 0.2705,
+      "guz": 0.1993,
+      "swa": 0.0739,
+      "kam": 0.0343,
+      "kik": 0.0271,
+      "kln": 0.0063
+     },
+     "agrees_with_folder_label": 0.0,
+     "files_top_language_matches_folder": 0,
+     "files_with_music_majority": 4,
+     "transcripts": {
+      "files": 0,
+      "segments": 0,
+      "chars": 0,
+      "words": 0
+     },
+     "mean_confidence": 0.8658
+    },
+    "guz": {
+     "files": 732,
+     "read": 732,
+     "errors": 0,
+     "hours_recorded": 92.2143,
+     "hours_music_estimate": 15.5599,
+     "hours_speech_estimate": 76.6544,
+     "windows_read": 164600,
+     "music_windows": 27774,
+     "abstained": 11363,
+     "judged": 125463,
+     "predicted_language_share": {
+      "guz": 0.8609,
+      "kln": 0.0409,
+      "lwg": 0.0397,
+      "luo": 0.0258,
+      "kik": 0.0218,
+      "kam": 0.0078,
+      "swa": 0.0031
+     },
+     "agrees_with_folder_label": 0.8609,
+     "files_top_language_matches_folder": 726,
+     "files_with_music_majority": 46,
+     "transcripts": {
+      "files": 730,
+      "segments": 58291,
+      "chars": 4582574,
+      "words": 662131
+     },
+     "mean_confidence": 0.9055
+    },
+    "kam": {
+     "files": 1166,
+     "read": 1166,
+     "errors": 0,
+     "hours_recorded": 85.3948,
+     "hours_music_estimate": 17.6006,
+     "hours_speech_estimate": 67.7941,
+     "windows_read": 152468,
+     "music_windows": 31425,
+     "abstained": 15975,
+     "judged": 105068,
+     "predicted_language_share": {
+      "kam": 0.7092,
+      "guz": 0.0967,
+      "luo": 0.0568,
+      "swa": 0.0475,
+      "lwg": 0.0406,
+      "kln": 0.0312,
+      "kik": 0.018
+     },
+     "agrees_with_folder_label": 0.7092,
+     "files_top_language_matches_folder": 1095,
+     "files_with_music_majority": 192,
+     "transcripts": {
+      "files": 1165,
+      "segments": 21190,
+      "chars": 4065876,
+      "words": 669834
+     },
+     "mean_confidence": 0.8703
+    },
+    "kik": {
+     "files": 584,
+     "read": 584,
+     "errors": 0,
+     "hours_recorded": 82.1084,
+     "hours_music_estimate": 16.1608,
+     "hours_speech_estimate": 65.9476,
+     "windows_read": 142179,
+     "music_windows": 27984,
+     "abstained": 17552,
+     "judged": 96643,
+     "predicted_language_share": {
+      "kik": 0.7981,
+      "guz": 0.0885,
+      "luo": 0.0347,
+      "swa": 0.033,
+      "kln": 0.026,
+      "lwg": 0.0131,
+      "kam": 0.0068
+     },
+     "agrees_with_folder_label": 0.7981,
+     "files_top_language_matches_folder": 561,
+     "files_with_music_majority": 71,
+     "transcripts": {
+      "files": 583,
+      "segments": 44549,
+      "chars": 3730232,
+      "words": 583548
+     },
+     "mean_confidence": 0.8166
+    },
+    "kln": {
+     "files": 295,
+     "read": 295,
+     "errors": 0,
+     "hours_recorded": 89.7636,
+     "hours_music_estimate": 16.5772,
+     "hours_speech_estimate": 73.1864,
+     "windows_read": 145666,
+     "music_windows": 26901,
+     "abstained": 8492,
+     "judged": 110273,
+     "predicted_language_share": {
+      "kln": 0.8991,
+      "lwg": 0.0291,
+      "kik": 0.0289,
+      "swa": 0.0171,
+      "guz": 0.0091,
+      "luo": 0.009,
+      "kam": 0.0077
+     },
+     "agrees_with_folder_label": 0.8991,
+     "files_top_language_matches_folder": 294,
+     "files_with_music_majority": 18,
+     "transcripts": {
+      "files": 295,
+      "segments": 101499,
+      "chars": 4573290,
+      "words": 747249
+     },
+     "mean_confidence": 0.9125
+    },
+    "luo": {
+     "files": 558,
+     "read": 558,
+     "errors": 0,
+     "hours_recorded": 82.0934,
+     "hours_music_estimate": 30.3786,
+     "hours_speech_estimate": 51.7148,
+     "windows_read": 139884,
+     "music_windows": 51764,
+     "abstained": 5970,
+     "judged": 82150,
+     "predicted_language_share": {
+      "luo": 0.8949,
+      "guz": 0.0287,
+      "kik": 0.0278,
+      "swa": 0.025,
+      "kam": 0.0149,
+      "kln": 0.0071,
+      "lwg": 0.0017
+     },
+     "agrees_with_folder_label": 0.8949,
+     "files_top_language_matches_folder": 533,
+     "files_with_music_majority": 169,
+     "transcripts": {
+      "files": 557,
+      "segments": 66577,
+      "chars": 4096995,
+      "words": 739236
+     },
+     "mean_confidence": 0.9394
+    },
+    "lwg": {
+     "files": 60,
+     "read": 60,
+     "errors": 0,
+     "hours_recorded": 9.1948,
+     "hours_music_estimate": 2.346,
+     "hours_speech_estimate": 6.8488,
+     "windows_read": 16524,
+     "music_windows": 4216,
+     "abstained": 787,
+     "judged": 11521,
+     "predicted_language_share": {
+      "lwg": 0.8867,
+      "guz": 0.0511,
+      "swa": 0.0351,
+      "kik": 0.0116,
+      "kln": 0.0096,
+      "luo": 0.003,
+      "kam": 0.0029
+     },
+     "agrees_with_folder_label": 0.8867,
+     "files_top_language_matches_folder": 60,
+     "files_with_music_majority": 13,
+     "transcripts": {
+      "files": 60,
+      "segments": 8849,
+      "chars": 482350,
+      "words": 73194
+     },
+     "mean_confidence": 0.9225
+    },
+    "swa": {
+     "files": 549,
+     "read": 549,
+     "errors": 0,
+     "hours_recorded": 87.7038,
+     "hours_music_estimate": 9.1941,
+     "hours_speech_estimate": 78.5097,
+     "windows_read": 153933,
+     "music_windows": 16137,
+     "abstained": 17803,
+     "judged": 119993,
+     "predicted_language_share": {
+      "swa": 0.7869,
+      "kik": 0.0586,
+      "luo": 0.0529,
+      "lwg": 0.0343,
+      "kln": 0.0331,
+      "kam": 0.03,
+      "guz": 0.0041
+     },
+     "agrees_with_folder_label": 0.7869,
+     "files_top_language_matches_folder": 545,
+     "files_with_music_majority": 26,
+     "transcripts": {
+      "files": 549,
+      "segments": 50066,
+      "chars": 4537521,
+      "words": 725293
+     },
+     "mean_confidence": 0.8749
+    }
+   },
+   "devices": 2,
+   "per_device": [
+    {
+     "device": 0,
+     "files": 1979,
+     "of": 1979,
+     "windows": 457373,
+     "elapsed_s": 1854,
+     "stage": "queue complete",
+     "cap_s": 9900,
+     "gpu_peak_gb": 0.97,
+     "finished": true,
+     "windows_per_second": 246.7
+    },
+    {
+     "device": 1,
+     "files": 1979,
+     "of": 1979,
+     "windows": 459804,
+     "elapsed_s": 1869,
+     "stage": "queue complete",
+     "cap_s": 9900,
+     "gpu_peak_gb": 0.97,
+     "finished": true,
+     "windows_per_second": 245.9
+    }
+   ],
+   "device_failures": [],
+   "compute": {
+    "wall_seconds": 1875.4,
+    "gpu_seconds_total": 3723,
+    "gpu_hours_total": 1.034,
+    "cap_gpu_hours": 5.5,
+    "windows_per_second_per_device": [
+     246.7,
+     245.9
+    ]
+   },
+   "compact_rows_sha256": "28219219b2ef106a05355beca1c7606aa5611228ed1f32b24b343530401a1220",
+   "compact_rows_bytes": 1972424,
+   "training_started": false,
+   "raw_media_exported": false,
+   "paths_exported": false
+  },
+  "finished_at": "2026-10-02T10:08:10Z",
+  "receipt_sha256": "763dfd2dcce39679944aa1510022c3b54fb11aadcf7f4773b4ed24a2e9cc688b",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-02T10:08:10Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-9e8fcb46a809",
+  "started_at_utc": "2026-10-02T09:36:52.956487Z",
+  "finished_at_utc": "2026-10-02T10:08:10Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-9e8fcb46a809"
+ }
+}

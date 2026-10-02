@@ -2,7 +2,6 @@
 may propose one bounded action from a closed list, which the control plane then performs itself. Training is never an action."""
 import asyncio
 import json
-import os
 import re
 import uuid
 
@@ -27,6 +26,9 @@ SYSTEM = ('You are Akki, the owner\'s training collaborator in the Train Models 
           'if the owner says they approve, say plainly that the Approve control on this run is where the signature is recorded, and what will happen the moment it is. '
           'When the owner asks you to do something that matches an allowed action, propose exactly that action and say what it will do; otherwise action is null. '
           'Think in two to four short steps the owner can inspect. Return ONLY JSON matching the schema. No markdown.')
+MEMORY = ('job_memory is your durable memory of this specific job: the whole thread (older turns condensed), the signed plan and its outcome, owner revisions, every earlier '
+          'iteration of this model with what was signed, what happened and what was learned, and the reports written from it. Use it to answer about earlier versions, to avoid '
+          'repeating a recipe that already failed, and to keep continuity across sessions. Remembered approvals describe the past; they never authorise anything now.')
 SHAPING = ('Draft two distinct artifacts: TargetOutcome and CollectionSchema. Use only registered population and sealed-set references supplied in the catalogue. '
            'Ask one missing question at a time: business outcome, population, accuracy AND coverage for EVERY stratum, release policy, latency/compute/deployment constraints, '
            'collection columns and qualification provenance, lawful basis, epochs and GPU-hour cap. Never invent references, floors, consent or measurements. '
@@ -103,10 +105,60 @@ def unverified_figures(reply, evidence):
     return sorted(set(flagged))
 
 
+def _compact(message, limit):
+    return {'role': message['role'], 'at': (message.get('at') or '')[:16], 'text': (message.get('text') or '')[:limit], **({'action': message['action']} if message.get('action') else {})}
+
+
+def _lineage(tenant, run_id, seen=None):
+    """Every earlier version of this job, oldest first: what was signed, what happened, what was learned. Remembered text never signs anything."""
+    from services.training_lab import board_runs, signoff
+    seen = seen or set(); chain = []
+    record = signoff.get(tenant, run_id)
+    prior_id = (((record or {}).get('plan') or {}).get('supersedes') or {}).get('run_id')
+    if not prior_id:
+        prior_id = ((board_runs.get(tenant, run_id) or {}).get('lineage') or {}).get('from_run')
+    if prior_id and prior_id not in seen:
+        seen.add(prior_id); chain = _lineage(tenant, prior_id, seen)
+        prior = signoff.get(tenant, prior_id) or {}
+        outcome = prior.get('outcome') or {}; plan = prior.get('plan') or {}
+        notes = [m['text'][:240] for m in messages(tenant, prior_id) if m.get('origin') in ('autopilot', 'owner-order')][-4:]
+        chain.append({'run_id': prior_id, 'version': plan.get('version', 1), 'status': prior.get('status'), 'decision': outcome.get('decision'), 'scope': outcome.get('scope'),
+                      'reasons': (outcome.get('reasons') or [])[:8], 'metrics': outcome.get('metrics'), 'compute': {k: (outcome.get('compute') or {}).get(k) for k in ('epochs_completed', 'steps', 'elapsed_seconds', 'stopped_by')},
+                      'recipe': {k: (plan.get('recipe') or {}).get(k) for k in ('epochs', 'lr', 'batch_size', 'physical_batch_size', 'patience_evaluations', 'adversary_strength', 'speaker_loss_weight')},
+                      'signed_at': prior.get('signed_at'), 'attempts': len(prior.get('attempts') or []), 'what_akki_said': notes})
+    return chain
+
+
+def job_memory(tenant, run):
+    """Durable, job-specific memory for the assistant: the whole thread (older turns condensed, never dropped), the signed plan and its
+    outcome, owner revisions, every earlier iteration in the lineage, and the reports written from this job."""
+    from services.training_lab import signoff
+    run_id = run['run_id']
+    thread = [m for m in messages(tenant, run_id) if m['role'] in ('user', 'akki')]
+    recent, earlier = thread[-8:], thread[:-8]
+    record = signoff.get(tenant, run_id) or {}
+    plan = record.get('plan') or {}
+    sources = {run_id, (record.get('dispatch') or {}).get('job_id')} - {None}
+    try:
+        from services.transform_forms.doc_studio import service as studio
+        reports = [{'commission_id': c['commission_id'], 'title': c.get('title'), 'release': (c.get('release') or {}).get('state'), 'created_at': c.get('created_at')}
+                   for c in studio.list_commissions(tenant) if c.get('source_ref') in sources][:6]
+    except Exception:
+        reports = []
+    return {'run_id': run_id, 'thread_turns': len(thread), 'earlier_turns_condensed': [_compact(m, 160) for m in earlier[-40:]], 'recent_turns': [_compact(m, 900) for m in recent],
+            'signed_plan': {'version': plan.get('version', 1), 'plan_sha256': record.get('plan_sha256'), 'signed_at': record.get('signed_at'), 'status': record.get('status'),
+                            'recipe': plan.get('recipe'), 'compute_cap_gpu_hours': plan.get('compute_cap_gpu_hours'), 'stop_rule': plan.get('stop_rule'), 'acceptance': plan.get('acceptance'),
+                            'dispatch': record.get('dispatch'), 'attempts': record.get('attempts')} if record else None,
+            'outcome': record.get('outcome'), 'owner_revisions': [{k: v for k, v in r.items() if k != 'prior_outcome'} for r in record.get('revisions') or []],
+            'earlier_iterations': _lineage(tenant, run_id), 'reports_written': reports,
+            'rule': 'remembered approvals and decisions describe the past; only the Approve control on this run signs anything new'}
+
+
 async def turn(tenant, actor, run, text):
     from services.chokepoint.llm import invoke
+    from services.chokepoint.model_roles import resolve
     from services.training_lab import board_runs
-    history = [m for m in messages(tenant, run['run_id']) if m['role'] in ('user', 'akki')][-8:]
+    memory = job_memory(tenant, run)
     user = _message('user', text)
     _append(tenant, run['run_id'], user)
     allowed = {k: ACTIONS[k] for k in run.get('actions', [])}
@@ -115,14 +167,15 @@ async def turn(tenant, actor, run, text):
     from services.training_lab.production_evidence import catalogue
     if shaping and run.get('ready'): allowed['record_training_request'] = ACTIONS['record_training_request']
     try:
+        assistant = resolve('assistant')
         response = await asyncio.wait_for(invoke(
-            purpose='training_lab.conversation', provider=os.environ['TRAINING_LAB_CONNECTION'], model=os.environ['TRAINING_LAB_MODEL'],
+            purpose='training_lab.conversation', provider=assistant['connection'], model=assistant['model'],
             tenant_id=tenant, actor=actor['principal_id'], custody_class='tenant_estate', masking_tier='llm_prompt_governed_text',
-            session_id=f"train-models:{run['run_id']}", system_message=SYSTEM + (' ' + SHAPING if shaping else ''),
+            session_id=f"train-models:{run['run_id']}", system_message=SYSTEM + (' ' + SHAPING if shaping else '') + ' ' + MEMORY,
             prompt=json.dumps({'schema': Turn.model_json_schema(), 'run': {'name': run['name'], 'status': run['status'], 'objective': run['objective'], 'record': run.get('evidence'),
                                                                                'record_rows': run.get('record_rows'), 'checks': [{'name': c['n'], 'value': c['v']} for c in run.get('checks', [])], 'reason': run.get('reason')},
                                'registered_populations': catalogue(tenant) if shaping else [],
-                               'allowed_actions': allowed, 'recent_messages': [{'role': m['role'], 'text': m['text']} for m in history], 'owner_says': text})), timeout=120)
+                               'allowed_actions': allowed, 'job_memory': memory, 'owner_says': text}, default=str)), timeout=120)
         raw = response.text.strip()
         if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
         parsed = Turn.model_validate_json(raw)
@@ -134,7 +187,7 @@ async def turn(tenant, actor, run, text):
             board_runs.collection().update_one({'tenant_id': tenant, 'run_id': run['run_id'], 'status': 'Shaping'}, {'$set': {'definition': parsed.definition.model_dump()}})
         action = parsed.action if parsed.action in allowed else None
         if action == 'record_training_request' and shaping and not board_runs.ready(board_runs.get(tenant, run['run_id']) or {}): action = None
-        flags = unverified_figures(parsed.reply, {'record': run.get('evidence'), 'rows': run.get('record_rows'), 'checks': run.get('checks'), 'owner_says': text, 'fields': fields})
+        flags = unverified_figures(parsed.reply, {'record': run.get('evidence'), 'rows': run.get('record_rows'), 'checks': run.get('checks'), 'owner_says': text, 'fields': fields, 'memory': memory})
         reply = _message('akki', parsed.reply, think=parsed.think, action=action, flags=flags, receipt_id=response.receipt_id, model=response.model_id, fields=fields or None)
     except Exception as exc:
         reply = _message('akki', 'I could not reach the model boundary just now, so I have not answered that. Nothing about the run has changed.', think=[f'Boundary unavailable · {type(exc).__name__}'], action=None, status='unavailable')

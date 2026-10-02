@@ -655,6 +655,8 @@ def _merge_counts(items):
 
 def execute(control):
     """Detached worker of record on the GPU host: pull seam per database, checkpoint, roll up, receipt."""
+    if control.get('phase') == 'text_estate':
+        return execute_text_estate(control)
     job_dir = Path(control['job_dir'])
     job_dir.mkdir(parents=True, exist_ok=True)
     state_path, receipt_path = job_dir / 'state.json', job_dir / 'receipt.json'
@@ -724,6 +726,120 @@ def execute(control):
     return receipt
 
 
+# ----------------------------------------------------------------------------- text held by the estate (owner order 2026-10-02)
+# Aggregate-only reads of the written-word stores: station/hour/date counts and character sums. No script, transcript,
+# headline or person value is selected; station, type and language labels are business labels the owner asked to see.
+TEXT_ESTATE_QUERIES = {
+    'news_vault': {
+        'stations': 'SELECT id, name, (deleted_at IS NOT NULL) FROM stations LIMIT 500',
+        'types': 'SELECT id, name FROM types LIMIT 500',
+        'hours': "SELECT id, station_id, type_id, TIME_FORMAT(`time`, '%H:%i'), (deleted_at IS NOT NULL) FROM hours LIMIT 5000",
+        'scripts_by_station_date': ('SELECT h.station_id, st.`date`, COUNT(*), COUNT(DISTINCT st.hour_id), COALESCE(SUM(CHAR_LENGTH(st.script)), 0), '
+                                    'SUM(st.deleted_at IS NOT NULL), SUM(st.parent_id IS NULL) FROM stories st LEFT JOIN hours h ON h.id = st.hour_id '
+                                    'GROUP BY h.station_id, st.`date` LIMIT 60000'),
+        'scripts_by_station_slot': ("SELECT h.station_id, TIME_FORMAT(h.`time`, '%H:%i'), COUNT(*), COUNT(DISTINCT st.`date`) FROM stories st "
+                                    'LEFT JOIN hours h ON h.id = st.hour_id WHERE st.deleted_at IS NULL GROUP BY h.station_id, h.`time` LIMIT 5000'),
+        'scripts_overall': ('SELECT COUNT(*), SUM(deleted_at IS NOT NULL), MIN(`date`), MAX(`date`), COUNT(DISTINCT `date`), COALESCE(SUM(CHAR_LENGTH(script)), 0), '
+                            "MIN(CHAR_LENGTH(script)), MAX(CHAR_LENGTH(script)), AVG(CHAR_LENGTH(script)), SUM(script IS NULL OR CHAR_LENGTH(TRIM(script)) = 0), "
+                            'SUM(parent_id IS NOT NULL), COUNT(DISTINCT correspondent_id) FROM stories LIMIT 1'),
+        'scripts_distinct': 'SELECT COUNT(DISTINCT MD5(script)) FROM stories WHERE deleted_at IS NULL LIMIT 1',
+        'news_by_date': 'SELECT DATE(start_time), COUNT(*), COALESCE(SUM(CHAR_LENGTH(body)), 0), SUM(headline IS NULL) FROM news GROUP BY DATE(start_time) LIMIT 2000',
+        'uploads_by_month': ("SELECT DATE_FORMAT(created_at, '%Y-%m'), COUNT(*) FROM uploads GROUP BY DATE_FORMAT(created_at, '%Y-%m') LIMIT 2000"),
+    },
+    'local': {
+        'folder_languages': 'SELECT `Language`, code, station, COUNT(*) FROM folder_languages GROUP BY `Language`, code, station LIMIT 1000',
+        'folder_language_ids': 'SELECT ID, `Language`, code, station FROM folder_languages LIMIT 1000',
+        'files_by_language': ('SELECT language_id, COUNT(*), COALESCE(SUM(audio_length), 0), SUM(transcribe_uploaded = 1), SUM(text_file_path IS NOT NULL), '
+                              'MIN(time_processed), MAX(time_processed) FROM uploaded_files GROUP BY language_id LIMIT 1000'),
+        'files_by_status': 'SELECT status, COUNT(*) FROM uploaded_files GROUP BY status LIMIT 1000',
+        'transcripts_overall': ('SELECT COUNT(*), SUM(deleted_at IS NOT NULL), COALESCE(SUM(CHAR_LENGTH(transcript)), 0), COUNT(DISTINCT file_id), COUNT(DISTINCT speaker_id), '
+                                'MIN(created_at), MAX(created_at) FROM transcripts LIMIT 1'),
+        'transcripts_by_language': ('SELECT u.language_id, COUNT(*), COALESCE(SUM(CHAR_LENGTH(t.transcript)), 0), COUNT(DISTINCT t.file_id), '
+                                    'COALESCE(SUM(TIME_TO_SEC(t.end_time) - TIME_TO_SEC(t.start_time)), 0) FROM transcripts t JOIN uploaded_files u ON u.id = t.file_id '
+                                    'WHERE t.deleted_at IS NULL GROUP BY u.language_id LIMIT 1000'),
+        'speakers': 'SELECT COUNT(*), COUNT(DISTINCT gender) FROM speakers LIMIT 1',
+    },
+}
+
+
+def _plain(value):
+    import decimal
+    if isinstance(value, (bytes, bytearray)): return value.decode(errors='replace')
+    if isinstance(value, decimal.Decimal): return int(value) if value == value.to_integral_value() else float(value)
+    if isinstance(value, (int, float, str)) or value is None: return value
+    return str(value)
+
+
+def _jump_text_estate(control):
+    """One database, the named aggregate query set; every statement read-only and bounded; row values never selected."""
+    started = time.time()
+    queries = TEXT_ESTATE_QUERIES[control['query_set']]
+    db = Bounded(control['connection'], control['database'], started + int(control.get('max_seconds', 900)))
+    results = {}
+    try:
+        for name, sql in queries.items():
+            try:
+                results[name] = [[_plain(v) for v in row] for row in db.query(sql)]
+            except Exception as exc:
+                results[name] = {'error': type(exc).__name__, 'detail': str(exc)[:160]}
+    finally:
+        db.close()
+    return {'protocol': PROTOCOL, 'hostname': socket.gethostname(), 'database': control['database'], 'query_set': control['query_set'],
+            'results': results, 'statements': db.statements, 'rows_fetched': db.rows_fetched, 'wall_seconds': round(time.time() - started, 1),
+            'row_values_retained': False, 'measured_at': now()}
+
+
+def execute_text_estate(control):
+    """Worker of record: one pull-seam hop per target database; the aggregates go to detail.json, the receipt carries their digest."""
+    job_dir = Path(control['job_dir']); job_dir.mkdir(parents=True, exist_ok=True)
+    state_path, receipt_path = job_dir / 'state.json', job_dir / 'receipt.json'
+    started = now()
+    state = {'phase': control['phase'], 'job_id': control['job_id'], 'status': 'running', 'started_at': started, 'hostname': socket.gethostname(),
+             'runtime_id': control['runtime_id'], 'progress': {}}
+    _write(state_path, state)
+    receipt = {'protocol': PROTOCOL, 'job_id': control['job_id'], 'phase': control['phase'], 'runtime_id': control['runtime_id'], 'hostname': socket.gethostname(),
+               'started_at': started, 'code_sha256': control['code_sha256'], 'status': 'failed'}
+    deadline = time.time() + int(control.get('max_seconds', 3600))
+    targets, errors = [], []
+    try:
+        if socket.gethostname() != control['hostname_expected']: raise ValueError('HOST_IDENTITY_MISMATCH')
+        for target in control['targets']:
+            # A label may name several hosts (the estate workbook repeats labels); the database lives on one of them.
+            candidates = [c for c in control['connections'] if c['label'] == target['connection_label']]
+            state['progress'] = {'stage': 'reading aggregates', 'database': target['database'], 'at': now()}; _write(state_path, state)
+            if not candidates:
+                errors.append({'database': target['database'], 'code': 'CONNECTION_NOT_IN_CUSTODY'}); continue
+            attempts = []
+            for connection in candidates:
+                try:
+                    value = _hop(control['pull_via'], {'connection': {k: connection[k] for k in ('host', 'port', 'user', 'password')}, 'database': target['database'],
+                                                       'mode': 'text_estate', 'query_set': target['query_set']}, control['bundle_b64'], control['code_sha256'],
+                                 min(deadline, time.time() + int(control.get('database_seconds', 900))))
+                    value['connection_label'] = target['connection_label']
+                    value['host_fingerprint'] = hashlib.sha256(str(connection['host']).encode()).hexdigest()[:12]
+                    targets.append(value); break
+                except Exception as exc:
+                    attempts.append(str(exc)[:160] if str(exc).isupper() or ':' in str(exc) else type(exc).__name__)
+            else:
+                errors.append({'database': target['database'], 'code': ' | '.join(attempts)[:320]})
+        detail = {'targets': targets, 'errors': errors}
+        _write(job_dir / 'detail.json', detail)
+        receipt['result'] = {'targets': [{'database': t['database'], 'query_set': t['query_set'], 'statements': t['statements'], 'rows_fetched': t['rows_fetched'],
+                                          'queries': {k: (len(v) if isinstance(v, list) else v) for k, v in t['results'].items()}} for t in targets], 'errors': errors,
+                             'detail_path': str(job_dir / 'detail.json'), 'detail_sha256': hashlib.sha256((job_dir / 'detail.json').read_bytes()).hexdigest(),
+                             'row_values_retained': False, 'execution': 'jump host read aggregates; worker of record held them only'}
+        receipt['status'] = 'completed' if targets and not errors else 'partial' if targets else 'failed'
+    except Exception as exc:
+        receipt['error'] = {'type': type(exc).__name__, 'message': str(exc)[:300], 'trace': traceback.format_exc()[-2000:]}
+    receipt['finished_at'] = now()
+    body = json.dumps(receipt, sort_keys=True, default=str).encode()
+    receipt['receipt_sha256'] = hashlib.sha256(body).hexdigest()
+    _write(receipt_path, receipt)
+    state.update(status=receipt['status'], finished_at=receipt['finished_at'], receipt_sha256=receipt['receipt_sha256'])
+    _write(state_path, state)
+    return receipt
+
+
 def _jump_list(control):
     db = Bounded(control['connection'], 'information_schema', time.time() + 120)
     try:
@@ -734,9 +850,11 @@ def _jump_list(control):
 
 
 def jump_execute(control):
-    """Jump-host entry: list databases or measure one database; identity is checked before any read."""
+    """Jump-host entry: list databases, measure one database or read the text-estate aggregates; identity is checked before any read."""
     if control.get('hostname_expected') and socket.gethostname() != control['hostname_expected']:
         raise ValueError('REMOTE_IDENTITY_MISMATCH')
     if control.get('list_only'):
         return _jump_list(control)
+    if control.get('mode') == 'text_estate':
+        return _jump_text_estate(control)
     return _jump_measure(control)

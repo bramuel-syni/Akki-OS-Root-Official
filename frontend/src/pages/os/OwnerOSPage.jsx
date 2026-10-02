@@ -59,6 +59,7 @@ export default function OwnerOSPage() {
   const slots = !session.data ? { 96: <CensusAccess error={session.error} loading={session.loading} retry={session.reload} /> } : {};
   if(nexus.active){slots[36]=nexus.header;if(workRoute)slots[2408]=<>{nexus.content}{nexus.drawer}</>;else slots[96]=<>{nexus.content}{nexus.drawer}</>;}
   if(registry.active) slots[96]=<>{registry.content}{registry.drawer}</>;
+  if(trainActive && train.slots) Object.assign(slots, train.slots);
   const enhance = { 38: account, ...(nexus.active?{36:{className:'nexus-header-actions'}}:{}), ...(trainActive?train.enhance:{}) };
   const replace = { ...osCopy(session.data, params.get('view')), ...(trainActive?train.replace:{}) };
   const unbound = () => nexus.active||trainActive ? surface.unavailable('Action unavailable') : notice('Action unavailable', 'This action is not connected. No work was started or changed.');

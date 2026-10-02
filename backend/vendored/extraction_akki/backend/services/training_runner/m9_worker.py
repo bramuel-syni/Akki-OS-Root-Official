@@ -1347,6 +1347,12 @@ def execute(control):
             os.environ['CUDA_VISIBLE_DEVICES'] = str(control['gpu_index'])
             from services.training_lab.music_detector_worker import train_music_detector
             receipt['result'] = train_music_detector(control, state)
+        elif control['phase'] == 'lab_classify_estate':
+            from services.training_lab.estate_language_worker import classify_estate
+            receipt['result'] = classify_estate(control, state)
+        elif control['phase'] == 'lab_text_lid':
+            from services.training_lab.estate_language_worker import classify_text
+            receipt['result'] = classify_text(control, state)
         else:
             receipt["result"] = PHASES[control["phase"]](control, state)
         receipt["status"] = "completed"

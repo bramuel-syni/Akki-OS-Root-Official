@@ -79,15 +79,18 @@ def _remote_root():
     return os.environ["CENSUS_REMOTE_STATE_DIR"].rstrip("/") + "/estate_intelligence"
 
 
-def submit(source, params, principal_id, lawful_ref, timeout=90):
+PHASES = {PHASE: "eij-", "text_estate": "etx-"}  # text_estate: aggregate-only reads of the written-word stores (owner order 2026-10-02)
+
+
+def submit(source, params, principal_id, lawful_ref, timeout=90, phase=PHASE):
     """Admit through Northena, resolve custody, ship the worker, daemonise on the census worker of record."""
     from services.census_autonomy.remote_dispatch import _connect
     if source != "rms_mysql":
         raise ValueError("ESTATE_INTELLIGENCE_SOURCE_NOT_ADMITTED")
     host = os.environ["CENSUS_PRIMARY_WORKER"]
-    job_id = "eij-" + uuid.uuid4().hex[:12]
+    job_id = PHASES[phase] + uuid.uuid4().hex[:12]
     lawful_hash = hashlib.sha256(Path(os.environ["CENSUS_LAWFUL_BASIS_PATH"]).read_bytes()).hexdigest()
-    job = {"job_id": job_id, "phase": PHASE, "source_id": source, "host": host, "principal_id": principal_id, "submitted_at": now(),
+    job = {"job_id": job_id, "phase": phase, "source_id": source, "host": host, "principal_id": principal_id, "submitted_at": now(),
            "params": {k: v for k, v in (params or {}).items()}, "northena_run_id": f"run-{uuid.uuid4().hex[:12]}",
            "northena_trace_id": f"trc-{uuid.uuid4().hex[:12]}", "lawful_basis_ref": str(lawful_ref), "lawful_basis_sha256": lawful_hash,
            "governing_artifact_ref": {"artifact_type": "objective_request", "artifact_id": "CP-CENSUS-ESTATE-INTELLIGENCE", "version": job_id},
@@ -96,7 +99,7 @@ def submit(source, params, principal_id, lawful_ref, timeout=90):
     _ledger(job, "admit", "admitted", f"estate_intelligence_{source}_admitted", {"host": host, "lawful_basis_sha256": lawful_hash})
     code_b64, code_hash = bundle()
     connector = connector_for(job_id, "RMS", source, lawful_hash)
-    control = {"bundle": code_b64, "code_sha256": code_hash, "job_id": job_id, "phase": PHASE, "runtime_id": host,
+    control = {"bundle": code_b64, "code_sha256": code_hash, "job_id": job_id, "phase": phase, "runtime_id": host, **({"targets": params["targets"]} if phase == "text_estate" else {}),
                "hostname_expected": os.environ[f"{host.upper().replace('-', '_')}_HOSTNAME_EXPECTED"],
                "job_dir": job["remote"]["job_dir"], "connections": connector["connections"], "pull_via": pull_seam_hop(),
                "max_seconds": int((params or {}).get("max_seconds", 3 * 86400)), "database_seconds": int((params or {}).get("database_seconds", 5400))}
@@ -173,7 +176,7 @@ def refresh(job_id):
             receipt["receipt_sha256"] = digest
             receipt["digest_verified"] = hashlib.sha256(body).hexdigest() == digest
             job["receipt"] = receipt
-            if not receipt["digest_verified"] or receipt.get("job_id") != job_id or receipt.get("phase") != PHASE:
+            if not receipt["digest_verified"] or receipt.get("job_id") != job_id or receipt.get("phase") != job.get("phase", PHASE):
                 job.update(status="failed", reason="WORKER_RECEIPT_INTEGRITY_FAILED", finished_at=now())
             else:
                 job["status"] = receipt.get("status", "failed")

@@ -105,6 +105,17 @@ def render(plan, out):
         elif t == "appendix":
             rows = "".join(f'<div class="pt"><div class="mono accent" style="width:7%">{esc(r["id"])}</div><div class="body">{esc(r["text"])}</div></div>' for r in sl["receipts"])
             parts += [header(sl), box(z["body"], "", rows), furniture(sl["n"])]
+        elif t == "table":
+            tb = sl["table"]
+            head = "<tr>" + "".join(f"<th>{esc(c)}</th>" for c in tb["columns"]) + "</tr>"
+            body = "".join("<tr>" + "".join(f"<td class='{'mono r' if c >= tb['right_align_from'] else ''}'>{esc(v)}</td>" for c, v in enumerate(row)) + "</tr>" for row in tb["rows"])
+            parts += [header(sl), box(z["table"], "", f"<table>{head}{body}</table>")]
+            if tb["so_what"]:
+                parts.append(box(z["so_what"], "body accent italic", esc(tb["so_what"]), "display:flex;align-items:flex-end"))
+            parts += [receipt(z["receipt"], tb["class"], tb["receipts"], tb["receipt_text"]), furniture(sl["n"])]
+        elif t == "glossary":
+            terms = "".join(f'<div class="pt"><div class="accent" style="width:26%;font-weight:700">{esc(g["term"])}</div><div class="body">{esc(g["meaning"])}</div></div>' for g in sl["terms"])
+            parts += [header(sl), box(z["points"], "", terms), furniture(sl["n"])]
         slides.append(f'<section class="slide" style="background:#{bg}">{"".join(parts)}</section>')
 
     css = f"""

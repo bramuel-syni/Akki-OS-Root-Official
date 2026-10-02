@@ -4,16 +4,95 @@
     "gate": {
       "issues": [],
       "passed": true,
-      "plan_slots": 18,
-      "repairs": 2
+      "plan_slots": 50,
+      "repairs": 1
     },
-    "latency_ms": 41256,
+    "latency_ms": 63508,
     "model": "claude-sonnet-5-5",
     "pipeline": "frontier",
+    "planner": {
+      "cautions": [
+        "Preserve every outline slot, exhibit and deterministic table; unresolved references must be flagged for binding rather than silently repaired, dropped or populated with invented evidence.",
+        "Several outline needs and mandatory citations are aliases absent from the supplied evidence definitions, including {F018}, {F052}, {T011}, {T012}, {S002}, {F008}, {S013}, {T022}, {F021} and {F004}; the chapter notes identify available supporting evidence without establishing those alias mappings.",
+        "The owner's declaration settles ownership and use rights; disregard contrary rights-clearance conditions in the contextual production plan, while retaining de-identification, aggregation and other preparation checks.",
+        "Use the defined evidence model ahead of conflicting contextual producer prose: total estate holdings are measured, database concentration is not estate-wide concentration, and savings remain estimated rather than immediate or realised.",
+        "No current invoice-based holding cost is supplied; {F019} is a reference-list-price savings upper bound, not the current bill, an approved budget or a guaranteed net saving after retrieval and implementation costs.",
+        "Do not equate tiered bytes with deleted bytes, add potentially overlapping strategy estimates into a new total, or reconcile {F005} with the broader strategy scope through unsupported arithmetic.",
+        "The descriptions of object duplicate matching differ between the fact scope and glossary; retain the common conclusion that {F034} is candidate-only and requires content-hash confirmation rather than asserting an unambiguous matching method.",
+        "Database condition ratios overlap and include sampled estimates; empty required-looking fields are not necessarily constraint violations, personal-data markers are not rights findings, and absence of markers does not prove absence of personal data."
+      ],
+      "chapter_notes": {
+        "actions": "Lead with a sequenced proposal to validate object-store economics and duplicates, close inventory gaps, then prepare a bounded product pilot, using {T013}, {F036}, {F034}, {F019} and {F018}. Retain database cleanup as a narrower workstream supported by {F005} and {F006}, not an estate-wide saving, and do not import unsupported deadlines, performance targets or execution claims from contextual planning material.",
+        "chapter1": "Lead with total estate holdings {F050}, then object storage {F030}, file shares {F040} and databases {F052}, using {K005} and {K006} to explain their relative importance. The takeaway is to manage the whole estate rather than optimise databases alone; distinguish measured holdings from unreadable inventory and do not invent a current storage bill.",
+        "chapter2": "Lead with the exact-source review tables {T010}, {T011}, {T012} and {T015}, using {F036}, {F037} and {F034} to separate write-inactive buckets from duplicate candidates and {F033} to expose unreadable inventory. Direct the owner toward source-specific checks and proposed destinations, without inventing table rows, treating strategy bytes as individual table sizes or implying that anything has moved.",
+        "chapter4": "Lead with the preparation burden carried by {F008}, {F009} and {F010}, contrasting it with exact duplicates {F007} and stating the personal-data sampling scope through {F011}. The executive should prioritise product-relevant completeness, cleansing and de-identification; required-looking fields are heuristic, {F012} concerns database write inactivity, and rights are already settled.",
+        "chapter5": "Lead with recorded audio {F060} and its estimated speech and music split {F061} and {F062}, then use {T020} and {T024} to identify language-specific preparation needs. Recommend music filtering and language and quality validation before product packaging; detector readings do not establish intelligibility, noise quality or verified speech duration.",
+        "chapter6": "Lead with distinct written-text inventories: news scripts {F080}, stations {F081}, scripted dates {F082}, text volume {F084} and revision burden {F085}, supported by {T022}; then distinguish model-read transcripts {F070}, {F071}, {F075} and {T021} from the workbench inventory {F090}, {F091}, {F092}, {F093}, {F094} and {T023}. The owner should commission corpus-specific preparation, not combine potentially overlapping inventories, assume uninterrupted news coverage or generalise transcript language agreement beyond the capped pass.",
+        "chapter7": "Lead with a proposed initial specification shortlist of reference and master data, content catalogue and channel engagement products using {F018}, {C021}, {C022} and {C023}, making clear that prioritisation is a recommendation rather than a measured commercial ranking. State each product's first preparation task—canonical reference fields and completeness checks, catalogue reconciliation and identifier removal, or channel/time aggregation and metric validation—and require a buyer-side use-case review without reopening settled rights or claiming revenue, semantic fit or release readiness.",
+        "chapter8": "Lead with the decisions recorded in {T013}, anchored by write-inactive object bytes {F036}, duplicate candidates {F034}, unreadable buckets {F033}, estimated savings {F019} and staged audio {F060}. Ask the executive to approve named validation and preparation work with accountable roles and acceptance checks, keeping destinations provisional, financial benefits bounded and execution explicitly unauthorised until approved.",
+        "chapter9": "Lead with bounded coverage: measured versus inventoried tables {F003} and {F002}, unreadable buckets {F033}, enumerated file shares {F040} and {F041}, and unread transcripts {F075}. Pair each gap with its closing task—complete-pass census, provider reconciliation, file fingerprinting, expanded model reading, script-language assessment, inventory hash joins or buyer review—without presenting missing measurements as adverse findings or rights uncertainty.",
+        "compare": "Lead with the relative opportunity and verification burden of {O1}, {O2} and {O3}, then anchor the overall priced opportunity in {F019}. Recommend validating archive economics and duplicate identity before execution; list-price savings are upper bounds rather than the owner's current bill or a guaranteed net reduction.",
+        "exhibit_S001": "Lead with database storage concentration in {S001}, supported by {F004}, {F016} and {K002}, to locate the operational footprint behind the condition discussion. This exhibit does not establish that the largest database has the worst quality, and its concentration denominator is database bytes rather than the whole estate.",
+        "exhibit_S002": "Lead with completeness, degradation and personal-data preparation needs using {S002}, {F007}, {F008}, {F009}, {F010} and {F011}. Explain that these overlapping indicators have different denominators and sampling bases, are not additive, and describe database evidence rather than every store.",
+        "exhibit_S003": "Lead with {S003} to show that object-store tiering and duplicate reconciliation dominate estimated addressable bytes, supported by {F036}, {K009} and {F034}. Explain that these are strategy estimates, not money already saved or uniquely removable bytes, and that write inactivity does not establish that nobody uses the data.",
+        "exhibit_S004": "Lead with the whole-estate distribution in {S004}, anchored by {F050}, {F030}, {F040} and {F052}, so the owner sees that object storage and file shares dominate the storage agenda. Keep database condition findings separate from estate-wide byte shares and do not imply complete access to every inventoried store.",
+        "exhibit_S005": "Lead with object-store concentration using {S005}, {F038} and {K008}, showing why bucket-level decisions deserve executive attention. The largest bucket is not automatically an archive or deletion candidate, and a cold label establishes write inactivity rather than absence of reads.",
+        "exhibit_S010": "Lead with the distribution of estimated non-music speech hours across language folders in {S010}, anchored by recorded duration {F060}, estimated speech {F061} and estimated music {F062}. Use this to scope language-specific preparation rather than promise a verified, balanced or training-ready speech corpus.",
+        "exhibit_S011": "Lead with variation in folder-language agreement using {S011}, placing {F072} alongside the declined-label measure {F066}. The takeaway is to target language validation by folder, not equate agreement among labelled windows with human-verified accuracy or coverage of every window.",
+        "exhibit_S012": "Lead with live script distribution by station in {S012}, anchored by {F080} and {F081}, and qualify temporal coverage with {F082} and {F083}. Present a substantial but discontinuous written archive, with language inherited from station metadata rather than verified from script text.",
+        "exhibit_S013": "Lead with observed bulletin-hour coverage on scripted days using {S013}, interpreted through {T022}, {T032} and {T033}. Explain that this measures distinct scripted hour slots, not continuous daily coverage, broadcast duration or an average over days without scripts.",
+        "risks": "Lead with risks to the decision's reliability: incomplete database coverage {F003} against {F002}, unreadable buckets {F033}, estimated duplicate bytes {F034}, sampled personal-data markers {F010} and bounded pricing {F019}. Separate operational verification and product preparation from settled ownership rights, and avoid extrapolating database findings or model-read subsets to the entire estate."
+      },
+      "latency_ms": 50008,
+      "model": "gpt-6-astra",
+      "provider": "emergent",
+      "receipt_id": "rcp-da0f89f1a000",
+      "title_direction": "Frame RMS's whole estate as an owner decision about where storage savings are most credible, which condition issues need preparation and which product specifications to develop first, without implying realised savings or proven demand.",
+      "tokens_in": 20313,
+      "tokens_out": 2226
+    },
     "provider": "emergent",
-    "receipt_id": "rcp-5c93c82e6339",
-    "source": "planner → worker → content manager → frontier writer (claude-sonnet-5-5); gate passed",
-    "tokens": 63484
+    "receipt_id": "rcp-9a7b8e2573a1",
+    "review": {
+      "blocking": [],
+      "findings": [
+        {
+          "fix": "Say 'All priced strategies together are bounded at {F019} USD a month; these three account for almost all of it.'",
+          "issue": "The three priced moves listed (986.5 + 180.3 + 5.9 = 1,172.7 USD) are followed immediately by 'The priced total is {F019} USD a month' (1,174.4). F019 is the total across all priced strategies including index, row-dedupe and copy consolidation, so a reader may think the three sum to it or that 1.7 USD is missing.",
+          "path": "paper.sections.compare.paragraphs[0]",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Replace 'leaving' with 'and' so the two measures stand on their own.",
+          "issue": "'{F085} of script rows are revisions, leaving {F086} distinct texts ({K012} of live rows)' implies the distinct-text count follows arithmetically from the revision share. They are separately measured (1 − 38.0% = 62.0% vs K012 = 63.9%), and the evidence statement C044 joins them with 'and', not a causal link. Same wording in paper.sections.chapter6.paragraphs[0].",
+          "path": "draft.slots.chapter6.points[1]",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Say 'these are estimates priced separately; the pack does not sum them beyond the {F021} GiB combined figure' rather than asserting possible overlap.",
+          "issue": "'the strategies may overlap' is a caution the evidence does not state; S003 and F021 present the strategies as priced separately with a single combined addressed-bytes figure.",
+          "path": "draft.slots.exhibit_S003.so_what",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Name Kikamba and Kiswahili explicitly and qualify the Bukusu nil as a tiny-sample reading.",
+          "issue": "Names two specific folders as lowest agreement among the large ones; the series shows Kikamba (0.709) and Kiswahili (0.787) as the two lowest non-zero shares. Ensure the rendered folder names match those categories exactly, and note the nil value in the smallest folder (Bukusu, 0.7 h) may reflect too few labelled windows rather than disagreement.",
+          "path": "paper.sections.exhibit_S011.paragraphs[0]",
+          "severity": "advisory"
+        }
+      ],
+      "latency_ms": 80216,
+      "model": "claude-fable-5-1",
+      "provider": "emergent",
+      "receipt_id": "rcp-4e82a931147a",
+      "resolution": "accepted without blocking findings",
+      "summary": "Every figure traces to a labelled token used for its own quantity, each chapter answers its question, the owner's rights declaration is honoured throughout, and risks are drawn from coverage.cannot_say; only minor phrasing tightenings are advised around the priced total, the revision/distinct-text link and one unsupported overlap caution.",
+      "tokens_in": 24190,
+      "tokens_out": 607,
+      "verdict": "accept"
+    },
+    "source": "orchestrating planner (gpt-6-astra) → worker → content manager → frontier writer (claude-sonnet-5-5) → independent reviewer (claude-fable-5-1); gate passed",
+    "tokens": 73103
   },
   "brief_id": "BR-2026-10-02-eij-1b359b3cbd2e",
   "build_stamp": "2026-10-02T07:26:31Z",
@@ -277,18 +356,632 @@
         ],
         "status": "PASS"
       }
+    },
+    {
+      "at": "2026-10-02T10:41:05Z",
+      "build_id": "bld-67cc5025ae9d",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 2,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": "QA blockers; not releasable",
+      "exports": {},
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-c51e900a05a4/builds/bld-67cc5025ae9d/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "number-small-rule",
+        "palette_id": "harbour",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T07:26:31Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "5dcc8744a39d3c6b82f84e9a63ef6e58abc196419e71d1e045bae236888c26ac",
+          "deck.resolved/brief.json": "cd83d3c4c255901c8d0f69de2f675aa0c0eefe3ae02ebd9bda9c8f2884cb3c26",
+          "deck.resolved/content.json": "01ffa413bd5535a6552eb58ddca7a23469a4cd06101a1b49ffd8562f7001e91d",
+          "deck.resolved/deck.json": "9ae369f342d63b6e351b69012a00cdbbec821c1e49f9aa89f8ec69e3de74b327",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "88de4711ae673fead92b92d19df6fa3fcb4c165a80b808e19b53ada1704eff24",
+          "paper.resolved.json": "193eab43c111332a683954bd045587f378a3ee8d45dfafc077074ee93cc06257",
+          "paper.resolved/brief.json": "cd83d3c4c255901c8d0f69de2f675aa0c0eefe3ae02ebd9bda9c8f2884cb3c26",
+          "paper.resolved/content.json": "01ffa413bd5535a6552eb58ddca7a23469a4cd06101a1b49ffd8562f7001e91d",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "2ad3499936aebb48ae45dfa00ba5002b59c40d96ad35eb2d123a99990395516f",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "88de4711ae673fead92b92d19df6fa3fcb4c165a80b808e19b53ada1704eff24",
+          "workbook.resolved.json": "d284bc57ce5c7c1ba5cdf4dca3bdefcabdf77f27c2d3f5dc9715b9692b0656af",
+          "workbook.resolved/brief.json": "cd83d3c4c255901c8d0f69de2f675aa0c0eefe3ae02ebd9bda9c8f2884cb3c26",
+          "workbook.resolved/content.json": "01ffa413bd5535a6552eb58ddca7a23469a4cd06101a1b49ffd8562f7001e91d",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "88de4711ae673fead92b92d19df6fa3fcb4c165a80b808e19b53ada1704eff24",
+          "workbook.resolved/workbook.json": "2c4f393b398823eb99bd4dc4529b091a9407158231e932b8090bd929aa2c212d"
+        },
+        "outputs_sha256": {
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html": "e485fae5741b511b1c207314717113c61b3e34f1d562c1752cd85b757821c378",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.docx": "53f5ec80a134d07bd3b5818b388a80fef4190a9412ca0caac82a9745945f0be3",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx": "3e3a65a9edbed7898cadd2c345a662f04ac4e112fca81d548fc943e5e4e148fc",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx": "65fc7e26cbfd521b832742592f0e75de5dd7eac2d3d92fd19972743923492592"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html",
+          "sha256": "e485fae5741b511b1c207314717113c61b3e34f1d562c1752cd85b757821c378",
+          "size": 634719
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.docx",
+          "sha256": "53f5ec80a134d07bd3b5818b388a80fef4190a9412ca0caac82a9745945f0be3",
+          "size": 374537
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx",
+          "sha256": "3e3a65a9edbed7898cadd2c345a662f04ac4e112fca81d548fc943e5e4e148fc",
+          "size": 189696
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx",
+          "sha256": "65fc7e26cbfd521b832742592f0e75de5dd7eac2d3d92fd19972743923492592",
+          "size": 758817
+        }
+      ],
+      "prove": null,
+      "qa": {
+        "blockers": [
+          "slide 40: text needs ~0.70in but box is 0.41in: \"The workbench registers recordings per language wi\"",
+          "slide 41: text needs ~0.70in but box is 0.41in: \"The workbench registers recordings per language wi\"",
+          "slide 52: text needs ~1.17in but box is 0.90in: \"COVERS\nThe whole admitted estate as measured by ce\"",
+          "slide 53: text needs ~0.65in but box is 0.40in: \"Aggregate-only database reading etx-81e10befe6e0: \"",
+          "xlsx Decisions: formula error #",
+          "recalc: {'file': '/app/assessment_workspace/phase0/doc_studio_state/RMS/com-c51e900a05a4/builds/bld-67cc5025ae9d/a/out/estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx', 'status': 'errors_found', 'errors': [{'sheet': 'Decisions', 'cell': 'A5', 'value': '#'}], 'libreoffice': 'LibreOffice 7.4.7.2 40(Build:2)', 'formulas': 18}"
+        ],
+        "status": "FAIL"
+      },
+      "status": "blocked",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 7: is the title a full-sentence assertion? \"The object store holds 74.8% of the estate; databases hold only 0.2%\"",
+          "slide 9: is the title a full-sentence assertion? \"The estate holds 174.3 TiB, and most of it sits outside the databases\"",
+          "slide 12: dense (433 tokens); consider splitting",
+          "slide 13: dense (215 tokens); consider splitting",
+          "slide 14: dense (571 tokens); consider splitting",
+          "slide 15: dense (571 tokens); consider splitting",
+          "slide 16: dense (452 tokens); consider splitting",
+          "slide 17: dense (212 tokens); consider splitting",
+          "slide 18: dense (282 tokens); consider splitting",
+          "slide 19: dense (282 tokens); consider splitting",
+          "slide 21: is the title a full-sentence assertion? \"Object-store tiering and duplicate reconciliation dominate the bytes any strategy reaches\"",
+          "slide 22: is the title a full-sentence assertion? \"The three priced moves differ sharply in size, certainty and reversibility\"",
+          "slide 24: is the title a full-sentence assertion? \"Empty fields, not duplication, dominate the condition of database rows\"",
+          "slide 25: is the title a full-sentence assertion? \"Database bytes concentrate heavily in a few databases\"",
+          "slide 26: is the title a full-sentence assertion? \"Completeness, cleansing and de-identification matter more than removing duplicate rows\"",
+          "slide 28: is the title a full-sentence assertion? \"Speech hours sit mainly in six language folders, with two folders very thin\"",
+          "slide 29: is the title a full-sentence assertion? \"Agreement between model language labels and folder names varies by language folder\"",
+          "slide 31: dense (256 tokens); consider splitting",
+          "slide 32: dense (263 tokens); consider splitting",
+          "slide 34: is the title a full-sentence assertion? \"Live news scripts spread across 13 stations in uneven volumes\"",
+          "slide 35: is the title a full-sentence assertion? \"Bulletin-hour coverage on scripted days differs widely between stations\"",
+          "slide 36: is the title a full-sentence assertion? \"The estate holds 248841 live news scripts, but only on 226 calendar dates\"",
+          "slide 37: dense (315 tokens); consider splitting",
+          "slide 38: dense (253 tokens); consider splitting",
+          "slide 40: dense (281 tokens); consider splitting",
+          "slide 41: dense (279 tokens); consider splitting",
+          "slide 43: is the title a full-sentence assertion? \"Three products should enter preparation first, each with a defined preparation step\"",
+          "slide 46: dense (879 tokens); consider splitting",
+          "slide 47: dense (237 tokens); consider splitting",
+          "slide 50: is the title a full-sentence assertion? \"Start with cold-bucket and duplicate validation, then prepare products and repair databases\"",
+          "slide 51: is the title a full-sentence assertion? \"Coverage, candidate duplication and reference pricing could each change a decision\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "at": "2026-10-02T11:09:08Z",
+      "build_id": "bld-fdb26967b08a",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 3,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-02T11:09:41Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "count": 53,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "71dc6490f0bc74c82a2682aeff330f44b3219a0e779c18b3d180b3259616b851",
+              "size": 26905
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "1dbef66f0f007af1a9ef4934d9eb6cdd309a4c8f9a1b149790e1b9433c30ee19",
+              "size": 73452
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "d692733a64077a7338ac7d9f854033fe7060c781e650aaa02295ad18daa11e25",
+              "size": 75880
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "fc8f628670f73bfad4cd577647ae00a109dad097e30829a7b48c0313728e4388",
+              "size": 65823
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "df55176ad506c0e48c391df8321ee2d76aab91bbbcf3b916c0340e0d4ad74086",
+              "size": 39624
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "85c13eaa45780f92caeef35b6e1acd938ece844838f2abb2048a99a60c610459",
+              "size": 8967
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "0cd03ad253d2c85ace2a3f33086711e8235f9817c90ae15550954bfcd6fb7525",
+              "size": 35345
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "3bdeac8f5cc2265f06feed7fb94b588abb7e6807e9de4b5049128bff465012a0",
+              "size": 43056
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "6fc87443bf45b44c7ebb687b70120b4e3f681b3c92657fa45e28a5faa4661754",
+              "size": 41863
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "a1c8c200cc618cf3479f707b4fe55f256d51bbb02811e6c03f6e1f142f39d66c",
+              "size": 9923
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "951e8348cbe61060eeefd261adfd98ad76c5492d6d7a73f43dd3de2e918da0f2",
+              "size": 46271
+            },
+            {
+              "n": 12,
+              "name": "page-12.png",
+              "sha256": "f3deddb7a4ac8d517e8b312c10daa6d103bc0ac23838d1f4a24b91a2af1ff485",
+              "size": 91564
+            },
+            {
+              "n": 13,
+              "name": "page-13.png",
+              "sha256": "412f14150c32a652a1e367cfc73f520fda6262c8eb56163511feef1b0cc28ccf",
+              "size": 55594
+            },
+            {
+              "n": 14,
+              "name": "page-14.png",
+              "sha256": "2302dbe609c433c097ccd55dd4635bfd2994c540842e273b464f2f0ac0078971",
+              "size": 114135
+            },
+            {
+              "n": 15,
+              "name": "page-15.png",
+              "sha256": "2fb1618c546f86becd32f54f302a47a797f2a5c894ca2cbd4e10504a1359afbb",
+              "size": 118308
+            },
+            {
+              "n": 16,
+              "name": "page-16.png",
+              "sha256": "ce90ac85b40abab8c68c4bcc30a0d889b9375340e781e6c0f4c12aff51e582cd",
+              "size": 90199
+            },
+            {
+              "n": 17,
+              "name": "page-17.png",
+              "sha256": "158de0a803457e27923fac1d6ae1a6032f69e99fe8e544087cce1b2618436a76",
+              "size": 51249
+            },
+            {
+              "n": 18,
+              "name": "page-18.png",
+              "sha256": "fc8c61ae2ddd7b10c182a433f3ba7de83f3619f6f2f5a1bf6332357534697884",
+              "size": 67942
+            },
+            {
+              "n": 19,
+              "name": "page-19.png",
+              "sha256": "0e1bc9bac06e1fb91a05312b743db33377f48fe3278112c77a8a3d695a609fb1",
+              "size": 69175
+            },
+            {
+              "n": 20,
+              "name": "page-20.png",
+              "sha256": "3592edddbd66af358ecf3dacb787f0f90a82ceab0e5463ede426315aad1ec686",
+              "size": 11604
+            },
+            {
+              "n": 21,
+              "name": "page-21.png",
+              "sha256": "986c6c56b6df35de83b46b97bd761141fd09683ce718e4a2dc219851d18ee621",
+              "size": 52511
+            },
+            {
+              "n": 22,
+              "name": "page-22.png",
+              "sha256": "9ee38b60490bc8307c8d10b74394b6aee6192482e43f0a7b698dc1810d30aa67",
+              "size": 49184
+            },
+            {
+              "n": 23,
+              "name": "page-23.png",
+              "sha256": "bd6f9d52fcaf113b2767cdb6e9a4f234ab7e02ad94eac5e0b4e9035968a359aa",
+              "size": 11771
+            },
+            {
+              "n": 24,
+              "name": "page-24.png",
+              "sha256": "b7cc80349f1f0edbe732e9b51e9b3426ecf52a1461cd31a85a01ca0ce5a4d200",
+              "size": 41855
+            },
+            {
+              "n": 25,
+              "name": "page-25.png",
+              "sha256": "0490768ee427639249204e5e9c6b68129c259c7854533a64c249888c7083108e",
+              "size": 46653
+            },
+            {
+              "n": 26,
+              "name": "page-26.png",
+              "sha256": "889db61b1e37b0f4f7817456749ed70fe57f312f44f8f91c1a79c436524aff7d",
+              "size": 48074
+            },
+            {
+              "n": 27,
+              "name": "page-27.png",
+              "sha256": "e6152bee8748b72b33f89b520d5ec9433546e4a388daae64c4231f3f761c2008",
+              "size": 11564
+            },
+            {
+              "n": 28,
+              "name": "page-28.png",
+              "sha256": "030625be3d8c2dcda36005a8708895c5d2439789a2468e235d59e50ba45ffea6",
+              "size": 44380
+            },
+            {
+              "n": 29,
+              "name": "page-29.png",
+              "sha256": "e1ad08ff637cada9784997a5aaba1062a3f8bbc85aa9667b74745a272f7d091a",
+              "size": 47407
+            },
+            {
+              "n": 30,
+              "name": "page-30.png",
+              "sha256": "5b89acb1efcd3970318f74d9970e8b0498ecbf70e6ba8f35329735335c570eef",
+              "size": 47480
+            },
+            {
+              "n": 31,
+              "name": "page-31.png",
+              "sha256": "cde7b208046c1f7149a94d74e8e1a1878ba502ef2ed04daf9d3c244c3f456c5c",
+              "size": 55241
+            },
+            {
+              "n": 32,
+              "name": "page-32.png",
+              "sha256": "47e911c0db60ceb5b2d8a2a098d10644a08240849056ee80f858743a0a6bd337",
+              "size": 57471
+            },
+            {
+              "n": 33,
+              "name": "page-33.png",
+              "sha256": "f3565e0d2a6b98cd38fdb526451d3620096a81f96c446cfe5f7f8c29b0739571",
+              "size": 11616
+            },
+            {
+              "n": 34,
+              "name": "page-34.png",
+              "sha256": "3014185169376d0ed65243e4698132dc68cfc43bb07385bc2927953a8ab0c597",
+              "size": 54908
+            },
+            {
+              "n": 35,
+              "name": "page-35.png",
+              "sha256": "2ed49fe16c1e7799aca921ec86cc095466b10738893e4a60f1e7454c42f1687f",
+              "size": 44809
+            },
+            {
+              "n": 36,
+              "name": "page-36.png",
+              "sha256": "0d38012f868b1bd05f0f89500eac229d8152b596a0d497818ad2e4988483103b",
+              "size": 51149
+            },
+            {
+              "n": 37,
+              "name": "page-37.png",
+              "sha256": "f7c7541e3d459cfd85af743f7852cbceeee07d4a7bcf882d8e37e3d79db559ce",
+              "size": 60250
+            },
+            {
+              "n": 38,
+              "name": "page-38.png",
+              "sha256": "1144c67195d9c06617e3506d463df8ba470c4fc5eee3cf3c47868f0954b302b9",
+              "size": 50439
+            },
+            {
+              "n": 39,
+              "name": "page-39.png",
+              "sha256": "fd853576a0dd13486c421302fb6d73d72d7bd676b20e3d5b6eed188d3616bdae",
+              "size": 40538
+            },
+            {
+              "n": 40,
+              "name": "page-40.png",
+              "sha256": "dac0f3e69a0d4876fe84ab88473ed5a9cbeb8a8d602665d884ad722db581194b",
+              "size": 57144
+            },
+            {
+              "n": 41,
+              "name": "page-41.png",
+              "sha256": "43f90b353dadf652b86d37984d2f31e33cbdf168d0fa1b29492bf7ff1880bf07",
+              "size": 56458
+            },
+            {
+              "n": 42,
+              "name": "page-42.png",
+              "sha256": "3f2080c8d651f09e5591606dc39e981894a2f0b18f9b84059734e1e13b7583bc",
+              "size": 10528
+            },
+            {
+              "n": 43,
+              "name": "page-43.png",
+              "sha256": "18190a1fb11905807ca4925acbffc4eaa085953178924677c0f1f12443a2ea8e",
+              "size": 45746
+            },
+            {
+              "n": 44,
+              "name": "page-44.png",
+              "sha256": "270fe4bdaf7950a3f8f07fb228724378c43dcb8bc2719768793dc74e5e6d6964",
+              "size": 10798
+            },
+            {
+              "n": 45,
+              "name": "page-45.png",
+              "sha256": "1ff2c056afaecddb3b8099ebbd6ad76373fdb9dde6ee4315b2b9e7d13fd1fbaf",
+              "size": 45023
+            },
+            {
+              "n": 46,
+              "name": "page-46.png",
+              "sha256": "bf8e2c921cbb9bf9b15f4676671ace9103b43adcc2f5be0e83d2c8b80b3f6323",
+              "size": 108904
+            },
+            {
+              "n": 47,
+              "name": "page-47.png",
+              "sha256": "9b2a0020b5ccbc54062a49b8dc36ffb104de8de9123f677c7c2e79e3d8b97608",
+              "size": 48448
+            },
+            {
+              "n": 48,
+              "name": "page-48.png",
+              "sha256": "aace82cd14317b5cd24244bc7cf4ca32697b3141df3cb112bab7f19c6470d4e5",
+              "size": 10443
+            },
+            {
+              "n": 49,
+              "name": "page-49.png",
+              "sha256": "00a03477d73e1cf6001e8d302d85fe336be0975c12e30c38988fc28852e0e3eb",
+              "size": 44752
+            },
+            {
+              "n": 50,
+              "name": "page-50.png",
+              "sha256": "8554499f5e26ad08b73bc7dda62c16129cafc52265e148d0dd9596c83ffd75b7",
+              "size": 53177
+            },
+            {
+              "n": 51,
+              "name": "page-51.png",
+              "sha256": "95cafba3057f374259bffa79cc2d90192fecee77915c483d78f6b6910f9522b1",
+              "size": 49901
+            },
+            {
+              "n": 52,
+              "name": "page-52.png",
+              "sha256": "54593d305c2190bd71ffec473ca149e75906d9d6e1c51e2ddf51d314b87f515c",
+              "size": 64923
+            },
+            {
+              "n": 53,
+              "name": "page-53.png",
+              "sha256": "ea2f6bb5bd7cd364e348ac881b8d2fcde361a06783962b274b9cf9c09d967f79",
+              "size": 86999
+            }
+          ],
+          "rendered": true,
+          "source": "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx"
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-c51e900a05a4/builds/bld-fdb26967b08a/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "number-small-rule",
+        "palette_id": "harbour",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T07:26:31Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "5f425798c96a7ee7d92131081e9d9adc3fc9b02a6658ac983657af5d21ffbff3",
+          "deck.resolved/brief.json": "f9f3b5240f8af3ff1469cd6c7d610e3d333a75d6492d9a02e4ef9172bde26636",
+          "deck.resolved/content.json": "c53b94c49a72a2ad193e6abc63d32631dc92b5b1d8ed340c5db446b1346dc52f",
+          "deck.resolved/deck.json": "a46c154e56b574dd8622c9239e993eeffa69500f8e5157f221d585629653d121",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "dee45e67ad7221d2ac05ee2b7e991e69e7f528113a73f9442a4c18073af9dd49",
+          "paper.resolved.json": "f26003ddbc87b3407e50bcd0472f58b0d213ca567a643eb8c91f8ef0dbcc75d0",
+          "paper.resolved/brief.json": "f9f3b5240f8af3ff1469cd6c7d610e3d333a75d6492d9a02e4ef9172bde26636",
+          "paper.resolved/content.json": "c53b94c49a72a2ad193e6abc63d32631dc92b5b1d8ed340c5db446b1346dc52f",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "4704945c56244d5d15abc5ea54431e0f265a487066641bb3d94abb21ed0a6108",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "dee45e67ad7221d2ac05ee2b7e991e69e7f528113a73f9442a4c18073af9dd49",
+          "workbook.resolved.json": "4a8756865ae9902ab5a8566905d712ae5ad0f43334b17070c49859c4e3819f96",
+          "workbook.resolved/brief.json": "f9f3b5240f8af3ff1469cd6c7d610e3d333a75d6492d9a02e4ef9172bde26636",
+          "workbook.resolved/content.json": "c53b94c49a72a2ad193e6abc63d32631dc92b5b1d8ed340c5db446b1346dc52f",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "dee45e67ad7221d2ac05ee2b7e991e69e7f528113a73f9442a4c18073af9dd49",
+          "workbook.resolved/workbook.json": "f408ef25dc8d6ba2772b4b7baca57552b6272fa9819b0c7141d3c86345e17170"
+        },
+        "outputs_sha256": {
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html": "96a6e736bd063bb64500aa697e1cb5da799ff949f73a8268ed6f50818e065e85",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.docx": "dc8ee18fc5c83b089c876daad735e7ae1cd2bc3a334d8b45f206646b5bb6ebd2",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx": "128fb5e6273ed700a4c8a758268d7b1955fa1839d7d5534efce7da04280768ca",
+          "estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx": "81bc117063576c2355ae2eff87cec4bfc3a1b44bdd017ebfeb5cdb09ff043c87"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide-review.html",
+          "sha256": "96a6e736bd063bb64500aa697e1cb5da799ff949f73a8268ed6f50818e065e85",
+          "size": 633716
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.docx",
+          "sha256": "dc8ee18fc5c83b089c876daad735e7ae1cd2bc3a334d8b45f206646b5bb6ebd2",
+          "size": 373792
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.pptx",
+          "sha256": "128fb5e6273ed700a4c8a758268d7b1955fa1839d7d5534efce7da04280768ca",
+          "size": 189208
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-estatewide.xlsx",
+          "sha256": "81bc117063576c2355ae2eff87cec4bfc3a1b44bdd017ebfeb5cdb09ff043c87",
+          "size": 758818
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 9: is the title a full-sentence assertion? \"The estate holds 174.3 TiB and nearly all of it sits outside the databases\"",
+          "slide 12: dense (430 tokens); consider splitting",
+          "slide 13: dense (212 tokens); consider splitting",
+          "slide 14: dense (571 tokens); consider splitting",
+          "slide 15: dense (571 tokens); consider splitting",
+          "slide 16: dense (452 tokens); consider splitting",
+          "slide 17: dense (212 tokens); consider splitting",
+          "slide 18: dense (282 tokens); consider splitting",
+          "slide 19: dense (282 tokens); consider splitting",
+          "slide 21: is the title a full-sentence assertion? \"Object-store tiering and duplicate reconciliation dominate the addressable bytes\"",
+          "slide 22: is the title a full-sentence assertion? \"The three priced moves differ sharply in size and in the checks each needs first\"",
+          "slide 31: dense (251 tokens); consider splitting",
+          "slide 32: dense (263 tokens); consider splitting",
+          "slide 36: is the title a full-sentence assertion? \"Three separate text inventories exist and should be prepared separately, not added together\"",
+          "slide 37: dense (296 tokens); consider splitting",
+          "slide 38: dense (234 tokens); consider splitting",
+          "slide 40: dense (257 tokens); consider splitting",
+          "slide 41: dense (255 tokens); consider splitting",
+          "slide 46: dense (874 tokens); consider splitting",
+          "slide 47: dense (232 tokens); consider splitting",
+          "slide 50: is the title a full-sentence assertion? \"Validate the object-store economics first, then close the gaps, then prepare one product\"",
+          "slide 51: is the title a full-sentence assertion? \"Coverage, unreadable inventory and estimate quality limit how far the figures can be pushed\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
     }
   ],
   "commission_id": "com-c51e900a05a4",
   "content_id": "estate-intelligence-eij-1b359b3cbd2e-estatewide",
   "created_at": "2026-10-02T07:30:55Z",
   "created_by": "6ab56dd48894abb269135ca2",
-  "current_content_version": 1,
+  "current_content_version": 3,
   "economics": {
-    "authoring_tokens_total": 63484,
-    "builds_total": 1,
+    "authoring_tokens_total": 210333,
+    "builds_total": 3,
     "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
-    "renders_total": 2,
+    "renders_total": 4,
     "rerender_authoring_tokens": 0
   },
   "frame_ref": "FR-strategy-decide-v1",
@@ -406,10 +1099,34 @@
       "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
       "status": null,
       "verified": true
+    },
+    "R06": {
+      "binding": "platform",
+      "kind": "m9j",
+      "platform_ref": "m9j-9e8fcb46a809",
+      "resolves_to": "Estate language reading m9j-9e8fcb46a809 on akki-vm (2 GPUs, 1.034 GPU-h): audio language model lcj-7128593897d4 sha256 5c1feb8497e8…, music detector m9j-686de001bfe7 sha256 0fea3eee0393…; model readings, not human labels",
+      "status": "completed",
+      "verified": true
+    },
+    "R07": {
+      "binding": "platform",
+      "kind": "m9j",
+      "platform_ref": "m9j-8cf6702f8718",
+      "resolves_to": "Served text language model m9j-74af7cef0a85 readings of the staged transcripts: jobs m9j-8cf6702f8718 (399 transcripts read, 3939 present)",
+      "status": "completed",
+      "verified": true
+    },
+    "R08": {
+      "binding": "platform",
+      "kind": "etx",
+      "platform_ref": "etx-81e10befe6e0",
+      "resolves_to": "Aggregate-only database reading etx-81e10befe6e0: news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins); local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)",
+      "status": "completed",
+      "verified": true
     }
   },
   "release": {
-    "reason": "build bld-db7c08061666 byte-identical across two builds; validate and QA PASS",
+    "reason": "build bld-fdb26967b08a byte-identical across two builds; validate and QA PASS",
     "state": "clear"
   },
   "revisions": [],
@@ -422,8 +1139,8 @@
     "workbook.json"
   ],
   "tenant_id": "RMS",
-  "title": "RMS estate review: cost, condition and first data products",
-  "updated_at": "2026-10-02T07:31:07Z",
+  "title": "RMS estate: what is held, what it costs, what to do first",
+  "updated_at": "2026-10-02T11:09:41Z",
   "verdict_id": "V-2026-10-02-eij-1b359b3cbd2e",
   "versions": [
     {
@@ -431,6 +1148,18 @@
       "by": "6ab56dd48894abb269135ca2",
       "reason": "commissioned by producer estate_intelligence from eij-1b359b3cbd2e",
       "version": 1
+    },
+    {
+      "at": "2026-10-02T10:41:05Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "authored by the frontier writer claude-sonnet-5-5 under the content manager gate",
+      "version": 2
+    },
+    {
+      "at": "2026-10-02T11:09:08Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "authored by the frontier writer claude-sonnet-5-5 under the content manager gate",
+      "version": 3
     }
   ],
   "voice": "strategy-house"

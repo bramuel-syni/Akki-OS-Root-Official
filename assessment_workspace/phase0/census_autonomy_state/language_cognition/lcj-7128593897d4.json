@@ -42,7 +42,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-7128593897d4",
   "pid": 1033942
  },
- "status": "running",
+ "status": "completed",
  "final_model_commission": {
   "decision": "refused",
   "reason": "CleanMonolingualOnlyRefused",
@@ -60,31 +60,6634 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "language_cognition_train_corrective_daemonised:pid=1033942"
+  },
+  {
+   "row_id": "led-69ce20c334a0",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "language_cognition_train_corrective_completed"
   }
  ],
  "code_sha256": "8300ed9a61ef2353a4862ab990bfefa7b83a52968195427075aeb7fe576ab289",
  "started_at": "2026-10-02T07:37:53.839871Z",
  "last_status_rpc": {
-  "at": "2026-10-02T07:37:59.089031Z",
+  "at": "2026-10-02T08:15:06.623610Z",
   "rc": 0,
-  "receipt_id": "gpurcp-0c9bcc87ff28"
+  "receipt_id": "gpurcp-cc47d8c641f9"
  },
  "remote_state": {
   "phase": "train_corrective",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-02T07:37:53Z",
   "progress": {
-   "stage": "windowing authorised local corpus",
-   "files_done": 0,
-   "files": 3958,
-   "windows": 0
+   "stage": "terminal protected-set evaluation",
+   "step": 7336,
+   "best_dev_epoch": 20
   },
   "events": [],
   "job_id": "lcj-7128593897d4",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-02T07:37:58Z"
+  "updated_at": "2026-10-02T08:04:57Z",
+  "lab_checkpoint": {
+   "epoch": 28,
+   "step": 7336,
+   "dev": {
+    "windows": 19804,
+    "per_language": {
+     "bxk": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     },
+     "guz": {
+      "windows": 1719,
+      "correct": 1102,
+      "abstain": 243,
+      "accuracy": 0.74661,
+      "abstention_rate": 0.14136
+     },
+     "kam": {
+      "windows": 1707,
+      "correct": 833,
+      "abstain": 359,
+      "accuracy": 0.61795,
+      "abstention_rate": 0.21031
+     },
+     "kik": {
+      "windows": 3557,
+      "correct": 1758,
+      "abstain": 530,
+      "accuracy": 0.58077,
+      "abstention_rate": 0.149
+     },
+     "kln": {
+      "windows": 2743,
+      "correct": 2246,
+      "abstain": 175,
+      "accuracy": 0.87461,
+      "abstention_rate": 0.0638
+     },
+     "luo": {
+      "windows": 1677,
+      "correct": 1317,
+      "abstain": 130,
+      "accuracy": 0.85133,
+      "abstention_rate": 0.07752
+     },
+     "lwg": {
+      "windows": 188,
+      "correct": 140,
+      "abstain": 11,
+      "accuracy": 0.79096,
+      "abstention_rate": 0.05851
+     },
+     "swa": {
+      "windows": 8213,
+      "correct": 2490,
+      "abstain": 1317,
+      "accuracy": 0.36108,
+      "abstention_rate": 0.16036
+     }
+    },
+    "per_condition_sample_rate": {
+     "44100Hz": {
+      "windows": 16136,
+      "correct": 7607,
+      "abstain": 2285,
+      "accuracy": 0.5492,
+      "abstention_rate": 0.14161
+     },
+     "22050Hz": {
+      "windows": 1117,
+      "correct": 593,
+      "abstain": 230,
+      "accuracy": 0.66855,
+      "abstention_rate": 0.20591
+     },
+     "11025Hz": {
+      "windows": 2105,
+      "correct": 1408,
+      "abstain": 197,
+      "accuracy": 0.73795,
+      "abstention_rate": 0.09359
+     },
+     "16000Hz": {
+      "windows": 211,
+      "correct": 147,
+      "abstain": 36,
+      "accuracy": 0.84,
+      "abstention_rate": 0.17062
+     },
+     "48000Hz": {
+      "windows": 235,
+      "correct": 131,
+      "abstain": 17,
+      "accuracy": 0.60092,
+      "abstention_rate": 0.07234
+     }
+    },
+    "overall_accuracy_on_judged": 0.5802,
+    "overall_abstention_rate": 0.13962,
+    "confidence_threshold": 0.6,
+    "confusion_top": {
+     "guz": {
+      "guz": 1102,
+      "kln": 240,
+      "luo": 82,
+      "kam": 19,
+      "kik": 18
+     },
+     "kam": {
+      "kam": 833,
+      "luo": 186,
+      "kln": 186,
+      "swa": 60,
+      "guz": 52
+     },
+     "kik": {
+      "kik": 1758,
+      "guz": 678,
+      "luo": 257,
+      "kam": 220,
+      "kln": 81
+     },
+     "kln": {
+      "kln": 2246,
+      "guz": 114,
+      "swa": 97,
+      "kam": 44,
+      "luo": 43
+     },
+     "luo": {
+      "luo": 1317,
+      "guz": 137,
+      "kln": 34,
+      "kam": 26,
+      "kik": 18
+     },
+     "lwg": {
+      "lwg": 140,
+      "kln": 20,
+      "guz": 7,
+      "swa": 4,
+      "kam": 3
+     },
+     "swa": {
+      "luo": 2768,
+      "swa": 2490,
+      "kln": 707,
+      "kam": 362,
+      "kik": 280
+     }
+    }
+   },
+   "epsilon": null
+  },
+  "finished_at": "2026-10-02T08:04:57Z",
+  "receipt_sha256": "749892da32c9dbe094629d18bf69bfce40295685da068efa0b0bdce68c463dec"
  },
- "worker_log_tail": "",
- "process_alive": true
+ "worker_log_tail": "Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 11952.71it/s]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-7128593897d4",
+  "phase": "train_corrective",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-02T07:37:53Z",
+  "code_sha256": "8300ed9a61ef2353a4862ab990bfefa7b83a52968195427075aeb7fe576ab289",
+  "status": "completed",
+  "result": {
+   "classes": [
+    "bxk",
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "swa"
+   ],
+   "split": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "baseline_params": {
+     "max_windows_per_file": 60,
+     "max_windows_per_language": 30000,
+     "max_audio_seconds": 900,
+     "split_seed": 11
+    },
+    "windows": {
+     "train": 133678,
+     "dev": 19804,
+     "held": 43635,
+     "archive_test": 195659,
+     "excluded": 149
+    },
+    "per_language": {
+     "bxk": {
+      "train_presenters": 0,
+      "dev_presenters": 0,
+      "held_presenters": 0,
+      "archive_test_presenters": 0,
+      "meets_presenter_minimum_n": false
+     },
+     "guz": {
+      "train_presenters": 85,
+      "dev_presenters": 9,
+      "held_presenters": 27,
+      "archive_test_presenters": 34,
+      "meets_presenter_minimum_n": true
+     },
+     "kam": {
+      "train_presenters": 121,
+      "dev_presenters": 13,
+      "held_presenters": 47,
+      "archive_test_presenters": 95,
+      "meets_presenter_minimum_n": true
+     },
+     "kik": {
+      "train_presenters": 133,
+      "dev_presenters": 14,
+      "held_presenters": 20,
+      "archive_test_presenters": 14,
+      "meets_presenter_minimum_n": true
+     },
+     "kln": {
+      "train_presenters": 131,
+      "dev_presenters": 14,
+      "held_presenters": 40,
+      "archive_test_presenters": 2,
+      "meets_presenter_minimum_n": true
+     },
+     "luo": {
+      "train_presenters": 113,
+      "dev_presenters": 12,
+      "held_presenters": 76,
+      "archive_test_presenters": 7,
+      "meets_presenter_minimum_n": true
+     },
+     "lwg": {
+      "train_presenters": 39,
+      "dev_presenters": 4,
+      "held_presenters": 15,
+      "archive_test_presenters": 0,
+      "meets_presenter_minimum_n": true
+     },
+     "swa": {
+      "train_presenters": 183,
+      "dev_presenters": 20,
+      "held_presenters": 36,
+      "archive_test_presenters": 0,
+      "meets_presenter_minimum_n": true
+     }
+    },
+    "duplicate_clips_removed": 3596,
+    "files_without_transcript": 19,
+    "test_reading": "legacy held-out already observed; not blind independent M9 acceptance",
+    "limitations": [
+     "presenter linkage inferred within language, not ground truth or cross-language biometric linkage",
+     "folder language labels, no labelled code-switched spans",
+     "English/Sheng absent",
+     "DP applies to fixed window dataset; corpus selection/linkage and evaluation are not DP-certified"
+    ],
+    "kind": "protected legacy holdout + training-only development; archive presenters excluded from all training",
+    "speaker_linkage_used": true,
+    "files": {
+     "train": 1803,
+     "dev": 395,
+     "held": 839,
+     "archive_test": 2366,
+     "excluded": 82
+    }
+   },
+   "held_out": {
+    "windows": 43635,
+    "per_language": {
+     "bxk": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     },
+     "guz": {
+      "windows": 4738,
+      "correct": 4060,
+      "abstain": 302,
+      "accuracy": 0.91524,
+      "abstention_rate": 0.06374
+     },
+     "kam": {
+      "windows": 5063,
+      "correct": 3150,
+      "abstain": 646,
+      "accuracy": 0.71315,
+      "abstention_rate": 0.12759
+     },
+     "kik": {
+      "windows": 2714,
+      "correct": 1827,
+      "abstain": 430,
+      "accuracy": 0.79991,
+      "abstention_rate": 0.15844
+     },
+     "kln": {
+      "windows": 6989,
+      "correct": 5364,
+      "abstain": 638,
+      "accuracy": 0.84459,
+      "abstention_rate": 0.09129
+     },
+     "luo": {
+      "windows": 11547,
+      "correct": 9496,
+      "abstain": 671,
+      "accuracy": 0.87312,
+      "abstention_rate": 0.05811
+     },
+     "lwg": {
+      "windows": 1009,
+      "correct": 667,
+      "abstain": 129,
+      "accuracy": 0.75795,
+      "abstention_rate": 0.12785
+     },
+     "swa": {
+      "windows": 11575,
+      "correct": 8625,
+      "abstain": 1217,
+      "accuracy": 0.83269,
+      "abstention_rate": 0.10514
+     }
+    },
+    "per_condition_sample_rate": {
+     "44100Hz": {
+      "windows": 32813,
+      "correct": 24320,
+      "abstain": 3325,
+      "accuracy": 0.82474,
+      "abstention_rate": 0.10133
+     },
+     "11025Hz": {
+      "windows": 6702,
+      "correct": 5531,
+      "abstain": 446,
+      "accuracy": 0.88411,
+      "abstention_rate": 0.06655
+     },
+     "48000Hz": {
+      "windows": 1659,
+      "correct": 1186,
+      "abstain": 181,
+      "accuracy": 0.80244,
+      "abstention_rate": 0.1091
+     },
+     "22050Hz": {
+      "windows": 720,
+      "correct": 519,
+      "abstain": 63,
+      "accuracy": 0.78995,
+      "abstention_rate": 0.0875
+     },
+     "32000Hz": {
+      "windows": 221,
+      "correct": 201,
+      "abstain": 8,
+      "accuracy": 0.94366,
+      "abstention_rate": 0.0362
+     },
+     "16000Hz": {
+      "windows": 1520,
+      "correct": 1432,
+      "abstain": 10,
+      "accuracy": 0.94834,
+      "abstention_rate": 0.00658
+     }
+    },
+    "overall_accuracy_on_judged": 0.83806,
+    "overall_abstention_rate": 0.09243,
+    "confidence_threshold": 0.6,
+    "confusion_top": {
+     "guz": {
+      "guz": 4060,
+      "luo": 109,
+      "lwg": 86,
+      "kln": 83,
+      "kik": 53
+     },
+     "kam": {
+      "kam": 3150,
+      "guz": 335,
+      "luo": 319,
+      "swa": 232,
+      "lwg": 186
+     },
+     "kik": {
+      "kik": 1827,
+      "guz": 216,
+      "swa": 75,
+      "luo": 63,
+      "kln": 43
+     },
+     "kln": {
+      "kln": 5364,
+      "lwg": 327,
+      "kik": 218,
+      "swa": 180,
+      "guz": 124
+     },
+     "luo": {
+      "luo": 9496,
+      "kik": 500,
+      "guz": 388,
+      "swa": 264,
+      "kam": 101
+     },
+     "lwg": {
+      "lwg": 667,
+      "swa": 90,
+      "guz": 52,
+      "kik": 49,
+      "luo": 10
+     },
+     "swa": {
+      "swa": 8625,
+      "lwg": 447,
+      "kam": 413,
+      "kik": 356,
+      "luo": 260
+     }
+    }
+   },
+   "archive_test": {
+    "windows": 195659,
+    "per_language": {
+     "bxk": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     },
+     "guz": {
+      "windows": 62328,
+      "correct": 50635,
+      "abstain": 4579,
+      "accuracy": 0.87681,
+      "abstention_rate": 0.07347
+     },
+     "kam": {
+      "windows": 81114,
+      "correct": 53601,
+      "abstain": 9647,
+      "accuracy": 0.75001,
+      "abstention_rate": 0.11893
+     },
+     "kik": {
+      "windows": 31589,
+      "correct": 19351,
+      "abstain": 5867,
+      "accuracy": 0.75231,
+      "abstention_rate": 0.18573
+     },
+     "kln": {
+      "windows": 3548,
+      "correct": 2416,
+      "abstain": 376,
+      "accuracy": 0.76166,
+      "abstention_rate": 0.10598
+     },
+     "luo": {
+      "windows": 17080,
+      "correct": 14693,
+      "abstain": 945,
+      "accuracy": 0.91063,
+      "abstention_rate": 0.05533
+     },
+     "lwg": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     },
+     "swa": {
+      "windows": 0,
+      "correct": 0,
+      "abstain": 0,
+      "accuracy": null,
+      "abstention_rate": null
+     }
+    },
+    "per_condition_sample_rate": {
+     "44100Hz": {
+      "windows": 156478,
+      "correct": 110877,
+      "abstain": 17636,
+      "accuracy": 0.79858,
+      "abstention_rate": 0.11271
+     },
+     "22050Hz": {
+      "windows": 1406,
+      "correct": 1013,
+      "abstain": 168,
+      "accuracy": 0.81826,
+      "abstention_rate": 0.11949
+     },
+     "48000Hz": {
+      "windows": 7095,
+      "correct": 3906,
+      "abstain": 1170,
+      "accuracy": 0.65924,
+      "abstention_rate": 0.1649
+     },
+     "11025Hz": {
+      "windows": 30542,
+      "correct": 24820,
+      "abstain": 2432,
+      "accuracy": 0.88296,
+      "abstention_rate": 0.07963
+     },
+     "16000Hz": {
+      "windows": 138,
+      "correct": 80,
+      "abstain": 8,
+      "accuracy": 0.61538,
+      "abstention_rate": 0.05797
+     }
+    },
+    "overall_accuracy_on_judged": 0.80746,
+    "overall_abstention_rate": 0.10945,
+    "confidence_threshold": 0.6,
+    "confusion_top": {
+     "guz": {
+      "guz": 50635,
+      "lwg": 2493,
+      "kln": 2231,
+      "luo": 1015,
+      "kik": 789
+     },
+     "kam": {
+      "kam": 53601,
+      "guz": 5866,
+      "luo": 3466,
+      "lwg": 2859,
+      "swa": 2793
+     },
+     "kik": {
+      "kik": 19351,
+      "guz": 2405,
+      "swa": 1118,
+      "kln": 1106,
+      "luo": 871
+     },
+     "kln": {
+      "kln": 2416,
+      "lwg": 349,
+      "swa": 164,
+      "kik": 88,
+      "luo": 74
+     },
+     "luo": {
+      "luo": 14693,
+      "swa": 522,
+      "kik": 312,
+      "kam": 303,
+      "guz": 231
+     }
+    }
+   },
+   "development": [
+    {
+     "epoch": 1,
+     "step": 262,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 17,
+        "abstain": 1702,
+        "accuracy": 1.0,
+        "abstention_rate": 0.99011
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 0,
+        "abstain": 1707,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 0,
+        "abstain": 3555,
+        "accuracy": 0.0,
+        "abstention_rate": 0.99944
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 0,
+        "abstain": 2742,
+        "accuracy": 0.0,
+        "abstention_rate": 0.99964
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 0,
+        "abstain": 1677,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 0,
+        "abstain": 188,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 0,
+        "abstain": 8213,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 17,
+        "abstain": 16116,
+        "accuracy": 0.85,
+        "abstention_rate": 0.99876
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 0,
+        "abstain": 1117,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 0,
+        "abstain": 2105,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 0,
+        "abstain": 211,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 0,
+        "abstain": 235,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       }
+      },
+      "overall_accuracy_on_judged": 0.85,
+      "overall_abstention_rate": 0.99899,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 17
+       },
+       "kik": {
+        "guz": 2
+       },
+       "kln": {
+        "guz": 1
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.0,
+      0.0014127815174935592
+     ]
+    },
+    {
+     "epoch": 2,
+     "step": 524,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 0,
+        "abstain": 1719,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 0,
+        "abstain": 1658,
+        "accuracy": 0.0,
+        "abstention_rate": 0.97129
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 0,
+        "abstain": 3555,
+        "accuracy": 0.0,
+        "abstention_rate": 0.99944
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 0,
+        "abstain": 2737,
+        "accuracy": 0.0,
+        "abstention_rate": 0.99781
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 0,
+        "abstain": 1676,
+        "accuracy": 0.0,
+        "abstention_rate": 0.9994
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 0,
+        "abstain": 184,
+        "accuracy": 0.0,
+        "abstention_rate": 0.97872
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 1907,
+        "abstain": 6305,
+        "accuracy": 0.99948,
+        "abstention_rate": 0.76769
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 1844,
+        "abstain": 14233,
+        "accuracy": 0.969,
+        "abstention_rate": 0.88206
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 0,
+        "abstain": 1116,
+        "accuracy": 0.0,
+        "abstention_rate": 0.9991
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 59,
+        "abstain": 2044,
+        "accuracy": 0.96721,
+        "abstention_rate": 0.97102
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 0,
+        "abstain": 211,
+        "accuracy": null,
+        "abstention_rate": 1.0
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 4,
+        "abstain": 230,
+        "accuracy": 0.8,
+        "abstention_rate": 0.97872
+       }
+      },
+      "overall_accuracy_on_judged": 0.96802,
+      "overall_abstention_rate": 0.90053,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "kam": {
+        "swa": 49
+       },
+       "kik": {
+        "swa": 2
+       },
+       "kln": {
+        "swa": 6
+       },
+       "luo": {
+        "swa": 1
+       },
+       "lwg": {
+        "swa": 4
+       },
+       "swa": {
+        "swa": 1907,
+        "kam": 1
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.0,
+      0.03317040928145275
+     ]
+    },
+    {
+     "epoch": 3,
+     "step": 786,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 150,
+        "abstain": 1096,
+        "accuracy": 0.24077,
+        "abstention_rate": 0.63758
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 742,
+        "abstain": 771,
+        "accuracy": 0.79274,
+        "abstention_rate": 0.45167
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1156,
+        "abstain": 1913,
+        "accuracy": 0.70316,
+        "abstention_rate": 0.53781
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1488,
+        "abstain": 670,
+        "accuracy": 0.7178,
+        "abstention_rate": 0.24426
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 71,
+        "abstain": 1123,
+        "accuracy": 0.12816,
+        "abstention_rate": 0.66965
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 55,
+        "abstain": 93,
+        "accuracy": 0.57895,
+        "abstention_rate": 0.49468
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 4603,
+        "abstain": 2134,
+        "accuracy": 0.7572,
+        "abstention_rate": 0.25983
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 7230,
+        "abstain": 5856,
+        "accuracy": 0.70331,
+        "abstention_rate": 0.36292
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 525,
+        "abstain": 502,
+        "accuracy": 0.85366,
+        "abstention_rate": 0.44942
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 399,
+        "abstain": 1201,
+        "accuracy": 0.44137,
+        "abstention_rate": 0.57055
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 55,
+        "abstain": 136,
+        "accuracy": 0.73333,
+        "abstention_rate": 0.64455
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 56,
+        "abstain": 105,
+        "accuracy": 0.43077,
+        "abstention_rate": 0.44681
+       }
+      },
+      "overall_accuracy_on_judged": 0.68852,
+      "overall_abstention_rate": 0.39386,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "lwg": 293,
+        "guz": 150,
+        "kam": 68,
+        "kik": 66,
+        "kln": 30
+       },
+       "kam": {
+        "kam": 742,
+        "swa": 115,
+        "guz": 49,
+        "lwg": 10,
+        "kln": 10
+       },
+       "kik": {
+        "kik": 1156,
+        "lwg": 275,
+        "kam": 104,
+        "luo": 44,
+        "guz": 26
+       },
+       "kln": {
+        "kln": 1488,
+        "guz": 378,
+        "swa": 157,
+        "lwg": 19,
+        "kik": 17
+       },
+       "luo": {
+        "kam": 384,
+        "luo": 71,
+        "lwg": 47,
+        "guz": 21,
+        "swa": 18
+       },
+       "lwg": {
+        "lwg": 55,
+        "guz": 20,
+        "kln": 8,
+        "swa": 7,
+        "kam": 4
+       },
+       "swa": {
+        "swa": 4603,
+        "kam": 960,
+        "kln": 220,
+        "kik": 153,
+        "guz": 110
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.042337507453786526,
+      0.3263927312280757
+     ]
+    },
+    {
+     "epoch": 4,
+     "step": 1048,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 94,
+        "abstain": 613,
+        "accuracy": 0.08499,
+        "abstention_rate": 0.3566
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 55,
+        "abstain": 1079,
+        "accuracy": 0.08758,
+        "abstention_rate": 0.6321
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2337,
+        "abstain": 585,
+        "accuracy": 0.78634,
+        "abstention_rate": 0.16446
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1443,
+        "abstain": 510,
+        "accuracy": 0.64622,
+        "abstention_rate": 0.18593
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 845,
+        "abstain": 576,
+        "accuracy": 0.76748,
+        "abstention_rate": 0.34347
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 165,
+        "abstain": 15,
+        "accuracy": 0.95376,
+        "abstention_rate": 0.07979
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 2212,
+        "abstain": 4464,
+        "accuracy": 0.59002,
+        "abstention_rate": 0.54353
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 5628,
+        "abstain": 6376,
+        "accuracy": 0.57664,
+        "abstention_rate": 0.39514
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 350,
+        "abstain": 495,
+        "accuracy": 0.5627,
+        "abstention_rate": 0.44315
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 915,
+        "abstain": 887,
+        "accuracy": 0.75123,
+        "abstention_rate": 0.42138
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 160,
+        "abstain": 23,
+        "accuracy": 0.85106,
+        "abstention_rate": 0.109
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 98,
+        "abstain": 61,
+        "accuracy": 0.56322,
+        "abstention_rate": 0.25957
+       }
+      },
+      "overall_accuracy_on_judged": 0.59781,
+      "overall_abstention_rate": 0.39598,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "lwg": 542,
+        "kik": 261,
+        "luo": 166,
+        "guz": 94,
+        "kln": 37
+       },
+       "kam": {
+        "lwg": 276,
+        "luo": 234,
+        "kam": 55,
+        "kik": 32,
+        "swa": 28
+       },
+       "kik": {
+        "kik": 2337,
+        "lwg": 421,
+        "luo": 200,
+        "swa": 7,
+        "guz": 6
+       },
+       "kln": {
+        "kln": 1443,
+        "lwg": 690,
+        "swa": 51,
+        "kik": 46,
+        "kam": 1
+       },
+       "luo": {
+        "luo": 845,
+        "lwg": 176,
+        "kik": 75,
+        "swa": 3,
+        "kam": 1
+       },
+       "lwg": {
+        "lwg": 165,
+        "swa": 6,
+        "luo": 1,
+        "kik": 1
+       },
+       "swa": {
+        "swa": 2212,
+        "lwg": 1009,
+        "kik": 248,
+        "luo": 136,
+        "kln": 108
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.03222026947861746,
+      0.41726408130919884
+     ]
+    },
+    {
+     "epoch": 5,
+     "step": 1310,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 297,
+        "abstain": 850,
+        "accuracy": 0.34177,
+        "abstention_rate": 0.49447
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 0,
+        "abstain": 133,
+        "accuracy": 0.0,
+        "abstention_rate": 0.07791
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 955,
+        "abstain": 1481,
+        "accuracy": 0.46002,
+        "abstention_rate": 0.41636
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1193,
+        "abstain": 211,
+        "accuracy": 0.47117,
+        "abstention_rate": 0.07692
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 46,
+        "abstain": 474,
+        "accuracy": 0.03824,
+        "abstention_rate": 0.28265
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 0,
+        "abstain": 53,
+        "accuracy": 0.0,
+        "abstention_rate": 0.28191
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 374,
+        "abstain": 411,
+        "accuracy": 0.04794,
+        "abstention_rate": 0.05004
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 2537,
+        "abstain": 2749,
+        "accuracy": 0.18951,
+        "abstention_rate": 0.17036
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 153,
+        "abstain": 220,
+        "accuracy": 0.17057,
+        "abstention_rate": 0.19696
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 131,
+        "abstain": 490,
+        "accuracy": 0.08111,
+        "abstention_rate": 0.23278
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 37,
+        "abstain": 71,
+        "accuracy": 0.26429,
+        "abstention_rate": 0.33649
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 7,
+        "abstain": 83,
+        "accuracy": 0.04605,
+        "abstention_rate": 0.35319
+       }
+      },
+      "overall_accuracy_on_judged": 0.17695,
+      "overall_abstention_rate": 0.18244,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "bxk": 511,
+        "guz": 297,
+        "kik": 48,
+        "kln": 13
+       },
+       "kam": {
+        "bxk": 1563,
+        "luo": 6,
+        "swa": 3,
+        "kln": 2
+       },
+       "kik": {
+        "kik": 955,
+        "bxk": 734,
+        "luo": 282,
+        "guz": 104,
+        "kln": 1
+       },
+       "kln": {
+        "bxk": 1215,
+        "kln": 1193,
+        "guz": 107,
+        "swa": 13,
+        "kik": 4
+       },
+       "luo": {
+        "bxk": 1155,
+        "luo": 46,
+        "kik": 1,
+        "kln": 1
+       },
+       "lwg": {
+        "bxk": 131,
+        "kln": 3,
+        "guz": 1
+       },
+       "swa": {
+        "bxk": 7382,
+        "swa": 374,
+        "kln": 32,
+        "kik": 11,
+        "guz": 3
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.0,
+      0.13559318690376718
+     ]
+    },
+    {
+     "epoch": 6,
+     "step": 1572,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 121,
+        "abstain": 1058,
+        "accuracy": 0.18306,
+        "abstention_rate": 0.61547
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 329,
+        "abstain": 1003,
+        "accuracy": 0.46733,
+        "abstention_rate": 0.58758
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1640,
+        "abstain": 1319,
+        "accuracy": 0.7328,
+        "abstention_rate": 0.37082
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1425,
+        "abstain": 964,
+        "accuracy": 0.80101,
+        "abstention_rate": 0.35144
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 973,
+        "abstain": 624,
+        "accuracy": 0.92403,
+        "abstention_rate": 0.37209
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 95,
+        "abstain": 38,
+        "accuracy": 0.63333,
+        "abstention_rate": 0.20213
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 1467,
+        "abstain": 4307,
+        "accuracy": 0.37558,
+        "abstention_rate": 0.52441
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 4539,
+        "abstain": 7730,
+        "accuracy": 0.53997,
+        "abstention_rate": 0.47905
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 313,
+        "abstain": 575,
+        "accuracy": 0.57749,
+        "abstention_rate": 0.51477
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 946,
+        "abstain": 864,
+        "accuracy": 0.76229,
+        "abstention_rate": 0.41045
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 161,
+        "abstain": 38,
+        "accuracy": 0.93064,
+        "abstention_rate": 0.18009
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 91,
+        "abstain": 106,
+        "accuracy": 0.70543,
+        "abstention_rate": 0.45106
+       }
+      },
+      "overall_accuracy_on_judged": 0.57668,
+      "overall_abstention_rate": 0.47026,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "lwg": 226,
+        "kik": 169,
+        "guz": 121,
+        "luo": 116,
+        "kln": 22
+       },
+       "kam": {
+        "kam": 329,
+        "luo": 155,
+        "lwg": 108,
+        "swa": 43,
+        "kik": 34
+       },
+       "kik": {
+        "kik": 1640,
+        "luo": 286,
+        "lwg": 173,
+        "guz": 106,
+        "kam": 14
+       },
+       "kln": {
+        "kln": 1425,
+        "swa": 155,
+        "guz": 57,
+        "lwg": 54,
+        "kik": 44
+       },
+       "luo": {
+        "luo": 973,
+        "kik": 41,
+        "kam": 21,
+        "lwg": 16,
+        "guz": 1
+       },
+       "lwg": {
+        "lwg": 95,
+        "kln": 48,
+        "swa": 6,
+        "guz": 1
+       },
+       "swa": {
+        "swa": 1467,
+        "luo": 1078,
+        "kln": 593,
+        "kam": 512,
+        "kik": 152
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.07038976148923792,
+      0.35826194216076185
+     ]
+    },
+    {
+     "epoch": 7,
+     "step": 1834,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 914,
+        "abstain": 345,
+        "accuracy": 0.66521,
+        "abstention_rate": 0.2007
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 1126,
+        "abstain": 213,
+        "accuracy": 0.75368,
+        "abstention_rate": 0.12478
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1898,
+        "abstain": 499,
+        "accuracy": 0.62067,
+        "abstention_rate": 0.14029
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 876,
+        "abstain": 442,
+        "accuracy": 0.3807,
+        "abstention_rate": 0.16114
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1262,
+        "abstain": 160,
+        "accuracy": 0.83191,
+        "abstention_rate": 0.09541
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 140,
+        "abstain": 14,
+        "accuracy": 0.8046,
+        "abstention_rate": 0.07447
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 3489,
+        "abstain": 1381,
+        "accuracy": 0.51069,
+        "abstention_rate": 0.16815
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 7268,
+        "abstain": 2649,
+        "accuracy": 0.53889,
+        "abstention_rate": 0.16417
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 764,
+        "abstain": 145,
+        "accuracy": 0.78601,
+        "abstention_rate": 0.12981
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1529,
+        "abstain": 209,
+        "accuracy": 0.80643,
+        "abstention_rate": 0.09929
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 62,
+        "abstain": 12,
+        "accuracy": 0.31156,
+        "abstention_rate": 0.05687
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 82,
+        "abstain": 39,
+        "accuracy": 0.41837,
+        "abstention_rate": 0.16596
+       }
+      },
+      "overall_accuracy_on_judged": 0.5794,
+      "overall_abstention_rate": 0.15421,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 914,
+        "luo": 156,
+        "kam": 125,
+        "lwg": 94,
+        "kik": 57
+       },
+       "kam": {
+        "kam": 1126,
+        "luo": 183,
+        "swa": 106,
+        "lwg": 43,
+        "kln": 20
+       },
+       "kik": {
+        "kik": 1898,
+        "luo": 641,
+        "kam": 137,
+        "guz": 136,
+        "swa": 123
+       },
+       "kln": {
+        "lwg": 967,
+        "kln": 876,
+        "swa": 290,
+        "kam": 94,
+        "guz": 62
+       },
+       "luo": {
+        "luo": 1262,
+        "kam": 176,
+        "swa": 40,
+        "kik": 30,
+        "guz": 7
+       },
+       "lwg": {
+        "lwg": 140,
+        "kam": 26,
+        "swa": 3,
+        "kik": 2,
+        "guz": 2
+       },
+       "swa": {
+        "swa": 3489,
+        "kam": 1536,
+        "lwg": 874,
+        "luo": 631,
+        "kik": 220
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.3193583667517317,
+      0.5666178313957846
+     ]
+    },
+    {
+     "epoch": 8,
+     "step": 2096,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 816,
+        "abstain": 275,
+        "accuracy": 0.5651,
+        "abstention_rate": 0.15998
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 705,
+        "abstain": 415,
+        "accuracy": 0.54567,
+        "abstention_rate": 0.24312
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2394,
+        "abstain": 285,
+        "accuracy": 0.73166,
+        "abstention_rate": 0.08012
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2017,
+        "abstain": 232,
+        "accuracy": 0.80327,
+        "abstention_rate": 0.08458
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1081,
+        "abstain": 236,
+        "accuracy": 0.75017,
+        "abstention_rate": 0.14073
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 126,
+        "abstain": 16,
+        "accuracy": 0.73256,
+        "abstention_rate": 0.08511
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 6046,
+        "abstain": 536,
+        "accuracy": 0.78755,
+        "abstention_rate": 0.06526
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 10870,
+        "abstain": 1466,
+        "accuracy": 0.74097,
+        "abstention_rate": 0.09085
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 632,
+        "abstain": 220,
+        "accuracy": 0.70457,
+        "abstention_rate": 0.19696
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1438,
+        "abstain": 257,
+        "accuracy": 0.77814,
+        "abstention_rate": 0.12209
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 108,
+        "abstain": 17,
+        "accuracy": 0.5567,
+        "abstention_rate": 0.08057
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 137,
+        "abstain": 35,
+        "accuracy": 0.685,
+        "abstention_rate": 0.14894
+       }
+      },
+      "overall_accuracy_on_judged": 0.74036,
+      "overall_abstention_rate": 0.10074,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 816,
+        "kik": 172,
+        "kln": 164,
+        "lwg": 156,
+        "luo": 82
+       },
+       "kam": {
+        "kam": 705,
+        "swa": 208,
+        "luo": 153,
+        "kln": 83,
+        "guz": 81
+       },
+       "kik": {
+        "kik": 2394,
+        "luo": 431,
+        "swa": 162,
+        "lwg": 99,
+        "kam": 83
+       },
+       "kln": {
+        "kln": 2017,
+        "swa": 381,
+        "kik": 49,
+        "lwg": 25,
+        "kam": 23
+       },
+       "luo": {
+        "luo": 1081,
+        "kam": 115,
+        "kik": 105,
+        "guz": 72,
+        "swa": 42
+       },
+       "lwg": {
+        "lwg": 126,
+        "kln": 31,
+        "swa": 10,
+        "kam": 3,
+        "kik": 2
+       },
+       "swa": {
+        "swa": 6046,
+        "luo": 690,
+        "kam": 495,
+        "kln": 200,
+        "kik": 181
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.4130052724077329,
+      0.6210044936931148
+     ]
+    },
+    {
+     "epoch": 9,
+     "step": 2358,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1268,
+        "abstain": 356,
+        "accuracy": 0.9303,
+        "abstention_rate": 0.2071
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 837,
+        "abstain": 577,
+        "accuracy": 0.74071,
+        "abstention_rate": 0.33802
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2136,
+        "abstain": 733,
+        "accuracy": 0.75637,
+        "abstention_rate": 0.20607
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1709,
+        "abstain": 679,
+        "accuracy": 0.828,
+        "abstention_rate": 0.24754
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1107,
+        "abstain": 386,
+        "accuracy": 0.85747,
+        "abstention_rate": 0.23017
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 119,
+        "abstain": 43,
+        "accuracy": 0.82069,
+        "abstention_rate": 0.22872
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 683,
+        "abstain": 4602,
+        "accuracy": 0.18914,
+        "abstention_rate": 0.56033
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 5669,
+        "abstain": 6516,
+        "accuracy": 0.58929,
+        "abstention_rate": 0.40382
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 623,
+        "abstain": 308,
+        "accuracy": 0.77009,
+        "abstention_rate": 0.27574
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1303,
+        "abstain": 464,
+        "accuracy": 0.79403,
+        "abstention_rate": 0.22043
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 154,
+        "abstain": 24,
+        "accuracy": 0.82353,
+        "abstention_rate": 0.11374
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 110,
+        "abstain": 64,
+        "accuracy": 0.64327,
+        "abstention_rate": 0.27234
+       }
+      },
+      "overall_accuracy_on_judged": 0.63236,
+      "overall_abstention_rate": 0.37245,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1268,
+        "kln": 42,
+        "luo": 20,
+        "lwg": 19,
+        "kik": 9
+       },
+       "kam": {
+        "kam": 837,
+        "swa": 90,
+        "luo": 84,
+        "guz": 73,
+        "kln": 31
+       },
+       "kik": {
+        "kik": 2136,
+        "guz": 341,
+        "luo": 220,
+        "swa": 53,
+        "lwg": 35
+       },
+       "kln": {
+        "kln": 1709,
+        "swa": 137,
+        "guz": 89,
+        "kam": 61,
+        "lwg": 52
+       },
+       "luo": {
+        "luo": 1107,
+        "kik": 73,
+        "guz": 45,
+        "kam": 36,
+        "swa": 18
+       },
+       "lwg": {
+        "lwg": 119,
+        "guz": 15,
+        "kln": 7,
+        "kam": 2,
+        "swa": 1
+       },
+       "swa": {
+        "kam": 1058,
+        "swa": 683,
+        "luo": 572,
+        "lwg": 524,
+        "guz": 388
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.0831608425666626,
+      0.5468236417767172
+     ]
+    },
+    {
+     "epoch": 10,
+     "step": 2620,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1171,
+        "abstain": 141,
+        "accuracy": 0.74208,
+        "abstention_rate": 0.08202
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 323,
+        "abstain": 573,
+        "accuracy": 0.28483,
+        "abstention_rate": 0.33568
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1336,
+        "abstain": 559,
+        "accuracy": 0.44563,
+        "abstention_rate": 0.15715
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1836,
+        "abstain": 544,
+        "accuracy": 0.83492,
+        "abstention_rate": 0.19832
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1467,
+        "abstain": 107,
+        "accuracy": 0.93439,
+        "abstention_rate": 0.0638
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 102,
+        "abstain": 43,
+        "accuracy": 0.70345,
+        "abstention_rate": 0.22872
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 39,
+        "abstain": 4968,
+        "accuracy": 0.01202,
+        "abstention_rate": 0.60489
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 4589,
+        "abstain": 6132,
+        "accuracy": 0.45872,
+        "abstention_rate": 0.38002
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 364,
+        "abstain": 285,
+        "accuracy": 0.4375,
+        "abstention_rate": 0.25515
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1206,
+        "abstain": 433,
+        "accuracy": 0.72129,
+        "abstention_rate": 0.2057
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 44,
+        "abstain": 11,
+        "accuracy": 0.22,
+        "abstention_rate": 0.05213
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 71,
+        "abstain": 74,
+        "accuracy": 0.44099,
+        "abstention_rate": 0.31489
+       }
+      },
+      "overall_accuracy_on_judged": 0.48753,
+      "overall_abstention_rate": 0.35018,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1171,
+        "luo": 342,
+        "kik": 20,
+        "kln": 16,
+        "lwg": 16
+       },
+       "kam": {
+        "luo": 649,
+        "kam": 323,
+        "guz": 63,
+        "lwg": 52,
+        "kln": 28
+       },
+       "kik": {
+        "kik": 1336,
+        "luo": 897,
+        "guz": 617,
+        "kam": 73,
+        "lwg": 49
+       },
+       "kln": {
+        "kln": 1836,
+        "guz": 258,
+        "lwg": 33,
+        "luo": 31,
+        "kik": 30
+       },
+       "luo": {
+        "luo": 1467,
+        "guz": 42,
+        "kam": 36,
+        "lwg": 8,
+        "kln": 8
+       },
+       "lwg": {
+        "lwg": 102,
+        "kln": 19,
+        "guz": 18,
+        "kam": 3,
+        "luo": 2
+       },
+       "swa": {
+        "luo": 930,
+        "kln": 919,
+        "kam": 681,
+        "kik": 308,
+        "lwg": 304
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.004748569341288202,
+      0.47677808006273914
+     ]
+    },
+    {
+     "epoch": 11,
+     "step": 2882,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1080,
+        "abstain": 177,
+        "accuracy": 0.70039,
+        "abstention_rate": 0.10297
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 867,
+        "abstain": 280,
+        "accuracy": 0.60757,
+        "abstention_rate": 0.16403
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1721,
+        "abstain": 720,
+        "accuracy": 0.60663,
+        "abstention_rate": 0.20242
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1967,
+        "abstain": 225,
+        "accuracy": 0.78118,
+        "abstention_rate": 0.08203
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1186,
+        "abstain": 215,
+        "accuracy": 0.81122,
+        "abstention_rate": 0.12821
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 165,
+        "abstain": 14,
+        "accuracy": 0.94828,
+        "abstention_rate": 0.07447
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 4011,
+        "abstain": 1521,
+        "accuracy": 0.59937,
+        "abstention_rate": 0.18519
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 8768,
+        "abstain": 2560,
+        "accuracy": 0.64585,
+        "abstention_rate": 0.15865
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 607,
+        "abstain": 203,
+        "accuracy": 0.66411,
+        "abstention_rate": 0.18174
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1412,
+        "abstain": 292,
+        "accuracy": 0.77882,
+        "abstention_rate": 0.13872
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 92,
+        "abstain": 53,
+        "accuracy": 0.58228,
+        "abstention_rate": 0.25118
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 118,
+        "abstain": 44,
+        "accuracy": 0.6178,
+        "abstention_rate": 0.18723
+       }
+      },
+      "overall_accuracy_on_judged": 0.6604,
+      "overall_abstention_rate": 0.15916,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1080,
+        "lwg": 355,
+        "luo": 63,
+        "kln": 19,
+        "kik": 15
+       },
+       "kam": {
+        "kam": 867,
+        "luo": 177,
+        "guz": 144,
+        "swa": 83,
+        "lwg": 73
+       },
+       "kik": {
+        "kik": 1721,
+        "lwg": 554,
+        "luo": 251,
+        "guz": 243,
+        "kln": 33
+       },
+       "kln": {
+        "kln": 1967,
+        "guz": 215,
+        "swa": 197,
+        "kam": 50,
+        "lwg": 44
+       },
+       "luo": {
+        "luo": 1186,
+        "guz": 133,
+        "lwg": 74,
+        "kam": 24,
+        "kik": 22
+       },
+       "lwg": {
+        "lwg": 165,
+        "swa": 2,
+        "kik": 2,
+        "kam": 2,
+        "luo": 1
+       },
+       "swa": {
+        "swa": 4011,
+        "kln": 671,
+        "luo": 634,
+        "kik": 412,
+        "lwg": 397
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.4838346921563115,
+      0.6300515079599455
+     ]
+    },
+    {
+     "epoch": 12,
+     "step": 3144,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1179,
+        "abstain": 232,
+        "accuracy": 0.79287,
+        "abstention_rate": 0.13496
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 1041,
+        "abstain": 291,
+        "accuracy": 0.73517,
+        "abstention_rate": 0.17047
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1514,
+        "abstain": 795,
+        "accuracy": 0.54815,
+        "abstention_rate": 0.2235
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1741,
+        "abstain": 395,
+        "accuracy": 0.74148,
+        "abstention_rate": 0.144
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1251,
+        "abstain": 203,
+        "accuracy": 0.84871,
+        "abstention_rate": 0.12105
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 146,
+        "abstain": 14,
+        "accuracy": 0.83908,
+        "abstention_rate": 0.07447
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 2341,
+        "abstain": 2339,
+        "accuracy": 0.39854,
+        "abstention_rate": 0.28479
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 6974,
+        "abstain": 3630,
+        "accuracy": 0.55765,
+        "abstention_rate": 0.22496
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 676,
+        "abstain": 205,
+        "accuracy": 0.74123,
+        "abstention_rate": 0.18353
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1356,
+        "abstain": 356,
+        "accuracy": 0.7753,
+        "abstention_rate": 0.16912
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 91,
+        "abstain": 43,
+        "accuracy": 0.54167,
+        "abstention_rate": 0.20379
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 116,
+        "abstain": 35,
+        "accuracy": 0.58,
+        "abstention_rate": 0.14894
+       }
+      },
+      "overall_accuracy_on_judged": 0.59305,
+      "overall_abstention_rate": 0.21556,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1179,
+        "lwg": 103,
+        "luo": 87,
+        "kam": 87,
+        "kln": 22
+       },
+       "kam": {
+        "kam": 1041,
+        "luo": 144,
+        "guz": 124,
+        "swa": 62,
+        "lwg": 19
+       },
+       "kik": {
+        "kik": 1514,
+        "guz": 593,
+        "luo": 367,
+        "lwg": 120,
+        "kam": 87
+       },
+       "kln": {
+        "kln": 1741,
+        "guz": 373,
+        "kam": 115,
+        "swa": 86,
+        "lwg": 16
+       },
+       "luo": {
+        "luo": 1251,
+        "guz": 90,
+        "kam": 83,
+        "kik": 21,
+        "lwg": 19
+       },
+       "lwg": {
+        "lwg": 146,
+        "swa": 17,
+        "kam": 7,
+        "kln": 3,
+        "luo": 1
+       },
+       "swa": {
+        "swa": 2341,
+        "luo": 1005,
+        "kam": 920,
+        "kln": 793,
+        "lwg": 283
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.28503591866553024,
+      0.5948083471940064
+     ]
+    },
+    {
+     "epoch": 13,
+     "step": 3406,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1520,
+        "abstain": 121,
+        "accuracy": 0.95119,
+        "abstention_rate": 0.07039
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 788,
+        "abstain": 357,
+        "accuracy": 0.5837,
+        "abstention_rate": 0.20914
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2009,
+        "abstain": 670,
+        "accuracy": 0.69588,
+        "abstention_rate": 0.18836
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1264,
+        "abstain": 609,
+        "accuracy": 0.59231,
+        "abstention_rate": 0.22202
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1133,
+        "abstain": 243,
+        "accuracy": 0.7901,
+        "abstention_rate": 0.1449
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 123,
+        "abstain": 29,
+        "accuracy": 0.77358,
+        "abstention_rate": 0.15426
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 2920,
+        "abstain": 2220,
+        "accuracy": 0.48724,
+        "abstention_rate": 0.2703
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 7709,
+        "abstain": 3535,
+        "accuracy": 0.61178,
+        "abstention_rate": 0.21908
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 520,
+        "abstain": 251,
+        "accuracy": 0.60046,
+        "abstention_rate": 0.22471
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1308,
+        "abstain": 374,
+        "accuracy": 0.75563,
+        "abstention_rate": 0.17767
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 133,
+        "abstain": 31,
+        "accuracy": 0.73889,
+        "abstention_rate": 0.14692
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 87,
+        "abstain": 58,
+        "accuracy": 0.49153,
+        "abstention_rate": 0.24681
+       }
+      },
+      "overall_accuracy_on_judged": 0.62726,
+      "overall_abstention_rate": 0.21455,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1520,
+        "kam": 31,
+        "luo": 22,
+        "lwg": 11,
+        "kik": 9
+       },
+       "kam": {
+        "kam": 788,
+        "guz": 331,
+        "luo": 126,
+        "swa": 71,
+        "kik": 13
+       },
+       "kik": {
+        "kik": 2009,
+        "guz": 505,
+        "luo": 266,
+        "swa": 51,
+        "kam": 30
+       },
+       "kln": {
+        "kln": 1264,
+        "guz": 577,
+        "kik": 140,
+        "swa": 99,
+        "lwg": 20
+       },
+       "luo": {
+        "luo": 1133,
+        "guz": 171,
+        "kik": 69,
+        "kam": 40,
+        "swa": 19
+       },
+       "lwg": {
+        "lwg": 123,
+        "kln": 12,
+        "kam": 8,
+        "swa": 7,
+        "guz": 7
+       },
+       "swa": {
+        "swa": 2920,
+        "luo": 906,
+        "kam": 757,
+        "kik": 448,
+        "kln": 430
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.3555339096554243,
+      0.5795535971346621
+     ]
+    },
+    {
+     "epoch": 14,
+     "step": 3668,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1490,
+        "abstain": 189,
+        "accuracy": 0.97386,
+        "abstention_rate": 0.10995
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 176,
+        "abstain": 1200,
+        "accuracy": 0.34714,
+        "abstention_rate": 0.70299
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1755,
+        "abstain": 1301,
+        "accuracy": 0.77793,
+        "abstention_rate": 0.36576
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1734,
+        "abstain": 867,
+        "accuracy": 0.92431,
+        "abstention_rate": 0.31608
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 656,
+        "abstain": 720,
+        "accuracy": 0.68548,
+        "abstention_rate": 0.42934
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 97,
+        "abstain": 80,
+        "accuracy": 0.89815,
+        "abstention_rate": 0.42553
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 2247,
+        "abstain": 5213,
+        "accuracy": 0.749,
+        "abstention_rate": 0.63473
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 6922,
+        "abstain": 7726,
+        "accuracy": 0.82307,
+        "abstention_rate": 0.47881
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 310,
+        "abstain": 638,
+        "accuracy": 0.64718,
+        "abstention_rate": 0.57117
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 720,
+        "abstain": 1045,
+        "accuracy": 0.67925,
+        "abstention_rate": 0.49644
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 121,
+        "abstain": 50,
+        "accuracy": 0.75155,
+        "abstention_rate": 0.23697
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 82,
+        "abstain": 111,
+        "accuracy": 0.66129,
+        "abstention_rate": 0.47234
+       }
+      },
+      "overall_accuracy_on_judged": 0.79685,
+      "overall_abstention_rate": 0.48324,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1490,
+        "kik": 21,
+        "luo": 10,
+        "kln": 5,
+        "swa": 2
+       },
+       "kam": {
+        "guz": 246,
+        "kam": 176,
+        "luo": 37,
+        "swa": 23,
+        "kln": 21
+       },
+       "kik": {
+        "kik": 1755,
+        "guz": 299,
+        "luo": 133,
+        "kln": 44,
+        "swa": 15
+       },
+       "kln": {
+        "kln": 1734,
+        "guz": 87,
+        "swa": 43,
+        "lwg": 7,
+        "luo": 2
+       },
+       "luo": {
+        "luo": 656,
+        "kik": 147,
+        "guz": 139,
+        "swa": 6,
+        "lwg": 5
+       },
+       "lwg": {
+        "lwg": 97,
+        "swa": 6,
+        "guz": 5
+       },
+       "swa": {
+        "swa": 2247,
+        "luo": 277,
+        "kik": 181,
+        "lwg": 112,
+        "kln": 99
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.10310486233157587,
+      0.46802265321399755
+     ]
+    },
+    {
+     "epoch": 15,
+     "step": 3930,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1196,
+        "abstain": 223,
+        "accuracy": 0.79947,
+        "abstention_rate": 0.12973
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 532,
+        "abstain": 543,
+        "accuracy": 0.45704,
+        "abstention_rate": 0.3181
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1887,
+        "abstain": 745,
+        "accuracy": 0.67105,
+        "abstention_rate": 0.20945
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2053,
+        "abstain": 295,
+        "accuracy": 0.83864,
+        "abstention_rate": 0.10755
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1301,
+        "abstain": 187,
+        "accuracy": 0.87315,
+        "abstention_rate": 0.11151
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 35,
+        "abstain": 72,
+        "accuracy": 0.30172,
+        "abstention_rate": 0.38298
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 1781,
+        "abstain": 3728,
+        "accuracy": 0.3971,
+        "abstention_rate": 0.45391
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 6693,
+        "abstain": 5037,
+        "accuracy": 0.60303,
+        "abstention_rate": 0.31216
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 571,
+        "abstain": 245,
+        "accuracy": 0.65482,
+        "abstention_rate": 0.21934
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1335,
+        "abstain": 398,
+        "accuracy": 0.78207,
+        "abstention_rate": 0.18907
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 129,
+        "abstain": 32,
+        "accuracy": 0.72067,
+        "abstention_rate": 0.15166
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 57,
+        "abstain": 81,
+        "accuracy": 0.37013,
+        "abstention_rate": 0.34468
+       }
+      },
+      "overall_accuracy_on_judged": 0.62701,
+      "overall_abstention_rate": 0.29252,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1196,
+        "kln": 219,
+        "luo": 58,
+        "kik": 18,
+        "kam": 4
+       },
+       "kam": {
+        "kam": 532,
+        "luo": 285,
+        "guz": 251,
+        "kln": 37,
+        "kik": 29
+       },
+       "kik": {
+        "kik": 1887,
+        "guz": 493,
+        "luo": 372,
+        "kln": 45,
+        "kam": 13
+       },
+       "kln": {
+        "kln": 2053,
+        "swa": 106,
+        "guz": 101,
+        "kik": 95,
+        "kam": 81
+       },
+       "luo": {
+        "luo": 1301,
+        "guz": 103,
+        "kik": 55,
+        "kln": 14,
+        "kam": 13
+       },
+       "lwg": {
+        "guz": 38,
+        "kln": 36,
+        "lwg": 35,
+        "luo": 4,
+        "kam": 1
+       },
+       "swa": {
+        "swa": 1781,
+        "luo": 1409,
+        "kik": 456,
+        "kln": 431,
+        "kam": 243
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.18617021276595744,
+      0.4950252437529721
+     ]
+    },
+    {
+     "epoch": 16,
+     "step": 4192,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1369,
+        "abstain": 134,
+        "accuracy": 0.86372,
+        "abstention_rate": 0.07795
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 236,
+        "abstain": 726,
+        "accuracy": 0.24057,
+        "abstention_rate": 0.42531
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2594,
+        "abstain": 516,
+        "accuracy": 0.85301,
+        "abstention_rate": 0.14507
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1636,
+        "abstain": 529,
+        "accuracy": 0.73893,
+        "abstention_rate": 0.19285
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 690,
+        "abstain": 539,
+        "accuracy": 0.60633,
+        "abstention_rate": 0.32141
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 115,
+        "abstain": 25,
+        "accuracy": 0.70552,
+        "abstention_rate": 0.13298
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 3913,
+        "abstain": 3047,
+        "accuracy": 0.75745,
+        "abstention_rate": 0.371
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 8878,
+        "abstain": 4449,
+        "accuracy": 0.75965,
+        "abstention_rate": 0.27572
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 417,
+        "abstain": 350,
+        "accuracy": 0.54368,
+        "abstention_rate": 0.31334
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1039,
+        "abstain": 631,
+        "accuracy": 0.70488,
+        "abstention_rate": 0.29976
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 126,
+        "abstain": 51,
+        "accuracy": 0.7875,
+        "abstention_rate": 0.24171
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 93,
+        "abstain": 35,
+        "accuracy": 0.465,
+        "abstention_rate": 0.14894
+       }
+      },
+      "overall_accuracy_on_judged": 0.73859,
+      "overall_abstention_rate": 0.27853,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1369,
+        "kik": 180,
+        "luo": 20,
+        "lwg": 13,
+        "kam": 2
+       },
+       "kam": {
+        "guz": 241,
+        "kam": 236,
+        "luo": 225,
+        "swa": 156,
+        "kik": 88
+       },
+       "kik": {
+        "kik": 2594,
+        "guz": 321,
+        "luo": 68,
+        "swa": 45,
+        "kln": 10
+       },
+       "kln": {
+        "kln": 1636,
+        "guz": 267,
+        "kik": 177,
+        "swa": 84,
+        "kam": 30
+       },
+       "luo": {
+        "luo": 690,
+        "guz": 172,
+        "swa": 125,
+        "kik": 97,
+        "lwg": 45
+       },
+       "lwg": {
+        "lwg": 115,
+        "kik": 31,
+        "kln": 11,
+        "guz": 5,
+        "swa": 1
+       },
+       "swa": {
+        "swa": 3913,
+        "kik": 639,
+        "kln": 348,
+        "luo": 131,
+        "guz": 64
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.13825424721734036,
+      0.5371331340640694
+     ]
+    },
+    {
+     "epoch": 17,
+     "step": 4454,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1128,
+        "abstain": 501,
+        "accuracy": 0.92611,
+        "abstention_rate": 0.29145
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 605,
+        "abstain": 1034,
+        "accuracy": 0.89896,
+        "abstention_rate": 0.60574
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2008,
+        "abstain": 1332,
+        "accuracy": 0.90247,
+        "abstention_rate": 0.37447
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 102,
+        "abstain": 2490,
+        "accuracy": 0.40316,
+        "abstention_rate": 0.90777
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 706,
+        "abstain": 868,
+        "accuracy": 0.87268,
+        "abstention_rate": 0.51759
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 126,
+        "abstain": 56,
+        "accuracy": 0.95455,
+        "abstention_rate": 0.29787
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 89,
+        "abstain": 7481,
+        "accuracy": 0.12158,
+        "abstention_rate": 0.91087
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 3183,
+        "abstain": 11884,
+        "accuracy": 0.74859,
+        "abstention_rate": 0.73649
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 429,
+        "abstain": 637,
+        "accuracy": 0.89375,
+        "abstention_rate": 0.57028
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 948,
+        "abstain": 1057,
+        "accuracy": 0.90458,
+        "abstention_rate": 0.50214
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 138,
+        "abstain": 47,
+        "accuracy": 0.84146,
+        "abstention_rate": 0.22275
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 66,
+        "abstain": 137,
+        "accuracy": 0.67347,
+        "abstention_rate": 0.58298
+       }
+      },
+      "overall_accuracy_on_judged": 0.78848,
+      "overall_abstention_rate": 0.69491,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1128,
+        "kik": 39,
+        "kam": 25,
+        "lwg": 15,
+        "luo": 11
+       },
+       "kam": {
+        "kam": 605,
+        "luo": 45,
+        "guz": 16,
+        "kik": 5,
+        "swa": 1
+       },
+       "kik": {
+        "kik": 2008,
+        "luo": 93,
+        "guz": 77,
+        "lwg": 25,
+        "kam": 20
+       },
+       "kln": {
+        "kln": 102,
+        "guz": 73,
+        "kik": 53,
+        "kam": 13,
+        "lwg": 12
+       },
+       "luo": {
+        "luo": 706,
+        "kam": 52,
+        "guz": 30,
+        "kik": 19,
+        "swa": 1
+       },
+       "lwg": {
+        "lwg": 126,
+        "kik": 3,
+        "guz": 2,
+        "swa": 1
+       },
+       "swa": {
+        "luo": 289,
+        "kam": 215,
+        "kik": 111,
+        "swa": 89,
+        "lwg": 16
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.010836478753196153,
+      0.38776625157661754
+     ]
+    },
+    {
+     "epoch": 18,
+     "step": 4716,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1242,
+        "abstain": 180,
+        "accuracy": 0.80702,
+        "abstention_rate": 0.10471
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 961,
+        "abstain": 176,
+        "accuracy": 0.62769,
+        "abstention_rate": 0.1031
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1285,
+        "abstain": 628,
+        "accuracy": 0.43872,
+        "abstention_rate": 0.17655
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1548,
+        "abstain": 436,
+        "accuracy": 0.671,
+        "abstention_rate": 0.15895
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1524,
+        "abstain": 64,
+        "accuracy": 0.94482,
+        "abstention_rate": 0.03816
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 101,
+        "abstain": 36,
+        "accuracy": 0.66447,
+        "abstention_rate": 0.19149
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 5083,
+        "abstain": 1013,
+        "accuracy": 0.70597,
+        "abstention_rate": 0.12334
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 9425,
+        "abstain": 2199,
+        "accuracy": 0.67626,
+        "abstention_rate": 0.13628
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 612,
+        "abstain": 160,
+        "accuracy": 0.6395,
+        "abstention_rate": 0.14324
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1528,
+        "abstain": 118,
+        "accuracy": 0.769,
+        "abstention_rate": 0.05606
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 55,
+        "abstain": 15,
+        "accuracy": 0.28061,
+        "abstention_rate": 0.07109
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 124,
+        "abstain": 41,
+        "accuracy": 0.63918,
+        "abstention_rate": 0.17447
+       }
+      },
+      "overall_accuracy_on_judged": 0.67998,
+      "overall_abstention_rate": 0.1279,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1242,
+        "luo": 210,
+        "lwg": 34,
+        "kam": 25,
+        "swa": 11
+       },
+       "kam": {
+        "kam": 961,
+        "luo": 373,
+        "swa": 98,
+        "guz": 61,
+        "kik": 21
+       },
+       "kik": {
+        "luo": 1402,
+        "kik": 1285,
+        "guz": 92,
+        "swa": 86,
+        "kam": 43
+       },
+       "kln": {
+        "kln": 1548,
+        "swa": 488,
+        "guz": 139,
+        "luo": 59,
+        "lwg": 44
+       },
+       "luo": {
+        "luo": 1524,
+        "kam": 37,
+        "guz": 19,
+        "swa": 18,
+        "lwg": 8
+       },
+       "lwg": {
+        "lwg": 101,
+        "swa": 35,
+        "kam": 7,
+        "luo": 4,
+        "kln": 3
+       },
+       "swa": {
+        "swa": 5083,
+        "luo": 1737,
+        "kam": 136,
+        "lwg": 91,
+        "kln": 73
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.36125948833286475,
+      0.6108558188444072
+     ]
+    },
+    {
+     "epoch": 19,
+     "step": 4978,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 895,
+        "abstain": 344,
+        "accuracy": 0.65091,
+        "abstention_rate": 0.20012
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 949,
+        "abstain": 247,
+        "accuracy": 0.65,
+        "abstention_rate": 0.1447
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2283,
+        "abstain": 409,
+        "accuracy": 0.72522,
+        "abstention_rate": 0.11498
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1744,
+        "abstain": 277,
+        "accuracy": 0.70722,
+        "abstention_rate": 0.10098
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1358,
+        "abstain": 130,
+        "accuracy": 0.87783,
+        "abstention_rate": 0.07752
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 127,
+        "abstain": 21,
+        "accuracy": 0.76048,
+        "abstention_rate": 0.1117
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 4718,
+        "abstain": 983,
+        "accuracy": 0.65256,
+        "abstention_rate": 0.11969
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 9411,
+        "abstain": 2090,
+        "accuracy": 0.67001,
+        "abstention_rate": 0.12952
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 700,
+        "abstain": 182,
+        "accuracy": 0.74866,
+        "abstention_rate": 0.16294
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1710,
+        "abstain": 96,
+        "accuracy": 0.85117,
+        "abstention_rate": 0.04561
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 137,
+        "abstain": 12,
+        "accuracy": 0.68844,
+        "abstention_rate": 0.05687
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 116,
+        "abstain": 31,
+        "accuracy": 0.56863,
+        "abstention_rate": 0.13191
+       }
+      },
+      "overall_accuracy_on_judged": 0.69419,
+      "overall_abstention_rate": 0.12174,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 895,
+        "lwg": 269,
+        "luo": 112,
+        "kik": 57,
+        "kln": 22
+       },
+       "kam": {
+        "kam": 949,
+        "luo": 210,
+        "swa": 113,
+        "kln": 66,
+        "lwg": 60
+       },
+       "kik": {
+        "kik": 2283,
+        "luo": 517,
+        "lwg": 186,
+        "guz": 58,
+        "kam": 49
+       },
+       "kln": {
+        "kln": 1744,
+        "swa": 341,
+        "kik": 135,
+        "lwg": 127,
+        "luo": 48
+       },
+       "luo": {
+        "luo": 1358,
+        "kik": 105,
+        "guz": 29,
+        "lwg": 20,
+        "swa": 19
+       },
+       "lwg": {
+        "lwg": 127,
+        "kln": 12,
+        "swa": 11,
+        "kam": 8,
+        "kik": 7
+       },
+       "swa": {
+        "swa": 4718,
+        "luo": 916,
+        "kam": 614,
+        "kik": 452,
+        "lwg": 267
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.52065154159395,
+      0.6305710406958286
+     ]
+    },
+    {
+     "epoch": 20,
+     "step": 5240,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1394,
+        "abstain": 116,
+        "accuracy": 0.86962,
+        "abstention_rate": 0.06748
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 1065,
+        "abstain": 231,
+        "accuracy": 0.72154,
+        "abstention_rate": 0.13533
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2312,
+        "abstain": 432,
+        "accuracy": 0.73984,
+        "abstention_rate": 0.12145
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2267,
+        "abstain": 225,
+        "accuracy": 0.90032,
+        "abstention_rate": 0.08203
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1397,
+        "abstain": 98,
+        "accuracy": 0.88474,
+        "abstention_rate": 0.05844
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 152,
+        "abstain": 15,
+        "accuracy": 0.87861,
+        "abstention_rate": 0.07979
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 4946,
+        "abstain": 1257,
+        "accuracy": 0.71104,
+        "abstention_rate": 0.15305
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 10729,
+        "abstain": 2055,
+        "accuracy": 0.76195,
+        "abstention_rate": 0.12735
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 828,
+        "abstain": 140,
+        "accuracy": 0.84749,
+        "abstention_rate": 0.12534
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1734,
+        "abstain": 145,
+        "accuracy": 0.88469,
+        "abstention_rate": 0.06888
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 109,
+        "abstain": 14,
+        "accuracy": 0.5533,
+        "abstention_rate": 0.06635
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 133,
+        "abstain": 20,
+        "accuracy": 0.6186,
+        "abstention_rate": 0.08511
+       }
+      },
+      "overall_accuracy_on_judged": 0.77642,
+      "overall_abstention_rate": 0.11987,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1394,
+        "luo": 96,
+        "lwg": 58,
+        "kln": 27,
+        "kik": 14
+       },
+       "kam": {
+        "kam": 1065,
+        "luo": 134,
+        "swa": 125,
+        "kln": 57,
+        "guz": 44
+       },
+       "kik": {
+        "kik": 2312,
+        "luo": 375,
+        "guz": 293,
+        "lwg": 46,
+        "kln": 37
+       },
+       "kln": {
+        "kln": 2267,
+        "kik": 72,
+        "swa": 59,
+        "lwg": 55,
+        "kam": 28
+       },
+       "luo": {
+        "luo": 1397,
+        "guz": 73,
+        "kik": 65,
+        "swa": 17,
+        "kln": 14
+       },
+       "lwg": {
+        "lwg": 152,
+        "swa": 7,
+        "kln": 5,
+        "guz": 4,
+        "kik": 4
+       },
+       "swa": {
+        "swa": 4946,
+        "luo": 656,
+        "kik": 481,
+        "kln": 326,
+        "kam": 273
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.6022159990259345,
+      0.7364361866659228
+     ]
+    },
+    {
+     "epoch": 21,
+     "step": 5502,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1294,
+        "abstain": 336,
+        "accuracy": 0.93565,
+        "abstention_rate": 0.19546
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 504,
+        "abstain": 822,
+        "accuracy": 0.56949,
+        "abstention_rate": 0.48155
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1832,
+        "abstain": 1217,
+        "accuracy": 0.78291,
+        "abstention_rate": 0.34214
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 824,
+        "abstain": 965,
+        "accuracy": 0.46344,
+        "abstention_rate": 0.3518
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 515,
+        "abstain": 982,
+        "accuracy": 0.74101,
+        "abstention_rate": 0.58557
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 34,
+        "abstain": 68,
+        "accuracy": 0.28333,
+        "abstention_rate": 0.3617
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 4032,
+        "abstain": 3110,
+        "accuracy": 0.79012,
+        "abstention_rate": 0.37867
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 7603,
+        "abstain": 5795,
+        "accuracy": 0.73523,
+        "abstention_rate": 0.35913
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 402,
+        "abstain": 523,
+        "accuracy": 0.67677,
+        "abstention_rate": 0.46822
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 843,
+        "abstain": 1044,
+        "accuracy": 0.79453,
+        "abstention_rate": 0.49596
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 125,
+        "abstain": 68,
+        "accuracy": 0.87413,
+        "abstention_rate": 0.32227
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 62,
+        "abstain": 70,
+        "accuracy": 0.37576,
+        "abstention_rate": 0.29787
+       }
+      },
+      "overall_accuracy_on_judged": 0.73431,
+      "overall_abstention_rate": 0.37871,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1294,
+        "lwg": 59,
+        "kik": 21,
+        "luo": 4,
+        "kam": 3
+       },
+       "kam": {
+        "kam": 504,
+        "luo": 138,
+        "guz": 90,
+        "swa": 83,
+        "lwg": 53
+       },
+       "kik": {
+        "kik": 1832,
+        "lwg": 290,
+        "guz": 156,
+        "luo": 32,
+        "swa": 27
+       },
+       "kln": {
+        "kln": 824,
+        "guz": 358,
+        "luo": 280,
+        "swa": 261,
+        "kik": 35
+       },
+       "luo": {
+        "luo": 515,
+        "lwg": 96,
+        "swa": 40,
+        "guz": 36,
+        "kik": 8
+       },
+       "lwg": {
+        "kik": 45,
+        "lwg": 34,
+        "guz": 26,
+        "swa": 8,
+        "kln": 6
+       },
+       "swa": {
+        "swa": 4032,
+        "luo": 592,
+        "kik": 291,
+        "kam": 141,
+        "lwg": 21
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.18085106382978725,
+      0.40604799093214705
+     ]
+    },
+    {
+     "epoch": 22,
+     "step": 5764,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1372,
+        "abstain": 149,
+        "accuracy": 0.87389,
+        "abstention_rate": 0.08668
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 887,
+        "abstain": 366,
+        "accuracy": 0.66145,
+        "abstention_rate": 0.21441
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2719,
+        "abstain": 321,
+        "accuracy": 0.84023,
+        "abstention_rate": 0.09024
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2030,
+        "abstain": 236,
+        "accuracy": 0.80973,
+        "abstention_rate": 0.08604
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 994,
+        "abstain": 314,
+        "accuracy": 0.72927,
+        "abstention_rate": 0.18724
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 153,
+        "abstain": 13,
+        "accuracy": 0.87429,
+        "abstention_rate": 0.06915
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 4027,
+        "abstain": 1598,
+        "accuracy": 0.60877,
+        "abstention_rate": 0.19457
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 9866,
+        "abstain": 2360,
+        "accuracy": 0.71617,
+        "abstention_rate": 0.14626
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 648,
+        "abstain": 228,
+        "accuracy": 0.72891,
+        "abstention_rate": 0.20412
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1375,
+        "abstain": 372,
+        "accuracy": 0.79342,
+        "abstention_rate": 0.17672
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 180,
+        "abstain": 11,
+        "accuracy": 0.9,
+        "abstention_rate": 0.05213
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 113,
+        "abstain": 26,
+        "accuracy": 0.54067,
+        "abstention_rate": 0.11064
+       }
+      },
+      "overall_accuracy_on_judged": 0.72482,
+      "overall_abstention_rate": 0.15133,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1372,
+        "kam": 52,
+        "kik": 51,
+        "lwg": 40,
+        "luo": 37
+       },
+       "kam": {
+        "kam": 887,
+        "swa": 142,
+        "luo": 125,
+        "kln": 76,
+        "kik": 38
+       },
+       "kik": {
+        "kik": 2719,
+        "guz": 250,
+        "luo": 120,
+        "kam": 62,
+        "lwg": 36
+       },
+       "kln": {
+        "kln": 2030,
+        "kik": 114,
+        "guz": 112,
+        "swa": 101,
+        "lwg": 66
+       },
+       "luo": {
+        "luo": 994,
+        "guz": 120,
+        "kam": 120,
+        "kik": 67,
+        "kln": 48
+       },
+       "lwg": {
+        "lwg": 153,
+        "kln": 10,
+        "guz": 5,
+        "kam": 3,
+        "swa": 2
+       },
+       "swa": {
+        "swa": 4027,
+        "kln": 804,
+        "luo": 771,
+        "kik": 615,
+        "kam": 253
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.49032022403506637,
+      0.6741589245979938
+     ]
+    },
+    {
+     "epoch": 23,
+     "step": 6026,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 960,
+        "abstain": 203,
+        "accuracy": 0.63325,
+        "abstention_rate": 0.11809
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 808,
+        "abstain": 139,
+        "accuracy": 0.51531,
+        "abstention_rate": 0.08143
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1847,
+        "abstain": 378,
+        "accuracy": 0.581,
+        "abstention_rate": 0.10627
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2464,
+        "abstain": 56,
+        "accuracy": 0.91701,
+        "abstention_rate": 0.02042
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1330,
+        "abstain": 85,
+        "accuracy": 0.83543,
+        "abstention_rate": 0.05069
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 106,
+        "abstain": 13,
+        "accuracy": 0.60571,
+        "abstention_rate": 0.06915
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 6868,
+        "abstain": 314,
+        "accuracy": 0.86948,
+        "abstention_rate": 0.03823
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 11870,
+        "abstain": 969,
+        "accuracy": 0.78262,
+        "abstention_rate": 0.06005
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 617,
+        "abstain": 89,
+        "accuracy": 0.60019,
+        "abstention_rate": 0.07968
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1658,
+        "abstain": 93,
+        "accuracy": 0.82406,
+        "abstention_rate": 0.04418
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 82,
+        "abstain": 24,
+        "accuracy": 0.4385,
+        "abstention_rate": 0.11374
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 156,
+        "abstain": 13,
+        "accuracy": 0.7027,
+        "abstention_rate": 0.05532
+       }
+      },
+      "overall_accuracy_on_judged": 0.77261,
+      "overall_abstention_rate": 0.05999,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 960,
+        "luo": 219,
+        "lwg": 120,
+        "kln": 70,
+        "kik": 69
+       },
+       "kam": {
+        "kam": 808,
+        "swa": 298,
+        "kln": 224,
+        "luo": 181,
+        "kik": 30
+       },
+       "kik": {
+        "kik": 1847,
+        "luo": 682,
+        "swa": 310,
+        "kln": 112,
+        "guz": 97
+       },
+       "kln": {
+        "kln": 2464,
+        "swa": 162,
+        "kik": 30,
+        "luo": 18,
+        "lwg": 5
+       },
+       "luo": {
+        "luo": 1330,
+        "swa": 151,
+        "kln": 59,
+        "guz": 22,
+        "kam": 21
+       },
+       "lwg": {
+        "lwg": 106,
+        "kln": 44,
+        "swa": 13,
+        "luo": 4,
+        "kam": 4
+       },
+       "swa": {
+        "swa": 6868,
+        "kln": 613,
+        "luo": 242,
+        "kik": 93,
+        "kam": 56
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.47334504979496195,
+      0.6632145046334703
+     ]
+    },
+    {
+     "epoch": 24,
+     "step": 6288,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1238,
+        "abstain": 78,
+        "accuracy": 0.75442,
+        "abstention_rate": 0.04538
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 1158,
+        "abstain": 141,
+        "accuracy": 0.73946,
+        "abstention_rate": 0.0826
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2843,
+        "abstain": 163,
+        "accuracy": 0.83765,
+        "abstention_rate": 0.04583
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2142,
+        "abstain": 211,
+        "accuracy": 0.84597,
+        "abstention_rate": 0.07692
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1473,
+        "abstain": 53,
+        "accuracy": 0.90702,
+        "abstention_rate": 0.0316
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 103,
+        "abstain": 12,
+        "accuracy": 0.58523,
+        "abstention_rate": 0.06383
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 3646,
+        "abstain": 1183,
+        "accuracy": 0.51863,
+        "abstention_rate": 0.14404
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 9716,
+        "abstain": 1620,
+        "accuracy": 0.66933,
+        "abstention_rate": 0.1004
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 903,
+        "abstain": 87,
+        "accuracy": 0.8767,
+        "abstention_rate": 0.07789
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1666,
+        "abstain": 104,
+        "accuracy": 0.83258,
+        "abstention_rate": 0.04941
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 191,
+        "abstain": 1,
+        "accuracy": 0.90952,
+        "abstention_rate": 0.00474
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 127,
+        "abstain": 29,
+        "accuracy": 0.6165,
+        "abstention_rate": 0.1234
+       }
+      },
+      "overall_accuracy_on_judged": 0.70161,
+      "overall_abstention_rate": 0.09296,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1238,
+        "luo": 217,
+        "kik": 98,
+        "kam": 48,
+        "lwg": 21
+       },
+       "kam": {
+        "kam": 1158,
+        "luo": 147,
+        "swa": 130,
+        "kik": 62,
+        "kln": 26
+       },
+       "kik": {
+        "kik": 2843,
+        "luo": 199,
+        "kam": 140,
+        "guz": 126,
+        "kln": 43
+       },
+       "kln": {
+        "kln": 2142,
+        "kik": 175,
+        "luo": 59,
+        "guz": 55,
+        "swa": 45
+       },
+       "luo": {
+        "luo": 1473,
+        "kik": 99,
+        "guz": 18,
+        "swa": 17,
+        "kam": 8
+       },
+       "lwg": {
+        "lwg": 103,
+        "kln": 56,
+        "kik": 9,
+        "guz": 3,
+        "luo": 2
+       },
+       "swa": {
+        "swa": 3646,
+        "kik": 1479,
+        "luo": 915,
+        "kln": 584,
+        "lwg": 326
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.44393035431632777,
+      0.6926988652791017
+     ]
+    },
+    {
+     "epoch": 25,
+     "step": 6550,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1203,
+        "abstain": 178,
+        "accuracy": 0.78066,
+        "abstention_rate": 0.10355
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 1301,
+        "abstain": 77,
+        "accuracy": 0.79816,
+        "abstention_rate": 0.04511
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1637,
+        "abstain": 526,
+        "accuracy": 0.54009,
+        "abstention_rate": 0.14788
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1990,
+        "abstain": 207,
+        "accuracy": 0.7847,
+        "abstention_rate": 0.07546
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1218,
+        "abstain": 155,
+        "accuracy": 0.80026,
+        "abstention_rate": 0.09243
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 161,
+        "abstain": 12,
+        "accuracy": 0.91477,
+        "abstention_rate": 0.06383
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 4047,
+        "abstain": 1048,
+        "accuracy": 0.56483,
+        "abstention_rate": 0.1276
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 9013,
+        "abstain": 1863,
+        "accuracy": 0.63147,
+        "abstention_rate": 0.11546
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 822,
+        "abstain": 88,
+        "accuracy": 0.79883,
+        "abstention_rate": 0.07878
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1486,
+        "abstain": 207,
+        "accuracy": 0.78293,
+        "abstention_rate": 0.09834
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 105,
+        "abstain": 29,
+        "accuracy": 0.57692,
+        "abstention_rate": 0.13744
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 131,
+        "abstain": 16,
+        "accuracy": 0.59817,
+        "abstention_rate": 0.06809
+       }
+      },
+      "overall_accuracy_on_judged": 0.65661,
+      "overall_abstention_rate": 0.11124,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1203,
+        "kam": 198,
+        "luo": 62,
+        "lwg": 54,
+        "kik": 13
+       },
+       "kam": {
+        "kam": 1301,
+        "swa": 110,
+        "luo": 99,
+        "guz": 50,
+        "kik": 34
+       },
+       "kik": {
+        "kik": 1637,
+        "kam": 835,
+        "luo": 263,
+        "guz": 187,
+        "swa": 52
+       },
+       "kln": {
+        "kln": 1990,
+        "kam": 239,
+        "guz": 106,
+        "kik": 78,
+        "lwg": 46
+       },
+       "luo": {
+        "luo": 1218,
+        "kam": 117,
+        "swa": 100,
+        "guz": 42,
+        "lwg": 24
+       },
+       "lwg": {
+        "lwg": 161,
+        "kam": 6,
+        "kln": 6,
+        "swa": 2,
+        "luo": 1
+       },
+       "swa": {
+        "swa": 4047,
+        "kam": 930,
+        "kln": 817,
+        "luo": 657,
+        "lwg": 384
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.460219285915097,
+      0.6747312811316016
+     ]
+    },
+    {
+     "epoch": 26,
+     "step": 6812,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1063,
+        "abstain": 258,
+        "accuracy": 0.72758,
+        "abstention_rate": 0.15009
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 558,
+        "abstain": 468,
+        "accuracy": 0.45036,
+        "abstention_rate": 0.27417
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1032,
+        "abstain": 869,
+        "accuracy": 0.38393,
+        "abstention_rate": 0.24431
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 1565,
+        "abstain": 394,
+        "accuracy": 0.66624,
+        "abstention_rate": 0.14364
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1158,
+        "abstain": 300,
+        "accuracy": 0.84096,
+        "abstention_rate": 0.17889
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 177,
+        "abstain": 4,
+        "accuracy": 0.96196,
+        "abstention_rate": 0.02128
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 2476,
+        "abstain": 1440,
+        "accuracy": 0.36557,
+        "abstention_rate": 0.17533
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 6196,
+        "abstain": 2932,
+        "accuracy": 0.46925,
+        "abstention_rate": 0.18171
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 446,
+        "abstain": 316,
+        "accuracy": 0.5568,
+        "abstention_rate": 0.2829
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1226,
+        "abstain": 432,
+        "accuracy": 0.73282,
+        "abstention_rate": 0.20523
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 62,
+        "abstain": 37,
+        "accuracy": 0.35632,
+        "abstention_rate": 0.17536
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 99,
+        "abstain": 16,
+        "accuracy": 0.45205,
+        "abstention_rate": 0.06809
+       }
+      },
+      "overall_accuracy_on_judged": 0.4996,
+      "overall_abstention_rate": 0.1885,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1063,
+        "lwg": 195,
+        "luo": 100,
+        "kln": 77,
+        "kam": 16
+       },
+       "kam": {
+        "kam": 558,
+        "lwg": 433,
+        "swa": 105,
+        "luo": 82,
+        "kln": 54
+       },
+       "kik": {
+        "kik": 1032,
+        "luo": 639,
+        "guz": 413,
+        "lwg": 370,
+        "swa": 145
+       },
+       "kln": {
+        "kln": 1565,
+        "lwg": 449,
+        "swa": 222,
+        "guz": 62,
+        "luo": 31
+       },
+       "luo": {
+        "luo": 1158,
+        "lwg": 82,
+        "swa": 40,
+        "kam": 38,
+        "kln": 29
+       },
+       "lwg": {
+        "lwg": 177,
+        "luo": 2,
+        "swa": 2,
+        "kln": 2,
+        "guz": 1
+       },
+       "swa": {
+        "lwg": 3623,
+        "swa": 2476,
+        "luo": 390,
+        "kln": 122,
+        "kam": 112
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.29013213382063535,
+      0.5342041163059277
+     ]
+    },
+    {
+     "epoch": 27,
+     "step": 7074,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1379,
+        "abstain": 65,
+        "accuracy": 0.83374,
+        "abstention_rate": 0.03781
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 924,
+        "abstain": 215,
+        "accuracy": 0.6193,
+        "abstention_rate": 0.12595
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 2763,
+        "abstain": 165,
+        "accuracy": 0.81456,
+        "abstention_rate": 0.04639
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2113,
+        "abstain": 145,
+        "accuracy": 0.81332,
+        "abstention_rate": 0.05286
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1252,
+        "abstain": 114,
+        "accuracy": 0.80102,
+        "abstention_rate": 0.06798
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 153,
+        "abstain": 4,
+        "accuracy": 0.83152,
+        "abstention_rate": 0.02128
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 6129,
+        "abstain": 439,
+        "accuracy": 0.7884,
+        "abstention_rate": 0.05345
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 12054,
+        "abstain": 876,
+        "accuracy": 0.78991,
+        "abstention_rate": 0.05429
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 785,
+        "abstain": 108,
+        "accuracy": 0.778,
+        "abstention_rate": 0.09669
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1555,
+        "abstain": 146,
+        "accuracy": 0.79377,
+        "abstention_rate": 0.06936
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 175,
+        "abstain": 6,
+        "accuracy": 0.85366,
+        "abstention_rate": 0.02844
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 144,
+        "abstain": 11,
+        "accuracy": 0.64286,
+        "abstention_rate": 0.04681
+       }
+      },
+      "overall_accuracy_on_judged": 0.7886,
+      "overall_abstention_rate": 0.05792,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1379,
+        "kik": 136,
+        "lwg": 85,
+        "luo": 21,
+        "kln": 16
+       },
+       "kam": {
+        "kam": 924,
+        "swa": 244,
+        "lwg": 96,
+        "kln": 69,
+        "luo": 67
+       },
+       "kik": {
+        "kik": 2763,
+        "luo": 177,
+        "guz": 171,
+        "kam": 113,
+        "lwg": 90
+       },
+       "kln": {
+        "kln": 2113,
+        "swa": 177,
+        "kik": 140,
+        "guz": 86,
+        "lwg": 39
+       },
+       "luo": {
+        "luo": 1252,
+        "swa": 93,
+        "kik": 75,
+        "guz": 53,
+        "lwg": 47
+       },
+       "lwg": {
+        "lwg": 153,
+        "swa": 17,
+        "kln": 8,
+        "kik": 2,
+        "guz": 2
+       },
+       "swa": {
+        "swa": 6129,
+        "luo": 661,
+        "kik": 342,
+        "lwg": 316,
+        "kln": 232
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.5413005272407733,
+      0.7424672488667079
+     ]
+    },
+    {
+     "epoch": 28,
+     "step": 7336,
+     "dev": {
+      "windows": 19804,
+      "per_language": {
+       "bxk": {
+        "windows": 0,
+        "correct": 0,
+        "abstain": 0,
+        "accuracy": null,
+        "abstention_rate": null
+       },
+       "guz": {
+        "windows": 1719,
+        "correct": 1102,
+        "abstain": 243,
+        "accuracy": 0.74661,
+        "abstention_rate": 0.14136
+       },
+       "kam": {
+        "windows": 1707,
+        "correct": 833,
+        "abstain": 359,
+        "accuracy": 0.61795,
+        "abstention_rate": 0.21031
+       },
+       "kik": {
+        "windows": 3557,
+        "correct": 1758,
+        "abstain": 530,
+        "accuracy": 0.58077,
+        "abstention_rate": 0.149
+       },
+       "kln": {
+        "windows": 2743,
+        "correct": 2246,
+        "abstain": 175,
+        "accuracy": 0.87461,
+        "abstention_rate": 0.0638
+       },
+       "luo": {
+        "windows": 1677,
+        "correct": 1317,
+        "abstain": 130,
+        "accuracy": 0.85133,
+        "abstention_rate": 0.07752
+       },
+       "lwg": {
+        "windows": 188,
+        "correct": 140,
+        "abstain": 11,
+        "accuracy": 0.79096,
+        "abstention_rate": 0.05851
+       },
+       "swa": {
+        "windows": 8213,
+        "correct": 2490,
+        "abstain": 1317,
+        "accuracy": 0.36108,
+        "abstention_rate": 0.16036
+       }
+      },
+      "per_condition_sample_rate": {
+       "44100Hz": {
+        "windows": 16136,
+        "correct": 7607,
+        "abstain": 2285,
+        "accuracy": 0.5492,
+        "abstention_rate": 0.14161
+       },
+       "22050Hz": {
+        "windows": 1117,
+        "correct": 593,
+        "abstain": 230,
+        "accuracy": 0.66855,
+        "abstention_rate": 0.20591
+       },
+       "11025Hz": {
+        "windows": 2105,
+        "correct": 1408,
+        "abstain": 197,
+        "accuracy": 0.73795,
+        "abstention_rate": 0.09359
+       },
+       "16000Hz": {
+        "windows": 211,
+        "correct": 147,
+        "abstain": 36,
+        "accuracy": 0.84,
+        "abstention_rate": 0.17062
+       },
+       "48000Hz": {
+        "windows": 235,
+        "correct": 131,
+        "abstain": 17,
+        "accuracy": 0.60092,
+        "abstention_rate": 0.07234
+       }
+      },
+      "overall_accuracy_on_judged": 0.5802,
+      "overall_abstention_rate": 0.13962,
+      "confidence_threshold": 0.6,
+      "confusion_top": {
+       "guz": {
+        "guz": 1102,
+        "kln": 240,
+        "luo": 82,
+        "kam": 19,
+        "kik": 18
+       },
+       "kam": {
+        "kam": 833,
+        "luo": 186,
+        "kln": 186,
+        "swa": 60,
+        "guz": 52
+       },
+       "kik": {
+        "kik": 1758,
+        "guz": 678,
+        "luo": 257,
+        "kam": 220,
+        "kln": 81
+       },
+       "kln": {
+        "kln": 2246,
+        "guz": 114,
+        "swa": 97,
+        "kam": 44,
+        "luo": 43
+       },
+       "luo": {
+        "luo": 1317,
+        "guz": 137,
+        "kln": 34,
+        "kam": 26,
+        "kik": 18
+       },
+       "lwg": {
+        "lwg": 140,
+        "kln": 20,
+        "guz": 7,
+        "swa": 4,
+        "kam": 3
+       },
+       "swa": {
+        "luo": 2768,
+        "swa": 2490,
+        "kln": 707,
+        "kam": 362,
+        "kik": 280
+       }
+      }
+     },
+     "epsilon": null,
+     "selection_score": [
+      0.30317788871301593,
+      0.6107569915797126
+     ]
+    }
+   ],
+   "no_speaker_id_probe": {
+    "measured": true,
+    "per_language": {
+     "guz": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 2344,
+       "accuracy": 0.3609,
+       "chance": 0.0588,
+       "majority_baseline": 0.2952,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 2344,
+       "accuracy": 0.352,
+       "chance": 0.0588,
+       "majority_baseline": 0.2952,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 2344,
+       "accuracy": 0.6096,
+       "chance": 0.0588,
+       "majority_baseline": 0.2952,
+       "above_chance": true
+      }
+     },
+     "kam": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 2495,
+       "accuracy": 0.2513,
+       "chance": 0.0286,
+       "majority_baseline": 0.087,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 2495,
+       "accuracy": 0.2261,
+       "chance": 0.0286,
+       "majority_baseline": 0.087,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 2495,
+       "accuracy": 0.5267,
+       "chance": 0.0286,
+       "majority_baseline": 0.087,
+       "above_chance": true
+      }
+     },
+     "kik": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 1345,
+       "accuracy": 0.3762,
+       "chance": 0.0714,
+       "majority_baseline": 0.3086,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 1345,
+       "accuracy": 0.3539,
+       "chance": 0.0714,
+       "majority_baseline": 0.3086,
+       "above_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 1345,
+       "accuracy": 0.7502,
+       "chance": 0.0714,
+       "majority_baseline": 0.3086,
+       "above_chance": true
+      }
+     },
+     "kln": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 3483,
+       "accuracy": 0.2963,
+       "chance": 0.0333,
+       "majority_baseline": 0.1628,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 3483,
+       "accuracy": 0.2647,
+       "chance": 0.0333,
+       "majority_baseline": 0.1628,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 3483,
+       "accuracy": 0.5501,
+       "chance": 0.0333,
+       "majority_baseline": 0.1628,
+       "above_chance": true
+      }
+     },
+     "luo": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 5717,
+       "accuracy": 0.322,
+       "chance": 0.0204,
+       "majority_baseline": 0.2162,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 5717,
+       "accuracy": 0.3077,
+       "chance": 0.0204,
+       "majority_baseline": 0.2162,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 5717,
+       "accuracy": 0.6122,
+       "chance": 0.0204,
+       "majority_baseline": 0.2162,
+       "above_chance": true
+      }
+     },
+     "lwg": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 486,
+       "accuracy": 0.5597,
+       "chance": 0.1429,
+       "majority_baseline": 0.5391,
+       "above_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 486,
+       "accuracy": 0.5597,
+       "chance": 0.1429,
+       "majority_baseline": 0.5391,
+       "above_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 486,
+       "accuracy": 0.6605,
+       "chance": 0.1429,
+       "majority_baseline": 0.5391,
+       "above_chance": true
+      }
+     },
+     "swa": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 5752,
+       "accuracy": 0.4353,
+       "chance": 0.0435,
+       "majority_baseline": 0.3296,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 5752,
+       "accuracy": 0.4115,
+       "chance": 0.0435,
+       "majority_baseline": 0.3296,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 5752,
+       "accuracy": 0.6919,
+       "chance": 0.0435,
+       "majority_baseline": 0.3296,
+       "above_chance": true
+      }
+     }
+    },
+    "reading": "Legacy diagnostic margin retained for comparison ONLY. Final criterion remains chance-level, not majority+0.05.",
+    "strict_chance_met": false,
+    "balanced_probe": {
+     "guz": {
+      "served_output": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1647,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1824,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1647,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.2824,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      }
+     },
+     "kam": {
+      "served_output": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0779,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1896,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1948,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.2883,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      }
+     },
+     "kik": {
+      "served_output": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.1264,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.2418,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.2692,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.4286,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      }
+     },
+     "kln": {
+      "served_output": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0818,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1091,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1061,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1636,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      }
+     },
+     "luo": {
+      "served_output": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.0388,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1347,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1633,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.2102,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      }
+     },
+     "lwg": {
+      "served_output": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.1429,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.3333,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.25,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.369,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": false
+      }
+     },
+     "swa": {
+      "served_output": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.0895,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.2199,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.2327,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.4118,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      }
+     }
+    },
+    "egress_surface": {
+     "surface": "served_output: window label + coarse confidence bucket (weights stay in tenant custody, served in-perimeter)",
+     "at_chance_all_languages": false,
+     "per_language": {
+      "guz": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1647,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "kam": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0779,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "kik": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.1264,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "kln": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0818,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "luo": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.0388,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "lwg": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.1429,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": true
+      },
+      "swa": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.0895,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      }
+     },
+     "internal_representations_at_chance": false,
+     "ruling_status": "PENDING OWNER RATIFICATION \u2014 reading MUST-DO \u00a74 \"against the artefact\" as the served egress surface; internal representations reported alongside, not hidden"
+    }
+   },
+   "recipe": {
+    "baseline_job_id": "lcj-f96c86a16312",
+    "seed": 41,
+    "epochs": 150,
+    "batch_size": 512,
+    "physical_batch_size": 512,
+    "lr": 0.0003,
+    "adversary_strength": 1.0,
+    "noise_multiplier": 0.7,
+    "max_grad_norm": 1.0,
+    "delta": 1e-06,
+    "max_windows_per_file": 120,
+    "owner_order_ref": "owner sign-off 6a19a6b05fa7 by 6ab56dd48894abb269135ca2 at 2026-10-02T07:37:44Z: lwg reinforcement, non-DP corrective arm, cap 3.0 GPU-h",
+    "smoke_steps": 0,
+    "dp_enabled": false,
+    "stop_rule": "stop after 8 evaluations without improvement of the selection score, or at 10800 s of training compute, or at 150 epochs",
+    "encoder_seconds": 2,
+    "frozen_vox_fusion": false,
+    "lora_r": 16,
+    "bottleneck": 64,
+    "bottleneck_noise": 0.25,
+    "logit_adjustment_tau": 1.0,
+    "speaker_loss_weight": 0.5,
+    "condition_loss_weight": 0.05,
+    "loss_balance": "fixed language/condition square-root inverse frequency, cap8; no oversampling; training-time logit adjustment by class prior",
+    "model_base_sha256": "d95e9ce85c11692857a008ac9223a0325a9732aec8f7b26cd80b874d1aae2122",
+    "feature_path": "device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation",
+    "precision": "TF32 tensor-core matmul; global-norm clipped AdamW, no privacy noise",
+    "loader": "4 prefetching workers, pinned memory; shuffled batches, RNG in the main process",
+    "selection": "minimum dev-language correct/ALL windows (abstentions included), then macro; no test selection",
+    "privacy_scope": "none \u2014 non-private arm under owner sign-off; speaker adversary and probe still applied",
+    "secure_rng": false,
+    "auto_admission": false,
+    "checkpoint_custody": "internal only; speaker adversary never exported"
+   },
+   "recipe_sha256": "ba38062a4f520717bfede623be28601c26743439f5ebeec7e6c9168a6c6a05d4",
+   "training": {
+    "steps": 7336,
+    "epochs_completed": 28,
+    "best_dev_epoch": 20,
+    "stopped_by": "stop rule: 8 evaluations without improvement",
+    "elapsed_seconds": 1618,
+    "device": "cuda",
+    "gpu_index": 0,
+    "gpu": "NVIDIA H200",
+    "gpu_max_memory_gb": 25.36,
+    "batch_size": 512,
+    "physical_batch_size": 512,
+    "precision": "TF32 tensor-core matmul; global-norm clipped AdamW, no privacy noise",
+    "feature_path": "device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation",
+    "windows_per_second": 2707.1
+   },
+   "dp_sgd": null,
+   "non_private_arm": {
+    "owner_signoff_ref": "owner sign-off 6a19a6b05fa7 by 6ab56dd48894abb269135ca2 at 2026-10-02T07:37:44Z: lwg reinforcement, non-DP corrective arm, cap 3.0 GPU-h",
+    "clipping": 1.0,
+    "speaker_adversary_applied": true
+   },
+   "checkpoint": {
+    "optimizer_saved": true,
+    "rng_saved": true,
+    "path": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-7128593897d4/checkpoint.pt",
+    "full_interruption_resume_proven": false
+   },
+   "span_rule": {
+    "window_seconds": 2.0,
+    "min_span_seconds": 0.5,
+    "hysteresis_windows": 2
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-7128593897d4",
+    "sha256": "5c1feb8497e849ae01c15b8355aad7a05c2ac0b81c21aa93425902719a6cf552",
+    "training_manifest_sha256": "7418d4bb2beee55271281407c55d1b67eb2fd0db55f23770a81ae6a4acd54059",
+    "final_model": false,
+    "custody": "RMS_TENANT; inside akki-vm-ii; never auto-admitted",
+    "moac": {
+     "verdict": "ACCEPTANCE BY SIGNED CONTRACT \u2014 non-private corrective arm under owner sign-off; the control plane judges the per-language floor, regression and speaker probe",
+     "code_switch_material_present": false,
+     "no_speaker_id_probe_passed": false,
+     "no_speaker_id_probe_on_egress_surface": false,
+     "per_language_meets_default": {
+      "guz": true,
+      "kam": false,
+      "kik": false,
+      "kln": false,
+      "luo": false,
+      "lwg": false,
+      "swa": false
+     }
+    }
+   }
+  },
+  "finished_at": "2026-10-02T08:04:57Z",
+  "receipt_sha256": "749892da32c9dbe094629d18bf69bfce40295685da068efa0b0bdce68c463dec",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-02T08:04:57Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-7128593897d4",
+  "started_at_utc": "2026-10-02T07:37:53.839871Z",
+  "finished_at_utc": "2026-10-02T08:04:57Z",
+  "status": "completed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-7128593897d4"
+ },
+ "run_certificate": {
+  "job_id": "lcj-7128593897d4",
+  "host": "akki-vm",
+  "receipt_sha256": "749892da32c9dbe094629d18bf69bfce40295685da068efa0b0bdce68c463dec",
+  "compute": {
+   "steps": 7336,
+   "epochs_completed": 28,
+   "best_dev_epoch": 20,
+   "stopped_by": "stop rule: 8 evaluations without improvement",
+   "elapsed_seconds": 1618,
+   "device": "cuda",
+   "gpu_index": 0,
+   "gpu": "NVIDIA H200",
+   "gpu_max_memory_gb": 25.36,
+   "batch_size": 512,
+   "physical_batch_size": 512,
+   "precision": "TF32 tensor-core matmul; global-norm clipped AdamW, no privacy noise",
+   "feature_path": "device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation",
+   "windows_per_second": 2707.1
+  },
+  "artefact_sha256": "5c1feb8497e849ae01c15b8355aad7a05c2ac0b81c21aa93425902719a6cf552",
+  "training_manifest_sha256": "7418d4bb2beee55271281407c55d1b67eb2fd0db55f23770a81ae6a4acd54059",
+  "data_touched": {
+   "baseline_job_id": "lcj-f96c86a16312",
+   "baseline_params": {
+    "max_windows_per_file": 60,
+    "max_windows_per_language": 30000,
+    "max_audio_seconds": 900,
+    "split_seed": 11
+   },
+   "windows": {
+    "train": 133678,
+    "dev": 19804,
+    "held": 43635,
+    "archive_test": 195659,
+    "excluded": 149
+   },
+   "per_language": {
+    "bxk": {
+     "train_presenters": 0,
+     "dev_presenters": 0,
+     "held_presenters": 0,
+     "archive_test_presenters": 0,
+     "meets_presenter_minimum_n": false
+    },
+    "guz": {
+     "train_presenters": 85,
+     "dev_presenters": 9,
+     "held_presenters": 27,
+     "archive_test_presenters": 34,
+     "meets_presenter_minimum_n": true
+    },
+    "kam": {
+     "train_presenters": 121,
+     "dev_presenters": 13,
+     "held_presenters": 47,
+     "archive_test_presenters": 95,
+     "meets_presenter_minimum_n": true
+    },
+    "kik": {
+     "train_presenters": 133,
+     "dev_presenters": 14,
+     "held_presenters": 20,
+     "archive_test_presenters": 14,
+     "meets_presenter_minimum_n": true
+    },
+    "kln": {
+     "train_presenters": 131,
+     "dev_presenters": 14,
+     "held_presenters": 40,
+     "archive_test_presenters": 2,
+     "meets_presenter_minimum_n": true
+    },
+    "luo": {
+     "train_presenters": 113,
+     "dev_presenters": 12,
+     "held_presenters": 76,
+     "archive_test_presenters": 7,
+     "meets_presenter_minimum_n": true
+    },
+    "lwg": {
+     "train_presenters": 39,
+     "dev_presenters": 4,
+     "held_presenters": 15,
+     "archive_test_presenters": 0,
+     "meets_presenter_minimum_n": true
+    },
+    "swa": {
+     "train_presenters": 183,
+     "dev_presenters": 20,
+     "held_presenters": 36,
+     "archive_test_presenters": 0,
+     "meets_presenter_minimum_n": true
+    }
+   },
+   "duplicate_clips_removed": 3596,
+   "files_without_transcript": 19,
+   "test_reading": "legacy held-out already observed; not blind independent M9 acceptance",
+   "limitations": [
+    "presenter linkage inferred within language, not ground truth or cross-language biometric linkage",
+    "folder language labels, no labelled code-switched spans",
+    "English/Sheng absent",
+    "DP applies to fixed window dataset; corpus selection/linkage and evaluation are not DP-certified"
+   ],
+   "kind": "protected legacy holdout + training-only development; archive presenters excluded from all training",
+   "speaker_linkage_used": true,
+   "files": {
+    "train": 1803,
+    "dev": 395,
+    "held": 839,
+    "archive_test": 2366,
+    "excluded": 82
+   }
+  },
+  "per_stratum": {
+   "guz": {
+    "accuracy": 0.91524,
+    "abstention_rate": 0.06374,
+    "windows": 4738,
+    "meets_default": true
+   },
+   "kam": {
+    "accuracy": 0.71315,
+    "abstention_rate": 0.12759,
+    "windows": 5063,
+    "meets_default": false
+   },
+   "kik": {
+    "accuracy": 0.79991,
+    "abstention_rate": 0.15844,
+    "windows": 2714,
+    "meets_default": false
+   },
+   "kln": {
+    "accuracy": 0.84459,
+    "abstention_rate": 0.09129,
+    "windows": 6989,
+    "meets_default": false
+   },
+   "luo": {
+    "accuracy": 0.87312,
+    "abstention_rate": 0.05811,
+    "windows": 11547,
+    "meets_default": false
+   },
+   "lwg": {
+    "accuracy": 0.75795,
+    "abstention_rate": 0.12785,
+    "windows": 1009,
+    "meets_default": false
+   },
+   "swa": {
+    "accuracy": 0.83269,
+    "abstention_rate": 0.10514,
+    "windows": 11575,
+    "meets_default": false
+   }
+  },
+  "archive_test": {
+   "windows": 195659,
+   "per_language": {
+    "bxk": {
+     "windows": 0,
+     "correct": 0,
+     "abstain": 0,
+     "accuracy": null,
+     "abstention_rate": null
+    },
+    "guz": {
+     "windows": 62328,
+     "correct": 50635,
+     "abstain": 4579,
+     "accuracy": 0.87681,
+     "abstention_rate": 0.07347
+    },
+    "kam": {
+     "windows": 81114,
+     "correct": 53601,
+     "abstain": 9647,
+     "accuracy": 0.75001,
+     "abstention_rate": 0.11893
+    },
+    "kik": {
+     "windows": 31589,
+     "correct": 19351,
+     "abstain": 5867,
+     "accuracy": 0.75231,
+     "abstention_rate": 0.18573
+    },
+    "kln": {
+     "windows": 3548,
+     "correct": 2416,
+     "abstain": 376,
+     "accuracy": 0.76166,
+     "abstention_rate": 0.10598
+    },
+    "luo": {
+     "windows": 17080,
+     "correct": 14693,
+     "abstain": 945,
+     "accuracy": 0.91063,
+     "abstention_rate": 0.05533
+    },
+    "lwg": {
+     "windows": 0,
+     "correct": 0,
+     "abstain": 0,
+     "accuracy": null,
+     "abstention_rate": null
+    },
+    "swa": {
+     "windows": 0,
+     "correct": 0,
+     "abstain": 0,
+     "accuracy": null,
+     "abstention_rate": null
+    }
+   },
+   "per_condition_sample_rate": {
+    "44100Hz": {
+     "windows": 156478,
+     "correct": 110877,
+     "abstain": 17636,
+     "accuracy": 0.79858,
+     "abstention_rate": 0.11271
+    },
+    "22050Hz": {
+     "windows": 1406,
+     "correct": 1013,
+     "abstain": 168,
+     "accuracy": 0.81826,
+     "abstention_rate": 0.11949
+    },
+    "48000Hz": {
+     "windows": 7095,
+     "correct": 3906,
+     "abstain": 1170,
+     "accuracy": 0.65924,
+     "abstention_rate": 0.1649
+    },
+    "11025Hz": {
+     "windows": 30542,
+     "correct": 24820,
+     "abstain": 2432,
+     "accuracy": 0.88296,
+     "abstention_rate": 0.07963
+    },
+    "16000Hz": {
+     "windows": 138,
+     "correct": 80,
+     "abstain": 8,
+     "accuracy": 0.61538,
+     "abstention_rate": 0.05797
+    }
+   },
+   "overall_accuracy_on_judged": 0.80746,
+   "overall_abstention_rate": 0.10945,
+   "confidence_threshold": 0.6,
+   "confusion_top": {
+    "guz": {
+     "guz": 50635,
+     "lwg": 2493,
+     "kln": 2231,
+     "luo": 1015,
+     "kik": 789
+    },
+    "kam": {
+     "kam": 53601,
+     "guz": 5866,
+     "luo": 3466,
+     "lwg": 2859,
+     "swa": 2793
+    },
+    "kik": {
+     "kik": 19351,
+     "guz": 2405,
+     "swa": 1118,
+     "kln": 1106,
+     "luo": 871
+    },
+    "kln": {
+     "kln": 2416,
+     "lwg": 349,
+     "swa": 164,
+     "kik": 88,
+     "luo": 74
+    },
+    "luo": {
+     "luo": 14693,
+     "swa": 522,
+     "kik": 312,
+     "kam": 303,
+     "guz": 231
+    }
+   }
+  },
+  "dp_sgd": null,
+  "recipe_sha256": "ba38062a4f520717bfede623be28601c26743439f5ebeec7e6c9168a6c6a05d4",
+  "checkpoint": {
+   "optimizer_saved": true,
+   "rng_saved": true,
+   "path": "/mnt/volume_dkgjrkx/akki-lc/artefacts/lcj-7128593897d4/checkpoint.pt",
+   "full_interruption_resume_proven": false
+  },
+  "sealed_contract_check": {
+   "span_rule_matches_default": true,
+   "presenter_minimum_n_default": 20,
+   "presenter_minimum_n_tagged_pending": true,
+   "languages_meeting_presenter_minimum": [
+    "guz",
+    "kam",
+    "kik",
+    "kln",
+    "luo",
+    "lwg",
+    "swa"
+   ],
+   "per_language_accuracy_default": 0.9,
+   "per_language_accuracy_tagged_pending": true,
+   "code_switch_span_accuracy_default": 0.85,
+   "code_switch_material_present": false,
+   "no_speaker_id_probe": {
+    "measured": true,
+    "per_language": {
+     "guz": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 2344,
+       "accuracy": 0.3609,
+       "chance": 0.0588,
+       "majority_baseline": 0.2952,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 2344,
+       "accuracy": 0.352,
+       "chance": 0.0588,
+       "majority_baseline": 0.2952,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 2344,
+       "accuracy": 0.6096,
+       "chance": 0.0588,
+       "majority_baseline": 0.2952,
+       "above_chance": true
+      }
+     },
+     "kam": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 2495,
+       "accuracy": 0.2513,
+       "chance": 0.0286,
+       "majority_baseline": 0.087,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 2495,
+       "accuracy": 0.2261,
+       "chance": 0.0286,
+       "majority_baseline": 0.087,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 2495,
+       "accuracy": 0.5267,
+       "chance": 0.0286,
+       "majority_baseline": 0.087,
+       "above_chance": true
+      }
+     },
+     "kik": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 1345,
+       "accuracy": 0.3762,
+       "chance": 0.0714,
+       "majority_baseline": 0.3086,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 1345,
+       "accuracy": 0.3539,
+       "chance": 0.0714,
+       "majority_baseline": 0.3086,
+       "above_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 1345,
+       "accuracy": 0.7502,
+       "chance": 0.0714,
+       "majority_baseline": 0.3086,
+       "above_chance": true
+      }
+     },
+     "kln": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 3483,
+       "accuracy": 0.2963,
+       "chance": 0.0333,
+       "majority_baseline": 0.1628,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 3483,
+       "accuracy": 0.2647,
+       "chance": 0.0333,
+       "majority_baseline": 0.1628,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 3483,
+       "accuracy": 0.5501,
+       "chance": 0.0333,
+       "majority_baseline": 0.1628,
+       "above_chance": true
+      }
+     },
+     "luo": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 5717,
+       "accuracy": 0.322,
+       "chance": 0.0204,
+       "majority_baseline": 0.2162,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 5717,
+       "accuracy": 0.3077,
+       "chance": 0.0204,
+       "majority_baseline": 0.2162,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 5717,
+       "accuracy": 0.6122,
+       "chance": 0.0204,
+       "majority_baseline": 0.2162,
+       "above_chance": true
+      }
+     },
+     "lwg": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 486,
+       "accuracy": 0.5597,
+       "chance": 0.1429,
+       "majority_baseline": 0.5391,
+       "above_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 486,
+       "accuracy": 0.5597,
+       "chance": 0.1429,
+       "majority_baseline": 0.5391,
+       "above_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 486,
+       "accuracy": 0.6605,
+       "chance": 0.1429,
+       "majority_baseline": 0.5391,
+       "above_chance": true
+      }
+     },
+     "swa": {
+      "bottleneck": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 5752,
+       "accuracy": 0.4353,
+       "chance": 0.0435,
+       "majority_baseline": 0.3296,
+       "above_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 5752,
+       "accuracy": 0.4115,
+       "chance": 0.0435,
+       "majority_baseline": 0.3296,
+       "above_chance": true
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 5752,
+       "accuracy": 0.6919,
+       "chance": 0.0435,
+       "majority_baseline": 0.3296,
+       "above_chance": true
+      }
+     }
+    },
+    "reading": "Legacy diagnostic margin retained for comparison ONLY. Final criterion remains chance-level, not majority+0.05.",
+    "strict_chance_met": false,
+    "balanced_probe": {
+     "guz": {
+      "served_output": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1647,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1824,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1647,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.2824,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      }
+     },
+     "kam": {
+      "served_output": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0779,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1896,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1948,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.2883,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      }
+     },
+     "kik": {
+      "served_output": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.1264,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.2418,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.2692,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.4286,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      }
+     },
+     "kln": {
+      "served_output": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0818,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1091,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1061,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.1636,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      }
+     },
+     "luo": {
+      "served_output": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.0388,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1347,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1633,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.2102,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      }
+     },
+     "lwg": {
+      "served_output": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.1429,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": true
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.3333,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.25,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.369,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": false
+      }
+     },
+     "swa": {
+      "served_output": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.0895,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      },
+      "artefact_output_logits": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.2199,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      },
+      "bottleneck": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.2327,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      },
+      "encoder_representation": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.4118,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      }
+     }
+    },
+    "egress_surface": {
+     "surface": "served_output: window label + coarse confidence bucket (weights stay in tenant custody, served in-perimeter)",
+     "at_chance_all_languages": false,
+     "per_language": {
+      "guz": {
+       "measured": true,
+       "presenters": 17,
+       "test_windows": 170,
+       "windows_per_presenter": 20,
+       "accuracy": 0.1647,
+       "chance": 0.0588,
+       "chance_upper_95": 0.0942,
+       "at_chance": false
+      },
+      "kam": {
+       "measured": true,
+       "presenters": 35,
+       "test_windows": 385,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0779,
+       "chance": 0.0286,
+       "chance_upper_95": 0.0452,
+       "at_chance": false
+      },
+      "kik": {
+       "measured": true,
+       "presenters": 14,
+       "test_windows": 182,
+       "windows_per_presenter": 26,
+       "accuracy": 0.1264,
+       "chance": 0.0714,
+       "chance_upper_95": 0.1088,
+       "at_chance": false
+      },
+      "kln": {
+       "measured": true,
+       "presenters": 30,
+       "test_windows": 330,
+       "windows_per_presenter": 22,
+       "accuracy": 0.0818,
+       "chance": 0.0333,
+       "chance_upper_95": 0.0527,
+       "at_chance": false
+      },
+      "luo": {
+       "measured": true,
+       "presenters": 49,
+       "test_windows": 490,
+       "windows_per_presenter": 20,
+       "accuracy": 0.0388,
+       "chance": 0.0204,
+       "chance_upper_95": 0.0329,
+       "at_chance": false
+      },
+      "lwg": {
+       "measured": true,
+       "presenters": 7,
+       "test_windows": 84,
+       "windows_per_presenter": 23,
+       "accuracy": 0.1429,
+       "chance": 0.1429,
+       "chance_upper_95": 0.2177,
+       "at_chance": true
+      },
+      "swa": {
+       "measured": true,
+       "presenters": 23,
+       "test_windows": 391,
+       "windows_per_presenter": 33,
+       "accuracy": 0.0895,
+       "chance": 0.0435,
+       "chance_upper_95": 0.0637,
+       "at_chance": false
+      }
+     },
+     "internal_representations_at_chance": false,
+     "ruling_status": "PENDING OWNER RATIFICATION \u2014 reading MUST-DO \u00a74 \"against the artefact\" as the served egress surface; internal representations reported alongside, not hidden"
+    }
+   },
+   "abstention_rate_reported": true
+  },
+  "verdict": "ACCEPTANCE BY SIGNED CONTRACT \u2014 non-private corrective arm under owner sign-off; the control plane judges the per-language floor, regression and speaker probe",
+  "final_model": false,
+  "certified_at": "2026-10-02T08:15:06.625563Z"
+ }
 }
