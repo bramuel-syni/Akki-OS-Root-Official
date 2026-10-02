@@ -106,3 +106,5 @@ async def tick():
             break
         rows.append(row)
     await asyncio.gather(*(process(row) for row in rows))
+    from services.training_lab import autopilot
+    await autopilot.tick()

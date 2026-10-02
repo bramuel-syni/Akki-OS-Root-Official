@@ -105,6 +105,78 @@ def create_from_estate(job_id: str, tenant_id: str, principal_id: str) -> Tuple[
     return create_from_producer("estate-intelligence", job_id, tenant_id, principal_id)
 
 
+async def create_authored(producer: str, job_id: str, tenant_id: str, principal_id: str) -> Tuple[Dict[str, Any], bool]:
+    """Planner → worker → content manager → frontier writer, then the deterministic build. The producer assembles the evidence; the model
+    writes every sentence; the gate decides whether a build may happen. A gated-out draft leaves the commission blocked, never auto-fixed."""
+    from services.transform_forms.doc_studio import author
+    if producer not in PRODUCERS:
+        raise LookupError("No producer with that name is installed.")
+    plan = PRODUCERS[producer](job_id, tenant_id, principal_id, now())
+    existing = store.load_record(tenant_id, plan["commission_id"])
+    if existing and (existing.get("authoring") or {}).get("pipeline") == "frontier" and existing.get("release", {}).get("state") == "clear":
+        return existing, False
+    files, meta, issues = await author.compose(plan["files"], tenant_id, principal_id, f"author:{plan['commission_id']}")
+    draft = meta.pop("draft", None)
+    authoring = {"tokens": int(meta.get("tokens_in") or 0) + int(meta.get("tokens_out") or 0), "pipeline": "frontier", "model": meta.get("model"), "provider": meta.get("provider"),
+                 "receipt_id": meta.get("receipt_id"), "latency_ms": meta.get("latency_ms"), "gate": meta.get("gate"),
+                 "source": f"planner → worker → content manager → frontier writer ({meta.get('model')}); gate {'passed' if not issues else 'blocked the draft'}"}
+    if issues:
+        record = existing or _record_from_plan(plan, tenant_id, principal_id)
+        if not existing:
+            vdir = store.version_dir(tenant_id, plan["commission_id"], 1)
+            for name, doc in plan["files"].items(): store.write_json(vdir / name, doc)
+        store.write_json(store.commission_dir(tenant_id, plan["commission_id"]) / "authored-draft.rejected.json", {"draft": draft, "issues": issues, "meta": meta})
+        record["authoring"] = authoring
+        record["release"] = {"state": "blocked", "reason": "content manager rejected the authored draft: " + "; ".join(issues[:6])}
+        record["updated_at"] = stamp()
+        return store.save_record(record), True
+    if existing:
+        version, _, destination = _new_version(tenant_id, plan["commission_id"], existing)
+        content_ref = f"{plan['content_id']}@{version}"
+        for name, document in files.items():
+            if name == "content.json": document["version"] = version
+            if "content_ref" in document: document["content_ref"] = content_ref
+            if "build_stamp" in document: document["build_stamp"] = existing["build_stamp"]
+            if "seed" in document: document["seed"] = existing["seed"]
+            store.write_json(destination / name, document)
+        store.write_json(destination / "authored-draft.json", {"draft": draft, "meta": meta})
+        for stale in destination.glob("*.json"):
+            if stale.name not in files and stale.name != "authored-draft.json": stale.unlink()
+        existing["current_content_version"] = version
+        existing["versions"].append({"version": version, "at": stamp(), "by": principal_id, "reason": f"authored by the frontier writer {meta.get('model')} under the content manager gate"})
+        existing["specs"] = sorted(n for n in files if n not in ("brief.json", "content.json", "verdict.json"))
+        existing["title"] = files["content.json"]["title"]
+        existing["authoring"] = authoring
+        existing["release"] = {"state": "unbuilt", "reason": "authored version awaits its build"}
+        record = store.save_record(existing)
+    else:
+        plan["files"] = files; plan["title"] = files["content.json"]["title"]
+        vdir = store.version_dir(tenant_id, plan["commission_id"], 1)
+        for name, doc in files.items(): store.write_json(vdir / name, doc)
+        store.write_json(vdir / "authored-draft.json", {"draft": draft, "meta": meta})
+        record = _record_from_plan(plan, tenant_id, principal_id)
+        record["authoring"] = authoring
+        store.save_record(record)
+    record["economics"]["authoring_tokens_total"] = record["economics"].get("authoring_tokens_total", 0) + authoring["tokens"]
+    store.save_record(record)
+    return build(tenant_id, plan["commission_id"], principal_id), True
+
+
+def _record_from_plan(plan: Dict[str, Any], tenant_id: str, principal_id: str) -> Dict[str, Any]:
+    bound, blockers = bind_receipts(plan["files"]["content.json"])
+    return {"commission_id": plan["commission_id"], "tenant_id": tenant_id, "title": plan["title"], "organisation": tenant_id, "producer": plan["producer"], "source_ref": plan["source_ref"],
+            "content_id": plan["content_id"], "purpose": plan["files"]["brief.json"]["purpose"]["kind"], "frame_ref": plan["frame_ref"], "voice": plan["voice"], "house": plan["files"]["brief.json"]["brand"]["house"],
+            "seed": plan["seed"], "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer", "build_stamp": plan["build_stamp"], "build_stamp_rule": "set once at commission creation; frozen",
+            "brief_id": plan["files"]["brief.json"]["brief_id"], "verdict_id": plan["files"]["verdict.json"]["verdict_id"], "adopted_direction": plan["files"]["verdict.json"]["adopted"],
+            "manifest": plan["files"]["verdict.json"]["manifest"], "outputs": [o["format"] for o in plan["files"]["brief.json"]["outputs"]], "specs": sorted(n for n in plan["files"] if n not in ("brief.json", "content.json", "verdict.json")),
+            "created_at": stamp(), "created_by": principal_id, "updated_at": stamp(), "current_content_version": 1,
+            "versions": [{"version": 1, "at": stamp(), "by": principal_id, "reason": f"commissioned by producer {plan['producer']} from {plan['source_ref']}"}],
+            "receipts": bound, "receipt_blockers": blockers, "builds": [], "revisions": [],
+            "release": {"state": "unbuilt", "reason": "no build yet"}, "authoring": {"tokens": 0, "source": "evidence assembled by the producer; authoring pending"},
+            "economics": {"builds_total": 0, "renders_total": 0, "authoring_tokens_total": 0, "rerender_authoring_tokens": 0,
+                          "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction"}}
+
+
 # ----------------------------------------------------------------------------- build
 
 

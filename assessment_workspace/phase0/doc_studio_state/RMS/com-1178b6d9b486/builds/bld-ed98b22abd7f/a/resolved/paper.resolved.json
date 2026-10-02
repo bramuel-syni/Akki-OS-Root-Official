@@ -1,0 +1,183 @@
+{
+  "brief_ref": "BR-2026-10-02-m9j-686de001bfe7",
+  "build_stamp": "2026-10-02T06:44:05Z",
+  "content_ref": "training-m9j-686de001bfe7@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "m9j-686de001bfe7"
+  },
+  "inputs_sha256": {
+    "brief.json": "a3bf063653749a4289c860e2a9a345f13253ca40ae695ca46d056457fae07fd7",
+    "content.json": "29d512fef99ee6e55a1f4805050dd915335c7acfc832dd6eeae6e9a2cf9cf5d9",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "de72058b599e1928059181a42f03e280df7b804e25c0de14697f442f4d773752",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "4536bae87e8245f8028388816b8a534be312edace51de552ae571dba5a408e77"
+  },
+  "look": {
+    "cover_composition": "title-left-high",
+    "divider_treatment": "inverted-field",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "E8772E",
+      "field": "FFFFFF",
+      "hatch": "E8EEF3",
+      "muted": "70879A",
+      "rule": "D3DCE4",
+      "structure": "14324A"
+    },
+    "palette_id": "harbour",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": [
+      {
+        "vetoed": {
+          "cover": "title-left-high",
+          "palette": "harbour",
+          "type_pair": "bookman-calibri"
+        },
+        "why": "warm accent with a heavy serif reads as editorial, not analytical"
+      }
+    ]
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The staged-audio music identification model is recorded as in service, and serving remains a separate operation. The retained receipt holds 4 measured checks. Accuracy is 100.0 per cent against a baseline of 95.2 per cent, and precision is 100.0 per cent against 92.3 per cent. Recall is level with its baseline."
+        },
+        {
+          "kind": "para",
+          "text": "These results should not be read as proof of improvement. Every interval is wide and each baseline figure that differs lies inside its interval. The widest uncertainty is on non-music audio, at 57 to 100 per cent. The next step should be better evidence, in the form of a fresh sealed evaluation set, rather than another tuning round."
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The record covers this single run only. It holds 4 measured checks against the signed acceptance. The signed plan records 689, 2026, 10, 2, 6 and 32. These are plan settings, and the receipt does not label them here, so they should not be treated as model performance."
+        },
+        {
+          "kind": "para",
+          "text": "Against baseline, accuracy rose from 95.2 to 100.0 per cent and precision from 92.3 to 100.0 per cent. Recall is 100.0 per cent, the same as the baseline of 100.0 per cent. The gain is therefore confined to accuracy and precision."
+        }
+      ],
+      "heading": "What the receipt records"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The reported intervals are wide. Accuracy runs from 82 to 100 per cent, and recall from 76 to 100 per cent. Precision starts at 76 per cent. The baselines of 95.2 per cent for accuracy and 92.3 per cent for precision sit inside these ranges, so the evidence does not separate the model from baseline."
+        },
+        {
+          "kind": "para",
+          "text": "Specificity is 100.0 per cent but with an interval from 57 to 100 per cent, the widest of all. The width suggests a small evaluation sample, though the receipt does not state sample sizes. Compute was modest: 4 minutes on GPU 1, with a peak of 2.8 GB."
+        }
+      ],
+      "heading": "How certain each stratum is"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Keep the model in service, but make no claim of a proven gain over baseline. Then commission a fresh, independently labelled and sealed evaluation set. Start with non-music audio, where the interval of 57 to 100 per cent is weakest. Follow with music examples to tighten the recall interval of 76 to 100 per cent."
+        },
+        {
+          "kind": "para",
+          "text": "Hold back recipe changes until that material exists. Reusing the inspected results to choose a recipe would remove their value as independent acceptance. For later runs, compile an explicit objective linked to a production plan."
+        }
+      ],
+      "heading": "Recommended order of work"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Three things cannot be said from this record. First, general performance outside the measured strata. Only an independently designed evaluation would establish it. Second, independent final acceptance after any further recipe selection. The current results have been inspected, so only fresh sealed, independently labelled material would support it. Third, complete lineage from objective to production, because no new production plan is linked to this historical run."
+        },
+        {
+          "kind": "para",
+          "text": "The values 689 to 32 are recorded plan settings, not measured results. Reviewers should keep them separate from the performance figures."
+        }
+      ],
+      "heading": "What cannot yet be said"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "An independently designed evaluation",
+              "gap": "General cognition or performance outside the measured strata",
+              "reason": "Not established by this run"
+            },
+            {
+              "closes_with": "Fresh independently labelled and sealed final material",
+              "gap": "Independent final acceptance after further recipe selection",
+              "reason": "These results have been inspected"
+            },
+            {
+              "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+              "gap": "Complete objective-to-production lineage",
+              "reason": "No new production plan is linked to this historical run"
+            }
+          ],
+          "covers": "Retained model measurements and decisions from m9j-686de001bfe7 only.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Measured training receipt and retained acceptance record for m9j-686de001bfe7"
+            }
+          ]
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "training-m9j-686de001bfe7/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-m9j-686de001bfe7",
+  "spec_type": "paper",
+  "subtitle": "Staged audio run: per-stratum results, coverage limits and the next dataset step",
+  "title": "Music identification: perfect scores, thin evidence",
+  "verdict_ref": "V-2026-10-02-m9j-686de001bfe7",
+  "voice": "strategy-house"
+}

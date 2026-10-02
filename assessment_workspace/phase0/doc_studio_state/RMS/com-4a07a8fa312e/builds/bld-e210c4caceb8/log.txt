@@ -1,0 +1,26 @@
+
+--- stderr ---
+Traceback (most recent call last):
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/build.py", line 87, in <module>
+    main()
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/build.py", line 77, in main
+    a = build_once(fixture_dir, build_dir / "a", log)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/build.py", line 37, in build_once
+    _, plan = resolve(spec, fixture_dir, resolved)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/studio.py", line 403, in resolve
+    plan = RESOLVERS[spec["spec_type"]](spec, content, brief, verdict, theme, voice)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/studio.py", line 302, in resolve_deck
+    r.update(title=content.text(s["title"]), subtitle=content.text(s["subtitle"]), org=content.text(s["org"]))
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/studio.py", line 159, in text
+    return TOKEN.sub(lambda m: self.resolve_token(m.group(1)), s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/studio.py", line 159, in <lambda>
+    return TOKEN.sub(lambda m: self.resolve_token(m.group(1)), s)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/skill/scripts/studio.py", line 154, in resolve_token
+    raise KeyError(f"unresolvable reference {{{tok}}}")
+KeyError: 'unresolvable reference {C901}'

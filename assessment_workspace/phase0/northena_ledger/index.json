@@ -611742,5 +611742,101 @@
     "stage": "gate",
     "decision": "refused",
     "at_iso": "2026-10-01T19:16:56.478161Z"
+  },
+  {
+    "row_id": "led-475710cd2c09",
+    "run_id": "run-9a3f3e6f28d9",
+    "trace_id": "trc-6bbb8d9f5e8a",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-10-02T04:26:44.244657Z"
+  },
+  {
+    "row_id": "led-8d7bbbf24cef",
+    "run_id": "run-85719788d8b3",
+    "trace_id": "trc-6af93827bb4e",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-10-02T06:12:40.858582Z"
+  },
+  {
+    "row_id": "led-33f4bc974358",
+    "run_id": "run-85719788d8b3",
+    "trace_id": "trc-6af93827bb4e",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-10-02T06:12:46.743693Z"
+  },
+  {
+    "row_id": "led-62649ae3077b",
+    "run_id": "run-85719788d8b3",
+    "trace_id": "trc-6af93827bb4e",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-10-02T06:13:35.367754Z"
+  },
+  {
+    "row_id": "led-5913139219c5",
+    "run_id": "run-f516572bde0f",
+    "trace_id": "trc-7056228472f2",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-10-02T06:31:23.128892Z"
+  },
+  {
+    "row_id": "led-3a85447c9ebd",
+    "run_id": "run-f516572bde0f",
+    "trace_id": "trc-7056228472f2",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-10-02T06:31:28.996293Z"
+  },
+  {
+    "row_id": "led-42de69605fbd",
+    "run_id": "run-1a4569dadfae",
+    "trace_id": "trc-07f05d503849",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-10-02T06:32:37.669318Z"
+  },
+  {
+    "row_id": "led-a818e6e8e96a",
+    "run_id": "run-1a4569dadfae",
+    "trace_id": "trc-07f05d503849",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-10-02T06:32:43.805247Z"
+  },
+  {
+    "row_id": "led-5a107d178753",
+    "run_id": "run-f516572bde0f",
+    "trace_id": "trc-7056228472f2",
+    "stage": "converge",
+    "decision": "terminate_budget",
+    "at_iso": "2026-10-02T06:37:00.336037Z"
+  },
+  {
+    "row_id": "led-1b1fa61f4e98",
+    "run_id": "run-1a4569dadfae",
+    "trace_id": "trc-07f05d503849",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-10-02T06:39:51.265713Z"
+  },
+  {
+    "row_id": "led-8ffcadf8f82e",
+    "run_id": "run-c78d66dc4f3e",
+    "trace_id": "trc-47b0b8bfc9f8",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-10-02T06:42:04.611732Z"
+  },
+  {
+    "row_id": "led-469e49634aaf",
+    "run_id": "run-c78d66dc4f3e",
+    "trace_id": "trc-47b0b8bfc9f8",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-10-02T06:42:10.367290Z"
   }
 ]

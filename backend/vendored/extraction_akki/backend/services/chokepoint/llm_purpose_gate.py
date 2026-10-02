@@ -73,6 +73,9 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     "training_lab.advisory_review",
     # Owner 2026-10-01 Train Models studio: per-run conversation grounded in the run's own record; bounded actions only.
     "training_lab.conversation",
+    # Owner 2026-10-02 ("deterministic should not write or produce anything in the system, mostly manage or gate; use a recent model"):
+    # the document studio's frontier writer authors every sentence under the Content Manager gate; code never writes prose.
+    "doc_studio.author",
 })
 
 

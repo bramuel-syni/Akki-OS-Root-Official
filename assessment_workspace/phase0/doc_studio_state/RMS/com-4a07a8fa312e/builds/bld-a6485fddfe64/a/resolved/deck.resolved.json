@@ -1,0 +1,783 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@3",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "furniture_zones": {
+    "confidentiality": {
+      "h": 0.412,
+      "w": 4.897,
+      "x": 6.767,
+      "y": 6.638
+    },
+    "doc_id": {
+      "h": 0.412,
+      "w": 5.916,
+      "x": 0.65,
+      "y": 6.638
+    },
+    "page_no": {
+      "h": 0.412,
+      "w": 0.819,
+      "x": 11.864,
+      "y": 6.638
+    }
+  },
+  "inputs_sha256": {
+    "brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+    "content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+    "deck.json": "bec915bf74fe7b2f61f106288791f112b46e38b0a835d296fa69ea4f3e793751",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "number-large",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "C8102E",
+      "field": "FFFFFF",
+      "hatch": "E9ECF1",
+      "muted": "8A94A6",
+      "rule": "D5DAE3",
+      "structure": "1F2A44"
+    },
+    "palette_id": "graphite",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "organisation": "RMS",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "slide_h": 7.5,
+  "slide_w": 13.333,
+  "slides": [
+    {
+      "n": 1,
+      "org": "RMS",
+      "subtitle": "What to reduce, what to fix and what to defer, from the estate census",
+      "title": "Estate cost and data-product decision pack",
+      "title_chars": 42,
+      "type": "cover",
+      "zones": {
+        "org": {
+          "h": 0.412,
+          "w": 5.916,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "subtitle": {
+          "h": 0.825,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 4.575
+        },
+        "title": {
+          "h": 1.65,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 2.925
+        }
+      }
+    },
+    {
+      "kicker": "Executive summary",
+      "n": 2,
+      "scqa": [
+        [
+          "Situation",
+          "The census measured 638 of 1006 tables and 351.3 GiB of data and index. Separate enumerations of object and file stores were priced at reference list prices, not the owner's invoice."
+        ],
+        [
+          "Complication",
+          "Database reclaim is only 15.2 GiB, or 4.3% of bytes. Meanwhile 23.0% of rows are degraded, 81.7% have empty required-looking fields and 71.8% of sampled rows carry personal-data markers. Rights are declared, not measured."
+        ],
+        [
+          "Question",
+          "Which cost strategies and which of the 8 product candidates should the owner take forward, and which should wait?"
+        ],
+        [
+          "Answer",
+          "Take forward the archive-class move and the duplicate-object check as verified proposals; priced strategies total 1,174.4 USD a month. Defer database housekeeping and every product release until rights and de-identification are settled."
+        ]
+      ],
+      "title": "Nearly all the saving sits in object stores; no data product can be released yet",
+      "title_chars": 80,
+      "type": "exec_summary",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 3,
+      "number": 1,
+      "title": "Where the database bytes sit",
+      "title_chars": 28,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "viusasa_staging (D)",
+          "razuna (D)",
+          "db_visitors (D)",
+          "kra_reports (D)",
+          "viupay_agent_staging (A)",
+          "news_vault (C)",
+          "local (D)",
+          "viutickets (B)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Data and index by database, GiB",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+        "so_what": "The largest databases hold 350.3 GiB, 99.7% of the total, so any database saving must come from a very small number of places.",
+        "unit": "GiB",
+        "values": {
+          "GiB": [
+            338.5,
+            4.5,
+            2.7,
+            1.5,
+            1.2,
+            0.9,
+            0.5,
+            0.4
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Storage by database",
+      "n": 4,
+      "title": "One staging database holds almost all of the 351.3 GiB, so database savings are capped",
+      "title_chars": 86,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 5,
+      "number": 2,
+      "title": "Condition of the measured rows",
+      "title_chars": 30,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Exact duplicates",
+          "Degraded",
+          "Empty required fields",
+          "PII markers (sampled)",
+          "Stale bytes"
+        ],
+        "class": "estimated",
+        "editable": true,
+        "label": "Condition of measured rows",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+        "so_what": "Empty required-looking fields reach 81.7% of rows and markers 71.8% of sampled rows, against 1.5% exact duplicates, so quality and exposure matter more than duplication.",
+        "unit": "pct",
+        "values": {
+          "Share": [
+            0.015,
+            0.23,
+            0.817,
+            0.718,
+            0.154
+          ]
+        },
+        "y_format": "pct"
+      },
+      "kicker": "Row condition",
+      "n": 6,
+      "title": "Empty fields and personal-data markers touch most rows; exact duplicates are rare",
+      "title_chars": 81,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 7,
+      "number": 3,
+      "title": "Reclaimable bytes by cost strategy",
+      "title_chars": 34,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Move buckets not written for over a year",
+          "Reconcile duplicate objects across OBS b",
+          "Move tables not written for over a year ",
+          "Remove redundant (prefix-covered) indexe",
+          "De-duplicate exact repeated rows inside ",
+          "Consolidate duplicate and staging copies",
+          "Drop or archive empty tables"
+        ],
+        "class": "estimated",
+        "editable": true,
+        "label": "Reclaimable GiB by cost strategy",
+        "plate": "bar",
+        "receipt": "R02",
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "so_what": "The three largest strategies address 50,784.6 GiB of the 50,799.8 GiB all strategies reach; the database strategies are marginal by comparison.",
+        "unit": "GiB",
+        "values": {
+          "GiB": [
+            42891.0,
+            7839.5,
+            54.1,
+            14.0,
+            1.2,
+            0.1,
+            0.0
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Cost strategies",
+      "n": 8,
+      "title": "Three strategies reach 100.0% of addressable bytes, almost all in object stores",
+      "title_chars": 79,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Scope and scale",
+      "n": 9,
+      "points": [
+        "The census measured 638 of 1006 tables, so database totals rest on partial coverage.",
+        "The estate holds 351.3 GiB of data and index; 350.3 GiB sits in the largest databases, which is 99.7% of the total.",
+        "Only 15.2 GiB is reclaimable in the databases before pricing, which is 4.3% of their bytes.",
+        "Dead columns are 13.0% of measured columns, which is a tidying task rather than a material saving."
+      ],
+      "title": "Database bytes are concentrated and little of them is reclaimable",
+      "title_chars": 65,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Quality and exposure",
+      "n": 10,
+      "points": [
+        "Exact duplicate rows are 1.5% of rows, and reclaimable bytes are 4.3%; deduplication alone will not change the cost picture.",
+        "Degraded rows are 23.0%, which limits the value of any dataset built from them without cleansing first.",
+        "Rows with empty required-looking fields are 81.7%; the label is a heuristic, so treat it as a completeness warning, not a count of faults.",
+        "Sampled rows carrying personal-data markers are 71.8%; absence of a marker is not absence of personal data."
+      ],
+      "title": "Quality and exposure problems dwarf duplication in the measured rows",
+      "title_chars": 68,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Housekeeping",
+      "n": 11,
+      "points": [
+        "Personal-data markers were checked on 1.0m million sampled rows, so the 71.8% figure is a sample estimate.",
+        "Bytes not written for over a year are 15.4% of the total, which makes them candidates for cold storage.",
+        "There are 71 duplicate table pairs; some may be deliberate staging or backup copies, so confirm ownership before retiring any.",
+        "There are 368 empty tables out of 1006; a freshly truncated live table looks the same, so check before dropping."
+      ],
+      "title": "Stale bytes, duplicate pairs and empty tables give a tidy-up list, not a large saving",
+      "title_chars": 85,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Priced strategies",
+      "n": 12,
+      "table": {
+        "caption": "",
+        "class": "estimated",
+        "columns": [
+          "Move buckets not written for over a year to archive-class st",
+          "Reconcile duplicate objects across OBS buckets",
+          "Move tables not written for over a year to cold storage"
+        ],
+        "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+        "receipts": [
+          "R02"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "42,891.0",
+              "7,839.5",
+              "54.1"
+            ],
+            "label": "Reclaimable gib"
+          },
+          {
+            "cells": [
+              "986.5",
+              "180.3",
+              "5.9"
+            ],
+            "label": "Monthly saving usd"
+          }
+        ],
+        "so_what": "Archive-class storage saves 986.5 USD a month, duplicate objects 180.3 and cold tables 5.9, all at list prices and all estimates."
+      },
+      "title": "The three priced strategies differ widely in saving and in how certain it is",
+      "title_chars": 76,
+      "type": "comparison",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 5.4
+        },
+        "table": {
+          "h": 3.3,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Recommended order",
+      "n": 13,
+      "points": [
+        "First, check read frequency before archiving old buckets; 986.5 USD a month, before retrieval fees.",
+        "Second, confirm duplicate objects by content hash before deleting; 180.3 USD a month is an estimate.",
+        "Third, defer database tidying: cold tables save 5.9 USD a month, all reclaim 15.2 GiB.",
+        "Fourth, release nothing until rights are bound; markers sit in 71.8% of sampled rows."
+      ],
+      "title": "Verify the two object-store moves first; defer database tidying and every release",
+      "title_chars": 81,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Limits of the evidence",
+      "n": 14,
+      "points": [
+        "Sampled ratios, such as 1.5% and 81.7%, are estimates until a complete-pass census runs.",
+        "Rights and licences are unmeasured; none of the 8 candidates is releasable until rights are bound.",
+        "The artists_app connection could not be read pending a MySQL grant, and 638 of 1006 tables were measured.",
+        "Some buckets were unreachable and file-share duplication is unknown; prices are list, not invoice."
+      ],
+      "title": "Sampling, unmeasured rights and unread sources limit what can be claimed today",
+      "title_chars": 78,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "coverage": {
+        "cannot_say": [
+          {
+            "closes_with": "a complete-pass census on the sampled tables",
+            "gap": "Duplicate, damage, empty-field and PII ratios on sampled tables",
+            "reason": "complete passes where the table allowed it, stratified samples elsewhere"
+          },
+          {
+            "closes_with": "rights declared at Connect and bound to each candidate",
+            "gap": "Rights, licences and semantic similarity",
+            "reason": "not measured; candidates are dimensional readiness only"
+          },
+          {
+            "closes_with": "owner grants read access; re-census",
+            "gap": "Connection artists_app",
+            "reason": "could not be read (MySQL GRANT pending)"
+          },
+          {
+            "closes_with": "a fingerprinting pass over the NAS shares",
+            "gap": "NAS duplication",
+            "reason": "the enumeration recorded sizes and dates, not content fingerprints"
+          },
+          {
+            "closes_with": "bucket inventory reconciled with the provider",
+            "gap": "40 of 106 OBS buckets",
+            "reason": "unreachable (NoSuchBucket / client errors)"
+          }
+        ],
+        "covers": "20 databases, 1,006 tables and 351.3 GiB measured by census eij-1b359b3cbd2e; ratios are complete-pass where the table allowed it and stratified samples elsewhere. No row value is present in this pack."
+      },
+      "kicker": "Coverage and limits",
+      "n": 15,
+      "title": "What this pack covers, what it cannot say, and what would close each gap",
+      "title_chars": 72,
+      "type": "coverage_limits",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Appendix",
+      "n": 16,
+      "receipts": [
+        {
+          "id": "R01",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures"
+        },
+        {
+          "id": "R02",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month"
+        },
+        {
+          "id": "R03",
+          "text": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)"
+        },
+        {
+          "id": "R04",
+          "text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+        },
+        {
+          "id": "R05",
+          "text": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+        }
+      ],
+      "title": "Exhibit index with receipts",
+      "title_chars": 27,
+      "type": "appendix",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "title": "Estate cost and data-product decision pack",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

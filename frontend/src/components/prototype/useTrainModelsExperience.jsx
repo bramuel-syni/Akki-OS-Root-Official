@@ -41,7 +41,7 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     : sel.family === 'owner' ? (sel.ready ? 'Change something, or say you\'re ready...' : 'Answer in plain language...') : 'Say "run the baseline", or ask what it reads...';
   const model = !active ? {} : {
     isBuildRunPage: true, isRegistryGroup: false, isRegEstate: false, appTitle: 'Train Models', appGroupLabel: 'Build Your Resources', exitApp: () => navigate('/os?nav=build&app=train'),
-    openShieldReport: () => unavailable('Shield report', 'Every run here is read from its own record under your admitted identity. Training cannot be started from this page; requests are held for Model Approval.'),
+    openShieldReport: () => unavailable('Shield report', 'Every run here is read from its own record under your admitted identity. Training starts only from a recorded sign-off on the run itself; the signature binds the plan by digest.'),
     hasSessionBanner: Boolean(data.error), sessionBanner: data.error || '', sessionBannerColor: 'var(--oxblood)',
     tmPageEmpty: !data.loading && Boolean(data.board) && runs.length === 0, tmPageFull: data.loading || !data.board || runs.length > 0,
     tmEmptyCopy: EMPTY_COPY, tmNewLabel: 'Train a new model', tmNewModel: guard(() => data.create().then(r => select(r.run_id)).catch(failed)),
@@ -64,7 +64,7 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     tmJournalTitle: 'Trained model journal', tmJournalMeta: journalMeta(counts), tmJournalEmpty: !runs.some(r => FINISHED.includes(r.status)), tmJournalEmptyCopy: 'Nothing has finished yet. Models arrive here once they enter service, are refused, or are retired.',
     tmJournal: runs.filter(r => FINISHED.includes(r.status)).map(r => ({ key: r.run_id, name: r.name, status: r.status, color: STATUS_COLOR[r.status], bg: STATUS_BG[r.status], rowBg: r.run_id === selectedId ? 'rgba(76,95,213,.06)' : '#fff',
       meta: `${familyLabel(r)} · last entry ${relative(r.messages.at(-1)?.at || r.finished_at) || '—'}`, onToggle: () => select(r.run_id, true) })),
-    tmBegin: guard(() => act('record_training_request')), tmRemind: () => navigate('/os/admin/modeladmission'), tmWhitePaper: guard(() => act('white_paper')), tmNotNow: () => sel && patch({ tmDismiss: { ...(state.tmDismiss || {}), [sel.run_id]: true } }),
+    tmBegin: guard(() => act('record_training_request')), tmRemind: guard(() => sel?.approval?.plan_sha256 && !sel.approval.signed && act('approve_plan', sel.approval.plan_sha256)), tmWhitePaper: guard(() => act('white_paper')), tmNotNow: () => sel && patch({ tmDismiss: { ...(state.tmDismiss || {}), [sel.run_id]: true } }),
     tmViewDoc: () => { const id = sel?.messages.filter(m => m.commission_id).at(-1)?.commission_id; navigate(`/os/work/documents${id ? `?commission=${encodeURIComponent(id)}` : ''}`); }, tmShowAlts: () => sel && patch({ tmAlts: { ...(state.tmAlts || {}), [sel.run_id]: true } }),
     tmContinueExisting: () => unavailable('Carry on an existing model', 'Open a model in service from the list and choose "Open the next version"; it inherits the record and starts in Shaping. Nothing was opened by this action.'),
     tmOwnBaseline: () => unavailable('Bring your own model', 'An outside model needs its licence and a security scan recorded through Model Approval before it can be a starting point. That path is not connected yet; nothing was added.'),
@@ -77,14 +77,14 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     298: { 'data-testid': 'train-tab-overview' }, 299: { 'data-testid': 'train-tab-report' }, 306: ctx => ({ 'data-testid': `train-stage-${ctx.d.key}` }), 331: { 'data-testid': 'train-generate-paper' },
     363: { 'data-testid': 'train-thread' }, 365: ctx => ({ 'data-testid': `train-thread-item-${ctx.it.key}` }), 374: ctx => ({ 'data-testid': `train-think-${ctx.it.key}` }),
     400: ctx => ({ 'data-testid': `train-bubble-${ctx.it.key}` }), 416: { 'data-testid': 'train-use-baseline' }, 420: { 'data-testid': 'train-show-alternatives' }, 447: ctx => ({ 'data-testid': `train-use-alt-${ctx.ac.key}` }),
-    533: { 'data-testid': 'train-open-approval' }, 543: { 'data-testid': 'train-begin-training' }, 571: { 'data-testid': 'train-open-next-version' }, 577: { 'data-testid': 'train-prepare-paper' }, 578: { 'data-testid': 'train-not-now' }, 585: { 'data-testid': 'train-view-document' },
+    533: { 'data-testid': 'train-approve-plan' }, 536: { 'data-testid': 'train-signoff-label' }, 543: { 'data-testid': 'train-begin-training' }, 571: { 'data-testid': 'train-open-next-version' }, 577: { 'data-testid': 'train-prepare-paper' }, 578: { 'data-testid': 'train-not-now' }, 585: { 'data-testid': 'train-view-document' },
     618: ctx => ({ 'data-testid': 'train-resubmit', hidden: ctx.it.retired }), 619: ctx => ({ 'data-testid': 'train-adjust', hidden: ctx.it.retired }), 620: ctx => ({ 'data-testid': 'train-retire', hidden: ctx.it.retired }),
     668: { 'data-testid': 'train-composer', disabled: model.tmSending }, 670: { 'data-testid': 'train-send', disabled: model.tmSending || !(state.tmComposer || '').trim() },
     687: ctx => ({ 'data-testid': `train-journal-${ctx.j.key}` }), 601: ctx => ({ 'data-testid': `train-checks-${ctx.it.key}` }), 616: { 'data-testid': 'train-refused-reason' }, 530: { 'data-testid': 'train-approval-line' },
   };
   const replace = !active ? {} : {
-    421: ctx => `Show ${ctx.it.altCount} other option${ctx.it.altCount === 1 ? '' : 's'}`, 533: 'Open Model Approval', 551: 'Run certificate', 601: ctx => ctx.it.checksTitle,
-    519: 'Regulated or restricted sources lift the approval to a higher signature tier automatically.', 584: 'It is drafted in Documents from this run\'s own record.',
+    421: ctx => `Show ${ctx.it.altCount} other option${ctx.it.altCount === 1 ? '' : 's'}`, 528: ctx => (ctx.it.signed ? 'Signed off' : 'Awaiting signature'), 533: 'Approve and start', 551: 'Run certificate', 601: ctx => ctx.it.checksTitle,
+    519: 'Regulated or restricted sources lift the approval to a higher signature tier automatically.', 584: 'It is written in Documents by the frontier writer from this run\'s own record, every figure by reference.',
   };
   return { active, model, enhance, replace, counts, loading: data.loading };
 }

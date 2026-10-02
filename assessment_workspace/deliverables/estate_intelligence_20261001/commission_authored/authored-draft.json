@@ -1,0 +1,303 @@
+{
+ "draft": {
+  "title": "RMS estate and language corpus: what is defensible",
+  "subtitle": "Owner briefing on estate condition, the corpus claim and responsible options",
+  "slots": {
+   "exec": {
+    "kicker": "Executive summary",
+    "title": "The estate is large but only partly measured; a narrow language claim is defensible now",
+    "situation": "The retained database catalogue holds {F001} bytes across {F004} tables, with an estimated {F002} rows. Separate inventories list {F006} bytes in {F007} objects at OBS, and {F008} bytes in {F009} files at NAS. A staged audio subset and a separately assembled text corpus have also been measured.",
+    "complication": "Only {F005} table entries were measured, and the census observed {F003} rows against an estimate of {F002}. The file inventories record custody, not language, music or rights, and they cannot be added together. No final quality receipt exists, so no estate-wide hours or token claim is yet possible.",
+    "question": "What can the owner responsibly claim and commercialise today, and what must be done first to widen that claim?",
+    "answer": "Claim only what is measured: {F011} hours of staged audio across {F010} files, and {F015} natural text units from {F017} source files. Language identification reached {F019} conditional macro accuracy on {F018} units, but it is weaker for Kikamba and the Wanga / Luhya label. Complete the coverage ledger and rights review before any licensing, release or revenue statement."
+   },
+   "section1": {
+    "title": "Database estate condition"
+   },
+   "exhibit_S002": {
+    "kicker": "Database readiness",
+    "title": "Grades C and D hold most measured tables; only a minority reach grade A or B",
+    "so_what": "Readiness is uneven, so any data product should start from grade A and B tables and treat the rest as remediation work."
+   },
+   "exhibit_S010": {
+    "kicker": "Database readiness shares",
+    "title": "Grade C and D tables make up about three in five measured entries; grade E is smallest",
+    "so_what": "These grades describe database readiness only; they say nothing about speech or text quality and must not be quoted as corpus quality."
+   },
+   "findings_R01_1": {
+    "kicker": "Census findings",
+    "title": "Only part of the catalogue is measured, and observed rows are a small slice of the estimate",
+    "points": [
+     "The catalogue records {F001} bytes across {F004} tables, but only {F005} table entries were measured and graded.",
+     "Estimated rows stand at {F002}; the census observed {F003}, so row-level conclusions rest on a small observed share.",
+     "The remaining catalogued tables are ungraded, so no estate-wide grade distribution can be stated."
+    ]
+   },
+   "section2": {
+    "title": "File inventories"
+   },
+   "exhibit_S001": {
+    "kicker": "Listed storage",
+    "title": "File stores dwarf the database, yet their listings measure bytes, not usable content",
+    "so_what": "The three inventories are separate and cannot be summed into unique content; they show custody scale only."
+   },
+   "findings_R02_1": {
+    "kicker": "Inventory findings",
+    "title": "The two file inventories list large volumes but say nothing yet about language, music or rights",
+    "points": [
+     "OBS lists {F006} bytes in {F007} objects: a retained listing, not an analysis of contents.",
+     "NAS lists {F008} bytes in {F009} files, again scope only, with no language or music labelling.",
+     "The inventories may overlap, so no combined unique-content figure should be quoted.",
+     "Eligible, non-music, rights-cleared audio inside these stores is unknown until segment-level labels are joined."
+    ]
+   },
+   "section3": {
+    "title": "Staged audio"
+   },
+   "exhibit_S003": {
+    "kicker": "Audio by folder label",
+    "title": "Six language folders hold similar staged hours; the Wanga and Bukusu labels are thin",
+    "so_what": "Hours are folder-label durations, not certified speech; the two thin labels cannot support model claims without more collection or verification."
+   },
+   "exhibit_S004": {
+    "kicker": "Sample rates",
+    "title": "Most staged files share one sample rate; a sizeable lower-rate group needs screening",
+    "so_what": "Sample rate is a header property, not a quality grade; it can screen files but cannot certify studio or telephone quality."
+   },
+   "exhibit_S008": {
+    "kicker": "Audio and transcript inventory",
+    "title": "Transcripts pair with nearly every audio file; the Bukusu folder has none",
+    "so_what": "Pairing by file count is not alignment; transcript accuracy and timing remain unmeasured, and the columns use different units."
+   },
+   "findings_R03_1": {
+    "kicker": "Staged audio findings",
+    "title": "The staged set is a labelled subset of real scale, not a verified corpus",
+    "points": [
+     "The authorised subset holds {F010} audio files lasting {F011} hours and occupying {F012} bytes.",
+     "Companion transcripts number {F013} files and {F014} bytes, so some audio files have no pair.",
+     "Language comes from folder labels, which are not content verification.",
+     "Header inspection does not establish speech content, music exclusion or audio quality."
+    ]
+   },
+   "section4": {
+    "title": "Assembled text corpus"
+   },
+   "exhibit_S005": {
+    "kicker": "Text by language",
+    "title": "Kalenjin and the Wanga label lead natural text; Kikamba is the thinnest of the seven",
+    "so_what": "Volume is uneven across languages, so any balanced training or evaluation claim must be stated per language, not pooled."
+   },
+   "exhibit_S006": {
+    "kicker": "Text partitions",
+    "title": "Most natural text sits in training, with a sizeable held-out set and a very small archive test",
+    "so_what": "The held-out set is large enough to evaluate against; the archive test is too small to carry conclusions alone. Synthetic canaries are excluded."
+   },
+   "exhibit_S009": {
+    "kicker": "Partitions by language",
+    "title": "Archive test text sits mainly in Ekegusii and Kikamba; the Wanga label and Kiswahili have none",
+    "so_what": "Partition shape differs by language, so cross-language comparisons should use the held-out set, which exists for all seven."
+   },
+   "findings_R04_1": {
+    "kicker": "Text findings",
+    "title": "The assembled text is a defensible, separately assembled corpus of natural units",
+    "points": [
+     "The assembly contains {F015} natural text units; added synthetic canaries are excluded from every count.",
+     "The units run to {F016} characters from {F017} source files; characters are not tokens, and no tokenizer-specific count exists.",
+     "Text and audio populations are not joined, so these units are not clean aligned speech-text pairs."
+    ]
+   },
+   "section5": {
+    "title": "Language identification"
+   },
+   "exhibit_S007": {
+    "kicker": "Language-ID accuracy",
+    "title": "Language-ID is accurate where it judges, but Kikamba and the Wanga label trail the rest",
+    "so_what": "Conditional accuracy excludes units the tool declined to judge; lower coverage for Kiswahili and the Wanga label means conditional figures flatter real performance."
+   },
+   "exhibit_S011": {
+    "kicker": "Correct of all units",
+    "title": "Counting every unit, the Wanga label and Kikamba fall furthest, with Kiswahili next",
+    "so_what": "Correct-of-all is the stricter measure and should be quoted beside conditional accuracy, not behind it."
+   },
+   "findings_R05_1": {
+    "kicker": "Language-ID findings",
+    "title": "The headline accuracy is high but narrow, and it is not a general-language certificate",
+    "points": [
+     "The run evaluated {F018} units on equal strata: a per-language sample, not a population estimate.",
+     "Conditional macro accuracy is {F019}, measured only among units the tool chose to judge.",
+     "Kikamba and the Wanga label sit clearly below that average, so one headline figure hides the languages needing review."
+    ]
+   },
+   "actions": {
+    "kicker": "Recommended actions",
+    "title": "Build the coverage ledger and clear rights before any external claim",
+    "points": [
+     "First, join the inventories of {F006} and {F008} bytes to language, music and rights labels.",
+     "Second, complete the census: {F005} of {F004} tables are measured; grade the rest before quoting estate condition.",
+     "Third, run a rights review of the {F011} staged hours and {F015} text units before any partner access.",
+     "Fourth, verify Bukusu and Wanga labels and review Kikamba identification against human references; publish only the measured claim meanwhile."
+    ]
+   },
+   "risks": {
+    "kicker": "Risks and limits",
+    "title": "Four claims cannot yet be made, each with a defined route to closure",
+    "points": [
+     "Estate-wide non-music eligible audio hours: no joined inventory carries verified labels. The coverage ledger closes this.",
+     "Estate-wide text tokens or clean aligned pairs: {F001} database bytes are not text volume. Versioned exports and audits close this.",
+     "Audio quality and transcript error rates: headers are not quality. Human-reference evaluation closes this.",
+     "Licensing, release, savings and revenue: custody is not onward rights. Rights review, invoices and paid pilots close this."
+    ]
+   }
+  },
+  "paper": {
+   "summary": [
+    "The retained estate is large but unevenly measured. The database catalogue holds {F001} bytes across {F004} tables, of which {F005} were measured and graded. The census observed {F003} rows against an estimate of {F002}. Two file inventories list {F006} bytes at OBS and {F008} bytes at NAS, but these show custody scale, not content.",
+    "What can be claimed is narrower and well evidenced. A staged audio subset holds {F011} hours in {F010} files, labelled by folder. A separately assembled text corpus holds {F015} natural units from {F017} source files. Language identification scored {F019} conditional macro accuracy on {F018} units, with clear weakness for Kikamba and the Wanga / Luhya label.",
+    "The first priority is a joined coverage ledger and a rights review. Until both exist, estate-wide hours, token counts, quality distributions and commercial figures cannot be stated, and no onward licence or release should be offered."
+   ],
+   "sections": {
+    "exhibit_S002": {
+     "heading": "Grades are skewed to the middle and lower end",
+     "paragraphs": [
+      "Among the measured tables, grades C and D together hold most entries, while grades A and B form a minority. Grade E is the smallest group. This is a readiness view of the relational estate and tells the owner where remediation effort will fall.",
+      "The grades cover only measured entries. They should not be extended to the remaining catalogued tables, nor read as a statement about speech or text quality."
+     ]
+    },
+    "exhibit_S010": {
+     "heading": "Shares confirm the weight of grades C and D",
+     "paragraphs": [
+      "The share view shows about three in five measured tables in grades C and D, with a little over a third in grades A and B. The picture matches the counts and adds no new evidence.",
+      "Because the shares are of measured entries, a different mix among ungraded tables would change the estate picture. Quote them as shares of the measured set only."
+     ]
+    },
+    "findings_R01_1": {
+     "heading": "The census measures part of the catalogue",
+     "paragraphs": [
+      "The catalogue records {F001} bytes in {F004} tables, with an estimated {F002} rows. Only {F005} table entries were measured, and the census observed {F003} rows. The estimate is an estimate and the observed count is a measurement; the two should not be blended.",
+      "The owner should therefore treat estate condition as known for the measured tables and unknown for the rest. Completing the census is a prerequisite for any estate-wide statement."
+     ]
+    },
+    "exhibit_S001": {
+     "heading": "File inventories are far larger than the database",
+     "paragraphs": [
+      "Listed storage at OBS and NAS exceeds the database catalogue by orders of magnitude. If valuable language material exists in the estate, it is more likely to sit in these stores than in relational tables, though the listings cannot confirm that.",
+      "The three inventories are separate listings. They may overlap, were not deduplicated, and must not be added to give a unique-content total."
+     ]
+    },
+    "findings_R02_1": {
+     "heading": "Listings establish scope, not content",
+     "paragraphs": [
+      "OBS lists {F006} bytes in {F007} objects, and NAS lists {F008} bytes in {F009} files. These are retained listings embedded in the census. They carry no language, music or rights analysis.",
+      "Any statement about eligible audio hours therefore needs a further step: segment-level labels joined to these inventories and checked on a stratified sample."
+     ]
+    },
+    "exhibit_S003": {
+     "heading": "Staged audio is concentrated in six folders",
+     "paragraphs": [
+      "Six folders hold between just over eighty and just over ninety hours each. The Wanga / Luhya label holds only a handful of hours, and the Bukusu folder just over an hour across a small number of files.",
+      "Durations are measured from headers by folder label. They are not certified speech hours, and a folder label is not content verification."
+     ]
+    },
+    "exhibit_S004": {
+     "heading": "Sample rate is a screen, not a grade",
+     "paragraphs": [
+      "Most staged files share the commonest sample rate, with a smaller higher-rate group and a sizeable group at the lowest rate in the set. A handful of files sit at other rates.",
+      "These counts help plan resampling and screening. They do not show whether a file is studio or telephone quality, and no quality claim should rest on them."
+     ]
+    },
+    "exhibit_S008": {
+     "heading": "Audio and transcripts pair closely, with named gaps",
+     "paragraphs": [
+      "Transcript files track audio files closely in every folder except Bukusu, which has none, with one or two unpaired files in a few others. The columns use different units: files, hours, gigabytes and megabytes.",
+      "Pairing by file count is not alignment. Transcript accuracy and timing remain unmeasured."
+     ]
+    },
+    "findings_R03_1": {
+     "heading": "The staged set is a subset with open questions",
+     "paragraphs": [
+      "The subset holds {F010} audio files, {F011} hours and {F012} bytes, with {F013} companion transcript files totalling {F014} bytes. The inspection receipt is verified, but it covers headers only.",
+      "The set is a useful starting corpus for qualification. It is not yet evidence of speech content, language purity, music exclusion or audio quality, and it should be described as labelled and staged."
+     ]
+    },
+    "exhibit_S005": {
+     "heading": "Text volume differs sharply by language",
+     "paragraphs": [
+      "Kalenjin and the Wanga / Luhya label carry the most natural units, followed by Dholuo, Ekegusii and Kiswahili. Kikuyu is next, and Kikamba is the thinnest. Bukusu has no assembled text.",
+      "A pooled figure would hide this spread. Claims about any one language should cite that language's own count."
+     ]
+    },
+    "exhibit_S006": {
+     "heading": "Partitions leave room to evaluate",
+     "paragraphs": [
+      "Most natural units sit in training, with a development set, a larger held-out set and a very small archive test. Synthetic canaries were added for integrity checks and are excluded from these counts.",
+      "The held-out set is large enough for evaluation. The archive test is too small to carry conclusions by itself."
+     ]
+    },
+    "exhibit_S009": {
+     "heading": "Partition shape is uneven by language",
+     "paragraphs": [
+      "Archive test text is concentrated in Ekegusii and Kikamba, with a modest amount for Kalenjin, a few units for Dholuo, a single unit for Kikuyu, and none for the Wanga / Luhya label or Kiswahili.",
+      "Cross-language comparison should therefore rest on the held-out set, which exists for every language, and not on the archive test."
+     ]
+    },
+    "findings_R04_1": {
+     "heading": "A sealed corpus, with stated limits",
+     "paragraphs": [
+      "The assembly yields {F015} natural units and {F016} characters from {F017} source files, sealed at the end of September. Counts exclude added canaries.",
+      "Characters are not tokens. No tokenizer-specific count exists, and text is not joined to audio, so the corpus supports a text claim only."
+     ]
+    },
+    "exhibit_S007": {
+     "heading": "Identification is strong for most languages",
+     "paragraphs": [
+      "Kikuyu, Kalenjin, Dholuo, Ekegusii and Kiswahili are all judged with high conditional accuracy. Kikamba and the Wanga / Luhya label fall clearly below. Coverage is lowest for Kiswahili and the Wanga label, meaning more units went unjudged there.",
+      "Conditional accuracy counts only judged units, so it is a favourable view and must be read with coverage."
+     ]
+    },
+    "exhibit_S011": {
+     "heading": "The stricter measure widens the gaps",
+     "paragraphs": [
+      "Counting every unit, the Wanga / Luhya label and Kikamba fall furthest, with Kiswahili next. The other four stay close to the top.",
+      "The owner should quote correct-of-all alongside conditional accuracy so that low coverage is not hidden."
+     ]
+    },
+    "findings_R05_1": {
+     "heading": "A narrow evaluation with a high headline",
+     "paragraphs": [
+      "The run evaluated {F018} units on equal strata and reports {F019} conditional macro accuracy. It is a per-stratum measurement for this corpus, not a certificate for general language use.",
+      "No final quality receipt is yet available; measurement status last showed a retained heartbeat in early October. Treat results as interim until it lands."
+     ]
+    },
+    "actions": {
+     "heading": "What to do first, and why",
+     "paragraphs": [
+      "Start with the coverage ledger: it joins the inventories of {F006} and {F008} bytes to language, music and rights labels, and everything else depends on it. In parallel, complete the table census, since {F005} of {F004} tables are measured.",
+      "Then commission the rights review before any partner sees the {F011} staged hours or {F015} text units. Verify the Bukusu and Wanga / Luhya labels, and review Kikamba identification with human references. Publish only the narrow, measured claim in the meantime."
+     ]
+    },
+    "risks": {
+     "heading": "Risks, obligations and what cannot yet be said",
+     "paragraphs": [
+      "Four gaps stand between the present evidence and an estate-wide claim: eligible non-music audio hours, natural-text tokens and clean alignments, audio and transcript quality distributions, and onward rights with realised commercial value. Database storage of {F001} bytes and the file listings do not substitute for any of them.",
+      "Each gap has a stated closing step: the coverage ledger, versioned exports with independent audits, human-reference evaluation, and rights review with paid pilot validation. Governance references, including data-protection law, apply before any external sharing."
+     ]
+    }
+   }
+  }
+ },
+ "meta": {
+  "model": "claude-sonnet-5-5",
+  "provider": "emergent",
+  "receipt_id": "rcp-19d45fc80010",
+  "tokens_in": 19495,
+  "tokens_out": 7940,
+  "latency_ms": 68230,
+  "repairs": 1,
+  "gate": {
+   "passed": true,
+   "issues": [],
+   "repairs": 1,
+   "plan_slots": 24
+  }
+ }
+}

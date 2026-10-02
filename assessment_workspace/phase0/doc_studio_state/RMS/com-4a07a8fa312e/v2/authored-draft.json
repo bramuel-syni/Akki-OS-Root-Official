@@ -1,0 +1,179 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "What to do first, and why",
+          "paragraphs": [
+            "Begin with the archive-class move, because it carries the largest saving at {O1.monthly_saving_usd} USD a month; verify read frequency and retrieval fees before any transfer. Next verify duplicate objects by content before deleting, since the {O2.reclaimable_gib} GiB is a size-based estimate.",
+            "Defer database cold storage and the smaller database strategies, whose returns are small. Keep all {F018} as specifications only until rights are bound to each candidate and personal data is removed or aggregated. Finally, grant read access to artists_app so a re-census can firm up the figures."
+          ]
+        },
+        "compare": {
+          "heading": "Three priced strategies compared",
+          "paragraphs": [
+            "The archive-class move addresses {O1.reclaimable_gib} GiB for {O1.monthly_saving_usd} USD a month. Duplicate-object reconciliation addresses {O2.reclaimable_gib} GiB for {O2.monthly_saving_usd} USD. Database cold storage addresses {O3.reclaimable_gib} GiB for {O3.monthly_saving_usd} USD.",
+            "All three are priced at reference list prices, not the owner's invoice, and archive-class retrieval carries its own fee. The comparison shows scale and conditions; it does not by itself settle the choice."
+          ]
+        },
+        "exhibit_S001": {
+          "heading": "Bytes are concentrated in one staging database",
+          "paragraphs": [
+            "The exhibit shows data and index by database. viusasa_staging stands far above every other database, and the largest databases together hold {F016} GiB, a share of {K002} of the estate's {F004}.",
+            "For the owner, this means database cost work is a question about one environment. Whether that staging data is still needed is an ownership question the census cannot answer."
+          ]
+        },
+        "exhibit_S002": {
+          "heading": "Quality and exposure are the main constraint",
+          "paragraphs": [
+            "Exact duplicates are low at {F007} of rows, but degraded rows are {F008} and rows with empty required-looking fields are {F009}. Personal-data markers appear in {F010} of sampled rows, and {F012} of bytes have not been written for over a year.",
+            "These are estimates from complete passes where tables allowed and stratified samples elsewhere. They indicate that cleansing, not de-duplication, is the main work before any product can be built."
+          ]
+        },
+        "exhibit_S003": {
+          "heading": "Reclaimable bytes sit almost entirely in object stores",
+          "paragraphs": [
+            "Moving buckets not written for over a year and reconciling duplicate objects address most of the reclaimable bytes. Together with database cold storage, the three largest strategies address {K004} of the {F021} GiB reached by all strategies.",
+            "Reclaimable bytes are not realised savings. Last write is the newest object timestamp in a listing, read frequency was not measured, and duplicate candidates share a size and an identifying label, which for multipart uploads is not a content hash."
+          ]
+        },
+        "findings1": {
+          "heading": "Estate size and measurement coverage",
+          "paragraphs": [
+            "The estate holds {F004} across {F002}, with {F003} measured. Database-level reclaim of {F005} is small, and {F015} are empty by row estimate. Staleness was read from timestamp columns, so tables without them may be missed."
+          ]
+        },
+        "findings2": {
+          "heading": "Condition of the measured rows",
+          "paragraphs": [
+            "Degraded rows ({F008}) and rows with empty required-looking fields ({F009}) are widespread, while exact duplicates are only {F007}. Personal-data markers in {F010} of sampled rows mean any external use needs de-identification or aggregation first."
+          ]
+        },
+        "findings3": {
+          "heading": "Staleness, duplication and sampling",
+          "paragraphs": [
+            "The marker rate rests on {F011} sampled rows. Bytes not written for over a year are {F012} of the total, and {F014} of duplicate table pairs were found. Copies may be deliberate, so ownership must be confirmed before any retirement."
+          ]
+        },
+        "risks": {
+          "heading": "What cannot yet be said",
+          "paragraphs": [
+            "Sampled ratios, unmeasured rights and licences, the unreadable artists_app connection, unmeasured file-share duplication and unreachable buckets all limit confidence. Only {F003} of {F002} were measured. Each gap can be closed: a complete-pass census, rights bound to each candidate, a read grant, a fingerprinting pass and a bucket inventory reconciled with the provider.",
+            "Savings are estimates at list prices, not realised returns, and the candidates are not qualified datasets or permission for training. Nothing in this pack authorises execution."
+          ]
+        }
+      },
+      "summary": [
+        "The census read {F001} holding {F002}, of which {F003} were measured, giving coverage of {K001}. The estate holds {F004} of data and index, concentrated in a single staging database. Cost savings inside databases are modest: {F005}, or {F006} of bytes, looks reclaimable before pricing.",
+        "The larger opportunity lies in object and file stores, where all cost strategies together address {F021} GiB and carry a priced monthly saving of {F019} USD at reference list prices. These are estimates, and every action is proposal-only; none is authorised.",
+        "Data-product candidates, {F018} in all, are held back by weak quality and personal-data exposure, and their rights are declared but not measured. We recommend taking forward the two object-store strategies after verification, deferring the small database measures, and keeping every product at specification stage."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "Recommended order",
+        "points": [
+          "Confirm read frequency and retrieval fees for the archive move: {O1.reclaimable_gib} GiB, worth {O1.monthly_saving_usd} USD monthly.",
+          "Confirm duplicate objects by content before deleting; {O2.reclaimable_gib} GiB is a size-based estimate worth {O2.monthly_saving_usd} USD monthly.",
+          "Defer database cold storage; {O3.monthly_saving_usd} USD monthly does not justify early effort.",
+          "Hold all {F018} at specification stage until rights are bound and personal data is removed."
+        ],
+        "title": "Verify the two object-store moves first, defer small database measures, hold products"
+      },
+      "compare": {
+        "kicker": "Priced strategies",
+        "so_what": "The archive-class move offers {O1.monthly_saving_usd} USD a month, duplicate reconciliation {O2.monthly_saving_usd} USD and database cold storage {O3.monthly_saving_usd} USD, all at list prices, not invoices.",
+        "title": "The three priced strategies differ widely in bytes, monthly saving and confidence"
+      },
+      "exec": {
+        "answer": "Take forward the archive-class move and the duplicate-object reconciliation, both as proposals to verify first. They carry most of the priced saving of {F019} USD a month at list prices. Defer the small database strategies and all {F018} until rights are granted and personal data is removed.",
+        "complication": "Databases are the smaller prize: only {F005} ({F006}) looks reclaimable there, while all cost strategies together address {F021} GiB. Quality is weak, with {F008} of rows degraded, {F009} with empty required-looking fields and {F007} exact duplicates.",
+        "kicker": "Decision summary",
+        "question": "Which cost strategies and data-product candidates should be taken forward, and which deferred?",
+        "situation": "The census read {F001} holding {F002}. Of these, {F003} were measured ({K001} of tables), and the estate holds {F004} of data and index.",
+        "title": "Pursue two object-store strategies now; hold data products until rights are granted"
+      },
+      "exhibit_S001": {
+        "kicker": "Storage concentration",
+        "so_what": "Database cost effort should concentrate on viusasa_staging, because the largest databases hold {K002} of the estate's bytes.",
+        "title": "One staging database holds almost all the data and index bytes in the estate"
+      },
+      "exhibit_S002": {
+        "kicker": "Data condition",
+        "so_what": "Quality and personal-data exposure, not duplication, constrain any product; exact duplicates are only {F007} of rows.",
+        "title": "Empty fields, degradation and personal-data markers are far more common than duplication"
+      },
+      "exhibit_S003": {
+        "kicker": "Reclaimable bytes by strategy",
+        "so_what": "The three largest strategies address {K004} of the {F021} GiB reached by all strategies; database-only measures are small beside the object stores.",
+        "title": "Two object-store strategies account for almost all reclaimable bytes"
+      },
+      "findings1": {
+        "kicker": "Estate and coverage",
+        "points": [
+          "The estate comprises {F001} and {F002}. Only {F003} were measured, which is {K001} of tables; remaining ratios rest on stratified samples.",
+          "Data and index held total {F004}. The largest databases account for {F016} GiB, a share of {K002}.",
+          "Before pricing, {F005} looks reclaimable inside databases, which is {F006} of database bytes.",
+          "{F015} are empty by row estimate, though a freshly truncated live table looks the same."
+        ],
+        "title": "The census covers the whole estate but measured only part of the tables"
+      },
+      "findings2": {
+        "kicker": "Data condition",
+        "points": [
+          "Exact duplicate rows are {F007} of rows, so de-duplication inside tables offers little.",
+          "Degraded rows are {F008} of rows, a material defect for any analytical or licensed product.",
+          "Rows with empty required-looking fields are {F009}. This is a heuristic, so treat it as a signal, not a verdict.",
+          "Personal-data markers appear in {F010} of sampled rows. The detector is sampled, so absence of a marker is not absence of personal data."
+        ],
+        "title": "Quality and personal-data exposure, not duplication, limit what the data can be used for"
+      },
+      "findings3": {
+        "kicker": "Staleness and duplication",
+        "points": [
+          "Personal-data markers were sampled from {F011} rows, so the marker rate rests on a sample, not a full pass.",
+          "Bytes not written for over a year are {F012} of the total, a measured and sizeable share of potentially archivable data.",
+          "The estate holds {F013} rows, an estimate, so row-based product sizing is indicative only.",
+          "{F014} of duplicate table pairs exist, but copies may be deliberate staging or backups; confirm ownership before retirement."
+        ],
+        "title": "Staleness and duplicate tables offer savings at the margin that cannot yet be settled"
+      },
+      "risks": {
+        "kicker": "Limits of the evidence",
+        "points": [
+          "Only {F003} of {F002} were measured, so sampled ratios are estimates; a complete-pass census would close this.",
+          "Rights and licences were not measured; rights declared and bound to each candidate would close this.",
+          "The artists_app connection is unread and some buckets are unreachable; a read grant and reconciled bucket inventory would close this.",
+          "File-share duplication is unknown without content fingerprints, and savings on {F004} held are list-price estimates."
+        ],
+        "title": "Sampling, rights and unreachable sources limit what can be claimed today"
+      },
+      "section1": {
+        "title": "Where the bytes sit"
+      },
+      "section2": {
+        "title": "Condition of the data"
+      },
+      "section3": {
+        "title": "Where the savings are"
+      }
+    },
+    "subtitle": "Cost-reduction and data-product choices from the RMS estate census, tenant confidential",
+    "title": "Savings lie in object stores, not databases; products wait on rights"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 13,
+      "repairs": 1
+    },
+    "latency_ms": 32576,
+    "model": "claude-sonnet-5-5",
+    "provider": "emergent",
+    "receipt_id": "rcp-50c29120db2a",
+    "repairs": 1,
+    "tokens_in": 28858,
+    "tokens_out": 4929
+  }
+}

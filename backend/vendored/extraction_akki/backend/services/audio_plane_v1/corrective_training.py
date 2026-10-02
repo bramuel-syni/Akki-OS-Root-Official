@@ -15,7 +15,7 @@ from services.audio_plane_v1 import language_cognition_worker as w
 
 
 OPTIONAL_DEFAULTS = {'logit_adjustment_tau': 0.0, 'bottleneck_dim': 128, 'bottleneck_noise': 0.0, 'speaker_loss_weight': 0.1,
-                     'condition_loss_weight': 0.05}
+                     'condition_loss_weight': 0.05, 'dp_enabled': True}
 
 
 def validate(params):
@@ -40,6 +40,8 @@ def validate(params):
             raise ValueError('INVALID_CORRECTIVE_NUMBER:' + key)
     if 'bottleneck_dim' in params and (type(params['bottleneck_dim']) is not int or not 8 <= params['bottleneck_dim'] <= 512):
         raise ValueError('INVALID_CORRECTIVE_INTEGER:bottleneck_dim')
+    if 'dp_enabled' in params and type(params['dp_enabled']) is not bool:
+        raise ValueError('INVALID_CORRECTIVE_FLAG:dp_enabled')
     if params['delta'] >= 1 or not isinstance(params['owner_order_ref'], str) or not params['owner_order_ref'].strip():
         raise ValueError('CORRECTIVE_AUTHORITY_OR_DELTA_INVALID')
 
@@ -94,7 +96,9 @@ def _evaluate(model, featurizer, rows, codes, device, batch=1024, collect=False)
     import torch
     per = {c: {'windows': 0, 'correct': 0, 'abstain': 0} for c in codes}
     conditions, confusion, features, logits_all, encoder_all, presenters = {}, {}, [], [], [], []
-    model.eval(); model.disable_hooks()
+    hooks = hasattr(model, 'disable_hooks')
+    model.eval()
+    if hooks: model.disable_hooks()
     try:
         with torch.no_grad():
             for i in range(0, len(rows), batch):
@@ -114,7 +118,8 @@ def _evaluate(model, featurizer, rows, codes, device, batch=1024, collect=False)
                     if confidence >= 0.6:
                         confusion.setdefault(code, Counter())[codes[prediction]] += 1
     finally:
-        model.enable_hooks(); model.train()
+        if hooks: model.enable_hooks()
+        model.train()
     for row in list(per.values()) + list(conditions.values()):
         judged = row['windows'] - row['abstain']
         row['accuracy'] = round(row['correct'] / judged, 5) if judged else None
@@ -133,7 +138,7 @@ def _checkpoint(path, model, optimizer, privacy, epoch, steps, generator, recipe
     import os
     import torch
     state = {'model': {k: v.detach().cpu() for k, v in model.state_dict().items()},
-             'optimizer': optimizer.state_dict(), 'privacy_accountant': privacy.accountant.state_dict(),
+             'optimizer': optimizer.state_dict(), 'privacy_accountant': privacy.accountant.state_dict() if privacy is not None else None,
              'epoch': epoch, 'steps': steps, 'python_rng': random.getstate(), 'numpy_rng': np.random.get_state(),
              'torch_rng': torch.get_rng_state(), 'cuda_rng': torch.cuda.get_rng_state_all(),
              'loader_rng': generator.get_state(), 'recipe_sha256': recipe_hash, 'manifest_sha256': manifest_hash}
@@ -188,22 +193,27 @@ def train(control, state):
     loader = DataLoader(ds, batch_size=control['batch_size'], shuffle=True, generator=generator,
                         num_workers=4, pin_memory=True, prefetch_factor=4)
     optimizer = torch.optim.AdamW((p for p in raw.parameters() if p.requires_grad), lr=control['lr'], weight_decay=0.01)
-    privacy = PrivacyEngine(accountant='rdp', secure_mode=False)
-    model, optimizer, loader = privacy.make_private(module=raw, optimizer=optimizer, data_loader=loader,
-        noise_multiplier=control['noise_multiplier'], max_grad_norm=control['max_grad_norm'], poisson_sampling=True,
-        grad_sample_mode='hooks', wrap_model=True, rand_on_empty=False)
+    dp = bool(control['dp_enabled'])
+    if dp:
+        privacy = PrivacyEngine(accountant='rdp', secure_mode=False)
+        model, optimizer, loader = privacy.make_private(module=raw, optimizer=optimizer, data_loader=loader,
+            noise_multiplier=control['noise_multiplier'], max_grad_norm=control['max_grad_norm'], poisson_sampling=True,
+            grad_sample_mode='hooks', wrap_model=True, rand_on_empty=False)
+    else:
+        # Owner sign-off 2026-10-02: non-private corrective arm on owner-held data; plain clipped AdamW, same model, data, split and selection rule.
+        privacy, model = None, raw
     recipe = {k: control[k] for k in ('baseline_job_id', 'seed', 'epochs', 'batch_size', 'physical_batch_size', 'lr',
-        'adversary_strength', 'noise_multiplier', 'max_grad_norm', 'delta', 'max_windows_per_file', 'owner_order_ref', 'smoke_steps')}
+        'adversary_strength', 'noise_multiplier', 'max_grad_norm', 'delta', 'max_windows_per_file', 'owner_order_ref', 'smoke_steps', 'dp_enabled')}
     recipe.update(encoder_seconds=2, frozen_vox_fusion=False, lora_r=16, bottleneck=control['bottleneck_dim'], bottleneck_noise=control['bottleneck_noise'],
                   logit_adjustment_tau=control['logit_adjustment_tau'], speaker_loss_weight=control['speaker_loss_weight'],
                   condition_loss_weight=control['condition_loss_weight'],
                   loss_balance='fixed language/condition square-root inverse frequency, cap8; no oversampling; training-time logit adjustment by class prior',
                   model_base_sha256=reg['whisper-lid-v1-mit']['weight_sha256'],
                   feature_path='device log-mel over the declared 2 s window (no 30 s CPU padding); vectorised training-only augmentation',
-                  precision='TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors',
-                  loader='4 prefetching workers, pinned memory; Poisson sampler and RNG in the main process',
+                  precision='TF32 tensor-core matmul; per-sample clipping, noise and accountant in fp32 tensors' if dp else 'TF32 tensor-core matmul; global-norm clipped AdamW, no privacy noise',
+                  loader='4 prefetching workers, pinned memory; Poisson sampler and RNG in the main process' if dp else '4 prefetching workers, pinned memory; shuffled batches, RNG in the main process',
                   selection='minimum dev-language correct/ALL windows (abstentions included), then macro; no test selection',
-                  privacy_scope='window-example DP on fixed manifest; not presenter-level or end-to-end DP certification',
+                  privacy_scope='window-example DP on fixed manifest; not presenter-level or end-to-end DP certification' if dp else 'none — non-private arm under owner sign-off; speaker adversary and probe still applied',
                   secure_rng=False, auto_admission=False, checkpoint_custody='internal only; speaker adversary never exported')
     recipe_text = json.dumps(recipe, sort_keys=True); recipe_hash = hashlib.sha256(recipe_text.encode()).hexdigest()
     (art / 'recipe.json').write_text(recipe_text)
@@ -211,14 +221,22 @@ def train(control, state):
     checkpoint = art / 'checkpoint.pt'
     trainable = [p for p in model.parameters() if p.requires_grad]
     per_sample_verified = False
-    state.update(progress={'stage': 'DP-SGD ready', 'train_windows': len(train_rows), 'gpu_index': control['gpu_index'],
-                           'manifest_sha256': manifest_hash, 'recipe_sha256': recipe_hash, 'opacus': 'validated'})
+    state.update(progress={'stage': 'DP-SGD ready' if dp else 'non-private corrective ready', 'train_windows': len(train_rows), 'gpu_index': control['gpu_index'],
+                           'manifest_sha256': manifest_hash, 'recipe_sha256': recipe_hash, 'opacus': 'validated' if dp else 'not used'})
     training_started, step_clock = time.monotonic(), []
+
+    def _batches(epoch_loader):
+        if dp:
+            with BatchMemoryManager(data_loader=epoch_loader, max_physical_batch_size=control['physical_batch_size'], optimizer=optimizer) as batches:
+                yield from batches
+        else:
+            yield from epoch_loader
+
     for epoch in range(control['epochs']):
         losses = []
         # BatchMemoryManager controls physical accumulation; noise/accountant step once per logical Poisson batch.
-        with BatchMemoryManager(data_loader=loader, max_physical_batch_size=control['physical_batch_size'], optimizer=optimizer) as batches:
-            for pcm, language, speaker, condition, weight in batches:
+        if True:
+            for pcm, language, speaker, condition, weight in _batches(loader):
                 optimizer.zero_grad(set_to_none=True)
                 if len(pcm) == 0:
                     # Empty Poisson draw still adds noise and spends one accountant step.
@@ -239,18 +257,20 @@ def train(control, state):
                     if not torch.isfinite(loss):
                         raise ValueError('NONFINITE_CORRECTIVE_LOSS')
                     loss.backward(); loss_value = float(loss.detach())
-                    if not per_sample_verified:
+                    if dp and not per_sample_verified:
                         if any(p.grad_sample is None for p in trainable):
                             raise ValueError('UNPRIVATIZED_TRAINABLE_PARAMETER')
                         per_sample_verified = True
+                    if not dp:
+                        torch.nn.utils.clip_grad_norm_(trainable, control['max_grad_norm'])
                 optimizer.step(); losses.append(loss_value)
-                if optimizer._is_last_step_skipped:
+                if dp and optimizer._is_last_step_skipped:
                     continue
                 steps += 1
                 step_clock.append(time.monotonic())
                 if steps % 10 == 0 or steps == 1:
                     recent = step_clock[-21:]
-                    state.update(progress={'stage': 'corrective DP-SGD training', 'epoch': epoch + 1, 'epochs': control['epochs'],
+                    state.update(progress={'stage': 'corrective DP-SGD training' if dp else 'corrective non-private training', 'epoch': epoch + 1, 'epochs': control['epochs'],
                         'step': steps, 'loss': round(float(np.mean(losses[-20:])), 5), 'gpu_index': control['gpu_index'],
                         'elapsed_seconds': round(time.monotonic() - start), 'gpu_memory_gb': round(torch.cuda.max_memory_allocated()/1e9, 2),
                         'examples_per_logical_batch': control['batch_size'], 'dp_per_sample_verified': per_sample_verified,
@@ -260,13 +280,13 @@ def train(control, state):
                 if control['smoke_steps'] and steps >= control['smoke_steps']:
                     break
         state.update(progress={'stage': 'development evaluation (test still untouched)', 'epoch': epoch + 1, 'step': steps})
-        before = privacy.accountant.state_dict()
+        before = privacy.accountant.state_dict() if dp else None
         dev, _ = _evaluate(model, featurizer, sets['dev'], codes, device)
-        if before != privacy.accountant.state_dict():
+        if dp and before != privacy.accountant.state_dict():
             raise ValueError('VALIDATION_CHANGED_PRIVACY_ACCOUNTANT')
         scores = [r['correct']/r['windows'] for r in dev['per_language'].values() if r['windows']]
         score = (min(scores), sum(scores)/len(scores))
-        epsilon = privacy.get_epsilon(control['delta'])
+        epsilon = privacy.get_epsilon(control['delta']) if dp else None
         curve.append({'epoch': epoch + 1, 'step': steps, 'dev': dev, 'epsilon': epsilon, 'selection_score': score})
         # Durable development-only checkpoint for the lab; no held-out data used for feedback.
         state.update(lab_checkpoint={'epoch':epoch+1,'step':steps,'dev':dev,'epsilon':epsilon})
@@ -278,10 +298,11 @@ def train(control, state):
             break
     # Verify the actual serialized optimizer/accountant and RNG state; do not reset spending at selection.
     saved = torch.load(checkpoint, map_location='cpu', weights_only=False)
-    original_epsilon = privacy.get_epsilon(control['delta'])
-    privacy.accountant.load_state_dict(saved['privacy_accountant'])
-    if abs(privacy.get_epsilon(control['delta']) - original_epsilon) > 1e-9:
-        raise ValueError('PRIVACY_CHECKPOINT_RELOAD_MISMATCH')
+    original_epsilon = privacy.get_epsilon(control['delta']) if dp else None
+    if dp:
+        privacy.accountant.load_state_dict(saved['privacy_accountant'])
+        if abs(privacy.get_epsilon(control['delta']) - original_epsilon) > 1e-9:
+            raise ValueError('PRIVACY_CHECKPOINT_RELOAD_MISMATCH')
     model.load_state_dict(torch.load(art / 'best_internal.pt', map_location=device, weights_only=True))
     state.update(progress={'stage': 'terminal protected-set evaluation', 'step': steps, 'best_dev_epoch': best_epoch})
     held, extra = _evaluate(model, featurizer, sets['held'], codes, device, collect=not control['smoke_steps'])
@@ -327,17 +348,19 @@ def train(control, state):
                      'batch_size': control['batch_size'], 'physical_batch_size': control['physical_batch_size'],
                      'precision': recipe['precision'], 'feature_path': recipe['feature_path'],
                      'windows_per_second': round(steps * control['batch_size'] / max(1e-6, time.monotonic() - training_started), 1)},
-        'dp_sgd': {'applied': per_sample_verified, 'epsilon': original_epsilon, 'delta': control['delta'],
-                   'noise_multiplier': control['noise_multiplier'], 'max_grad_norm': control['max_grad_norm'],
-                   'accountant': 'rdp', 'poisson_sampling': True, 'secure_rng': False, 'checkpoint_accountant_verified': True,
-                   'scope': recipe['privacy_scope'], 'release_privacy_certified': False},
+        'dp_sgd': {'applied': per_sample_verified, 'enabled': dp, 'epsilon': original_epsilon, 'delta': control['delta'],
+                   'noise_multiplier': control['noise_multiplier'] if dp else None, 'max_grad_norm': control['max_grad_norm'],
+                   'accountant': 'rdp' if dp else None, 'poisson_sampling': dp, 'secure_rng': False, 'checkpoint_accountant_verified': dp,
+                   'scope': recipe['privacy_scope'], 'release_privacy_certified': False} if dp else None,
+        'non_private_arm': None if dp else {'owner_signoff_ref': control['owner_order_ref'], 'clipping': control['max_grad_norm'], 'speaker_adversary_applied': True},
         'checkpoint': {'optimizer_saved': bool(saved['optimizer']), 'rng_saved': all(k in saved for k in
                        ('python_rng','numpy_rng','torch_rng','cuda_rng','loader_rng')), 'path': str(checkpoint),
                        'full_interruption_resume_proven': False},
         'span_rule': {'window_seconds': 2.0, 'min_span_seconds': w.MIN_SPAN_SECONDS, 'hysteresis_windows': w.HYSTERESIS_WINDOWS},
         'artefact': {'path': str(art), 'sha256': digest.hexdigest(), 'training_manifest_sha256': manifest_hash,
                     'final_model': False, 'custody': 'RMS_TENANT; inside akki-vm-ii; never auto-admitted',
-                    'moac': {'verdict': 'NOT ADMISSIBLE — research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance',
+                    'moac': {'verdict': ('NOT ADMISSIBLE — research corrective candidate; missing labelled code-switch/English/Sheng and independent M9 acceptance' if dp
+                                         else 'ACCEPTANCE BY SIGNED CONTRACT — non-private corrective arm under owner sign-off; the control plane judges the per-language floor, regression and speaker probe'),
                              'code_switch_material_present': False, 'no_speaker_id_probe_passed': probe.get('strict_chance_met'),
                              'no_speaker_id_probe_on_egress_surface': (probe.get('egress_surface') or {}).get('at_chance_all_languages'),
                              'per_language_meets_default': {c: (r['accuracy'] or 0) >= 0.90 for c, r in held['per_language'].items() if r['windows']}}}}

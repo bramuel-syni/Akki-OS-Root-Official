@@ -1,5 +1,10 @@
 # Akki — current engineering order
 
+## Report-download follow-up — 2026-10-01
+- Preferred `/downloads/` PPTX/DOCX/ZIP delivery is independently browser-verified. See `test_reports/iteration_78.json`; report contents remain unchanged.
+- If Bad Gateway recurs, investigate preview availability/ingress with the exact URL and time. The original intermittent cause is not confirmed; do not bypass controls, deploy, or restart a healthy service based on assumption.
+- Report and development backlog otherwise unchanged. Keep static copies/ZIP synchronized through `publish_downloads.py` when regenerating reports.
+
 ## Owner report request — fulfilled 2026-10-01
 - Combined rigorous PPTX/Word report pair delivered as direct attachments; no UI embedding. Exact paths and verified output hashes in `assessment_workspace/deliverables/estate_intelligence_20261001/README.md`.
 - Report-specific next evidence work, **not newly commissioned**: reconcile source coverage and asset joins; independently qualify language/music, speech quality, transcript fidelity, alignment and onward rights; then produce lab-ready eligible quantities with design-aware uncertainty.

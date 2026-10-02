@@ -1,5 +1,12 @@
 # Akki — product requirements and current continuity
 
+## Download recovery — 2026-10-01
+- User could not download either report and reported **Bad Gateway** on the original `/api/deliverables/` links. The intermittent outage could not be reproduced during subsequent checks; exact trigger is unconfirmed. No production deployment exists, and no deployment or service restart was performed.
+- Added preferred **static frontend download paths**, independent of the FastAPI upstream: `/downloads/RMS_Estate_Report.pptx`, `/downloads/RMS_Estate_Report.docx`, and `/downloads/RMS_Estate_Reports.zip`. Original report content is unchanged; ZIP contains the same two exact files. No UI embedding, auth changes or new credentials.
+- Publisher and manifest: `assessment_workspace/deliverables/estate_intelligence_20261001/publish_downloads.py` and `static_download_manifest.json`. Persistent binaries: `frontend/public/downloads/`. Republish these when the source reports are regenerated.
+- Mandatory post-fix independent verification passed: `test_reports/iteration_78.json` records all three actual Playwright download events from a fresh unauthenticated browser, correct filenames, no download failure, exact hashes, and ZIP parity. Four response regression checks also passed. Legacy API URLs returned200 repeatedly, but that does not establish the original outage cause.
+- Share the static paths as preferred links. Keep intermittent preview ingress/API availability investigation separate; do not claim the underlying gateway failure is conclusively repaired.
+
 ## Latest owner deliverables — 2026-10-01
 - User requested a combined rigorous, easy-to-follow PPTX and Word report: (1) estate intelligence, with duplication mainly here; (2) non-English/non-music audio+text quantities, hours, volumes and quality, suitable for global AI-lab scrutiny; (3) a wider opportunity portfolio than context services and open-source alone. **Simple downloads, no UI embedding.**
 - Delivered **43-slide PPTX and 24-page DOCX** via existing allowlisted `/api/deliverables/RMS_Estate_Intelligence_and_Language_Opportunities.{pptx,docx}`. No UI changes or new product dashboard. Twelve opportunities, per-language inventories, quality/rights limitations, methodology, provenance and references.

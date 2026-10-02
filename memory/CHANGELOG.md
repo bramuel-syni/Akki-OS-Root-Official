@@ -1,5 +1,10 @@
 # Akki implementation history
 
+## 2026-10-01 — report-download Bad Gateway mitigation
+- Added frontend-static PowerPoint/Word downloads and a combined ZIP, avoiding dependency on the API download upstream. Report contents unchanged; no new UI or authentication.
+- Independent post-fix browser verification passed for all three actual downloads; hashes/ZIP contents match and four regression checks pass (`iteration_78.json`).
+- Original intermittent gateway condition was not reproduced; root cause remains unconfirmed. No deployment or service restart was performed. Static download paths are now preferred.
+
 ## 2026-10-01 — owner estate/data opportunity report pair
 - Produced a combined 43-slide PPTX and 24-page Word document covering estate intelligence, AI-lab-grade accounting of non-English/non-music candidate audio/text, and twelve commercial/public-interest options. Duplication stays primarily in estate intelligence.
 - Included per-language volumes and hours, separate quality evidence/unknowns, explicit denominators and rights limits, reproducible calculations, source hashes and documentation/governance references. No invented eligible hours, quality bands or revenue forecasts.

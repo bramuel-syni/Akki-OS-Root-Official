@@ -1,0 +1,186 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@2",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "{C902}"
+        },
+        {
+          "para": "{C903}"
+        },
+        {
+          "para": "{C904}"
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C913}"
+        },
+        {
+          "para": "{C914}"
+        },
+        {
+          "figure": {
+            "caption": "{C915}",
+            "plate": "bar",
+            "series_ref": "S001",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Bytes are concentrated in one staging database"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C919}"
+        },
+        {
+          "para": "{C920}"
+        },
+        {
+          "figure": {
+            "caption": "{C921}",
+            "plate": "bar",
+            "series_ref": "S002",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Quality and exposure are the main constraint"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C925}"
+        },
+        {
+          "para": "{C926}"
+        },
+        {
+          "figure": {
+            "caption": "{C927}",
+            "plate": "bar",
+            "series_ref": "S003",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Reclaimable bytes sit almost entirely in object stores"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C933}"
+        }
+      ],
+      "heading": "Estate size and measurement coverage"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C939}"
+        }
+      ],
+      "heading": "Condition of the measured rows"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C945}"
+        }
+      ],
+      "heading": "Staleness, duplication and sampling"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C948}"
+        },
+        {
+          "para": "{C949}"
+        },
+        {
+          "options_table": {
+            "caption": "{C950}",
+            "columns": [
+              "O1",
+              "O2",
+              "O3"
+            ],
+            "rows": [
+              {
+                "field": "reclaimable_gib",
+                "format": "num1",
+                "label": "Reclaimable gib"
+              },
+              {
+                "field": "monthly_saving_usd",
+                "format": "num1",
+                "label": "Monthly saving usd"
+              }
+            ]
+          }
+        }
+      ],
+      "heading": "Three priced strategies compared"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C956}"
+        },
+        {
+          "para": "{C957}"
+        }
+      ],
+      "heading": "What to do first, and why"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C963}"
+        },
+        {
+          "para": "{C964}"
+        }
+      ],
+      "heading": "What cannot yet be said"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "spec_id": "PP-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "{C901}",
+  "title": "{content.title}",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

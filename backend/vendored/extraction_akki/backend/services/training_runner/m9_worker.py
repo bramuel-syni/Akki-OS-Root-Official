@@ -1343,6 +1343,10 @@ def execute(control):
         elif control['phase'] == 'lab_measure':
             from services.training_lab.measurement_worker import measure_corpus
             receipt['result'] = measure_corpus(control, state)
+        elif control['phase'] == 'lab_train_music':
+            os.environ['CUDA_VISIBLE_DEVICES'] = str(control['gpu_index'])
+            from services.training_lab.music_detector_worker import train_music_detector
+            receipt['result'] = train_music_detector(control, state)
         else:
             receipt["result"] = PHASES[control["phase"]](control, state)
         receipt["status"] = "completed"

@@ -1,0 +1,165 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@3",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "{C901}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C908}",
+      "complication": "{C906}",
+      "kicker": "Executive summary",
+      "question": "{C907}",
+      "situation": "{C905}",
+      "title": "{C904}",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "{C909}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C911}",
+        "y_format": "num"
+      },
+      "kicker": "Storage by database",
+      "title": "{C910}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "number": 2,
+      "title": "{C915}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C917}",
+        "y_format": "pct"
+      },
+      "kicker": "Row condition",
+      "title": "{C916}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "number": 3,
+      "title": "{C921}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C923}",
+        "y_format": "num"
+      },
+      "kicker": "Cost strategies",
+      "title": "{C922}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Scope and scale",
+      "points": [
+        "{C928}",
+        "{C929}",
+        "{C930}",
+        "{C931}"
+      ],
+      "title": "{C927}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Quality and exposure",
+      "points": [
+        "{C935}",
+        "{C936}",
+        "{C937}",
+        "{C938}"
+      ],
+      "title": "{C934}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Housekeeping",
+      "points": [
+        "{C942}",
+        "{C943}",
+        "{C944}",
+        "{C945}"
+      ],
+      "title": "{C941}",
+      "type": "assertion_points"
+    },
+    {
+      "columns": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "kicker": "Priced strategies",
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "num1",
+          "label": "Reclaimable gib"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "num1",
+          "label": "Monthly saving usd"
+        }
+      ],
+      "so_what": "{C949}",
+      "title": "{C948}",
+      "type": "comparison"
+    },
+    {
+      "kicker": "Recommended order",
+      "points": [
+        "{C954}",
+        "{C955}",
+        "{C956}",
+        "{C957}"
+      ],
+      "title": "{C953}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Limits of the evidence",
+      "points": [
+        "{C961}",
+        "{C962}",
+        "{C963}",
+        "{C964}"
+      ],
+      "title": "{C960}",
+      "type": "assertion_points"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

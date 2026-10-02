@@ -1,0 +1,122 @@
+{
+ "job_id": "lcj-f3343fa163b1",
+ "phase": "train_corrective",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-10-02T06:31:23.127029Z",
+ "params": {
+  "baseline_job_id": "lcj-f96c86a16312",
+  "seed": 41,
+  "epochs": 8,
+  "batch_size": 2048,
+  "physical_batch_size": 1024,
+  "max_windows_per_file": 120,
+  "parallelism": 24,
+  "lr": 0.0003,
+  "max_grad_norm": 1.0,
+  "delta": 1e-06,
+  "smoke_steps": 0,
+  "logit_adjustment_tau": 1.0,
+  "condition_loss_weight": 0.05,
+  "noise_multiplier": 0.7,
+  "adversary_strength": 0.5,
+  "bottleneck_dim": 64,
+  "bottleneck_noise": 0.25,
+  "speaker_loss_weight": 0.5,
+  "dp_enabled": false,
+  "gpu_index": 0,
+  "owner_order_ref": "owner sign-off d4c27b6e9871 by 6ab56dd48894abb269135ca2 at 2026-10-02T06:31:18Z: lwg reinforcement, non-DP corrective arm, cap 3.0 GPU-h"
+ },
+ "northena_run_id": "run-f516572bde0f",
+ "northena_trace_id": "trc-7056228472f2",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-AIP-LANGUAGE-COGNITION",
+  "version": "lcj-f3343fa163b1"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-lc",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-f3343fa163b1",
+  "pid": 801777
+ },
+ "status": "failed",
+ "final_model_commission": {
+  "decision": "refused",
+  "reason": "CleanMonolingualOnlyRefused",
+  "message": "MUST-NOT \u00a71 owner verbatim: 'Clean-monolingual alone is a MUST-NOT for the final model.' Commission refused because has_code_switched_material is False; the training set MUST carry labelled code-switched material per span."
+ },
+ "ledger_rows": [
+  {
+   "row_id": "led-5913139219c5",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "language_cognition_train_corrective_admitted"
+  },
+  {
+   "row_id": "led-3a85447c9ebd",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "language_cognition_train_corrective_daemonised:pid=801777"
+  },
+  {
+   "row_id": "led-5a107d178753",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "language_cognition_train_corrective_failed"
+  }
+ ],
+ "code_sha256": "15f868c579edc1226df334c9b392a162c8aabe08a9986a9caf56986e1233e53e",
+ "started_at": "2026-10-02T06:31:28.996223Z",
+ "last_status_rpc": {
+  "at": "2026-10-02T06:37:00.287220Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-da20a0c86201"
+ },
+ "remote_state": {
+  "phase": "train_corrective",
+  "status": "failed",
+  "started_at": "2026-10-02T06:31:28Z",
+  "progress": {
+   "stage": "development evaluation (test still untouched)",
+   "epoch": 1,
+   "step": 66
+  },
+  "events": [],
+  "job_id": "lcj-f3343fa163b1",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-02T06:36:03Z",
+  "finished_at": "2026-10-02T06:36:03Z",
+  "receipt_sha256": "0554f59d975302788d3abe34908f18fd610560e19e4071107c37895acc175819"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 10471.99it/s]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-language-cognition-v1",
+  "job_id": "lcj-f3343fa163b1",
+  "phase": "train_corrective",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-02T06:31:28Z",
+  "code_sha256": "15f868c579edc1226df334c9b392a162c8aabe08a9986a9caf56986e1233e53e",
+  "status": "failed",
+  "error": {
+   "type": "AttributeError",
+   "message": "'CorrectiveModel' object has no attribute 'disable_hooks'",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-f3343fa163b1/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 1026, in execute\n    receipt[\"result\"] = PHASES[control[\"phase\"]](control, state)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-f3343fa163b1/worker.zip/services/audio_plane_v1/language_cognition_worker.py\", line 1009, in train_corrective\n    return train(control, state)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-f3343fa163b1/worker.zip/services/audio_plane_v1/corrective_training.py\", line 281, in train\n    dev, _ = _evaluate(model, featurizer, sets['dev'], codes, device)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/jobs/lcj-f3343fa163b1/worker.zip/services/audio_plane_v1/corrective_training.py\", line 99, in _evaluate\n    model.eval(); model.disable_hooks()\n                  ^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1968, in __getattr__\n    raise AttributeError(\nAttributeError: 'CorrectiveModel' object has no attribute 'disable_hooks'\n"
+  },
+  "finished_at": "2026-10-02T06:36:03Z",
+  "receipt_sha256": "0554f59d975302788d3abe34908f18fd610560e19e4071107c37895acc175819",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-02T06:36:03Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "lcj-f3343fa163b1",
+  "started_at_utc": "2026-10-02T06:31:28.996223Z",
+  "finished_at_utc": "2026-10-02T06:36:03Z",
+  "status": "failed",
+  "provenance_ref": "census_autonomy_service://run_log/lcj-f3343fa163b1"
+ }
+}

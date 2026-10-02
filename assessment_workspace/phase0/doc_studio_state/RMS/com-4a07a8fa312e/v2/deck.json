@@ -1,0 +1,165 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@2",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "{C901}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C909}",
+      "complication": "{C907}",
+      "kicker": "Decision summary",
+      "question": "{C908}",
+      "situation": "{C906}",
+      "title": "{C905}",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "{C910}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C912}",
+        "y_format": "num"
+      },
+      "kicker": "Storage concentration",
+      "title": "{C911}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "number": 2,
+      "title": "{C916}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C918}",
+        "y_format": "pct"
+      },
+      "kicker": "Data condition",
+      "title": "{C917}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "number": 3,
+      "title": "{C922}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C924}",
+        "y_format": "num"
+      },
+      "kicker": "Reclaimable bytes by strategy",
+      "title": "{C923}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Estate and coverage",
+      "points": [
+        "{C929}",
+        "{C930}",
+        "{C931}",
+        "{C932}"
+      ],
+      "title": "{C928}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Data condition",
+      "points": [
+        "{C935}",
+        "{C936}",
+        "{C937}",
+        "{C938}"
+      ],
+      "title": "{C934}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Staleness and duplication",
+      "points": [
+        "{C941}",
+        "{C942}",
+        "{C943}",
+        "{C944}"
+      ],
+      "title": "{C940}",
+      "type": "assertion_points"
+    },
+    {
+      "columns": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "kicker": "Priced strategies",
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "num1",
+          "label": "Reclaimable gib"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "num1",
+          "label": "Monthly saving usd"
+        }
+      ],
+      "so_what": "{C947}",
+      "title": "{C946}",
+      "type": "comparison"
+    },
+    {
+      "kicker": "Recommended order",
+      "points": [
+        "{C952}",
+        "{C953}",
+        "{C954}",
+        "{C955}"
+      ],
+      "title": "{C951}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Limits of the evidence",
+      "points": [
+        "{C959}",
+        "{C960}",
+        "{C961}",
+        "{C962}"
+      ],
+      "title": "{C958}",
+      "type": "assertion_points"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

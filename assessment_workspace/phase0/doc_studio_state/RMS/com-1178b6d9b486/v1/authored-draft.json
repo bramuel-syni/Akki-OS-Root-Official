@@ -1,0 +1,109 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "Recommended order of work",
+          "paragraphs": [
+            "Keep the model in service, but make no claim of a proven gain over baseline. Then commission a fresh, independently labelled and sealed evaluation set. Start with non-music audio, where the interval of {F031} to {F032} per cent is weakest. Follow with music examples to tighten the recall interval of {F023} to {F024} per cent.",
+            "Hold back recipe changes until that material exists. Reusing the inspected results to choose a recipe would remove their value as independent acceptance. For later runs, compile an explicit objective linked to a production plan."
+          ]
+        },
+        "findings_R01_1": {
+          "heading": "What the receipt records",
+          "paragraphs": [
+            "The record covers this single run only. It holds {F001} measured checks against the signed acceptance. The signed plan records {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. These are plan settings, and the receipt does not label them here, so they should not be treated as model performance.",
+            "Against baseline, accuracy rose from {F012} to {F011} per cent and precision from {F016} to {F015} per cent. Recall is {F022} per cent, the same as the baseline of {F025} per cent. The gain is therefore confined to accuracy and precision."
+          ]
+        },
+        "findings_R01_2": {
+          "heading": "How certain each stratum is",
+          "paragraphs": [
+            "The reported intervals are wide. Accuracy runs from {F019} to {F020} per cent, and recall from {F023} to {F024} per cent. Precision starts at {F027} per cent. The baselines of {F021} per cent for accuracy and {F029} per cent for precision sit inside these ranges, so the evidence does not separate the model from baseline.",
+            "Specificity is {F030} per cent but with an interval from {F031} to {F032} per cent, the widest of all. The width suggests a small evaluation sample, though the receipt does not state sample sizes. Compute was modest: {F008} minutes on GPU {F009}, with a peak of {F010} GB."
+          ]
+        },
+        "risks": {
+          "heading": "What cannot yet be said",
+          "paragraphs": [
+            "Three things cannot be said from this record. First, general performance outside the measured strata. Only an independently designed evaluation would establish it. Second, independent final acceptance after any further recipe selection. The current results have been inspected, so only fresh sealed, independently labelled material would support it. Third, complete lineage from objective to production, because no new production plan is linked to this historical run.",
+            "The values {F002} to {F007} are recorded plan settings, not measured results. Reviewers should keep them separate from the performance figures."
+          ]
+        }
+      },
+      "summary": [
+        "The staged-audio music identification model is recorded as in service, and serving remains a separate operation. The retained receipt holds {F001} measured checks. Accuracy is {F011} per cent against a baseline of {F012} per cent, and precision is {F015} per cent against {F016} per cent. Recall is level with its baseline.",
+        "These results should not be read as proof of improvement. Every interval is wide and each baseline figure that differs lies inside its interval. The widest uncertainty is on non-music audio, at {F031} to {F032} per cent. The next step should be better evidence, in the form of a fresh sealed evaluation set, rather than another tuning round."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "What to do first",
+        "points": [
+          "First, keep the model in service but claim no proven gain over baseline. Accuracy of {F011} per cent against {F012} per cent sits inside the interval.",
+          "Second, commission a fresh, independently labelled and sealed evaluation set, with non-music audio first. Its interval of {F031} to {F032} per cent is the weakest.",
+          "Third, add music examples to tighten the recall interval of {F023} to {F024} per cent before judging any recall change against {F025} per cent.",
+          "Fourth, compile an explicit objective linked to a production plan for later runs. Do not backdate links to this historical run."
+        ],
+        "title": "Strengthen the evidence before changing the recipe: new sealed data first, tuning second"
+      },
+      "exec": {
+        "answer": "Improve the dataset first. Build a fresh, independently labelled and sealed evaluation set, starting with non-music audio, where the interval runs only from {F031} to {F032} per cent. Claim no gain over baseline until it exists.",
+        "complication": "Accuracy is {F011} per cent against a baseline of {F012} per cent, and precision is {F015} per cent against {F016} per cent. The intervals are wide, and the baseline sits inside them. Recall matches its baseline exactly.",
+        "kicker": "Summary",
+        "question": "Which improvement should come next: a different model recipe, or better evidence about the model already built?",
+        "situation": "The staged-audio music identification model is recorded as in service. Its retained receipt holds {F001} measured checks against the signed acceptance. The training run took {F008} minutes on GPU {F009}, with peak memory of {F010} GB.",
+        "title": "The model scores perfectly on the check set, but the set is too small to prove a margin"
+      },
+      "findings_R01_1": {
+        "kicker": "What was recorded",
+        "points": [
+          "{F001} checks were measured against the signed acceptance and retained in the receipt for this single run.",
+          "The signed plan records {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. These are recorded settings, not measured performance, and the receipt does not label them here.",
+          "Accuracy is {F011} per cent against baseline {F012} per cent. Precision is {F015} per cent against baseline {F016} per cent.",
+          "Recall is {F022} per cent, identical to its baseline of {F025} per cent, so there is no recall gain to report."
+        ],
+        "title": "On the acceptance checks the model matches or beats baseline, but the margin is small"
+      },
+      "findings_R01_2": {
+        "kicker": "Per-stratum precision",
+        "points": [
+          "Accuracy of {F018} per cent has an interval from {F019} to {F020} per cent. The baseline of {F021} per cent lies inside it.",
+          "Recall of {F022} per cent has an interval from {F023} to {F024} per cent. Precision of {F026} per cent has an interval from {F027} to {F028} per cent.",
+          "Specificity, the share of non-music correctly cleared, is {F030} per cent. Its interval runs from {F031} to {F032} per cent, the widest recorded.",
+          "Training took {F008} minutes on GPU {F009}, peaking at {F010} GB. Compute is not a constraint on further runs."
+        ],
+        "title": "Every stratum interval is wide, and non-music is the least certain of all"
+      },
+      "risks": {
+        "kicker": "Limits of the evidence",
+        "points": [
+          "Performance outside the measured strata is not established by this run. An independently designed evaluation would close that gap.",
+          "These results have been inspected, so they cannot serve as independent final acceptance after any further recipe selection. Fresh sealed, independently labelled material would close this.",
+          "No new production plan is linked to this historical run, so objective-to-production lineage is incomplete. An explicitly compiled, evidence-linked objective would close it.",
+          "The signed plan values {F002} to {F007} are recorded settings, not measured results. They should not be read as performance."
+        ],
+        "title": "The record cannot support claims beyond the measured strata or independent final acceptance"
+      },
+      "section1": {
+        "title": "Training receipt and acceptance record"
+      }
+    },
+    "subtitle": "Staged audio run: per-stratum results, coverage limits and the next dataset step",
+    "title": "Music identification: perfect scores, thin evidence"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 0
+    },
+    "latency_ms": 38421,
+    "model": "claude-sonnet-5-5",
+    "provider": "emergent",
+    "receipt_id": "rcp-d69fe4ab30eb",
+    "tokens_in": 4918,
+    "tokens_out": 1890
+  }
+}

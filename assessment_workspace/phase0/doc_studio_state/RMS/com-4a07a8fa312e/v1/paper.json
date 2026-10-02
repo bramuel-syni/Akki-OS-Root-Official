@@ -1,0 +1,192 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "{C902}"
+        },
+        {
+          "para": "{C903}"
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C912}"
+        },
+        {
+          "para": "{C913}"
+        },
+        {
+          "figure": {
+            "caption": "{C914}",
+            "plate": "bar",
+            "series_ref": "S001",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Database bytes are concentrated in one staging database"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C918}"
+        },
+        {
+          "para": "{C919}"
+        },
+        {
+          "figure": {
+            "caption": "{C920}",
+            "plate": "bar",
+            "series_ref": "S002",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Quality and exposure matter more than duplication"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C924}"
+        },
+        {
+          "para": "{C925}"
+        },
+        {
+          "figure": {
+            "caption": "{C926}",
+            "plate": "bar",
+            "series_ref": "S003",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Nearly all reclaimable bytes sit in two object-store strategies"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C932}"
+        },
+        {
+          "para": "{C933}"
+        }
+      ],
+      "heading": "Scale and coverage of the census"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C939}"
+        },
+        {
+          "para": "{C940}"
+        }
+      ],
+      "heading": "Row condition and exposure"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C946}"
+        },
+        {
+          "para": "{C947}"
+        }
+      ],
+      "heading": "Age, emptiness and copies"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C950}"
+        },
+        {
+          "para": "{C951}"
+        },
+        {
+          "options_table": {
+            "caption": "{C952}",
+            "columns": [
+              "O1",
+              "O2",
+              "O3"
+            ],
+            "rows": [
+              {
+                "field": "reclaimable_gib",
+                "format": "num1",
+                "label": "Reclaimable gib"
+              },
+              {
+                "field": "monthly_saving_usd",
+                "format": "num1",
+                "label": "Monthly saving usd"
+              }
+            ]
+          }
+        }
+      ],
+      "heading": "The three priced strategies compared"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C958}"
+        },
+        {
+          "para": "{C959}"
+        }
+      ],
+      "heading": "Recommended order of work"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C965}"
+        },
+        {
+          "para": "{C966}"
+        }
+      ],
+      "heading": "Risks, obligations and open gaps"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "spec_id": "PP-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "{C901}",
+  "title": "{content.title}",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

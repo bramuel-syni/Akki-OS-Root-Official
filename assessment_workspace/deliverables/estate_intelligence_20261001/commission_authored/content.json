@@ -1,0 +1,1441 @@
+{
+ "content_id": "rms-estate-and-local-language-opportunities",
+ "version": 1,
+ "title": "RMS estate and language corpus: what is defensible",
+ "organisation": "Royal Media Services · Owner briefing",
+ "receipts": {
+  "R01": {
+   "resolves_to": "RMS estate census, eij-1b359b3cbd2e; measured 29 September 2026. Exact source hashes in the Word appendix."
+  },
+  "R02": {
+   "resolves_to": "OBS and NAS retained listings embedded in the census; 29 September 2026. Metadata scope, not language or music analysis."
+  },
+  "R03": {
+   "resolves_to": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification."
+  },
+  "R04": {
+   "resolves_to": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries."
+  },
+  "R05": {
+   "resolves_to": "Text language-ID run, m9j-74af7cef0a85; measured per-stratum results. Not an ASR or general-language certificate."
+  },
+  "R06": {
+   "resolves_to": "Measurement status, m9j-c47f01c0b945; last retained heartbeat 1 October 2026 at 04:33 UTC. No final quality receipt."
+  },
+  "R07": {
+   "resolves_to": "Report analysis and explicitly labelled planning calculations, derived from the pinned evidence; not forecasts or new measurements."
+  },
+  "R08": {
+   "resolves_to": "Documentation and governance references: Datasheets, Data Cards, NIST AI RMF and Kenya data-protection law; full references in Word."
+  }
+ },
+ "facts": {
+  "F001": {
+   "label": "Database catalogue bytes",
+   "value": 377199771648,
+   "unit": "bytes",
+   "class": "measured",
+   "receipt": "R01"
+  },
+  "F002": {
+   "label": "Estimated database rows",
+   "value": 259273874,
+   "unit": "rows",
+   "class": "estimated",
+   "receipt": "R01"
+  },
+  "F003": {
+   "label": "Observed rows in census",
+   "value": 5881277,
+   "unit": "rows",
+   "class": "measured",
+   "receipt": "R01"
+  },
+  "F004": {
+   "label": "Catalogued tables",
+   "value": 1006,
+   "unit": "tables",
+   "class": "measured",
+   "receipt": "R01"
+  },
+  "F005": {
+   "label": "Measured table entries",
+   "value": 638,
+   "unit": "tables",
+   "class": "measured",
+   "receipt": "R01"
+  },
+  "F006": {
+   "label": "OBS listed bytes",
+   "value": 143284816848890,
+   "unit": "bytes",
+   "class": "measured",
+   "receipt": "R02"
+  },
+  "F007": {
+   "label": "OBS listed objects",
+   "value": 22975591,
+   "unit": "objects",
+   "class": "measured",
+   "receipt": "R02"
+  },
+  "F008": {
+   "label": "NAS listed bytes",
+   "value": 47990537059397,
+   "unit": "bytes",
+   "class": "measured",
+   "receipt": "R02"
+  },
+  "F009": {
+   "label": "NAS listed files",
+   "value": 1456787,
+   "unit": "files",
+   "class": "measured",
+   "receipt": "R02"
+  },
+  "F010": {
+   "label": "Staged audio files",
+   "value": 3958,
+   "unit": "files",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "F011": {
+   "label": "Staged audio duration",
+   "value": 529.3379000000001,
+   "unit": "hours",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "F012": {
+   "label": "Staged audio bytes",
+   "value": 36516920948,
+   "unit": "bytes",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "F013": {
+   "label": "Companion transcript files",
+   "value": 3939,
+   "unit": "files",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "F014": {
+   "label": "Companion transcript bytes",
+   "value": 37192774,
+   "unit": "bytes",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "F015": {
+   "label": "Assembled natural text units",
+   "value": 157513,
+   "unit": "units",
+   "class": "measured",
+   "receipt": "R04"
+  },
+  "F016": {
+   "label": "Assembled text characters",
+   "value": 27329904,
+   "unit": "characters",
+   "class": "measured",
+   "receipt": "R04"
+  },
+  "F017": {
+   "label": "Source files in text assembly",
+   "value": 4521,
+   "unit": "files",
+   "class": "measured",
+   "receipt": "R04"
+  },
+  "F018": {
+   "label": "Text-ID evaluated units",
+   "value": 2800,
+   "unit": "units",
+   "class": "measured",
+   "receipt": "R05"
+  },
+  "F019": {
+   "label": "Text-ID conditional macro accuracy",
+   "value": 0.97213,
+   "unit": "pct",
+   "class": "measured",
+   "receipt": "R05"
+  }
+ },
+ "series": {
+  "S001": {
+   "label": "Listed storage by separate inventory; not additive unique content",
+   "categories": [
+    "Database catalogue",
+    "OBS objects",
+    "NAS files"
+   ],
+   "values": {
+    "Decimal TB": [
+     0.377,
+     143.285,
+     47.991
+    ]
+   },
+   "unit": "TB",
+   "class": "measured",
+   "receipt": "R02"
+  },
+  "S002": {
+   "label": "Readiness grades of measured relational-table entries only",
+   "categories": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "values": {
+    "Tables": [
+     171,
+     62,
+     191,
+     189,
+     25
+    ]
+   },
+   "unit": "tables",
+   "class": "measured",
+   "receipt": "R01"
+  },
+  "S003": {
+   "label": "Measured staged-audio duration by folder label, not certified speech hours",
+   "categories": [
+    "Bukusu (folder label) (bxk)",
+    "Ekegusii (guz)",
+    "Kikamba (kam)",
+    "Kikuyu (kik)",
+    "Kalenjin (kln)",
+    "Dholuo (luo)",
+    "Wanga / Luhya label (lwg)",
+    "Kiswahili (swa)"
+   ],
+   "values": {
+    "Hours": [
+     1.07,
+     92.23,
+     85.37,
+     82.08,
+     89.72,
+     81.99,
+     9.19,
+     87.67
+    ]
+   },
+   "unit": "hours",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "S004": {
+   "label": "Staged-audio file counts by sample rate; not a quality grade",
+   "categories": [
+    "11.025 kHz",
+    "16 kHz",
+    "22.05 kHz",
+    "32 kHz",
+    "44.1 kHz",
+    "48 kHz"
+   ],
+   "values": {
+    "Files": [
+     597,
+     22,
+     49,
+     2,
+     3126,
+     162
+    ]
+   },
+   "unit": "files",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "S005": {
+   "label": "Natural assembled text units by language label",
+   "categories": [
+    "Ekegusii (guz)",
+    "Kikamba (kam)",
+    "Kikuyu (kik)",
+    "Kalenjin (kln)",
+    "Dholuo (luo)",
+    "Wanga / Luhya label (lwg)",
+    "Kiswahili (swa)"
+   ],
+   "values": {
+    "Natural units": [
+     21856,
+     12220,
+     18344,
+     32441,
+     22274,
+     29852,
+     20526
+    ]
+   },
+   "unit": "units",
+   "class": "measured",
+   "receipt": "R04"
+  },
+  "S006": {
+   "label": "Natural text partition counts; added synthetic canaries excluded",
+   "categories": [
+    "Train",
+    "Development",
+    "Held-out",
+    "Archive test"
+   ],
+   "values": {
+    "Natural units": [
+     129984,
+     8280,
+     18980,
+     269
+    ]
+   },
+   "unit": "units",
+   "class": "measured",
+   "receipt": "R04"
+  },
+  "S007": {
+   "label": "Text-ID measured conditional accuracy and coverage on equal strata",
+   "categories": [
+    "Ekegusii",
+    "Kikamba",
+    "Kikuyu",
+    "Kalenjin",
+    "Dholuo",
+    "Wanga / Luhya label",
+    "Kiswahili"
+   ],
+   "values": {
+    "Accuracy among judged (%)": [
+     98.24,
+     91.35,
+     99.25,
+     99.75,
+     99.49,
+     93.47,
+     98.95
+    ],
+    "Coverage (%)": [
+     99.25,
+     98.25,
+     99.5,
+     99.5,
+     98.0,
+     95.75,
+     95.25
+    ]
+   },
+   "unit": "percent",
+   "class": "measured",
+   "receipt": "R05"
+  },
+  "S008": {
+   "label": "Staged audio and companion transcript inventory; different units by column",
+   "categories": [
+    "bxk · Bukusu (folder label)",
+    "guz · Ekegusii",
+    "kam · Kikamba",
+    "kik · Kikuyu",
+    "kln · Kalenjin",
+    "luo · Dholuo",
+    "lwg · Wanga / Luhya label",
+    "swa · Kiswahili"
+   ],
+   "values": {
+    "Audio files": [
+     14,
+     732,
+     1166,
+     584,
+     295,
+     558,
+     60,
+     549
+    ],
+    "Hours": [
+     1.07,
+     92.23,
+     85.37,
+     82.08,
+     89.72,
+     81.99,
+     9.19,
+     87.67
+    ],
+    "Audio GB": [
+     0.07,
+     7.701,
+     4.835,
+     5.502,
+     6.359,
+     3.787,
+     0.771,
+     7.49
+    ],
+    "Text files": [
+     0,
+     730,
+     1165,
+     583,
+     295,
+     557,
+     60,
+     549
+    ],
+    "Text MB": [
+     0.0,
+     6.272,
+     5.109,
+     5.464,
+     7.584,
+     6.026,
+     0.739,
+     6.0
+    ]
+   },
+   "unit": "",
+   "class": "measured",
+   "receipt": "R03"
+  },
+  "S009": {
+   "label": "Natural transcript partitions by language label",
+   "categories": [
+    "guz · Ekegusii",
+    "kam · Kikamba",
+    "kik · Kikuyu",
+    "kln · Kalenjin",
+    "luo · Dholuo",
+    "lwg · Wanga / Luhya label",
+    "swa · Kiswahili"
+   ],
+   "values": {
+    "Train": [
+     18443,
+     8746,
+     13846,
+     27483,
+     18681,
+     25350,
+     17435
+    ],
+    "Dev": [
+     1094,
+     931,
+     924,
+     1667,
+     1131,
+     1496,
+     1037
+    ],
+    "Held": [
+     2217,
+     2422,
+     3573,
+     3253,
+     2455,
+     3006,
+     2054
+    ],
+    "Archive": [
+     102,
+     121,
+     1,
+     38,
+     7,
+     0,
+     0
+    ]
+   },
+   "unit": "units",
+   "class": "measured",
+   "receipt": "R04"
+  },
+  "S010": {
+   "label": "Database-estate readiness distribution; not speech or text quality",
+   "categories": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "values": {
+    "Tables": [
+     171,
+     62,
+     191,
+     189,
+     25
+    ],
+    "Share (%)": [
+     26.8,
+     9.72,
+     29.94,
+     29.62,
+     3.92
+    ]
+   },
+   "unit": "",
+   "class": "measured",
+   "receipt": "R01"
+  },
+  "S011": {
+   "label": "Text language-ID: conditional accuracy, coverage and correct-of-all; percentages",
+   "categories": [
+    "Ekegusii",
+    "Kikamba",
+    "Kikuyu",
+    "Kalenjin",
+    "Dholuo",
+    "Wanga / Luhya label",
+    "Kiswahili"
+   ],
+   "values": {
+    "Conditional accuracy (%)": [
+     98.24,
+     91.35,
+     99.25,
+     99.75,
+     99.49,
+     93.47,
+     98.95
+    ],
+    "Coverage (%)": [
+     99.25,
+     98.25,
+     99.5,
+     99.5,
+     98.0,
+     95.75,
+     95.25
+    ],
+    "Correct of all (%)": [
+     97.5,
+     89.75,
+     98.75,
+     99.25,
+     97.5,
+     89.5,
+     94.25
+    ]
+   },
+   "unit": "",
+   "class": "measured",
+   "receipt": "R05"
+  }
+ },
+ "options": {},
+ "calculations": {},
+ "claims": {
+  "C901": {
+   "text": "Owner briefing on estate condition, the corpus claim and responsible options",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C902": {
+   "text": "The retained estate is large but unevenly measured. The database catalogue holds {F001} bytes across {F004} tables, of which {F005} were measured and graded. The census observed {F003} rows against an estimate of {F002}. Two file inventories list {F006} bytes at OBS and {F008} bytes at NAS, but these show custody scale, not content.",
+   "supports": [
+    "F001",
+    "F004",
+    "F005",
+    "F003",
+    "F002",
+    "F006",
+    "F008"
+   ],
+   "authored": true
+  },
+  "C903": {
+   "text": "What can be claimed is narrower and well evidenced. A staged audio subset holds {F011} hours in {F010} files, labelled by folder. A separately assembled text corpus holds {F015} natural units from {F017} source files. Language identification scored {F019} conditional macro accuracy on {F018} units, with clear weakness for Kikamba and the Wanga / Luhya label.",
+   "supports": [
+    "F011",
+    "F010",
+    "F015",
+    "F017",
+    "F019",
+    "F018"
+   ],
+   "authored": true
+  },
+  "C904": {
+   "text": "The first priority is a joined coverage ledger and a rights review. Until both exist, estate-wide hours, token counts, quality distributions and commercial figures cannot be stated, and no onward licence or release should be offered.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C905": {
+   "text": "The estate is large but only partly measured; a narrow language claim is defensible now",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C906": {
+   "text": "The retained database catalogue holds {F001} bytes across {F004} tables, with an estimated {F002} rows. Separate inventories list {F006} bytes in {F007} objects at OBS, and {F008} bytes in {F009} files at NAS. A staged audio subset and a separately assembled text corpus have also been measured.",
+   "supports": [
+    "F001",
+    "F004",
+    "F002",
+    "F006",
+    "F007",
+    "F008",
+    "F009"
+   ],
+   "authored": true
+  },
+  "C907": {
+   "text": "Only {F005} table entries were measured, and the census observed {F003} rows against an estimate of {F002}. The file inventories record custody, not language, music or rights, and they cannot be added together. No final quality receipt exists, so no estate-wide hours or token claim is yet possible.",
+   "supports": [
+    "F005",
+    "F003",
+    "F002"
+   ],
+   "authored": true
+  },
+  "C908": {
+   "text": "What can the owner responsibly claim and commercialise today, and what must be done first to widen that claim?",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C909": {
+   "text": "Claim only what is measured: {F011} hours of staged audio across {F010} files, and {F015} natural text units from {F017} source files. Language identification reached {F019} conditional macro accuracy on {F018} units, but it is weaker for Kikamba and the Wanga / Luhya label. Complete the coverage ledger and rights review before any licensing, release or revenue statement.",
+   "supports": [
+    "F011",
+    "F010",
+    "F015",
+    "F017",
+    "F019",
+    "F018"
+   ],
+   "authored": true
+  },
+  "C910": {
+   "text": "Database estate condition",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C911": {
+   "text": "Grades C and D hold most measured tables; only a minority reach grade A or B",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C912": {
+   "text": "Readiness is uneven, so any data product should start from grade A and B tables and treat the rest as remediation work.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C913": {
+   "text": "Among the measured tables, grades C and D together hold most entries, while grades A and B form a minority. Grade E is the smallest group. This is a readiness view of the relational estate and tells the owner where remediation effort will fall.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C914": {
+   "text": "The grades cover only measured entries. They should not be extended to the remaining catalogued tables, nor read as a statement about speech or text quality.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C915": {
+   "text": "Readiness is uneven, so any data product should start from grade A and B tables and treat the rest as remediation work.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C916": {
+   "text": "Grade C and D tables make up about three in five measured entries; grade E is smallest",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C917": {
+   "text": "These grades describe database readiness only; they say nothing about speech or text quality and must not be quoted as corpus quality.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C918": {
+   "text": "The share view shows about three in five measured tables in grades C and D, with a little over a third in grades A and B. The picture matches the counts and adds no new evidence.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C919": {
+   "text": "Because the shares are of measured entries, a different mix among ungraded tables would change the estate picture. Quote them as shares of the measured set only.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C920": {
+   "text": "These grades describe database readiness only; they say nothing about speech or text quality and must not be quoted as corpus quality.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C921": {
+   "text": "Only part of the catalogue is measured, and observed rows are a small slice of the estimate",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C922": {
+   "text": "The catalogue records {F001} bytes across {F004} tables, but only {F005} table entries were measured and graded.",
+   "supports": [
+    "F001",
+    "F004",
+    "F005"
+   ],
+   "authored": true
+  },
+  "C923": {
+   "text": "Estimated rows stand at {F002}; the census observed {F003}, so row-level conclusions rest on a small observed share.",
+   "supports": [
+    "F002",
+    "F003"
+   ],
+   "authored": true
+  },
+  "C924": {
+   "text": "The remaining catalogued tables are ungraded, so no estate-wide grade distribution can be stated.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C925": {
+   "text": "The catalogue records {F001} bytes in {F004} tables, with an estimated {F002} rows. Only {F005} table entries were measured, and the census observed {F003} rows. The estimate is an estimate and the observed count is a measurement; the two should not be blended.",
+   "supports": [
+    "F001",
+    "F004",
+    "F002",
+    "F005",
+    "F003"
+   ],
+   "authored": true
+  },
+  "C926": {
+   "text": "The owner should therefore treat estate condition as known for the measured tables and unknown for the rest. Completing the census is a prerequisite for any estate-wide statement.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C927": {
+   "text": "File inventories",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C928": {
+   "text": "File stores dwarf the database, yet their listings measure bytes, not usable content",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C929": {
+   "text": "The three inventories are separate and cannot be summed into unique content; they show custody scale only.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C930": {
+   "text": "Listed storage at OBS and NAS exceeds the database catalogue by orders of magnitude. If valuable language material exists in the estate, it is more likely to sit in these stores than in relational tables, though the listings cannot confirm that.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C931": {
+   "text": "The three inventories are separate listings. They may overlap, were not deduplicated, and must not be added to give a unique-content total.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C932": {
+   "text": "The three inventories are separate and cannot be summed into unique content; they show custody scale only.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C933": {
+   "text": "The two file inventories list large volumes but say nothing yet about language, music or rights",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C934": {
+   "text": "OBS lists {F006} bytes in {F007} objects: a retained listing, not an analysis of contents.",
+   "supports": [
+    "F006",
+    "F007"
+   ],
+   "authored": true
+  },
+  "C935": {
+   "text": "NAS lists {F008} bytes in {F009} files, again scope only, with no language or music labelling.",
+   "supports": [
+    "F008",
+    "F009"
+   ],
+   "authored": true
+  },
+  "C936": {
+   "text": "The inventories may overlap, so no combined unique-content figure should be quoted.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C937": {
+   "text": "Eligible, non-music, rights-cleared audio inside these stores is unknown until segment-level labels are joined.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C938": {
+   "text": "OBS lists {F006} bytes in {F007} objects, and NAS lists {F008} bytes in {F009} files. These are retained listings embedded in the census. They carry no language, music or rights analysis.",
+   "supports": [
+    "F006",
+    "F007",
+    "F008",
+    "F009"
+   ],
+   "authored": true
+  },
+  "C939": {
+   "text": "Any statement about eligible audio hours therefore needs a further step: segment-level labels joined to these inventories and checked on a stratified sample.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C940": {
+   "text": "Staged audio",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C941": {
+   "text": "Six language folders hold similar staged hours; the Wanga and Bukusu labels are thin",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C942": {
+   "text": "Hours are folder-label durations, not certified speech; the two thin labels cannot support model claims without more collection or verification.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C943": {
+   "text": "Six folders hold between just over eighty and just over ninety hours each. The Wanga / Luhya label holds only a handful of hours, and the Bukusu folder just over an hour across a small number of files.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C944": {
+   "text": "Durations are measured from headers by folder label. They are not certified speech hours, and a folder label is not content verification.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C945": {
+   "text": "Hours are folder-label durations, not certified speech; the two thin labels cannot support model claims without more collection or verification.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C946": {
+   "text": "Most staged files share one sample rate; a sizeable lower-rate group needs screening",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C947": {
+   "text": "Sample rate is a header property, not a quality grade; it can screen files but cannot certify studio or telephone quality.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C948": {
+   "text": "Most staged files share the commonest sample rate, with a smaller higher-rate group and a sizeable group at the lowest rate in the set. A handful of files sit at other rates.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C949": {
+   "text": "These counts help plan resampling and screening. They do not show whether a file is studio or telephone quality, and no quality claim should rest on them.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C950": {
+   "text": "Sample rate is a header property, not a quality grade; it can screen files but cannot certify studio or telephone quality.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C951": {
+   "text": "Transcripts pair with nearly every audio file; the Bukusu folder has none",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C952": {
+   "text": "Pairing by file count is not alignment; transcript accuracy and timing remain unmeasured, and the columns use different units.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C953": {
+   "text": "Transcript files track audio files closely in every folder except Bukusu, which has none, with one or two unpaired files in a few others. The columns use different units: files, hours, gigabytes and megabytes.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C954": {
+   "text": "Pairing by file count is not alignment. Transcript accuracy and timing remain unmeasured.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C955": {
+   "text": "Pairing by file count is not alignment; transcript accuracy and timing remain unmeasured, and the columns use different units.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C956": {
+   "text": "The staged set is a labelled subset of real scale, not a verified corpus",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C957": {
+   "text": "The authorised subset holds {F010} audio files lasting {F011} hours and occupying {F012} bytes.",
+   "supports": [
+    "F010",
+    "F011",
+    "F012"
+   ],
+   "authored": true
+  },
+  "C958": {
+   "text": "Companion transcripts number {F013} files and {F014} bytes, so some audio files have no pair.",
+   "supports": [
+    "F013",
+    "F014"
+   ],
+   "authored": true
+  },
+  "C959": {
+   "text": "Language comes from folder labels, which are not content verification.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C960": {
+   "text": "Header inspection does not establish speech content, music exclusion or audio quality.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C961": {
+   "text": "The subset holds {F010} audio files, {F011} hours and {F012} bytes, with {F013} companion transcript files totalling {F014} bytes. The inspection receipt is verified, but it covers headers only.",
+   "supports": [
+    "F010",
+    "F011",
+    "F012",
+    "F013",
+    "F014"
+   ],
+   "authored": true
+  },
+  "C962": {
+   "text": "The set is a useful starting corpus for qualification. It is not yet evidence of speech content, language purity, music exclusion or audio quality, and it should be described as labelled and staged.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C963": {
+   "text": "Assembled text corpus",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C964": {
+   "text": "Kalenjin and the Wanga label lead natural text; Kikamba is the thinnest of the seven",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C965": {
+   "text": "Volume is uneven across languages, so any balanced training or evaluation claim must be stated per language, not pooled.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C966": {
+   "text": "Kalenjin and the Wanga / Luhya label carry the most natural units, followed by Dholuo, Ekegusii and Kiswahili. Kikuyu is next, and Kikamba is the thinnest. Bukusu has no assembled text.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C967": {
+   "text": "A pooled figure would hide this spread. Claims about any one language should cite that language's own count.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C968": {
+   "text": "Volume is uneven across languages, so any balanced training or evaluation claim must be stated per language, not pooled.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C969": {
+   "text": "Most natural text sits in training, with a sizeable held-out set and a very small archive test",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C970": {
+   "text": "The held-out set is large enough to evaluate against; the archive test is too small to carry conclusions alone. Synthetic canaries are excluded.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C971": {
+   "text": "Most natural units sit in training, with a development set, a larger held-out set and a very small archive test. Synthetic canaries were added for integrity checks and are excluded from these counts.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C972": {
+   "text": "The held-out set is large enough for evaluation. The archive test is too small to carry conclusions by itself.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C973": {
+   "text": "The held-out set is large enough to evaluate against; the archive test is too small to carry conclusions alone. Synthetic canaries are excluded.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C974": {
+   "text": "Archive test text sits mainly in Ekegusii and Kikamba; the Wanga label and Kiswahili have none",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C975": {
+   "text": "Partition shape differs by language, so cross-language comparisons should use the held-out set, which exists for all seven.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C976": {
+   "text": "Archive test text is concentrated in Ekegusii and Kikamba, with a modest amount for Kalenjin, a few units for Dholuo, a single unit for Kikuyu, and none for the Wanga / Luhya label or Kiswahili.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C977": {
+   "text": "Cross-language comparison should therefore rest on the held-out set, which exists for every language, and not on the archive test.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C978": {
+   "text": "Partition shape differs by language, so cross-language comparisons should use the held-out set, which exists for all seven.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C979": {
+   "text": "The assembled text is a defensible, separately assembled corpus of natural units",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C980": {
+   "text": "The assembly contains {F015} natural text units; added synthetic canaries are excluded from every count.",
+   "supports": [
+    "F015"
+   ],
+   "authored": true
+  },
+  "C981": {
+   "text": "The units run to {F016} characters from {F017} source files; characters are not tokens, and no tokenizer-specific count exists.",
+   "supports": [
+    "F016",
+    "F017"
+   ],
+   "authored": true
+  },
+  "C982": {
+   "text": "Text and audio populations are not joined, so these units are not clean aligned speech-text pairs.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C983": {
+   "text": "The assembly yields {F015} natural units and {F016} characters from {F017} source files, sealed at the end of September. Counts exclude added canaries.",
+   "supports": [
+    "F015",
+    "F016",
+    "F017"
+   ],
+   "authored": true
+  },
+  "C984": {
+   "text": "Characters are not tokens. No tokenizer-specific count exists, and text is not joined to audio, so the corpus supports a text claim only.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C985": {
+   "text": "Language identification",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C986": {
+   "text": "Language-ID is accurate where it judges, but Kikamba and the Wanga label trail the rest",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C987": {
+   "text": "Conditional accuracy excludes units the tool declined to judge; lower coverage for Kiswahili and the Wanga label means conditional figures flatter real performance.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C988": {
+   "text": "Kikuyu, Kalenjin, Dholuo, Ekegusii and Kiswahili are all judged with high conditional accuracy. Kikamba and the Wanga / Luhya label fall clearly below. Coverage is lowest for Kiswahili and the Wanga label, meaning more units went unjudged there.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C989": {
+   "text": "Conditional accuracy counts only judged units, so it is a favourable view and must be read with coverage.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C990": {
+   "text": "Conditional accuracy excludes units the tool declined to judge; lower coverage for Kiswahili and the Wanga label means conditional figures flatter real performance.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C991": {
+   "text": "Counting every unit, the Wanga label and Kikamba fall furthest, with Kiswahili next",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C992": {
+   "text": "Correct-of-all is the stricter measure and should be quoted beside conditional accuracy, not behind it.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C993": {
+   "text": "Counting every unit, the Wanga / Luhya label and Kikamba fall furthest, with Kiswahili next. The other four stay close to the top.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C994": {
+   "text": "The owner should quote correct-of-all alongside conditional accuracy so that low coverage is not hidden.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C995": {
+   "text": "Correct-of-all is the stricter measure and should be quoted beside conditional accuracy, not behind it.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C996": {
+   "text": "The headline accuracy is high but narrow, and it is not a general-language certificate",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C997": {
+   "text": "The run evaluated {F018} units on equal strata: a per-language sample, not a population estimate.",
+   "supports": [
+    "F018"
+   ],
+   "authored": true
+  },
+  "C998": {
+   "text": "Conditional macro accuracy is {F019}, measured only among units the tool chose to judge.",
+   "supports": [
+    "F019"
+   ],
+   "authored": true
+  },
+  "C999": {
+   "text": "Kikamba and the Wanga label sit clearly below that average, so one headline figure hides the languages needing review.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1000": {
+   "text": "The run evaluated {F018} units on equal strata and reports {F019} conditional macro accuracy. It is a per-stratum measurement for this corpus, not a certificate for general language use.",
+   "supports": [
+    "F018",
+    "F019"
+   ],
+   "authored": true
+  },
+  "C1001": {
+   "text": "No final quality receipt is yet available; measurement status last showed a retained heartbeat in early October. Treat results as interim until it lands.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1002": {
+   "text": "Build the coverage ledger and clear rights before any external claim",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1003": {
+   "text": "First, join the inventories of {F006} and {F008} bytes to language, music and rights labels.",
+   "supports": [
+    "F006",
+    "F008"
+   ],
+   "authored": true
+  },
+  "C1004": {
+   "text": "Second, complete the census: {F005} of {F004} tables are measured; grade the rest before quoting estate condition.",
+   "supports": [
+    "F005",
+    "F004"
+   ],
+   "authored": true
+  },
+  "C1005": {
+   "text": "Third, run a rights review of the {F011} staged hours and {F015} text units before any partner access.",
+   "supports": [
+    "F011",
+    "F015"
+   ],
+   "authored": true
+  },
+  "C1006": {
+   "text": "Fourth, verify Bukusu and Wanga labels and review Kikamba identification against human references; publish only the measured claim meanwhile.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1007": {
+   "text": "Start with the coverage ledger: it joins the inventories of {F006} and {F008} bytes to language, music and rights labels, and everything else depends on it. In parallel, complete the table census, since {F005} of {F004} tables are measured.",
+   "supports": [
+    "F006",
+    "F008",
+    "F005",
+    "F004"
+   ],
+   "authored": true
+  },
+  "C1008": {
+   "text": "Then commission the rights review before any partner sees the {F011} staged hours or {F015} text units. Verify the Bukusu and Wanga / Luhya labels, and review Kikamba identification with human references. Publish only the narrow, measured claim in the meantime.",
+   "supports": [
+    "F011",
+    "F015"
+   ],
+   "authored": true
+  },
+  "C1009": {
+   "text": "Four claims cannot yet be made, each with a defined route to closure",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1010": {
+   "text": "Estate-wide non-music eligible audio hours: no joined inventory carries verified labels. The coverage ledger closes this.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1011": {
+   "text": "Estate-wide text tokens or clean aligned pairs: {F001} database bytes are not text volume. Versioned exports and audits close this.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1012": {
+   "text": "Audio quality and transcript error rates: headers are not quality. Human-reference evaluation closes this.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1013": {
+   "text": "Licensing, release, savings and revenue: custody is not onward rights. Rights review, invoices and paid pilots close this.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1014": {
+   "text": "Four gaps stand between the present evidence and an estate-wide claim: eligible non-music audio hours, natural-text tokens and clean alignments, audio and transcript quality distributions, and onward rights with realised commercial value. Database storage of {F001} bytes and the file listings do not substitute for any of them.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  },
+  "C1015": {
+   "text": "Each gap has a stated closing step: the coverage ledger, versioned exports with independent audits, human-reference evaluation, and rights review with paid pilot validation. Governance references, including data-protection law, apply before any external sharing.",
+   "supports": [
+    "F001"
+   ],
+   "authored": true
+  }
+ },
+ "coverage": {
+  "covers": "Retained RMS relational census, OBS/NAS listings, an authorised staged-audio subset, a separately assembled transcript corpus and a narrow language-identification evaluation. Evidence cut: 1 October 2026, 19:12 UTC.",
+  "cannot_say": [
+   {
+    "gap": "Estate-wide non-English, non-music eligible audio hours",
+    "reason": "No joined asset inventory with verified segment-level language, music and rights labels",
+    "closes_with": "Complete the coverage ledger and stratified content qualification"
+   },
+   {
+    "gap": "Estate-wide non-English natural-text tokens or clean aligned speech–text hours",
+    "reason": "Database storage is not natural-text volume; text and audio populations are not joined",
+    "closes_with": "Versioned exports, tokenizer-specific counts, alignments and independent audits"
+   },
+   {
+    "gap": "Studio/telephone quality or transcript error-rate distributions",
+    "reason": "Header properties do not establish audio quality; no final waveform/annotation certificate",
+    "closes_with": "Measured observables plus task-specific human-reference evaluation"
+   },
+   {
+    "gap": "External licensing, open release or realised savings and revenue",
+    "reason": "Internal custody and indicative tariffs do not establish onward rights or commercial demand",
+    "closes_with": "Rights review, actual invoices, retrieval charges and paid pilot validation"
+   }
+  ]
+ },
+ "authoring": {
+  "model": "claude-sonnet-5-5",
+  "provider": "emergent",
+  "receipt_id": "rcp-19d45fc80010",
+  "tokens_in": 19495,
+  "tokens_out": 7940,
+  "latency_ms": 68230,
+  "repairs": 1,
+  "gate": {
+   "passed": true,
+   "issues": [],
+   "repairs": 1,
+   "plan_slots": 24
+  },
+  "pipeline": "planner → worker → content manager → frontier writer",
+  "claims_authored": 115
+ }
+}

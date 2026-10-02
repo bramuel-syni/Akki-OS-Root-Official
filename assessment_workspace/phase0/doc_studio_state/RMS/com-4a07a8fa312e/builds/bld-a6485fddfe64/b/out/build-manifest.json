@@ -1,0 +1,41 @@
+{
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+  "environment": {
+    "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+    "matplotlib": "3.11.2",
+    "openpyxl": "3.1.5",
+    "python": "3.11.16",
+    "python-docx": "1.2.0",
+    "python-pptx": "1.0.2"
+  },
+  "inputs_sha256": {
+    "deck.resolved.json": "192cca35529a801054a5064010d5bf72a23a701b387ec903618b856590b53413",
+    "deck.resolved/brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+    "deck.resolved/content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+    "deck.resolved/deck.json": "bec915bf74fe7b2f61f106288791f112b46e38b0a835d296fa69ea4f3e793751",
+    "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "deck.resolved/verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db",
+    "paper.resolved.json": "cd65e0962cbc38050103affe786a06459c3d8888b149af031727194113dd5ad7",
+    "paper.resolved/brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+    "paper.resolved/content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+    "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.resolved/paper.json": "fa08d8568c7bd3e2a2346dfd94d141211072802cfdfff7f8170e54717ce3a40c",
+    "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "paper.resolved/verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db",
+    "workbook.resolved.json": "13697fc8b74a0975529c0f2e2093d6050424525feb1292b1f8937fb1808fdcc2",
+    "workbook.resolved/brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+    "workbook.resolved/content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+    "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "workbook.resolved/verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db",
+    "workbook.resolved/workbook.json": "3b533668a80c2ab9251eb1f5930b5dfc3d4d7225774334cdbb7b9817d70681e2"
+  },
+  "outputs_sha256": {
+    "estate-intelligence-eij-1b359b3cbd2e-review.html": "627e80d967c57ffc5669982443e111a7d935d02a722d6889737f85645df565fa",
+    "estate-intelligence-eij-1b359b3cbd2e.docx": "82c00ff08308f8279ae6bc192a495e32ec785894c49b8d0fc9e5e477269c08da",
+    "estate-intelligence-eij-1b359b3cbd2e.pptx": "47749dedd0fb22fcb7c52d67177a83bbcc33b710af8128c6fd3d07f3c30f35e8",
+    "estate-intelligence-eij-1b359b3cbd2e.xlsx": "dd7d818fdea5eb4d9086490e432902ec4c830b64395b04d8eab1869ddd59a4fd"
+  }
+}

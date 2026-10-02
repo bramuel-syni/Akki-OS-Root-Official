@@ -1,0 +1,570 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 13,
+      "repairs": 1
+    },
+    "latency_ms": 36174,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "frontier",
+    "provider": "emergent",
+    "receipt_id": "rcp-1c53d8249cb0",
+    "source": "planner → worker → content manager → frontier writer (claude-sonnet-5-5); gate passed",
+    "tokens": 34725
+  },
+  "brief_id": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-10-02T05:55:49Z",
+      "build_id": "bld-e210c4caceb8",
+      "by": "demo.operator@demo.rms.example.com",
+      "content_version": 1,
+      "environment": {
+        "Pillow": "12.3.0",
+        "headless_browser": "/usr/bin/google-chrome",
+        "jsonschema": "4.26.0",
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "office_tools": {
+          "recalc": "headless LibreOffice convert + cached-value error scan (in-repo)",
+          "validate": "package/relationship/reopen checks (in-repo; not an OOXML schema validator)"
+        },
+        "openpyxl": "3.1.5",
+        "pdftoppm": true,
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2",
+        "tools_dir": "/app/backend/vendored/extraction_akki/backend/services/transform_forms/doc_studio/tools"
+      },
+      "error": "KeyError: 'unresolvable reference {C901}'",
+      "exports": {},
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-4a07a8fa312e/builds/bld-e210c4caceb8/log.txt",
+      "look": null,
+      "manifest": null,
+      "outputs": [],
+      "prove": null,
+      "qa": null,
+      "status": "failed",
+      "validate": null
+    },
+    {
+      "at": "2026-10-02T05:59:55Z",
+      "build_id": "bld-6fe993c8f93e",
+      "by": "demo.operator@demo.rms.example.com",
+      "content_version": 2,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": "QA blockers; not releasable",
+      "exports": {},
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-4a07a8fa312e/builds/bld-6fe993c8f93e/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "number-large",
+        "palette_id": "graphite",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T05:53:40Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "ee7c53ef73d0f9e556821351e107208b0d242fd68348f52aaf49bed1af9e17a6",
+          "deck.resolved/brief.json": "d55e73b6bbc2fef541697d9fd4b6b387673920e252caea8af4acd728d93d8b2f",
+          "deck.resolved/content.json": "c4c66d319e66c849e78c11d1c4df05fa7716c4f93467f86aade8786ccb44f548",
+          "deck.resolved/deck.json": "7542baf5c08e3a20f89ce3645d840827e85e5678ba5b2327aeb6a3ab0f60f837",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "43efc62a3e60bb1cdfe81fc5006d403bfb301343bd3d9413f5941339ea9e25b1",
+          "paper.resolved.json": "e63aa2d2eb9306cb4682f0f7af4d586fc8fe2c195c0680608d9303aa9f3d99ff",
+          "paper.resolved/brief.json": "d55e73b6bbc2fef541697d9fd4b6b387673920e252caea8af4acd728d93d8b2f",
+          "paper.resolved/content.json": "c4c66d319e66c849e78c11d1c4df05fa7716c4f93467f86aade8786ccb44f548",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "f975e654c70aa1ae57c0b590545fc05b3f97a28ea27b5fbff6da2b532b5300da",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "43efc62a3e60bb1cdfe81fc5006d403bfb301343bd3d9413f5941339ea9e25b1",
+          "workbook.resolved.json": "faca11cb910bf4a9471b0df98ace432c37fa3eac8b92e93f5fe28071a2ca5b61",
+          "workbook.resolved/brief.json": "d55e73b6bbc2fef541697d9fd4b6b387673920e252caea8af4acd728d93d8b2f",
+          "workbook.resolved/content.json": "c4c66d319e66c849e78c11d1c4df05fa7716c4f93467f86aade8786ccb44f548",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "43efc62a3e60bb1cdfe81fc5006d403bfb301343bd3d9413f5941339ea9e25b1",
+          "workbook.resolved/workbook.json": "dfef9d08832191ed9c56b53599ab16559feab64e4e0935577a711d0be9d47593"
+        },
+        "outputs_sha256": {
+          "estate-intelligence-eij-1b359b3cbd2e-review.html": "91fe08d5d9c625fe38ce2d79b2e107bb72770b1d0d1afbc37cbab56bf40e92d0",
+          "estate-intelligence-eij-1b359b3cbd2e.docx": "44931f5a4caf88d64f0ada7b064ec3a7b534a17de55a7ff97a7f8df33035bae9",
+          "estate-intelligence-eij-1b359b3cbd2e.pptx": "c5a79c85575669798eea67b5e621ad6d65f86b762bf3264df04ec4d8b363a57c",
+          "estate-intelligence-eij-1b359b3cbd2e.xlsx": "5fe2d2689ac255708ffbafa082895867293765cc175a66c12f5b01c74b1d8f07"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-review.html",
+          "sha256": "91fe08d5d9c625fe38ce2d79b2e107bb72770b1d0d1afbc37cbab56bf40e92d0",
+          "size": 201047
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.docx",
+          "sha256": "44931f5a4caf88d64f0ada7b064ec3a7b534a17de55a7ff97a7f8df33035bae9",
+          "size": 141103
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.pptx",
+          "sha256": "c5a79c85575669798eea67b5e621ad6d65f86b762bf3264df04ec4d8b363a57c",
+          "size": 75230
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.xlsx",
+          "sha256": "5fe2d2689ac255708ffbafa082895867293765cc175a66c12f5b01c74b1d8f07",
+          "size": 13302
+        }
+      ],
+      "prove": null,
+      "qa": {
+        "blockers": [
+          "slide 1: text needs ~2.00in but box is 1.65in: \"Savings lie in object stores, not databases; produ\""
+        ],
+        "status": "FAIL"
+      },
+      "status": "blocked",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 4: is the title a full-sentence assertion? \"One staging database holds almost all the data and index bytes in the estate\"",
+          "slide 8: is the title a full-sentence assertion? \"Two object-store strategies account for almost all reclaimable bytes\"",
+          "slide 9: is the title a full-sentence assertion? \"The census covers the whole estate but measured only part of the tables\"",
+          "slide 10: is the title a full-sentence assertion? \"Quality and personal-data exposure, not duplication, limit what the data can be used for\"",
+          "slide 11: is the title a full-sentence assertion? \"Staleness and duplicate tables offer savings at the margin that cannot yet be settled\"",
+          "slide 12: is the title a full-sentence assertion? \"The three priced strategies differ widely in bytes, monthly saving and confidence\"",
+          "slide 13: is the title a full-sentence assertion? \"Verify the two object-store moves first, defer small database measures, hold products\"",
+          "slide 14: is the title a full-sentence assertion? \"Sampling, rights and unreachable sources limit what can be claimed today\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "at": "2026-10-02T06:13:59Z",
+      "build_id": "bld-a6485fddfe64",
+      "by": "demo.operator@demo.rms.example.com",
+      "content_version": 3,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-02T06:14:10Z",
+          "by": "demo.operator@demo.rms.example.com",
+          "count": 16,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "00d2fb043dc65fe86ed7c665ee94e3ea5468a3907ea0ee79e68672ef7ffd8963",
+              "size": 21758
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "ef1e30243a0d556d4a707903c715869e673c2a4b0d6c97aae48e02e1e4a74cbd",
+              "size": 65954
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "ee1890ee3039bf5e9b2fa5980daeb07cfe7e8fdbb4173a296f421ac2b715abf7",
+              "size": 10676
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "7bed853ccc0ae30eccda24bdd1aaae52502180a5fbe7ded766fa27857f9bfb38",
+              "size": 45947
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "23f887669a4f618a2a656b1abdb56f10a66da686df7a9e6cc886877f543f4e90",
+              "size": 11441
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "adf96c1e2a846335873c6780d5b4cf5ef63ea4303e8f44cf4786916c48af9d06",
+              "size": 45966
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "364453402a2a77c7e1459315276a19edfa1062701bb45767adf0e4370fca0b25",
+              "size": 12749
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "d86dc3fdcde422b33cfde2994332d49cd69950a8c927b54a05fda05c9cdaf8ed",
+              "size": 54607
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "e99b78cc9a7e84946404b2486be53c2f0e3727cef29deec8c49ea89ba313fb6e",
+              "size": 43149
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "499c794cf6a5db11c613be496631a2c83052770ee1e94903c8578e0fc0e93377",
+              "size": 47314
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "e05489aa205e48ad3aa1baba8215653055ba8432ede65fb16251bbef38a001be",
+              "size": 45636
+            },
+            {
+              "n": 12,
+              "name": "page-12.png",
+              "sha256": "357a174b3f5225f7021c0f8f89441c0e663863130572645908ea8c382d69edf7",
+              "size": 46495
+            },
+            {
+              "n": 13,
+              "name": "page-13.png",
+              "sha256": "236710c98b4f7d719a5fda4f16333b6b1ee358a21a6a473888933a5842cd90b9",
+              "size": 44392
+            },
+            {
+              "n": 14,
+              "name": "page-14.png",
+              "sha256": "f16ef82aee73a6e4fd8148086bbd1bfd28ba75777fc5372f647f53050df34452",
+              "size": 44750
+            },
+            {
+              "n": 15,
+              "name": "page-15.png",
+              "sha256": "8e79085492681d09044a9a8b3b44b499440dc5763c85bfdcece8b067a542c793",
+              "size": 59820
+            },
+            {
+              "n": 16,
+              "name": "page-16.png",
+              "sha256": "6a8be0f61a9b82a443fb3c06c9f5f3c8c83b8417d4873f7be36f093d2933cf22",
+              "size": 49745
+            }
+          ],
+          "rendered": true,
+          "source": "estate-intelligence-eij-1b359b3cbd2e.pptx"
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-4a07a8fa312e/builds/bld-a6485fddfe64/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "number-large",
+        "palette_id": "graphite",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T05:53:40Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "192cca35529a801054a5064010d5bf72a23a701b387ec903618b856590b53413",
+          "deck.resolved/brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+          "deck.resolved/content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+          "deck.resolved/deck.json": "bec915bf74fe7b2f61f106288791f112b46e38b0a835d296fa69ea4f3e793751",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db",
+          "paper.resolved.json": "cd65e0962cbc38050103affe786a06459c3d8888b149af031727194113dd5ad7",
+          "paper.resolved/brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+          "paper.resolved/content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "fa08d8568c7bd3e2a2346dfd94d141211072802cfdfff7f8170e54717ce3a40c",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db",
+          "workbook.resolved.json": "13697fc8b74a0975529c0f2e2093d6050424525feb1292b1f8937fb1808fdcc2",
+          "workbook.resolved/brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+          "workbook.resolved/content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db",
+          "workbook.resolved/workbook.json": "3b533668a80c2ab9251eb1f5930b5dfc3d4d7225774334cdbb7b9817d70681e2"
+        },
+        "outputs_sha256": {
+          "estate-intelligence-eij-1b359b3cbd2e-review.html": "627e80d967c57ffc5669982443e111a7d935d02a722d6889737f85645df565fa",
+          "estate-intelligence-eij-1b359b3cbd2e.docx": "82c00ff08308f8279ae6bc192a495e32ec785894c49b8d0fc9e5e477269c08da",
+          "estate-intelligence-eij-1b359b3cbd2e.pptx": "47749dedd0fb22fcb7c52d67177a83bbcc33b710af8128c6fd3d07f3c30f35e8",
+          "estate-intelligence-eij-1b359b3cbd2e.xlsx": "dd7d818fdea5eb4d9086490e432902ec4c830b64395b04d8eab1869ddd59a4fd"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "estate-intelligence-eij-1b359b3cbd2e-review.html",
+          "sha256": "627e80d967c57ffc5669982443e111a7d935d02a722d6889737f85645df565fa",
+          "size": 200975
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.docx",
+          "sha256": "82c00ff08308f8279ae6bc192a495e32ec785894c49b8d0fc9e5e477269c08da",
+          "size": 141072
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.pptx",
+          "sha256": "47749dedd0fb22fcb7c52d67177a83bbcc33b710af8128c6fd3d07f3c30f35e8",
+          "size": 75184
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "estate-intelligence-eij-1b359b3cbd2e.xlsx",
+          "sha256": "dd7d818fdea5eb4d9086490e432902ec4c830b64395b04d8eab1869ddd59a4fd",
+          "size": 13270
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 8: is the title a full-sentence assertion? \"Three strategies reach 100.0% of addressable bytes, almost all in object stores\"",
+          "slide 10: is the title a full-sentence assertion? \"Quality and exposure problems dwarf duplication in the measured rows\"",
+          "slide 11: is the title a full-sentence assertion? \"Stale bytes, duplicate pairs and empty tables give a tidy-up list, not a large saving\"",
+          "slide 13: is the title a full-sentence assertion? \"Verify the two object-store moves first; defer database tidying and every release\"",
+          "slide 14: is the title a full-sentence assertion? \"Sampling, unmeasured rights and unread sources limit what can be claimed today\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-4a07a8fa312e",
+  "content_id": "estate-intelligence-eij-1b359b3cbd2e",
+  "created_at": "2026-10-02T05:55:49Z",
+  "created_by": "demo.operator@demo.rms.example.com",
+  "current_content_version": 3,
+  "economics": {
+    "authoring_tokens_total": 103802,
+    "builds_total": 3,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 2,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Estate owner and operators · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is high on the business, mixed on the data estate",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are cost reduction, personal-data exposure and quality, monetisable products",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    },
+    {
+      "assumption": "Every option is shown without a recommended winner",
+      "class": "inferred",
+      "flips": [
+        "comparison_plate_no_winner"
+      ],
+      "id": "M6",
+      "source": "house policy: findings not directives"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "pptx",
+    "docx",
+    "xlsx",
+    "html"
+  ],
+  "producer": "estate_intelligence",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+      "status": "partial",
+      "verified": true
+    },
+    "R02": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+      "status": "partial",
+      "verified": true
+    },
+    "R03": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)",
+      "status": "partial",
+      "verified": true
+    },
+    "R04": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+      "status": null,
+      "verified": true
+    },
+    "R05": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
+      "status": null,
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "build bld-a6485fddfe64 byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "eij-1b359b3cbd2e",
+  "specs": [
+    "deck.json",
+    "paper.json",
+    "workbook.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Estate cost and data-product decision pack",
+  "updated_at": "2026-10-02T06:14:10Z",
+  "verdict_id": "V-2026-10-02-eij-1b359b3cbd2e",
+  "versions": [
+    {
+      "at": "2026-10-02T05:55:49Z",
+      "by": "demo.operator@demo.rms.example.com",
+      "reason": "commissioned by producer estate_intelligence from eij-1b359b3cbd2e",
+      "version": 1
+    },
+    {
+      "at": "2026-10-02T05:59:55Z",
+      "by": "demo.operator@demo.rms.example.com",
+      "reason": "authored by the frontier writer claude-sonnet-5-5 under the content manager gate",
+      "version": 2
+    },
+    {
+      "at": "2026-10-02T06:13:59Z",
+      "by": "demo.operator@demo.rms.example.com",
+      "reason": "authored by the frontier writer claude-sonnet-5-5 under the content manager gate",
+      "version": 3
+    }
+  ],
+  "voice": "strategy-house"
+}

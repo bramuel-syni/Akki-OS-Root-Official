@@ -77,14 +77,14 @@ class TestCommissionMeasurements:
                               'population_receipt_ref': population_ref})
         assert registered['status'] == 'complete' and registered['stratum'] == 'Suspect'  # corroboration not assessed → honest ceiling
         _, quality = verify(world, registered['receipt'])
-        register = QualityRegister.model_validate(quality.quality_register.model_dump(mode='json'))
+        register = QualityRegister.model_validate(quality.quality_register.model_dump())
         assert register.pack.version == 'v0' and register.counts == {'Clean': 0, 'Repairable': 0, 'Suspect': 1, 'Junk': 0}
         assert quality.claim_sha256 == digest(register.model_dump(mode='json'))
         ranking_ref, quality_ref = 'c' * 64, 'd' * 64
         windowed = execute({**control, 'mode': 'skill_window', 'ranking_rule_ref': ranking_ref, 'qualified_set_receipt_ref': quality_ref,
                             'objective_sha256': 'e' * 64})
         _, context = verify(world, windowed['receipt'])
-        window = ContextWindow.model_validate(context.context_window.model_dump(mode='json'))
+        window = ContextWindow.model_validate(context.context_window.model_dump())
         assert window.selected_refs == (CORPUS_REF,) and window.loss_disclosed is False and window.units[0].tokens == 30
         committed = window.model_dump(mode='json', include={'frame_ref', 'model_sha256', 'tokenizer_sha256', 'load_bearing_refs',
                                                               'window_tokens', 'reserved_tokens'})
@@ -156,7 +156,7 @@ class TestGroundedExecution:
                             'anchors': [{'snapshot_sha256': snapshot, 'anchor_sha256': a, 'source_receipt_ref': refs[a]} for a in anchors]})
         assert response['status'] == 'complete'
         _, grounding = verify(world, response['receipt'])
-        ground = Grounding.model_validate(grounding.grounding.model_dump(mode='json'))
+        ground = Grounding.model_validate(grounding.grounding.model_dump())
         assert ground.answer_sha256 == artifact['sha256'] and ground.query_ref == QUERY_REF and len(ground.anchors) == len(anchors)
         assert grounding.claim_sha256 == digest({'request_sha256': REQUEST_SHA, 'artifact': Artifact.model_validate(artifact).model_dump(mode='json'),
                                                  'grounding': ground.model_dump(mode='json')})
@@ -170,7 +170,10 @@ class TestGroundedExecution:
 
     def test_inspector_refuses_an_anchor_that_is_not_in_the_answer(self, world):
         control, result = submit(world, 'op-milk', 'Which training questions mention milk yield?')
-        foreign = hashlib.sha256(json.dumps(unit(2, 'feed cost'), sort_keys=True).encode()).hexdigest()  # in corpus, not in answer
+        answer = (world['root'] / control['object_key']).read_bytes()
+        in_answer = {hashlib.sha256(l).hexdigest() for l in answer.split(b'\n') if l.strip()}
+        foreign = next((hashlib.sha256(l).hexdigest() for l in world['body'].split(b'\n') if l.strip() and hashlib.sha256(l).hexdigest() not in in_answer),
+                       hashlib.sha256(json.dumps(unit(99, 'feed cost'), sort_keys=True).encode()).hexdigest())  # a unit outside the answer (and, when the answer spans the corpus, outside the corpus)
         attest = execute({**world['base'], 'operation_key': 'op-milk', 'mode': 'anchor', 'corpus': {'key': world['corpus']['key'], 'sha256': world['corpus']['sha256']},
                           'answer': {'key': control['object_key'], 'sha256': result['artifacts'][0]['sha256']}, 'anchor_sha256s': [foreign],
                           'snapshot_sha256': skill_worker.snapshot_sha256(world['corpus']), 'query_ref': QUERY_REF})

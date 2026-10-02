@@ -140,9 +140,11 @@ def _eta(status, reason=''):
 # ----------------------------------------------------------------------------- audio language cognition (LC)
 def _audio_runs():
     from services.audio_plane_v1 import language_cognition_dispatch as lc
+    from services.training_lab import signoff
+    signed_jobs = {(r.get('dispatch') or {}).get('job_id') for r in signoff.all_for('RMS').values()}
     out = []
     for job in lc.list_jobs():
-        if job.get('phase') not in ('train_baseline', 'train_corrective'): continue
+        if job.get('phase') not in ('train_baseline', 'train_corrective') or job['job_id'] in signed_jobs: continue
         cert = job.get('run_certificate') or {}
         if not cert and job['status'] not in ('running', 'submitting', 'queued'): continue
         params = job.get('params') or {}; recipe = params.get('recipe') if isinstance(params.get('recipe'), dict) else params
@@ -185,7 +187,65 @@ def _audio_runs():
     return out
 
 
-# ----------------------------------------------------------------------------- held reinforcement request
+# ----------------------------------------------------------------------------- signed runs: status, progress and checks from the sign-off register
+def _signed_job(record):
+    dispatch = record.get('dispatch') or {}
+    if not dispatch.get('job_id'): return None
+    if record['plan']['kind'] == 'audio_language_corrective':
+        from services.audio_plane_v1 import language_cognition_dispatch as lc
+        return lc.load_job(dispatch['job_id'])
+    from services.training_runner import m9_dispatch
+    return m9_dispatch.load_job(dispatch['job_id'])
+
+
+def _signed_state(tenant, run_id, plan, default_status):
+    """What the sign-off register says about this run: approval view, status, progress, checks, record rows and messages."""
+    from services.training_lab import signoff
+    approval = signoff.approval_view(tenant, run_id, plan)
+    record = signoff.get(tenant, run_id)
+    out = {'approval': approval, 'status': default_status, 'progress': None, 'eta': None, 'checks': None, 'record_rows': [], 'reason': '', 'messages': [], 'signed': bool(record)}
+    if not record: return out
+    signed = record['signed_at'][:16].replace('T', ' '); signer = signoff.signer_label(record['signed_by'])
+    approval['line'] = f"Signed off by {signer} on {signed} UTC · digest {record['plan_sha256'][:12]} · recipe, data, host, compute cap and acceptance frozen"
+    job = _signed_job(record) or {}
+    if record['status'] in ('signed', 'shipping'):
+        out['status'], out['eta'] = 'Queued', 'signed · dispatching to the GPU host'
+        if record.get('shipping'): out['eta'] = f"signed · shipping labelled recordings {record['shipping'].get('done', 0)} of {record['shipping'].get('of', 0)}"
+    elif record['status'] == 'dispatched':
+        state = (job.get('remote_state') or {}).get('progress') or {}
+        stage = state.get('stage') or 'starting'
+        if job.get('status') == 'running':
+            out['status'] = 'Testing' if 'evaluation' in stage or 'final' in stage else 'In training'
+            epoch, epochs, step = state.get('epoch'), state.get('epochs'), state.get('step')
+            out['progress'] = {'files': epoch, 'of': epochs, 'elapsed_s': state.get('elapsed_seconds') or state.get('elapsed_s'), 'stage': stage}
+            out['eta'] = f"{stage}" + (f" · epoch {epoch} of {epochs}" if epoch and epochs else '') + (f" · step {step:,}" if step else '') + (f" · loss {state['loss']}" if state.get('loss') is not None else '')
+            out['messages'].append(_msg(job.get('started_at'), f"Training on {job.get('host')} GPU {record['plan']['gpu_index']} as {job['job_id']} — {stage}.", widget='status', status_label='Training', status_line=out['eta']))
+        else:
+            out['status'], out['eta'], approval['awaiting_judgement'] = 'Testing', 'run finished · judging against the signed acceptance', True
+    elif record['status'] == 'completed':
+        outcome = record.get('outcome') or {}
+        out['status'] = 'In service' if outcome.get('decision') == 'admitted' else 'Refused'
+        out['eta'] = 'complete' if out['status'] == 'In service' else 'stopped at acceptance'
+        out['reason'] = '' if out['status'] == 'In service' else 'Refused against the signed acceptance: ' + '; '.join(outcome.get('reasons') or []) + '.'
+        if record['plan']['kind'] == 'audio_language_corrective':
+            out['checks'] = [{'n': NAMES.get(k, k), 'v': f"{pct(v.get('accuracy'))} · floor {pct(record['plan']['acceptance']['floor'], 0)} · abstained {pct(v.get('abstention_rate'))}", 's': 'settled', 'passes': (number(v.get('accuracy')) or 0) >= record['plan']['acceptance']['floor']}
+                            for k, v in sorted((outcome.get('metrics') or {}).items())]
+        else:
+            metrics = outcome.get('metrics') or {}
+            out['checks'] = [{'n': label, 'v': f"{pct((metrics.get(key) or {}).get('estimate'))} ({pct((metrics.get(key) or {}).get('low'), 0)}–{pct((metrics.get(key) or {}).get('high'), 0)}) · baseline {pct(record['plan']['acceptance']['baseline'].get(key))}", 's': 'settled',
+                             'passes': ((metrics.get(key) or {}).get('estimate') or 0) >= (record['plan']['acceptance']['baseline'].get(key) or 0)}
+                            for key, label in (('accuracy', 'Accuracy'), ('recall', 'Finds music (recall)'), ('precision', 'Right when it says music (precision)'), ('specificity', 'Clears non-music (specificity)')) if metrics.get(key)]
+        compute = outcome.get('compute') or {}
+        out['record_rows'] = [['Signed plan', f"digest {record['plan_sha256'][:12]} · {signer} · {signed} UTC"],
+                              ['Compute', f"{_duration(compute.get('elapsed_seconds'))} on {job.get('host', record['plan']['host'])} GPU {record['plan']['gpu_index']}" + (f" · peak {compute.get('gpu_max_memory_gb')} GB" if compute.get('gpu_max_memory_gb') else '')],
+                              ['Acceptance', '; '.join(outcome.get('reasons') or [])]]
+        if outcome.get('artefact_sha256'): out['record_rows'].append(['Artefact', f"sha256 {outcome['artefact_sha256'][:16]}… · stays on the GPU host"])
+    elif record['status'] == 'failed':
+        out['status'], out['eta'] = 'Refused', 'stopped before acceptance'
+        out['reason'] = f"The signed run did not complete: {(record.get('dispatch') or {}).get('reason') or 'no result'}. The signature stays on record; open the next version to try again."
+    return out
+
+
 def _reinforcement_run(tenant):
     from services.training_lab import languages
     data, bundle = languages.evidence(0.9)
@@ -212,8 +272,12 @@ def _reinforcement_run(tenant):
     messages = [_msg(None, f"Read from the measured baseline certificate: {', '.join(targets)} {'sits' if len(targets) == 1 else 'sit'} below the {pct(data['floor'], 0)} floor; every other language clears it.", widget='checks',
                      think=['Accuracy is on judged windows; abstention is shown beside it.', 'Intervals are Wilson scores on the held-out windows.', data['corrective_runs_note']]),
                 _msg(None, 'Here is what the reinforcement commits to. It is a plan, not an order.', widget='reflect'),
-                _msg(None, 'Training stays held until you approve the recipe, compute cap and evaluation contract through Model Approval.', widget='approval'),
-                _msg(None, 'When you want this trained, say so here. It is recorded as your request and travels to Model Approval; nothing starts from this page.', widget='begin')]
+                _msg(None, 'Training starts the moment you sign this plan with the Approve control: the digest below binds exactly this recipe, data, host, compute cap and acceptance.', widget='approval')]
+    from services.training_lab import signoff
+    plan_doc = signoff.reinforcement_plan(tenant)
+    signed = _signed_state(tenant, 'reinforcement-lwg', plan_doc, 'In Approval')
+    if not signed['signed']:
+        messages.append(_msg(None, 'Nothing starts from this thread by typing; the signature is the Approve control above, and it is recorded with your identity and the plan digest.', widget='begin'))
     if latest:
         for review in latest.get('reviews') or []:
             if review.get('status') in ('complete', 'review_required') and review.get('review'):
@@ -222,11 +286,18 @@ def _reinforcement_run(tenant):
                 messages.append(_msg(latest.get('finished_at') or latest.get('updated_at'), f"{review['role'].replace('_', ' ').capitalize()}: {text}", think=['Advisory only, machine-checked for ungrounded numbers; not independent expert validation.'] + ([f"{len(review.get('quality_flags') or [])} flag(s) for figures stated in prose."] if review.get('quality_flags') else [])))
             elif review.get('status') == 'unavailable':
                 messages.append(_msg(latest.get('finished_at') or latest.get('updated_at'), f"{review['role'].replace('_', ' ').capitalize()}: advice unavailable; no substitute opinion was generated."))
-    return _run(run_id='reinforcement-lwg', family='reinforcement', name=f"{', '.join(targets)} reinforcement · audio language model", status='In Approval',
+    messages += signed['messages']
+    if signed['checks']: messages.append(_msg(None, 'Per-language accuracy on the sealed held-out set against the floor you signed.', widget='checks'))
+    if signed['record_rows']: messages.append(_msg(None, 'The full record of the signed run.', widget='record'))
+    if signed['reason']: messages.append(_msg(None, signed['reason'], widget='refused'))
+    status = signed['status']
+    return _run(run_id='reinforcement-lwg', family='reinforcement', name=f"{', '.join(targets)} reinforcement · audio language model", status=status,
                 objective=f"Bring {', '.join(targets)} to the {pct(data['floor'], 0)} floor on the sealed held-out set with no regression elsewhere and speaker identity at chance.",
-                checks=checks, reflect_rows=reflect, messages=messages, meta='held training request · recipe and cap recorded', eta='waiting on your approval',
-                approval={'line': 'Held for your approval · recipe, data, compute cap and acceptance recorded', 'reviews': 'reviewing' if latest and latest.get('status') in ('queued', 'reviewing') else ('reviewed' if latest else 'not yet asked')},
-                actions=['ask_specialists'], evidence=bundle['aggregate'] | {'status': 'In Approval', 'held': True})
+                checks=signed['checks'] or checks, reflect_rows=reflect, record_rows=signed['record_rows'], messages=messages, progress=signed['progress'], reason=signed['reason'],
+                meta=('signed training run · ' + (signed['eta'] or '')) if signed['signed'] else 'held training request · recipe and cap recorded', eta=signed['eta'] or 'waiting on your signature',
+                approval={**signed['approval'], 'line': signed['approval'].get('line') or 'Ready for your signature · recipe, data, host, compute cap and acceptance recorded; the digest below is what you sign',
+                          'reviews': 'reviewing' if latest and latest.get('status') in ('queued', 'reviewing') else ('reviewed' if latest else 'not yet asked')},
+                actions=['ask_specialists'] if not signed['signed'] else [], evidence=bundle['aggregate'] | {'status': status, 'held': not signed['signed'], 'training_authorized': signed['signed'], 'signoff': signed['approval']})
 
 
 # ----------------------------------------------------------------------------- music identification (shaping)
@@ -292,15 +363,38 @@ def _music_run(tenant):
     if (reference or {}).get('import', {}).get('status') == 'running':
         messages.append(_msg(None, f"Importing public-domain reference recordings · {len(stored)} stored so far."))
     actions = ['run_music_baseline', 'measure_staged_corpus', 'import_reference_recordings']
-    eta = f"measuring the staged corpus · {progress['files'] or 0:,} of {progress['of'] or 0:,} recordings" if progress else 'not started — no training compute spent'
-    return _run(run_id='music-identification', family='music', name='Music identification · staged audio', status='Shaping',
+    from services.training_lab import signoff
+    plan_doc = signoff.music_plan(tenant)
+    signed = _signed_state(tenant, 'music-identification', plan_doc, 'Shaping')
+    approval = None
+    if plan_doc or signed['signed']:
+        recipe = (plan_doc or (signoff.get(tenant, 'music-identification') or {}).get('plan') or {}).get('recipe') or {}
+        labelled = (plan_doc or (signoff.get(tenant, 'music-identification') or {}).get('plan') or {}).get('labelled_items') or []
+        messages.append(_msg(None, f"Detector training plan: a compact convolutional detector on two-second log-mel windows, trained on the {len(labelled)} labelled recordings in your library with file-disjoint {recipe.get('folds')}-fold evaluation and staged-corpus weak windows for training only, on akki-vm GPU 1. It must beat the learned baseline file for file.", widget='reflect'))
+        messages.append(_msg(None, 'Training starts the moment you sign this plan with the Approve control: the digest binds the recipe, the labelled recordings by digest, the host and the acceptance.', widget='approval'))
+        approval = {**signed['approval'], 'line': signed['approval'].get('line') or 'Ready for your signature · detector recipe, labelled recordings, host and acceptance recorded; the digest is what you sign', 'reviews': 'not yet asked'}
+        messages += signed['messages']
+        if signed['checks']: messages.append(_msg(None, 'Out-of-fold, file-level checks on your labelled recordings against the baseline you signed.', widget='checks'))
+        if signed['record_rows']: messages.append(_msg(None, 'The full record of the signed detector run.', widget='record'))
+        if signed['reason']: messages.append(_msg(None, signed['reason'], widget='refused'))
+        if signed['signed']: actions = []
+    reflect = [{'k': 'What it does', 'v': 'Tells recordings that contain music from those that do not, window by window', 't': 'contract'},
+               {'k': 'What it reads', 'v': f"{len((plan_doc or {}).get('labelled_items') or [])} labelled library recordings by digest · staged-corpus weak windows for training only", 't': 'measured'} if plan_doc else {'k': 'What it reads', 'v': 'Labelled library recordings once the baseline is established', 't': 'contract'},
+               {'k': 'Recipe', 'v': f"{recipe.get('epochs')} epochs · {recipe.get('folds')}-fold file-disjoint evaluation · batch {recipe.get('batch_size')} · learning rate {recipe.get('lr')}" if plan_doc else 'Compact convolutional detector on two-second log-mel windows', 't': 'proposal'},
+               {'k': 'Compute cap', 'v': f"{(plan_doc or {}).get('compute_cap_gpu_hours', 1.5)} GPU-hours on akki-vm GPU 1", 't': 'proposal'},
+               {'k': 'How we\'ll know', 'v': 'Out-of-fold file-level accuracy and recall at or above the learned baseline; precision not below it', 't': 'contract'}]
+    status = signed['status'] if signed['signed'] else ('In Approval' if plan_doc else 'Shaping')
+    eta = signed['eta'] or (f"measuring the staged corpus · {progress['files'] or 0:,} of {progress['of'] or 0:,} recordings" if progress else ('waiting on your signature' if plan_doc else 'not started — no training compute spent'))
+    return _run(run_id='music-identification', family='music', name='Music identification · staged audio', status=status,
                 objective='Tell music from speech, and mixed from both, in the recordings the estate holds; establish the measured baseline a trained detector must beat.',
-                messages=messages, baseline_card=card, checks=checks, sources=sources, progress=progress, eta=eta, actions=actions,
-                meta='measured baseline · staged corpus on akki-vm', started_at=(latest or {}).get('created_at'),
-                evidence={'status': 'Shaping', 'baseline': {k: result[k] for k in ('items', 'positives', 'negatives', 'baseline_reading', 'baseline_learned', 'window_level', 'limitations') if k in result} if result else None,
+                messages=messages, baseline_card=card, checks=(signed['checks'] or checks), sources=sources, progress=signed['progress'] or progress, eta=eta, actions=actions, approval=approval,
+                reflect_rows=reflect, record_rows=signed['record_rows'], reason=signed['reason'],
+                meta=('signed detector run · ' + (signed['eta'] or '')) if signed['signed'] else 'measured baseline · staged corpus on akki-vm', started_at=(latest or {}).get('created_at'),
+                evidence={'status': status, 'baseline': {k: result[k] for k in ('items', 'positives', 'negatives', 'baseline_reading', 'baseline_learned', 'window_level', 'limitations') if k in result} if result else None,
                           'corpus_measurement': {'status': (measurement or {}).get('status'), 'progress': progress, 'per_language': {NAMES.get(k, k): {kk: v.get(kk) for kk in ('measured', 'hours', 'files_with_music_windows', 'music_windows', 'windows')} for k, v in per_language.items()}},
                           'corpus_hours_by_language': {NAMES.get(k, k): v for k, v in hours.items()}, 'reference_recordings': {'stored': len(stored), 'status': ((reference or {}).get('import') or {}).get('status')},
-                          'music_detector_trained': False, 'training_authorized': False})
+                          'detector_plan': {'ready': bool(plan_doc), 'recipe': recipe, 'labelled_recordings': len(labelled)} if (plan_doc or signed['signed']) else None,
+                          'music_detector_trained': signed['status'] in ('In service', 'Refused'), 'music_detector_admitted': signed['status'] == 'In service', 'training_authorized': signed['signed'], 'signoff': signed['approval']})
 
 
 def _versioned(rows):
@@ -379,6 +473,9 @@ def runs(tenant):
 
 
 def board(tenant):
+    from services.training_lab import signoff
     rows = runs(tenant)
+    signed = signoff.all_for(tenant)
     counts = {status: sum(1 for r in rows if r['status'] == status) for status in ('Shaping', 'In Approval', 'Queued', 'In training', 'Testing', 'In service', 'Refused', 'Retired')}
-    return {'runs': rows, 'counts': counts, 'training_authorized': False, 'music_detector_admitted': False}
+    return {'runs': rows, 'counts': counts, 'training_authorized': bool(signed), 'signoffs': {k: {'status': v['status'], 'signed_by': v['signed_by'], 'signed_at': v['signed_at'], 'plan_sha256': v['plan_sha256']} for k, v in signed.items()},
+            'music_detector_admitted': ((signed.get('music-identification') or {}).get('outcome') or {}).get('decision') == 'admitted'}

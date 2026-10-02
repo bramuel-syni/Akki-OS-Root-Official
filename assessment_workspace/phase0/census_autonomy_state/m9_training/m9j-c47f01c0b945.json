@@ -25,7 +25,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-c47f01c0b945",
   "pid": 634537
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-770df2b75575",
@@ -38,32 +38,266 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_lab_measure_daemonised:pid=634537"
+  },
+  {
+   "row_id": "led-475710cd2c09",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_lab_measure_completed"
   }
  ],
  "code_sha256": "b6c9ca87f347e4d61798ef8e62f19b6a4cd19ef39176a9886cde11e36d74d480",
  "started_at": "2026-10-01T04:21:38.422046Z",
  "last_status_rpc": {
-  "at": "2026-10-01T04:33:25.432609Z",
+  "at": "2026-10-02T04:26:44.216933Z",
   "rc": 0,
-  "receipt_id": "gpurcp-83bae0f72acf"
+  "receipt_id": "gpurcp-602836b57ad7"
  },
  "remote_state": {
   "phase": "lab_measure",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-01T04:21:38Z",
   "progress": {
-   "stage": "measuring staged audio",
-   "files": 1900,
+   "stage": "measurement complete",
+   "files": 3958,
    "of": 3958,
-   "elapsed_s": 685
+   "elapsed_s": 1974
   },
   "stages": {},
   "events": [],
   "job_id": "m9j-c47f01c0b945",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-01T04:33:04Z"
+  "updated_at": "2026-10-01T04:54:33Z",
+  "finished_at": "2026-10-01T04:54:33Z",
+  "receipt_sha256": "93bc881ed866338b5b38127e02265f6df0308419e6c444c4c3a802382a96c55f"
  },
  "worker_log_tail": "",
- "process_alive": true
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-c47f01c0b945",
+  "phase": "lab_measure",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-01T04:21:38Z",
+  "code_sha256": "b6c9ca87f347e4d61798ef8e62f19b6a4cd19ef39176a9886cde11e36d74d480",
+  "status": "completed",
+  "result": {
+   "scope": "authorized staged language-cognition corpus only; not the whole RMS estate",
+   "evidence_class": "measured_observables_cue_readings",
+   "profile_version": "measured_dsp_v1",
+   "files": 3958,
+   "measured": 3958,
+   "decode_failures": {},
+   "per_language": {
+    "bxk": {
+     "files": 14,
+     "measured": 14,
+     "decode_failures": 0,
+     "hours": 1.0725,
+     "reads_as": {
+      "mixed": 10,
+      "speech": 4
+     },
+     "windows": 966,
+     "music_windows": 285,
+     "files_with_music_windows": 14,
+     "channel_condition": {
+      "field": 14
+     },
+     "artefacts": {}
+    },
+    "guz": {
+     "files": 732,
+     "measured": 732,
+     "decode_failures": 0,
+     "hours": 92.2143,
+     "reads_as": {
+      "speech": 377,
+      "mixed": 352,
+      "music": 3
+     },
+     "windows": 83003,
+     "music_windows": 17018,
+     "files_with_music_windows": 680,
+     "channel_condition": {
+      "field": 719,
+      "studio": 12,
+      "telephone_band": 1
+     },
+     "artefacts": {
+      "clipping": 451,
+      "band_limited": 1
+     }
+    },
+    "kam": {
+     "files": 1166,
+     "measured": 1166,
+     "decode_failures": 0,
+     "hours": 85.3948,
+     "reads_as": {
+      "speech": 822,
+      "music": 22,
+      "mixed": 322
+     },
+     "windows": 76893,
+     "music_windows": 14034,
+     "files_with_music_windows": 963,
+     "channel_condition": {
+      "field": 1137,
+      "telephone_band": 10,
+      "studio": 19
+     },
+     "artefacts": {
+      "clipping": 807,
+      "low_sample_rate": 311,
+      "band_limited": 10,
+      "mains_hum_50hz": 5,
+      "dc_offset": 15
+     }
+    },
+    "kik": {
+     "files": 584,
+     "measured": 584,
+     "decode_failures": 0,
+     "hours": 82.1084,
+     "reads_as": {
+      "speech": 384,
+      "mixed": 199,
+      "music": 1
+     },
+     "windows": 73914,
+     "music_windows": 12906,
+     "files_with_music_windows": 536,
+     "channel_condition": {
+      "studio": 23,
+      "field": 561
+     },
+     "artefacts": {
+      "clipping": 499,
+      "low_sample_rate": 18,
+      "dc_offset": 3
+     }
+    },
+    "kln": {
+     "files": 295,
+     "measured": 295,
+     "decode_failures": 0,
+     "hours": 89.7636,
+     "reads_as": {
+      "mixed": 89,
+      "speech": 205,
+      "music": 1
+     },
+     "windows": 80783,
+     "music_windows": 13795,
+     "files_with_music_windows": 287,
+     "channel_condition": {
+      "field": 288,
+      "studio": 7
+     },
+     "artefacts": {
+      "clipping": 232,
+      "mains_hum_50hz": 1,
+      "dc_offset": 1
+     }
+    },
+    "luo": {
+     "files": 558,
+     "measured": 558,
+     "decode_failures": 0,
+     "hours": 82.0934,
+     "reads_as": {
+      "speech": 312,
+      "mixed": 242,
+      "music": 4
+     },
+     "windows": 73889,
+     "music_windows": 15557,
+     "files_with_music_windows": 510,
+     "channel_condition": {
+      "field": 525,
+      "studio": 32,
+      "telephone_band": 1
+     },
+     "artefacts": {
+      "clipping": 193,
+      "dc_offset": 68,
+      "low_sample_rate": 225,
+      "band_limited": 1
+     }
+    },
+    "lwg": {
+     "files": 60,
+     "measured": 60,
+     "decode_failures": 0,
+     "hours": 9.1948,
+     "reads_as": {
+      "speech": 44,
+      "mixed": 16
+     },
+     "windows": 8273,
+     "music_windows": 926,
+     "files_with_music_windows": 50,
+     "channel_condition": {
+      "field": 53,
+      "studio": 7
+     },
+     "artefacts": {
+      "clipping": 8
+     }
+    },
+    "swa": {
+     "files": 549,
+     "measured": 549,
+     "decode_failures": 0,
+     "hours": 87.7038,
+     "reads_as": {
+      "speech": 456,
+      "mixed": 92,
+      "music": 1
+     },
+     "windows": 78929,
+     "music_windows": 8325,
+     "files_with_music_windows": 432,
+     "channel_condition": {
+      "field": 536,
+      "telephone_band": 1,
+      "studio": 12
+     },
+     "artefacts": {
+      "clipping": 391,
+      "dc_offset": 14,
+      "low_sample_rate": 43,
+      "band_limited": 1
+     }
+    }
+   },
+   "compact_rows_sha256": "236e4259649bb9749bdb1073fbc2d173f1570df3a2da43b1b8a457bfc71d12a9",
+   "compact_rows_bytes": 9516286,
+   "compute_seconds": 1974.3,
+   "workers": 16,
+   "max_seconds_per_file": 5400.0,
+   "music_labels": {
+    "status": "not_established",
+    "reason": "Readings are cue scoring over measured observables, not human labels."
+   },
+   "training_started": false,
+   "raw_media_exported": false,
+   "paths_exported": false
+  },
+  "finished_at": "2026-10-01T04:54:33Z",
+  "receipt_sha256": "93bc881ed866338b5b38127e02265f6df0308419e6c444c4c3a802382a96c55f",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-01T04:54:33Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-c47f01c0b945",
+  "started_at_utc": "2026-10-01T04:21:38.422046Z",
+  "finished_at_utc": "2026-10-01T04:54:33Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-c47f01c0b945"
+ }
 }

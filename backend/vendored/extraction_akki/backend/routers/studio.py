@@ -59,7 +59,8 @@ def get_commission(commission_id: str, actor=Depends(census_identity)):
 
 
 @router.post("/producers/{producer}/{job_id}", status_code=201, response_model=Envelope)
-def commission_from_producer(producer: str, job_id: str, body: dict = Body(default={}), actor=Depends(census_identity)):
+async def commission_from_producer(producer: str, job_id: str, body: dict = Body(default={}), actor=Depends(census_identity)):
+    """Planner → worker → content manager → frontier writer, then the deterministic prove-build. A gated-out draft returns a blocked commission."""
     _operator(actor)
     if producer not in service.PRODUCERS:
         raise HTTPException(404, "No producer with that name is installed.")
@@ -67,13 +68,11 @@ def commission_from_producer(producer: str, job_id: str, body: dict = Body(defau
     if actor["tenant_id"] != "RMS" or not re.fullmatch(pattern, job_id):
         raise HTTPException(404, "No source record with that reference is available in your tenant.")
     try:
-        record, created = service.create_from_producer(producer, job_id, actor["tenant_id"], actor["principal_id"])
+        record, created = await service.create_authored(producer, job_id, actor["tenant_id"], actor["principal_id"])
     except LookupError as exc:
         raise HTTPException(404, str(exc)) from None
     except ValueError as exc:
         raise HTTPException(422, str(exc)) from None
-    if created and body.get("build", True):
-        record = service.build(actor["tenant_id"], record["commission_id"], actor["principal_id"])
     return {**_full(actor, record), "created": created}
 
 

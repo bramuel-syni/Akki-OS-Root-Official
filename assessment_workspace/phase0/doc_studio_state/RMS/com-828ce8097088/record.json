@@ -1,0 +1,121 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "source": "deterministic producer training-whitepaper; no model authored the brief, content or specs",
+    "tokens": 0
+  },
+  "brief_id": "BR-2026-10-02-m9j-74af7cef0a85",
+  "build_stamp": "2026-10-02T02:36:11Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [],
+  "commission_id": "com-828ce8097088",
+  "content_id": "training-m9j-74af7cef0a85",
+  "created_at": "2026-10-02T02:36:11Z",
+  "created_by": "6ab56dd48894abb269135ca2",
+  "current_content_version": 1,
+  "economics": {
+    "authoring_tokens_total": 0,
+    "builds_total": 0,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 0,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Model owner and reviewers · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is familiar with the objective; mixed technical depth",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are per-stratum performance, coverage, privacy and next work",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "docx",
+    "html"
+  ],
+  "producer": "training-whitepaper",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "m9j",
+      "platform_ref": "m9j-74af7cef0a85",
+      "resolves_to": "Measured training receipt and retained acceptance record for m9j-74af7cef0a85",
+      "status": "completed",
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "no build yet",
+    "state": "unbuilt"
+  },
+  "revisions": [],
+  "seed": "training-m9j-74af7cef0a85/decide/2026-10-02",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "m9j-74af7cef0a85",
+  "specs": [
+    "paper.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Training findings — Language identification · 8B text model",
+  "updated_at": "2026-10-02T02:36:11Z",
+  "verdict_id": "V-2026-10-02-m9j-74af7cef0a85",
+  "versions": [
+    {
+      "at": "2026-10-02T02:36:11Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "commissioned by producer training-whitepaper from m9j-74af7cef0a85",
+      "version": 1
+    }
+  ],
+  "voice": "strategy-house"
+}

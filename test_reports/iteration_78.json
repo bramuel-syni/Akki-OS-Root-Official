@@ -1,0 +1,38 @@
+{
+  "summary": "Post-fix verification completed on preview URL with mandatory real-browser download checks. New static download links for PPTX/DOCX/ZIP all downloaded successfully via Playwright click events from a fresh unauthenticated context, with exact size/hash matches and ZIP embedded file parity. Original /api/deliverables endpoints were also probed repeatedly and returned 200 in all attempts; prior intermittent bad gateway was not reproduced in this run.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_static_downloads_preview.py",
+    "/app/test_reports/pytest/iteration_78_static_downloads.xml",
+    "/app/test_reports/iteration_78.json"
+  ],
+  "action_items": [
+    "Main agent should share static /downloads URLs with user as preferred delivery path for resilience against intermittent upstream gateway behavior.",
+    "Keep observing preview ingress stability separately since original outage condition did not reproduce during this verification window."
+  ],
+  "critical_code_review_comments": [
+    "Frontend static delivery path is functioning and independent of FastAPI upstream pathing for the new /downloads links.",
+    "No HTML error-body leakage observed for PPTX/DOCX/ZIP responses; MIME types and hashes match expected manifest values exactly."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_static_downloads_preview.py",
+    "/app/test_reports/iteration_78.json"
+  ],
+  "success_rate": {
+    "backend": "100% (4/4 pytest checks passed)",
+    "frontend": "100% (3/3 Playwright browser download flows passed, plus ZIP embedded parity and HTTP MIME/body checks)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Exact tested URLs: https://pensive-goodall-6.preview.emergentagent.com/downloads/RMS_Estate_Report.pptx, https://pensive-goodall-6.preview.emergentagent.com/downloads/RMS_Estate_Report.docx, https://pensive-goodall-6.preview.emergentagent.com/downloads/RMS_Estate_Reports.zip. Browser download event checks confirmed failure() is None for all three; suggested filenames matched expected names/extensions; bytes+SHA256 matched manifest (PPTX 147034 / dfdecac561ad62527aae0c37d6735a7b60ff897e860fd45d66629c85d8f7e480, DOCX 218731 / 5f85e6b342ddc3cb824973f2c3578636a5598550d9ead26efd8bae03188234f0, ZIP 338458 / 33399542e89ce651c8c13ea55398c6d36b469b9aac8a2abb1b1060b87d639c20). ZIP opened successfully and embedded PPTX/DOCX bytes exactly equaled standalone downloads. Legacy endpoints /api/deliverables/RMS_Estate_Intelligence_and_Language_Opportunities.{pptx,docx} were each probed 5 rounds and stayed HTTP 200; intermittent bad gateway not reproduced in this run.",
+  "rca of the issue": "Intermittent 'bad gateway' for legacy /api/deliverables path could not be reproduced during this test window, so precise outage trigger remains unconfirmed. Verified mitigation path works: static frontend-hosted /downloads artifacts bypassed API upstream and consistently delivered exact expected binaries through real browser download flows."
+}

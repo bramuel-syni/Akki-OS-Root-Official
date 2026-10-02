@@ -1,0 +1,630 @@
+{
+ "job_id": "m9j-686de001bfe7",
+ "phase": "lab_train_music",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-10-02T06:32:37.669260Z",
+ "params": {
+  "seed": 41,
+  "epochs": 12,
+  "folds": 5,
+  "batch_size": 256,
+  "lr": 0.001,
+  "max_seconds_per_file": 600.0,
+  "max_windows_per_file": 240,
+  "weak_negatives_per_language": 40,
+  "weak_positive_files": 30,
+  "gpu_index": 1,
+  "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+  "refs_dir": "/mnt/volume_dkgjrkx/akki-m9/music_refs",
+  "measurement_job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-c47f01c0b945",
+  "labelled_manifest": [
+   {
+    "item_id": "74f57c5bd6564c859865847b39d359ae",
+    "title": "Friend Zone",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "74f57c5bd6564c859865847b39d359ae.wav",
+    "sha256": "81bca0672604f41265d8dcba70df29dd2c85b7db1681d5b1d037036619468447"
+   },
+   {
+    "item_id": "9f480ee5f39c42fe81b93d264e4932d2",
+    "title": "Simple Man \ud83d\ude03 (Instrumental)",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "9f480ee5f39c42fe81b93d264e4932d2.wav",
+    "sha256": "8c6b8cf5e0725239f3a8cbce2c0bbd8a555cc8bc3a8e04862e48716b6be386d1"
+   },
+   {
+    "item_id": "0425bc3f7b7946fdb225412045126b26",
+    "title": "Staki Mambo Mingi \ud83d\ude00",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "0425bc3f7b7946fdb225412045126b26.wav",
+    "sha256": "5371159f6d65c5a37e9ab2a9e08e1e6716db75ca44309c3d7eb7d5fdcf2be89f"
+   },
+   {
+    "item_id": "07dd9d53dbed4202ba45382135adea13",
+    "title": "Moyo Wangu na Udunde",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "07dd9d53dbed4202ba45382135adea13.wav",
+    "sha256": "e747c1f92f6b8994386d5715a476adac26f3f8fa135757696cc0f43ab3a1c983"
+   },
+   {
+    "item_id": "43e762757f664fda9ad429676dcfeed1",
+    "title": "Stay Away",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "43e762757f664fda9ad429676dcfeed1.wav",
+    "sha256": "627715141a1eb387b071e7aca0f267256be95fee3a59209f087ff5cd4f07d41e"
+   },
+   {
+    "item_id": "8cdf00965da342228092d8491ba39008",
+    "title": "Heart Attack (1)",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "8cdf00965da342228092d8491ba39008.wav",
+    "sha256": "5f2d3ceeb2be7506eed12db5d35f7638fc56ae7c87914cee2d60ca657db17993"
+   },
+   {
+    "item_id": "22d381189c76471ea0ad91c034858300",
+    "title": "Nina wachilia",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "22d381189c76471ea0ad91c034858300.mp3",
+    "sha256": "86467363fccef536639175ec3332660f61616e6f86bc549e5f2596ba13b1e6cc"
+   },
+   {
+    "item_id": "6a65507c26c140f3aca815d3061428d7",
+    "title": "Simple Man \ud83d\ude03 (Instrumental)",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "6a65507c26c140f3aca815d3061428d7.wav",
+    "sha256": "8c6b8cf5e0725239f3a8cbce2c0bbd8a555cc8bc3a8e04862e48716b6be386d1"
+   },
+   {
+    "item_id": "d5243aaeb7e448a2bebb3497cf64c3ff",
+    "title": "Nina changanyikiwa",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "d5243aaeb7e448a2bebb3497cf64c3ff.wav",
+    "sha256": "ecce0359c6d6d013f3934c551ef602507fada27b02989af9663003211c9cae65"
+   },
+   {
+    "item_id": "a339b1baea854e5bbc8b28c3a0ebe64e",
+    "title": "Hopeless Romantic",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "a339b1baea854e5bbc8b28c3a0ebe64e.wav",
+    "sha256": "d726bf3d46e13e6d1a21871e3c6a39a9230238f484b6710ee7d01bdae09b9609"
+   },
+   {
+    "item_id": "a6740e589f9b4f99bfd71a2c561a3bc7",
+    "title": "Simple Man \ud83d\ude03",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "a6740e589f9b4f99bfd71a2c561a3bc7.wav",
+    "sha256": "f4de0c3e179d6c92f61d9bdc7c7a7a41aff3f2b64b719e921ff6d07d97b06396"
+   },
+   {
+    "item_id": "105c44e479794bc6b9bbd0147d33d1c6",
+    "title": "RING RING (3)",
+    "label": "music",
+    "label_source": "owner_music_library",
+    "file": "105c44e479794bc6b9bbd0147d33d1c6.wav",
+    "sha256": "fc94b764dcc7de77e67cadb80b86bc83b079ba74a1b9d475eb23beeb8f563776"
+   },
+   {
+    "item_id": "e965550b9deb483caebe8b67f5ed88ce",
+    "title": "LibriVox \u00b7 Famous Poems \u00b7 famouspoems_088_various_128kb",
+    "label": "speech",
+    "label_source": "source_catalogue",
+    "file": "e965550b9deb483caebe8b67f5ed88ce.mp3",
+    "sha256": "798f8a9c91261492222dcaf4abed3de57062c50fb57e84cce15a16f34bfa566b"
+   },
+   {
+    "item_id": "af188bcffe454632a9a88a0e1de40cd1",
+    "title": "LibriVox \u00b7 The Heart of a Mystery \u00b7 heartofamystery_01_meade_64kb",
+    "label": "speech",
+    "label_source": "source_catalogue",
+    "file": "af188bcffe454632a9a88a0e1de40cd1.mp3",
+    "sha256": "64fe8e24c43140b1de31d55ec62ace9c68d0e7eec8ef083345b7a7ae63d5ec0c"
+   },
+   {
+    "item_id": "b616e8c61e4b4352a386d609669ef0c8",
+    "title": "LibriVox \u00b7 The Heart of a Mystery \u00b7 heartofamystery_03_meade_64kb",
+    "label": "speech",
+    "label_source": "source_catalogue",
+    "file": "b616e8c61e4b4352a386d609669ef0c8.mp3",
+    "sha256": "a5e78b8660291d1bbf483cf7f7ba60e9d63c964701c852a09234b3c3a837fb85"
+   },
+   {
+    "item_id": "2edbb7bcf2ba4405a03454c8882539fc",
+    "title": "LibriVox \u00b7 William Again \u00b7 williamagain_02_crompton",
+    "label": "speech",
+    "label_source": "source_catalogue",
+    "file": "2edbb7bcf2ba4405a03454c8882539fc.ogg",
+    "sha256": "b46ab33ead11f603df9376d88561ef593209d009d3b82dc68e06f070b1d810d8"
+   },
+   {
+    "item_id": "3a2e8e81be94411bb874d402bee8fed4",
+    "title": "LibriVox \u00b7 William Again \u00b7 williamagain_02_crompton_64kb",
+    "label": "speech",
+    "label_source": "source_catalogue",
+    "file": "3a2e8e81be94411bb874d402bee8fed4.mp3",
+    "sha256": "39bae06a37c1549ffd3199e1efc86939d7d3ea9282bc157ef566e7128dbf5fc8"
+   }
+  ],
+  "baseline": {
+   "accuracy": 0.9523809523809523,
+   "recall": 1.0,
+   "precision": 0.9230769230769231,
+   "items": 21
+  },
+  "smoke": false,
+  "owner_order_ref": "owner sign-off 689f1edfb8d4 by 6ab56dd48894abb269135ca2 at 2026-10-02T06:32:03Z: music detector, cap 1.5 GPU-h"
+ },
+ "northena_run_id": "run-1a4569dadfae",
+ "northena_trace_id": "trc-07f05d503849",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-686de001bfe7"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-686de001bfe7",
+  "pid": 834345
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-42de69605fbd",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_lab_train_music_admitted"
+  },
+  {
+   "row_id": "led-a818e6e8e96a",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_lab_train_music_daemonised:pid=834345"
+  },
+  {
+   "row_id": "led-1b1fa61f4e98",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_lab_train_music_completed"
+  }
+ ],
+ "code_sha256": "f3d452d4d6f8a0c5bafb2b8b6473628e43b893b17216ca235803945957d1a4a8",
+ "started_at": "2026-10-02T06:32:43.805170Z",
+ "last_status_rpc": {
+  "at": "2026-10-02T06:39:51.247246Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-2428d132382f"
+ },
+ "remote_state": {
+  "phase": "lab_train_music",
+  "status": "completed",
+  "started_at": "2026-10-02T06:32:43Z",
+  "progress": {
+   "stage": "training final model",
+   "epoch": 12,
+   "epochs": 12,
+   "step": 564,
+   "loss": 0.02338,
+   "gpu_memory_gb": 2.8,
+   "train_windows": 11937
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-686de001bfe7",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-02T06:36:55Z",
+  "finished_at": "2026-10-02T06:36:55Z",
+  "receipt_sha256": "4449088518d8002cf40f22ff0373f94aa2d5be379936a352a4fa1faa485b2f91"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-686de001bfe7",
+  "phase": "lab_train_music",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-02T06:32:43Z",
+  "code_sha256": "f3d452d4d6f8a0c5bafb2b8b6473628e43b893b17216ca235803945957d1a4a8",
+  "status": "completed",
+  "result": {
+   "target": "contains music (music or speech-over-music) versus not",
+   "items": 17,
+   "positives": 12,
+   "negatives": 5,
+   "label_sources": {
+    "owner_music_library": 12,
+    "source_catalogue": 5
+   },
+   "folds": 5,
+   "file_level": {
+    "n": 17,
+    "confusion": {
+     "tp": 12,
+     "fp": 0,
+     "fn": 0,
+     "tn": 5
+    },
+    "accuracy": {
+     "estimate": 1.0,
+     "low": 0.8157,
+     "high": 1.0,
+     "n": 17
+    },
+    "precision": {
+     "estimate": 1.0,
+     "low": 0.7575,
+     "high": 1.0,
+     "n": 12
+    },
+    "recall": {
+     "estimate": 1.0,
+     "low": 0.7575,
+     "high": 1.0,
+     "n": 12
+    },
+    "specificity": {
+     "estimate": 1.0,
+     "low": 0.5655,
+     "high": 1.0,
+     "n": 5
+    }
+   },
+   "window_level": {
+    "n": 2326,
+    "confusion": {
+     "tp": 1323,
+     "fp": 16,
+     "fn": 15,
+     "tn": 972
+    },
+    "accuracy": {
+     "estimate": 0.9867,
+     "low": 0.9811,
+     "high": 0.9906,
+     "n": 2326
+    },
+    "precision": {
+     "estimate": 0.9881,
+     "low": 0.9807,
+     "high": 0.9926,
+     "n": 1339
+    },
+    "recall": {
+     "estimate": 0.9888,
+     "low": 0.9816,
+     "high": 0.9932,
+     "n": 1338
+    },
+    "specificity": {
+     "estimate": 0.9838,
+     "low": 0.9739,
+     "high": 0.99,
+     "n": 988
+    },
+    "files": 17,
+    "note": "Windows from one recording are correlated; the file-level figures are the ones to compare with the baseline."
+   },
+   "per_item": [
+    {
+     "item_id": "74f57c5bd6564c859865847b39d359ae",
+     "title": "Friend Zone",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 96,
+     "probability_music": 0.9995,
+     "correct": true
+    },
+    {
+     "item_id": "9f480ee5f39c42fe81b93d264e4932d2",
+     "title": "Simple Man \ud83d\ude03 (Instrumental)",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 111,
+     "probability_music": 0.9124,
+     "correct": true
+    },
+    {
+     "item_id": "0425bc3f7b7946fdb225412045126b26",
+     "title": "Staki Mambo Mingi \ud83d\ude00",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 108,
+     "probability_music": 0.9978,
+     "correct": true
+    },
+    {
+     "item_id": "07dd9d53dbed4202ba45382135adea13",
+     "title": "Moyo Wangu na Udunde",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 109,
+     "probability_music": 0.9937,
+     "correct": true
+    },
+    {
+     "item_id": "43e762757f664fda9ad429676dcfeed1",
+     "title": "Stay Away",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 92,
+     "probability_music": 0.9997,
+     "correct": true
+    },
+    {
+     "item_id": "8cdf00965da342228092d8491ba39008",
+     "title": "Heart Attack (1)",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 136,
+     "probability_music": 0.9988,
+     "correct": true
+    },
+    {
+     "item_id": "22d381189c76471ea0ad91c034858300",
+     "title": "Nina wachilia",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 126,
+     "probability_music": 0.9753,
+     "correct": true
+    },
+    {
+     "item_id": "6a65507c26c140f3aca815d3061428d7",
+     "title": "Simple Man \ud83d\ude03 (Instrumental)",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 111,
+     "probability_music": 0.983,
+     "correct": true
+    },
+    {
+     "item_id": "d5243aaeb7e448a2bebb3497cf64c3ff",
+     "title": "Nina changanyikiwa",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 125,
+     "probability_music": 0.9951,
+     "correct": true
+    },
+    {
+     "item_id": "a339b1baea854e5bbc8b28c3a0ebe64e",
+     "title": "Hopeless Romantic",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 105,
+     "probability_music": 0.9994,
+     "correct": true
+    },
+    {
+     "item_id": "a6740e589f9b4f99bfd71a2c561a3bc7",
+     "title": "Simple Man \ud83d\ude03",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 111,
+     "probability_music": 0.9996,
+     "correct": true
+    },
+    {
+     "item_id": "105c44e479794bc6b9bbd0147d33d1c6",
+     "title": "RING RING (3)",
+     "label": "music",
+     "label_source": "owner_music_library",
+     "windows": 108,
+     "probability_music": 0.8966,
+     "correct": true
+    },
+    {
+     "item_id": "e965550b9deb483caebe8b67f5ed88ce",
+     "title": "LibriVox \u00b7 Famous Poems \u00b7 famouspoems_088_various_128kb",
+     "label": "speech",
+     "label_source": "source_catalogue",
+     "windows": 28,
+     "probability_music": 0.1164,
+     "correct": true
+    },
+    {
+     "item_id": "af188bcffe454632a9a88a0e1de40cd1",
+     "title": "LibriVox \u00b7 The Heart of a Mystery \u00b7 heartofamystery_01_meade_64kb",
+     "label": "speech",
+     "label_source": "source_catalogue",
+     "windows": 240,
+     "probability_music": 0.0141,
+     "correct": true
+    },
+    {
+     "item_id": "b616e8c61e4b4352a386d609669ef0c8",
+     "title": "LibriVox \u00b7 The Heart of a Mystery \u00b7 heartofamystery_03_meade_64kb",
+     "label": "speech",
+     "label_source": "source_catalogue",
+     "windows": 240,
+     "probability_music": 0.0069,
+     "correct": true
+    },
+    {
+     "item_id": "2edbb7bcf2ba4405a03454c8882539fc",
+     "title": "LibriVox \u00b7 William Again \u00b7 williamagain_02_crompton",
+     "label": "speech",
+     "label_source": "source_catalogue",
+     "windows": 240,
+     "probability_music": 0.0996,
+     "correct": true
+    },
+    {
+     "item_id": "3a2e8e81be94411bb874d402bee8fed4",
+     "title": "LibriVox \u00b7 William Again \u00b7 williamagain_02_crompton_64kb",
+     "label": "speech",
+     "label_source": "source_catalogue",
+     "windows": 240,
+     "probability_music": 0.0016,
+     "correct": true
+    }
+   ],
+   "weak_supervision": {
+    "status": "used_for_training_only",
+    "files": 179,
+    "decode_failures": 0,
+    "speech_files": 149,
+    "music_files": 30,
+    "windows": 9611,
+    "rule": "speech: reads_as speech, zero music windows, confidence \u2265 0.6; music: reads_as music with \u2265 60% music windows"
+   },
+   "weak_agreement": {
+    "files": 179,
+    "agreement_with_cue_reading": {
+     "estimate": 1.0,
+     "low": 0.979,
+     "high": 1.0,
+     "n": 179
+    },
+    "reading": "Agreement with the cue reading on training-only weak files; not an accuracy figure."
+   },
+   "digest_verification": [
+    {
+     "item_id": "74f57c5bd6564c859865847b39d359ae",
+     "digest_verified": true
+    },
+    {
+     "item_id": "9f480ee5f39c42fe81b93d264e4932d2",
+     "digest_verified": true
+    },
+    {
+     "item_id": "0425bc3f7b7946fdb225412045126b26",
+     "digest_verified": true
+    },
+    {
+     "item_id": "07dd9d53dbed4202ba45382135adea13",
+     "digest_verified": true
+    },
+    {
+     "item_id": "43e762757f664fda9ad429676dcfeed1",
+     "digest_verified": true
+    },
+    {
+     "item_id": "8cdf00965da342228092d8491ba39008",
+     "digest_verified": true
+    },
+    {
+     "item_id": "22d381189c76471ea0ad91c034858300",
+     "digest_verified": true
+    },
+    {
+     "item_id": "6a65507c26c140f3aca815d3061428d7",
+     "digest_verified": true
+    },
+    {
+     "item_id": "d5243aaeb7e448a2bebb3497cf64c3ff",
+     "digest_verified": true
+    },
+    {
+     "item_id": "a339b1baea854e5bbc8b28c3a0ebe64e",
+     "digest_verified": true
+    },
+    {
+     "item_id": "a6740e589f9b4f99bfd71a2c561a3bc7",
+     "digest_verified": true
+    },
+    {
+     "item_id": "105c44e479794bc6b9bbd0147d33d1c6",
+     "digest_verified": true
+    },
+    {
+     "item_id": "e965550b9deb483caebe8b67f5ed88ce",
+     "digest_verified": true
+    },
+    {
+     "item_id": "af188bcffe454632a9a88a0e1de40cd1",
+     "digest_verified": true
+    },
+    {
+     "item_id": "b616e8c61e4b4352a386d609669ef0c8",
+     "digest_verified": true
+    },
+    {
+     "item_id": "2edbb7bcf2ba4405a03454c8882539fc",
+     "digest_verified": true
+    },
+    {
+     "item_id": "3a2e8e81be94411bb874d402bee8fed4",
+     "digest_verified": true
+    }
+   ],
+   "recipe": {
+    "seed": 41,
+    "epochs": 12,
+    "folds": 5,
+    "batch_size": 256,
+    "lr": 0.001,
+    "max_seconds_per_file": 600.0,
+    "max_windows_per_file": 240,
+    "weak_negatives_per_language": 40,
+    "weak_positive_files": 30,
+    "owner_order_ref": "owner sign-off 689f1edfb8d4 by 6ab56dd48894abb269135ca2 at 2026-10-02T06:32:03Z: music detector, cap 1.5 GPU-h",
+    "model": "4-block 2-D CNN over 64-band log-mel of the 2 s window; BCE with class-balanced positive weight; weak windows at half weight",
+    "precision": "fp32",
+    "smoke": false
+   },
+   "recipe_sha256": "2b9963aeec2e56f193858c0788ae84a90ac1e5003a7c105854f1f4af2754b88a",
+   "baseline_reference": {
+    "accuracy": 0.9523809523809523,
+    "recall": 1.0,
+    "precision": 0.9230769230769231,
+    "items": 21
+   },
+   "against_baseline": {
+    "accuracy": true,
+    "recall": true,
+    "precision": true,
+    "rule": "out-of-fold file-level estimate at or above the learned baseline point estimate on the same kind of labelled recordings"
+   },
+   "training": {
+    "steps": 3276,
+    "epochs": 12,
+    "elapsed_seconds": 251,
+    "device": "cuda",
+    "gpu_index": 1,
+    "gpu": "NVIDIA H200",
+    "gpu_max_memory_gb": 2.8,
+    "labelled_windows": 2326,
+    "weak_windows": 9611
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-686de001bfe7/artefact",
+    "sha256": "0fea3eee039307fe3d92d4a9489357642e53461598301697ab3a57e419654a8c",
+    "custody": "RMS tenant; stays on the GPU host; served only after the recorded admission"
+   },
+   "limitations": [
+    "Small labelled set: file-level intervals are wide; the owner library is one genre and one source",
+    "Weak staged-corpus windows carry cue-reading labels, not human labels, and were used for training only",
+    "Mixed speech-over-music is scored as music; no separate mixed class is labelled yet"
+   ],
+   "raw_media_exported": false,
+   "paths_exported": false
+  },
+  "finished_at": "2026-10-02T06:36:55Z",
+  "receipt_sha256": "4449088518d8002cf40f22ff0373f94aa2d5be379936a352a4fa1faa485b2f91",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-02T06:36:55Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-686de001bfe7",
+  "started_at_utc": "2026-10-02T06:32:43.805170Z",
+  "finished_at_utc": "2026-10-02T06:36:55Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-686de001bfe7"
+ }
+}

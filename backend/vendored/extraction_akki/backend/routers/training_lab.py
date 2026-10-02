@@ -210,7 +210,7 @@ class BoardMessage(c.Closed):
 
 
 class BoardAction(c.Closed):
-    action:Literal['run_music_baseline','measure_staged_corpus','import_reference_recordings','ask_specialists','record_training_request','use_baseline','white_paper','retire']
+    action:Literal['run_music_baseline','measure_staged_corpus','import_reference_recordings','ask_specialists','record_training_request','approve_plan','use_baseline','white_paper','retire']
     value:str|None=Field(default=None,max_length=120)
 
 
@@ -262,6 +262,19 @@ async def _perform(actor,run,action,value,background):
                     production.compile_plan(tenant, actor, run['run_id'], doc.get('definition'))
                     board_runs.hold(tenant,run['run_id'])
             text='Recorded: you are asking for this training. The request stays held until the recipe, compute cap and evaluation contract are approved through Model Approval; nothing has started.'
+        elif action=='approve_plan':
+            from services.training_lab import signoff, autopilot
+            if not value: raise ValueError('the plan digest shown on the run must accompany the approval')
+            with commission_gate.crossing(actor,'training_lab.training_request',{'run_id':run['run_id'],'plan_sha256':value,'signoff':True}):
+                record=signoff.sign(tenant,actor,run['run_id'],value)
+            plan=record['plan']
+            autopilot.kick(background)
+            text=(f"Signed off by {signoff.signer_label(actor['principal_id'])} — digest {record['plan_sha256'][:12]}. That signature is the only thing that starts training here: "
+                  f"I am dispatching it now to {plan['host']} GPU {plan['gpu_index']} with exactly the recipe, data and {plan['compute_cap_gpu_hours']} GPU-hour cap you approved, "
+                  "and I will judge the result against the acceptance you signed, write the findings paper, and report back in this thread.")
+            note=conversation.note(tenant,text,widget='action',action=action,signoff={'plan_sha256':record['plan_sha256'],'signed_by':record['signed_by'],'signed_at':record['signed_at']})
+            conversation.record(tenant,run['run_id'],note)
+            return note
         elif action=='use_baseline':
             text=f"Starting point recorded: {'the learned baseline on the measured observables' if value=='learned' else 'the acoustic reading'}. A detector only earns its place by beating it on recordings it has not seen."
         elif action=='retire':
@@ -271,9 +284,12 @@ async def _perform(actor,run,action,value,background):
             text='Retired. The record, the checks and the reason stay exactly as written; only the status changed.'
         else:
             from services.transform_forms.doc_studio import service as studio
-            with commission_gate.crossing(actor,'training_lab.whitepaper',{'run_id':run['run_id']}):
-                document, created = await asyncio.to_thread(studio.create_from_producer, 'training-whitepaper', run['run_id'], tenant, actor['principal_id'])
-            text='The white paper is prepared in Documents from this run’s measured record, decisions and limitations. It can now be built and reviewed there.'
+            source=((run.get('approval') or {}).get('dispatch') or {}).get('job_id') or run['run_id']
+            with commission_gate.crossing(actor,'training_lab.whitepaper',{'run_id':run['run_id'],'source':source}):
+                document, created = await studio.create_authored('training-whitepaper', source, tenant, actor['principal_id'])
+            gate=(document.get('authoring') or {}).get('gate') or {}
+            text=('The findings paper is written in Documents from this run’s measured record — authored by the frontier writer, every figure by reference, gated by the content manager before its build.'
+                  if gate.get('passed') else 'The frontier writer drafted the paper but the content manager rejected it, so no document was built; the rejection reasons are recorded on the commission in Documents.')
             note=conversation.note(tenant,text,widget='doc',action=action,commission_id=document['commission_id'])
             conversation.record(tenant,run['run_id'],note)
             return note
@@ -288,9 +304,11 @@ async def _perform(actor,run,action,value,background):
 
 
 @router.get('/board',response_model=c.Envelope)
-async def board_view(actor=Depends(census_identity)):
-    from services.training_lab import board, conversation
+async def board_view(background:BackgroundTasks,actor=Depends(census_identity)):
+    from services.training_lab import board, conversation, autopilot
+    await asyncio.to_thread(autopilot.refresh_running, autopilot.REFRESH_AGE_S)
     data=await asyncio.to_thread(board.board,actor['tenant_id'])
+    if any((run.get('approval') or {}).get('awaiting_judgement') for run in data['runs']): autopilot.kick(background)
     for run in data['runs']:
         run['messages']=run['messages']+conversation.messages(actor['tenant_id'],run['run_id'])
     return {'tenant_id':actor['tenant_id'],**data}
@@ -339,7 +357,7 @@ async def board_action(run_id:str,body:BoardAction,background:BackgroundTasks,ac
     from services.training_lab import conversation
     run=await asyncio.to_thread(_board_run,actor['tenant_id'],run_id)
     labels={'run_music_baseline':'Run the baseline','measure_staged_corpus':'Measure the staged corpus','import_reference_recordings':'Import the reference recordings','ask_specialists':'Ask the five specialists',
-            'record_training_request':'Begin training','use_baseline':'Start from this','white_paper':'Prepare white paper','retire':'Retire this attempt'}
+            'record_training_request':'Begin training','approve_plan':'Approve and start','use_baseline':'Start from this','white_paper':'Prepare white paper','retire':'Retire this attempt'}
     decided=conversation.decision(actor['tenant_id'],labels[body.action],action=body.action,value=body.value)
     conversation.record(actor['tenant_id'],run['run_id'],decided)
     return {'tenant_id':actor['tenant_id'],'messages':[decided,await _perform(actor,run,body.action,body.value,background)],'training_started':False}

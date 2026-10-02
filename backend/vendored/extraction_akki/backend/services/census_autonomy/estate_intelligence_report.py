@@ -822,9 +822,11 @@ DOSSIER_SYSTEM = ("You are Akki's estate intelligence analyst. You receive ONLY 
                   "figures, prices or rights; where a figure is missing say it is unmeasured.")
 
 
-async def compose_dossier(job_id, actor, tenant_id, model="gpt-5-mini", provider="emergent"):
-    """One governed crossing: compact aggregates in, Markdown dossier out; banked and folded into the report."""
+async def compose_dossier(job_id, actor, tenant_id, model=None, provider=None):
+    """One governed crossing: compact aggregates in, Markdown dossier out; banked and folded into the report. The frontier writer model is
+    configured once (REPORT_AUTHOR_MODEL); callers do not pick a weaker model."""
     from services.chokepoint import llm as chokepoint
+    model = os.environ['REPORT_AUTHOR_MODEL']; provider = os.environ['REPORT_AUTHOR_CONNECTION']
     report = report_for(job_id)
     if not report:
         return None

@@ -1,0 +1,452 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@3",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {},
+  "inputs_sha256": {
+    "brief.json": "021a2a64f8dace02e68627cb3d0d60486b1a4ac1b5574b12d5f11aa839176572",
+    "content.json": "cffb3d3b48669280b6ed8967a51518dbfdb32999867a437af30fc46fd01ac690",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "dae14c31da9f0d2f3bd9c9b67ffd8de1d5fbfd3a50ca44df779440e97feb11db",
+    "workbook.json": "3b533668a80c2ab9251eb1f5930b5dfc3d4d7225774334cdbb7b9817d70681e2"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "number-large",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "C8102E",
+      "field": "FFFFFF",
+      "hatch": "E9ECF1",
+      "muted": "8A94A6",
+      "rule": "D5DAE3",
+      "structure": "1F2A44"
+    },
+    "palette_id": "graphite",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "organisation": "RMS",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "sheets": [
+    {
+      "kind": "cover",
+      "name": "Cover"
+    },
+    {
+      "facts": [
+        {
+          "class": "measured",
+          "id": "F001",
+          "label": "Databases",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "databases",
+          "value": 20
+        },
+        {
+          "class": "measured",
+          "id": "F002",
+          "label": "Tables",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "tables",
+          "value": 1006
+        },
+        {
+          "class": "measured",
+          "id": "F003",
+          "label": "Tables measured",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "tables",
+          "value": 638
+        },
+        {
+          "class": "measured",
+          "id": "F004",
+          "label": "Data and index held",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "GiB",
+          "value": 351.3
+        },
+        {
+          "class": "estimated",
+          "id": "F005",
+          "label": "Reclaimable before pricing",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "GiB",
+          "value": 15.2
+        },
+        {
+          "class": "estimated",
+          "id": "F006",
+          "label": "Reclaimable share of bytes",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "value": 0.043
+        },
+        {
+          "class": "estimated",
+          "id": "F007",
+          "label": "Exact duplicate rows",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "value": 0.015
+        },
+        {
+          "class": "estimated",
+          "id": "F008",
+          "label": "Degraded rows",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "value": 0.23
+        },
+        {
+          "class": "estimated",
+          "id": "F009",
+          "label": "Rows with empty required-looking fields",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "value": 0.817
+        },
+        {
+          "class": "estimated",
+          "id": "F010",
+          "label": "Sampled rows with PII markers",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "value": 0.718
+        },
+        {
+          "class": "measured",
+          "id": "F011",
+          "label": "Rows sampled for PII",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "m",
+          "value": 1.0
+        },
+        {
+          "class": "measured",
+          "id": "F012",
+          "label": "Bytes not written for over a year",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "value": 0.154
+        },
+        {
+          "class": "estimated",
+          "id": "F013",
+          "label": "Rows held",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "m",
+          "value": 259.3
+        },
+        {
+          "class": "measured",
+          "id": "F014",
+          "label": "Duplicate table pairs",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pairs",
+          "value": 71
+        },
+        {
+          "class": "measured",
+          "id": "F015",
+          "label": "Empty tables",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "tables",
+          "value": 368
+        },
+        {
+          "class": "measured",
+          "id": "F016",
+          "label": "Bytes in the largest databases",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "GiB",
+          "value": 350.3
+        },
+        {
+          "class": "measured",
+          "id": "F017",
+          "label": "Dead columns share",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "value": 0.13
+        },
+        {
+          "class": "measured",
+          "id": "F018",
+          "label": "Product candidates",
+          "receipt": "R03",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)",
+          "unit": "candidates",
+          "value": 8
+        },
+        {
+          "class": "estimated",
+          "id": "F019",
+          "label": "Priced monthly saving (USD)",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+          "unit": "USD",
+          "value": 1174.4
+        },
+        {
+          "class": "estimated",
+          "id": "F020",
+          "label": "Bytes addressed by the three largest strategies",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+          "unit": "GiB",
+          "value": 50784.6
+        },
+        {
+          "class": "estimated",
+          "id": "F021",
+          "label": "Bytes addressed by all cost strategies (databases, object and file stores)",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+          "unit": "GiB",
+          "value": 50799.8
+        }
+      ],
+      "kind": "inputs",
+      "name": "Inputs"
+    },
+    {
+      "derived": [
+        {
+          "calc": "K003",
+          "format": "0.0%",
+          "formula": "reclaimable_gib / Inputs.F021",
+          "label": "Share of bytes addressed by all strategies"
+        },
+        {
+          "format": "#,##0.0",
+          "formula": "12 * monthly_saving_usd",
+          "label": "Annual saving (USD)"
+        }
+      ],
+      "kind": "options_model",
+      "name": "Options",
+      "options": [
+        {
+          "class": "estimated",
+          "id": "O1",
+          "monthly_saving_usd": 986.5,
+          "name": "Move buckets not written for over a year to archive-class st",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+          "reclaimable_gib": 42891.0
+        },
+        {
+          "class": "estimated",
+          "id": "O2",
+          "monthly_saving_usd": 180.3,
+          "name": "Reconcile duplicate objects across OBS buckets",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+          "reclaimable_gib": 7839.5
+        },
+        {
+          "class": "estimated",
+          "id": "O3",
+          "monthly_saving_usd": 5.9,
+          "name": "Move tables not written for over a year to cold storage",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+          "reclaimable_gib": 54.1
+        }
+      ],
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "#,##0.0",
+          "label": "Bytes addressed",
+          "unit": "GiB"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "#,##0.0",
+          "label": "Monthly saving",
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "kind": "series",
+      "name": "Series",
+      "series": [
+        {
+          "categories": [
+            "viusasa_staging (D)",
+            "razuna (D)",
+            "db_visitors (D)",
+            "kra_reports (D)",
+            "viupay_agent_staging (A)",
+            "news_vault (C)",
+            "local (D)",
+            "viutickets (B)"
+          ],
+          "class": "measured",
+          "id": "S001",
+          "label": "Data and index by database, GiB",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "GiB",
+          "values": {
+            "GiB": [
+              338.5,
+              4.5,
+              2.7,
+              1.5,
+              1.2,
+              0.9,
+              0.5,
+              0.4
+            ]
+          }
+        },
+        {
+          "categories": [
+            "Exact duplicates",
+            "Degraded",
+            "Empty required fields",
+            "PII markers (sampled)",
+            "Stale bytes"
+          ],
+          "class": "estimated",
+          "id": "S002",
+          "label": "Condition of measured rows",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures",
+          "unit": "pct",
+          "values": {
+            "Share": [
+              0.015,
+              0.23,
+              0.817,
+              0.718,
+              0.154
+            ]
+          }
+        },
+        {
+          "categories": [
+            "Move buckets not written for over a year",
+            "Reconcile duplicate objects across OBS b",
+            "Move tables not written for over a year ",
+            "Remove redundant (prefix-covered) indexe",
+            "De-duplicate exact repeated rows inside ",
+            "Consolidate duplicate and staging copies",
+            "Drop or archive empty tables"
+          ],
+          "class": "estimated",
+          "id": "S003",
+          "label": "Reclaimable GiB by cost strategy",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month",
+          "unit": "GiB",
+          "values": {
+            "GiB": [
+              42891.0,
+              7839.5,
+              54.1,
+              14.0,
+              1.2,
+              0.1,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "checks": [
+        {
+          "calc": "K001",
+          "formula": "Inputs.F003/Inputs.F002",
+          "label": "K001 share of tables measured"
+        },
+        {
+          "calc": "K002",
+          "formula": "Inputs.F016/Inputs.F004",
+          "label": "K002 share of bytes in the largest databases"
+        },
+        {
+          "calc": "K004",
+          "formula": "Inputs.F020/Inputs.F021",
+          "label": "K004 three largest strategies' share of bytes addressed"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O1",
+          "option": "O1"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O2",
+          "option": "O2"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O3",
+          "option": "O3"
+        }
+      ],
+      "kind": "checks",
+      "name": "Checks"
+    }
+  ],
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "WB-eij-1b359b3cbd2e",
+  "spec_type": "workbook",
+  "title": "Estate cost and data-product decision pack",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

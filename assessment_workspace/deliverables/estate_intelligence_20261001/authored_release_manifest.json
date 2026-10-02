@@ -1,0 +1,29 @@
+{
+ "RMS_Estate_Report.pptx": {
+  "sha256": "59af34cf3a66432912b825688185d27f33ea75dcde961e598f1da2e4eb5e9661",
+  "bytes": 146205
+ },
+ "RMS_Estate_Report.docx": {
+  "sha256": "8784c50ccdf386ca6c60a32b3197f85209e841f9f46177e32f121bad4562face",
+  "bytes": 415246
+ },
+ "RMS_Estate_Reports.zip": {
+  "sha256": "5f88448a078230dc5b81270be76be3b68107129749be177e3424522394fc2a53",
+  "bytes": 539519
+ },
+ "authoring": {
+  "model": "claude-sonnet-5-5",
+  "provider": "emergent",
+  "receipt_id": "rcp-19d45fc80010",
+  "tokens_in": 19495,
+  "tokens_out": 7940,
+  "latency_ms": 68230,
+  "repairs": 1,
+  "gate": {
+   "passed": true,
+   "issues": [],
+   "repairs": 1,
+   "plan_slots": 24
+  }
+ }
+}

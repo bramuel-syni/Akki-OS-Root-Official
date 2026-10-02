@@ -1,0 +1,790 @@
+{
+  "authoring": {
+    "claims_authored": 37,
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 0
+    },
+    "latency_ms": 38421,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "planner → worker → content manager → frontier writer",
+    "provider": "emergent",
+    "receipt_id": "rcp-d69fe4ab30eb",
+    "tokens_in": 4918,
+    "tokens_out": 1890
+  },
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001"
+      ],
+      "text": "{F001} checks were measured against the signed acceptance in this record."
+    },
+    "C510": {
+      "supports": [
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007"
+      ],
+      "text": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC (Source: R01)"
+    },
+    "C520": {
+      "supports": [
+        "F008",
+        "F009",
+        "F010"
+      ],
+      "text": "Compute: 4 min on akki-vm GPU 1 · peak 2.8 GB (Source: R01)"
+    },
+    "C530": {
+      "supports": [
+        "F011",
+        "F012",
+        "F013",
+        "F014",
+        "F015",
+        "F016"
+      ],
+      "text": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3% (Source: R01)"
+    },
+    "C540": {
+      "supports": [
+        "F017"
+      ],
+      "text": "Artefact: sha256 0fea3eee039307fe… · stays on the GPU host (Source: R01)"
+    },
+    "C550": {
+      "supports": [
+        "F018",
+        "F019",
+        "F020",
+        "F021"
+      ],
+      "text": "Accuracy: 100.0% (82%–100%) · baseline 95.2%. (Source: R01)"
+    },
+    "C560": {
+      "supports": [
+        "F022",
+        "F023",
+        "F024",
+        "F025"
+      ],
+      "text": "Finds music (recall): 100.0% (76%–100%) · baseline 100.0%. (Source: R01)"
+    },
+    "C570": {
+      "supports": [
+        "F026",
+        "F027",
+        "F028",
+        "F029"
+      ],
+      "text": "Right when it says music (precision): 100.0% (76%–100%) · baseline 92.3%. (Source: R01)"
+    },
+    "C580": {
+      "supports": [
+        "F030",
+        "F031",
+        "F032"
+      ],
+      "text": "Clears non-music (specificity): 100.0% (57%–100%) · baseline —. (Source: R01)"
+    },
+    "C901": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Staged audio run: per-stratum results, coverage limits and the next dataset step"
+    },
+    "C902": {
+      "authored": true,
+      "supports": [
+        "F001",
+        "F011",
+        "F012",
+        "F015",
+        "F016"
+      ],
+      "text": "The staged-audio music identification model is recorded as in service, and serving remains a separate operation. The retained receipt holds {F001} measured checks. Accuracy is {F011} per cent against a baseline of {F012} per cent, and precision is {F015} per cent against {F016} per cent. Recall is level with its baseline."
+    },
+    "C903": {
+      "authored": true,
+      "supports": [
+        "F031",
+        "F032"
+      ],
+      "text": "These results should not be read as proof of improvement. Every interval is wide and each baseline figure that differs lies inside its interval. The widest uncertainty is on non-music audio, at {F031} to {F032} per cent. The next step should be better evidence, in the form of a fresh sealed evaluation set, rather than another tuning round."
+    },
+    "C904": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The model scores perfectly on the check set, but the set is too small to prove a margin"
+    },
+    "C905": {
+      "authored": true,
+      "supports": [
+        "F001",
+        "F008",
+        "F009",
+        "F010"
+      ],
+      "text": "The staged-audio music identification model is recorded as in service. Its retained receipt holds {F001} measured checks against the signed acceptance. The training run took {F008} minutes on GPU {F009}, with peak memory of {F010} GB."
+    },
+    "C906": {
+      "authored": true,
+      "supports": [
+        "F011",
+        "F012",
+        "F015",
+        "F016"
+      ],
+      "text": "Accuracy is {F011} per cent against a baseline of {F012} per cent, and precision is {F015} per cent against {F016} per cent. The intervals are wide, and the baseline sits inside them. Recall matches its baseline exactly."
+    },
+    "C907": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Which improvement should come next: a different model recipe, or better evidence about the model already built?"
+    },
+    "C908": {
+      "authored": true,
+      "supports": [
+        "F031",
+        "F032"
+      ],
+      "text": "Improve the dataset first. Build a fresh, independently labelled and sealed evaluation set, starting with non-music audio, where the interval runs only from {F031} to {F032} per cent. Claim no gain over baseline until it exists."
+    },
+    "C909": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Training receipt and acceptance record"
+    },
+    "C910": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "On the acceptance checks the model matches or beats baseline, but the margin is small"
+    },
+    "C911": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "{F001} checks were measured against the signed acceptance and retained in the receipt for this single run."
+    },
+    "C912": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007"
+      ],
+      "text": "The signed plan records {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. These are recorded settings, not measured performance, and the receipt does not label them here."
+    },
+    "C913": {
+      "authored": true,
+      "supports": [
+        "F011",
+        "F012",
+        "F015",
+        "F016"
+      ],
+      "text": "Accuracy is {F011} per cent against baseline {F012} per cent. Precision is {F015} per cent against baseline {F016} per cent."
+    },
+    "C914": {
+      "authored": true,
+      "supports": [
+        "F022",
+        "F025"
+      ],
+      "text": "Recall is {F022} per cent, identical to its baseline of {F025} per cent, so there is no recall gain to report."
+    },
+    "C915": {
+      "authored": true,
+      "supports": [
+        "F001",
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007"
+      ],
+      "text": "The record covers this single run only. It holds {F001} measured checks against the signed acceptance. The signed plan records {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. These are plan settings, and the receipt does not label them here, so they should not be treated as model performance."
+    },
+    "C916": {
+      "authored": true,
+      "supports": [
+        "F012",
+        "F011",
+        "F016",
+        "F015",
+        "F022",
+        "F025"
+      ],
+      "text": "Against baseline, accuracy rose from {F012} to {F011} per cent and precision from {F016} to {F015} per cent. Recall is {F022} per cent, the same as the baseline of {F025} per cent. The gain is therefore confined to accuracy and precision."
+    },
+    "C917": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Every stratum interval is wide, and non-music is the least certain of all"
+    },
+    "C918": {
+      "authored": true,
+      "supports": [
+        "F018",
+        "F019",
+        "F020",
+        "F021"
+      ],
+      "text": "Accuracy of {F018} per cent has an interval from {F019} to {F020} per cent. The baseline of {F021} per cent lies inside it."
+    },
+    "C919": {
+      "authored": true,
+      "supports": [
+        "F022",
+        "F023",
+        "F024",
+        "F026",
+        "F027",
+        "F028"
+      ],
+      "text": "Recall of {F022} per cent has an interval from {F023} to {F024} per cent. Precision of {F026} per cent has an interval from {F027} to {F028} per cent."
+    },
+    "C920": {
+      "authored": true,
+      "supports": [
+        "F030",
+        "F031",
+        "F032"
+      ],
+      "text": "Specificity, the share of non-music correctly cleared, is {F030} per cent. Its interval runs from {F031} to {F032} per cent, the widest recorded."
+    },
+    "C921": {
+      "authored": true,
+      "supports": [
+        "F008",
+        "F009",
+        "F010"
+      ],
+      "text": "Training took {F008} minutes on GPU {F009}, peaking at {F010} GB. Compute is not a constraint on further runs."
+    },
+    "C922": {
+      "authored": true,
+      "supports": [
+        "F019",
+        "F020",
+        "F023",
+        "F024",
+        "F027",
+        "F021",
+        "F029"
+      ],
+      "text": "The reported intervals are wide. Accuracy runs from {F019} to {F020} per cent, and recall from {F023} to {F024} per cent. Precision starts at {F027} per cent. The baselines of {F021} per cent for accuracy and {F029} per cent for precision sit inside these ranges, so the evidence does not separate the model from baseline."
+    },
+    "C923": {
+      "authored": true,
+      "supports": [
+        "F030",
+        "F031",
+        "F032",
+        "F008",
+        "F009",
+        "F010"
+      ],
+      "text": "Specificity is {F030} per cent but with an interval from {F031} to {F032} per cent, the widest of all. The width suggests a small evaluation sample, though the receipt does not state sample sizes. Compute was modest: {F008} minutes on GPU {F009}, with a peak of {F010} GB."
+    },
+    "C924": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Strengthen the evidence before changing the recipe: new sealed data first, tuning second"
+    },
+    "C925": {
+      "authored": true,
+      "supports": [
+        "F011",
+        "F012"
+      ],
+      "text": "First, keep the model in service but claim no proven gain over baseline. Accuracy of {F011} per cent against {F012} per cent sits inside the interval."
+    },
+    "C926": {
+      "authored": true,
+      "supports": [
+        "F031",
+        "F032"
+      ],
+      "text": "Second, commission a fresh, independently labelled and sealed evaluation set, with non-music audio first. Its interval of {F031} to {F032} per cent is the weakest."
+    },
+    "C927": {
+      "authored": true,
+      "supports": [
+        "F023",
+        "F024",
+        "F025"
+      ],
+      "text": "Third, add music examples to tighten the recall interval of {F023} to {F024} per cent before judging any recall change against {F025} per cent."
+    },
+    "C928": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Fourth, compile an explicit objective linked to a production plan for later runs. Do not backdate links to this historical run."
+    },
+    "C929": {
+      "authored": true,
+      "supports": [
+        "F031",
+        "F032",
+        "F023",
+        "F024"
+      ],
+      "text": "Keep the model in service, but make no claim of a proven gain over baseline. Then commission a fresh, independently labelled and sealed evaluation set. Start with non-music audio, where the interval of {F031} to {F032} per cent is weakest. Follow with music examples to tighten the recall interval of {F023} to {F024} per cent."
+    },
+    "C930": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Hold back recipe changes until that material exists. Reusing the inspected results to choose a recipe would remove their value as independent acceptance. For later runs, compile an explicit objective linked to a production plan."
+    },
+    "C931": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The record cannot support claims beyond the measured strata or independent final acceptance"
+    },
+    "C932": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Performance outside the measured strata is not established by this run. An independently designed evaluation would close that gap."
+    },
+    "C933": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "These results have been inspected, so they cannot serve as independent final acceptance after any further recipe selection. Fresh sealed, independently labelled material would close this."
+    },
+    "C934": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "No new production plan is linked to this historical run, so objective-to-production lineage is incomplete. An explicitly compiled, evidence-linked objective would close it."
+    },
+    "C935": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F007"
+      ],
+      "text": "The signed plan values {F002} to {F007} are recorded settings, not measured results. They should not be read as performance."
+    },
+    "C936": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Three things cannot be said from this record. First, general performance outside the measured strata. Only an independently designed evaluation would establish it. Second, independent final acceptance after any further recipe selection. The current results have been inspected, so only fresh sealed, independently labelled material would support it. Third, complete lineage from objective to production, because no new production plan is linked to this historical run."
+    },
+    "C937": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F007"
+      ],
+      "text": "The values {F002} to {F007} are recorded plan settings, not measured results. Reviewers should keep them separate from the performance figures."
+    }
+  },
+  "content_id": "training-m9j-686de001bfe7",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "An independently designed evaluation",
+        "gap": "General cognition or performance outside the measured strata",
+        "reason": "Not established by this run"
+      },
+      {
+        "closes_with": "Fresh independently labelled and sealed final material",
+        "gap": "Independent final acceptance after further recipe selection",
+        "reason": "These results have been inspected"
+      },
+      {
+        "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+        "gap": "Complete objective-to-production lineage",
+        "reason": "No new production plan is linked to this historical run"
+      }
+    ],
+    "covers": "Retained model measurements and decisions from m9j-686de001bfe7 only."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Measured checks on the record",
+      "receipt": "R01",
+      "unit": "checks",
+      "value": 4
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 689
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2026
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 10
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 6
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 32
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 4 min on akki-vm GPU 1 · peak 2.8 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 4
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 4 min on akki-vm GPU 1 · peak 2.8 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 1
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 4 min on akki-vm GPU 1 · peak 2.8 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2.8
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3% (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3% (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 95.2
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3% (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3% (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3% (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3% (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 92.3
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Artefact · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Artefact: sha256 0fea3eee039307fe… · stays on the GPU host (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Accuracy · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Accuracy: 100.0% (82%–100%) · baseline 95.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F019": {
+      "class": "measured",
+      "label": "Accuracy · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Accuracy: 100.0% (82%–100%) · baseline 95.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 82
+    },
+    "F020": {
+      "class": "measured",
+      "label": "Accuracy · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Accuracy: 100.0% (82%–100%) · baseline 95.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100
+    },
+    "F021": {
+      "class": "measured",
+      "label": "Accuracy · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Accuracy: 100.0% (82%–100%) · baseline 95.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 95.2
+    },
+    "F022": {
+      "class": "measured",
+      "label": "Finds music (recall) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Finds music (recall): 100.0% (76%–100%) · baseline 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F023": {
+      "class": "measured",
+      "label": "Finds music (recall) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Finds music (recall): 100.0% (76%–100%) · baseline 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 76
+    },
+    "F024": {
+      "class": "measured",
+      "label": "Finds music (recall) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Finds music (recall): 100.0% (76%–100%) · baseline 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100
+    },
+    "F025": {
+      "class": "measured",
+      "label": "Finds music (recall) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Finds music (recall): 100.0% (76%–100%) · baseline 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F026": {
+      "class": "measured",
+      "label": "Right when it says music (precision) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Right when it says music (precision): 100.0% (76%–100%) · baseline 92.3%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F027": {
+      "class": "measured",
+      "label": "Right when it says music (precision) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Right when it says music (precision): 100.0% (76%–100%) · baseline 92.3%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 76
+    },
+    "F028": {
+      "class": "measured",
+      "label": "Right when it says music (precision) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Right when it says music (precision): 100.0% (76%–100%) · baseline 92.3%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100
+    },
+    "F029": {
+      "class": "measured",
+      "label": "Right when it says music (precision) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Right when it says music (precision): 100.0% (76%–100%) · baseline 92.3%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 92.3
+    },
+    "F030": {
+      "class": "measured",
+      "label": "Clears non-music (specificity) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Clears non-music (specificity): 100.0% (57%–100%) · baseline —. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F031": {
+      "class": "measured",
+      "label": "Clears non-music (specificity) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Clears non-music (specificity): 100.0% (57%–100%) · baseline —. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 57
+    },
+    "F032": {
+      "class": "measured",
+      "label": "Clears non-music (specificity) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Clears non-music (specificity): 100.0% (57%–100%) · baseline —. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100
+    }
+  },
+  "narrative_evidence": {
+    "C002": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Signed plan: digest 689f1edfb8d4 · Demo · Operator · 2026-10-02 06:32 UTC"
+    },
+    "C003": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Compute: 4 min on akki-vm GPU 1 · peak 2.8 GB"
+    },
+    "C004": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Acceptance: accuracy: 100.0% versus baseline 95.2%; recall: 100.0% versus baseline 100.0%; precision: 100.0% versus baseline 92.3%"
+    },
+    "C005": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Artefact: sha256 0fea3eee039307fe… · stays on the GPU host"
+    },
+    "C100": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Accuracy: 100.0% (82%–100%) · baseline 95.2%."
+    },
+    "C101": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Finds music (recall): 100.0% (76%–100%) · baseline 100.0%."
+    },
+    "C102": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Right when it says music (precision): 100.0% (76%–100%) · baseline 92.3%."
+    },
+    "C103": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Clears non-music (specificity): 100.0% (57%–100%) · baseline —."
+    },
+    "decision": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Music identification · staged audio: In service. See the retained admission decision; serving remains a separate operation."
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "producer_revision": 3,
+  "production_plan": null,
+  "receipts": {
+    "R01": {
+      "platform_ref": "m9j-686de001bfe7",
+      "resolves_to": "Measured training receipt and retained acceptance record for m9j-686de001bfe7"
+    }
+  },
+  "series": {},
+  "title": "Music identification: perfect scores, thin evidence",
+  "version": 1
+}

@@ -81,8 +81,10 @@ export function threadItems(run, { state, names, pendingText, canOperate, toggle
       hasChecks: m.widget === 'checks' && checks.length > 0, checks, checksTitle: `${checks.length} ${run.family === 'music' ? 'measures' : 'languages'} on the sealed held-out set`,
       hasRecord: m.widget === 'record', recRows: run.record_rows.map((row, j) => ({ key: `r${j}`, k: row[0], v: row[1] })), recLearnings: run.learnings || 'No reading recorded beyond the certificate.',
       hasRefused: m.widget === 'refused', reason: run.reason || '', retired: run.status === 'Retired' || !canOperate,
-      hasApproval: m.widget === 'approval', apprLine: run.approval?.line || '', canRemind: true, remindDisabled: false, remindLabel: '',
-      hasBegin: m.widget === 'begin' && !requested && canOperate,
+      hasApproval: m.widget === 'approval', apprLine: run.approval?.line || '', signed: Boolean(run.approval?.signed), canRemind: Boolean(run.approval?.plan_sha256) && !run.approval?.signed && canOperate,
+      remindDisabled: Boolean(run.approval?.signed) || (!canOperate && Boolean(run.approval?.plan_sha256)) || !run.approval?.plan_sha256,
+      remindLabel: run.approval?.signed ? `Signed off by ${run.approval.signed.by} · ${relative(run.approval.signed.at)} · ${run.approval.signed.plan_sha256.slice(0, 12)}` : run.approval?.plan_sha256 ? `Awaiting the owner's signature · ${run.approval.plan_sha256.slice(0, 12)}` : 'No signable plan yet',
+      hasBegin: m.widget === 'begin' && !requested && canOperate && run.family === 'owner',
       hasReflect: m.widget === 'reflect' && run.reflect_rows.length > 0, reflHead: `Committing to ${run.name}`,
       reflRows: run.reflect_rows.map((r, j) => ({ key: `f${j}`, k: r.k, v: r.v, t: r.t || '', hasT: Boolean(r.t), tColor: tone(r.t) })),
       hasBaseline: m.widget === 'baseline' && Boolean(card), blName: card?.name || '', blBecause: card?.because || '', blEvidence: card?.evidence || '', blShowToggle: !altsShown && Boolean(card?.alts?.length), altCount: card?.alts?.length || 0, onUseSug: () => pickBaseline('learned'),
@@ -110,9 +112,11 @@ export function reportOf(run) {
   const named = [['Checks', 'Performance against the floor'], ['Recipe', 'Training recipe'], ['Data', 'Material it read'], ['Compute & time', 'Compute and time'], ['Compute', 'Compute and time'], ['Improvement over the base', 'Improvement over the base'], ['Admission', 'Admission'], ['Serving', 'Serving'], ['Privacy budget', 'Privacy budget'], ['Baseline', 'Starting point']];
   named.forEach(([k, label]) => { if (rows[k]) secs.push({ key: k, k: label, v: rows[k] }); });
   if (!secs.length) secs.push({ key: 'none', k: 'Acceptance record', v: 'None written for this run.' });
-  const lead = run.status === 'In service' ? 'Cleared every per-language check against the sealed held-out set and was admitted under the owner\'s per-stratum ruling.'
+  const signed = Boolean(run.approval?.signed);
+  const lead = run.status === 'In service' ? (signed ? `Admitted against the acceptance that was signed: ${rows.Acceptance || 'every check cleared'}.` : 'Cleared every per-language check against the sealed held-out set and was admitted under the owner\'s per-stratum ruling.')
     : run.status === 'Refused' ? 'Stopped at acceptance. Nothing about the run is hidden, and the reason travels with it.' : 'Retired with its reason recorded. The record stays as written.';
-  const obs = run.learnings || (run.status === 'Refused' ? 'A new version opens in the same lineage; the refusal is never overwritten.' : 'Nothing further was observed after retirement.');
+  const obs = run.learnings || (run.status === 'Refused' ? 'A new version opens in the same lineage; the refusal is never overwritten.'
+    : run.status === 'In service' ? (signed ? 'The artefact stays on the GPU host under tenant custody; serving is a separate operation. Open the next version to widen the evidence.' : 'Serving is a separate operation from admission.') : 'Nothing further was observed after retirement.');
   return { lead, secs, obs };
 }
 

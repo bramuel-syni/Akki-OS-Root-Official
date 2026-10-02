@@ -1,0 +1,192 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T05:53:40Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e@3",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "{C902}"
+        },
+        {
+          "para": "{C903}"
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C912}"
+        },
+        {
+          "para": "{C913}"
+        },
+        {
+          "figure": {
+            "caption": "{C914}",
+            "plate": "bar",
+            "series_ref": "S001",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Storage is concentrated in a few databases"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C918}"
+        },
+        {
+          "para": "{C919}"
+        },
+        {
+          "figure": {
+            "caption": "{C920}",
+            "plate": "bar",
+            "series_ref": "S002",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Quality and exposure outweigh duplication"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C924}"
+        },
+        {
+          "para": "{C925}"
+        },
+        {
+          "figure": {
+            "caption": "{C926}",
+            "plate": "bar",
+            "series_ref": "S003",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Almost all addressable bytes are in object and file stores"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C932}"
+        },
+        {
+          "para": "{C933}"
+        }
+      ],
+      "heading": "Scope and scale of the database estate"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C939}"
+        },
+        {
+          "para": "{C940}"
+        }
+      ],
+      "heading": "What the row-level measures show"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C946}"
+        },
+        {
+          "para": "{C947}"
+        }
+      ],
+      "heading": "Housekeeping candidates"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C950}"
+        },
+        {
+          "para": "{C951}"
+        },
+        {
+          "options_table": {
+            "caption": "{C952}",
+            "columns": [
+              "O1",
+              "O2",
+              "O3"
+            ],
+            "rows": [
+              {
+                "field": "reclaimable_gib",
+                "format": "num1",
+                "label": "Reclaimable gib"
+              },
+              {
+                "field": "monthly_saving_usd",
+                "format": "num1",
+                "label": "Monthly saving usd"
+              }
+            ]
+          }
+        }
+      ],
+      "heading": "Comparing the three priced strategies"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C958}"
+        },
+        {
+          "para": "{C959}"
+        }
+      ],
+      "heading": "What to do first, and why"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C965}"
+        },
+        {
+          "para": "{C966}"
+        }
+      ],
+      "heading": "What cannot yet be said"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e/decide/2026-10-02",
+  "spec_id": "PP-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "{C901}",
+  "title": "{content.title}",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

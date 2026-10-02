@@ -1,0 +1,259 @@
+{
+ "content_ref": "rms-estate-and-local-language-opportunities@1",
+ "brief_ref": "BR-RMS-ESTATE-20261001",
+ "verdict_ref": "V-RMS-ESTATE-20261001",
+ "objective": "decide",
+ "family": "strategy",
+ "voice": "strategy-house",
+ "seed": "rms/estate-language-opportunities/20261001",
+ "build_stamp": "2026-10-01T19:12:00Z",
+ "spec_type": "deck",
+ "spec_id": "DK-RMS-ESTATE-20261001",
+ "furniture": {
+  "deck_id": "deck",
+  "confidentiality": "Owner confidential · controlled circulation"
+ },
+ "slides": [
+  {
+   "type": "cover",
+   "title": "{content.title}",
+   "subtitle": "{C901}",
+   "org": "{content.organisation}"
+  },
+  {
+   "type": "exec_summary",
+   "kicker": "Executive summary",
+   "title": "{C905}",
+   "situation": "{C906}",
+   "complication": "{C907}",
+   "question": "{C908}",
+   "answer": "{C909}"
+  },
+  {
+   "type": "section",
+   "number": 1,
+   "title": "{C910}"
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Database readiness",
+   "title": "{C911}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S002",
+    "y_format": "num",
+    "so_what": "{C912}"
+   }
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Database readiness shares",
+   "title": "{C916}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S010",
+    "y_format": "num",
+    "so_what": "{C917}"
+   }
+  },
+  {
+   "type": "assertion_points",
+   "kicker": "Census findings",
+   "title": "{C921}",
+   "points": [
+    "{C922}",
+    "{C923}",
+    "{C924}"
+   ]
+  },
+  {
+   "type": "section",
+   "number": 2,
+   "title": "{C927}"
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Listed storage",
+   "title": "{C928}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S001",
+    "y_format": "num",
+    "so_what": "{C929}"
+   }
+  },
+  {
+   "type": "assertion_points",
+   "kicker": "Inventory findings",
+   "title": "{C933}",
+   "points": [
+    "{C934}",
+    "{C935}",
+    "{C936}",
+    "{C937}"
+   ]
+  },
+  {
+   "type": "section",
+   "number": 3,
+   "title": "{C940}"
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Audio by folder label",
+   "title": "{C941}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S003",
+    "y_format": "num",
+    "so_what": "{C942}"
+   }
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Sample rates",
+   "title": "{C946}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S004",
+    "y_format": "num",
+    "so_what": "{C947}"
+   }
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Audio and transcript inventory",
+   "title": "{C951}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S008",
+    "y_format": "num",
+    "so_what": "{C952}"
+   }
+  },
+  {
+   "type": "assertion_points",
+   "kicker": "Staged audio findings",
+   "title": "{C956}",
+   "points": [
+    "{C957}",
+    "{C958}",
+    "{C959}",
+    "{C960}"
+   ]
+  },
+  {
+   "type": "section",
+   "number": 4,
+   "title": "{C963}"
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Text by language",
+   "title": "{C964}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S005",
+    "y_format": "num",
+    "so_what": "{C965}"
+   }
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Text partitions",
+   "title": "{C969}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S006",
+    "y_format": "num",
+    "so_what": "{C970}"
+   }
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Partitions by language",
+   "title": "{C974}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S009",
+    "y_format": "num",
+    "so_what": "{C975}"
+   }
+  },
+  {
+   "type": "assertion_points",
+   "kicker": "Text findings",
+   "title": "{C979}",
+   "points": [
+    "{C980}",
+    "{C981}",
+    "{C982}"
+   ]
+  },
+  {
+   "type": "section",
+   "number": 5,
+   "title": "{C985}"
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Language-ID accuracy",
+   "title": "{C986}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S007",
+    "y_format": "num",
+    "so_what": "{C987}"
+   }
+  },
+  {
+   "type": "assertion_exhibit",
+   "kicker": "Correct of all units",
+   "title": "{C991}",
+   "exhibit": {
+    "plate": "bar",
+    "series_ref": "S011",
+    "y_format": "num",
+    "so_what": "{C992}"
+   }
+  },
+  {
+   "type": "assertion_points",
+   "kicker": "Language-ID findings",
+   "title": "{C996}",
+   "points": [
+    "{C997}",
+    "{C998}",
+    "{C999}"
+   ]
+  },
+  {
+   "type": "assertion_points",
+   "kicker": "Recommended actions",
+   "title": "{C1002}",
+   "points": [
+    "{C1003}",
+    "{C1004}",
+    "{C1005}",
+    "{C1006}"
+   ]
+  },
+  {
+   "type": "assertion_points",
+   "kicker": "Risks and limits",
+   "title": "{C1009}",
+   "points": [
+    "{C1010}",
+    "{C1011}",
+    "{C1012}",
+    "{C1013}"
+   ]
+  },
+  {
+   "type": "coverage_limits"
+  },
+  {
+   "type": "appendix"
+  }
+ ]
+}

@@ -1,0 +1,1482 @@
+{
+  "brief_ref": "BR-RMS-ESTATE-20261001",
+  "build_stamp": "2026-10-01T19:12:00Z",
+  "content_ref": "rms-estate-and-local-language-opportunities@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Owner confidential · controlled circulation",
+    "deck_id": "deck"
+  },
+  "furniture_zones": {
+    "confidentiality": {
+      "h": 0.412,
+      "w": 4.897,
+      "x": 6.767,
+      "y": 6.638
+    },
+    "doc_id": {
+      "h": 0.412,
+      "w": 5.916,
+      "x": 0.65,
+      "y": 6.638
+    },
+    "page_no": {
+      "h": 0.412,
+      "w": 0.819,
+      "x": 11.864,
+      "y": 6.638
+    }
+  },
+  "inputs_sha256": {
+    "brief.json": "68f71e645fada896d5c57b82bf9a304f519846ca8585569ac1c297f5e46f6378",
+    "content.json": "1ff54c601a8899b9982662c02744781093ec7b6ee914fa2e51567bff195c1ba7",
+    "deck.json": "9001dab55bfe3a184a3f066cf52123eabcd520a47d0abbe1a90eb5a443627b41",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "9c7d4b047f875689ec6dd30cccee343a2ac0a1b40dfb84fad25efc63dfcab5bc"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "number-large",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "C8102E",
+      "field": "FFFFFF",
+      "hatch": "E9ECF1",
+      "muted": "8A94A6",
+      "rule": "D5DAE3",
+      "structure": "1F2A44"
+    },
+    "palette_id": "graphite",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "Royal Media Services · Owner briefing",
+  "seed": "rms/estate-language-opportunities/20261001",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "slide_h": 7.5,
+  "slide_w": 13.333,
+  "slides": [
+    {
+      "n": 1,
+      "org": "Royal Media Services · Owner briefing",
+      "subtitle": "Owner briefing on estate condition, the corpus claim and responsible options",
+      "title": "RMS estate and language corpus: what is defensible",
+      "title_chars": 50,
+      "type": "cover",
+      "zones": {
+        "org": {
+          "h": 0.412,
+          "w": 5.916,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "subtitle": {
+          "h": 0.825,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 4.575
+        },
+        "title": {
+          "h": 1.65,
+          "w": 7.955,
+          "x": 0.65,
+          "y": 2.925
+        }
+      }
+    },
+    {
+      "kicker": "Executive summary",
+      "n": 2,
+      "scqa": [
+        [
+          "Situation",
+          "The retained database catalogue holds 377199771648 bytes across 1006 tables, with an estimated 259273874 rows. Separate inventories list 143284816848890 bytes in 22975591 objects at OBS, and 47990537059397 bytes in 1456787 files at NAS. A staged audio subset and a separately assembled text corpus have also been measured."
+        ],
+        [
+          "Complication",
+          "Only 638 table entries were measured, and the census observed 5881277 rows against an estimate of 259273874. The file inventories record custody, not language, music or rights, and they cannot be added together. No final quality receipt exists, so no estate-wide hours or token claim is yet possible."
+        ],
+        [
+          "Question",
+          "What can the owner responsibly claim and commercialise today, and what must be done first to widen that claim?"
+        ],
+        [
+          "Answer",
+          "Claim only what is measured: 529.3 hours of staged audio across 3958 files, and 157513 natural text units from 4521 source files. Language identification reached 97.2% conditional macro accuracy on 2800 units, but it is weaker for Kikamba and the Wanga / Luhya label. Complete the coverage ledger and rights review before any licensing, release or revenue statement."
+        ]
+      ],
+      "title": "The estate is large but only partly measured; a narrow language claim is defensible now",
+      "title_chars": 87,
+      "type": "exec_summary",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 3,
+      "number": 1,
+      "title": "Database estate condition",
+      "title_chars": 25,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Readiness grades of measured relational-table entries only",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "RMS estate census, eij-1b359b3cbd2e; measured 29 September 2026. Exact source hashes in the Word appendix.",
+        "so_what": "Readiness is uneven, so any data product should start from grade A and B tables and treat the rest as remediation work.",
+        "unit": "tables",
+        "values": {
+          "Tables": [
+            171,
+            62,
+            191,
+            189,
+            25
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Database readiness",
+      "n": 4,
+      "title": "Grades C and D hold most measured tables; only a minority reach grade A or B",
+      "title_chars": 76,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Database-estate readiness distribution; not speech or text quality",
+        "plate": "bar",
+        "receipt": "R01",
+        "receipt_text": "RMS estate census, eij-1b359b3cbd2e; measured 29 September 2026. Exact source hashes in the Word appendix.",
+        "so_what": "These grades describe database readiness only; they say nothing about speech or text quality and must not be quoted as corpus quality.",
+        "unit": "",
+        "values": {
+          "Share (%)": [
+            26.8,
+            9.72,
+            29.94,
+            29.62,
+            3.92
+          ],
+          "Tables": [
+            171,
+            62,
+            191,
+            189,
+            25
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Database readiness shares",
+      "n": 5,
+      "title": "Grade C and D tables make up about three in five measured entries; grade E is smallest",
+      "title_chars": 86,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Census findings",
+      "n": 6,
+      "points": [
+        "The catalogue records 377199771648 bytes across 1006 tables, but only 638 table entries were measured and graded.",
+        "Estimated rows stand at 259273874; the census observed 5881277, so row-level conclusions rest on a small observed share.",
+        "The remaining catalogued tables are ungraded, so no estate-wide grade distribution can be stated."
+      ],
+      "title": "Only part of the catalogue is measured, and observed rows are a small slice of the estimate",
+      "title_chars": 91,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 7,
+      "number": 2,
+      "title": "File inventories",
+      "title_chars": 16,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Database catalogue",
+          "OBS objects",
+          "NAS files"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Listed storage by separate inventory; not additive unique content",
+        "plate": "bar",
+        "receipt": "R02",
+        "receipt_text": "OBS and NAS retained listings embedded in the census; 29 September 2026. Metadata scope, not language or music analysis.",
+        "so_what": "The three inventories are separate and cannot be summed into unique content; they show custody scale only.",
+        "unit": "TB",
+        "values": {
+          "Decimal TB": [
+            0.377,
+            143.285,
+            47.991
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Listed storage",
+      "n": 8,
+      "title": "File stores dwarf the database, yet their listings measure bytes, not usable content",
+      "title_chars": 84,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Inventory findings",
+      "n": 9,
+      "points": [
+        "OBS lists 143284816848890 bytes in 22975591 objects: a retained listing, not an analysis of contents.",
+        "NAS lists 47990537059397 bytes in 1456787 files, again scope only, with no language or music labelling.",
+        "The inventories may overlap, so no combined unique-content figure should be quoted.",
+        "Eligible, non-music, rights-cleared audio inside these stores is unknown until segment-level labels are joined."
+      ],
+      "title": "The two file inventories list large volumes but say nothing yet about language, music or rights",
+      "title_chars": 95,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 10,
+      "number": 3,
+      "title": "Staged audio",
+      "title_chars": 12,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Bukusu (folder label) (bxk)",
+          "Ekegusii (guz)",
+          "Kikamba (kam)",
+          "Kikuyu (kik)",
+          "Kalenjin (kln)",
+          "Dholuo (luo)",
+          "Wanga / Luhya label (lwg)",
+          "Kiswahili (swa)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Measured staged-audio duration by folder label, not certified speech hours",
+        "plate": "bar",
+        "receipt": "R03",
+        "receipt_text": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification.",
+        "so_what": "Hours are folder-label durations, not certified speech; the two thin labels cannot support model claims without more collection or verification.",
+        "unit": "hours",
+        "values": {
+          "Hours": [
+            1.07,
+            92.23,
+            85.37,
+            82.08,
+            89.72,
+            81.99,
+            9.19,
+            87.67
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Audio by folder label",
+      "n": 11,
+      "title": "Six language folders hold similar staged hours; the Wanga and Bukusu labels are thin",
+      "title_chars": 84,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "11.025 kHz",
+          "16 kHz",
+          "22.05 kHz",
+          "32 kHz",
+          "44.1 kHz",
+          "48 kHz"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Staged-audio file counts by sample rate; not a quality grade",
+        "plate": "bar",
+        "receipt": "R03",
+        "receipt_text": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification.",
+        "so_what": "Sample rate is a header property, not a quality grade; it can screen files but cannot certify studio or telephone quality.",
+        "unit": "files",
+        "values": {
+          "Files": [
+            597,
+            22,
+            49,
+            2,
+            3126,
+            162
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Sample rates",
+      "n": 12,
+      "title": "Most staged files share one sample rate; a sizeable lower-rate group needs screening",
+      "title_chars": 84,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "bxk · Bukusu (folder label)",
+          "guz · Ekegusii",
+          "kam · Kikamba",
+          "kik · Kikuyu",
+          "kln · Kalenjin",
+          "luo · Dholuo",
+          "lwg · Wanga / Luhya label",
+          "swa · Kiswahili"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Staged audio and companion transcript inventory; different units by column",
+        "plate": "bar",
+        "receipt": "R03",
+        "receipt_text": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification.",
+        "so_what": "Pairing by file count is not alignment; transcript accuracy and timing remain unmeasured, and the columns use different units.",
+        "unit": "",
+        "values": {
+          "Audio GB": [
+            0.07,
+            7.701,
+            4.835,
+            5.502,
+            6.359,
+            3.787,
+            0.771,
+            7.49
+          ],
+          "Audio files": [
+            14,
+            732,
+            1166,
+            584,
+            295,
+            558,
+            60,
+            549
+          ],
+          "Hours": [
+            1.07,
+            92.23,
+            85.37,
+            82.08,
+            89.72,
+            81.99,
+            9.19,
+            87.67
+          ],
+          "Text MB": [
+            0.0,
+            6.272,
+            5.109,
+            5.464,
+            7.584,
+            6.026,
+            0.739,
+            6.0
+          ],
+          "Text files": [
+            0,
+            730,
+            1165,
+            583,
+            295,
+            557,
+            60,
+            549
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Audio and transcript inventory",
+      "n": 13,
+      "title": "Transcripts pair with nearly every audio file; the Bukusu folder has none",
+      "title_chars": 73,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Staged audio findings",
+      "n": 14,
+      "points": [
+        "The authorised subset holds 3958 audio files lasting 529.3 hours and occupying 36516920948 bytes.",
+        "Companion transcripts number 3939 files and 37192774 bytes, so some audio files have no pair.",
+        "Language comes from folder labels, which are not content verification.",
+        "Header inspection does not establish speech content, music exclusion or audio quality."
+      ],
+      "title": "The staged set is a labelled subset of real scale, not a verified corpus",
+      "title_chars": 72,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 15,
+      "number": 4,
+      "title": "Assembled text corpus",
+      "title_chars": 21,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Ekegusii (guz)",
+          "Kikamba (kam)",
+          "Kikuyu (kik)",
+          "Kalenjin (kln)",
+          "Dholuo (luo)",
+          "Wanga / Luhya label (lwg)",
+          "Kiswahili (swa)"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Natural assembled text units by language label",
+        "plate": "bar",
+        "receipt": "R04",
+        "receipt_text": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries.",
+        "so_what": "Volume is uneven across languages, so any balanced training or evaluation claim must be stated per language, not pooled.",
+        "unit": "units",
+        "values": {
+          "Natural units": [
+            21856,
+            12220,
+            18344,
+            32441,
+            22274,
+            29852,
+            20526
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Text by language",
+      "n": 16,
+      "title": "Kalenjin and the Wanga label lead natural text; Kikamba is the thinnest of the seven",
+      "title_chars": 84,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Train",
+          "Development",
+          "Held-out",
+          "Archive test"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Natural text partition counts; added synthetic canaries excluded",
+        "plate": "bar",
+        "receipt": "R04",
+        "receipt_text": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries.",
+        "so_what": "The held-out set is large enough to evaluate against; the archive test is too small to carry conclusions alone. Synthetic canaries are excluded.",
+        "unit": "units",
+        "values": {
+          "Natural units": [
+            129984,
+            8280,
+            18980,
+            269
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Text partitions",
+      "n": 17,
+      "title": "Most natural text sits in training, with a sizeable held-out set and a very small archive test",
+      "title_chars": 94,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "guz · Ekegusii",
+          "kam · Kikamba",
+          "kik · Kikuyu",
+          "kln · Kalenjin",
+          "luo · Dholuo",
+          "lwg · Wanga / Luhya label",
+          "swa · Kiswahili"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Natural transcript partitions by language label",
+        "plate": "bar",
+        "receipt": "R04",
+        "receipt_text": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries.",
+        "so_what": "Partition shape differs by language, so cross-language comparisons should use the held-out set, which exists for all seven.",
+        "unit": "units",
+        "values": {
+          "Archive": [
+            102,
+            121,
+            1,
+            38,
+            7,
+            0,
+            0
+          ],
+          "Dev": [
+            1094,
+            931,
+            924,
+            1667,
+            1131,
+            1496,
+            1037
+          ],
+          "Held": [
+            2217,
+            2422,
+            3573,
+            3253,
+            2455,
+            3006,
+            2054
+          ],
+          "Train": [
+            18443,
+            8746,
+            13846,
+            27483,
+            18681,
+            25350,
+            17435
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Partitions by language",
+      "n": 18,
+      "title": "Archive test text sits mainly in Ekegusii and Kikamba; the Wanga label and Kiswahili have none",
+      "title_chars": 94,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Text findings",
+      "n": 19,
+      "points": [
+        "The assembly contains 157513 natural text units; added synthetic canaries are excluded from every count.",
+        "The units run to 27329904 characters from 4521 source files; characters are not tokens, and no tokenizer-specific count exists.",
+        "Text and audio populations are not joined, so these units are not clean aligned speech-text pairs."
+      ],
+      "title": "The assembled text is a defensible, separately assembled corpus of natural units",
+      "title_chars": 80,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "n": 20,
+      "number": 5,
+      "title": "Language identification",
+      "title_chars": 23,
+      "type": "section",
+      "zones": {
+        "number": {
+          "h": 2.062,
+          "w": 2.858,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.65,
+          "w": 8.975,
+          "x": 3.708,
+          "y": 2.513
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Ekegusii",
+          "Kikamba",
+          "Kikuyu",
+          "Kalenjin",
+          "Dholuo",
+          "Wanga / Luhya label",
+          "Kiswahili"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Text-ID measured conditional accuracy and coverage on equal strata",
+        "plate": "bar",
+        "receipt": "R05",
+        "receipt_text": "Text language-ID run, m9j-74af7cef0a85; measured per-stratum results. Not an ASR or general-language certificate.",
+        "so_what": "Conditional accuracy excludes units the tool declined to judge; lower coverage for Kiswahili and the Wanga label means conditional figures flatter real performance.",
+        "unit": "percent",
+        "values": {
+          "Accuracy among judged (%)": [
+            98.24,
+            91.35,
+            99.25,
+            99.75,
+            99.49,
+            93.47,
+            98.95
+          ],
+          "Coverage (%)": [
+            99.25,
+            98.25,
+            99.5,
+            99.5,
+            98.0,
+            95.75,
+            95.25
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Language-ID accuracy",
+      "n": 21,
+      "title": "Language-ID is accurate where it judges, but Kikamba and the Wanga label trail the rest",
+      "title_chars": 87,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "exhibit": {
+        "backend": "native",
+        "caption": "",
+        "categories": [
+          "Ekegusii",
+          "Kikamba",
+          "Kikuyu",
+          "Kalenjin",
+          "Dholuo",
+          "Wanga / Luhya label",
+          "Kiswahili"
+        ],
+        "class": "measured",
+        "editable": true,
+        "label": "Text language-ID: conditional accuracy, coverage and correct-of-all; percentages",
+        "plate": "bar",
+        "receipt": "R05",
+        "receipt_text": "Text language-ID run, m9j-74af7cef0a85; measured per-stratum results. Not an ASR or general-language certificate.",
+        "so_what": "Correct-of-all is the stricter measure and should be quoted beside conditional accuracy, not behind it.",
+        "unit": "",
+        "values": {
+          "Conditional accuracy (%)": [
+            98.24,
+            91.35,
+            99.25,
+            99.75,
+            99.49,
+            93.47,
+            98.95
+          ],
+          "Correct of all (%)": [
+            97.5,
+            89.75,
+            98.75,
+            99.25,
+            97.5,
+            89.5,
+            94.25
+          ],
+          "Coverage (%)": [
+            99.25,
+            98.25,
+            99.5,
+            99.5,
+            98.0,
+            95.75,
+            95.25
+          ]
+        },
+        "y_format": "num"
+      },
+      "kicker": "Correct of all units",
+      "n": 22,
+      "title": "Counting every unit, the Wanga label and Kikamba fall furthest, with Kiswahili next",
+      "title_chars": 83,
+      "type": "assertion_exhibit",
+      "zones": {
+        "exhibit": {
+          "h": 3.712,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "receipt": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 6.225
+        },
+        "so_what": {
+          "h": 0.412,
+          "w": 8.975,
+          "x": 0.65,
+          "y": 5.812
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Language-ID findings",
+      "n": 23,
+      "points": [
+        "The run evaluated 2800 units on equal strata: a per-language sample, not a population estimate.",
+        "Conditional macro accuracy is 97.2%, measured only among units the tool chose to judge.",
+        "Kikamba and the Wanga label sit clearly below that average, so one headline figure hides the languages needing review."
+      ],
+      "title": "The headline accuracy is high but narrow, and it is not a general-language certificate",
+      "title_chars": 86,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Recommended actions",
+      "n": 24,
+      "points": [
+        "First, join the inventories of 143284816848890 and 47990537059397 bytes to language, music and rights labels.",
+        "Second, complete the census: 638 of 1006 tables are measured; grade the rest before quoting estate condition.",
+        "Third, run a rights review of the 529.3 staged hours and 157513 text units before any partner access.",
+        "Fourth, verify Bukusu and Wanga labels and review Kikamba identification against human references; publish only the measured claim meanwhile."
+      ],
+      "title": "Build the coverage ledger and clear rights before any external claim",
+      "title_chars": 68,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Risks and limits",
+      "n": 25,
+      "points": [
+        "Estate-wide non-music eligible audio hours: no joined inventory carries verified labels. The coverage ledger closes this.",
+        "Estate-wide text tokens or clean aligned pairs: 377199771648 database bytes are not text volume. Versioned exports and audits close this.",
+        "Audio quality and transcript error rates: headers are not quality. Human-reference evaluation closes this.",
+        "Licensing, release, savings and revenue: custody is not onward rights. Rights review, invoices and paid pilots close this."
+      ],
+      "title": "Four claims cannot yet be made, each with a defined route to closure",
+      "title_chars": 68,
+      "type": "assertion_points",
+      "zones": {
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "points": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "coverage": {
+        "cannot_say": [
+          {
+            "closes_with": "Complete the coverage ledger and stratified content qualification",
+            "gap": "Estate-wide non-English, non-music eligible audio hours",
+            "reason": "No joined asset inventory with verified segment-level language, music and rights labels"
+          },
+          {
+            "closes_with": "Versioned exports, tokenizer-specific counts, alignments and independent audits",
+            "gap": "Estate-wide non-English natural-text tokens or clean aligned speech–text hours",
+            "reason": "Database storage is not natural-text volume; text and audio populations are not joined"
+          },
+          {
+            "closes_with": "Measured observables plus task-specific human-reference evaluation",
+            "gap": "Studio/telephone quality or transcript error-rate distributions",
+            "reason": "Header properties do not establish audio quality; no final waveform/annotation certificate"
+          },
+          {
+            "closes_with": "Rights review, actual invoices, retrieval charges and paid pilot validation",
+            "gap": "External licensing, open release or realised savings and revenue",
+            "reason": "Internal custody and indicative tariffs do not establish onward rights or commercial demand"
+          }
+        ],
+        "covers": "Retained RMS relational census, OBS/NAS listings, an authorised staged-audio subset, a separately assembled transcript corpus and a narrow language-identification evaluation. Evidence cut: 1 October 2026, 19:12 UTC."
+      },
+      "kicker": "Coverage and limits",
+      "n": 26,
+      "title": "What this pack covers, what it cannot say, and what would close each gap",
+      "title_chars": 72,
+      "type": "coverage_limits",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    },
+    {
+      "kicker": "Appendix",
+      "n": 27,
+      "receipts": [
+        {
+          "id": "R01",
+          "text": "RMS estate census, eij-1b359b3cbd2e; measured 29 September 2026. Exact source hashes in the Word appendix."
+        },
+        {
+          "id": "R02",
+          "text": "OBS and NAS retained listings embedded in the census; 29 September 2026. Metadata scope, not language or music analysis."
+        },
+        {
+          "id": "R03",
+          "text": "Staged-audio header inspection, m9j-3e0dcb1bd16e; verified receipt. Folder labels are not content verification."
+        },
+        {
+          "id": "R04",
+          "text": "RMS transcript assembly, m9j-9a46b862f339; sealed 29 September 2026. Natural units exclude added canaries."
+        },
+        {
+          "id": "R05",
+          "text": "Text language-ID run, m9j-74af7cef0a85; measured per-stratum results. Not an ASR or general-language certificate."
+        },
+        {
+          "id": "R06",
+          "text": "Measurement status, m9j-c47f01c0b945; last retained heartbeat 1 October 2026 at 04:33 UTC. No final quality receipt."
+        },
+        {
+          "id": "R07",
+          "text": "Report analysis and explicitly labelled planning calculations, derived from the pinned evidence; not forecasts or new measurements."
+        },
+        {
+          "id": "R08",
+          "text": "Documentation and governance references: Datasheets, Data Cards, NIST AI RMF and Kenya data-protection law; full references in Word."
+        }
+      ],
+      "title": "Exhibit index with receipts",
+      "title_chars": 27,
+      "type": "appendix",
+      "zones": {
+        "body": {
+          "h": 4.125,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 2.1
+        },
+        "kicker": {
+          "h": 0.412,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.45
+        },
+        "title": {
+          "h": 1.237,
+          "w": 12.033,
+          "x": 0.65,
+          "y": 0.863
+        }
+      }
+    }
+  ],
+  "spec_id": "DK-RMS-ESTATE-20261001",
+  "spec_type": "deck",
+  "title": "RMS estate and language corpus: what is defensible",
+  "verdict_ref": "V-RMS-ESTATE-20261001",
+  "voice": "strategy-house"
+}

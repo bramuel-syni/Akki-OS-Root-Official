@@ -1,5 +1,12 @@
 # Owner report pair — final delivery
 
+## Preferred downloads after reported Bad Gateway
+- `/downloads/RMS_Estate_Report.pptx`
+- `/downloads/RMS_Estate_Report.docx`
+- `/downloads/RMS_Estate_Reports.zip` — both exact files in one download.
+
+These static frontend paths avoid the API upstream and contain unchanged report bytes. Files are under `/app/frontend/public/downloads/`; regenerate them with `publish_downloads.py`. All three were independently verified through actual browser download events, hashes and ZIP parity in `test_reports/iteration_78.json`. Original API routes were responding during rechecks; the precise intermittent gateway trigger remains unconfirmed.
+
 User requested one combined, detailed, articulate and rigorous PPTX/Word pair, without UI embedding:
 1. Estate intelligence, with duplication primarily here.
 2. Non-English, non-music audio and text quantities, hours, volumes and quality, at a standard appropriate for a global AI lab.

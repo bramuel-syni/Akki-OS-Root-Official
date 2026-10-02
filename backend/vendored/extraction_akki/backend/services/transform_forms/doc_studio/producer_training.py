@@ -11,7 +11,9 @@ def commission_from_training(run_id, tenant, principal, now):
     if not run_id.startswith(('m9j-', 'lcj-')):
         raise LookupError('A completed measured training run is required for a white paper.')
     if run_id.startswith('m9j-'):
-        job, _ = measured_job(tenant, run_id, 'train')
+        job, _ = measured_job(tenant, run_id)
+        if job.get('phase') not in ('train', 'lab_train_music'):
+            raise ValueError('The worker record does not measure a training stage.')
         if (job.get('run_certificate') or {}).get('drill'):
             raise ValueError('An engineering recovery run is not a model white paper candidate.')
     else:
@@ -19,7 +21,8 @@ def commission_from_training(run_id, tenant, principal, now):
         job = lc.load_job(run_id) if tenant == 'RMS' else None
         if not job or job.get('status') != 'completed' or not job.get('run_certificate'):
             raise LookupError('No completed audio training record is available in this estate.')
-    run = next((r for r in board.runs(tenant) if r['run_id'] == run_id), None)
+    # A signed board run is written up under its own name; the GPU job id is how the autopilot refers to it.
+    run = next((r for r in board.runs(tenant) if r['run_id'] == run_id or ((r.get('approval') or {}).get('dispatch') or {}).get('job_id') == run_id), None)
     if not run: raise LookupError('No training record with that reference is available in this estate.')
     production_plan = production.collection().find_one({'tenant_id': tenant, 'stages.training.job_id': run_id}, {'_id': 0}, sort=[('created_at', -1)])
     day, stamp = now.strftime('%Y-%m-%d'), now.strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -77,8 +80,8 @@ def commission_from_training(run_id, tenant, principal, now):
     content['producer_revision'] = 3
     # Qualitative record statements cite the receipt directly, never an unrelated numeric fact.
     facts = content['facts']
-    facts['F001'] = {'label': 'Measured language strata', 'value': len(run['checks']), 'unit': 'strata', 'class': 'measured', 'receipt': 'R01'}
-    claims['C001'] = {'text': '{F001} language strata were measured in this record.', 'supports': ['F001']}
+    facts['F001'] = {'label': 'Measured checks on the record', 'value': len(run['checks']), 'unit': 'checks', 'class': 'measured', 'receipt': 'R01'}
+    claims['C001'] = {'text': '{F001} checks were measured against the signed acceptance in this record.', 'supports': ['F001']}
     brief = {'brief_id': f'BR-{day}-{run_id}', 'content_ref': f'{content_id}@1',
         'purpose': {'kind': 'decide', 'statement': 'Decide the next model or dataset improvement from the recorded measurements and limitations.'},
         'audience': {'who': f'Model owner and reviewers · {tenant}', 'knowledge': 'familiar with the objective; mixed technical depth', 'priorities': ['per-stratum performance', 'coverage', 'privacy and next work'], 'detail': 'evidence with limitations'},
