@@ -1,0 +1,35 @@
+{
+  "summary": "Iteration 79 — Verified Akki OS training lab board + studio producers after this session's fixes. 9/9 pytest backend tests pass. Desktop + mobile frontend checks pass for both signed runs (music-identification admitted In service; reinforcement-lwg observed as 'Refused' during this test run — one of the accepted states per the brief). No remote GPU work was triggered.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "verified_items": [
+    "POST /api/auth/login → 200 with access_token for demo.operator@demo.rms.example.com.",
+    "GET /api/training/lab/board → 200, keys tenant_id/runs/counts/training_authorized=true/signoffs (music-identification + reinforcement-lwg)/music_detector_admitted=true. Run music-identification: status 'In service', approval.signed.by='Demo · Operator', approval.line starts 'Signed off by Demo · Operator', checks all passes=true, record_rows include Signed plan / Compute / Acceptance / Artefact. reinforcement-lwg: approval.signed set; status observed = 'Refused' this run (accepted per brief).",
+    "POST /api/training/lab/board/music-identification/actions {approve_plan, music digest} → 200, akki text 'Not done: this run already carries a signature.' (no 500 — KeyError fix verified).",
+    "POST /api/training/lab/board/reinforcement-lwg/actions {approve_plan, lwg digest} → 200, same refusal text.",
+    "POST /api/training/lab/board/music-identification/actions {white_paper} → 200 fast (idempotent), returns widget=doc message with commission_id=com-1178b6d9b486. GET /api/studio/commissions/com-1178b6d9b486 → release.state='clear', authoring.pipeline='frontier', authoring.model='claude-sonnet-5-5'.",
+    "POST /api/studio/producers/estate-intelligence/eij-1b359b3cbd2e → 201 created=false, commission com-4a07a8fa312e release.state='clear', authoring.pipeline='frontier'.",
+    "POST /api/studio/producers/estate-intelligence/eij-000000000000 → 404.",
+    "Unauthenticated GET /api/training/lab/board → 401.",
+    "GET /api/studio/commissions/com-1178b6d9b486/builds/{build_id}/artifact/{name} → 200 with non-zero bytes (docx download verified).",
+    "Frontend desktop 1920x800 /os/build/train?run=music-identification: train-thread-title contains 'Music identification', status 'In service', meta 'signed detector run · complete', signoff label starts 'Signed off by Demo · Operator', no train-approve-plan button, overview+report tabs present. Report tab lead contains 'Admitted against the acceptance that was signed' and body does NOT contain 'Nothing further was observed after retirement'. 'train-view-document' navigates to /os/work/documents?commission=com-1178b6d9b486 and docs page shows 'Music identification: perfect scores, thin evidence'.",
+    "Frontend /os/build/train?run=reinforcement-lwg: status 'Refused', signoff label correct, approve button absent; body contains 'Signed off, so training started on akki-vm GPU 0' and a 'TRAINING' widget text; topline shows 'In Approval 0'.",
+    "Mobile 390x844 both run pages: horizontal overflow check returned 0 elements beyond innerWidth; train-thread-meta right=353/winW=390, train-signoff-label right=309/winW=390 — wrap confirmed.",
+    "Estate Intelligence page /os/admin/estate/intelligence loads with 'Commission board pack' control present (not pressed again per instructions).",
+    "Regression: /os/work/documents lists both 'Estate cost and data-product decision pack' and 'Music identification: perfect scores, thin evidence'."
+  ],
+  "test_report_links": ["/app/backend/tests/test_iteration_79.py", "/app/test_reports/pytest/iter79.xml"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Reinforcement-lwg finished as 'Refused' during this test window (regressed vs the 90% floor on sealed held-out set: lwg 72.3%, with regressions across guz/kam/kik/kln/swa). This is the ADMISSION judgement — accepted per the problem brief as a valid autopilot outcome under the signed acceptance. Not a code bug, but main agent should decide whether to resubmit/retire via the UI.",
+    "test_iteration_79.py uses response-shape sniffing (run_id vs id, dict vs list outputs); envelope schema is stable but worth normalising in a future router cleanup."
+  ],
+  "updated_files": ["/app/backend/tests/test_iteration_79.py"],
+  "success_rate": {"backend": "100% (9/9)", "frontend": "100% (desktop + mobile + regression)"},
+  "test_credentials": "demo.operator@demo.rms.example.com / demo-operator-pw (RMS operator) — login verified 200.",
+  "seed_data_creation": "None. All calls were read-only or idempotent; no new board runs, no dispatch to measure_staged_corpus/run_music_baseline/ask_specialists.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend router /api/studio returns {tenant_id, commission:{...}} envelope for commission GET — unwrap commission.* for release/authoring/builds. Download path is /api/studio/commissions/{id}/builds/{build_id}/artifact/{name}. Board runs use 'run_id' (not 'id'). record_rows is a list of lists of strings in the current response. White-paper action returns an envelope with messages[]; the doc widget appears on the akki message, not top-level. During this run, reinforcement-lwg transitioned to 'Refused' — all four states (In training/Testing/In service/Refused) are legal.",
+  "rca of the issue": "No regressions found. All seven fixes from the session (KeyError approve_plan, worker disable_hooks on non-DP arm, findings-paper producer accepting lab_train_music + resolving job id, signer label resolution, autopilot kick on board GET, mobile wrap for meta/signoff, frontier authoring pipeline on producers route) are observed working against the live preview environment."
+}

@@ -84,7 +84,21 @@ def music_plan(tenant):
                            'baseline': {'accuracy': learned['accuracy']['estimate'], 'recall': learned['recall']['estimate'], 'precision': learned['precision']['estimate'], 'items': baseline['result']['items']}}}
 
 
-PLANS = {'reinforcement-lwg': reinforcement_plan, 'music-identification': music_plan}
+def reinforcement_plan_v2(tenant):
+    """Second version, offered only once v1 is judged: the same data, host, floor and cap; trained to a stop rule instead of a fixed
+    eight epochs (v1 was still improving at its last epoch and used 0.18 of 3.0 GPU-h), gentler learning rate, stronger speaker adversary."""
+    first = get(tenant, 'reinforcement-lwg')
+    if not first or first['status'] not in ('completed', 'failed') or (first.get('outcome') or {}).get('decision') == 'admitted': return None
+    plan = reinforcement_plan(tenant)
+    if plan is None: return None
+    cap_seconds = int(plan['compute_cap_gpu_hours'] * 3600)
+    plan['recipe'].update(epochs=120, lr=0.0001, speaker_loss_weight=1.0, adversary_strength=1.0, patience_evaluations=4, compute_cap_seconds=cap_seconds)
+    plan.update(version=2, supersedes={'run_id': 'reinforcement-lwg', 'plan_sha256': first['plan_sha256'], 'outcome': (first.get('outcome') or {}).get('reasons')},
+                stop_rule=f"stop when the development selection score has not improved for four evaluations, or at {plan['compute_cap_gpu_hours']} GPU-hours of training compute, or at 120 epochs — whichever comes first")
+    return plan
+
+
+PLANS = {'reinforcement-lwg': reinforcement_plan, 'reinforcement-lwg-v2': reinforcement_plan_v2, 'music-identification': music_plan}
 
 
 def plan_for(tenant, run_id):

@@ -15,7 +15,7 @@ from services.audio_plane_v1 import language_cognition_worker as w
 
 
 OPTIONAL_DEFAULTS = {'logit_adjustment_tau': 0.0, 'bottleneck_dim': 128, 'bottleneck_noise': 0.0, 'speaker_loss_weight': 0.1,
-                     'condition_loss_weight': 0.05, 'dp_enabled': True}
+                     'condition_loss_weight': 0.05, 'dp_enabled': True, 'patience_evaluations': 0, 'compute_cap_seconds': 0}
 
 
 def validate(params):
@@ -42,6 +42,9 @@ def validate(params):
         raise ValueError('INVALID_CORRECTIVE_INTEGER:bottleneck_dim')
     if 'dp_enabled' in params and type(params['dp_enabled']) is not bool:
         raise ValueError('INVALID_CORRECTIVE_FLAG:dp_enabled')
+    for key in ('patience_evaluations', 'compute_cap_seconds'):
+        if key in params and (type(params[key]) is not int or params[key] < 0):
+            raise ValueError('INVALID_CORRECTIVE_INTEGER:' + key)
     if params['delta'] >= 1 or not isinstance(params['owner_order_ref'], str) or not params['owner_order_ref'].strip():
         raise ValueError('CORRECTIVE_AUTHORITY_OR_DELTA_INVALID')
 
@@ -204,6 +207,9 @@ def train(control, state):
         privacy, model = None, raw
     recipe = {k: control[k] for k in ('baseline_job_id', 'seed', 'epochs', 'batch_size', 'physical_batch_size', 'lr',
         'adversary_strength', 'noise_multiplier', 'max_grad_norm', 'delta', 'max_windows_per_file', 'owner_order_ref', 'smoke_steps', 'dp_enabled')}
+    patience, cap_seconds = int(control.get('patience_evaluations') or 0), int(control.get('compute_cap_seconds') or 0)
+    recipe.update(stop_rule=(f"stop after {patience} evaluations without improvement of the selection score, or at {cap_seconds} s of training compute, or at {control['epochs']} epochs"
+                             if patience or cap_seconds else f"fixed {control['epochs']} epochs"))
     recipe.update(encoder_seconds=2, frozen_vox_fusion=False, lora_r=16, bottleneck=control['bottleneck_dim'], bottleneck_noise=control['bottleneck_noise'],
                   logit_adjustment_tau=control['logit_adjustment_tau'], speaker_loss_weight=control['speaker_loss_weight'],
                   condition_loss_weight=control['condition_loss_weight'],
@@ -218,6 +224,7 @@ def train(control, state):
     recipe_text = json.dumps(recipe, sort_keys=True); recipe_hash = hashlib.sha256(recipe_text.encode()).hexdigest()
     (art / 'recipe.json').write_text(recipe_text)
     curve, steps, best, best_epoch = [], 0, (-1.0, -1.0), 0
+    stopped_by, since_best = 'epochs', 0
     checkpoint = art / 'checkpoint.pt'
     trainable = [p for p in model.parameters() if p.requires_grad]
     per_sample_verified = False
@@ -291,11 +298,17 @@ def train(control, state):
         # Durable development-only checkpoint for the lab; no held-out data used for feedback.
         state.update(lab_checkpoint={'epoch':epoch+1,'step':steps,'dev':dev,'epsilon':epsilon})
         if score > best:
-            best, best_epoch = score, epoch + 1
+            best, best_epoch, since_best = score, epoch + 1, 0
             torch.save({k: v.detach().cpu() for k, v in model.state_dict().items()}, art / 'best_internal.pt')
+        else:
+            since_best += 1
         _checkpoint(checkpoint, model, optimizer, privacy, epoch + 1, steps, generator, recipe_hash, manifest_hash)
         if control['smoke_steps']:
             break
+        if patience and since_best >= patience:
+            stopped_by = f'stop rule: {patience} evaluations without improvement'; break
+        if cap_seconds and time.monotonic() - training_started >= cap_seconds:
+            stopped_by = f'stop rule: compute cap of {cap_seconds} s reached'; break
     # Verify the actual serialized optimizer/accountant and RNG state; do not reset spending at selection.
     saved = torch.load(checkpoint, map_location='cpu', weights_only=False)
     original_epsilon = privacy.get_epsilon(control['delta']) if dp else None
@@ -342,7 +355,7 @@ def train(control, state):
         digest.update(str(f.relative_to(art)).encode()); digest.update(bytes.fromhex(w.sha256_file(f)))
     return {'classes': codes, 'split': split, 'held_out': held, 'archive_test': archive, 'development': curve,
         'no_speaker_id_probe': probe, 'recipe': recipe, 'recipe_sha256': recipe_hash,
-        'training': {'steps': steps, 'epochs_completed': len(curve), 'best_dev_epoch': best_epoch,
+        'training': {'steps': steps, 'epochs_completed': len(curve), 'best_dev_epoch': best_epoch, 'stopped_by': stopped_by,
                      'elapsed_seconds': round(time.monotonic()-start), 'device': device, 'gpu_index': control['gpu_index'],
                      'gpu': torch.cuda.get_device_name(0), 'gpu_max_memory_gb': round(torch.cuda.max_memory_allocated()/1e9, 2),
                      'batch_size': control['batch_size'], 'physical_batch_size': control['physical_batch_size'],

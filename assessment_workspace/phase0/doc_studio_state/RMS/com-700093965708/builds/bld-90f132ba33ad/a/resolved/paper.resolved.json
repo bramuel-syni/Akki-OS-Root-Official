@@ -1,0 +1,183 @@
+{
+  "brief_ref": "BR-2026-10-02-lcj-1dd5012c909c",
+  "build_stamp": "2026-10-02T06:54:36Z",
+  "content_ref": "training-lcj-1dd5012c909c@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "lcj-1dd5012c909c"
+  },
+  "inputs_sha256": {
+    "brief.json": "e3c6dbcf02632fd0da8487f6ecf0b750ca972bb44c70d549bcb2efd7efbc877d",
+    "content.json": "1e536d8501662fa55be4094d4d370dd48f6417c72c0aee2b98b280593de31c72",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "1e5b2861ed8cc4d15f694cf09ac0be37cff1420d5ddd11ea60064258e857fd10",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "befb8f82c6b2c6ed53ef5c11b9281f3559c1ac8649b38ee80dfd6dda8eafde26"
+  },
+  "look": {
+    "cover_composition": "title-centred-band",
+    "divider_treatment": "inverted-field",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "E8772E",
+      "field": "FFFFFF",
+      "hatch": "E8EEF3",
+      "muted": "70879A",
+      "rule": "D3DCE4",
+      "structure": "14324A"
+    },
+    "palette_id": "harbour",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": [
+      {
+        "vetoed": {
+          "cover": "title-centred-band",
+          "palette": "harbour",
+          "type_pair": "bookman-calibri"
+        },
+        "why": "warm accent with a heavy serif reads as editorial, not analytical"
+      }
+    ]
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The Luhya reinforcement run for the audio language model was refused against its signed acceptance. Luhya, the target stratum, scored 72.3 against a 90 floor. Five other strata fell from their earlier scores, and the speaker probe on the served output was above chance."
+        },
+        {
+          "kind": "para",
+          "text": "The owner should not promote the artefact. The first piece of work is diagnosis, starting with Kikamba, the largest fall. The next run should be gated on every stratum holding its prior score, and any further acceptance needs fresh sealed material."
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Luhya scored 72.3 against the 90 floor and abstained on 18.8 of responses. The run was designed to raise this stratum, and on the record it did not reach the floor."
+        },
+        {
+          "kind": "para",
+          "text": "Ekegusii regressed from 94.4 to 87.7, with 12.9 abstained. Kikamba fell from 95.1 to 80.1, the steepest fall recorded, and it also has the highest abstention at 26.4. Both are now below the floor."
+        }
+      ],
+      "heading": "The target stratum failed and the steepest losses sit beside it"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Gikuyu fell from 97.6 to 92.7 and Kalenjin from 95.7 to 90.8. Both remain above the 90 floor, Kalenjin by a narrow margin. Kiswahili fell from 93.9 to 87.9, below the floor."
+        },
+        {
+          "kind": "para",
+          "text": "One further stratum scored 94.1 with 8.9 abstained and has no failure recorded. The record does not state how abstention enters each score, so abstention rates are shown for context and not interpreted."
+        }
+      ],
+      "heading": "Three strata held the floor, but two of them lost ground"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "First, keep the artefact unpromoted. Luhya at 72.3 against the 90 floor, and the five regressions, each justify refusal. The artefact stays on its host, so it is not released while the work proceeds."
+        },
+        {
+          "kind": "para",
+          "text": "Second, diagnose Kikamba, the steepest fall from 95.1 to 80.1, comparing its data share and training signal with those of Luhya. Third, treat the above-chance speaker probe as a privacy finding to resolve before any release. Fourth, write a no-regression condition for every stratum into the next signed plan. Fifth, prepare fresh sealed material for any future acceptance."
+        }
+      ],
+      "heading": "Hold, diagnose, then rerun with a per-stratum gate"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The record covers only the measured strata of this run. Luhya at 72.3 against the 90 floor says nothing about general capability, and an independently designed evaluation would be needed to say more. Because these results have been inspected, they cannot count as independent acceptance of any later recipe. Fresh, independently labelled and sealed final material would close that gap."
+        },
+        {
+          "kind": "para",
+          "text": "No new production plan is linked to this historical run, so lineage from objective to production is incomplete. It closes only with an explicitly compiled, evidence-linked objective. The cause of regressions such as Ekegusii falling from 94.4 is not established, nor is the treatment of abstention in scoring."
+        }
+      ],
+      "heading": "What this record cannot establish"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "An independently designed evaluation",
+              "gap": "General cognition or performance outside the measured strata",
+              "reason": "Not established by this run"
+            },
+            {
+              "closes_with": "Fresh independently labelled and sealed final material",
+              "gap": "Independent final acceptance after further recipe selection",
+              "reason": "These results have been inspected"
+            },
+            {
+              "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+              "gap": "Complete objective-to-production lineage",
+              "reason": "No new production plan is linked to this historical run"
+            }
+          ],
+          "covers": "Retained model measurements and decisions from lcj-1dd5012c909c only.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Measured training receipt and retained acceptance record for lcj-1dd5012c909c"
+            }
+          ]
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "training-lcj-1dd5012c909c/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-lcj-1dd5012c909c",
+  "spec_type": "paper",
+  "subtitle": "Per-stratum results, coverage and the next improvement for lcj-1dd5012c909c",
+  "title": "Luhya reinforcement run refused at acceptance",
+  "verdict_ref": "V-2026-10-02-lcj-1dd5012c909c",
+  "voice": "strategy-house"
+}

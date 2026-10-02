@@ -246,8 +246,10 @@ def _signed_state(tenant, run_id, plan, default_status):
     return out
 
 
-def _reinforcement_run(tenant):
-    from services.training_lab import languages
+def _reinforcement_run(tenant, run_id='reinforcement-lwg'):
+    from services.training_lab import languages, signoff
+    plan_doc = signoff.plan_for(tenant, run_id)
+    if run_id != 'reinforcement-lwg' and plan_doc is None and not signoff.get(tenant, run_id): return None
     data, bundle = languages.evidence(0.9)
     if bundle is None: return None
     plan = bundle['plan']; request = plan['held_training_request']
@@ -259,13 +261,23 @@ def _reinforcement_run(tenant):
     checks = [{'n': NAMES.get(k, k), 'v': f"{pct(v['accuracy'])} ({pct(v['interval']['low'], 0)}–{pct(v['interval']['high'], 0)}) · floor {pct(data['floor'], 0)} · abstained {pct(v['abstention_rate'])}", 's': 'settled', 'passes': v['verdict'] == 'meets_floor'}
               for k, v in data['languages'].items() if v.get('interval')]
     changes = request['proposed_recipe_changes']
+    recipe_row = f"{changes['max_windows_per_file']} windows per file (one global value today) · {changes['epochs']} epochs · class-prior adjustment τ {changes['logit_adjustment_tau']} · language sampling weights proposed for code review"
+    stop_row = request['stop_rule'][0].upper() + request['stop_rule'][1:]
+    signed_record = signoff.get(tenant, run_id)
+    v2 = plan_doc if run_id != 'reinforcement-lwg' and plan_doc else ((signed_record or {}).get('plan') if run_id != 'reinforcement-lwg' else None)
+    if v2:
+        r = v2['recipe']
+        recipe_row = f"{r['max_windows_per_file']} windows per file · up to {r['epochs']} epochs under the stop rule · learning rate {r['lr']} · class-prior adjustment τ {r['logit_adjustment_tau']} · speaker adversary ×{r['adversary_strength']} with loss weight {r['speaker_loss_weight']}"
+        stop_row = v2['stop_rule'][0].upper() + v2['stop_rule'][1:]
     reflect = [{'k': 'What it does', 'v': f"Lifts {', '.join(targets)} to the {pct(data['floor'], 0)} floor on the sealed held-out set without regressing the other languages", 't': 'measured gap'},
                {'k': 'Where it stands', 'v': f"{pct(lang['accuracy'])} today on {lang['judged_windows']:,} judged windows · trained on {lang['training_windows']:,} windows" + (f" · strong languages trained on {first['volume_ratio_to_strong_median']}× more" if first.get('volume_ratio_to_strong_median') else ''), 't': 'measured'},
                {'k': 'What it reads', 'v': f"Existing staged recordings first — about {first['windows_available_estimate']:,} windows available, {first['unused_headroom_windows']:,} unused — then newly authorized sessions" if first.get('windows_available_estimate') else 'Existing staged recordings; new sessions only when authorized', 't': 'estimate'},
-               {'k': 'Recipe changes', 'v': f"{changes['max_windows_per_file']} windows per file (one global value today) · {changes['epochs']} epochs · class-prior adjustment τ {changes['logit_adjustment_tau']} · language sampling weights proposed for code review", 't': 'proposal'},
+               {'k': 'Recipe changes', 'v': recipe_row, 't': 'proposal'},
                {'k': 'Compute cap', 'v': f"{request['compute_cap_gpu_hours']} GPU-hours on the admitted host · non-private arm", 't': 'proposal'},
-               {'k': 'Stop rule', 'v': request['stop_rule'][0].upper() + request['stop_rule'][1:], 't': 'proposal'},
+               {'k': 'Stop rule', 'v': stop_row, 't': 'proposal'},
                {'k': 'How we\'ll know', 'v': request['acceptance'][0].upper() + request['acceptance'][1:], 't': 'contract'}]
+    if v2:
+        reflect.insert(0, {'k': 'Supersedes', 'v': 'Version 1 was refused: ' + '; '.join((v2.get('supersedes') or {}).get('outcome') or []) + '. Same data, host, floor and cap; v1 was still improving at its last epoch and used a fraction of the cap.', 't': 'recorded'})
     scaling = plan.get('scaling_scenarios') or {}
     if scaling and not scaling.get('unavailable'):
         reflect.append({'k': 'Windows to the floor', 'v': f"About {scaling['low']:,}–{scaling['high']:,} (middle {scaling['mid']:,}), from the cross-language scaling of the reference run — prior sensitivity, not a forecast", 't': 'estimate'})
@@ -274,11 +286,10 @@ def _reinforcement_run(tenant):
                 _msg(None, 'Here is what the reinforcement commits to. It is a plan, not an order.', widget='reflect'),
                 _msg(None, 'Training starts the moment you sign this plan with the Approve control: the digest below binds exactly this recipe, data, host, compute cap and acceptance.', widget='approval')]
     from services.training_lab import signoff
-    plan_doc = signoff.reinforcement_plan(tenant)
-    signed = _signed_state(tenant, 'reinforcement-lwg', plan_doc, 'In Approval')
+    signed = _signed_state(tenant, run_id, plan_doc, 'In Approval')
     if not signed['signed']:
         messages.append(_msg(None, 'Nothing starts from this thread by typing; the signature is the Approve control above, and it is recorded with your identity and the plan digest.', widget='begin'))
-    if latest:
+    if latest and run_id == 'reinforcement-lwg':
         for review in latest.get('reviews') or []:
             if review.get('status') in ('complete', 'review_required') and review.get('review'):
                 findings = review['review'].get('findings') or []
@@ -291,7 +302,7 @@ def _reinforcement_run(tenant):
     if signed['record_rows']: messages.append(_msg(None, 'The full record of the signed run.', widget='record'))
     if signed['reason']: messages.append(_msg(None, signed['reason'], widget='refused'))
     status = signed['status']
-    return _run(run_id='reinforcement-lwg', family='reinforcement', name=f"{', '.join(targets)} reinforcement · audio language model", status=status,
+    return _run(run_id=run_id, family='reinforcement', name=f"{', '.join(targets)} reinforcement · audio language model" + (' v2' if run_id != 'reinforcement-lwg' else ''), status=status,
                 objective=f"Bring {', '.join(targets)} to the {pct(data['floor'], 0)} floor on the sealed held-out set with no regression elsewhere and speaker identity at chance.",
                 checks=signed['checks'] or checks, reflect_rows=reflect, record_rows=signed['record_rows'], messages=messages, progress=signed['progress'], reason=signed['reason'],
                 meta=('signed training run · ' + (signed['eta'] or '')) if signed['signed'] else 'held training request · recipe and cap recorded', eta=signed['eta'] or 'waiting on your signature',
@@ -467,6 +478,8 @@ def runs(tenant):
         if music: rows.append(music)
         held = _reinforcement_run(tenant)
         if held: rows.append(held)
+        second = _reinforcement_run(tenant, 'reinforcement-lwg-v2')
+        if second: rows.append(second)
         rows.extend(_versioned(_text_runs())); rows.extend(_versioned(_audio_runs()))
     rows = _owner_runs(tenant) + rows
     return _apply_retirements(tenant, rows)

@@ -1,0 +1,1036 @@
+{
+  "authoring": {
+    "claims_authored": 37,
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 1
+    },
+    "latency_ms": 37933,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "planner → worker → content manager → frontier writer",
+    "provider": "emergent",
+    "receipt_id": "rcp-8c6fd87ae63e",
+    "repairs": 1,
+    "tokens_in": 16984,
+    "tokens_out": 3584
+  },
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001"
+      ],
+      "text": "{F001} checks were measured against the signed acceptance in this record."
+    },
+    "C500": {
+      "supports": [
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F013"
+      ],
+      "text": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)"
+    },
+    "C510": {
+      "supports": [
+        "F014",
+        "F015",
+        "F016",
+        "F017",
+        "F018"
+      ],
+      "text": "Signed plan: digest d4c27b6e9871 · Demo · Operator · 2026-10-02 06:31 UTC (Source: R01)"
+    },
+    "C520": {
+      "supports": [
+        "F019",
+        "F020",
+        "F021"
+      ],
+      "text": "Compute: 11 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)"
+    },
+    "C530": {
+      "supports": [
+        "F022",
+        "F023",
+        "F024",
+        "F025",
+        "F026",
+        "F027",
+        "F028",
+        "F029",
+        "F030",
+        "F031",
+        "F032",
+        "F033"
+      ],
+      "text": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)"
+    },
+    "C540": {
+      "supports": [
+        "F034"
+      ],
+      "text": "Artefact: sha256 9e7a251df5f56411… · stays on the GPU host (Source: R01)"
+    },
+    "C550": {
+      "supports": [
+        "F035",
+        "F036",
+        "F037"
+      ],
+      "text": "Ekegusii: 87.7% · floor 90% · abstained 12.9%. (Source: R01)"
+    },
+    "C560": {
+      "supports": [
+        "F038",
+        "F039",
+        "F040"
+      ],
+      "text": "Kikamba: 80.1% · floor 90% · abstained 26.4%. (Source: R01)"
+    },
+    "C570": {
+      "supports": [
+        "F041",
+        "F042",
+        "F043"
+      ],
+      "text": "Gikuyu: 92.7% · floor 90% · abstained 14.5%. (Source: R01)"
+    },
+    "C580": {
+      "supports": [
+        "F044",
+        "F045",
+        "F046"
+      ],
+      "text": "Kalenjin: 90.8% · floor 90% · abstained 10.6%. (Source: R01)"
+    },
+    "C590": {
+      "supports": [
+        "F047",
+        "F048",
+        "F049"
+      ],
+      "text": "Dholuo: 94.1% · floor 90% · abstained 8.9%. (Source: R01)"
+    },
+    "C600": {
+      "supports": [
+        "F050",
+        "F051",
+        "F052"
+      ],
+      "text": "Luhya (Wanga): 72.3% · floor 90% · abstained 18.8%. (Source: R01)"
+    },
+    "C610": {
+      "supports": [
+        "F053",
+        "F054",
+        "F055"
+      ],
+      "text": "Kiswahili: 87.9% · floor 90% · abstained 24.0%. (Source: R01)"
+    },
+    "C901": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Per-stratum results, coverage and the next improvement for lcj-1dd5012c909c"
+    },
+    "C902": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "The Luhya reinforcement run for the audio language model was refused against its signed acceptance. Luhya, the target stratum, scored {F002} against a {F003} floor. Five other strata fell from their earlier scores, and the speaker probe on the served output was above chance."
+    },
+    "C903": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The owner should not promote the artefact. The first piece of work is diagnosis, starting with Kikamba, the largest fall. The next run should be gated on every stratum holding its prior score, and any further acceptance needs fresh sealed material."
+    },
+    "C904": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The Luhya reinforcement run was refused: the target stratum failed and five others regressed"
+    },
+    "C905": {
+      "authored": true,
+      "supports": [
+        "F003"
+      ],
+      "text": "The run aimed to lift Luhya performance in the audio language model while keeping every other stratum above the {F003} floor. It was checked against the signed acceptance, and the measured checks are on the record."
+    },
+    "C906": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F004",
+        "F005",
+        "F006",
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F053"
+      ],
+      "text": "Luhya reached only {F002}, well short of the floor. Ekegusii fell from {F004} to {F005}, Kikamba from {F006} to {F007}, Gikuyu from {F008} to {F009}, Kalenjin from {F010} to {F011}, and Kiswahili from {F012} to {F053}. The speaker probe on the served output was also above chance."
+    },
+    "C907": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "What should the model owner do next: tune this recipe, change the data, or stop and diagnose?"
+    },
+    "C908": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Stop and diagnose before another run. Keep the artefact unpromoted, start with the Kikamba regression, treat the speaker probe as a privacy finding, and gate the next run on every stratum holding its prior score."
+    },
+    "C909": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Measured record and acceptance"
+    },
+    "C910": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "Luhya reached {F002} against a {F003} floor, while Kikamba and Ekegusii lost ground"
+    },
+    "C911": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003",
+        "F052"
+      ],
+      "text": "Luhya, the stratum the run was meant to improve, scored {F002} against the {F003} floor, with {F052} of responses abstained."
+    },
+    "C912": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F005",
+        "F037"
+      ],
+      "text": "Ekegusii regressed from {F004} to {F005}, now under the floor, with {F037} abstained."
+    },
+    "C913": {
+      "authored": true,
+      "supports": [
+        "F006",
+        "F007",
+        "F040"
+      ],
+      "text": "Kikamba shows the steepest fall on the record, from {F006} to {F007}, and the highest abstention at {F040}."
+    },
+    "C914": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The run is refused on the Luhya floor, five regressions and the speaker probe taken together."
+    },
+    "C915": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003",
+        "F052"
+      ],
+      "text": "Luhya scored {F002} against the {F003} floor and abstained on {F052} of responses. The run was designed to raise this stratum, and on the record it did not reach the floor."
+    },
+    "C916": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F005",
+        "F037",
+        "F006",
+        "F007",
+        "F040"
+      ],
+      "text": "Ekegusii regressed from {F004} to {F005}, with {F037} abstained. Kikamba fell from {F006} to {F007}, the steepest fall recorded, and it also has the highest abstention at {F040}. Both are now below the floor."
+    },
+    "C917": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Only three strata stayed above the floor, and two of them still lost ground"
+    },
+    "C918": {
+      "authored": true,
+      "supports": [
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F003"
+      ],
+      "text": "Gikuyu fell from {F008} to {F009}, and Kalenjin from {F010} to {F011}. Both remain above the {F003} floor, Kalenjin narrowly."
+    },
+    "C919": {
+      "authored": true,
+      "supports": [
+        "F012",
+        "F053"
+      ],
+      "text": "Kiswahili fell from {F012} to {F053}, which is below the floor."
+    },
+    "C920": {
+      "authored": true,
+      "supports": [
+        "F047",
+        "F049"
+      ],
+      "text": "One further stratum scored {F047} with {F049} abstained, and has no failure recorded against it."
+    },
+    "C921": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The record does not say how abstention enters each score, so high abstention cannot yet be read as caution or as loss."
+    },
+    "C922": {
+      "authored": true,
+      "supports": [
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F003",
+        "F012",
+        "F053"
+      ],
+      "text": "Gikuyu fell from {F008} to {F009} and Kalenjin from {F010} to {F011}. Both remain above the {F003} floor, Kalenjin by a narrow margin. Kiswahili fell from {F012} to {F053}, below the floor."
+    },
+    "C923": {
+      "authored": true,
+      "supports": [
+        "F047",
+        "F049"
+      ],
+      "text": "One further stratum scored {F047} with {F049} abstained and has no failure recorded. The record does not state how abstention enters each score, so abstention rates are shown for context and not interpreted."
+    },
+    "C924": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Hold the artefact, diagnose Kikamba first, then rerun with a per-stratum gate"
+    },
+    "C925": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "Keep the artefact unpromoted: Luhya at {F002} against the {F003} floor justifies refusal on its own."
+    },
+    "C926": {
+      "authored": true,
+      "supports": [
+        "F006",
+        "F007"
+      ],
+      "text": "Diagnose Kikamba first, the steepest fall from {F006} to {F007}; compare its data share and training signal with Luhya's."
+    },
+    "C927": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Resolve the above-chance speaker probe as a privacy matter before any release; the artefact stays on its host meanwhile."
+    },
+    "C928": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Write a no-regression floor for every stratum into the next signed plan, and seal fresh material for acceptance."
+    },
+    "C929": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "First, keep the artefact unpromoted. Luhya at {F002} against the {F003} floor, and the five regressions, each justify refusal. The artefact stays on its host, so it is not released while the work proceeds."
+    },
+    "C930": {
+      "authored": true,
+      "supports": [
+        "F006",
+        "F007"
+      ],
+      "text": "Second, diagnose Kikamba, the steepest fall from {F006} to {F007}, comparing its data share and training signal with those of Luhya. Third, treat the above-chance speaker probe as a privacy finding to resolve before any release. Fourth, write a no-regression condition for every stratum into the next signed plan. Fifth, prepare fresh sealed material for any future acceptance."
+    },
+    "C931": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The record cannot show cause, general capability or independent acceptance"
+    },
+    "C932": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "Only the measured strata are covered. Luhya at {F002} against {F003} says nothing about general performance, which needs an independently designed evaluation."
+    },
+    "C933": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "These results have been inspected, so they cannot serve as independent acceptance after further recipe selection. Fresh, independently labelled, sealed material would close this."
+    },
+    "C934": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "No new production plan is linked to this historical run. Lineage closes only with an explicitly compiled, evidence-linked objective, never a backdated one."
+    },
+    "C935": {
+      "authored": true,
+      "supports": [
+        "F004"
+      ],
+      "text": "The cause of regressions such as Ekegusii falling from {F004} is unrecorded, as is how abstention is scored."
+    },
+    "C936": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "The record covers only the measured strata of this run. Luhya at {F002} against the {F003} floor says nothing about general capability, and an independently designed evaluation would be needed to say more. Because these results have been inspected, they cannot count as independent acceptance of any later recipe. Fresh, independently labelled and sealed final material would close that gap."
+    },
+    "C937": {
+      "authored": true,
+      "supports": [
+        "F004"
+      ],
+      "text": "No new production plan is linked to this historical run, so lineage from objective to production is incomplete. It closes only with an explicitly compiled, evidence-linked objective. The cause of regressions such as Ekegusii falling from {F004} is not established, nor is the treatment of abstention in scoring."
+    }
+  },
+  "content_id": "training-lcj-1dd5012c909c",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "An independently designed evaluation",
+        "gap": "General cognition or performance outside the measured strata",
+        "reason": "Not established by this run"
+      },
+      {
+        "closes_with": "Fresh independently labelled and sealed final material",
+        "gap": "Independent final acceptance after further recipe selection",
+        "reason": "These results have been inspected"
+      },
+      {
+        "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+        "gap": "Complete objective-to-production lineage",
+        "reason": "No new production plan is linked to this historical run"
+      }
+    ],
+    "covers": "Retained model measurements and decisions from lcj-1dd5012c909c only."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Measured checks on the record",
+      "receipt": "R01",
+      "unit": "checks",
+      "value": 7
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 72.3
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 94.4
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 87.7
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 95.1
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 80.1
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 97.6
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 92.7
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 95.7
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90.8
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 93.9
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 87.9
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest d4c27b6e9871 · Demo · Operator · 2026-10-02 06:31 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2026
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest d4c27b6e9871 · Demo · Operator · 2026-10-02 06:31 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 10
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest d4c27b6e9871 · Demo · Operator · 2026-10-02 06:31 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest d4c27b6e9871 · Demo · Operator · 2026-10-02 06:31 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 6
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest d4c27b6e9871 · Demo · Operator · 2026-10-02 06:31 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 31
+    },
+    "F019": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 11 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 11
+    },
+    "F020": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 11 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0
+    },
+    "F021": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 11 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.17
+    },
+    "F022": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 72.3
+    },
+    "F023": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F024": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 94.4
+    },
+    "F025": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 87.7
+    },
+    "F026": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 95.1
+    },
+    "F027": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 80.1
+    },
+    "F028": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 97.6
+    },
+    "F029": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 92.7
+    },
+    "F030": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 95.7
+    },
+    "F031": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90.8
+    },
+    "F032": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 93.9
+    },
+    "F033": {
+      "class": "measured",
+      "label": "Acceptance · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 87.9
+    },
+    "F034": {
+      "class": "measured",
+      "label": "Artefact · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Artefact: sha256 9e7a251df5f56411… · stays on the GPU host (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 9
+    },
+    "F035": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 87.7% · floor 90% · abstained 12.9%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 87.7
+    },
+    "F036": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 87.7% · floor 90% · abstained 12.9%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F037": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 87.7% · floor 90% · abstained 12.9%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 12.9
+    },
+    "F038": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 80.1% · floor 90% · abstained 26.4%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 80.1
+    },
+    "F039": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 80.1% · floor 90% · abstained 26.4%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F040": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 80.1% · floor 90% · abstained 26.4%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 26.4
+    },
+    "F041": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 92.7% · floor 90% · abstained 14.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 92.7
+    },
+    "F042": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 92.7% · floor 90% · abstained 14.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F043": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 92.7% · floor 90% · abstained 14.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 14.5
+    },
+    "F044": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 90.8% · floor 90% · abstained 10.6%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90.8
+    },
+    "F045": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 90.8% · floor 90% · abstained 10.6%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F046": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 90.8% · floor 90% · abstained 10.6%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 10.6
+    },
+    "F047": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 94.1% · floor 90% · abstained 8.9%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 94.1
+    },
+    "F048": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 94.1% · floor 90% · abstained 8.9%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F049": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 94.1% · floor 90% · abstained 8.9%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 8.9
+    },
+    "F050": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 72.3% · floor 90% · abstained 18.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 72.3
+    },
+    "F051": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 72.3% · floor 90% · abstained 18.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F052": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 72.3% · floor 90% · abstained 18.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 18.8
+    },
+    "F053": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 87.9% · floor 90% · abstained 24.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 87.9
+    },
+    "F054": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 87.9% · floor 90% · abstained 24.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F055": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 87.9% · floor 90% · abstained 24.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 24.0
+    }
+  },
+  "narrative_evidence": {
+    "C002": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Signed plan: digest d4c27b6e9871 · Demo · Operator · 2026-10-02 06:31 UTC"
+    },
+    "C003": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Compute: 11 min on akki-vm GPU 0 · peak 100.17 GB"
+    },
+    "C004": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance"
+    },
+    "C005": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Artefact: sha256 9e7a251df5f56411… · stays on the GPU host"
+    },
+    "C100": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Ekegusii: 87.7% · floor 90% · abstained 12.9%."
+    },
+    "C101": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kikamba: 80.1% · floor 90% · abstained 26.4%."
+    },
+    "C102": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Gikuyu: 92.7% · floor 90% · abstained 14.5%."
+    },
+    "C103": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kalenjin: 90.8% · floor 90% · abstained 10.6%."
+    },
+    "C104": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Dholuo: 94.1% · floor 90% · abstained 8.9%."
+    },
+    "C105": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Luhya (Wanga): 72.3% · floor 90% · abstained 18.8%."
+    },
+    "C106": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kiswahili: 87.9% · floor 90% · abstained 24.0%."
+    },
+    "decision": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Luhya (Wanga) reinforcement · audio language model: Refused. Refused against the signed acceptance: lwg: 72.3% below the 90% floor; guz: regressed from 94.4% to 87.7%; kam: regressed from 95.1% to 80.1%; kik: regressed from 97.6% to 92.7%; kln: regressed from 95.7% to 90.8%; swa: regressed from 93.9% to 87.9%; speaker probe on the served output above chance."
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "producer_revision": 3,
+  "production_plan": null,
+  "receipts": {
+    "R01": {
+      "platform_ref": "lcj-1dd5012c909c",
+      "resolves_to": "Measured training receipt and retained acceptance record for lcj-1dd5012c909c"
+    }
+  },
+  "series": {},
+  "title": "Luhya reinforcement run refused at acceptance",
+  "version": 1
+}

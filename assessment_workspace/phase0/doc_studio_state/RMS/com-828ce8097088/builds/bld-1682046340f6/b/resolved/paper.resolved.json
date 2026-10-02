@@ -1,0 +1,178 @@
+{
+  "brief_ref": "BR-2026-10-02-m9j-74af7cef0a85",
+  "build_stamp": "2026-10-02T02:36:11Z",
+  "content_ref": "training-m9j-74af7cef0a85@2",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "m9j-74af7cef0a85"
+  },
+  "inputs_sha256": {
+    "brief.json": "f39971ac44901c578915fe107879e73c2cd7a23edeee370c7c31877ac1e7aa53",
+    "content.json": "a5f9d7a04622e2f13640ea5b24740f205a46234aff5cc16466f7c794fb14c2d5",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "4220b78100ebfc571579111995fd004e65c38db66f768a5bc81ce0ff9ca9a796",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "5796d408c61717f67a1c3e44000fd02bc93da031a7b8dac87f842232861dd091"
+  },
+  "look": {
+    "cover_composition": "title-left-high",
+    "divider_treatment": "number-small-rule",
+    "fonts": {
+      "body": "Arial",
+      "number": "Courier New",
+      "title": "Century Schoolbook"
+    },
+    "palette": {
+      "accent": "C8102E",
+      "field": "FFFFFF",
+      "hatch": "E9ECF1",
+      "muted": "8A94A6",
+      "rule": "D5DAE3",
+      "structure": "1F2A44"
+    },
+    "palette_id": "graphite",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "century-arial",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The language identification model was trained for 2 epochs on 130124 RMS training units (9502124 tokens). It passes all 7 of 7 checks: every language is at or above the 90% floor, and none has regressed below the base. Macro accuracy rose by 68.2 points. The model is recorded as admitted."
+        },
+        {
+          "kind": "para",
+          "text": "The result is strong but uneven in headroom. Kikamba (91.3%) and Luhya (93.5%) are closest to the floor, and Luhya abstains on 4.2% of items. The next improvement should therefore be targeted data for those two languages, followed by a review of abstention behaviour."
+        },
+        {
+          "kind": "para",
+          "text": "The held-out results have been inspected, so they cannot count as independent final acceptance for any further recipe choice. This paper covers the retained measurements from this run only."
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "All 7 of 7 languages are at or above the 90% floor and none falls below the base. The largest gains came where the base was weakest. Kikamba rose from 0.0% to 91.3%, Ekegusii from 1.1% to 98.2%, and Luhya from 4.3% to 93.5%. Gikuyu reached 99.2% from 24.5%, and Kalenjin 99.7% from 11.9%."
+        },
+        {
+          "kind": "para",
+          "text": "Kiswahili is the exception in kind. Its base already scored 98.4%, and the model reaches 99.0%, so the gain there is small. Kikamba and Luhya have the thinnest margins over the floor, and a modest drop on fresh material could take either below it. That is the main reason to prioritise them."
+        }
+      ],
+      "heading": "Every language clears the floor; two have little headroom"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Training used 130124 units and 9502124 tokens of RMS transcripts. Scoring used a sealed held-out set of 2800 units. The record does not split that set by language, so the uncertainty around each per-language figure cannot be stated. This matters most for Kikamba and Luhya, where margins are thin."
+        },
+        {
+          "kind": "para",
+          "text": "The run took 0.8 GPU-hours, or 49 minutes on one GPU. Compute is therefore not the constraint on iteration. Abstention varies from 0.5% for Gikuyu to 4.8% for Kiswahili, with Luhya at 4.2% and Kikamba at 1.8%. The record does not say whether abstentions count as errors in the accuracy figures."
+        }
+      ],
+      "heading": "Data, compute and abstention behind the result"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "First, expand Kikamba and Luhya training and held-out data, since these have the least headroom over the 90% floor. Second, confirm how abstention is scored, then review it for Luhya (4.2%) and Kiswahili (4.8%). Changing a threshold before knowing this could move accuracy without improving the model."
+        },
+        {
+          "kind": "para",
+          "text": "Third, commission fresh, independently labelled sealed material before selecting another recipe, because the 2800 held-out units have been inspected. Fourth, change one thing per run. At 0.8 GPU-hours a run, this is affordable and lets any change in Kikamba or Luhya be attributed to its cause."
+        }
+      ],
+      "heading": "What to do first, and why"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Performance outside the measured languages and the sealed set is not established; an independently designed evaluation would close that gap. Independent final acceptance is not possible after further recipe selection on inspected results, and needs fresh, sealed, independently labelled material."
+        },
+        {
+          "kind": "para",
+          "text": "No new production plan is linked to this historical run, so lineage from objective to production is incomplete. Closing it needs an explicitly compiled, evidence-linked objective, never a backdated assumption. Serving is a separate operation: the full adapter is served and the pruned adapter is admitted but not served. The record carries no evidence on privacy handling of the transcripts."
+        }
+      ],
+      "heading": "What the record cannot yet establish"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "An independently designed evaluation",
+              "gap": "General cognition or performance outside the measured strata",
+              "reason": "Not established by this run"
+            },
+            {
+              "closes_with": "Fresh independently labelled and sealed final material",
+              "gap": "Independent final acceptance after further recipe selection",
+              "reason": "These results have been inspected"
+            },
+            {
+              "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+              "gap": "Complete objective-to-production lineage",
+              "reason": "No new production plan is linked to this historical run"
+            }
+          ],
+          "covers": "Retained model measurements and decisions from m9j-74af7cef0a85 only.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Measured training receipt and retained acceptance record for m9j-74af7cef0a85"
+            }
+          ]
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "training-m9j-74af7cef0a85/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-m9j-74af7cef0a85",
+  "spec_type": "paper",
+  "subtitle": "Per-stratum results, coverage limits and the next improvement to fund",
+  "title": "Language identification: training findings",
+  "verdict_ref": "V-2026-10-02-m9j-74af7cef0a85",
+  "voice": "strategy-house"
+}

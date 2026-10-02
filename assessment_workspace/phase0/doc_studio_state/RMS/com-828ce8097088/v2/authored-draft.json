@@ -1,0 +1,110 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "What to do first, and why",
+          "paragraphs": [
+            "First, expand Kikamba and Luhya training and held-out data, since these have the least headroom over the {F016}% floor. Second, confirm how abstention is scored, then review it for Luhya ({F038}%) and Kiswahili ({F042}%). Changing a threshold before knowing this could move accuracy without improving the model.",
+            "Third, commission fresh, independently labelled sealed material before selecting another recipe, because the {F008} held-out units have been inspected. Fourth, change one thing per run. At {F009} GPU-hours a run, this is affordable and lets any change in Kikamba or Luhya be attributed to its cause."
+          ]
+        },
+        "findings_R01_1": {
+          "heading": "Every language clears the floor; two have little headroom",
+          "paragraphs": [
+            "All {F011} of {F012} languages are at or above the {F016}% floor and none falls below the base. The largest gains came where the base was weakest. Kikamba rose from {F021}% to {F019}%, Ekegusii from {F017}% to {F015}%, and Luhya from {F037}% to {F035}%. Gikuyu reached {F023}% from {F025}%, and Kalenjin {F027}% from {F029}%.",
+            "Kiswahili is the exception in kind. Its base already scored {F041}%, and the model reaches {F039}%, so the gain there is small. Kikamba and Luhya have the thinnest margins over the floor, and a modest drop on fresh material could take either below it. That is the main reason to prioritise them."
+          ]
+        },
+        "findings_R01_2": {
+          "heading": "Data, compute and abstention behind the result",
+          "paragraphs": [
+            "Training used {F006} units and {F007} tokens of RMS transcripts. Scoring used a sealed held-out set of {F008} units. The record does not split that set by language, so the uncertainty around each per-language figure cannot be stated. This matters most for Kikamba and Luhya, where margins are thin.",
+            "The run took {F009} GPU-hours, or {F010} minutes on one GPU. Compute is therefore not the constraint on iteration. Abstention varies from {F026}% for Gikuyu to {F042}% for Kiswahili, with Luhya at {F038}% and Kikamba at {F022}%. The record does not say whether abstentions count as errors in the accuracy figures."
+          ]
+        },
+        "risks": {
+          "heading": "What the record cannot yet establish",
+          "paragraphs": [
+            "Performance outside the measured languages and the sealed set is not established; an independently designed evaluation would close that gap. Independent final acceptance is not possible after further recipe selection on inspected results, and needs fresh, sealed, independently labelled material.",
+            "No new production plan is linked to this historical run, so lineage from objective to production is incomplete. Closing it needs an explicitly compiled, evidence-linked objective, never a backdated assumption. Serving is a separate operation: the full adapter is served and the pruned adapter is admitted but not served. The record carries no evidence on privacy handling of the transcripts."
+          ]
+        }
+      },
+      "summary": [
+        "The language identification model was trained for {F004} epochs on {F006} RMS training units ({F007} tokens). It passes all {F011} of {F012} checks: every language is at or above the {F016}% floor, and none has regressed below the base. Macro accuracy rose by {F013} points. The model is recorded as admitted.",
+        "The result is strong but uneven in headroom. Kikamba ({F019}%) and Luhya ({F035}%) are closest to the floor, and Luhya abstains on {F038}% of items. The next improvement should therefore be targeted data for those two languages, followed by a review of abstention behaviour.",
+        "The held-out results have been inspected, so they cannot count as independent final acceptance for any further recipe choice. This paper covers the retained measurements from this run only."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "Recommended order of work",
+        "points": [
+          "First, expand Kikamba and Luhya training and held-out data. They stand at {F019}% and {F035}% against a {F016}% floor and have the least headroom.",
+          "Second, review abstention for Luhya ({F038}%) and Kiswahili ({F042}%). The record does not show whether abstentions count as errors, so confirm that before changing any threshold.",
+          "Third, commission fresh, independently labelled sealed material before choosing another recipe, because the {F008} held-out units have now been inspected.",
+          "Fourth, change one thing per run. At {F009} GPU-hours a run, any movement in Kikamba or Luhya can be attributed to a single change."
+        ],
+        "title": "Add Kikamba and Luhya data first, review abstention second, evaluate afresh before new recipes"
+      },
+      "exec": {
+        "answer": "Add Kikamba and Luhya data first, and review abstention for Luhya and Kiswahili. Commission fresh, sealed, independently labelled evaluation material before any further recipe selection. Each run took only {F009} GPU-hours, so single-change experiments are cheap.",
+        "complication": "All {F011} of {F012} checks pass and macro accuracy rose by {F013} points over the base. Kikamba ({F019}%) and Luhya ({F035}%) sit closest to the {F016}% floor. The held-out results have also now been inspected, so they cannot serve as independent final acceptance.",
+        "kicker": "Decision summary",
+        "question": "Which model or dataset improvement should be funded next?",
+        "situation": "The language identification model was trained for {F004} epochs on {F006} RMS training units ({F007} tokens). It was scored on a sealed held-out set of {F008} units. It is recorded as admitted. Serving is a separate operation.",
+        "title": "All {F012} languages clear the accuracy floor; Kikamba and Luhya have the least headroom"
+      },
+      "findings_R01_1": {
+        "kicker": "Per-stratum performance",
+        "points": [
+          "{F011} of {F012} languages are at or above the {F016}% floor with no regression below the base. Macro accuracy rose by {F013} points.",
+          "Gains are largest where the base was weakest: Kikamba rose from {F021}% to {F019}%, Ekegusii from {F017}% to {F015}%, and Luhya from {F037}% to {F035}%.",
+          "Gikuyu ({F023}%, base {F025}%) and Kalenjin ({F027}%, base {F029}%) are comfortably clear. Kiswahili reaches {F039}% against a base of {F041}%, so little changed.",
+          "Kikamba at {F019}% and Luhya at {F035}% have the thinnest margins over the floor, and Luhya abstains on {F038}% of items."
+        ],
+        "title": "Every language clears its floor and none falls below the base"
+      },
+      "findings_R01_2": {
+        "kicker": "Coverage and compute",
+        "points": [
+          "Training used {F006} units and {F007} tokens of RMS transcripts over {F004} epochs, spread across {F012} languages.",
+          "The run took {F009} GPU-hours, or {F010} minutes on one GPU, so retraining is cheap in compute terms.",
+          "Scoring used a sealed held-out set of {F008} units. The record gives no per-language split, so per-language uncertainty cannot be stated.",
+          "Abstention runs from {F026}% for Gikuyu to {F042}% for Kiswahili. Luhya abstains on {F038}% of items and Kikamba on {F022}%."
+        ],
+        "title": "A modest, inexpensive run produced these results on a sealed evaluation set"
+      },
+      "risks": {
+        "kicker": "Limits of the evidence",
+        "points": [
+          "Performance outside these {F012} languages and the sealed set is not established. An independently designed evaluation would close this gap.",
+          "Final acceptance cannot be called independent after further recipe selection, because these results have been inspected. Fresh, independently labelled, sealed material would close it.",
+          "Lineage from objective to production is incomplete: no new production plan is linked to this historical run. Only an explicitly compiled, evidence-linked objective closes it.",
+          "Serving is separate: the full adapter is served, the pruned adapter is admitted but not served. Privacy handling of the transcripts is not evidenced in this record."
+        ],
+        "title": "The record supports the stated checks only, not independent acceptance or wider performance"
+      },
+      "section1": {
+        "title": "Training receipt and acceptance record"
+      }
+    },
+    "subtitle": "Per-stratum results, coverage limits and the next improvement to fund",
+    "title": "Language identification: training findings"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 0
+    },
+    "latency_ms": 52117,
+    "model": "claude-sonnet-5-5",
+    "provider": "emergent",
+    "receipt_id": "rcp-ce6fc105d0b3",
+    "tokens_in": 6357,
+    "tokens_out": 1986
+  }
+}

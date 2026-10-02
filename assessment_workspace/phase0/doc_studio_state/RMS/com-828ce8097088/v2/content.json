@@ -1,0 +1,962 @@
+{
+  "authoring": {
+    "claims_authored": 38,
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 0
+    },
+    "latency_ms": 52117,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "planner → worker → content manager → frontier writer",
+    "provider": "emergent",
+    "receipt_id": "rcp-ce6fc105d0b3",
+    "tokens_in": 6357,
+    "tokens_out": 1986
+  },
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001"
+      ],
+      "text": "{F001} checks were measured against the signed acceptance in this record."
+    },
+    "C500": {
+      "supports": [
+        "F002"
+      ],
+      "text": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation. (Source: R01)"
+    },
+    "C510": {
+      "supports": [
+        "F003"
+      ],
+      "text": "Baseline: Qwen3 8B base · licence verified at acquisition (Source: R01)"
+    },
+    "C520": {
+      "supports": [
+        "F004",
+        "F005"
+      ],
+      "text": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)"
+    },
+    "C530": {
+      "supports": [
+        "F006",
+        "F007",
+        "F008"
+      ],
+      "text": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)"
+    },
+    "C540": {
+      "supports": [
+        "F009",
+        "F010"
+      ],
+      "text": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)"
+    },
+    "C550": {
+      "supports": [
+        "F011",
+        "F012"
+      ],
+      "text": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)"
+    },
+    "C560": {
+      "supports": [
+        "F013",
+        "F014"
+      ],
+      "text": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)"
+    },
+    "C590": {
+      "supports": [
+        "F015",
+        "F016",
+        "F017",
+        "F018"
+      ],
+      "text": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)"
+    },
+    "C600": {
+      "supports": [
+        "F019",
+        "F020",
+        "F021",
+        "F022"
+      ],
+      "text": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)"
+    },
+    "C610": {
+      "supports": [
+        "F023",
+        "F024",
+        "F025",
+        "F026"
+      ],
+      "text": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)"
+    },
+    "C620": {
+      "supports": [
+        "F027",
+        "F028",
+        "F029",
+        "F030"
+      ],
+      "text": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)"
+    },
+    "C630": {
+      "supports": [
+        "F031",
+        "F032",
+        "F033",
+        "F034"
+      ],
+      "text": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)"
+    },
+    "C640": {
+      "supports": [
+        "F035",
+        "F036",
+        "F037",
+        "F038"
+      ],
+      "text": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)"
+    },
+    "C650": {
+      "supports": [
+        "F039",
+        "F040",
+        "F041",
+        "F042"
+      ],
+      "text": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)"
+    },
+    "C901": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Per-stratum results, coverage limits and the next improvement to fund"
+    },
+    "C902": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F006",
+        "F007",
+        "F011",
+        "F012",
+        "F016",
+        "F013"
+      ],
+      "text": "The language identification model was trained for {F004} epochs on {F006} RMS training units ({F007} tokens). It passes all {F011} of {F012} checks: every language is at or above the {F016}% floor, and none has regressed below the base. Macro accuracy rose by {F013} points. The model is recorded as admitted."
+    },
+    "C903": {
+      "authored": true,
+      "supports": [
+        "F019",
+        "F035",
+        "F038"
+      ],
+      "text": "The result is strong but uneven in headroom. Kikamba ({F019}%) and Luhya ({F035}%) are closest to the floor, and Luhya abstains on {F038}% of items. The next improvement should therefore be targeted data for those two languages, followed by a review of abstention behaviour."
+    },
+    "C904": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The held-out results have been inspected, so they cannot count as independent final acceptance for any further recipe choice. This paper covers the retained measurements from this run only."
+    },
+    "C905": {
+      "authored": true,
+      "supports": [
+        "F012"
+      ],
+      "text": "All {F012} languages clear the accuracy floor; Kikamba and Luhya have the least headroom"
+    },
+    "C906": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F006",
+        "F007",
+        "F008"
+      ],
+      "text": "The language identification model was trained for {F004} epochs on {F006} RMS training units ({F007} tokens). It was scored on a sealed held-out set of {F008} units. It is recorded as admitted. Serving is a separate operation."
+    },
+    "C907": {
+      "authored": true,
+      "supports": [
+        "F011",
+        "F012",
+        "F013",
+        "F019",
+        "F035",
+        "F016"
+      ],
+      "text": "All {F011} of {F012} checks pass and macro accuracy rose by {F013} points over the base. Kikamba ({F019}%) and Luhya ({F035}%) sit closest to the {F016}% floor. The held-out results have also now been inspected, so they cannot serve as independent final acceptance."
+    },
+    "C908": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Which model or dataset improvement should be funded next?"
+    },
+    "C909": {
+      "authored": true,
+      "supports": [
+        "F009"
+      ],
+      "text": "Add Kikamba and Luhya data first, and review abstention for Luhya and Kiswahili. Commission fresh, sealed, independently labelled evaluation material before any further recipe selection. Each run took only {F009} GPU-hours, so single-change experiments are cheap."
+    },
+    "C910": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Training receipt and acceptance record"
+    },
+    "C911": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Every language clears its floor and none falls below the base"
+    },
+    "C912": {
+      "authored": true,
+      "supports": [
+        "F011",
+        "F012",
+        "F016",
+        "F013"
+      ],
+      "text": "{F011} of {F012} languages are at or above the {F016}% floor with no regression below the base. Macro accuracy rose by {F013} points."
+    },
+    "C913": {
+      "authored": true,
+      "supports": [
+        "F021",
+        "F019",
+        "F017",
+        "F015",
+        "F037",
+        "F035"
+      ],
+      "text": "Gains are largest where the base was weakest: Kikamba rose from {F021}% to {F019}%, Ekegusii from {F017}% to {F015}%, and Luhya from {F037}% to {F035}%."
+    },
+    "C914": {
+      "authored": true,
+      "supports": [
+        "F023",
+        "F025",
+        "F027",
+        "F029",
+        "F039",
+        "F041"
+      ],
+      "text": "Gikuyu ({F023}%, base {F025}%) and Kalenjin ({F027}%, base {F029}%) are comfortably clear. Kiswahili reaches {F039}% against a base of {F041}%, so little changed."
+    },
+    "C915": {
+      "authored": true,
+      "supports": [
+        "F019",
+        "F035",
+        "F038"
+      ],
+      "text": "Kikamba at {F019}% and Luhya at {F035}% have the thinnest margins over the floor, and Luhya abstains on {F038}% of items."
+    },
+    "C916": {
+      "authored": true,
+      "supports": [
+        "F011",
+        "F012",
+        "F016",
+        "F021",
+        "F019",
+        "F017",
+        "F015",
+        "F037",
+        "F035",
+        "F023",
+        "F025",
+        "F027",
+        "F029"
+      ],
+      "text": "All {F011} of {F012} languages are at or above the {F016}% floor and none falls below the base. The largest gains came where the base was weakest. Kikamba rose from {F021}% to {F019}%, Ekegusii from {F017}% to {F015}%, and Luhya from {F037}% to {F035}%. Gikuyu reached {F023}% from {F025}%, and Kalenjin {F027}% from {F029}%."
+    },
+    "C917": {
+      "authored": true,
+      "supports": [
+        "F041",
+        "F039"
+      ],
+      "text": "Kiswahili is the exception in kind. Its base already scored {F041}%, and the model reaches {F039}%, so the gain there is small. Kikamba and Luhya have the thinnest margins over the floor, and a modest drop on fresh material could take either below it. That is the main reason to prioritise them."
+    },
+    "C918": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "A modest, inexpensive run produced these results on a sealed evaluation set"
+    },
+    "C919": {
+      "authored": true,
+      "supports": [
+        "F006",
+        "F007",
+        "F004",
+        "F012"
+      ],
+      "text": "Training used {F006} units and {F007} tokens of RMS transcripts over {F004} epochs, spread across {F012} languages."
+    },
+    "C920": {
+      "authored": true,
+      "supports": [
+        "F009",
+        "F010"
+      ],
+      "text": "The run took {F009} GPU-hours, or {F010} minutes on one GPU, so retraining is cheap in compute terms."
+    },
+    "C921": {
+      "authored": true,
+      "supports": [
+        "F008"
+      ],
+      "text": "Scoring used a sealed held-out set of {F008} units. The record gives no per-language split, so per-language uncertainty cannot be stated."
+    },
+    "C922": {
+      "authored": true,
+      "supports": [
+        "F026",
+        "F042",
+        "F038",
+        "F022"
+      ],
+      "text": "Abstention runs from {F026}% for Gikuyu to {F042}% for Kiswahili. Luhya abstains on {F038}% of items and Kikamba on {F022}%."
+    },
+    "C923": {
+      "authored": true,
+      "supports": [
+        "F006",
+        "F007",
+        "F008"
+      ],
+      "text": "Training used {F006} units and {F007} tokens of RMS transcripts. Scoring used a sealed held-out set of {F008} units. The record does not split that set by language, so the uncertainty around each per-language figure cannot be stated. This matters most for Kikamba and Luhya, where margins are thin."
+    },
+    "C924": {
+      "authored": true,
+      "supports": [
+        "F009",
+        "F010",
+        "F026",
+        "F042",
+        "F038",
+        "F022"
+      ],
+      "text": "The run took {F009} GPU-hours, or {F010} minutes on one GPU. Compute is therefore not the constraint on iteration. Abstention varies from {F026}% for Gikuyu to {F042}% for Kiswahili, with Luhya at {F038}% and Kikamba at {F022}%. The record does not say whether abstentions count as errors in the accuracy figures."
+    },
+    "C925": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Add Kikamba and Luhya data first, review abstention second, evaluate afresh before new recipes"
+    },
+    "C926": {
+      "authored": true,
+      "supports": [
+        "F019",
+        "F035",
+        "F016"
+      ],
+      "text": "First, expand Kikamba and Luhya training and held-out data. They stand at {F019}% and {F035}% against a {F016}% floor and have the least headroom."
+    },
+    "C927": {
+      "authored": true,
+      "supports": [
+        "F038",
+        "F042"
+      ],
+      "text": "Second, review abstention for Luhya ({F038}%) and Kiswahili ({F042}%). The record does not show whether abstentions count as errors, so confirm that before changing any threshold."
+    },
+    "C928": {
+      "authored": true,
+      "supports": [
+        "F008"
+      ],
+      "text": "Third, commission fresh, independently labelled sealed material before choosing another recipe, because the {F008} held-out units have now been inspected."
+    },
+    "C929": {
+      "authored": true,
+      "supports": [
+        "F009"
+      ],
+      "text": "Fourth, change one thing per run. At {F009} GPU-hours a run, any movement in Kikamba or Luhya can be attributed to a single change."
+    },
+    "C930": {
+      "authored": true,
+      "supports": [
+        "F016",
+        "F038",
+        "F042"
+      ],
+      "text": "First, expand Kikamba and Luhya training and held-out data, since these have the least headroom over the {F016}% floor. Second, confirm how abstention is scored, then review it for Luhya ({F038}%) and Kiswahili ({F042}%). Changing a threshold before knowing this could move accuracy without improving the model."
+    },
+    "C931": {
+      "authored": true,
+      "supports": [
+        "F008",
+        "F009"
+      ],
+      "text": "Third, commission fresh, independently labelled sealed material before selecting another recipe, because the {F008} held-out units have been inspected. Fourth, change one thing per run. At {F009} GPU-hours a run, this is affordable and lets any change in Kikamba or Luhya be attributed to its cause."
+    },
+    "C932": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The record supports the stated checks only, not independent acceptance or wider performance"
+    },
+    "C933": {
+      "authored": true,
+      "supports": [
+        "F012"
+      ],
+      "text": "Performance outside these {F012} languages and the sealed set is not established. An independently designed evaluation would close this gap."
+    },
+    "C934": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Final acceptance cannot be called independent after further recipe selection, because these results have been inspected. Fresh, independently labelled, sealed material would close it."
+    },
+    "C935": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Lineage from objective to production is incomplete: no new production plan is linked to this historical run. Only an explicitly compiled, evidence-linked objective closes it."
+    },
+    "C936": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Serving is separate: the full adapter is served, the pruned adapter is admitted but not served. Privacy handling of the transcripts is not evidenced in this record."
+    },
+    "C937": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Performance outside the measured languages and the sealed set is not established; an independently designed evaluation would close that gap. Independent final acceptance is not possible after further recipe selection on inspected results, and needs fresh, sealed, independently labelled material."
+    },
+    "C938": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "No new production plan is linked to this historical run, so lineage from objective to production is incomplete. Closing it needs an explicitly compiled, evidence-linked objective, never a backdated assumption. Serving is a separate operation: the full adapter is served and the pruned adapter is admitted but not served. The record carries no evidence on privacy handling of the transcripts."
+    }
+  },
+  "content_id": "training-m9j-74af7cef0a85",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "An independently designed evaluation",
+        "gap": "General cognition or performance outside the measured strata",
+        "reason": "Not established by this run"
+      },
+      {
+        "closes_with": "Fresh independently labelled and sealed final material",
+        "gap": "Independent final acceptance after further recipe selection",
+        "reason": "These results have been inspected"
+      },
+      {
+        "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+        "gap": "Complete objective-to-production lineage",
+        "reason": "No new production plan is linked to this historical run"
+      }
+    ],
+    "covers": "Retained model measurements and decisions from m9j-74af7cef0a85 only."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Measured checks on the record",
+      "receipt": "R01",
+      "unit": "checks",
+      "value": 7
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Outcome and decision · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 8
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Baseline · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Baseline: Qwen3 8B base · licence verified at acquisition (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 8
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Recipe · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Recipe · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.0001
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Data · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 130124
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Data · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 9502124
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Data · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2800
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Compute & time · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.8182
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Compute & time · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 49
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Checks · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 7
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Checks · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Checks: 7 of 7 languages at or above the floor with no regression below the base (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 7
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Improvement over the base · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 68.2
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Improvement over the base · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848 (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.00848
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 98.2
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 1.1
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.8
+    },
+    "F019": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 91.3
+    },
+    "F020": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F021": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.0
+    },
+    "F022": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 1.8
+    },
+    "F023": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.2
+    },
+    "F024": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F025": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 24.5
+    },
+    "F026": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.5
+    },
+    "F027": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.7
+    },
+    "F028": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F029": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 11.9
+    },
+    "F030": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0.5
+    },
+    "F031": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.5
+    },
+    "F032": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F033": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 62.7
+    },
+    "F034": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2.0
+    },
+    "F035": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 93.5
+    },
+    "F036": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F037": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 4.3
+    },
+    "F038": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 4.2
+    },
+    "F039": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 99.0
+    },
+    "F040": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F041": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 98.4
+    },
+    "F042": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 4.8
+    }
+  },
+  "narrative_evidence": {
+    "C002": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Baseline: Qwen3 8B base · licence verified at acquisition"
+    },
+    "C003": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Recipe: LoRA r16 · 2 epochs · adamw · learning rate 0.0001"
+    },
+    "C004": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Data: RMS transcripts · 130,124 training units · 9,502,124 tokens · sealed held-out 2,800 units"
+    },
+    "C005": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Compute & time: 0.8182 GPU-hours on one NVIDIA H200 · 49 min"
+    },
+    "C006": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Checks: 7 of 7 languages at or above the floor with no regression below the base"
+    },
+    "C007": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Improvement over the base: +68.2 points macro accuracy · calibration error 0.00848"
+    },
+    "C008": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Admission: admitted"
+    },
+    "C009": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Serving: full adapter served on akki-vm-ii, pruned adapter admitted, not served"
+    },
+    "C100": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Ekegusii: 98.2% · floor 90% · base 1.1% · abstained 0.8%."
+    },
+    "C101": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kikamba: 91.3% · floor 90% · base 0.0% · abstained 1.8%."
+    },
+    "C102": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Gikuyu: 99.2% · floor 90% · base 24.5% · abstained 0.5%."
+    },
+    "C103": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kalenjin: 99.7% · floor 90% · base 11.9% · abstained 0.5%."
+    },
+    "C104": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Dholuo: 99.5% · floor 90% · base 62.7% · abstained 2.0%."
+    },
+    "C105": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Luhya (Wanga): 93.5% · floor 90% · base 4.3% · abstained 4.2%."
+    },
+    "C106": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kiswahili: 99.0% · floor 90% · base 98.4% · abstained 4.8%."
+    },
+    "decision": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Language identification · 8B text model: In service. See the retained admission decision; serving remains a separate operation."
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "producer_revision": 3,
+  "production_plan": null,
+  "receipts": {
+    "R01": {
+      "platform_ref": "m9j-74af7cef0a85",
+      "resolves_to": "Measured training receipt and retained acceptance record for m9j-74af7cef0a85"
+    }
+  },
+  "series": {},
+  "title": "Language identification: training findings",
+  "version": 2
+}

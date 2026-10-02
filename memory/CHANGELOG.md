@@ -1,5 +1,9 @@
 # Akki implementation history
 
+## 2026-10-02 — autonomous training board signed, run and judged
+- Owner sign-off recorded on both plans; autopilot dispatched to akki-vm. Music detector admitted (100% file-level vs 95.2% baseline, 17 files) and its findings paper authored by claude-sonnet-5-5 (`com-1178b6d9b486`). Luhya v1 failed once on a worker bug (fixed), auto-retried, then refused against the signed floor (lwg 72.3%, regressions, speaker probe); paper `com-700093965708`. Luhya v2 (stop rule, LR 1e-4, stronger adversary) signed and dispatched as `lcj-7841bcce8855`.
+- Fixes: Approve control 500 (`approve_plan` label), signer shown by name, autopilot kick on board read, auto-retry under same signature, worker stop rule (`patience_evaluations`, `compute_cap_seconds`), findings producer for `lab_train_music` + job-id → board-run resolution, frontier pipeline on the mounted producers route, mobile wrap for Train Models header, report copy for signed runs. Verified: `test_reports/iteration_79.json` (9/9 backend, desktop+mobile).
+
 ## 2026-10-01 — report-download Bad Gateway mitigation
 - Added frontend-static PowerPoint/Word downloads and a combined ZIP, avoiding dependency on the API download upstream. Report contents unchanged; no new UI or authentication.
 - Independent post-fix browser verification passed for all three actual downloads; hashes/ZIP contents match and four regression checks pass (`iteration_78.json`).

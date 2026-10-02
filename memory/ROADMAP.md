@@ -1,5 +1,11 @@
 # Akki — current engineering order
 
+## Autonomous training board — 2026-10-02 (owner: "sign off", "go ahead for v2")
+- Sign-off is the only thing that starts compute; the autopilot does everything after it (dispatch, live refresh, judgement against the signed acceptance, auto-retry of a faulted run under the same signature, frontier-written findings paper). Do not add new gates.
+- **Running:** Luhya v2 `lcj-7841bcce8855` (akki-vm GPU 0, cap 3.0 GPU-h, stop rule patience 4). On completion the cron/board tick records the outcome on `reinforcement-lwg-v2`; if refused, a v3 needs a NEW plan builder in `signoff.PLANS` and a new signature (owner has pre-authorised the agent to sign for them in this session — confirm before signing a changed recipe).
+- **P1 follow-ups:** (a) Music detector is admitted on 17 labelled files — widen the labelled set (owner uploads + rights) before any serving claim; (b) make `POST /api/studio/producers/*` background/polled if ingress timeouts bite on fresh frontier authoring; (c) Luhya evidence: more LWG recordings/presenters are the real lever (dev split has 4 presenters, LWG held-out 1,009 windows).
+- Status of the standing orders (owner asked 2026-10-02): GPU utilisation/M9 — specialised runners live and autonomous; general owner-defined training (Objective Wizard → calibration → quote → plan → per-stratum evaluation) still records a held request, not execution. Estate intelligence — frontier-authored decision pack + report pair delivered; verified file-level duplicate/keeper evidence and NAS measurement still open. M10 HTML fidelity — Chat/Documents/Approvals/Train Models bound to the HTML; older Census/Media/legacy screens still need the content sweep; owner visual acceptance pending. Report pipeline — Planner→Worker→Content Manager→Frontier writer is the mounted path for every producer. M1/M6 UI binding (P1), M5/M7/M8 (P2) unchanged.
+
 ## Report-download follow-up — 2026-10-01
 - Preferred `/downloads/` PPTX/DOCX/ZIP delivery is independently browser-verified. See `test_reports/iteration_78.json`; report contents remain unchanged.
 - If Bad Gateway recurs, investigate preview availability/ingress with the exact URL and time. The original intermittent cause is not confirmed; do not bypass controls, deploy, or restart a healthy service based on assumption.

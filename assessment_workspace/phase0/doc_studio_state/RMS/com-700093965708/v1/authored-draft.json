@@ -1,0 +1,110 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "Hold, diagnose, then rerun with a per-stratum gate",
+          "paragraphs": [
+            "First, keep the artefact unpromoted. Luhya at {F002} against the {F003} floor, and the five regressions, each justify refusal. The artefact stays on its host, so it is not released while the work proceeds.",
+            "Second, diagnose Kikamba, the steepest fall from {F006} to {F007}, comparing its data share and training signal with those of Luhya. Third, treat the above-chance speaker probe as a privacy finding to resolve before any release. Fourth, write a no-regression condition for every stratum into the next signed plan. Fifth, prepare fresh sealed material for any future acceptance."
+          ]
+        },
+        "findings_R01_1": {
+          "heading": "The target stratum failed and the steepest losses sit beside it",
+          "paragraphs": [
+            "Luhya scored {F002} against the {F003} floor and abstained on {F052} of responses. The run was designed to raise this stratum, and on the record it did not reach the floor.",
+            "Ekegusii regressed from {F004} to {F005}, with {F037} abstained. Kikamba fell from {F006} to {F007}, the steepest fall recorded, and it also has the highest abstention at {F040}. Both are now below the floor."
+          ]
+        },
+        "findings_R01_2": {
+          "heading": "Three strata held the floor, but two of them lost ground",
+          "paragraphs": [
+            "Gikuyu fell from {F008} to {F009} and Kalenjin from {F010} to {F011}. Both remain above the {F003} floor, Kalenjin by a narrow margin. Kiswahili fell from {F012} to {F053}, below the floor.",
+            "One further stratum scored {F047} with {F049} abstained and has no failure recorded. The record does not state how abstention enters each score, so abstention rates are shown for context and not interpreted."
+          ]
+        },
+        "risks": {
+          "heading": "What this record cannot establish",
+          "paragraphs": [
+            "The record covers only the measured strata of this run. Luhya at {F002} against the {F003} floor says nothing about general capability, and an independently designed evaluation would be needed to say more. Because these results have been inspected, they cannot count as independent acceptance of any later recipe. Fresh, independently labelled and sealed final material would close that gap.",
+            "No new production plan is linked to this historical run, so lineage from objective to production is incomplete. It closes only with an explicitly compiled, evidence-linked objective. The cause of regressions such as Ekegusii falling from {F004} is not established, nor is the treatment of abstention in scoring."
+          ]
+        }
+      },
+      "summary": [
+        "The Luhya reinforcement run for the audio language model was refused against its signed acceptance. Luhya, the target stratum, scored {F002} against a {F003} floor. Five other strata fell from their earlier scores, and the speaker probe on the served output was above chance.",
+        "The owner should not promote the artefact. The first piece of work is diagnosis, starting with Kikamba, the largest fall. The next run should be gated on every stratum holding its prior score, and any further acceptance needs fresh sealed material."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "What to do first",
+        "points": [
+          "Keep the artefact unpromoted: Luhya at {F002} against the {F003} floor justifies refusal on its own.",
+          "Diagnose Kikamba first, the steepest fall from {F006} to {F007}; compare its data share and training signal with Luhya's.",
+          "Resolve the above-chance speaker probe as a privacy matter before any release; the artefact stays on its host meanwhile.",
+          "Write a no-regression floor for every stratum into the next signed plan, and seal fresh material for acceptance."
+        ],
+        "title": "Hold the artefact, diagnose Kikamba first, then rerun with a per-stratum gate"
+      },
+      "exec": {
+        "answer": "Stop and diagnose before another run. Keep the artefact unpromoted, start with the Kikamba regression, treat the speaker probe as a privacy finding, and gate the next run on every stratum holding its prior score.",
+        "complication": "Luhya reached only {F002}, well short of the floor. Ekegusii fell from {F004} to {F005}, Kikamba from {F006} to {F007}, Gikuyu from {F008} to {F009}, Kalenjin from {F010} to {F011}, and Kiswahili from {F012} to {F053}. The speaker probe on the served output was also above chance.",
+        "kicker": "Decision",
+        "question": "What should the model owner do next: tune this recipe, change the data, or stop and diagnose?",
+        "situation": "The run aimed to lift Luhya performance in the audio language model while keeping every other stratum above the {F003} floor. It was checked against the signed acceptance, and the measured checks are on the record.",
+        "title": "The Luhya reinforcement run was refused: the target stratum failed and five others regressed"
+      },
+      "findings_R01_1": {
+        "kicker": "Target stratum and steepest losses",
+        "points": [
+          "Luhya, the stratum the run was meant to improve, scored {F002} against the {F003} floor, with {F052} of responses abstained.",
+          "Ekegusii regressed from {F004} to {F005}, now under the floor, with {F037} abstained.",
+          "Kikamba shows the steepest fall on the record, from {F006} to {F007}, and the highest abstention at {F040}.",
+          "The run is refused on the Luhya floor, five regressions and the speaker probe taken together."
+        ],
+        "title": "Luhya reached {F002} against a {F003} floor, while Kikamba and Ekegusii lost ground"
+      },
+      "findings_R01_2": {
+        "kicker": "Remaining strata",
+        "points": [
+          "Gikuyu fell from {F008} to {F009}, and Kalenjin from {F010} to {F011}. Both remain above the {F003} floor, Kalenjin narrowly.",
+          "Kiswahili fell from {F012} to {F053}, which is below the floor.",
+          "One further stratum scored {F047} with {F049} abstained, and has no failure recorded against it.",
+          "The record does not say how abstention enters each score, so high abstention cannot yet be read as caution or as loss."
+        ],
+        "title": "Only three strata stayed above the floor, and two of them still lost ground"
+      },
+      "risks": {
+        "kicker": "Limits of the evidence",
+        "points": [
+          "Only the measured strata are covered. Luhya at {F002} against {F003} says nothing about general performance, which needs an independently designed evaluation.",
+          "These results have been inspected, so they cannot serve as independent acceptance after further recipe selection. Fresh, independently labelled, sealed material would close this.",
+          "No new production plan is linked to this historical run. Lineage closes only with an explicitly compiled, evidence-linked objective, never a backdated one.",
+          "The cause of regressions such as Ekegusii falling from {F004} is unrecorded, as is how abstention is scored."
+        ],
+        "title": "The record cannot show cause, general capability or independent acceptance"
+      },
+      "section1": {
+        "title": "Measured record and acceptance"
+      }
+    },
+    "subtitle": "Per-stratum results, coverage and the next improvement for lcj-1dd5012c909c",
+    "title": "Luhya reinforcement run refused at acceptance"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 1
+    },
+    "latency_ms": 37933,
+    "model": "claude-sonnet-5-5",
+    "provider": "emergent",
+    "receipt_id": "rcp-8c6fd87ae63e",
+    "repairs": 1,
+    "tokens_in": 16984,
+    "tokens_out": 3584
+  }
+}
