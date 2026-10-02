@@ -60,6 +60,7 @@ def commission_from_training(run_id, tenant, principal, now):
     # Put numeric record statements in the content layer, with their own exact
     # source values. Specs reference claims rather than repeating literal figures.
     numeric = re.compile(r'(?<![\w])[-+]?\d[\d,]*(?:\.\d+)?')
+    facts_by_heading = {}
     for index, section in enumerate(blocks):
         for block_index, block in enumerate(section.get('blocks', [])):
             text = block.get('para')
@@ -75,8 +76,18 @@ def commission_from_training(run_id, tenant, principal, now):
                     'measurement_scope': 'Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.',
                     'source_statement': text}
                 supports.append(fact)
+                facts_by_heading.setdefault(section['heading'], []).append(fact)
             claims[key] = {'text': text, 'supports': supports}
             block['para'] = '{' + key + '}'
+    check_facts = [f for h, fs in facts_by_heading.items() if h in {c['n'] for c in run['checks']} for f in fs]
+    record_facts = [f for h, fs in facts_by_heading.items() if h in ('Outcome and decision', 'Signed plan', 'Acceptance', 'Artefact') for f in fs]
+    compute_facts = facts_by_heading.get('Compute', []) + facts_by_heading.get('Compute & time', []) + facts_by_heading.get('Calibrated compute quote', [])
+    content['story'] = [
+        {'question': f"What was decided about {run['name']}, and against which signed acceptance?", 'answers_with': record_facts[:6] or sorted(content['facts'])[:3]},
+        {'question': 'What did the run measure, check by check, against the acceptance that was signed?', 'answers_with': check_facts[:8]},
+        {'question': 'What compute did it take, and how does that compare with the cap that was signed?', 'answers_with': compute_facts[:6]},
+        {'question': 'What should the owner do next with this model — serve it, widen its evidence, or open the next version — and why?', 'answers_with': (check_facts[:2] + record_facts[:2])},
+    ]
     content['producer_revision'] = 3
     # Qualitative record statements cite the receipt directly, never an unrelated numeric fact.
     facts = content['facts']

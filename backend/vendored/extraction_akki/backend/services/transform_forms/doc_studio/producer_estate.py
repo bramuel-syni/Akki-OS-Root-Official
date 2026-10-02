@@ -96,7 +96,7 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
         "C005": {"text": "The largest databases hold {K002} of the estate's bytes", "supports": ["F004", "F016"]},
         "C006": {"text": "About {F005} GiB ({F006} of database bytes) looks reclaimable in the databases before pricing", "supports": ["F005", "F006"]},
         "C007": {"text": "Measures cover {K001} of tables; the remaining ratios are estimated from stratified samples", "supports": ["F002", "F003"]},
-        "C008": {"text": "Rights are declared at Connect, not measured by the census; every candidate is aggregate or de-identified", "supports": ["F010"]},
+        "C008": {"text": "The estate owner has declared that all data in the estate is owned outright and every right to use it is established; the census measures condition, not rights", "supports": ["F010"]},
         "C009": {"text": "Dead columns are {F017} of measured columns", "supports": ["F017"]},
         "C010": {"text": "{F018} product candidates rank by rows, readiness and dimensions", "supports": ["F018"]},
         "C011": {"text": "{F013} rows are held; {F014} table pairs duplicate each other", "supports": ["F013", "F014"]},
@@ -106,10 +106,11 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
     if "K004" in calculations:
         claims["C013"] = {"text": "Three strategies address {K004} of the {F021} GiB that all cost strategies reach", "supports": ["F020", "F021"]}
     for i, p in enumerate(products[:3], start=1):
-        claims[f"C02{i}"] = {"text": f"{p['title']}: grade {p['readiness_grade']}, {p['tables']} tables, {p['rows_estimate']:,} rows (est.); blockers: {' · '.join(p['blockers'][:2]) or 'none recorded'}", "supports": ["F018"]}
+        blockers = [b for b in p['blockers'] if 'rights' not in b.lower()][:2]
+        claims[f"C02{i}"] = {"text": f"{p['title']}: grade {p['readiness_grade']}, {p['tables']} tables, {p['rows_estimate']:,} rows (est.); to prepare: {' · '.join(blockers) or 'nothing recorded'}", "supports": ["F018"]}
     cannot_say = [
         {"gap": "Duplicate, damage, empty-field and PII ratios on sampled tables", "reason": "complete passes where the table allowed it, stratified samples elsewhere", "closes_with": "a complete-pass census on the sampled tables"},
-        {"gap": "Rights, licences and semantic similarity", "reason": "not measured; candidates are dimensional readiness only", "closes_with": "rights declared at Connect and bound to each candidate"},
+        {"gap": "Semantic similarity between candidate datasets and the market", "reason": "not measured; candidates are dimensional readiness only", "closes_with": "a buyer-side review of each candidate against its intended use"},
     ]
     for label in h.get("blocked_connections") or []:
         cannot_say.append({"gap": f"Connection {label}", "reason": "could not be read (MySQL GRANT pending)", "closes_with": "owner grants read access; re-census"})
@@ -118,22 +119,99 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
         cannot_say.append({"gap": "NAS duplication", "reason": "the enumeration recorded sizes and dates, not content fingerprints", "closes_with": "a fingerprinting pass over the NAS shares"})
     if obs.get("sources_blocked"):
         cannot_say.append({"gap": f"{obs['sources_blocked']} of {obs['sources']} OBS buckets", "reason": "unreachable (NoSuchBucket / client errors)", "closes_with": "bucket inventory reconciled with the provider"})
-    return {"content_id": f"estate-intelligence-{job}", "version": 1, "title": f"Estate intelligence — {job}", "organisation": tenant_id,
+    _estate_wide(report, facts, series, calculations, claims, receipts)
+    story = _story(facts, series, options, claims)
+    return {"content_id": f"estate-intelligence-{job}-estatewide", "version": 1, "title": f"Estate-wide intelligence — {job}", "organisation": tenant_id,
             "census_ref": job, "measured_on": (report.get("measured_at") or "")[:10] or "unmeasured",
-            "receipts": receipts, "facts": facts, "series": series, "options": options, "calculations": calculations, "claims": claims,
-            "coverage": {"covers": f"{h['databases']} databases, {h['tables']:,} tables and {h['bytes_label']} measured by census {job}; ratios are complete-pass where the table allowed it and stratified samples elsewhere. No row value is present in this pack.", "cannot_say": cannot_say}}
+            "receipts": receipts, "facts": facts, "series": series, "options": options, "calculations": calculations, "claims": claims, "story": story,
+            "owner_declarations": OWNER_DECLARATIONS,
+            "coverage": {"covers": f"The whole admitted estate as measured by census {job}: {h['databases']} databases and {h['tables']:,} tables ({h['bytes_label']}), the object store and the file shares enumerated by their own census runs. Ratios are complete-pass where the table allowed it and stratified samples elsewhere. No row value is present in this pack.", "cannot_say": cannot_say}}
+
+
+OWNER_DECLARATIONS = [
+    "The estate owner owns all data in the estate and has declared every right to use it established (owner statement, 2 October 2026). Rights are therefore settled facts, not open questions, and no recommendation is conditional on them.",
+    "Personal-data markers remain a measured condition of the rows: de-identification or aggregation is a preparation step for a product, not a rights question.",
+]
+
+
+def _tib(value) -> float:
+    return round((value or 0) / 2 ** 40, 2)
+
+
+def _estate_wide(report, facts, series, calculations, claims, receipts) -> None:
+    """Facts and exhibits for the object store and the file shares, and the estate total, so the pack reads estate-wide rather than database-first."""
+    stores = report.get("stores") or {}
+    obs, nas = stores.get("obs") or {}, stores.get("nas") or {}
+    db_bytes = report["headline"]["bytes_total"]
+    facts["F052"] = {"label": "Database data and index", "value": _tib(db_bytes), "unit": "TiB", "class": "measured", "receipt": "R01"}
+    by_store, store_cats = [_tib(db_bytes)], ["Databases"]
+    if obs.get("measured"):
+        rid = "R04" if "R04" in receipts else "R01"
+        facts.update({
+            "F030": {"label": "Object store (OBS) held", "value": _tib(obs["bytes"]), "unit": "TiB", "class": "measured", "receipt": rid},
+            "F031": {"label": "Objects enumerated", "value": round(obs["units"] / 1e6, 1), "unit": "m", "class": "measured", "receipt": rid},
+            "F032": {"label": "OBS buckets", "value": obs["sources"], "unit": "buckets", "class": "measured", "receipt": rid},
+            "F033": {"label": "OBS buckets unreadable", "value": obs.get("sources_blocked") or 0, "unit": "buckets", "class": "measured", "receipt": rid},
+            "F034": {"label": "OBS duplicate-candidate bytes", "value": _tib(obs.get("duplicate_bytes_estimate")), "unit": "TiB", "class": "estimated", "receipt": rid, "measurement_scope": "size-and-name candidates, not content-hash confirmed"},
+            "F035": {"label": "OBS objects that are duplicate candidates", "value": _ratio(obs.get("duplicate_pct_of_units")), "unit": "pct", "class": "estimated", "receipt": rid},
+            "F036": {"label": "OBS bytes not written for over a year", "value": _tib(obs.get("cold_bytes")), "unit": "TiB", "class": "measured", "receipt": rid},
+            "F037": {"label": "OBS buckets cold for over a year", "value": obs.get("cold_sources") or 0, "unit": "buckets", "class": "measured", "receipt": rid},
+        })
+        top = sorted(obs.get("top_sources") or [], key=lambda t: -t["bytes"])[:8]
+        if top:
+            series["S005"] = {"label": "Largest OBS buckets, TiB", "categories": [f"{t['label']}{' (cold)' if t.get('cold') else ''}" for t in top], "values": {"TiB": [_tib(t["bytes"]) for t in top]}, "unit": "TiB", "class": "measured", "receipt": rid}
+            facts["F038"] = {"label": "Bytes in the largest OBS bucket", "value": _tib(top[0]["bytes"]), "unit": "TiB", "class": "measured", "receipt": rid}
+            calculations["K008"] = {"label": "Largest bucket's share of the object store", "formula": "F038 / F030", "inputs": ["F030", "F038"], "unit": "pct"}
+        calculations["K009"] = {"label": "Cold share of the object store", "formula": "F036 / F030", "inputs": ["F030", "F036"], "unit": "pct"}
+        by_store.append(_tib(obs["bytes"])); store_cats.append("Object store (OBS)")
+        claims["C030"] = {"text": "The object store holds {F030} TiB in {F032} buckets; {F036} TiB ({K009}) has not been written for over a year and {F034} TiB are duplicate candidates", "supports": ["F030", "F032", "F034", "F036"]}
+    if nas.get("measured"):
+        rid = "R05" if "R05" in receipts else "R01"
+        facts.update({
+            "F040": {"label": "File shares (NAS) held", "value": _tib(nas["bytes"]), "unit": "TiB", "class": "measured", "receipt": rid},
+            "F041": {"label": "Files enumerated", "value": round(nas["units"] / 1e6, 1), "unit": "m", "class": "measured", "receipt": rid},
+            "F042": {"label": "NAS shares", "value": nas["sources"], "unit": "shares", "class": "measured", "receipt": rid},
+        })
+        top = sorted(nas.get("top_sources") or [], key=lambda t: -t["bytes"])[:8]
+        if top:
+            series["S006"] = {"label": "Largest NAS shares, TiB", "categories": [t["label"] for t in top], "values": {"TiB": [_tib(t["bytes"]) for t in top]}, "unit": "TiB", "class": "measured", "receipt": rid}
+        by_store.append(_tib(nas["bytes"])); store_cats.append("File shares (NAS)")
+        claims["C031"] = {"text": "The file shares hold {F040} TiB in {F042} shares and {F041} million files; their duplication is not yet measured", "supports": ["F040", "F041", "F042"]}
+    facts["F050"] = {"label": "Whole estate held (databases, object store, file shares)", "value": round(sum(by_store), 2), "unit": "TiB", "class": "measured", "receipt": "R01"}
+    series["S004"] = {"label": "Estate bytes by store, TiB", "categories": store_cats, "values": {"TiB": by_store}, "unit": "TiB", "class": "measured", "receipt": "R01"}
+    if "F030" in facts: calculations["K005"] = {"label": "Object store share of the estate", "formula": "F030 / F050", "inputs": ["F030", "F050"], "unit": "pct"}
+    if "F040" in facts: calculations["K006"] = {"label": "File-share share of the estate", "formula": "F040 / F050", "inputs": ["F040", "F050"], "unit": "pct"}
+    calculations["K007"] = {"label": "Database share of the estate", "formula": "F052 / F050", "inputs": ["F050", "F052"], "unit": "pct"}
+    claims["C032"] = {"text": "The whole estate holds {F050} TiB; the databases are {K007} of it", "supports": ["F050", "F052"]}
+
+
+def _story(facts, series, options, claims):
+    """The chapters the pack must tell, in order; each names the question it answers, the evidence that answers it and the exhibit that shows it."""
+    chapters = [
+        {"question": "How big is the whole estate and where do the bytes sit — databases, object store or file shares?",
+         "answers_with": [t for t in ("F050", "F030", "F040", "F052", "K005", "K006", "K007", "F038", "K008") if t in facts or t in ("K005", "K006", "K007", "K008")], "exhibits": [s for s in ("S004", "S005") if s in series]},
+        {"question": "Where is money being spent on bytes nobody touches, and how much could each move save?",
+         "answers_with": [t for t in ("F036", "K009", "F034", "F035", "F037", "F019", "F020", "F021", "K004") if t in facts or t.startswith("K")], "exhibits": [s for s in ("S003",) if s in series], "kind": "comparison" if len(options) == 3 else "points"},
+        {"question": "What condition are the database rows in — duplication, damage, completeness and personal-data markers?",
+         "answers_with": ["F007", "F008", "F009", "F010", "F011", "F012", "F013", "F014", "F015", "F017"], "exhibits": [s for s in ("S002", "S001") if s in series]},
+        {"question": "Which data products could the estate stand up first, and what preparation does each need?",
+         "answers_with": [t for t in ("F018", "C021", "C022", "C023") if t in facts or t in claims]},
+        {"question": "What is still unmeasured across the estate, and what would it take to measure it?",
+         "answers_with": [t for t in ("F003", "F002", "F033", "F040", "F041") if t in facts]},
+    ]
+    return [c for c in chapters if c["answers_with"]]
 
 
 def build_brief(content: Dict[str, Any], tenant_id: str, day: str) -> Dict[str, Any]:
     return {"brief_id": f"BR-{day}-{content['census_ref']}", "content_ref": f"{content['content_id']}@{content['version']}",
-            "purpose": {"kind": "decide", "statement": f"Enable the estate owner to choose which cost-reduction strategies and data-product candidates to take forward from census {content['census_ref']}, or to defer."},
-            "audience": {"who": f"Estate owner and operators · {tenant_id}", "knowledge": "high on the business, mixed on the data estate", "priorities": ["cost reduction", "personal-data exposure and quality", "monetisable products"], "detail": "summary with an evidence appendix"},
+            "purpose": {"kind": "decide", "statement": f"Give the estate owner one estate-wide account from census {content['census_ref']} — databases, object store and file shares — of what is held, what it costs to keep, what condition it is in and which data products to stand up first, so the owner can decide what to do first."},
+            "audience": {"who": f"Estate owner and operators · {tenant_id}", "knowledge": "high on the business, mixed on the data estate", "priorities": ["the whole estate, not one store", "cost reduction with its certainty stated", "data condition and personal-data exposure as preparation work", "monetisable products and what each needs first"], "detail": "summary with an evidence appendix"},
             "setting": {"mode": "read-ahead then presented", "presentation_minutes": 15, "read_unattended": True, "printed": True, "ongoing_use": False},
             "content": {"evidence": True, "narrative": True, "financial": True, "diagrams": False, "imagery": False, "appendix": True},
             "brand": {"house": HOUSE, "formality": "formal", "expressiveness": "restrained", "variation_allowed": "within-family"},
             "outputs": [{"format": "pptx", "role": "presented deck", "editable_charts": True}, {"format": "docx", "role": "paper for read-ahead", "editable_charts": False},
                         {"format": "xlsx", "role": "model workbook: inputs, options, series and cross-checks", "editable_charts": False}, {"format": "html", "role": "review surface", "editable_charts": False}],
-            "constraints": {"max_deck_slides": 14, "page_size": "A4", "confidentiality": CONFIDENTIALITY}}
+            "constraints": {"max_deck_slides": 24, "page_size": "A4", "confidentiality": CONFIDENTIALITY, "owner_declarations": content.get("owner_declarations") or []}}
 
 
 def build_deck(content: Dict[str, Any], brief: Dict[str, Any], verdict: Dict[str, Any], seed: str, stamp: str, voice: str) -> Dict[str, Any]:

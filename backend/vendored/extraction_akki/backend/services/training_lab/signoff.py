@@ -98,7 +98,29 @@ def reinforcement_plan_v2(tenant):
     return plan
 
 
-PLANS = {'reinforcement-lwg': reinforcement_plan, 'reinforcement-lwg-v2': reinforcement_plan_v2, 'music-identification': music_plan}
+def _supersedes(tenant, prior_id):
+    prior = get(tenant, prior_id)
+    if not prior or prior['status'] not in ('completed', 'failed') or (prior.get('outcome') or {}).get('decision') == 'admitted': return None
+    return prior
+
+
+def reinforcement_plan_v3(tenant):
+    """Third version. v1 (fixed eight epochs, batch 2048) was still improving when it stopped at 528 optimizer steps; v2 (learning rate 1e-4,
+    patience 4) never crossed the confidence threshold before the stop rule fired. The reference baseline reached its accuracy in ~14,500
+    steps. v3 therefore trains with v1's learning rate, a quarter of the batch (four times the steps per epoch), patience counted only after
+    the model starts judging, and the 3.0 GPU-hour cap enforced on the host."""
+    prior = _supersedes(tenant, 'reinforcement-lwg-v2')
+    if prior is None: return None
+    plan = reinforcement_plan(tenant)
+    if plan is None: return None
+    cap_seconds = int(plan['compute_cap_gpu_hours'] * 3600)
+    plan['recipe'].update(epochs=150, lr=0.0003, batch_size=512, physical_batch_size=512, speaker_loss_weight=0.5, adversary_strength=1.0, patience_evaluations=8, compute_cap_seconds=cap_seconds)
+    plan.update(version=3, supersedes={'run_id': 'reinforcement-lwg-v2', 'plan_sha256': prior['plan_sha256'], 'outcome': (prior.get('outcome') or {}).get('reasons')},
+                stop_rule=f"stop when the development selection score has not improved for eight evaluations after the model begins judging windows, or at {plan['compute_cap_gpu_hours']} GPU-hours of training compute, or at 150 epochs — whichever comes first")
+    return plan
+
+
+PLANS = {'reinforcement-lwg': reinforcement_plan, 'reinforcement-lwg-v2': reinforcement_plan_v2, 'reinforcement-lwg-v3': reinforcement_plan_v3, 'music-identification': music_plan}
 
 
 def plan_for(tenant, run_id):

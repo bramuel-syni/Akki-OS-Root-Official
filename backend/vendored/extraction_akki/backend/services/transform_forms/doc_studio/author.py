@@ -26,14 +26,39 @@ SYSTEM = ('You are the frontier writer in Akki\'s document studio: a seasoned st
 
 # ----------------------------------------------------------------------------- Planner
 def plan(content: Dict[str, Any], brief: Dict[str, Any]) -> Dict[str, Any]:
-    """Outline derived from the evidence that exists: one section per evidence receipt (its exhibits, then its facts as findings), options as a
-    comparison, then actions and risks. The writer fills the slots; it does not choose the structure."""
-    facts, series, options, receipts = content.get('facts') or {}, content.get('series') or {}, content.get('options') or {}, content.get('receipts') or {}
+    """The story the document must tell, slot by slot. A producer that knows its story declares it as ordered chapters (the question each
+    chapter answers, the evidence that answers it, the exhibit that shows it); the planner turns that into the outline the writer fills.
+    Without a declared story the outline falls back to one section per evidence receipt."""
+    facts, series, options = content.get('facts') or {}, content.get('series') or {}, content.get('options') or {}
     fact_ids = sorted(facts)
+    story = content.get('story') or []
+    slots: List[Dict[str, Any]] = [{'slot': 'exec', 'type': 'exec_summary', 'needs': fact_ids[:8]}]
+    if story:
+        for number, chapter in enumerate(story, 1):
+            slots.append({'slot': f'section{number}', 'type': 'section', 'number': number, 'about': chapter['question'][:160], 'question': chapter['question']})
+            needs = [t for t in chapter.get('answers_with') or [] if t in facts or t in options or t in (content.get('calculations') or {}) or t in (content.get('claims') or {})]
+            for sid in [s for s in chapter.get('exhibits') or [] if s in series][:2]:
+                slots.append({'slot': f'exhibit_{sid}', 'type': 'assertion_exhibit', 'series_ref': sid, 'y_format': 'pct' if series[sid].get('unit') == 'pct' else 'num', 'needs': [sid] + needs[:4], 'about': series[sid]['label'], 'question': chapter['question']})
+            if chapter.get('kind') == 'comparison' and len(options) == 3:
+                slots.append({'slot': 'compare', 'type': 'comparison', 'columns': sorted(options), 'needs': sorted(options), 'question': chapter['question']})
+            else:
+                slots.append({'slot': f'chapter{number}', 'type': 'assertion_points', 'about': chapter['question'], 'needs': needs[:6], 'question': chapter['question'], 'must_cite': needs[:3]})
+        slots.append({'slot': 'actions', 'type': 'assertion_points', 'about': 'what the owner should do first, in order, and why — each action tied to the chapter evidence it rests on', 'needs': fact_ids[:6]})
+        slots.append({'slot': 'risks', 'type': 'assertion_points', 'about': 'what the evidence cannot yet establish and what would close each gap', 'needs': fact_ids[:4]})
+    else:
+        slots += _outline_by_receipt(content, fact_ids)
+    paper = ['summary'] + [s['slot'] for s in slots if s['type'] in ('assertion_exhibit', 'assertion_points', 'comparison')]
+    return {'story': [{'chapter': i + 1, 'question': c['question']} for i, c in enumerate(story)], 'slots': slots, 'paper_sections': paper,
+            'limits': {'title_max_chars': 95, 'points_max': 5, 'words_per_slide_max': 90, 'paragraphs_per_section': (1, 3), 'paragraph_max_words': 110},
+            'tokens': {'facts': fact_ids, 'series': sorted(series), 'options': sorted(options), 'calculations': sorted(content.get('calculations') or {})}}
+
+
+def _outline_by_receipt(content: Dict[str, Any], fact_ids: List[str]) -> List[Dict[str, Any]]:
+    facts, series, options, receipts = content.get('facts') or {}, content.get('series') or {}, content.get('options') or {}, content.get('receipts') or {}
     by_receipt: Dict[str, Dict[str, List[str]]] = {}
     for sid in sorted(series): by_receipt.setdefault(series[sid]['receipt'], {'series': [], 'facts': []})['series'].append(sid)
     for fid in fact_ids: by_receipt.setdefault(facts[fid]['receipt'], {'series': [], 'facts': []})['facts'].append(fid)
-    slots: List[Dict[str, Any]] = [{'slot': 'exec', 'type': 'exec_summary', 'needs': fact_ids[:8]}]
+    slots: List[Dict[str, Any]] = []
     number, leftovers = 0, []
     for rid in sorted(by_receipt):
         group = by_receipt[rid]
@@ -52,9 +77,7 @@ def plan(content: Dict[str, Any], brief: Dict[str, Any]) -> Dict[str, Any]:
         slots.append({'slot': 'compare', 'type': 'comparison', 'columns': sorted(options), 'needs': sorted(options)})
     slots.append({'slot': 'actions', 'type': 'assertion_points', 'about': 'what the owner should do first, in order, and why', 'needs': fact_ids[:6]})
     slots.append({'slot': 'risks', 'type': 'assertion_points', 'about': 'risks, obligations and what cannot yet be said', 'needs': fact_ids[:4]})
-    paper = ['summary'] + [s['slot'] for s in slots if s['type'] in ('assertion_exhibit', 'assertion_points', 'comparison')]
-    return {'slots': slots, 'paper_sections': paper, 'limits': {'title_max_chars': 95, 'points_max': 5, 'words_per_slide_max': 90, 'paragraphs_per_section': (1, 3), 'paragraph_max_words': 110},
-            'tokens': {'facts': fact_ids, 'series': sorted(series), 'options': sorted(options), 'calculations': sorted(content.get('calculations') or {})}}
+    return slots
 
 
 # ----------------------------------------------------------------------------- Worker view of the evidence the writer may use
@@ -103,6 +126,8 @@ async def write(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str,
               'rules': ['every figure as a supplied token; digits only for four-digit years', 'use only tokens that exist in evidence',
                         'renders_as is exactly what the reader sees for a token (percentages carry %, money carries its symbol, m means million); add a unit word only where renders_as shows none, e.g. "{F004} GiB", "{F001} databases"',
                         'one assertion per title; titles ≤ 95 characters; the document title ≤ 60 characters',
+                        'plan.story is the story to tell, in order: each chapter slot must answer its question directly, lead with the answer, and cite the chapter evidence (must_cite) — an owner reading only the titles must get the whole story',
+                        'brief.constraints.owner_declarations are facts the owner has stated; honour them, never contradict them, and never condition a recommendation on something the owner has already declared settled',
                         'actions: ordered, concrete, owner-level, each tied to the evidence token it rests on', 'risks: what the evidence cannot establish and what would close the gap, drawn from coverage.cannot_say',
                         'no markdown, no bullets, no URLs, no "Source:"']}
     if issues:
@@ -178,6 +203,9 @@ def manage(draft: Dict[str, Any], content: Dict[str, Any], plan_: Dict[str, Any]
         needs = [n for n in s.get('needs', []) if n in (content.get('facts') or {}) or n in (content.get('options') or {})]
         if s['type'] in ('assertion_points', 'exec_summary') and needs and not any(TOKEN.search(str(v)) for v in got.values()):
             issues.append(f'slot {s["slot"]}: no evidence token used; cite at least one of {", ".join(needs[:4])}')
+        must = s.get('must_cite') or []
+        if must and not any(('{' + m) in str(v) for m in must for v in got.values()):
+            issues.append(f'slot {s["slot"]}: must answer "{s.get("question", "")[:80]}" with its own evidence; cite at least one of {", ".join(must)}')
     paper = draft['paper']
     summary = paper.get('summary')
     if not isinstance(summary, list) or not 1 <= len(summary) <= 3 or any(not isinstance(p, str) or not p.strip() for p in summary): issues.append('paper.summary: 1-3 paragraphs required')

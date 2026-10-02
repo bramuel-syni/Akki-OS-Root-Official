@@ -1,0 +1,112 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "Measure, diagnose, clarify, then retrain on sealed material",
+          "paragraphs": [
+            "First, run a held-out evaluation scoring each of the seven strata against its {F012}% floor. This closes the unmeasured lwg ground and gives the owner the per-stratum view the decision needs.",
+            "Second, establish why abstention was {F015}% everywhere, and ask the reviewers what the speaker probe at chance must mean under the signed acceptance. Neither question should be answered by assumption. Until they are, a recipe change would be guesswork, because the record shows no stratum where the model fell short.",
+            "Third, keep the artefact, digest beginning {F011}, on its host. Judge any later recipe change on fresh, independently labelled and sealed material."
+          ]
+        },
+        "findings_R01_1": {
+          "heading": "Refused, with every stratum abstaining and unscored",
+          "paragraphs": [
+            "The acceptance record gives two grounds for refusal: lwg was not measured on the held-out set, and the speaker probe on the served output was at chance. The record does not interpret the probe result further, so this paper does not either.",
+            "The strata are Ekegusii, Kikamba, Gikuyu, Kalenjin, Dholuo, Luhya and Kiswahili, each with a recorded floor of {F012}%. Each also shows an abstention rate of {F015}% and no score. Abstention is not accuracy, and a floor is a recipe setting rather than a measurement, so no stratum can be called above or below its floor."
+          ]
+        },
+        "findings_R01_2": {
+          "heading": "A small, traceable run whose artefact has not left its host",
+          "paragraphs": [
+            "The signed plan records the values {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. They identify the plan and say nothing about performance.",
+            "Training took {F008} minutes on the akki-vm host, device {F009}, with a peak memory of {F010} GB. The artefact digest begins {F011}, and the record states that the artefact stays on the host. The run is traceable and contained, but it is not evidence that any recipe is better than another."
+          ]
+        },
+        "risks": {
+          "heading": "What the record cannot establish",
+          "paragraphs": [
+            "The run says nothing about general cognition or performance outside the seven strata. An independently designed evaluation would be needed to say more.",
+            "Independent final acceptance is not available once further recipe selection has been informed by results that have been inspected. Fresh, independently labelled and sealed final material would restore it.",
+            "No new production plan is linked to this historical run, so objective-to-production lineage is incomplete. It should be closed by an explicitly compiled, evidence-linked objective, never by a backdated assumption."
+          ]
+        }
+      },
+      "summary": [
+        "The Luhya reinforcement of audio language model v2 was refused against its signed acceptance. The held-out measure lwg was not measured, and the speaker probe on the served output was at chance. The record covers this retained run only.",
+        "Seven strata are listed, each with a recorded floor of {F012}% and an abstention rate of {F015}%, but no score. The record shows what was intended for each stratum and nothing about what the model achieved.",
+        "The recommendation is to measure before improving. Score all seven strata on held-out material, find out why abstention was total, and clarify the speaker probe requirement. Retain the artefact on its host and judge any later change on fresh sealed material."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "What to do, in order",
+        "points": [
+          "First, score each of the seven strata on held-out material against its {F012}% floor. This closes the unmeasured lwg ground.",
+          "Second, find out why abstention was {F015}% everywhere: model behaviour, scoring gap or serving fault. Change no recipe until this is known.",
+          "Third, ask reviewers what a speaker probe at chance means under the signed acceptance.",
+          "Fourth, keep the artefact, digest beginning {F011}, on its host. Judge later changes on fresh sealed material."
+        ],
+        "title": "Measure all seven strata first, then settle the speaker probe, before any retraining"
+      },
+      "exec": {
+        "answer": "Measure before changing anything. Run a held-out evaluation that scores all seven strata against their floors, and settle what the speaker probe result means for acceptance. Keep the artefact, digest beginning {F011}, on its host. Judge any later recipe change on fresh sealed material.",
+        "complication": "Acceptance refused the run. The held-out measure lwg was not measured, and the speaker probe on the served output was at chance. Every stratum shows no score and an abstention rate of {F015}%. A floor is a recipe setting, not performance.",
+        "kicker": "Decision summary",
+        "question": "Which model or dataset improvement should the owner pursue next, given what was and was not measured?",
+        "situation": "A reinforcement run for audio language model v2 was trained, signed and retained with its acceptance record. Seven strata are on the record: Ekegusii, Kikamba, Gikuyu, Kalenjin, Dholuo, Luhya and Kiswahili. Each carries a recorded floor of {F012}%.",
+        "title": "The Luhya reinforcement was refused, and the record holds no per-stratum score to improve from"
+      },
+      "findings_R01_1": {
+        "kicker": "Acceptance and strata",
+        "points": [
+          "Refusal rests on two grounds: lwg was not measured on the held-out set, and the speaker probe on the served output was at chance.",
+          "Seven strata are listed, each with a recorded floor of {F012}%: Ekegusii, Kikamba, Gikuyu, Kalenjin, Dholuo, Luhya and Kiswahili.",
+          "Every stratum shows no score and an abstention rate of {F015}%, so none can be called above or below its floor."
+        ],
+        "title": "Acceptance refused the run, and all seven strata show no measured score"
+      },
+      "findings_R01_2": {
+        "kicker": "Plan, compute and artefact",
+        "points": [
+          "The signed plan records the values {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. They identify the plan; the record does not present them as results.",
+          "Training took {F008} minutes on the akki-vm host, device {F009}, with a peak memory of {F010} GB.",
+          "The artefact digest begins {F011}. The record says the artefact stays on the host, so nothing has been released from it.",
+          "The run is traceable but unscored, so it supports a decision about measurement, not about which recipe is better."
+        ],
+        "title": "The run was small and traceable, and its artefact stays on the training host"
+      },
+      "risks": {
+        "kicker": "Limits of the evidence",
+        "points": [
+          "Performance outside the measured strata is not established. An independently designed evaluation would close this.",
+          "Independent final acceptance is unavailable because these results have been inspected. Fresh, independently labelled and sealed material would close it.",
+          "Lineage from objective to production is incomplete: no new production plan links to this historical run. Compile an evidence-linked objective; never backdate.",
+          "Per-stratum strengths and weaknesses are unknown, given {F015}% abstention and no scores."
+        ],
+        "title": "The record cannot support claims beyond the seven strata or independent acceptance"
+      },
+      "section1": {
+        "title": "Training receipt and acceptance record"
+      }
+    },
+    "subtitle": "Luhya reinforcement training findings and acceptance record · Tenant confidential",
+    "title": "Audio language model v2 refused: no stratum was scored"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 1
+    },
+    "latency_ms": 28875,
+    "model": "claude-sonnet-5-5",
+    "provider": "emergent",
+    "receipt_id": "rcp-4d8f28718e28",
+    "repairs": 1,
+    "tokens_in": 11152,
+    "tokens_out": 3644
+  }
+}

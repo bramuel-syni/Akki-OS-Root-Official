@@ -1,0 +1,244 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T07:26:31Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "{C902}"
+        },
+        {
+          "para": "{C903}"
+        },
+        {
+          "para": "{C904}"
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C913}"
+        },
+        {
+          "para": "{C914}"
+        },
+        {
+          "figure": {
+            "caption": "{C915}",
+            "plate": "bar",
+            "series_ref": "S004",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "The object store dominates the estate"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C918}"
+        },
+        {
+          "para": "{C919}"
+        },
+        {
+          "figure": {
+            "caption": "{C920}",
+            "plate": "bar",
+            "series_ref": "S005",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Most of the object store sits in one bucket"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C927}"
+        },
+        {
+          "para": "{C928}"
+        }
+      ],
+      "heading": "Where the bytes sit"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C932}"
+        },
+        {
+          "para": "{C933}"
+        },
+        {
+          "figure": {
+            "caption": "{C934}",
+            "plate": "bar",
+            "series_ref": "S003",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Reclaimable bytes are almost all in the object store"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C937}"
+        },
+        {
+          "para": "{C938}"
+        },
+        {
+          "options_table": {
+            "caption": "{C939}",
+            "columns": [
+              "O1",
+              "O2",
+              "O3"
+            ],
+            "rows": [
+              {
+                "field": "reclaimable_gib",
+                "format": "num1",
+                "label": "Reclaimable gib"
+              },
+              {
+                "field": "monthly_saving_usd",
+                "format": "num1",
+                "label": "Monthly saving usd"
+              }
+            ]
+          }
+        }
+      ],
+      "heading": "Three priced moves side by side"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C943}"
+        },
+        {
+          "para": "{C944}"
+        },
+        {
+          "figure": {
+            "caption": "{C945}",
+            "plate": "bar",
+            "series_ref": "S002",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Completeness is the dominant condition issue"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C948}"
+        },
+        {
+          "para": "{C949}"
+        },
+        {
+          "figure": {
+            "caption": "{C950}",
+            "plate": "bar",
+            "series_ref": "S001",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Database bytes are concentrated in a few places"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C957}"
+        },
+        {
+          "para": "{C958}"
+        }
+      ],
+      "heading": "Condition of the rows"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C966}"
+        },
+        {
+          "para": "{C967}"
+        }
+      ],
+      "heading": "First data products and what each needs"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C974}"
+        },
+        {
+          "para": "{C975}"
+        }
+      ],
+      "heading": "What remains unmeasured"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C981}"
+        },
+        {
+          "para": "{C982}"
+        }
+      ],
+      "heading": "What to do first, and why"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C989}"
+        },
+        {
+          "para": "{C990}"
+        }
+      ],
+      "heading": "What the evidence cannot yet establish"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-02",
+  "spec_id": "PP-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "{C901}",
+  "title": "{content.title}",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

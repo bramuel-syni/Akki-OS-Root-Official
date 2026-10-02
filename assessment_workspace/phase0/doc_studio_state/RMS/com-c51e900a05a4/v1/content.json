@@ -1,0 +1,1845 @@
+{
+  "authoring": {
+    "claims_authored": 90,
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 18,
+      "repairs": 2
+    },
+    "latency_ms": 41256,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "planner → worker → content manager → frontier writer",
+    "provider": "emergent",
+    "receipt_id": "rcp-5c93c82e6339",
+    "repairs": 2,
+    "tokens_in": 52613,
+    "tokens_out": 10871
+  },
+  "calculations": {
+    "K001": {
+      "formula": "F003 / F002",
+      "inputs": [
+        "F002",
+        "F003"
+      ],
+      "label": "Share of tables measured",
+      "unit": "pct"
+    },
+    "K002": {
+      "formula": "F016 / F004",
+      "inputs": [
+        "F004",
+        "F016"
+      ],
+      "label": "Share of bytes in the largest databases",
+      "unit": "pct"
+    },
+    "K003": {
+      "formula": "option.reclaimable_gib / F021",
+      "inputs": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "label": "Share of bytes addressed by all strategies",
+      "unit": "pct"
+    },
+    "K004": {
+      "formula": "F020 / F021",
+      "inputs": [
+        "F020",
+        "F021"
+      ],
+      "label": "Three largest strategies' share of bytes addressed",
+      "unit": "pct"
+    },
+    "K005": {
+      "formula": "F030 / F050",
+      "inputs": [
+        "F030",
+        "F050"
+      ],
+      "label": "Object store share of the estate",
+      "unit": "pct"
+    },
+    "K006": {
+      "formula": "F040 / F050",
+      "inputs": [
+        "F040",
+        "F050"
+      ],
+      "label": "File-share share of the estate",
+      "unit": "pct"
+    },
+    "K007": {
+      "formula": "F052 / F050",
+      "inputs": [
+        "F050",
+        "F052"
+      ],
+      "label": "Database share of the estate",
+      "unit": "pct"
+    },
+    "K008": {
+      "formula": "F038 / F030",
+      "inputs": [
+        "F030",
+        "F038"
+      ],
+      "label": "Largest bucket's share of the object store",
+      "unit": "pct"
+    },
+    "K009": {
+      "formula": "F036 / F030",
+      "inputs": [
+        "F030",
+        "F036"
+      ],
+      "label": "Cold share of the object store",
+      "unit": "pct"
+    }
+  },
+  "census_ref": "eij-1b359b3cbd2e",
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001",
+        "F002",
+        "F004"
+      ],
+      "text": "{F004} GiB sit in {F001} databases and {F002} tables"
+    },
+    "C002": {
+      "supports": [
+        "F007",
+        "F008",
+        "F009"
+      ],
+      "text": "Exact duplicates are {F007} of rows; degraded rows {F008}; empty required fields {F009}"
+    },
+    "C003": {
+      "supports": [
+        "F010",
+        "F011"
+      ],
+      "text": "{F010} of {F011} sampled rows carry PII markers"
+    },
+    "C004": {
+      "supports": [
+        "F012",
+        "F015"
+      ],
+      "text": "{F012} of bytes have not been written for over a year; {F015} tables are empty"
+    },
+    "C005": {
+      "supports": [
+        "F004",
+        "F016"
+      ],
+      "text": "The largest databases hold {K002} of the estate's bytes"
+    },
+    "C006": {
+      "supports": [
+        "F005",
+        "F006"
+      ],
+      "text": "About {F005} GiB ({F006} of database bytes) looks reclaimable in the databases before pricing"
+    },
+    "C007": {
+      "supports": [
+        "F002",
+        "F003"
+      ],
+      "text": "Measures cover {K001} of tables; the remaining ratios are estimated from stratified samples"
+    },
+    "C008": {
+      "supports": [
+        "F010"
+      ],
+      "text": "The estate owner has declared that all data in the estate is owned outright and every right to use it is established; the census measures condition, not rights"
+    },
+    "C009": {
+      "supports": [
+        "F017"
+      ],
+      "text": "Dead columns are {F017} of measured columns"
+    },
+    "C010": {
+      "supports": [
+        "F018"
+      ],
+      "text": "{F018} product candidates rank by rows, readiness and dimensions"
+    },
+    "C011": {
+      "supports": [
+        "F013",
+        "F014"
+      ],
+      "text": "{F013} rows are held; {F014} table pairs duplicate each other"
+    },
+    "C012": {
+      "supports": [
+        "F019"
+      ],
+      "text": "Priced strategies bound the monthly saving at {F019} USD at reference list prices"
+    },
+    "C013": {
+      "supports": [
+        "F020",
+        "F021"
+      ],
+      "text": "Three strategies address {K004} of the {F021} GiB that all cost strategies reach"
+    },
+    "C021": {
+      "supports": [
+        "F018"
+      ],
+      "text": "Reference and master-data licensing: grade C, 87 tables, 123,394,159 rows (est.); to prepare: 62.0% of supporting tables carry PII markers: de-identify or aggregate before any release"
+    },
+    "C022": {
+      "supports": [
+        "F018"
+      ],
+      "text": "Content catalogue, recommendation and licensing corpus: grade C, 98 tables, 157,855,990 rows (est.); to prepare: 74.0% of supporting tables carry PII markers: de-identify or aggregate before any release"
+    },
+    "C023": {
+      "supports": [
+        "F018"
+      ],
+      "text": "Channel / telco engagement analytics (USSD, SMS, app): grade C, 57 tables, 116,781,903 rows (est.); to prepare: 79.0% of supporting tables carry PII markers: de-identify or aggregate before any release"
+    },
+    "C030": {
+      "supports": [
+        "F030",
+        "F032",
+        "F034",
+        "F036"
+      ],
+      "text": "The object store holds {F030} TiB in {F032} buckets; {F036} TiB ({K009}) has not been written for over a year and {F034} TiB are duplicate candidates"
+    },
+    "C031": {
+      "supports": [
+        "F040",
+        "F041",
+        "F042"
+      ],
+      "text": "The file shares hold {F040} TiB in {F042} shares and {F041} million files; their duplication is not yet measured"
+    },
+    "C032": {
+      "supports": [
+        "F050",
+        "F052"
+      ],
+      "text": "The whole estate holds {F050} TiB; the databases are {K007} of it"
+    },
+    "C901": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "One account of what the estate holds, costs to keep and can offer first"
+    },
+    "C902": {
+      "authored": true,
+      "supports": [
+        "F050",
+        "K005",
+        "K006",
+        "F001",
+        "F002",
+        "F004",
+        "K007"
+      ],
+      "text": "The estate holds {F050} TiB, of which the object store is {K005} and the file shares {K006}. The {F001} databases, with {F002} tables and {F004} GiB, are {K007} of the bytes. Cost, therefore, sits outside the databases, and any estate-wide plan has to start with object and file storage."
+    },
+    "C903": {
+      "authored": true,
+      "supports": [
+        "F019"
+      ],
+      "text": "The priced strategies bound the monthly saving at {F019} USD at reference list prices, not the owner's invoice. Nearly all of it comes from moving buckets not written for over a year to archive-class storage and from reconciling duplicate objects. Both are estimates and neither has been confirmed against read patterns or content hashes."
+    },
+    "C904": {
+      "authored": true,
+      "supports": [
+        "F009",
+        "F010"
+      ],
+      "text": "Database rows are seldom duplicated but often incomplete: {F009} have empty required-looking fields and {F010} of sampled rows carry personal-data markers. Three grade C product candidates lead, and each needs de-identification or aggregation first. Rights are settled by the owner's declaration, so that preparation is technical rather than legal."
+    },
+    "C905": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Savings sit in cold object storage; database rows need preparation before any product"
+    },
+    "C906": {
+      "authored": true,
+      "supports": [
+        "F050",
+        "K005",
+        "K006",
+        "F001",
+        "F002",
+        "K007"
+      ],
+      "text": "The estate holds {F050} TiB across databases, the object store and file shares. The object store is {K005} of that and the file shares {K006}. The {F001} databases, with {F002} tables, are only {K007} of the bytes."
+    },
+    "C907": {
+      "authored": true,
+      "supports": [
+        "F019",
+        "K004",
+        "F009",
+        "F010"
+      ],
+      "text": "Priced savings reach {F019} USD a month at reference list prices, and three strategies address {K004} of the bytes that all strategies reach. Database rows are in poor condition: {F009} have empty required-looking fields and {F010} of sampled rows carry personal-data markers."
+    },
+    "C908": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "What should the owner do first to cut cost and prepare the first data products?"
+    },
+    "C909": {
+      "authored": true,
+      "supports": [
+        "O1"
+      ],
+      "text": "Start with the archive move for buckets not written for over a year, worth {O1.monthly_saving_usd} USD a month, after checking read frequency. Then confirm duplicate objects and prepare reference and channel data as de-identified or aggregated products."
+    },
+    "C910": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Where the estate's bytes sit"
+    },
+    "C911": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The object store and file shares hold almost every byte; databases are a small fraction"
+    },
+    "C912": {
+      "authored": true,
+      "supports": [
+        "K005",
+        "F050"
+      ],
+      "text": "Cost and condition decisions should start with the object store, which is {K005} of the {F050} TiB estate."
+    },
+    "C913": {
+      "authored": true,
+      "supports": [
+        "F050",
+        "F030",
+        "F040",
+        "K007",
+        "F004"
+      ],
+      "text": "Of the {F050} TiB held, the object store accounts for {F030} TiB and the file shares for {F040} TiB. The databases are a very small remainder, at {K007} of the estate. The estate-wide view therefore differs sharply from a database-only one, which would have shown {F004} GiB and missed almost everything."
+    },
+    "C914": {
+      "authored": true,
+      "supports": [
+        "K005",
+        "K006"
+      ],
+      "text": "For the owner this means database tuning cannot move the cost position materially. The object store, at {K005} of the estate, is where the bytes and the money sit, and the file shares, at {K006}, are the second place to look."
+    },
+    "C915": {
+      "authored": true,
+      "supports": [
+        "K005",
+        "F050"
+      ],
+      "text": "Cost and condition decisions should start with the object store, which is {K005} of the {F050} TiB estate."
+    },
+    "C916": {
+      "authored": true,
+      "supports": [
+        "K008"
+      ],
+      "text": "One bucket alone holds {K008} of the object store"
+    },
+    "C917": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The largest bucket is not marked cold, so the archive saving comes from the many smaller cold buckets rather than from it."
+    },
+    "C918": {
+      "authored": true,
+      "supports": [
+        "F038",
+        "K008"
+      ],
+      "text": "The largest bucket holds {F038} TiB, which is {K008} of the object store. The next largest buckets are each a few TiB, and those listed as cold are the ones that matter for archive savings. The largest bucket is not marked cold in the listing."
+    },
+    "C919": {
+      "authored": true,
+      "supports": [
+        "F037"
+      ],
+      "text": "The practical consequence is that the archive saving is spread across many mid-sized cold buckets, {F037} in all, rather than concentrated in one decision. The largest bucket deserves its own review of purpose and access, which this census does not provide."
+    },
+    "C920": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The largest bucket is not marked cold, so the archive saving comes from the many smaller cold buckets rather than from it."
+    },
+    "C921": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The estate is mostly object and file storage, not database storage"
+    },
+    "C922": {
+      "authored": true,
+      "supports": [
+        "F050",
+        "F030",
+        "F040"
+      ],
+      "text": "The whole estate holds {F050} TiB: the object store holds {F030} TiB and the file shares hold {F040} TiB."
+    },
+    "C923": {
+      "authored": true,
+      "supports": [
+        "K005",
+        "K006",
+        "K007"
+      ],
+      "text": "By share of the estate, the object store is {K005}, the file shares {K006} and the databases {K007}."
+    },
+    "C924": {
+      "authored": true,
+      "supports": [
+        "F031",
+        "F032",
+        "F038",
+        "K008"
+      ],
+      "text": "The object store has {F031} objects in {F032} buckets, and its largest bucket alone holds {F038} TiB, which is {K008} of the store."
+    },
+    "C925": {
+      "authored": true,
+      "supports": [
+        "F041",
+        "F042"
+      ],
+      "text": "The file shares hold {F041} files in {F042} shares; how much of that is duplicated has not yet been measured."
+    },
+    "C926": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F002",
+        "K002"
+      ],
+      "text": "The databases hold {F004} GiB in {F002} tables, and the largest databases account for {K002} of those bytes."
+    },
+    "C927": {
+      "authored": true,
+      "supports": [
+        "F030",
+        "F032",
+        "F031",
+        "F040",
+        "F042",
+        "F041",
+        "F004",
+        "K002"
+      ],
+      "text": "The object store holds {F030} TiB in {F032} buckets and {F031} objects. The file shares hold {F040} TiB in {F042} shares and {F041} files. The databases hold {F004} GiB, with the largest databases accounting for {K002} of that."
+    },
+    "C928": {
+      "authored": true,
+      "supports": [
+        "F033",
+        "F032"
+      ],
+      "text": "Two limits apply. {F033} of the {F032} buckets could not be read, so the object-store figures describe the readable buckets only. File-share duplication is not measured, because the enumeration recorded sizes and dates rather than content."
+    },
+    "C929": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Where money is spent on idle bytes"
+    },
+    "C930": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Cold buckets and duplicate objects reach nearly all of the reclaimable bytes"
+    },
+    "C931": {
+      "authored": true,
+      "supports": [
+        "K004"
+      ],
+      "text": "The three largest strategies address {K004} of the bytes that all strategies reach; database tidying is small beside the object store."
+    },
+    "C932": {
+      "authored": true,
+      "supports": [
+        "F036",
+        "K009",
+        "F034",
+        "F035",
+        "K004"
+      ],
+      "text": "Bytes not written for over a year are {F036} TiB in the object store, which is {K009} of it. Separately, {F034} TiB are duplicate candidates, {F035} of objects, matched on name and size rather than content. The three largest strategies address {K004} of the bytes that all strategies reach."
+    },
+    "C933": {
+      "authored": true,
+      "supports": [
+        "F005",
+        "F006"
+      ],
+      "text": "Database strategies are comparatively minor. About {F005} GiB, {F006} of database bytes, looks reclaimable before pricing. They are worth doing for tidiness and risk reduction, but they will not change the cost position."
+    },
+    "C934": {
+      "authored": true,
+      "supports": [
+        "K004"
+      ],
+      "text": "The three largest strategies address {K004} of the bytes that all strategies reach; database tidying is small beside the object store."
+    },
+    "C935": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Three priced moves range from a large archive saving to a trivial database one"
+    },
+    "C936": {
+      "authored": true,
+      "supports": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "text": "Monthly estimates at reference list prices, not the owner's invoice, are {O1.monthly_saving_usd}, {O2.monthly_saving_usd} and {O3.monthly_saving_usd} USD respectively."
+    },
+    "C937": {
+      "authored": true,
+      "supports": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "text": "Moving buckets not written for over a year to archive-class storage addresses {O1.reclaimable_gib} GiB and is estimated at {O1.monthly_saving_usd} USD a month. Reconciling duplicate objects addresses {O2.reclaimable_gib} GiB at {O2.monthly_saving_usd} USD a month. Moving cold tables addresses {O3.reclaimable_gib} GiB at {O3.monthly_saving_usd} USD a month."
+    },
+    "C938": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "All three are estimates at reference list prices. The first depends on read frequency, which was not measured, and archive-class retrieval carries its own fee. The second rests on name and size matching, which for multipart uploads is not a content hash. The third counts only tables with timestamp columns. Each is a proposal only; nothing has been authorised."
+    },
+    "C939": {
+      "authored": true,
+      "supports": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "text": "Monthly estimates at reference list prices, not the owner's invoice, are {O1.monthly_saving_usd}, {O2.monthly_saving_usd} and {O3.monthly_saving_usd} USD respectively."
+    },
+    "C940": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Condition of the database rows"
+    },
+    "C941": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Empty required-looking fields, not duplication, are the main condition problem"
+    },
+    "C942": {
+      "authored": true,
+      "supports": [
+        "F007",
+        "F009"
+      ],
+      "text": "Exact duplicates are only {F007} of rows, while {F009} have empty required-looking fields, so cleansing effort belongs on completeness."
+    },
+    "C943": {
+      "authored": true,
+      "supports": [
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011"
+      ],
+      "text": "Exact duplicate rows are {F007} of rows, a low figure. Degraded rows are {F008}, and rows with empty required-looking fields are {F009}. Personal-data markers appear in {F010} of the {F011} rows sampled."
+    },
+    "C944": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Completeness is the main constraint on what can be offered to a buyer. The personal-data markers do not block a product; they define the preparation step, which is de-identification or aggregation before release."
+    },
+    "C945": {
+      "authored": true,
+      "supports": [
+        "F007",
+        "F009"
+      ],
+      "text": "Exact duplicates are only {F007} of rows, while {F009} have empty required-looking fields, so cleansing effort belongs on completeness."
+    },
+    "C946": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "A handful of databases hold almost all database bytes"
+    },
+    "C947": {
+      "authored": true,
+      "supports": [
+        "K002",
+        "F004"
+      ],
+      "text": "The largest databases hold {K002} of the {F004} GiB, so database cost and cleansing work concentrates in very few places."
+    },
+    "C948": {
+      "authored": true,
+      "supports": [
+        "F016",
+        "F004",
+        "K002"
+      ],
+      "text": "The largest databases hold {F016} GiB of the {F004} GiB in the databases, which is {K002}. One staging database dominates the series. Cleansing and cost effort can therefore be aimed at very few databases and still cover almost every database byte."
+    },
+    "C949": {
+      "authored": true,
+      "supports": [
+        "F014"
+      ],
+      "text": "Staging copies may be deliberate, so retirement needs the owner's confirmation. The census sketches {F014} duplicate table pairs, but the overlap is an estimate and not a row-level comparison."
+    },
+    "C950": {
+      "authored": true,
+      "supports": [
+        "K002",
+        "F004"
+      ],
+      "text": "The largest databases hold {K002} of the {F004} GiB, so database cost and cleansing work concentrates in very few places."
+    },
+    "C951": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Rows are rarely duplicated but often incomplete, degraded or personal"
+    },
+    "C952": {
+      "authored": true,
+      "supports": [
+        "F007"
+      ],
+      "text": "Exact duplicate rows are {F007} of rows, a low figure; the duplication problem lies in copied tables and objects, not repeated rows."
+    },
+    "C953": {
+      "authored": true,
+      "supports": [
+        "F008",
+        "F009"
+      ],
+      "text": "Degraded rows are {F008} of rows, and {F009} carry empty required-looking fields, which limits what can be sold without cleansing."
+    },
+    "C954": {
+      "authored": true,
+      "supports": [
+        "F010",
+        "F011"
+      ],
+      "text": "Personal-data markers appear in {F010} of the {F011} rows sampled, so de-identification or aggregation is a standing preparation step for products."
+    },
+    "C955": {
+      "authored": true,
+      "supports": [
+        "F012",
+        "F015"
+      ],
+      "text": "Bytes not written for over a year are {F012} of database bytes, and {F015} tables are empty."
+    },
+    "C956": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "These ratios are estimates from complete passes where tables allowed and stratified samples elsewhere."
+    },
+    "C957": {
+      "authored": true,
+      "supports": [
+        "F013",
+        "F007",
+        "F008",
+        "F009",
+        "F012",
+        "F017",
+        "F015"
+      ],
+      "text": "The estate holds {F013} rows. Exact duplicates are {F007}, degraded rows {F008} and rows with empty required-looking fields {F009}. Bytes not written for over a year are {F012} of database bytes, dead columns are {F017} of measured columns, and {F015} tables are empty."
+    },
+    "C958": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "These ratios are estimates from complete passes where tables allowed and stratified samples elsewhere. They are reliable enough to rank preparation work, but not to set quality guarantees in a contract."
+    },
+    "C959": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Which data products to stand up first"
+    },
+    "C960": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Three grade C candidates lead, and each needs de-identification or aggregation first"
+    },
+    "C961": {
+      "authored": true,
+      "supports": [
+        "F018"
+      ],
+      "text": "{F018} product candidates were scored for readiness; the three leading ones are all grade C and none is ready for release as it stands."
+    },
+    "C962": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Reference and master-data licensing: {C021}"
+    },
+    "C963": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Content catalogue and recommendation corpus: {C022}"
+    },
+    "C964": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Channel and telco engagement analytics: {C023}"
+    },
+    "C965": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Rights are settled by the owner's declaration, so preparation is technical: de-identify or aggregate, then cleanse. The remaining candidates need cleansing before they are worth building."
+    },
+    "C966": {
+      "authored": true,
+      "supports": [
+        "F018"
+      ],
+      "text": "{F018} candidates were scored. Reference and master-data licensing, the content catalogue and recommendation corpus, and channel and telco engagement analytics lead, all at grade C. Reference data is the sensible first product because it can be reduced to canonical fields, and channel engagement is the natural second because it aggregates by channel and period."
+    },
+    "C967": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Each needs personal-data markers handled by de-identification or aggregation, and cleansing of empty required fields. The customer segmentation, forecasting, transaction, geospatial and civic candidates carry more markers or weaker grades and should follow once cleansing has been shown to work."
+    },
+    "C968": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "What is still unmeasured"
+    },
+    "C969": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Measurement gaps are specific, and each has a defined way to close it"
+    },
+    "C970": {
+      "authored": true,
+      "supports": [
+        "F003",
+        "F002",
+        "K001"
+      ],
+      "text": "Measures cover {F003} of {F002} tables, which is {K001}; the remaining ratios are estimated from stratified samples."
+    },
+    "C971": {
+      "authored": true,
+      "supports": [
+        "F033",
+        "F032"
+      ],
+      "text": "{F033} of {F032} object-store buckets could not be read, so every object-store figure covers only the readable buckets."
+    },
+    "C972": {
+      "authored": true,
+      "supports": [
+        "F040",
+        "F041"
+      ],
+      "text": "The file shares hold {F040} TiB in {F041} files, but only sizes and dates were recorded, so duplication cannot be stated."
+    },
+    "C973": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "One database connection, artists_app, could not be read because read access is pending, so it sits outside every database figure."
+    },
+    "C974": {
+      "authored": true,
+      "supports": [
+        "F003",
+        "F002",
+        "K001",
+        "F033",
+        "F032",
+        "F040"
+      ],
+      "text": "Measures cover {F003} of {F002} tables, which is {K001}. {F033} of {F032} buckets were unreadable. The file shares, at {F040} TiB, have no duplication measure. One database connection could not be read."
+    },
+    "C975": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "None of these gaps overturns the picture of where the bytes sit. They do bound the certainty of the saving estimates, which could rise or fall once the unreadable buckets and the file shares are brought into measurement."
+    },
+    "C976": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Archive cold buckets first, confirm duplicates second, then prepare two products"
+    },
+    "C977": {
+      "authored": true,
+      "supports": [
+        "F037",
+        "F036",
+        "O1"
+      ],
+      "text": "Check read frequency on the {F037} cold buckets, then archive {F036} TiB: {O1.monthly_saving_usd} USD a month."
+    },
+    "C978": {
+      "authored": true,
+      "supports": [
+        "F034",
+        "O2"
+      ],
+      "text": "Hash-check {F034} TiB of duplicate candidates before deleting: {O2.monthly_saving_usd} USD a month."
+    },
+    "C979": {
+      "authored": true,
+      "supports": [
+        "F033"
+      ],
+      "text": "Reconcile the {F033} unreadable buckets with the provider; the figures above exclude them."
+    },
+    "C980": {
+      "authored": true,
+      "supports": [
+        "O3"
+      ],
+      "text": "Prepare de-identified reference and channel copies; tidy cold tables, {O3.monthly_saving_usd} USD a month, alongside."
+    },
+    "C981": {
+      "authored": true,
+      "supports": [
+        "F037",
+        "O1",
+        "F036",
+        "F034",
+        "F033"
+      ],
+      "text": "First, check read frequency on the {F037} cold buckets and approve the archive-class move, because it carries the largest estimate, {O1.monthly_saving_usd} USD a month, on {F036} TiB. Second, confirm the {F034} TiB of duplicate candidates by content hash before deleting anything. Third, reconcile the {F033} unreadable buckets with the provider."
+    },
+    "C982": {
+      "authored": true,
+      "supports": [
+        "O3"
+      ],
+      "text": "In parallel, prepare de-identified or aggregated copies for reference data and channel engagement. Database tidying, worth {O3.monthly_saving_usd} USD a month for cold tables, can run alongside but should not lead. Every move here is a proposal; nothing is authorised by this report."
+    },
+    "C983": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Five gaps limit certainty; each closes with defined work"
+    },
+    "C984": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Sampled ratios: close with a complete-pass census of the sampled tables."
+    },
+    "C985": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Market similarity is unmeasured: close with a buyer-side review of each candidate."
+    },
+    "C986": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "artists_app is unread: close when the owner grants read access and the estate is re-censused."
+    },
+    "C987": {
+      "authored": true,
+      "supports": [
+        "F042"
+      ],
+      "text": "File-share duplication is unknown: close with a fingerprinting pass over {F042} shares."
+    },
+    "C988": {
+      "authored": true,
+      "supports": [
+        "F033",
+        "F032"
+      ],
+      "text": "{F033} of {F032} buckets are unreachable: close by reconciling the inventory with the provider."
+    },
+    "C989": {
+      "authored": true,
+      "supports": [
+        "F033"
+      ],
+      "text": "Condition ratios rest partly on samples, semantic similarity to the market is unmeasured, one database connection is unread, file-share duplication is unknown and {F033} buckets are unreachable. Each closes with a defined step: a complete-pass census, a buyer-side review, a read grant and re-census, a fingerprinting pass and a bucket inventory reconciled with the provider."
+    },
+    "C990": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Savings are estimates at reference list prices, not realised returns, and the product candidates are not qualified or sealed datasets."
+    }
+  },
+  "content_id": "estate-intelligence-eij-1b359b3cbd2e-estatewide",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "a complete-pass census on the sampled tables",
+        "gap": "Duplicate, damage, empty-field and PII ratios on sampled tables",
+        "reason": "complete passes where the table allowed it, stratified samples elsewhere"
+      },
+      {
+        "closes_with": "a buyer-side review of each candidate against its intended use",
+        "gap": "Semantic similarity between candidate datasets and the market",
+        "reason": "not measured; candidates are dimensional readiness only"
+      },
+      {
+        "closes_with": "owner grants read access; re-census",
+        "gap": "Connection artists_app",
+        "reason": "could not be read (MySQL GRANT pending)"
+      },
+      {
+        "closes_with": "a fingerprinting pass over the NAS shares",
+        "gap": "NAS duplication",
+        "reason": "the enumeration recorded sizes and dates, not content fingerprints"
+      },
+      {
+        "closes_with": "bucket inventory reconciled with the provider",
+        "gap": "40 of 106 OBS buckets",
+        "reason": "unreachable (NoSuchBucket / client errors)"
+      }
+    ],
+    "covers": "The whole admitted estate as measured by census eij-1b359b3cbd2e: 20 databases and 1,006 tables (351.3 GiB), the object store and the file shares enumerated by their own census runs. Ratios are complete-pass where the table allowed it and stratified samples elsewhere. No row value is present in this pack."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Databases",
+      "receipt": "R01",
+      "unit": "databases",
+      "value": 20
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Tables",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 1006
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Tables measured",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 638
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Data and index held",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 351.3
+    },
+    "F005": {
+      "class": "estimated",
+      "label": "Reclaimable before pricing",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 15.2
+    },
+    "F006": {
+      "class": "estimated",
+      "label": "Reclaimable share of bytes",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.043
+    },
+    "F007": {
+      "class": "estimated",
+      "label": "Exact duplicate rows",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.015
+    },
+    "F008": {
+      "class": "estimated",
+      "label": "Degraded rows",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.23
+    },
+    "F009": {
+      "class": "estimated",
+      "label": "Rows with empty required-looking fields",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.817
+    },
+    "F010": {
+      "class": "estimated",
+      "label": "Sampled rows with PII markers",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.718
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Rows sampled for PII",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 1.0
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Bytes not written for over a year",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.154
+    },
+    "F013": {
+      "class": "estimated",
+      "label": "Rows held",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 259.3
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Duplicate table pairs",
+      "receipt": "R01",
+      "unit": "pairs",
+      "value": 71
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Empty tables",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 368
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Bytes in the largest databases",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 350.3
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Dead columns share",
+      "receipt": "R01",
+      "unit": "pct",
+      "value": 0.13
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Product candidates",
+      "receipt": "R03",
+      "unit": "candidates",
+      "value": 8
+    },
+    "F019": {
+      "class": "estimated",
+      "label": "Priced monthly saving (USD)",
+      "receipt": "R02",
+      "unit": "USD",
+      "value": 1174.4
+    },
+    "F020": {
+      "class": "estimated",
+      "label": "Bytes addressed by the three largest strategies",
+      "receipt": "R02",
+      "unit": "GiB",
+      "value": 50784.6
+    },
+    "F021": {
+      "class": "estimated",
+      "label": "Bytes addressed by all cost strategies (databases, object and file stores)",
+      "receipt": "R02",
+      "unit": "GiB",
+      "value": 50799.8
+    },
+    "F030": {
+      "class": "measured",
+      "label": "Object store (OBS) held",
+      "receipt": "R04",
+      "unit": "TiB",
+      "value": 130.32
+    },
+    "F031": {
+      "class": "measured",
+      "label": "Objects enumerated",
+      "receipt": "R04",
+      "unit": "m",
+      "value": 23.0
+    },
+    "F032": {
+      "class": "measured",
+      "label": "OBS buckets",
+      "receipt": "R04",
+      "unit": "buckets",
+      "value": 106
+    },
+    "F033": {
+      "class": "measured",
+      "label": "OBS buckets unreadable",
+      "receipt": "R04",
+      "unit": "buckets",
+      "value": 40
+    },
+    "F034": {
+      "class": "estimated",
+      "label": "OBS duplicate-candidate bytes",
+      "measurement_scope": "size-and-name candidates, not content-hash confirmed",
+      "receipt": "R04",
+      "unit": "TiB",
+      "value": 7.66
+    },
+    "F035": {
+      "class": "estimated",
+      "label": "OBS objects that are duplicate candidates",
+      "receipt": "R04",
+      "unit": "pct",
+      "value": 0.05
+    },
+    "F036": {
+      "class": "measured",
+      "label": "OBS bytes not written for over a year",
+      "receipt": "R04",
+      "unit": "TiB",
+      "value": 41.89
+    },
+    "F037": {
+      "class": "measured",
+      "label": "OBS buckets cold for over a year",
+      "receipt": "R04",
+      "unit": "buckets",
+      "value": 43
+    },
+    "F038": {
+      "class": "measured",
+      "label": "Bytes in the largest OBS bucket",
+      "receipt": "R04",
+      "unit": "TiB",
+      "value": 86.3
+    },
+    "F040": {
+      "class": "measured",
+      "label": "File shares (NAS) held",
+      "receipt": "R05",
+      "unit": "TiB",
+      "value": 43.65
+    },
+    "F041": {
+      "class": "measured",
+      "label": "Files enumerated",
+      "receipt": "R05",
+      "unit": "m",
+      "value": 1.5
+    },
+    "F042": {
+      "class": "measured",
+      "label": "NAS shares",
+      "receipt": "R05",
+      "unit": "shares",
+      "value": 16
+    },
+    "F050": {
+      "class": "measured",
+      "label": "Whole estate held (databases, object store, file shares)",
+      "receipt": "R01",
+      "unit": "TiB",
+      "value": 174.31
+    },
+    "F052": {
+      "class": "measured",
+      "label": "Database data and index",
+      "receipt": "R01",
+      "unit": "TiB",
+      "value": 0.34
+    }
+  },
+  "measured_on": "2026-09-29",
+  "options": {
+    "O1": {
+      "class": "estimated",
+      "monthly_saving_usd": 986.5,
+      "name": "Move buckets not written for over a year to archive-class st",
+      "receipt": "R02",
+      "reclaimable_gib": 42891.0
+    },
+    "O2": {
+      "class": "estimated",
+      "monthly_saving_usd": 180.3,
+      "name": "Reconcile duplicate objects across OBS buckets",
+      "receipt": "R02",
+      "reclaimable_gib": 7839.5
+    },
+    "O3": {
+      "class": "estimated",
+      "monthly_saving_usd": 5.9,
+      "name": "Move tables not written for over a year to cold storage",
+      "receipt": "R02",
+      "reclaimable_gib": 54.1
+    }
+  },
+  "organisation": "RMS",
+  "owner_declarations": [
+    "The estate owner owns all data in the estate and has declared every right to use it established (owner statement, 2 October 2026). Rights are therefore settled facts, not open questions, and no recommendation is conditional on them.",
+    "Personal-data markers remain a measured condition of the rows: de-identification or aggregation is a preparation step for a product, not a rights question."
+  ],
+  "production_plan": {
+    "execution_authorized": false,
+    "expert": {
+      "basis": "Retained aggregate measurements and explicitly labelled estimates",
+      "judgment": "# Estate-handling dossier — executive briefing\n\nPrepared for the estate owner. Source: aggregated census measurements of the estate (supplied dataset).\n\n## Executive summary\n- Scope: 20 databases, 1,006 tables (measured tables: 638) across the estate (source: headline: databases = 20; tables = 1006; tables_measured = 638). Measured rows: 5,881,277 (headline.rows_measured = 5,881,277). Total bytes: unmeasured in the supplied summary (bytes_total is unmeasured).\n- Quality and risk snapshot: 1.5% exact repeated rows, 3.6% normalised duplicate rate, 23.0% degraded rows, 81.7% of rows carry empty required-looking fields, and 71.8% of sampled rows carry personal-data markers (source: headline: exact_duplicate_pct = 1.5%; normalised_duplicate_pct = 3.6%; degraded_pct = 23.0; null_bearing_pct = 81.7%; pii_pct = 71.8; pii_rows_checked = 1,011,330).\n- Storage / reclaimable: ~15.2 GiB labelled reclaimable (15.2 GiB; reclaimable_pct = 4.3%) and stale data accounts for 15.4% of bytes (headline: reclaimable_label = \"15.2 GiB\"; reclaimable_pct = 4.3; stale_pct_of_bytes = 15.4). Cost-reduction levers with measured savings are provided below.\n- Readiness distribution: Grades A:171, B:62, C:191, D:189, E:25 (headline.grades). Many candidate data-products are mid-to-low readiness (typical readiness scores in the mid‑50s to low‑60s).\n- Blockers to release: heavy PII presence and declared-but-unverified rights (multiple product blockers state \"use rights are declared at Connect, not measured\"). Several supporting tables require de‑identification or aggregation before any release (per-product blockers; see product sections).\n\n---\n\n## Condition of the estate\n- Surface metrics:\n  - Databases: 20 (headline.databases = 20).\n  - Tables: 1,006 total; 638 measured; 44 failed tables; 368 empty tables (headline: tables = 1006; tables_measured = 638; failed_tables = 44; empty_tables = 368).\n  - Measured rows: 5,881,277 (headline.rows_measured = 5,881,277). Global rows_estimate fields are unmeasured in many places (rows_estimate: some databases show estimates; others are placeholders or unmeasured).\n  - Data-size label: “351.3 GiB” appears in the supplied summary as bytes_label; the canonical total bytes figure itself is not provided (bytes_total is unmeasured).\n- Data quality:\n  - Exact duplicates low (1.5%) but near-text duplicates are extremely common (near_duplicate_text_pct = 85.3%) — duplicate detection must include semantic/text similarity (headline: exact_duplicate_pct = 1.5; near_duplicate_text_pct = 85.3).\n  - Degradation: 23.0% of rows are flagged as carrying damage (headline.degraded_pct = 23.0).\n  - Null/required fields: 81.7% of sampled rows have empty required‑looking fields (headline.null_bearing_pct = 81.7) — this is a major analytics completeness problem.\n  - PII surface: 71.8% of sampled rows carry personal‑data markers (headline.pii_pct = 71.8; pii_rows_checked = 1,011,330). Top PII tables are concentrated in iebc_forms / viusasa_staging (examples: playback_stagings, sms, payment_requests — see “top_pii”).\n- Operational status:\n  - Many tables are stale (stale_pct_of_bytes = 15.4). Several product blockers call out that “most supporting tables have not been written for over a year” (per-product blockers).\n  - Some connections are blocked (artists_app listed in headline.blocked_connections).\n\nConclusion: The estate holds substantial, productisable information but the bulk is low‑to‑moderate readiness due to pervasive nulls, PII, staleness and semantic near‑duplicates. Targeted remediation will unlock most commercial value.\n\n---\n\n## Duplication and storage economics\nMeasured storage-saving opportunities (from supplied cost strategies and duplicate-pair sketches):\n- Move to cold storage: 54.1 GiB identified as not written for over a year; action recommended: export to compressed object storage and keep schema stubs (cost_strategy[0]: bytes_label = 54.1 GiB; share_of_estate = 0.1541). Note: staleness detection used latest timestamp columns; tables without timestamps may not be counted as stale.\n- Remove redundant prefix indexes: estimated saving 14.0 GiB (cost_strategy[1]: bytes_label = 14.0 GiB; share_of_estate = 0.0397).\n- De‑duplicate exact repeated rows inside tables: estimated saving 1.2 GiB (cost_strategy[2]: bytes_label = 1.2 GiB; share_of_estate = 0.0035).\n- Consolidate duplicate/staging copies: estimated saving 54.0 MiB (cost_strategy[3]: bytes_label = 54.0 MiB).\n- Archive / remove empty tables: estimated saving 13.7 MiB (cost_strategy[4]: bytes_label = 13.7 MiB).\n- Note on reclaimed bytes: headline lists reclaimable_label = \"15.2 GiB\" and reclaimable_pct = 4.3% (headline.reclaimable_label; headline.reclaimable_pct).\n\nDuplication hotspots (examples):\n- failed_jobs between iebc_forms and viupay: content overlap ≈ 78% (top_duplicate_pairs[0]: content_overlap_estimate = 0.7812).\n- movies tables and others show overlap estimates 80–84% (see top_duplicate_pairs entries). These are candidates for consolidation after ownership confirmation.\n\nRisks to savings:\n- Some duplicates are deliberate (staging/backups). Over‑aggressive deletion risks data loss — confirm ownership/intent before retirement.\n- Index removal reduces storage but might change query performance; verify no explicit index hints exist.\n\nBottom line: Measured tactical actions (cold storage + index rationalisation + dedupe) yield immediate, verifiable savings (54.1 GiB + 14.0 GiB + 1.2 GiB = 69.3 GiB measured potential reduction; sources: cost_strategy entries). Further savings may be available but were not measured.\n\n---\n\n## What the data can do (dimensional monetisation — aggregate or de‑identified only)\nEach candidate below is presented as an aggregate/de‑identified product only (no row‑level release).\n\n1. Reference and master-data licensing\n   - Proposition: licence cleaned reference/master tables (product/catalogue/form reference) as master data feeds to partners (requires rights). Readiness: score 60.1, grade C (data_products.reference_data.readiness_score = 60.1; readiness_grade = \"C\"). PII exposure: 62.1% of tables supporting the product carry PII markers; 40.2% supporting tables are stale (product blockers). Top value tables include mpesa_stk_requests and media but many have high PII ratios (e.g. mpesa_stk_requests pii_ratio = 1.0). Before licensing, de‑identify or publish only canonical reference fields and secure an explicit rights grant (blockers: \"62.0% of supporting tables carry PII markers\" and \"use rights are declared at Connect, not measured\").\n\n2. Content catalogue, recommendation and licensing corpus\n   - Proposition: aggregate catalogue metadata, engagement‑weighted recommendation features, licensable archive indices. Readiness: score 56.8, grade C (data_products.content_corpus.readiness_score = 56.8). PII exposure: high — 74.5% of supporting tables carry PII markers (product pii_table_share = 0.745) and 42.9% of supporting tables are stale (stale_table_share = 0.429). Licensable units exist (e.g. 4,037,354 distinct content values from playback_stagings.content_length). Any external catalogue or recommendation product must strip or aggregate PII (product blocker: \"74.0% of supporting tables carry PII markers\") and obtain rights clearance.\n\n3. Channel / telco engagement analytics\n   - Proposition: aggregated channel performance and campaign benchmarks (shortcode, delivery and response rates) for telcos/advertisers. Readiness: score 59.7, grade C (data_products.channel_engagement.readiness_score = 59.7). PII exposure: 78.9% supporting tables carry PII markers (pii_table_share = 0.789). Grain supports channel/time aggregation (licenses: 6,698,441 distinct channel values). Publish as aggregated metrics per channel/time bucket (e.g. daily county‑level response rates) after de‑identification and rights clearance.\n\n4. Customer / subscriber 360 and segmentation (de‑identified)\n   - Proposition: de‑identified LTV, segmentation and churn cohorts sold to partners or used internally for marketing; must be de‑identified before release. Readiness: score 53.5, grade D (data_products.customer_360.readiness_score = 53.5). PII exposure: 80.3% of supporting tables carry PII markers (pii_table_share = 0.803); many supporting tables are stale (stale_table_share = 0.513). The product can be built internally after cleansing, but external sharing requires strict hashing/tokenisation and a formal rights/legal review.\n\n5. Time-series forecasting datasets (money/time)\n   - Proposition: aggregated daily/weekly demand and revenue series for forecasting and capacity planning. Readiness: score 57.6, grade C (data_products.forecasting.readiness_score = 57.6). PII exposure: 76.8% supporting tables carry PII markers. Key time-range units exist (e.g. mpesa_stk_requests spans many historical days). Publish aggregated series (sums, counts, rates) at product/time granularity after removing direct identifiers and ensuring no small‑count leakage.\n\n6. Transaction analytics (settlement and fee reporting)\n   - Proposition: aggregated revenue, fee and settlement analytics for financial reconciliation and partner dashboards. Readiness: score 57.6, grade C (data_products.transaction_analytics.readiness_score = 57.6). PII exposure: 76.8% of supporting tables are PII‑dense. Release only as aggregated reports (daily/partner-level), and do not export row‑level payment identifiers without explicit legal clearance. Note: several top tables (mpesa_stk_requests, users, orders) carry full PII and must be tokenised.\n\n7. Geospatial demand and coverage mapping\n   - Proposition: county/constituency demand, penetration and coverage maps delivered as aggregated indices. Readiness: score 52.7, grade D (data_products.geo_demand.readiness_score = 52.7). PII exposure: 77.8% supporting tables carry PII; many supporting tables are stale. Produce aggregated indices (e.g. popularity per county per month) but remove or bucket fine geolocation fields to avoid re‑identification (product blockers note supporting tables grade D/E and PII risk).\n\n8. Civic and audience insight panels\n   - Proposition: aggregated civic‑participation indices and aggregated audience panels by geography; strictly aggregate, never row‑level. Readiness: score 49.0, grade D (data_products.civic_insight.readiness_score = 49.0). PII exposure: 85.7% of supporting tables carry PII markers (pii_table_share = 0.857). This product is feasible but requires the most remediation — remove or aggregate PII, improve completeness and confirm rights.\n\nFor every candidate product: do not release row‑level data; apply aggregation, k‑anonymity / differential privacy (where practical), or tokenisation; obtain explicit rights grants (product blockers repeatedly flag rights unmeasured).\n\n---\n\n## Risks and obligations\n1. Personal data and privacy\n   - High PII footprint: 71.8% of sampled rows carry personal‑data markers (headline.pii_pct = 71.8; pii_rows_checked = 1,011,330). Top PII tables include playback_stagings, sms, payment_requests (top_pii list). Any external sharing must be preceded by legal review and technical de‑identification/tokenisation. The detector used is sampled/deterministic — absence of a marker ≠ absence of personal data.\n2. Staleness and value decay\n   - Stale bytes account for 15.4% of bytes (headline.stale_pct_of_bytes = 15.4); multiple products note that many supporting tables have not been written for over a year. This reduces commercial value for time‑sensitive products (forecasts, engagement).\n3. Rights and licensing\n   - Use rights are declared at Connect but were not measured in the census; the summary repeatedly flags: \"use rights are declared at Connect, not measured: a release needs its own grant and purpose\" (per-product blockers). Do not publish or license data without explicit, recorded contractual grants for the intended purpose.\n4. Re‑identification risk from near‑duplicates and granular fields\n   - Near‑duplicate text is very high (85.3%) and granular columns (e.g. latitude/longitude, session keys, wallet identifiers) are present at high cardinality. Aggregation must account for linkage risk; small‑count suppression and rigorous review are required.\n5. Structural and referential integrity\n   - The census found orphaned references (examples: invoices.payment_id → payments orphan_ratio = 1.0; viusasa_staging.active_users.user_id orphan_ratio = 1.0; full list in orphaned_references). These undermine joins used in products and must be reconciled or documented as known gaps.\n6. Unmeasured items\n   - Total bytes (canonical bytes_total) is unmeasured in the supplied summary. Use rights and licence terms are not fully measured. Where a figure is missing in the transcript, it remains unmeasured — proceed on the basis that those items require explicit measurement before financial projection or transfer.\n\n---\n\n## 90‑day plan (numbered, decisive)\nPriority: secure & reduce cost, remediate PII exposure, prepare one pilot product (channel_engagement or forecasting) for internal use.\n\n1. Governance & legal (Days 0–10)\n   - Action: Convene a 2‑hour triage between Data Owner, Legal, and Data Engineering.\n   - Deliverable: Inventory of required rights per intended product (confirm whether Connect grants cover the use cases). Status: rights were not measured — therefore obtain explicit grants before any external release (product blockers).\n\n2. Immediate containment of exposed PII (Days 0–14)\n   - Action: Apply read‑only access controls to high‑PII tables identified in top_pii (e.g., playback_stagings, sms, payment_requests) and log all accesses.\n   - Deliverable: Access control list and audit log retention policy. Rationale: headline.pii_pct = 71.8 and pii_rows_checked = 1,011,330.\n\n3. Cold‑storage and archival for stale tables (Days 0–30)\n   - Action: Export tables not written for > 1 year to compressed object storage; keep schema stubs and a retrieval process.\n   - Target: 54.1 GiB measured candidate (cost_strategy[0]: bytes_label = 54.1 GiB; share_of_estate = 0.1541).\n   - Deliverable: Archive manifest, restore runbook, and cost estimate for object storage.\n\n4. Quick index rationalisation (Days 7–30)\n   - Action: Identify non‑unique indexes that are leading prefixes of others and drop after 7‑day query monitoring.\n   - Target measured saving: 14.0 GiB (cost_strategy[1]: bytes_label = 14.0 GiB).\n   - Deliverable: Index removal roll‑back plan and before/after performance dashboard.\n\n5. Exact deduplication pilot (Days 7–45)\n   - Action: For three large, high‑value tables (suggest: mpesa_stk_requests, orders, playback_stagings), run dedupe pass and validate joins.\n   - Target measured saving: 1.2 GiB (cost_strategy[2]: bytes_label = 1.2 GiB).\n   - Deliverable: De‑duplication scripts, preserved archive of removed rows, and updated ingestion constraints.\n\n6. Empty & duplicate table cleanup (Days 14–40)\n   - Action: Place empty tables (368) into a 30‑day observation window; retire or archive after confirmation. Consolidate high‑overlap duplicate pairs (see top_duplicate_pairs) by snapshotting the smaller copy and retaining one system of record after owner sign‑off.\n   - Deliverables: Retire list, snapshots, and owner confirmations (cost_strategy[3] and [4]).\n\n7. Repair or document orphaned references (Days 14–60)\n   - Action: For the orphaned_references list, either (a) repair by reintroducing or reassigning targets where available, or (b) document and purge rows that reference nothing.\n   - Deliverable: Referential integrity report and remediation tasks (note: repair does not save storage but improves product quality).\n\n8. PII tokenisation and analytics copy creation (Days 21–60)\n   - Action: Create de‑identified analytics copies (tokenise ids, drop direct identifiers) for development of internal products. For each copy, produce a privacy risk memo.\n   - Deliverable: Tokenisation scripts, one de‑identified analytics schema per product domain (channel_engagement and forecasting prioritised).\n\n9. Pilot product delivery (Days 30–75)\n   - Action: Build an internal pilot for Channel Engagement (or Forecasting) using de‑identified analytics copy.\n   - Metrics: deliver aggregated dashboards (daily/weekly channel response rates), run an internal privacy review, and collect stakeholder feedback.\n   - Readiness rationale: channel_engagement readiness_score = 59.7; forecasting readiness_score = 57.6.\n\n10. Rights & commercial readiness (Days 45–90)\n    - Action: For any external pilot or licensing, obtain explicit written rights from Connect or other owners; produce a Data Release Agreement and a Pricing/Usage policy (note: pricing not measured and must be determined by business).\n    - Deliverable: Signed rights, release checklist, and minimal product SLA.\n\n11. Data quality remediation (Days 30–90)\n    - Action: Remediate top quality issues: reduce null_bearing_pct (81.7%) by addressing ingest validation on key tables; fix highest‑impact degraded tables listed in top_degraded.\n    - Deliverable: Data quality tickets, measurable targets (e.g. reduce null_bearing in target tables by 30% in 60 days).\n\n12. Measurement & ongoing census (Days 60–90)\n    - Action: Run a follow‑up census on measured tables (recompute exact/near duplicates, PII share, staleness).\n    - Deliverable: Comparison report vs. baseline (this dossier). Use the report to set the next 90‑day OKRs.\n\n---\n\nIf you approve, I will:\n- Produce an access‑controlled remediation workbook (per step) with owners and deadlines.\n- Prepare the de‑identification templates and a privacy risk checklist for the pilot product(s).\n\nNotes and caveats\n- Several values in the supplied inventory are placeholders or unmeasured (for example the canonical total bytes figure is unmeasured). Where figures were missing they are reported as unmeasured and must be measured before cost or revenue projections are final.\n- Rights: the summary repeatedly states \"use rights are declared at Connect, not measured\" — do not proceed with any licensing or outward release until the legal grant is obtained and captured.\n- All releases must be aggregate or de‑identified; the census explicitly flags many tables with PII markers and high PII ratios (per‑product blockers and top_pii entries).\n\nAppendix: primary figures cited\n- Overall: databases = 20; total tables = 1,006; tables_measured = 638 (headline).\n- Measured rows = 5,881,277 (headline.rows_measured).\n- Exact duplicates = 1.5%; normalised duplicates = 3.6% (headline).\n- Degraded rows = 23.0% (headline.degraded_pct).\n- Null-bearing rows = 81.7% (headline.null_bearing_pct).\n- PII in sampled rows = 71.8% (headline.pii_pct; pii_rows_checked = 1,011,330).\n- Reclaimable: 15.2 GiB (reclaimable_label) = 4.3% reclaimable_pct (headline).\n- Stale bytes = 15.4% of bytes (headline.stale_pct_of_bytes).\n- Cost strategies measured savings: cold storage 54.1 GiB; drop redundant indexes 14.0 GiB; dedupe 1.2 GiB; consolidate copies 54.0 MiB; archive empty tables 13.7 MiB (cost_strategies entries).\n- Readiness distribution: A=171, B=62, C=191, D=189, E=25 (headline.grades).\n\n--- \n\nTell me which of the 90‑day steps you want prioritised and I will convert that into a weekly sprint plan with owners and minimal checklists.",
+      "objective": "Identify bounded cost, quality and reuse opportunities"
+    },
+    "limits": [
+      "No new estate read or rights grant",
+      "Savings are estimates, not realised returns",
+      "Dataset candidates are not qualified or sealed datasets"
+    ],
+    "manager": {
+      "actions": [
+        {
+          "addressable_bytes": 46053848308678,
+          "class": "estimated",
+          "conditions": [
+            "Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": 986.49,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Move buckets not written for over a year to archive-class storage"
+        },
+        {
+          "addressable_bytes": 8417550655111,
+          "class": "estimated",
+          "conditions": [
+            "Candidates share ETag and size, which for multipart uploads is not a content hash; bytes are candidates × mean object size, an estimate. Confirm before deleting."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": 180.31,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Reconcile duplicate objects across OBS buckets"
+        },
+        {
+          "addressable_bytes": 58131546112,
+          "class": "estimated",
+          "conditions": [
+            "Staleness is read from the latest timestamp column; tables without timestamps are not counted as stale."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": 5.93,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Move tables not written for over a year to cold storage"
+        },
+        {
+          "addressable_bytes": 14990321376,
+          "class": "estimated",
+          "conditions": [
+            "Write amplification falls immediately; verify no query hints name the dropped index."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": 1.53,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Remove redundant (prefix-covered) indexes"
+        },
+        {
+          "addressable_bytes": 1302200726,
+          "class": "estimated",
+          "conditions": [
+            "Duplicates measured on complete passes or stratified samples; the primary key was excluded from the comparison."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": 0.13,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "De-duplicate exact repeated rows inside tables"
+        },
+        {
+          "addressable_bytes": 56607013,
+          "class": "estimated",
+          "conditions": [
+            "Copies may be deliberate (staging, backups). Confirm ownership before retirement; the sketch overlap is an estimate, not a row-level diff."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": 0.01,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Consolidate duplicate and staging copies of the same tables"
+        },
+        {
+          "addressable_bytes": 14368768,
+          "class": "estimated",
+          "conditions": [
+            "Empty by TABLE_ROWS estimate; a freshly truncated live table looks the same."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": 0.0,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Drop or archive empty tables"
+        },
+        {
+          "addressable_bytes": 0,
+          "class": "estimated",
+          "conditions": [
+            "Targets were inferred from column names (x_id → x/xs); a missing target may be a naming convention, not a break."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": null,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Repair or purge orphaned references"
+        },
+        {
+          "addressable_bytes": 0,
+          "class": "estimated",
+          "conditions": [
+            "Detector is deterministic and sampled; absence of a marker is not absence of personal data."
+          ],
+          "destructive_action_authorized": false,
+          "execution": "proposal_only",
+          "monthly_saving": null,
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Minimise PII-dense tables that no product needs"
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "62.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Reference and master-data licensing",
+          "training_authorized": false
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "74.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Content catalogue, recommendation and licensing corpus",
+          "training_authorized": false
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "79.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Channel / telco engagement analytics (USSD, SMS, app)",
+          "training_authorized": false
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "80.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "most supporting tables have not been written for over a year: value is historical, not live",
+            "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Customer / subscriber 360 and segmentation",
+          "training_authorized": false
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "77.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Time-series forecasting datasets",
+          "training_authorized": false
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "77.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Transaction & revenue analytics",
+          "training_authorized": false
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "78.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "most supporting tables have not been written for over a year: value is historical, not live",
+            "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Geospatial demand and coverage mapping",
+          "training_authorized": false
+        },
+        {
+          "class": "inferred",
+          "conditions": [
+            "86.0% of supporting tables carry PII markers: de-identify or aggregate before any release",
+            "supporting tables grade D/E on completeness, duplication or degradation: cleanse first",
+            "use rights are declared at Connect, not measured: a release needs its own grant and purpose"
+          ],
+          "dimensions": [],
+          "execution": "proposal_only",
+          "purpose": "Prepare a bounded dataset specification",
+          "source_ref": "eij-1b359b3cbd2e",
+          "title": "Civic and audience insight panels",
+          "training_authorized": false
+        }
+      ],
+      "dataset_handoff": "An explicit TargetOutcome and CollectionSchema are required before preparation; candidates are not training permission.",
+      "document_producer": "estate-intelligence"
+    },
+    "manifest": [
+      {
+        "artifact": "census_report",
+        "class": "measured",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Move buckets not written for over a year to archive-class storage",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Reconcile duplicate objects across OBS buckets",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Move tables not written for over a year to cold storage",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Remove redundant (prefix-covered) indexes",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "De-duplicate exact repeated rows inside tables",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Consolidate duplicate and staging copies of the same tables",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Drop or archive empty tables",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Repair or purge orphaned references",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Minimise PII-dense tables that no product needs",
+        "class": "estimated",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Reference and master-data licensing",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Content catalogue, recommendation and licensing corpus",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Channel / telco engagement analytics (USSD, SMS, app)",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Customer / subscriber 360 and segmentation",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Time-series forecasting datasets",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Transaction & revenue analytics",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Geospatial demand and coverage mapping",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      },
+      {
+        "artifact": "Civic and audience insight panels",
+        "class": "inferred",
+        "source_ref": "eij-1b359b3cbd2e"
+      }
+    ],
+    "plan_id": "estate-a25ba8438867ad56c83d",
+    "source_ref": "eij-1b359b3cbd2e"
+  },
+  "receipts": {
+    "R01": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, digest-verified report (measured 2026-09-29), headline aggregates and per-database measures"
+    },
+    "R02": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, cost_strategies priced at reference list prices, not the owner's invoice: Huawei Cloud RDS for MySQL cloud SSD AF-Johannesburg 0.00015 USD/GB-hour x 730 h; OBS Standard 0.023 USD/GB-month"
+    },
+    "R03": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence census eij-1b359b3cbd2e, data_products readiness scoring (dimensions, grades, blockers)"
+    },
+    "R04": {
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+    },
+    "R05": {
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+    }
+  },
+  "series": {
+    "S001": {
+      "categories": [
+        "viusasa_staging (D)",
+        "razuna (D)",
+        "db_visitors (D)",
+        "kra_reports (D)",
+        "viupay_agent_staging (A)",
+        "news_vault (C)",
+        "local (D)",
+        "viutickets (B)"
+      ],
+      "class": "measured",
+      "label": "Data and index by database, GiB",
+      "receipt": "R01",
+      "unit": "GiB",
+      "values": {
+        "GiB": [
+          338.5,
+          4.5,
+          2.7,
+          1.5,
+          1.2,
+          0.9,
+          0.5,
+          0.4
+        ]
+      }
+    },
+    "S002": {
+      "categories": [
+        "Exact duplicates",
+        "Degraded",
+        "Empty required fields",
+        "PII markers (sampled)",
+        "Stale bytes"
+      ],
+      "class": "estimated",
+      "label": "Condition of measured rows",
+      "receipt": "R01",
+      "unit": "pct",
+      "values": {
+        "Share": [
+          0.015,
+          0.23,
+          0.817,
+          0.718,
+          0.154
+        ]
+      }
+    },
+    "S003": {
+      "categories": [
+        "Move buckets not written for over a year",
+        "Reconcile duplicate objects across OBS b",
+        "Move tables not written for over a year ",
+        "Remove redundant (prefix-covered) indexe",
+        "De-duplicate exact repeated rows inside ",
+        "Consolidate duplicate and staging copies",
+        "Drop or archive empty tables"
+      ],
+      "class": "estimated",
+      "label": "Reclaimable GiB by cost strategy",
+      "receipt": "R02",
+      "unit": "GiB",
+      "values": {
+        "GiB": [
+          42891.0,
+          7839.5,
+          54.1,
+          14.0,
+          1.2,
+          0.1,
+          0.0
+        ]
+      }
+    },
+    "S004": {
+      "categories": [
+        "Databases",
+        "Object store (OBS)",
+        "File shares (NAS)"
+      ],
+      "class": "measured",
+      "label": "Estate bytes by store, TiB",
+      "receipt": "R01",
+      "unit": "TiB",
+      "values": {
+        "TiB": [
+          0.34,
+          130.32,
+          43.65
+        ]
+      }
+    },
+    "S005": {
+      "categories": [
+        "2024offairrecs",
+        "music-bucket-rms (cold)",
+        "na7p43do (cold)",
+        "na7p43js (cold)",
+        "na7p434j (cold)",
+        "na7p41hj (cold)",
+        "na7p42xe (cold)",
+        "na7p42xw (cold)"
+      ],
+      "class": "measured",
+      "label": "Largest OBS buckets, TiB",
+      "receipt": "R04",
+      "unit": "TiB",
+      "values": {
+        "TiB": [
+          86.3,
+          4.93,
+          4.1,
+          3.57,
+          3.5,
+          3.48,
+          3.44,
+          3.4
+        ]
+      }
+    },
+    "S006": {
+      "categories": [
+        "channel01",
+        "channel02",
+        "channel16",
+        "Channel15",
+        "Channel14",
+        "Channel11",
+        "Channel12",
+        "channel07"
+      ],
+      "class": "measured",
+      "label": "Largest NAS shares, TiB",
+      "receipt": "R05",
+      "unit": "TiB",
+      "values": {
+        "TiB": [
+          6.87,
+          6.87,
+          6.81,
+          1.91,
+          1.91,
+          1.91,
+          1.91,
+          1.91
+        ]
+      }
+    }
+  },
+  "story": [
+    {
+      "answers_with": [
+        "F050",
+        "F030",
+        "F040",
+        "F052",
+        "K005",
+        "K006",
+        "K007",
+        "F038",
+        "K008"
+      ],
+      "exhibits": [
+        "S004",
+        "S005"
+      ],
+      "question": "How big is the whole estate and where do the bytes sit — databases, object store or file shares?"
+    },
+    {
+      "answers_with": [
+        "F036",
+        "K009",
+        "F034",
+        "F035",
+        "F037",
+        "F019",
+        "F020",
+        "F021",
+        "K004"
+      ],
+      "exhibits": [
+        "S003"
+      ],
+      "kind": "comparison",
+      "question": "Where is money being spent on bytes nobody touches, and how much could each move save?"
+    },
+    {
+      "answers_with": [
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F013",
+        "F014",
+        "F015",
+        "F017"
+      ],
+      "exhibits": [
+        "S002",
+        "S001"
+      ],
+      "question": "What condition are the database rows in — duplication, damage, completeness and personal-data markers?"
+    },
+    {
+      "answers_with": [
+        "F018",
+        "C021",
+        "C022",
+        "C023"
+      ],
+      "question": "Which data products could the estate stand up first, and what preparation does each need?"
+    },
+    {
+      "answers_with": [
+        "F003",
+        "F002",
+        "F033",
+        "F040",
+        "F041"
+      ],
+      "question": "What is still unmeasured across the estate, and what would it take to measure it?"
+    }
+  ],
+  "title": "RMS estate review: cost, condition and first data products",
+  "version": 1
+}

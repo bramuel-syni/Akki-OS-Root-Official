@@ -1,0 +1,713 @@
+{
+  "authoring": {
+    "claims_authored": 39,
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 6,
+      "repairs": 1
+    },
+    "latency_ms": 28875,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "planner → worker → content manager → frontier writer",
+    "provider": "emergent",
+    "receipt_id": "rcp-4d8f28718e28",
+    "repairs": 1,
+    "tokens_in": 11152,
+    "tokens_out": 3644
+  },
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001"
+      ],
+      "text": "{F001} checks were measured against the signed acceptance in this record."
+    },
+    "C510": {
+      "supports": [
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007"
+      ],
+      "text": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC (Source: R01)"
+    },
+    "C520": {
+      "supports": [
+        "F008",
+        "F009",
+        "F010"
+      ],
+      "text": "Compute: 8 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)"
+    },
+    "C540": {
+      "supports": [
+        "F011"
+      ],
+      "text": "Artefact: sha256 768e2f931d407888… · stays on the GPU host (Source: R01)"
+    },
+    "C550": {
+      "supports": [
+        "F012",
+        "F013"
+      ],
+      "text": "Ekegusii: — · floor 90% · abstained 100.0%. (Source: R01)"
+    },
+    "C560": {
+      "supports": [
+        "F014",
+        "F015"
+      ],
+      "text": "Kikamba: — · floor 90% · abstained 100.0%. (Source: R01)"
+    },
+    "C570": {
+      "supports": [
+        "F016",
+        "F017"
+      ],
+      "text": "Gikuyu: — · floor 90% · abstained 100.0%. (Source: R01)"
+    },
+    "C580": {
+      "supports": [
+        "F018",
+        "F019"
+      ],
+      "text": "Kalenjin: — · floor 90% · abstained 100.0%. (Source: R01)"
+    },
+    "C590": {
+      "supports": [
+        "F020",
+        "F021"
+      ],
+      "text": "Dholuo: — · floor 90% · abstained 100.0%. (Source: R01)"
+    },
+    "C600": {
+      "supports": [
+        "F022",
+        "F023"
+      ],
+      "text": "Luhya (Wanga): — · floor 90% · abstained 100.0%. (Source: R01)"
+    },
+    "C610": {
+      "supports": [
+        "F024",
+        "F025"
+      ],
+      "text": "Kiswahili: — · floor 90% · abstained 100.0%. (Source: R01)"
+    },
+    "C901": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Luhya reinforcement training findings and acceptance record · Tenant confidential"
+    },
+    "C902": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The Luhya reinforcement of audio language model v2 was refused against its signed acceptance. The held-out measure lwg was not measured, and the speaker probe on the served output was at chance. The record covers this retained run only."
+    },
+    "C903": {
+      "authored": true,
+      "supports": [
+        "F012",
+        "F015"
+      ],
+      "text": "Seven strata are listed, each with a recorded floor of {F012}% and an abstention rate of {F015}%, but no score. The record shows what was intended for each stratum and nothing about what the model achieved."
+    },
+    "C904": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The recommendation is to measure before improving. Score all seven strata on held-out material, find out why abstention was total, and clarify the speaker probe requirement. Retain the artefact on its host and judge any later change on fresh sealed material."
+    },
+    "C905": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The Luhya reinforcement was refused, and the record holds no per-stratum score to improve from"
+    },
+    "C906": {
+      "authored": true,
+      "supports": [
+        "F012"
+      ],
+      "text": "A reinforcement run for audio language model v2 was trained, signed and retained with its acceptance record. Seven strata are on the record: Ekegusii, Kikamba, Gikuyu, Kalenjin, Dholuo, Luhya and Kiswahili. Each carries a recorded floor of {F012}%."
+    },
+    "C907": {
+      "authored": true,
+      "supports": [
+        "F015"
+      ],
+      "text": "Acceptance refused the run. The held-out measure lwg was not measured, and the speaker probe on the served output was at chance. Every stratum shows no score and an abstention rate of {F015}%. A floor is a recipe setting, not performance."
+    },
+    "C908": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Which model or dataset improvement should the owner pursue next, given what was and was not measured?"
+    },
+    "C909": {
+      "authored": true,
+      "supports": [
+        "F011"
+      ],
+      "text": "Measure before changing anything. Run a held-out evaluation that scores all seven strata against their floors, and settle what the speaker probe result means for acceptance. Keep the artefact, digest beginning {F011}, on its host. Judge any later recipe change on fresh sealed material."
+    },
+    "C910": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Training receipt and acceptance record"
+    },
+    "C911": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Acceptance refused the run, and all seven strata show no measured score"
+    },
+    "C912": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Refusal rests on two grounds: lwg was not measured on the held-out set, and the speaker probe on the served output was at chance."
+    },
+    "C913": {
+      "authored": true,
+      "supports": [
+        "F012"
+      ],
+      "text": "Seven strata are listed, each with a recorded floor of {F012}%: Ekegusii, Kikamba, Gikuyu, Kalenjin, Dholuo, Luhya and Kiswahili."
+    },
+    "C914": {
+      "authored": true,
+      "supports": [
+        "F015"
+      ],
+      "text": "Every stratum shows no score and an abstention rate of {F015}%, so none can be called above or below its floor."
+    },
+    "C915": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The acceptance record gives two grounds for refusal: lwg was not measured on the held-out set, and the speaker probe on the served output was at chance. The record does not interpret the probe result further, so this paper does not either."
+    },
+    "C916": {
+      "authored": true,
+      "supports": [
+        "F012",
+        "F015"
+      ],
+      "text": "The strata are Ekegusii, Kikamba, Gikuyu, Kalenjin, Dholuo, Luhya and Kiswahili, each with a recorded floor of {F012}%. Each also shows an abstention rate of {F015}% and no score. Abstention is not accuracy, and a floor is a recipe setting rather than a measurement, so no stratum can be called above or below its floor."
+    },
+    "C917": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The run was small and traceable, and its artefact stays on the training host"
+    },
+    "C918": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007"
+      ],
+      "text": "The signed plan records the values {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. They identify the plan; the record does not present them as results."
+    },
+    "C919": {
+      "authored": true,
+      "supports": [
+        "F008",
+        "F009",
+        "F010"
+      ],
+      "text": "Training took {F008} minutes on the akki-vm host, device {F009}, with a peak memory of {F010} GB."
+    },
+    "C920": {
+      "authored": true,
+      "supports": [
+        "F011"
+      ],
+      "text": "The artefact digest begins {F011}. The record says the artefact stays on the host, so nothing has been released from it."
+    },
+    "C921": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The run is traceable but unscored, so it supports a decision about measurement, not about which recipe is better."
+    },
+    "C922": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007"
+      ],
+      "text": "The signed plan records the values {F002}, {F003}, {F004}, {F005}, {F006} and {F007}. They identify the plan and say nothing about performance."
+    },
+    "C923": {
+      "authored": true,
+      "supports": [
+        "F008",
+        "F009",
+        "F010",
+        "F011"
+      ],
+      "text": "Training took {F008} minutes on the akki-vm host, device {F009}, with a peak memory of {F010} GB. The artefact digest begins {F011}, and the record states that the artefact stays on the host. The run is traceable and contained, but it is not evidence that any recipe is better than another."
+    },
+    "C924": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Measure all seven strata first, then settle the speaker probe, before any retraining"
+    },
+    "C925": {
+      "authored": true,
+      "supports": [
+        "F012"
+      ],
+      "text": "First, score each of the seven strata on held-out material against its {F012}% floor. This closes the unmeasured lwg ground."
+    },
+    "C926": {
+      "authored": true,
+      "supports": [
+        "F015"
+      ],
+      "text": "Second, find out why abstention was {F015}% everywhere: model behaviour, scoring gap or serving fault. Change no recipe until this is known."
+    },
+    "C927": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Third, ask reviewers what a speaker probe at chance means under the signed acceptance."
+    },
+    "C928": {
+      "authored": true,
+      "supports": [
+        "F011"
+      ],
+      "text": "Fourth, keep the artefact, digest beginning {F011}, on its host. Judge later changes on fresh sealed material."
+    },
+    "C929": {
+      "authored": true,
+      "supports": [
+        "F012"
+      ],
+      "text": "First, run a held-out evaluation scoring each of the seven strata against its {F012}% floor. This closes the unmeasured lwg ground and gives the owner the per-stratum view the decision needs."
+    },
+    "C930": {
+      "authored": true,
+      "supports": [
+        "F015"
+      ],
+      "text": "Second, establish why abstention was {F015}% everywhere, and ask the reviewers what the speaker probe at chance must mean under the signed acceptance. Neither question should be answered by assumption. Until they are, a recipe change would be guesswork, because the record shows no stratum where the model fell short."
+    },
+    "C931": {
+      "authored": true,
+      "supports": [
+        "F011"
+      ],
+      "text": "Third, keep the artefact, digest beginning {F011}, on its host. Judge any later recipe change on fresh, independently labelled and sealed material."
+    },
+    "C932": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The record cannot support claims beyond the seven strata or independent acceptance"
+    },
+    "C933": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Performance outside the measured strata is not established. An independently designed evaluation would close this."
+    },
+    "C934": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Independent final acceptance is unavailable because these results have been inspected. Fresh, independently labelled and sealed material would close it."
+    },
+    "C935": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Lineage from objective to production is incomplete: no new production plan links to this historical run. Compile an evidence-linked objective; never backdate."
+    },
+    "C936": {
+      "authored": true,
+      "supports": [
+        "F015"
+      ],
+      "text": "Per-stratum strengths and weaknesses are unknown, given {F015}% abstention and no scores."
+    },
+    "C937": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The run says nothing about general cognition or performance outside the seven strata. An independently designed evaluation would be needed to say more."
+    },
+    "C938": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Independent final acceptance is not available once further recipe selection has been informed by results that have been inspected. Fresh, independently labelled and sealed final material would restore it."
+    },
+    "C939": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "No new production plan is linked to this historical run, so objective-to-production lineage is incomplete. It should be closed by an explicitly compiled, evidence-linked objective, never by a backdated assumption."
+    }
+  },
+  "content_id": "training-lcj-7841bcce8855",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "An independently designed evaluation",
+        "gap": "General cognition or performance outside the measured strata",
+        "reason": "Not established by this run"
+      },
+      {
+        "closes_with": "Fresh independently labelled and sealed final material",
+        "gap": "Independent final acceptance after further recipe selection",
+        "reason": "These results have been inspected"
+      },
+      {
+        "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+        "gap": "Complete objective-to-production lineage",
+        "reason": "No new production plan is linked to this historical run"
+      }
+    ],
+    "covers": "Retained model measurements and decisions from lcj-7841bcce8855 only."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Measured checks on the record",
+      "receipt": "R01",
+      "unit": "checks",
+      "value": 7
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 352599
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2026
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 10
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 2
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 7
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Signed plan · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 5
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 8 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 8
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 8 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 0
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Compute · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Compute: 8 min on akki-vm GPU 0 · peak 100.17 GB (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.17
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Artefact · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Artefact: sha256 768e2f931d407888… · stays on the GPU host (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 768
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Ekegusii · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Ekegusii: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Kikamba · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kikamba: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Gikuyu · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Gikuyu: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F019": {
+      "class": "measured",
+      "label": "Kalenjin · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kalenjin: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F020": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F021": {
+      "class": "measured",
+      "label": "Dholuo · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Dholuo: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F022": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F023": {
+      "class": "measured",
+      "label": "Luhya (Wanga) · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Luhya (Wanga): — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    },
+    "F024": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 90
+    },
+    "F025": {
+      "class": "measured",
+      "label": "Kiswahili · recorded value",
+      "measurement_scope": "Value observed in the retained receipt; a recorded floor or recipe setting is not measured model performance.",
+      "receipt": "R01",
+      "source_statement": "Kiswahili: — · floor 90% · abstained 100.0%. (Source: R01)",
+      "unit": "as recorded in the source statement",
+      "value": 100.0
+    }
+  },
+  "narrative_evidence": {
+    "C002": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Signed plan: digest 352599db9d60 · Demo · Operator · 2026-10-02 07:05 UTC"
+    },
+    "C003": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Compute: 8 min on akki-vm GPU 0 · peak 100.17 GB"
+    },
+    "C004": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Acceptance: lwg: not measured on the held-out set; speaker probe on the served output at chance"
+    },
+    "C005": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Artefact: sha256 768e2f931d407888… · stays on the GPU host"
+    },
+    "C100": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Ekegusii: — · floor 90% · abstained 100.0%."
+    },
+    "C101": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kikamba: — · floor 90% · abstained 100.0%."
+    },
+    "C102": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Gikuyu: — · floor 90% · abstained 100.0%."
+    },
+    "C103": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kalenjin: — · floor 90% · abstained 100.0%."
+    },
+    "C104": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Dholuo: — · floor 90% · abstained 100.0%."
+    },
+    "C105": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Luhya (Wanga): — · floor 90% · abstained 100.0%."
+    },
+    "C106": {
+      "class": "measured",
+      "receipt": "R01",
+      "text": "Kiswahili: — · floor 90% · abstained 100.0%."
+    },
+    "decision": {
+      "class": "recorded",
+      "receipt": "R01",
+      "text": "Luhya (Wanga) reinforcement · audio language model v2: Refused. Refused against the signed acceptance: lwg: not measured on the held-out set; speaker probe on the served output at chance."
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "producer_revision": 3,
+  "production_plan": null,
+  "receipts": {
+    "R01": {
+      "platform_ref": "lcj-7841bcce8855",
+      "resolves_to": "Measured training receipt and retained acceptance record for lcj-7841bcce8855"
+    }
+  },
+  "series": {},
+  "title": "Audio language model v2 refused: no stratum was scored",
+  "version": 1
+}

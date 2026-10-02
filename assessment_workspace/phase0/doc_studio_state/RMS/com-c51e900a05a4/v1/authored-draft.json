@@ -1,0 +1,233 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "What to do first, and why",
+          "paragraphs": [
+            "First, check read frequency on the {F037} cold buckets and approve the archive-class move, because it carries the largest estimate, {O1.monthly_saving_usd} USD a month, on {F036} TiB. Second, confirm the {F034} TiB of duplicate candidates by content hash before deleting anything. Third, reconcile the {F033} unreadable buckets with the provider.",
+            "In parallel, prepare de-identified or aggregated copies for reference data and channel engagement. Database tidying, worth {O3.monthly_saving_usd} USD a month for cold tables, can run alongside but should not lead. Every move here is a proposal; nothing is authorised by this report."
+          ]
+        },
+        "chapter1": {
+          "heading": "Where the bytes sit",
+          "paragraphs": [
+            "The object store holds {F030} TiB in {F032} buckets and {F031} objects. The file shares hold {F040} TiB in {F042} shares and {F041} files. The databases hold {F004} GiB, with the largest databases accounting for {K002} of that.",
+            "Two limits apply. {F033} of the {F032} buckets could not be read, so the object-store figures describe the readable buckets only. File-share duplication is not measured, because the enumeration recorded sizes and dates rather than content."
+          ]
+        },
+        "chapter3": {
+          "heading": "Condition of the rows",
+          "paragraphs": [
+            "The estate holds {F013} rows. Exact duplicates are {F007}, degraded rows {F008} and rows with empty required-looking fields {F009}. Bytes not written for over a year are {F012} of database bytes, dead columns are {F017} of measured columns, and {F015} tables are empty.",
+            "These ratios are estimates from complete passes where tables allowed and stratified samples elsewhere. They are reliable enough to rank preparation work, but not to set quality guarantees in a contract."
+          ]
+        },
+        "chapter4": {
+          "heading": "First data products and what each needs",
+          "paragraphs": [
+            "{F018} candidates were scored. Reference and master-data licensing, the content catalogue and recommendation corpus, and channel and telco engagement analytics lead, all at grade C. Reference data is the sensible first product because it can be reduced to canonical fields, and channel engagement is the natural second because it aggregates by channel and period.",
+            "Each needs personal-data markers handled by de-identification or aggregation, and cleansing of empty required fields. The customer segmentation, forecasting, transaction, geospatial and civic candidates carry more markers or weaker grades and should follow once cleansing has been shown to work."
+          ]
+        },
+        "chapter5": {
+          "heading": "What remains unmeasured",
+          "paragraphs": [
+            "Measures cover {F003} of {F002} tables, which is {K001}. {F033} of {F032} buckets were unreadable. The file shares, at {F040} TiB, have no duplication measure. One database connection could not be read.",
+            "None of these gaps overturns the picture of where the bytes sit. They do bound the certainty of the saving estimates, which could rise or fall once the unreadable buckets and the file shares are brought into measurement."
+          ]
+        },
+        "compare": {
+          "heading": "Three priced moves side by side",
+          "paragraphs": [
+            "Moving buckets not written for over a year to archive-class storage addresses {O1.reclaimable_gib} GiB and is estimated at {O1.monthly_saving_usd} USD a month. Reconciling duplicate objects addresses {O2.reclaimable_gib} GiB at {O2.monthly_saving_usd} USD a month. Moving cold tables addresses {O3.reclaimable_gib} GiB at {O3.monthly_saving_usd} USD a month.",
+            "All three are estimates at reference list prices. The first depends on read frequency, which was not measured, and archive-class retrieval carries its own fee. The second rests on name and size matching, which for multipart uploads is not a content hash. The third counts only tables with timestamp columns. Each is a proposal only; nothing has been authorised."
+          ]
+        },
+        "exhibit_S001": {
+          "heading": "Database bytes are concentrated in a few places",
+          "paragraphs": [
+            "The largest databases hold {F016} GiB of the {F004} GiB in the databases, which is {K002}. One staging database dominates the series. Cleansing and cost effort can therefore be aimed at very few databases and still cover almost every database byte.",
+            "Staging copies may be deliberate, so retirement needs the owner's confirmation. The census sketches {F014} duplicate table pairs, but the overlap is an estimate and not a row-level comparison."
+          ]
+        },
+        "exhibit_S002": {
+          "heading": "Completeness is the dominant condition issue",
+          "paragraphs": [
+            "Exact duplicate rows are {F007} of rows, a low figure. Degraded rows are {F008}, and rows with empty required-looking fields are {F009}. Personal-data markers appear in {F010} of the {F011} rows sampled.",
+            "Completeness is the main constraint on what can be offered to a buyer. The personal-data markers do not block a product; they define the preparation step, which is de-identification or aggregation before release."
+          ]
+        },
+        "exhibit_S003": {
+          "heading": "Reclaimable bytes are almost all in the object store",
+          "paragraphs": [
+            "Bytes not written for over a year are {F036} TiB in the object store, which is {K009} of it. Separately, {F034} TiB are duplicate candidates, {F035} of objects, matched on name and size rather than content. The three largest strategies address {K004} of the bytes that all strategies reach.",
+            "Database strategies are comparatively minor. About {F005} GiB, {F006} of database bytes, looks reclaimable before pricing. They are worth doing for tidiness and risk reduction, but they will not change the cost position."
+          ]
+        },
+        "exhibit_S004": {
+          "heading": "The object store dominates the estate",
+          "paragraphs": [
+            "Of the {F050} TiB held, the object store accounts for {F030} TiB and the file shares for {F040} TiB. The databases are a very small remainder, at {K007} of the estate. The estate-wide view therefore differs sharply from a database-only one, which would have shown {F004} GiB and missed almost everything.",
+            "For the owner this means database tuning cannot move the cost position materially. The object store, at {K005} of the estate, is where the bytes and the money sit, and the file shares, at {K006}, are the second place to look."
+          ]
+        },
+        "exhibit_S005": {
+          "heading": "Most of the object store sits in one bucket",
+          "paragraphs": [
+            "The largest bucket holds {F038} TiB, which is {K008} of the object store. The next largest buckets are each a few TiB, and those listed as cold are the ones that matter for archive savings. The largest bucket is not marked cold in the listing.",
+            "The practical consequence is that the archive saving is spread across many mid-sized cold buckets, {F037} in all, rather than concentrated in one decision. The largest bucket deserves its own review of purpose and access, which this census does not provide."
+          ]
+        },
+        "risks": {
+          "heading": "What the evidence cannot yet establish",
+          "paragraphs": [
+            "Condition ratios rest partly on samples, semantic similarity to the market is unmeasured, one database connection is unread, file-share duplication is unknown and {F033} buckets are unreachable. Each closes with a defined step: a complete-pass census, a buyer-side review, a read grant and re-census, a fingerprinting pass and a bucket inventory reconciled with the provider.",
+            "Savings are estimates at reference list prices, not realised returns, and the product candidates are not qualified or sealed datasets."
+          ]
+        }
+      },
+      "summary": [
+        "The estate holds {F050} TiB, of which the object store is {K005} and the file shares {K006}. The {F001} databases, with {F002} tables and {F004} GiB, are {K007} of the bytes. Cost, therefore, sits outside the databases, and any estate-wide plan has to start with object and file storage.",
+        "The priced strategies bound the monthly saving at {F019} USD at reference list prices, not the owner's invoice. Nearly all of it comes from moving buckets not written for over a year to archive-class storage and from reconciling duplicate objects. Both are estimates and neither has been confirmed against read patterns or content hashes.",
+        "Database rows are seldom duplicated but often incomplete: {F009} have empty required-looking fields and {F010} of sampled rows carry personal-data markers. Three grade C product candidates lead, and each needs de-identification or aggregation first. Rights are settled by the owner's declaration, so that preparation is technical rather than legal."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "Recommended order",
+        "points": [
+          "Check read frequency on the {F037} cold buckets, then archive {F036} TiB: {O1.monthly_saving_usd} USD a month.",
+          "Hash-check {F034} TiB of duplicate candidates before deleting: {O2.monthly_saving_usd} USD a month.",
+          "Reconcile the {F033} unreadable buckets with the provider; the figures above exclude them.",
+          "Prepare de-identified reference and channel copies; tidy cold tables, {O3.monthly_saving_usd} USD a month, alongside."
+        ],
+        "title": "Archive cold buckets first, confirm duplicates second, then prepare two products"
+      },
+      "chapter1": {
+        "kicker": "Where the bytes sit",
+        "points": [
+          "The whole estate holds {F050} TiB: the object store holds {F030} TiB and the file shares hold {F040} TiB.",
+          "By share of the estate, the object store is {K005}, the file shares {K006} and the databases {K007}.",
+          "The object store has {F031} objects in {F032} buckets, and its largest bucket alone holds {F038} TiB, which is {K008} of the store.",
+          "The file shares hold {F041} files in {F042} shares; how much of that is duplicated has not yet been measured.",
+          "The databases hold {F004} GiB in {F002} tables, and the largest databases account for {K002} of those bytes."
+        ],
+        "title": "The estate is mostly object and file storage, not database storage"
+      },
+      "chapter3": {
+        "kicker": "Condition of rows",
+        "points": [
+          "Exact duplicate rows are {F007} of rows, a low figure; the duplication problem lies in copied tables and objects, not repeated rows.",
+          "Degraded rows are {F008} of rows, and {F009} carry empty required-looking fields, which limits what can be sold without cleansing.",
+          "Personal-data markers appear in {F010} of the {F011} rows sampled, so de-identification or aggregation is a standing preparation step for products.",
+          "Bytes not written for over a year are {F012} of database bytes, and {F015} tables are empty.",
+          "These ratios are estimates from complete passes where tables allowed and stratified samples elsewhere."
+        ],
+        "title": "Rows are rarely duplicated but often incomplete, degraded or personal"
+      },
+      "chapter4": {
+        "kicker": "First products",
+        "points": [
+          "{F018} product candidates were scored for readiness; the three leading ones are all grade C and none is ready for release as it stands.",
+          "Reference and master-data licensing: {C021}",
+          "Content catalogue and recommendation corpus: {C022}",
+          "Channel and telco engagement analytics: {C023}",
+          "Rights are settled by the owner's declaration, so preparation is technical: de-identify or aggregate, then cleanse. The remaining candidates need cleansing before they are worth building."
+        ],
+        "title": "Three grade C candidates lead, and each needs de-identification or aggregation first"
+      },
+      "chapter5": {
+        "kicker": "Measurement gaps",
+        "points": [
+          "Measures cover {F003} of {F002} tables, which is {K001}; the remaining ratios are estimated from stratified samples.",
+          "{F033} of {F032} object-store buckets could not be read, so every object-store figure covers only the readable buckets.",
+          "The file shares hold {F040} TiB in {F041} files, but only sizes and dates were recorded, so duplication cannot be stated.",
+          "One database connection, artists_app, could not be read because read access is pending, so it sits outside every database figure."
+        ],
+        "title": "Measurement gaps are specific, and each has a defined way to close it"
+      },
+      "compare": {
+        "kicker": "Priced options",
+        "so_what": "Monthly estimates at reference list prices, not the owner's invoice, are {O1.monthly_saving_usd}, {O2.monthly_saving_usd} and {O3.monthly_saving_usd} USD respectively.",
+        "title": "Three priced moves range from a large archive saving to a trivial database one"
+      },
+      "exec": {
+        "answer": "Start with the archive move for buckets not written for over a year, worth {O1.monthly_saving_usd} USD a month, after checking read frequency. Then confirm duplicate objects and prepare reference and channel data as de-identified or aggregated products.",
+        "complication": "Priced savings reach {F019} USD a month at reference list prices, and three strategies address {K004} of the bytes that all strategies reach. Database rows are in poor condition: {F009} have empty required-looking fields and {F010} of sampled rows carry personal-data markers.",
+        "kicker": "Estate-wide summary",
+        "question": "What should the owner do first to cut cost and prepare the first data products?",
+        "situation": "The estate holds {F050} TiB across databases, the object store and file shares. The object store is {K005} of that and the file shares {K006}. The {F001} databases, with {F002} tables, are only {K007} of the bytes.",
+        "title": "Savings sit in cold object storage; database rows need preparation before any product"
+      },
+      "exhibit_S001": {
+        "kicker": "Database concentration",
+        "so_what": "The largest databases hold {K002} of the {F004} GiB, so database cost and cleansing work concentrates in very few places.",
+        "title": "A handful of databases hold almost all database bytes"
+      },
+      "exhibit_S002": {
+        "kicker": "Row condition",
+        "so_what": "Exact duplicates are only {F007} of rows, while {F009} have empty required-looking fields, so cleansing effort belongs on completeness.",
+        "title": "Empty required-looking fields, not duplication, are the main condition problem"
+      },
+      "exhibit_S003": {
+        "kicker": "Reclaimable bytes by strategy",
+        "so_what": "The three largest strategies address {K004} of the bytes that all strategies reach; database tidying is small beside the object store.",
+        "title": "Cold buckets and duplicate objects reach nearly all of the reclaimable bytes"
+      },
+      "exhibit_S004": {
+        "kicker": "Estate by store",
+        "so_what": "Cost and condition decisions should start with the object store, which is {K005} of the {F050} TiB estate.",
+        "title": "The object store and file shares hold almost every byte; databases are a small fraction"
+      },
+      "exhibit_S005": {
+        "kicker": "Object store concentration",
+        "so_what": "The largest bucket is not marked cold, so the archive saving comes from the many smaller cold buckets rather than from it.",
+        "title": "One bucket alone holds {K008} of the object store"
+      },
+      "risks": {
+        "kicker": "Limits of the evidence",
+        "points": [
+          "Sampled ratios: close with a complete-pass census of the sampled tables.",
+          "Market similarity is unmeasured: close with a buyer-side review of each candidate.",
+          "artists_app is unread: close when the owner grants read access and the estate is re-censused.",
+          "File-share duplication is unknown: close with a fingerprinting pass over {F042} shares.",
+          "{F033} of {F032} buckets are unreachable: close by reconciling the inventory with the provider."
+        ],
+        "title": "Five gaps limit certainty; each closes with defined work"
+      },
+      "section1": {
+        "title": "Where the estate's bytes sit"
+      },
+      "section2": {
+        "title": "Where money is spent on idle bytes"
+      },
+      "section3": {
+        "title": "Condition of the database rows"
+      },
+      "section4": {
+        "title": "Which data products to stand up first"
+      },
+      "section5": {
+        "title": "What is still unmeasured"
+      }
+    },
+    "subtitle": "One account of what the estate holds, costs to keep and can offer first",
+    "title": "RMS estate review: cost, condition and first data products"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 18,
+      "repairs": 2
+    },
+    "latency_ms": 41256,
+    "model": "claude-sonnet-5-5",
+    "provider": "emergent",
+    "receipt_id": "rcp-5c93c82e6339",
+    "repairs": 2,
+    "tokens_in": 52613,
+    "tokens_out": 10871
+  }
+}

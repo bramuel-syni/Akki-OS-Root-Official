@@ -1,0 +1,186 @@
+{
+  "brief_ref": "BR-2026-10-02-lcj-7841bcce8855",
+  "build_stamp": "2026-10-02T07:15:38Z",
+  "content_ref": "training-lcj-7841bcce8855@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "lcj-7841bcce8855"
+  },
+  "inputs_sha256": {
+    "brief.json": "c1f0017ffacf367701e27003975efe2c1e2a64caeffa843fab03c49878d630b1",
+    "content.json": "7776939b6bc6365e46012a9d8b193d387f1ccc088598083a5a7e04ea32e8d44d",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "036cc6ecd94adceb2a9dd9db5e8c2d3e95990477fd220f675a0e8131fcfbccdb",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "8b85cf942384ed45a67401396b96d8516652f1a6bb40f6b02f7d03e2d36b20d3"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "number-small-rule",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "0E7C86",
+      "field": "FFFFFF",
+      "hatch": "EAEEF2",
+      "muted": "7F8C9A",
+      "rule": "D8DEE5",
+      "structure": "22313F"
+    },
+    "palette_id": "slate",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The Luhya reinforcement of audio language model v2 was refused against its signed acceptance. The held-out measure lwg was not measured, and the speaker probe on the served output was at chance. The record covers this retained run only."
+        },
+        {
+          "kind": "para",
+          "text": "Seven strata are listed, each with a recorded floor of 90% and an abstention rate of 100.0%, but no score. The record shows what was intended for each stratum and nothing about what the model achieved."
+        },
+        {
+          "kind": "para",
+          "text": "The recommendation is to measure before improving. Score all seven strata on held-out material, find out why abstention was total, and clarify the speaker probe requirement. Retain the artefact on its host and judge any later change on fresh sealed material."
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The acceptance record gives two grounds for refusal: lwg was not measured on the held-out set, and the speaker probe on the served output was at chance. The record does not interpret the probe result further, so this paper does not either."
+        },
+        {
+          "kind": "para",
+          "text": "The strata are Ekegusii, Kikamba, Gikuyu, Kalenjin, Dholuo, Luhya and Kiswahili, each with a recorded floor of 90%. Each also shows an abstention rate of 100.0% and no score. Abstention is not accuracy, and a floor is a recipe setting rather than a measurement, so no stratum can be called above or below its floor."
+        }
+      ],
+      "heading": "Refused, with every stratum abstaining and unscored"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The signed plan records the values 352599, 2026, 10, 2, 7 and 5. They identify the plan and say nothing about performance."
+        },
+        {
+          "kind": "para",
+          "text": "Training took 8 minutes on the akki-vm host, device 0, with a peak memory of 100.2 GB. The artefact digest begins 768, and the record states that the artefact stays on the host. The run is traceable and contained, but it is not evidence that any recipe is better than another."
+        }
+      ],
+      "heading": "A small, traceable run whose artefact has not left its host"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "First, run a held-out evaluation scoring each of the seven strata against its 90% floor. This closes the unmeasured lwg ground and gives the owner the per-stratum view the decision needs."
+        },
+        {
+          "kind": "para",
+          "text": "Second, establish why abstention was 100.0% everywhere, and ask the reviewers what the speaker probe at chance must mean under the signed acceptance. Neither question should be answered by assumption. Until they are, a recipe change would be guesswork, because the record shows no stratum where the model fell short."
+        },
+        {
+          "kind": "para",
+          "text": "Third, keep the artefact, digest beginning 768, on its host. Judge any later recipe change on fresh, independently labelled and sealed material."
+        }
+      ],
+      "heading": "Measure, diagnose, clarify, then retrain on sealed material"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The run says nothing about general cognition or performance outside the seven strata. An independently designed evaluation would be needed to say more."
+        },
+        {
+          "kind": "para",
+          "text": "Independent final acceptance is not available once further recipe selection has been informed by results that have been inspected. Fresh, independently labelled and sealed final material would restore it."
+        },
+        {
+          "kind": "para",
+          "text": "No new production plan is linked to this historical run, so objective-to-production lineage is incomplete. It should be closed by an explicitly compiled, evidence-linked objective, never by a backdated assumption."
+        }
+      ],
+      "heading": "What the record cannot establish"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "An independently designed evaluation",
+              "gap": "General cognition or performance outside the measured strata",
+              "reason": "Not established by this run"
+            },
+            {
+              "closes_with": "Fresh independently labelled and sealed final material",
+              "gap": "Independent final acceptance after further recipe selection",
+              "reason": "These results have been inspected"
+            },
+            {
+              "closes_with": "An explicitly compiled and evidence-linked objective; never backdated assumptions",
+              "gap": "Complete objective-to-production lineage",
+              "reason": "No new production plan is linked to this historical run"
+            }
+          ],
+          "covers": "Retained model measurements and decisions from lcj-7841bcce8855 only.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Measured training receipt and retained acceptance record for lcj-7841bcce8855"
+            }
+          ]
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "training-lcj-7841bcce8855/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-lcj-7841bcce8855",
+  "spec_type": "paper",
+  "subtitle": "Luhya reinforcement training findings and acceptance record · Tenant confidential",
+  "title": "Audio language model v2 refused: no stratum was scored",
+  "verdict_ref": "V-2026-10-02-lcj-7841bcce8855",
+  "voice": "strategy-house"
+}

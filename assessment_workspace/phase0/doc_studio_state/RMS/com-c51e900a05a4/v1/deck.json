@@ -1,0 +1,212 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T07:26:31Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-02",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "{C901}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C909}",
+      "complication": "{C907}",
+      "kicker": "Estate-wide summary",
+      "question": "{C908}",
+      "situation": "{C906}",
+      "title": "{C905}",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "{C910}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S004",
+        "so_what": "{C912}",
+        "y_format": "num"
+      },
+      "kicker": "Estate by store",
+      "title": "{C911}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S005",
+        "so_what": "{C917}",
+        "y_format": "num"
+      },
+      "kicker": "Object store concentration",
+      "title": "{C916}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Where the bytes sit",
+      "points": [
+        "{C922}",
+        "{C923}",
+        "{C924}",
+        "{C925}",
+        "{C926}"
+      ],
+      "title": "{C921}",
+      "type": "assertion_points"
+    },
+    {
+      "number": 2,
+      "title": "{C929}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C931}",
+        "y_format": "num"
+      },
+      "kicker": "Reclaimable bytes by strategy",
+      "title": "{C930}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "columns": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "kicker": "Priced options",
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "num1",
+          "label": "Reclaimable gib"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "num1",
+          "label": "Monthly saving usd"
+        }
+      ],
+      "so_what": "{C936}",
+      "title": "{C935}",
+      "type": "comparison"
+    },
+    {
+      "number": 3,
+      "title": "{C940}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C942}",
+        "y_format": "pct"
+      },
+      "kicker": "Row condition",
+      "title": "{C941}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C947}",
+        "y_format": "num"
+      },
+      "kicker": "Database concentration",
+      "title": "{C946}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Condition of rows",
+      "points": [
+        "{C952}",
+        "{C953}",
+        "{C954}",
+        "{C955}",
+        "{C956}"
+      ],
+      "title": "{C951}",
+      "type": "assertion_points"
+    },
+    {
+      "number": 4,
+      "title": "{C959}",
+      "type": "section"
+    },
+    {
+      "kicker": "First products",
+      "points": [
+        "{C961}",
+        "{C962}",
+        "{C963}",
+        "{C964}",
+        "{C965}"
+      ],
+      "title": "{C960}",
+      "type": "assertion_points"
+    },
+    {
+      "number": 5,
+      "title": "{C968}",
+      "type": "section"
+    },
+    {
+      "kicker": "Measurement gaps",
+      "points": [
+        "{C970}",
+        "{C971}",
+        "{C972}",
+        "{C973}"
+      ],
+      "title": "{C969}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Recommended order",
+      "points": [
+        "{C977}",
+        "{C978}",
+        "{C979}",
+        "{C980}"
+      ],
+      "title": "{C976}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Limits of the evidence",
+      "points": [
+        "{C984}",
+        "{C985}",
+        "{C986}",
+        "{C987}",
+        "{C988}"
+      ],
+      "title": "{C983}",
+      "type": "assertion_points"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

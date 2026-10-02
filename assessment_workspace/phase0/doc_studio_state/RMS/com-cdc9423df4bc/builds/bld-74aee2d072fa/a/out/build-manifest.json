@@ -1,0 +1,24 @@
+{
+  "build_stamp": "2026-10-02T07:15:38Z",
+  "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+  "environment": {
+    "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+    "matplotlib": "3.11.2",
+    "openpyxl": "3.1.5",
+    "python": "3.11.16",
+    "python-docx": "1.2.0",
+    "python-pptx": "1.0.2"
+  },
+  "inputs_sha256": {
+    "paper.resolved.json": "73fd7019de5cb644f205685806e60d7dffda4f1484bae6f1024354814416f8ac",
+    "paper.resolved/brief.json": "c1f0017ffacf367701e27003975efe2c1e2a64caeffa843fab03c49878d630b1",
+    "paper.resolved/content.json": "7776939b6bc6365e46012a9d8b193d387f1ccc088598083a5a7e04ea32e8d44d",
+    "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.resolved/paper.json": "036cc6ecd94adceb2a9dd9db5e8c2d3e95990477fd220f675a0e8131fcfbccdb",
+    "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "paper.resolved/verdict.json": "8b85cf942384ed45a67401396b96d8516652f1a6bb40f6b02f7d03e2d36b20d3"
+  },
+  "outputs_sha256": {
+    "training-lcj-7841bcce8855.docx": "b8a14eb02a86102c9709e63c32ed0c7abfc3a384d2513a8b5e1d6f8f513b5690"
+  }
+}

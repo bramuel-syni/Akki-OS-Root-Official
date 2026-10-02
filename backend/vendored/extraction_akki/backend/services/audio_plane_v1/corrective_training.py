@@ -300,7 +300,8 @@ def train(control, state):
         if score > best:
             best, best_epoch, since_best = score, epoch + 1, 0
             torch.save({k: v.detach().cpu() for k, v in model.state_dict().items()}, art / 'best_internal.pt')
-        else:
+        elif best[1] > 0:
+            # Patience counts only once the model has started judging windows; epochs of total abstention are warm-up, not plateau.
             since_best += 1
         _checkpoint(checkpoint, model, optimizer, privacy, epoch + 1, steps, generator, recipe_hash, manifest_hash)
         if control['smoke_steps']:

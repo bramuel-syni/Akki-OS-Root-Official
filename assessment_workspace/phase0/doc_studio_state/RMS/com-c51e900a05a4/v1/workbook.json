@@ -1,0 +1,146 @@
+{
+  "brief_ref": "BR-2026-10-02-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T07:26:31Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@1",
+  "family": "strategy",
+  "objective": "decide",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-02",
+  "sheets": [
+    {
+      "kind": "cover",
+      "name": "Cover"
+    },
+    {
+      "facts": [
+        "F001",
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F013",
+        "F014",
+        "F015",
+        "F016",
+        "F017",
+        "F018",
+        "F019",
+        "F020",
+        "F021",
+        "F030",
+        "F031",
+        "F032",
+        "F033",
+        "F034",
+        "F035",
+        "F036",
+        "F037",
+        "F038",
+        "F040",
+        "F041",
+        "F042",
+        "F050",
+        "F052"
+      ],
+      "kind": "inputs",
+      "name": "Inputs"
+    },
+    {
+      "derived": [
+        {
+          "calc": "K003",
+          "format": "0.0%",
+          "formula": "reclaimable_gib / Inputs.F021",
+          "label": "Share of bytes addressed by all strategies"
+        },
+        {
+          "format": "#,##0.0",
+          "formula": "12 * monthly_saving_usd",
+          "label": "Annual saving (USD)"
+        }
+      ],
+      "kind": "options_model",
+      "name": "Options",
+      "options": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "#,##0.0",
+          "label": "Bytes addressed",
+          "unit": "GiB"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "#,##0.0",
+          "label": "Monthly saving",
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "kind": "series",
+      "name": "Series",
+      "series": [
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005",
+        "S006"
+      ]
+    },
+    {
+      "checks": [
+        {
+          "calc": "K001",
+          "formula": "Inputs.F003/Inputs.F002",
+          "label": "K001 share of tables measured"
+        },
+        {
+          "calc": "K002",
+          "formula": "Inputs.F016/Inputs.F004",
+          "label": "K002 share of bytes in the largest databases"
+        },
+        {
+          "calc": "K004",
+          "formula": "Inputs.F020/Inputs.F021",
+          "label": "K004 three largest strategies' share of bytes addressed"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O1",
+          "option": "O1"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O2",
+          "option": "O2"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O3",
+          "option": "O3"
+        }
+      ],
+      "kind": "checks",
+      "name": "Checks"
+    }
+  ],
+  "spec_id": "WB-eij-1b359b3cbd2e",
+  "spec_type": "workbook",
+  "verdict_ref": "V-2026-10-02-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}
