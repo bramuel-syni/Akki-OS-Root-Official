@@ -173,7 +173,7 @@ def test_producer_seed_and_stamp_are_derived_and_specs_hold_no_numbers(report):
     import jsonschema
     now = datetime(2026, 9, 30, 12, 0, 0, tzinfo=timezone.utc)
     plan = commission_from_report(report, "RMS", "principal-1", now)
-    assert plan["seed"] == f"estate-intelligence-{report['job_id']}/decide/2026-09-30"
+    assert plan["seed"] == f"{plan['content_id']}/decide/2026-09-30" and plan["content_id"].startswith(f"estate-intelligence-{report['job_id']}")
     assert plan["build_stamp"] == "2026-09-30T12:00:00Z"
     assert plan["commission_id"].startswith("com-") and plan["frame_ref"] == "FR-strategy-decide-v1"
     for name in ("deck.json", "paper.json", "workbook.json"):
@@ -188,7 +188,7 @@ def test_producer_seed_and_stamp_are_derived_and_specs_hold_no_numbers(report):
     # v1.2 (owner ruling 3a): the workbook declares its option rows/checks in the spec; the option model is live, not fixture-shaped.
     options = next(s for s in plan["files"]["workbook.json"]["sheets"] if s["kind"] == "options_model")
     assert options["options"] == ["O1", "O2", "O3"] and {r["field"] for r in options["rows"]} == {"reclaimable_gib", "monthly_saving_usd"}
-    assert {s["kind"] for s in plan["files"]["workbook.json"]["sheets"]} == {"cover", "inputs", "options_model", "series", "checks"}
+    assert {"cover", "inputs", "options_model", "series", "checks"} <= {s["kind"] for s in plan["files"]["workbook.json"]["sheets"]} <= {"cover", "inputs", "options_model", "series", "checks", "glossary", "table"}
 
 
 def test_receipts_bind_platform_refs_and_block_unresolvable(report):

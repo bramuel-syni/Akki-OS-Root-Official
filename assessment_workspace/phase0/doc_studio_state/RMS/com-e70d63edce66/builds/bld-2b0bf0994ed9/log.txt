@@ -1,0 +1,41 @@
+[build] resolved ['deck', 'paper', 'workbook']; look slate/cambria-calibri
+{
+  "blockers": [],
+  "review": [
+    "slide 4: is the title a full-sentence assertion? \"Most measured tables had a complete pass, but sampling, failures and unreached tables remain\"",
+    "slide 6: is the title a full-sentence assertion? \"The run read 5.9m rows and 351.3 GiB; 44 tables failed and need a re-run\"",
+    "slide 8: is the title a full-sentence assertion? \"Table counts by connection show one connection with nothing reached and two only partly read\"",
+    "Read only the titles in order: do they tell the whole story?",
+    "Does each exhibit prove its title, or merely decorate it?",
+    "Does the paper read as an argument when read unattended, without the deck?",
+    "Are the yellow key assumptions the ones the board would want to change?"
+  ],
+  "status": "PASS"
+}
+[build] recalc: success
+[build] frozen: commission-close-eij-1b359b3cbd2e-review.html=78a993b0106a, commission-close-eij-1b359b3cbd2e.docx=da1b7f4a617a, commission-close-eij-1b359b3cbd2e.pptx=12ab872f5ed5, commission-close-eij-1b359b3cbd2e.xlsx=3c6101bd003a
+{
+  "blockers": [],
+  "status": "PASS"
+}
+[build] resolved ['deck', 'paper', 'workbook']; look slate/cambria-calibri
+{
+  "blockers": [],
+  "review": [
+    "slide 4: is the title a full-sentence assertion? \"Most measured tables had a complete pass, but sampling, failures and unreached tables remain\"",
+    "slide 6: is the title a full-sentence assertion? \"The run read 5.9m rows and 351.3 GiB; 44 tables failed and need a re-run\"",
+    "slide 8: is the title a full-sentence assertion? \"Table counts by connection show one connection with nothing reached and two only partly read\"",
+    "Read only the titles in order: do they tell the whole story?",
+    "Does each exhibit prove its title, or merely decorate it?",
+    "Does the paper read as an argument when read unattended, without the deck?",
+    "Are the yellow key assumptions the ones the board would want to change?"
+  ],
+  "status": "PASS"
+}
+[build] recalc: success
+[build] frozen: commission-close-eij-1b359b3cbd2e-review.html=78a993b0106a, commission-close-eij-1b359b3cbd2e.docx=da1b7f4a617a, commission-close-eij-1b359b3cbd2e.pptx=12ab872f5ed5, commission-close-eij-1b359b3cbd2e.xlsx=3c6101bd003a
+{
+  "blockers": [],
+  "status": "PASS"
+}
+[prove] byte-identical across two builds: 4 outputs

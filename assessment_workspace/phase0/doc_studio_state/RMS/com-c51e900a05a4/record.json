@@ -520,6 +520,21 @@
       },
       "error": null,
       "exports": {
+        "pdf": {
+          "at": "2026-10-02T11:42:19Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "check": {
+            "checked": true,
+            "missing": [],
+            "pages": 1,
+            "survives": true
+          },
+          "exported": true,
+          "name": "review.pdf",
+          "note": "browser PDF carries producer metadata; determinism is proven on the pptx/docx/xlsx/html bytes",
+          "sha256": "4dfa2428696b272ed8da18459e166f85f632cd4c960cf9d70ae51afb32c3cdbd",
+          "size": 2765622
+        },
         "thumbnails": {
           "at": "2026-10-02T11:09:41Z",
           "by": "6ab56dd48894abb269135ca2",
@@ -1140,7 +1155,7 @@
   ],
   "tenant_id": "RMS",
   "title": "RMS estate: what is held, what it costs, what to do first",
-  "updated_at": "2026-10-02T11:09:41Z",
+  "updated_at": "2026-10-02T11:42:19Z",
   "verdict_id": "V-2026-10-02-eij-1b359b3cbd2e",
   "versions": [
     {

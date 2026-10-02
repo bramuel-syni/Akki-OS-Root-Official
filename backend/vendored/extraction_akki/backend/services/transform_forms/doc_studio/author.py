@@ -356,8 +356,17 @@ async def review(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str
     prompt = {'brief': {k: brief.get(k) for k in ('purpose', 'audience', 'constraints')}, 'evidence': evidence(content), 'plan': plan_['story'], 'draft': draft,
               'acceptance': ['every figure is a token that exists in evidence and is used for the quantity its label names', 'each chapter answers its question with its own evidence',
                              'actions follow from the evidence and honour owner_declarations', 'risks name what the evidence cannot establish, from coverage.cannot_say', 'no invented price, right or cause']}
-    response = await invoke(purpose='doc_studio.review', prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor, model=reviewer['model'],
-                            provider=reviewer['connection'], tenant_id=tenant, custody_class='tenant_estate', system_message=REVIEW_SYSTEM, session_id=session + ':review')
+    attempts = 0
+    while True:
+        attempts += 1
+        try:
+            response = await invoke(purpose='doc_studio.review', prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor, model=reviewer['model'],
+                                    provider=reviewer['connection'], tenant_id=tenant, custody_class='tenant_estate', system_message=REVIEW_SYSTEM, session_id=f'{session}:review:{attempts}')
+            break
+        except Exception as exc:
+            # The provider's own content filter on the reviewer family returns no text, and it is not deterministic: one retry, then the gap is disclosed.
+            if attempts < 2 and 'upstream_empty_response' in str(exc): continue
+            raise
     raw = response.text.strip()
     if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
     start, end = raw.find('{'), raw.rfind('}')
@@ -367,6 +376,11 @@ async def review(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str
     return {'model': response.model_id, 'provider': response.provider, 'receipt_id': response.receipt_id, 'tokens_in': response.tokens_in, 'tokens_out': response.tokens_out, 'latency_ms': response.latency_ms,
             'verdict': verdict.get('verdict'), 'summary': verdict.get('summary'), 'findings': findings[:8],
             'blocking': [f"{f.get('path', 'draft')}: {f.get('issue', '')} — {f.get('fix', '')}" for f in findings if f.get('severity') == 'blocking'][:8]}
+
+
+def reviewer_model():
+    from services.chokepoint.model_roles import resolve
+    return resolve('reviewer')['model']
 
 
 async def compose(files: Dict[str, Any], tenant: str, actor: str, session: str) -> Tuple[Dict[str, Any] | None, Dict[str, Any], List[str]]:
@@ -400,7 +414,10 @@ async def compose(files: Dict[str, Any], tenant: str, actor: str, session: str) 
             else:
                 reviewed['resolution'] = 'accepted without blocking findings'
         except Exception as exc:
-            reviewed = {'verdict': 'unavailable', 'error': type(exc).__name__, 'resolution': 'independent review unavailable; the gated draft stands and the gap is disclosed'}
+            refused = 'upstream_empty_response' in str(exc)
+            reviewed = {'verdict': 'refused_by_provider' if refused else 'unavailable', 'model': reviewer_model(), 'error': type(exc).__name__, 'reason': str(exc)[:200],
+                        'resolution': ('the reviewer family\'s provider returned no text for this prompt twice (its own content filter); the gated draft stands and the gap is disclosed'
+                                       if refused else 'independent review unavailable; the gated draft stands and the gap is disclosed')}
     meta['gate'] = {'passed': not issues, 'issues': issues, 'repairs': meta.get('repairs', repairs), 'plan_slots': len(plan_['slots'])}
     meta['review'] = reviewed
     meta['planner'] = planner

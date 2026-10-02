@@ -124,6 +124,7 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
     _locations(report, tables, receipts)
     language_chapters = _language(tenant_id, receipts, facts, series, calculations, claims, tables, cannot_say)
     _decisions(report, facts, tables, receipts)
+    _authoring_roles(tables, receipts)
     story = _story(facts, series, options, claims, tables, language_chapters)
     return {"content_id": f"estate-intelligence-{job}-estatewide", "version": 1, "title": f"Estate-wide intelligence — {job}", "organisation": tenant_id,
             "census_ref": job, "measured_on": (report.get("measured_at") or "")[:10] or "unmeasured",
@@ -132,6 +133,21 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
             "owner_declarations": OWNER_DECLARATIONS,
             "coverage": {"covers": f"The admitted estate as measured by census {job}: {h['databases']} databases, {h['tables']:,} tables ({h['bytes_label']}), the object store, the file shares, "
                                    f"the staged language corpus read by both GPUs and the written-word databases read as aggregates. No row value, script or transcript text is in this pack.", "cannot_say": cannot_say}}
+
+
+def _authoring_roles(tables, receipts) -> None:
+    """Who wrote this pack (owner order 2026-10-02): every LLM-shaped role, its assigned model family, job and measured strength, with the evaluation disclosure."""
+    from services.chokepoint.model_roles import assignments
+    try:
+        table = assignments()
+    except KeyError:  # a role without configuration is disclosed as such, never guessed
+        return
+    receipts["R09"] = {"resolves_to": f"Model role assignments evaluated {table['evaluation']['date']}: {table['evaluation']['basis']}. Not claimed: {table['evaluation']['not_claimed']}", }
+    tables["T036"] = {"label": "Who wrote this pack — model roles by task strength", "class": "measured", "receipt": "R09", "right_align_from": 99,
+                      "note": "Planner and reviewer come from different model families so the review does not share the planner's blind spots; every call crosses the Shield chokepoint. Arithmetic, evidence binding and the build stay deterministic.",
+                      "columns": ["Role", "Model", "Family", "Job", "Measured strength"],
+                      "deck_columns": ["Role", "Model", "Family", "Job"],
+                      "rows": [[r["role"], r["model"], r["sdk_provider"], r["job"], r["strength"]] for r in table["roles"]]}
 
 
 def _language(tenant_id, receipts, facts, series, calculations, claims, tables, cannot_say):
@@ -313,7 +329,7 @@ def _story(facts, series, options, claims, tables=None, language_chapters=None):
         {"question": "What exactly is the executive asked to decide, and what does each decision rest on?",
          "answers_with": [t for t in ("F036", "F034", "F033", "F019", "F021", "F060", "F080") if t in facts], "tables": [t for t in ("T013",) if t in tables]},
         {"question": "What is still unmeasured across the estate, and what would it take to measure it?",
-         "answers_with": [t for t in ("F003", "F002", "F033", "F040", "F041", "F075") if t in facts]},
+         "answers_with": [t for t in ("F003", "F002", "F033", "F040", "F041", "F075") if t in facts], "tables": [t for t in ("T036",) if t in tables]},
     ]
     return [c for c in chapters if c["answers_with"]]
 
@@ -407,7 +423,7 @@ def build_workbook(content: Dict[str, Any], brief: Dict[str, Any], verdict: Dict
 
 WORKBOOK_SHEETS = [("T013", "Decisions"), ("T010", "Buckets under review"), ("T015", "Unreadable buckets"), ("T011", "Tables under review"), ("T012", "File shares"),
                    ("T020", "Audio by language"), ("T024", "Audio quality"), ("T021", "Transcripts by language"), ("T022", "News scripts by station"), ("T023", "Transcription workbench"),
-                   ("T030", "Audio file evidence"), ("T031", "Transcript evidence"), ("T032", "News by station and date"), ("T033", "News hour slots"), ("T034", "Model provenance"), ("T035", "Compute")]
+                   ("T030", "Audio file evidence"), ("T031", "Transcript evidence"), ("T032", "News by station and date"), ("T033", "News hour slots"), ("T034", "Model provenance"), ("T035", "Compute"), ("T036", "Authoring roles")]
 
 
 def commission_from_report(report: Dict[str, Any], tenant_id: str, principal_id: str, now: datetime) -> Dict[str, Any]:

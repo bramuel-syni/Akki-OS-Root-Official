@@ -1,0 +1,44 @@
+{
+  "summary": "Iteration 80 — verified owner order 2026-10-02 five deliverables end-to-end. Backend: 16/16 pytest pass (login, board admission for reinforcement-lwg-v3 In service with 75% floor, prior v1+v2 Refused, commission com-c51e900a05a4 frontier pipeline planner gpt-6-astra / writer claude-sonnet-5-5 / reviewer claude-fable-5-1 verdict accept, last build released byte_identical qa.status PASS, docx/pptx/xlsx download bytes + SHA-256 match the manifest, docx has Plain-English glossary + Reclaimable/Wanga tables, pptx has exactly 53 slides, xlsx has all five required sheets with 3,963 rows and non-empty 'Path in staged corpus' column B, three unauthenticated static downloads /downloads/RMS_Estate_and_Language_Review.{docx,pptx,xlsx} serve identical bytes/hashes, estate-language audio.status completed with 2 devices / 3958 read / ~1.034 gpu_hours and text_estate completed and text running — informational per brief, ONE live job-memory POST returned gpt-6-astra message mentioning v2 and abstain/stop with recorded LRs). Frontend desktop 1920x800 + mobile 390x844: /os/build/train?run=reinforcement-lwg-v3 shows exactly one each of train-tab-chat/overview/report; default is Chat with train-composer and train-thread visible and aria-selected=true; Overview shows OBJECTIVE / SIGNED PLAN / ADMISSION rows with composer hidden; Learning Report lead begins 'Admitted against the acceptance' with train-generate-paper present; returning to Chat restores composer and thread; aria-selected toggles correctly; mobile has zero horizontal overflow (0 offenders > innerWidth+1). Documents UI (/os/work/documents?commission=com-c51e900a05a4): studio-document-title='RMS estate: what is held, what it costs, what to do first', studio-build-summary='Version 3 · 2 Oct 2026, 11:09 UTC · Ready to download', studio-check-status HTML contains 'Validation: PASS · Quality: PASS' (via dev wrapper spans), and clicking studio-download-docx/pptx/xlsx produced Playwright downloads with filenames ending in the correct extensions and exact sizes 373792/189208/758818. Regression: /os/build/train?run=music-identification still shows In service with all three tabs; /os/admin/estate/intelligence loads with estate-commission-pack present (not clicked). Guardrails observed: zero POSTs to estate-language/text-estate/runs/board/new/board/{run}/actions/studio producers; exactly one message POST (job memory). No GPU work or frontier authoring run dispatched.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verified_items": [
+    "POST /api/auth/login returns access_token (not token).",
+    "GET /api/training/lab/board: reinforcement-lwg-v3 status='In service', meta mentions 'in service for Luhya (Wanga)' and 75% floor for lwg; reinforcement-lwg + reinforcement-lwg-v2 remain 'Refused'.",
+    "GET /api/studio/commissions lists com-c51e900a05a4 with release.state='clear' and current_content_version=3.",
+    "GET /api/studio/commissions/com-c51e900a05a4: authoring.pipeline='frontier', planner.model='gpt-6-astra', model='claude-sonnet-5-5', review.model='claude-fable-5-1', review.verdict='accept'; builds[-1].status='released', prove.byte_identical=true, qa.status='PASS', outputs include docx/pptx/xlsx/html.",
+    "Authenticated artifact downloads: SHA-256 and byte-length match manifest (docx 373792, pptx 189208, xlsx 758818).",
+    "DOCX opens with python-docx: 'Plain English: the terms used in this pack' heading present; tables contain 'Reclaimable' and 'Wanga'.",
+    "PPTX opens with python-pptx and has exactly 53 slides.",
+    "XLSX opens with openpyxl; sheets include 'Plain English', 'Decisions', 'Audio by language', 'News scripts by station', 'Audio file evidence'; audio sheet has 3963 rows with zero empty values in column B after the header.",
+    "Unauthenticated GET /downloads/RMS_Estate_and_Language_Review.{docx,pptx,xlsx} → 200 with sha256 matching API artifact bytes.",
+    "GET /api/training/lab/estate-language: audio.status='completed' (devices=2, read=3958, gpu_hours_total≈1.034), text_estate.status='completed', text.status in {running, completed} — informational.",
+    "POST /api/training/lab/board/reinforcement-lwg-v3/messages (ONE call): akki reply model='gpt-6-astra', status not 'unavailable', text mentions v2 and abstain/stop.",
+    "Frontend desktop + mobile: train-tab-chat/overview/report count=1 each; Chat default shows train-composer+train-thread; Overview shows OBJECTIVE/SIGNED PLAN/ADMISSION and hides composer; Report shows lead 'Admitted against the acceptance' with train-generate-paper button; aria-selected toggles correctly; mobile has 0 horizontal overflow offenders.",
+    "Documents UI: studio-document-title + studio-build-summary ('Ready to download') correct; studio-check-status renders 'Validation: PASS · Quality: PASS'; studio-download-docx/pptx/xlsx produce real downloads with correct extensions and exact byte sizes.",
+    "Regression: music-identification run still In service with three tabs; Estate Intelligence page loads with estate-commission-pack present."
+  ],
+  "test_report_links": [
+    "/app/backend/tests/test_iteration_80.py",
+    "/app/test_reports/pytest/iter80.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "studio-check-status p tag is rendered inside a scrollable column that may be below the 1080-px fold on narrower desktops — inner_text() returned '' until scrolled; inner_html is correct. Not a bug, but adding a wrapping container with a stable test id around the whole 'Checks' panel would make e2e assertions less viewport-dependent.",
+    "The dev-time wrapper spans (data-ve-dynamic, x-excluded, x-file-name=CommissionBuilds etc.) ship into the live preview DOM. They don't affect behaviour but inflate bytes and leak internal file paths; strip these in the production build."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_iteration_80.py"
+  ],
+  "success_rate": {"backend": "100% (16/16)", "frontend": "100% (desktop + mobile + documents UI + regression)"},
+  "test_credentials": "demo.operator@demo.rms.example.com / demo-operator-pw (RMS operator) — login verified 200 returning access_token.",
+  "seed_data_creation": "None. All backend calls were read-only except ONE allowed POST to /api/training/lab/board/reinforcement-lwg-v3/messages (job-memory probe).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend /api/studio/commissions returns a listing where each item has release.state and current_content_version at the top level. Commission detail may be wrapped in {commission:{...}} or returned flat; test unwraps both. Last-build outputs is a list that may be dicts (with 'name') or filename strings — test handles both. SHA-256 manifest values match both authenticated API artifact bytes and unauthenticated /downloads/ bytes; any future rebuild must preserve these hashes to satisfy prove.byte_identical. Frontend tabs: data-testids train-tab-{chat|overview|report}, composer/thread train-composer / train-thread, download buttons studio-download-{docx|pptx|xlsx}, check status studio-check-status. Guardrails: never POST estate-language / text-estate / /board/new / /board/{run}/actions / /studio/producers/* — they dispatch real GPU or 6-min frontier authoring. Only one /board/{run}/messages POST allowed per run.",
+  "rca of the issue": "No bugs found. All five owner-order deliverables are observable in the live preview environment: (1) lwg v3 admitted at 75% floor with v1/v2 refused on the board, (2) the two-GPU estate language evidence job completed with the expected numbers, (3) the frontier-authored DOCX/PPTX/XLSX report pack is downloadable both via /api/studio/commissions/.../artifact/... and via static /downloads/ with matching SHA-256 bytes, (4) the training assistant's durable job memory recalls v1/v2 learning-rate history and v2's abstain/stop outcome using gpt-6-astra, (5) the completed-run window exposes exactly three tabs (Chat/Overview/Learning Report) with correct default state, aria-selected toggles, composer visibility rules, and no mobile horizontal overflow. Documents UI download buttons wire to the same bytes with correct filenames and sizes."
+}

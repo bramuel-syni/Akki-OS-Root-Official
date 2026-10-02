@@ -1,0 +1,151 @@
+{
+  "brief_ref": "BR-2026-10-02-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T11:23:12Z",
+  "content_ref": "commission-close-eij-1b359b3cbd2e@1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "CC-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-10-02",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "{C901}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C909}",
+      "complication": "{C907}",
+      "kicker": "Decision for the owner",
+      "question": "{C908}",
+      "situation": "{C906}",
+      "title": "{C905}",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "{C910}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C912}",
+        "y_format": "num"
+      },
+      "kicker": "Coverage by method",
+      "title": "{C911}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Measured scope",
+      "points": [
+        "{C917}",
+        "{C918}",
+        "{C919}",
+        "{C920}"
+      ],
+      "title": "{C916}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Volume and failures",
+      "points": [
+        "{C924}",
+        "{C925}",
+        "{C926}",
+        "{C927}"
+      ],
+      "title": "{C923}",
+      "type": "assertion_points"
+    },
+    {
+      "number": 2,
+      "title": "{C930}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C932}",
+        "y_format": "num"
+      },
+      "kicker": "Tables by connection",
+      "title": "{C931}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C937}",
+        "y_format": "num"
+      },
+      "kicker": "Data and index volume",
+      "title": "{C936}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Connection status",
+      "points": [
+        "{C942}",
+        "{C943}",
+        "{C944}",
+        "{C945}",
+        "{C946}"
+      ],
+      "title": "{C941}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Evidence trail and usage",
+      "points": [
+        "{C950}",
+        "{C951}",
+        "{C952}",
+        "{C953}"
+      ],
+      "title": "{C949}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "What to do, in order",
+      "points": [
+        "{C957}",
+        "{C958}",
+        "{C959}",
+        "{C960}",
+        "{C961}"
+      ],
+      "title": "{C956}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "What cannot yet be said",
+      "points": [
+        "{C965}",
+        "{C966}",
+        "{C967}",
+        "{C968}",
+        "{C969}"
+      ],
+      "title": "{C964}",
+      "type": "assertion_points"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-close-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-10-02-close-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

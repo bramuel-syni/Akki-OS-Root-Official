@@ -4,7 +4,7 @@ Routes /api/studio/* — the existing /api/decks/* engine stays read-only for it
 import json
 import re
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Response
+from fastapi import APIRouter, BackgroundTasks, Body, Depends, HTTPException, Response
 from pydantic import BaseModel, ConfigDict
 
 from services.enforce.census_identity import census_identity
@@ -59,8 +59,9 @@ def get_commission(commission_id: str, actor=Depends(census_identity)):
 
 
 @router.post("/producers/{producer}/{job_id}", status_code=201, response_model=Envelope)
-async def commission_from_producer(producer: str, job_id: str, body: dict = Body(default={}), actor=Depends(census_identity)):
-    """Planner → worker → content manager → frontier writer, then the deterministic prove-build. A gated-out draft returns a blocked commission."""
+async def commission_from_producer(producer: str, job_id: str, background: BackgroundTasks, body: dict = Body(default={}), actor=Depends(census_identity)):
+    """Planner → worker → content manager → frontier writer → independent reviewer, then the deterministic prove-build — run in the background;
+    the response carries the commission in state `authoring` (or the standing clear version when nothing new has arrived)."""
     _operator(actor)
     if producer not in service.PRODUCERS:
         raise HTTPException(404, "No producer with that name is installed.")
@@ -68,7 +69,7 @@ async def commission_from_producer(producer: str, job_id: str, body: dict = Body
     if actor["tenant_id"] != "RMS" or not re.fullmatch(pattern, job_id):
         raise HTTPException(404, "No source record with that reference is available in your tenant.")
     try:
-        record, created = await service.create_authored(producer, job_id, actor["tenant_id"], actor["principal_id"])
+        record, created = service.start_authored(producer, job_id, actor["tenant_id"], actor["principal_id"], background.add_task, force=bool(body.get("force")))
     except LookupError as exc:
         raise HTTPException(404, str(exc)) from None
     except ValueError as exc:

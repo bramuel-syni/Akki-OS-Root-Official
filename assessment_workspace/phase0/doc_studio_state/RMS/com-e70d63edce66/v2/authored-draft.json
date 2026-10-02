@@ -1,0 +1,219 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "What to do first, and why",
+          "paragraphs": [
+            "First, accept the census as a partial record, resting on {F002} of {F001} tables, and keep the commission open. Second, grant access to artists_app so it can be re-censused; this is the only blocker that depends on you.",
+            "Third, have the errors behind the {F006} failed tables addressed and re-run them with the partial connections. Fourth, order complete passes where sampled ratios matter, covering {F004} stratified and {F005} head-sampled tables. Finally, ask for the unreconciled counts, the series label and the missing references to be clarified before any percentage is quoted."
+          ]
+        },
+        "exhibit_S001": {
+          "heading": "Coverage by connection",
+          "paragraphs": [
+            "Coverage is uneven. {F010} connections are complete, {F011} are partial and {F012} is blocked, and the blocked connection, artists_app, contributes no tables.",
+            "The series is labelled as tables measured but sums to the tables in scope rather than to {F002}. Its label needs clarifying, and its total should not be used as a validated measured-table count."
+          ]
+        },
+        "exhibit_S002": {
+          "heading": "How the tables were measured",
+          "paragraphs": [
+            "The exhibit splits tables by method: complete pass, stratified sample, head sample, failed and not reached. Complete passes are the largest group, so most of the measured evidence is firm. The remainder is either estimated from part of a table or absent.",
+            "The categories in the exhibit do not reconcile with the tables in scope, and the method counts {F003}, {F004} and {F005} do not reconcile exactly with {F002}. We have kept the values as supplied and drawn no coverage percentage from them."
+          ]
+        },
+        "exhibit_S003": {
+          "heading": "Where the measured data sits",
+          "paragraphs": [
+            "Measured data and index volume is heavily concentrated in iebc_forms; the other connections together hold a small remainder. The aggregate of {F013} GiB gives the context.",
+            "The zero shown for artists_app is a consequence of denied access, not evidence that it holds no data. Footprint should be read as what was measured, not as the size of the estate."
+          ]
+        },
+        "findings_R01_1": {
+          "heading": "Coverage of the tables in scope",
+          "paragraphs": [
+            "{F002} of {F001} tables were measured. {F003} had a complete pass, {F004} were stratified samples and {F005} were head samples. A complete pass gives whole-table figures; a sample gives ratios drawn from part of the table.",
+            "Measured therefore does not mean exhaustively read. For anything that depends on exact ratios, treat the sampled tables as indicative until a complete pass is run. Percentage shares of coverage are not quoted here because the totals behind them need validating."
+          ]
+        },
+        "findings_R01_2": {
+          "heading": "What failed, and what was read",
+          "paragraphs": [
+            "{F006} tables failed because the worker could not measure them in this run. The recorded errors are the route to closing them. The work that was done is documented: {F007} rows read and {F013} GiB of data and index measured.",
+            "{F016} rows held is an estimate of what the estate contains and must not be added to the measured rows. The {F008} minutes of wall clock describes this run only. It is not a guarantee of future speed and not a charge."
+          ]
+        },
+        "findings_R02_1": {
+          "heading": "Connection status and database reach",
+          "paragraphs": [
+            "{F010} of {F009} connections completed, {F011} are partial and {F012} is blocked, with {F014} databases measured. artists_app was refused access by the database; the grant is pending and sits with the owner. citizen_digital and citizen-pulse reached tables but had failures.",
+            "Accepting this delivery as complete would accept all of that unresolved coverage. Reading artists_app alone would not repair the partial connections or the failed tables, so the re-census needs to cover all three."
+          ]
+        },
+        "findings_other": {
+          "heading": "Traceability, usage and separate enumeration",
+          "paragraphs": [
+            "The ledger holds {F015} rows for the run, recording admit, gate and converge. The lawful basis admit limits the scope to census only. The report states that it holds aggregates, sketches and hashes, and we attribute that statement to the report rather than treating it as independently verified.",
+            "The executive dossier used {F017} tokens in and {F018} tokens out. Object-storage enumeration is a separate run with its own receipt: it reached {F019} buckets and {F020} were unreachable. Ledger success and receipt integrity do not show that every table was fully read."
+          ]
+        },
+        "risks": {
+          "heading": "What cannot yet be said",
+          "paragraphs": [
+            "Any downstream decision is bounded by {F002} against {F001}. Failed and unreached tables tell us nothing either way, and ratios on sampled tables are not whole-table measurements. A complete-pass census on those tables would close this gap.",
+            "Languages, rights and semantic similarity were not measured. Closing them needs rights declared at source and a language and similarity pass. Digest verification and a successful ledger confirm the integrity of what was delivered; they do not remove any of these limits."
+          ]
+        }
+      },
+      "summary": [
+        "The census measured {F002} of {F001} tables in scope, reading {F007} rows in {F008} minutes. Of those, {F003} had a complete pass and the others were measured by sample. {F006} tables failed. The result receipt is digest-verified and the ledger records admit, gate and converge.",
+        "The delivery is partial. Only {F010} of {F009} connections completed, {F011} are partial and {F012} is blocked: artists_app was refused access, and the grant is an owner dependency. We recommend accepting the census as a documented partial record while keeping the commission open until artists_app is read and the failed tables are re-run. Several counts in the report do not reconcile with one another; they are disclosed here rather than repaired."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "Actions",
+        "points": [
+          "Accept the census as a partial record resting on {F002} of {F001} tables; do not close the commission as complete.",
+          "Grant artists_app access and instruct a re-census; only you can clear this blocker.",
+          "Have the errors behind the {F006} failed tables addressed, then re-census them with the partial connections.",
+          "Order complete passes where sampled ratios matter: {F004} stratified and {F005} head-sampled tables.",
+          "Have the unreconciled counts and series label clarified before any percentage is quoted."
+        ],
+        "title": "Accept the partial record, keep the commission open, and close the access gap first"
+      },
+      "exec": {
+        "answer": "Accept the delivery as a documented partial census, not as full coverage. Keep the commission open: grant access to artists_app, then re-census it together with the failed tables.",
+        "complication": "Only {F010} of {F009} connections completed; {F011} are partial and {F012} is blocked. {F006} tables failed. artists_app returned no tables because access was denied, and the grant depends on the owner.",
+        "kicker": "Decision",
+        "question": "Should the commission close on this delivery, or stay open until the blocked and partial connections are read?",
+        "situation": "The census measured {F002} of {F001} tables in scope, reading {F007} rows in {F008} minutes on the runtime. The result receipt is digest-verified and the ledger records a clean run.",
+        "title": "Accept the census as a partial record, but hold the commission open for artists_app"
+      },
+      "exhibit_S001": {
+        "kicker": "Connections",
+        "so_what": "The series sums to the tables in scope, not to the tables measured, so its measured label needs clarifying; the blocked connection shows no tables.",
+        "title": "Coverage is uneven: {F012} blocked, {F011} partial and {F010} complete connections"
+      },
+      "exhibit_S002": {
+        "kicker": "Method",
+        "so_what": "The method counts show how firm each part of the evidence is; they do not reconcile to the headline totals, so no coverage percentage should be taken from them.",
+        "title": "Complete passes carry most of the evidence; samples, failures and unreached tables remain"
+      },
+      "exhibit_S003": {
+        "kicker": "Footprint",
+        "so_what": "The zero shown for artists_app reflects denied access, not an empty database; measured footprint is not the same as measurement completeness.",
+        "title": "Measured data and index volume is concentrated in iebc_forms"
+      },
+      "findings_R01_1": {
+        "kicker": "Coverage",
+        "points": [
+          "{F002} of the {F001} tables in scope were measured; the rest failed or were not reached.",
+          "{F003} tables had a complete pass, so their figures are the firmest evidence in the census.",
+          "{F004} tables were measured by stratified sample and {F005} by head sample, so their ratios come from part of each table.",
+          "The method counts {F003}, {F004} and {F005} do not reconcile exactly to {F002}. Measured does not mean exhaustively read."
+        ],
+        "title": "{F002} of {F001} tables were measured, {F003} of them by complete pass"
+      },
+      "findings_R01_2": {
+        "kicker": "Boundary",
+        "points": [
+          "{F006} tables failed because the worker could not measure them in this run; they stay unmeasured until the recorded errors are addressed.",
+          "{F007} rows were read and {F013} GiB of data and index were measured. That is the documented work performed.",
+          "{F016} rows held is an estimate and must be kept apart from the measured {F007} rows.",
+          "{F008} minutes of wall clock is runtime context only, not a throughput guarantee or a usage charge."
+        ],
+        "title": "Documented work is real, but {F006} failed tables keep the picture partial"
+      },
+      "findings_R02_1": {
+        "kicker": "Status",
+        "points": [
+          "{F010} of {F009} connections are complete, {F011} are partial and {F012} is blocked; {F014} databases were measured.",
+          "artists_app was refused access by the database. The grant is pending, it is an owner dependency, and no tables were reached.",
+          "citizen_digital and citizen-pulse are partial: tables were reached on both, but some failed, and these feed the failed-table count of {F006}.",
+          "Reading artists_app alone would not resolve the partial connections or the failed tables."
+        ],
+        "title": "Only {F010} of {F009} connections completed; acceptance carries unresolved coverage"
+      },
+      "findings_other": {
+        "kicker": "Traceability",
+        "points": [
+          "{F015} ledger rows record admit, gate and converge, ending in success. This shows the run was governed, not that every table was fully read.",
+          "The lawful basis admit limits scope to census only. The report attributes to this the retention of aggregates, sketches and hashes only.",
+          "The executive dossier used {F017} tokens in and {F018} tokens out; this is composition usage, separate from measurement.",
+          "Separate object-storage enumeration reached {F019} buckets, with {F020} unreachable. It has its own receipt and is not part of the database census."
+        ],
+        "title": "The run is traceable end to end, but receipts prove integrity, not coverage"
+      },
+      "risks": {
+        "kicker": "Limits",
+        "points": [
+          "{F002} of {F001} tables bounds what any decision can rest on; failed and unreached tables are silent, not clear.",
+          "Ratios on the {F004} stratified and {F005} head-sampled tables are not whole-table measurements; a complete-pass census would close this.",
+          "Languages, rights and semantic similarity were not measured; they need rights declared at source and a separate language and similarity pass.",
+          "Digest verification and a clean ledger confirm the integrity of what was delivered; they do not remove these limits."
+        ],
+        "title": "Downstream decisions are bounded by reach, sampling and what was never measured"
+      },
+      "section1": {
+        "title": "What the census delivered"
+      },
+      "section2": {
+        "title": "Connections, usage and traceability"
+      }
+    },
+    "subtitle": "Decision paper: accept the census as delivered, or hold for the blocked connection",
+    "title": "Estate census: partial delivery, commission open"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 12,
+      "repairs": 1
+    },
+    "latency_ms": 36683,
+    "model": "claude-sonnet-5-5",
+    "planner": {
+      "cautions": [
+        "Retain the supplied outline and exhibits unchanged; disclose inconsistencies rather than repairing values, relabelling series or inventing reconciliations.",
+        "The method counts in {F003}, {F004} and {F005} do not reconcile with {F002}, and the categories in {S002} do not reconcile with {F001}.",
+        "The connection series {S001} reconciles with the scope total rather than the headline measured total; its measured-table label therefore requires clarification.",
+        "Outline references {F004}, {F008} and {F015} are absent from the evidence model. Identify them as unresolved; do not silently substitute available facts.",
+        "Several calculation formulas and producer claims reference absent aliases, including {F001}, {K001} and {K004}; do not publish dependent percentages until the references and underlying totals are validated.",
+        "Producer claims are context, not additional measured evidence. Attribute statements about retained data, processing architecture and lawful scope to their supporting report or receipt rather than treating them as independently verified facts.",
+        "Keep measured rows {F007}, estimated rows held {F016}, database footprint {F013}, dossier tokens {F017} and {F018}, and separate storage enumeration distinct.",
+        "Do not interpret successful ledger termination, digest verification or a complete connection status as proof that every table received a complete pass."
+      ],
+      "chapter_notes": {
+        "actions": "Lead with the owner's choice: accept the documented partial census with explicit residual limitations, or hold for access remediation and further measurement, using {F001}, {F002}, {F003}, {F004}, {F005} and {F006} to anchor that distinction. Specify owner-granted access and re-census for artists_app, error remediation and re-census for failed tables, complete passes where sampled ratios matter, and clarification of evidence inconsistencies; do not imply that acceptance criteria or closure approval have already been established.",
+        "exhibit_S001": "Lead with the uneven connection coverage shown in {S001}, making the blocked connection visible alongside partial and complete statuses. Warn that the series labelled as measured tables does not reconcile with {F002}; preserve its values without treating its total as a validated measured-table count.",
+        "exhibit_S002": "Lead with the measurement-method breakdown in {S002}, distinguishing complete passes, samples, failures and tables not reached so the executive sees why delivery is partial. Preserve the exhibit but flag that its categories do not reconcile with the headline measured and scope totals; do not derive coverage percentages from it.",
+        "exhibit_S003": "Lead with the concentration of measured data and index volume in {S003}, with {F013} providing the aggregate context. The executive should distinguish measured footprint from measurement completeness: a blocked connection's displayed zero is not evidence that it holds no data.",
+        "findings_R01_1": "Lead with delivered table coverage using {F002} against {F001}, then distinguish complete-pass evidence {F003} from head sampling {F005} and the available stratified-sampling fact {F004}. Explain that measured does not mean exhaustively read, flag the unresolved outline token, and do not present the method counts as a reconciled total.",
+        "findings_R01_2": "Lead with the boundary between measured work and remaining failures using {F006}, {F007} and {F013}, keeping estimated rows held {F016} explicitly separate from measured rows. Use {F008} for runtime context while flagging the unresolved outline token; the takeaway is documented work performed, not complete coverage, throughput guarantees or a monetary usage charge.",
+        "findings_R02_1": "Lead with connection status using {F009}, {F010}, {F011} and {F012}, then anchor database reach with {F014}. Make clear that accepting this delivery would accept unresolved coverage, and that reading the blocked connection alone would not resolve the partial connections or failed tables.",
+        "findings_other": "Lead with traceable delivery and usage, citing {R01}, {R03} and {R04}, then distinguish dossier composition usage {F017} and {F018} from object-storage enumeration {F019} and {F020}. Flag the unresolved outline token, keep the separate enumeration receipt {R06} distinct from the database census, and do not equate ledger success or receipt integrity with complete coverage.",
+        "risks": "Lead with the limits on downstream decisions: {F002} against {F001} bounds reach, while {F003} and {F004} distinguish complete-pass from sampled evidence. State that sampled ratios are not whole-table measurements and that languages, rights and semantic similarity remain unmeasured; receipt verification does not remove these limitations."
+      },
+      "latency_ms": 23592,
+      "model": "gpt-6-astra",
+      "provider": "emergent",
+      "receipt_id": "rcp-0b3cec6b17e1",
+      "title_direction": "Frame the commission-close decision as acceptance of a documented partial delivery versus holding for additional measurement, without implying that successful execution means complete estate coverage.",
+      "tokens_in": 3094,
+      "tokens_out": 1065
+    },
+    "provider": "emergent",
+    "receipt_id": "rcp-75e8ac823791",
+    "repairs": 1,
+    "review": {
+      "error": "LLMShieldFailure",
+      "resolution": "independent review unavailable; the gated draft stands and the gap is disclosed",
+      "verdict": "unavailable"
+    },
+    "tokens_in": 15221,
+    "tokens_out": 5161
+  }
+}

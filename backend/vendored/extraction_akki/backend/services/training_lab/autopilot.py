@@ -177,12 +177,38 @@ async def evaluate_finished(tenant=TENANT):
             conversation.record(tenant, run_id, conversation.note(tenant, f"The findings paper could not be commissioned yet ({type(exc).__name__}); the run record itself is complete.", origin='autopilot'))
 
 
+async def refresh_estate_pack(tenant=TENANT):
+    """When an estate language / text-estate reading completes after the current estate pack was authored, re-author the pack through the
+    frontier pipeline and republish the static downloads. One authoring at a time; a 30-minute lease stops overlapping ticks."""
+    from services.census_autonomy import estate_intelligence_report as eir
+    from services.transform_forms.doc_studio import publish, service as studio, store as doc_store
+    report = eir.latest_report(cached_only=True)
+    if not report: return
+    latest = next(iter(sorted((c for c in studio.list_commissions(tenant) if c.get('producer') == 'estate_intelligence'), key=lambda c: c.get('created_at') or '', reverse=True)), None)
+    if not latest: return
+    record = doc_store.load_record(tenant, latest['commission_id'])
+    if not record or latest.get('release', {}).get('state') != 'clear' or not studio._evidence_newer_than(tenant, record): return
+    lease = lab.db().training_lab_locks.find_one({'key': 'estate-pack-reauthor'})
+    if lease and _age(lease.get('at')) < 1800: return
+    lab.db().training_lab_locks.update_one({'key': 'estate-pack-reauthor'}, {'$set': {'at': lab.now(), 'commission_id': record['commission_id']}}, upsert=True)
+    try:
+        record, _ = await studio.create_authored('estate-intelligence', report['job_id'], tenant, 'akki-autopilot')
+        if record.get('release', {}).get('state') == 'clear':
+            publish.publish(tenant, record)
+            log.info('estate pack re-authored and republished: %s v%s', record['commission_id'], record['current_content_version'])
+    except Exception:
+        log.exception('estate pack re-authoring failed')
+    finally:
+        lab.db().training_lab_locks.delete_one({'key': 'estate-pack-reauthor'})
+
+
 async def tick(tenant=TENANT):
     await asyncio.to_thread(refresh_running)
     try: await asyncio.to_thread(advance_music, tenant)
     except Exception: log.exception('advance_music failed')
     await evaluate_finished(tenant)
     await asyncio.to_thread(dispatch_signed, tenant)
+    await refresh_estate_pack(tenant)
 
 
 def kick(background):

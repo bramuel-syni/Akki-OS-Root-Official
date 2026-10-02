@@ -2,6 +2,7 @@
 downloads with correct media types, PDF export, and refusal paths for bad revisions (mutating semantics are proven offline). Uses the existing RMS operator/analyst identities from
 memory/test_credentials.md; creates no accounts. Builds are real (skill subprocess), so this suite stays small."""
 import os
+import time
 
 import pytest
 import requests
@@ -122,10 +123,15 @@ def test_released_deck_pages_are_served_as_thumbnails(operator, analyst, state):
 
 
 def test_commission_close_producer_ships_deck_paper_workbook_and_pages(operator):
-    """The accepted census result becomes a decide pack (close or hold the commission); idempotent per day; xlsx via the v1.2 declared option rows."""
+    """The accepted census result becomes a decide pack (close or hold the commission); idempotent per day; xlsx via the v1.2 declared option rows.
+    The route answers at once in state `authoring` and the frontier pipeline finishes in the background, so the test polls the commission."""
     r = requests.post(f"{BASE_URL}/api/studio/producers/commission-close/{JOB}", headers=operator, json={}, timeout=T)
     assert r.status_code == 201, r.text
     c = r.json()["commission"]
+    deadline = time.time() + 600
+    while c["release"]["state"] == "authoring" and time.time() < deadline:
+        time.sleep(15)
+        c = requests.get(f"{BASE_URL}/api/studio/commissions/{c['commission_id']}", headers=operator, timeout=T).json()["commission"]
     assert c["producer"] == "commission_close" and c["source_ref"] == JOB and c["frame_ref"] == "FR-strategy-decide-v1"
     assert all(v["binding"] in ("platform", "declared") for v in c["receipts"].values()) and c["receipt_blockers"] == []
     released = [b for b in c["builds"] if b["status"] == "released"]

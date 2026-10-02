@@ -1,0 +1,149 @@
+{
+  "brief_ref": "BR-2026-10-02-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T11:23:12Z",
+  "content_ref": "commission-close-eij-1b359b3cbd2e@2",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "CC-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-10-02",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "{C901}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C908}",
+      "complication": "{C906}",
+      "kicker": "Decision",
+      "question": "{C907}",
+      "situation": "{C905}",
+      "title": "{C904}",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "{C909}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C911}",
+        "y_format": "num"
+      },
+      "kicker": "Method",
+      "title": "{C910}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Coverage",
+      "points": [
+        "{C916}",
+        "{C917}",
+        "{C918}",
+        "{C919}"
+      ],
+      "title": "{C915}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Boundary",
+      "points": [
+        "{C923}",
+        "{C924}",
+        "{C925}",
+        "{C926}"
+      ],
+      "title": "{C922}",
+      "type": "assertion_points"
+    },
+    {
+      "number": 2,
+      "title": "{C929}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S001",
+        "so_what": "{C931}",
+        "y_format": "num"
+      },
+      "kicker": "Connections",
+      "title": "{C930}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C936}",
+        "y_format": "num"
+      },
+      "kicker": "Footprint",
+      "title": "{C935}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Status",
+      "points": [
+        "{C941}",
+        "{C942}",
+        "{C943}",
+        "{C944}"
+      ],
+      "title": "{C940}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Traceability",
+      "points": [
+        "{C948}",
+        "{C949}",
+        "{C950}",
+        "{C951}"
+      ],
+      "title": "{C947}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Actions",
+      "points": [
+        "{C955}",
+        "{C956}",
+        "{C957}",
+        "{C958}",
+        "{C959}"
+      ],
+      "title": "{C954}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Limits",
+      "points": [
+        "{C963}",
+        "{C964}",
+        "{C965}",
+        "{C966}"
+      ],
+      "title": "{C962}",
+      "type": "assertion_points"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-close-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-10-02-close-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

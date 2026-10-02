@@ -120,6 +120,41 @@ def _evidence_newer_than(tenant_id: str, record: Dict[str, Any]) -> bool:
     return any(str(s)[:19] > str(since)[:19] for s in stamps if s)
 
 
+def start_authored(producer: str, job_id: str, tenant_id: str, principal_id: str, schedule, force: bool = False) -> Tuple[Dict[str, Any], bool]:
+    """The request-time half of create_authored: answer at once with the commission in state `authoring` and run the six-minute frontier
+    pipeline through `schedule` (a background task runner). A clear frontier version with no newer evidence is returned as it stands."""
+    if producer not in PRODUCERS:
+        raise LookupError("No producer with that name is installed.")
+    plan = PRODUCERS[producer](job_id, tenant_id, principal_id, now())
+    existing = store.load_record(tenant_id, plan["commission_id"])
+    state = (existing or {}).get("release", {}).get("state")
+    if existing and not force and (existing.get("authoring") or {}).get("pipeline") == "frontier" and state == "clear" \
+            and not (producer == "estate-intelligence" and _evidence_newer_than(tenant_id, existing)):
+        return existing, False
+    if existing and state == "authoring" and (now() - datetime.fromisoformat(existing["updated_at"].replace("Z", "+00:00"))).total_seconds() < 900:
+        return existing, False
+    if not existing:
+        vdir = store.version_dir(tenant_id, plan["commission_id"], 1)
+        for name, doc in plan["files"].items():
+            store.write_json(vdir / name, doc)
+        existing = _record_from_plan(plan, tenant_id, principal_id)
+    existing["release"] = {"state": "authoring", "reason": "orchestrating planner → frontier writer → independent reviewer → prove-build in progress; refresh in a few minutes"}
+    existing["updated_at"] = stamp()
+    record = store.save_record(existing)
+
+    async def _run():
+        try:
+            await create_authored(producer, job_id, tenant_id, principal_id, force=True)
+        except Exception as exc:  # noqa: BLE001 — the commission must never stay in `authoring`
+            current = store.load_record(tenant_id, plan["commission_id"]) or record
+            current["release"] = {"state": "blocked", "reason": f"authoring did not complete: {type(exc).__name__}: {str(exc)[:160]}"}
+            current["updated_at"] = stamp()
+            store.save_record(current)
+
+    schedule(_run)
+    return record, True
+
+
 async def create_authored(producer: str, job_id: str, tenant_id: str, principal_id: str, force: bool = False) -> Tuple[Dict[str, Any], bool]:
     """Orchestrating planner → worker → content manager → frontier writer → independent reviewer, then the deterministic build. The producer assembles
     the evidence; the model writes every sentence; the gate decides whether a build may happen. A gated-out draft leaves the commission blocked, never

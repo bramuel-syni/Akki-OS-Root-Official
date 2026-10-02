@@ -1,0 +1,650 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 12,
+      "repairs": 1
+    },
+    "latency_ms": 36683,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "frontier",
+    "planner": {
+      "cautions": [
+        "Retain the supplied outline and exhibits unchanged; disclose inconsistencies rather than repairing values, relabelling series or inventing reconciliations.",
+        "The method counts in {F003}, {F004} and {F005} do not reconcile with {F002}, and the categories in {S002} do not reconcile with {F001}.",
+        "The connection series {S001} reconciles with the scope total rather than the headline measured total; its measured-table label therefore requires clarification.",
+        "Outline references {F004}, {F008} and {F015} are absent from the evidence model. Identify them as unresolved; do not silently substitute available facts.",
+        "Several calculation formulas and producer claims reference absent aliases, including {F001}, {K001} and {K004}; do not publish dependent percentages until the references and underlying totals are validated.",
+        "Producer claims are context, not additional measured evidence. Attribute statements about retained data, processing architecture and lawful scope to their supporting report or receipt rather than treating them as independently verified facts.",
+        "Keep measured rows {F007}, estimated rows held {F016}, database footprint {F013}, dossier tokens {F017} and {F018}, and separate storage enumeration distinct.",
+        "Do not interpret successful ledger termination, digest verification or a complete connection status as proof that every table received a complete pass."
+      ],
+      "chapter_notes": {
+        "actions": "Lead with the owner's choice: accept the documented partial census with explicit residual limitations, or hold for access remediation and further measurement, using {F001}, {F002}, {F003}, {F004}, {F005} and {F006} to anchor that distinction. Specify owner-granted access and re-census for artists_app, error remediation and re-census for failed tables, complete passes where sampled ratios matter, and clarification of evidence inconsistencies; do not imply that acceptance criteria or closure approval have already been established.",
+        "exhibit_S001": "Lead with the uneven connection coverage shown in {S001}, making the blocked connection visible alongside partial and complete statuses. Warn that the series labelled as measured tables does not reconcile with {F002}; preserve its values without treating its total as a validated measured-table count.",
+        "exhibit_S002": "Lead with the measurement-method breakdown in {S002}, distinguishing complete passes, samples, failures and tables not reached so the executive sees why delivery is partial. Preserve the exhibit but flag that its categories do not reconcile with the headline measured and scope totals; do not derive coverage percentages from it.",
+        "exhibit_S003": "Lead with the concentration of measured data and index volume in {S003}, with {F013} providing the aggregate context. The executive should distinguish measured footprint from measurement completeness: a blocked connection's displayed zero is not evidence that it holds no data.",
+        "findings_R01_1": "Lead with delivered table coverage using {F002} against {F001}, then distinguish complete-pass evidence {F003} from head sampling {F005} and the available stratified-sampling fact {F004}. Explain that measured does not mean exhaustively read, flag the unresolved outline token, and do not present the method counts as a reconciled total.",
+        "findings_R01_2": "Lead with the boundary between measured work and remaining failures using {F006}, {F007} and {F013}, keeping estimated rows held {F016} explicitly separate from measured rows. Use {F008} for runtime context while flagging the unresolved outline token; the takeaway is documented work performed, not complete coverage, throughput guarantees or a monetary usage charge.",
+        "findings_R02_1": "Lead with connection status using {F009}, {F010}, {F011} and {F012}, then anchor database reach with {F014}. Make clear that accepting this delivery would accept unresolved coverage, and that reading the blocked connection alone would not resolve the partial connections or failed tables.",
+        "findings_other": "Lead with traceable delivery and usage, citing {R01}, {R03} and {R04}, then distinguish dossier composition usage {F017} and {F018} from object-storage enumeration {F019} and {F020}. Flag the unresolved outline token, keep the separate enumeration receipt {R06} distinct from the database census, and do not equate ledger success or receipt integrity with complete coverage.",
+        "risks": "Lead with the limits on downstream decisions: {F002} against {F001} bounds reach, while {F003} and {F004} distinguish complete-pass from sampled evidence. State that sampled ratios are not whole-table measurements and that languages, rights and semantic similarity remain unmeasured; receipt verification does not remove these limitations."
+      },
+      "latency_ms": 23592,
+      "model": "gpt-6-astra",
+      "provider": "emergent",
+      "receipt_id": "rcp-0b3cec6b17e1",
+      "title_direction": "Frame the commission-close decision as acceptance of a documented partial delivery versus holding for additional measurement, without implying that successful execution means complete estate coverage.",
+      "tokens_in": 3094,
+      "tokens_out": 1065
+    },
+    "provider": "emergent",
+    "receipt_id": "rcp-75e8ac823791",
+    "review": {
+      "error": "LLMShieldFailure",
+      "resolution": "independent review unavailable; the gated draft stands and the gap is disclosed",
+      "verdict": "unavailable"
+    },
+    "source": "orchestrating planner (gpt-6-astra) → worker → content manager → frontier writer (claude-sonnet-5-5) → independent reviewer (unavailable); gate passed",
+    "tokens": 20382
+  },
+  "brief_id": "BR-2026-10-02-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T11:23:12Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-10-02T11:25:08Z",
+      "build_id": "bld-2b0bf0994ed9",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 1,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-02T11:25:16Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "count": 15,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "7486348e4e5dbe849ea7106268a4ae2e149d3387f51eb0842d88c547b1e5b4a8",
+              "size": 23896
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "7d012643aa9ce8e8969550ecc844b1b67ed1b91e0c4a07f163c1fb2888f4fa4b",
+              "size": 59850
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "9624800bac16ec2642076e5467fd6be6ffcbacc2274064a572f35b17eedaa868",
+              "size": 9136
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "70dbce28b81622a82e9398806aa000f1714aa2b165db7248379c3e45a9e4ceee",
+              "size": 43319
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "6208b20c4cdea59806d3f5ccf50fc1ccc1f46a04d50e873ffeae7e82115b559c",
+              "size": 44803
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "ecbd907b5e1a57e79281bb5ce6717efcae8812df7f750afe49d73cb8d6e02f7f",
+              "size": 43253
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "a4c57dd82787b45f2a84aae420ebd7687e626c2a66fae3390ede4cd83f8477d0",
+              "size": 12339
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "760fbbcfbfd4467856910cb4af42ac236675a89d13e6cab5d3fc077108b2cb00",
+              "size": 45963
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "e0b389daaf5143ec92d0c9d5f3ef927c9b0f4a404e2a75d68c5a2d5020b2098a",
+              "size": 42507
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "3083857899783f98d039192e656cb9388479ea22742a37f959c2f91343fe7fb0",
+              "size": 45606
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "feb9af840e53e9a7de0f3e2ce25fbb781ca3b96ce70e12851e6ef1d2e55ac9ee",
+              "size": 48166
+            },
+            {
+              "n": 12,
+              "name": "page-12.png",
+              "sha256": "f5c32e8e6533df4d18c3febe05dae1fc7229407092cd06244392477ca64d2db2",
+              "size": 45872
+            },
+            {
+              "n": 13,
+              "name": "page-13.png",
+              "sha256": "425054c1dc37df30305821272541d71a7c3371eaf6dc186ae729e67c6c55eb5a",
+              "size": 48182
+            },
+            {
+              "n": 14,
+              "name": "page-14.png",
+              "sha256": "68e9a39a2f52c757ad7aa7e0f9b8dd3b37efc0e27dd32e5da69bffd6911ee3de",
+              "size": 60218
+            },
+            {
+              "n": 15,
+              "name": "page-15.png",
+              "sha256": "8ed81f9de48b1cdc10bf45c8306eae8e2b669d0ec19e52b9f1c38ad5084b3f55",
+              "size": 69025
+            }
+          ],
+          "rendered": true,
+          "source": "commission-close-eij-1b359b3cbd2e.pptx"
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-e70d63edce66/builds/bld-2b0bf0994ed9/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "inverted-field",
+        "palette_id": "slate",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T11:23:12Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "62d57afd785b786a16fe9fad636413b9dc60d47edbc74ac8667a8ad2c48b8be8",
+          "deck.resolved/brief.json": "035fd2f32b39cf0fd10dfceebbc5d5d51b228ca9fbccfa8a6218d31f3889a672",
+          "deck.resolved/content.json": "f2ee0565ee44ce6dc65a0e9b6370bbba89e1c754f906b7f0cd06ed6073e65b20",
+          "deck.resolved/deck.json": "4ef4e9b4d68612c1dcbe849dd771e201853818782283686ae2d8ddd01e756c86",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "c75ff2e94dea81b5a616ee0efe3c382c91541a85bc2a5fa1fe955d24534e703c",
+          "paper.resolved.json": "47f0e97a6a1143b764c0f7290a1bf66ef713c6776586b146b5ffa9334bf9aee8",
+          "paper.resolved/brief.json": "035fd2f32b39cf0fd10dfceebbc5d5d51b228ca9fbccfa8a6218d31f3889a672",
+          "paper.resolved/content.json": "f2ee0565ee44ce6dc65a0e9b6370bbba89e1c754f906b7f0cd06ed6073e65b20",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "0b1139c3afc9a593a01507fa84fa67885df0e5f337f5a83ff2a44bdc025496df",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "c75ff2e94dea81b5a616ee0efe3c382c91541a85bc2a5fa1fe955d24534e703c",
+          "workbook.resolved.json": "0a3ec5cf04cc9cc1016f3f3e9811d087d6fbfe374a5e1f4a75f6b98cff717d88",
+          "workbook.resolved/brief.json": "035fd2f32b39cf0fd10dfceebbc5d5d51b228ca9fbccfa8a6218d31f3889a672",
+          "workbook.resolved/content.json": "f2ee0565ee44ce6dc65a0e9b6370bbba89e1c754f906b7f0cd06ed6073e65b20",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "c75ff2e94dea81b5a616ee0efe3c382c91541a85bc2a5fa1fe955d24534e703c",
+          "workbook.resolved/workbook.json": "18c8ad220bd617a802a938b32fd70e674a2ba7b031e9285553c2a44f1d5b10ba"
+        },
+        "outputs_sha256": {
+          "commission-close-eij-1b359b3cbd2e-review.html": "78a993b0106aae15e64cbcae057b0344715af69db99ea3363b71251a105b07d0",
+          "commission-close-eij-1b359b3cbd2e.docx": "da1b7f4a617a88b6f205de68defddd5ec40c5ce9169f3c05b6cb3b5de52e353b",
+          "commission-close-eij-1b359b3cbd2e.pptx": "12ab872f5ed5ffdb147168955a687b8c7cd179b52821d5640c3eddd011d9589e",
+          "commission-close-eij-1b359b3cbd2e.xlsx": "3c6101bd003abf874d8755ac1c19af6b39e34574920b68c6fb632fd2fdc0ad51"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "commission-close-eij-1b359b3cbd2e-review.html",
+          "sha256": "78a993b0106aae15e64cbcae057b0344715af69db99ea3363b71251a105b07d0",
+          "size": 166809
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "commission-close-eij-1b359b3cbd2e.docx",
+          "sha256": "da1b7f4a617a88b6f205de68defddd5ec40c5ce9169f3c05b6cb3b5de52e353b",
+          "size": 119426
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "commission-close-eij-1b359b3cbd2e.pptx",
+          "sha256": "12ab872f5ed5ffdb147168955a687b8c7cd179b52821d5640c3eddd011d9589e",
+          "size": 74019
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "commission-close-eij-1b359b3cbd2e.xlsx",
+          "sha256": "3c6101bd003abf874d8755ac1c19af6b39e34574920b68c6fb632fd2fdc0ad51",
+          "size": 11508
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 4: is the title a full-sentence assertion? \"Most measured tables had a complete pass, but sampling, failures and unreached tables remain\"",
+          "slide 6: is the title a full-sentence assertion? \"The run read 5.9m rows and 351.3 GiB; 44 tables failed and need a re-run\"",
+          "slide 8: is the title a full-sentence assertion? \"Table counts by connection show one connection with nothing reached and two only partly read\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "at": "2026-10-02T11:32:43Z",
+      "build_id": "bld-98451f6486a9",
+      "by": "6ab56dd48894abb269135ca2",
+      "content_version": 2,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-02T11:32:51Z",
+          "by": "6ab56dd48894abb269135ca2",
+          "count": 15,
+          "dpi": 60,
+          "note": "visual-QA export via LibreOffice + poppler; outside the byte-identity contract",
+          "pages": [
+            {
+              "n": 1,
+              "name": "page-01.png",
+              "sha256": "a99d4ed664f182659874d19aa392255e3078adbf48c8d671a15ca5445a180c65",
+              "size": 24523
+            },
+            {
+              "n": 2,
+              "name": "page-02.png",
+              "sha256": "9c611c4bda840f28904f801bd5f38817d57e53d73e2521b80fef8b820811d76c",
+              "size": 55974
+            },
+            {
+              "n": 3,
+              "name": "page-03.png",
+              "sha256": "61576922737c86adf656e04fc8599fbb54b7690b1a250dc52e25401b184ee6d0",
+              "size": 10116
+            },
+            {
+              "n": 4,
+              "name": "page-04.png",
+              "sha256": "7795c2bdae60675e647c095373a020b06934074aa3e9e50fcfa5637acc31c8b3",
+              "size": 43704
+            },
+            {
+              "n": 5,
+              "name": "page-05.png",
+              "sha256": "bc1e7c763bff9e55adfca0cb48c122398702928196a4e087ae1f947ad1ae38de",
+              "size": 42736
+            },
+            {
+              "n": 6,
+              "name": "page-06.png",
+              "sha256": "3f8d6e717acd9effc10292b855350fa5551422cae7a542ac9aa742528dc60c7c",
+              "size": 43507
+            },
+            {
+              "n": 7,
+              "name": "page-07.png",
+              "sha256": "611ca49923d26f9455ef1d50e50e824dd936a5019c6aa7438b6846e585f71369",
+              "size": 13110
+            },
+            {
+              "n": 8,
+              "name": "page-08.png",
+              "sha256": "d6f8f5f32381da59dacd9080920bfcadba9155b9da851b860936227830d5a29c",
+              "size": 42156
+            },
+            {
+              "n": 9,
+              "name": "page-09.png",
+              "sha256": "0390a906f25bf69c3c3936e8987f0034a5a9dd9da3b16ce363140874780dcdf8",
+              "size": 39199
+            },
+            {
+              "n": 10,
+              "name": "page-10.png",
+              "sha256": "3ce9837a6549e627b0a1dd506df32c6cce192d30978dbe15632b01598c7e635c",
+              "size": 42791
+            },
+            {
+              "n": 11,
+              "name": "page-11.png",
+              "sha256": "a8035e55b07b746932674b5867d6b15f37a46a536364cdbaced4dfbd43232e3e",
+              "size": 48177
+            },
+            {
+              "n": 12,
+              "name": "page-12.png",
+              "sha256": "7d7ab154dab767a0495af9b2978998f6e353259c70e2cda48f675f13f8ada8ac",
+              "size": 48079
+            },
+            {
+              "n": 13,
+              "name": "page-13.png",
+              "sha256": "cae7364c03b659134f537494ef984abcc0d995d78b70cec0f319041e9ee35afe",
+              "size": 47675
+            },
+            {
+              "n": 14,
+              "name": "page-14.png",
+              "sha256": "68e9a39a2f52c757ad7aa7e0f9b8dd3b37efc0e27dd32e5da69bffd6911ee3de",
+              "size": 60218
+            },
+            {
+              "n": 15,
+              "name": "page-15.png",
+              "sha256": "8ed81f9de48b1cdc10bf45c8306eae8e2b669d0ec19e52b9f1c38ad5084b3f55",
+              "size": 69025
+            }
+          ],
+          "rendered": true,
+          "source": "commission-close-eij-1b359b3cbd2e.pptx"
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-e70d63edce66/builds/bld-98451f6486a9/log.txt",
+      "look": {
+        "cover_composition": "title-left-low",
+        "divider_treatment": "inverted-field",
+        "palette_id": "slate",
+        "type_pair_id": "cambria-calibri"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-02T11:23:12Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "deck.resolved.json": "b886aab44c1480f31d850711f06f0d446dd46057c96a96aa07809b11c41b4aa7",
+          "deck.resolved/brief.json": "dfc8688bb9c75ac5a170dc6a86f04a84e495973feddb327b6053c87680603001",
+          "deck.resolved/content.json": "7f9d061bc915ecf929e233bbd7d70993edf6e8ad79ff0085cb94ce60722eb6c5",
+          "deck.resolved/deck.json": "708f3f6c0e31f27be9e59fbf9b4f0db0f42696ddb7ea2bc3f781197c76e035f2",
+          "deck.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "deck.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "deck.resolved/verdict.json": "5698c555d282b6236f566ff428c7610bd84313791830812015348df6c6fcc287",
+          "paper.resolved.json": "798b297a96f81b3c25e20f9f91bb46e48c0f83885d847a6c5343c9bf10b2d23f",
+          "paper.resolved/brief.json": "dfc8688bb9c75ac5a170dc6a86f04a84e495973feddb327b6053c87680603001",
+          "paper.resolved/content.json": "7f9d061bc915ecf929e233bbd7d70993edf6e8ad79ff0085cb94ce60722eb6c5",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "dbcc3a39ca34f5889e19db45641a98a7c1bb4c25b6ccb20c514feddb1edb4baf",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "5698c555d282b6236f566ff428c7610bd84313791830812015348df6c6fcc287",
+          "workbook.resolved.json": "2e028cf6327c6efd9e6cf766097614a6d274d895350cb1477965bd4d004d1e14",
+          "workbook.resolved/brief.json": "dfc8688bb9c75ac5a170dc6a86f04a84e495973feddb327b6053c87680603001",
+          "workbook.resolved/content.json": "7f9d061bc915ecf929e233bbd7d70993edf6e8ad79ff0085cb94ce60722eb6c5",
+          "workbook.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "workbook.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "workbook.resolved/verdict.json": "5698c555d282b6236f566ff428c7610bd84313791830812015348df6c6fcc287",
+          "workbook.resolved/workbook.json": "6ba347deab0f5865e47e23be6489b68e16db23ee67fab6e0b082b2c028827bef"
+        },
+        "outputs_sha256": {
+          "commission-close-eij-1b359b3cbd2e-review.html": "3e9d5916b1122b3dc53f5e9bc873c7bd0fdcb1003d964a0da375128d4b56a24a",
+          "commission-close-eij-1b359b3cbd2e.docx": "4b14a99671314e9337d9040e1c1adb84f30f5a028602b5c92324bd11333f3753",
+          "commission-close-eij-1b359b3cbd2e.pptx": "12cfa9934514eda23d5c679952d671312553fff92de8f16c10abc1007f912e59",
+          "commission-close-eij-1b359b3cbd2e.xlsx": "74f4bd5520c0cf2fa7d812219bfaf4ae7b7493d379b78c9a295033301fb5832d"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "html",
+          "name": "commission-close-eij-1b359b3cbd2e-review.html",
+          "sha256": "3e9d5916b1122b3dc53f5e9bc873c7bd0fdcb1003d964a0da375128d4b56a24a",
+          "size": 166542
+        },
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "commission-close-eij-1b359b3cbd2e.docx",
+          "sha256": "4b14a99671314e9337d9040e1c1adb84f30f5a028602b5c92324bd11333f3753",
+          "size": 119522
+        },
+        {
+          "changed_from_previous": null,
+          "format": "pptx",
+          "name": "commission-close-eij-1b359b3cbd2e.pptx",
+          "sha256": "12cfa9934514eda23d5c679952d671312553fff92de8f16c10abc1007f912e59",
+          "size": 73758
+        },
+        {
+          "changed_from_previous": null,
+          "format": "xlsx",
+          "name": "commission-close-eij-1b359b3cbd2e.xlsx",
+          "sha256": "74f4bd5520c0cf2fa7d812219bfaf4ae7b7493d379b78c9a295033301fb5832d",
+          "size": 11498
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "slide 12: is the title a full-sentence assertion? \"Accept the partial record, keep the commission open, and close the access gap first\"",
+          "Read only the titles in order: do they tell the whole story?",
+          "Does each exhibit prove its title, or merely decorate it?",
+          "Does the paper read as an argument when read unattended, without the deck?",
+          "Are the yellow key assumptions the ones the board would want to change?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-e70d63edce66",
+  "content_id": "commission-close-eij-1b359b3cbd2e",
+  "created_at": "2026-10-02T11:25:08Z",
+  "created_by": "6ab56dd48894abb269135ca2",
+  "current_content_version": 2,
+  "economics": {
+    "authoring_tokens_total": 40932,
+    "builds_total": 2,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 4,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Estate owner · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is high on the business, mixed on the data estate",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are what was delivered, what remains open, evidence and usage",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "pptx",
+    "docx",
+    "xlsx",
+    "html"
+  ],
+  "producer": "commission_close",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)",
+      "status": "partial",
+      "verified": true
+    },
+    "R02": {
+      "binding": "platform",
+      "kind": "eij",
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes",
+      "status": "partial",
+      "verified": true
+    },
+    "R03": {
+      "binding": "declared",
+      "resolves_to": "Lawful basis admit 20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json (sha256 37d1508d4ea9); governing artifact CP-CENSUS-ESTATE-INTELLIGENCE version eij-1b359b3cbd2e"
+    },
+    "R04": {
+      "binding": "declared",
+      "resolves_to": "Ledger rows led-398166457377, led-4e9f184f9601, led-6067b8b42dc7: admit:admitted → gate:warm → converge:terminate_success"
+    },
+    "R05": {
+      "binding": "declared",
+      "resolves_to": "Executive dossier receipt rcp-f3b244641843: gpt-5-mini via emergent, 17679 tokens in / 4583 out, prompt 354fd68cd5d4"
+    },
+    "R06": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)",
+      "status": null,
+      "verified": true
+    },
+    "R07": {
+      "binding": "platform",
+      "kind": "census_run",
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)",
+      "status": null,
+      "verified": true
+    }
+  },
+  "release": {
+    "reason": "build bld-98451f6486a9 byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-10-02",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "eij-1b359b3cbd2e",
+  "specs": [
+    "deck.json",
+    "paper.json",
+    "workbook.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Estate census: partial delivery, commission open",
+  "updated_at": "2026-10-02T11:32:51Z",
+  "verdict_id": "V-2026-10-02-close-eij-1b359b3cbd2e",
+  "versions": [
+    {
+      "at": "2026-10-02T11:25:08Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "commissioned by producer commission_close from eij-1b359b3cbd2e",
+      "version": 1
+    },
+    {
+      "at": "2026-10-02T11:32:43Z",
+      "by": "6ab56dd48894abb269135ca2",
+      "reason": "authored by the frontier writer claude-sonnet-5-5 under the content manager gate",
+      "version": 2
+    }
+  ],
+  "voice": "strategy-house"
+}

@@ -1,0 +1,362 @@
+{
+  "brief_ref": "BR-2026-10-02-close-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-02T11:23:12Z",
+  "content_ref": "commission-close-eij-1b359b3cbd2e@2",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "CC-eij-1b359b3cbd2e"
+  },
+  "inputs_sha256": {
+    "brief.json": "dfc8688bb9c75ac5a170dc6a86f04a84e495973feddb327b6053c87680603001",
+    "content.json": "7f9d061bc915ecf929e233bbd7d70993edf6e8ad79ff0085cb94ce60722eb6c5",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "dbcc3a39ca34f5889e19db45641a98a7c1bb4c25b6ccb20c514feddb1edb4baf",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "5698c555d282b6236f566ff428c7610bd84313791830812015348df6c6fcc287"
+  },
+  "look": {
+    "cover_composition": "title-left-low",
+    "divider_treatment": "inverted-field",
+    "fonts": {
+      "body": "Calibri",
+      "number": "Courier New",
+      "title": "Cambria"
+    },
+    "palette": {
+      "accent": "0E7C86",
+      "field": "FFFFFF",
+      "hatch": "EAEEF2",
+      "muted": "7F8C9A",
+      "rule": "D8DEE5",
+      "structure": "22313F"
+    },
+    "palette_id": "slate",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "cambria-calibri",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The census measured 638 of 1006 tables in scope, reading 5.9m rows in 15.5 minutes. Of those, 513 had a complete pass and the others were measured by sample. 44 tables failed. The result receipt is digest-verified and the ledger records admit, gate and converge."
+        },
+        {
+          "kind": "para",
+          "text": "The delivery is partial. Only 3 of 6 connections completed, 2 are partial and 1 is blocked: artists_app was refused access, and the grant is an owner dependency. We recommend accepting the census as a documented partial record while keeping the commission open until artists_app is read and the failed tables are re-run. Several counts in the report do not reconcile with one another; they are disclosed here rather than repaired."
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The exhibit splits tables by method: complete pass, stratified sample, head sample, failed and not reached. Complete passes are the largest group, so most of the measured evidence is firm. The remainder is either estimated from part of a table or absent."
+        },
+        {
+          "kind": "para",
+          "text": "The categories in the exhibit do not reconcile with the tables in scope, and the method counts 513, 83 and 41 do not reconcile exactly with 638. We have kept the values as supplied and drawn no coverage percentage from them."
+        },
+        {
+          "backend": "svg",
+          "caption": "The method counts show how firm each part of the evidence is; they do not reconcile to the headline totals, so no coverage percentage should be taken from them.",
+          "categories": [
+            "Complete pass",
+            "Stratified sample",
+            "Head sample",
+            "Failed",
+            "Not reached"
+          ],
+          "class": "measured",
+          "editable": true,
+          "kind": "figure",
+          "label": "How tables were measured",
+          "plate": "bar",
+          "receipt": "R01",
+          "receipt_text": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)",
+          "so_what": "",
+          "unit": "tables",
+          "values": {
+            "Tables": [
+              513,
+              83,
+              41,
+              44,
+              324
+            ]
+          },
+          "y_format": "num"
+        }
+      ],
+      "heading": "How the tables were measured"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "638 of 1006 tables were measured. 513 had a complete pass, 83 were stratified samples and 41 were head samples. A complete pass gives whole-table figures; a sample gives ratios drawn from part of the table."
+        },
+        {
+          "kind": "para",
+          "text": "Measured therefore does not mean exhaustively read. For anything that depends on exact ratios, treat the sampled tables as indicative until a complete pass is run. Percentage shares of coverage are not quoted here because the totals behind them need validating."
+        }
+      ],
+      "heading": "Coverage of the tables in scope"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "44 tables failed because the worker could not measure them in this run. The recorded errors are the route to closing them. The work that was done is documented: 5.9m rows read and 351.3 GiB of data and index measured."
+        },
+        {
+          "kind": "para",
+          "text": "259.3m rows held is an estimate of what the estate contains and must not be added to the measured rows. The 15.5 minutes of wall clock describes this run only. It is not a guarantee of future speed and not a charge."
+        }
+      ],
+      "heading": "What failed, and what was read"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Coverage is uneven. 3 connections are complete, 2 are partial and 1 is blocked, and the blocked connection, artists_app, contributes no tables."
+        },
+        {
+          "kind": "para",
+          "text": "The series is labelled as tables measured but sums to the tables in scope rather than to 638. Its label needs clarifying, and its total should not be used as a validated measured-table count."
+        },
+        {
+          "backend": "svg",
+          "caption": "The series sums to the tables in scope, not to the tables measured, so its measured label needs clarifying; the blocked connection shows no tables.",
+          "categories": [
+            "iebc_forms (complete)",
+            "artists_app (blocked)",
+            "viupay (complete)",
+            "citizen_digital (partial)",
+            "citizen-pulse (partial)",
+            "Razuna (Library Content) & N (complete)"
+          ],
+          "class": "measured",
+          "editable": true,
+          "kind": "figure",
+          "label": "Tables measured by connection",
+          "plate": "bar",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes",
+          "so_what": "",
+          "unit": "tables",
+          "values": {
+            "Tables": [
+              630,
+              0,
+              123,
+              64,
+              77,
+              112
+            ]
+          },
+          "y_format": "num"
+        }
+      ],
+      "heading": "Coverage by connection"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Measured data and index volume is heavily concentrated in iebc_forms; the other connections together hold a small remainder. The aggregate of 351.3 GiB gives the context."
+        },
+        {
+          "kind": "para",
+          "text": "The zero shown for artists_app is a consequence of denied access, not evidence that it holds no data. Footprint should be read as what was measured, not as the size of the estate."
+        },
+        {
+          "backend": "svg",
+          "caption": "The zero shown for artists_app reflects denied access, not an empty database; measured footprint is not the same as measurement completeness.",
+          "categories": [
+            "iebc_forms",
+            "artists_app",
+            "viupay",
+            "citizen_digital",
+            "citizen-pulse",
+            "Razuna (Library Content) & N"
+          ],
+          "class": "measured",
+          "editable": true,
+          "kind": "figure",
+          "label": "Data and index by connection, GiB",
+          "plate": "bar",
+          "receipt": "R02",
+          "receipt_text": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes",
+          "so_what": "",
+          "unit": "GiB",
+          "values": {
+            "GiB": [
+              340.4,
+              0.0,
+              2.0,
+              3.3,
+              0.2,
+              5.4
+            ]
+          },
+          "y_format": "num"
+        }
+      ],
+      "heading": "Where the measured data sits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "3 of 6 connections completed, 2 are partial and 1 is blocked, with 20 databases measured. artists_app was refused access by the database; the grant is pending and sits with the owner. citizen_digital and citizen-pulse reached tables but had failures."
+        },
+        {
+          "kind": "para",
+          "text": "Accepting this delivery as complete would accept all of that unresolved coverage. Reading artists_app alone would not repair the partial connections or the failed tables, so the re-census needs to cover all three."
+        }
+      ],
+      "heading": "Connection status and database reach"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "The ledger holds 3 rows for the run, recording admit, gate and converge. The lawful basis admit limits the scope to census only. The report states that it holds aggregates, sketches and hashes, and we attribute that statement to the report rather than treating it as independently verified."
+        },
+        {
+          "kind": "para",
+          "text": "The executive dossier used 17679 tokens in and 4583 tokens out. Object-storage enumeration is a separate run with its own receipt: it reached 106 buckets and 40 were unreachable. Ledger success and receipt integrity do not show that every table was fully read."
+        }
+      ],
+      "heading": "Traceability, usage and separate enumeration"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "First, accept the census as a partial record, resting on 638 of 1006 tables, and keep the commission open. Second, grant access to artists_app so it can be re-censused; this is the only blocker that depends on you."
+        },
+        {
+          "kind": "para",
+          "text": "Third, have the errors behind the 44 failed tables addressed and re-run them with the partial connections. Fourth, order complete passes where sampled ratios matter, covering 83 stratified and 41 head-sampled tables. Finally, ask for the unreconciled counts, the series label and the missing references to be clarified before any percentage is quoted."
+        }
+      ],
+      "heading": "What to do first, and why"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Any downstream decision is bounded by 638 against 1006. Failed and unreached tables tell us nothing either way, and ratios on sampled tables are not whole-table measurements. A complete-pass census on those tables would close this gap."
+        },
+        {
+          "kind": "para",
+          "text": "Languages, rights and semantic similarity were not measured. Closing them needs rights declared at source and a language and similarity pass. Digest verification and a successful ledger confirm the integrity of what was delivered; they do not remove any of these limits."
+        }
+      ],
+      "heading": "What cannot yet be said"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "owner grants access; re-census",
+              "gap": "Connection artists_app",
+              "reason": "MYSQL_ACCESS_DENIED_1045 (GRANT pending, owner dependency)"
+            },
+            {
+              "closes_with": "a complete-pass census on those tables",
+              "gap": "Ratios on sampled tables",
+              "reason": "stratified or head samples where complete passes were not possible"
+            },
+            {
+              "closes_with": "re-census with the recorded errors addressed",
+              "gap": "44 failed tables",
+              "reason": "the worker could not measure them in this run"
+            },
+            {
+              "closes_with": "rights declared at Connect; a language and similarity pass",
+              "gap": "Languages, rights and semantic similarity",
+              "reason": "not measured by this census"
+            }
+          ],
+          "covers": "Delivery of census eij-1b359b3cbd2e: 638 of 1006 tables, 6 connections, wall clock, Ledger rows, receipts and the dossier composition. Everything here is read from the job record and the digest-verified report.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)"
+            },
+            {
+              "id": "R02",
+              "text": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes"
+            },
+            {
+              "id": "R03",
+              "text": "Lawful basis admit 20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json (sha256 37d1508d4ea9); governing artifact CP-CENSUS-ESTATE-INTELLIGENCE version eij-1b359b3cbd2e"
+            },
+            {
+              "id": "R04",
+              "text": "Ledger rows led-398166457377, led-4e9f184f9601, led-6067b8b42dc7: admit:admitted → gate:warm → converge:terminate_success"
+            },
+            {
+              "id": "R05",
+              "text": "Executive dossier receipt rcp-f3b244641843: gpt-5-mini via emergent, 17679 tokens in / 4583 out, prompt 354fd68cd5d4"
+            },
+            {
+              "id": "R06",
+              "text": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+            },
+            {
+              "id": "R07",
+              "text": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+            }
+          ]
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "commission-close-eij-1b359b3cbd2e/decide/2026-10-02",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-close-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "Decision paper: accept the census as delivered, or hold for the blocked connection",
+  "title": "Estate census: partial delivery, commission open",
+  "verdict_ref": "V-2026-10-02-close-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

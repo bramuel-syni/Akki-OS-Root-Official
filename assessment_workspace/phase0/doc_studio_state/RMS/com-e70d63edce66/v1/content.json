@@ -1,0 +1,1046 @@
+{
+  "authoring": {
+    "claims_authored": 71,
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 12,
+      "repairs": 1
+    },
+    "latency_ms": 33431,
+    "model": "claude-sonnet-5-5",
+    "pipeline": "orchestrating planner → worker → content manager → frontier writer → independent reviewer",
+    "planner": {
+      "cautions": [
+        "Preserve the supplied outline, exhibits and evidence; disclose inconsistencies rather than repairing or relabelling them.",
+        "The method counts in {F003}, {F004} and {F005} do not reconcile with {F002}, and the categories in {S002} do not reconcile with {F001}; do not invent a residual category.",
+        "The connection table-count series {S001} totals to the stated scope rather than the measured-table total; its measured label requires clarification before connection-level coverage claims.",
+        "The outline references {F004}, {F008} and {F015}, which are absent from the evidence model; do not infer their identities.",
+        "Several supplied calculation formulas and producer claims refer to undefined fact or calculation identifiers; do not publish derived percentages until those references are resolved.",
+        "Keep measured quantities, estimated holdings, sampled results and separate enumeration runs distinct; do not combine their coverage or infer content inspection from enumeration.",
+        "Treat producer claims as context unless supported by the cited records, particularly assertions about retained row values, lawful scope and execution hosts.",
+        "Successful ledger termination and digest verification establish execution and provenance, not census completeness or contractual acceptance; closing a partial commission requires the owner's explicit acceptance of the remaining limitations."
+      ],
+      "chapter_notes": {
+        "actions": "Lead with the owner's explicit choice: accept the delivered partial scope documented by {F001}, {F002}, {F003}, {F004}, {F005} and {F006}, or hold closure pending further measurement. Require access remediation and re-census for artists_app and failed tables, complete passes where sampled ratios need stronger assurance, and reconciliation of evidence discrepancies; do not invent contractual acceptance criteria or treat unresolved {F004} as valid evidence.",
+        "exhibit_S001": "Lead with the connection-status pattern in {S001}, but explicitly flag that its table-count series does not reconcile with the measured-table total {F002}. Keep the exhibit unchanged and do not use its values to claim measured coverage by connection until the conflicting definitions are resolved.",
+        "exhibit_S002": "Lead with the coverage split in {S002}, distinguishing complete passes, sampled tables, failures and tables not reached so the owner understands what the delivery supports. Flag that the category totals do not reconcile with {F002} and {F001}; preserve the exhibit and do not imply exhaustive, reconciled coverage.",
+        "exhibit_S003": "Lead with the concentration of measured data and index volume shown in {S003}, supported by {F013}, so the executive can distinguish storage concentration from completeness. Do not treat the blocked connection's plotted value as evidence that it holds no data, or storage volume as business value.",
+        "findings_R01_1": "Lead with measured scope using {F002} against {F001}, then distinguish complete passes and sampling through {F003}, {F004} and {F005}. The takeaway is usable but incomplete measurement, not uniform assurance; flag the unresolved outline token {F004} without silently replacing it or concealing the method-count discrepancy.",
+        "findings_R01_2": "Lead with delivered measurement and its limits using {F007}, {F013}, {F016} and {F006}, explicitly separating measured rows and storage from estimated rows held. Cite {F008} for runtime only as separately available evidence, flag unresolved {F008}, and avoid interpreting runtime as cost or estimated holdings as rows inspected.",
+        "findings_R02_1": "Lead with complete, partial and blocked connection status using {F009}, {F010}, {F011} and {F012}, with {F014} establishing measured database breadth. Explain that artists_app requires an owner access grant and a re-census, while partial connections also remain open; delivery acceptance must not be presented as removal of these dependencies.",
+        "findings_other": "Lead with the evidence trail through {R01}, {R03} and {R04}, then distinguish dossier usage in {F017} and {F018} from separate object-storage enumeration in {F019}, {F020} and {R06}. Flag unresolved {F015}; traceability supports delivery accountability, not complete coverage, and token usage or bucket enumeration must not be presented as cost or content inspection.",
+        "risks": "Lead with the limits on decisions drawn from {F002} against {F001}, distinguishing complete-pass evidence in {F003} from sampling in {F004} and {F005}. Make clear that blocked, failed and unreached areas remain unknown, and that languages, rights and semantic similarity were not measured; receipt verification does not remove these limitations."
+      },
+      "latency_ms": 27481,
+      "model": "gpt-6-astra",
+      "provider": "emergent",
+      "receipt_id": "rcp-b2f1b3c7f87b",
+      "title_direction": "Frame the decision as acceptance of a documented partial delivery versus holding the commission open for further reads, not as confirmation of a complete estate census.",
+      "tokens_in": 3094,
+      "tokens_out": 1037
+    },
+    "provider": "emergent",
+    "receipt_id": "rcp-b7fa40e7d709",
+    "repairs": 1,
+    "review": {
+      "error": "LLMShieldFailure",
+      "resolution": "independent review unavailable; the gated draft stands and the gap is disclosed",
+      "verdict": "unavailable"
+    },
+    "tokens_in": 15196,
+    "tokens_out": 5354
+  },
+  "calculations": {
+    "K001": {
+      "formula": "F002 / F001",
+      "inputs": [
+        "F001",
+        "F002"
+      ],
+      "label": "Share of tables measured",
+      "unit": "pct"
+    },
+    "K002": {
+      "formula": "F003 / F001",
+      "inputs": [
+        "F001",
+        "F003"
+      ],
+      "label": "Share of tables by complete pass",
+      "unit": "pct"
+    },
+    "K003": {
+      "formula": "F010 / F009",
+      "inputs": [
+        "F009",
+        "F010"
+      ],
+      "label": "Share of connections complete",
+      "unit": "pct"
+    },
+    "K004": {
+      "formula": "F006 / F001",
+      "inputs": [
+        "F001",
+        "F006"
+      ],
+      "label": "Share of tables that failed",
+      "unit": "pct"
+    }
+  },
+  "census_ref": "eij-1b359b3cbd2e",
+  "claims": {
+    "C001": {
+      "supports": [
+        "F008"
+      ],
+      "text": "The census ran under CP-CENSUS-ESTATE-INTELLIGENCE on runtime akki-vm for {F008} minutes and closed partial"
+    },
+    "C002": {
+      "supports": [
+        "F001",
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006"
+      ],
+      "text": "{F002} of {F001} tables were measured ({K001}): {F003} by complete pass, {F004} by stratified sample, {F005} by head sample; {F006} failed"
+    },
+    "C003": {
+      "supports": [
+        "F009",
+        "F010",
+        "F011",
+        "F012"
+      ],
+      "text": "{F010} of {F009} connections completed, {F011} were partial and {F012} blocked"
+    },
+    "C004": {
+      "supports": [
+        "F015"
+      ],
+      "text": "The result receipt is digest-verified; the Ledger records admit, gate and converge"
+    },
+    "C005": {
+      "supports": [
+        "F007"
+      ],
+      "text": "The report holds aggregates, sketches and hashes only; no row value was retained or returned"
+    },
+    "C006": {
+      "supports": [
+        "F012"
+      ],
+      "text": "The delivered result is partial: artists_app blocked (MYSQL_ACCESS_DENIED_1045)"
+    },
+    "C007": {
+      "supports": [
+        "F017",
+        "F018"
+      ],
+      "text": "The executive dossier was composed by gpt-5-mini from {F017} tokens in and {F018} tokens out, receipt rcp-f3b244641843"
+    },
+    "C008": {
+      "supports": [
+        "F019",
+        "F020"
+      ],
+      "text": "Object storage enumeration reached {F019} buckets; {F020} were unreachable"
+    },
+    "C009": {
+      "supports": [
+        "F001",
+        "F003",
+        "F006"
+      ],
+      "text": "Complete passes cover {K002} of tables; {K004} of tables failed"
+    },
+    "C010": {
+      "supports": [
+        "F015"
+      ],
+      "text": "Lawful basis: 20260922T014000Z census admit; scope: census only: aggregates, sketches and hashes; no row values retained or returned"
+    },
+    "C011": {
+      "supports": [
+        "F008",
+        "F013",
+        "F014"
+      ],
+      "text": "{F013} GiB across {F014} databases were measured in {F008} minutes"
+    },
+    "C012": {
+      "supports": [
+        "F007",
+        "F008"
+      ],
+      "text": "Measured usage: {F008} minutes wall clock and {F007} rows read on akki-vm; jump host measured; GPU host held aggregates only"
+    },
+    "C013": {
+      "supports": [
+        "F001",
+        "F002",
+        "F006"
+      ],
+      "text": "{F002} of {F001} tables were measured ({K001}); {F006} failed"
+    },
+    "C014": {
+      "supports": [
+        "F011",
+        "F012"
+      ],
+      "text": "The result closed partial with {F012} blocked and {F011} partial connections"
+    },
+    "C021": {
+      "supports": [
+        "F012"
+      ],
+      "text": "artists_app: blocked — MYSQL_ACCESS_DENIED_1045 (GRANT pending, owner dependency); 0 tables reached"
+    },
+    "C022": {
+      "supports": [
+        "F011"
+      ],
+      "text": "citizen_digital: partial — 5 tables failed; 64 tables reached"
+    },
+    "C023": {
+      "supports": [
+        "F011"
+      ],
+      "text": "citizen-pulse: partial — 39 tables failed; 77 tables reached"
+    },
+    "C901": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "What the estate census delivered, what remains open, and the evidence behind it"
+    },
+    "C902": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001",
+        "F009",
+        "F003",
+        "F004",
+        "F005",
+        "F007",
+        "F013",
+        "F008"
+      ],
+      "text": "The census delivered measured evidence for {F002} of {F001} tables across {F009} connections. {F003} tables had a complete pass, {F004} a stratified sample and {F005} a head sample. The run read {F007} rows and {F013} GiB of data and index in {F008} minutes. The result receipt is digest-verified and the ledger shows the run completing as governed."
+    },
+    "C903": {
+      "authored": true,
+      "supports": [
+        "F010",
+        "F011",
+        "F012",
+        "F006",
+        "F002"
+      ],
+      "text": "The delivery is partial. {F010} connections completed, {F011} were partial and {F012} was blocked: artists_app, access denied, grant pending. {F006} tables failed. The method counts do not sum exactly to {F002}, and we disclose that rather than repair it."
+    },
+    "C904": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "We recommend that the owner accepts the delivery as a documented partial record and holds the commission open. Closure should wait for the artists_app grant and re-census and for a re-run of the failed tables."
+    },
+    "C905": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The census is verified but partial; accept it as a record, not as closure"
+    },
+    "C906": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001",
+        "F009",
+        "F007",
+        "F013",
+        "F008"
+      ],
+      "text": "The census measured {F002} of {F001} tables across {F009} connections. It read {F007} rows and {F013} GiB of data and index in {F008} minutes on the runtime."
+    },
+    "C907": {
+      "authored": true,
+      "supports": [
+        "F010",
+        "F011",
+        "F012",
+        "F006",
+        "F004",
+        "F005",
+        "F002"
+      ],
+      "text": "Only {F010} connections completed, {F011} were partial and {F012} was blocked: artists_app, access denied, grant pending. {F006} tables failed, and {F004} were stratified samples and {F005} head samples. The counts by method do not sum to {F002}."
+    },
+    "C908": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Should the owner accept the delivery and close the commission, or hold it open until the blocked connections are read?"
+    },
+    "C909": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Accept the delivery as a documented partial result, but hold the commission open. Closure should wait for the artists_app grant and re-census and for the failed tables to be re-run. Provenance is verified; completeness is not."
+    },
+    "C910": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "What the run measured"
+    },
+    "C911": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Most measured tables had a complete pass, but sampling, failures and unreached tables remain"
+    },
+    "C912": {
+      "authored": true,
+      "supports": [
+        "F001",
+        "F002"
+      ],
+      "text": "The categories do not reconcile with {F001} or {F002}, so read the chart as a split of method, not as proof of full coverage."
+    },
+    "C913": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The exhibit splits tables by method: complete pass, stratified sample, head sample, failed and not reached. The largest group had a complete pass, which is the firmest evidence the census can give."
+    },
+    "C914": {
+      "authored": true,
+      "supports": [
+        "F001",
+        "F002"
+      ],
+      "text": "The categories do not reconcile with {F001} or {F002}, so we show them as supplied. No residual category has been added. The chart supports a statement about method, not a claim of exhaustive coverage."
+    },
+    "C915": {
+      "authored": true,
+      "supports": [
+        "F001",
+        "F002"
+      ],
+      "text": "The categories do not reconcile with {F001} or {F002}, so read the chart as a split of method, not as proof of full coverage."
+    },
+    "C916": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001",
+        "F003"
+      ],
+      "text": "{F002} of {F001} tables were measured, with {F003} by complete pass"
+    },
+    "C917": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001"
+      ],
+      "text": "{F002} of {F001} tables in scope were measured. That is usable evidence, but it is not an estate-wide census."
+    },
+    "C918": {
+      "authored": true,
+      "supports": [
+        "F003"
+      ],
+      "text": "{F003} tables had a complete pass, the strongest basis. Ratios on these can be relied on for the tables concerned."
+    },
+    "C919": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F005"
+      ],
+      "text": "{F004} tables were measured by stratified sample and {F005} by head sample. Their ratios are indicative only."
+    },
+    "C920": {
+      "authored": true,
+      "supports": [
+        "F002"
+      ],
+      "text": "The three method counts do not sum exactly to {F002}. We disclose the difference and have not invented a residual category."
+    },
+    "C921": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001",
+        "F003",
+        "F004",
+        "F005"
+      ],
+      "text": "{F002} of {F001} tables were measured. {F003} had a complete pass, {F004} a stratified sample and {F005} a head sample. The measured scope is useful but not uniform in assurance."
+    },
+    "C922": {
+      "authored": true,
+      "supports": [
+        "F002"
+      ],
+      "text": "The three method counts do not sum exactly to {F002}. Until that is reconciled, any coverage percentage should be treated as provisional, and we have not published one."
+    },
+    "C923": {
+      "authored": true,
+      "supports": [
+        "F007",
+        "F013",
+        "F006"
+      ],
+      "text": "The run read {F007} rows and {F013} GiB; {F006} tables failed and need a re-run"
+    },
+    "C924": {
+      "authored": true,
+      "supports": [
+        "F007",
+        "F013"
+      ],
+      "text": "{F007} rows and {F013} GiB of data and index were measured. These are measured quantities, not inferred ones."
+    },
+    "C925": {
+      "authored": true,
+      "supports": [
+        "F016"
+      ],
+      "text": "{F016} rows held is an estimate of the estate's holdings. It must not be read as rows inspected."
+    },
+    "C926": {
+      "authored": true,
+      "supports": [
+        "F006"
+      ],
+      "text": "{F006} tables failed because the worker could not measure them. Their contents are unknown until a re-census addresses the recorded errors."
+    },
+    "C927": {
+      "authored": true,
+      "supports": [
+        "F008"
+      ],
+      "text": "The run took {F008} minutes on the runtime. That is a duration only and should not be read as a cost."
+    },
+    "C928": {
+      "authored": true,
+      "supports": [
+        "F007",
+        "F013",
+        "F016"
+      ],
+      "text": "{F007} rows and {F013} GiB of data and index were measured. The estate is estimated to hold {F016} rows. That is an estimate of holdings and not a count of rows inspected, so the two should not be compared as coverage."
+    },
+    "C929": {
+      "authored": true,
+      "supports": [
+        "F006",
+        "F008"
+      ],
+      "text": "{F006} tables failed and remain unmeasured. The run took {F008} minutes on the runtime. That is a duration, not a cost, and we draw no cost conclusion from it."
+    },
+    "C930": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Connections, volume and evidence trail"
+    },
+    "C931": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Table counts by connection show one connection with nothing reached and two only partly read"
+    },
+    "C932": {
+      "authored": true,
+      "supports": [
+        "F002"
+      ],
+      "text": "The series totals to the tables in scope, not to {F002}, so do not use it to claim measured coverage by connection until the definitions are resolved."
+    },
+    "C933": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The exhibit shows the pattern by connection: complete connections, two partial ones and artists_app with nothing reached. It is a useful picture of where the gaps sit."
+    },
+    "C934": {
+      "authored": true,
+      "supports": [
+        "F002"
+      ],
+      "text": "Its table counts total the tables in scope rather than the measured total of {F002}. The label says measured, so its definition needs clarifying before anyone quotes connection-level coverage from it."
+    },
+    "C935": {
+      "authored": true,
+      "supports": [
+        "F002"
+      ],
+      "text": "The series totals to the tables in scope, not to {F002}, so do not use it to claim measured coverage by connection until the definitions are resolved."
+    },
+    "C936": {
+      "authored": true,
+      "supports": [
+        "F013"
+      ],
+      "text": "Measured storage is concentrated in iebc_forms, which holds nearly all of the {F013} GiB"
+    },
+    "C937": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Volume shows where storage sits, not completeness or value; artists_app plots at zero because it was not read, not because it is empty."
+    },
+    "C938": {
+      "authored": true,
+      "supports": [
+        "F013"
+      ],
+      "text": "Measured data and index volume is concentrated in iebc_forms, which accounts for nearly all of the {F013} GiB. The other connections hold comparatively little."
+    },
+    "C939": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Concentration of storage is not completeness. artists_app plots at zero because it was blocked, so its holdings are unknown. Storage volume also says nothing about business value."
+    },
+    "C940": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Volume shows where storage sits, not completeness or value; artists_app plots at zero because it was not read, not because it is empty."
+    },
+    "C941": {
+      "authored": true,
+      "supports": [
+        "F010",
+        "F009",
+        "F011",
+        "F012"
+      ],
+      "text": "{F010} of {F009} connections are complete; {F011} are partial and {F012} is blocked"
+    },
+    "C942": {
+      "authored": true,
+      "supports": [
+        "F010",
+        "F009",
+        "F014"
+      ],
+      "text": "{F010} of {F009} connections completed. {F014} databases were measured across the estate."
+    },
+    "C943": {
+      "authored": true,
+      "supports": [
+        "F011"
+      ],
+      "text": "{F011} connections, citizen_digital and citizen-pulse, are partial because some of their tables failed."
+    },
+    "C944": {
+      "authored": true,
+      "supports": [
+        "F012"
+      ],
+      "text": "{F012} connection is blocked. artists_app returned an access denied error, the grant is pending, and no tables were reached."
+    },
+    "C945": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Only the owner can grant that access. A re-census follows the grant."
+    },
+    "C946": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Accepting the delivery does not remove these dependencies; they stay open either way."
+    },
+    "C947": {
+      "authored": true,
+      "supports": [
+        "F010",
+        "F009",
+        "F011",
+        "F012",
+        "F014"
+      ],
+      "text": "{F010} of {F009} connections completed, {F011} were partial and {F012} was blocked. {F014} databases were measured. artists_app needs the owner to grant access and then a re-census. citizen_digital and citizen-pulse are partial because some of their tables failed."
+    },
+    "C948": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Accepting the delivery does not remove these dependencies. They remain open whether or not the commission is closed."
+    },
+    "C949": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The run is traceable end to end, but traceability does not show completeness"
+    },
+    "C950": {
+      "authored": true,
+      "supports": [
+        "F015"
+      ],
+      "text": "The ledger holds {F015} rows for the run: admitted, warmed, then terminated successfully. This shows the run executed as governed."
+    },
+    "C951": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "The lawful basis admission is on file and covers the census only. The result receipt is digest-verified, which establishes provenance, not coverage."
+    },
+    "C952": {
+      "authored": true,
+      "supports": [
+        "F017",
+        "F018"
+      ],
+      "text": "The executive dossier used {F017} tokens in and {F018} tokens out. This is usage, not cost."
+    },
+    "C953": {
+      "authored": true,
+      "supports": [
+        "F019",
+        "F020"
+      ],
+      "text": "A separate enumeration reached {F019} object storage buckets, and {F020} were unreachable. It listed objects only and did not inspect their content."
+    },
+    "C954": {
+      "authored": true,
+      "supports": [
+        "F015"
+      ],
+      "text": "The ledger holds {F015} rows for the run, and the lawful basis admission is on file and covers the census only. Together with the digest-verified result receipt, this supports accountability for how the run was executed. It does not show that coverage is complete."
+    },
+    "C955": {
+      "authored": true,
+      "supports": [
+        "F017",
+        "F018",
+        "F019",
+        "F020"
+      ],
+      "text": "The executive dossier used {F017} tokens in and {F018} tokens out. A separate enumeration reached {F019} object storage buckets, and {F020} were unreachable. These are usage and listing figures, not cost or content inspection."
+    },
+    "C956": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Accept the partial record, but hold closure until blocked and failed tables are read"
+    },
+    "C957": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001"
+      ],
+      "text": "Decide first: accept {F002} of {F001} tables as a partial record, and hold closure. Acceptance does not remove the open items."
+    },
+    "C958": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Grant access on artists_app, the one blocked connection, then commission a re-census."
+    },
+    "C959": {
+      "authored": true,
+      "supports": [
+        "F006"
+      ],
+      "text": "Re-run the {F006} failed tables once their recorded errors are addressed."
+    },
+    "C960": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F005"
+      ],
+      "text": "Run complete passes on the {F004} sampled and {F005} head-sampled tables where firm ratios matter."
+    },
+    "C961": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Reconcile the method counts before quoting any coverage figure."
+    },
+    "C962": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001"
+      ],
+      "text": "The owner's first step is to choose: accept the delivered scope of {F002} of {F001} tables as a partial record, or hold closure. We recommend accepting the record while keeping the commission open. We do not propose acceptance criteria beyond those the owner sets."
+    },
+    "C963": {
+      "authored": true,
+      "supports": [
+        "F006",
+        "F004",
+        "F005"
+      ],
+      "text": "Next, grant access on artists_app and commission a re-census. Then re-run the {F006} failed tables once their recorded errors are fixed. Where firmer ratios are needed, run complete passes on the {F004} stratified and {F005} head-sampled tables. Finally, reconcile the count discrepancies before any coverage figure is quoted."
+    },
+    "C964": {
+      "authored": true,
+      "supports": [
+        "F002",
+        "F001"
+      ],
+      "text": "Decisions drawn from {F002} of {F001} tables carry gaps that verification does not close"
+    },
+    "C965": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "artists_app is unknown until the owner grants access and it is re-censused."
+    },
+    "C966": {
+      "authored": true,
+      "supports": [
+        "F004",
+        "F005"
+      ],
+      "text": "Ratios on the {F004} stratified and {F005} head-sampled tables are indicative only."
+    },
+    "C967": {
+      "authored": true,
+      "supports": [
+        "F006"
+      ],
+      "text": "The {F006} failed tables and the tables not reached are unmeasured."
+    },
+    "C968": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Languages, rights and semantic similarity were not measured; rights need declaring at source."
+    },
+    "C969": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Digest verification shows provenance, not completeness; closure needs the owner's explicit acceptance."
+    },
+    "C970": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Blocked, failed and unreached areas are unknown. Ratios on sampled tables are indicative only. Languages, rights and semantic similarity were not measured. They close respectively through the artists_app grant and re-census, a complete-pass census, a re-run of the failed tables, and a language and similarity pass with rights declared at source."
+    },
+    "C971": {
+      "authored": true,
+      "supports": [
+        "F001"
+      ],
+      "text": "Digest verification and ledger success establish that the run was governed and its result unaltered. They do not establish completeness, and closing the commission needs the owner's explicit acceptance of these limits."
+    }
+  },
+  "content_id": "commission-close-eij-1b359b3cbd2e",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "owner grants access; re-census",
+        "gap": "Connection artists_app",
+        "reason": "MYSQL_ACCESS_DENIED_1045 (GRANT pending, owner dependency)"
+      },
+      {
+        "closes_with": "a complete-pass census on those tables",
+        "gap": "Ratios on sampled tables",
+        "reason": "stratified or head samples where complete passes were not possible"
+      },
+      {
+        "closes_with": "re-census with the recorded errors addressed",
+        "gap": "44 failed tables",
+        "reason": "the worker could not measure them in this run"
+      },
+      {
+        "closes_with": "rights declared at Connect; a language and similarity pass",
+        "gap": "Languages, rights and semantic similarity",
+        "reason": "not measured by this census"
+      }
+    ],
+    "covers": "Delivery of census eij-1b359b3cbd2e: 638 of 1006 tables, 6 connections, wall clock, Ledger rows, receipts and the dossier composition. Everything here is read from the job record and the digest-verified report."
+  },
+  "delivered_on": "2026-09-29",
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Tables in scope",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 1006
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Tables measured",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 638
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Tables measured by complete pass",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 513
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Tables measured by stratified sample",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 83
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Tables measured by head sample",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 41
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Tables that failed",
+      "receipt": "R01",
+      "unit": "tables",
+      "value": 44
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Rows measured",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 5.9
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Wall clock on the runtime",
+      "receipt": "R01",
+      "unit": "minutes",
+      "value": 15.5
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Connections in scope",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 6
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Connections complete",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 3
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Connections partial",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 2
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Connections blocked",
+      "receipt": "R02",
+      "unit": "connections",
+      "value": 1
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Data and index measured",
+      "receipt": "R01",
+      "unit": "GiB",
+      "value": 351.3
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Databases measured",
+      "receipt": "R02",
+      "unit": "databases",
+      "value": 20
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Ledger rows for the run",
+      "receipt": "R04",
+      "unit": "rows",
+      "value": 3
+    },
+    "F016": {
+      "class": "estimated",
+      "label": "Rows held (estimate)",
+      "receipt": "R01",
+      "unit": "m",
+      "value": 259.3
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Dossier tokens in",
+      "receipt": "R05",
+      "unit": "tokens",
+      "value": 17679
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Dossier tokens out",
+      "receipt": "R05",
+      "unit": "tokens",
+      "value": 4583
+    },
+    "F019": {
+      "class": "measured",
+      "label": "OBS buckets enumerated",
+      "receipt": "R06",
+      "unit": "buckets",
+      "value": 106
+    },
+    "F020": {
+      "class": "measured",
+      "label": "OBS buckets unreachable",
+      "receipt": "R06",
+      "unit": "buckets",
+      "value": 40
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "receipts": {
+    "R01": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence job record eij-1b359b3cbd2e: submitted 2026-09-29T18:56:40Z by principal 6ab56dd48894abb269135ca2, runtime akki-vm, code 90322d4a826d, result receipt digest-verified (d9c99a632278)"
+    },
+    "R02": {
+      "platform_ref": "eij-1b359b3cbd2e",
+      "resolves_to": "Estate intelligence report v3 for eij-1b359b3cbd2e, built 2026-09-30T03:41:37Z; connection table and coverage notes"
+    },
+    "R03": {
+      "resolves_to": "Lawful basis admit 20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json (sha256 37d1508d4ea9); governing artifact CP-CENSUS-ESTATE-INTELLIGENCE version eij-1b359b3cbd2e"
+    },
+    "R04": {
+      "resolves_to": "Ledger rows led-398166457377, led-4e9f184f9601, led-6067b8b42dc7: admit:admitted → gate:warm → converge:terminate_success"
+    },
+    "R05": {
+      "resolves_to": "Executive dossier receipt rcp-f3b244641843: gpt-5-mini via emergent, 17679 tokens in / 4583 out, prompt 354fd68cd5d4"
+    },
+    "R06": {
+      "platform_ref": "cr-f1415e395361",
+      "resolves_to": "OBS bucket enumeration census run cr-f1415e395361 (22,975,591 objects, 130.3 TiB)"
+    },
+    "R07": {
+      "platform_ref": "cr-cf4eef79995b",
+      "resolves_to": "NAS share enumeration census run cr-cf4eef79995b (1,456,787 files, 43.6 TiB)"
+    }
+  },
+  "series": {
+    "S001": {
+      "categories": [
+        "iebc_forms (complete)",
+        "artists_app (blocked)",
+        "viupay (complete)",
+        "citizen_digital (partial)",
+        "citizen-pulse (partial)",
+        "Razuna (Library Content) & N (complete)"
+      ],
+      "class": "measured",
+      "label": "Tables measured by connection",
+      "receipt": "R02",
+      "unit": "tables",
+      "values": {
+        "Tables": [
+          630,
+          0,
+          123,
+          64,
+          77,
+          112
+        ]
+      }
+    },
+    "S002": {
+      "categories": [
+        "Complete pass",
+        "Stratified sample",
+        "Head sample",
+        "Failed",
+        "Not reached"
+      ],
+      "class": "measured",
+      "label": "How tables were measured",
+      "receipt": "R01",
+      "unit": "tables",
+      "values": {
+        "Tables": [
+          513,
+          83,
+          41,
+          44,
+          324
+        ]
+      }
+    },
+    "S003": {
+      "categories": [
+        "iebc_forms",
+        "artists_app",
+        "viupay",
+        "citizen_digital",
+        "citizen-pulse",
+        "Razuna (Library Content) & N"
+      ],
+      "class": "measured",
+      "label": "Data and index by connection, GiB",
+      "receipt": "R02",
+      "unit": "GiB",
+      "values": {
+        "GiB": [
+          340.4,
+          0.0,
+          2.0,
+          3.3,
+          0.2,
+          5.4
+        ]
+      }
+    }
+  },
+  "status": "partial",
+  "title": "Estate census close: accept a partial delivery, or hold",
+  "version": 1
+}
