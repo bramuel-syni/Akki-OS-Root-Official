@@ -28,6 +28,17 @@ _CACHE: Dict[str, Dict[str, Any]] = {}
 
 BASIS_LABEL = {'measured': 'read and judged', 'header_measured': 'hours on the headers, content forecast', 'forecast_unsampled': 'readable, not yet sampled — forecast',
                'forecast_denied': 'key refused — forecast', 'forecast_archived': 'archive class — forecast'}
+# Station names carried by folder paths (owner order 3 Oct 2026: "each station carries a name … use it to identify the language"). The codes
+# follow the transcription workbench's folder_languages register; Hot 96 declares English itself. Order matters: longer tokens first.
+STATION_TOKENS = (('citizen radio', 'swa', 'Radio Citizen'), ('radio citizen', 'swa', 'Radio Citizen'), ('radiocitizen', 'swa', 'Radio Citizen'), ('inooro', 'kik', 'Inooro FM'),
+                  ('chamgei', 'kln', 'Chamgei'), ('mulembe', 'lwg', 'Mulembe FM'), ('wimwaro', 'ebu', 'Wimwaro FM'), ('hot 96', 'eng', 'Hot 96'), ('hot96', 'eng', 'Hot 96'),
+                  ('hot_96', 'eng', 'Hot 96'), ('egesa', 'guz', 'Egesa'), ('musyi', 'kam', 'Musyi FM'), ('sulwe', 'bxk', 'Sulwe FM'), ('bahari', 'swa', 'Bahari FM'),
+                  ('vuuka', 'mrg', 'Vuuka'), ('ramogi', 'luo', 'Ramogi FM'), ('muuga', 'mer', 'Muuga FM'), ('enduata', 'mas', 'Enduata'))
+
+
+def station_of(label: str, folder: str):
+    path = f"{label or ''}/{folder or ''}".lower()
+    return next(((code, name) for token, code, name in STATION_TOKENS if token in path), None)
 
 
 def _summary(values: np.ndarray) -> Dict[str, float]:
@@ -137,7 +148,8 @@ def forecast(outcomes: Dict[str, Dict[str, Any]], simulations: int = SIMULATIONS
         for c, v in d['lang_share'].items():
             if c in code_index:
                 lang_share[i, code_index[c]] = v
-    groups: Dict[str, Dict[str, np.ndarray]] = defaultdict(lambda: {'hours': np.zeros(n), 'speech': np.zeros(n), 'music': np.zeros(n), 'langs': np.zeros((n, len(codes))), 'files': 0, 'bytes': 0, 'strata': 0})
+    groups: Dict[str, Dict[str, Any]] = defaultdict(lambda: {'hours': np.zeros(n), 'speech': np.zeros(n), 'music': np.zeros(n), 'unlabelled': np.zeros(n), 'langs': np.zeros((n, len(codes))), 'files': 0, 'bytes': 0, 'strata': 0})
+    stations: Dict[str, Dict[str, Any]] = {}
     folder_rows = []
     for s in strata:
         if s['basis'] == 'measured':
@@ -156,18 +168,24 @@ def forecast(outcomes: Dict[str, Dict[str, Any]], simulations: int = SIMULATIONS
             speech, music = hours * speech_share[idx], hours * music_share[idx]
             langs = speech[:, None] * lang_share[idx]
             donor_label = int(np.argmax(w))
-        for name in ('total', f"store:{s['store']}", f"basis:{s['basis']}", f"source:{s['store']}|{s['label']}"):
+        unlabelled = np.clip(speech - langs.sum(axis=1), 0.0, None)  # speech the language model could not assign (abstained or outside its classes)
+        station = station_of(s['label'], s['folder'])
+        names = ['total', f"store:{s['store']}", f"basis:{s['basis']}", f"source:{s['store']}|{s['label']}"] + ([f"station:{station[0]}"] if station else [])
+        if station:
+            stations.setdefault(station[0], {'code': station[0], 'station': station[1], 'bases': set(), 'labels': set()})
+            stations[station[0]]['bases'].add(s['basis']); stations[station[0]]['labels'].add(s['label'])
+        for name in names:
             g = groups[name]
-            g['hours'] += hours; g['speech'] += speech; g['music'] += music; g['langs'] += langs
+            g['hours'] += hours; g['speech'] += speech; g['music'] += music; g['unlabelled'] += unlabelled; g['langs'] += langs
             g['files'] += s['files']; g['bytes'] += s['bytes']; g['strata'] += 1
         top = int(np.argmax(np.median(langs, axis=0))) if codes and langs.any() else None
         folder_rows.append({'store': s['store'], 'label': s['label'], 'folder': s['folder'], 'kind': s['kind'], 'files': s['files'], 'bytes': s['bytes'], 'basis': s['basis'],
-                            'hours': _summary(hours), 'speech': _summary(speech), 'music': _summary(music),
+                            'hours': _summary(hours), 'speech': _summary(speech), 'music': _summary(music), 'station': station[1] if station else None,
                             'top_language': codes[top] if top is not None else None, 'top_language_hours': _summary(langs[:, top]) if top is not None else None,
                             'donor': f"{donors[donor_label]['label']} / {donors[donor_label]['folder']}" if donor_label is not None else None})
 
     def block(g):
-        return {'hours': _summary(g['hours']), 'speech': _summary(g['speech']), 'music': _summary(g['music']), 'files': g['files'], 'bytes': g['bytes'], 'strata': g['strata'],
+        return {'hours': _summary(g['hours']), 'speech': _summary(g['speech']), 'music': _summary(g['music']), 'unlabelled_speech': _summary(g['unlabelled']), 'files': g['files'], 'bytes': g['bytes'], 'strata': g['strata'],
                 'languages': dict(sorted(((c, _summary(g['langs'][:, i])) for c, i in code_index.items()), key=lambda kv: -kv[1]['est']))}
 
     total = block(groups['total'])
@@ -190,6 +208,7 @@ def forecast(outcomes: Dict[str, Dict[str, Any]], simulations: int = SIMULATIONS
                                    'seconds_per_mb_p10_p90': [round(float(x), 2) for x in np.percentile([d['rate'] for d in v], [10, 90])] if v else None,
                                    'speech_share_p10_p90': [round(float(x), 3) for x in np.percentile([d['speech_share'] for d in v], [10, 90])] if v else None} for k, v in kinds.items()}},
         'estate': total, 'by_store': {k: block(groups[f'store:{k}']) for k in outcomes if f'store:{k}' in groups}, 'by_basis': by_basis,
+        'by_station': {code: {**info, 'bases': sorted(info['bases']), 'labels': sorted(info['labels']), **block(groups[f'station:{code}'])} for code, info in stations.items()},
         'measured_share_of_hours': round(by_basis['measured']['hours']['est'] / total['hours']['est'], 4) if 'measured' in by_basis and total['hours']['est'] else 0.0,
         'forecast_share_of_hours': round(sum(v['hours']['est'] for b, v in by_basis.items() if b.startswith('forecast')) / total['hours']['est'], 4) if total['hours']['est'] else 0.0,
         'sources': sources, 'folders': folder_rows[:FOLDERS_KEPT], 'folders_total': len(folder_rows),

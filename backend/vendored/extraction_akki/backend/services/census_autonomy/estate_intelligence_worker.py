@@ -789,6 +789,57 @@ def _jump_text_estate(control):
             'row_values_retained': False, 'measured_at': now()}
 
 
+# ----------------------------------------------------------------------------- script language profiles (owner order 2026-10-03)
+# "Each station carries a name and a script you can use to identify the language." Scripts and transcripts are streamed one row at a
+# time on the jump host and reduced to character-trigram frequency profiles per station / per workbench language (Cavnar–Trenkle);
+# only the profiles leave. No script, transcript or word is retained. A deterministic 1-in-N row sample keeps the pass inside budget.
+TEXT_PROFILE_QUERIES = {
+    'news_vault': {'names': 'SELECT id, name FROM stations LIMIT 500',
+                   'sql': ('SELECT h.station_id, st.script FROM stories st LEFT JOIN hours h ON h.id = st.hour_id '
+                           'WHERE st.deleted_at IS NULL AND st.script IS NOT NULL AND MOD(st.id, 6) = 0 LIMIT 120000')},
+    'local': {'names': 'SELECT ID, `Language`, code, station FROM folder_languages LIMIT 1000',
+              'sql': ('SELECT u.language_id, t.transcript FROM transcripts t JOIN uploaded_files u ON u.id = t.file_id '
+                      'WHERE t.deleted_at IS NULL AND t.transcript IS NOT NULL AND MOD(t.id, 2) = 0 LIMIT 400000')},
+}
+PROFILE_TOP, PROFILE_PRUNE_AT, PROFILE_KEEP = 1000, 40000, 8000
+_TAGS = re.compile(r'<[^>]+>')
+_NOT_LETTERS = re.compile(r"[^a-z\u00c0-\u024f\u1e00-\u1eff' ]+")
+_SPACES = re.compile(r'\s+')
+
+
+def _trigrams(text):
+    t = _SPACES.sub(' ', _NOT_LETTERS.sub(' ', _TAGS.sub(' ', text.lower()))).strip()
+    padded = f' {t} '
+    return (padded[i:i + 3] for i in range(len(padded) - 2))
+
+
+def _jump_text_profiles(control):
+    from collections import Counter
+    started = time.time()
+    spec = TEXT_PROFILE_QUERIES[control['query_set']]
+    db = Bounded(control['connection'], control['database'], started + int(control.get('max_seconds', 900)))
+    profiles = {}
+    try:
+        names = [[_plain(v) for v in row] for row in db.query(spec['names'])]
+        for key, text in db.stream(spec['sql']):
+            if isinstance(text, (bytes, bytearray)):
+                text = text.decode(errors='replace')
+            if not text or not text.strip():
+                continue
+            p = profiles.setdefault(str(key), {'texts': 0, 'chars': 0, 'grams': Counter()})
+            p['texts'] += 1
+            p['chars'] += len(text)
+            p['grams'].update(_trigrams(text))
+            if len(p['grams']) > PROFILE_PRUNE_AT:
+                p['grams'] = Counter(dict(p['grams'].most_common(PROFILE_KEEP)))
+    finally:
+        db.close()
+    out = {k: {'texts': p['texts'], 'chars': p['chars'], 'trigram_total': sum(p['grams'].values()), 'trigrams': dict(p['grams'].most_common(PROFILE_TOP))} for k, p in profiles.items()}
+    return {'protocol': PROTOCOL, 'hostname': socket.gethostname(), 'database': control['database'], 'query_set': control['query_set'],
+            'results': {'names': names, 'profiles': out}, 'statements': db.statements, 'rows_fetched': db.rows_fetched, 'wall_seconds': round(time.time() - started, 1),
+            'row_values_retained': False, 'text_retained': False, 'measured_at': now()}
+
+
 def execute_text_estate(control):
     """Worker of record: one pull-seam hop per target database; the aggregates go to detail.json, the receipt carries their digest."""
     job_dir = Path(control['job_dir']); job_dir.mkdir(parents=True, exist_ok=True)
@@ -813,7 +864,7 @@ def execute_text_estate(control):
             for connection in candidates:
                 try:
                     value = _hop(control['pull_via'], {'connection': {k: connection[k] for k in ('host', 'port', 'user', 'password')}, 'database': target['database'],
-                                                       'mode': 'text_estate', 'query_set': target['query_set']}, control['bundle_b64'], control['code_sha256'],
+                                                       'mode': target.get('mode', 'text_estate'), 'query_set': target['query_set']}, control['bundle_b64'], control['code_sha256'],
                                  min(deadline, time.time() + int(control.get('database_seconds', 900))))
                     value['connection_label'] = target['connection_label']
                     value['host_fingerprint'] = hashlib.sha256(str(connection['host']).encode()).hexdigest()[:12]
@@ -825,7 +876,7 @@ def execute_text_estate(control):
         detail = {'targets': targets, 'errors': errors}
         _write(job_dir / 'detail.json', detail)
         receipt['result'] = {'targets': [{'database': t['database'], 'query_set': t['query_set'], 'statements': t['statements'], 'rows_fetched': t['rows_fetched'],
-                                          'queries': {k: (len(v) if isinstance(v, list) else v) for k, v in t['results'].items()}} for t in targets], 'errors': errors,
+                                          'queries': {k: (len(v) if isinstance(v, (list, dict)) else v) for k, v in t['results'].items()}} for t in targets], 'errors': errors,
                              'detail_path': str(job_dir / 'detail.json'), 'detail_sha256': hashlib.sha256((job_dir / 'detail.json').read_bytes()).hexdigest(),
                              'row_values_retained': False, 'execution': 'jump host read aggregates; worker of record held them only'}
         receipt['status'] = 'completed' if targets and not errors else 'partial' if targets else 'failed'
@@ -857,4 +908,6 @@ def jump_execute(control):
         return _jump_list(control)
     if control.get('mode') == 'text_estate':
         return _jump_text_estate(control)
+    if control.get('mode') == 'text_profiles':
+        return _jump_text_profiles(control)
     return _jump_measure(control)

@@ -155,14 +155,23 @@ async def estate_language_status(actor=Depends(census_identity)):
 
 
 @router.post('/text-estate',status_code=202,response_model=c.Envelope)
-def text_estate_dispatch(actor=Depends(census_identity)):
-    """Aggregate-only read of the written-word stores (hourly news scripts per station, transcription workbench text per language)."""
+def text_estate_dispatch(kind:str='aggregates',actor=Depends(census_identity)):
+    """Aggregate-only read of the written-word stores: `aggregates` (scripts per station, workbench text per language) or `profiles`
+    (character-trigram profiles of the scripts per station and the transcripts per language, so each station's language is identified from its script)."""
     operator(actor)
     if actor['tenant_id']!='RMS': raise HTTPException(403,'The written-word stores are RMS custody')
     from services.census_autonomy import text_estate_evidence
-    with commission_gate.crossing(actor,'training_lab.corpus_measurement',{'targets':[t['database'] for t in text_estate_evidence.TARGETS]}):
-        try: doc=text_estate_evidence.dispatch(actor)
+    if kind not in text_estate_evidence.KINDS: raise HTTPException(422,'kind must be aggregates or profiles')
+    with commission_gate.crossing(actor,'training_lab.corpus_measurement',{'kind':kind,'targets':[t['database'] for t in text_estate_evidence.KINDS[kind][0]]}):
+        try: doc=text_estate_evidence.dispatch(actor,kind)
         except ValueError as exc: raise HTTPException(409,str(exc)) from exc
+    return {'tenant_id':actor['tenant_id'],'job':doc}
+
+
+@router.get('/text-estate/profiles',response_model=c.Envelope)
+async def text_estate_profiles(actor=Depends(census_identity)):
+    from services.census_autonomy import text_estate_evidence
+    doc=await asyncio.to_thread(lambda: text_estate_evidence.refresh(text_estate_evidence.latest(actor['tenant_id'],'profiles')))
     return {'tenant_id':actor['tenant_id'],'job':doc}
 
 

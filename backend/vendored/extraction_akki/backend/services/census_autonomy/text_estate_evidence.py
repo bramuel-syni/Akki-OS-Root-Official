@@ -12,6 +12,10 @@ OWNER_ORDER_REF = ('owner order 2026-10-02: evidence for the written news script
                    'aggregates only; no training')
 TARGETS = [{'connection_label': 'Razuna (Library Content) & Newsvault (Radio News content)', 'database': 'news_vault', 'query_set': 'news_vault'},
            {'connection_label': 'citizen_digital', 'database': 'local', 'query_set': 'local'}]
+PROFILE_TARGETS = [{**t, 'mode': 'text_profiles'} for t in TARGETS]
+PROFILE_ORDER_REF = ('owner order 2026-10-03: each station carries a name and a script that identify its language; character-trigram profiles of the scripts '
+                     'per station and of the workbench transcripts per language, compared; no text retained')
+KINDS = {'aggregates': (TARGETS, OWNER_ORDER_REF), 'profiles': (PROFILE_TARGETS, PROFILE_ORDER_REF)}
 NEWS_RECEIPT = 'news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins)'
 LOCAL_RECEIPT = 'local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)'
 
@@ -22,18 +26,20 @@ def db():
     return database
 
 
-def latest(tenant):
-    return db().training_lab_text_estate.find_one({'tenant_id': tenant}, {'_id': 0}, sort=[('submitted_at', -1)])
+def latest(tenant, kind='aggregates'):
+    query = {'tenant_id': tenant, 'kind': kind} if kind != 'aggregates' else {'tenant_id': tenant, 'kind': {'$in': [None, 'aggregates']}}
+    return db().training_lab_text_estate.find_one(query, {'_id': 0}, sort=[('submitted_at', -1)])
 
 
-def dispatch(actor):
+def dispatch(actor, kind='aggregates'):
     from services.census_autonomy.operational_runner import admission_path
-    current = latest(actor['tenant_id'])
+    targets, order_ref = KINDS[kind]
+    current = latest(actor['tenant_id'], kind)
     if current and current['status'] in ('submitting', 'running'): raise ValueError('A text-estate evidence job is already running')
     lawful, _ = admission_path()
-    job = eid.submit('rms_mysql', {'targets': TARGETS, 'max_seconds': 3600, 'database_seconds': 900}, actor['principal_id'], str(lawful), phase='text_estate')
+    job = eid.submit('rms_mysql', {'targets': targets, 'max_seconds': 3600, 'database_seconds': 900}, actor['principal_id'], str(lawful), phase='text_estate')
     doc = {'text_estate_id': 'te-' + job['job_id'].split('-', 1)[1], 'tenant_id': actor['tenant_id'], 'actor': actor['principal_id'], 'job_id': job['job_id'], 'host': job['host'],
-           'phase': 'text_estate', 'targets': TARGETS, 'owner_order_ref': OWNER_ORDER_REF, 'submitted_at': lab.now(), 'updated_at': lab.now(),
+           'phase': 'text_estate', 'kind': kind, 'targets': targets, 'owner_order_ref': order_ref, 'submitted_at': lab.now(), 'updated_at': lab.now(),
            'status': 'running' if job['status'] == 'running' else 'failed', **({'reason': job.get('reason')} if job['status'] != 'running' else {})}
     db().training_lab_text_estate.insert_one(dict(doc))
     return {k: v for k, v in doc.items() if k != 'actor'}
@@ -47,8 +53,9 @@ def refresh(doc):
     elif job and job['status'] in ('completed', 'partial') and (job.get('receipt') or {}).get('digest_verified'):
         try:
             detail = eid.fetch_detail(doc['job_id'])
+            summary = summarise_profiles(detail) if doc.get('kind') == 'profiles' else summarise(detail)
             fields.update(status='completed', result=job['receipt']['result'], receipt_sha256=job['receipt']['receipt_sha256'], finished_at=job.get('finished_at'),
-                          summary=summarise(detail), detail_sha256=job['receipt']['result']['detail_sha256'])
+                          summary=summary, detail_sha256=job['receipt']['result']['detail_sha256'])
         except Exception as exc:
             fields.update(status='failed', reason=f'Aggregates could not be retrieved: {type(exc).__name__}')
     else:
@@ -61,6 +68,16 @@ def detail(tenant):
     doc = latest(tenant)
     if not doc or doc['status'] != 'completed': return doc, None
     return doc, eid.fetch_detail(doc['job_id'])
+
+
+def resummarise(tenant, kind='profiles'):
+    """Re-reads the retained aggregates of the latest completed job of a kind and rewrites its summary (after a summariser change)."""
+    doc = latest(tenant, kind)
+    if not doc or doc['status'] != 'completed': return doc
+    detail_ = eid.fetch_detail(doc['job_id'])
+    summary = summarise_profiles(detail_) if kind == 'profiles' else summarise(detail_)
+    db().training_lab_text_estate.update_one({'text_estate_id': doc['text_estate_id']}, {'$set': {'summary': summary, 'updated_at': lab.now()}})
+    return {**doc, 'summary': summary}
 
 
 def _n(value):
@@ -140,4 +157,86 @@ def summarise(detail_):
             'speakers': r['speakers'][0][0] if isinstance(r.get('speakers'), list) and r['speakers'] else None,
             'query_errors': {k: v for k, v in r.items() if isinstance(v, dict)}}
     out['errors'] = (detail_ or {}).get('errors', [])
+    return json.loads(json.dumps(out, default=str))
+
+
+# ----------------------------------------------------------------------------- script language profiles → station language register
+ENGLISH_STATIONS = {'hot 96': ('English', 'eng')}  # declared by the station itself; no workbench folder carries English
+
+
+def _vector(profile):
+    total = float(profile.get('trigram_total') or sum(profile['trigrams'].values()) or 1)
+    return {g: c / total for g, c in profile['trigrams'].items()}
+
+
+def _cosine(a, b):
+    import math
+    dot = sum(v * b[g] for g, v in a.items() if g in b)
+    na, nb = math.sqrt(sum(v * v for v in a.values())), math.sqrt(sum(v * v for v in b.values()))
+    return round(dot / (na * nb), 4) if na and nb else 0.0
+
+
+def _station_key(name):
+    return (name or '').lower().replace('radio ', '').replace(' fm', '').strip()
+
+
+def summarise_profiles(detail_):
+    """Each news station's script profile against every workbench language profile (transcripts): nearest language, margin to the second,
+    the station's declared language from the workbench register, and the verdict. Station-to-station similarity shows which stations write
+    the same language and how far the unmodelled languages (Meru, Embu, Bukusu, Maragoli) sit from their modelled relatives."""
+    news, local = _target(detail_, 'news_vault'), _target(detail_, 'local')
+    out = {'stations': [], 'languages': {}, 'station_similarity': {}, 'errors': (detail_ or {}).get('errors', [])}
+    if not news or not isinstance(news['results'].get('profiles'), dict) or not local or not isinstance(local['results'].get('profiles'), dict):
+        out['errors'].append({'code': 'PROFILES_MISSING'})
+        return out
+    station_names = {str(row[0]): row[1] for row in news['results'].get('names', [])}
+    register = {str(row[0]): {'language': row[1], 'code': (row[2] or '').lower(), 'station': row[3]} for row in local['results'].get('names', [])}
+    by_station_key = {}
+    for entry in register.values():
+        if entry['station']:
+            by_station_key.setdefault(_station_key(entry['station']), entry)
+    merged = {}
+    for language_id, profile in local['results']['profiles'].items():
+        entry = register.get(str(language_id))
+        if not entry or not entry['code']:
+            continue
+        m = merged.setdefault(entry['code'], {'language': entry['language'].strip().title(), 'code': entry['code'], 'texts': 0, 'chars': 0, 'trigram_total': 0, 'trigrams': defaultdict(int)})
+        m['texts'] += profile['texts']; m['chars'] += profile['chars']; m['trigram_total'] += profile['trigram_total']
+        for g, c in profile['trigrams'].items():
+            m['trigrams'][g] += c
+    language_vectors = {code: _vector(m) for code, m in merged.items()}
+    out['languages'] = {code: {'language': m['language'], 'transcript_segments': m['texts'], 'chars': m['chars']} for code, m in merged.items()}
+    station_vectors = {}
+    rows = []
+    for station_id, profile in news['results']['profiles'].items():
+        name = station_names.get(str(station_id)) or ('unassigned hour' if station_id in (None, 'None') else f'station #{station_id}')
+        station_vectors[name] = _vector(profile)
+        ranked = sorted(((code, _cosine(station_vectors[name], v)) for code, v in language_vectors.items()), key=lambda kv: -kv[1])
+        declared = by_station_key.get(_station_key(name)) or ({'language': ENGLISH_STATIONS[_station_key(name)][0], 'code': ENGLISH_STATIONS[_station_key(name)][1], 'station': name} if _station_key(name) in ENGLISH_STATIONS else None)
+        nearest, second = ranked[0] if ranked else (None, 0.0), ranked[1] if len(ranked) > 1 else (None, 0.0)
+        rows.append({'station': name, 'scripts_profiled': profile['texts'], 'chars_profiled': profile['chars'], 'declared_language': declared['language'].strip().title() if declared else None,
+                     'declared_code': declared['code'] if declared else None, 'nearest_code': nearest[0], 'nearest_language': merged[nearest[0]]['language'] if nearest[0] else None,
+                     'nearest_similarity': nearest[1], 'second_code': second[0], 'second_similarity': second[1], 'margin': round(nearest[1] - second[1], 4),
+                     'similarity_by_language': {code: s for code, s in ranked}})
+    names = sorted(station_vectors)
+    out['station_similarity'] = {a: {b: _cosine(station_vectors[a], station_vectors[b]) for b in names if b != a} for a in names}
+    declared_by_name = {r['station']: r for r in rows}
+    confirmed = [r['nearest_similarity'] for r in rows if r['declared_code'] in language_vectors and r['nearest_code'] == r['declared_code']]
+    floor = min(confirmed) if confirmed else 0.0
+    for r in rows:
+        others = {b: v for b, v in out['station_similarity'].get(r['station'], {}).items() if b != 'unassigned hour'}
+        closest = max(others.items(), key=lambda kv: kv[1]) if others else (None, 0.0)
+        r['closest_station'], r['closest_station_similarity'] = closest[0], closest[1]
+        r['closest_station_language'] = (declared_by_name.get(closest[0]) or {}).get('declared_language') if closest[0] else None
+        if r['declared_code'] in language_vectors:
+            r['verdict'] = ('confirmed: scripts match the workbench transcripts of the declared language' if r['nearest_code'] == r['declared_code']
+                            else f"scripts nearest {r['nearest_language']} ({r['nearest_similarity']:.2f}) over declared {r['declared_language']} ({r['similarity_by_language'].get(r['declared_code'], 0):.2f}) — bilingual scripting or register to review")
+        elif r['declared_code']:
+            r['verdict'] = (f"{r['declared_language']}: no workbench transcripts to match; nearest modelled language {r['nearest_language']} at {r['nearest_similarity']:.2f} "
+                            f"(confirmed stations score {floor:.2f} or more against their own language); scripts closest to {r['closest_station']} ({r['closest_station_language']}) at {r['closest_station_similarity']:.2f} — "
+                            + ('a distinct language, related to ' + str(r['closest_station_language']) if r['closest_station_similarity'] >= 0.85 else 'a distinct language, declared by name'))
+        else:
+            r['verdict'] = 'no declared language; scripts nearest ' + str(r['nearest_language'])
+    out['confirmation_floor'] = round(floor, 4)
+    out['stations'] = sorted(rows, key=lambda s: s['station'])
     return json.loads(json.dumps(out, default=str))

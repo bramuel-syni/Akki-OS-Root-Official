@@ -499,6 +499,15 @@ def store_estate(tenant_id="RMS"):
             forecast = None
         if forecast:
             stores["content_forecast"] = forecast
+            from services.census_autonomy import language_register, text_estate_evidence
+            try:
+                aggregates = (text_estate_evidence.latest(tenant_id) or {}).get("summary")
+                profiles = (text_estate_evidence.latest(tenant_id, "profiles") or {}).get("summary")
+                register = language_register.build(forecast, aggregates, profiles)
+            except (ValueError, KeyError, TypeError, ZeroDivisionError):
+                register = None
+            if register:
+                stores["language_register"] = register
     return stores
 
 
