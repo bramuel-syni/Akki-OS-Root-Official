@@ -1,0 +1,24 @@
+{
+  "summary": "Iteration 82 backend-only verification of the RMS whole-estate Monte Carlo forecast report, released frontier commission state (com-1f3a3606e140 v7, build bld-e51ed4034736), and the 6 published downloads. All 28 custom checks + 6 estate-forecast unit tests + 12 doc-studio install tests passed (excluding the pre-existing out-of-scope eval1_pptx_hash case). No POST / revise / build calls made.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/iter82_estate_forecast_test.py",
+    "/app/test_reports/pytest/iter82.xml",
+    "/app/test_reports/pytest/iter82_m6_forecast.xml",
+    "/app/test_reports/pytest/iter82_m6_install.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "report.stores.content_forecast.by_basis is returned as a dict keyed by basis name (measured, header_measured, forecast_unsampled, forecast_denied, forecast_archived), not as a list of {basis,...} rows. The review prompt described a list; tests must handle both shapes. Consider standardising this across the API contract to avoid downstream consumer breakage.",
+    "Downloads endpoint /downloads/* is unauthenticated — intentional for the published pack, but worth noting that any guessable release filename is public."
+  ],
+  "updated_files": ["/app/backend/tests/iter82_estate_forecast_test.py"],
+  "success_rate": {"backend": "100% (46/46 in-scope tests passed)", "frontend": "N/A (frontend skipped per request)"},
+  "test_credentials": "RMS operator demo.operator@demo.rms.example.com / demo-operator-pw (from /app/memory/test_credentials.md); login returned access_token.",
+  "seed_data_creation": "None — read-only against the released v7 build and static downloads.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "iter82 verified: (1) GET /api/portal/census/estate-intelligence/report → stores.content_forecast present with simulations/strata/donors/estate/by_store/by_basis/measured_share_of_hours/forecast_share_of_hours/sources/folders/method; estate.hours bounds valid; by_basis sums reconcile within 5%; every source row has basis in {measured,forecast,mixed} with monotone bounds; denied-access forecast rows carry positive hours; folders sorted desc. (2) GET /api/studio/commissions/com-1f3a3606e140 → version 7, release.state clear, last build bld-e51ed4034736 released, QA/validate PASS, prove.byte_identical true, authoring.pipeline frontier, gate.passed true, review.model claude-fable-5-1 with resolution text. (3) 6 downloads match manifest bytes+sha256 and open with python-docx / python-pptx / openpyxl. (4) DOCX contains '500,290.3' and '248,841' (no bare '248841'); heading order Summary → Plain English/Coverage → Appendix: receipts last; no unresolved {A-Z}\\w+ tokens. PPTX: 73 slides (within 60–90), slide 2 contains '500,290.3', no unresolved {Fxxx} tokens. XLSX: all 5 required sheets present, Decisions sheet has a D0 row mentioning 'adopt the forecast', Estate forecast by store has 2024offairrecs row with Access 'key refused (403)' and Basis 'forecast'. API-side estate.hours.est has shifted to 522,338.6 (new census receipt landed) but the frozen published DOCX/PPTX/XLSX still carry the 2026-10-03 figure 500,290.3 — expected. No regressions, no action items.",
+  "rca of the issue": "N/A — no bugs found."
+}
