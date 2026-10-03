@@ -1,0 +1,147 @@
+{
+ "job_id": "etx-58483f912f66",
+ "phase": "text_estate",
+ "source_id": "rms_mysql",
+ "host": "akki-vm",
+ "principal_id": "6ab56dd48894abb269135ca2",
+ "submitted_at": "2026-10-03T05:04:03.797358Z",
+ "params": {
+  "targets": [
+   {
+    "connection_label": "citizen_digital",
+    "database": "local",
+    "query_set": "local_media_locations"
+   }
+  ],
+  "max_seconds": 3600,
+  "database_seconds": 900
+ },
+ "northena_run_id": "run-7d01a75cec33",
+ "northena_trace_id": "trc-f7f5efc554a5",
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "CP-CENSUS-ESTATE-INTELLIGENCE",
+  "version": "etx-58483f912f66"
+ },
+ "remote": {
+  "root": "~/.akki-census/state/estate_intelligence",
+  "job_dir": "~/.akki-census/state/estate_intelligence/jobs/etx-58483f912f66",
+  "pid": 1764295
+ },
+ "status": "completed",
+ "scope": "census only: aggregates, sketches and hashes; no row values retained or returned",
+ "ledger_rows": [
+  {
+   "row_id": "led-a8d95d44b2aa",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "estate_intelligence_rms_mysql_admitted"
+  },
+  {
+   "row_id": "led-a84d4045be9a",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "estate_intelligence_daemonised:pid=1764295"
+  },
+  {
+   "row_id": "led-8ad5657e82a3",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "estate_intelligence_completed"
+  }
+ ],
+ "connections": [
+  {
+   "label": "iebc_forms",
+   "host_fingerprint": "cd4c5390fb10"
+  },
+  {
+   "label": "artists_app",
+   "host_fingerprint": "cd57802e1444"
+  },
+  {
+   "label": "viupay",
+   "host_fingerprint": "a0a497b29fc3"
+  },
+  {
+   "label": "citizen_digital",
+   "host_fingerprint": "3de193c7b51c"
+  },
+  {
+   "label": "citizen_digital",
+   "host_fingerprint": "318772a8c6d2"
+  },
+  {
+   "label": "citizen-pulse",
+   "host_fingerprint": "b6ff240ded83"
+  },
+  {
+   "label": "Razuna (Library Content) & Newsvault (Radio News content)",
+   "host_fingerprint": "8512835c0ceb"
+  }
+ ],
+ "code_sha256": "391c117b191f4ae5e78605933adddf5422b93b8bb83e86c7a2a40ca0a50763e3",
+ "started_at": "2026-10-03T05:04:09.874756Z",
+ "last_status_rpc": {
+  "at": "2026-10-03T05:09:37.031379Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-079c6030ce30"
+ },
+ "remote_state": {
+  "phase": "text_estate",
+  "job_id": "etx-58483f912f66",
+  "status": "completed",
+  "started_at": "2026-10-03T05:04:09.764995Z",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "progress": {
+   "stage": "reading aggregates",
+   "database": "local",
+   "at": "2026-10-03T05:04:09.765211Z"
+  },
+  "finished_at": "2026-10-03T05:06:15.279969Z",
+  "receipt_sha256": "4718e4384c93f0958d367ae94fd3396a7cd8eba17f750b925ada4c6493024ce4"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-estate-intelligence/1",
+  "job_id": "etx-58483f912f66",
+  "phase": "text_estate",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-03T05:04:09.764995Z",
+  "code_sha256": "391c117b191f4ae5e78605933adddf5422b93b8bb83e86c7a2a40ca0a50763e3",
+  "status": "completed",
+  "result": {
+   "targets": [
+    {
+     "database": "local",
+     "query_set": "local_media_locations",
+     "statements": 7,
+     "rows_fetched": 6271,
+     "queries": {
+      "compressed_hosts": 2000,
+      "converted_hosts": 2,
+      "file_location_depth": 2000,
+      "languages": 55,
+      "original_hosts": 2000,
+      "status_by_language": 184,
+      "transcribed_files_by_language": 32
+     }
+    }
+   ],
+   "errors": [],
+   "detail_path": "~/.akki-census/state/estate_intelligence/jobs/etx-58483f912f66/detail.json",
+   "detail_sha256": "acd0a444130251df7d381225135c2d2a210770c16084c86d0a34947fada6ad26",
+   "row_values_retained": false,
+   "execution": "jump host read aggregates; worker of record held them only"
+  },
+  "finished_at": "2026-10-03T05:06:15.279969Z",
+  "receipt_sha256": "4718e4384c93f0958d367ae94fd3396a7cd8eba17f750b925ada4c6493024ce4",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-03T05:06:15.279969Z"
+}

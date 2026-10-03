@@ -759,6 +759,24 @@ TEXT_ESTATE_QUERIES = {
                                     'WHERE t.deleted_at IS NULL GROUP BY u.language_id LIMIT 1000'),
         'speakers': 'SELECT COUNT(*), COUNT(DISTINCT gender) FROM speakers LIMIT 1',
     },
+    # Where the workbench's labelled recordings physically live (owner order 2026-10-03: retrain for the six unmodelled languages). Scheme+host
+    # and the first path segment of the stored URLs per language — infrastructure labels, no file names, no row values.
+    'local_media_locations': {
+        'languages': 'SELECT ID, `Language`, code, station FROM folder_languages LIMIT 1000',
+        'converted_hosts': ("SELECT u.language_id, SUBSTRING_INDEX(u.converted_url, '/', 3), SUBSTRING_INDEX(SUBSTRING_INDEX(u.converted_url, '/', 4), '/', -1), COUNT(*), "
+                            "COALESCE(SUM(u.audio_length), 0), SUM(u.converted_url LIKE '%.mp3'), SUM(u.converted_url LIKE '%.wav'), SUM(u.converted_url LIKE '%.m4a' OR u.converted_url LIKE '%.aac'), "
+                            "SUM(u.converted_url LIKE '%.ogg' OR u.converted_url LIKE '%.opus'), SUM(u.converted_url LIKE '%.flac') FROM uploaded_files u "
+                            "WHERE u.converted_url IS NOT NULL AND u.converted_url <> '' GROUP BY u.language_id, 2, 3 LIMIT 2000"),
+        'original_hosts': ("SELECT u.language_id, SUBSTRING_INDEX(u.original_url, '/', 3), COUNT(*) FROM uploaded_files u WHERE u.original_url IS NOT NULL AND u.original_url <> '' "
+                           'GROUP BY u.language_id, 2 LIMIT 2000'),
+        'compressed_hosts': ("SELECT u.language_id, SUBSTRING_INDEX(u.compressed_url, '/', 3), COUNT(*) FROM uploaded_files u WHERE u.compressed_url IS NOT NULL AND u.compressed_url <> '' "
+                             'GROUP BY u.language_id, 2 LIMIT 2000'),
+        'file_location_depth': ("SELECT u.language_id, LENGTH(u.file_location) - LENGTH(REPLACE(u.file_location, '/', '')), SUBSTRING_INDEX(u.file_location, '/', 1), COUNT(*) FROM uploaded_files u "
+                                "WHERE u.file_location IS NOT NULL AND u.file_location <> '' GROUP BY u.language_id, 2, 3 LIMIT 2000"),
+        'status_by_language': 'SELECT language_id, status, COUNT(*), COALESCE(SUM(audio_length), 0) FROM uploaded_files GROUP BY language_id, status LIMIT 2000',
+        'transcribed_files_by_language': ('SELECT u.language_id, COUNT(DISTINCT t.file_id), COUNT(*), COALESCE(SUM(TIME_TO_SEC(t.end_time) - TIME_TO_SEC(t.start_time)), 0), COUNT(DISTINCT t.speaker_id) '
+                                          'FROM transcripts t JOIN uploaded_files u ON u.id = t.file_id WHERE t.deleted_at IS NULL GROUP BY u.language_id LIMIT 1000'),
+    },
 }
 
 

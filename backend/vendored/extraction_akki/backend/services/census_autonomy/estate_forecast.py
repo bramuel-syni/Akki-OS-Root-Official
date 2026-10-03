@@ -222,3 +222,40 @@ def forecast(outcomes: Dict[str, Dict[str, Any]], simulations: int = SIMULATIONS
     _CACHE.clear()
     _CACHE[key] = result
     return result
+
+
+def calibrate(outcomes: Dict[str, Dict[str, Any]], simulations: int = 400) -> Dict[str, Any] | None:
+    """Leave-one-bucket-out check of the forecast rule: every measured bucket is forecast as if its key were refused, from the other buckets'
+    donors only, and compared with what the census actually measured there. Coverage of the 95 % interval and the size of the misses say how
+    far the rule can be trusted on buckets nothing was read from."""
+    strata = _strata(outcomes)
+    donors = _donors(strata)
+    rng = np.random.default_rng(7)
+    rows = []
+    for store, label in sorted({(d['store'], d['label']) for d in donors}):
+        held = [s for s in strata if s['store'] == store and s['label'] == label and s['basis'] == 'measured']
+        pool = [d for d in donors if not (d['store'] == store and d['label'] == label)]
+        if not held or not pool:
+            continue
+        rates, shares = np.array([d['rate'] for d in pool]), np.array([d['speech_share'] for d in pool])
+        hours, speech, truth_h, truth_s = np.zeros(simulations), np.zeros(simulations), 0.0, 0.0
+        for s in held:
+            idx = rng.choice(len(pool), size=simulations, p=_weights(s, pool, KERNEL_SIGMA))
+            h = s['bytes'] / 1e6 * rates[idx] / 3600.0
+            hours += h; speech += h * shares[idx]
+            truth_h += s['hours']['est']; truth_s += (s['estimates'].get('speech') or {}).get('est') or 0.0
+        fh, fs = _summary(hours), _summary(speech)
+        rows.append({'store': store, 'label': label, 'strata': len(held), 'measured_hours': round(truth_h, 1), 'forecast_hours': fh, 'hours_covered': bool(fh['lo'] <= truth_h <= fh['hi']),
+                     'ratio': round(fh['est'] / truth_h, 2) if truth_h else None, 'measured_speech_share': round(truth_s / truth_h, 3) if truth_h else None,
+                     'forecast_speech_share': round(fs['est'] / fh['est'], 3) if fh['est'] else None, 'speech_covered': bool(fs['lo'] <= truth_s <= fs['hi'])})
+    if not rows:
+        return None
+    ratios = np.array([r['ratio'] for r in rows if r['ratio']])
+    weights = np.array([r['measured_hours'] for r in rows])
+    return {'buckets': len(rows), 'simulations': simulations,
+            'hours_interval_coverage': round(sum(r['hours_covered'] for r in rows) / len(rows), 3),
+            'hours_interval_coverage_weighted': round(float(sum(w for r, w in zip(rows, weights) if r['hours_covered']) / weights.sum()), 3) if weights.sum() else None,
+            'speech_interval_coverage': round(sum(r['speech_covered'] for r in rows) / len(rows), 3),
+            'median_ratio': round(float(np.median(ratios)), 2), 'median_abs_log_error': round(float(np.median(np.abs(np.log(ratios)))), 3),
+            'within_factor_2': round(float(np.mean((ratios >= 0.5) & (ratios <= 2.0))), 3), 'within_25_percent': round(float(np.mean((ratios >= 0.8) & (ratios <= 1.25))), 3),
+            'rows': sorted(rows, key=lambda r: -r['measured_hours'])}

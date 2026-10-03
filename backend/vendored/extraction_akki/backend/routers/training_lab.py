@@ -161,7 +161,7 @@ def text_estate_dispatch(kind:str='aggregates',actor=Depends(census_identity)):
     operator(actor)
     if actor['tenant_id']!='RMS': raise HTTPException(403,'The written-word stores are RMS custody')
     from services.census_autonomy import text_estate_evidence
-    if kind not in text_estate_evidence.KINDS: raise HTTPException(422,'kind must be aggregates or profiles')
+    if kind not in text_estate_evidence.KINDS: raise HTTPException(422,'kind must be aggregates, profiles or locations')
     with commission_gate.crossing(actor,'training_lab.corpus_measurement',{'kind':kind,'targets':[t['database'] for t in text_estate_evidence.KINDS[kind][0]]}):
         try: doc=text_estate_evidence.dispatch(actor,kind)
         except ValueError as exc: raise HTTPException(409,str(exc)) from exc

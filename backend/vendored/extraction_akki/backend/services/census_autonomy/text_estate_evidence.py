@@ -15,7 +15,9 @@ TARGETS = [{'connection_label': 'Razuna (Library Content) & Newsvault (Radio New
 PROFILE_TARGETS = [{**t, 'mode': 'text_profiles'} for t in TARGETS]
 PROFILE_ORDER_REF = ('owner order 2026-10-03: each station carries a name and a script that identify its language; character-trigram profiles of the scripts '
                      'per station and of the workbench transcripts per language, compared; no text retained')
-KINDS = {'aggregates': (TARGETS, OWNER_ORDER_REF), 'profiles': (PROFILE_TARGETS, PROFILE_ORDER_REF)}
+LOCATION_TARGETS = [{'connection_label': 'citizen_digital', 'database': 'local', 'query_set': 'local_media_locations'}]
+LOCATION_ORDER_REF = 'owner order 2026-10-03: retrain the language model for the six unmodelled languages — where the workbench\'s labelled recordings live, per language (hosts and path roots only)'
+KINDS = {'aggregates': (TARGETS, OWNER_ORDER_REF), 'profiles': (PROFILE_TARGETS, PROFILE_ORDER_REF), 'locations': (LOCATION_TARGETS, LOCATION_ORDER_REF)}
 NEWS_RECEIPT = 'news_vault.stories (script, title, date, hour_id) → news_vault.hours (station_id, time, type_id) → news_vault.stations (name); news_vault.news (2022 bulletins)'
 LOCAL_RECEIPT = 'local.uploaded_files (language_id, audio_length, status) ← local.transcripts (file_id, start_time, end_time, transcript) ; local.folder_languages (Language, code, station)'
 
@@ -53,7 +55,7 @@ def refresh(doc):
     elif job and job['status'] in ('completed', 'partial') and (job.get('receipt') or {}).get('digest_verified'):
         try:
             detail = eid.fetch_detail(doc['job_id'])
-            summary = summarise_profiles(detail) if doc.get('kind') == 'profiles' else summarise(detail)
+            summary = summarise_profiles(detail) if doc.get('kind') == 'profiles' else summarise_locations(detail) if doc.get('kind') == 'locations' else summarise(detail)
             fields.update(status='completed', result=job['receipt']['result'], receipt_sha256=job['receipt']['receipt_sha256'], finished_at=job.get('finished_at'),
                           summary=summary, detail_sha256=job['receipt']['result']['detail_sha256'])
         except Exception as exc:
@@ -239,4 +241,33 @@ def summarise_profiles(detail_):
             r['verdict'] = 'no declared language; scripts nearest ' + str(r['nearest_language'])
     out['confirmation_floor'] = round(floor, 4)
     out['stations'] = sorted(rows, key=lambda s: s['station'])
+    return json.loads(json.dumps(out, default=str))
+
+
+def summarise_locations(detail_):
+    """Per language: where the workbench's recordings live (URL scheme+host and first path segment), formats, transcribed files and speakers."""
+    local = _target(detail_, 'local')
+    out = {'languages': {}, 'errors': (detail_ or {}).get('errors', [])}
+    if not local:
+        out['errors'].append({'code': 'LOCATIONS_MISSING'}); return out
+    r = local['results']
+    register = {str(row[0]): {'language': (row[1] or '').strip().title(), 'code': (row[2] or '').lower(), 'station': row[3]} for row in r.get('languages', []) if isinstance(r.get('languages'), list)}
+    langs = out['languages']
+    def entry(language_id):
+        key = str(language_id)
+        return langs.setdefault(key, {**register.get(key, {'language': None, 'code': None, 'station': None}), 'converted': [], 'original_hosts': {}, 'compressed_hosts': {}, 'file_location_roots': {}, 'status': {}, 'transcribed': None})
+    for row in r.get('converted_hosts', []) if isinstance(r.get('converted_hosts'), list) else []:
+        language_id, host, first, count, seconds, mp3, wav, m4a, ogg, flac = row
+        entry(language_id)['converted'].append({'host': host, 'first_segment': first, 'files': _n(count), 'audio_hours': round(_n(seconds) / 3600, 1),
+                                                 'formats': {'mp3': _n(mp3), 'wav': _n(wav), 'm4a_aac': _n(m4a), 'ogg_opus': _n(ogg), 'flac': _n(flac)}})
+    for name in ('original_hosts', 'compressed_hosts'):
+        for language_id, host, count in r.get(name, []) if isinstance(r.get(name), list) else []:
+            entry(language_id)[name][str(host)] = _n(count)
+    for language_id, depth, root, count in r.get('file_location_depth', []) if isinstance(r.get('file_location_depth'), list) else []:
+        entry(language_id)['file_location_roots'][f'{root} (depth {_n(depth)})'] = _n(count)
+    for language_id, status, count, seconds in r.get('status_by_language', []) if isinstance(r.get('status_by_language'), list) else []:
+        entry(language_id)['status'][str(status)] = {'files': _n(count), 'audio_hours': round(_n(seconds) / 3600, 1)}
+    for language_id, files, segments, seconds, speakers in r.get('transcribed_files_by_language', []) if isinstance(r.get('transcribed_files_by_language'), list) else []:
+        entry(language_id)['transcribed'] = {'files': _n(files), 'segments': _n(segments), 'speech_hours': round(_n(seconds) / 3600, 1), 'speakers': _n(speakers)}
+    out['query_errors'] = {k: v for k, v in r.items() if isinstance(v, dict)}
     return json.loads(json.dumps(out, default=str))
