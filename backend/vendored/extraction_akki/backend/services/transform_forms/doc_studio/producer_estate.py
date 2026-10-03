@@ -69,7 +69,8 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
     }
     cs = report.get("cost_strategies") or {}
     if cs.get("monthly_saving_total") is not None:
-        facts["F019"] = {"label": f"Priced monthly saving ({cs.get('currency', 'USD')})", "value": round(cs["monthly_saving_total"], 1), "unit": cs.get("currency", "USD"), "class": "estimated", "receipt": "R02"}
+        facts["F019"] = {"label": f"Legacy reference-price monthly saving scenario, not verified net savings ({cs.get('currency', 'USD')})", "value": round(cs["monthly_saving_total"], 1), "unit": cs.get("currency", "USD"), "class": "estimated", "receipt": "R02",
+                         "measurement_scope": "Historic full-Standard-price upper-bound scenario; storage classes are only partly measured. Reprice eligible Standard bytes and retrieval/restore costs before using as expected savings; opportunities may overlap."}
     if strategies:
         facts["F020"] = {"label": "Bytes addressed by the three largest strategies", "value": _gib(sum(s["bytes"] for s in strategies[:3])), "unit": "GiB", "class": "estimated", "receipt": "R02"}
         facts["F021"] = {"label": "Bytes addressed by all cost strategies (databases, object and file stores)", "value": _gib(sum(s["bytes"] for s in strategies)), "unit": "GiB", "class": "estimated", "receipt": "R02"}
@@ -124,15 +125,49 @@ def build_content(report: Dict[str, Any], tenant_id: str) -> Dict[str, Any]:
     _locations(report, tables, receipts)
     language_chapters = _language(tenant_id, receipts, facts, series, calculations, claims, tables, cannot_say)
     _decisions(report, facts, tables, receipts)
+    content_chapters = _content_census(report, receipts, facts, series, calculations, claims, tables, cannot_say)
+    has_forecast = _forecast(report, receipts, facts, series, calculations, claims, tables, cannot_say)
     _authoring_roles(tables, receipts)
-    story = _story(facts, series, options, claims, tables, language_chapters)
+    for tid in SECONDARY_DECK_TABLES:  # one deck page each; the paper and workbook carry every row
+        if tid in tables:
+            tables[tid]["deck_pages"] = 1
+    story = _story(facts, series, options, claims, tables, calculations)
     return {"content_id": f"estate-intelligence-{job}-estatewide", "version": 1, "title": f"Estate-wide intelligence — {job}", "organisation": tenant_id,
             "census_ref": job, "measured_on": (report.get("measured_at") or "")[:10] or "unmeasured",
             "receipts": receipts, "facts": facts, "series": series, "options": options, "calculations": calculations, "claims": claims, "story": story,
-            "tables": tables, "glossary": GLOSSARY,
+            "tables": tables, "glossary": GLOSSARY + (FORECAST_GLOSSARY if has_forecast else []) + (CONTENT_GLOSSARY if content_chapters else []),
             "owner_declarations": OWNER_DECLARATIONS,
-            "coverage": {"covers": f"The admitted estate as measured by census {job}: {h['databases']} databases, {h['tables']:,} tables ({h['bytes_label']}), the object store, the file shares, "
-                                   f"the staged language corpus read by both GPUs and the written-word databases read as aggregates. No row value, script or transcript text is in this pack.", "cannot_say": cannot_say}}
+            "coverage": {"covers": f"The whole admitted estate as measured by census {job} and the content census: {h['databases']} databases, {h['tables']:,} tables ({h['bytes_label']}), the object store, the file shares, "
+                                   f"the staged language corpus read by both GPUs, the written-word databases read as aggregates"
+                                   + (", the tiered content census of the readable media stores (hours on the files' headers, a stratified sample read in full)" if content_chapters else "")
+                                   + (", and a Monte Carlo forecast that scales the read sample to every listed folder — refused and unsampled stores included — so the pack states what the whole estate holds, with 95 % forecast intervals" if has_forecast else "")
+                                   + ". No row value, script or transcript text is in this pack.", "cannot_say": cannot_say}}
+
+
+def _forecast(report, receipts, facts, series, calculations, claims, tables, cannot_say) -> bool:
+    from services.transform_forms.doc_studio import producer_estate_forecast
+    try:
+        ok = producer_estate_forecast.content(report, receipts, facts, series, calculations, claims, tables, cannot_say)
+        producer_estate_forecast.decisions(report, tables)
+        return ok
+    except Exception as exc:  # the pack must still build when the forecast cannot be assembled; the gap is disclosed
+        cannot_say.append({"gap": "A whole-estate forecast of hours, speech, music and languages", "reason": f"the forecast evidence could not be assembled ({type(exc).__name__})", "closes_with": "a content census receipt and a rebuild"})
+        return False
+
+
+def _content_census(report, receipts, facts, series, calculations, claims, tables, cannot_say):
+    from services.transform_forms.doc_studio import producer_estate_content
+    try:
+        chapters = producer_estate_content.content(report, receipts, facts, series, calculations, claims, tables, cannot_say)
+        producer_estate_content.decisions(report, tables)
+        return chapters
+    except Exception as exc:  # the pack must still build when the content receipts are absent or malformed; the gap is disclosed
+        cannot_say.append({"gap": "Hours, speech and languages held in the media stores", "reason": f"the content census evidence could not be assembled ({type(exc).__name__})", "closes_with": "a content census receipt and a rebuild"})
+        return []
+
+
+from services.transform_forms.doc_studio.producer_estate_content import GLOSSARY as CONTENT_GLOSSARY  # noqa: E402
+from services.transform_forms.doc_studio.producer_estate_forecast import GLOSSARY as FORECAST_GLOSSARY  # noqa: E402
 
 
 def _authoring_roles(tables, receipts) -> None:
@@ -188,7 +223,7 @@ def _locations(report, tables, receipts) -> None:
         for t in sorted(obs.get("top_sources") or [], key=lambda t: -t["bytes"]):
             classification = "cold — archive candidate" if t.get("cold") else "active — keep hot"
             if (t.get("duplicate_candidates") or 0) > 10000: classification += "; heavy duplicate candidates"
-            action = "lifecycle rule Standard → Archive after read-log check" if t.get("cold") else "hash-confirm duplicate candidates, keep one copy" if (t.get("duplicate_candidates") or 0) > 10000 else "no action; recensus quarterly"
+            action = "verify storage class and read demand; tier only confirmed Standard bytes, never already Archive bytes" if t.get("cold") else "hash-confirm duplicate candidates, keep one copy" if (t.get("duplicate_candidates") or 0) > 10000 else "no action; recensus quarterly"
             rows.append([t["label"], t.get("status"), round(t["bytes"] / 2 ** 40, 2), f"{t['units']:,}", str(t.get("last_write") or "")[:10], t.get("idle_days"), f"{t.get('duplicate_candidates') or 0:,}", round((t.get("duplicate_bytes_estimate") or 0) / 2 ** 40, 2),
                          ", ".join((t.get("top_formats") or [])[:3]), classification, action, f"same bucket, archive storage class (proposed)" if t.get("cold") else "same bucket; duplicates replaced by references (proposed)" if (t.get("duplicate_candidates") or 0) > 10000 else "unchanged"])
         tables["T010"] = {"label": "Exact object-store buckets under review (largest first)", "class": "measured", "receipt": "R04" if "R04" in receipts else "R01", "right_align_from": 2,
@@ -277,7 +312,7 @@ def _estate_wide(report, facts, series, calculations, claims, receipts) -> None:
             "F031": {"label": "Objects enumerated", "value": round(obs["units"] / 1e6, 1), "unit": "m", "class": "measured", "receipt": rid},
             "F032": {"label": "OBS buckets", "value": obs["sources"], "unit": "buckets", "class": "measured", "receipt": rid},
             "F033": {"label": "OBS buckets unreadable", "value": obs.get("sources_blocked") or 0, "unit": "buckets", "class": "measured", "receipt": rid},
-            "F034": {"label": "OBS duplicate-candidate bytes", "value": _tib(obs.get("duplicate_bytes_estimate")), "unit": "TiB", "class": "estimated", "receipt": rid, "measurement_scope": "size-and-name candidates, not content-hash confirmed"},
+            "F034": {"label": "OBS duplicate-candidate bytes", "value": _tib(obs.get("duplicate_bytes_estimate")), "unit": "TiB", "class": "estimated", "receipt": rid, "measurement_scope": "ETag-and-size fingerprint candidates, not content-hash confirmed; estimated duplicate bytes are not safe-deletion quantities"},
             "F035": {"label": "OBS objects that are duplicate candidates", "value": _ratio(obs.get("duplicate_pct_of_units")), "unit": "pct", "class": "estimated", "receipt": rid},
             "F036": {"label": "OBS bytes not written for over a year", "value": _tib(obs.get("cold_bytes")), "unit": "TiB", "class": "measured", "receipt": rid},
             "F037": {"label": "OBS buckets cold for over a year", "value": obs.get("cold_sources") or 0, "unit": "buckets", "class": "measured", "receipt": rid},
@@ -310,40 +345,53 @@ def _estate_wide(report, facts, series, calculations, claims, receipts) -> None:
     claims["C032"] = {"text": "The whole estate holds {F050} TiB; the databases are {K007} of it", "supports": ["F050", "F052"]}
 
 
-def _story(facts, series, options, claims, tables=None, language_chapters=None):
-    """The chapters the pack must tell, in order; each names the question it answers, the evidence that answers it, the exhibit that shows it
-    and the evidence tables (exact locations, decisions, per-language rows) that are rendered beside it."""
-    tables = tables or {}
+def _story(facts, series, options, claims, tables=None, calculations=None):
+    """The six-step executive story the owner approved (3 Oct 2026), leading with the whole-estate answer: what RMS holds, its strongest assets,
+    where value concentrates, what preparation it needs, which paths earn or save first, and what management is asked to decide. Each chapter
+    names the question it answers, the evidence that answers it, the exhibit that shows it and the evidence tables rendered beside it."""
+    tables, calculations = tables or {}, calculations or {}
+    have = lambda *ids: [t for t in ids if t in facts or t in calculations or t in claims]  # noqa: E731
+    shown = lambda *ids: [s for s in ids if s in series]  # noqa: E731
+    tabs = lambda *ids: [t for t in ids if t in tables]  # noqa: E731
+    languages = [f for f in sorted(facts) if f.startswith("F15")]
     chapters = [
-        {"question": "How big is the whole estate and where do the bytes sit — databases, object store or file shares?",
-         "answers_with": [t for t in ("F050", "F030", "F040", "F052", "K005", "K006", "K007", "F038", "K008") if t in facts or t in ("K005", "K006", "K007", "K008")], "exhibits": [s for s in ("S004", "S005") if s in series]},
-        {"question": "Which exact buckets, tables and shares are under review, what did we measure in each, and where is each proposed to go?",
-         "answers_with": [t for t in ("F036", "F037", "F034", "F035", "F033", "F032", "F042", "F014", "F015") if t in facts], "tables": [t for t in ("T010", "T011", "T012", "T015") if t in tables]},
-        {"question": "Where is money being spent on bytes nobody touches, and how much could each move save?",
-         "answers_with": [t for t in ("F036", "K009", "F034", "F035", "F037", "F019", "F020", "F021", "K004") if t in facts or t.startswith("K")], "exhibits": [s for s in ("S003",) if s in series], "kind": "comparison" if len(options) == 3 else "points"},
-        {"question": "What condition are the database rows in — duplication, damage, completeness and personal-data markers?",
-         "answers_with": ["F007", "F008", "F009", "F010", "F011", "F012", "F013", "F014", "F015", "F017"], "exhibits": [s for s in ("S002", "S001") if s in series]},
-        *(language_chapters or []),
-        {"question": "Which data products could the estate stand up first, and what preparation does each need?",
-         "answers_with": [t for t in ("F018", "C021", "C022", "C023") if t in facts or t in claims]},
-        {"question": "What exactly is the executive asked to decide, and what does each decision rest on?",
-         "answers_with": [t for t in ("F036", "F034", "F033", "F019", "F021", "F060", "F080") if t in facts], "tables": [t for t in ("T013",) if t in tables]},
-        {"question": "What is still unmeasured across the estate, and what would it take to measure it?",
-         "answers_with": [t for t in ("F003", "F002", "F033", "F040", "F041", "F075") if t in facts], "tables": [t for t in ("T036",) if t in tables]},
+        {"question": "What does the whole RMS estate hold — hours of media, speech, music and languages — once the read sample is scaled to every listed folder, and how sure is the forecast?",
+         "answers_with": have("F130", "F131", "F132", "K030", "K031", "F133", "F134", "F135", "F137", "F050", "F100", "F148", "K032", "F106", "F107"),
+         "exhibits": shown("S030", "S032"), "tables": tabs("T050", "T047")},
+        {"question": "Which are the estate's strongest assets — the languages, stores and folders holding the most speech hours and text — and what does each measure at?",
+         "answers_with": have(*languages[:4], "F136", "F138", "F147", "F061", "F072", "F080", "F081", "F084"),
+         "exhibits": shown("S031", "S010"), "tables": tabs("T048", "T046", "T020", "T022")},
+        {"question": "Where does value concentrate — which buckets, folders, shares and database tables carry most of the hours, the bytes and the cost of keeping them?",
+         "answers_with": have("F146", "K033", "F038", "K008", "F030", "F040", "F052", "K005", "K006", "K007", "F036", "K009", "F034", "F016", "K002"),
+         "exhibits": shown("S005", "S004", "S001"), "tables": tabs("T010", "T011", "T012")},
+        {"question": "What preparation does the estate need before its value can be used — access and restoration that turn forecast into measurement, verification of the model readings, de-duplication and data condition?",
+         "answers_with": have("F139", "F140", "F141", "F104", "F102", "F103", "F105", "F033", "F109", "F110", "F143", "F144", "F007", "F008", "F009", "F010", "F017"),
+         "exhibits": shown("S022", "S002"), "tables": tabs("T042", "T045", "T049")},
+        {"question": "Which paths earn or save money first — data products from the speech and text, archive tiering, de-duplication and housekeeping — and what is each worth?",
+         "answers_with": have("F018", "C021", "C022", "C023", "F019", "F020", "F021", "K004", "F036", "F034", "F114", "F005", "F006"),
+         "exhibits": shown("S003"), "kind": "comparison" if len(options) == 3 else "points", "tables": tabs("T044")},
+        {"question": "What exactly is management asked to decide, in what order, and what does each decision rest on?",
+         "answers_with": have("F130", "F134", "F139", "F036", "F034", "F033", "F019", "F021", "F018"),
+         "tables": tabs("T013", "T036")},
     ]
     return [c for c in chapters if c["answers_with"]]
 
 
 def build_brief(content: Dict[str, Any], tenant_id: str, day: str) -> Dict[str, Any]:
     return {"brief_id": f"BR-{day}-{content['census_ref']}", "content_ref": f"{content['content_id']}@{content['version']}",
-            "purpose": {"kind": "decide", "statement": f"Give the estate owner one estate-wide account from census {content['census_ref']} — databases, object store and file shares — of what is held, what it costs to keep, what condition it is in and which data products to stand up first, so the owner can decide what to do first."},
-            "audience": {"who": f"Estate owner and operators · {tenant_id}", "knowledge": "high on the business, mixed on the data estate", "priorities": ["the whole estate, not one store", "cost reduction with its certainty stated", "data condition and personal-data exposure as preparation work", "monetisable products and what each needs first"], "detail": "summary with an evidence appendix"},
+            "purpose": {"kind": "decide", "statement": f"Give the estate owner one executive, estate-wide account from census {content['census_ref']} that leads with the answer: what the whole RMS estate holds (hours, speech, music, languages and bytes, forecast for every listed folder with its interval), its strongest assets, where value concentrates, what preparation it needs, which paths earn or save money first, and what management is asked to decide."},
+            "audience": {"who": f"Estate owner and executives · {tenant_id}", "knowledge": "high on the business, mixed on the data estate", "priorities": ["the whole estate, stated as a forecast with its interval, not only the part that could be read", "the strongest assets and where value concentrates", "preparation stated as work to do, briefly, never as an excuse", "the earn-and-save paths and the decisions, in order"], "detail": "executive summary first, then six chapters, evidence tables beside each, appendix"},
             "setting": {"mode": "read-ahead then presented", "presentation_minutes": 15, "read_unattended": True, "printed": True, "ongoing_use": False},
             "content": {"evidence": True, "narrative": True, "financial": True, "diagrams": False, "imagery": False, "appendix": True},
             "brand": {"house": HOUSE, "formality": "formal", "expressiveness": "restrained", "variation_allowed": "within-family"},
             "outputs": [{"format": "pptx", "role": "presented deck", "editable_charts": True}, {"format": "docx", "role": "paper for read-ahead", "editable_charts": False},
                         {"format": "xlsx", "role": "model workbook: inputs, options, series and cross-checks", "editable_charts": False}, {"format": "html", "role": "review surface", "editable_charts": False}],
-            "constraints": {"max_deck_slides": 24, "page_size": "A4", "confidentiality": CONFIDENTIALITY, "owner_declarations": content.get("owner_declarations") or []}}
+            "constraints": {"max_deck_slides": 24, "page_size": "A4", "confidentiality": CONFIDENTIALITY, "owner_declarations": content.get("owner_declarations") or [],
+                            "report_scope": ("Lead with answers. The whole-estate figures (F130 onward) are Monte Carlo forecasts that scale the read sample to every listed folder, refused and unsampled stores included; "
+                                             "state them as the estate's most likely holdings with their 95 % forecast interval, and say plainly which share rests on direct measurement. Access limits, restorations and "
+                                             "unfinished samples belong in the preparation chapter and the risks, stated once as the work that converts forecast into measurement — never as the headline and never as a "
+                                             "reason to withhold an estimate. Keep measured and forecast figures distinguishable. Forecast intervals carry sampling and between-folder variation, not model error. "
+                                             "Storage-class percentages apply only to the class-observed subset; legacy full-Standard-price scenarios are not verified net savings.")}}
 
 
 def build_deck(content: Dict[str, Any], brief: Dict[str, Any], verdict: Dict[str, Any], seed: str, stamp: str, voice: str) -> Dict[str, Any]:
@@ -421,7 +469,11 @@ def build_workbook(content: Dict[str, Any], brief: Dict[str, Any], verdict: Dict
             "objective": "decide", "family": "strategy", "voice": voice, "seed": seed, "build_stamp": stamp, "sheets": sheets}
 
 
-WORKBOOK_SHEETS = [("T013", "Decisions"), ("T010", "Buckets under review"), ("T015", "Unreadable buckets"), ("T011", "Tables under review"), ("T012", "File shares"),
+SECONDARY_DECK_TABLES = ("T050", "T046", "T020", "T022", "T011", "T012", "T042", "T045", "T049", "T044", "T036")
+
+WORKBOOK_SHEETS = [("T013", "Decisions"), ("T047", "Estate forecast by store"), ("T050", "Forecast by basis"), ("T048", "Forecast by folder"), ("T049", "Forecast donors"),
+                   ("T010", "Buckets under review"), ("T015", "Unreadable buckets"), ("T011", "Tables under review"), ("T012", "File shares"),
+                   ("T040", "Media stores"), ("T042", "Stores not readable"), ("T041", "Folders sampled"), ("T045", "Sampling coverage"), ("T046", "Readable language estimates"), ("T044", "Storage classes"), ("T043", "Census egress"),
                    ("T020", "Audio by language"), ("T024", "Audio quality"), ("T021", "Transcripts by language"), ("T022", "News scripts by station"), ("T023", "Transcription workbench"),
                    ("T030", "Audio file evidence"), ("T031", "Transcript evidence"), ("T032", "News by station and date"), ("T033", "News hour slots"), ("T034", "Model provenance"), ("T035", "Compute"), ("T036", "Authoring roles")]
 

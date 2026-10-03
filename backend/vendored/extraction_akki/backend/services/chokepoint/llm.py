@@ -449,7 +449,8 @@ async def invoke(
     if purpose in TRAINING_LAB_PURPOSES and hasattr(client, 'with_params'):
         client = client.with_params(max_completion_tokens=2200)
     if purpose in AUTHOR_PURPOSES and hasattr(client, 'with_params'):
-        client = client.with_params(max_tokens=16000)
+        # The estate pack's writer answers ~50 slots plus a paper section per chapter; 16000 cut the JSON mid-string (3 Oct 2026).
+        client = client.with_params(max_tokens=32000)
     if purpose in ('doc_studio.review', 'doc_studio.plan') and hasattr(client, 'with_params'):
         # Reasoning families spend part of the budget thinking before the JSON; 6000 left Fable with no text (finish_reason=length).
         client = client.with_params(max_tokens=20000)

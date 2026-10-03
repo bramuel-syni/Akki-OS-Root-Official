@@ -47,6 +47,8 @@ def fmt_value(v, unit, places=None):
         return f"{v:.1f}"
     if isinstance(v, float):
         return f"{v:,.1f}"
+    if isinstance(v, int) and not isinstance(v, bool):
+        return f"{v:,}"  # counts read with thousands separators, as the writer is told they will (author._fmt)
     return str(v)
 
 
@@ -339,7 +341,8 @@ def resolve_deck(spec, content, brief, verdict, theme, voice):
         r["title_chars"] = len(r.get("title", ""))
         slides.append(r)
     out["slides"] = slides
-    return out
+    from deck_layout import paginate
+    return paginate(out)
 
 
 def resolve_paper(spec, content, brief, verdict, theme, voice):

@@ -1,0 +1,244 @@
+{
+  "commission_id": "com-1f3a3606e140",
+  "content_version": 7,
+  "build_id": "bld-e51ed4034736",
+  "status": "released",
+  "qa": {
+    "blockers": [],
+    "status": "PASS"
+  },
+  "validate_status": "PASS",
+  "prove": {
+    "builds_compared": 2,
+    "byte_identical": true,
+    "diff": {}
+  },
+  "authoring": {
+    "pipeline": "frontier",
+    "model": "claude-sonnet-5-5",
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 47,
+      "repairs": 2
+    },
+    "tokens": 140424
+  },
+  "review": {
+    "model": "claude-fable-5-1",
+    "verdict": "repair",
+    "resolution": "writer revised the draft on the reviewer's blocking findings; revised draft passed the content manager",
+    "summary": "The whole-estate forecast, intervals, measured/forecast split and owner-declaration handling are faithful to the evidence, but F084 is used without its million multiplier in two places, materially understating the text asset; a few measured-versus-forecast and wording slips should be tightened alongside."
+  },
+  "revision_v7": [
+    {
+      "new": [
+        {
+          "closes_with": "a complete-pass census on the sampled tables",
+          "gap": "Duplicate, damage, empty-field and PII ratios on sampled tables",
+          "reason": "complete passes where the table allowed it, stratified samples elsewhere"
+        },
+        {
+          "closes_with": "a buyer-side review of each candidate against its intended use",
+          "gap": "Semantic similarity between candidate datasets and the market",
+          "reason": "not measured; candidates are dimensional readiness only"
+        },
+        {
+          "closes_with": "owner grants read access; re-census",
+          "gap": "Connection artists_app",
+          "reason": "could not be read (MySQL GRANT pending)"
+        },
+        {
+          "closes_with": "a fingerprinting pass over the NAS shares",
+          "gap": "NAS duplication",
+          "reason": "the enumeration recorded sizes and dates, not content fingerprints"
+        },
+        {
+          "closes_with": "bucket inventory reconciled with the provider",
+          "gap": "40 of 106 OBS buckets",
+          "reason": "unreachable (NoSuchBucket / client errors)"
+        },
+        {
+          "closes_with": "a text-model pass over the script column under the same aggregate-only seam",
+          "gap": "Language of each news script",
+          "reason": "the scripts were counted and sized, not read; the language shown is the station's broadcast language from the estate's own table"
+        },
+        {
+          "closes_with": "a hash join of workbench file locations against the staged corpus paths",
+          "gap": "Overlap between the workbench recordings and the staged corpus",
+          "reason": "both inventories were counted on their own; no file-level join was made"
+        },
+        {
+          "closes_with": "finish the per-folder samples, largest and widest-interval strata first",
+          "gap": "A completed content census of every readable folder",
+          "reason": "header probing and the planned samples are not finished; unsampled folders are forecast, not measured"
+        },
+        {
+          "closes_with": "stratified human checks, abstentions included, and a reconciliation of header against decoded durations",
+          "gap": "Human-verified speech, music, silence and language hours",
+          "reason": "every composition figure is a model reading; intervals cover sampling, not model error"
+        },
+        {
+          "closes_with": "class metadata and read demand per bucket, then repricing at actual tariffs",
+          "gap": "Estate-wide archive share and invoice-backed tiering savings",
+          "reason": "storage-class metadata covers a subset; legacy full-Standard-price scenarios omit retrieval and restore costs"
+        },
+        {
+          "closes_with": "an object-read grant (obs:object:GetObject) to the census key; the census then measures them by itself",
+          "gap": "Measured hours and languages for the 15 buckets that refuse object reads (4,173,042 media files, 120.71 TiB)",
+          "reason": "every HEAD and GET returns 403 AccessDenied; these rows are forecast from readable donors"
+        },
+        {
+          "closes_with": "an owner decision to restore, or to leave them counted only",
+          "gap": "Content of the 2 buckets whose objects answer InvalidObjectState",
+          "reason": "Archive class without direct read; a restore (with its fee) must precede any read"
+        },
+        {
+          "closes_with": "the running NAS chain (listing any hour; reads 20:00\u201306:00 EAT)",
+          "gap": "File-share hours and speech for the shares still listing or probing",
+          "reason": "listing and header probes run through the jump host's SFTP; reads only in the off-peak window"
+        },
+        {
+          "closes_with": "the object-read grant: measured rows then replace forecast rows",
+          "gap": "That refused buckets resemble the readable folders standing in for them",
+          "reason": "forecast rows borrow seconds per megabyte, speech share and language mix from readable folders of the same media kind and file size"
+        }
+      ],
+      "old": [
+        {
+          "closes_with": "a complete-pass census on the sampled tables",
+          "gap": "Duplicate, damage, empty-field and PII ratios on sampled tables",
+          "reason": "complete passes where the table allowed it, stratified samples elsewhere"
+        },
+        {
+          "closes_with": "a buyer-side review of each candidate against its intended use",
+          "gap": "Semantic similarity between candidate datasets and the market",
+          "reason": "not measured; candidates are dimensional readiness only"
+        },
+        {
+          "closes_with": "owner grants read access; re-census",
+          "gap": "Connection artists_app",
+          "reason": "could not be read (MySQL GRANT pending)"
+        },
+        {
+          "closes_with": "a fingerprinting pass over the NAS shares",
+          "gap": "NAS duplication",
+          "reason": "the enumeration recorded sizes and dates, not content fingerprints"
+        },
+        {
+          "closes_with": "bucket inventory reconciled with the provider",
+          "gap": "40 of 106 OBS buckets",
+          "reason": "unreachable (NoSuchBucket / client errors)"
+        },
+        {
+          "closes_with": "a text-model pass over the script column under the same aggregate-only seam",
+          "gap": "Language of each news script",
+          "reason": "the scripts were counted and sized, not read; the language shown is the station's broadcast language from the estate's own table"
+        },
+        {
+          "closes_with": "a hash join of workbench file locations against the staged corpus paths",
+          "gap": "Overlap between the workbench recordings and the staged corpus",
+          "reason": "both inventories were counted on their own; no file-level join was made"
+        },
+        {
+          "closes_with": "complete the existing per-folder samples; prioritise high-volume and wide-interval strata; report read failures and coverage before combining totals",
+          "gap": "A completed high-confidence content census of every readable folder",
+          "reason": "Header probing and planned samples are incomplete; current estimates cover only strata with usable evidence, not unsampled folders or inaccessible stores"
+        },
+        {
+          "closes_with": "independent stratified human checks including abstentions and low-confidence cases; calibrate model errors and reconcile header versus decoded durations",
+          "gap": "Human-verified speech, music, silence and language quantities",
+          "reason": "Sampling intervals quantify random sampling uncertainty only; model errors, nonresponse and duration-estimation bias are not included. Separate estimators need not sum to the header total"
+        },
+        {
+          "closes_with": "collect class metadata and read demand per bucket, then reprice only confirmed eligible Standard bytes using actual storage, retrieval and restore tariffs",
+          "gap": "Estate-wide archive share and invoice-backed net tiering savings",
+          "reason": "Storage-class metadata covers only a subset; historic full-Standard-price scenarios are not updated invoice savings and omit retrieval and restore costs"
+        },
+        {
+          "closes_with": "an IAM or bucket-policy grant of obs:object:GetObject to the census key; the census re-probes every run and resumes by itself",
+          "gap": "Hours, speech, music and languages in the 15 buckets that refuse object reads (4,173,042 media files, 120.71 TiB)",
+          "reason": "the census key lists them but every HEAD and GET returns 403 AccessDenied"
+        },
+        {
+          "closes_with": "an owner decision to restore, or to leave them counted only",
+          "gap": "Content of the 2 buckets whose objects answer InvalidObjectState",
+          "reason": "Archive class without direct read; a restore (with its fee) must precede any read"
+        },
+        {
+          "closes_with": "the running NAS chain (listing any hour; reads 20:00\u201306:00 EAT)",
+          "gap": "File-share hours and speech for the shares still listing or probing",
+          "reason": "listing and header probes run through the jump host's SFTP; reads only in the off-peak window"
+        },
+        {
+          "closes_with": "the object-read grant: the census then measures those buckets and the forecast rows become measured rows",
+          "gap": "That refused buckets hold the same kind of content as the readable folders that stand in for them",
+          "reason": "the forecast borrows seconds-per-megabyte, speech share and language mix from readable folders of the same media kind and file size; a refused bucket of a different nature would sit outside the interval"
+        }
+      ],
+      "path": "content.coverage.cannot_say"
+    },
+    {
+      "new": "Approve an object-read grant for the census key; it rests on the {F130}-hour forecast, the {F134} of it that sits behind refused buckets and the {F139} hours they hold.",
+      "old": "Approve an object-read grant; it rests on {F130}, {F134} and {F139}.",
+      "path": "content.claims.C996.text"
+    },
+    {
+      "new": "News archive: {F080} live scripts and {F084} million characters of script text from {F081} stations. The language shown is the station's broadcast language.",
+      "old": "News archive: {F080} live scripts from {F081} stations; characters of script text, in millions: {F084}. The language shown is the station's broadcast language.",
+      "path": "content.claims.C942.text"
+    },
+    {
+      "new": "The written word is a separate, measured asset: {F080} live scripts, {F086} distinct texts and {F084} million characters of script text, with {F085} of rows revisions. The workbench adds {F090} recordings and {F092} segments. Station broadcast language is not a script-level reading, and the inventories are not added together.",
+      "old": "The written word is a separate, measured asset: {F080} live scripts, {F086} distinct texts, and script text whose size in millions of characters is {F084}, with {F085} of rows revisions. The workbench adds {F090} recordings and {F092} segments. Station broadcast language is not a script-level reading, and the inventories are not added together.",
+      "path": "content.claims.C945.text"
+    },
+    {
+      "new": "RMS holds a large multilingual speech and text archive. Scaling what the census read in each sampled folder to every listed folder, the estate most likely holds {F130} hours of media: {F131} hours of speech and {F132} hours of music, estimated separately and not an exact split. The ninety-five per cent forecast interval spans {F148} hours, {K032} of the forecast. Measured bytes are {F050} TiB. Only {F133} of the forecast hours rest on files read and judged, and {F134} sit in buckets the census key cannot read.",
+      "old": "RMS holds a large multilingual speech and text archive. Scaling what the census read in every folder to every listed folder, the estate most likely holds {F130} hours of media: {F131} hours of speech and {F132} hours of music, estimated separately and not an exact split. The ninety-five per cent forecast interval spans {F148} hours, {K032} of the forecast. Measured bytes are {F050} TiB. Only {F133} of the forecast hours rest on files read and judged, and {F134} sit in buckets the census key cannot read.",
+      "path": "content.claims.C902.text"
+    }
+  ],
+  "published_unversioned": {
+    "docx": {
+      "file": "RMS_Estate_and_Language_Review.docx",
+      "bytes": 368781,
+      "sha256": "d314e466e794032225c128964dddc5e22028a1aa5c38b01f6a047ca23cec2125",
+      "source_sha256": "d314e466e794032225c128964dddc5e22028a1aa5c38b01f6a047ca23cec2125"
+    },
+    "pptx": {
+      "file": "RMS_Estate_and_Language_Review.pptx",
+      "bytes": 239787,
+      "sha256": "3f10518e145b1d8593f201dcf4bd29a8908832fd104e35f47540c1b9a26e06d6",
+      "source_sha256": "3f10518e145b1d8593f201dcf4bd29a8908832fd104e35f47540c1b9a26e06d6"
+    },
+    "xlsx": {
+      "file": "RMS_Estate_and_Language_Review.xlsx",
+      "bytes": 901918,
+      "sha256": "c52c796c70d32808893cd156a6c7681e84cd8667fd57ce9c0e2b21cc00db7855",
+      "source_sha256": "c52c796c70d32808893cd156a6c7681e84cd8667fd57ce9c0e2b21cc00db7855"
+    }
+  },
+  "published_dated": {
+    "docx": {
+      "file": "RMS_Whole_Estate_Forecast_2026-10-03.docx",
+      "bytes": 368781,
+      "sha256": "d314e466e794032225c128964dddc5e22028a1aa5c38b01f6a047ca23cec2125"
+    },
+    "pptx": {
+      "file": "RMS_Whole_Estate_Forecast_2026-10-03.pptx",
+      "bytes": 239787,
+      "sha256": "3f10518e145b1d8593f201dcf4bd29a8908832fd104e35f47540c1b9a26e06d6"
+    },
+    "xlsx": {
+      "file": "RMS_Whole_Estate_Forecast_2026-10-03.xlsx",
+      "bytes": 901918,
+      "sha256": "c52c796c70d32808893cd156a6c7681e84cd8667fd57ce9c0e2b21cc00db7855"
+    }
+  },
+  "downloads": [
+    "/downloads/RMS_Whole_Estate_Forecast_2026-10-03.docx",
+    "/downloads/RMS_Whole_Estate_Forecast_2026-10-03.pptx",
+    "/downloads/RMS_Whole_Estate_Forecast_2026-10-03.xlsx"
+  ]
+}

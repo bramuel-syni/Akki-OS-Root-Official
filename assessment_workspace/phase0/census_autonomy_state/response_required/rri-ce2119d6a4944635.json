@@ -1,0 +1,13 @@
+{
+  "banked_at_utc": "2026-10-03T02:26:46.451388+00:00",
+  "census_run_id": "cr-95ea110cce5c",
+  "decision_timestamp_utc": "2026-10-03T02:26:46.451366+00:00",
+  "item_id": "rri-ce2119d6a4944635",
+  "reason_text": "The census key lists '2024offairrecs' but is refused GetObject on its bodies. Grant the census access key read (GetObject) on '2024offairrecs' in the bucket policy or IAM, then the full-content census resumes on its own.",
+  "refusal_code": "BLOCKED_SURFACE_UNREACHABLE",
+  "resolution_text": null,
+  "resolved_at_utc": null,
+  "resolver_id": null,
+  "state": "PENDING",
+  "tenant_id": "RMS"
+}

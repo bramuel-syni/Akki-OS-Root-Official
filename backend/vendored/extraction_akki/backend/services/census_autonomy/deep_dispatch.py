@@ -43,20 +43,33 @@ def pull_seam_hop():
             'hostname_expected':os.environ['CENSUS_JUMP_HOSTNAME'],'python':os.environ['CENSUS_REMOTE_PYTHON'],
             'known_hosts':Path(os.environ['AKKI_CENSUS_JUMP_KNOWN_HOSTS']).read_text()}
 
-def content_settings(source=None):
-    """Full-content pass bindings: the admitted audio-language and music models (by job id and artefact hash), the GPU venv that
-    hosts them, and the host-volume directories for the durable inventory/rows and the purged scratch. No caps: the only bound is
-    the engine's bounded run, which the resumable frontier chains until every readable object is read."""
+def content_settings(source=None, mode='sample'):
+    """Content-pass bindings: the admitted audio-language and music models (by job id and artefact hash), the GPU venv that hosts them,
+    the host-volume directories for the durable inventory/headers/rows and the purged scratch, the reader fan-out per GPU, and the
+    tier-2 sampling plan (owner ruling 2026-10-02 evening: per-folder sample, bigger, surgical; NAS reads off-peak only). `mode='full'`
+    keeps the tier-3 byte-for-byte read of everything available under the same durable state."""
     from services.training_lab import estate_language
     models=estate_language._models()
-    nas=source=='rms_nas'   # the share is read through the jump host's SFTP: few sessions, bandwidth-bound
-    return {'gpu_python':os.environ['M9_REMOTE_PYTHON'],'lab_corpus_root':os.environ['LANGUAGE_COGNITION_REMOTE_ROOT'],
+    nas=source=='rms_nas'   # the share is read through the jump host's SFTP: few sessions, bandwidth-bound, inside the RMS estate
+    env=os.environ
+    return {'mode':mode,'gpu_python':env['M9_REMOTE_PYTHON'],'lab_corpus_root':env['LANGUAGE_COGNITION_REMOTE_ROOT'],
             'audio_model_dir':models['audio']['dir'],'audio_model_sha256':models['audio']['sha256'],'audio_model_job':estate_language.AUDIO_MODEL_JOB,
             'music_model_path':models['music']['path'],'music_model_sha256':models['music']['sha256'],'music_model_job':estate_language.MUSIC_MODEL_JOB,
-            'state_dir':os.environ['CENSUS_CONTENT_STATE_DIR'],'scratch_dir':os.environ['CENSUS_CONTENT_SCRATCH_DIR'],'nas_root':os.environ['CENSUS_NAS_ROOT'],
-            'batch_size':256,'block_windows':2048,'download_workers':2 if nas else int(os.environ.get('CENSUS_CONTENT_DOWNLOAD_WORKERS','6')),'prefetch_bytes':(2 if nas else 4)<<30,
+            'state_dir':env['CENSUS_CONTENT_STATE_DIR'],'scratch_dir':env['CENSUS_CONTENT_SCRATCH_DIR'],'nas_root':env['CENSUS_NAS_ROOT'],
+            'batch_size':256,'block_windows':2048,
+            'readers_per_gpu':1 if nas else int(env['CENSUS_CONTENT_READERS_PER_GPU']),
+            'download_workers':2 if nas else int(env['CENSUS_CONTENT_DOWNLOAD_WORKERS']),'prefetch_bytes':1<<30,
+            'header_threads':4 if nas else int(env['CENSUS_CONTENT_HEADER_THREADS']),
+            'read_window_utc':env['CENSUS_NAS_READ_WINDOW_UTC'] if nas else None,
+            'sample_files':int(env['CENSUS_SAMPLE_FILES_NAS' if nas else 'CENSUS_SAMPLE_FILES_OBS']),
+            'sample_topup_files':int(env['CENSUS_SAMPLE_TOPUP_FILES_NAS' if nas else 'CENSUS_SAMPLE_TOPUP_FILES_OBS']),
+            'folder_min':int(env['CENSUS_SAMPLE_FOLDER_MIN']),'folder_floor':int(env['CENSUS_SAMPLE_FOLDER_FLOOR']),
+            'folder_cap':int(env['CENSUS_SAMPLE_FOLDER_CAP']),'folder_cap_topup':int(env['CENSUS_SAMPLE_FOLDER_CAP_TOPUP']),
+            'header_sample':int(env['CENSUS_SAMPLE_HEADER_FILES']),'strata_cap':int(env['CENSUS_SAMPLE_STRATA_CAP']),'split_min':int(env['CENSUS_SAMPLE_SPLIT_MIN']),
+            'target_halfwidth':0.05,'languages_per_folder':8,'folders_in_receipt':120,
+            'egress_usd_per_gb':0.0 if nas else float(env['CENSUS_OBS_EGRESS_USD_PER_GB']),
             'priority_labels':_priority_labels(source),
-            'owner_order_ref':'owner order 2026-10-02: run the census with Akki and both GPU hosts for the entire estate; no shortcuts; read everything'}
+            'owner_order_ref':'owner ruling 2026-10-02: tiers 1+2 — exact listing and header hours for every object, per-folder stratified sample read in full with 95% intervals; NAS reads off-peak; tier 3 (content_full) on request'}
 
 def _priority_labels(source):
     """Stores with the most audio files (from the retained enumeration) are listed and read first; image/web buckets last."""
@@ -83,10 +96,10 @@ def execute_source(run_id,tenant,source,lawful_hash,deadline):
         if runtime!='non_gpu_jump' and runtime not in hosts: raise ValueError('UNRECOGNIZED_WORKER')
         config=connector_for(run_id,tenant,source,lawful_hash)
         if cursor.get('source_refs'): config['source_refs']=cursor['source_refs']
-        # Full-content measurement (owner order 2026-10-02): the GPU worker of record reads every media object; models and host paths bind here.
-        if cursor.get('measurement')=='content_full':
+        # Content measurement (owner rulings 2026-10-02): the GPU worker of record reads media; `content_sample` = tiers 1+2, `content_full` = tier 3.
+        if cursor.get('measurement') in ('content_full','content_sample'):
             if runtime=='non_gpu_jump': raise ValueError('CONTENT_MEASUREMENT_REQUIRES_GPU_WORKER')
-            config['content']=content_settings(source)
+            config['content']=content_settings(source,'full' if cursor['measurement']=='content_full' else 'sample')
         # Pull seam: a GPU worker of record executes jump-governed sources through the jump host.
         if runtime!='non_gpu_jump' and source in JUMP_GOVERNED_SOURCES: config['pull_via']=pull_seam_hop()
         remaining=int(deadline-time.time())

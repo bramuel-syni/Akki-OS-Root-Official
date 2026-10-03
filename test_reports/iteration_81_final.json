@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "initial_report": "/app/test_reports/iteration_81.json",
+  "commission_id": "com-1f3a3606e140",
+  "content_version": 5,
+  "build_id": "bld-d6cb1af0f370",
+  "validate": "PASS",
+  "qa": "PASS",
+  "byte_identical": true,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "junit": "/app/test_reports/pytest/iter81_final.xml",
+  "download_manifest": "/app/assessment_workspace/deliverables/estate_revision_20261003/finalized_release_manifest.json",
+  "resolved_issues": [
+    "False-positive literal-number errors in evidence-bound confidence-interval column headings",
+    "Slide receipt and coverage text overflow, with all source notes and coverage gaps retained",
+    "Table pagination sized to font metrics and existing layout zones",
+    "Public files previously pointing to the stale October 2 release",
+    "Review-identified pilot-count, candidate-readiness, measurement-scope and invoice-wording errors"
+  ],
+  "verification": [
+    "External authenticated commission is clear; current-version native build released",
+    "DOCX/PPTX/XLSX parse and match their source hashes",
+    "Actual static public URLs and stable dated copies downloaded successfully",
+    "Exact requested table-row, full receipt and coverage-gap preservation",
+    "No unresolved evidence tokens or spreadsheet formula errors found",
+    "Representative PowerPoint table, coverage and appendix thumbnails visually inspected"
+  ],
+  "limitations": [
+    "Interim census snapshot; incomplete samples and inaccessible stores explicitly disclosed",
+    "Sampling intervals do not quantify model error or unmeasured content",
+    "Final editorial corrections checked deterministically; no claim of a fresh v5 independent-model acceptance",
+    "Generic automatic reviewer-disagreement closure and legacy install-manifest refresh remain separate follow-up work"
+  ],
+  "has_mocked_apis": false,
+  "credentials_changed": false
+}

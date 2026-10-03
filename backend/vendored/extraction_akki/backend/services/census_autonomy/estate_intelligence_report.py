@@ -14,7 +14,8 @@ from services.census_autonomy import estate_intelligence_dispatch as dispatch
 from services.census_autonomy.estate_intelligence_worker import TIMESTAMP_TYPES, NUMERIC_TYPES, rollup
 
 TERMINAL_WITH_RESULT = ("completed", "partial")
-REPORT_VERSION = 3  # bump when build() gains sections so cached reports are rebuilt from the banked detail
+REPORT_VERSION = 4  # bump when build() gains sections so cached reports are rebuilt from the banked detail
+ARCHIVE_CLASSES = ("GLACIER", "COLD", "DEEP_ARCHIVE", "ARCHIVE")  # S3-API names Huawei OBS returns for its Archive / Cold tiers
 BRIEF_DIR = Path(__file__).resolve().parents[6] / "frontend" / "public" / "briefs"
 DEGRADATION_KINDS = ("mojibake_ratio", "placeholder_ratio", "truncation_ratio", "invalid_format_ratio", "whitespace_ratio")
 
@@ -400,9 +401,14 @@ def _latest_store_outcome(source_id, tenant_id):
         return None
     docs.sort(key=lambda d: d[0])
     merged, runs = {}, []
+    inventory_keys = ("object_count", "file_count", "volume_bytes", "formats", "date_min", "date_max", "duplicate_candidates", "pages", "directories_complete", "directories_pending", "enumeration", "storage_classes")
     for _, name, outcome in docs:
         runs.append(outcome.get("census_run_id"))
         for s in outcome["sources"]:
+            previous = merged.get(s.get("label"))
+            # A content pass still listing a store must not shrink the retained full enumeration; it brings its content reading only.
+            if previous and previous.get("enumeration") == "full" and s.get("content") and s.get("enumeration") != "full":
+                s = {**s, **{k: previous[k] for k in inventory_keys if k in previous}, "status": previous.get("status", s.get("status"))}
             merged[s.get("label")] = s
     latest = docs[-1][2]
     fullest = max(docs, key=lambda d: len(d[2]["sources"]))[2]
@@ -433,20 +439,31 @@ def _store_rows(outcome, kind, cold_after_days=365):
                      "last_write": last_dt.isoformat().replace("+00:00", "Z") if last_dt else None, "idle_days": idle_days,
                      "cold": bool(idle_days is not None and idle_days > cold_after_days and (s.get("volume_bytes") or 0) > 0),
                      "reason_code": s.get("reason_code"), "top_formats": [f"{ext} {n:,}" for ext, n in formats], "pending": s.get("directories_pending"),
+                     "storage_classes": s.get("storage_classes"), "archive_bytes": sum(v.get("bytes") or 0 for k, v in (s.get("storage_classes") or {}).items() if k in ARCHIVE_CLASSES),
                      "content_measurement": s.get("content_measurement"), "content": s.get("content")})
     rows.sort(key=lambda r: -r["bytes"])
     return rows
 
 
+def _merge_classes(rows):
+    out = {}
+    for r in rows:
+        for name, v in (r.get("storage_classes") or {}).items():
+            slot = out.setdefault(name, {"objects": 0, "bytes": 0})
+            slot["objects"] += v.get("objects") or 0; slot["bytes"] += v.get("bytes") or 0
+    return dict(sorted(out.items(), key=lambda kv: -kv[1]["bytes"]))
+
+
 def store_estate(tenant_id="RMS"):
     """Object (OBS) and file (NAS) estate from the retained enumeration receipts: inventory, ETag+size duplicate candidates, cold sources.
     Duplicate BYTES are candidates × the source's mean object size — an estimate disclosed as such; no object body was read."""
-    stores = {}
+    stores, outcomes = {}, {}
     for key, source_id, kind, unit_name in (("obs", "rms_obs", "object", "objects"), ("nas", "rms_nas", "file", "files")):
         outcome = _latest_store_outcome(source_id, tenant_id)
         if not outcome:
             stores[key] = {"measured": False, "kind": kind, "unit_name": unit_name, "note": "No retained enumeration receipt for this store."}
             continue
+        outcomes[key] = outcome
         rows = _store_rows(outcome, kind)
         complete = [r for r in rows if r["status"] == "complete"]
         blocked = [r for r in rows if r["status"] != "complete"]
@@ -454,6 +471,8 @@ def store_estate(tenant_id="RMS"):
         dup_bytes = sum(r["duplicate_bytes_estimate"] for r in rows)
         cold = [r for r in rows if r["cold"]]
         fingerprinted = any(r["duplicate_candidates"] is not None for r in rows)
+        classed = [r for r in rows if r.get("storage_classes")]
+        archive_bytes = sum(r["archive_bytes"] for r in rows)
         stores[key] = {"measured": True, "kind": kind, "unit_name": unit_name, "census_run_id": outcome.get("census_run_id"), "observed_at": outcome.get("observed_at"),
                        "status": outcome.get("status"), "reason_code": outcome.get("reason_code"), "result_receipt": outcome.get("result_receipt"), "census_run_ids": outcome.get("census_run_ids"),
                        "sources": len(rows), "sources_complete": len(complete), "sources_blocked": len(blocked), "units": sum(r["units"] for r in rows),
@@ -461,54 +480,151 @@ def store_estate(tenant_id="RMS"):
                        "duplicate_candidates": sum(r["duplicate_candidates"] or 0 for r in rows) if fingerprinted else None,
                        "duplicate_bytes_estimate": dup_bytes if fingerprinted else None, "duplicate_pct_of_units": _pct(sum(r["duplicate_candidates"] or 0 for r in rows) / sum(r["units"] for r in rows)) if fingerprinted and sum(r["units"] for r in rows) else None,
                        "cold_sources": len(cold), "cold_bytes": sum(r["bytes"] for r in cold), "cold_bytes_label": _fmt_bytes(sum(r["bytes"] for r in cold)),
+                       "cold_bytes_already_archive": sum(r["archive_bytes"] for r in cold), "cold_bytes_standard": sum(r["bytes"] - r["archive_bytes"] for r in cold if r.get("storage_classes")),
+                       "storage_classes": {"measured_sources": len(classed), "archive_bytes": archive_bytes, "archive_bytes_label": _fmt_bytes(archive_bytes),
+                                           "archive_pct_of_bytes": _pct(archive_bytes / sum(r["bytes"] for r in classed)) if classed and sum(r["bytes"] for r in classed) else None,
+                                           "by_class": _merge_classes(classed)} if classed else None,
                        "blocked": [{"label": r["label"], "reason_code": r["reason_code"]} for r in blocked][:40],
                        "top_sources": rows[:12], "method": (outcome["sources"][0].get("method") if outcome["sources"] else None),
                        "content": content_rollup(rows, source_id, tenant_id),
                        "duplication_note": ("Duplicate candidates are objects whose ETag+size fingerprint was already seen in the same store; duplicate bytes = candidates × mean object size of the bucket (estimate). Not proven byte duplicates."
                                             if fingerprinted else "This enumeration recorded no content fingerprints (stat/listing only), so duplication is unmeasured; sizes and dates were read, bodies were not.")}
+    total = content_estate_total(stores)
+    if total:
+        stores["content_total"] = total
+        from services.census_autonomy import estate_forecast
+        try:
+            forecast = estate_forecast.forecast(outcomes)
+        except (ValueError, KeyError, TypeError, ZeroDivisionError):  # a malformed receipt never hides the measured roll-up; the pack discloses the missing forecast
+            forecast = None
+        if forecast:
+            stores["content_forecast"] = forecast
     return stores
 
 
 def content_rollup(rows, source_id, tenant_id):
-    """Full-content census roll-up across every bucket/share that carries a content measurement (owner order 2026-10-02): byte-level
-    read truth (listed, read, verified, denied, archived, pending) and the model readings as detections — hours decoded, speech,
-    music, silence and speech hours by language — plus the live cadence (runs in flight, throughput, estimate to finish)."""
+    """Tiered content census roll-up for one store (owner ruling 2026-10-02): tier-1 facts (listed, header-measured hours with their
+    extrapolation error, read, verified, denied, archived), the sample's progress, tier-2 interval estimates (speech, music, silence and
+    speech hours by language; strata combined in quadrature), the folder table across stores, egress so far and the live cadence."""
     from services.census_autonomy import operational_store as store
+    from services.census_autonomy.deep_sample import combine
     measured = [r for r in rows if r.get("content")]
-    cadence = [run for run in store.runs(tenant_id) if run.get("measurement") == "content_full" and source_id in (run.get("source_ids") or [])
+    cadence = [run for run in store.runs(tenant_id) if run.get("measurement") in ("content_full", "content_sample") and source_id in (run.get("source_ids") or [])
                and (run.get("status") == "PENDING" or run.get("continuation_run_id"))]
     live = [{"census_run_id": run["census_run_id"], "worker_id": run.get("worker_id"), "status": run["status"], "stage": run.get("stage"), "reason_code": run.get("reason_code"),
-             "scope_sources": len(run.get("source_refs") or []), "not_before": run.get("not_before"), "started_at": run.get("started_at"), "updated_at": run.get("updated_at")}
+             "measurement": run.get("measurement"), "scope_sources": len(run.get("source_refs") or []), "not_before": run.get("not_before"), "started_at": run.get("started_at"), "updated_at": run.get("updated_at")}
             for run in cadence if run.get("status") == "PENDING"]
     if not measured and not live:
-        return {"measured": False, "note": "No full-content pass has been commissioned for this store."}
-    total = lambda key: sum((r["content"].get(key) or 0) for r in measured)  # noqa: E731
+        return {"measured": False, "note": "No content pass has been commissioned for this store."}
+    contents = [r["content"] for r in measured]
+    total = lambda key: sum((c.get(key) or 0) for c in contents)  # noqa: E731
+    # Hours are stated only where at least one header was read; a store or folder with no probe has unknown hours, not a guess.
+    for c in contents:
+        if not (c.get("headers") or {}).get("probed_files"):
+            c["headers"] = {**(c.get("headers") or {}), "hours_est": None, "hours_se": None, "hours_lo": None, "hours_hi": None}
+        for f in c.get("folders") or []:
+            if not (f.get("hours") or {}).get("probed_files"):
+                f["hours"] = {**(f.get("hours") or {}), "est": None, "se": None}
+    headers = [c.get("headers") or {} for c in contents]
+    hours_est = sum(h.get("hours_est") or 0 for h in headers)
+    hours_se = math.sqrt(sum((h.get("hours_se") or 0) ** 2 for h in headers))
+    basis = {}
+    for h in headers:
+        for k, v in (h.get("basis") or {}).items():
+            basis[k] = basis.get(k, 0) + v
+    estimates = {k: combine([(c.get("estimates") or {}).get(k) for c in contents]) for k in ("speech", "music", "silence", "decoded")}
     languages = {}
-    for r in measured:
-        for code, hours in (r["content"].get("hours_by_language") or {}).items():
-            languages[code] = round(languages.get(code, 0) + hours, 3)
-    latest = [r["content"].get("this_run") or {} for r in measured if (r["content"].get("this_run") or {}).get("objects_read")]
-    mb_per_s = sum(t.get("mb_per_s") or 0 for t in latest)
-    pending_bytes = total("bytes_pending")
-    sources = sorted([{"label": r["label"], "access": r["content"].get("access"), "measurement": r["content"].get("measurement"), "media_objects": r["content"].get("media_objects"),
-                       "media_bytes": r["content"].get("media_bytes"), "objects_read": r["content"].get("objects_read"), "bytes_read": r["content"].get("bytes_read"), "bytes_verified": r["content"].get("bytes_verified"),
-                       "objects_pending": r["content"].get("objects_pending"), "bytes_pending": r["content"].get("bytes_pending"), "objects_denied": r["content"].get("objects_denied"), "bytes_denied": r["content"].get("bytes_denied"),
-                       "objects_archived": r["content"].get("objects_archived"), "bytes_archived": r["content"].get("bytes_archived"), "objects_failed": r["content"].get("objects_failed"), "failures": r["content"].get("failures"),
-                       "hours_decoded": r["content"].get("hours_decoded"), "hours_speech": r["content"].get("hours_speech"), "hours_music": r["content"].get("hours_music"), "hours_silence": r["content"].get("hours_silence"),
-                       "hours_by_language": dict(list((r["content"].get("hours_by_language") or {}).items())[:6]), "mean_confidence": r["content"].get("mean_confidence"), "quality": r["content"].get("quality"),
-                       "inventory_complete": r["content"].get("inventory_complete"), "prefixes": r["content"].get("prefixes")} for r in measured],
-                     key=lambda s: -(s["media_bytes"] or 0))
-    return {"measured": bool(measured), "sources": len(measured), "sources_readable": sum(1 for s in sources if s["access"] == "readable"), "sources_denied": sum(1 for s in sources if s["access"] == "denied"),
-            "sources_archived": sum(1 for s in sources if s["access"] == "archived"), "sources_complete": sum(1 for s in sources if s["measurement"] in ("full", "denied", "archived", "no_media")),
-            "media_objects": total("media_objects"), "media_bytes": total("media_bytes"), "objects_read": total("objects_read"), "bytes_read": total("bytes_read"), "bytes_verified": total("bytes_verified"),
+    for c in contents:
+        for code, e in ((c.get("estimates") or {}).get("languages") or {}).items():
+            languages.setdefault(code, []).append(e)
+    languages = dict(sorted(((code, combine(parts)) for code, parts in languages.items()), key=lambda kv: -(kv[1]["est"] or 0))[:12])
+    folders = [f for c in contents for f in (c.get("folders") or [])]
+    folders.sort(key=lambda f: -((f["estimates"]["speech"].get("est") or 0) if f["sample"].get("read") else (f["hours"].get("est") or 0)))
+    samples = [c.get("sample") or {} for c in contents]
+    latest = [c.get("this_run") or {} for c in contents]
+    run_seconds = max((t.get("run_seconds") or 0) for t in latest) if latest else 0
+    files_this_run = sum(t.get("objects_read") or 0 for t in latest)
+    pending_files = total("objects_pending")
+    egress = [c.get("egress") or {} for c in contents]
+    windows = [c.get("read_window") for c in contents if c.get("read_window")]
+    source_rows = sorted([{"label": r["label"], "access": r["content"].get("access"), "measurement": r["content"].get("measurement"), "inventory_complete": r["content"].get("inventory_complete"),
+                           "media_objects": r["content"].get("media_objects"), "media_bytes": r["content"].get("media_bytes"), "audio_objects": r["content"].get("media_audio_objects"), "video_objects": r["content"].get("media_video_objects"),
+                           "hours": {"est": (r["content"].get("headers") or {}).get("hours_est"), "lo": (r["content"].get("headers") or {}).get("hours_lo"), "hi": (r["content"].get("headers") or {}).get("hours_hi"),
+                                     "probed_files": (r["content"].get("headers") or {}).get("probed_files")},
+                           "speech": (r["content"].get("estimates") or {}).get("speech"), "music": (r["content"].get("estimates") or {}).get("music"),
+                           "languages": dict(list(((r["content"].get("estimates") or {}).get("languages") or {}).items())[:4]),
+                           "sample": {k: (r["content"].get("sample") or {}).get(k) for k in ("planned_files", "read_files", "strata", "census_strata", "sampled_strata", "complete")},
+                           "objects_read": r["content"].get("objects_read"), "bytes_read": r["content"].get("bytes_read"), "objects_failed": r["content"].get("objects_failed"), "failures": r["content"].get("failures"),
+                           "objects_denied": r["content"].get("objects_denied"), "bytes_denied": r["content"].get("bytes_denied"), "objects_archived": r["content"].get("objects_archived"), "bytes_archived": r["content"].get("bytes_archived"),
+                           "egress_usd": (r["content"].get("egress") or {}).get("usd_estimate"), "strata_mode": r["content"].get("strata_mode"),
+                           "storage_classes": r.get("storage_classes"), "archive_bytes": r.get("archive_bytes"), "bucket_bytes": r.get("bytes"), "access_since": r["content"].get("access_since")} for r in measured],
+                         key=lambda s: -(s["media_bytes"] or 0))
+    blocked = [s for s in source_rows if s["access"] in ("denied", "archived")]
+    media_all = sum(s["media_objects"] or 0 for s in source_rows) or 1
+    access_blocked = {
+        "sources": [{"label": s["label"], "access": s["access"], "media_objects": s["media_objects"], "media_bytes": s["media_bytes"], "audio_objects": s["audio_objects"], "video_objects": s["video_objects"],
+                     "archive_bytes": s["archive_bytes"], "since": s["access_since"]} for s in blocked],
+        "denied_sources": sum(1 for s in blocked if s["access"] == "denied"), "archived_sources": sum(1 for s in blocked if s["access"] == "archived"),
+        "media_objects": sum(s["media_objects"] or 0 for s in blocked), "media_bytes": sum(s["media_bytes"] or 0 for s in blocked),
+        "share_of_media_objects": round(sum(s["media_objects"] or 0 for s in blocked) / media_all, 4),
+        "denied_grant": ("The census key can list these buckets but every HEAD and GET returns 403 AccessDenied (verified from the control plane with a one-byte ranged read; the same account owns the objects). "
+                         "The Huawei account administrator must grant the census IAM user object read — obs:object:GetObject (HeadObject is covered by it) — on each bucket, by IAM policy or bucket policy. "
+                         "Every run re-probes these buckets with six one-byte reads; the census resumes by itself once the grant lands." if any(s["access"] == "denied" for s in blocked) else None),
+        "archived_note": ("Objects in Archive class without direct read answer InvalidObjectState; they can be read only after a restore (restore fee, then egress). Counted, not estimated, "
+                          "until the owner orders a restore." if any(s["access"] == "archived" for s in blocked) else None),
+    } if blocked else None
+    archive_bytes_total = sum(s["archive_bytes"] or 0 for s in source_rows if s.get("storage_classes"))
+    classed_bytes = sum(s["bucket_bytes"] or 0 for s in source_rows if s.get("storage_classes"))
+    return {"measured": bool(measured), "sources": len(measured), "sources_readable": sum(1 for s in source_rows if s["access"] == "readable"), "sources_denied": sum(1 for s in source_rows if s["access"] == "denied"),
+            "sources_archived": sum(1 for s in source_rows if s["access"] == "archived"), "sources_complete": sum(1 for s in source_rows if s["measurement"] in ("estimated", "census", "denied", "archived", "no_media")),
+            "sources_listing": sum(1 for s in source_rows if not s["inventory_complete"]),
+            "media_objects": total("media_objects"), "media_bytes": total("media_bytes"), "audio_objects": total("media_audio_objects"), "video_objects": total("media_video_objects"),
+            "objects_read": total("objects_read"), "bytes_read": total("bytes_read"), "bytes_verified": total("bytes_verified"),
             "objects_denied": total("objects_denied"), "bytes_denied": total("bytes_denied"), "objects_archived": total("objects_archived"), "bytes_archived": total("bytes_archived"),
-            "objects_pending": total("objects_pending"), "bytes_pending": pending_bytes, "objects_failed": total("objects_failed"),
-            "hours_decoded": round(total("hours_decoded"), 2), "hours_speech": round(total("hours_speech"), 2), "hours_music": round(total("hours_music"), 2), "hours_silence": round(total("hours_silence"), 2),
-            "hours_by_language": dict(sorted(languages.items(), key=lambda kv: -kv[1])), "windows": total("windows"),
-            "throughput_mb_per_s": round(mb_per_s, 1), "eta_hours": round(pending_bytes / (mb_per_s * 1e6) / 3600, 1) if mb_per_s and pending_bytes else None,
-            "live_runs": live, "source_rows": sources,
-            "evidence_class": {"bytes": "fact (every object read in full; sha256 and size checked against the listing, ETag where single-part)",
-                               "hours": "detected (admitted music detector and current audio language model on every two-second window; not human labels; 'clean' is a downstream judgement)"}}
+            "objects_pending": pending_files, "objects_failed": total("objects_failed"), "hours_decoded": round(total("hours_decoded"), 2),
+            "headers": {"probed_files": sum(h.get("probed_files") or 0 for h in headers), "probed_hours": round(sum(h.get("probed_hours") or 0 for h in headers), 1), "basis": basis,
+                        "hours_est": round(hours_est, 1), "hours_se": round(hours_se, 1), "hours_lo": round(max(0.0, hours_est - 1.96 * hours_se), 1), "hours_hi": round(hours_est + 1.96 * hours_se, 1),
+                        "complete": all(h.get("complete") for h in headers) if headers else False},
+            "sample": {"planned_files": sum(s.get("planned_files") or 0 for s in samples), "read_files": sum(s.get("read_files") or 0 for s in samples), "strata": sum(s.get("strata") or 0 for s in samples),
+                       "census_strata": sum(s.get("census_strata") or 0 for s in samples), "sampled_strata": sum(s.get("sampled_strata") or 0 for s in samples),
+                       "hours_decoded": round(sum(s.get("hours_decoded") or 0 for s in samples), 1), "complete": all(s.get("complete") for s in samples) if samples else False,
+                       "plan": next((c.get("plan") for c in contents if c.get("plan")), None)},
+            "estimates": {**estimates, "languages": languages},
+            "folders": folders[:60], "folders_total": len(folders),
+            "egress": {"bytes": sum(e.get("bytes") or 0 for e in egress), "usd_estimate": round(sum(e.get("usd_estimate") or 0 for e in egress), 2) if any(e.get("usd_estimate") is not None for e in egress) else None,
+                       "usd_per_gb_assumed": next((e.get("usd_per_gb_assumed") for e in egress if e.get("usd_per_gb_assumed")), None), "billed_to": next((e.get("billed_to") for e in egress if e.get("billed_to")), None)},
+            "read_window": windows[0] if windows else None,
+            "throughput_files_per_hour": round(files_this_run / run_seconds * 3600) if run_seconds else None,
+            "eta_hours": round(pending_files / (files_this_run / run_seconds) / 3600, 1) if run_seconds and files_this_run and pending_files else None,
+            "live_runs": live, "source_rows": source_rows,
+            "access_blocked": access_blocked,
+            "readable": {"sources": sum(1 for s in source_rows if s["access"] == "readable"), "media_objects": sum(s["media_objects"] or 0 for s in source_rows if s["access"] == "readable"),
+                         "media_bytes": sum(s["media_bytes"] or 0 for s in source_rows if s["access"] == "readable")},
+            "storage_classes": {"archive_bytes": archive_bytes_total, "bucket_bytes": classed_bytes, "archive_pct_of_bytes": _pct(archive_bytes_total / classed_bytes) if classed_bytes else None,
+                                "sources_measured": sum(1 for s in source_rows if s.get("storage_classes"))} if classed_bytes else None,
+            "evidence_class": {"bytes": "fact (listed sizes; sampled objects read in full and checked against the listing by sha256/size/ETag)",
+                               "hours_held": "measured on the file header for every audio file and a per-folder sample of video files; the rest extrapolated by the folder's seconds-per-byte with a standard error",
+                               "estimates": "detected (admitted music detector and current audio language model on every two-second window of a deterministic stratified sample; ratio estimators with finite-population correction; 95 % intervals); not human labels"}}
+
+
+def content_estate_total(stores):
+    """OBS + NAS combined interval estimates for the headline (independent stores add in quadrature)."""
+    from services.census_autonomy.deep_sample import combine
+    parts = [s.get("content") for s in stores.values() if isinstance(s, dict) and (s.get("content") or {}).get("measured")]
+    if not parts:
+        return None
+    languages = {}
+    for c in parts:
+        for code, e in (c["estimates"].get("languages") or {}).items():
+            languages.setdefault(code, []).append(e)
+    hours_est = sum((c["headers"].get("hours_est") or 0) for c in parts)
+    hours_se = math.sqrt(sum((c["headers"].get("hours_se") or 0) ** 2 for c in parts))
+    return {"hours_held": {"est": round(hours_est, 1), "lo": round(max(0.0, hours_est - 1.96 * hours_se), 1), "hi": round(hours_est + 1.96 * hours_se, 1)},
+            "speech": combine([c["estimates"]["speech"] for c in parts]), "music": combine([c["estimates"]["music"] for c in parts]),
+            "languages": dict(sorted(((code, combine(v)) for code, v in languages.items()), key=lambda kv: -(kv[1]["est"] or 0))[:12]),
+            "media_objects": sum(c.get("media_objects") or 0 for c in parts), "media_bytes": sum(c.get("media_bytes") or 0 for c in parts),
+            "sample_read_files": sum((c.get("sample") or {}).get("read_files") or 0 for c in parts), "sample_planned_files": sum((c.get("sample") or {}).get("planned_files") or 0 for c in parts),
+            "egress_usd": round(sum((c.get("egress") or {}).get("usd_estimate") or 0 for c in parts), 2)}
 
 
 def store_strategies(stores):
@@ -517,15 +633,21 @@ def store_strategies(stores):
         return []
     dup_rows = sorted([r for r in obs["top_sources"] if r["duplicate_bytes_estimate"]], key=lambda r: -r["duplicate_bytes_estimate"])
     cold_rows = sorted([r for r in obs["top_sources"] if r["cold"]], key=lambda r: -r["bytes"])
+    classed = obs.get("storage_classes") is not None
+    # Bytes already in Archive class have no Standard → Archive saving left; only cold bytes still in Standard class are addressable.
+    cold_addressable = (obs.get("cold_bytes_standard") or 0) if classed else (obs["cold_bytes"] or 0)
     return [
         {"key": "obs_duplicate_objects", "store": "object", "title": "Reconcile duplicate objects across OBS buckets", "bytes": obs["duplicate_bytes_estimate"] or 0,
          "action": "Confirm ETag+size candidates by object hash, keep one copy per bucket and replace the rest with references or lifecycle-delete them.",
          "evidence": [f"{r['label']} · {r['duplicate_candidates']:,} candidates · ≈{_fmt_bytes(r['duplicate_bytes_estimate'])}" for r in dup_rows[:6]],
          "risk": "Candidates share ETag and size, which for multipart uploads is not a content hash; bytes are candidates × mean object size, an estimate. Confirm before deleting."},
-        {"key": "obs_cold_buckets", "store": "object", "title": "Move buckets not written for over a year to archive-class storage", "bytes": obs["cold_bytes"] or 0,
+        {"key": "obs_cold_buckets", "store": "object", "title": "Move buckets not written for over a year to archive-class storage", "bytes": cold_addressable,
          "action": "Apply a lifecycle rule (Standard → Archive/Cold) on buckets whose last object write is older than a year; keep listing metadata hot.",
-         "evidence": [f"{r['label']} · last write {r['idle_days']:,} days before the census · {_fmt_bytes(r['bytes'])}" for r in cold_rows[:6]],
-         "risk": "Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee."},
+         "evidence": [f"{r['label']} · last write {r['idle_days']:,} days before the census · {_fmt_bytes(r['bytes'])}" + (f" · already Archive class {_fmt_bytes(r['archive_bytes'])}" if r.get("storage_classes") else "") for r in cold_rows[:6]],
+         "already_archive_bytes": obs.get("cold_bytes_already_archive") if classed else None,
+         "risk": ("The listing now records each object's storage class: " + _fmt_bytes(obs.get("cold_bytes_already_archive") or 0) + " of the cold bytes are already in Archive class and carry no further tiering saving; "
+                  "only the Standard-class remainder is counted here. Read frequency was not measured, and archive-class retrieval carries its own fee.") if classed else
+                 "Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee."},
     ]
 
 

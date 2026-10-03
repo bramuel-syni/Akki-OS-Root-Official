@@ -94,6 +94,11 @@ def continue_if_resumable(current):
                                        current['lawful_basis_admit_ref'], current.get('worker_id'), current.get('source_refs'), current.get('measurement'))
     if created:
         _inherit_scope(current, successor)
+        # A source whose remaining work is confined to a read window (NAS off-peak) sleeps until the window opens.
+        waits = [s.get('resume_not_before') for o in current.get('outcomes', []) for s in o.get('sources', [])
+                 if s.get('status') == 'partial' and s.get('resumable') and s.get('reason_code') == 'BUDGET_EXHAUSTED']
+        if waits and all(waits) and min(waits) > time.time():
+            successor['not_before'] = min(waits)
         store.save(successor)
     current['continuation_run_id'] = successor['census_run_id']; store.save(current)
     return successor['census_run_id']

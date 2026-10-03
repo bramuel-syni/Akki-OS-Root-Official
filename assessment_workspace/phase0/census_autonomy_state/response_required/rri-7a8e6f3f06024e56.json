@@ -1,0 +1,13 @@
+{
+  "banked_at_utc": "2026-10-03T02:22:36.546053+00:00",
+  "census_run_id": "cr-077ec568a19a",
+  "decision_timestamp_utc": "2026-10-03T02:22:36.546030+00:00",
+  "item_id": "rri-7a8e6f3f06024e56",
+  "reason_text": "Objects in 'test-viusasa-bucket' are in archive (cold) storage and return InvalidObjectState until restored. Decide whether to restore 'test-viusasa-bucket' (provider retrieval fee applies); the census will read it once restored.",
+  "refusal_code": "BLOCKED_SURFACE_UNREACHABLE",
+  "resolution_text": null,
+  "resolved_at_utc": null,
+  "resolver_id": null,
+  "state": "PENDING",
+  "tenant_id": "RMS"
+}

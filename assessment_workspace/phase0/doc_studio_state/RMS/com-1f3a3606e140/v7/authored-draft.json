@@ -1,0 +1,397 @@
+{
+  "draft": {
+    "paper": {
+      "sections": {
+        "actions": {
+          "heading": "What to do first, and why",
+          "paragraphs": [
+            "Grant the census key read access on the refused buckets, starting with the largest at {F146} hours. This is the single step that most reduces uncertainty in the {F130}-hour forecast.",
+            "Next, complete the samples of readable folders and shares and commission human checks on the model readings. Only then reprice tiering and confirm duplicates by hash. Keep pilot approval, preparation funding and destructive execution as separate decisions, each with an owner and an evidence gate."
+          ]
+        },
+        "chapter1": {
+          "heading": "The whole-estate forecast and its interval",
+          "paragraphs": [
+            "The most likely holding is {F130} hours of media, with {F131} hours of speech ({K030}) and {F132} hours of music ({K031}). Speech and music are separate estimators over separate sampled windows and need not add to the total. The forecast covers every listed folder, refused and unsampled stores included. Forecast intervals carry sampling and between-folder variation, not model error.",
+            "The object store accounts for {F135} forecast hours and the file shares for {F137}. Only {F133} of the hours rest on files read and judged. The tables beside show the evidence basis and each bucket and share, with its ninety-five per cent forecast interval."
+          ]
+        },
+        "chapter2": {
+          "heading": "Languages, stores and text as assets",
+          "paragraphs": [
+            "Speech sits mainly in the object store ({F136} forecast hours) rather than the file shares ({F138}), and {F140} of the object-store speech lies in buckets the key cannot read. The folder table beside shows the largest folders; it is a subset, not a complete folder schedule.",
+            "The written word is a separate, measured asset: {F080} live scripts, {F086} distinct texts, and script text whose size in millions of characters is {F084}, with {F085} of rows revisions. The workbench adds {F090} recordings and {F092} segments. Station broadcast language is not a script-level reading, and the inventories are not added together."
+          ]
+        },
+        "chapter3": {
+          "heading": "Where the hours, bytes and holding costs sit",
+          "paragraphs": [
+            "The largest bucket carries {F146} forecast hours, {K033} of the estate, in {F038} TiB. Beyond it, {F036} TiB across {F037} buckets has not been written for over a year, and {F034} TiB are duplicate candidates matched on size and fingerprint. Candidates are not confirmed copies.",
+            "The tables beside name the buckets, tables and shares under review. The {F042} file shares hold {F041} files, but only sizes and dates were recorded, so duplication across channel shares is not measured. In the databases, {F004} GiB sit in {F002} tables, almost all in the largest databases ({K002})."
+          ]
+        },
+        "chapter4": {
+          "heading": "Work that converts forecast into measurement",
+          "paragraphs": [
+            "The work is ordered by forecast exposure. First, an object-read grant on the {F104} refused buckets, which sit among the buckets holding {F139} forecast hours. Second, a restore decision on the {F105} archive-class buckets. Third, completing the planned samples, starting with the {F141} forecast hours in readable folders not yet sampled. Fourth, human checks on the model readings. Fifth, de-identifying selected product inputs.",
+            "The coverage and donor tables beside show what each step replaces. This work improves confidence and usability and is not a reason to withhold the estate forecast."
+          ]
+        },
+        "chapter6": {
+          "heading": "The decisions, in order",
+          "paragraphs": [
+            "The decision table beside lists each decision with its source, destination or rule, responsible role and expected benefit, with money stated as an upper bound. The order matters. Access comes first because {F134} of the forecast depends on it. A restore decision, a pilot and its owner follow. Validation of tiering and duplicates comes before any move or deletion.",
+            "The model-roles table discloses how this pack was produced. Nothing described here has been executed; every destination is a proposal for approval."
+          ]
+        },
+        "compare": {
+          "heading": "Earn and save, side by side",
+          "paragraphs": [
+            "Archive tiering addresses {O1.reclaimable_gib} GiB at up to {O1.monthly_saving_usd} USD a month. Duplicate reconciliation addresses {O2.reclaimable_gib} GiB at up to {O2.monthly_saving_usd} USD. Table tiering addresses {O3.reclaimable_gib} GiB at up to {O3.monthly_saving_usd} USD. The legacy scenario total of {F019} USD is an upper bound, not verified net savings, and opportunities may overlap.",
+            "In the subset with recorded storage classes, {F114} of bytes are already archive-class, and those have no Standard-to-Archive saving left. Reprice eligible Standard bytes, with retrieval and restore costs, before relying on any figure.",
+            "On the earning side, {F018} database-derived candidates exist, each needing de-identification or aggregation. A speech-and-text pilot from the leading languages is a proposal, with no revenue evidence yet, and needs buyer validation."
+          ]
+        },
+        "exhibit_S002": {
+          "heading": "Database condition and the preparation queue",
+          "paragraphs": [
+            "On measured and sampled rows, exact duplicates are {F007}, degraded rows {F008} and rows with empty required-looking fields {F009}. The last is a flag for review, not proof that every blank is invalid. {F010} of {F011} sampled rows carry personal-data markers, so de-identification or aggregation is a preparation step for any product.",
+            "Beyond rows, {F015} tables are empty, {F014} table pairs duplicate each other and dead columns are {F017} of measured columns. This is a bounded queue and does not reopen rights."
+          ]
+        },
+        "exhibit_S003": {
+          "heading": "Scale of the storage strategies",
+          "paragraphs": [
+            "The three largest strategies address {F020} GiB of the {F021} GiB that all cost strategies reach. Archive tiering is the largest, at {O1.reclaimable_gib} GiB, then duplicate reconciliation at {O2.reclaimable_gib} GiB. Database tables not written for a year add {O3.reclaimable_gib} GiB, and database reclaimable bytes before pricing are {F005} GiB.",
+            "These are bytes addressed, not bytes deleted. Strategies overlap, and duplicate candidates are not safe to remove until confirmed by content hash."
+          ]
+        },
+        "exhibit_S004": {
+          "heading": "Estate bytes by store",
+          "paragraphs": [
+            "The estate holds {F050} TiB. The object store is {F030} TiB ({K005}), the file shares {F040} TiB ({K006}) and the databases {F052} TiB ({K007}). Bytes are not invoice cost, and rounding means the stores may not reconcile exactly.",
+            "Media-store economics therefore deserve attention before database housekeeping. Database work is still worth doing for data condition and personal-data preparation, but it will not move storage cost."
+          ]
+        },
+        "exhibit_S005": {
+          "heading": "Byte concentration in the object store",
+          "paragraphs": [
+            "The largest bucket holds {F038} TiB, {K008} of the {F030} TiB object store, and each of the next seven buckets is cold. These bytes are measured. What the largest bucket holds in hours, speech and languages is forecast, because it refuses object reads.",
+            "Concentration shows where to look first, not what it is worth. Storage volume establishes neither content quality nor revenue; the preparation chapter sets out the work that would."
+          ]
+        },
+        "exhibit_S010": {
+          "heading": "The staged corpus as a calibration sample",
+          "paragraphs": [
+            "The staged corpus holds {F060} hours in {F063} files. Once music is set aside, {F061} hours are speech and {F062} hours are music, and {F074} files are mostly music. Read by both GPUs in {F067} GPU-hours, {F072} of judged windows agree with the folder language and the model declined to label {F066}.",
+            "The text model read {F070} transcripts, of which {F071} of passages agree with the folder language; {F075} were not reached. Window agreement is lowest in the Kikamba folder. This corpus is the natural base for human calibration of the estate-wide readings."
+          ]
+        },
+        "exhibit_S022": {
+          "heading": "Readable and unreadable media files",
+          "paragraphs": [
+            "The census has listed {F100} media files in the object store and the file shares. In the object store, {F101} are in readable buckets and {F102} ({F103} TiB) are in buckets that refuse reads or need a restore. That is {F113} of listed object-store media files. {F104} buckets refuse object reads and {F105} need a restore.",
+            "A grant alone does not complete measurement; the census must then probe and sample those files. Egress so far is {F111} USD at an assumed tariff, and restores will add a retrieval fee not yet priced."
+          ]
+        },
+        "exhibit_S030": {
+          "heading": "How each forecast hour is known",
+          "paragraphs": [
+            "The chart splits the estate forecast by evidence basis. {F147} hours were measured directly from folders read and judged. The largest block, {F139} hours, sits in buckets the key cannot read, and a further {F141} hours lie in readable folders not yet sampled. These medians are reported separately and are not an exactly additive stack.",
+            "The forecast rests on {F143} donor folders read and judged, {F144} files read in full, and {F145} simulations over {F142} folder strata. The forecast-to-measured ratio is {K034}. Each basis in the table beside names the single step that turns it into measurement."
+          ]
+        },
+        "exhibit_S031": {
+          "heading": "Seven languages, ranked by forecast speech hours",
+          "paragraphs": [
+            "The estate is forecast to hold {F150} hours of Kiswahili speech, {F151} of Gikuyu, {F152} of Ekegusii, {F153} of Kalenjin, {F154} of Luo, {F155} of Wanga and {F156} of Kikamba. Kiswahili and Kikamba carry wide intervals relative to their medians.",
+            "In the readable scope alone Gikuyu leads Kiswahili. The forecast reverses the order because refused folders borrow from donors, and the two intervals overlap, so first place is not settled. These are model forecasts, not a human-certified language count."
+          ]
+        },
+        "exhibit_S032": {
+          "heading": "Where the forecast hours concentrate",
+          "paragraphs": [
+            "Six of the ten largest folders or buckets by forecast hours are refused to the census key, so their hours are forecast from donors. The largest, at {F146} hours, is {K033} of the estate. The four readable entries among the ten are measured, with header probes and sampled content readings.",
+            "The owner should read this as a targeting rule. Reading the dominant refused bucket would convert {K033} of the estate forecast into measurement, and would remove the widest single interval from the total. Volume alone is not commercial value."
+          ]
+        },
+        "risks": {
+          "heading": "What the evidence cannot yet establish",
+          "paragraphs": [
+            "The forecast of {F130} hours rests on donors, with {F133} of hours directly judged. It assumes refused buckets resemble readable folders of the same media kind and file size; if not, the truth lies outside the interval. Speech, music and language figures are model readings with sampling intervals only.",
+            "Savings, file-share duplication, script language, workbench overlap and buyer demand are also unmeasured. Each gap names its closing step: an access grant, human checks, class and demand data, fingerprinting, a text pass, a hash join or buyer review."
+          ]
+        }
+      },
+      "summary": [
+        "RMS holds a large multilingual speech and text archive. Scaling what the census read in every folder to every listed folder, the estate most likely holds {F130} hours of media: {F131} hours of speech and {F132} hours of music, estimated separately and not an exact split. The ninety-five per cent forecast interval spans {F148} hours, {K032} of the forecast. Measured bytes are {F050} TiB. Only {F133} of the forecast hours rest on files read and judged, and {F134} sit in buckets the census key cannot read.",
+        "The strongest assets are the languages and the text. Kiswahili ({F150} speech hours), Gikuyu ({F151}) and Ekegusii ({F152}) lead the forecast, and the news archive adds {F080} live scripts. Value concentrates: one bucket the key cannot read carries {F146} forecast hours, {K033} of the estate, while the databases are {K007} of the bytes.",
+        "Preparation is work to do, not a reason to wait: object-read access, a restore decision, finishing the samples, checking the model readings and de-identifying product inputs. The first money path is repricing archive tiering, an upper bound of {O1.monthly_saving_usd} USD a month at legacy reference prices, followed by a speech-and-text pilot. Management is asked to decide access first."
+      ]
+    },
+    "slots": {
+      "actions": {
+        "kicker": "First actions",
+        "points": [
+          "Grant the census key read access on refused buckets, largest first ({F146}); owner: cloud administrator.",
+          "Finish samples of readable folders ({F141}) and shares ({F124}); owner: data lead.",
+          "Commission human checks of model readings, declined windows ({F066}) included; owner: product lead.",
+          "Reprice tiering ({O1.monthly_saving_usd} USD upper bound); hash-confirm {F034} TiB of duplicates first.",
+          "Scope a pilot from the leading languages; owner: commercial lead."
+        ],
+        "title": "Grant access first, then measure and validate, and only then move or delete"
+      },
+      "chapter1": {
+        "kicker": "Whole estate",
+        "points": [
+          "Most likely holding: {F130} hours. The ninety-five per cent forecast interval spans {F148} hours, {K032} of the forecast.",
+          "Speech is {K030} of hours and music {K031}; these are separate estimators, not an exact split.",
+          "Measured bytes are firm at {F050} TiB; only {F133} of forecast hours rest on files read and judged.",
+          "{F134} of forecast hours sit in buckets the census key cannot read."
+        ],
+        "title": "The estate most likely holds {F130} hours: {F131} of speech and {F132} of music"
+      },
+      "chapter2": {
+        "kicker": "Strongest assets",
+        "points": [
+          "Forecast speech hours: Kiswahili {F150}, Gikuyu {F151}, Ekegusii {F152}, Kalenjin {F153}; further languages and intervals are in the tables.",
+          "The object store holds {F136} speech hours and the file shares {F138}.",
+          "News archive: {F080} live scripts from {F081} stations; characters of script text, in millions: {F084}. The language shown is the station's broadcast language.",
+          "The workbench registers {F090} recordings in {F094} languages, a separate inventory, not added to the others."
+        ],
+        "title": "Kiswahili, Gikuyu and Ekegusii lead speech; news scripts add a large text asset"
+      },
+      "chapter3": {
+        "kicker": "Concentration",
+        "points": [
+          "Largest bucket: {F146} forecast hours, {K033} of the estate, {F038} TiB, {K008} of object-store bytes; reads refused.",
+          "Object store {F030} TiB, file shares {F040} TiB, databases {F052} TiB ({K007} of the estate).",
+          "{F036} TiB is not written for over a year ({K009} of the object store); {F034} TiB are duplicate candidates, not safe-deletion quantities.",
+          "File-share duplication is unmeasured: sizes and dates were recorded, not content fingerprints."
+        ],
+        "title": "Value concentrates in one refused bucket and the media stores, not the databases"
+      },
+      "chapter4": {
+        "kicker": "Preparation",
+        "points": [
+          "Grant object-read access on {F104} refused buckets; the buckets the key cannot read hold {F139} forecast hours.",
+          "Decide a restore, with its fee, for {F105} archive-class buckets; reconcile the {F033} unreachable buckets with the provider.",
+          "Finish the existing samples: {F141} forecast hours sit in readable folders not yet sampled.",
+          "Check model readings with human samples; de-identify or aggregate product inputs, as {F010} of sampled rows carry personal-data markers."
+        ],
+        "title": "Five pieces of work convert forecast into measurement and make the estate usable"
+      },
+      "chapter6": {
+        "kicker": "Decisions",
+        "points": [
+          "Approve an object-read grant; it rests on {F130}, {F134} and {F139}.",
+          "Decide a restore of {F105} archive-class buckets with its retrieval fee.",
+          "Select one speech-and-text pilot, name its owner, and de-identify database inputs.",
+          "Validate tiering on {F036} TiB of cold bytes and hash-confirm {F034} TiB of duplicate candidates before any move or deletion.",
+          "Set an evidence gate before rollout; nothing here has been executed."
+        ],
+        "title": "Management is asked to decide access first, then pilot, tiering, duplicates and rollout"
+      },
+      "compare": {
+        "kicker": "Earn and save",
+        "so_what": "Monthly figures are upper bounds at legacy full-Standard reference prices; reprice eligible bytes and retrieval costs before treating any as expected saving.",
+        "title": "Archive tiering, duplicate reconciliation and table tiering differ sharply in scale"
+      },
+      "exec": {
+        "answer": "RMS holds a large multilingual speech and text archive. The whole-estate forecast is {F130} hours of media, with {F131} hours of speech and {F132} hours of music, each with its ninety-five per cent forecast interval in the tables beside. Kiswahili ({F150} speech hours), Gikuyu ({F151}) and Ekegusii ({F152}) lead. One bucket the key cannot read carries {F146} forecast hours, {K033} of the estate. The first decision is an object-read grant for the census key, which turns that exposure into measurement. Archive tiering and duplicate reconciliation follow once repriced; a speech-and-text pilot is the earning path to scope.",
+        "complication": "Only {F133} of the forecast hours rest on files read and judged, and {F134} sit in buckets the census key cannot read. The ninety-five per cent forecast interval spans {F148} hours, {K032} of the forecast, and excludes model error.",
+        "kicker": "Executive summary",
+        "question": "What does the estate hold, where does its value sit, and what should management decide first?",
+        "situation": "RMS holds {F050} TiB across databases, an object store and file shares. Scaling what the census read in each folder to every listed folder, the estate most likely holds {F130} hours of media: {F131} hours of speech and {F132} hours of music, estimated separately.",
+        "title": "The estate most likely holds {F130} hours of media; {F134} sits behind access limits"
+      },
+      "exhibit_S002": {
+        "kicker": "Data condition",
+        "so_what": "These findings direct preparation work on measured and sampled rows; they do not describe the media content and do not reopen rights.",
+        "title": "Database rows need bounded repair: {F009} carry empty required-looking fields"
+      },
+      "exhibit_S003": {
+        "kicker": "Savings scale",
+        "so_what": "Prioritise tiering and duplicate candidates first; strategy totals overlap and measure bytes addressed, not bytes deleted or net savings.",
+        "title": "Archive tiering addresses the largest share of reclaimable bytes; the rest are small"
+      },
+      "exhibit_S004": {
+        "kicker": "Estate bytes",
+        "so_what": "Housekeeping effort belongs on the media stores, since databases are negligible in bytes though not in personal-data preparation.",
+        "title": "Media stores hold nearly all of the {F050} TiB; databases are {K007} of it"
+      },
+      "exhibit_S005": {
+        "kicker": "Object-store bytes",
+        "so_what": "Every other bucket is small beside it, so byte concentration should be tackled starting with the dominant bucket.",
+        "title": "The largest bucket holds {F038} TiB, {K008} of the object store"
+      },
+      "exhibit_S010": {
+        "kicker": "Staged corpus",
+        "so_what": "This narrow, fully read sample is the place to calibrate the models, not a substitute for the estate-wide ranking.",
+        "title": "The staged corpus holds {F060} hours across {F068} language folders; {F061} are speech"
+      },
+      "exhibit_S022": {
+        "kicker": "Access",
+        "so_what": "Access and restore decisions, not new analysis, convert the largest forecast block; refused, unreadable and restore-required buckets are three distinct problems.",
+        "title": "{F113} of listed object-store media files sit in buckets the key cannot read"
+      },
+      "exhibit_S030": {
+        "kicker": "Evidence basis",
+        "so_what": "Hours measured directly ({F147}) anchor the estimate; every other basis names one step that converts it from forecast into measurement.",
+        "title": "Only {F133} of the forecast hours rest on files read and judged; the rest is forecast"
+      },
+      "exhibit_S031": {
+        "kicker": "Languages",
+        "so_what": "Seven languages carry forecast speech; the ranking is a model forecast, not a human-certified language inventory.",
+        "title": "Kiswahili leads whole-estate speech at {F150} hours, with Gikuyu next at {F151}"
+      },
+      "exhibit_S032": {
+        "kicker": "Concentration of hours",
+        "so_what": "A single access grant is the highest-value preparation step, and that bucket's forecast is also the largest single source of uncertainty.",
+        "title": "One refused bucket carries {F146} forecast hours, {K033} of the estate"
+      },
+      "risks": {
+        "kicker": "What cannot yet be said",
+        "points": [
+          "Only {F133} of {F130} forecast hours is measured; refused buckets may differ from donors. An access grant closes this.",
+          "Speech, music and language figures are model readings; stratified human checks would calibrate them.",
+          "Savings are unverified: class metadata is partial and restore costs unpriced; repricing closes this.",
+          "File-share duplication, script language and buyer demand are unmeasured; fingerprinting, a text pass and buyer review close them."
+        ],
+        "title": "The forecast is bounded by donor representativeness, model error and unsampled folders"
+      },
+      "section1": {
+        "title": "What the whole estate holds"
+      },
+      "section2": {
+        "title": "The strongest assets"
+      },
+      "section3": {
+        "title": "Where value concentrates"
+      },
+      "section4": {
+        "title": "Preparation that turns forecast into measurement"
+      },
+      "section5": {
+        "title": "Paths that earn or save money first"
+      },
+      "section6": {
+        "title": "What management is asked to decide"
+      }
+    },
+    "subtitle": "Whole-estate forecast, strongest assets, preparation and the decisions in order",
+    "title": "RMS estate: hours, speech and what to decide"
+  },
+  "meta": {
+    "gate": {
+      "issues": [],
+      "passed": true,
+      "plan_slots": 47,
+      "repairs": 2
+    },
+    "latency_ms": 60726,
+    "model": "claude-sonnet-5-5",
+    "planner": {
+      "cautions": [
+        "Preserve every supplied outline slot and exhibit; do not add, rename or reorder chapters to repair apparent outline irregularities.",
+        "Use the canonical evidence and current brief over legacy producer narratives: rights are settled by the owner's declaration, measured estate bytes are available, and whole-estate forecasts include refused and unsampled stores.",
+        "Several outline bindings are unresolved in the supplied evidence: {K030}, {T011}, {F139}, {S002}, {T042} and {F133}. Surface them for deterministic binding repair; do not fabricate aliases, figures or table contents, and do not silently claim mandatory citations are satisfied.",
+        "Render forecast intervals from the cited facts' scope or supplied tables; never invent missing endpoints. Keep forecast intervals distinct from readable-scope sampling intervals, and state that they exclude model error and the possibility that inaccessible stores differ fundamentally from their dono",
+        "Do not force {F131} and {F132} to sum to {F130}, normalise their shares, or reconcile independently reported medians by changing evidence; separate estimators and aggregation summaries are not guaranteed additive.",
+        "The forecast covers every listed folder, but {T048} displays only the supplied largest-folder subset and {T047} is a store-level table. Do not claim a complete folder-by-folder interval schedule is supplied or invent unseen rows.",
+        "The languages in {S031} are reported forecasts, not an exhaustive or human-certified estate language count; staged folders, workbench registrations and model language estimates have different scopes.",
+        "Keep staged recordings, readable-store estimates, workbench registrations and scripts as separate inventories unless overlap is resolved. Script counts include revisions, station broadcast language is not a script-level language reading, and model agreement is not intelligibility or transcription ac"
+      ],
+      "chapter_notes": {
+        "actions": "Lead with a short ordered decision checklist tied to {T013}, connecting the opportunity in {F130}, {F131} and {F132} to named owners, deliverables and verification gates rather than invented budgets or dates. Prioritise the largest forecast exposure in {F134} and {F135}, but keep pilot approval, preparation funding and destructive execution as separate decisions.",
+        "chapter1": "Lead the executive account with most likely estate media, speech and music holdings from {F130}, {F131} and {F132}, each with its supplied forecast interval, alongside measured bytes {F050}, language forecasts {S031} and the directly judged share {F133}. Use {T050} and {T047} beside the answer to establish coverage of every listed folder through the forecast, keeping measured bytes distinct from estimated content and avoiding any claim that speech and music form an exact partition.",
+        "chapter2": "Lead with the language assets in {F150}, {F151} and {F152}, extend to {F153}, {F154}, {F155} and {F156}, and locate speech across stores with {F136}, {F138} and {T048}, carrying their supplied intervals. Pair the forecast opportunity with the tangible script and transcript assets in {F080}, {F084}, {F086}, {F091} and {F093}, using {T046}, {T020} and {T022} to distinguish readable estimates, staged evidence and aggregate text inventories without adding overlapping corpora or claiming verified script languages.",
+        "chapter3": "Lead with the largest bucket's forecast hours and estate share in {F146} and {K033}, placing their forecast basis beside its measured bytes {F038} and the store totals {F030} and {F040}. Use {T010} and {T012} for named storage targets and {T011} for database findings where available, making concentration the targeting principle rather than a claim of proven financial value; the unresolved assigned table reference must be surfaced without silently replacing it.",
+        "chapter4": "Lead with a concise work programme ordered by forecast exposure: obtain object-read access for the holdings represented by {F139} and {F140}, decide targeted restores, finish the readable samples represented by {F141}, then calibrate model readings and prepare selected product inputs using {T045} and {T049}. The executive takeaway is funded work that improves confidence and usability, not a reason to withhold the estate forecast; flag the unresolved mandatory evidence and table bindings rather than inventing their identities.",
+        "chapter6": "Lead with an explicit approval sequence anchored in {T013}: select the priority commercial pilot, assign accountable preparation owners and bounded access or restore spend, authorise economic and duplicate validation, then require evidence before migration, deletion or wider rollout. Ground the scale and urgency in {F130}, {F134}, {F139}, {F036} and {F034}, use {T036} only for disclosed production governance, and distinguish management proposals from actions already executed while flagging the unresolved mandatory binding.",
+        "compare": "Lead with parallel earn-and-save tracks: propose a bounded speech-and-text or catalogue pilot from {F150}, {F151}, {F080}, {F086} and the candidate context {C022}, while comparing storage opportunities in {O1}, {O2} and {O3} after class and demand checks in {T044}. Put invoice-backed tiering eligibility and duplicate confirmation ahead of execution, describe the broader candidates {F018}, {C021} and {C023} as proposals requiring buyer validation, and state that {F019} is a legacy reference-price scenario rather than expected net savings or evidence of product revenue.",
+        "exhibit_S002": "Lead with a bounded preparation queue for affected database rows using {S002}, {F007}, {F008}, {F009}, {F010} and {F011}: validate required-looking fields, repair damage, confirm duplicates and de-identify or aggregate product inputs. These findings direct work on their measured or sampled populations; they do not describe all media content, prove every blank invalid or reopen settled rights.",
+        "exhibit_S003": "Lead with the relative scale of addressable storage strategies in {S003}, supported by {F036}, {F034} and {F005}. Use this to prioritise validation effort, not to present tiering as bytes deleted, duplicate candidates as safely removable copies, or overlapping strategy totals as net savings.",
+        "exhibit_S004": "Lead with the estate-wide storage footprint in {F050} and its distribution in {S004}, supported by {F030}, {F040} and {F052}. Explain why media-store economics deserve attention before database housekeeping, without equating bytes with invoice cost or treating rounded store values as an exact reconciliation.",
+        "exhibit_S005": "Lead with measured object-store byte concentration in {S005}, {F038} and {K008}, linking it to the forecast-hour concentration in {F146}. The executive should target the dominant stores for attention, while recognising that storage volume alone establishes neither content quality nor revenue.",
+        "exhibit_S010": "Present {S010} as supporting evidence from the staged corpus, anchored by {F060}, {F061} and {T020}, rather than as the estate-wide language ranking. Its takeaway is a concrete preparation and validation starting point; do not substitute this deliberately narrower sample for {S031}.",
+        "exhibit_S022": "Lead with the work that converts forecast into measurement: object-read access, targeted restoration and completion of existing samples, grounded in {S022}, {F104}, {F105} and {T045}. Keep listing failures, object-read refusals and restore-required objects distinct, and do not imply that an access grant by itself completes measurement.",
+        "exhibit_S030": "Lead with the whole-estate forecast in {F130}, using {S030} to distinguish evidence bases and {F133} to state plainly the share resting on files read and judged. The executive should see a complete estate estimate with differentiated confidence, not a readable-scope total or an exactly additive stack of independently reported medians.",
+        "exhibit_S031": "Lead with Kiswahili and Gikuyu as the largest reported language forecasts, using {S031}, {F150}, {F151}, {F152} and {F153}, with the corresponding supplied intervals. Present a strong multilingual product-development opportunity, not an exhaustive language inventory or human-certified corpus.",
+        "exhibit_S032": "Lead with the concentration of forecast hours shown by {S032}, anchored by {F146} and its supplied forecast interval. Make the largest stores the priority for validation and asset discovery, without treating forecast volume as measured content or commercial valuation.",
+        "risks": "Lead with the bounded uncertainties around {F130}, {F131} and {F132}: the directly judged share {F133}, donor representativeness and model error outside the intervals, using {T049} for method and {T050} for evidence basis. Summarise preparation dependencies by reference rather than repeating the access narrative, and retain commercial-demand uncertainty, overlap, privacy preparation and unverified savings as decision risks without reopening rights or undermining the obligation to estimate the whole estate."
+      },
+      "latency_ms": 42704,
+      "model": "gpt-6-astra",
+      "provider": "emergent",
+      "receipt_id": "rcp-18aebf3ccb07",
+      "title_direction": "Position RMS as a substantial multilingual media and text estate, leading with its most likely whole-estate holdings and forecast intervals, then the assets, preparation and ordered commercial decisions that turn those holdings into value.",
+      "tokens_in": 29383,
+      "tokens_out": 2123
+    },
+    "provider": "emergent",
+    "receipt_id": "rcp-599eff2296d5",
+    "repairs": 2,
+    "review": {
+      "blocking": [
+        "draft.slots.chapter2.points[2]: F084 renders as '189.3' with unit 'm' (millions); the point reads '{F084} characters from {F081} stations', which will print as 189.3 characters rather than 189.3 million. The producer's own claim C043 writes '{F084} million characters'. — Write '{F084} million characters' (or 'F084 m characters') so the text asset is not understated by six orders of magnitude.",
+        "draft.paper.sections.chapter2.paragraphs[1]: Same F084 unit error: '{F080} live scripts, {F084} characters, {F086} distinct texts' will render as 189.3 characters. — Change to '{F084} million characters'."
+      ],
+      "findings": [
+        {
+          "fix": "Write '{F084} million characters' (or 'F084 m characters') so the text asset is not understated by six orders of magnitude.",
+          "issue": "F084 renders as '189.3' with unit 'm' (millions); the point reads '{F084} characters from {F081} stations', which will print as 189.3 characters rather than 189.3 million. The producer's own claim C043 writes '{F084} million characters'.",
+          "path": "draft.slots.chapter2.points[2]",
+          "severity": "blocking"
+        },
+        {
+          "fix": "Change to '{F084} million characters'.",
+          "issue": "Same F084 unit error: '{F080} live scripts, {F084} characters, {F086} distinct texts' will render as 189.3 characters.",
+          "path": "draft.paper.sections.chapter2.paragraphs[1]",
+          "severity": "blocking"
+        },
+        {
+          "fix": "Say three of the four readable entries (rmsbroadcast, music-bucket-rms, citizen-digital-cms-files) are measured on headers and samples; channel02 is readable but still forecast until its share finishes probing ({F124} shares still listing or probing).",
+          "issue": "States that 'the four readable entries among the ten are measured, with header probes and sampled content readings'. channel02 is a file share whose 5,890.6 h in S032 is a forecast: file shares measured so far total only {F121} 2,608.3 h (F137 forecast 89,208 h) and S020 header-measured hours cover object-store buckets only. Labelling it measured blurs the measured/forecast line the brief insists on.",
+          "path": "draft.paper.sections.exhibit_S032.paragraphs[0]",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Write '{F140} hours of the {F136} object-store speech hours lie in buckets the key cannot read'.",
+          "issue": "'{F140} of the object-store speech lies in buckets the key cannot read' renders as '139,340.4 of the object-store speech' — the quantity is hours, not a share, and reads as if it were a percentage.",
+          "path": "draft.paper.sections.chapter2.paragraphs[0]",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Either drop the role suffixes or phrase as 'role per the decision table (T013)' so the deck does not name owners the evidence has not.",
+          "issue": "Owner roles ('cloud administrator', 'data lead', 'product lead', 'commercial lead') are not in the supplied evidence; T013 carries a 'Responsible role' column whose values were not provided, so these may conflict with the decision table beside.",
+          "path": "draft.slots.actions.points",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Use 'what the census read in each sampled folder' as in the exec slot.",
+          "issue": "'Scaling what the census read in every folder to every listed folder' implies every folder was read, contradicting F133 (8.5% read and judged) and F143 (211 donor strata of 1,334).",
+          "path": "draft.paper.summary[0]",
+          "severity": "advisory"
+        },
+        {
+          "fix": "Qualify: 'lowest among folders with material hours is Kikamba at 70.9%; the 0.7-hour Bukusu folder records no agreeing windows'.",
+          "issue": "'Window agreement is lowest in the Kikamba folder' — S011 shows Bukusu (Luhya) at 0% agreement (0.7 h), below Kikamba's 70.9%, so 'lowest' is only true if the near-empty Bukusu folder is set aside.",
+          "path": "draft.paper.sections.exhibit_S010.paragraphs[1]",
+          "severity": "advisory"
+        }
+      ],
+      "latency_ms": 101010,
+      "model": "claude-fable-5-1",
+      "provider": "emergent",
+      "receipt_id": "rcp-09ed97a44183",
+      "resolution": "writer revised the draft on the reviewer's blocking findings; revised draft passed the content manager",
+      "summary": "The whole-estate forecast, intervals, measured/forecast split and owner-declaration handling are faithful to the evidence, but F084 is used without its million multiplier in two places, materially understating the text asset; a few measured-versus-forecast and wording slips should be tightened alongside.",
+      "tokens_in": 33069,
+      "tokens_out": 896,
+      "verdict": "repair"
+    },
+    "tokens_in": 125475,
+    "tokens_out": 14949
+  }
+}

@@ -1,6 +1,6 @@
 # Akki Estate Intelligence — RMS MySQL estate
 
-Job `eij-1b359b3cbd2e` · status **partial** · measured 2026-09-29T19:12:15.151993Z · built 2026-09-30T03:41:37.310403Z
+Job `eij-1b359b3cbd2e` · status **partial** · measured 2026-09-29T19:12:15.151993Z · built 2026-10-03T00:53:28.573051Z
 
 Census only: rows were measured on the jump host and discarded; this brief carries aggregates, sketches and hashes — no row, cell or identifier value.
 
@@ -65,26 +65,26 @@ Never-populated columns: 983 of 7,563 measured (13.0%). Columns never populated 
 
 | Connection / database | Degraded rows | Dead columns | Stale tables | Writes span | Last write | Schema drift | Rows Δ |
 |---|---|---|---|---|---|---|---|
-| iebc_forms / miniapps | 71.4% | 16 / 52 | 4 | 1,409 days | 657 days ago | 0 | +0 |
+| iebc_forms / miniapps | 71.4% | 16 / 52 | 4 | 1,409 days | 660 days ago | 0 | +0 |
 | viupay / viupay | 69.4% | 20 / 264 | 11 | 2,088 days | 0 days ago | 0 | +6 |
-| iebc_forms / viupay | 67.5% | 22 / 248 | 21 | 1,098 days | 625 days ago | 0 | +0 |
+| iebc_forms / viupay | 67.5% | 22 / 248 | 21 | 1,098 days | 628 days ago | 0 | +0 |
 | citizen_digital / db_visitors | 37.6% | 55 / 418 | 8 | 21,947 days | 0 days ago | 0 | +47 |
-| iebc_forms / viutickets | 25.4% | 38 / 479 | 38 | 1,041 days | 547 days ago | 0 | +0 |
+| iebc_forms / viutickets | 25.4% | 38 / 479 | 38 | 1,041 days | 550 days ago | 0 | +0 |
 | iebc_forms / viusasa_staging | 24.2% | 444 / 3396 | 82 | 746,245 days | 0 days ago | 0 | — |
 | viupay / viutickets | 23.2% | 39 / 489 | 19 | 4,821 days | 0 days ago | 0 | +4 |
-| Razuna (Library Content) & Newsvault (Radio News content) / razuna | 2.6% | 107 / 532 | 17 | 4,292 days | 13 days ago | 0 | +0 |
+| Razuna (Library Content) & Newsvault (Radio News content) / razuna | 2.6% | 107 / 532 | 17 | 4,292 days | 16 days ago | 0 | +0 |
 | citizen-pulse / saa | 1.7% | 16 / 159 | 7 | 1,368 days | 0 days ago | 0 | +0 |
-| iebc_forms / kra_reports | 1.2% | 11 / 93 | 6 | 542 days | 991 days ago | 0 | +0 |
-| iebc_forms / viusasa_artists | 0.4% | 14 / 70 | 6 | 214 days | 1,649 days ago | 0 | +0 |
-| iebc_forms / ecommerce_tafaria | 0.2% | 93 / 390 | 33 | 11,593 days | 1,827 days ago | 0 | +0 |
-| iebc_forms / viusasa_miniapps_prod | 0.0% | 31 / 134 | 6 | 2,066 days | 0 days ago | 0 | +0 |
+| iebc_forms / kra_reports | 1.2% | 11 / 93 | 6 | 542 days | 994 days ago | 0 | +0 |
+| iebc_forms / viusasa_artists | 0.4% | 14 / 70 | 6 | 214 days | 1,652 days ago | 0 | +0 |
+| iebc_forms / ecommerce_tafaria | 0.2% | 93 / 390 | 33 | 11,593 days | 1,830 days ago | 0 | +0 |
+| iebc_forms / viusasa_miniapps_prod | 0.0% | 31 / 134 | 6 | 2,066 days | 3 days ago | 0 | +0 |
 | iebc_forms / iebc_forms | 0.0% | 2 / 31 | 0 | no timestamps | — | 0 | +0 |
-| iebc_forms / viupay_agent_staging | 0.0% | 39 / 402 | 19 | 601 days | 1,534 days ago | 0 | +0 |
-| viupay / kra_reports | 0.0% | 19 / 159 | 2 | 1,533 days | 0 days ago | 0 | +139 |
-| citizen_digital / local | 0.0% | 4 / 73 | 5 | 488 days | 567 days ago | 0 | +0 |
+| iebc_forms / viupay_agent_staging | 0.0% | 39 / 402 | 19 | 601 days | 1,537 days ago | 0 | +0 |
+| viupay / kra_reports | 0.0% | 19 / 159 | 2 | 1,533 days | 3 days ago | 0 | +139 |
+| citizen_digital / local | 0.0% | 4 / 73 | 5 | 488 days | 570 days ago | 0 | +0 |
 | citizen-pulse / citizen-pulse | —% | 0 / 0 | 0 | no timestamps | — | 0 | +0 |
-| citizen-pulse / correspondents | 0.0% | 3 / 19 | 0 | 273 days | 292 days ago | 0 | +0 |
-| Razuna (Library Content) & Newsvault (Radio News content) / news_vault | 0.0% | 10 / 155 | 6 | 1,462 days | 13 days ago | 0 | +0 |
+| citizen-pulse / correspondents | 0.0% | 3 / 19 | 0 | 273 days | 295 days ago | 0 | +0 |
+| Razuna (Library Content) & Newsvault (Radio News content) / news_vault | 0.0% | 10 / 155 | 6 | 1,462 days | 16 days ago | 0 | +0 |
 
 Deltas against the previous verified estate intelligence census over the same connections.
 
@@ -181,7 +181,7 @@ Priced with database storage at USD 0.1095/GB-month and object storage at USD 0.
 | Strategy | Reclaimable | Share | Saving / month | Action |
 |---|---|---|---|---|
 | Move buckets not written for over a year to archive-class storage | 41.9 TiB | — | USD 986.49 | Apply a lifecycle rule (Standard → Archive/Cold) on buckets whose last object write is older than a year; keep listing metadata hot. |
-| Reconcile duplicate objects across OBS buckets | 7.7 TiB | — | USD 180.31 | Confirm ETag+size candidates by object hash, keep one copy per bucket and replace the rest with references or lifecycle-delete them. |
+| Reconcile duplicate objects across OBS buckets | 7.7 TiB | — | USD 180.33 | Confirm ETag+size candidates by object hash, keep one copy per bucket and replace the rest with references or lifecycle-delete them. |
 | Move tables not written for over a year to cold storage | 54.1 GiB | 15.4% | USD 5.93 | Export to compressed object storage, keep a schema stub and a pointer; restore on demand. |
 | Remove redundant (prefix-covered) indexes | 14.0 GiB | 4.0% | USD 1.53 | Drop each non-unique index whose columns are a leading prefix of another index on the same table. |
 | De-duplicate exact repeated rows inside tables | 1.2 GiB | 0.4% | USD 0.13 | Add uniqueness constraints or a merge step at ingestion; archive the historical duplicates. |
@@ -190,18 +190,18 @@ Priced with database storage at USD 0.1095/GB-month and object storage at USD 0.
 | Repair or purge orphaned references | not a storage saving | — | unpriced | Reconcile foreign-key candidates whose sampled values are missing in the target table; purge rows that reference nothing. |
 | Minimise PII-dense tables that no product needs | not a storage saving | — | unpriced | Tokenise or drop personal columns in analytics copies; keep raw identifiers only in the system of record. |
 
-Priced strategies total ≈ USD 1,174.40 per month (upper bound; overlaps possible).
+Priced strategies total ≈ USD 1,174.42 per month (upper bound; overlaps possible).
 
 ### Evidence per strategy
 
 **Move buckets not written for over a year to archive-class storage** — risk: Last write is the newest object timestamp in the listing; read frequency was not measured, and archive-class retrieval carries its own fee.
 
-- music-bucket-rms · last write 916 days before the census · 4.9 TiB
-- na7p43do · last write 908 days before the census · 4.1 TiB
-- na7p43js · last write 909 days before the census · 3.6 TiB
-- na7p434j · last write 908 days before the census · 3.5 TiB
-- na7p41hj · last write 915 days before the census · 3.5 TiB
-- na7p42xe · last write 907 days before the census · 3.4 TiB
+- music-bucket-rms · last write 920 days before the census · 4.9 TiB
+- na7p43do · last write 911 days before the census · 4.1 TiB
+- na7p43js · last write 913 days before the census · 3.6 TiB
+- na7p434j · last write 911 days before the census · 3.5 TiB
+- na7p41hj · last write 919 days before the census · 3.5 TiB
+- na7p42xe · last write 911 days before the census · 3.4 TiB
 
 **Reconcile duplicate objects across OBS buckets** — risk: Candidates share ETag and size, which for multipart uploads is not a content hash; bytes are candidates × mean object size, an estimate. Confirm before deleting.
 
@@ -210,7 +210,7 @@ Priced strategies total ≈ USD 1,174.40 per month (upper bound; overlaps possib
 - na7p434j · 2,890 candidates · ≈674.1 GiB
 - na7p42yg · 4,197 candidates · ≈501.9 GiB
 - music-bucket-rms · 14,696 candidates · ≈485.3 GiB
-- 2024offairrecs · 16,589 candidates · ≈461.8 GiB
+- 2024offairrecs · 16,634 candidates · ≈462.4 GiB
 
 **Move tables not written for over a year to cold storage** — risk: Staleness is read from the latest timestamp column; tables without timestamps are not counted as stale.
 
@@ -280,13 +280,13 @@ Priced strategies total ≈ USD 1,174.40 per month (upper bound; overlaps possib
 
 ## Object and file estate (OBS buckets, NAS shares)
 
-**OBS object store** — census `cr-f1415e395361` (partial, 2026-09-29T04:25:35.113924+00:00): 66 of 106 sources complete, 22,975,591 objects, 130.3 TiB; 1,139,768 duplicate candidates (5.0% of objects), ≈7.7 TiB estimated; 43 sources not written for over a year (41.9 TiB). Frontier complete: yes.
+**OBS object store** — census `cr-f1415e395361` (partial, 2026-10-02T19:20:31.205815+00:00): 66 of 106 sources complete, 22,997,353 objects, 130.8 TiB; 1,158,906 duplicate candidates (5.0% of objects), ≈7.7 TiB estimated; 43 sources not written for over a year (41.9 TiB). Frontier complete: yes.
 
 Duplicate candidates are objects whose ETag+size fingerprint was already seen in the same store; duplicate bytes = candidates × mean object size of the bucket (estimate). Not proven byte duplicates.
 
 | Source | Status | Units | Bytes | Duplicate candidates | Last write | Formats |
 |---|---|---|---|---|---|---|
-| 2024offairrecs | complete | 3,174,515 | 86.3 TiB | 16589 | 2026-09-29T03:00:04.630000Z | .mp4 3,131,277, .mp3 27,002, no_extension 15,658, .mpt 408 |
+| 2024offairrecs | complete | 3,194,745 | 86.7 TiB | 16634 | 2026-10-02T03:00:00.626000Z | .mp4 3,151,459, .mp3 27,002, no_extension 15,706, .mpt 408 |
 | music-bucket-rms | complete | 152,801 | 4.9 TiB | 14696 | 2024-03-26T05:26:00.449000Z | .mp4 146,617, .txt 1,183, .flx 1,086, .rpt 610 |
 | na7p43do | complete | 484,480 | 4.1 TiB | 197528 | 2024-04-04T02:11:50.597000Z | .mp3 326,105, .mts 39,439, .vis 39,437, .wav 12,472 |
 | na7p43js | complete | 307,998 | 3.6 TiB | 27187 | 2024-04-02T06:06:20.407000Z | .ogg 118,600, .mp3 85,079, .adf 25,484, .vis 21,622 |
@@ -301,7 +301,7 @@ Duplicate candidates are objects whose ETag+size fingerprint was already seen in
 
 Blocked sources (40): apr252017 (NoSuchBucket); citizen-vod (NoSuchBucket); elections (ClientError); feb272017 (NoSuchBucket); instore-radio-items (ClientError); iso-rms-storage (NoSuchBucket); librarydirectupload2 (NoSuchBucket); na7p4100 (NoSuchBucket); na7p410c (NoSuchBucket); na7p419y (NoSuchBucket); na7p41ab (NoSuchBucket); na7p41f4 (NoSuchBucket) …
 
-**NAS file shares** — census `cr-cf4eef79995b` (complete, 2026-09-29T03:48:16.100915+00:00): 16 of 16 sources complete, 1,456,787 files, 43.6 TiB; duplication unmeasured (no fingerprints in this pass); 0 sources not written for over a year (0 B). Frontier complete: yes.
+**NAS file shares** — census `cr-cf4eef79995b` (complete, 2026-10-02T19:17:57.727454+00:00): 12 of 16 sources complete, 1,460,947 files, 43.7 TiB; duplication unmeasured (no fingerprints in this pass); 0 sources not written for over a year (0 B). Frontier complete: yes.
 
 This enumeration recorded no content fingerprints (stat/listing only), so duplication is unmeasured; sizes and dates were read, bodies were not.
 
@@ -310,15 +310,17 @@ This enumeration recorded no content fingerprints (stat/listing only), so duplic
 | channel01 | complete | 95,122 | 6.9 TiB | — | 2026-09-29T03:25:01.311178Z | .mp4 95,108, .rmd 6, .mpt 3, .db 1 |
 | channel02 | complete | 95,134 | 6.9 TiB | — | 2026-09-29T03:25:05.819412Z | .mp4 95,129, .db 1, .jpg 1, .rep 1 |
 | channel16 | complete | 94,597 | 6.8 TiB | — | 2026-09-29T03:45:03.715768Z | .mp4 94,592, .db 1, .jpg 1, .rep 1 |
-| Channel15 | complete | 95,635 | 1.9 TiB | — | 2026-09-29T03:22:57.737248Z | .mp4 95,627, .rmd 3, .db 1, .jpg 1 |
-| Channel14 | complete | 95,615 | 1.9 TiB | — | 2026-09-29T03:18:10.574562Z | .mp4 95,609, .rmd 2, .db 1, .jpg 1 |
-| Channel11 | complete | 95,602 | 1.9 TiB | — | 2026-09-29T03:12:09.048574Z | .mp4 95,592, .rmd 6, .db 1, .jpg 1 |
+| Channel15 | partial · BUDGET_EXHAUSTED | 96,675 | 1.9 TiB | — | 2026-10-02T18:07:55Z | .mp4 96,667, .rmd 3, .db 1, .jpg 1 |
+| Channel14 | partial · BUDGET_EXHAUSTED | 96,660 | 1.9 TiB | — | 2026-10-02T18:25:43Z | .mp4 96,654, .rmd 2, .db 1, .jpg 1 |
+| Channel09 | partial · BUDGET_EXHAUSTED | 96,313 | 1.9 TiB | — | 2026-10-02T17:09:37Z | .mp4 96,309, .db 1, .jpg 1, .rep 1 |
+| Channel11 | complete · BUDGET_EXHAUSTED | 95,602 | 1.9 TiB | — | 2026-09-29T03:12:09.048574Z | .mp4 95,592, .rmd 6, .db 1, .jpg 1 |
 | Channel12 | complete | 95,600 | 1.9 TiB | — | 2026-09-29T03:15:28.913646Z | .mp4 95,590, .rmd 6, .db 1, .jpg 1 |
 | channel07 | complete | 95,550 | 1.9 TiB | — | 2026-09-29T03:36:51.270784Z | .mp4 95,546, .db 1, .jpg 1, .rep 1 |
 | channel06 | complete | 95,548 | 1.9 TiB | — | 2026-09-29T03:35:21.881683Z | .mp4 95,544, .db 1, .jpg 1, .rep 1 |
 | channel05 | complete | 95,494 | 1.9 TiB | — | 2026-09-29T03:34:34.485438Z | .mp4 95,490, .db 1, .jpg 1, .rep 1 |
 | channel04 | complete | 95,475 | 1.9 TiB | — | 2026-09-29T03:30:03.144274Z | .mp4 95,470, .db 1, .jpg 1, .rep 1 |
-| channel03 | complete | 95,419 | 1.9 TiB | — | 2026-09-29T03:29:36.059011Z | .mp4 95,415, .db 1, .jpg 1, .rep 1 |
+
+Blocked sources (4): Channel15 (BUDGET_EXHAUSTED); Channel14 (BUDGET_EXHAUSTED); Channel09 (BUDGET_EXHAUSTED); Channel13 (BUDGET_EXHAUSTED)
 
 ## Where it falls short
 

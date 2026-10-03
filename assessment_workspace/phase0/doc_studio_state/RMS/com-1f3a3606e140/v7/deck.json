@@ -1,0 +1,577 @@
+{
+  "brief_ref": "BR-2026-10-03-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-03T01:03:55Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@7",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "deck_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-03",
+  "slides": [
+    {
+      "org": "{content.organisation}",
+      "subtitle": "{C901}",
+      "title": "{content.title}",
+      "type": "cover"
+    },
+    {
+      "answer": "{C909}",
+      "complication": "{C907}",
+      "kicker": "Executive summary",
+      "question": "{C908}",
+      "situation": "{C906}",
+      "title": "{C905}",
+      "type": "exec_summary"
+    },
+    {
+      "number": 1,
+      "title": "{C910}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S030",
+        "so_what": "{C912}",
+        "y_format": "num"
+      },
+      "kicker": "Evidence basis",
+      "title": "{C911}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S032",
+        "so_what": "{C917}",
+        "y_format": "num"
+      },
+      "kicker": "Concentration of hours",
+      "title": "{C916}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Whole estate",
+      "points": [
+        "{C922}",
+        "{C923}",
+        "{C924}",
+        "{C925}"
+      ],
+      "title": "{C921}",
+      "type": "assertion_points"
+    },
+    {
+      "columns": [
+        "Evidence basis",
+        "Folder strata",
+        "Media files",
+        "Hours (95 %)",
+        "Speech hours (95 %)",
+        "What converts it into measurement"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T050",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Bucket / share",
+        "Access",
+        "Basis",
+        "Media files",
+        "Hours (95 %)",
+        "Speech hours (95 %)",
+        "Top languages (speech hours)"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T047",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Bucket / share",
+        "Access",
+        "Basis",
+        "Media files",
+        "Hours (95 %)",
+        "Speech hours (95 %)",
+        "Top languages (speech hours)"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 9,
+      "rows_to": 18,
+      "table_ref": "T047",
+      "type": "table"
+    },
+    {
+      "number": 2,
+      "title": "{C928}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S031",
+        "so_what": "{C930}",
+        "y_format": "num"
+      },
+      "kicker": "Languages",
+      "title": "{C929}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S010",
+        "so_what": "{C935}",
+        "y_format": "num"
+      },
+      "kicker": "Staged corpus",
+      "title": "{C934}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Strongest assets",
+      "points": [
+        "{C940}",
+        "{C941}",
+        "{C942}",
+        "{C943}"
+      ],
+      "title": "{C939}",
+      "type": "assertion_points"
+    },
+    {
+      "columns": [
+        "Bucket / share",
+        "Folder",
+        "Files",
+        "Basis",
+        "Hours (95 %)",
+        "Speech hours (95 %)",
+        "Leading language (speech hours)"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T048",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Bucket / share",
+        "Folder",
+        "Files",
+        "Basis",
+        "Hours (95 %)",
+        "Speech hours (95 %)",
+        "Leading language (speech hours)"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 9,
+      "rows_to": 18,
+      "table_ref": "T048",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Store",
+        "Model language",
+        "Speech hours (95 %)"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T046",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Language",
+        "Files",
+        "Hours recorded",
+        "Speech hours (est.)",
+        "Music hours (est.)",
+        "Agrees with folder"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T020",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Station",
+        "Broadcast language",
+        "Live scripts",
+        "Scripted days",
+        "Scripts per scripted day",
+        "Bulletin hours per scripted day",
+        "Characters"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T022",
+      "type": "table"
+    },
+    {
+      "number": 3,
+      "title": "{C946}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S005",
+        "so_what": "{C948}",
+        "y_format": "num"
+      },
+      "kicker": "Object-store bytes",
+      "title": "{C947}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S004",
+        "so_what": "{C953}",
+        "y_format": "num"
+      },
+      "kicker": "Estate bytes",
+      "title": "{C952}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Concentration",
+      "points": [
+        "{C958}",
+        "{C959}",
+        "{C960}",
+        "{C961}"
+      ],
+      "title": "{C957}",
+      "type": "assertion_points"
+    },
+    {
+      "columns": [
+        "Bucket",
+        "Held (TiB)",
+        "Last write",
+        "Idle days",
+        "Duplicate candidates",
+        "Classification",
+        "Proposed action"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T010",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Bucket",
+        "Held (TiB)",
+        "Last write",
+        "Idle days",
+        "Duplicate candidates",
+        "Classification",
+        "Proposed action"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 9,
+      "rows_to": 18,
+      "table_ref": "T010",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Table (database.table)",
+        "Finding",
+        "Measured detail",
+        "Proposed action"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T011",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Share",
+        "Enumeration",
+        "Held (TiB)",
+        "Files",
+        "Last write",
+        "Main formats",
+        "Proposed action"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T012",
+      "type": "table"
+    },
+    {
+      "number": 4,
+      "title": "{C964}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S022",
+        "so_what": "{C966}",
+        "y_format": "num"
+      },
+      "kicker": "Access",
+      "title": "{C965}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S002",
+        "so_what": "{C971}",
+        "y_format": "pct"
+      },
+      "kicker": "Data condition",
+      "title": "{C970}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "kicker": "Preparation",
+      "points": [
+        "{C976}",
+        "{C977}",
+        "{C978}",
+        "{C979}"
+      ],
+      "title": "{C975}",
+      "type": "assertion_points"
+    },
+    {
+      "columns": [
+        "Bucket",
+        "State",
+        "Media files",
+        "Media bytes (TiB)",
+        "Action required"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T042",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Store",
+        "Media files listed",
+        "Headers probed",
+        "Sample read / planned",
+        "Header / sample completion",
+        "Next evidence step"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T045",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Media kind",
+        "Donor strata",
+        "Donor files",
+        "Seconds per MB (10th–90th pct)",
+        "Speech share (10th–90th pct)"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T049",
+      "type": "table"
+    },
+    {
+      "number": 5,
+      "title": "{C982}",
+      "type": "section"
+    },
+    {
+      "exhibit": {
+        "plate": "bar",
+        "series_ref": "S003",
+        "so_what": "{C984}",
+        "y_format": "num"
+      },
+      "kicker": "Savings scale",
+      "title": "{C983}",
+      "type": "assertion_exhibit"
+    },
+    {
+      "columns": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "kicker": "Earn and save",
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "num1",
+          "label": "Reclaimable gib"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "num1",
+          "label": "Monthly saving usd"
+        }
+      ],
+      "so_what": "{C989}",
+      "title": "{C988}",
+      "type": "comparison"
+    },
+    {
+      "columns": [
+        "Bucket",
+        "Bytes listed (TiB)",
+        "Archive class (TiB)",
+        "Archive share",
+        "Classes seen"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T044",
+      "type": "table"
+    },
+    {
+      "number": 6,
+      "title": "{C994}",
+      "type": "section"
+    },
+    {
+      "kicker": "Decisions",
+      "points": [
+        "{C996}",
+        "{C997}",
+        "{C998}",
+        "{C999}",
+        "{C1000}"
+      ],
+      "title": "{C995}",
+      "type": "assertion_points"
+    },
+    {
+      "columns": [
+        "No.",
+        "Decision requested",
+        "Exact source",
+        "Proposed destination or rule",
+        "Responsible role",
+        "Expected benefit"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T013",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "No.",
+        "Decision requested",
+        "Exact source",
+        "Proposed destination or rule",
+        "Responsible role",
+        "Expected benefit"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 9,
+      "rows_to": 18,
+      "table_ref": "T013",
+      "type": "table"
+    },
+    {
+      "columns": [
+        "Role",
+        "Model",
+        "Family",
+        "Job"
+      ],
+      "kicker": "Evidence by name",
+      "rows_from": 0,
+      "rows_to": 9,
+      "table_ref": "T036",
+      "type": "table"
+    },
+    {
+      "kicker": "First actions",
+      "points": [
+        "{C1004}",
+        "{C1005}",
+        "{C1006}",
+        "{C1007}",
+        "{C1008}"
+      ],
+      "title": "{C1003}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "What cannot yet be said",
+      "points": [
+        "{C1012}",
+        "{C1013}",
+        "{C1014}",
+        "{C1015}"
+      ],
+      "title": "{C1011}",
+      "type": "assertion_points"
+    },
+    {
+      "kicker": "Plain English",
+      "rows_from": 0,
+      "rows_to": 6,
+      "type": "glossary"
+    },
+    {
+      "kicker": "Plain English",
+      "rows_from": 6,
+      "rows_to": 12,
+      "type": "glossary"
+    },
+    {
+      "kicker": "Plain English",
+      "rows_from": 12,
+      "rows_to": 18,
+      "type": "glossary"
+    },
+    {
+      "kicker": "Plain English",
+      "rows_from": 18,
+      "rows_to": 24,
+      "type": "glossary"
+    },
+    {
+      "type": "coverage_limits"
+    },
+    {
+      "type": "appendix"
+    }
+  ],
+  "spec_id": "DK-eij-1b359b3cbd2e",
+  "spec_type": "deck",
+  "verdict_ref": "V-2026-10-03-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

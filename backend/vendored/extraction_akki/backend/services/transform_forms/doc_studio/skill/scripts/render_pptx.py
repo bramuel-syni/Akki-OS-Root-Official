@@ -83,6 +83,9 @@ class Deck:
 
     def badge_and_receipt(self, s, z_receipt, cls, receipt_text, receipt_ids):
         line = f"[{cls}]  Receipt {', '.join(receipt_ids)}: {receipt_text}"
+        from deck_layout import height
+        if height(line, z_receipt["w"], self.sz["small"], self.fonts["number"]) > z_receipt["h"]:
+            line = f"[{cls}]  Receipt {', '.join(receipt_ids)} — full evidence, scope and dates in the appendix."
         self.text(s, z_receipt, line, self.sz["small"], font=self.fonts["number"], color=self.pal["muted"], anchor=MSO_ANCHOR.BOTTOM)
 
     # -- slide types ---------------------------------------------------------
@@ -99,14 +102,25 @@ class Deck:
         self.header(s, sl)
         z = sl["zones"]["body"]
         n = len(sl["scqa"])
-        rowh = z["h"] / n
-        for i, (label, body) in enumerate(sl["scqa"]):
-            y = z["y"] + i * rowh
-            self.text(s, {"x": z["x"], "y": y, "w": 1.6, "h": rowh - 0.15}, label.upper(), self.sz["kicker"], bold=True,
+        from deck_layout import height
+        # Rows take the height their text needs (same metrics as QA); the body size steps down only when the four together outgrow the zone.
+        gap, label_w = 0.15, 1.8
+        size = self.sz["body"]
+        while True:
+            needs = [max(0.35, height(body, z["w"] - label_w, size, self.fonts["body"]) + 0.08) for _, body in sl["scqa"]]
+            if sum(needs) + gap * n <= z["h"] or size <= self.sz["small"]:
+                break
+            size -= 1
+        spare = max(0.0, z["h"] - sum(needs) - gap * n) / n
+        y = z["y"]
+        for i, ((label, body), need) in enumerate(zip(sl["scqa"], needs)):
+            rowh = need + spare + gap
+            self.text(s, {"x": z["x"], "y": y, "w": 1.6, "h": rowh - gap}, label.upper(), self.sz["kicker"], bold=True,
                       color=self.pal["accent"] if label == "Answer" else self.pal["muted"])
-            self.text(s, {"x": z["x"] + 1.8, "y": y, "w": z["w"] - 1.8, "h": rowh - 0.15}, body, self.sz["body"])
+            self.text(s, {"x": z["x"] + label_w, "y": y, "w": z["w"] - label_w, "h": rowh - gap}, body, size)
             if i < n - 1:
                 self.rule(s, z["x"], y + rowh - 0.08, z["w"])
+            y += rowh
         self.furniture(s, sl["n"])
         return s
 
@@ -257,8 +271,10 @@ class Deck:
         weights = [max(1.0, min(3.0, max(len(str(r[c])) for r in [t["columns"]] + t["rows"]) / 14)) for c in range(ncol)]
         total = sum(weights)
         for c in range(ncol):
-            tbl.columns[c].width = Inches(z["w"] * weights[c] / total)
-        size = self.sz["table"] - (1 if ncol > 4 else 0) - (1 if nrow > 7 else 0)
+            tbl.columns[c].width = Inches(t["column_widths"][c] if t.get("column_widths") else z["w"] * weights[c] / total)
+        for r, h in enumerate(t.get("row_heights") or []):
+            tbl.rows[r].height = Inches(h)
+        size = t.get("font_size", self.sz["table"] - (1 if ncol > 4 else 0) - (1 if nrow > 7 else 0))
 
         def cell(r, c, txt, bold=False, font=None, color=None, align=PP_ALIGN.LEFT, fill=None):
             ce = tbl.cell(r, c)
@@ -310,8 +326,9 @@ class Deck:
         self.header(s, sl)
         z = sl["zones"]["body"]
         cov = sl["coverage"]
-        self.text(s, {"x": z["x"], "y": z["y"], "w": z["w"], "h": 0.9}, ["COVERS", cov["covers"]], self.sz["body"])
-        y = z["y"] + 1.0
+        cover_h = cov.get("cover_height", 0.9)
+        self.text(s, {"x": z["x"], "y": z["y"], "w": z["w"], "h": cover_h}, ["COVERS", cov["covers"]], self.sz["body"])
+        y = z["y"] + cover_h + 0.1
         colw = (z["w"] - 0.4) / 3
         for i, h in enumerate(["CANNOT SAY", "WHY", "WHAT WOULD CLOSE IT"]):
             self.text(s, {"x": z["x"] + i * (colw + 0.2), "y": y, "w": colw, "h": 0.3}, h, self.sz["kicker"], bold=True, color=self.pal["muted"])
@@ -319,7 +336,8 @@ class Deck:
         y += 0.45
         ts = self.sz["table"]
         row_h = round(3 * ts * 1.25 / 72 + 0.18, 2)  # room for three wrapped lines at the table size
-        for gap in cov["cannot_say"]:
+        for index, gap in enumerate(cov["cannot_say"]):
+            row_h = (cov.get("row_heights") or [row_h] * len(cov["cannot_say"]))[index]
             box = s.shapes.add_shape(1, Inches(z["x"]), Inches(y), Inches(z["w"]), Inches(row_h))
             box.fill.patterned()
             box.fill.fore_color.rgb = rgb(self.pal["hatch"])
@@ -367,9 +385,11 @@ class Deck:
         y = z["y"]
         size = self.sz["body"] - 1
         chars_per_line = max(40, int((z["w"] - 1.0) * 72 / (size * 0.5)))
-        for r in sl["receipts"]:
+        for index, r in enumerate(sl["receipts"]):
             lines = max(1, -(-len(r["text"]) // chars_per_line))
             h = max(0.4, round(lines * size * 1.2 / 72 + 0.12, 2))
+            if sl.get("receipt_heights"):
+                h = sl["receipt_heights"][index]
             self.text(s, {"x": z["x"], "y": y, "w": 0.9, "h": h}, r["id"], self.sz["body"], font=self.fonts["number"], color=self.pal["accent"], bold=True)
             self.text(s, {"x": z["x"] + 1.0, "y": y, "w": z["w"] - 1.0, "h": h}, r["text"], size)
             self.rule(s, z["x"], y + h + 0.02, z["w"])

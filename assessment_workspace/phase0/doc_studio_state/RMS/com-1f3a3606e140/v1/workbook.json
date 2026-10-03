@@ -1,0 +1,311 @@
+{
+  "brief_ref": "BR-2026-10-03-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-03T01:03:55Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@1",
+  "family": "strategy",
+  "objective": "decide",
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-03",
+  "sheets": [
+    {
+      "kind": "cover",
+      "name": "Cover"
+    },
+    {
+      "kind": "glossary",
+      "name": "Plain English"
+    },
+    {
+      "facts": [
+        "F001",
+        "F002",
+        "F003",
+        "F004",
+        "F005",
+        "F006",
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F013",
+        "F014",
+        "F015",
+        "F016",
+        "F017",
+        "F018",
+        "F019",
+        "F020",
+        "F021",
+        "F030",
+        "F031",
+        "F032",
+        "F033",
+        "F034",
+        "F035",
+        "F036",
+        "F037",
+        "F038",
+        "F040",
+        "F041",
+        "F042",
+        "F050",
+        "F052",
+        "F060",
+        "F061",
+        "F062",
+        "F063",
+        "F064",
+        "F065",
+        "F066",
+        "F067",
+        "F068",
+        "F069",
+        "F070",
+        "F071",
+        "F072",
+        "F073",
+        "F074",
+        "F075",
+        "F080",
+        "F081",
+        "F082",
+        "F083",
+        "F084",
+        "F085",
+        "F086",
+        "F087",
+        "F088",
+        "F090",
+        "F091",
+        "F092",
+        "F093",
+        "F094",
+        "F100",
+        "F101",
+        "F102",
+        "F103",
+        "F104",
+        "F105",
+        "F106",
+        "F107",
+        "F108",
+        "F109",
+        "F110",
+        "F111",
+        "F112",
+        "F113",
+        "F120",
+        "F121",
+        "F122",
+        "F123",
+        "F124"
+      ],
+      "kind": "inputs",
+      "name": "Inputs"
+    },
+    {
+      "derived": [
+        {
+          "calc": "K003",
+          "format": "0.0%",
+          "formula": "reclaimable_gib / Inputs.F021",
+          "label": "Share of bytes addressed by all strategies"
+        },
+        {
+          "format": "#,##0.0",
+          "formula": "12 * monthly_saving_usd",
+          "label": "Annual saving (USD)"
+        }
+      ],
+      "kind": "options_model",
+      "name": "Options",
+      "options": [
+        "O1",
+        "O2",
+        "O3"
+      ],
+      "rows": [
+        {
+          "field": "reclaimable_gib",
+          "format": "#,##0.0",
+          "label": "Bytes addressed",
+          "unit": "GiB"
+        },
+        {
+          "field": "monthly_saving_usd",
+          "format": "#,##0.0",
+          "label": "Monthly saving",
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "kind": "series",
+      "name": "Series",
+      "series": [
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005",
+        "S006",
+        "S010",
+        "S011",
+        "S012",
+        "S013",
+        "S020",
+        "S021",
+        "S022"
+      ]
+    },
+    {
+      "checks": [
+        {
+          "calc": "K001",
+          "formula": "Inputs.F003/Inputs.F002",
+          "label": "K001 share of tables measured"
+        },
+        {
+          "calc": "K002",
+          "formula": "Inputs.F016/Inputs.F004",
+          "label": "K002 share of bytes in the largest databases"
+        },
+        {
+          "calc": "K004",
+          "formula": "Inputs.F020/Inputs.F021",
+          "label": "K004 three largest strategies' share of bytes addressed"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O1",
+          "option": "O1"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O2",
+          "option": "O2"
+        },
+        {
+          "calc": "K003",
+          "derived": 0,
+          "label": "K003 share of bytes addressed O3",
+          "option": "O3"
+        }
+      ],
+      "kind": "checks",
+      "name": "Checks"
+    },
+    {
+      "kind": "table",
+      "name": "Decisions",
+      "table_ref": "T013"
+    },
+    {
+      "kind": "table",
+      "name": "Buckets under review",
+      "table_ref": "T010"
+    },
+    {
+      "kind": "table",
+      "name": "Unreadable buckets",
+      "table_ref": "T015"
+    },
+    {
+      "kind": "table",
+      "name": "Tables under review",
+      "table_ref": "T011"
+    },
+    {
+      "kind": "table",
+      "name": "File shares",
+      "table_ref": "T012"
+    },
+    {
+      "kind": "table",
+      "name": "Media stores",
+      "table_ref": "T040"
+    },
+    {
+      "kind": "table",
+      "name": "Stores not readable",
+      "table_ref": "T042"
+    },
+    {
+      "kind": "table",
+      "name": "Folders sampled",
+      "table_ref": "T041"
+    },
+    {
+      "kind": "table",
+      "name": "Census egress",
+      "table_ref": "T043"
+    },
+    {
+      "kind": "table",
+      "name": "Audio by language",
+      "table_ref": "T020"
+    },
+    {
+      "kind": "table",
+      "name": "Audio quality",
+      "table_ref": "T024"
+    },
+    {
+      "kind": "table",
+      "name": "Transcripts by language",
+      "table_ref": "T021"
+    },
+    {
+      "kind": "table",
+      "name": "News scripts by station",
+      "table_ref": "T022"
+    },
+    {
+      "kind": "table",
+      "name": "Transcription workbench",
+      "table_ref": "T023"
+    },
+    {
+      "kind": "table",
+      "name": "Audio file evidence",
+      "table_ref": "T030"
+    },
+    {
+      "kind": "table",
+      "name": "Transcript evidence",
+      "table_ref": "T031"
+    },
+    {
+      "kind": "table",
+      "name": "News by station and date",
+      "table_ref": "T032"
+    },
+    {
+      "kind": "table",
+      "name": "News hour slots",
+      "table_ref": "T033"
+    },
+    {
+      "kind": "table",
+      "name": "Model provenance",
+      "table_ref": "T034"
+    },
+    {
+      "kind": "table",
+      "name": "Compute",
+      "table_ref": "T035"
+    },
+    {
+      "kind": "table",
+      "name": "Authoring roles",
+      "table_ref": "T036"
+    }
+  ],
+  "spec_id": "WB-eij-1b359b3cbd2e",
+  "spec_type": "workbook",
+  "verdict_ref": "V-2026-10-03-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

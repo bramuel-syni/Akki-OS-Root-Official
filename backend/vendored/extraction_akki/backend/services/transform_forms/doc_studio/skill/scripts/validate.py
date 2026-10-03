@@ -23,13 +23,21 @@ def schema_check(kind, data):
     jsonschema.validate(data, schema)
 
 
-def retyped_numbers(spec):
+def retyped_numbers(spec, content=None):
     """Numbers typed into a spec instead of referenced are the commonest way outputs drift apart."""
     found = []
 
     def walk(o, path):
         if isinstance(o, dict):
             for k, v in o.items():
+                if k == "columns" and o.get("table_ref") and content is not None:
+                    # These are exact selectors into the evidence table, not authored figures.
+                    # Bind each selector to its source instead of allowing percentages globally.
+                    columns = ((content.get("tables") or {}).get(o["table_ref"]) or {}).get("columns", [])
+                    for i, column in enumerate(v):
+                        if column not in columns:
+                            found.append(f"{path}.columns[{i}]: column {column!r} not in evidence table {o['table_ref']}")
+                    continue
                 if k in ("seed", "build_stamp", "spec_id", "content_ref", "brief_ref", "verdict_ref", "format", "field", "calc", "plate", "y_format", "formula", "number", "deck_id", "paper_id", "table_ref", "rows_from", "rows_to"):
                     continue
                 walk(v, f"{path}.{k}")
@@ -114,7 +122,7 @@ def main(fixture_dir, resolved_dir):
         if "spec_type" not in spec:
             continue
         schema_check(spec["spec_type"], spec)
-        blockers += retyped_numbers(spec)
+        blockers += retyped_numbers(spec, load(fixture_dir / "content.json"))
         plan_path = resolved_dir / f"{spec['spec_type']}.resolved.json"
         if plan_path.exists():
             voice = load(ROOT / "voices" / f"{spec['voice']}.json")

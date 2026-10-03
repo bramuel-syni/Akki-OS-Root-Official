@@ -1,0 +1,528 @@
+{
+  "brief_ref": "BR-2026-10-03-eij-1b359b3cbd2e",
+  "build_stamp": "2026-10-03T01:03:55Z",
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@4",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Tenant confidential",
+    "paper_id": "EI-eij-1b359b3cbd2e"
+  },
+  "objective": "decide",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "para": "{C902}"
+        },
+        {
+          "para": "{C903}"
+        },
+        {
+          "para": "{C904}"
+        }
+      ],
+      "heading": "Summary"
+    },
+    {
+      "blocks": [
+        {
+          "glossary": {}
+        }
+      ],
+      "heading": "Plain English: the terms used in this pack"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C913}"
+        },
+        {
+          "para": "{C914}"
+        },
+        {
+          "figure": {
+            "caption": "{C915}",
+            "plate": "bar",
+            "series_ref": "S004",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "The estate is mostly object and file storage"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C918}"
+        },
+        {
+          "para": "{C919}"
+        },
+        {
+          "figure": {
+            "caption": "{C920}",
+            "plate": "bar",
+            "series_ref": "S005",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "One bucket dominates the object store"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C926}"
+        },
+        {
+          "para": "{C927}"
+        }
+      ],
+      "heading": "Where the bytes sit"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C934}"
+        },
+        {
+          "para": "{C935}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T010"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T011"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T012"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T015"
+          }
+        }
+      ],
+      "heading": "What the review lists show"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C939}"
+        },
+        {
+          "para": "{C940}"
+        },
+        {
+          "figure": {
+            "caption": "{C941}",
+            "plate": "bar",
+            "series_ref": "S003",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Where the addressable bytes are"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C944}"
+        },
+        {
+          "para": "{C945}"
+        },
+        {
+          "para": "{C946}"
+        },
+        {
+          "options_table": {
+            "caption": "{C947}",
+            "columns": [
+              "O1",
+              "O2",
+              "O3"
+            ],
+            "rows": [
+              {
+                "field": "reclaimable_gib",
+                "format": "num1",
+                "label": "Reclaimable gib"
+              },
+              {
+                "field": "monthly_saving_usd",
+                "format": "num1",
+                "label": "Monthly saving usd"
+              }
+            ]
+          }
+        }
+      ],
+      "heading": "Three options, each conditional"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C951}"
+        },
+        {
+          "para": "{C952}"
+        },
+        {
+          "figure": {
+            "caption": "{C953}",
+            "plate": "bar",
+            "series_ref": "S002",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Row condition: separate signals, not one whole"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C956}"
+        },
+        {
+          "para": "{C957}"
+        },
+        {
+          "figure": {
+            "caption": "{C958}",
+            "plate": "bar",
+            "series_ref": "S001",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Database bytes sit in very few databases"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C964}"
+        },
+        {
+          "para": "{C965}"
+        }
+      ],
+      "heading": "What state the database rows are in"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C969}"
+        },
+        {
+          "para": "{C970}"
+        },
+        {
+          "figure": {
+            "caption": "{C971}",
+            "plate": "bar",
+            "series_ref": "S010",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Estimated speech by language folder"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C974}"
+        },
+        {
+          "para": "{C975}"
+        },
+        {
+          "figure": {
+            "caption": "{C976}",
+            "plate": "bar",
+            "series_ref": "S011",
+            "y_format": "pct"
+          }
+        }
+      ],
+      "heading": "Agreement with the folder language varies"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C982}"
+        },
+        {
+          "para": "{C983}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T020"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T024"
+          }
+        }
+      ],
+      "heading": "Staged audio: duration, speech and quality"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C987}"
+        },
+        {
+          "para": "{C988}"
+        },
+        {
+          "figure": {
+            "caption": "{C989}",
+            "plate": "bar",
+            "series_ref": "S012",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "News scripts by station"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C992}"
+        },
+        {
+          "para": "{C993}"
+        },
+        {
+          "figure": {
+            "caption": "{C994}",
+            "plate": "bar",
+            "series_ref": "S013",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Bulletin hours on scripted days"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1000}"
+        },
+        {
+          "para": "{C1001}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T022"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T021"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T023"
+          }
+        }
+      ],
+      "heading": "Written text the estate holds"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1005}"
+        },
+        {
+          "para": "{C1006}"
+        },
+        {
+          "figure": {
+            "caption": "{C1007}",
+            "plate": "bar",
+            "series_ref": "S020",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Hours held in the readable buckets"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1010}"
+        },
+        {
+          "para": "{C1011}"
+        },
+        {
+          "figure": {
+            "caption": "{C1012}",
+            "plate": "bar",
+            "series_ref": "S021",
+            "y_format": "num"
+          }
+        }
+      ],
+      "heading": "Estimated speech by language"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1018}"
+        },
+        {
+          "para": "{C1019}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T040"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T042"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T041"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T045"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T046"
+          }
+        }
+      ],
+      "heading": "What can be read, and what cannot"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1026}"
+        },
+        {
+          "para": "{C1027}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T044"
+          }
+        },
+        {
+          "rows_table": {
+            "table_ref": "T043"
+          }
+        }
+      ],
+      "heading": "Storage class, reading cost and file-share progress"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1034}"
+        },
+        {
+          "para": "{C1035}"
+        }
+      ],
+      "heading": "Which products to prepare first"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1042}"
+        },
+        {
+          "para": "{C1043}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T013"
+          }
+        }
+      ],
+      "heading": "What the executive is asked to decide"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1051}"
+        },
+        {
+          "para": "{C1052}"
+        },
+        {
+          "rows_table": {
+            "table_ref": "T036"
+          }
+        }
+      ],
+      "heading": "What remains unmeasured"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1059}"
+        },
+        {
+          "para": "{C1060}"
+        },
+        {
+          "para": "{C1061}"
+        }
+      ],
+      "heading": "What to do first, in order"
+    },
+    {
+      "blocks": [
+        {
+          "para": "{C1068}"
+        },
+        {
+          "para": "{C1069}"
+        }
+      ],
+      "heading": "What the evidence cannot yet say"
+    },
+    {
+      "blocks": [
+        {
+          "coverage_limits": true
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "receipts": true
+        }
+      ],
+      "heading": "Appendix: receipts"
+    }
+  ],
+  "seed": "estate-intelligence-eij-1b359b3cbd2e-estatewide/decide/2026-10-03",
+  "spec_id": "PP-eij-1b359b3cbd2e",
+  "spec_type": "paper",
+  "subtitle": "{C901}",
+  "title": "{content.title}",
+  "verdict_ref": "V-2026-10-03-eij-1b359b3cbd2e",
+  "voice": "strategy-house"
+}

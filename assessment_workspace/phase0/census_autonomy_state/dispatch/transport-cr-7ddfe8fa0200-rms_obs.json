@@ -1,0 +1,36 @@
+{
+  "census_run_id": "cr-7ddfe8fa0200",
+  "source_id": "rms_obs",
+  "at_utc": "2026-10-03T02:30:19.933980+00:00",
+  "stage": "deep_external",
+  "worker_status": "partial",
+  "worker": {
+    "code_sha256": "ce613287d5e9d01c50d19862c7475b9e853cae091a739d7adcdd6346dd54c1ff",
+    "execution_mode": "gpu",
+    "gpu_compute_hours": 0.0014,
+    "lawful_basis_sha256": "37d1508d4ea907c13d712f85a5eb7a7f6690c059c33f110022a6f72b3d81493d",
+    "runtime_id": "akki-vm",
+    "telemetry": {
+      "gpu_devices": [
+        {
+          "memory_mb": 143771,
+          "name": "NVIDIA H200",
+          "utilization_percent": 0,
+          "uuid": "GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1"
+        },
+        {
+          "memory_mb": 143771,
+          "name": "NVIDIA H200",
+          "utilization_percent": 0,
+          "uuid": "GPU-e87acccb-7848-1573-98ae-fcf26b185c0b"
+        }
+      ],
+      "hostname": "akki-vm",
+      "python": "3.12.3"
+    },
+    "wall_seconds": 83.161,
+    "transport_verified": true,
+    "server_key_sha256": "69b1541556813e4a88cfe0b8edb8cb46f1301cef6811aa2f9fc3b5637154dd53"
+  },
+  "reason_code": "SOURCE_COVERAGE_INCOMPLETE"
+}

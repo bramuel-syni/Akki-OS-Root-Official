@@ -33,9 +33,12 @@ def plan(content: Dict[str, Any], brief: Dict[str, Any]) -> Dict[str, Any]:
     facts, series, options, tables = content.get('facts') or {}, content.get('series') or {}, content.get('options') or {}, content.get('tables') or {}
     fact_ids = sorted(facts)
     story = content.get('story') or []
-    slots: List[Dict[str, Any]] = [{'slot': 'exec', 'type': 'exec_summary', 'needs': fact_ids[:8]}]
-    for page, start in enumerate(range(0, len(content.get('glossary') or []), GLOSSARY_PER_SLIDE), 1):
-        slots.append({'slot': f'glossary{page}', 'type': 'glossary', 'rows_from': start, 'rows_to': start + GLOSSARY_PER_SLIDE})
+    lead = [t for t in (story[0].get('answers_with') if story else []) if t in facts][:8] or fact_ids[:8]
+    slots: List[Dict[str, Any]] = [{'slot': 'exec', 'type': 'exec_summary', 'needs': lead}]
+    glossary_slots = [{'slot': f'glossary{page}', 'type': 'glossary', 'rows_from': start, 'rows_to': start + GLOSSARY_PER_SLIDE}
+                      for page, start in enumerate(range(0, len(content.get('glossary') or []), GLOSSARY_PER_SLIDE), 1)]
+    if not story:
+        slots += glossary_slots
     if story:
         for number, chapter in enumerate(story, 1):
             slots.append({'slot': f'section{number}', 'type': 'section', 'number': number, 'about': chapter['question'][:160], 'question': chapter['question']})
@@ -48,17 +51,20 @@ def plan(content: Dict[str, Any], brief: Dict[str, Any]) -> Dict[str, Any]:
                 slots.append({'slot': f'chapter{number}', 'type': 'assertion_points', 'about': chapter['question'], 'needs': needs[:6], 'question': chapter['question'], 'must_cite': needs[:3],
                               'tables': [t for t in chapter.get('tables') or [] if t in tables]})
             for tid in [t for t in chapter.get('tables') or [] if t in tables]:
-                # Evidence tables are deterministic: the deck shows up to two pages of the rows the owner asked to see by name, the paper and workbook carry every row.
+                # Evidence tables are deterministic: the deck shows up to two pages of the rows the owner asked to see by name (one for tables the
+                # producer marks secondary), the paper and workbook carry every row.
                 columns = tables[tid].get('deck_columns') or list(tables[tid]['columns'])[:TABLE_COLUMNS_PER_SLIDE]
-                for page, start in enumerate(range(0, min(len(tables[tid]['rows']), TABLE_ROWS_PER_SLIDE * TABLE_PAGES_PER_DECK), TABLE_ROWS_PER_SLIDE), 1):
+                pages = min(TABLE_PAGES_PER_DECK, int(tables[tid].get('deck_pages') or TABLE_PAGES_PER_DECK))
+                for page, start in enumerate(range(0, min(len(tables[tid]['rows']), TABLE_ROWS_PER_SLIDE * pages), TABLE_ROWS_PER_SLIDE), 1):
                     slots.append({'slot': f'table_{tid}_{page}', 'type': 'table', 'table_ref': tid, 'rows_from': start, 'rows_to': start + TABLE_ROWS_PER_SLIDE, 'columns': columns, 'about': tables[tid]['label'], 'question': chapter['question']})
-        slots.append({'slot': 'actions', 'type': 'assertion_points', 'about': 'what the owner should do first, in order, and why — each action tied to the chapter evidence it rests on', 'needs': fact_ids[:6]})
-        slots.append({'slot': 'risks', 'type': 'assertion_points', 'about': 'what the evidence cannot yet establish and what would close each gap', 'needs': fact_ids[:4]})
+        slots.append({'slot': 'actions', 'type': 'assertion_points', 'about': 'what the owner should do first, in order, and why — each action tied to the chapter evidence it rests on', 'needs': lead[:6]})
+        slots.append({'slot': 'risks', 'type': 'assertion_points', 'about': 'what the evidence cannot yet establish and what would close each gap', 'needs': lead[:4]})
+        slots += glossary_slots  # plain-English terms follow the story: the owner reads the answers first, the definitions when needed
     else:
         slots += _outline_by_receipt(content, fact_ids)
     paper = ['summary'] + [s['slot'] for s in slots if s['type'] in ('assertion_exhibit', 'assertion_points', 'comparison')]
     return {'story': [{'chapter': i + 1, 'question': c['question']} for i, c in enumerate(story)], 'slots': slots, 'paper_sections': paper,
-            'limits': {'title_max_chars': 95, 'points_max': 5, 'words_per_slide_max': 90, 'paragraphs_per_section': (1, 3), 'paragraph_max_words': 110},
+            'limits': {'title_max_chars': 95, 'points_max': 5, 'words_per_slide_max': 90, 'paragraphs_per_section': (1, 3), 'paragraph_max_words': 110, 'exec_field_words_max': 45},
             'tokens': {'facts': fact_ids, 'series': sorted(series), 'options': sorted(options), 'calculations': sorted(content.get('calculations') or {})}}
 
 
@@ -122,7 +128,7 @@ def evidence(content: Dict[str, Any]) -> Dict[str, Any]:
 def _schema_hint(plan_: Dict[str, Any]) -> Dict[str, Any]:
     out: Dict[str, Any] = {'title': 'string ≤ 60 chars', 'subtitle': 'string ≤ 90 chars', 'slots': {}, 'paper': {'summary': ['1-3 paragraphs'], 'sections': {}}}
     for s in plan_['slots']:
-        if s['type'] == 'exec_summary': out['slots'][s['slot']] = {'kicker': 'str', 'title': 'assertion ≤ 95 chars', 'situation': 'str', 'complication': 'str', 'question': 'str', 'answer': 'str'}
+        if s['type'] == 'exec_summary': out['slots'][s['slot']] = {'kicker': 'str', 'title': 'assertion ≤ 95 chars', 'situation': 'str ≤ 45 words', 'complication': 'str ≤ 45 words', 'question': 'str ≤ 45 words', 'answer': 'str ≤ 45 words'}
         elif s['type'] == 'section': out['slots'][s['slot']] = {'title': 'short section title ≤ 60 chars'}
         elif s['type'] == 'assertion_exhibit': out['slots'][s['slot']] = {'kicker': 'str', 'title': 'assertion the exhibit proves ≤ 95 chars', 'so_what': 'one sentence ≤ 30 words'}
         elif s['type'] == 'assertion_points': out['slots'][s['slot']] = {'kicker': 'str', 'title': 'assertion ≤ 95 chars', 'points': ['3-5 points, each ≤ 28 words']}
@@ -188,10 +194,10 @@ def _resolvable(token: str, content: Dict[str, Any]) -> bool:
     if '.' in head:
         oid, field = head.split('.', 1)
         return oid in (content.get('options') or {}) and field in content['options'][oid]
-    pools = (content.get('facts') or {}), (content.get('series') or {}), (content.get('options') or {}), (content.get('calculations') or {}), (content.get('claims') or {})
+    pools = (content.get('facts') or {}), (content.get('calculations') or {}), (content.get('claims') or {})
     if ':' in token and token.count(':') == 2:
         a, b, _ = token.split(':'); return a in pools[0] and b in pools[0]
-    return any(head in pool for pool in pools)
+    return any(head in pool for pool in pools)  # bare option or series ids ({O1}, {S030}) have no printable value; the studio needs {O1.field}
 
 
 def manage(draft: Dict[str, Any], content: Dict[str, Any], plan_: Dict[str, Any]) -> List[str]:
@@ -219,6 +225,8 @@ def manage(draft: Dict[str, Any], content: Dict[str, Any], plan_: Dict[str, Any]
         if s['type'] != 'section' and (not title or len(title) > limits['title_max_chars']): issues.append(f'slot {s["slot"]}: title missing or over {limits["title_max_chars"]} characters')
         if s['type'] == 'section' and not title: issues.append(f'slot {s["slot"]}: section title missing')
         if s['type'] == 'exec_summary' and any(not got.get(k) for k in ('situation', 'complication', 'question', 'answer')): issues.append('slot exec: situation/complication/question/answer all required')
+        if s['type'] == 'exec_summary' and any(len(str(got.get(k, '')).split()) > limits['exec_field_words_max'] for k in ('situation', 'complication', 'question', 'answer')):
+            issues.append(f'slot exec: each of situation/complication/question/answer must be at most {limits["exec_field_words_max"]} words (the four share one slide)')
         if s['type'] in ('assertion_exhibit', 'comparison') and not got.get('so_what'): issues.append(f'slot {s["slot"]}: so_what required')
         if s['type'] == 'assertion_points':
             points = got.get('points')

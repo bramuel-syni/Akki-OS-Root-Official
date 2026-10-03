@@ -1,0 +1,13 @@
+{
+  "banked_at_utc": "2026-10-03T02:30:20.082393+00:00",
+  "census_run_id": "cr-7ddfe8fa0200",
+  "decision_timestamp_utc": "2026-10-03T02:30:20.082370+00:00",
+  "item_id": "rri-d821b21c6704471b",
+  "reason_text": "Objects in 'fast-channels' are in archive (cold) storage and return InvalidObjectState until restored. Decide whether to restore 'fast-channels' (provider retrieval fee applies); the census will read it once restored.",
+  "refusal_code": "BLOCKED_SURFACE_UNREACHABLE",
+  "resolution_text": null,
+  "resolved_at_utc": null,
+  "resolver_id": null,
+  "state": "PENDING",
+  "tenant_id": "RMS"
+}

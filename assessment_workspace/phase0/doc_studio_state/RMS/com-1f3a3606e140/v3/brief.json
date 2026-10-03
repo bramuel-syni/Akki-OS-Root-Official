@@ -1,0 +1,72 @@
+{
+  "audience": {
+    "detail": "summary with an evidence appendix",
+    "knowledge": "high on the business, mixed on the data estate",
+    "priorities": [
+      "the whole estate, not one store",
+      "cost reduction with its certainty stated",
+      "data condition and personal-data exposure as preparation work",
+      "monetisable products and what each needs first"
+    ],
+    "who": "Estate owner and operators · RMS"
+  },
+  "brand": {
+    "expressiveness": "restrained",
+    "formality": "formal",
+    "house": "house-neutral",
+    "variation_allowed": "within-family"
+  },
+  "brief_id": "BR-2026-10-03-eij-1b359b3cbd2e",
+  "constraints": {
+    "confidentiality": "Tenant confidential",
+    "max_deck_slides": 24,
+    "owner_declarations": [
+      "The estate owner owns all data in the estate and has declared every right to use it established (owner statement, 2 October 2026). Rights are therefore settled facts, not open questions, and no recommendation is conditional on them.",
+      "Personal-data markers remain a measured condition of the rows: de-identification or aggregation is a preparation step for a product, not a rights question."
+    ],
+    "page_size": "A4",
+    "report_scope": "Updated interim accessible-estate baseline. Explicitly separate listed inventory, header-derived duration estimates, completed sample reads, inaccessible content and unfinished sampling. Do not call the census complete. Sampling intervals exclude model and nonresponse errors. Storage-class percentages apply only to the class-observed subset; legacy full-Standard-price scenarios are not verified net savings."
+  },
+  "content": {
+    "appendix": true,
+    "diagrams": false,
+    "evidence": true,
+    "financial": true,
+    "imagery": false,
+    "narrative": true
+  },
+  "content_ref": "estate-intelligence-eij-1b359b3cbd2e-estatewide@3",
+  "outputs": [
+    {
+      "editable_charts": true,
+      "format": "pptx",
+      "role": "presented deck"
+    },
+    {
+      "editable_charts": false,
+      "format": "docx",
+      "role": "paper for read-ahead"
+    },
+    {
+      "editable_charts": false,
+      "format": "xlsx",
+      "role": "model workbook: inputs, options, series and cross-checks"
+    },
+    {
+      "editable_charts": false,
+      "format": "html",
+      "role": "review surface"
+    }
+  ],
+  "purpose": {
+    "kind": "decide",
+    "statement": "Give the estate owner one estate-wide account from census eij-1b359b3cbd2e — databases, object store and file shares — of what is held, what it costs to keep, what condition it is in and which data products to stand up first, so the owner can decide what to do first."
+  },
+  "setting": {
+    "mode": "read-ahead then presented",
+    "ongoing_use": false,
+    "presentation_minutes": 15,
+    "printed": true,
+    "read_unattended": true
+  }
+}

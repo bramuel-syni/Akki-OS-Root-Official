@@ -1,0 +1,130 @@
+{
+  "changes": [
+    {
+      "path": "content.claims.C907.text",
+      "value": "This is an interim baseline, not a finished census. Only {F003} of {F002} tables were measured, and the census key cannot read {F113} of listed object-store media files. The census has no invoice-backed carrying-cost baseline; its legacy full-Standard scenario of {F019} USD a month is not verified net savings."
+    },
+    {
+      "path": "content.claims.C909.text",
+      "value": "Validate and sample the already accessible material now, while the cloud owner addresses access and inventory gaps separately. Verify storage classes, read demand and tariffs before claiming savings. Select one bounded product pilot from the grade-C alternatives, with de-identification or aggregation as preparation. Databases offer only {F005} GiB of estimated reclaim, {F006} of database bytes."
+    },
+    {
+      "path": "content.claims.C919.text",
+      "value": "A large bucket is not proof of idleness or redundancy. The unreadable-bucket register records the largest bucket as access-denied; content reading there requires an object-read grant. Investigate its access separately while validating content already readable elsewhere. Read demand was not measured, so size alone is not a reason to tier or delete it."
+    },
+    {
+      "path": "content.claims.C956.text",
+      "value": "The largest databases hold {F016} GiB of the {F004} GiB, or {K002}. The chart shows a single staging database, viusasa_staging, dominates this database-only scope. Targeted remediation there has high operational leverage; neither size nor concentration establishes poor quality or whole-estate importance."
+    },
+    {
+      "path": "content.claims.C1053.text",
+      "value": "Validate accessible data now; pursue access separately and select one bounded pilot"
+    },
+    {
+      "path": "content.claims.C1054.text",
+      "value": "Finish accessible-folder sampling and human checks now; separately request read grants for {F104} denied buckets and a restore decision for {F105} Archive buckets."
+    },
+    {
+      "path": "content.claims.C1058.text",
+      "value": "Select one bounded grade-C pilot after buyer validation, with de-identification or aggregation; complete the {F075} unread transcripts alongside it."
+    },
+    {
+      "path": "content.claims.C1059.text",
+      "value": "First, continue sampling and independent checks of the already accessible material; do not wait for inaccessible storage. In parallel, the cloud administrator can seek read grants for {F104} denied buckets and a restore decision for {F105} Archive buckets. Reconcile the {F033} unlistable buckets separately. Access remediation can expand coverage but is not a prerequisite for using this baseline."
+    },
+    {
+      "path": "content.claims.C1061.text",
+      "value": "Select one bounded product pilot from the grade-C alternatives after buyer-side validation, then de-identify or aggregate its source data. Continue the accessible-folder samples and {F075} unread transcripts in parallel. Database reclaim is only {F005} GiB; it should not displace validation of the usable content estate."
+    },
+    {
+      "path": "content.claims.C1064.text",
+      "value": "{F102} files, {F103} TiB, cannot be read. Their hours and languages stay unknown until access is granted or Archive objects are restored."
+    },
+    {
+      "path": "content.claims.C1067.text",
+      "value": "No invoice-backed baseline was available to the census; retrieval fees remain unpriced, so verified net savings cannot be stated."
+    },
+    {
+      "path": "content.claims.C1068.text",
+      "value": "Row-condition ratios rest on {F003} measured tables of {F002}, and personal-data markers on a sample. Content in {F102} unreadable files, {F103} TiB, has no hours or language estimate until read access is granted or Archive objects restored. Sampling intervals exclude model error, so human checks including abstentions are needed."
+    },
+    {
+      "path": "content.claims.C1069.text",
+      "value": "{F124} file shares are still listing or probing, and duplication across shares is unmeasured. No invoice-backed baseline was available to the census, and retrieval and restore fees remain unpriced; verified net savings cannot be stated. Each gap has a specific closing step in the coverage ledger."
+    },
+    {
+      "path": "content.claims.C907.supports",
+      "value": [
+        "F002",
+        "F003",
+        "F019",
+        "F113"
+      ]
+    },
+    {
+      "path": "content.claims.C909.supports",
+      "value": [
+        "F005",
+        "F006"
+      ]
+    },
+    {
+      "path": "content.claims.C956.supports",
+      "value": [
+        "F004",
+        "F016",
+        "K002"
+      ]
+    },
+    {
+      "path": "content.claims.C1054.supports",
+      "value": [
+        "F104",
+        "F105"
+      ]
+    },
+    {
+      "path": "content.claims.C1058.supports",
+      "value": [
+        "F075"
+      ]
+    },
+    {
+      "path": "content.claims.C1059.supports",
+      "value": [
+        "F033",
+        "F104",
+        "F105"
+      ]
+    },
+    {
+      "path": "content.claims.C1061.supports",
+      "value": [
+        "F005",
+        "F075"
+      ]
+    },
+    {
+      "path": "content.claims.C1064.supports",
+      "value": [
+        "F102",
+        "F103"
+      ]
+    },
+    {
+      "path": "content.claims.C1068.supports",
+      "value": [
+        "F002",
+        "F003",
+        "F102",
+        "F103"
+      ]
+    },
+    {
+      "path": "content.claims.C1069.supports",
+      "value": [
+        "F124"
+      ]
+    }
+  ]
+}

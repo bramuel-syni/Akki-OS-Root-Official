@@ -1,0 +1,44 @@
+{
+  "commission_id": "com-1f3a3606e140",
+  "content_version": 5,
+  "build_id": "bld-d6cb1af0f370",
+  "verified_at": "2026-10-03T02:05:55.175490+00:00",
+  "scope": "Updated interim accessible-estate baseline, not a completed census",
+  "tests": "8 passed; /app/test_reports/pytest/iter81_final.xml",
+  "validate": "PASS",
+  "qa": "PASS",
+  "byte_identical": true,
+  "files": {
+    "docx": {
+      "filename": "RMS_Estate_and_Language_Review_Updated_2026-10-03.docx",
+      "url": "https://pensive-goodall-6.preview.emergentagent.com/downloads/RMS_Estate_and_Language_Review_Updated_2026-10-03.docx",
+      "bytes": 456290,
+      "sha256": "616ee4a93580761f66dc94b6da8e70b7dc1927d56507cc08f382785c64148044",
+      "paragraphs": 173,
+      "tables": 22
+    },
+    "xlsx": {
+      "filename": "RMS_Estate_and_Language_Review_Updated_2026-10-03.xlsx",
+      "url": "https://pensive-goodall-6.preview.emergentagent.com/downloads/RMS_Estate_and_Language_Review_Updated_2026-10-03.xlsx",
+      "bytes": 877717,
+      "sha256": "a207fa9de866f3ddc60a61d457aae2c07efa9fb029c82ce5c8b220001d65c2b3",
+      "sheets": 30
+    },
+    "pptx": {
+      "filename": "RMS_Estate_and_Language_Review_Updated_2026-10-03.pptx",
+      "url": "https://pensive-goodall-6.preview.emergentagent.com/downloads/RMS_Estate_and_Language_Review_Updated_2026-10-03.pptx",
+      "bytes": 303562,
+      "sha256": "217fbedb3a0b52102e9dd1874f52b521b4998280103c42bf441278de48f080c0",
+      "slides": 103
+    }
+  },
+  "evidence_snapshot_sha256": "158bdd75c6fe986f735982a0868940657065a088f0f4e9f83a3dd24d245e20aa",
+  "repair_code_sha256": {
+    "producer_estate.py": "e47a014ed8fee185648585cf864d768cc0290057110b88379718eb1595cb5677",
+    "producer_estate_content.py": "bbb670db6c58085230295d9661a258ef80cd4b131e4d09156bb335dc12a2f1b3",
+    "skill/scripts/validate.py": "0fbe650091bdbdb9121db545dfc98afa4dc2d92fa63c546c06b1a7457e0a0270",
+    "skill/scripts/studio.py": "debf29137b6b40dd4c387b7dbf62317968818f3d98fa32908dce15e300e3c616",
+    "skill/scripts/deck_layout.py": "38bffc1bd4bce94b649e36dfffee9c6db3f63c62db81fda4d53a32f40e5b2edc",
+    "skill/scripts/render_pptx.py": "31a05d159d39b4ee7c18e458958758fd6a477c60a58e69001ed9c869e05c5398"
+  }
+}

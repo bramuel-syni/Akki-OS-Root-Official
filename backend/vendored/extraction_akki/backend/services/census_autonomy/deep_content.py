@@ -1,11 +1,14 @@
-"""Content pass of the deep census (owner order 2026-10-02: "run the census … for the entire estate. No short cuts. read every thing").
+"""Content pass of the deep census — orchestrator and GPU reader.
 
-Every media object in the commissioned scope is read byte for byte on the admitted GPU host, verified against the listing (size, ETag),
-decoded in full and judged on every consecutive two-second window with the admitted music detector and the current audio language
-model — no sampling, no per-file second or window cap. The only bound is the engine's bounded run: the durable inventory, the
-per-object rows and the access verdicts live on the host volume, so successive runs resume until every readable object is read.
-Only aggregates return in the receipt; keys, bytes and rows never leave the host. Objects the key cannot read are counted and
-reported as such — that is the byte-level truth of what can be accessed, not a gap papered over.
+Owner order 2026-10-02 (morning): "run the census … for the entire estate. No short cuts. read every thing" → measurement `content_full`.
+Owner ruling 2026-10-02 (evening, after the egress-cost and NAS-uplink disclosure): tiers 1+2 now — exact listing and header-measured hours
+for every object, a deterministic stratified sample per folder read in full with 95 % intervals ("sample per folder, a bigger sample, be
+surgical"); NAS files read only in the off-peak window; the byte-for-byte read of everything (tier 3) stays available as `content_full`.
+
+Every object in scope is listed (resumable) and header-probed (deep_sample); the files selected by the plan — all of them under
+`content_full` — are read byte for byte on every GPU of the admitted host by several reader processes per GPU, verified against the
+listing, decoded in full and judged on every consecutive two-second window with the admitted music detector and the current audio
+language model. Per-object rows, headers and inventories live on the host volume; only aggregates return in the receipt.
 """
 import hashlib
 import json
@@ -26,10 +29,10 @@ VIDEO = ('.mp4', '.mkv', '.mov', '.avi', '.mxf', '.ts', '.m2ts', '.wmv', '.flv',
 MEDIA = AUDIO + VIDEO
 SR = 16000
 WIN = 2 * SR
-STOP_MARGIN_S = 240          # devices stop this long before the worker deadline so rows flush, aggregates build and the receipt is written
-INVENTORY_SHARE = 0.35       # at most this share of a run goes to listing before reading starts; listing resumes next run
+STOP_MARGIN_S = 300          # readers stop this long before the worker deadline so rows flush, estimates build and the receipt is written
+INVENTORY_SHARE = 0.35       # at most this share of a run goes to listing before probing/reading starts; listing resumes next run
+HEADER_SHARE = 0.65          # listing + header probes end here at the latest; the GPUs read for the rest of the run
 PROBE_OBJECTS = 6            # spread objects probed with one-byte range reads before a bucket is declared unreadable
-PREFIX_LIMIT = 60
 # Transport failures are retried on the next run; permission, state and decode failures are the object's recorded truth.
 RETRY_ERRORS = {'ReadTimeoutError', 'ConnectTimeoutError', 'ConnectionError', 'EndpointConnectionError', 'ConnectionClosedError', 'IncompleteReadError',
                 'SSLError', 'ProtocolError', 'ResponseStreamingError', 'TimeoutError', 'OSError', 'IOError', 'EOFError', 'SSHException', 'socket.timeout',
@@ -38,7 +41,7 @@ RETRY_ERRORS = {'ReadTimeoutError', 'ConnectTimeoutError', 'ConnectionError', 'E
 DEVICE_MAIN = '''import sys, json
 sys.path.insert(0, sys.argv[1])
 from services.census_autonomy.deep_content import run_device
-run_device(json.load(sys.stdin), sys.argv[2], int(sys.argv[3]))
+run_device(json.load(sys.stdin), sys.argv[2], sys.argv[3])
 '''
 
 
@@ -87,7 +90,7 @@ def _sdk(config):
     from botocore.config import Config
     return boto3.client('s3', endpoint_url=config['endpoint'], region_name=config['region'], aws_access_key_id=config['access_key_id'],
                         aws_secret_access_key=config['secret_access_key'],
-                        config=Config(signature_version='s3v4', connect_timeout=10, read_timeout=120, retries={'max_attempts': 3}, max_pool_connections=64))
+                        config=Config(signature_version='s3v4', connect_timeout=10, read_timeout=120, retries={'max_attempts': 3}, max_pool_connections=128))
 
 
 # ----------------------------------------------------------------------------------------------------------------- inventories
@@ -107,13 +110,17 @@ def _inventory_obs(sdk, label, folder, stop_at):
                 meta['list_error'] = type(exc).__name__
                 break
             meta['pages'] += 1
+            classes = meta.setdefault('storage_classes', {})
             for item in page.get('Contents', []):
                 stamp = item['LastModified'].isoformat()
-                out.write('\t'.join([item['Key'].replace('\t', ' ').replace('\n', ' '), str(item['Size']), (item.get('ETag') or '').strip('"'), stamp, item.get('StorageClass') or '']) + '\n')
+                storage_class = item.get('StorageClass') or 'STANDARD'
+                out.write('\t'.join([item['Key'].replace('\t', ' ').replace('\n', ' '), str(item['Size']), (item.get('ETag') or '').strip('"'), stamp, storage_class]) + '\n')
                 meta['objects'] += 1
                 meta['bytes'] += item['Size']
                 suffix = Path(item['Key']).suffix.lower() or 'no_extension'
                 meta['formats'][suffix] = meta['formats'].get(suffix, 0) + 1
+                sc = classes.setdefault(storage_class, {'objects': 0, 'bytes': 0})
+                sc['objects'] += 1; sc['bytes'] += item['Size']
                 meta['date_min'] = min(meta['date_min'], stamp) if meta['date_min'] else stamp
                 meta['date_max'] = max(meta['date_max'], stamp) if meta['date_max'] else stamp
             out.flush()
@@ -230,6 +237,28 @@ def _duplicate_candidates(folder, meta):
     return candidates
 
 
+def _storage_classes(folder, meta):
+    """Objects and bytes per storage class (Archive objects cannot be read without a restore unless direct read is enabled, and
+    a bucket already in Archive class has no Standard → Archive saving left). Counted while listing; derived once for inventories
+    listed before the counter existed."""
+    if meta.get('storage_classes') is not None:
+        return meta['storage_classes']
+    classes = {}
+    try:
+        with (folder / 'inventory.tsv').open() as handle:
+            for line in handle:
+                parts = line.rstrip('\n').split('\t')
+                if len(parts) < 5:
+                    continue
+                sc = classes.setdefault(parts[4] or 'STANDARD', {'objects': 0, 'bytes': 0})
+                sc['objects'] += 1; sc['bytes'] += int(parts[1])
+    except OSError:
+        return None
+    meta['storage_classes'] = classes
+    _write_json(folder / 'inventory.json', meta)
+    return classes
+
+
 def _rows(folder):
     """Every retained row of a bucket/share, one per object: a successful read supersedes an earlier failure; a transport failure is
     not final and the object is read again on the next run."""
@@ -250,14 +279,12 @@ def _rows(folder):
     return by_ref
 
 
-def _done_refs(folder):
-    return {ref for ref, row in _rows(folder).items() if not (row.get('error') in RETRY_ERRORS)}
-
-
 def _probe_access(sdk, label, items, folder):
-    """Spread one-byte range reads decide whether the key may read this bucket's bodies at all; the verdict is kept with the inventory."""
+    """Spread one-byte range reads decide whether the key may read this bucket's bodies at all; the verdict is kept with the inventory.
+    A refusal is never final: denied and archived buckets are probed again on every run (six one-byte reads), so a grant or a restore
+    on the owner's side resumes the census by itself."""
     verdict = _read_json(folder / 'access.json', None)
-    if verdict and verdict.get('items') == len(items):
+    if verdict and verdict.get('items') == len(items) and verdict.get('state') in ('readable', 'no_media'):
         return verdict
     picks = [items[int(i * (len(items) - 1) / max(1, PROBE_OBJECTS - 1))] for i in range(min(PROBE_OBJECTS, len(items)))] if items else []
     outcomes = Counter()
@@ -278,154 +305,60 @@ def _probe_access(sdk, label, items, folder):
         state = 'archived'
     else:
         state = 'denied'
+    previous = verdict or {}
     verdict = {'state': state, 'probed': dict(outcomes), 'items': len(items), 'at': now()}
+    if state in ('denied', 'archived') and previous.get('state') == state:
+        verdict['since'] = previous.get('since') or previous.get('at')
     _write_json(folder / 'access.json', verdict)
     return verdict
 
 
-# ----------------------------------------------------------------------------------------------------------------- aggregation
-def _aggregate(folder, items, access, meta, label, source_kind, run_seconds, devices, this_run_rows):
-    by_ref = _rows(folder)
-    rows = list(by_ref.values())
-    read = [r for r in rows if not r.get('error')]
-    failed = [r for r in rows if r.get('error')]
-    media_bytes = sum(it[1] for it in items)
-    pending = [it for it in items if ref_of(label, it[0]) not in by_ref or by_ref[ref_of(label, it[0])].get('error') in RETRY_ERRORS]
-    languages, files_top, prefixes, formats, codecs, rates, channels = Counter(), Counter(), {}, Counter(), Counter(), Counter(), Counter()
-    windows = silence = music = speech = abstained = judged = 0
-    seconds = 0.0
-    confidence_sum, confidence_n, clipped_sum, clipped_n, level_sum, level_n = 0.0, 0, 0.0, 0, 0.0, 0
-    bytes_read = bytes_verified = 0
-    for r in read:
-        bytes_read += r['bytes_read']
-        bytes_verified += r['bytes_read'] if r.get('size_match') and r.get('etag_match') in (True, None) else 0
-        seconds += r['duration_s']
-        windows += r['windows']; silence += r['silence_windows']; music += r['music_windows']; speech += r['speech_windows']
-        abstained += r['abstained']; judged += r['judged']
-        languages.update(r.get('by_language') or {})
-        if r.get('top_language'):
-            files_top[r['top_language']] += 1
-        formats[r['ext']] += 1
-        if r.get('codec'):
-            codecs[r['codec']] += 1
-        if r.get('sample_rate'):
-            rates[str(r['sample_rate'])] += 1
-        if r.get('channels'):
-            channels[str(r['channels'])] += 1
-        if r.get('mean_confidence') is not None:
-            confidence_sum += r['mean_confidence'] * max(1, r['judged'] + r['abstained']); confidence_n += max(1, r['judged'] + r['abstained'])
-        if r.get('clipped_share') is not None:
-            clipped_sum += r['clipped_share'] * r['windows']; clipped_n += r['windows']
-        if r.get('level_dbfs') is not None:
-            level_sum += r['level_dbfs'] * r['windows']; level_n += r['windows']
-        p = prefixes.setdefault(r['prefix'], {'prefix': r['prefix'], 'objects': 0, 'bytes_read': 0, 'hours_decoded': 0.0, 'hours_speech': 0.0, 'hours_music': 0.0, 'languages': Counter()})
-        p['objects'] += 1; p['bytes_read'] += r['bytes_read']; p['hours_decoded'] += r['duration_s'] / 3600
-        p['hours_speech'] += r['speech_windows'] * 2 / 3600; p['hours_music'] += r['music_windows'] * 2 / 3600
-        p['languages'].update(r.get('by_language') or {})
-    prefix_rows = sorted(prefixes.values(), key=lambda p: -p['bytes_read'])
-    other = prefix_rows[PREFIX_LIMIT:]
-    prefix_rows = prefix_rows[:PREFIX_LIMIT]
-    if other:
-        merged = {'prefix': f'({len(other)} further folders)', 'objects': sum(p['objects'] for p in other), 'bytes_read': sum(p['bytes_read'] for p in other),
-                  'hours_decoded': sum(p['hours_decoded'] for p in other), 'hours_speech': sum(p['hours_speech'] for p in other), 'hours_music': sum(p['hours_music'] for p in other), 'languages': Counter()}
-        for p in other:
-            merged['languages'].update(p['languages'])
-        prefix_rows.append(merged)
-    for p in prefix_rows:
-        top = p['languages'].most_common(1)
-        p['top_language'] = top[0][0] if top else None
-        p['hours_by_language'] = {k: round(v * 2 / 3600, 3) for k, v in p['languages'].most_common(8)}
-        del p['languages']
-        for k in ('hours_decoded', 'hours_speech', 'hours_music'):
-            p[k] = round(p[k], 3)
-    errors = Counter(r['error'] for r in failed)
-    denied_bytes = sum(r['size'] for r in failed if r['error'] in ('AccessDenied', 'Forbidden'))
-    archived_bytes = sum(r['size'] for r in failed if r['error'] == 'InvalidObjectState')
-    if access['state'] in ('denied', 'archived'):
-        measurement = access['state']
-    elif not meta.get('complete') or pending:
-        measurement = 'partial'
-    else:
-        measurement = 'full'
-    gpu_seconds = sum(d.get('elapsed_s', 0) for d in devices)
-    audio_hours_this_run = sum(r['duration_s'] for r in this_run_rows) / 3600
-    bytes_this_run = sum(r['bytes_read'] for r in this_run_rows)
-    return {
-        'measurement': measurement, 'access': access['state'], 'access_probe': access.get('probed'), 'inventory_complete': bool(meta.get('complete')),
-        'media_objects': len(items), 'media_bytes': media_bytes, 'media_audio_objects': sum(1 for it in items if it[5] == 'audio'), 'media_video_objects': sum(1 for it in items if it[5] == 'video'),
-        'objects_read': len(read), 'bytes_read': bytes_read, 'bytes_verified': bytes_verified, 'objects_failed': len(failed), 'failures': dict(errors),
-        'objects_denied': sum(1 for r in failed if r['error'] in ('AccessDenied', 'Forbidden')) if access['state'] != 'denied' else len(items),
-        'bytes_denied': denied_bytes if access['state'] != 'denied' else media_bytes,
-        'objects_archived': sum(1 for r in failed if r['error'] == 'InvalidObjectState') if access['state'] != 'archived' else len(items),
-        'bytes_archived': archived_bytes if access['state'] != 'archived' else media_bytes,
-        'objects_pending': len(pending) if access['state'] == 'readable' else 0, 'bytes_pending': sum(it[1] for it in pending) if access['state'] == 'readable' else 0,
-        'audio_seconds': round(seconds, 1), 'hours_decoded': round(seconds / 3600, 3), 'windows': windows, 'silence_windows': silence, 'music_windows': music, 'speech_windows': speech,
-        'abstained_windows': abstained, 'judged_windows': judged, 'hours_music': round(music * 2 / 3600, 3), 'hours_speech': round(speech * 2 / 3600, 3), 'hours_silence': round(silence * 2 / 3600, 3),
-        'hours_by_language': {k: round(v * 2 / 3600, 3) for k, v in languages.most_common()}, 'files_top_language': dict(files_top.most_common()),
-        'mean_confidence': round(confidence_sum / confidence_n, 4) if confidence_n else None,
-        'quality': {'clipped_share': round(clipped_sum / clipped_n, 5) if clipped_n else None, 'level_dbfs_mean': round(level_sum / level_n, 2) if level_n else None,
-                    'sample_rates': dict(rates.most_common(6)), 'codecs': dict(codecs.most_common(8)), 'channels': dict(channels.most_common(4)), 'formats_read': dict(formats.most_common())},
-        'prefixes': prefix_rows,
-        'this_run': {'objects_read': len(this_run_rows), 'bytes_read': bytes_this_run, 'audio_hours': round(audio_hours_this_run, 3), 'run_seconds': round(run_seconds, 1),
-                     'mb_per_s': round(bytes_this_run / max(1e-6, run_seconds) / 1e6, 2), 'audio_hours_per_hour': round(audio_hours_this_run / max(1e-6, run_seconds / 3600), 1), 'gpu_seconds': gpu_seconds},
-        'source_kind': source_kind,
-    }
+# ----------------------------------------------------------------------------------------------------------------- windows & readers
+def _window(spec, at=None):
+    """'HH-HH' UTC read window → (open now?, this window's end, next window's start) as epoch seconds; no spec = always open."""
+    if not spec:
+        return True, None, None
+    start_h, end_h = (int(x) for x in spec.split('-'))
+    at = at if at is not None else time.time()
+    day = datetime.fromtimestamp(at, tz=timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).timestamp()
+    start, end = day + start_h * 3600, day + end_h * 3600
+    if end_h <= start_h:                                   # the window crosses midnight
+        if at < end:                                       # inside the window that opened yesterday evening
+            return True, end, start
+        if at >= start:
+            return True, end + 86400, start + 86400
+        return False, None, start
+    if start <= at < end:
+        return True, end, start + 86400
+    return False, None, (start if at < start else start + 86400)
 
 
-def _detections(source_id, label, summary, content):
-    """Mtafiti contract: the GPU layer emits detections, never verdicts. Byte facts are facts; model readings are detected measures
-    pinned to the admitted artefact that produced them. What counts as 'clean' or 'eligible' is decided downstream, not here."""
-    from contracts.mtafiti_detection_signal import DetectionSignal, EvidenceClass
-    from services.census_autonomy.deep_files import source_ref
-    ref = source_ref(source_id, label)
-    audio_version = f"audio-language:{(content.get('audio_model_sha256') or 'unpinned')[:16]}"
-    music_version = f"music-detector:{(content.get('music_model_sha256') or 'unpinned')[:16]}"
-    signals = []
-    for name in ('media_bytes', 'bytes_read', 'bytes_verified', 'bytes_denied', 'bytes_archived', 'bytes_pending', 'objects_read', 'objects_denied', 'objects_archived'):
-        signals.append(DetectionSignal(signal_name=f'content.{name}={summary[name]}', evidence_class=EvidenceClass.FACT, confidence=1.0, source_ref=ref, detector_version='byte-read:sha256+size+etag'))
-    judged = summary['windows'] - summary['silence_windows']
-    if judged:
-        conf = summary['mean_confidence'] if summary['mean_confidence'] is not None else 0.0
-        signals.append(DetectionSignal(signal_name=f"media_composition.music_share={summary['music_windows'] / judged:.4f}", evidence_class=EvidenceClass.DETECTED, confidence=1.0, source_ref=ref, detector_version=music_version))
-        signals.append(DetectionSignal(signal_name=f"media_composition.speech_share={summary['speech_windows'] / judged:.4f}", evidence_class=EvidenceClass.DETECTED, confidence=1.0, source_ref=ref, detector_version=music_version))
-        signals.append(DetectionSignal(signal_name=f"media_composition.silence_share={summary['silence_windows'] / max(1, summary['windows']):.4f}", evidence_class=EvidenceClass.FACT, confidence=1.0, source_ref=ref, detector_version='rms-threshold:1e-4'))
-        if summary['judged_windows']:
-            signals.append(DetectionSignal(signal_name=f"language.abstained_share={summary['abstained_windows'] / max(1, summary['speech_windows']):.4f}", evidence_class=EvidenceClass.DETECTED, confidence=min(1.0, max(0.0, conf)), source_ref=ref, detector_version=audio_version))
-            for code, hours in list(summary['hours_by_language'].items())[:12]:
-                share = hours * 1800 / summary['judged_windows']
-                signals.append(DetectionSignal(signal_name=f'language.{code}.speech_hours={hours}', evidence_class=EvidenceClass.DETECTED, confidence=min(1.0, max(0.0, conf)), source_ref=ref, detector_version=audio_version))
-                signals.append(DetectionSignal(signal_name=f'language.{code}.judged_share={share:.4f}', evidence_class=EvidenceClass.DETECTED, confidence=min(1.0, max(0.0, conf)), source_ref=ref, detector_version=audio_version))
-    return [s.model_dump(mode='json') for s in signals]
-
-
-# ----------------------------------------------------------------------------------------------------------------- orchestration
-def _spawn_devices(content, hop, obs, folder_map, queues, stop_at, run_dir, bundle):
+def _spawn_readers(content, hop, obs, folder_map, queues, stop_at, run_dir, bundle):
     procs = {}
-    for index, work in queues.items():
+    for wid, work in queues.items():
         control = {'queue': work, 'stop_at': stop_at, 'run_dir': str(run_dir), 'content': {k: v for k, v in content.items() if k not in ('state_dir',)},
-                   'obs': obs, 'hop': hop, 'folders': folder_map, 'device': index}
-        log = open(run_dir / f'device_{index}.log', 'ab')
-        proc = subprocess.Popen([content['gpu_python'], '-c', DEVICE_MAIN, bundle, str(run_dir), str(index)],
+                   'obs': obs, 'hop': hop, 'folders': folder_map, 'worker': wid}
+        log = open(run_dir / f'reader_{wid}.log', 'ab')
+        proc = subprocess.Popen([content['gpu_python'], '-c', DEVICE_MAIN, bundle, str(run_dir), wid],
                                 stdin=subprocess.PIPE, stdout=log, stderr=subprocess.STDOUT,
-                                env={**os.environ, 'CUDA_VISIBLE_DEVICES': str(index), 'OMP_NUM_THREADS': '8', 'HF_HUB_OFFLINE': '1', 'TOKENIZERS_PARALLELISM': 'false'})
+                                env={**os.environ, 'CUDA_VISIBLE_DEVICES': wid.split('x')[0], 'OMP_NUM_THREADS': '3', 'HF_HUB_OFFLINE': '1', 'TOKENIZERS_PARALLELISM': 'false'})
         proc.stdin.write(json.dumps(control).encode()); proc.stdin.close()
-        procs[index] = proc
+        procs[wid] = proc
     return procs
 
 
-def _wait_devices(procs, stop_at, run_dir, progress):
+def _wait_readers(procs, stop_at, run_dir):
     while any(p.poll() is None for p in procs.values()):
         time.sleep(10)
-        progress(run_dir)
         if time.time() > stop_at + 60:
             for p in procs.values():
                 if p.poll() is None:
                     p.kill()
-    return [_read_json(run_dir / f'progress_{i}.json', {'device': i, 'exit_code': p.returncode}) | {'exit_code': p.returncode} for i, p in procs.items()]
+    return [_read_json(run_dir / f'progress_{w}.json', {'worker': w}) | {'exit_code': p.returncode} for w, p in procs.items()]
 
 
-def _balance(items, devices):
-    queues, load = {d: [] for d in devices}, {d: 0 for d in devices}
+def _balance(items, workers):
+    queues, load = {w: [] for w in workers}, {w: 0 for w in workers}
     for item in sorted(items, key=lambda it: -it['size']):
         target = min(load, key=load.get)
         queues[target].append(item); load[target] += item['size']
@@ -434,8 +367,9 @@ def _balance(items, devices):
     return queues
 
 
+# ----------------------------------------------------------------------------------------------------------------- orchestration
 def content_pass(config, labels, deadline, source_kind, root=None, hop=None):
-    """Inventory → access verdict → read everything pending on every GPU of this host until the run's stop time → aggregate."""
+    """Inventory → access verdict → header probes → planned reads on every GPU of this host until the run's stop time → estimates."""
     content = config['content']
     started = time.time()
     stop_at = deadline - STOP_MARGIN_S
@@ -457,70 +391,135 @@ def content_pass(config, labels, deadline, source_kind, root=None, hop=None):
 
 
 def _content_pass(config, labels, deadline, source_kind, root, hop, content, started, stop_at, devices, state_root):
+    from services.census_autonomy import deep_sample as ds
     run_dir = Path(content['scratch_dir']).expanduser() / f"run-{config['source_id']}-{int(started)}"
     run_dir.mkdir(parents=True, exist_ok=True)
     for stale in Path(content['scratch_dir']).expanduser().glob(f"run-{config['source_id']}-*"):
         if stale != run_dir:
             shutil.rmtree(stale, ignore_errors=True)
+    full = content.get('mode') == 'full'
     sdk = _sdk(config) if source_kind == 'object_store' else None
     sftp_client = sftp = None
     if source_kind == 'nas':
         sftp_client, sftp = _sftp_client(hop)
     folders = {label: _label_dir(state_root, config['source_id'], label) for label in labels}
-    metas, accesses, items_by_label = {}, {}, {}
-    # Listing takes a bounded share of each run; the frontier resumes next run and reading starts with whatever is inventoried.
-    inventory_stop = min(stop_at, started + (deadline - started) * INVENTORY_SHARE)
+    budget = deadline - started
+    inventory_stop = min(stop_at, started + budget * INVENTORY_SHARE)
+    header_stop = min(stop_at, started + budget * HEADER_SHARE)
+    metas, accesses, items_by_label, scope = {}, {}, {}, {}
+    # Listing takes a bounded share of each run (completed inventories cost nothing); the frontier resumes next run.
     for label in sorted(labels, key=lambda l: (_read_json(folders[l] / 'inventory.json', {}).get('complete') is not True, labels.index(l))):
         metas[label] = _inventory_obs(sdk, label, folders[label], inventory_stop) if source_kind == 'object_store' else _inventory_nas(sftp, root, label, folders[label], inventory_stop)
         items_by_label[label] = _media_items(folders[label])
         accesses[label] = _probe_access(sdk, label, items_by_label[label], folders[label]) if source_kind == 'object_store' else {'state': 'readable' if items_by_label[label] else 'no_media', 'probed': None, 'items': len(items_by_label[label]), 'at': now()}
+    for label in labels:
+        assign, mode = ds.stratify(items_by_label[label], int(content['strata_cap']), int(content['split_min']))
+        metas[label]['strata_mode'] = mode
+        scope[label] = {'groups': ds.grouped(label, items_by_label[label], assign), 'headers': ds.headers(folders[label]), 'rows': _rows(folders[label]), 'access': accesses[label]['state']}
+    plan, stats, hdr_targets = ds.plan_scope(scope, content)
+    # Header probes: every audio file, a per-folder sample of video files (always covering the files the read sample will take).
+    header_runs = {}
+    local = threading.local()
+
+    def nas_fetch_for(item):
+        def fetch(a, b):
+            if not hasattr(local, 'sftp'):
+                local.client, local.sftp = _sftp_client(hop)
+            with local.sftp.open(f"{root}/{item[0]}", 'rb') as handle:
+                handle.seek(a)
+                return handle.read(b - a + 1)
+        return fetch
+    for label in labels:
+        if accesses[label]['state'] != 'readable' or time.time() >= header_stop - 5:
+            continue
+        known = scope[label]['headers']
+        todo = [(name, ref, item) for (lab, name), n_hdr in hdr_targets.items() if lab == label
+                for (_, ref, item) in scope[label]['groups'][name][:n_hdr] if ref not in known or known[ref].get('error') in RETRY_ERRORS]
+        if not todo:
+            continue
+        fetch_for = (lambda item, lab=label: (lambda a, b: sdk.get_object(Bucket=lab, Key=item[0], Range=f'bytes={a}-{b}')['Body'].read())) if sdk else nas_fetch_for
+        header_runs[label] = ds.probe_many(fetch_for, todo, folders[label] / f'headers_{int(started)}.jsonl', run_dir, int(content['header_threads']), header_stop)
+        scope[label]['headers'] = ds.headers(folders[label])
+    plan, stats, hdr_targets = ds.plan_scope(scope, content)
+    # Reads: the plan's files (every file under content_full) that have no final row yet, inside the read window for this source kind.
+    window_spec = content.get('read_window_utc') if source_kind == 'nas' else None
+    window_open, window_end, window_next = _window(window_spec)
+    reads_stop = min(stop_at, window_end) if window_end else stop_at
     work = []
     for label in labels:
         if accesses[label]['state'] != 'readable':
             continue
-        done = _done_refs(folders[label])
-        for key, size, etag, modified, storage_class, kind in items_by_label[label]:
-            ref = ref_of(label, key)
-            if ref not in done:
-                work.append({'label': label, 'key': key, 'size': size, 'etag': etag, 'modified': modified, 'storage_class': storage_class, 'kind': kind, 'ref': ref})
-    queues = _balance(work, devices) if work and time.time() < stop_at - 60 else {}
+        rows = scope[label]['rows']
+        for name, group in scope[label]['groups'].items():
+            take = len(group) if full else plan['targets'].get(f'{label}|{name}', 0)
+            for _, ref, item in group[:take]:
+                if ref not in rows or rows[ref].get('error') in RETRY_ERRORS:
+                    key, size, etag, modified, storage_class, kind = item
+                    work.append({'label': label, 'key': key, 'size': size, 'etag': etag, 'modified': modified, 'storage_class': storage_class, 'kind': kind, 'ref': ref, 'folder': name})
+    workers = [f'{g}x{r}' for g in devices for r in range(int(content['readers_per_gpu']))]
+    queues = _balance(work, workers) if work and window_open and time.time() < reads_stop - 90 else {}
+    queues = {w: q for w, q in queues.items() if q}
     bundle = next(p for p in sys.path if p.endswith('worker.zip'))
     obs = {k: config[k] for k in ('endpoint', 'region', 'access_key_id', 'secret_access_key')} if source_kind == 'object_store' else None
     folder_map = {label: str(folders[label]) for label in labels}
-    before = {label: _done_refs(folders[label]) for label in labels}
-    device_reports = []
+    before = {label: set(scope[label]['rows']) for label in labels}
+    reader_reports = []
     if queues:
-        for index, items in queues.items():
-            (run_dir / f'queue_{index}.json').write_text(json.dumps(items))
-        procs = _spawn_devices(content, hop if source_kind == 'nas' else None, obs, folder_map, {i: str(run_dir / f'queue_{i}.json') for i in queues}, stop_at, run_dir, bundle)
-        device_reports = _wait_devices(procs, stop_at, run_dir, lambda d: None)
+        for wid, items in queues.items():
+            (run_dir / f'queue_{wid}.json').write_text(json.dumps(items))
+        procs = _spawn_readers(content, hop if source_kind == 'nas' else None, obs, folder_map, {w: str(run_dir / f'queue_{w}.json') for w in queues}, reads_stop, run_dir, bundle)
+        reader_reports = _wait_readers(procs, reads_stop, run_dir)
     if sftp_client:
         sftp_client.close()
     run_seconds = time.time() - started
+    for label in labels:
+        scope[label]['rows'] = _rows(folders[label])
+    plan, stats, _ = ds.plan_scope(scope, content)
+    tariff = float(content.get('egress_usd_per_gb') or 0)
     entries = []
     for label in labels:
-        meta, items, access = metas[label], items_by_label[label], accesses[label]
-        new_rows = [row for ref, row in _rows(folders[label]).items() if ref not in before[label] and not row.get('error')]
-        summary = _aggregate(folders[label], items, access, meta, label, source_kind, run_seconds, device_reports, new_rows)
+        meta, items, access, rows = metas[label], items_by_label[label], accesses[label], scope[label]['rows']
+        summary = ds.summarize_label(label, stats, access, meta, items, rows, content)
+        new_rows = [row for ref, row in rows.items() if ref not in before[label] and not row.get('error')]
+        header_bytes = sum(h.get('bytes_fetched') or 0 for h in scope[label]['headers'].values())
+        egress = header_bytes + summary['bytes_read']
+        summary['egress'] = {'bytes': egress, 'header_bytes': header_bytes, 'usd_estimate': round(egress / 1e9 * tariff, 2) if tariff else None, 'usd_per_gb_assumed': tariff or None,
+                             'billed_to': 'RMS Huawei account (OBS internet egress, assumed tariff)' if source_kind == 'object_store' else 'RMS estate uplink via the jump host (not OBS egress)'}
+        summary['plan'] = {k: plan[k] for k in ('budget_files', 'topup_files', 'topup_used', 'census_files', 'strata', 'default_seconds_per_mb')} | {'mode': 'full' if full else 'sample'}
         summary['models'] = {'audio_language': {'artefact_dir': Path(content['audio_model_dir']).name, 'sha256': content.get('audio_model_sha256')},
                              'music_detector': {'artefact_path': Path(content['music_model_path']).parent.name, 'sha256': content.get('music_model_sha256')}}
-        summary['detections'] = _detections(config['source_id'], label, summary, content)
+        summary['detections'] = ds.detections(config['source_id'], label, summary, content)
         summary['devices'] = len(devices)
-        summary['device_reports'] = device_reports
-        complete = meta.get('complete') and summary['measurement'] in ('full', 'denied', 'archived', 'no_media')
+        summary['readers'] = len(queues)
+        summary['device_reports'] = reader_reports
+        summary['this_run'] = {'objects_read': len(new_rows), 'bytes_read': sum(r['bytes_read'] for r in new_rows), 'audio_hours': round(sum(r['duration_s'] for r in new_rows) / 3600, 3),
+                               'headers_probed': header_runs.get(label, (0, 0))[0], 'header_bytes': header_runs.get(label, (0, 0))[1], 'run_seconds': round(run_seconds, 1),
+                               'mb_per_s': round(sum(r['bytes_read'] for r in new_rows) / max(1e-6, run_seconds) / 1e6, 2), 'gpu_seconds': sum(d.get('elapsed_s', 0) for d in reader_reports)}
+        if window_spec:
+            summary['read_window'] = {'utc': window_spec, 'open': window_open, 'next_open_at': datetime.fromtimestamp(window_next, tz=timezone.utc).isoformat() if window_next else None}
+        summary['source_kind'] = source_kind
+        complete = summary['measurement'] in ('estimated', 'census', 'denied', 'archived', 'no_media')
+        if full and summary['measurement'] in ('estimated',):
+            complete = summary['objects_pending'] == 0 and summary['objects_read'] + summary['objects_failed'] - summary['retryable_failures'] >= summary['media_objects']
+            summary['measurement'] = 'census' if complete else 'partial'
         entry = {'label': label, 'kind': source_kind, 'status': 'complete' if complete else 'partial',
                  ('object_count' if source_kind == 'object_store' else 'file_count'): meta['objects'], 'volume_bytes': meta['bytes'], 'formats': dict(meta.get('formats') or {}),
                  'date_min': meta.get('date_min'), 'date_max': meta.get('date_max'), 'pages': meta.get('pages'), 'directories_complete': meta.get('directories'), 'directories_pending': len(meta.get('pending') or []),
                  'duplicate_candidates': _duplicate_candidates(folders[label], meta) if source_kind == 'object_store' and meta.get('complete') else None,
+                 'storage_classes': _storage_classes(folders[label], meta) if source_kind == 'object_store' and meta.get('complete') else None,
+                 'access_since': access.get('since'),
                  'enumeration': 'full' if meta.get('complete') else 'partial', 'content_measurement': summary['measurement'], 'content': summary,
                  'database_count': 0, 'table_count': 0, 'row_count_estimate': 0, 'epoch': 1, 'runs_in_epoch': None, 'resumable': True,
-                 'media_samples': summary['objects_read'], 'media_duration_seconds': summary['audio_seconds'], 'media_failures': summary['objects_failed'],
-                 'method': ('Full-content census on the admitted GPU host: every key listed (resumable inventory on the host volume), every media object read byte for byte '
-                            'and verified against the listing, decoded in full and judged on every consecutive two-second window by the admitted music detector and the '
-                            'current audio language model on every GPU of the host; per-object rows stay on the host; aggregates only in this receipt; successive bounded '
-                            'runs resume until every readable object is read. Objects the key cannot read are counted as denied or archived, never estimated.')}
+                 'media_samples': summary['objects_read'], 'media_duration_seconds': round(summary['hours_decoded'] * 3600, 1), 'media_failures': summary['objects_failed'],
+                 'method': ('Tiered content census on the admitted GPU host: every key listed (resumable inventory on the host volume); every audio file and a per-folder '
+                            'sample of video files header-probed (ranged reads, ffprobe) for duration, codec and rate; a deterministic stratified sample of files per '
+                            'folder — or every file under content_full — read byte for byte, verified against the listing, decoded in full and judged on every two-second '
+                            'window by the admitted music detector and the current audio language model on every GPU of the host; ratio estimators with finite-population '
+                            'correction give 95 % intervals; per-object rows stay on the host; aggregates only in this receipt. Objects the key cannot read are counted, never estimated.')}
         if not complete:
             entry['reason_code'] = 'BUDGET_EXHAUSTED' if not meta.get('list_error') else meta['list_error']
+            if window_spec and not window_open and meta.get('complete') and summary['headers']['complete']:
+                entry['resume_not_before'] = window_next   # nothing left but reads, and reads wait for the off-peak window
         if summary['measurement'] == 'denied':
             entry['content_reason_code'] = 'CONTENT_GET_DENIED'
         elif summary['measurement'] == 'archived':
@@ -528,9 +527,9 @@ def _content_pass(config, labels, deadline, source_kind, root, hop, content, sta
         entries.append(entry)
     logs = state_root / config['source_id'] / 'logs'
     logs.mkdir(parents=True, exist_ok=True)
-    for log in run_dir.glob('device_*.log'):
+    for log in run_dir.glob('reader_*.log'):
         shutil.copy(log, logs / f"{int(started)}_{log.name}")
-    for old in sorted(logs.glob('*.log'))[:-24]:
+    for old in sorted(logs.glob('*.log'))[:-48]:
         old.unlink(missing_ok=True)
     shutil.rmtree(run_dir, ignore_errors=True)
     return entries
@@ -569,7 +568,7 @@ def nas_full(config, deadline):
     return content_pass(config, _ordered(config, channels, config['source_id']), deadline, 'nas', root=root, hop=hop)
 
 
-# ----------------------------------------------------------------------------------------------------------------- GPU device reader
+# ----------------------------------------------------------------------------------------------------------------- GPU reader
 def _ffprobe(path):
     try:
         p = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration,bit_rate,format_name:stream=codec_type,codec_name,sample_rate,channels', '-of', 'json', str(path)],
@@ -644,7 +643,7 @@ def _read_item(models, item, path, control, device):
     import numpy as np
     stats = {'windows': 0, 'silence': 0, 'music': 0, 'abstained': 0, 'by_language': Counter(), 'conf_sum': 0.0, 'conf_n': 0, 'clipped': 0, 'samples': 0, 'level_sum': 0.0, 'level_n': 0}
     block = int(control['content'].get('block_windows', 2048)) * WIN
-    cmd = ['ffmpeg', '-v', 'error', '-nostdin', '-i', str(path), '-vn', '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-']
+    cmd = ['ffmpeg', '-v', 'error', '-nostdin', '-threads', '2', '-i', str(path), '-vn', '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-']
     errlog = tempfile.TemporaryFile()
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=errlog)
     carry = b''
@@ -684,24 +683,24 @@ def _read_item(models, item, path, control, device):
             'level_dbfs': round(stats['level_sum'] / stats['level_n'], 2) if stats['level_n'] else None, 'decoder_note': err.strip()[-120:] or None}
 
 
-def run_device(control, run_dir, index):
-    """One GPU: downloader threads keep the scratch volume fed, the main thread decodes and judges; rows append per object."""
+def run_device(control, run_dir, wid):
+    """One reader process on one GPU: downloader threads keep the scratch volume fed, the main thread decodes and judges; rows append per object."""
     import torch
     from services.training_lab.estate_language_worker import _load_models
     torch.backends.cuda.matmul.allow_tf32 = True
     run_dir = Path(run_dir)
     queue_items = json.loads(Path(control['queue']).read_text())
     stop_at = float(control['stop_at'])
-    scratch = run_dir / f'scratch_{index}'
+    scratch = run_dir / f'scratch_{wid}'
     scratch.mkdir(parents=True, exist_ok=True)
     started = time.time()
-    progress = {'device': index, 'files': 0, 'of': len(queue_items), 'bytes': 0, 'audio_seconds': 0.0, 'windows': 0, 'errors': 0, 'elapsed_s': 0, 'stage': 'loading models'}
-    (run_dir / f'progress_{index}.json').write_text(json.dumps(progress))
+    progress = {'worker': wid, 'gpu': int(wid.split('x')[0]), 'files': 0, 'of': len(queue_items), 'bytes': 0, 'audio_seconds': 0.0, 'windows': 0, 'errors': 0, 'elapsed_s': 0, 'stage': 'loading models'}
+    (run_dir / f'progress_{wid}.json').write_text(json.dumps(progress))
     device = 'cuda'
     models = _load_models({'lab_corpus_root': control['content']['lab_corpus_root'], 'audio_model_dir': control['content']['audio_model_dir'], 'music_model_path': control['content']['music_model_path']}, device)
-    inflight_limit = int(control['content'].get('prefetch_bytes', 4 << 30))
+    inflight_limit = int(control['content'].get('prefetch_bytes', 1 << 30))
     ready, inflight, lock = queue.Queue(), [0], threading.Lock()
-    workers = int(control['content'].get('download_workers', 6))
+    workers = int(control['content'].get('download_workers', 3))
     sdk = _sdk(control['obs']) if control.get('obs') else None
     hop = control.get('hop')
     root = control['content'].get('nas_root')
@@ -750,15 +749,20 @@ def run_device(control, run_dir, index):
                 finished += 1
                 continue
             item, path, n, sha, md5, error = got
-            row = {'ref': item['ref'], 'label': item['label'], 'prefix': item['key'].split('/')[0] if '/' in item['key'] else '(root)', 'ext': Path(item['key']).suffix.lower(),
-                   'kind': item['kind'], 'size': item['size'], 'storage_class': item['storage_class'], 'modified': item['modified'][:10], 'device': index, 'read_at': now(),
+            row = {'ref': item['ref'], 'label': item['label'], 'folder': item.get('folder'), 'prefix': item['key'].split('/')[0] if '/' in item['key'] else '(root)', 'ext': Path(item['key']).suffix.lower(),
+                   'kind': item['kind'], 'size': item['size'], 'storage_class': item['storage_class'], 'modified': item['modified'][:10], 'worker': wid, 'read_at': now(),
                    'bytes_read': n, 'sha256': sha, 'size_match': (n == item['size']) if path else False, 'etag_match': (md5 == item['etag']) if (md5 and item['etag'] and '-' not in item['etag']) else None}
             if error:
                 row['error'] = error
             else:
                 try:
                     row.update(_ffprobe(path))
-                    row.update(_read_item(models, item, path, control, device))
+                    if row.get('audio_streams') == 0 and row.get('video_streams'):
+                        # A video without an audio track holds no speech or music: a read row with zero windows, not a failure.
+                        row.update(duration_s=row.get('container_duration_s') or 0.0, windows=0, tail_seconds=0.0, silence_windows=0, music_windows=0, speech_windows=0, abstained=0, judged=0,
+                                   by_language={}, top_language=None, top_share=None, mean_confidence=None, music_share=0.0, clipped_share=None, level_dbfs=None, decoder_note='no audio stream', no_audio=True)
+                    else:
+                        row.update(_read_item(models, item, path, control, device))
                 except TimeoutError:
                     row = None
                 except Exception as exc:
@@ -774,18 +778,18 @@ def run_device(control, run_dir, index):
                 continue
             handle = handles.get(item['label'])
             if handle is None:
-                handle = handles[item['label']] = (Path(control['folders'][item['label']]) / f'rows_{index}.jsonl').open('a')
+                handle = handles[item['label']] = (Path(control['folders'][item['label']]) / f'rows_{wid}.jsonl').open('a')
             handle.write(json.dumps(row, sort_keys=True) + '\n'); handle.flush()
             progress['files'] += 1; progress['bytes'] += n; progress['errors'] += 1 if row.get('error') else 0
             progress['audio_seconds'] = round(progress['audio_seconds'] + (row.get('duration_s') or 0), 1); progress['windows'] += row.get('windows') or 0
             progress['elapsed_s'] = int(time.time() - started); progress['gpu_peak_gb'] = round(torch.cuda.max_memory_allocated() / 2 ** 30, 2)
             progress['mb_per_s'] = round(progress['bytes'] / max(1e-6, time.time() - started) / 1e6, 2)
             progress['audio_hours_per_hour'] = round(progress['audio_seconds'] / 3600 / max(1e-6, (time.time() - started) / 3600), 1)
-            (run_dir / f'progress_{index}.json').write_text(json.dumps(progress))
+            (run_dir / f'progress_{wid}.json').write_text(json.dumps(progress))
     finally:
         for handle in handles.values():
             handle.close()
     progress.update(stage='stopped at the run boundary' if cursor[0] < len(queue_items) or time.time() >= stop_at else 'queue complete', elapsed_s=int(time.time() - started), finished=True,
                     not_reached=len(queue_items) - progress['files'])
-    (run_dir / f'progress_{index}.json').write_text(json.dumps(progress))
+    (run_dir / f'progress_{wid}.json').write_text(json.dumps(progress))
     shutil.rmtree(scratch, ignore_errors=True)

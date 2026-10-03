@@ -115,9 +115,18 @@ def _evidence_newer_than(tenant_id: str, record: Dict[str, Any]) -> bool:
         db = text_estate_evidence.latest(tenant_id)
         if db and db.get("status") == "completed":
             stamps.append(db.get("finished_at") or db.get("updated_at") or "")
+        stamps.extend(_content_chain_ends(tenant_id))
     except Exception:  # noqa: BLE001 — absent evidence modules never block a commission
         return False
     return any(str(s)[:19] > str(since)[:19] for s in stamps if s)
+
+
+def _content_chain_ends(tenant_id: str) -> List[str]:
+    """When a content census chain ends (a run that completed every store and enqueued no successor), the pack is re-authored once; the hourly
+    receipts of a running chain do not re-author it."""
+    from services.census_autonomy import operational_store as store
+    return [run.get("finished_at") or "" for run in store.runs(tenant_id)
+            if run.get("measurement") in ("content_full", "content_sample") and run.get("status") == "COMPLETE" and not run.get("continuation_run_id")]
 
 
 def start_authored(producer: str, job_id: str, tenant_id: str, principal_id: str, schedule, force: bool = False) -> Tuple[Dict[str, Any], bool]:
