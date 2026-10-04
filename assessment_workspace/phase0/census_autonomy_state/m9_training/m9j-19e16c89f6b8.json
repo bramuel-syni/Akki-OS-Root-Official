@@ -74,5 +74,237 @@
   }
  ],
  "code_sha256": "b1c33f1a1d42e6035e37279bf18ffb5ab4ac2de257fe303d45c93993cfafe8e5",
- "started_at": "2026-10-04T19:31:16.040523Z"
+ "started_at": "2026-10-04T19:31:16.040523Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T20:45:46.597263Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-70daa1cb627a"
+ },
+ "remote_state": {
+  "phase": "malpha_story_text_train",
+  "status": "running",
+  "started_at": "2026-10-04T19:31:15Z",
+  "progress": {
+   "stage": "training",
+   "step": 1290,
+   "of": 3000,
+   "loss": 2.8418,
+   "elapsed_s": 4459,
+   "gpu_peak_gb": 11.21,
+   "last_checkpoint_step": 1250,
+   "next_checkpoint_step": 1500,
+   "best_step": 500
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T19:31:25Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "evaluation_protocol": {
+    "at": "2026-10-04T19:31:33Z",
+    "version": "malpha-story-eval-v2",
+    "prompt_panel_sha256": "f5cbe5520ab3dc129d9fcfb6f17fbc0ee025327df99328e4524394120af27ada",
+    "prompts_per_language": {
+     "kik": 16,
+     "kam": 16,
+     "swa": 12
+    },
+    "sample_seed": 20261004,
+    "perplexity_definition": "token-weighted causal NLL over first64 registered dev chunks per language; includes prompt tokens; naturalness NOT measured",
+    "dev_tokens_sha256": "c9d51802c0bc75fefbfd1d1ae6aacba472be0e93959baae32875cad1e344d421",
+    "max_new_tokens": 320,
+    "temperature": 0.8,
+    "top_p": 0.95
+   },
+   "base_perplexity": {
+    "at": "2026-10-04T19:31:38Z",
+    "kik": 69.657,
+    "kam": 70.076,
+    "swa": 64.331
+   },
+   "dev_eval_step_250": {
+    "at": "2026-10-04T19:48:45Z",
+    "kik": {
+     "dev_perplexity": 27.498,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9986
+    },
+    "kam": {
+     "dev_perplexity": 28.614,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 0.9996
+    },
+    "swa": {
+     "dev_perplexity": 35.498,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9996
+    },
+    "_score": [
+     1,
+     0.625,
+     2.625,
+     -30.340857808920568
+    ],
+    "_best_step": 250,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
+   },
+   "dev_eval_step_500": {
+    "at": "2026-10-04T20:03:10Z",
+    "kik": {
+     "dev_perplexity": 23.192,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.938,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 25.189,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.688,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 31.037,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9994
+    },
+    "_score": [
+     1,
+     0.688,
+     2.626,
+     -26.270980878553907
+    ],
+    "_best_step": 500,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
+   },
+   "dev_eval_step_750": {
+    "at": "2026-10-04T20:17:57Z",
+    "kik": {
+     "dev_perplexity": 21.814,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.562,
+     "mean_distinct_2": 0.9995
+    },
+    "kam": {
+     "dev_perplexity": 24.023,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.312,
+     "mean_distinct_2": 0.996
+    },
+    "swa": {
+     "dev_perplexity": 29.44,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9987
+    },
+    "_score": [
+     1,
+     0.312,
+     1.874,
+     -24.894311445836017
+    ],
+    "_best_step": 500,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
+   },
+   "dev_eval_step_1000": {
+    "at": "2026-10-04T20:30:11Z",
+    "kik": {
+     "dev_perplexity": 20.93,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 24.222,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.562,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 28.341,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": [
+     1,
+     0.562,
+     2.4370000000000003,
+     -24.31073743094967
+    ],
+    "_best_step": 500,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
+   },
+   "dev_eval_step_1250": {
+    "at": "2026-10-04T20:44:48Z",
+    "kik": {
+     "dev_perplexity": 20.384,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 0.9995
+    },
+    "kam": {
+     "dev_perplexity": 24.477,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.438,
+     "mean_distinct_2": 0.9983
+    },
+    "swa": {
+     "dev_perplexity": 27.626,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9993
+    },
+    "_score": [
+     1,
+     0.438,
+     2.313,
+     -23.97665174638188
+    ],
+    "_best_step": 500,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
+   }
+  },
+  "events": [],
+  "job_id": "m9j-19e16c89f6b8",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T20:45:41Z"
+ },
+ "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 5932.48it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-19e16c89f6b8/worker.zip/services/training_lab/malpha_voice_worker.py:185: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
+ "process_alive": true
 }

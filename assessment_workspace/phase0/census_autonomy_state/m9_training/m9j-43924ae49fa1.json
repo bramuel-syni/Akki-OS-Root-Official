@@ -57,7 +57,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-43924ae49fa1",
   "pid": 2724744
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-d7b729edb2db",
@@ -70,28 +70,34 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_malpha_voice_train_daemonised:pid=2724744"
+  },
+  {
+   "row_id": "led-c765ee939d37",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_voice_train_completed"
   }
  ],
  "code_sha256": "adbe8f70bb1dce7b88938b6dc8676bc3b844a18a50f669168e6cffcda5da2ac1",
  "started_at": "2026-10-04T18:38:57.352372Z",
  "last_status_rpc": {
-  "at": "2026-10-04T19:30:59.049549Z",
+  "at": "2026-10-04T20:00:14.272583Z",
   "rc": 0,
-  "receipt_id": "gpurcp-3c031dc0e676"
+  "receipt_id": "gpurcp-70c0404a7831"
  },
  "remote_state": {
   "phase": "malpha_voice_train",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-04T18:38:57Z",
   "progress": {
    "stage": "training codec language model",
-   "step": 25625,
+   "step": 40000,
    "of": 40000,
-   "loss": 1.6363,
-   "elapsed_s": 3117,
+   "loss": 1.1669,
+   "elapsed_s": 4376,
    "gpu_peak_gb": 17.35,
-   "last_checkpoint_step": 25500,
-   "next_checkpoint_step": 26000,
+   "last_checkpoint_step": 40000,
+   "next_checkpoint_step": 40500,
    "parameters": 111314968
   },
   "stages": {
@@ -357,6 +363,132 @@
      "max_cosine": 0.6303,
      "rendered": 12
     }
+   },
+   "dev_eval_step_27500": {
+    "at": "2026-10-04T19:33:51Z",
+    "kik": {
+     "overall_similarity": 0.5617,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6167,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6093,
+     "identity_gate_passes": false,
+     "max_cosine": 0.509,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5561,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6322,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_30000": {
+    "at": "2026-10-04T19:37:38Z",
+    "kik": {
+     "overall_similarity": 0.5319,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5676,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6173,
+     "identity_gate_passes": false,
+     "max_cosine": 0.618,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6352,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6048,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_32500": {
+    "at": "2026-10-04T19:41:22Z",
+    "kik": {
+     "overall_similarity": 0.5438,
+     "identity_gate_passes": false,
+     "max_cosine": 0.548,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5264,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6734,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5383,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5743,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_35000": {
+    "at": "2026-10-04T19:45:05Z",
+    "kik": {
+     "overall_similarity": 0.5785,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5611,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.7015,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5891,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5779,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5293,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_37500": {
+    "at": "2026-10-04T19:48:45Z",
+    "kik": {
+     "overall_similarity": 0.6009,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5242,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.4706,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5813,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5568,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5789,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_40000": {
+    "at": "2026-10-04T19:52:24Z",
+    "kik": {
+     "overall_similarity": 0.6231,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5619,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.7042,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6272,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6157,
+     "identity_gate_passes": false,
+     "max_cosine": 0.7009,
+     "rendered": 12
+    }
    }
   },
   "events": [
@@ -376,8 +508,3162 @@
   "job_id": "m9j-43924ae49fa1",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-04T19:30:57Z"
+  "updated_at": "2026-10-04T19:52:26Z",
+  "finished_at": "2026-10-04T19:52:26Z",
+  "receipt_sha256": "605550daf46efbd220f4369a6665fa5bcab596fe20851c85155e8d35547c6f03"
  },
  "worker_log_tail": "le_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 7068.70it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-43924ae49fa1/worker.zip/services/training_lab/malpha_voice_worker.py:476: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(",
- "process_alive": true
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-43924ae49fa1",
+  "phase": "malpha_voice_train",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T18:38:57Z",
+  "code_sha256": "adbe8f70bb1dce7b88938b6dc8676bc3b844a18a50f669168e6cffcda5da2ac1",
+  "status": "completed",
+  "result": {
+   "commission_id": "STORY-KIK-KAM-SWA",
+   "iteration": 5,
+   "lane": "story_voice",
+   "recipe": {
+    "lr": 0.00014699999999999997,
+    "batch_size": 48,
+    "max_steps": 40000,
+    "warmup_steps": 1000,
+    "eval_every": 2500,
+    "checkpoint_every": 500,
+    "d_model": 768,
+    "layers": 12,
+    "heads": 12,
+    "max_segment_seconds": 12.0,
+    "spectral_feedback": true,
+    "eval_prompts_per_language": 12,
+    "identity_cosine_threshold": 0.4,
+    "identity_conditioning": true,
+    "identity_candidates": 200,
+    "identity_noise": 1.0,
+    "identity_margin": 0.15,
+    "loudness_match": true,
+    "language_balance": true,
+    "dense_identity": true,
+    "worker_design_version": 2,
+    "init_from": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ed018335b45c/artefact/voice_lm.pt",
+    "rationale": "continue iteration 4's compatible weights at 0.7\u00d7 learning rate; similarity {'kik': 0.4612, 'kam': 0.5193, 'swa': 0.5593}; identity gate failed for kik, kam, swa \u2192 identity resampled with more noise (1.0) and a wider construction margin (0.15). Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence."
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-04T18:39:09Z",
+    "train_segments": 75012,
+    "train_hours": 62.04,
+    "dev_segments": 3811,
+    "text_vocab": 68,
+    "admission_read": false,
+    "per_language": {
+     "kik": 29627,
+     "kam": 12642,
+     "swa": 32743
+    },
+    "excluded_overlong_transcripts": 9,
+    "max_text_chars": 400,
+    "max_codec_frames": 152
+   },
+   "steps": 40000,
+   "parameters": 111314968,
+   "codec_provenance": {
+    "repo": "kyutai/mimi",
+    "revision": "89091b3e466eb6a9d11e537bf26b144f194978f7",
+    "codebooks_used": 8,
+    "codebook_size": 2048,
+    "frame_rate_hz": 12.5,
+    "tokens_per_second": 100.0,
+    "content_stream": "codebook 0 (semantic, WavLM-distilled)",
+    "character_stream": "codebooks 1-7 (acoustic residual)",
+    "sampling_rate": 24000,
+    "dtype": "torch.float32"
+   },
+   "dev": {
+    "step": 40000,
+    "at": "2026-10-04T19:51:57Z",
+    "per_language": {
+     "kik": {
+      "prompts": 12,
+      "rendered": 12,
+      "behaviour": {
+       "features": {
+        "energy_db_mean": {
+         "baseline_p50": -17.21,
+         "generated_p50": -17.27,
+         "standardized_mean_diff": 0.06,
+         "wasserstein_norm": 0.707,
+         "similarity": 0.4932
+        },
+        "energy_db_std": {
+         "baseline_p50": 7.78,
+         "generated_p50": 8.12,
+         "standardized_mean_diff": 0.052,
+         "wasserstein_norm": 0.173,
+         "similarity": 0.8408
+        },
+        "pause_ratio": {
+         "baseline_p50": 0.04,
+         "generated_p50": 0.183,
+         "standardized_mean_diff": 0.918,
+         "wasserstein_norm": 0.896,
+         "similarity": 0.408
+        },
+        "f0_mean_hz": {
+         "baseline_p50": 193.3,
+         "generated_p50": 226.6,
+         "standardized_mean_diff": 0.674,
+         "wasserstein_norm": 0.609,
+         "similarity": 0.544
+        },
+        "f0_std_semitones": {
+         "baseline_p50": 4.649,
+         "generated_p50": 4.489,
+         "standardized_mean_diff": -0.308,
+         "wasserstein_norm": 0.446,
+         "similarity": 0.64
+        },
+        "f0_range_hz": {
+         "baseline_p50": 114.9,
+         "generated_p50": 139.7,
+         "standardized_mean_diff": -0.009,
+         "wasserstein_norm": 0.401,
+         "similarity": 0.6698
+        },
+        "voiced_ratio": {
+         "baseline_p50": 0.763,
+         "generated_p50": 0.712,
+         "standardized_mean_diff": -0.283,
+         "wasserstein_norm": 0.388,
+         "similarity": 0.6783
+        },
+        "spectral_centroid_hz": {
+         "baseline_p50": 1565.8,
+         "generated_p50": 1370.45,
+         "standardized_mean_diff": -0.404,
+         "wasserstein_norm": 0.496,
+         "similarity": 0.6089
+        },
+        "spectral_bandwidth_hz": {
+         "baseline_p50": 1637.6,
+         "generated_p50": 1526.85,
+         "standardized_mean_diff": -0.399,
+         "wasserstein_norm": 0.614,
+         "similarity": 0.5412
+        },
+        "spectral_rolloff_hz": {
+         "baseline_p50": 3220.8,
+         "generated_p50": 2855.95,
+         "standardized_mean_diff": -0.366,
+         "wasserstein_norm": 0.515,
+         "similarity": 0.5972
+        },
+        "spectral_flatness": {
+         "baseline_p50": 0.016,
+         "generated_p50": 0.013,
+         "standardized_mean_diff": -0.313,
+         "wasserstein_norm": 0.434,
+         "similarity": 0.6478
+        },
+        "zcr": {
+         "baseline_p50": 0.088,
+         "generated_p50": 0.081,
+         "standardized_mean_diff": -0.083,
+         "wasserstein_norm": 0.213,
+         "similarity": 0.8081
+        }
+       },
+       "overall_similarity": 0.6231
+      },
+      "identity_gate": {
+       "comparators": 6304,
+       "threshold_cosine": 0.4,
+       "prompts": 12,
+       "rendered": 12,
+       "evaluated": 10,
+       "coverage_complete": false,
+       "max_cosine_to_any_corpus_speaker": 0.5619,
+       "mean_max_cosine": 0.4572,
+       "passes": false,
+       "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+      },
+      "loudness_match": {
+       "applied": true,
+       "target_db": -17.21,
+       "mean_gain_db": 14.69
+      },
+      "generated_spectrum": {
+       "f0_mean_hz": {
+        "n": 12,
+        "p10": 181.84,
+        "p50": 226.6,
+        "p90": 250.52,
+        "mean": 235.983,
+        "std": 64.354
+       },
+       "f0_range_hz": {
+        "n": 12,
+        "p10": 65.12,
+        "p50": 139.7,
+        "p90": 204.58,
+        "mean": 140.558,
+        "std": 61.135
+       },
+       "pause_ratio": {
+        "n": 12,
+        "p10": 0.033,
+        "p50": 0.183,
+        "p90": 0.428,
+        "mean": 0.192,
+        "std": 0.147
+       },
+       "energy_db_std": {
+        "n": 12,
+        "p10": 5.836,
+        "p50": 8.12,
+        "p90": 9.367,
+        "mean": 7.927,
+        "std": 1.668
+       },
+       "spectral_centroid_hz": {
+        "n": 12,
+        "p10": 1134.95,
+        "p50": 1370.45,
+        "p90": 1848.67,
+        "mean": 1426.7,
+        "std": 265.99
+       }
+      }
+     },
+     "kam": {
+      "prompts": 12,
+      "rendered": 12,
+      "behaviour": {
+       "features": {
+        "energy_db_mean": {
+         "baseline_p50": -16.69,
+         "generated_p50": -16.955,
+         "standardized_mean_diff": -0.044,
+         "wasserstein_norm": 0.661,
+         "similarity": 0.5165
+        },
+        "energy_db_std": {
+         "baseline_p50": 8.37,
+         "generated_p50": 9.155,
+         "standardized_mean_diff": 0.214,
+         "wasserstein_norm": 0.232,
+         "similarity": 0.793
+        },
+        "pause_ratio": {
+         "baseline_p50": 0.001,
+         "generated_p50": 0.051,
+         "standardized_mean_diff": 0.305,
+         "wasserstein_norm": 0.353,
+         "similarity": 0.7023
+        },
+        "f0_mean_hz": {
+         "baseline_p50": 231.75,
+         "generated_p50": 242.8,
+         "standardized_mean_diff": 0.694,
+         "wasserstein_norm": 0.657,
+         "similarity": 0.5185
+        },
+        "f0_std_semitones": {
+         "baseline_p50": 5.494,
+         "generated_p50": 4.679,
+         "standardized_mean_diff": -0.409,
+         "wasserstein_norm": 0.411,
+         "similarity": 0.6627
+        },
+        "f0_range_hz": {
+         "baseline_p50": 196.9,
+         "generated_p50": 117.1,
+         "standardized_mean_diff": -0.439,
+         "wasserstein_norm": 0.454,
+         "similarity": 0.6351
+        },
+        "voiced_ratio": {
+         "baseline_p50": 0.773,
+         "generated_p50": 0.715,
+         "standardized_mean_diff": -0.202,
+         "wasserstein_norm": 0.264,
+         "similarity": 0.768
+        },
+        "spectral_centroid_hz": {
+         "baseline_p50": 1404.3,
+         "generated_p50": 1249.95,
+         "standardized_mean_diff": -0.277,
+         "wasserstein_norm": 0.278,
+         "similarity": 0.7575
+        },
+        "spectral_bandwidth_hz": {
+         "baseline_p50": 1526.7,
+         "generated_p50": 1536.1,
+         "standardized_mean_diff": 0.118,
+         "wasserstein_norm": 0.278,
+         "similarity": 0.7573
+        },
+        "spectral_rolloff_hz": {
+         "baseline_p50": 2865.55,
+         "generated_p50": 2694.7,
+         "standardized_mean_diff": -0.137,
+         "wasserstein_norm": 0.177,
+         "similarity": 0.838
+        },
+        "spectral_flatness": {
+         "baseline_p50": 0.01,
+         "generated_p50": 0.007,
+         "standardized_mean_diff": -0.077,
+         "wasserstein_norm": 0.211,
+         "similarity": 0.8095
+        },
+        "zcr": {
+         "baseline_p50": 0.079,
+         "generated_p50": 0.074,
+         "standardized_mean_diff": -0.351,
+         "wasserstein_norm": 0.367,
+         "similarity": 0.6925
+        }
+       },
+       "overall_similarity": 0.7042
+      },
+      "identity_gate": {
+       "comparators": 6304,
+       "threshold_cosine": 0.4,
+       "prompts": 12,
+       "rendered": 12,
+       "evaluated": 11,
+       "coverage_complete": false,
+       "max_cosine_to_any_corpus_speaker": 0.6272,
+       "mean_max_cosine": 0.4552,
+       "passes": false,
+       "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+      },
+      "loudness_match": {
+       "applied": true,
+       "target_db": -16.69,
+       "mean_gain_db": 16.21
+      },
+      "generated_spectrum": {
+       "f0_mean_hz": {
+        "n": 12,
+        "p10": 194.06,
+        "p50": 242.8,
+        "p90": 429.08,
+        "mean": 288.633,
+        "std": 94.038
+       },
+       "f0_range_hz": {
+        "n": 12,
+        "p10": 36.81,
+        "p50": 117.1,
+        "p90": 299.18,
+        "mean": 148.375,
+        "std": 99.303
+       },
+       "pause_ratio": {
+        "n": 12,
+        "p10": 0.0,
+        "p50": 0.051,
+        "p90": 0.31,
+        "mean": 0.111,
+        "std": 0.127
+       },
+       "energy_db_std": {
+        "n": 12,
+        "p10": 4.838,
+        "p50": 9.155,
+        "p90": 11.257,
+        "mean": 8.773,
+        "std": 2.61
+       },
+       "spectral_centroid_hz": {
+        "n": 12,
+        "p10": 901.52,
+        "p50": 1249.95,
+        "p90": 1808.85,
+        "mean": 1326.833,
+        "std": 378.739
+       }
+      }
+     },
+     "swa": {
+      "prompts": 12,
+      "rendered": 12,
+      "behaviour": {
+       "features": {
+        "energy_db_mean": {
+         "baseline_p50": -13.47,
+         "generated_p50": -14.13,
+         "standardized_mean_diff": 0.015,
+         "wasserstein_norm": 0.688,
+         "similarity": 0.5026
+        },
+        "energy_db_std": {
+         "baseline_p50": 8.4,
+         "generated_p50": 7.84,
+         "standardized_mean_diff": -0.441,
+         "wasserstein_norm": 0.452,
+         "similarity": 0.6364
+        },
+        "pause_ratio": {
+         "baseline_p50": 0.027,
+         "generated_p50": 0.102,
+         "standardized_mean_diff": 0.333,
+         "wasserstein_norm": 0.352,
+         "similarity": 0.7035
+        },
+        "f0_mean_hz": {
+         "baseline_p50": 199.8,
+         "generated_p50": 202.85,
+         "standardized_mean_diff": 1.139,
+         "wasserstein_norm": 1.078,
+         "similarity": 0.3402
+        },
+        "f0_std_semitones": {
+         "baseline_p50": 5.255,
+         "generated_p50": 3.933,
+         "standardized_mean_diff": -0.617,
+         "wasserstein_norm": 0.678,
+         "similarity": 0.5078
+        },
+        "f0_range_hz": {
+         "baseline_p50": 140.9,
+         "generated_p50": 84.55,
+         "standardized_mean_diff": -0.741,
+         "wasserstein_norm": 0.803,
+         "similarity": 0.4479
+        },
+        "voiced_ratio": {
+         "baseline_p50": 0.711,
+         "generated_p50": 0.677,
+         "standardized_mean_diff": -0.194,
+         "wasserstein_norm": 0.264,
+         "similarity": 0.7683
+        },
+        "spectral_centroid_hz": {
+         "baseline_p50": 1516.1,
+         "generated_p50": 1505.85,
+         "standardized_mean_diff": -0.029,
+         "wasserstein_norm": 0.465,
+         "similarity": 0.6284
+        },
+        "spectral_bandwidth_hz": {
+         "baseline_p50": 1632.6,
+         "generated_p50": 1505.35,
+         "standardized_mean_diff": 0.058,
+         "wasserstein_norm": 0.356,
+         "similarity": 0.7001
+        },
+        "spectral_rolloff_hz": {
+         "baseline_p50": 3064.7,
+         "generated_p50": 3022.05,
+         "standardized_mean_diff": 0.083,
+         "wasserstein_norm": 0.295,
+         "similarity": 0.7448
+        },
+        "spectral_flatness": {
+         "baseline_p50": 0.019,
+         "generated_p50": 0.02,
+         "standardized_mean_diff": 0.108,
+         "wasserstein_norm": 0.341,
+         "similarity": 0.7111
+        },
+        "zcr": {
+         "baseline_p50": 0.088,
+         "generated_p50": 0.093,
+         "standardized_mean_diff": 0.101,
+         "wasserstein_norm": 0.361,
+         "similarity": 0.6972
+        }
+       },
+       "overall_similarity": 0.6157
+      },
+      "identity_gate": {
+       "comparators": 6304,
+       "threshold_cosine": 0.4,
+       "prompts": 12,
+       "rendered": 12,
+       "evaluated": 11,
+       "coverage_complete": false,
+       "max_cosine_to_any_corpus_speaker": 0.7009,
+       "mean_max_cosine": 0.5332,
+       "passes": false,
+       "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+      },
+      "loudness_match": {
+       "applied": true,
+       "target_db": -13.47,
+       "mean_gain_db": 25.12
+      },
+      "generated_spectrum": {
+       "f0_mean_hz": {
+        "n": 12,
+        "p10": 179.89,
+        "p50": 202.85,
+        "p90": 448.08,
+        "mean": 267.817,
+        "std": 108.475
+       },
+       "f0_range_hz": {
+        "n": 12,
+        "p10": 1.27,
+        "p50": 84.55,
+        "p90": 167.84,
+        "mean": 92.333,
+        "std": 83.541
+       },
+       "pause_ratio": {
+        "n": 12,
+        "p10": 0.0,
+        "p50": 0.102,
+        "p90": 0.284,
+        "mean": 0.127,
+        "std": 0.131
+       },
+       "energy_db_std": {
+        "n": 12,
+        "p10": 3.796,
+        "p50": 7.84,
+        "p90": 9.143,
+        "mean": 7.45,
+        "std": 2.271
+       },
+       "spectral_centroid_hz": {
+        "n": 12,
+        "p10": 1331.33,
+        "p50": 1505.85,
+        "p90": 1641.69,
+        "mean": 1514.617,
+        "std": 177.393
+       }
+      }
+     }
+    },
+    "train_loss": 1.1358,
+    "spectral_feedback_applied": [
+     {
+      "step": 40000,
+      "language": "kik",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.918
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.674
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.308
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.404
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.399
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.366
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.313
+       }
+      }
+     },
+     {
+      "step": 40000,
+      "language": "kam",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.305
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.694
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.409
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.439
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.351
+       }
+      }
+     },
+     {
+      "step": 40000,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.441
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.333
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.139
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.617
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.741
+       }
+      }
+     }
+    ]
+   },
+   "history": [
+    {
+     "step": 2500,
+     "train_loss": 4.0761,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.4375,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5886,
+        "mean_max_cosine": 0.4576,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.5393,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.4834,
+        "mean_max_cosine": 0.4178,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.4597,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6493,
+        "mean_max_cosine": 0.5116,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 5000,
+     "train_loss": 1.0779,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.7032,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 9,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5069,
+        "mean_max_cosine": 0.4305,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.6145,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5154,
+        "mean_max_cosine": 0.4454,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.607,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.522,
+        "mean_max_cosine": 0.4502,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 7500,
+     "train_loss": 3.0707,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5795,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6973,
+        "mean_max_cosine": 0.4467,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.5297,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6626,
+        "mean_max_cosine": 0.4715,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.6439,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5571,
+        "mean_max_cosine": 0.4568,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 10000,
+     "train_loss": 1.3099,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.6319,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.4843,
+        "mean_max_cosine": 0.4057,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.6715,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5832,
+        "mean_max_cosine": 0.435,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.6367,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5489,
+        "mean_max_cosine": 0.4733,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 12500,
+     "train_loss": 2.7799,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.539,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5423,
+        "mean_max_cosine": 0.4272,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.4139,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5596,
+        "mean_max_cosine": 0.4426,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.5976,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6519,
+        "mean_max_cosine": 0.4788,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 15000,
+     "train_loss": 1.1299,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.582,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6305,
+        "mean_max_cosine": 0.4804,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.6419,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5935,
+        "mean_max_cosine": 0.4468,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.6195,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.557,
+        "mean_max_cosine": 0.4394,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 17500,
+     "train_loss": 2.6047,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5662,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5024,
+        "mean_max_cosine": 0.4097,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.4614,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5394,
+        "mean_max_cosine": 0.432,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.5231,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.588,
+        "mean_max_cosine": 0.4842,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 20000,
+     "train_loss": 1.0147,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.495,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.596,
+        "mean_max_cosine": 0.4469,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.6148,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5956,
+        "mean_max_cosine": 0.4364,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.6079,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5767,
+        "mean_max_cosine": 0.4544,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 22500,
+     "train_loss": 2.2231,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5349,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.4886,
+        "mean_max_cosine": 0.4042,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.4998,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5435,
+        "mean_max_cosine": 0.4241,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.5461,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6557,
+        "mean_max_cosine": 0.4571,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 25000,
+     "train_loss": 0.8466,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5682,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6512,
+        "mean_max_cosine": 0.4813,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.5607,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5573,
+        "mean_max_cosine": 0.4524,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.589,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6303,
+        "mean_max_cosine": 0.5223,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 27500,
+     "train_loss": 1.446,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5617,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6167,
+        "mean_max_cosine": 0.4606,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.6093,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 9,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.509,
+        "mean_max_cosine": 0.4318,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.5561,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6322,
+        "mean_max_cosine": 0.5235,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 30000,
+     "train_loss": 1.1142,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5319,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5676,
+        "mean_max_cosine": 0.4613,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.6173,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.618,
+        "mean_max_cosine": 0.4609,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.6352,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6048,
+        "mean_max_cosine": 0.4753,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 32500,
+     "train_loss": 2.6089,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5438,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.548,
+        "mean_max_cosine": 0.4638,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.5264,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 9,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6734,
+        "mean_max_cosine": 0.4581,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.5383,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5743,
+        "mean_max_cosine": 0.4761,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 35000,
+     "train_loss": 0.9367,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.5785,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5611,
+        "mean_max_cosine": 0.4413,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.7015,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5891,
+        "mean_max_cosine": 0.4305,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.5779,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5293,
+        "mean_max_cosine": 0.4636,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 37500,
+     "train_loss": 2.1796,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.6009,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 9,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5242,
+        "mean_max_cosine": 0.4434,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.4706,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5813,
+        "mean_max_cosine": 0.466,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.5568,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 12,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5789,
+        "mean_max_cosine": 0.4339,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    },
+    {
+     "step": 40000,
+     "train_loss": 1.1358,
+     "per_language": {
+      "kik": {
+       "overall_similarity": 0.6231,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 10,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.5619,
+        "mean_max_cosine": 0.4572,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "kam": {
+       "overall_similarity": 0.7042,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.6272,
+        "mean_max_cosine": 0.4552,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      },
+      "swa": {
+       "overall_similarity": 0.6157,
+       "identity_gate": {
+        "comparators": 6304,
+        "threshold_cosine": 0.4,
+        "prompts": 12,
+        "rendered": 12,
+        "evaluated": 11,
+        "coverage_complete": false,
+        "max_cosine_to_any_corpus_speaker": 0.7009,
+        "mean_max_cosine": 0.5332,
+        "passes": false,
+        "scope": "all available train/dev corpus groups across commissioned languages; sealed admission excluded; not global human uniqueness"
+       },
+       "rendered": 12
+      }
+     }
+    }
+   ],
+   "spectral_feedback": {
+    "enabled": true,
+    "log": [
+     {
+      "step": 2500,
+      "language": "kik",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.134
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.306
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.543
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.308
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.795
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.517
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.727
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.496
+       }
+      }
+     },
+     {
+      "step": 2500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.491
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.247
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.578
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.85
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.647
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.051
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.497
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.457
+       }
+      }
+     },
+     {
+      "step": 2500,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.626
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.834
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.369
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.467
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.387
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.897
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.22
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.942
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.663
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.41
+       }
+      }
+     },
+     {
+      "step": 5000,
+      "language": "kik",
+      "applied": {
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.384
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.614
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.389
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.312
+       }
+      }
+     },
+     {
+      "step": 5000,
+      "language": "kam",
+      "applied": {
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.33
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.505
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.445
+       }
+      }
+     },
+     {
+      "step": 5000,
+      "language": "swa",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.419
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.537
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.529
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.414
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.357
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.419
+       }
+      }
+     },
+     {
+      "step": 7500,
+      "language": "kik",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.329
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.616
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.935
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.766
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.84
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.784
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.756
+       }
+      }
+     },
+     {
+      "step": 7500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.471
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.77
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.559
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.817
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.46
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.868
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.602
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.755
+       }
+      }
+     },
+     {
+      "step": 7500,
+      "language": "swa",
+      "applied": {
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.373
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.377
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.413
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.55
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.536
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.459
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.352
+       }
+      }
+     },
+     {
+      "step": 10000,
+      "language": "kik",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.343
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.489
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.908
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight lower values",
+        "smd": 0.319
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.517
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.327
+       }
+      }
+     },
+     {
+      "step": 10000,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.401
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.459
+       },
+       "zcr": {
+        "direction": "up-weight lower values",
+        "smd": 0.404
+       }
+      }
+     },
+     {
+      "step": 10000,
+      "language": "swa",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.409
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.715
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.453
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.624
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.467
+       }
+      }
+     },
+     {
+      "step": 12500,
+      "language": "kik",
+      "applied": {
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.419
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.32
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.148
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.082
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.297
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.649
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.765
+       }
+      }
+     },
+     {
+      "step": 12500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.74
+       },
+       "pause_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.574
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.604
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.312
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.767
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.333
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.998
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.417
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.8
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -1.107
+       }
+      }
+     },
+     {
+      "step": 12500,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.353
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.69
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.416
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.573
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.84
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.712
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.352
+       }
+      }
+     },
+     {
+      "step": 15000,
+      "language": "kik",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.001
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.967
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.649
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.596
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.386
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.443
+       }
+      }
+     },
+     {
+      "step": 15000,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.39
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.915
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.99
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.786
+       }
+      }
+     },
+     {
+      "step": 15000,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.55
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.697
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.512
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.398
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.375
+       },
+       "zcr": {
+        "direction": "up-weight lower values",
+        "smd": 0.328
+       }
+      }
+     },
+     {
+      "step": 17500,
+      "language": "kik",
+      "applied": {
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.58
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.381
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.329
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.782
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.638
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.743
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.635
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.502
+       }
+      }
+     },
+     {
+      "step": 17500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.797
+       },
+       "pause_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.568
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.287
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.347
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.995
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.102
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.61
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.217
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.667
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.975
+       }
+      }
+     },
+     {
+      "step": 17500,
+      "language": "swa",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.378
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.785
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.32
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.034
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.893
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.75
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.996
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.899
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.701
+       }
+      }
+     },
+     {
+      "step": 20000,
+      "language": "kik",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.67
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.33
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.795
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight lower values",
+        "smd": 0.478
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.715
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -1.068
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.708
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.692
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.684
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.313
+       }
+      }
+     },
+     {
+      "step": 20000,
+      "language": "kam",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.605
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.618
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.444
+       }
+      }
+     },
+     {
+      "step": 20000,
+      "language": "swa",
+      "applied": {
+       "energy_db_mean": {
+        "direction": "up-weight higher values",
+        "smd": -0.318
+       },
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.669
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.542
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight lower values",
+        "smd": 0.586
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.825
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.471
+       }
+      }
+     },
+     {
+      "step": 22500,
+      "language": "kik",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.349
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.374
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.603
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.371
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.718
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.61
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.889
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.786
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.714
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.392
+       }
+      }
+     },
+     {
+      "step": 22500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.38
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.124
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.889
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.891
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.858
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.03
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.708
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.598
+       }
+      }
+     },
+     {
+      "step": 22500,
+      "language": "swa",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.626
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.397
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.617
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.436
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.888
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.971
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.944
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.68
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.51
+       }
+      }
+     },
+     {
+      "step": 25000,
+      "language": "kik",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.611
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.681
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.146
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight lower values",
+        "smd": 0.336
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.777
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -1.122
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.379
+       }
+      }
+     },
+     {
+      "step": 25000,
+      "language": "kam",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.043
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.799
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.563
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.529
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.456
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.344
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.51
+       }
+      }
+     },
+     {
+      "step": 25000,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.581
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.535
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.505
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.552
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.366
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.319
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.364
+       }
+      }
+     },
+     {
+      "step": 27500,
+      "language": "kik",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.613
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.599
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.822
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.006
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.849
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.645
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.491
+       }
+      }
+     },
+     {
+      "step": 27500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.716
+       },
+       "pause_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.466
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.363
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.413
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.585
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.533
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.477
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.679
+       }
+      }
+     },
+     {
+      "step": 27500,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.309
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.617
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.518
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.433
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.863
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.807
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.917
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.767
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.613
+       }
+      }
+     },
+     {
+      "step": 30000,
+      "language": "kik",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.441
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.055
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.87
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.743
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.473
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.45
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.551
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.307
+       }
+      }
+     },
+     {
+      "step": 30000,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.367
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.052
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.806
+       }
+      }
+     },
+     {
+      "step": 30000,
+      "language": "swa",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.163
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.926
+       }
+      }
+     },
+     {
+      "step": 32500,
+      "language": "kik",
+      "applied": {
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.528
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.323
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.497
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.042
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.939
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.125
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.762
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.707
+       }
+      }
+     },
+     {
+      "step": 32500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.431
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.072
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.467
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.098
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.757
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.144
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.579
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.947
+       }
+      }
+     },
+     {
+      "step": 32500,
+      "language": "swa",
+      "applied": {
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.935
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.648
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.867
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.88
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.909
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.757
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.542
+       }
+      }
+     },
+     {
+      "step": 35000,
+      "language": "kik",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.445
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.002
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.543
+       },
+       "f0_range_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.669
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.681
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.407
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.469
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.388
+       }
+      }
+     },
+     {
+      "step": 35000,
+      "language": "kam",
+      "applied": {
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.211
+       }
+      }
+     },
+     {
+      "step": 35000,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight lower values",
+        "smd": 0.309
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 1.001
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.135
+       },
+       "voiced_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.516
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.357
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.302
+       }
+      }
+     },
+     {
+      "step": 37500,
+      "language": "kik",
+      "applied": {
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.42
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.37
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.461
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.73
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.647
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.681
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.787
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.658
+       }
+      }
+     },
+     {
+      "step": 37500,
+      "language": "kam",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.935
+       },
+       "pause_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.547
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.057
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.322
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.408
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.709
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.066
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.81
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -1.241
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.724
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.797
+       }
+      }
+     },
+     {
+      "step": 37500,
+      "language": "swa",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight higher values",
+        "smd": -0.517
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.556
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.38
+       },
+       "voiced_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.68
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.67
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.625
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.764
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.551
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.4
+       }
+      }
+     },
+     {
+      "step": 40000,
+      "language": "kik",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.918
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.674
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.308
+       },
+       "spectral_centroid_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.404
+       },
+       "spectral_bandwidth_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.399
+       },
+       "spectral_rolloff_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.366
+       },
+       "spectral_flatness": {
+        "direction": "up-weight higher values",
+        "smd": -0.313
+       }
+      }
+     },
+     {
+      "step": 40000,
+      "language": "kam",
+      "applied": {
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.305
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 0.694
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.409
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.439
+       },
+       "zcr": {
+        "direction": "up-weight higher values",
+        "smd": -0.351
+       }
+      }
+     },
+     {
+      "step": 40000,
+      "language": "swa",
+      "applied": {
+       "energy_db_std": {
+        "direction": "up-weight higher values",
+        "smd": -0.441
+       },
+       "pause_ratio": {
+        "direction": "up-weight lower values",
+        "smd": 0.333
+       },
+       "f0_mean_hz": {
+        "direction": "up-weight lower values",
+        "smd": 1.139
+       },
+       "f0_std_semitones": {
+        "direction": "up-weight higher values",
+        "smd": -0.617
+       },
+       "f0_range_hz": {
+        "direction": "up-weight higher values",
+        "smd": -0.741
+       }
+      }
+     }
+    ]
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-43924ae49fa1/artefact/voice_lm.pt",
+    "sha256": "7efc36d459b252ec3b7705630fe271b096bd07a814f8f1ccc166719fb080b05b",
+    "bytes": 445326741
+   },
+   "identity": {
+    "temporary_identity_representations_destroyed": true,
+    "persistent_voiceprint_register": false,
+    "conditioning": "invented identity vector (synthetic; certificate in artefact)",
+    "invented_identity_certificate": {
+     "method": "mean of 8 corpus-derived (session, speaker) representations + isotropic noise (sigma 1.00 \u00d7 norm), re-normalised; resampled until max cosine to every corpus-derived representation < threshold \u2212 margin",
+     "representation_space": "speechbrain/spkrec-ecapa-voxceleb (192-d, unit norm)",
+     "corpus_representations_checked": 6304,
+     "gate_threshold": 0.4,
+     "construction_margin": 0.15,
+     "max_cosine_to_any_corpus_representation": 0.2162,
+     "passes_construction_check": true,
+     "candidates_tried": 1,
+     "scope": "corpus-derived speaker representations of this estate only; not a global uniqueness claim over all humans",
+     "conditioning_input_fixed_at_serving": true
+    },
+    "loudness_match": {
+     "enabled": true,
+     "target_db_by_language": {
+      "kik": -17.21,
+      "kam": -16.69,
+      "swa": -13.47
+     }
+    }
+   },
+   "compute": {
+    "wall_seconds": 4406.8,
+    "gpu_seconds": 4406.8,
+    "gpu_hours": 1.2241,
+    "gpu_peak_gb": 17.35
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false
+  },
+  "finished_at": "2026-10-04T19:52:26Z",
+  "receipt_sha256": "605550daf46efbd220f4369a6665fa5bcab596fe20851c85155e8d35547c6f03",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T19:52:26Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-43924ae49fa1",
+  "started_at_utc": "2026-10-04T18:38:57.352372Z",
+  "finished_at_utc": "2026-10-04T19:52:26Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-43924ae49fa1"
+ }
 }

@@ -33,6 +33,7 @@ MALPHA_PHASES = {"malpha_aip_build": {'lab_corpus_root', 'max_files_per_language
 MALPHA_COMMON = {'commission_id', 'languages', 'gpu_index', 'budget_mode', 'owner_order_ref', 'seed', 'iteration', 'aip_db_dir'}
 MALPHA_PHASES['malpha_worker_audit'] = {'worker_contract_version'}
 MALPHA_PHASES['malpha_corpus_audit'] = {'audit_version', 'lab_corpus_root'}
+MALPHA_PHASES['malpha_aip_reseal'] = {'lab_corpus_root', 'split_version'}
 PHASES = tuple(dict.fromkeys((*PHASES, *MALPHA_PHASES)))
 OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
@@ -168,10 +169,17 @@ def validate(phase, params, host):
         if params['epochs'] > 100 or params['folds'] > 10 or not 0 < float(params['lr']) < 1 or not 10 <= float(params['max_seconds_per_file']) <= 3600:
             raise ValueError('MUSIC_DETECTOR_BOUNDS_INVALID:recipe')
     if phase in MALPHA_PHASES:
-        required = MALPHA_COMMON | MALPHA_PHASES[phase]; optional = {'resume_from', 'brand_lexicon_version'}
+        required = MALPHA_COMMON | MALPHA_PHASES[phase]; optional = {'resume_from', 'brand_lexicon_version', 'split_version'}
         if phase == 'malpha_internet_corpus': optional |= {'data_revision'}
+        if phase == 'malpha_evaluate': optional |= {'reference_labels'}
         if not required <= set(params) <= required | optional:
             raise ValueError('MALPHA_SCOPE_INVALID:' + ','.join(sorted((required | optional) ^ set(params))))
+        if 'split_version' in params and (type(params['split_version']) is not int or params['split_version'] < 1):
+            raise ValueError('MALPHA_SPLIT_VERSION_INVALID')
+        if 'reference_labels' in params and (not isinstance(params['reference_labels'], dict) or not all(re.fullmatch(r'[a-f0-9]{16}', k) and isinstance(v, list) for k, v in params['reference_labels'].items())):
+            raise ValueError('MALPHA_REFERENCE_LABELS_INVALID')
+        if phase in ('malpha_aip_reseal', 'malpha_corpus_audit') and params['lab_corpus_root'] != os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']:
+            raise ValueError('MALPHA_CORPUS_SCOPE_INVALID')
         if 'brand_lexicon' in params and (not isinstance(params['brand_lexicon'], list) or not params['brand_lexicon'] or not all(isinstance(b, dict) and b.get('brand') and isinstance(b.get('aliases'), list) and b['aliases'] for b in params['brand_lexicon'])):
             raise ValueError('MALPHA_LEXICON_INVALID')
         if phase == 'malpha_internet_corpus' and (not isinstance(params['datasets'], list) or not params['datasets'] or not all(isinstance(d, dict) and re.fullmatch(r'[\w.-]+/[\w.-]+', str(d.get('repo'))) and d.get('language') in ('kik', 'kam', 'swa') for d in params['datasets'])

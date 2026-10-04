@@ -33,8 +33,10 @@ def _checks(lane, job):
 def runs():
     from services.training_lab.board import _run, _msg, _duration, _n
     from services.training_lab.malpha_evaluation import admission_preflight
+    from services.training_lab import malpha_review
     rows = []; records = malpha.jobs(); commissions = {c['commission_id']: c for c in malpha.commissions()}
-    support = admission_preflight(records)
+    panel = malpha_review.current_panel()
+    support = admission_preflight(records, reference_panel=panel)
     intake = [j for j in records if j['phase'] == 'malpha_internet_corpus' and j['status'] == 'running']
     for job in reversed(records):
         lane = job['lane']
@@ -60,13 +62,21 @@ def runs():
                   ['Authority', 'Existing owner approval · no numeric GPU-hour or iteration ceiling']]
         if lane == 'listener':
             counts = ', '.join(f"{l}: {support['per_language'][l]['positive_segments']}" for l in malpha.LANGUAGES)
-            record += [['Evaluation support', f"Sealed positive segments — {counts}. Independent annotation and statistical support remain incomplete."]]
-            if support.get('audit_job_id'):
-                record += [['Independence audit', 'Not qualified: corpus audit found overlap or incomplete speaker coverage. Existing seals are preserved; independent acceptance is blocked.']]
+            seal_v = (job.get('params') or {}).get('split_version') or 1
+            record += [['Evaluation support', f"Sealed positive segments (seal v{support.get('split_version', 1)}) — {counts}. " + ('Statistical support is in place.' if all(support['per_language'][l]['sufficient'] for l in malpha.LANGUAGES) else 'Statistical support remains incomplete.')]]
+            record += [['Independence audit', 'Verified: admission speakers never appear in training or development; shared radio sessions are channel overlap, disclosed.' if support.get('independence_verified') else
+                        ('Not yet re-audited under the current seal.' if not support.get('audit_job_id') else 'Not qualified: the corpus audit found speaker or text overlap with the sealed admission split.')]]
+            if panel:
+                per = panel.get('per_language') or {}
+                record += [['Native review', ('Verified reference: every panel segment carries two independent native labels (or an adjudication).' if panel.get('verified') else
+                            'In progress — ' + '; '.join(f"{l}: {v['agreed'] + v['adjudicated']}/{v['tasks']} final" for l, v in per.items()) + '. The sealed read stays locked until complete.')]]
+            if seal_v != support.get('split_version', 1):
+                record += [['Seal', f"Trained under seal v{seal_v}; the admission split was re-sealed (v{support.get('split_version')}) afterwards — this artefact is not admissible, the next iteration is."]]
             if intake:
                 amounts = [j.get('progress', {}) for j in intake]
                 current_lang = amounts[0].get('language'); matching = [v.get('hours', 0) for v in amounts if v.get('language') == current_lang]
                 record += [['Data expansion', f"{max(matching, default=0)} h {current_lang or ''} ingested on the leading host; duplicate host copies not summed. Intake continues."]]
+            else: record += [['Data policy', 'Estate corpus only (owner, 4 Oct): public intake stopped; no public rows are trained on.']]
         if lane == 'story_voice': record += [['Identity', 'Rendered voice must remain below 0.40 against complete corpus comparator coverage. No missing renders counted as passes.']]
         if lane in ('story_text', 'story_text_comparison'): record += [['Reference quality', 'Radio-transcript adaptation; qualified story instructions and native story judgements remain outstanding.']]
         borrowed = (commissions.get('STORY-KIK-KAM-SWA') or {}).get('capacity_reallocation') or {}

@@ -1,0 +1,113 @@
+{
+ "job_id": "m9j-13ceedb9b022",
+ "phase": "malpha_aip_reseal",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T20:20:02.954313Z",
+ "params": {
+  "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+  "split_version": 3,
+  "commission_id": "LISTEN-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 0,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-eacb2cef402d",
+ "northena_trace_id": "trc-3cf51c98ef89",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-13ceedb9b022"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-13ceedb9b022",
+  "pid": 3907847
+ },
+ "status": "failed",
+ "ledger_rows": [
+  {
+   "row_id": "led-5c3a64b36338",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_aip_reseal_admitted"
+  },
+  {
+   "row_id": "led-a4b70f032ef1",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_aip_reseal_daemonised:pid=3907847"
+  },
+  {
+   "row_id": "led-e28008628b9d",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_aip_reseal_failed"
+  }
+ ],
+ "code_sha256": "2e96905b4a637b2bb233c2e406c2e713db7d6eabd5a592ecb2b7341c9fb0a398",
+ "started_at": "2026-10-04T20:20:09.101693Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T20:21:50.828358Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-94df51555967"
+ },
+ "remote_state": {
+  "phase": "malpha_aip_reseal",
+  "status": "failed",
+  "started_at": "2026-10-04T20:20:09Z",
+  "progress": {
+   "stage": "resealing Kikuyu at speaker-cluster level",
+   "elapsed_s": 0
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-13ceedb9b022",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T20:20:11Z",
+  "finished_at": "2026-10-04T20:20:11Z",
+  "receipt_sha256": "fa54318649821024ff68ea02436c0c50f90763f3fe5d79f03c1c539b8a35e2cb"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-13ceedb9b022",
+  "phase": "malpha_aip_reseal",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T20:20:09Z",
+  "code_sha256": "2e96905b4a637b2bb233c2e406c2e713db7d6eabd5a592ecb2b7341c9fb0a398",
+  "status": "failed",
+  "error": {
+   "type": "ValueError",
+   "message": "ADMISSION_SEAL_MISMATCH:kik",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-13ceedb9b022/worker.zip/services/training_runner/m9_worker.py\", line 1364, in execute\n    receipt['result'] = fn(control, state)\n                        ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-13ceedb9b022/worker.zip/services/training_lab/malpha_worker.py\", line 518, in aip_reseal\n    if _sha(json.dumps(sorted(r['seg_id'] for r in rows if r['split'] == 'admission'))) != manifest['seals'][lang]['admission_seg_ids_sha256']: raise ValueError(f'ADMISSION_SEAL_MISMATCH:{lang}')\n                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: ADMISSION_SEAL_MISMATCH:kik\n"
+  },
+  "stages_completed": {},
+  "finished_at": "2026-10-04T20:20:11Z",
+  "receipt_sha256": "fa54318649821024ff68ea02436c0c50f90763f3fe5d79f03c1c539b8a35e2cb",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T20:20:11Z",
+ "reason": "ValueError: ADMISSION_SEAL_MISMATCH:kik",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-13ceedb9b022",
+  "started_at_utc": "2026-10-04T20:20:09.101693Z",
+  "finished_at_utc": "2026-10-04T20:20:11Z",
+  "status": "failed",
+  "provenance_ref": "m9_training://run_log/m9j-13ceedb9b022"
+ }
+}

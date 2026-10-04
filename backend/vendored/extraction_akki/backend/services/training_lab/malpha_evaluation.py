@@ -86,15 +86,21 @@ def listener_evidence(metrics, *, group_counts=None, seed=1029, reference_verifi
             'limitations': 'Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision.'}
 
 
-def admission_preflight(records, languages=('kik', 'kam', 'swa')):
-    """Uses only already-recorded aggregate seal/support metadata, never opens test content."""
-    # The latest relabel result may reduce support. Do not choose a larger old count.
-    latest = next((j for j in reversed(records) if j.get('phase') == 'malpha_aip_relabel' and j.get('status') == 'completed'), None)
+def admission_preflight(records, languages=('kik', 'kam', 'swa'), reference_panel=None):
+    """Uses only already-recorded aggregate seal/support metadata, never opens test content.
+    `reference_panel` is the control plane's adjudicated native-review panel for the current seal set; without a verified panel there is no confirmation read."""
+    # The newest seal source wins: a v2 reseal supersedes the relabel report; an older, larger count is never chosen.
+    reseal = next((j for j in reversed(records) if j.get('phase') == 'malpha_aip_reseal' and j.get('status') == 'completed'), None)
+    latest = reseal or next((j for j in reversed(records) if j.get('phase') == 'malpha_aip_relabel' and j.get('status') == 'completed'), None)
     result = (latest or {}).get('result') or {}; report = result.get('report') or {}; seals = result.get('seals') or {}
     per = {}
     for lang in languages:
-        positives = ((report.get(lang) or {}).get('by_split') or {}).get('admission')
-        per[lang] = population_support(positives, None, None)
+        if reseal:
+            s = (result.get('support') or {}).get(lang) or {}
+            per[lang] = population_support(s.get('positive_segments'), s.get('negative_segments'), s.get('recording_groups'))
+        else:
+            positives = ((report.get(lang) or {}).get('by_split') or {}).get('admission')
+            per[lang] = population_support(positives, None, None)
     seal_values = [seals.get(l, {}).get('admission_seg_ids_sha256') for l in languages]
     known_seal = all(isinstance(v, str) and len(v) == 64 for v in seal_values)
     audits = [j for j in records if j.get('phase') == 'malpha_corpus_audit' and j.get('status') == 'completed']
@@ -103,11 +109,15 @@ def admission_preflight(records, languages=('kik', 'kam', 'swa')):
     matches = known_seal and all(audited.get(l, {}).get('admission_seal_sha256') == seals.get(l, {}).get('admission_seg_ids_sha256') for l in languages)
     if matches:
         per = {l: audited[l]['support'] for l in languages}
-    ready = bool(matches and audit.get('independence_verified') is True and audit.get('reference_verified') is True and all(per[l]['sufficient'] for l in languages))
+    panel_id = fingerprint(seal_values) if known_seal else None
+    panel = reference_panel if reference_panel and panel_id and reference_panel.get('panel_id') == panel_id else None
+    reference_verified = bool(panel and panel.get('verified') is True)
+    ready = bool(matches and audit.get('independence_verified') is True and reference_verified and all(per[l]['sufficient'] for l in languages))
     return {'protocol': dict(LISTENER_PROTOCOL), 'per_language': per, 'ready': ready,
-            'panel_id': fingerprint(seal_values) if known_seal else None,
+            'panel_id': panel_id, 'split_version': int(result.get('split_version') or 1),
             'independence_verified': bool(matches and audit.get('independence_verified') is True),
-            'reference_verified': bool(matches and audit.get('reference_verified') is True),
+            'reference_verified': reference_verified,
+            'reference_panel': {k: panel.get(k) for k in ('status', 'verified', 'per_language', 'verified_at') if panel} if panel else {'status': 'not_started' if panel_id else 'no_seal', 'verified': False},
             'audit_job_id': audits[-1]['job_id'] if audits else None,
-            'reason': 'Qualified for a single confirmation read.' if ready else 'Independent reference qualification and complete positive/negative/group support must be recorded before a confirmation read.',
+            'reason': 'Qualified for a single confirmation read.' if ready else 'Independent reference qualification (adjudicated native review of the confirmation panel) and complete positive/negative/group support must be recorded before a confirmation read.',
             'source_job_id': (latest or {}).get('job_id'), 'test_content_read': False, 'raw_data_exported': False}

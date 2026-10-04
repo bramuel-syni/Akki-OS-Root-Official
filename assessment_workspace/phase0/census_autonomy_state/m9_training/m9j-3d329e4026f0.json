@@ -1,0 +1,146 @@
+{
+ "job_id": "m9j-3d329e4026f0",
+ "phase": "malpha_worker_audit",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T20:31:02.139500Z",
+ "params": {
+  "worker_contract_version": 2,
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 0,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-35ba53e9e6db",
+ "northena_trace_id": "trc-fbf3cba0d90b",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-3d329e4026f0"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3d329e4026f0",
+  "pid": 3434717
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-8635d491a0d6",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_worker_audit_admitted"
+  },
+  {
+   "row_id": "led-af3440d0efec",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_worker_audit_daemonised:pid=3434717"
+  },
+  {
+   "row_id": "led-35d4af1b6da6",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_worker_audit_completed"
+  }
+ ],
+ "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
+ "started_at": "2026-10-04T20:31:08.020746Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T20:42:07.269592Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-d81dda81d965"
+ },
+ "remote_state": {
+  "phase": "malpha_worker_audit",
+  "status": "completed",
+  "started_at": "2026-10-04T20:31:07Z",
+  "progress": {
+   "stage": "verifying worker tensor contracts on CPU",
+   "synthetic_tensors_only": true
+  },
+  "stages": {
+   "worker_contract": {
+    "at": "2026-10-04T20:31:10Z",
+    "delayed_codec_roundtrip": true,
+    "prefix_finite_forward": true,
+    "prefix_finite_gradients": true,
+    "prefix_text_padding_masked": true,
+    "dense_finite_forward": true,
+    "dense_finite_gradients": true,
+    "dense_text_padding_masked": true,
+    "missing_render_refused": true,
+    "threshold_boundary_refused": true,
+    "language_mass_balanced": true
+   }
+  },
+  "events": [],
+  "job_id": "m9j-3d329e4026f0",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T20:31:10Z",
+  "finished_at": "2026-10-04T20:31:10Z",
+  "receipt_sha256": "13fe46d5273918d3351bebd2d2b3c71058f5792ff2f3b1a02c202c2b2f0310de"
+ },
+ "worker_log_tail": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3d329e4026f0/worker.zip/services/training_lab/malpha_voice_worker.py:224: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3d329e4026f0/worker.zip/services/training_lab/malpha_voice_worker.py:224: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-3d329e4026f0",
+  "phase": "malpha_worker_audit",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-04T20:31:07Z",
+  "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
+  "status": "completed",
+  "result": {
+   "status": "passed",
+   "checks": {
+    "delayed_codec_roundtrip": true,
+    "prefix_finite_forward": true,
+    "prefix_finite_gradients": true,
+    "prefix_text_padding_masked": true,
+    "dense_finite_forward": true,
+    "dense_finite_gradients": true,
+    "dense_text_padding_masked": true,
+    "missing_render_refused": true,
+    "threshold_boundary_refused": true,
+    "language_mass_balanced": true
+   },
+   "torch_version": "2.11.0+cu128",
+   "worker_contract_version": 2,
+   "quality_evidence": false,
+   "synthetic_tensors_only": true,
+   "training_started": false,
+   "sealed_admission_read": false,
+   "raw_media_exported": false,
+   "compute": {
+    "wall_seconds": 0.5,
+    "gpu_seconds": 0,
+    "device": "cpu"
+   }
+  },
+  "finished_at": "2026-10-04T20:31:10Z",
+  "receipt_sha256": "13fe46d5273918d3351bebd2d2b3c71058f5792ff2f3b1a02c202c2b2f0310de",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T20:31:10Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-3d329e4026f0",
+  "started_at_utc": "2026-10-04T20:31:08.020746Z",
+  "finished_at_utc": "2026-10-04T20:31:10Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-3d329e4026f0"
+ }
+}

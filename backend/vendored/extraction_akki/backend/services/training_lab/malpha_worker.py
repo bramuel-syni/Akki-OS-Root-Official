@@ -498,6 +498,62 @@ def aip_requalify(control, state):
             'raw_media_exported': False, 'text_exported': False, 'paths_exported': False, 'training_started': False}
 
 
+def aip_reseal(control, state):
+    """Split protocol v2 (owner decision 2026-10-04, 1a): speaker-cluster-level admission with mention stratification, sealed BEFORE the first
+    sealed read. Unknown-speaker rows and substantive-text overlaps are excluded from every split; codec tokens of new admission segments are
+    removed so no lane can train on admission audio. Models trained before this seal saw some of these rows and are not admissible under v2."""
+    from services.training_lab.malpha_splits import SPLIT_PROTOCOL_V2, SPLIT_VERSION, cluster_level_reseal
+    import torch
+    out = Path(control['aip_db_dir']); started = time.time(); seed = int(control['seed']); langs = list(control['languages'])
+    manifest = json.loads((out / 'manifest.json').read_text())
+    target_version = int(control.get('split_version') or SPLIT_VERSION)
+    if int(manifest.get('split_version') or 1) >= target_version: raise ValueError('ALREADY_SEALED_AT_THIS_VERSION')
+    if manifest.get('sealed_reads'): raise ValueError('SEALED_READ_ALREADY_HAPPENED')
+    clusters_all = json.loads((Path(control['lab_corpus_root']) / 'speaker_clusters.json').read_text()).get('clusters', {})
+    report, seals, splits, panels = {}, {}, {}, {}
+    for lang in langs:
+        state.update(progress={'stage': f'resealing {LANG_NAMES.get(lang, lang)} at speaker-cluster level', 'elapsed_s': int(time.time() - started)})
+        rows = load_rows(out, lang)
+        before = Counter(r['split'] for r in rows)
+        current = [r['seg_id'] for r in rows if r['split'] == 'admission']
+        if manifest['seals'][lang]['admission_seg_ids_sha256'] not in (_sha(json.dumps(sorted(current))), _sha(json.dumps(sorted(set(current))))): raise ValueError(f'ADMISSION_SEAL_MISMATCH:{lang}')
+        rep = cluster_level_reseal(rows, clusters_all.get(lang, {}), seed, lang)
+        _write_rows_atomic(out / f'segments_{lang}.jsonl', rows)
+        files = [json.loads(l) for l in (out / f'files_{lang}.jsonl').read_text().splitlines() if l.strip()]
+        session_split = {}
+        for r in rows:
+            if r['split'] in ('dev', 'admission'): session_split[r['session']] = 'mixed' if session_split.get(r['session']) not in (None, r['split']) else r['split']
+        with open(out / f'files_{lang}.jsonl.tmp', 'w') as fh:
+            for f in files: fh.write(json.dumps({**f, 'split': session_split.get(f['session'], 'train')}, sort_keys=True) + '\n')
+        os.replace(out / f'files_{lang}.jsonl.tmp', out / f'files_{lang}.jsonl')
+        admission_ids = [r['seg_id'] for r in rows if r['split'] == 'admission']  # list form (duplicates kept) — the same serialization the audit and the evaluation phase use
+        tokens = torch.load(out / f'tokens_{lang}.pt', map_location='cpu'); pruned = [k for k in tokens if k in set(admission_ids)]
+        for k in pruned: del tokens[k]
+        torch.save(tokens, out / f'tokens_{lang}.pt.tmp'); os.replace(out / f'tokens_{lang}.pt.tmp', out / f'tokens_{lang}.pt')
+        counts = Counter(r['split'] for r in rows); hours = defaultdict(float)
+        for r in rows: hours[r['split']] += r['features']['duration_s'] / 3600
+        splits[lang] = {s: {'segments': counts[s], 'hours': round(hours[s], 3)} for s in ('train', 'dev', 'admission', 'excluded_unknown_speaker', 'excluded_text_overlap', 'excluded_overlapping_speech')}
+        seals[lang] = {'admission_seg_ids_sha256': _sha(json.dumps(sorted(admission_ids))), 'dev_seg_ids_sha256': _sha(json.dumps(sorted(r['seg_id'] for r in rows if r['split'] == 'dev'))), 'sealed_at': now(), 'protocol': SPLIT_PROTOCOL_V2,
+                       'previous_admission_seg_ids_sha256': manifest['seals'][lang]['admission_seg_ids_sha256']}
+        # confirmation panel: every transcript-derived positive plus a seeded sample of negatives; metadata only, no text — the panel is annotated by native reviewers
+        adm_rows = [r for r in rows if r['split'] == 'admission']; positives = [r for r in adm_rows if r.get('mentions')]; negatives = [r for r in adm_rows if not r.get('mentions')]
+        rng = random.Random(seed); sampled_neg = negatives if len(negatives) <= 150 else rng.sample(negatives, 150)
+        panels[lang] = [{'seg_id': r['seg_id'], 'session': r['session'], 'start': r['start'], 'end': r['end'], 'duration_s': r['features']['duration_s'], 'pcm_offset': r['pcm_offset'], 'pcm_bytes': r['pcm_bytes'],
+                         'transcript_mentions': r.get('mentions') or [], 'stratum': 'positive' if r.get('mentions') else 'negative'} for r in sorted(positives + sampled_neg, key=lambda r: r['seg_id'])]
+        report[lang] = {'before': dict(before), 'after': dict(counts), 'selection': rep, 'codec_tokens_removed_for_admission': len(pruned), 'confirmation_panel': {'segments': len(panels[lang]), 'positives': len(positives), 'negatives_sampled': len(sampled_neg)}}
+    manifest.update(segments=splits, seals=seals, split_protocol=SPLIT_PROTOCOL_V2, split_version=target_version, seals_v1=manifest.get('seals_v1') or manifest['seals'],
+                    seal_history=(manifest.get('seal_history') or []) + [{'split_version': manifest.get('split_version') or 1, 'seals': manifest['seals'], 'superseded_at': now(), 'sealed_reads': 0}],
+                    split_rule='v3: speaker-cluster-level admission (clusters in ≤5 sessions, seeded order, until ≥100 positive / ≥100 negative / ≥20 sessions; small sealed clusters retained); unknown-speaker rows, substantive-text overlaps and overlapping-speech windows excluded; dev = session holdout (presenter overlap disclosed)',
+                    reseal={'at': now(), 'authority': control.get('owner_order_ref'), 'decision': 'owner 2026-10-04: re-seal now with speaker-disjoint + mention stratification (1a), before any sealed read', 'report': report,
+                            'models_trained_before_this_seal': 'saw rows now sealed as admission → not admissible under this seal'})
+    tmp = out / 'manifest.json.tmp'; tmp.write_text(json.dumps(manifest, indent=1, sort_keys=True)); os.replace(tmp, out / 'manifest.json')
+    (out / f'confirmation_panel_v{target_version}.json').write_text(json.dumps({'protocol': SPLIT_PROTOCOL_V2, 'seals': seals, 'panels': panels}, sort_keys=True))
+    return {'protocol': manifest['protocol'], 'split_protocol': SPLIT_PROTOCOL_V2, 'split_version': target_version, 'commission_id': control['commission_id'], 'languages': langs, 'seed': seed, 'segments': splits, 'seals': seals, 'report': report,
+            'support': {l: {'positive_segments': report[l]['selection']['admission']['positives'], 'negative_segments': report[l]['selection']['admission']['negatives'], 'recording_groups': report[l]['selection']['admission']['sessions'], 'targets_met': report[l]['selection']['admission']['targets_met']} for l in langs},
+            'confirmation_panel': panels, 'aip_db_dir': str(out), 'manifest_sha256': hashlib.sha256((out / 'manifest.json').read_bytes()).hexdigest(),
+            'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': 0, 'device': 'cpu'}, 'raw_media_exported': False, 'text_exported': False, 'paths_exported': False, 'training_started': False, 'sealed_admission_read': False}
+
+
 # ----------------------------------------------------------------------------- phase: brand re-labelling under a new owner lexicon version (CPU)
 def lexicon_sha(lexicon):
     return hashlib.sha256(json.dumps(lexicon, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
@@ -677,9 +733,10 @@ def wilson(k, n, z=1.96):
     return [round((c - h) / d, 4), round((c + h) / d, 4)]
 
 
-def mention_metrics(rows, hyps, lexicon):
+def mention_metrics(rows, hyps, lexicon, reference_verified=False):
     """Per-language precision AND recall at the segment×brand level with 95% Wilson intervals (small n is visible, never averaged away),
-    false positives per hour, abstention and timing tolerance recorded separately."""
+    false positives per hour, abstention and timing tolerance recorded separately. `reference_verified` is True only when every row's
+    `mentions` came from independent adjudicated human annotation (the control plane supplies them; transcript-derived labels never qualify)."""
     out = {}
     if len(rows) != len(hyps): raise ValueError('PREDICTIONS_MUST_ALIGN_WITH_ALL_REFERENCES')
     from services.training_lab.malpha_evaluation import listener_evidence
@@ -701,7 +758,7 @@ def mention_metrics(rows, hyps, lexicon):
                      'precision_ci95': wilson(tp, tp + fp), 'recall_ci95': wilson(tp, tp + fn),
                      'false_positives_per_hour': round(fp / hours, 3) if hours else None, 'hours_evaluated': round(hours, 3), 'timestamp_tolerance': 'segment boundaries (mention attributed to its transcript segment)',
                      'abstained_segments': sum(1 for r, h in zip(rows, hyps) if r['language'] == lang and h is None), 'per_brand': {b: dict(c) for b, c in per_brand.items()}}
-        out[lang]['evidence'] = listener_evidence(out[lang], group_counts=list(groups.values()), reference_verified=False)
+        out[lang]['evidence'] = listener_evidence(out[lang], group_counts=list(groups.values()), reference_verified=reference_verified)
     return out
 
 
@@ -803,7 +860,7 @@ def _sample_per_language(rows, per_lang, seed):
     return out
 
 
-def evaluate_listener(model, processor, ids, pcm_store, rows, lexicon, device, batch=48, bias_terms=None):
+def evaluate_listener(model, processor, ids, pcm_store, rows, lexicon, device, batch=48, bias_terms=None, reference_verified=False):
     """bias_terms: per-language brand lists shared by every batch of that language (decode-time expectation list); None = plain decoding."""
     hyps_by_id = {}; started = time.time(); audio_s = 0.0
     for lang in sorted({r['language'] for r in rows}):
@@ -818,7 +875,7 @@ def evaluate_listener(model, processor, ids, pcm_store, rows, lexicon, device, b
     for lang in sorted({r['language'] for r in rows}):
         pairs = [(r['text'], h) for r, h in zip(rows, hyps) if r['language'] == lang]
         per_lang[lang] = wer_cer([p[0] for p in pairs], [p[1] for p in pairs])
-    return {'words': per_lang, 'mentions': mention_metrics(rows, hyps, lexicon), 'latency': {'real_time_factor': round((time.time() - started) / max(1e-6, audio_s), 4), 'audio_seconds': round(audio_s, 1), 'wall_seconds': round(time.time() - started, 1)},
+    return {'words': per_lang, 'mentions': mention_metrics(rows, hyps, lexicon, reference_verified=reference_verified), 'latency': {'real_time_factor': round((time.time() - started) / max(1e-6, audio_s), 4), 'audio_seconds': round(audio_s, 1), 'wall_seconds': round(time.time() - started, 1)},
             'contextual_bias': {l: len(v) for l, v in (bias_terms or {}).items()} or None,
             'samples': [{'language': r['language'], 'ref_chars': len(r['text']), 'hyp_chars': len(h), 'mentions_truth': r.get('mentions') or [], 'mentions_hyp': detect_mentions(h, lexicon)} for r, h in list(zip(rows, hyps))[:12]]}
 
@@ -944,18 +1001,27 @@ def evaluate_admission(control, state):
     for lang in langs:
         seal = _sha(json.dumps(sorted(r['seg_id'] for r in rows if r['language'] == lang and r['split'] == 'admission')))
         if seal != manifest['seals'][lang]['admission_seg_ids_sha256']: raise ValueError(f'ADMISSION_SEAL_MISMATCH:{lang}')
+    if int(control.get('split_version') or 1) != int(manifest.get('split_version') or 1): raise ValueError('SPLIT_VERSION_MISMATCH')
+    reference = control.get('reference_labels') or {}  # {seg_id: [brands]} adjudicated by independent native reviewers; present → the panel is the measured set
+    if reference:
+        admission = [r for r in admission if r['seg_id'] in reference]
+        if len(admission) != len(reference): raise ValueError('REFERENCE_PANEL_NOT_IN_ADMISSION')
+        for r in admission: r['transcript_mentions'] = r.get('mentions') or []; r['mentions'] = sorted(reference[r['seg_id']])
+    manifest.setdefault('sealed_reads', []).append({'at': now(), 'artefact_sha256': control['artefact_sha256'], 'reference': 'independent_adjudicated' if reference else 'transcript_derived'})
+    tmp = aip / 'manifest.json.tmp'; tmp.write_text(json.dumps(manifest, indent=1, sort_keys=True)); os.replace(tmp, aip / 'manifest.json')
     art = torch.load(Path(control['artefact_path']), map_location='cpu')
     if hashlib.sha256(Path(control['artefact_path']).read_bytes()).hexdigest() != control['artefact_sha256']: raise ValueError('ARTEFACT_SHA_MISMATCH')
     processor, model, ids = _prepare_whisper(art['base'], langs, device); model.load_state_dict(art['model']); model.eval()
-    state.stage('data', {'admission_segments': len(admission), 'seals_verified': True, 'contextual_bias_terms': {l: len(v) for l, v in (art.get('bias_terms') or {}).items()} or None})
-    ev = evaluate_listener(model, processor, ids, pcm_store, admission, lexicon, device, bias_terms=art.get('bias_terms'))
+    state.stage('data', {'admission_segments': len(admission), 'seals_verified': True, 'reference': 'independent_adjudicated' if reference else 'transcript_derived', 'contextual_bias_terms': {l: len(v) for l, v in (art.get('bias_terms') or {}).items()} or None})
+    ev = evaluate_listener(model, processor, ids, pcm_store, admission, lexicon, device, bias_terms=art.get('bias_terms'), reference_verified=bool(reference))
     target = float(control.get('admission_target', 0.9)); verdict = {}
     for lang in langs:
         m, w = ev['mentions'].get(lang) or {}, ev['words'].get(lang) or {}
         ok = (m.get('evidence') or {}).get('acceptance_ready') is True
         verdict[lang] = {'mention_precision': m.get('precision'), 'mention_recall': m.get('recall'), 'mention_f1': m.get('f1'), 'precision_ci95': m.get('precision_ci95'), 'recall_ci95': m.get('recall_ci95'), 'wer': w.get('wer'), 'cer': w.get('cer'), 'segments_with_mentions': m.get('segments_with_mentions'),
-                         'meets_target': bool(ok), 'target': target, 'evidence': m.get('evidence'), 'measured_on': 'sealed admission split; independence must be verified, not inferred from its name'}
+                         'meets_target': bool(ok), 'target': target, 'evidence': m.get('evidence'), 'measured_on': ('independently adjudicated confirmation panel inside the sealed admission split' if reference else 'sealed admission split, transcript-derived reference; independence must be verified, not inferred from its name')}
     lock.close()
     return {'commission_id': control['commission_id'], 'iteration': control['iteration'], 'artefact_sha256': control['artefact_sha256'], 'languages': langs, 'evaluation': ev, 'verdict': verdict, 'lexicon_sha256': lexicon_sha(lexicon), 'brands': len(lexicon),
+            'split_version': int(manifest.get('split_version') or 1), 'reference': 'independent_adjudicated' if reference else 'transcript_derived', 'panel_segments': len(admission),
             'admitted_all_languages': all(v['meets_target'] for v in verdict.values()), 'evaluation_exposure': 'one read of the sealed split for this artefact; recorded by the control plane',
             'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': round(time.time() - started, 1), 'gpu_hours': round((time.time() - started) / 3600, 4)}, 'sealed_admission_read': True, 'raw_media_exported': False}

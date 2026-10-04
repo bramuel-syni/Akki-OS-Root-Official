@@ -163,7 +163,8 @@ def test_admission_preflight_uses_matched_audit_support_when_seal_matches():
             },
         },
     ]
-    out = me.admission_preflight(records)
+    assert me.admission_preflight(records)["ready"] is False, "an audit can never verify the reference; only the adjudicated native-review panel can"
+    out = me.admission_preflight(records, reference_panel={"panel_id": me.fingerprint([seal, seal, seal]), "verified": True, "status": "verified"})
     assert out["ready"] is True
     assert all(out["per_language"][l]["sufficient"] for l in ("kik", "kam", "swa"))
 

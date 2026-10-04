@@ -1359,7 +1359,7 @@ def execute(control):
             from services.training_lab import malpha_voice_worker as mv
             from services.training_lab.malpha_worker_audit import audit
             from services.training_lab.malpha_corpus_audit import audit as corpus_audit
-            fn = {'malpha_aip_build': mw.aip_build, 'malpha_aip_requalify': mw.aip_requalify, 'malpha_aip_relabel': mw.aip_relabel, 'malpha_internet_corpus': mw.internet_corpus, 'malpha_listener_train': mw.listener_train, 'malpha_evaluate': mw.evaluate_admission,
+            fn = {'malpha_aip_build': mw.aip_build, 'malpha_aip_requalify': mw.aip_requalify, 'malpha_aip_relabel': mw.aip_relabel, 'malpha_aip_reseal': mw.aip_reseal, 'malpha_internet_corpus': mw.internet_corpus, 'malpha_listener_train': mw.listener_train, 'malpha_evaluate': mw.evaluate_admission,
                   'malpha_story_text_train': mv.story_text_train, 'malpha_voice_train': mv.voice_train, 'malpha_baseline_render': mv.baseline_render, 'malpha_worker_audit': audit, 'malpha_corpus_audit': corpus_audit}[control['phase']]
             receipt['result'] = fn(control, state)
         else:

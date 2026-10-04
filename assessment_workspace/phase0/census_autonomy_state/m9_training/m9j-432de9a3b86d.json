@@ -4072,7 +4072,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-432de9a3b86d",
   "pid": 1958291
  },
- "status": "running",
+ "status": "cancelled",
  "ledger_rows": [
   {
    "row_id": "led-0275d3bbef33",
@@ -4085,14 +4085,20 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_malpha_internet_corpus_daemonised:pid=1958291"
+  },
+  {
+   "row_id": "led-46784bf1f81c",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_internet_corpus_cancelled:superseded: owner 2026-10-04: use data we have here \u2014 public intake stopped; estate corpus only"
   }
  ],
  "code_sha256": "fe9e772996639d4826109a57ee8476a276aa2be3dd75ef646b27c7856309f423",
  "started_at": "2026-10-04T18:15:50.233726Z",
  "last_status_rpc": {
-  "at": "2026-10-04T19:30:54.856407Z",
+  "at": "2026-10-04T20:07:44.033625Z",
   "rc": 0,
-  "receipt_id": "gpurcp-81b233c2a17c"
+  "receipt_id": "gpurcp-d63adccd23f4"
  },
  "remote_state": {
   "phase": "malpha_internet_corpus",
@@ -4101,11 +4107,11 @@
   "progress": {
    "stage": "expanding qualified public corpus",
    "language": "kik",
-   "rows": 28000,
-   "rows_added": 28000,
-   "hours": 44.65,
+   "rows": 41400,
+   "rows_added": 41400,
+   "hours": 66.397,
    "of_hours": null,
-   "elapsed_s": 4494,
+   "elapsed_s": 6683,
    "source_revision": "fb6c11443135937f4fb284bbc38174e768fcc154"
   },
   "stages": {},
@@ -4113,8 +4119,17 @@
   "job_id": "m9j-432de9a3b86d",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T19:30:44Z"
+  "updated_at": "2026-10-04T20:07:13Z"
  },
  "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
- "process_alive": true
+ "process_alive": true,
+ "cancel_rpc": {
+  "at": "2026-10-04T20:08:29.685636Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-8e7bee07135f",
+  "outcome": "stopped",
+  "reason": "superseded: owner 2026-10-04: use data we have here \u2014 public intake stopped; estate corpus only"
+ },
+ "reason": "superseded: owner 2026-10-04: use data we have here \u2014 public intake stopped; estate corpus only",
+ "finished_at": "2026-10-04T20:08:29.685649Z"
 }
