@@ -93,7 +93,7 @@ from services.chokepoint.masking_tier import (
 
 TRAINING_LAB_PURPOSES = ('training_lab.advisory_review', 'training_lab.conversation')
 AUTHOR_PURPOSES = ('doc_studio.author', 'census.estate_intelligence_dossier')
-GOVERNED_PURPOSES = TRAINING_LAB_PURPOSES + AUTHOR_PURPOSES + ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable')
+GOVERNED_PURPOSES = TRAINING_LAB_PURPOSES + AUTHOR_PURPOSES + ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable', 'malpha.learning_plan', 'malpha.learning_review')
 
 log = logging.getLogger(__name__)
 
@@ -283,6 +283,7 @@ async def invoke(
     custody_class: str,
     system_message: Optional[str] = None,
     session_id: Optional[str] = None,
+    output_schema: Optional[Dict[str, Any]] = None,
 ) -> LLMResponse:
     """The one function that invokes an external model client.
 
@@ -475,9 +476,13 @@ async def invoke(
     if purpose in AUTHOR_PURPOSES and hasattr(client, 'with_params'):
         # The estate pack's writer answers ~50 slots plus a paper section per chapter; 16000 cut the JSON mid-string (3 Oct 2026).
         client = client.with_params(max_tokens=32000)
-    if purpose in ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable', 'routing.candidate_trial') and hasattr(client, 'with_params'):
+    if purpose in ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable', 'routing.candidate_trial', 'malpha.learning_plan', 'malpha.learning_review') and hasattr(client, 'with_params'):
         # Reasoning families spend part of the budget thinking before the JSON; 6000 left Fable with no text (finish_reason=length).
         client = client.with_params(max_tokens=20000)
+    if purpose == 'malpha.learning_review' and hasattr(client, 'with_params'):
+        client = client.with_params(max_tokens=32000)
+        if output_schema is not None:
+            client = client.with_params(extra_body={'output_config': {'format': {'type': 'json_schema', 'schema': output_schema}}})
 
     # 6. Send + measure.  The prompt sent is the REDACTED prompt — raw
     # estate content never leaves under a query (DAP-7).

@@ -56,7 +56,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f4de3dea598c",
   "pid": 1954722
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-f474f7723913",
@@ -69,28 +69,34 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_malpha_story_text_train_daemonised:pid=1954722"
+  },
+  {
+   "row_id": "led-243192122247",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_story_text_train_completed"
   }
  ],
  "code_sha256": "b57a0c3666db277ac92fed73e286cc7a6e9cf1738d5ba80c50a74ee3f3f5e79c",
  "started_at": "2026-10-04T16:16:28.986567Z",
  "last_status_rpc": {
-  "at": "2026-10-04T17:45:32.824903Z",
+  "at": "2026-10-04T18:00:18.333314Z",
   "rc": 0,
-  "receipt_id": "gpurcp-ff63f9eb7276"
+  "receipt_id": "gpurcp-202d04f20e75"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-04T16:16:28Z",
   "progress": {
    "stage": "training",
-   "step": 2250,
+   "step": 2500,
    "of": 3000,
-   "loss": 2.675,
-   "elapsed_s": 5160,
+   "loss": 2.6824,
+   "elapsed_s": 5864,
    "gpu_peak_gb": 11.21,
-   "last_checkpoint_step": 2250,
-   "next_checkpoint_step": 2500,
+   "last_checkpoint_step": 2500,
+   "next_checkpoint_step": 2750,
    "best_step": 1750
   },
   "stages": {
@@ -327,14 +333,781 @@
     },
     "_score": 22.7,
     "_best_step": 1750
+   },
+   "dev_eval_step_2250": {
+    "at": "2026-10-04T17:47:49Z",
+    "kik": {
+     "dev_perplexity": 18.714,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 0.9983
+    },
+    "kam": {
+     "dev_perplexity": 24.148,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.9962
+    },
+    "swa": {
+     "dev_perplexity": 26.402,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 22.85,
+    "_best_step": 1750
+   },
+   "dev_eval_step_2500": {
+    "at": "2026-10-04T17:58:48Z",
+    "kik": {
+     "dev_perplexity": 18.791,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 0.9994
+    },
+    "kam": {
+     "dev_perplexity": 24.309,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.9983
+    },
+    "swa": {
+     "dev_perplexity": 26.657,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9982
+    },
+    "_score": 23.006,
+    "_best_step": 1750
    }
   },
   "events": [],
   "job_id": "m9j-f4de3dea598c",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T17:42:34Z"
+  "updated_at": "2026-10-04T17:58:48Z",
+  "finished_at": "2026-10-04T17:58:48Z",
+  "receipt_sha256": "bdd6adcc07c00f8ba2c2d60e7c40095ca104529ef0e04da6698655096b8dc729"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6235.27it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f4de3dea598c/worker.zip/services/training_lab/malpha_voice_worker.py:173: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum)",
- "process_alive": true
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-f4de3dea598c",
+  "phase": "malpha_story_text_train",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-04T16:16:28Z",
+  "code_sha256": "b57a0c3666db277ac92fed73e286cc7a6e9cf1738d5ba80c50a74ee3f3f5e79c",
+  "status": "completed",
+  "result": {
+   "commission_id": "STORY-KIK-KAM-SWA",
+   "iteration": 4,
+   "lane": "story_text",
+   "recipe": {
+    "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "lr": 5e-05,
+    "batch_size": 4,
+    "grad_accum": 4,
+    "max_steps": 3000,
+    "warmup_steps": 100,
+    "eval_every": 250,
+    "checkpoint_every": 250,
+    "max_seq_len": 1024,
+    "lora_r": 32,
+    "lora_alpha": 64,
+    "lora_dropout": 0.1,
+    "weight_decay": 0.01,
+    "eval_samples_per_language": 8,
+    "patience_evaluations": 3,
+    "rationale": "dev perplexity rose within iteration 3 (best measured 15.018 at step 500 of iteration 2; iteration 3 ended at 182.189): the over-fitted adapter is not carried forward \u2014 restart from the registered base at half that iteration's learning rate (5.0e-05), dropout 0.1, weight decay 0.01, early stopping (patience 3) with the best-adapter artefact"
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-04T16:16:37Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "steps": 2500,
+   "base_perplexity": {
+    "kik": 69.657,
+    "kam": 70.076,
+    "swa": 64.331
+   },
+   "dev": {
+    "step": 1750,
+    "at": "2026-10-04T17:23:37Z",
+    "per_language": {
+     "kik": {
+      "dev_perplexity": 18.52,
+      "base_perplexity": 69.657,
+      "dev_perplexity_below_base": true,
+      "language_fidelity_rate": 0.875,
+      "mean_distinct_2": 0.999,
+      "samples": [
+       {
+        "title": "15% PAY INCREASE",
+        "chars": 850,
+        "words": 128,
+        "distinct_2": 0.9922,
+        "trigram_similarity": {
+         "kik": 0.6767,
+         "kam": 0.5349,
+         "swa": 0.5394
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "525c43402f7bf39a62c66b1148ea389abbfc4d6c612a35e2b03d1df49cad1ef8"
+       },
+       {
+        "title": "ABOUT WOMEN",
+        "chars": 822,
+        "words": 113,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6544,
+         "kam": 0.5525,
+         "swa": 0.6144
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "00dea931cef44c3d7fd0e5deb2adce829db49a1572a008fc579c3136957e539b"
+       },
+       {
+        "title": "ABSENT FATHER",
+        "chars": 416,
+        "words": 63,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6523,
+         "kam": 0.5182,
+         "swa": 0.5012
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "d8dc4cdf828ee8c85d62c21ecbb25b5bd64f4a59c77591c49ae90c75c3aab194"
+       },
+       {
+        "title": "ADJUSTING TO THE NEW NORMAL",
+        "chars": 835,
+        "words": 108,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6564,
+         "kam": 0.5553,
+         "swa": 0.557
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "3821a5a7e8b4faa6b40dd9581ff780a72ce0e62faf1bc2f28a449d3618616d52"
+       },
+       {
+        "title": "APPRECIATING OUR KIKUYU NAMES; DOWRY PAYMENTS",
+        "chars": 846,
+        "words": 130,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6103,
+         "kam": 0.4791,
+         "swa": 0.5306
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "77463a9e967db393a6a981e168e63d5017f32c763e64667be60facb7905b60a8"
+       },
+       {
+        "title": "AVOCADO FARMING IN MURANG'A ; NEW RULES",
+        "chars": 408,
+        "words": 64,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6187,
+         "kam": 0.4916,
+         "swa": 0.4872
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "7f742c1a0a1f7bb30c3c50d3fdd4978be9c5d9ae21d3f2155fb9b7e8b08af361"
+       },
+       {
+        "title": "AVOID SELF TREATMENT ; EARLY SYMPTOMS",
+        "chars": 696,
+        "words": 110,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6525,
+         "kam": 0.5095,
+         "swa": 0.5324
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "b909f38cf0cd8bc7bdcfa0316d443cfbf0f0619b3ea7db1b0218bbc4c3b01952"
+       },
+       {
+        "title": "A GOOD WIFE",
+        "chars": 655,
+        "words": 101,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.5908,
+         "kam": 0.5533,
+         "swa": 0.7071
+        },
+        "language_fidelity": false,
+        "excerpt_sha256": "f0bb6236c1bd66e7f1e46e7bcabf0346cdead0227d2fd0cee7152914369741f9"
+       }
+      ]
+     },
+     "kam": {
+      "dev_perplexity": 23.805,
+      "base_perplexity": 70.076,
+      "dev_perplexity_below_base": true,
+      "language_fidelity_rate": 0.625,
+      "mean_distinct_2": 0.875,
+      "samples": [
+       {
+        "title": "hon-mwangangi--(phonecalls)",
+        "chars": 7,
+        "words": 1,
+        "distinct_2": 0.0,
+        "trigram_similarity": {
+         "kik": 0.0792,
+         "kam": 0.0872,
+         "swa": 0.0
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "c0318d2ee2445e9fd910b36f55bef22b7aedd84bd9ebf81993bf47058fbdf695"
+       },
+       {
+        "title": "patrick-musil",
+        "chars": 852,
+        "words": 125,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4799,
+         "kam": 0.6171,
+         "swa": 0.6997
+        },
+        "language_fidelity": false,
+        "excerpt_sha256": "e7862fc42760dfe94e733abf70d4c18428c9289859319553c1fa9525f546137c"
+       },
+       {
+        "title": "0b879-18th-slay-queen",
+        "chars": 656,
+        "words": 106,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.505,
+         "kam": 0.6387,
+         "swa": 0.6363
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "57a2e20147f69d096236ded5d0b5938e8a9f0eadcd874b8b48c42353ef4c3abf"
+       },
+       {
+        "title": "ARTIST REVIEW",
+        "chars": 320,
+        "words": 55,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4243,
+         "kam": 0.5477,
+         "swa": 0.5019
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "cf2e1aaf59ff227c3e560c30f72d148c45d36c3b99cb4de6e6afcfc3b1825094"
+       },
+       {
+        "title": "ASSUMING PEOPLE DONT LOVE YOU",
+        "chars": 840,
+        "words": 127,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.5187,
+         "kam": 0.6628,
+         "swa": 0.7143
+        },
+        "language_fidelity": false,
+        "excerpt_sha256": "1fd6f6d71a25ea6aaeb5b40b2151812b9e8d915a95fc181a86e140f9b92a742a"
+       },
+       {
+        "title": "A CALL FOR KAMBA COMMUNITY UNITY IN POLITICS",
+        "chars": 921,
+        "words": 150,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.5127,
+         "kam": 0.6327,
+         "swa": 0.766
+        },
+        "language_fidelity": false,
+        "excerpt_sha256": "e602bbfa8987b5e9e43dec28988560499b30bac1cfc8ab93df8ca572de77de0a"
+       },
+       {
+        "title": "CHILD'S LINE UP",
+        "chars": 320,
+        "words": 50,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4609,
+         "kam": 0.6021,
+         "swa": 0.5592
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "8d358540da77874ecc1ca9af0c8ff838361b02e591d0b0ee5f1be57688ae5b76"
+       },
+       {
+        "title": "CONSTITUTION 13TH",
+        "chars": 307,
+        "words": 55,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.5464,
+         "kam": 0.6715,
+         "swa": 0.5718
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "c617d9101b5193c69de1a78f69598e7cc57cc398909595ce39a0a379f0cb166f"
+       }
+      ]
+     },
+     "swa": {
+      "dev_perplexity": 25.699,
+      "base_perplexity": 64.331,
+      "dev_perplexity_below_base": true,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 1.0,
+      "samples": [
+       {
+        "title": "ANGA",
+        "chars": 786,
+        "words": 118,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4587,
+         "kam": 0.549,
+         "swa": 0.8022
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "cb6deb9767e6c50fa77e03cdc9d4b86e085d6f085c65b83ae3af3280f4abae75"
+       },
+       {
+        "title": "CHAPAKAZI SALAMU",
+        "chars": 760,
+        "words": 120,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.5108,
+         "kam": 0.6214,
+         "swa": 0.8171
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "fda89b5a3f3b3340a52acf86d20d24fbd2c3c5217478f42e89a4b3d9572bfc6f"
+       },
+       {
+        "title": "CHAPA KAZI - KUCHAPIWA SIRI YA NDANI",
+        "chars": 477,
+        "words": 75,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4259,
+         "kam": 0.5335,
+         "swa": 0.733
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "aa2dec41fd540da2d27d718e91c6a14705b4e8cb9d762cdab60013a0fb21fc1e"
+       },
+       {
+        "title": "CHAPA KAZI NHIF",
+        "chars": 589,
+        "words": 91,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4286,
+         "kam": 0.5375,
+         "swa": 0.7688
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "a09711467177456a00eadeb4d7be2ec6e02fdd948b1fd598a9aad13ce00b331a"
+       },
+       {
+        "title": "CHAPA KAZI SALAAMS",
+        "chars": 132,
+        "words": 19,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.2652,
+         "kam": 0.3199,
+         "swa": 0.4929
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "62030e852b355875e731a66d883eaaeeba539b73e752a12d395a3072237fb956"
+       },
+       {
+        "title": "DAIRY FARMING",
+        "chars": 901,
+        "words": 133,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4362,
+         "kam": 0.548,
+         "swa": 0.7809
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "33dfd1887213f27790a5eaf8e3d091bd422e3493c40c2560479c5db8e65c5bb1"
+       },
+       {
+        "title": "DIRECT NOMINATIONS-MJADALA",
+        "chars": 981,
+        "words": 155,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4478,
+         "kam": 0.5582,
+         "swa": 0.7683
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "6395a01d0f89307b31d86dc52c41677a21a1e07b39247f84b970f27275a34ed7"
+       },
+       {
+        "title": "DRAW",
+        "chars": 753,
+        "words": 104,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.443,
+         "kam": 0.5292,
+         "swa": 0.7762
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "c0d47c2f6470092cd1295208edd8616cf0034c4172cde451f30f1c6e41b6bd3b"
+       }
+      ]
+     }
+    },
+    "train_loss": 2.7641
+   },
+   "best_step": 1750,
+   "stopped_by": "patience (3 evaluations without a lower dev perplexity; best at step 1750)",
+   "artefact_is": "adapter at the best measured dev perplexity",
+   "history": [
+    {
+     "step": 250,
+     "train_loss": 3.3594,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 25.564,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.875,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 32.466,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.125,
+       "mean_distinct_2": 0.9994
+      },
+      "swa": {
+       "dev_perplexity": 33.216,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 500,
+     "train_loss": 3.1063,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 21.543,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.625,
+       "mean_distinct_2": 0.9993
+      },
+      "kam": {
+       "dev_perplexity": 27.718,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 0.9988
+      },
+      "swa": {
+       "dev_perplexity": 29.642,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 750,
+     "train_loss": 3.0823,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 20.127,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 25.887,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.25,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 27.742,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.999
+      }
+     }
+    },
+    {
+     "step": 1000,
+     "train_loss": 2.9658,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 19.383,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.875,
+       "mean_distinct_2": 0.999
+      },
+      "kam": {
+       "dev_perplexity": 25.057,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 0.9991
+      },
+      "swa": {
+       "dev_perplexity": 26.845,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 1250,
+     "train_loss": 2.8838,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 18.904,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 0.9993
+      },
+      "kam": {
+       "dev_perplexity": 24.108,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.75,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 26.096,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 1500,
+     "train_loss": 2.812,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 18.808,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.625,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 24.22,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.625,
+       "mean_distinct_2": 0.9974
+      },
+      "swa": {
+       "dev_perplexity": 26.026,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.999
+      }
+     }
+    },
+    {
+     "step": 1750,
+     "train_loss": 2.7641,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 18.52,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.875,
+       "mean_distinct_2": 0.999
+      },
+      "kam": {
+       "dev_perplexity": 23.805,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.625,
+       "mean_distinct_2": 0.875
+      },
+      "swa": {
+       "dev_perplexity": 25.699,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 2000,
+     "train_loss": 2.7336,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 18.653,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.875,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 24.095,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.625,
+       "mean_distinct_2": 0.999
+      },
+      "swa": {
+       "dev_perplexity": 26.025,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.997
+      }
+     }
+    },
+    {
+     "step": 2250,
+     "train_loss": 2.6922,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 18.714,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.875,
+       "mean_distinct_2": 0.9983
+      },
+      "kam": {
+       "dev_perplexity": 24.148,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 0.9962
+      },
+      "swa": {
+       "dev_perplexity": 26.402,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 2500,
+     "train_loss": 2.6894,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 18.791,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.875,
+       "mean_distinct_2": 0.9994
+      },
+      "kam": {
+       "dev_perplexity": 24.309,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 0.9983
+      },
+      "swa": {
+       "dev_perplexity": 26.657,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9982
+      }
+     }
+    }
+   ],
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f4de3dea598c/artefact/lora_adapter",
+    "sha256": "78298521a02989620aa1c5e96e04f4d5b6b175cd858562d767d1e5266035f435",
+    "bytes": 150947098,
+    "base": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+   },
+   "compute": {
+    "wall_seconds": 6133.7,
+    "gpu_seconds": 6133.7,
+    "gpu_hours": 1.7038,
+    "gpu_peak_gb": 11.21
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false,
+   "text_exported": false
+  },
+  "finished_at": "2026-10-04T17:58:48Z",
+  "receipt_sha256": "bdd6adcc07c00f8ba2c2d60e7c40095ca104529ef0e04da6698655096b8dc729",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T17:58:48Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-f4de3dea598c",
+  "started_at_utc": "2026-10-04T16:16:28.986567Z",
+  "finished_at_utc": "2026-10-04T17:58:48Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-f4de3dea598c"
+ }
 }

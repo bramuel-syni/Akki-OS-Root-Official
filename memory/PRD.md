@@ -328,6 +328,13 @@ Repository heads reverified:
 
 ## Continuity documents
 
+### M Alpha current execution update — 2026-10-04, 18:44 UTC
+- Original requirement remains the full31-job/five-promise M Alpha plan (`M_ALPHA_PLAN.md`), including the Kikuyu/Kamba/Swahili listener and invented-voice storyteller, non-audio generality, Shield Mode B, quality artifacts, CaaS and ARMI. Owner now expressly permits temporarily unloading resident LID serving for extra training capacity; active training must not be interrupted. Existing funded-service authority applies; no new cap.
+- Implemented/verified revision-pinned resumable public intake, worker-design corrections, native audit gate and dispatcher lease, frontier learning reviews through existing Shield route, and research-only registered Qwen3-8B-Base capacity trial. About17 distinct hours of new Kikuyu material ingested so far (two host copies, not double-counted). Kamba60-hour cap removed for expanded intake; full traversal still running.
+- GPT-6 Astra planning + Claude Fable5.1 independent review completed with real crossing receipts; six evaluation conditions remain. Advice is not model admission. Current voiceiteration5 uses corrected worker; listenerit3 and textit5 preserved; additional8B trial means four GPUs training. **LID serving temporarily unavailable**, retained model/checkpoint, automatic restoration after trial configured but not yet witnessed.
+- Verification:39 backend regression checks passed (36 scoped +3 Shield), and10 synthetic tensor-contract checks per GPU host. Actual8B optimizer steps and growing ingestion observed. Neither new audio product is admitted. No all31-jobs/100% claim.
+- **Priority:** monitor corrected model results and data qualification, restore serving after trial; then remaining MA-19 non-audio rows, MA-24/25 output-quality comparisons, calibration/controlled ablations, complete Shield/interaction/recovery evidence, and MA-31 independent/native-language acceptance. Monetary GPU rates remain unknown. See `M_ALPHA_WORKER_AUDIT_20261004.md` for exact jobs, code, tests, limitations and current priorities; it supersedes the earlier voiceiteration4/5 handoff ambiguity.
+
 - `memory/ROADMAP.md`: prioritized next actions and retained backlog.
 - `memory/CHANGELOG.md`: dated progress notes.
 - The former723-line PRD mixed historical checkpoints with current state. Its complete byte-preserved copy is `memory/archive/PRD_20260930_before_M7_M8.md` (SHA256 `f7a397cca925f59863a257481f59620f6de887fec3acde85890f17287ef29775`). It contains all older implementation details and source pointers; read current sections here first.

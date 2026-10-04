@@ -1,0 +1,211 @@
+{
+ "job_id": "m9j-75e60db89466",
+ "phase": "malpha_story_text_train",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T18:00:49.395421Z",
+ "params": {
+  "recipe": {
+   "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "lr": 5e-05,
+   "batch_size": 4,
+   "grad_accum": 4,
+   "max_steps": 3000,
+   "warmup_steps": 100,
+   "eval_every": 250,
+   "checkpoint_every": 250,
+   "max_seq_len": 1024,
+   "lora_r": 32,
+   "lora_alpha": 64,
+   "lora_dropout": 0.1,
+   "weight_decay": 0.01,
+   "eval_samples_per_language": 8,
+   "patience_evaluations": 3,
+   "rationale": "dev perplexity did not improve on earlier iterations in iteration 4 (best measured 15.018 at step 500 of iteration 2; iteration 4 ended at 22.46): the over-fitted adapter is not carried forward \u2014 restart from the registered base at half that iteration's learning rate (5.0e-05), dropout 0.1, weight decay 0.01, early stopping (patience 3) with the best-adapter artefact; language fidelity below 1.0 for kik, kam (0.875, 0.625) \u2192 each micro-batch now drawn from one language chosen uniformly, so the small language is not out-voted",
+   "language_balance": true
+  },
+  "base_registration": {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 5,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-e42102ae4e7b",
+ "northena_trace_id": "trc-c571009fe9ff",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-75e60db89466"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-75e60db89466",
+  "pid": 1957730
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-d0415e49a7a7",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_story_text_train_admitted"
+  },
+  {
+   "row_id": "led-eda18fe072f9",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_story_text_train_daemonised:pid=1957730"
+  }
+ ],
+ "code_sha256": "233d86c82d2f86aad94cf797febdfe30d5085d848964a02a0aa54fb2cc72bf27",
+ "started_at": "2026-10-04T18:00:54.809329Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T18:45:42.056841Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-c2d2ed87db62"
+ },
+ "remote_state": {
+  "phase": "malpha_story_text_train",
+  "status": "running",
+  "started_at": "2026-10-04T18:00:54Z",
+  "progress": {
+   "stage": "training",
+   "step": 1000,
+   "of": 3000,
+   "loss": 2.9374,
+   "elapsed_s": 2555,
+   "gpu_peak_gb": 11.21,
+   "last_checkpoint_step": 1000,
+   "next_checkpoint_step": 1250,
+   "best_step": 750
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T18:01:03Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "base_perplexity": {
+    "at": "2026-10-04T18:01:14Z",
+    "kik": 69.657,
+    "kam": 70.076,
+    "swa": 64.331
+   },
+   "dev_eval_step_250": {
+    "at": "2026-10-04T18:13:37Z",
+    "kik": {
+     "dev_perplexity": 27.523,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 0.9986
+    },
+    "kam": {
+     "dev_perplexity": 28.566,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 35.558,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 30.35,
+    "_best_step": 250
+   },
+   "dev_eval_step_500": {
+    "at": "2026-10-04T18:23:47Z",
+    "kik": {
+     "dev_perplexity": 23.233,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 25.115,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 0.9991
+    },
+    "swa": {
+     "dev_perplexity": 31.025,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9975
+    },
+    "_score": 26.257,
+    "_best_step": 500
+   },
+   "dev_eval_step_750": {
+    "at": "2026-10-04T18:36:26Z",
+    "kik": {
+     "dev_perplexity": 21.79,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 0.9993
+    },
+    "kam": {
+     "dev_perplexity": 24.006,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.9987
+    },
+    "swa": {
+     "dev_perplexity": 29.35,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 24.854,
+    "_best_step": 750
+   }
+  },
+  "events": [],
+  "job_id": "m9j-75e60db89466",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T18:43:36Z"
+ },
+ "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 5790.81it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-75e60db89466/worker.zip/services/training_lab/malpha_voice_worker.py:174: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
+ "process_alive": true
+}

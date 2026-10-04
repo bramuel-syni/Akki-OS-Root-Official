@@ -1,0 +1,50 @@
+# M Alpha — worker audit, expanded data and learning-path reconstruction
+
+## Owner instruction and authority
+2026-10-04: “Increase training data and clear the GPU capacity if you need to add more training capacity. Audit to see if workers are configurea as per design, Use superior models to shape and reconstruct the success path learning from the previous trainings. Complete the M alpha remaining gaps.”
+Owner explicitly approved unloading resident language-identification serving when needed. Existing spending authority remains sufficient; no fresh GPU/iteration cap, purchase, subscription or credential request. **Never terminate active training or delete checkpoints.** This update does not declare the 31-job plan complete.
+
+## Verified running state — 18:44 UTC, 4 October
+- Listener iteration 3 `m9j-63f66a09e65c`: akki-vm GPU0, 4,950/12,000 steps. Preserved, unchanged bundle.
+- Text iteration 5 `m9j-75e60db89466`: akki-vm-ii GPU0, 1,000/3,000 steps. Preserved, unchanged bundle.
+- Voice iteration 4 completed naturally and did not qualify. Iteration 5 `m9j-43924ae49fa1` started automatically with corrected worker/design-v2 recipe; 125/40,000 steps, process alive. Neither listener nor storyteller is admitted.
+- Additional registered **Qwen/Qwen3-8B-Base** text trial `m9j-d4085045c5b6`: akki-vm-ii GPU1, 20/3,000 steps, process alive; registered Apache-2.0 weights. Base perplexities measured 55.146 / 54.704 / 36.037 (kik/kam/swa). These are base readings, NOT trained results or native story quality.
+- Resident LID serving job `m9j-934daf924154` (model id `m9j-74af7cef0a85`) was gracefully stopped through native M9 serving control, only after owner approval and successful native audit. Checkpoint/admission record preserved. **LID serving is temporarily unavailable.** `capacity_reallocation` on the existing STORY commission records the borrow and automatic restoration after the trial terminal state and a fresh free-GPU probe. Restoration is implemented/unit-tested, not yet observed after this still-running trial.
+- CPU intake `m9j-22ac4992723b` (akki-vm), `m9j-432de9a3b86d` (akki-vm-ii) running alongside GPU jobs. New Kikuyu rows: 10,400 / 10,600; 16.731 / 17.067 hours. These are two copies of the same corpus, **not 33.8 distinct hours**. Expansion is partial and continues. Existing Kamba 60-hour prefix is scheduled to resume after Kikuyu source traversal, not yet claimed expanded.
+
+## Confirmed design gaps and implemented corrections
+1. Public Kikuyu source was manifest+tar, not a conventional HF Audio table. It contributed zero rows. Added explicit revision-pinned manifest/train-split/shard join; no tar extraction paths; successful real ingestion now observed.
+2. Existing public Kamba intake stopped at a 60-hour recipe ceiling. New data_revision=2 uses `max_hours_per_dataset=null`: source exhaustion, rights/access refusal or physical disk backpressure are stopping conditions. No source-size increase is labelled quality improvement.
+3. Intake now has per-source pinned revisions, resumable cursors, corpus writer locks, fsync/atomic text-before-index publication, exact held-out text-hash rejection and new-row PCM deduplication. Partial source failures/disk holds remain partial and reported. Existing legacy rows remain legacy; historical revision provenance is not invented. Near-duplicate and cross-source speaker qualification remains open.
+4. Listener next-run sampling balances languages and oversamples mention-bearing rows while retaining ordinary examples; selects checkpoint by minimum precision AND recall across languages rather than F1. Fixed train-derived brand context exists; no dev-label-derived context. No proof yet that this improves recall.
+5. Text checkpoint selection requires a complete three-language result; prioritises the below-base floor, then worst-language fidelity, then perplexity. Protects against picking a numerically low perplexity checkpoint with a failed language. Fidelity remains a proxy; coherent native stories are NOT established by this.
+6. Voice worker masks padded text; tests dense identity conditioning as an explicit hypothesis; flushes delayed codebooks after first-stream EOS; measures actual post-gain/clipping acoustic features; uses fixed dev prompt sampling. Rendered identity compares against train/dev groups across ALL commissioned languages rather than capped same-language groups. Missing/short render, nonfinite comparison, incomplete comparator group coverage, or cosine >=0.40 fails the gate. Corpus identity representations stay in memory. Admission material excluded from training/comparator construction. No universal uniqueness claim.
+7. Invented/resumed identity certificates now correspond to the actual vector; failed construction refuses. The threshold is fixed at0.40, not softened. Added group-set hashes and missing/represented counts; unrepresented corpus groups make evaluation inconclusive/fail-closed rather than silently disappearing.
+8. Added Mongo native-dispatch lease, CPU-vs-GPU reservation distinction, and native bundle-specific worker-audit prerequisite for new training. No claim that every crash-window/exactly-once property in T07 is now independently proven.
+
+## Frontier learning review — real calls, governed route
+- Review `43bd4aa8ace859eff25afe7796615496573b08f8a5b1a20658771d75898ca3c2`.
+- Planner: configured `gpt-6-astra`, receipt `rcp-aac2faac14ae`.
+- Independent reviewer: configured `claude-fable-5-1`, receipt `rcp-9f2ec6c5d811`.
+- Both received only allowlisted finite numerical aggregates and abstract design descriptions; no raw audio, transcripts, group identities, vectors, host paths or resolvable source handles.
+- Reviewed plan verdict: **accept, with six required engineering/evaluation conditions**. Acceptance is NOT execution authority, quality acceptance or model admission. It calls for qualified data, fixed contrasts, native judgement and unchanged identity/sealed-evaluation gates.
+- Required conditions still include statistically sufficient positive/negative listener counts, frozen prompt-list construction, identical perplexity definitions/re-evaluation across historical checkpoints, full comparator coverage, no unsupported worst-case claims from old cosine readings, and accurate description of earlier F1 selection (not WER-only).
+- Early reviewer attempts failed (empty response, schema errors). Corrected role-specific reviewer prompt and route-compatible JSON grammar via `extra_body.output_config.format`; unsupported array bounds omitted only from provider grammar, retained in strict local Pydantic validation. Failed review never authorises adoption; no model fallback.
+- `/api/training/malpha/learning` GET/POST use existing operator guard; schema-valid advice/receipts stored in existing native Mongo plane. The established 15-minute training-lab cron requests fresh advisory reconstruction after newly settled jobs; content/model hash prevents repeat spend on unchanged evidence. Advice is never automatically executed as code or arbitrary recipe changes.
+
+## Runtime and regression verification
+- Iteration87: 15 targeted backend checks passed; offline data/provider fixtures were MOCKED, not real model-quality measurements.
+- Iteration88 found two genuine control/schema defects (audit phase absent from outer allowlist; overbroad schema stripping). Both fixed. A native capacity attempt also revealed legacy job rows missing `phase` and an incorrect serving-stop call signature; fixed with explicit three-argument native signature and regression fixture coverage. No active training was stopped by these failed attempts.
+- Final scoped backend suite: **36/36 passed**, `/app/test_reports/pytest/iteration_88_final.xml`.
+- Additional Shield unit/chokepoint regression: **3/3 passed**, `/app/test_reports/pytest/malpha_shield_regression.xml`; fake provider client in these tests only.
+- Native worker audit jobs `m9j-aa77126d0124`, `m9j-e6722eabf784`: **10/10 tensor-contract checks on EACH estate host**, Torch2.11.0+cu128. Finite forward/backward, prefix/dense padding immunity, codec delay roundtrip, strict refusal boundary and balanced sampling verified with synthetic tensors. Explicitly NOT quality evidence.
+- Live external-preview GET status/learning both200; real 8B training first optimizer steps observed; 4 GPUs occupied by training; public intake grows on both hosts. Desktop app smoke passed; no UI changes.
+
+## Honest remaining closure register
+P0: next corrected voice/listener/text results; maintain strict admission/privacy gates; finish/qualify expanded data; restore resident LID after comparison. Story-instruction data and native intelligibility/quality judgements remain absent. Sealed brand-mention support is too sparse for strong acceptance.
+
+P1: MA-06/19 full real non-audio task/architecture/size matrix (tabular/time-series, image/document vision, temporal video/multimodal), beyond this text capacity trial; MA-13 scaling calibration and MA-16 matched same-base ablations; MA-18 complete13-language routing; MA-20 callable accepted skills; MA-23 earned-paper/publication gate; MA-24/25 matched external deck/report/workbook comparisons; MA-26 ordinary-user long-job journeys. Full Shield path/bypass/joint-disclosure and recovery proofs remain, not replaced by three regression cases.
+
+P2/final acceptance: MA-27/28/29 commercial/domain/ARMI improvements still owe complete cross-product outcomes rather than endpoint availability; MA-30 matched accepted-output economics and actual governed GPU rate coverage; MA-31 independent negative/recovery/e2e acceptance and native-language evaluation. Missing GPU rates remain unknown, not fabricated prices.
+
+Do not say all M Alpha gaps are closed, that the 8B trial is a controlled causal superiority benchmark, that proxy fidelity is native story quality, or that the larger public corpus has already trained every lane. Data expansion currently benefits the listener path; audio-token qualification and genuine story instructions need separate completion.

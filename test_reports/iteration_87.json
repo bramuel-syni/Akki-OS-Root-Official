@@ -1,0 +1,39 @@
+{
+  "summary": "Backend-only iteration 87 completed: added targeted offline pytest coverage for Mα evidence projection, worker policy gates, intake v2 safety/resume semantics, M9 bundle+dispatch validation, plus live read-only Mα API checks (status/learning/tier2/job). Pytest result: 15/15 passed.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/malpha/test_malpha_worker_hardening_offline.py",
+    "/app/backend/tests/live_iter87.py",
+    "/app/test_reports/pytest/iteration_87_malpha.xml"
+  ],
+  "action_items": [
+    "Optional hardening: add tiny-CPU torch unit checks for voice model masking/conditioning if torch becomes available in pod.",
+    "Optional hygiene: align older test modules that still hardcode fallback URLs to strict env-only style."
+  ],
+  "critical_code_review_comments": [
+    "No critical implementation defects were reproduced in scoped Mα hardening/data-expansion/frontier-learning backend tests.",
+    "reconstruct() purpose bindings validated to malpha.learning_plan and malpha.learning_review with independent provider families and allowed evidence refs gate enforced by test."
+  ],
+  "updated_files": [
+    "/app/backend/tests/malpha/test_malpha_worker_hardening_offline.py",
+    "/app/backend/tests/live_iter87.py",
+    "/app/test_reports/iteration_87.json"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "N/A (not in scope)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "This run intentionally avoided any POST under /api/training/malpha/* (except auth login). Read-only API contracts validated against preview URL from frontend/.env. Intake v2 behaviors were tested with temporary directories and mocked HF/dataset/audio decode flows only (no real estate mutation).",
+  "rca of the issue": "No production bug RCA generated in this run because scoped tests passed and no backend regression was reproduced."
+}

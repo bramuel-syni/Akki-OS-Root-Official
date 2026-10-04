@@ -1,0 +1,152 @@
+{
+ "job_id": "m9j-d4085045c5b6",
+ "phase": "malpha_story_text_train",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T18:42:25.835599Z",
+ "params": {
+  "recipe": {
+   "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-8B-Base/snapshots/49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "lr": 0.0002,
+   "batch_size": 4,
+   "grad_accum": 4,
+   "max_steps": 3000,
+   "warmup_steps": 100,
+   "eval_every": 250,
+   "checkpoint_every": 250,
+   "max_seq_len": 1024,
+   "lora_r": 32,
+   "lora_alpha": 64,
+   "lora_dropout": 0.05,
+   "weight_decay": 0.0,
+   "eval_samples_per_language": 16,
+   "patience_evaluations": 4,
+   "language_balance": true,
+   "selection_policy": "base_floor_then_worst_language_fidelity",
+   "rationale": "Owner-authorised larger registered 8B base capacity trial, research only. Evaluate base and adapter on identical dev documents. Not a causal 8B-vs-1.7B comparison unless data/worker/eval versions match.",
+   "init_adapter": null,
+   "comparison": {
+    "kind": "larger_registered_base_capacity_trial",
+    "product_admission_allowed": false,
+    "historical_reference_lane": "story_text",
+    "causal_model_size_claim_allowed": false
+   }
+  },
+  "base_registration": {
+   "repo": "Qwen/Qwen3-8B-Base",
+   "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "local_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-8B-Base/snapshots/49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "licence_verified": "apache-2.0",
+   "weight_files": [
+    "model-00001-of-00005.safetensors",
+    "model-00002-of-00005.safetensors",
+    "model-00003-of-00005.safetensors",
+    "model-00004-of-00005.safetensors",
+    "model-00005-of-00005.safetensors"
+   ],
+   "weight_bytes": 16381516776,
+   "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+   "dimension": "text",
+   "acquired_at": "2026-09-29T21:51:48Z"
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 1,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-2e5c21d957b2",
+ "northena_trace_id": "trc-be0ce0200e4e",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-d4085045c5b6"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d4085045c5b6",
+  "pid": 2310028
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-19154e9f1062",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_story_text_train_admitted"
+  },
+  {
+   "row_id": "led-b1fc5a85b9e2",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_story_text_train_daemonised:pid=2310028"
+  }
+ ],
+ "code_sha256": "adbe8f70bb1dce7b88938b6dc8676bc3b844a18a50f669168e6cffcda5da2ac1",
+ "started_at": "2026-10-04T18:42:30.797893Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T18:45:56.777645Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-540585b45eef"
+ },
+ "remote_state": {
+  "phase": "malpha_story_text_train",
+  "status": "running",
+  "started_at": "2026-10-04T18:42:30Z",
+  "progress": {
+   "stage": "training",
+   "step": 50,
+   "of": 3000,
+   "loss": 3.4847,
+   "elapsed_s": 178,
+   "gpu_peak_gb": 24.82,
+   "last_checkpoint_step": 0,
+   "next_checkpoint_step": 250,
+   "best_step": null
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T18:42:39Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "base_perplexity": {
+    "at": "2026-10-04T18:42:59Z",
+    "kik": 55.146,
+    "kam": 54.704,
+    "swa": 36.037
+   }
+  },
+  "events": [],
+  "job_id": "m9j-d4085045c5b6",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T18:45:35Z"
+ },
+ "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 6038.67it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d4085045c5b6/worker.zip/services/training_lab/malpha_voice_worker.py:175: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
+ "process_alive": true
+}

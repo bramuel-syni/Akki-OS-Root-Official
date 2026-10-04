@@ -274,16 +274,20 @@ class PcmStore:
         return np.frombuffer(buf, dtype=np.int16)
 
 
-def load_rows(aip_dir, lang, with_text=False, dataset='radio'):
+def load_rows(aip_dir, lang, with_text=False, dataset='radio', splits=None):
     """`dataset='radio'` is the staged estate corpus (sealed splits); `'internet'` is the separately provenance-tagged public corpus (train only)."""
     prefix = '' if dataset == 'radio' else f'{dataset}_'
     seg_path = Path(aip_dir) / f'segments_{prefix}{lang}.jsonl'
     if not seg_path.exists(): return []
     rows = [json.loads(l) for l in seg_path.read_text().splitlines() if l.strip()]
+    if splits is not None: rows = [r for r in rows if r['split'] in splits]
     if with_text:
         text = {}
+        wanted = {r['seg_id'] for r in rows}
         for l in (Path(aip_dir) / f'text_{prefix}{lang}.jsonl').read_text().splitlines():
-            if l.strip(): d = json.loads(l); text[d['seg_id']] = d['text']
+            if l.strip():
+                d = json.loads(l)
+                if d['seg_id'] in wanted: text[d['seg_id']] = d['text']
         for r in rows: r['text'] = text.get(r['seg_id'], '')
     return rows
 
@@ -568,6 +572,9 @@ def _decode_bytes(data, sr):
 
 
 def internet_corpus(control, state):
+    if control.get('data_revision') == 2:
+        from services.training_lab.malpha_internet_worker import ingest
+        return ingest(control, state)
     """Public speech datasets become a second, separately provenance-tagged dataset of the audio database (`segments_internet_<lang>`): train
     only, never dev or admission, never mixed into the radio character register. Licence and access are checked before download; a dataset
     that fails is recorded as refused, not skipped silently. Hours per dataset are capped by the recipe, not by the owner."""
@@ -824,10 +831,10 @@ def evaluate_listener(model, processor, ids, pcm_store, rows, lexicon, device, b
 
 
 def _listener_score(ev):
-    """Artefact choice follows the admission contract: the worst language's mention F1 first (no averaging across languages), lower mean WER breaks ties."""
+    """Artefact choice uses minimum precision AND recall across languages; mean WER breaks ties."""
     import numpy as np
-    f1s = [(m.get('f1') if m.get('f1') is not None else 0.0) for m in ev['mentions'].values()]
-    return (round(min(f1s), 4) if f1s else 0.0, -round(float(np.mean([v['wer'] for v in ev['words'].values()])), 4))
+    floors = [(ev.get('mentions', {}).get(l, {}).get(k) or 0.0) for l in ('kik', 'kam', 'swa') for k in ('precision', 'recall')]
+    return (round(min(floors), 4), -round(float(np.mean([v['wer'] for v in ev['words'].values()])), 4))
 
 
 def _save_ckpt(path, model, optimizer, step, extra):
@@ -844,7 +851,7 @@ def listener_train(control, state):
     pcm_store = PcmStore(aip)
     rows = []
     for lang in langs:
-        for r in load_rows(aip, lang, with_text=True): r['language'] = lang; rows.append(r)
+        for r in load_rows(aip, lang, with_text=True, splits=('train', 'dev')): r['language'] = lang; rows.append(r)
     max_s = float(recipe.get('max_segment_seconds', 30.0))
     train = [r for r in rows if r['split'] == 'train' and r['features']['duration_s'] <= max_s and r['text']]
     internet = []
@@ -870,6 +877,8 @@ def listener_train(control, state):
     rng = random.Random(int(control['seed']) + step)
     order = sorted(train, key=lambda r: r['features']['duration_s'])
     buckets = [order[i:i + batch] for i in range(0, len(order), batch)]
+    by_lang = {l: [r for r in train if r['language'] == l] for l in langs}
+    mentions_by_lang = {l: [r for r in by_lang[l] if r.get('mentions')] for l in langs}
     bias_on = bool(recipe.get('contextual_bias', False)); bias_prob = float(recipe.get('bias_prob', 0.5)); distractors = int(recipe.get('bias_distractors', 6))
     bias_terms = bias_terms_by_language(train, lexicon, int(recipe.get('bias_terms_per_language', 40))) if bias_on else None
     brands_by_lang = {l: sorted({b for r in train if r['language'] == l for b in (r.get('mentions') or [])}) for l in langs}
@@ -888,6 +897,12 @@ def listener_train(control, state):
         rng.shuffle(buckets)
         for b in buckets:
             if step >= max_steps: break
+            if recipe.get('language_balance'):
+                lang = rng.choice(langs); pool = by_lang[lang]
+                if not pool: raise ValueError('Missing qualified listener language:' + lang)
+                positives = mentions_by_lang[lang]
+                n_positive = batch // 4 if recipe.get('mention_oversample') and positives else 0
+                b = [rng.choice(positives) for _ in range(n_positive)] + [rng.choice(pool) for _ in range(batch - n_positive)]
             feats, dec_in, target = _whisper_batch(processor, ids, pcm_store, b, device, prompts=train_prompts(b))
             with torch.autocast('cuda', dtype=torch.bfloat16):
                 logits = model(input_features=feats, decoder_input_ids=dec_in).logits
@@ -905,9 +920,9 @@ def listener_train(control, state):
                 model.eval(); ev = evaluate_listener(model, processor, ids, pcm_store, dev, lexicon, device, bias_terms=bias_terms); model.train()
                 ev['step'] = step; ev['train_loss'] = round(float(np.mean(losses[-200:])), 4); ev['at'] = now(); history.append(ev)
                 mean_wer = float(np.mean([v['wer'] for v in ev['words'].values()])); score = _listener_score(ev)
-                state.stage(f'dev_eval_step_{step}', {'mean_wer': round(mean_wer, 4), 'worst_language_f1': score[0], 'words': ev['words'], 'mentions': {l: {k: m[k] for k in ('precision', 'recall', 'f1')} for l, m in ev['mentions'].items()}})
+                state.stage(f'dev_eval_step_{step}', {'mean_wer': round(mean_wer, 4), 'minimum_precision_recall': score[0], 'words': ev['words'], 'mentions': {l: {k: m[k] for k in ('precision', 'recall', 'f1')} for l, m in ev['mentions'].items()}})
                 if best is None or score > best['score']:
-                    best = {'step': step, 'mean_wer': round(mean_wer, 4), 'worst_language_f1': score[0], 'score': score, 'basis': 'worst-language mention F1, then mean WER'}; _save_ckpt(ckpt_dir / 'best.pt', model, optimizer, step, {'history': history})
+                    best = {'step': step, 'mean_wer': round(mean_wer, 4), 'minimum_precision_recall': score[0], 'score': score, 'basis': 'minimum language precision/recall, then mean WER'}; _save_ckpt(ckpt_dir / 'best.pt', model, optimizer, step, {'history': history})
     art = job_dir / 'artefact'; art.mkdir(exist_ok=True)
     src = ckpt_dir / 'best.pt' if (ckpt_dir / 'best.pt').exists() else latest
     if not src.exists(): _save_ckpt(latest, model, optimizer, step, {'history': history}); src = latest

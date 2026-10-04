@@ -31,6 +31,8 @@ MALPHA_PHASES = {"malpha_aip_build": {'lab_corpus_root', 'max_files_per_language
                  "malpha_listener_train": {'recipe', 'brand_lexicon'}, "malpha_evaluate": {'artefact_path', 'artefact_sha256', 'brand_lexicon', 'admission_target', 'trained_job_id'},
                  "malpha_story_text_train": {'recipe', 'base_registration'}, "malpha_voice_train": {'recipe'}, "malpha_baseline_render": {'prompts_per_language'}}
 MALPHA_COMMON = {'commission_id', 'languages', 'gpu_index', 'budget_mode', 'owner_order_ref', 'seed', 'iteration', 'aip_db_dir'}
+MALPHA_PHASES['malpha_worker_audit'] = {'worker_contract_version'}
+PHASES = tuple(dict.fromkeys((*PHASES, *MALPHA_PHASES)))
 OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
 OWNER_ORDER_REF = "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)"
@@ -79,7 +81,8 @@ def build_bundle():
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
         for module in ('services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/training_lab/music_detector_worker.py', 'services/audio_plane_v1/acoustic_observables.py',
-                       'services/training_lab/estate_language_worker.py', 'services/audio_plane_v1/corrective_model.py', 'services/training_lab/malpha_worker.py', 'services/training_lab/malpha_voice_worker.py'):
+                       'services/training_lab/estate_language_worker.py', 'services/audio_plane_v1/corrective_model.py', 'services/training_lab/malpha_worker.py', 'services/training_lab/malpha_voice_worker.py',
+                       'services/training_lab/malpha_internet_worker.py', 'services/training_lab/malpha_worker_policy.py', 'services/training_lab/malpha_worker_audit.py'):
             archive.writestr(zipfile.ZipInfo(module, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / module).read_bytes())
         for directory in ("services", "services/training_runner", "services/training_lab", "services/audio_plane_v1"):
             archive.writestr(zipfile.ZipInfo(directory + "/__init__.py", date_time=(2026, 1, 1, 0, 0, 0)), b"")
@@ -164,13 +167,16 @@ def validate(phase, params, host):
             raise ValueError('MUSIC_DETECTOR_BOUNDS_INVALID:recipe')
     if phase in MALPHA_PHASES:
         required = MALPHA_COMMON | MALPHA_PHASES[phase]; optional = {'resume_from', 'brand_lexicon_version'}
+        if phase == 'malpha_internet_corpus': optional |= {'data_revision'}
         if not required <= set(params) <= required | optional:
             raise ValueError('MALPHA_SCOPE_INVALID:' + ','.join(sorted((required | optional) ^ set(params))))
         if 'brand_lexicon' in params and (not isinstance(params['brand_lexicon'], list) or not params['brand_lexicon'] or not all(isinstance(b, dict) and b.get('brand') and isinstance(b.get('aliases'), list) and b['aliases'] for b in params['brand_lexicon'])):
             raise ValueError('MALPHA_LEXICON_INVALID')
         if phase == 'malpha_internet_corpus' and (not isinstance(params['datasets'], list) or not params['datasets'] or not all(isinstance(d, dict) and re.fullmatch(r'[\w.-]+/[\w.-]+', str(d.get('repo'))) and d.get('language') in ('kik', 'kam', 'swa') for d in params['datasets'])
-                                                or not 0 < float(params['max_hours_per_dataset']) <= 2000):
+                                                or params['max_hours_per_dataset'] is not None and not 0 < float(params['max_hours_per_dataset']) < float('inf')):
             raise ValueError('MALPHA_INTERNET_CORPUS_INVALID')
+        if phase == 'malpha_internet_corpus' and params['max_hours_per_dataset'] is None and params.get('data_revision') != 2:
+            raise ValueError('MALPHA_UNBOUNDED_INTAKE_REQUIRES_V2')
         if params['budget_mode'] != 'uncapped_until_billing' or not params['owner_order_ref'] or not isinstance(params['languages'], list) or not set(params['languages']) <= {'kik', 'kam', 'swa'} or not params['languages']:
             raise ValueError('MALPHA_AUTHORITY_INVALID')
         if type(params['gpu_index']) is not int or params['gpu_index'] not in (0, 1) or type(params['iteration']) is not int or params['iteration'] < 0 or not str(params['aip_db_dir']).startswith(os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']):

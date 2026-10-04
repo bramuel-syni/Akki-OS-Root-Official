@@ -211,7 +211,13 @@ async def tick(tenant=TENANT):
     await refresh_estate_pack(tenant)
     try:
         from services.training_lab import malpha
-        await asyncio.to_thread(malpha.tick)
+        result = await asyncio.to_thread(malpha.tick)
+        if result.get('settled'):
+            try:
+                from services.training_lab import malpha_learning
+                await malpha_learning.reconstruct('training_lab_autopilot')
+            except Exception as exc:
+                log.warning('M-alpha learning review failed closed (%s); no automatic recipe adoption', type(exc).__name__)
     except Exception: log.exception('malpha tick failed')
 
 

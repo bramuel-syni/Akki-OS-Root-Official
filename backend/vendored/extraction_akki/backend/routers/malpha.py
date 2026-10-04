@@ -107,3 +107,18 @@ async def tier2_report(job_id: str, actor=Depends(census_identity)):
     doc = await asyncio.to_thread(tier2_malpha.get_report, job_id)
     if not doc: raise HTTPException(404, 'No Tier 2 report for that run')
     return {'tenant_id': actor['tenant_id'], **doc}
+
+
+@router.get('/learning', response_model=c.Envelope)
+async def learning_reviews(actor=Depends(census_identity)):
+    _operator(actor)
+    from services.training_lab import malpha_learning
+    return {'tenant_id': actor['tenant_id'], 'reviews': await asyncio.to_thread(malpha_learning.list_reviews)}
+
+
+@router.post('/learning', status_code=202, response_model=c.Envelope)
+async def learning_review(background: BackgroundTasks, actor=Depends(census_identity)):
+    _operator(actor)
+    from services.training_lab import malpha_learning
+    background.add_task(malpha_learning.reconstruct, actor['principal_id'], retry_failed=True)
+    return {'tenant_id': actor['tenant_id'], 'status': 'scheduled', 'training_interrupted': False}

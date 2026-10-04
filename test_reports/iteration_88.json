@@ -1,0 +1,55 @@
+{
+  "summary": "Backend-only iteration 88 completed for Mα capacity-trial/audit/lease/learning guardrails with scoped pytest and read-only live API checks. Result: 34 passed, 2 failed (real regressions).",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "internal service: services/training_runner/m9_dispatch.validate",
+        "issue": "Phase 'malpha_worker_audit' is rejected as Unknown M9 training phase because it is missing from PHASES, blocking native worker-contract audit dispatch path.",
+        "priority": "CRITICAL"
+      },
+      {
+        "endpoint": "internal service: services/training_lab/malpha_learning.provider_schema",
+        "issue": "provider_schema strips maxLength/minLength in addition to maxItems/minItems, weakening wire-schema constraints beyond requested behavior.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/malpha/test_malpha_worker_hardening_offline.py",
+    "/app/backend/tests/malpha/test_malpha_capacity_audit_and_learning_guards_offline.py",
+    "/app/backend/tests/malpha/test_malpha_live_readonly_iteration88.py",
+    "/app/backend/tests/wpw/test_tier2_malpha.py",
+    "/app/backend/tests/routing/test_measured_routing.py",
+    "/app/test_reports/pytest/iteration_88_malpha.xml"
+  ],
+  "action_items": [
+    "Add 'malpha_worker_audit' to services/training_runner/m9_dispatch.PHASES so validate()/submit() admit native audit jobs.",
+    "Narrow provider_schema filtering to unsupported list-length keys only (maxItems/minItems) unless provider-specific evidence requires removing maxLength/minLength.",
+    "Re-run iteration 88 suite after fixes; keep tests read-only for live APIs and avoid mutating training/service state."
+  ],
+  "critical_code_review_comments": [
+    "Native worker audit is wired in m9_worker execute map and MALPHA_PHASES, but m9_dispatch PHASES omission creates a control-plane contract break.",
+    "Learning review wire-schema transformer currently broadens accepted response space by removing string length constraints before provider invocation.",
+    "launch_larger_text_trial/borrow/restore guardrails passed offline checks: no automatic serving stop in recurring tick path; restore waits for terminal trial + free slot."
+  ],
+  "updated_files": [
+    "/app/backend/tests/malpha/test_malpha_capacity_audit_and_learning_guards_offline.py",
+    "/app/backend/tests/malpha/test_malpha_live_readonly_iteration88.py",
+    "/app/test_reports/iteration_88.json"
+  ],
+  "success_rate": {
+    "backend": "94.4% (34/36)",
+    "frontend": "N/A (not in scope)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Scoped run intentionally avoided mutating Mα training/service operations. Regressions not executed due mutation/spend risk in this pass: test_brand_catalogue.py (POST brand-catalogue triggers tick), caas/test_caas_journey.py (includes authored model calls), armi/test_armi_lifecycle.py (broad lifecycle writes).",
+  "rca of the issue": "RCA-1: m9_dispatch has split declarations: MALPHA_PHASES includes malpha_worker_audit but PHASES gate is checked first, so validate() raises Unknown phase and blocks audit dispatch. Mitigation: keep one authoritative phase registry or derive PHASES from MALPHA_PHASES keys. RCA-2: provider_schema recursively strips maxLength/minLength alongside unsupported maxItems/minItems, reducing wire-side strictness and potentially admitting overly long fields before local validation. Mitigation: only strip provider-unsupported keys proven by runtime errors, retain local/wire parity otherwise."
+}

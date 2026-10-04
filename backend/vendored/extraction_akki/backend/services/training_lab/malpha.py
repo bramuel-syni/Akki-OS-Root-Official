@@ -25,13 +25,14 @@ RESIDENT_PROTECTED_MIB = 4096
 HOST_ALLOCATION = {'malpha_aip_build': [('akki-vm', 0), ('akki-vm-ii', 0)], 'malpha_aip_requalify': [('akki-vm', 0), ('akki-vm-ii', 0)], 'malpha_listener_train': [('akki-vm', 0)], 'malpha_voice_train': [('akki-vm', 1)],
                    'malpha_story_text_train': [('akki-vm-ii', 0)], 'malpha_baseline_render': [('akki-vm-ii', 0), ('akki-vm', 0), ('akki-vm', 1)], 'malpha_evaluate': [('akki-vm', 0), ('akki-vm', 1), ('akki-vm-ii', 0)],
                    'malpha_aip_relabel': [('akki-vm', 0), ('akki-vm-ii', 0)], 'malpha_internet_corpus': [('akki-vm', 0), ('akki-vm-ii', 0)]}
-CPU_PHASES = ('malpha_aip_requalify', 'malpha_aip_relabel', 'malpha_internet_corpus')  # no GPU lock; they run beside a training job on the same host
+CPU_PHASES = ('malpha_aip_requalify', 'malpha_aip_relabel', 'malpha_internet_corpus', 'malpha_worker_audit')  # no GPU lock; they run beside a training job on the same host
 MIN_DEV_SEGMENTS, MIN_DEV_MENTION_SEGMENTS = 300, 30
 SEED = 20261004
-INTERNET_MAX_HOURS_PER_DATASET = 60.0
+INTERNET_MAX_HOURS_PER_DATASET = None  # owner expansion: source exhaustion, rights or physical backpressure, never an arbitrary hours ceiling
+INTERNET_DATA_REVISION = 2
 INTERNET_DATASETS = [  # public speech corpora in the commissioned languages; licence/access are checked on the host before any bytes move, refusals are recorded
     {'repo': 'thiomi/thiomi-5k', 'config': 'kik_Latn', 'language': 'kik'}, {'repo': 'thiomi/thiomi-5k', 'config': 'kam_Latn', 'language': 'kam'},
-    {'repo': 'Professor/kikuyu-speech-data', 'config': None, 'language': 'kik'},
+    {'repo': 'Professor/kikuyu-speech-data', 'config': None, 'language': 'kik', 'format': 'manifest_tar'},
     {'repo': 'Digital-Divide-Data/Kamba-ASR-Data-Subset-484H', 'config': None, 'language': 'kam', 'text_column': 'transcripts', 'speaker_column': 'speaker_name'},
     {'repo': 'google/fleurs', 'config': 'sw_ke', 'language': 'swa', 'text_column': 'raw_transcription'},
     {'repo': 'mozilla-foundation/common_voice_17_0', 'config': 'sw', 'language': 'swa', 'text_column': 'sentence'},
@@ -142,7 +143,7 @@ def gpu_snapshot():
 
 
 def _busy_devices():
-    return {(j['host'], j['gpu_index']) for j in jobs(status={'$in': ['running', 'submitting']})}
+    return {(j['host'], j['gpu_index']) for j in jobs(status={'$in': ['running', 'submitting']}) if j['phase'] not in CPU_PHASES}
 
 
 def free_device(phase, snapshot):
@@ -224,8 +225,9 @@ def dispatch_internet_corpus(snapshot=None):
     """Owner order: public internet speech corpora may be used. One CPU ingestion per host database; licence/access refusals are recorded by the worker."""
     out = []
     for host, index in HOST_ALLOCATION['malpha_internet_corpus']:
-        if not (_host_done('malpha_aip_build', host) and _host_done('malpha_aip_requalify', host)) or internet_ready(host) or _host_busy_or_exhausted('malpha_internet_corpus', host): continue
-        out.append(_submit('LISTEN-KIK-KAM-SWA', 'internet_corpus', 'malpha_internet_corpus', {'datasets': INTERNET_DATASETS, 'max_hours_per_dataset': INTERNET_MAX_HOURS_PER_DATASET, 'brand_lexicon': brand_lexicon()['lexicon']}, host, index, 0))
+        if not (_host_done('malpha_aip_build', host) and _host_done('malpha_aip_requalify', host)): continue
+        if _host_done('malpha_internet_corpus', host, **{'params.data_revision': INTERNET_DATA_REVISION}) or _host_busy_or_exhausted('malpha_internet_corpus', host, **{'params.data_revision': INTERNET_DATA_REVISION}): continue
+        out.append(_submit('LISTEN-KIK-KAM-SWA', 'internet_corpus', 'malpha_internet_corpus', {'datasets': INTERNET_DATASETS, 'max_hours_per_dataset': INTERNET_MAX_HOURS_PER_DATASET, 'data_revision': INTERNET_DATA_REVISION, 'brand_lexicon': brand_lexicon()['lexicon']}, host, index, 0))
     return out
 
 
@@ -261,6 +263,22 @@ def _listener_summary(res):
     return {l: {'P': (dev.get('mentions') or {}).get(l, {}).get('precision'), 'R': (dev.get('mentions') or {}).get(l, {}).get('recall'), 'WER': (dev.get('words') or {}).get(l, {}).get('wer')} for l in LANGUAGES}
 
 
+def worker_audit_ready(host):
+    from services.training_runner import m9_dispatch
+    _, digest = m9_dispatch.build_bundle()
+    return bool(jobs(phase='malpha_worker_audit', host=host, code_sha256=digest, status='completed', **{'result.status': 'passed'}))
+
+
+def dispatch_worker_audits():
+    from services.training_runner import m9_dispatch
+    _, digest = m9_dispatch.build_bundle(); out = []
+    for host, index in HOST_ALLOCATION['malpha_aip_build']:
+        attempts = jobs(phase='malpha_worker_audit', host=host, code_sha256=digest)
+        if any(j['status'] in ('running', 'submitting', 'completed') for j in attempts) or len(attempts) >= MAX_ATTEMPTS_PER_ITERATION: continue
+        out.append(_submit('STORY-KIK-KAM-SWA', 'worker_audit', 'malpha_worker_audit', {'worker_contract_version': 2}, host, index, 0))
+    return out
+
+
 def listener_recipe(iteration, history):
     """Planned ladder (small → small longer → large-v3-turbo), then measurement-driven continuation. Contextual brand biasing through Whisper's
     previous-text channel is standard from the first recipe after the owner's catalogue arrived; the artefact is chosen by worst-language mention F1."""
@@ -268,7 +286,8 @@ def listener_recipe(iteration, history):
             {'base': 'openai/whisper-small', 'lr': 6e-5, 'batch_size': 32, 'grad_accum': 2, 'max_steps': 14000, 'warmup_steps': 500, 'eval_every': 2000, 'checkpoint_every': 500, 'dev_per_language': 300},
             {'base': 'openai/whisper-large-v3-turbo', 'lr': 3e-5, 'batch_size': 16, 'grad_accum': 4, 'max_steps': 12000, 'warmup_steps': 500, 'eval_every': 2000, 'checkpoint_every': 500, 'dev_per_language': 300}]
     recipe = dict(base[min(iteration - 1, len(base) - 1)])
-    recipe.update(contextual_bias=True, bias_prob=0.5, bias_distractors=6, bias_terms_per_language=40)
+    recipe.update(contextual_bias=True, bias_prob=0.5, bias_distractors=6, bias_terms_per_language=40,
+                  language_balance=True, mention_oversample=True, selection_policy='minimum_precision_and_recall')
     if not history: recipe['rationale'] = 'planned ladder step 1: whisper-small, contextual brand biasing trained from the start'; return recipe
     last = history[-1]; res = last.get('result') or {}; last_recipe = res.get('recipe') or {}; summary = _listener_summary(res)
     bias_note = 'contextual bias kept' if last_recipe.get('contextual_bias') else 'contextual brand biasing newly on (expectation list of the 40 most-heard brands per language through <|startofprev|>; trained with true brands among distractors on half the segments)'
@@ -284,20 +303,25 @@ def listener_recipe(iteration, history):
 
 def _story_text_best(history):
     """Best measured evaluation across completed iterations: lowest geometric-mean dev perplexity. Returns None when no iteration measured one."""
+    from services.training_lab.malpha_worker_policy import story_score
     best = None
     for j in history:
         for h in ((j.get('result') or {}).get('history') or []):
-            vals = [v.get('dev_perplexity') for v in (h.get('per_language') or {}).values()]
-            if not vals or any(v is None for v in vals): continue
+            per = h.get('per_language') or {}
+            if any(l not in per for l in LANGUAGES): continue
+            vals = [per[l].get('dev_perplexity') for l in LANGUAGES]
+            rank = story_score(h)
+            if rank is None: continue
             score = math.exp(sum(math.log(v) for v in vals) / len(vals))
-            if best is None or score < best['score']: best = {'score': round(score, 3), 'step': h['step'], 'job_id': j['job_id'], 'iteration': j['iteration'], 'lr': (j['result'].get('recipe') or {}).get('lr')}
+            if best is None or rank > best['rank']: best = {'rank': rank, 'score': round(score, 3), 'step': h['step'], 'job_id': j['job_id'], 'iteration': j['iteration'], 'lr': (j['result'].get('recipe') or {}).get('lr')}
     return best
 
 
 def story_text_recipe(iteration, history, base_path):
     """Measurement-driven: the next change answers the last dev curve. Early stopping on dev perplexity and the best-adapter artefact are standard from here."""
     recipe = {'base_path': base_path, 'lr': 2e-4, 'batch_size': 4, 'grad_accum': 4, 'max_steps': 1500, 'warmup_steps': 100, 'eval_every': 250, 'checkpoint_every': 250, 'max_seq_len': 1024, 'lora_r': 32, 'lora_alpha': 64,
-              'lora_dropout': 0.05, 'weight_decay': 0.0, 'eval_samples_per_language': 8, 'patience_evaluations': 3}
+              'lora_dropout': 0.05, 'weight_decay': 0.0, 'eval_samples_per_language': 16, 'patience_evaluations': 4,
+              'language_balance': True, 'selection_policy': 'base_floor_then_worst_language_fidelity'}
     if not history: recipe['rationale'] = 'first measured pass from the registered base; dev perplexity and language fidelity (8 samples per language) every 250 steps, stop after 3 evaluations without improvement'; return recipe
     last = history[-1]; res = last.get('result') or {}; best = _story_text_best(history); in_run = _story_text_best([last])
     final = res.get('dev') or {}; final_vals = [v.get('dev_perplexity') for v in (final.get('per_language') or {}).values() if v.get('dev_perplexity')]
@@ -324,8 +348,9 @@ def voice_recipe(iteration, history):
     """Measurement-driven: identity-conditioned rendering with an invented identity (MA-15) and loudness matched to the language baseline are standard from here;
     later iterations continue the same architecture from its artefact and answer the last gate/similarity reading."""
     recipe = {'lr': 3e-4, 'batch_size': 48, 'max_steps': 40000, 'warmup_steps': 1000, 'eval_every': 2500, 'checkpoint_every': 500, 'd_model': 768, 'layers': 12, 'heads': 12, 'max_segment_seconds': 12.0,
-              'spectral_feedback': True, 'eval_prompts_per_language': 12, 'comparators_per_language': 300, 'identity_cosine_threshold': 0.40,
-              'identity_conditioning': True, 'identity_candidates': 200, 'identity_noise': 0.5, 'identity_margin': 0.05, 'loudness_match': True}
+              'spectral_feedback': True, 'eval_prompts_per_language': 12, 'identity_cosine_threshold': 0.40,
+              'identity_conditioning': True, 'identity_candidates': 200, 'identity_noise': 0.5, 'identity_margin': 0.05, 'loudness_match': True,
+              'language_balance': True, 'dense_identity': True, 'worker_design_version': 2}
     if not history: recipe['rationale'] = 'first pass: speaker-conditioned codec LM with an invented identity under the corpus-distance gate; output loudness set to the language baseline median'; return recipe
     last = history[-1]; res = last.get('result') or {}; last_recipe = res.get('recipe') or {}; per = (res.get('dev') or {}).get('per_language') or {}
     gate_fail = [l for l, v in per.items() if not (v.get('identity_gate') or {}).get('passes')]
@@ -337,17 +362,17 @@ def voice_recipe(iteration, history):
                                'Change: speaker-conditioned training; an invented identity (mean of 8 corpus representations + isotropic noise, resampled under the gate with a 0.05 margin) is the only voice rendered; output loudness matched to the language baseline median')
         return recipe
     recipe.update(init_from=(res.get('artefact') or {}).get('path'), lr=float(last_recipe.get('lr', 3e-4)) * 0.7, identity_noise=float(last_recipe.get('identity_noise', 0.5)), identity_margin=float(last_recipe.get('identity_margin', 0.05)))
-    if gate_fail: recipe.update(identity_noise=round(recipe['identity_noise'] + 0.25, 2), identity_margin=round(recipe['identity_margin'] + 0.05, 2))
+    if gate_fail: recipe.update(identity_noise=round(recipe['identity_noise'] + 0.25, 2), identity_margin=min(0.15, round(recipe['identity_margin'] + 0.05, 2)))
     gate_text = f"failed for {', '.join(gate_fail)} → identity resampled with more noise ({recipe['identity_noise']}) and a wider construction margin ({recipe['identity_margin']})" if gate_fail else 'passed for every language → identity kept'
-    recipe['rationale'] = f"continue iteration {last['iteration']}'s model (same architecture) at 0.7× learning rate; similarity {sims}; identity gate {gate_text}"
+    recipe['rationale'] = f"continue iteration {last['iteration']}'s compatible weights at 0.7× learning rate; similarity {sims}; identity gate {gate_text}. Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence."
     return recipe
 
 
-def _qwen_base_path(host):
+def _qwen_base_path(host, base_id='qwen3-1.7b-base'):
     from services.training_runner.ssh_seam import execute_remote_command
     result = execute_remote_command(host, f"cat {os.environ['M9_REMOTE_ROOT']}/base_registration.json", purpose='malpha_base_registration', timeout=30)
     reg = json.loads(result.stdout_redacted) if result.rc == 0 and result.stdout_redacted.strip() else {}
-    entry = reg.get('qwen3-1.7b-base') or {}
+    entry = reg.get(base_id) or {}
     return entry.get('local_path'), entry
 
 
@@ -363,6 +388,7 @@ def dispatch_lane(cid, lane, snapshot):
     if not slot: return None
     host, index = slot
     if not aip_ready(host): return None
+    if not worker_audit_ready(host): return None
     history = [j for j in jobs(commission_id=cid, lane=lane, status='completed')]
     iteration = len(history) + 1  # a measured result advances the ladder; a faulted attempt does not
     faults = [j for j in jobs(commission_id=cid, lane=lane, iteration=iteration) if j['status'] in ('failed', 'interrupted')]
@@ -467,6 +493,13 @@ def settle(rec, snapshot):
         if phase not in ('malpha_aip_build', 'malpha_aip_requalify', 'malpha_aip_relabel', 'malpha_internet_corpus'): _tier2(rec)
         return
     result = rec['result']
+    if phase == 'malpha_worker_audit':
+        _log(cid, 'worker_audit', f"Worker contracts verified on {rec['host']}: {len(result['checks'])} synthetic-tensor checks; NOT quality evidence.", job_id=rec['job_id'])
+        return
+    if lane == 'story_text_comparison':
+        _log(cid, 'comparison', 'Larger-base capacity trial completed; research only, not product admission or a matched causal benchmark.', job_id=rec['job_id'])
+        _tier2(rec)
+        return
     if phase == 'malpha_aip_build':
         wpw.record_event(cid, 'baseline_selection', 'measured', ref, {'what': 'audio database built; codec qualified; splits sealed', 'seals': result['seals'], 'codec': result['codec_provenance'], 'segments': result['segments'], 'host': rec['host']})
         others = [j for j in jobs(phase='malpha_aip_build', status='completed') if j['job_id'] != rec['job_id']]
@@ -495,6 +528,10 @@ def settle(rec, snapshot):
         return
     if phase == 'malpha_internet_corpus':
         ingested = [d for d in result['datasets'] if d['status'] == 'ingested']; refused = [d for d in result['datasets'] if d['status'] == 'refused']
+        partial = [d for d in result['datasets'] if d['status'] == 'partial']
+        if partial:
+            wpw.record_event(cid, 'anomaly', 'observed', ref, {'what': 'Public intake is incomplete and resumable; do not count as exhausted source',
+                'partial': [{k: d.get(k) for k in ('repo', 'language', 'rows', 'hours', 'revision', 'stop_reason')} for d in partial]})
         wpw.record_event(cid, 'baseline_selection', 'measured', ref, {'what': 'public internet speech corpora ingested as a separate train-only dataset of the audio database (owner order)', 'authority': INTERNET_DATA_ORDER_REF, 'host': rec['host'],
                                                                      'ingested': [{k: d.get(k) for k in ('repo', 'config', 'language', 'licence', 'rows', 'hours')} for d in ingested], 'refused': [{k: d.get(k) for k in ('repo', 'config', 'language', 'reason')} for d in refused], 'totals': result['totals']})
         if refused: wpw.record_event(cid, 'anomaly', 'observed', ref, {'what': 'public datasets refused by the rights/access check (licence not admitted, gated without token, or not loadable)', 'refused': [{k: d.get(k) for k in ('repo', 'config', 'reason')} for d in refused]})
@@ -519,14 +556,32 @@ def settle(rec, snapshot):
 
 
 def tick():
+    """One native dispatcher across manual, cron and concurrent web requests."""
+    from datetime import datetime, timedelta, timezone
+    from pymongo.errors import DuplicateKeyError
+    import uuid
+    owner = uuid.uuid4().hex; clock = datetime.now(timezone.utc); collection = db().malpha_dispatch_leases
+    try:
+        lock = collection.find_one_and_update({'_id': 'native-tick', '$or': [{'expires_at': {'$lte': clock}}, {'owner': owner}]},
+            {'$set': {'owner': owner, 'expires_at': clock + timedelta(minutes=30)}}, upsert=True, return_document=True, projection={'_id': 0})
+    except DuplicateKeyError:
+        return {'status': 'already_running', 'dispatched': [], 'settled': []}
+    if not lock or lock.get('owner') != owner: return {'status': 'already_running', 'dispatched': [], 'settled': []}
+    try: return _tick_unlocked()
+    finally: collection.delete_one({'_id': 'native-tick', 'owner': owner})
+
+
+def _tick_unlocked():
     """One autonomous pass: refresh, settle, then fill every free admitted device with the next job its lane needs. Called by the autopilot."""
     if not commissions(): return {'skipped': 'no commissions'}
     snapshot = gpu_snapshot()
+    from services.training_lab.malpha_comparisons import restore_serving_after_trial
+    restore_serving_after_trial(snapshot)
     if snapshot.get('status') != 'CAPTURED':
         _log('*', 'hosts_unreachable', f"GPU snapshot {snapshot.get('status')}; nothing dispatched this tick"); return snapshot
     settled = refresh_jobs()
     for rec in settled: settle(rec, snapshot)
-    dispatched = list(dispatch_aip_build(snapshot)) + list(dispatch_requalify(snapshot)) + list(dispatch_relabel(snapshot)) + list(dispatch_internet_corpus(snapshot))
+    dispatched = list(dispatch_worker_audits()) + list(dispatch_aip_build(snapshot)) + list(dispatch_requalify(snapshot)) + list(dispatch_relabel(snapshot)) + list(dispatch_internet_corpus(snapshot))
     for c in commissions():
         for lane in c['lanes']:
             state = (c.get('lane_state') or {}).get(lane) or {}

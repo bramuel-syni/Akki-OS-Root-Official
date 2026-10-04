@@ -87,6 +87,8 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     # boundary (licensed aggregates + synthetic briefs only) so a role assignment rests on measured task evidence, not catalogue rank.
     # Not role-bound by design: the trial compares families; adoption of a result is a separate operator act.
     "routing.candidate_trial",
+    "malpha.learning_plan",
+    "malpha.learning_review",
 })
 
 
