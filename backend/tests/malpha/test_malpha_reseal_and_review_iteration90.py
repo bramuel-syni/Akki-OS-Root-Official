@@ -130,7 +130,11 @@ def test_dispatch_contract_accepts_reseal_and_reference_labels_and_refuses_bad_s
 
 
 @pytest.fixture
-def mongo_panel():
+def mongo_panel(monkeypatch):
+    """Scratch database: the review workflow is exercised without touching the live panel (a live open_panel call would be a real control-plane act)."""
+    from pymongo import MongoClient
+    scratch = MongoClient(os.environ['MONGO_URL'])[os.environ['DB_NAME'] + '_pytest_scratch']
+    monkeypatch.setattr(review, 'db', lambda: scratch)
     suffix = uuid.uuid4().hex[:8]
     result = {'seals': {l: {'admission_seg_ids_sha256': hashlib.sha256(f'{suffix}{l}'.encode()).hexdigest()} for l in ('kik', 'kam', 'swa')}, 'split_version': 2, 'aip_db_dir': f"{os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']}/malpha/aip_db_v1",
               'confirmation_panel': {l: [{'seg_id': hashlib.sha256(f'{suffix}{l}{i}'.encode()).hexdigest()[:16], 'session': 'S1', 'start': 0.0, 'end': 4.0, 'duration_s': 4.0, 'pcm_offset': 0, 'pcm_bytes': 128000, 'transcript_mentions': ['Tusker'] if i else [], 'stratum': 'positive' if i else 'negative'} for i in range(2)] for l in ('kik', 'kam', 'swa')}}
@@ -164,3 +168,25 @@ def test_review_workflow_double_annotation_adjudication_and_reference(mongo_pane
     ref = review.reference_labels(pid); assert len(ref) == 6 and sorted(ref.values(), key=len)[-1] == ['Tusker']
     pf = me.admission_preflight(_records({l: mongo_panel[1]['seals'][l]['admission_seg_ids_sha256'] for l in ('kik', 'kam', 'swa')}), reference_panel=p)
     assert pf['ready'] is True and pf['reference_verified'] is True
+
+
+def test_open_panel_never_demotes_a_same_or_newer_seal_panel_and_current_panel_reinstates(mongo_panel):
+    """Regression (iteration 91): a test/fixture or a stale reseal opening a panel must not supersede the commission's live panel."""
+    live, live_result = mongo_panel  # split_version 2
+    other = {**live_result, 'split_version': 2, 'seals': {l: {'admission_seg_ids_sha256': hashlib.sha256(f'other{l}'.encode()).hexdigest()} for l in ('kik', 'kam', 'swa')}}
+    review.open_panel(other, 'akki-vm')
+    assert review.panel(live['panel_id'])['status'] == 'annotating', 'same seal version does not supersede'
+    older = {**other, 'split_version': 1, 'seals': {l: {'admission_seg_ids_sha256': hashlib.sha256(f'old{l}'.encode()).hexdigest()} for l in ('kik', 'kam', 'swa')}}
+    review.open_panel(older, 'akki-vm')
+    assert review.panel(live['panel_id'])['status'] == 'annotating', 'an older seal version does not supersede'
+    newer = {**other, 'split_version': 3, 'seals': {l: {'admission_seg_ids_sha256': hashlib.sha256(f'new{l}'.encode()).hexdigest()} for l in ('kik', 'kam', 'swa')}}
+    newer_panel = review.open_panel(newer, 'akki-vm')
+    assert review.panel(live['panel_id'])['status'] == 'superseded' and review.panel(live['panel_id'])['superseded_by'] == newer_panel['panel_id']
+    # the commission's seal set decides which panel is live; a stray supersession of that panel is corrected on read
+    review.db().malpha_commissions.update_one({'commission_id': 'LISTEN-KIK-KAM-SWA'}, {'$set': {'aip_seals': live_result['seals']}}, upsert=True)
+    assert review.live_panel_id() == live['panel_id']
+    cur = review.current_panel(); assert cur['panel_id'] == live['panel_id'] and cur['status'] == 'annotating' and 'superseded_by' not in cur and cur.get('reinstated_reason')
+    for pid in (newer_panel['panel_id'], hashlib.sha256(b'').hexdigest()):
+        review.db().malpha_review_tasks.delete_many({'panel_id': pid}); review.db().malpha_review_panels.delete_one({'panel_id': pid})
+    review.db().malpha_review_panels.delete_many({'split_version': {'$in': [1, 3]}}); review.db().malpha_review_tasks.delete_many({'panel_id': {'$nin': [live['panel_id']]}})
+    review.db().malpha_commissions.delete_many({})

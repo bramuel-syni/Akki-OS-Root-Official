@@ -33,13 +33,30 @@ def open_panel(result, host):
                    'pcm_offset': it['pcm_offset'], 'pcm_bytes': it['pcm_bytes'], 'host': host, 'aip_db_dir': result['aip_db_dir'], 'stratum': it['stratum'], 'transcript_mentions': it['transcript_mentions'],
                    'annotations': [], 'annotations_count': 0, 'status': 'open', 'final_brands': None, 'created_at': lab.now()}
             if db().malpha_review_tasks.update_one({'task_id': task_id}, {'$setOnInsert': doc}, upsert=True).upserted_id is not None: created += 1
-    db().malpha_review_panels.update_many({'panel_id': {'$ne': panel_id}, 'status': {'$ne': 'superseded'}}, {'$set': {'status': 'superseded', 'superseded_at': lab.now(), 'superseded_by': panel_id}})
-    db().malpha_review_panels.update_one({'panel_id': panel_id}, {'$setOnInsert': {'panel_id': panel_id, 'seals': seals, 'split_version': result.get('split_version'), 'host': host, 'opened_at': lab.now(), 'status': 'annotating', 'verified': False,
+    version = int(result.get('split_version') or 1)
+    # only panels of an OLDER seal version are superseded; a panel for the same or a newer seal set is never demoted by a later open_panel call
+    db().malpha_review_panels.update_many({'panel_id': {'$ne': panel_id}, 'status': {'$ne': 'superseded'}, 'split_version': {'$lt': version}}, {'$set': {'status': 'superseded', 'superseded_at': lab.now(), 'superseded_by': panel_id}})
+    db().malpha_review_panels.update_one({'panel_id': panel_id}, {'$setOnInsert': {'panel_id': panel_id, 'seals': seals, 'split_version': version, 'host': host, 'opened_at': lab.now(), 'status': 'annotating', 'verified': False,
                                                                                     'protocol': {'annotators_per_task': 2, 'independent': True, 'adjudication': 'third identity on disagreement', 'transcript_hidden': True}}}, upsert=True)
     return refresh_panel(panel_id) | {'tasks_created': created}
 
 
+def live_panel_id():
+    """The panel that belongs to the commission's current seal set — derived from the sealed admission ids, never from a mutable status flag."""
+    c = db().malpha_commissions.find_one({'commission_id': 'LISTEN-KIK-KAM-SWA'}, {'_id': 0, 'aip_seals': 1, 'reference_panel_id': 1})
+    seals = (c or {}).get('aip_seals') or {}
+    if all(isinstance((seals.get(l) or {}).get('admission_seg_ids_sha256'), str) for l in LANGUAGES): return fingerprint([seals[l]['admission_seg_ids_sha256'] for l in LANGUAGES])
+    return (c or {}).get('reference_panel_id')
+
+
 def current_panel():
+    live = live_panel_id()
+    p = db().malpha_review_panels.find_one({'panel_id': live}, {'_id': 0}) if live else None
+    if p:
+        if p.get('status') == 'superseded':  # a stray supersession of the commission's own panel is corrected on read, never silently served
+            db().malpha_review_panels.update_one({'panel_id': live}, {'$set': {'status': 'verified' if p.get('verified') else 'annotating', 'reinstated_at': lab.now(), 'reinstated_reason': 'panel matches the current admission seal set'}, '$unset': {'superseded_at': '', 'superseded_by': ''}})
+            p = db().malpha_review_panels.find_one({'panel_id': live}, {'_id': 0})
+        return p
     return db().malpha_review_panels.find_one({'status': {'$ne': 'superseded'}}, {'_id': 0}, sort=[('opened_at', -1)]) or db().malpha_review_panels.find_one({}, {'_id': 0}, sort=[('opened_at', -1)])
 
 

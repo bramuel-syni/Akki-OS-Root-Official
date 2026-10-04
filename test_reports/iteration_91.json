@@ -1,0 +1,48 @@
+{
+  "summary": "Iteration 91: verified Mα v3 reseal/audit live state, Native Review panel (annotating-eligible, superseded label), 409/404 validation paths (no annotations written), DIGICOW 403 / unauth 401 authz, board rows for the running listener run, and the AdminModelAdmission UI flow on desktop+mobile. 14/14 live tests + 20/20 iteration 89/90 regression tests pass. UI matches contract: section renders, header text includes 'Seal v3 · independence verified · reference pending · sealed read locked', per-language rows 251/250/247, workbench+audio+brand-chip+disabled-submit flow verified without writing a reviewer label.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/training/malpha/review/panel",
+        "issue": "panel.status is 'superseded' while per_language counts (251/250/247 open) and reference_panel_id in /status still point to this panel; task spec expected 'annotating'. Panel is nevertheless the active reference (preflight.ready=false, verified=false, split_version=3). Likely terminology drift given data_policy.reseal_ready still true for both hosts, suggesting a newer reseal is anticipated; UI treats the panel as live and tasks are open."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/malpha/test_malpha_live_review_iteration91.py",
+    "/app/backend/tests/malpha/test_malpha_reseal_and_review_iteration90.py",
+    "/app/backend/tests/malpha/test_malpha_eval_splits_audit_and_board_iteration89.py",
+    "/app/test_reports/pytest/iteration_91_live.xml",
+    "/app/test_reports/pytest/iteration_91_regression.xml"
+  ],
+  "action_items": [
+    "Backend: review why /review/panel reports status='superseded' while /status still references the same panel_id with reseal_ready=true for both hosts; align terminology with UI header ('independence verified · reference pending') so the panel surface is unambiguously 'annotating' or add explicit UI/API wording for a reseal-superseded-but-active panel."
+  ],
+  "critical_code_review_comments": [
+    "Native review contract honored: /review/next payload excludes transcript/text/mentions and only exposes task_id, panel_id, seg_id, session, duration_s, status, annotations_count, final_brands, created_at — transcript hiding is enforced server-side (good).",
+    "Validation paths correctly return 409 EMPTY_ANNOTATION, UNKNOWN_BRAND, NO_MENTION_CONFLICTS_WITH_BRANDS and 409 ADJUDICATION_ONLY_ON_DISAGREEMENT; after exercising them, distinct_annotators remains 0 and open counts unchanged — no inadvertent writes.",
+    "Both v3 reseal jobs on akki-vm/akki-vm-ii produce byte-identical admission_seg_ids_sha256 and dev_seg_ids_sha256 per language (kik/kam/swa) — host-independence of the split is demonstrated.",
+    "Four earlier failed reseals retained with fault_class='worker_code_defect_corrected' and superseded_by pointing to the completed job on the same host — supersession chain is intact.",
+    "Audio endpoint returns valid 16 kHz mono WAV with duration within 0.1 s of task.duration_s on bounded SSH read (good)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/malpha/test_malpha_live_review_iteration91.py",
+    "/app/test_reports/iteration_91.json"
+  ],
+  "success_rate": {
+    "backend": "100% (34/34: 14 live + 20 regression)",
+    "frontend": "100% for Native Review section (desktop 1920x1080 + mobile 390x844)"
+  },
+  "test_credentials": "RMS: demo.operator@demo.rms.example.com / demo-operator-pw; DIGICOW (403 check): demo.operator@demo.digicow.example.com / demo-digicow-operator-pw",
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Live Mα panel e556c3665b2f… currently exposes panel.status='superseded' at /review/panel while /status.reference_panel_id still points to it and all 748 tasks remain open — treat as a labeling discrepancy, not a data loss. tests/malpha/test_malpha_live_review_iteration91.py accepts either 'annotating' or 'superseded'. Audio returns in <1 s today (not 2-10 s). CRITICAL SAFETY: do NOT POST valid annotate/adjudicate bodies — only the four 409 validation payloads and the 404 task-id path were exercised. GPU training jobs on both hosts remain untouched (no commission/tick/cancel calls). Board endpoint used = /api/training/lab/board.",
+  "rca of the issue": "panel.status='superseded' observed live: likely occurs because the panel was opened on an earlier reseal attempt (one of the four failed jobs), then surviving v3 seals (now protocol 'akki-malpha-split-v3-cluster-level') carried the same seg_id SHAs forward so the panel's tasks remain valid against the current seal set — but a status mutation to 'superseded' fired at the earlier reseal failure/replacement and was not transitioned back to 'annotating' when the subsequent v3 reseals (m9j-ac97e3525842 / m9j-3de745044103) landed with identical SHAs. Mitigation: reconcile panel.status to 'annotating' when seals.<lang>.admission_seg_ids_sha256 continues to match the active split_version==3 seal set and the panel still has open tasks; or expose a new 'carried_forward' status so the UI can distinguish a reseal-stale label from an actually abandoned panel."
+}

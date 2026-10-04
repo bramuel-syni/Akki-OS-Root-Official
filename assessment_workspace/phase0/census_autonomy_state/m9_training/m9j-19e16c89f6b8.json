@@ -76,9 +76,9 @@
  "code_sha256": "b1c33f1a1d42e6035e37279bf18ffb5ab4ac2de257fe303d45c93993cfafe8e5",
  "started_at": "2026-10-04T19:31:16.040523Z",
  "last_status_rpc": {
-  "at": "2026-10-04T20:45:46.597263Z",
+  "at": "2026-10-04T20:55:16.658534Z",
   "rc": 0,
-  "receipt_id": "gpurcp-70daa1cb627a"
+  "receipt_id": "gpurcp-10dfa8979cac"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
@@ -86,13 +86,13 @@
   "started_at": "2026-10-04T19:31:15Z",
   "progress": {
    "stage": "training",
-   "step": 1290,
+   "step": 1500,
    "of": 3000,
-   "loss": 2.8418,
-   "elapsed_s": 4459,
+   "loss": 2.7508,
+   "elapsed_s": 4774,
    "gpu_peak_gb": 11.21,
-   "last_checkpoint_step": 1250,
-   "next_checkpoint_step": 1500,
+   "last_checkpoint_step": 1500,
+   "next_checkpoint_step": 1750,
    "best_step": 500
   },
   "stages": {
@@ -303,7 +303,7 @@
   "job_id": "m9j-19e16c89f6b8",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T20:45:41Z"
+  "updated_at": "2026-10-04T20:50:56Z"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 5932.48it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-19e16c89f6b8/worker.zip/services/training_lab/malpha_voice_worker.py:185: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
  "process_alive": true
