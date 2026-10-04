@@ -257,7 +257,8 @@ def codec_qualification(model, fe, rows_by_lang, pcm_store, device, per_language
 
 
 class PcmStore:
-    """Segment-addressable 16 kHz int16 store per language: `pcm16k_<lang>.bin` + offsets in the row. Timestamp → source playback resolves here."""
+    """Segment-addressable 16 kHz int16 store per language: `pcm16k_<lang>.bin` + offsets in the row (a row may name another store file, e.g. the
+    internet-corpus dataset). Timestamp → source playback resolves here."""
 
     def __init__(self, root):
         self.root = Path(root); self.handles = {}
@@ -267,19 +268,31 @@ class PcmStore:
 
     def read(self, lang, row):
         import numpy as np
-        if lang not in self.handles: self.handles[lang] = open(self.path(lang), 'rb')
-        h = self.handles[lang]; h.seek(row['pcm_offset']); buf = h.read(row['pcm_bytes'])
+        key = row.get('pcm_file') or f'pcm16k_{lang}.bin'
+        if key not in self.handles: self.handles[key] = open(self.root / key, 'rb')
+        h = self.handles[key]; h.seek(row['pcm_offset']); buf = h.read(row['pcm_bytes'])
         return np.frombuffer(buf, dtype=np.int16)
 
 
-def load_rows(aip_dir, lang, with_text=False):
-    rows = [json.loads(l) for l in (Path(aip_dir) / f'segments_{lang}.jsonl').read_text().splitlines() if l.strip()]
+def load_rows(aip_dir, lang, with_text=False, dataset='radio'):
+    """`dataset='radio'` is the staged estate corpus (sealed splits); `'internet'` is the separately provenance-tagged public corpus (train only)."""
+    prefix = '' if dataset == 'radio' else f'{dataset}_'
+    seg_path = Path(aip_dir) / f'segments_{prefix}{lang}.jsonl'
+    if not seg_path.exists(): return []
+    rows = [json.loads(l) for l in seg_path.read_text().splitlines() if l.strip()]
     if with_text:
         text = {}
-        for l in (Path(aip_dir) / f'text_{lang}.jsonl').read_text().splitlines():
+        for l in (Path(aip_dir) / f'text_{prefix}{lang}.jsonl').read_text().splitlines():
             if l.strip(): d = json.loads(l); text[d['seg_id']] = d['text']
         for r in rows: r['text'] = text.get(r['seg_id'], '')
     return rows
+
+
+def _write_rows_atomic(path, rows, key=lambda r: (r['session'], r['start'])):
+    tmp = Path(str(path) + '.tmp')
+    with open(tmp, 'w') as fh:
+        for r in sorted(rows, key=key): fh.write(json.dumps({k: v for k, v in r.items() if k != 'text'}, sort_keys=True) + '\n')
+    os.replace(tmp, path)
 
 
 def brand_inventory(rows_by_lang, lexicon):
@@ -493,6 +506,128 @@ def aip_requalify(control, state):
             'raw_media_exported': False, 'text_exported': False, 'paths_exported': False, 'training_started': False}
 
 
+# ----------------------------------------------------------------------------- phase: brand re-labelling under a new owner lexicon version (CPU)
+def lexicon_sha(lexicon):
+    return hashlib.sha256(json.dumps(lexicon, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
+def aip_relabel(control, state):
+    """The owner's brand catalogue replaces the seed lexicon: every row's mention set is recomputed from its (unchanged) transcript. Segment ids,
+    splits and the admission seal are untouched and re-verified; what changes is the measured quantity. Common-word brands are flagged from
+    corpus frequency, never silently dropped — the owner decides."""
+    out = Path(control['aip_db_dir']); started = time.time(); langs = list(control['languages']); lexicon = control['brand_lexicon']
+    manifest = json.loads((out / 'manifest.json').read_text())
+    sha = lexicon_sha(lexicon); report = {}; ambiguous = {}
+    for lang in langs:
+        rows = load_rows(out, lang, with_text=True)
+        if _sha(json.dumps(sorted(r['seg_id'] for r in rows if r['split'] == 'admission'))) != manifest['seals'][lang]['admission_seg_ids_sha256']: raise ValueError(f'ADMISSION_SEAL_MISMATCH:{lang}')
+        before = sum(1 for r in rows if r.get('mentions'))
+        inventory = brand_inventory({lang: rows}, lexicon)[lang]
+        _write_rows_atomic(out / f'segments_{lang}.jsonl', rows)
+        internet = load_rows(out, lang, with_text=True, dataset='internet')
+        if internet:
+            brand_inventory({lang: internet}, lexicon); _write_rows_atomic(out / f'segments_internet_{lang}.jsonl', internet)
+        total = len(rows) or 1
+        ambiguous[lang] = sorted([{'brand': b, 'segments_per_1000': round(1000 * sum(c.values()) / total, 2)} for b, c in inventory.items() if sum(c.values()) / total > 0.01], key=lambda d: -d['segments_per_1000'])
+        report[lang] = {'segments': len(rows), 'mention_segments_before': before, 'mention_segments_after': sum(1 for r in rows if r.get('mentions')),
+                        'by_split': {s: sum(1 for r in rows if r['split'] == s and r.get('mentions')) for s in ('train', 'dev', 'admission')}, 'brands_heard': len(inventory), 'internet_rows_relabelled': len(internet)}
+        manifest.setdefault('brand_inventory', {})[lang] = inventory
+        state.update(progress={'stage': f'relabelled {LANG_NAMES.get(lang, lang)}', 'elapsed_s': int(time.time() - started)})
+    manifest.update(brand_lexicon={'version': control.get('brand_lexicon_version'), 'lexicon_sha256': sha, 'brands': len(lexicon), 'relabelled_at': now(), 'frequent_brands_flagged': ambiguous},
+                    seals={l: {**manifest['seals'][l], 'admission_seal_unchanged': True} for l in manifest['seals']})
+    tmp = out / 'manifest.json.tmp'; tmp.write_text(json.dumps(manifest, indent=1, sort_keys=True)); os.replace(tmp, out / 'manifest.json')
+    return {'protocol': manifest['protocol'], 'commission_id': control['commission_id'], 'languages': langs, 'lexicon_sha256': sha, 'lexicon_version': control.get('brand_lexicon_version'), 'brands': len(lexicon), 'report': report,
+            'brand_inventory': manifest['brand_inventory'],
+            'frequent_brands_flagged': ambiguous, 'seals': manifest['seals'], 'aip_db_dir': str(out), 'manifest_sha256': hashlib.sha256((out / 'manifest.json').read_bytes()).hexdigest(),
+            'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': 0, 'device': 'cpu'}, 'raw_media_exported': False, 'text_exported': False, 'paths_exported': False, 'training_started': False}
+
+
+# ----------------------------------------------------------------------------- phase: public internet corpus (owner order 2026-10-04: "You can also train from the internet data")
+LICENCE_ALLOWLIST = ('cc-by-4.0', 'cc0-1.0', 'cc-by-sa-4.0', 'cc-by-3.0', 'cc-by-sa-3.0', 'apache-2.0', 'mit', 'odc-by', 'cdla-permissive-2.0')
+TEXT_COLUMNS = ('transcription', 'transcript', 'transcripts', 'sentence', 'text', 'raw_transcription', 'normalized_text')
+
+
+def _hf_qualify(repo, allowlist):
+    """Rights check before any bytes: declared licence must be on the allowlist and the dataset must be readable with the host's credentials."""
+    from huggingface_hub import HfApi
+    try:
+        info = HfApi().dataset_info(repo)
+    except Exception as exc:
+        return None, f'not_reachable:{type(exc).__name__}'
+    licence = ((info.card_data or {}).get('license') if info.card_data else None)
+    licence = licence[0] if isinstance(licence, list) and licence else licence
+    if not licence or str(licence).lower() not in allowlist: return info, f'licence_not_admitted:{licence or "undeclared"}'
+    if getattr(info, 'gated', False) and not os.environ.get('HF_TOKEN'): return info, 'gated_no_token'
+    return info, None
+
+
+def _decode_bytes(data, sr):
+    import numpy as np
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', 'pipe:0', '-f', 'f32le', '-ac', '1', '-ar', str(sr), '-'], input=data, capture_output=True, timeout=120, check=False).stdout
+    return np.frombuffer(raw, dtype=np.float32).copy()
+
+
+def internet_corpus(control, state):
+    """Public speech datasets become a second, separately provenance-tagged dataset of the audio database (`segments_internet_<lang>`): train
+    only, never dev or admission, never mixed into the radio character register. Licence and access are checked before download; a dataset
+    that fails is recorded as refused, not skipped silently. Hours per dataset are capped by the recipe, not by the owner."""
+    import numpy as np
+    from datasets import Audio, load_dataset
+    out = Path(control['aip_db_dir']); started = time.time(); lexicon = control.get('brand_lexicon') or []
+    manifest = json.loads((out / 'manifest.json').read_text()); registry = manifest.setdefault('internet_corpus', {})
+    allow = tuple(control.get('licence_allowlist') or LICENCE_ALLOWLIST); max_hours = float(control.get('max_hours_per_dataset', 60)); max_s = float(control.get('max_segment_seconds', 30.0))
+    results = []
+    for spec in control['datasets']:
+        key = f"{spec['repo']}:{spec.get('config') or 'default'}"; lang = spec['language']
+        if key in registry and registry[key].get('status') == 'ingested': results.append({**registry[key], 'reused': True}); continue
+        state.update(progress={'stage': f'qualifying {key}', 'elapsed_s': int(time.time() - started)})
+        info, refusal = _hf_qualify(spec['repo'], allow)
+        rec = {'repo': spec['repo'], 'config': spec.get('config'), 'language': lang, 'split': spec.get('split', 'train'), 'licence': ((info.card_data or {}).get('license') if info and info.card_data else None), 'checked_at': now()}
+        if refusal:
+            rec.update(status='refused', reason=refusal); registry[key] = rec; results.append(rec); continue
+        try:
+            ds = load_dataset(spec['repo'], spec.get('config'), split=spec.get('split', 'train'), streaming=True)
+            audio_col = spec.get('audio_column') or next(k for k, v in ds.features.items() if type(v).__name__ == 'Audio')
+            text_col = spec.get('text_column') or next(k for k in TEXT_COLUMNS if k in ds.features)
+            ds = ds.cast_column(audio_col, Audio(decode=False))
+        except Exception as exc:
+            rec.update(status='refused', reason=f'not_loadable:{type(exc).__name__}:{str(exc)[:160]}'); registry[key] = rec; results.append(rec); continue
+        existing = load_rows(out, lang, with_text=True, dataset='internet'); rows = []; texts = {}
+        pcm_name = f'pcm16k_internet_{lang}.bin'; pcm_path = out / pcm_name
+        hours = 0.0; skipped = Counter()
+        with open(pcm_path, 'ab') as pcm:
+            for i, item in enumerate(ds):
+                if hours >= max_hours: break
+                text = ' '.join(str(item.get(text_col) or '').split())
+                blob = (item.get(audio_col) or {}).get('bytes')
+                if not text or not blob: skipped['no_text_or_audio'] += 1; continue
+                try: y = _decode_bytes(blob, SR16)
+                except Exception: skipped['decode_error'] += 1; continue
+                if len(y) < int(0.5 * SR16) or len(y) > int(max_s * SR16) or float(np.abs(y).max()) < 1e-4: skipped['duration_or_silence'] += 1; continue
+                feats = spectrum_features(y, SR16, len(text))
+                if not feats: skipped['no_features'] += 1; continue
+                block = (np.clip(y, -1, 1) * 32767).astype(np.int16).tobytes(); offset = pcm.tell(); pcm.write(block)
+                speaker = str(item.get(spec.get('speaker_column') or 'speaker_name') or item.get('speaker_id') or 'unknown')[:40]
+                seg_id = _sha(f'{key}:{i}')[:16]
+                rows.append({'seg_id': seg_id, 'ref': _sha(key)[:16], 'session': f'internet:{key}:{speaker}', 'file': key, 'start': 0.0, 'end': feats['duration_s'], 'speaker': speaker, 'split': 'train', 'dataset': 'internet',
+                             'source': {'repo': spec['repo'], 'config': spec.get('config'), 'licence': rec['licence'], 'row_index': i}, 'condition': 'read_speech/16000Hz/1ch', 'pcm_file': pcm_name, 'pcm_offset': offset, 'pcm_bytes': len(block),
+                             'chars': len(text), 'words': len(text.split()), 'text_sha256': _sha(text), 'features': feats, 'text': text})
+                texts[seg_id] = text; hours += feats['duration_s'] / 3600
+                if len(rows) % 200 == 0: state.update(progress={'stage': f'reading {key}', 'rows': len(rows), 'hours': round(hours, 2), 'of_hours': max_hours, 'elapsed_s': int(time.time() - started)})
+        brand_inventory({lang: rows}, lexicon)
+        merged = existing + rows
+        _write_rows_atomic(out / f'segments_internet_{lang}.jsonl', merged, key=lambda r: (r['session'], r['seg_id']))
+        with open(out / f'text_internet_{lang}.jsonl', 'a') as th:
+            for r in rows: th.write(json.dumps({'seg_id': r['seg_id'], 'text': r['text']}, ensure_ascii=False) + '\n')
+        rec.update(status='ingested', rows=len(rows), hours=round(hours, 3), skipped=dict(skipped), mention_rows=sum(1 for r in rows if r.get('mentions')), text_column=text_col, audio_column=audio_col)
+        registry[key] = rec; results.append(rec)
+    manifest['internet_corpus'] = registry
+    tmp = out / 'manifest.json.tmp'; tmp.write_text(json.dumps(manifest, indent=1, sort_keys=True)); os.replace(tmp, out / 'manifest.json')
+    totals = {l: {'rows': sum(r.get('rows', 0) for r in results if r['language'] == l and r['status'] == 'ingested'), 'hours': round(sum(r.get('hours', 0) for r in results if r['language'] == l and r['status'] == 'ingested'), 3)} for l in control['languages']}
+    return {'commission_id': control['commission_id'], 'datasets': results, 'totals': totals, 'aip_db_dir': str(out), 'manifest_sha256': hashlib.sha256((out / 'manifest.json').read_bytes()).hexdigest(),
+            'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': 0, 'device': 'cpu'}, 'raw_media_exported': False, 'text_exported': False, 'paths_exported': False, 'training_started': False, 'sealed_admission_read': False}
+
+
 # ----------------------------------------------------------------------------- shared training utilities
 def gpu_lock(control):
     import fcntl
@@ -541,8 +676,15 @@ def detect_mentions(text, lexicon):
     return sorted(hits)
 
 
+def wilson(k, n, z=1.96):
+    if not n: return None
+    p = k / n; d = 1 + z * z / n; c = p + z * z / (2 * n); h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))
+    return [round((c - h) / d, 4), round((c + h) / d, 4)]
+
+
 def mention_metrics(rows, hyps, lexicon):
-    """Per-language precision AND recall at the segment×brand level, false positives per hour, abstention and timing tolerance recorded separately."""
+    """Per-language precision AND recall at the segment×brand level with 95% Wilson intervals (small n is visible, never averaged away),
+    false positives per hour, abstention and timing tolerance recorded separately."""
     out = {}
     for lang in sorted({r['language'] for r in rows}):
         tp = fp = fn = 0; hours = 0.0; positives = 0; per_brand = defaultdict(lambda: Counter())
@@ -557,6 +699,7 @@ def mention_metrics(rows, hyps, lexicon):
         f1 = 2 * precision * recall / (precision + recall) if precision and recall else (0.0 if (tp + fp and tp + fn) else None)
         out[lang] = {'segments': sum(1 for r in rows if r['language'] == lang), 'segments_with_mentions': positives, 'tp': tp, 'fp': fp, 'fn': fn,
                      'precision': round(precision, 4) if precision is not None else None, 'recall': round(recall, 4) if recall is not None else None, 'f1': round(f1, 4) if f1 is not None else None,
+                     'precision_ci95': wilson(tp, tp + fp), 'recall_ci95': wilson(tp, tp + fn),
                      'false_positives_per_hour': round(fp / hours, 3) if hours else None, 'hours_evaluated': round(hours, 3), 'timestamp_tolerance': 'segment boundaries (mention attributed to its transcript segment)',
                      'abstained_segments': sum(1 for r, h in zip(rows, hyps) if r['language'] == lang and h is None), 'per_brand': {b: dict(c) for b, c in per_brand.items()}}
     return out
@@ -565,9 +708,28 @@ def mention_metrics(rows, hyps, lexicon):
 # ----------------------------------------------------------------------------- phase: listener (ASR + brand mentions) training
 def _whisper_tokens(tokenizer, langs):
     ids = {'sot': tokenizer.convert_tokens_to_ids('<|startoftranscript|>'), 'transcribe': tokenizer.convert_tokens_to_ids('<|transcribe|>'),
-           'notimestamps': tokenizer.convert_tokens_to_ids('<|notimestamps|>'), 'eot': tokenizer.eos_token_id}
+           'notimestamps': tokenizer.convert_tokens_to_ids('<|notimestamps|>'), 'eot': tokenizer.eos_token_id, 'prev': tokenizer.convert_tokens_to_ids('<|startofprev|>')}
     ids['lang'] = {lang: tokenizer.convert_tokens_to_ids('<|sw|>' if lang == 'swa' else f'<|{lang}|>') for lang in langs}
     return ids
+
+
+BIAS_PROMPT_MAX_TOKENS = 200  # Whisper's previous-text window is 224 tokens; the brand list that biases decoding must fit inside it
+
+
+def bias_prompt_ids(tokenizer, ids, brands):
+    """Contextual biasing through Whisper's own previous-text channel: the brand names a listener should expect are placed after <|startofprev|>, so
+    decoding is pulled toward those spellings. Nothing is forced — a brand that is not heard is not written."""
+    if not brands: return []
+    return [ids['prev']] + tokenizer(' ' + ', '.join(brands), add_special_tokens=False).input_ids[:BIAS_PROMPT_MAX_TOKENS]
+
+
+def bias_terms_by_language(train_rows, lexicon, per_language):
+    """The brands heard most in each language's training split, in frequency order: the decode-time expectation list (recorded in the artefact)."""
+    out = {}
+    for lang in sorted({r['language'] for r in train_rows}):
+        counts = Counter(b for r in train_rows if r['language'] == lang for b in (r.get('mentions') or []))
+        out[lang] = [b for b, _ in counts.most_common(int(per_language))]
+    return out
 
 
 def _prepare_whisper(base, langs, device):
@@ -586,30 +748,34 @@ def _prepare_whisper(base, langs, device):
     return processor, model.to(device), _whisper_tokens(tok, langs)
 
 
-def _whisper_batch(processor, ids, pcm_store, rows, device, max_label=256):
+def _whisper_batch(processor, ids, pcm_store, rows, device, max_label=256, prompts=None):
+    """prompts: optional per-row brand lists for contextual-bias training; prompt tokens (and the start token after them) are excluded from the loss."""
     import numpy as np
     import torch
     audio = [pcm_store.read(r['language'], r).astype(np.float32) / 32767.0 for r in rows]
     feats = processor.feature_extractor(audio, sampling_rate=SR16, return_tensors='pt').input_features.to(device)
-    labels = []
-    for r in rows:
-        text_ids = processor.tokenizer(r['text'], add_special_tokens=False).input_ids[:max_label - 5]
-        labels.append([ids['sot'], ids['lang'][r['language']], ids['transcribe'], ids['notimestamps']] + text_ids + [ids['eot']])
+    labels, masked = [], []
+    for i, r in enumerate(rows):
+        prefix = bias_prompt_ids(processor.tokenizer, ids, prompts[i]) if prompts and prompts[i] else []
+        text_ids = processor.tokenizer(r['text'], add_special_tokens=False).input_ids[:max_label - 5 - len(prefix)]
+        labels.append(prefix + [ids['sot'], ids['lang'][r['language']], ids['transcribe'], ids['notimestamps']] + text_ids + [ids['eot']]); masked.append(len(prefix))
     width = max(len(l) for l in labels)
     dec_in = torch.full((len(rows), width - 1), ids['eot'], dtype=torch.long); target = torch.full((len(rows), width - 1), -100, dtype=torch.long)
     for i, l in enumerate(labels):
         dec_in[i, :len(l) - 1] = torch.tensor(l[:-1]); target[i, :len(l) - 1] = torch.tensor(l[1:])
+        if masked[i]: target[i, :masked[i]] = -100  # the model is not trained to produce the prompt or the start token after it
     return feats, dec_in.to(device), target.to(device)
 
 
-def whisper_greedy(model, processor, ids, feats, langs_of_rows, max_new=180):
-    """Own greedy loop with cached encoder output: language forced per segment, no dependence on generate() language tables."""
+def whisper_greedy(model, processor, ids, feats, langs_of_rows, max_new=180, prompt=None):
+    """Own greedy loop with cached encoder output: language forced per segment, no dependence on generate() language tables. `prompt` is one brand list
+    shared by the batch (contextual bias through <|startofprev|>)."""
     import torch
     from transformers.modeling_outputs import BaseModelOutput
     with torch.no_grad(), torch.autocast('cuda', dtype=torch.bfloat16):
         enc = BaseModelOutput(last_hidden_state=model.model.encoder(feats).last_hidden_state)
-    B = feats.shape[0]
-    seq = torch.tensor([[ids['sot'], ids['lang'][l], ids['transcribe'], ids['notimestamps']] for l in langs_of_rows], device=feats.device)
+    B = feats.shape[0]; prefix = bias_prompt_ids(processor.tokenizer, ids, prompt) if prompt else []
+    seq = torch.tensor([prefix + [ids['sot'], ids['lang'][l], ids['transcribe'], ids['notimestamps']] for l in langs_of_rows], device=feats.device); head = len(prefix) + 4
     done = torch.zeros(B, dtype=torch.bool, device=feats.device); past = None
     for _ in range(max_new):
         with torch.no_grad(), torch.autocast('cuda', dtype=torch.bfloat16):
@@ -619,7 +785,7 @@ def whisper_greedy(model, processor, ids, feats, langs_of_rows, max_new=180):
         seq = torch.cat([seq, nxt[:, None]], 1); done |= nxt == ids['eot']
         if bool(done.all()): break
     hyps = []
-    for row in seq[:, 4:].tolist():
+    for row in seq[:, head:].tolist():
         cut = row.index(ids['eot']) if ids['eot'] in row else len(row)
         hyps.append(processor.tokenizer.decode(row[:cut], skip_special_tokens=True).strip())
     return hyps
@@ -637,18 +803,31 @@ def _sample_per_language(rows, per_lang, seed):
     return out
 
 
-def evaluate_listener(model, processor, ids, pcm_store, rows, lexicon, device, batch=48):
-    rows = sorted(rows, key=lambda r: r['features']['duration_s']); hyps = []; started = time.time(); audio_s = 0.0
-    for i in range(0, len(rows), batch):
-        chunk = rows[i:i + batch]
-        feats, _, _ = _whisper_batch(processor, ids, pcm_store, chunk, device)
-        hyps.extend(whisper_greedy(model, processor, ids, feats, [r['language'] for r in chunk])); audio_s += sum(r['features']['duration_s'] for r in chunk)
+def evaluate_listener(model, processor, ids, pcm_store, rows, lexicon, device, batch=48, bias_terms=None):
+    """bias_terms: per-language brand lists shared by every batch of that language (decode-time expectation list); None = plain decoding."""
+    hyps_by_id = {}; started = time.time(); audio_s = 0.0
+    for lang in sorted({r['language'] for r in rows}):
+        group = sorted([r for r in rows if r['language'] == lang], key=lambda r: r['features']['duration_s'])
+        for i in range(0, len(group), batch):
+            chunk = group[i:i + batch]
+            feats, _, _ = _whisper_batch(processor, ids, pcm_store, chunk, device)
+            for r, h in zip(chunk, whisper_greedy(model, processor, ids, feats, [r['language'] for r in chunk], prompt=(bias_terms or {}).get(lang))): hyps_by_id[r['seg_id']] = h
+            audio_s += sum(r['features']['duration_s'] for r in chunk)
+    rows = sorted(rows, key=lambda r: (r['language'], r['features']['duration_s'])); hyps = [hyps_by_id[r['seg_id']] for r in rows]
     per_lang = {}
     for lang in sorted({r['language'] for r in rows}):
         pairs = [(r['text'], h) for r, h in zip(rows, hyps) if r['language'] == lang]
         per_lang[lang] = wer_cer([p[0] for p in pairs], [p[1] for p in pairs])
     return {'words': per_lang, 'mentions': mention_metrics(rows, hyps, lexicon), 'latency': {'real_time_factor': round((time.time() - started) / max(1e-6, audio_s), 4), 'audio_seconds': round(audio_s, 1), 'wall_seconds': round(time.time() - started, 1)},
+            'contextual_bias': {l: len(v) for l, v in (bias_terms or {}).items()} or None,
             'samples': [{'language': r['language'], 'ref_chars': len(r['text']), 'hyp_chars': len(h), 'mentions_truth': r.get('mentions') or [], 'mentions_hyp': detect_mentions(h, lexicon)} for r, h in list(zip(rows, hyps))[:12]]}
+
+
+def _listener_score(ev):
+    """Artefact choice follows the admission contract: the worst language's mention F1 first (no averaging across languages), lower mean WER breaks ties."""
+    import numpy as np
+    f1s = [(m.get('f1') if m.get('f1') is not None else 0.0) for m in ev['mentions'].values()]
+    return (round(min(f1s), 4) if f1s else 0.0, -round(float(np.mean([v['wer'] for v in ev['words'].values()])), 4))
 
 
 def _save_ckpt(path, model, optimizer, step, extra):
@@ -668,8 +847,15 @@ def listener_train(control, state):
         for r in load_rows(aip, lang, with_text=True): r['language'] = lang; rows.append(r)
     max_s = float(recipe.get('max_segment_seconds', 30.0))
     train = [r for r in rows if r['split'] == 'train' and r['features']['duration_s'] <= max_s and r['text']]
+    internet = []
+    if recipe.get('include_internet_corpus'):
+        for lang in langs:
+            for r in load_rows(aip, lang, with_text=True, dataset='internet'):
+                if r['features']['duration_s'] <= max_s and r['text']: r['language'] = lang; internet.append(r)
+        train = train + internet
     dev = _sample_per_language([r for r in rows if r['split'] == 'dev' and r['features']['duration_s'] <= max_s and r['text']], int(recipe.get('dev_per_language', 400)), int(control['seed']))
-    state.stage('data', {'train_segments': len(train), 'dev_segments': len(dev), 'train_hours': round(sum(r['features']['duration_s'] for r in train) / 3600, 2), 'admission_read': False})
+    state.stage('data', {'train_segments': len(train), 'dev_segments': len(dev), 'train_hours': round(sum(r['features']['duration_s'] for r in train) / 3600, 2), 'admission_read': False, 'lexicon_sha256': lexicon_sha(lexicon), 'brands': len(lexicon),
+                         'internet_corpus': {'segments': len(internet), 'hours': round(sum(r['features']['duration_s'] for r in internet) / 3600, 2), 'per_language': {l: sum(1 for r in internet if r['language'] == l) for l in langs}} if internet else None})
     processor, model, ids = _prepare_whisper(recipe['base'], langs, device)
     if recipe.get('init_from'):
         sd = torch.load(Path(recipe['init_from']) / 'model.pt', map_location='cpu'); model.load_state_dict(sd['model'] if 'model' in sd else sd)
@@ -684,12 +870,25 @@ def listener_train(control, state):
     rng = random.Random(int(control['seed']) + step)
     order = sorted(train, key=lambda r: r['features']['duration_s'])
     buckets = [order[i:i + batch] for i in range(0, len(order), batch)]
+    bias_on = bool(recipe.get('contextual_bias', False)); bias_prob = float(recipe.get('bias_prob', 0.5)); distractors = int(recipe.get('bias_distractors', 6))
+    bias_terms = bias_terms_by_language(train, lexicon, int(recipe.get('bias_terms_per_language', 40))) if bias_on else None
+    brands_by_lang = {l: sorted({b for r in train if r['language'] == l for b in (r.get('mentions') or [])}) for l in langs}
+    if bias_on: state.stage('contextual_bias', {'decode_expectation_terms': {l: len(v) for l, v in bias_terms.items()}, 'train_prompt_probability': bias_prob, 'distractors_per_prompt': distractors, 'prompt_channel': '<|startofprev|> brand list'})
+
+    def train_prompts(rows_):
+        """Half the segments see an expectation list holding their true brands among distractors (so the model learns to use the list, not to copy it); the rest see none."""
+        out = []
+        for r in rows_:
+            if not bias_on or rng.random() >= bias_prob: out.append(None); continue
+            pool = [b for b in brands_by_lang.get(r['language']) or [] if b not in (r.get('mentions') or [])]
+            terms = list(r.get('mentions') or []) + rng.sample(pool, min(distractors, len(pool))); rng.shuffle(terms); out.append(terms or None)
+        return out
     model.train(); losses = []
     while step < max_steps:
         rng.shuffle(buckets)
         for b in buckets:
             if step >= max_steps: break
-            feats, dec_in, target = _whisper_batch(processor, ids, pcm_store, b, device)
+            feats, dec_in, target = _whisper_batch(processor, ids, pcm_store, b, device, prompts=train_prompts(b))
             with torch.autocast('cuda', dtype=torch.bfloat16):
                 logits = model(input_features=feats, decoder_input_ids=dec_in).logits
             loss = torch.nn.functional.cross_entropy(logits.float().view(-1, logits.shape[-1]), target.view(-1), ignore_index=-100) / accum
@@ -703,23 +902,23 @@ def listener_train(control, state):
             if step % ckpt_every == 0:
                 _save_ckpt(latest, model, optimizer, step, {'history': history}); state.event(f'checkpoint at step {step}')
             if step % eval_every == 0 or step == max_steps:
-                model.eval(); ev = evaluate_listener(model, processor, ids, pcm_store, dev, lexicon, device); model.train()
+                model.eval(); ev = evaluate_listener(model, processor, ids, pcm_store, dev, lexicon, device, bias_terms=bias_terms); model.train()
                 ev['step'] = step; ev['train_loss'] = round(float(np.mean(losses[-200:])), 4); ev['at'] = now(); history.append(ev)
-                mean_wer = float(np.mean([v['wer'] for v in ev['words'].values()]))
-                state.stage(f'dev_eval_step_{step}', {'mean_wer': round(mean_wer, 4), 'words': ev['words'], 'mentions': {l: {k: m[k] for k in ('precision', 'recall', 'f1')} for l, m in ev['mentions'].items()}})
-                if best is None or mean_wer < best['mean_wer']:
-                    best = {'step': step, 'mean_wer': round(mean_wer, 4)}; _save_ckpt(ckpt_dir / 'best.pt', model, optimizer, step, {'history': history})
+                mean_wer = float(np.mean([v['wer'] for v in ev['words'].values()])); score = _listener_score(ev)
+                state.stage(f'dev_eval_step_{step}', {'mean_wer': round(mean_wer, 4), 'worst_language_f1': score[0], 'words': ev['words'], 'mentions': {l: {k: m[k] for k in ('precision', 'recall', 'f1')} for l, m in ev['mentions'].items()}})
+                if best is None or score > best['score']:
+                    best = {'step': step, 'mean_wer': round(mean_wer, 4), 'worst_language_f1': score[0], 'score': score, 'basis': 'worst-language mention F1, then mean WER'}; _save_ckpt(ckpt_dir / 'best.pt', model, optimizer, step, {'history': history})
     art = job_dir / 'artefact'; art.mkdir(exist_ok=True)
     src = ckpt_dir / 'best.pt' if (ckpt_dir / 'best.pt').exists() else latest
     if not src.exists(): _save_ckpt(latest, model, optimizer, step, {'history': history}); src = latest
-    ck = torch.load(src, map_location='cpu'); torch.save({'model': ck['model'], 'base': recipe['base'], 'languages': langs, 'step': ck['step'], 'added_tokens': [f'<|{l}|>' for l in langs if l != 'swa']}, art / 'model.pt')
+    ck = torch.load(src, map_location='cpu'); torch.save({'model': ck['model'], 'base': recipe['base'], 'languages': langs, 'step': ck['step'], 'added_tokens': [f'<|{l}|>' for l in langs if l != 'swa'], 'bias_terms': bias_terms}, art / 'model.pt')
     processor.save_pretrained(art / 'processor')
     sha = hashlib.sha256((art / 'model.pt').read_bytes()).hexdigest()
-    final = history[-1] if history else None
+    final = next((h for h in history if best and h['step'] == best['step']), history[-1] if history else None)  # the reported dev reading is the artefact's own
     lock.close()
     return {'commission_id': control['commission_id'], 'iteration': control['iteration'], 'recipe': recipe, 'languages': langs, 'data': state.doc['stages']['data'], 'steps': step,
-            'dev': final, 'history': [{k: h[k] for k in ('step', 'train_loss', 'words', 'mentions', 'latency', 'at')} for h in history], 'best': best,
-            'artefact': {'path': str(art / 'model.pt'), 'sha256': sha, 'bytes': (art / 'model.pt').stat().st_size, 'best_step': int(ck['step'])},
+            'dev': final, 'history': [{k: h[k] for k in ('step', 'train_loss', 'words', 'mentions', 'latency', 'at')} for h in history], 'best': {k: v for k, v in (best or {}).items() if k != 'score'} or None,
+            'artefact': {'path': str(art / 'model.pt'), 'sha256': sha, 'bytes': (art / 'model.pt').stat().st_size, 'best_step': int(ck['step']), 'contextual_bias_terms': {l: len(v) for l, v in (bias_terms or {}).items()} or None},
             'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': round(time.time() - started, 1), 'gpu_hours': round((time.time() - started) / 3600, 4), 'gpu_peak_gb': round(torch.cuda.max_memory_allocated() / 2 ** 30, 2), 'device': torch.cuda.get_device_name(0)},
             'sealed_admission_read': False, 'training_started': True, 'raw_media_exported': False}
 
@@ -740,15 +939,15 @@ def evaluate_admission(control, state):
     art = torch.load(Path(control['artefact_path']), map_location='cpu')
     if hashlib.sha256(Path(control['artefact_path']).read_bytes()).hexdigest() != control['artefact_sha256']: raise ValueError('ARTEFACT_SHA_MISMATCH')
     processor, model, ids = _prepare_whisper(art['base'], langs, device); model.load_state_dict(art['model']); model.eval()
-    state.stage('data', {'admission_segments': len(admission), 'seals_verified': True})
-    ev = evaluate_listener(model, processor, ids, pcm_store, admission, lexicon, device)
+    state.stage('data', {'admission_segments': len(admission), 'seals_verified': True, 'contextual_bias_terms': {l: len(v) for l, v in (art.get('bias_terms') or {}).items()} or None})
+    ev = evaluate_listener(model, processor, ids, pcm_store, admission, lexicon, device, bias_terms=art.get('bias_terms'))
     target = float(control.get('admission_target', 0.9)); verdict = {}
     for lang in langs:
         m, w = ev['mentions'].get(lang) or {}, ev['words'].get(lang) or {}
         ok = m.get('precision') is not None and m.get('recall') is not None and m['precision'] >= target and m['recall'] >= target
-        verdict[lang] = {'mention_precision': m.get('precision'), 'mention_recall': m.get('recall'), 'mention_f1': m.get('f1'), 'wer': w.get('wer'), 'cer': w.get('cer'), 'segments_with_mentions': m.get('segments_with_mentions'),
+        verdict[lang] = {'mention_precision': m.get('precision'), 'mention_recall': m.get('recall'), 'mention_f1': m.get('f1'), 'precision_ci95': m.get('precision_ci95'), 'recall_ci95': m.get('recall_ci95'), 'wer': w.get('wer'), 'cer': w.get('cer'), 'segments_with_mentions': m.get('segments_with_mentions'),
                          'meets_target': bool(ok), 'target': target, 'measured_on': 'sealed admission split, speaker-cluster-disjoint from training'}
     lock.close()
-    return {'commission_id': control['commission_id'], 'iteration': control['iteration'], 'artefact_sha256': control['artefact_sha256'], 'languages': langs, 'evaluation': ev, 'verdict': verdict,
+    return {'commission_id': control['commission_id'], 'iteration': control['iteration'], 'artefact_sha256': control['artefact_sha256'], 'languages': langs, 'evaluation': ev, 'verdict': verdict, 'lexicon_sha256': lexicon_sha(lexicon), 'brands': len(lexicon),
             'admitted_all_languages': all(v['meets_target'] for v in verdict.values()), 'evaluation_exposure': 'one read of the sealed split for this artefact; recorded by the control plane',
             'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': round(time.time() - started, 1), 'gpu_hours': round((time.time() - started) / 3600, 4)}, 'sealed_admission_read': True, 'raw_media_exported': False}

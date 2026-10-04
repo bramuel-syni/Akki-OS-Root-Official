@@ -93,8 +93,9 @@ def story_text_train(control, state):
     model = AutoModelForCausalLM.from_pretrained(recipe['base_path'], torch_dtype=torch.bfloat16).to(device)
     model.gradient_checkpointing_enable(); model.config.use_cache = False
     if recipe.get('init_adapter'): model = PeftModel.from_pretrained(model, recipe['init_adapter'], is_trainable=True)
-    else: model = get_peft_model(model, LoraConfig(r=int(recipe.get('lora_r', 32)), lora_alpha=int(recipe.get('lora_alpha', 64)), lora_dropout=0.05, target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], task_type='CAUSAL_LM'))
+    else: model = get_peft_model(model, LoraConfig(r=int(recipe.get('lora_r', 32)), lora_alpha=int(recipe.get('lora_alpha', 64)), lora_dropout=float(recipe.get('lora_dropout', 0.05)), target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], task_type='CAUSAL_LM'))
     max_len = int(recipe.get('max_seq_len', 1024))
+    n_samples, patience = int(recipe.get('eval_samples_per_language', 2)), int(recipe.get('patience_evaluations', 0))  # patience 0 = run to max_steps (earlier recipes)
 
     def chunks(doc_list):
         out = []
@@ -105,7 +106,7 @@ def story_text_train(control, state):
             for i in range(0, len(body), room): out.append((d['lang'], head + body[i:i + room]))
         return out
     train_chunks, dev_chunks = chunks(train), chunks(dev)
-    optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=float(recipe['lr']), weight_decay=0.0)
+    optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=float(recipe['lr']), weight_decay=float(recipe.get('weight_decay', 0.0)))
     batch, accum, max_steps, warmup = int(recipe['batch_size']), int(recipe.get('grad_accum', 1)), int(recipe['max_steps']), int(recipe.get('warmup_steps', 100))
     ckpt_every, eval_every = int(recipe.get('checkpoint_every', 200)), int(recipe.get('eval_every', 500))
     step, history = 0, []
@@ -139,7 +140,8 @@ def story_text_train(control, state):
     def evaluation():
         ev = {'step': step, 'at': now(), 'per_language': {}}
         for lang in langs:
-            titles = [d['title'] for d in dev if d['lang'] == lang][:2] or ['a story told on the radio']
+            pool = [d['title'] for d in dev if d['lang'] == lang] or ['a story told on the radio']
+            titles = [pool[i % len(pool)] for i in range(n_samples)]
             samples = []
             for t in titles:
                 text = generate(lang, t); sims = {l: round(profile_cosine(trigram_profile([text]), profiles[l]), 4) for l in langs}
@@ -154,36 +156,50 @@ def story_text_train(control, state):
         with model.disable_adapter(): return {lang: perplexity(lang) for lang in langs}
     base_perplexity = _base_perplexity()
     if base_perplexity: state.stage('base_perplexity', base_perplexity)
-    model.train(); losses = []
-    while step < max_steps:
-        rng.shuffle(train_chunks)
-        for i in range(0, len(train_chunks), batch):
-            if step >= max_steps: break
-            ids, labels = collate(train_chunks[i:i + batch])
-            loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum)
-            if len(losses) % accum: continue
-            for g in optimizer.param_groups: g['lr'] = lr_at(step, max_steps, float(recipe['lr']), warmup)
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0); optimizer.step(); optimizer.zero_grad(set_to_none=True); step += 1
-            if step % 10 == 0:
-                state.update(progress={'stage': 'training', 'step': step, 'of': max_steps, 'loss': round(float(np.mean(losses[-50:])), 4), 'elapsed_s': int(time.time() - started), 'gpu_peak_gb': round(torch.cuda.max_memory_allocated() / 2 ** 30, 2),
-                                       'last_checkpoint_step': (step // ckpt_every) * ckpt_every, 'next_checkpoint_step': (step // ckpt_every + 1) * ckpt_every})
-            if step % ckpt_every == 0: _save_ckpt(ckpt_dir / 'latest.pt', model, optimizer, step, {'history': history})
-            if step % eval_every == 0 or step == max_steps:
-                ev = evaluation(); ev['train_loss'] = round(float(np.mean(losses[-100:])), 4); history.append(ev)
-                state.stage(f'dev_eval_step_{step}', {l: {k: v[k] for k in ('dev_perplexity', 'base_perplexity', 'dev_perplexity_below_base', 'language_fidelity_rate', 'mean_distinct_2')} for l, v in ev['per_language'].items()})
-    art = job_dir / 'artefact'; model.save_pretrained(art / 'lora_adapter'); tokenizer.save_pretrained(art / 'lora_adapter')
+    art = job_dir / 'artefact'
+
+    def score(ev):  # geometric mean of dev perplexity over the languages that have one; lower is better
+        vals = [v['dev_perplexity'] for v in ev['per_language'].values() if v.get('dev_perplexity')]
+        return math.exp(sum(math.log(v) for v in vals) / len(vals)) if vals else None
+
+    def save_adapter():
+        model.save_pretrained(art / 'lora_adapter'); tokenizer.save_pretrained(art / 'lora_adapter')
+    model.train(); losses = []; best, since_best, stopped_by = None, 0, 'max_steps'
+    by_lang = {l: [c for c in train_chunks if c[0] == l] for l in langs}; balance = bool(recipe.get('language_balance', False))
+    micro = 0
+    while step < max_steps and stopped_by == 'max_steps':
+        # language-balanced sampling (recipe) draws each micro-batch from one language chosen uniformly, so a small language is not out-voted by the large ones
+        pool = (by_lang[rng.choice(langs)] or train_chunks) if balance else train_chunks
+        ids, labels = collate([pool[rng.randrange(len(pool))] for _ in range(batch)])
+        loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1
+        if micro % accum: continue
+        for g in optimizer.param_groups: g['lr'] = lr_at(step, max_steps, float(recipe['lr']), warmup)
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0); optimizer.step(); optimizer.zero_grad(set_to_none=True); step += 1
+        if step % 10 == 0:
+            state.update(progress={'stage': 'training', 'step': step, 'of': max_steps, 'loss': round(float(np.mean(losses[-50:])), 4), 'elapsed_s': int(time.time() - started), 'gpu_peak_gb': round(torch.cuda.max_memory_allocated() / 2 ** 30, 2),
+                                   'last_checkpoint_step': (step // ckpt_every) * ckpt_every, 'next_checkpoint_step': (step // ckpt_every + 1) * ckpt_every, 'best_step': best['step'] if best else None})
+        if step % ckpt_every == 0: _save_ckpt(ckpt_dir / 'latest.pt', model, optimizer, step, {'history': history})
+        if step % eval_every == 0 or step == max_steps:
+            ev = evaluation(); ev['train_loss'] = round(float(np.mean(losses[-100:])), 4); history.append(ev); s = score(ev)
+            if s is not None and (best is None or s < best['score']): best, since_best = {'score': round(s, 3), 'step': step, 'eval': ev}, 0; save_adapter()
+            else: since_best += 1
+            state.stage(f'dev_eval_step_{step}', {l: {k: v[k] for k in ('dev_perplexity', 'base_perplexity', 'dev_perplexity_below_base', 'language_fidelity_rate', 'mean_distinct_2')} for l, v in ev['per_language'].items()} | {'_score': round(s, 3) if s else None, '_best_step': best['step'] if best else None})
+            if patience and since_best >= patience: stopped_by = f'patience ({patience} evaluations without a lower dev perplexity; best at step {best["step"]})'
+    if best is None: save_adapter()  # no dev perplexity could be measured: the final adapter is the artefact, stated as such
     digest = hashlib.sha256(); nbytes = 0
     for f in sorted(p for p in (art / 'lora_adapter').rglob('*') if p.is_file()): digest.update(f.read_bytes()); nbytes += f.stat().st_size
     lock.close()
+    reported = best['eval'] if best else (history[-1] if history else None)
     return {'commission_id': control['commission_id'], 'iteration': control['iteration'], 'lane': 'story_text', 'recipe': recipe, 'languages': langs, 'data': state.doc['stages']['data'], 'steps': step, 'base_perplexity': base_perplexity,
-            'dev': history[-1] if history else None, 'history': [{'step': h['step'], 'train_loss': h.get('train_loss'), 'per_language': {l: {k: v[k] for k in ('dev_perplexity', 'base_perplexity', 'dev_perplexity_below_base', 'language_fidelity_rate', 'mean_distinct_2')} for l, v in h['per_language'].items()}} for h in history],
+            'dev': reported, 'best_step': best['step'] if best else None, 'stopped_by': stopped_by, 'artefact_is': 'adapter at the best measured dev perplexity' if best else 'final adapter (dev perplexity not measurable)',
+            'history': [{'step': h['step'], 'train_loss': h.get('train_loss'), 'per_language': {l: {k: v[k] for k in ('dev_perplexity', 'base_perplexity', 'dev_perplexity_below_base', 'language_fidelity_rate', 'mean_distinct_2')} for l, v in h['per_language'].items()}} for h in history],
             'artefact': {'path': str(art / 'lora_adapter'), 'sha256': digest.hexdigest(), 'bytes': nbytes, 'base': recipe['base_path']},
             'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': round(time.time() - started, 1), 'gpu_hours': round((time.time() - started) / 3600, 4), 'gpu_peak_gb': round(torch.cuda.max_memory_allocated() / 2 ** 30, 2)},
             'sealed_admission_read': False, 'training_started': True, 'raw_media_exported': False, 'text_exported': False}
 
 
 # ----------------------------------------------------------------------------- voice: codec language model over Mimi tokens
-def build_voice_model(text_vocab, d_model, layers, heads, max_frames):
+def build_voice_model(text_vocab, d_model, layers, heads, max_frames, identity_dim=0):
     import torch
     from torch import nn
 
@@ -191,19 +207,22 @@ def build_voice_model(text_vocab, d_model, layers, heads, max_frames):
         def __init__(self):
             super().__init__()
             self.text_emb = nn.Embedding(text_vocab, d_model); self.audio_emb = nn.ModuleList([nn.Embedding(CODE_VOCAB, d_model) for _ in range(MIMI_CODEBOOKS)])
-            self.pos = nn.Embedding(max_frames + 512, d_model); self.kind = nn.Embedding(2, d_model)
+            self.pos = nn.Embedding(max_frames + 512, d_model); self.kind = nn.Embedding(3, d_model)
+            self.spk_proj = nn.Linear(identity_dim, d_model) if identity_dim else None  # one identity prefix token: the voice is a conditioning input, never a corpus speaker baked into the weights
             layer = nn.TransformerEncoderLayer(d_model, heads, 4 * d_model, dropout=0.1, activation='gelu', batch_first=True, norm_first=True)
             self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)
             self.heads = nn.ModuleList([nn.Linear(d_model, CODE_VOCAB) for _ in range(MIMI_CODEBOOKS)])
 
-        def forward(self, text_ids, codes_in):
-            """text_ids (B, Lt), codes_in (B, 8, T) delayed inputs → logits (8, B, T, V) for the next delayed frame."""
+        def forward(self, text_ids, codes_in, spk=None):
+            """text_ids (B, Lt), codes_in (B, 8, T) delayed inputs, spk (B, D) identity → logits (8, B, T, V) for the next delayed frame."""
             B, Lt = text_ids.shape; T = codes_in.shape[2]
             t = self.text_emb(text_ids) + self.kind.weight[0]; a = sum(self.audio_emb[k](codes_in[:, k]) for k in range(MIMI_CODEBOOKS)) + self.kind.weight[1]
-            x = torch.cat([t, a], 1) + self.pos(torch.arange(Lt + T, device=text_ids.device))[None]
-            mask = torch.triu(torch.full((Lt + T, Lt + T), float('-inf'), device=x.device), 1)
-            mask[:Lt, :Lt] = 0  # the text prompt attends to itself fully; audio frames are causal
-            h = self.norm(self.body(x, mask=mask))[:, Lt:Lt + T]
+            parts = [t, a]; Lp = 0
+            if self.spk_proj is not None and spk is not None: parts.insert(0, self.spk_proj(spk)[:, None] + self.kind.weight[2]); Lp = 1
+            x = torch.cat(parts, 1) + self.pos(torch.arange(Lp + Lt + T, device=text_ids.device))[None]
+            mask = torch.triu(torch.full((Lp + Lt + T, Lp + Lt + T), float('-inf'), device=x.device), 1)
+            mask[:Lp + Lt, :Lp + Lt] = 0  # identity and text prompt attend to themselves fully; audio frames are causal
+            h = self.norm(self.body(x, mask=mask))[:, Lp + Lt:Lp + Lt + T]
             return torch.stack([head(h) for head in self.heads])
     return VoiceLM()
 
@@ -227,6 +246,7 @@ def undelay(frames):
 
 
 MAX_TEXT_CHARS = 400  # normalised characters per segment prompt; longer transcripts on a ≤12 s segment are misaligned and are excluded, not truncated silently
+ECAPA_DIM = 192  # speechbrain/spkrec-ecapa-voxceleb representation width (temporary identity representations and the invented identity live in this space)
 
 
 class TextCodec:
@@ -295,16 +315,22 @@ def voice_train(control, state):
     codec = TextCodec([r['text'] for r in train], langs)
     state.stage('data', {'train_segments': len(train), 'train_hours': round(sum(r['features']['duration_s'] for r in train) / 3600, 2), 'dev_segments': len(dev), 'text_vocab': len(codec.itos), 'admission_read': False,
                          'per_language': {l: sum(1 for r in train if r['language'] == l) for l in langs}, 'excluded_overlong_transcripts': len(overlong), 'max_text_chars': MAX_TEXT_CHARS, 'max_codec_frames': max_T})
-    model = build_voice_model(len(codec.itos), int(recipe.get('d_model', 768)), int(recipe.get('layers', 12)), int(recipe.get('heads', 12)), max_frames + MAX_TEXT_CHARS + 16).to(device)
+    identity_on = bool(recipe.get('identity_conditioning', False)); loud_on = bool(recipe.get('loudness_match', False))
+    model = build_voice_model(len(codec.itos), int(recipe.get('d_model', 768)), int(recipe.get('layers', 12)), int(recipe.get('heads', 12)), max_frames + MAX_TEXT_CHARS + 16, identity_dim=ECAPA_DIM if identity_on else 0).to(device)
     params = sum(p.numel() for p in model.parameters())
+    if recipe.get('init_from') and Path(recipe['init_from']).exists():  # continue a measured iteration of the same architecture and text vocabulary; otherwise start clean and say so
+        prior = torch.load(recipe['init_from'], map_location='cpu')
+        if prior.get('text_vocab') == codec.itos and bool(prior.get('identity_vector') is not None) == identity_on: model.load_state_dict(prior['model'], strict=False); state.event(f"weights initialised from {recipe['init_from']}")
+        else: state.event(f"init_from ignored: {recipe['init_from']} has a different text vocabulary or identity architecture; training from scratch")
     optimizer = torch.optim.AdamW(model.parameters(), lr=float(recipe['lr']), betas=(0.9, 0.95), weight_decay=0.1)
     batch, max_steps, warmup = int(recipe['batch_size']), int(recipe['max_steps']), int(recipe.get('warmup_steps', 1000))
     ckpt_every, eval_every = int(recipe.get('checkpoint_every', 500)), int(recipe.get('eval_every', 2500))
     feedback_on = bool(recipe.get('spectral_feedback', True))
-    step, history, weights, feedback_log = 0, [], np.ones(len(train)), []
+    step, history, weights, feedback_log, identity = 0, [], np.ones(len(train)), [], None
     if control.get('resume_from') and Path(control['resume_from']).exists():
         ck = torch.load(control['resume_from'], map_location='cpu'); model.load_state_dict(ck['model']); optimizer.load_state_dict(ck['optimizer']); step = int(ck['step']); history = ck.get('history', [])
         if ck.get('weights') is not None: weights = np.array(ck['weights'])
+        if ck.get('identity') is not None: identity = torch.tensor(ck['identity'], device=device)
     rng = np.random.default_rng(seed + step)
     mimi, fe, codec_provenance = load_mimi(device)
     from speechbrain.inference.speaker import EncoderClassifier
@@ -326,7 +352,41 @@ def voice_train(control, state):
             embs.append(torch.nn.functional.normalize(e, dim=0))
         comparators[lang] = torch.stack(embs) if embs else None
     state.event(f'identity comparators prepared in memory: {{{", ".join(f"{l}: {0 if comparators[l] is None else comparators[l].shape[0]}" for l in langs)}}}; never written to disk')
-    threshold = float(recipe.get('identity_cosine_threshold', 0.40))
+    threshold = float(recipe.get('identity_cosine_threshold', 0.40)); margin = float(recipe.get('identity_margin', 0.05))
+    # speaker-conditioned training: every training segment carries the temporary representation of its own (session, speaker) group, so the model learns
+    # voice as a conditioning input; representations are computed here, kept in memory and destroyed with the process (AIP: no stored human voiceprint)
+    group_of = {r['seg_id']: (r['language'], r['session'], r['speaker']) for r in train}; spk_by_group = {}
+    if identity_on:
+        members = defaultdict(list)
+        for r in train: members[group_of[r['seg_id']]].append(r)
+        for n_done, (k, segs) in enumerate(members.items()):
+            segs = sorted(segs, key=lambda r: -r['features']['duration_s'])[:3]
+            spk_by_group[k] = torch.nn.functional.normalize(torch.stack([embed16(pcm_store.read(k[0], s).astype(np.float32) / 32767.0) for s in segs]).mean(0), dim=0)
+            if n_done % 500 == 0: state.update(progress={'stage': 'speaker representations (temporary, in memory)', 'done': n_done, 'of': len(members), 'elapsed_s': int(time.time() - started)})
+        state.event(f'{len(spk_by_group)} temporary (session, speaker) representations prepared in memory for conditioning; never written to disk')
+    corpus_reps = torch.cat([torch.stack(list(spk_by_group.values()))] + [comparators[l] for l in langs if comparators[l] is not None]) if identity_on else None
+
+    def invent_identity():
+        """MA-15: a synthetic acoustic identity — the mean of eight corpus-derived representations plus isotropic noise, re-normalised, resampled until it clears
+        the gate threshold by a margin against EVERY corpus-derived representation. Failure after the candidate budget is reported, not overridden."""
+        g = torch.Generator().manual_seed(seed + 7919); keys = list(spk_by_group); best = None; noise = float(recipe.get('identity_noise', 0.5))
+        for n in range(int(recipe.get('identity_candidates', 200))):
+            pick = torch.randperm(len(keys), generator=g)[:8].tolist(); cand = torch.stack([spk_by_group[keys[i]] for i in pick]).mean(0)
+            cand = torch.nn.functional.normalize(cand + noise * cand.norm() * torch.randn(cand.shape, generator=g).to(device), dim=0)
+            mx = float((corpus_reps @ cand).max())
+            if best is None or mx < best['max_cosine']: best = {'vector': cand, 'max_cosine': round(mx, 4), 'candidates_tried': n + 1}
+            if mx < threshold - margin: break
+        best['certificate'] = {'method': 'mean of 8 corpus-derived (session, speaker) representations + isotropic noise (sigma %.2f × norm), re-normalised; resampled until max cosine to every corpus-derived representation < threshold − margin' % noise,
+                               'representation_space': 'speechbrain/spkrec-ecapa-voxceleb (192-d, unit norm)', 'corpus_representations_checked': int(corpus_reps.shape[0]), 'gate_threshold': threshold, 'construction_margin': margin,
+                               'max_cosine_to_any_corpus_representation': best['max_cosine'], 'passes_construction_check': best['max_cosine'] < threshold - margin, 'candidates_tried': best['candidates_tried'],
+                               'scope': 'corpus-derived speaker representations of this estate only; not a global uniqueness claim over all humans', 'conditioning_input_fixed_at_serving': True}
+        return best
+    invented = None
+    if identity_on:
+        invented = invent_identity()
+        if identity is None: identity = invented['vector']
+        state.stage('invented_identity', invented['certificate'])
+    target_db = {lang: float(np.median([r['features']['energy_db_mean'] for r in train if r['language'] == lang and r['features'].get('energy_db_mean') is not None])) for lang in langs} if loud_on else {}
 
     def collate(items):
         texts = [codec.encode(r['language'], r['text']) for r in items]; Lt = max(len(t) for t in texts)
@@ -335,14 +395,15 @@ def voice_train(control, state):
         pairs = [delay(tokens[r['seg_id']][:, :max_T].long().clamp(0, CODE_PAD - 1)) for r in items]; W = max(p[0].shape[1] for p in pairs)
         inp = torch.full((len(items), MIMI_CODEBOOKS, W), CODE_PAD, dtype=torch.long); tgt = torch.full((len(items), MIMI_CODEBOOKS, W), -100, dtype=torch.long)
         for i, (a, b) in enumerate(pairs): inp[i, :, :a.shape[1]] = a; tgt[i, :, :b.shape[1]] = b
-        return text_ids.to(device), inp.to(device), tgt.to(device)
+        spk = torch.stack([spk_by_group[group_of[r['seg_id']]] for r in items]) if identity_on else None
+        return text_ids.to(device), inp.to(device), tgt.to(device), spk
 
     def synthesize(lang, text, temperature=0.8, top_k=50, max_seconds=max_s):
-        model.eval(); text_ids = torch.tensor([codec.encode(lang, text)], device=device)
+        model.eval(); text_ids = torch.tensor([codec.encode(lang, text)], device=device); spk = identity[None] if identity_on else None
         frames = torch.full((1, MIMI_CODEBOOKS, 1), CODE_BOS, dtype=torch.long, device=device); limit = int(max_seconds * MIMI_FRAME_HZ) + MIMI_CODEBOOKS
         with torch.no_grad(), torch.autocast('cuda', dtype=torch.bfloat16):
             for t in range(limit):
-                logits = model(text_ids, frames)[:, 0, -1].float() / temperature  # (K, V)
+                logits = model(text_ids, frames, spk)[:, 0, -1].float() / temperature  # (K, V)
                 logits[:, CODE_BOS] = -1e9; logits[:, CODE_PAD] = -1e9
                 top = torch.topk(logits, top_k, dim=-1); probs = torch.softmax(top.values, -1)
                 nxt = top.indices.gather(1, torch.multinomial(probs, 1)).squeeze(1)
@@ -361,11 +422,15 @@ def voice_train(control, state):
         rng_e = random.Random(seed + step)
         for lang in langs:
             prompts = rng_e.sample([r for r in dev if r['language'] == lang], min(int(recipe.get('eval_prompts_per_language', 12)), sum(1 for r in dev if r['language'] == lang)))
-            feats, cos_max, rendered, last_wav = [], [], 0, None
+            feats, cos_max, rendered, last_wav, gains = [], [], 0, None, []
             for r in prompts:
                 wav24 = synthesize(lang, r['text'])
                 if wav24 is None: continue
-                rendered += 1; last_wav = wav24; y16 = _resample(wav24, SR24, SR16); f = spectrum_features(y16, SR16, len(r['text']))
+                rendered += 1; y16 = _resample(wav24, SR24, SR16); f = spectrum_features(y16, SR16, len(r['text']))
+                if f and loud_on and f.get('energy_db_mean') is not None:  # rendering parameter from the data: output loudness set to the language baseline median (scale-invariant features unchanged)
+                    gain_db = target_db[lang] - f['energy_db_mean']; gain = 10 ** (gain_db / 20); gains.append(round(gain_db, 2))
+                    wav24 = np.clip(wav24 * gain, -1.0, 1.0); y16 = np.clip(y16 * gain, -1.0, 1.0); f['energy_db_mean'] = round(f['energy_db_mean'] + gain_db, 2)
+                last_wav = wav24
                 if f: feats.append(f)
                 if comparators[lang] is not None and len(y16) > SR16: cos_max.append(float((comparators[lang] @ embed16(y16)).max()))
             if last_wav is not None:
@@ -375,14 +440,15 @@ def voice_train(control, state):
             ev['per_language'][lang] = {'prompts': len(prompts), 'rendered': rendered, 'behaviour': div, 'identity_gate': {'comparators': 0 if comparators[lang] is None else int(comparators[lang].shape[0]), 'threshold_cosine': threshold,
                                         'max_cosine_to_any_corpus_speaker': round(max(cos_max), 4) if cos_max else None, 'mean_max_cosine': round(sum(cos_max) / len(cos_max), 4) if cos_max else None,
                                         'passes': bool(cos_max) and max(cos_max) < threshold, 'scope': 'corpus-derived speaker representations of this estate only; not a global uniqueness claim'},
+                                        'loudness_match': {'applied': loud_on, 'target_db': round(target_db[lang], 2), 'mean_gain_db': round(float(np.mean(gains)), 2)} if loud_on and gains else {'applied': False},
                                         'generated_spectrum': {f: percentiles([x.get(f) for x in feats]) for f in ('f0_mean_hz', 'f0_range_hz', 'pause_ratio', 'energy_db_std', 'spectral_centroid_hz')}}
         return ev
     model.train(); losses = []
     while step < max_steps:
         idx = rng.choice(len(train), size=batch, replace=True, p=weights / weights.sum())
-        text_ids, inp, tgt = collate([train[i] for i in idx])
+        text_ids, inp, tgt, spk = collate([train[i] for i in idx])
         with torch.autocast('cuda', dtype=torch.bfloat16):
-            logits = model(text_ids, inp)  # (K, B, W, V)
+            logits = model(text_ids, inp, spk)  # (K, B, W, V)
         loss = torch.nn.functional.cross_entropy(logits.float().reshape(-1, CODE_VOCAB), tgt.permute(1, 0, 2).reshape(-1), ignore_index=-100)
         loss.backward(); losses.append(float(loss))
         for g in optimizer.param_groups: g['lr'] = lr_at(step, max_steps, float(recipe['lr']), warmup)
@@ -390,7 +456,7 @@ def voice_train(control, state):
         if step % 25 == 0:
             state.update(progress={'stage': 'training codec language model', 'step': step, 'of': max_steps, 'loss': round(float(np.mean(losses[-100:])), 4), 'elapsed_s': int(time.time() - started), 'gpu_peak_gb': round(torch.cuda.max_memory_allocated() / 2 ** 30, 2),
                                    'last_checkpoint_step': (step // ckpt_every) * ckpt_every, 'next_checkpoint_step': (step // ckpt_every + 1) * ckpt_every, 'parameters': params})
-        if step % ckpt_every == 0: _save_ckpt(ckpt_dir / 'latest.pt', model, optimizer, step, {'history': history, 'weights': weights.tolist(), 'text_vocab': codec.itos})
+        if step % ckpt_every == 0: _save_ckpt(ckpt_dir / 'latest.pt', model, optimizer, step, {'history': history, 'weights': weights.tolist(), 'text_vocab': codec.itos, 'identity': identity.cpu().tolist() if identity is not None else None})
         if step % eval_every == 0 or step == max_steps:
             ev = evaluation(); ev['train_loss'] = round(float(np.mean(losses[-200:])), 4); history.append(ev)
             if feedback_on:
@@ -402,13 +468,15 @@ def voice_train(control, state):
                 ev['spectral_feedback_applied'] = feedback_log[-len(langs):]
             state.stage(f'dev_eval_step_{step}', {l: {'overall_similarity': v['behaviour']['overall_similarity'], 'identity_gate_passes': v['identity_gate']['passes'], 'max_cosine': v['identity_gate']['max_cosine_to_any_corpus_speaker'], 'rendered': v['rendered']} for l, v in ev['per_language'].items()})
     art = job_dir / 'artefact'; art.mkdir(exist_ok=True)
-    torch.save({'model': model.state_dict(), 'text_vocab': codec.itos, 'recipe': recipe, 'languages': langs, 'step': step, 'codec_provenance': codec_provenance}, art / 'voice_lm.pt')
+    torch.save({'model': model.state_dict(), 'text_vocab': codec.itos, 'recipe': recipe, 'languages': langs, 'step': step, 'codec_provenance': codec_provenance,
+                'identity_vector': identity.cpu() if identity is not None else None, 'identity_certificate': invented['certificate'] if invented else None}, art / 'voice_lm.pt')
     sha = hashlib.sha256((art / 'voice_lm.pt').read_bytes()).hexdigest()
-    comparators.clear(); torch.cuda.empty_cache(); lock.close()
+    comparators.clear(); spk_by_group.clear(); corpus_reps = None; torch.cuda.empty_cache(); lock.close()
     return {'commission_id': control['commission_id'], 'iteration': control['iteration'], 'lane': 'story_voice', 'recipe': recipe, 'languages': langs, 'data': state.doc['stages']['data'], 'steps': step, 'parameters': params,
             'codec_provenance': codec_provenance, 'dev': history[-1] if history else None, 'history': [{'step': h['step'], 'train_loss': h.get('train_loss'), 'per_language': {l: {'overall_similarity': v['behaviour']['overall_similarity'], 'identity_gate': v['identity_gate'], 'rendered': v['rendered']} for l, v in h['per_language'].items()}} for h in history],
             'spectral_feedback': {'enabled': feedback_on, 'log': feedback_log}, 'artefact': {'path': str(art / 'voice_lm.pt'), 'sha256': sha, 'bytes': (art / 'voice_lm.pt').stat().st_size},
-            'identity': {'temporary_identity_representations_destroyed': True, 'persistent_voiceprint_register': False},
+            'identity': {'temporary_identity_representations_destroyed': True, 'persistent_voiceprint_register': False, 'conditioning': 'invented identity vector (synthetic; certificate in artefact)' if identity_on else 'none — the model rendered an unconditioned corpus-average voice',
+                         'invented_identity_certificate': invented['certificate'] if invented else None, 'loudness_match': {'enabled': loud_on, 'target_db_by_language': {l: round(v, 2) for l, v in target_db.items()}}},
             'compute': {'wall_seconds': round(time.time() - started, 1), 'gpu_seconds': round(time.time() - started, 1), 'gpu_hours': round((time.time() - started) / 3600, 4), 'gpu_peak_gb': round(torch.cuda.max_memory_allocated() / 2 ** 30, 2)},
             'sealed_admission_read': False, 'training_started': True, 'raw_media_exported': False}
 

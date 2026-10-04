@@ -312,7 +312,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3b1d0e135464",
   "pid": 1826953
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-fd9f65212ff8",
@@ -325,29 +325,35 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_malpha_listener_train_daemonised:pid=1826953"
+  },
+  {
+   "row_id": "led-ce725e0e56d5",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_listener_train_completed"
   }
  ],
  "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
  "started_at": "2026-10-04T10:25:50.432017Z",
  "last_status_rpc": {
-  "at": "2026-10-04T10:56:09.383993Z",
+  "at": "2026-10-04T11:15:13.553388Z",
   "rc": 0,
-  "receipt_id": "gpurcp-5c97ae01b4cd"
+  "receipt_id": "gpurcp-60f055ed58ba"
  },
  "remote_state": {
   "phase": "malpha_listener_train",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-04T10:25:50Z",
   "progress": {
    "stage": "training",
-   "step": 3375,
+   "step": 6000,
    "of": 6000,
-   "loss": 1.1619,
-   "lr": 4.665057979781396e-05,
-   "elapsed_s": 1812,
+   "loss": 0.6926,
+   "lr": 5.000007214622918e-06,
+   "elapsed_s": 2865,
    "gpu_peak_gb": 33.81,
-   "last_checkpoint_step": 3000,
-   "next_checkpoint_step": 3500
+   "last_checkpoint_step": 6000,
+   "next_checkpoint_step": 6500
   },
   "stages": {
    "data": {
@@ -432,6 +438,82 @@
       "f1": 0.9048
      }
     }
+   },
+   "dev_eval_step_4500": {
+    "at": "2026-10-04T11:04:00Z",
+    "mean_wer": 0.6742,
+    "words": {
+     "kam": {
+      "wer": 0.9343,
+      "cer": 0.56,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.7061,
+      "cer": 0.3875,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.3821,
+      "cer": 0.1836,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 1.0,
+      "recall": 0.1562,
+      "f1": 0.2703
+     },
+     "kik": {
+      "precision": 1.0,
+      "recall": 0.7419,
+      "f1": 0.8519
+     },
+     "swa": {
+      "precision": 0.9286,
+      "recall": 0.8864,
+      "f1": 0.907
+     }
+    }
+   },
+   "dev_eval_step_6000": {
+    "at": "2026-10-04T11:14:08Z",
+    "mean_wer": 0.6701,
+    "words": {
+     "kam": {
+      "wer": 0.8804,
+      "cer": 0.5693,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.7253,
+      "cer": 0.416,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.4045,
+      "cer": 0.2042,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.875,
+      "recall": 0.2188,
+      "f1": 0.35
+     },
+     "kik": {
+      "precision": 1.0,
+      "recall": 0.7419,
+      "f1": 0.8519
+     },
+     "swa": {
+      "precision": 0.975,
+      "recall": 0.8864,
+      "f1": 0.9286
+     }
+    }
    }
   },
   "events": [
@@ -458,13 +540,1048 @@
    {
     "at": "2026-10-04T10:53:04Z",
     "message": "checkpoint at step 3000"
+   },
+   {
+    "at": "2026-10-04T10:56:58Z",
+    "message": "checkpoint at step 3500"
+   },
+   {
+    "at": "2026-10-04T11:00:04Z",
+    "message": "checkpoint at step 4000"
+   },
+   {
+    "at": "2026-10-04T11:03:18Z",
+    "message": "checkpoint at step 4500"
+   },
+   {
+    "at": "2026-10-04T11:07:16Z",
+    "message": "checkpoint at step 5000"
+   },
+   {
+    "at": "2026-10-04T11:10:33Z",
+    "message": "checkpoint at step 5500"
+   },
+   {
+    "at": "2026-10-04T11:13:42Z",
+    "message": "checkpoint at step 6000"
    }
   ],
   "job_id": "m9j-3b1d0e135464",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-04T10:56:04Z"
+  "updated_at": "2026-10-04T11:14:18Z",
+  "finished_at": "2026-10-04T11:14:18Z",
+  "receipt_sha256": "95904cce97778bb1c786411dadb902c6f83279ba85d97d6e6472ada99adc3921"
  },
  "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 10006.73it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3b1d0e135464/worker.zip/services/training_lab/malpha_worker.py:696: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.",
- "process_alive": true
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-3b1d0e135464",
+  "phase": "malpha_listener_train",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T10:25:50Z",
+  "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
+  "status": "completed",
+  "result": {
+   "commission_id": "LISTEN-KIK-KAM-SWA",
+   "iteration": 1,
+   "recipe": {
+    "base": "openai/whisper-small",
+    "lr": 0.0001,
+    "batch_size": 32,
+    "grad_accum": 1,
+    "max_steps": 6000,
+    "warmup_steps": 300,
+    "eval_every": 1500,
+    "checkpoint_every": 500,
+    "dev_per_language": 300
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-04T10:25:53Z",
+    "train_segments": 80921,
+    "dev_segments": 900,
+    "train_hours": 93.1,
+    "admission_read": false
+   },
+   "steps": 6000,
+   "dev": {
+    "words": {
+     "kam": {
+      "wer": 0.8804,
+      "cer": 0.5693,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.7253,
+      "cer": 0.416,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.4045,
+      "cer": 0.2042,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "segments": 300,
+      "segments_with_mentions": 30,
+      "tp": 7,
+      "fp": 1,
+      "fn": 25,
+      "precision": 0.875,
+      "recall": 0.2188,
+      "f1": 0.35,
+      "false_positives_per_hour": 3.0,
+      "hours_evaluated": 0.333,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "Huduma": {
+        "fn": 3
+       },
+       "M-Pesa": {
+        "fn": 1
+       },
+       "Musyi FM": {
+        "fn": 8,
+        "fp": 1
+       },
+       "Kameme FM": {
+        "fn": 2
+       },
+       "KRA": {
+        "fn": 3,
+        "tp": 2
+       },
+       "Tala": {
+        "fn": 1
+       },
+       "Brookside": {
+        "fn": 2
+       },
+       "Kenya Power": {
+        "tp": 1,
+        "fn": 3
+       },
+       "NHIF": {
+        "tp": 1
+       },
+       "KBC": {
+        "tp": 1
+       },
+       "KCB": {
+        "tp": 1
+       },
+       "Safaricom": {
+        "fn": 1
+       },
+       "Branch": {
+        "fn": 1,
+        "tp": 1
+       }
+      }
+     },
+     "kik": {
+      "segments": 300,
+      "segments_with_mentions": 30,
+      "tp": 23,
+      "fp": 0,
+      "fn": 8,
+      "precision": 1.0,
+      "recall": 0.7419,
+      "f1": 0.8519,
+      "false_positives_per_hour": 0.0,
+      "hours_evaluated": 0.422,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "Inooro FM": {
+        "fn": 4,
+        "tp": 19
+       },
+       "Equity Bank": {
+        "fn": 1
+       },
+       "Royal Media": {
+        "fn": 1
+       },
+       "Uber": {
+        "fn": 1
+       },
+       "KBC": {
+        "tp": 1
+       },
+       "Standard": {
+        "tp": 1
+       },
+       "M-Pesa": {
+        "tp": 2
+       },
+       "Radio Jambo": {
+        "fn": 1
+       }
+      }
+     },
+     "swa": {
+      "segments": 300,
+      "segments_with_mentions": 37,
+      "tp": 39,
+      "fp": 1,
+      "fn": 5,
+      "precision": 0.975,
+      "recall": 0.8864,
+      "f1": 0.9286,
+      "false_positives_per_hour": 2.027,
+      "hours_evaluated": 0.493,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "M-Pesa": {
+        "fn": 1,
+        "tp": 1
+       },
+       "NHIF": {
+        "tp": 22,
+        "fn": 2
+       },
+       "Citizen": {
+        "tp": 5,
+        "fn": 1
+       },
+       "Huduma": {
+        "fn": 1,
+        "tp": 7
+       },
+       "Radio Jambo": {
+        "tp": 3,
+        "fp": 1
+       },
+       "Royal Media": {
+        "tp": 1
+       }
+      }
+     }
+    },
+    "latency": {
+     "real_time_factor": 0.0058,
+     "audio_seconds": 4497.0,
+     "wall_seconds": 25.9
+    },
+    "samples": [
+     {
+      "language": "kam",
+      "ref_chars": 21,
+      "hyp_chars": 11,
+      "mentions_truth": [
+       "Huduma"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 12,
+      "hyp_chars": 10,
+      "mentions_truth": [
+       "Huduma"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 21,
+      "hyp_chars": 208,
+      "mentions_truth": [
+       "M-Pesa"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 4,
+      "hyp_chars": 2,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 2,
+      "hyp_chars": 3,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 2,
+      "hyp_chars": 4,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 5,
+      "hyp_chars": 4,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 2,
+      "hyp_chars": 3,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 25,
+      "hyp_chars": 3,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 4,
+      "hyp_chars": 5,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 14,
+      "hyp_chars": 6,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 3,
+      "hyp_chars": 3,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     }
+    ],
+    "step": 6000,
+    "train_loss": 0.7194,
+    "at": "2026-10-04T11:14:08Z"
+   },
+   "history": [
+    {
+     "step": 1500,
+     "train_loss": 1.5941,
+     "words": {
+      "kam": {
+       "wer": 1.0477,
+       "cer": 0.73,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.8449,
+       "cer": 0.4851,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.5084,
+       "cer": 0.2544,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 3,
+       "fp": 0,
+       "fn": 29,
+       "precision": 1.0,
+       "recall": 0.0938,
+       "f1": 0.1714,
+       "false_positives_per_hour": 0.0,
+       "hours_evaluated": 0.333,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 3
+        },
+        "M-Pesa": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 8
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "KRA": {
+         "fn": 4,
+         "tp": 1
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Kenya Power": {
+         "fn": 4
+        },
+        "NHIF": {
+         "fn": 1
+        },
+        "KBC": {
+         "fn": 1
+        },
+        "KCB": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        },
+        "Branch": {
+         "fn": 1,
+         "tp": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 18,
+       "fp": 0,
+       "fn": 13,
+       "precision": 1.0,
+       "recall": 0.5806,
+       "f1": 0.7347,
+       "false_positives_per_hour": 0.0,
+       "hours_evaluated": 0.422,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Inooro FM": {
+         "fn": 6,
+         "tp": 17
+        },
+        "Equity Bank": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "KBC": {
+         "fn": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-Pesa": {
+         "fn": 2
+        },
+        "Radio Jambo": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 37,
+       "tp": 23,
+       "fp": 1,
+       "fn": 21,
+       "precision": 0.9583,
+       "recall": 0.5227,
+       "f1": 0.6765,
+       "false_positives_per_hour": 2.027,
+       "hours_evaluated": 0.493,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "M-Pesa": {
+         "fn": 1,
+         "tp": 1
+        },
+        "NHIF": {
+         "fn": 15,
+         "tp": 9
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Huduma": {
+         "fn": 4,
+         "tp": 4
+        },
+        "Radio Jambo": {
+         "tp": 3
+        },
+        "Royal Media": {
+         "tp": 1
+        },
+        "Fuliza": {
+         "fp": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0254,
+      "audio_seconds": 4497.0,
+      "wall_seconds": 114.0
+     },
+     "at": "2026-10-04T10:42:46Z"
+    },
+    {
+     "step": 3000,
+     "train_loss": 1.1733,
+     "words": {
+      "kam": {
+       "wer": 1.0154,
+       "cer": 0.6684,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.8158,
+       "cer": 0.4437,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.4357,
+       "cer": 0.2268,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 4,
+       "fp": 4,
+       "fn": 28,
+       "precision": 0.5,
+       "recall": 0.125,
+       "f1": 0.2,
+       "false_positives_per_hour": 12.0,
+       "hours_evaluated": 0.333,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 3
+        },
+        "M-Pesa": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 7,
+         "fp": 3,
+         "tp": 1
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "KRA": {
+         "fn": 4,
+         "tp": 1
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Branch": {
+         "fp": 1,
+         "fn": 2
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Kenya Power": {
+         "fn": 4
+        },
+        "NHIF": {
+         "tp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "fn": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 22,
+       "fp": 0,
+       "fn": 9,
+       "precision": 1.0,
+       "recall": 0.7097,
+       "f1": 0.8302,
+       "false_positives_per_hour": 0.0,
+       "hours_evaluated": 0.422,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Inooro FM": {
+         "fn": 5,
+         "tp": 18
+        },
+        "Equity Bank": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-Pesa": {
+         "tp": 2
+        },
+        "Radio Jambo": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 37,
+       "tp": 38,
+       "fp": 2,
+       "fn": 6,
+       "precision": 0.95,
+       "recall": 0.8636,
+       "f1": 0.9048,
+       "false_positives_per_hour": 4.054,
+       "hours_evaluated": 0.493,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "M-Pesa": {
+         "fn": 1,
+         "tp": 1
+        },
+        "NHIF": {
+         "fn": 3,
+         "tp": 21
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Nation": {
+         "fp": 1
+        },
+        "Radio Jambo": {
+         "tp": 3,
+         "fp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0076,
+      "audio_seconds": 4497.0,
+      "wall_seconds": 34.3
+     },
+     "at": "2026-10-04T10:53:38Z"
+    },
+    {
+     "step": 4500,
+     "train_loss": 1.0897,
+     "words": {
+      "kam": {
+       "wer": 0.9343,
+       "cer": 0.56,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.7061,
+       "cer": 0.3875,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.3821,
+       "cer": 0.1836,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 5,
+       "fp": 0,
+       "fn": 27,
+       "precision": 1.0,
+       "recall": 0.1562,
+       "f1": 0.2703,
+       "false_positives_per_hour": 0.0,
+       "hours_evaluated": 0.333,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 3
+        },
+        "M-Pesa": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 8
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "KRA": {
+         "fn": 4,
+         "tp": 1
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Kenya Power": {
+         "tp": 1,
+         "fn": 3
+        },
+        "NHIF": {
+         "tp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        },
+        "Branch": {
+         "fn": 2
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 23,
+       "fp": 0,
+       "fn": 8,
+       "precision": 1.0,
+       "recall": 0.7419,
+       "f1": 0.8519,
+       "false_positives_per_hour": 0.0,
+       "hours_evaluated": 0.422,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Inooro FM": {
+         "fn": 4,
+         "tp": 19
+        },
+        "Equity Bank": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-Pesa": {
+         "tp": 2
+        },
+        "Radio Jambo": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 37,
+       "tp": 39,
+       "fp": 3,
+       "fn": 5,
+       "precision": 0.9286,
+       "recall": 0.8864,
+       "f1": 0.907,
+       "false_positives_per_hour": 6.081,
+       "hours_evaluated": 0.493,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "M-Pesa": {
+         "fn": 1,
+         "fp": 1,
+         "tp": 1
+        },
+        "NHIF": {
+         "tp": 22,
+         "fn": 2
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Radio Jambo": {
+         "tp": 3,
+         "fp": 1
+        },
+        "KRA": {
+         "fp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0093,
+      "audio_seconds": 4497.0,
+      "wall_seconds": 41.7
+     },
+     "at": "2026-10-04T11:04:00Z"
+    },
+    {
+     "step": 6000,
+     "train_loss": 0.7194,
+     "words": {
+      "kam": {
+       "wer": 0.8804,
+       "cer": 0.5693,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.7253,
+       "cer": 0.416,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.4045,
+       "cer": 0.2042,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 7,
+       "fp": 1,
+       "fn": 25,
+       "precision": 0.875,
+       "recall": 0.2188,
+       "f1": 0.35,
+       "false_positives_per_hour": 3.0,
+       "hours_evaluated": 0.333,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 3
+        },
+        "M-Pesa": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 8,
+         "fp": 1
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "KRA": {
+         "fn": 3,
+         "tp": 2
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Kenya Power": {
+         "tp": 1,
+         "fn": 3
+        },
+        "NHIF": {
+         "tp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        },
+        "Branch": {
+         "fn": 1,
+         "tp": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "tp": 23,
+       "fp": 0,
+       "fn": 8,
+       "precision": 1.0,
+       "recall": 0.7419,
+       "f1": 0.8519,
+       "false_positives_per_hour": 0.0,
+       "hours_evaluated": 0.422,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Inooro FM": {
+         "fn": 4,
+         "tp": 19
+        },
+        "Equity Bank": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-Pesa": {
+         "tp": 2
+        },
+        "Radio Jambo": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 37,
+       "tp": 39,
+       "fp": 1,
+       "fn": 5,
+       "precision": 0.975,
+       "recall": 0.8864,
+       "f1": 0.9286,
+       "false_positives_per_hour": 2.027,
+       "hours_evaluated": 0.493,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "M-Pesa": {
+         "fn": 1,
+         "tp": 1
+        },
+        "NHIF": {
+         "tp": 22,
+         "fn": 2
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Radio Jambo": {
+         "tp": 3,
+         "fp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0058,
+      "audio_seconds": 4497.0,
+      "wall_seconds": 25.9
+     },
+     "at": "2026-10-04T11:14:08Z"
+    }
+   ],
+   "best": {
+    "step": 6000,
+    "mean_wer": 0.6701
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3b1d0e135464/artefact/model.pt",
+    "sha256": "f5ff7610826be66db227f10df5ffeef07fd5c61aff96fc412f3072582f47cd39",
+    "bytes": 967089655,
+    "best_step": 6000
+   },
+   "compute": {
+    "wall_seconds": 2906.4,
+    "gpu_seconds": 2906.4,
+    "gpu_hours": 0.8073,
+    "gpu_peak_gb": 33.81,
+    "device": "NVIDIA H200"
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false
+  },
+  "finished_at": "2026-10-04T11:14:18Z",
+  "receipt_sha256": "95904cce97778bb1c786411dadb902c6f83279ba85d97d6e6472ada99adc3921",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T11:14:18Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-3b1d0e135464",
+  "started_at_utc": "2026-10-04T10:25:50.432017Z",
+  "finished_at_utc": "2026-10-04T11:14:18Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-3b1d0e135464"
+ }
 }

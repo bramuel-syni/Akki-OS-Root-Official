@@ -1,0 +1,796 @@
+{
+ "job_id": "m9j-5bdbf2e62d75",
+ "phase": "malpha_story_text_train",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T12:00:40.615945Z",
+ "params": {
+  "recipe": {
+   "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "lr": 0.0001,
+   "batch_size": 4,
+   "grad_accum": 4,
+   "max_steps": 4500,
+   "warmup_steps": 100,
+   "eval_every": 500,
+   "checkpoint_every": 200,
+   "max_seq_len": 1024,
+   "lora_r": 32,
+   "lora_alpha": 64,
+   "init_adapter": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-a2917be8d89c/artefact/lora_adapter"
+  },
+  "base_registration": {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 3,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-bcfed61005ac",
+ "northena_trace_id": "trc-78a9221f103f",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-5bdbf2e62d75"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-5bdbf2e62d75",
+  "pid": 1371067
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-af972d076d46",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_story_text_train_admitted"
+  },
+  {
+   "row_id": "led-7b0b1aa638d1",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_story_text_train_daemonised:pid=1371067"
+  },
+  {
+   "row_id": "led-24f494246b60",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_story_text_train_completed"
+  }
+ ],
+ "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
+ "started_at": "2026-10-04T12:00:45.980594Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T16:00:21.620904Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-68c6bd0d416a"
+ },
+ "remote_state": {
+  "phase": "malpha_story_text_train",
+  "status": "completed",
+  "started_at": "2026-10-04T12:00:45Z",
+  "progress": {
+   "stage": "training",
+   "step": 4500,
+   "of": 4500,
+   "loss": 0.1568,
+   "elapsed_s": 7393,
+   "gpu_peak_gb": 11.21,
+   "last_checkpoint_step": 4400,
+   "next_checkpoint_step": 4600
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T12:00:54Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "base_perplexity": {
+    "at": "2026-10-04T12:01:04Z",
+    "kik": 69.657,
+    "kam": 70.076,
+    "swa": 64.331
+   },
+   "dev_eval_step_500": {
+    "at": "2026-10-04T12:16:08Z",
+    "kik": {
+     "dev_perplexity": 31.934,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9928
+    },
+    "kam": {
+     "dev_perplexity": 38.753,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9686
+    },
+    "swa": {
+     "dev_perplexity": 58.809,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9928
+    }
+   },
+   "dev_eval_step_1000": {
+    "at": "2026-10-04T12:29:39Z",
+    "kik": {
+     "dev_perplexity": 39.783,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 48.474,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.994
+    },
+    "swa": {
+     "dev_perplexity": 75.8,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9963
+    }
+   },
+   "dev_eval_step_1500": {
+    "at": "2026-10-04T12:43:45Z",
+    "kik": {
+     "dev_perplexity": 53.187,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9734
+    },
+    "kam": {
+     "dev_perplexity": 61.083,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9819
+    },
+    "swa": {
+     "dev_perplexity": 97.461,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    }
+   },
+   "dev_eval_step_2000": {
+    "at": "2026-10-04T12:56:56Z",
+    "kik": {
+     "dev_perplexity": 66.339,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9965
+    },
+    "kam": {
+     "dev_perplexity": 76.531,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9961
+    },
+    "swa": {
+     "dev_perplexity": 123.239,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9965
+    }
+   },
+   "dev_eval_step_2500": {
+    "at": "2026-10-04T13:10:16Z",
+    "kik": {
+     "dev_perplexity": 83.6,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9932
+    },
+    "kam": {
+     "dev_perplexity": 96.418,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 151.022,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9967
+    }
+   },
+   "dev_eval_step_3000": {
+    "at": "2026-10-04T13:23:52Z",
+    "kik": {
+     "dev_perplexity": 102.606,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 117.551,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9958
+    },
+    "swa": {
+     "dev_perplexity": 181.438,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9924
+    }
+   },
+   "dev_eval_step_3500": {
+    "at": "2026-10-04T13:37:43Z",
+    "kik": {
+     "dev_perplexity": 123.39,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9867
+    },
+    "kam": {
+     "dev_perplexity": 138.568,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 211.365,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9931
+    }
+   },
+   "dev_eval_step_4000": {
+    "at": "2026-10-04T13:52:06Z",
+    "kik": {
+     "dev_perplexity": 138.133,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.991
+    },
+    "kam": {
+     "dev_perplexity": 157.671,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9833
+    },
+    "swa": {
+     "dev_perplexity": 234.782,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9928
+    }
+   },
+   "dev_eval_step_4500": {
+    "at": "2026-10-04T14:05:04Z",
+    "kik": {
+     "dev_perplexity": 147.259,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 165.386,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 248.304,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": false,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9893
+    }
+   }
+  },
+  "events": [],
+  "job_id": "m9j-5bdbf2e62d75",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T14:05:04Z",
+  "finished_at": "2026-10-04T14:05:04Z",
+  "receipt_sha256": "8261b677f35c9c00e905dc56713070a39089cf2e991de12191ad49c90776d302"
+ },
+ "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6316.48it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-5bdbf2e62d75/worker.zip/services/training_lab/malpha_voice_worker.py:163: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum)",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-5bdbf2e62d75",
+  "phase": "malpha_story_text_train",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-04T12:00:45Z",
+  "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
+  "status": "completed",
+  "result": {
+   "commission_id": "STORY-KIK-KAM-SWA",
+   "iteration": 3,
+   "lane": "story_text",
+   "recipe": {
+    "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "lr": 0.0001,
+    "batch_size": 4,
+    "grad_accum": 4,
+    "max_steps": 4500,
+    "warmup_steps": 100,
+    "eval_every": 500,
+    "checkpoint_every": 200,
+    "max_seq_len": 1024,
+    "lora_r": 32,
+    "lora_alpha": 64,
+    "init_adapter": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-a2917be8d89c/artefact/lora_adapter"
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-04T12:00:54Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "steps": 4500,
+   "base_perplexity": {
+    "kik": 69.657,
+    "kam": 70.076,
+    "swa": 64.331
+   },
+   "dev": {
+    "step": 4500,
+    "at": "2026-10-04T14:04:05Z",
+    "per_language": {
+     "kik": {
+      "dev_perplexity": 147.259,
+      "base_perplexity": 69.657,
+      "dev_perplexity_below_base": false,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 1.0,
+      "samples": [
+       {
+        "title": "15% PAY INCREASE",
+        "chars": 159,
+        "words": 28,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4119,
+         "kam": 0.2957,
+         "swa": 0.3018
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "8891874c33598a188b1b458ad0e2d41316e347eeee2cd3e465b7158a1617f94b"
+       },
+       {
+        "title": "ABOUT WOMEN",
+        "chars": 770,
+        "words": 133,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6599,
+         "kam": 0.5034,
+         "swa": 0.4454
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "889427b5c9b67e7d848e5591ef9c9ea3859f3978b133703102d725c952f8f494"
+       }
+      ]
+     },
+     "kam": {
+      "dev_perplexity": 165.386,
+      "base_perplexity": 70.076,
+      "dev_perplexity_below_base": false,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 1.0,
+      "samples": [
+       {
+        "title": "hon-mwangangi--(phonecalls)",
+        "chars": 785,
+        "words": 127,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.61,
+         "kam": 0.745,
+         "swa": 0.608
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "acfd3c1c3897d4741a05e3e69631f5ff1a1816c819284c09bbafcaee84776c2a"
+       },
+       {
+        "title": "patrick-musil",
+        "chars": 394,
+        "words": 68,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4501,
+         "kam": 0.5904,
+         "swa": 0.489
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "efc9f0f0153366db08db47f077715062f6b25054c9d433e6cf25b223b353f92b"
+       }
+      ]
+     },
+     "swa": {
+      "dev_perplexity": 248.304,
+      "base_perplexity": 64.331,
+      "dev_perplexity_below_base": false,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 0.9893,
+      "samples": [
+       {
+        "title": "ANGA",
+        "chars": 924,
+        "words": 140,
+        "distinct_2": 0.9928,
+        "trigram_similarity": {
+         "kik": 0.4343,
+         "kam": 0.5077,
+         "swa": 0.6857
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "226cb7179bfef56661b1865d30a606661fa1d1073a85361060a6cf8feb96025c"
+       },
+       {
+        "title": "CHAPAKAZI SALAMU",
+        "chars": 901,
+        "words": 142,
+        "distinct_2": 0.9859,
+        "trigram_similarity": {
+         "kik": 0.4199,
+         "kam": 0.5075,
+         "swa": 0.6967
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "c330ada37bd138becb1e5c3044ffdc2e188f5a7d1978fe46045e7c04f4ea2d88"
+       }
+      ]
+     }
+    },
+    "train_loss": 0.157
+   },
+   "history": [
+    {
+     "step": 500,
+     "train_loss": 1.0668,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 31.934,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9928
+      },
+      "kam": {
+       "dev_perplexity": 38.753,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9686
+      },
+      "swa": {
+       "dev_perplexity": 58.809,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9928
+      }
+     }
+    },
+    {
+     "step": 1000,
+     "train_loss": 0.8729,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 39.783,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 48.474,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 0.994
+      },
+      "swa": {
+       "dev_perplexity": 75.8,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9963
+      }
+     }
+    },
+    {
+     "step": 1500,
+     "train_loss": 0.7066,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 53.187,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9734
+      },
+      "kam": {
+       "dev_perplexity": 61.083,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9819
+      },
+      "swa": {
+       "dev_perplexity": 97.461,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 2000,
+     "train_loss": 0.5486,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 66.339,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9965
+      },
+      "kam": {
+       "dev_perplexity": 76.531,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9961
+      },
+      "swa": {
+       "dev_perplexity": 123.239,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9965
+      }
+     }
+    },
+    {
+     "step": 2500,
+     "train_loss": 0.4216,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 83.6,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9932
+      },
+      "kam": {
+       "dev_perplexity": 96.418,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 151.022,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9967
+      }
+     }
+    },
+    {
+     "step": 3000,
+     "train_loss": 0.3028,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 102.606,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 117.551,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9958
+      },
+      "swa": {
+       "dev_perplexity": 181.438,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9924
+      }
+     }
+    },
+    {
+     "step": 3500,
+     "train_loss": 0.2294,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 123.39,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9867
+      },
+      "kam": {
+       "dev_perplexity": 138.568,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 211.365,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9931
+      }
+     }
+    },
+    {
+     "step": 4000,
+     "train_loss": 0.1776,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 138.133,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.991
+      },
+      "kam": {
+       "dev_perplexity": 157.671,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9833
+      },
+      "swa": {
+       "dev_perplexity": 234.782,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9928
+      }
+     }
+    },
+    {
+     "step": 4500,
+     "train_loss": 0.157,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 147.259,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 165.386,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 248.304,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": false,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9893
+      }
+     }
+    }
+   ],
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-5bdbf2e62d75/artefact/lora_adapter",
+    "sha256": "eeeafb43b36745a71e95599041997f436ad0ea91a5f8cbe2b6e15048f456d7eb",
+    "bytes": 150947099,
+    "base": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+   },
+   "compute": {
+    "wall_seconds": 7452.8,
+    "gpu_seconds": 7452.8,
+    "gpu_hours": 2.0702,
+    "gpu_peak_gb": 11.21
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false,
+   "text_exported": false
+  },
+  "finished_at": "2026-10-04T14:05:04Z",
+  "receipt_sha256": "8261b677f35c9c00e905dc56713070a39089cf2e991de12191ad49c90776d302",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T14:05:04Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-5bdbf2e62d75",
+  "started_at_utc": "2026-10-04T12:00:45.980594Z",
+  "finished_at_utc": "2026-10-04T14:05:04Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-5bdbf2e62d75"
+ }
+}

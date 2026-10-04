@@ -14,7 +14,7 @@ ROLES = {
                'strength': 'evidence-grounded British-English prose that passes the figure-by-reference gate'},
 }
 ROLE_BY_PURPOSE = {'training_lab.conversation': 'assistant', 'training_lab.advisory_review': 'reviewer', 'doc_studio.author': 'writer',
-                   'doc_studio.review': 'reviewer', 'doc_studio.plan': 'planner', 'census.estate_intelligence_dossier': 'writer'}
+                   'doc_studio.review': 'reviewer', 'doc_studio.plan': 'planner', 'census.estate_intelligence_dossier': 'writer', 'caas.domain_deliverable': 'planner'}
 EVALUATION = {'date': '2026-10-02', 'basis': 'integration model catalogue plus published task benchmarks reviewed on the day; planner/reviewer families kept distinct so the review does not share the planner\'s blind spots',
               'not_claimed': 'no independent head-to-head benchmark was run on owner data; assignments are disclosed configuration, re-evaluated when a role under-performs on its own gate'}
 

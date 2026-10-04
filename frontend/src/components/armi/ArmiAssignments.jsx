@@ -13,7 +13,7 @@ export function ArmiAssignments({ agent, canOperate, busy, onComplete, onScore }
     <header className="estate-head"><div><h2>Assignments</h2><p>Work given to this identity on the register: assign → complete → score. A score without an evidence reference is refused; scores fold into the compliance figure as their own evidence line.</p></div></header>
     {!rows.length ? <p className="estate-note" data-testid="armi-assignments-empty">No assignments recorded.</p> : <div className="estate-table-wrap"><table className="estate-table" data-testid="armi-assignments-table">
       <thead><tr><th>Task</th><th>State</th><th>Collaborators · dependencies</th><th>Result</th><th>Score</th>{canOperate && <th /> }</tr></thead>
-      <tbody>{rows.map(r => <tr key={r.assignment_id} data-testid={`armi-assignment-${r.assignment_id}`}>
+      <tbody>{rows.map(r => <tr key={r.assignment_id} data-testid={`armi-assignment-row-${r.assignment_id}`}>
         <td style={{ whiteSpace: 'normal', maxWidth: 320 }}><b>{r.task}</b><small>{r.objective_ref ? `objective · ${r.objective_ref} · ` : ''}assigned {stamp(r.at)}</small></td>
         <td><span className={`estate-status ${TONE[r.status] || ''}`} data-testid={`armi-assignment-status-${r.assignment_id}`}>{r.status}</span>{r.cancelled_reason && <small>{r.cancelled_reason}</small>}</td>
         <td><small>{(r.collaborators || []).map(readableText).join(', ') || 'none'}</small><small>{r.depends_on?.length ? `depends on ${r.depends_on.map(readableText).join(', ')}` : ''}</small></td>

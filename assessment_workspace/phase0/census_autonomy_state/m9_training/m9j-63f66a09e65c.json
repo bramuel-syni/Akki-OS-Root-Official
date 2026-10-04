@@ -1,0 +1,4127 @@
+{
+ "job_id": "m9j-63f66a09e65c",
+ "phase": "malpha_listener_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T16:00:57.634791Z",
+ "params": {
+  "recipe": {
+   "base": "openai/whisper-large-v3-turbo",
+   "lr": 3e-05,
+   "batch_size": 16,
+   "grad_accum": 4,
+   "max_steps": 12000,
+   "warmup_steps": 500,
+   "eval_every": 2000,
+   "checkpoint_every": 500,
+   "dev_per_language": 300,
+   "include_internet_corpus": true
+  },
+  "brand_lexicon": [
+   {
+    "brand": "Afya Bora",
+    "aliases": [
+     "afya bora"
+    ]
+   },
+   {
+    "brand": "Fugo",
+    "aliases": [
+     "fugo"
+    ]
+   },
+   {
+    "brand": "Simlaw",
+    "aliases": [
+     "simlaw"
+    ]
+   },
+   {
+    "brand": "Balozi",
+    "aliases": [
+     "balozi"
+    ]
+   },
+   {
+    "brand": "Pilsner",
+    "aliases": [
+     "pilsner"
+    ]
+   },
+   {
+    "brand": "Senator",
+    "aliases": [
+     "senator"
+    ]
+   },
+   {
+    "brand": "Tusker",
+    "aliases": [
+     "tusker"
+    ]
+   },
+   {
+    "brand": "White Cap",
+    "aliases": [
+     "white cap"
+    ]
+   },
+   {
+    "brand": "Ramtons",
+    "aliases": [
+     "ramtons"
+    ]
+   },
+   {
+    "brand": "Vision Plus",
+    "aliases": [
+     "vision plus"
+    ]
+   },
+   {
+    "brand": "Broadways",
+    "aliases": [
+     "broadways"
+    ]
+   },
+   {
+    "brand": "Kenblest",
+    "aliases": [
+     "kenblest"
+    ]
+   },
+   {
+    "brand": "Basco",
+    "aliases": [
+     "basco"
+    ]
+   },
+   {
+    "brand": "Crown",
+    "aliases": [
+     "crown"
+    ]
+   },
+   {
+    "brand": "DumuRangi",
+    "aliases": [
+     "dumurangi"
+    ]
+   },
+   {
+    "brand": "Dumuzas",
+    "aliases": [
+     "dumuzas"
+    ]
+   },
+   {
+    "brand": "Duracem",
+    "aliases": [
+     "duracem"
+    ]
+   },
+   {
+    "brand": "Duracoat",
+    "aliases": [
+     "duracoat"
+    ]
+   },
+   {
+    "brand": "Elegantile",
+    "aliases": [
+     "elegantile"
+    ]
+   },
+   {
+    "brand": "Fundi",
+    "aliases": [
+     "fundi"
+    ]
+   },
+   {
+    "brand": "Kentank",
+    "aliases": [
+     "kentank"
+    ]
+   },
+   {
+    "brand": "Nguvu",
+    "aliases": [
+     "nguvu"
+    ]
+   },
+   {
+    "brand": "Powermax",
+    "aliases": [
+     "powermax"
+    ]
+   },
+   {
+    "brand": "Powerplus",
+    "aliases": [
+     "powerplus"
+    ]
+   },
+   {
+    "brand": "Seti",
+    "aliases": [
+     "seti"
+    ]
+   },
+   {
+    "brand": "Tembo",
+    "aliases": [
+     "tembo"
+    ]
+   },
+   {
+    "brand": "Alpa",
+    "aliases": [
+     "alpa"
+    ]
+   },
+   {
+    "brand": "Bahari Fry",
+    "aliases": [
+     "bahari fry"
+    ]
+   },
+   {
+    "brand": "Bredbest",
+    "aliases": [
+     "bredbest"
+    ]
+   },
+   {
+    "brand": "Captain Cook",
+    "aliases": [
+     "captain cook"
+    ]
+   },
+   {
+    "brand": "Chapa Mandashi",
+    "aliases": [
+     "chapa mandashi"
+    ]
+   },
+   {
+    "brand": "Chipsy",
+    "aliases": [
+     "chipsy"
+    ]
+   },
+   {
+    "brand": "Cowboy",
+    "aliases": [
+     "cowboy"
+    ]
+   },
+   {
+    "brand": "Elianto",
+    "aliases": [
+     "elianto"
+    ]
+   },
+   {
+    "brand": "Fresh Fri",
+    "aliases": [
+     "fresh fri"
+    ]
+   },
+   {
+    "brand": "Fry Mate",
+    "aliases": [
+     "fry mate"
+    ]
+   },
+   {
+    "brand": "Gold Band",
+    "aliases": [
+     "gold band"
+    ]
+   },
+   {
+    "brand": "Golden Fry",
+    "aliases": [
+     "golden fry"
+    ]
+   },
+   {
+    "brand": "Kasuku",
+    "aliases": [
+     "kasuku"
+    ]
+   },
+   {
+    "brand": "Kenola",
+    "aliases": [
+     "kenola"
+    ]
+   },
+   {
+    "brand": "Kimbo",
+    "aliases": [
+     "kimbo"
+    ]
+   },
+   {
+    "brand": "Mallo",
+    "aliases": [
+     "mallo"
+    ]
+   },
+   {
+    "brand": "Mariandazi",
+    "aliases": [
+     "mariandazi"
+    ]
+   },
+   {
+    "brand": "Olive Gold",
+    "aliases": [
+     "olive gold"
+    ]
+   },
+   {
+    "brand": "Olivia",
+    "aliases": [
+     "olivia"
+    ]
+   },
+   {
+    "brand": "Postman",
+    "aliases": [
+     "postman"
+    ]
+   },
+   {
+    "brand": "Prestige",
+    "aliases": [
+     "prestige"
+    ]
+   },
+   {
+    "brand": "Rhapso",
+    "aliases": [
+     "rhapso"
+    ]
+   },
+   {
+    "brand": "Rina",
+    "aliases": [
+     "rina"
+    ]
+   },
+   {
+    "brand": "Rinsun",
+    "aliases": [
+     "rinsun"
+    ]
+   },
+   {
+    "brand": "Salit",
+    "aliases": [
+     "salit"
+    ]
+   },
+   {
+    "brand": "Seagull",
+    "aliases": [
+     "seagull"
+    ]
+   },
+   {
+    "brand": "SoyaGold",
+    "aliases": [
+     "soyagold"
+    ]
+   },
+   {
+    "brand": "Tilly",
+    "aliases": [
+     "tilly"
+    ]
+   },
+   {
+    "brand": "4US",
+    "aliases": [
+     "4us"
+    ]
+   },
+   {
+    "brand": "Bio",
+    "aliases": [
+     "bio"
+    ]
+   },
+   {
+    "brand": "Brookside",
+    "aliases": [
+     "brookside"
+    ]
+   },
+   {
+    "brand": "Brown's",
+    "aliases": [
+     "brown's",
+     "browns"
+    ]
+   },
+   {
+    "brand": "Dairy Fresh",
+    "aliases": [
+     "dairy fresh"
+    ]
+   },
+   {
+    "brand": "Dairyland",
+    "aliases": [
+     "dairyland"
+    ]
+   },
+   {
+    "brand": "Delia's",
+    "aliases": [
+     "delia's",
+     "delias"
+    ]
+   },
+   {
+    "brand": "Fresha",
+    "aliases": [
+     "fresha"
+    ]
+   },
+   {
+    "brand": "Gold Crown",
+    "aliases": [
+     "gold crown"
+    ]
+   },
+   {
+    "brand": "KCC",
+    "aliases": [
+     "kcc"
+    ]
+   },
+   {
+    "brand": "Kinangop",
+    "aliases": [
+     "kinangop"
+    ]
+   },
+   {
+    "brand": "Kinangop Gold",
+    "aliases": [
+     "kinangop gold"
+    ]
+   },
+   {
+    "brand": "Safariland",
+    "aliases": [
+     "safariland"
+    ]
+   },
+   {
+    "brand": "Shake",
+    "aliases": [
+     "shake"
+    ]
+   },
+   {
+    "brand": "Enda",
+    "aliases": [
+     "enda"
+    ]
+   },
+   {
+    "brand": "Ikojn",
+    "aliases": [
+     "ikojn"
+    ]
+   },
+   {
+    "brand": "Joka Jok",
+    "aliases": [
+     "joka jok"
+    ]
+   },
+   {
+    "brand": "Kazuri",
+    "aliases": [
+     "kazuri"
+    ]
+   },
+   {
+    "brand": "KikoRomeo",
+    "aliases": [
+     "kikoromeo"
+    ]
+   },
+   {
+    "brand": "Safari by Vivo",
+    "aliases": [
+     "safari by vivo"
+    ]
+   },
+   {
+    "brand": "Sandstorm Kenya",
+    "aliases": [
+     "sandstorm kenya",
+     "sandstorm"
+    ]
+   },
+   {
+    "brand": "Ubuntu Life",
+    "aliases": [
+     "ubuntu life"
+    ]
+   },
+   {
+    "brand": "Vivo",
+    "aliases": [
+     "vivo"
+    ]
+   },
+   {
+    "brand": "Wazawazi",
+    "aliases": [
+     "wazawazi"
+    ]
+   },
+   {
+    "brand": "Zoya",
+    "aliases": [
+     "zoya"
+    ]
+   },
+   {
+    "brand": "Amaize",
+    "aliases": [
+     "amaize"
+    ]
+   },
+   {
+    "brand": "Amana",
+    "aliases": [
+     "amana"
+    ]
+   },
+   {
+    "brand": "CIL",
+    "aliases": [
+     "cil"
+    ]
+   },
+   {
+    "brand": "EXE",
+    "aliases": [
+     "exe"
+    ]
+   },
+   {
+    "brand": "Famila",
+    "aliases": [
+     "famila"
+    ]
+   },
+   {
+    "brand": "Hodari",
+    "aliases": [
+     "hodari"
+    ]
+   },
+   {
+    "brand": "Hostess",
+    "aliases": [
+     "hostess"
+    ]
+   },
+   {
+    "brand": "Jogoo",
+    "aliases": [
+     "jogoo",
+     "unga limited"
+    ]
+   },
+   {
+    "brand": "Pearl",
+    "aliases": [
+     "pearl"
+    ]
+   },
+   {
+    "brand": "Proctor & Allan",
+    "aliases": [
+     "proctor allan",
+     "proctor and allan"
+    ]
+   },
+   {
+    "brand": "Ranee",
+    "aliases": [
+     "ranee"
+    ]
+   },
+   {
+    "brand": "Soko",
+    "aliases": [
+     "soko"
+    ]
+   },
+   {
+    "brand": "Yola",
+    "aliases": [
+     "yola"
+    ]
+   },
+   {
+    "brand": "Bobmil",
+    "aliases": [
+     "bobmil"
+    ]
+   },
+   {
+    "brand": "MoKo",
+    "aliases": [
+     "moko"
+    ]
+   },
+   {
+    "brand": "Superfoam",
+    "aliases": [
+     "superfoam"
+    ]
+   },
+   {
+    "brand": "HACO Plastics",
+    "aliases": [
+     "haco plastics"
+    ]
+   },
+   {
+    "brand": "Kenpoly",
+    "aliases": [
+     "kenpoly"
+    ]
+   },
+   {
+    "brand": "Roto",
+    "aliases": [
+     "roto"
+    ]
+   },
+   {
+    "brand": "Ace (HACO)",
+    "aliases": [
+     "ace haco"
+    ]
+   },
+   {
+    "brand": "Atilla",
+    "aliases": [
+     "atilla"
+    ]
+   },
+   {
+    "brand": "Balu",
+    "aliases": [
+     "balu"
+    ]
+   },
+   {
+    "brand": "Bidco Cream",
+    "aliases": [
+     "bidco cream"
+    ]
+   },
+   {
+    "brand": "Classic (Kapa)",
+    "aliases": [
+     "classic kapa"
+    ]
+   },
+   {
+    "brand": "Cleanrol",
+    "aliases": [
+     "cleanrol"
+    ]
+   },
+   {
+    "brand": "Dawn Pekee",
+    "aliases": [
+     "dawn pekee"
+    ]
+   },
+   {
+    "brand": "Jamaa",
+    "aliases": [
+     "jamaa"
+    ]
+   },
+   {
+    "brand": "Lido",
+    "aliases": [
+     "lido"
+    ]
+   },
+   {
+    "brand": "Msafi",
+    "aliases": [
+     "msafi"
+    ]
+   },
+   {
+    "brand": "Ndume",
+    "aliases": [
+     "ndume"
+    ]
+   },
+   {
+    "brand": "Neptune",
+    "aliases": [
+     "neptune"
+    ]
+   },
+   {
+    "brand": "Nice & Soft",
+    "aliases": [
+     "nice soft",
+     "nice and soft"
+    ]
+   },
+   {
+    "brand": "Nuru",
+    "aliases": [
+     "nuru"
+    ]
+   },
+   {
+    "brand": "Nyati",
+    "aliases": [
+     "nyati"
+    ]
+   },
+   {
+    "brand": "Pure and Natural",
+    "aliases": [
+     "pure and natural"
+    ]
+   },
+   {
+    "brand": "Qik Dri",
+    "aliases": [
+     "qik dri"
+    ]
+   },
+   {
+    "brand": "Rono",
+    "aliases": [
+     "rono"
+    ]
+   },
+   {
+    "brand": "Rosy",
+    "aliases": [
+     "rosy"
+    ]
+   },
+   {
+    "brand": "Royale",
+    "aliases": [
+     "royale"
+    ]
+   },
+   {
+    "brand": "Safari (Chandaria)",
+    "aliases": [
+     "safari chandaria"
+    ]
+   },
+   {
+    "brand": "Shark",
+    "aliases": [
+     "shark"
+    ]
+   },
+   {
+    "brand": "Simplex",
+    "aliases": [
+     "simplex"
+    ]
+   },
+   {
+    "brand": "So Soft",
+    "aliases": [
+     "so soft"
+    ]
+   },
+   {
+    "brand": "Softleaf",
+    "aliases": [
+     "softleaf"
+    ]
+   },
+   {
+    "brand": "Solio",
+    "aliases": [
+     "solio"
+    ]
+   },
+   {
+    "brand": "Sparkle",
+    "aliases": [
+     "sparkle"
+    ]
+   },
+   {
+    "brand": "Tiger",
+    "aliases": [
+     "tiger"
+    ]
+   },
+   {
+    "brand": "Toilex",
+    "aliases": [
+     "toilex"
+    ]
+   },
+   {
+    "brand": "Toss",
+    "aliases": [
+     "toss"
+    ]
+   },
+   {
+    "brand": "Tower",
+    "aliases": [
+     "tower"
+    ]
+   },
+   {
+    "brand": "Ushindi",
+    "aliases": [
+     "ushindi"
+    ]
+   },
+   {
+    "brand": "Velvex",
+    "aliases": [
+     "velvex"
+    ]
+   },
+   {
+    "brand": "White Wash",
+    "aliases": [
+     "white wash"
+    ]
+   },
+   {
+    "brand": "Farmer's Choice",
+    "aliases": [
+     "farmer's choice",
+     "farmers choice"
+    ]
+   },
+   {
+    "brand": "Kenchic",
+    "aliases": [
+     "kenchic"
+    ]
+   },
+   {
+    "brand": "Bitez",
+    "aliases": [
+     "bitez"
+    ]
+   },
+   {
+    "brand": "Cinderella",
+    "aliases": [
+     "cinderella"
+    ]
+   },
+   {
+    "brand": "Cribaz",
+    "aliases": [
+     "cribaz"
+    ]
+   },
+   {
+    "brand": "Fresh (Kenafric)",
+    "aliases": [
+     "fresh kenafric"
+    ]
+   },
+   {
+    "brand": "Grove and Meadow",
+    "aliases": [
+     "grove and meadow"
+    ]
+   },
+   {
+    "brand": "Heroes",
+    "aliases": [
+     "heroes"
+    ]
+   },
+   {
+    "brand": "Muguka",
+    "aliases": [
+     "muguka"
+    ]
+   },
+   {
+    "brand": "Nala",
+    "aliases": [
+     "nala"
+    ]
+   },
+   {
+    "brand": "Ringoz",
+    "aliases": [
+     "ringoz"
+    ]
+   },
+   {
+    "brand": "Safari Puffs",
+    "aliases": [
+     "safari puffs"
+    ]
+   },
+   {
+    "brand": "Selfie",
+    "aliases": [
+     "selfie"
+    ]
+   },
+   {
+    "brand": "Sparky",
+    "aliases": [
+     "sparky"
+    ]
+   },
+   {
+    "brand": "Speed",
+    "aliases": [
+     "speed"
+    ]
+   },
+   {
+    "brand": "Tamu Tamu",
+    "aliases": [
+     "tamu tamu"
+    ]
+   },
+   {
+    "brand": "The Cracker Shack",
+    "aliases": [
+     "the cracker shack"
+    ]
+   },
+   {
+    "brand": "Ting Ting",
+    "aliases": [
+     "ting ting"
+    ]
+   },
+   {
+    "brand": "Treatos",
+    "aliases": [
+     "treatos"
+    ]
+   },
+   {
+    "brand": "Tropnuts",
+    "aliases": [
+     "tropnuts"
+    ]
+   },
+   {
+    "brand": "Urban Bites",
+    "aliases": [
+     "urban bites"
+    ]
+   },
+   {
+    "brand": "Urban Stix",
+    "aliases": [
+     "urban stix"
+    ]
+   },
+   {
+    "brand": "Veve",
+    "aliases": [
+     "veve"
+    ]
+   },
+   {
+    "brand": "Waves",
+    "aliases": [
+     "waves"
+    ]
+   },
+   {
+    "brand": "Afrisense",
+    "aliases": [
+     "afrisense"
+    ]
+   },
+   {
+    "brand": "Alana",
+    "aliases": [
+     "alana"
+    ]
+   },
+   {
+    "brand": "Amara",
+    "aliases": [
+     "amara"
+    ]
+   },
+   {
+    "brand": "Cinnabar Green",
+    "aliases": [
+     "cinnabar green"
+    ]
+   },
+   {
+    "brand": "Detrex",
+    "aliases": [
+     "detrex"
+    ]
+   },
+   {
+    "brand": "Diva",
+    "aliases": [
+     "diva"
+    ]
+   },
+   {
+    "brand": "Gental Care",
+    "aliases": [
+     "gental care"
+    ]
+   },
+   {
+    "brand": "Keyara Botanics",
+    "aliases": [
+     "keyara botanics"
+    ]
+   },
+   {
+    "brand": "Lanzo",
+    "aliases": [
+     "lanzo"
+    ]
+   },
+   {
+    "brand": "Marini Naturals",
+    "aliases": [
+     "marini naturals"
+    ]
+   },
+   {
+    "brand": "Miadi",
+    "aliases": [
+     "miadi"
+    ]
+   },
+   {
+    "brand": "Mosara",
+    "aliases": [
+     "mosara"
+    ]
+   },
+   {
+    "brand": "Rosy Girl",
+    "aliases": [
+     "rosy girl"
+    ]
+   },
+   {
+    "brand": "Sawa",
+    "aliases": [
+     "sawa cool",
+     "sawa hydration",
+     "sawa petroleum",
+     "sawa rich",
+     "sawa soft"
+    ]
+   },
+   {
+    "brand": "Sheth Naturals",
+    "aliases": [
+     "sheth naturals"
+    ]
+   },
+   {
+    "brand": "SuzieBeauty",
+    "aliases": [
+     "suziebeauty"
+    ]
+   },
+   {
+    "brand": "Tender Toto",
+    "aliases": [
+     "tender toto"
+    ]
+   },
+   {
+    "brand": "Uncover",
+    "aliases": [
+     "uncover"
+    ]
+   },
+   {
+    "brand": "Zoe",
+    "aliases": [
+     "zoe"
+    ]
+   },
+   {
+    "brand": "Choco Primo",
+    "aliases": [
+     "choco primo"
+    ]
+   },
+   {
+    "brand": "Cocoa Primo",
+    "aliases": [
+     "cocoa primo"
+    ]
+   },
+   {
+    "brand": "Energade",
+    "aliases": [
+     "energade"
+    ]
+   },
+   {
+    "brand": "Kaysalt",
+    "aliases": [
+     "kaysalt"
+    ]
+   },
+   {
+    "brand": "Kensalt",
+    "aliases": [
+     "kensalt"
+    ]
+   },
+   {
+    "brand": "Kentaste",
+    "aliases": [
+     "kentaste"
+    ]
+   },
+   {
+    "brand": "Kenylon",
+    "aliases": [
+     "kenylon"
+    ]
+   },
+   {
+    "brand": "OYO",
+    "aliases": [
+     "oyo"
+    ]
+   },
+   {
+    "brand": "Peptang",
+    "aliases": [
+     "peptang"
+    ]
+   },
+   {
+    "brand": "Tropical Heat",
+    "aliases": [
+     "tropical heat"
+    ]
+   },
+   {
+    "brand": "Zesta",
+    "aliases": [
+     "zesta"
+    ]
+   },
+   {
+    "brand": "Acacia",
+    "aliases": [
+     "acacia"
+    ]
+   },
+   {
+    "brand": "Afia",
+    "aliases": [
+     "afia"
+    ]
+   },
+   {
+    "brand": "Bazuu Energy",
+    "aliases": [
+     "bazuu energy"
+    ]
+   },
+   {
+    "brand": "CLUB",
+    "aliases": [
+     "club"
+    ]
+   },
+   {
+    "brand": "Highlands",
+    "aliases": [
+     "highlands"
+    ]
+   },
+   {
+    "brand": "Jooz",
+    "aliases": [
+     "jooz"
+    ]
+   },
+   {
+    "brand": "Klub 101",
+    "aliases": [
+     "klub 101"
+    ]
+   },
+   {
+    "brand": "Mt Kenyan",
+    "aliases": [
+     "mt kenyan"
+    ]
+   },
+   {
+    "brand": "Pick N Peel",
+    "aliases": [
+     "pick n peel"
+    ]
+   },
+   {
+    "brand": "Quencher",
+    "aliases": [
+     "quencher"
+    ]
+   },
+   {
+    "brand": "Quencher Life",
+    "aliases": [
+     "quencher life"
+    ]
+   },
+   {
+    "brand": "Royal Club",
+    "aliases": [
+     "royal club"
+    ]
+   },
+   {
+    "brand": "Dormans",
+    "aliases": [
+     "dormans"
+    ]
+   },
+   {
+    "brand": "Fahari ya Kenya",
+    "aliases": [
+     "fahari ya kenya",
+     "fahari"
+    ]
+   },
+   {
+    "brand": "Kericho Gold",
+    "aliases": [
+     "kericho gold"
+    ]
+   },
+   {
+    "brand": "Ketepa Pride",
+    "aliases": [
+     "ketepa pride"
+    ]
+   },
+   {
+    "brand": "Safari Pure Tea",
+    "aliases": [
+     "safari pure tea"
+    ]
+   },
+   {
+    "brand": "Britam",
+    "aliases": [
+     "britam"
+    ]
+   },
+   {
+    "brand": "CIC",
+    "aliases": [
+     "cic"
+    ]
+   },
+   {
+    "brand": "Co-operative Bank",
+    "aliases": [
+     "co-operative bank",
+     "co operative bank",
+     "cooperative bank",
+     "co-op bank",
+     "coop bank"
+    ]
+   },
+   {
+    "brand": "Equity",
+    "aliases": [
+     "equity",
+     "equity bank",
+     "equitel"
+    ]
+   },
+   {
+    "brand": "KCB",
+    "aliases": [
+     "kcb",
+     "kenya commercial bank"
+    ]
+   },
+   {
+    "brand": "NCBA",
+    "aliases": [
+     "ncba"
+    ]
+   },
+   {
+    "brand": "Cellulant",
+    "aliases": [
+     "cellulant"
+    ]
+   },
+   {
+    "brand": "Craft Silicon",
+    "aliases": [
+     "craft silicon"
+    ]
+   },
+   {
+    "brand": "M-PESA",
+    "aliases": [
+     "m-pesa",
+     "m pesa",
+     "mpesa"
+    ]
+   },
+   {
+    "brand": "Ushahidi",
+    "aliases": [
+     "ushahidi"
+    ]
+   },
+   {
+    "brand": "Java House",
+    "aliases": [
+     "java house"
+    ]
+   },
+   {
+    "brand": "Sarova",
+    "aliases": [
+     "sarova"
+    ]
+   },
+   {
+    "brand": "Chandarana Foodplus",
+    "aliases": [
+     "chandarana foodplus"
+    ]
+   },
+   {
+    "brand": "Naivas",
+    "aliases": [
+     "naivas"
+    ]
+   },
+   {
+    "brand": "Quickmart",
+    "aliases": [
+     "quickmart"
+    ]
+   },
+   {
+    "brand": "Safaricom",
+    "aliases": [
+     "safaricom",
+     "saf"
+    ]
+   },
+   {
+    "brand": "Jambojet",
+    "aliases": [
+     "jambojet"
+    ]
+   },
+   {
+    "brand": "Kenya Airways",
+    "aliases": [
+     "kenya airways"
+    ]
+   },
+   {
+    "brand": "4Th Street",
+    "aliases": [
+     "4th street"
+    ]
+   },
+   {
+    "brand": "7 Hills",
+    "aliases": [
+     "7 hills"
+    ]
+   },
+   {
+    "brand": "Ballantines",
+    "aliases": [
+     "ballantines"
+    ]
+   },
+   {
+    "brand": "Bond 7",
+    "aliases": [
+     "bond 7"
+    ]
+   },
+   {
+    "brand": "Bustani",
+    "aliases": [
+     "bustani"
+    ]
+   },
+   {
+    "brand": "Candy",
+    "aliases": [
+     "candy"
+    ]
+   },
+   {
+    "brand": "Consilium",
+    "aliases": [
+     "consilium"
+    ]
+   },
+   {
+    "brand": "Corona",
+    "aliases": [
+     "corona"
+    ]
+   },
+   {
+    "brand": "Crazy",
+    "aliases": [
+     "crazy"
+    ]
+   },
+   {
+    "brand": "Desperados",
+    "aliases": [
+     "desperados"
+    ]
+   },
+   {
+    "brand": "Douglas Green",
+    "aliases": [
+     "douglas green"
+    ]
+   },
+   {
+    "brand": "Drostdy",
+    "aliases": [
+     "drostdy"
+    ]
+   },
+   {
+    "brand": "Four Cousins",
+    "aliases": [
+     "four cousins"
+    ]
+   },
+   {
+    "brand": "Franschhoek Cellar",
+    "aliases": [
+     "franschhoek cellar"
+    ]
+   },
+   {
+    "brand": "Franschoek",
+    "aliases": [
+     "franschoek"
+    ]
+   },
+   {
+    "brand": "Franschoek Cellar",
+    "aliases": [
+     "franschoek cellar"
+    ]
+   },
+   {
+    "brand": "Frontera",
+    "aliases": [
+     "frontera"
+    ]
+   },
+   {
+    "brand": "Gilbeys",
+    "aliases": [
+     "gilbeys"
+    ]
+   },
+   {
+    "brand": "Glenfiddich",
+    "aliases": [
+     "glenfiddich"
+    ]
+   },
+   {
+    "brand": "Grand Ignace",
+    "aliases": [
+     "grand ignace"
+    ]
+   },
+   {
+    "brand": "Grand Sud",
+    "aliases": [
+     "grand sud"
+    ]
+   },
+   {
+    "brand": "Grants",
+    "aliases": [
+     "grants"
+    ]
+   },
+   {
+    "brand": "Guinness",
+    "aliases": [
+     "guinness"
+    ]
+   },
+   {
+    "brand": "Heineken",
+    "aliases": [
+     "heineken"
+    ]
+   },
+   {
+    "brand": "Imperial",
+    "aliases": [
+     "imperial"
+    ]
+   },
+   {
+    "brand": "Jack Daniels",
+    "aliases": [
+     "jack daniels"
+    ]
+   },
+   {
+    "brand": "Jameson",
+    "aliases": [
+     "jameson"
+    ]
+   },
+   {
+    "brand": "Jinro",
+    "aliases": [
+     "jinro"
+    ]
+   },
+   {
+    "brand": "John Barr",
+    "aliases": [
+     "john barr"
+    ]
+   },
+   {
+    "brand": "Johnie Walker",
+    "aliases": [
+     "johnie walker"
+    ]
+   },
+   {
+    "brand": "Jp Chenet",
+    "aliases": [
+     "jp chenet"
+    ]
+   },
+   {
+    "brand": "Kenyan Orig.",
+    "aliases": [
+     "kenyan orig"
+    ]
+   },
+   {
+    "brand": "Kenyan Original",
+    "aliases": [
+     "kenyan original"
+    ]
+   },
+   {
+    "brand": "Kenyan Originals",
+    "aliases": [
+     "kenyan originals"
+    ]
+   },
+   {
+    "brand": "Lolie",
+    "aliases": [
+     "lolie"
+    ]
+   },
+   {
+    "brand": "Martini",
+    "aliases": [
+     "martini"
+    ]
+   },
+   {
+    "brand": "Mucho",
+    "aliases": [
+     "mucho"
+    ]
+   },
+   {
+    "brand": "Nederburg",
+    "aliases": [
+     "nederburg"
+    ]
+   },
+   {
+    "brand": "Olepasu",
+    "aliases": [
+     "olepasu"
+    ]
+   },
+   {
+    "brand": "Sweet Lips",
+    "aliases": [
+     "sweet lips"
+    ]
+   },
+   {
+    "brand": "White",
+    "aliases": [
+     "white"
+    ]
+   },
+   {
+    "brand": "William",
+    "aliases": [
+     "william"
+    ]
+   },
+   {
+    "brand": "Ballet",
+    "aliases": [
+     "ballet"
+    ]
+   },
+   {
+    "brand": "Cussons Baby",
+    "aliases": [
+     "cussons baby"
+    ]
+   },
+   {
+    "brand": "Johnson's Baby",
+    "aliases": [
+     "johnson's baby",
+     "johnsons baby"
+    ]
+   },
+   {
+    "brand": "Maws",
+    "aliases": [
+     "maws"
+    ]
+   },
+   {
+    "brand": "Nice",
+    "aliases": [
+     "nice"
+    ]
+   },
+   {
+    "brand": "Bdelo",
+    "aliases": [
+     "bdelo"
+    ]
+   },
+   {
+    "brand": "Festive",
+    "aliases": [
+     "festive"
+    ]
+   },
+   {
+    "brand": "Joy",
+    "aliases": [
+     "joy"
+    ]
+   },
+   {
+    "brand": "Abony",
+    "aliases": [
+     "abony"
+    ]
+   },
+   {
+    "brand": "Alpro",
+    "aliases": [
+     "alpro"
+    ]
+   },
+   {
+    "brand": "Arla",
+    "aliases": [
+     "arla"
+    ]
+   },
+   {
+    "brand": "Bahati",
+    "aliases": [
+     "bahati"
+    ]
+   },
+   {
+    "brand": "Brown\u2019s",
+    "aliases": [
+     "brown\u2019s",
+     "browns"
+    ]
+   },
+   {
+    "brand": "Caprine",
+    "aliases": [
+     "caprine"
+    ]
+   },
+   {
+    "brand": "Cheeselove",
+    "aliases": [
+     "cheeselove"
+    ]
+   },
+   {
+    "brand": "Creambell",
+    "aliases": [
+     "creambell"
+    ]
+   },
+   {
+    "brand": "Daima",
+    "aliases": [
+     "daima"
+    ]
+   },
+   {
+    "brand": "Delamere",
+    "aliases": [
+     "delamere"
+    ]
+   },
+   {
+    "brand": "Emborg",
+    "aliases": [
+     "emborg"
+    ]
+   },
+   {
+    "brand": "Enigma",
+    "aliases": [
+     "enigma"
+    ]
+   },
+   {
+    "brand": "Fondiz",
+    "aliases": [
+     "fondiz"
+    ]
+   },
+   {
+    "brand": "Frusion",
+    "aliases": [
+     "frusion"
+    ]
+   },
+   {
+    "brand": "Gracie'S",
+    "aliases": [
+     "gracie's",
+     "gracies"
+    ]
+   },
+   {
+    "brand": "Happy",
+    "aliases": [
+     "happy"
+    ]
+   },
+   {
+    "brand": "Happy Cow",
+    "aliases": [
+     "happy cow"
+    ]
+   },
+   {
+    "brand": "Hollander",
+    "aliases": [
+     "hollander"
+    ]
+   },
+   {
+    "brand": "Igloo",
+    "aliases": [
+     "igloo"
+    ]
+   },
+   {
+    "brand": "Ilara",
+    "aliases": [
+     "ilara"
+    ]
+   },
+   {
+    "brand": "Jolly",
+    "aliases": [
+     "jolly"
+    ]
+   },
+   {
+    "brand": "Jolly Fresh",
+    "aliases": [
+     "jolly fresh"
+    ]
+   },
+   {
+    "brand": "Jumbo",
+    "aliases": [
+     "jumbo"
+    ]
+   },
+   {
+    "brand": "Kanyangold",
+    "aliases": [
+     "kanyangold"
+    ]
+   },
+   {
+    "brand": "Kiri",
+    "aliases": [
+     "kiri"
+    ]
+   },
+   {
+    "brand": "Land'Or",
+    "aliases": [
+     "land'or",
+     "landor"
+    ]
+   },
+   {
+    "brand": "London Dairy",
+    "aliases": [
+     "london dairy"
+    ]
+   },
+   {
+    "brand": "Magnum",
+    "aliases": [
+     "magnum"
+    ]
+   },
+   {
+    "brand": "Molo",
+    "aliases": [
+     "molo"
+    ]
+   },
+   {
+    "brand": "Mountain Fresh",
+    "aliases": [
+     "mountain fresh"
+    ]
+   },
+   {
+    "brand": "President",
+    "aliases": [
+     "president"
+    ]
+   },
+   {
+    "brand": "Royal",
+    "aliases": [
+     "royal"
+    ]
+   },
+   {
+    "brand": "Royal Fresh",
+    "aliases": [
+     "royal fresh"
+    ]
+   },
+   {
+    "brand": "Sirimon",
+    "aliases": [
+     "sirimon"
+    ]
+   },
+   {
+    "brand": "The Laughing Cow",
+    "aliases": [
+     "the laughing cow"
+    ]
+   },
+   {
+    "brand": "Tuzo",
+    "aliases": [
+     "tuzo"
+    ]
+   },
+   {
+    "brand": "Zito",
+    "aliases": [
+     "zito"
+    ]
+   },
+   {
+    "brand": "Armco",
+    "aliases": [
+     "armco"
+    ]
+   },
+   {
+    "brand": "Beko",
+    "aliases": [
+     "beko"
+    ]
+   },
+   {
+    "brand": "Black & Decker",
+    "aliases": [
+     "black decker",
+     "black and decker"
+    ]
+   },
+   {
+    "brand": "Hisense",
+    "aliases": [
+     "hisense"
+    ]
+   },
+   {
+    "brand": "Midea",
+    "aliases": [
+     "midea"
+    ]
+   },
+   {
+    "brand": "Mika",
+    "aliases": [
+     "mika"
+    ]
+   },
+   {
+    "brand": "Moulinex",
+    "aliases": [
+     "moulinex"
+    ]
+   },
+   {
+    "brand": "Oryx",
+    "aliases": [
+     "oryx"
+    ]
+   },
+   {
+    "brand": "Samsung",
+    "aliases": [
+     "samsung"
+    ]
+   },
+   {
+    "brand": "Von",
+    "aliases": [
+     "von"
+    ]
+   },
+   {
+    "brand": "Frozen Isle",
+    "aliases": [
+     "frozen isle"
+    ]
+   },
+   {
+    "brand": "Bon Appetit",
+    "aliases": [
+     "bon appetit"
+    ]
+   },
+   {
+    "brand": "Brinox",
+    "aliases": [
+     "brinox"
+    ]
+   },
+   {
+    "brand": "Cello",
+    "aliases": [
+     "cello"
+    ]
+   },
+   {
+    "brand": "Crom",
+    "aliases": [
+     "crom"
+    ]
+   },
+   {
+    "brand": "Decent Butchers",
+    "aliases": [
+     "decent butchers"
+    ]
+   },
+   {
+    "brand": "Jio",
+    "aliases": [
+     "jio"
+    ]
+   },
+   {
+    "brand": "Kleenit",
+    "aliases": [
+     "kleenit"
+    ]
+   },
+   {
+    "brand": "Safisha",
+    "aliases": [
+     "safisha"
+    ]
+   },
+   {
+    "brand": "Siena",
+    "aliases": [
+     "siena"
+    ]
+   },
+   {
+    "brand": "Sky Brite",
+    "aliases": [
+     "sky brite"
+    ]
+   },
+   {
+    "brand": "Sokoni",
+    "aliases": [
+     "sokoni"
+    ]
+   },
+   {
+    "brand": "Storesome",
+    "aliases": [
+     "storesome"
+    ]
+   },
+   {
+    "brand": "Sungura",
+    "aliases": [
+     "sungura"
+    ]
+   },
+   {
+    "brand": "Super",
+    "aliases": [
+     "super"
+    ]
+   },
+   {
+    "brand": "Velo",
+    "aliases": [
+     "velo"
+    ]
+   },
+   {
+    "brand": "Ace",
+    "aliases": [
+     "ace"
+    ]
+   },
+   {
+    "brand": "Ariel",
+    "aliases": [
+     "ariel"
+    ]
+   },
+   {
+    "brand": "Astonish",
+    "aliases": [
+     "astonish"
+    ]
+   },
+   {
+    "brand": "Classic",
+    "aliases": [
+     "classic"
+    ]
+   },
+   {
+    "brand": "Cuddles",
+    "aliases": [
+     "cuddles"
+    ]
+   },
+   {
+    "brand": "Dr Beck",
+    "aliases": [
+     "dr beck"
+    ]
+   },
+   {
+    "brand": "Gama",
+    "aliases": [
+     "gama"
+    ]
+   },
+   {
+    "brand": "Glade",
+    "aliases": [
+     "glade"
+    ]
+   },
+   {
+    "brand": "Harpic",
+    "aliases": [
+     "harpic"
+    ]
+   },
+   {
+    "brand": "Lan",
+    "aliases": [
+     "lan"
+    ]
+   },
+   {
+    "brand": "Lavik",
+    "aliases": [
+     "lavik"
+    ]
+   },
+   {
+    "brand": "Magnee",
+    "aliases": [
+     "magnee"
+    ]
+   },
+   {
+    "brand": "Menengai",
+    "aliases": [
+     "menengai"
+    ]
+   },
+   {
+    "brand": "Morning Fresh",
+    "aliases": [
+     "morning fresh"
+    ]
+   },
+   {
+    "brand": "Mos-Kill",
+    "aliases": [
+     "mos-kill",
+     "mos kill",
+     "moskill"
+    ]
+   },
+   {
+    "brand": "Omo",
+    "aliases": [
+     "omo"
+    ]
+   },
+   {
+    "brand": "Persil",
+    "aliases": [
+     "persil"
+    ]
+   },
+   {
+    "brand": "Pledge",
+    "aliases": [
+     "pledge"
+    ]
+   },
+   {
+    "brand": "Rinz",
+    "aliases": [
+     "rinz"
+    ]
+   },
+   {
+    "brand": "Sunlight",
+    "aliases": [
+     "sunlight"
+    ]
+   },
+   {
+    "brand": "Swirl",
+    "aliases": [
+     "swirl"
+    ]
+   },
+   {
+    "brand": "Topex",
+    "aliases": [
+     "topex"
+    ]
+   },
+   {
+    "brand": "Unigel",
+    "aliases": [
+     "unigel"
+    ]
+   },
+   {
+    "brand": "Zenta",
+    "aliases": [
+     "zenta"
+    ]
+   },
+   {
+    "brand": "Frozen",
+    "aliases": [
+     "frozen"
+    ]
+   },
+   {
+    "brand": "Kenmeat",
+    "aliases": [
+     "kenmeat"
+    ]
+   },
+   {
+    "brand": "Quality",
+    "aliases": [
+     "quality"
+    ]
+   },
+   {
+    "brand": "Aquamist",
+    "aliases": [
+     "aquamist"
+    ]
+   },
+   {
+    "brand": "Coca-Cola",
+    "aliases": [
+     "coca-cola",
+     "coca cola",
+     "cocacola",
+     "coke"
+    ]
+   },
+   {
+    "brand": "Del Monte",
+    "aliases": [
+     "del monte"
+    ]
+   },
+   {
+    "brand": "Excel",
+    "aliases": [
+     "excel"
+    ]
+   },
+   {
+    "brand": "Fanta",
+    "aliases": [
+     "fanta"
+    ]
+   },
+   {
+    "brand": "Fruitz",
+    "aliases": [
+     "fruitz"
+    ]
+   },
+   {
+    "brand": "Gofrut",
+    "aliases": [
+     "gofrut"
+    ]
+   },
+   {
+    "brand": "Kevian",
+    "aliases": [
+     "kevian"
+    ]
+   },
+   {
+    "brand": "Ktc",
+    "aliases": [
+     "ktc"
+    ]
+   },
+   {
+    "brand": "Mayer",
+    "aliases": [
+     "mayer"
+    ]
+   },
+   {
+    "brand": "Minute",
+    "aliases": [
+     "minute"
+    ]
+   },
+   {
+    "brand": "Mirinda",
+    "aliases": [
+     "mirinda"
+    ]
+   },
+   {
+    "brand": "Mountain",
+    "aliases": [
+     "mountain"
+    ]
+   },
+   {
+    "brand": "Mt. Kenya",
+    "aliases": [
+     "mt kenya"
+    ]
+   },
+   {
+    "brand": "Oceanspray",
+    "aliases": [
+     "oceanspray"
+    ]
+   },
+   {
+    "brand": "Orchid Valley",
+    "aliases": [
+     "orchid valley"
+    ]
+   },
+   {
+    "brand": "Pep",
+    "aliases": [
+     "pep"
+    ]
+   },
+   {
+    "brand": "Red Bull",
+    "aliases": [
+     "red bull"
+    ]
+   },
+   {
+    "brand": "Ribena",
+    "aliases": [
+     "ribena"
+    ]
+   },
+   {
+    "brand": "Safari",
+    "aliases": [
+     "safari"
+    ]
+   },
+   {
+    "brand": "Sprite",
+    "aliases": [
+     "sprite"
+    ]
+   },
+   {
+    "brand": "Twist",
+    "aliases": [
+     "twist"
+    ]
+   },
+   {
+    "brand": "Ajab",
+    "aliases": [
+     "ajab"
+    ]
+   },
+   {
+    "brand": "Alison",
+    "aliases": [
+     "alison"
+    ]
+   },
+   {
+    "brand": "American Garden",
+    "aliases": [
+     "american garden"
+    ]
+   },
+   {
+    "brand": "American Gourmet",
+    "aliases": [
+     "american gourmet"
+    ]
+   },
+   {
+    "brand": "Aryuva",
+    "aliases": [
+     "aryuva"
+    ]
+   },
+   {
+    "brand": "Avena",
+    "aliases": [
+     "avena"
+    ]
+   },
+   {
+    "brand": "Bel'S",
+    "aliases": [
+     "bel's",
+     "bels"
+    ]
+   },
+   {
+    "brand": "Berruto",
+    "aliases": [
+     "berruto"
+    ]
+   },
+   {
+    "brand": "Blue Band",
+    "aliases": [
+     "blue band"
+    ]
+   },
+   {
+    "brand": "Bokomo",
+    "aliases": [
+     "bokomo"
+    ]
+   },
+   {
+    "brand": "Borges",
+    "aliases": [
+     "borges"
+    ]
+   },
+   {
+    "brand": "Butterfly",
+    "aliases": [
+     "butterfly"
+    ]
+   },
+   {
+    "brand": "Cecilias",
+    "aliases": [
+     "cecilias"
+    ]
+   },
+   {
+    "brand": "Chain Kwo",
+    "aliases": [
+     "chain kwo"
+    ]
+   },
+   {
+    "brand": "Chef King",
+    "aliases": [
+     "chef king"
+    ]
+   },
+   {
+    "brand": "Clovers",
+    "aliases": [
+     "clovers"
+    ]
+   },
+   {
+    "brand": "Cocopure",
+    "aliases": [
+     "cocopure"
+    ]
+   },
+   {
+    "brand": "Daawat",
+    "aliases": [
+     "daawat"
+    ]
+   },
+   {
+    "brand": "De Nigris",
+    "aliases": [
+     "de nigris"
+    ]
+   },
+   {
+    "brand": "Divella",
+    "aliases": [
+     "divella"
+    ]
+   },
+   {
+    "brand": "Dola",
+    "aliases": [
+     "dola"
+    ]
+   },
+   {
+    "brand": "Elbbin",
+    "aliases": [
+     "elbbin"
+    ]
+   },
+   {
+    "brand": "Farmnaivas",
+    "aliases": [
+     "farmnaivas"
+    ]
+   },
+   {
+    "brand": "Fay",
+    "aliases": [
+     "fay"
+    ]
+   },
+   {
+    "brand": "Fresco",
+    "aliases": [
+     "fresco"
+    ]
+   },
+   {
+    "brand": "Garafalo",
+    "aliases": [
+     "garafalo"
+    ]
+   },
+   {
+    "brand": "Gnomis",
+    "aliases": [
+     "gnomis"
+    ]
+   },
+   {
+    "brand": "Godson Organics",
+    "aliases": [
+     "godson organics"
+    ]
+   },
+   {
+    "brand": "Golden Drop",
+    "aliases": [
+     "golden drop"
+    ]
+   },
+   {
+    "brand": "Golden Valley",
+    "aliases": [
+     "golden valley"
+    ]
+   },
+   {
+    "brand": "Gooseberry Hot",
+    "aliases": [
+     "gooseberry hot"
+    ]
+   },
+   {
+    "brand": "Grainmill",
+    "aliases": [
+     "grainmill"
+    ]
+   },
+   {
+    "brand": "Heavens",
+    "aliases": [
+     "heavens"
+    ]
+   },
+   {
+    "brand": "Indomie",
+    "aliases": [
+     "indomie"
+    ]
+   },
+   {
+    "brand": "Jade",
+    "aliases": [
+     "jade"
+    ]
+   },
+   {
+    "brand": "Jamii",
+    "aliases": [
+     "jamii"
+    ]
+   },
+   {
+    "brand": "Kamal",
+    "aliases": [
+     "kamal"
+    ]
+   },
+   {
+    "brand": "Kamili Nutrameal",
+    "aliases": [
+     "kamili nutrameal"
+    ]
+   },
+   {
+    "brand": "Kaputei",
+    "aliases": [
+     "kaputei"
+    ]
+   },
+   {
+    "brand": "Kelloggs",
+    "aliases": [
+     "kelloggs"
+    ]
+   },
+   {
+    "brand": "Kent",
+    "aliases": [
+     "kent"
+    ]
+   },
+   {
+    "brand": "Kikkoman",
+    "aliases": [
+     "kikkoman"
+    ]
+   },
+   {
+    "brand": "Kings",
+    "aliases": [
+     "kings"
+    ]
+   },
+   {
+    "brand": "Kol",
+    "aliases": [
+     "kol"
+    ]
+   },
+   {
+    "brand": "Krackles",
+    "aliases": [
+     "krackles"
+    ]
+   },
+   {
+    "brand": "Live Life",
+    "aliases": [
+     "live life"
+    ]
+   },
+   {
+    "brand": "Lotus",
+    "aliases": [
+     "lotus"
+    ]
+   },
+   {
+    "brand": "Lyons",
+    "aliases": [
+     "lyons"
+    ]
+   },
+   {
+    "brand": "Maccoffee",
+    "aliases": [
+     "maccoffee"
+    ]
+   },
+   {
+    "brand": "Mactea",
+    "aliases": [
+     "mactea"
+    ]
+   },
+   {
+    "brand": "Macuisine",
+    "aliases": [
+     "macuisine"
+    ]
+   },
+   {
+    "brand": "Masterchef",
+    "aliases": [
+     "masterchef"
+    ]
+   },
+   {
+    "brand": "Melvins",
+    "aliases": [
+     "melvins"
+    ]
+   },
+   {
+    "brand": "Mican",
+    "aliases": [
+     "mican"
+    ]
+   },
+   {
+    "brand": "Morning Harvest",
+    "aliases": [
+     "morning harvest"
+    ]
+   },
+   {
+    "brand": "Nature's Own",
+    "aliases": [
+     "nature's own",
+     "natures own"
+    ]
+   },
+   {
+    "brand": "Natures",
+    "aliases": [
+     "natures"
+    ]
+   },
+   {
+    "brand": "Ndovu",
+    "aliases": [
+     "ndovu"
+    ]
+   },
+   {
+    "brand": "Nestle",
+    "aliases": [
+     "nestle"
+    ]
+   },
+   {
+    "brand": "Novi",
+    "aliases": [
+     "novi"
+    ]
+   },
+   {
+    "brand": "Nutgold",
+    "aliases": [
+     "nutgold"
+    ]
+   },
+   {
+    "brand": "Nuvita",
+    "aliases": [
+     "nuvita"
+    ]
+   },
+   {
+    "brand": "Ors",
+    "aliases": [
+     "ors"
+    ]
+   },
+   {
+    "brand": "Pendo",
+    "aliases": [
+     "pendo"
+    ]
+   },
+   {
+    "brand": "Pika",
+    "aliases": [
+     "pika"
+    ]
+   },
+   {
+    "brand": "Presto",
+    "aliases": [
+     "presto"
+    ]
+   },
+   {
+    "brand": "Primavera",
+    "aliases": [
+     "primavera"
+    ]
+   },
+   {
+    "brand": "Radiant",
+    "aliases": [
+     "radiant"
+    ]
+   },
+   {
+    "brand": "Realthai",
+    "aliases": [
+     "realthai"
+    ]
+   },
+   {
+    "brand": "Riscossa",
+    "aliases": [
+     "riscossa"
+    ]
+   },
+   {
+    "brand": "Royco",
+    "aliases": [
+     "royco"
+    ]
+   },
+   {
+    "brand": "Santa Lucia",
+    "aliases": [
+     "santa lucia"
+    ]
+   },
+   {
+    "brand": "Santa Maria",
+    "aliases": [
+     "santa maria"
+    ]
+   },
+   {
+    "brand": "Sea Korus",
+    "aliases": [
+     "sea korus"
+    ]
+   },
+   {
+    "brand": "Shapies",
+    "aliases": [
+     "shapies"
+    ]
+   },
+   {
+    "brand": "Spago",
+    "aliases": [
+     "spago"
+    ]
+   },
+   {
+    "brand": "Spicyjiko",
+    "aliases": [
+     "spicyjiko"
+    ]
+   },
+   {
+    "brand": "Sunlee",
+    "aliases": [
+     "sunlee"
+    ]
+   },
+   {
+    "brand": "Sunrice",
+    "aliases": [
+     "sunrice"
+    ]
+   },
+   {
+    "brand": "Sunset",
+    "aliases": [
+     "sunset"
+    ]
+   },
+   {
+    "brand": "Temmy'S",
+    "aliases": [
+     "temmy's",
+     "temmys"
+    ]
+   },
+   {
+    "brand": "Temmys",
+    "aliases": [
+     "temmys"
+    ]
+   },
+   {
+    "brand": "Top",
+    "aliases": [
+     "top"
+    ]
+   },
+   {
+    "brand": "Umoja",
+    "aliases": [
+     "umoja"
+    ]
+   },
+   {
+    "brand": "Vgg",
+    "aliases": [
+     "vgg"
+    ]
+   },
+   {
+    "brand": "Virginia",
+    "aliases": [
+     "virginia"
+    ]
+   },
+   {
+    "brand": "Wadi",
+    "aliases": [
+     "wadi"
+    ]
+   },
+   {
+    "brand": "Weetabix",
+    "aliases": [
+     "weetabix"
+    ]
+   },
+   {
+    "brand": "Wimbi",
+    "aliases": [
+     "wimbi"
+    ]
+   },
+   {
+    "brand": "Bella",
+    "aliases": [
+     "bella"
+    ]
+   },
+   {
+    "brand": "Celine",
+    "aliases": [
+     "celine"
+    ]
+   },
+   {
+    "brand": "Flora",
+    "aliases": [
+     "flora"
+    ]
+   },
+   {
+    "brand": "Hannan",
+    "aliases": [
+     "hannan"
+    ]
+   },
+   {
+    "brand": "Nipnap",
+    "aliases": [
+     "nipnap"
+    ]
+   },
+   {
+    "brand": "Phoenix",
+    "aliases": [
+     "phoenix"
+    ]
+   },
+   {
+    "brand": "Tena",
+    "aliases": [
+     "tena jumbo",
+     "tena pink",
+     "tena premium",
+     "tena tissue",
+     "tena white"
+    ]
+   },
+   {
+    "brand": "Acnes",
+    "aliases": [
+     "acnes"
+    ]
+   },
+   {
+    "brand": "Active",
+    "aliases": [
+     "active"
+    ]
+   },
+   {
+    "brand": "Africa'S Best",
+    "aliases": [
+     "africa's best",
+     "africas best"
+    ]
+   },
+   {
+    "brand": "Alison's",
+    "aliases": [
+     "alison's",
+     "alisons"
+    ]
+   },
+   {
+    "brand": "Aquafresh",
+    "aliases": [
+     "aquafresh"
+    ]
+   },
+   {
+    "brand": "Arimis",
+    "aliases": [
+     "arimis"
+    ]
+   },
+   {
+    "brand": "Aris",
+    "aliases": [
+     "aris"
+    ]
+   },
+   {
+    "brand": "Axe",
+    "aliases": [
+     "axe"
+    ]
+   },
+   {
+    "brand": "Bic",
+    "aliases": [
+     "bic"
+    ]
+   },
+   {
+    "brand": "Brut",
+    "aliases": [
+     "brut"
+    ]
+   },
+   {
+    "brand": "Caresse",
+    "aliases": [
+     "caresse"
+    ]
+   },
+   {
+    "brand": "Close-Up",
+    "aliases": [
+     "close-up",
+     "close up",
+     "closeup"
+    ]
+   },
+   {
+    "brand": "Colgate",
+    "aliases": [
+     "colgate"
+    ]
+   },
+   {
+    "brand": "Cussons",
+    "aliases": [
+     "cussons"
+    ]
+   },
+   {
+    "brand": "Dabur",
+    "aliases": [
+     "dabur"
+    ]
+   },
+   {
+    "brand": "Damsar",
+    "aliases": [
+     "damsar"
+    ]
+   },
+   {
+    "brand": "Dove",
+    "aliases": [
+     "dove"
+    ]
+   },
+   {
+    "brand": "Emper",
+    "aliases": [
+     "emper"
+    ]
+   },
+   {
+    "brand": "Faber Castell",
+    "aliases": [
+     "faber castell"
+    ]
+   },
+   {
+    "brand": "Feah",
+    "aliases": [
+     "feah"
+    ]
+   },
+   {
+    "brand": "Freshmed",
+    "aliases": [
+     "freshmed"
+    ]
+   },
+   {
+    "brand": "Geisha",
+    "aliases": [
+     "geisha"
+    ]
+   },
+   {
+    "brand": "Imperial Leather",
+    "aliases": [
+     "imperial leather"
+    ]
+   },
+   {
+    "brand": "Lattafa",
+    "aliases": [
+     "lattafa"
+    ]
+   },
+   {
+    "brand": "Le Chameau",
+    "aliases": [
+     "le chameau"
+    ]
+   },
+   {
+    "brand": "Listerine",
+    "aliases": [
+     "listerine"
+    ]
+   },
+   {
+    "brand": "Luron",
+    "aliases": [
+     "luron"
+    ]
+   },
+   {
+    "brand": "Movit",
+    "aliases": [
+     "movit"
+    ]
+   },
+   {
+    "brand": "Nivea",
+    "aliases": [
+     "nivea"
+    ]
+   },
+   {
+    "brand": "Oral Clean",
+    "aliases": [
+     "oral clean"
+    ]
+   },
+   {
+    "brand": "Oral-B",
+    "aliases": [
+     "oral-b",
+     "oral b",
+     "oralb"
+    ]
+   },
+   {
+    "brand": "Pepsodent",
+    "aliases": [
+     "pepsodent"
+    ]
+   },
+   {
+    "brand": "Rasasi",
+    "aliases": [
+     "rasasi"
+    ]
+   },
+   {
+    "brand": "Rexona",
+    "aliases": [
+     "rexona"
+    ]
+   },
+   {
+    "brand": "Rico",
+    "aliases": [
+     "rico"
+    ]
+   },
+   {
+    "brand": "Sof N Free",
+    "aliases": [
+     "sof n free"
+    ]
+   },
+   {
+    "brand": "Tcb",
+    "aliases": [
+     "tcb"
+    ]
+   },
+   {
+    "brand": "Venus",
+    "aliases": [
+     "venus"
+    ]
+   },
+   {
+    "brand": "Versman",
+    "aliases": [
+     "versman"
+    ]
+   },
+   {
+    "brand": "Bark Bite",
+    "aliases": [
+     "bark bite"
+    ]
+   },
+   {
+    "brand": "Bonnie",
+    "aliases": [
+     "bonnie"
+    ]
+   },
+   {
+    "brand": "Bravo",
+    "aliases": [
+     "bravo"
+    ]
+   },
+   {
+    "brand": "Breeders",
+    "aliases": [
+     "breeders"
+    ]
+   },
+   {
+    "brand": "Amigos",
+    "aliases": [
+     "amigos"
+    ]
+   },
+   {
+    "brand": "Bakers",
+    "aliases": [
+     "bakers"
+    ]
+   },
+   {
+    "brand": "Bebeto",
+    "aliases": [
+     "bebeto"
+    ]
+   },
+   {
+    "brand": "Bergen",
+    "aliases": [
+     "bergen"
+    ]
+   },
+   {
+    "brand": "Big Daddy",
+    "aliases": [
+     "big daddy"
+    ]
+   },
+   {
+    "brand": "Britannia",
+    "aliases": [
+     "britannia"
+    ]
+   },
+   {
+    "brand": "Cadbury",
+    "aliases": [
+     "cadbury"
+    ]
+   },
+   {
+    "brand": "Crumbz",
+    "aliases": [
+     "crumbz"
+    ]
+   },
+   {
+    "brand": "Dream",
+    "aliases": [
+     "dream"
+    ]
+   },
+   {
+    "brand": "Eureka",
+    "aliases": [
+     "eureka"
+    ]
+   },
+   {
+    "brand": "Floydeez",
+    "aliases": [
+     "floydeez"
+    ]
+   },
+   {
+    "brand": "Golden",
+    "aliases": [
+     "golden"
+    ]
+   },
+   {
+    "brand": "Jawbreaker",
+    "aliases": [
+     "jawbreaker"
+    ]
+   },
+   {
+    "brand": "Kenafric",
+    "aliases": [
+     "kenafric"
+    ]
+   },
+   {
+    "brand": "Kettle",
+    "aliases": [
+     "kettle"
+    ]
+   },
+   {
+    "brand": "Lotto",
+    "aliases": [
+     "lotto"
+    ]
+   },
+   {
+    "brand": "M & M'S",
+    "aliases": [
+     "m m's",
+     "m ms",
+     "m and m's"
+    ]
+   },
+   {
+    "brand": "Maltesers",
+    "aliases": [
+     "maltesers"
+    ]
+   },
+   {
+    "brand": "Manji",
+    "aliases": [
+     "manji"
+    ]
+   },
+   {
+    "brand": "Mars",
+    "aliases": [
+     "mars"
+    ]
+   },
+   {
+    "brand": "McVitie's",
+    "aliases": [
+     "mcvitie's",
+     "mcvities"
+    ]
+   },
+   {
+    "brand": "Mr.Berry'S",
+    "aliases": [
+     "mr berry's",
+     "mr berrys"
+    ]
+   },
+   {
+    "brand": "Sunveat",
+    "aliases": [
+     "sunveat"
+    ]
+   },
+   {
+    "brand": "Teeka",
+    "aliases": [
+     "teeka"
+    ]
+   },
+   {
+    "brand": "Tiamo/Prestij",
+    "aliases": [
+     "tiamo prestij"
+    ]
+   },
+   {
+    "brand": "Toogoody",
+    "aliases": [
+     "toogoody"
+    ]
+   },
+   {
+    "brand": "Tropical",
+    "aliases": [
+     "tropical"
+    ]
+   },
+   {
+    "brand": "Tropical Heroes",
+    "aliases": [
+     "tropical heroes"
+    ]
+   },
+   {
+    "brand": "Twix",
+    "aliases": [
+     "twix"
+    ]
+   },
+   {
+    "brand": "Urban Nairobi",
+    "aliases": [
+     "urban nairobi"
+    ]
+   },
+   {
+    "brand": "Vitamilk",
+    "aliases": [
+     "vitamilk"
+    ]
+   },
+   {
+    "brand": "Economic",
+    "aliases": [
+     "economic"
+    ]
+   },
+   {
+    "brand": "Edding",
+    "aliases": [
+     "edding"
+    ]
+   },
+   {
+    "brand": "Gelx",
+    "aliases": [
+     "gelx"
+    ]
+   },
+   {
+    "brand": "Helix Oxford",
+    "aliases": [
+     "helix oxford"
+    ]
+   },
+   {
+    "brand": "Kartasi",
+    "aliases": [
+     "kartasi"
+    ]
+   },
+   {
+    "brand": "Office Point",
+    "aliases": [
+     "office point"
+    ]
+   },
+   {
+    "brand": "Omega",
+    "aliases": [
+     "omega"
+    ]
+   },
+   {
+    "brand": "Pelikan",
+    "aliases": [
+     "pelikan"
+    ]
+   },
+   {
+    "brand": "Pilot",
+    "aliases": [
+     "pilot"
+    ]
+   },
+   {
+    "brand": "Superfine",
+    "aliases": [
+     "superfine"
+    ]
+   },
+   {
+    "brand": "Veda",
+    "aliases": [
+     "veda"
+    ]
+   },
+   {
+    "brand": "Water",
+    "aliases": [
+     "water"
+    ]
+   },
+   {
+    "brand": "Alicafe",
+    "aliases": [
+     "alicafe"
+    ]
+   },
+   {
+    "brand": "Alitea",
+    "aliases": [
+     "alitea"
+    ]
+   },
+   {
+    "brand": "Baraka Chai",
+    "aliases": [
+     "baraka chai"
+    ]
+   },
+   {
+    "brand": "Coffeebee",
+    "aliases": [
+     "coffeebee"
+    ]
+   },
+   {
+    "brand": "Faraja",
+    "aliases": [
+     "faraja"
+    ]
+   },
+   {
+    "brand": "Jani",
+    "aliases": [
+     "jani"
+    ]
+   },
+   {
+    "brand": "Kericho",
+    "aliases": [
+     "kericho"
+    ]
+   },
+   {
+    "brand": "Ketepa",
+    "aliases": [
+     "ketepa"
+    ]
+   },
+   {
+    "brand": "Miksi",
+    "aliases": [
+     "miksi"
+    ]
+   },
+   {
+    "brand": "Nescafe",
+    "aliases": [
+     "nescafe"
+    ]
+   },
+   {
+    "brand": "Raha",
+    "aliases": [
+     "raha"
+    ]
+   },
+   {
+    "brand": "Sasini",
+    "aliases": [
+     "sasini"
+    ]
+   },
+   {
+    "brand": "Shiriki",
+    "aliases": [
+     "shiriki"
+    ]
+   },
+   {
+    "brand": "Spring Valley",
+    "aliases": [
+     "spring valley"
+    ]
+   },
+   {
+    "brand": "Trufoods Choco",
+    "aliases": [
+     "trufoods choco"
+    ]
+   },
+   {
+    "brand": "Trufoods Cocoa",
+    "aliases": [
+     "trufoods cocoa"
+    ]
+   },
+   {
+    "brand": "Twisco",
+    "aliases": [
+     "twisco"
+    ]
+   },
+   {
+    "brand": "Absa Bank Kenya",
+    "aliases": [
+     "absa bank kenya",
+     "absa bank"
+    ]
+   },
+   {
+    "brand": "Co-operative Bank of Kenya",
+    "aliases": [
+     "co-operative bank of kenya",
+     "co operative bank of kenya",
+     "cooperative bank of kenya",
+     "co-operative bank"
+    ]
+   },
+   {
+    "brand": "DTB Kenya",
+    "aliases": [
+     "dtb kenya",
+     "dtb"
+    ]
+   },
+   {
+    "brand": "Equity Bank Kenya",
+    "aliases": [
+     "equity bank kenya",
+     "equity bank"
+    ]
+   },
+   {
+    "brand": "Family Bank Kenya",
+    "aliases": [
+     "family bank kenya",
+     "family bank"
+    ]
+   },
+   {
+    "brand": "I&M Bank Kenya",
+    "aliases": [
+     "i m bank kenya",
+     "i and m bank kenya",
+     "i m bank"
+    ]
+   },
+   {
+    "brand": "KCB Bank Kenya",
+    "aliases": [
+     "kcb bank kenya",
+     "kcb bank"
+    ]
+   },
+   {
+    "brand": "NCBA Bank Kenya",
+    "aliases": [
+     "ncba bank kenya",
+     "ncba bank"
+    ]
+   },
+   {
+    "brand": "Stanbic Bank Kenya",
+    "aliases": [
+     "stanbic bank kenya",
+     "stanbic bank"
+    ]
+   },
+   {
+    "brand": "Standard Chartered Kenya",
+    "aliases": [
+     "standard chartered kenya",
+     "standard chartered"
+    ]
+   },
+   {
+    "brand": "JKUAT",
+    "aliases": [
+     "jkuat"
+    ]
+   },
+   {
+    "brand": "Kenyatta University",
+    "aliases": [
+     "kenyatta university"
+    ]
+   },
+   {
+    "brand": "Moi University",
+    "aliases": [
+     "moi university"
+    ]
+   },
+   {
+    "brand": "University of Nairobi",
+    "aliases": [
+     "university of nairobi"
+    ]
+   },
+   {
+    "brand": "AAR Hospital",
+    "aliases": [
+     "aar hospital"
+    ]
+   },
+   {
+    "brand": "Aga Khan University Hospital Nairobi",
+    "aliases": [
+     "aga khan university hospital nairobi"
+    ]
+   },
+   {
+    "brand": "The Karen Hospital",
+    "aliases": [
+     "the karen hospital"
+    ]
+   },
+   {
+    "brand": "Family Bank Insurance Agency",
+    "aliases": [
+     "family bank insurance agency"
+    ]
+   },
+   {
+    "brand": "Britam Kenya",
+    "aliases": [
+     "britam kenya",
+     "britam"
+    ]
+   },
+   {
+    "brand": "CIC Insurance Kenya",
+    "aliases": [
+     "cic insurance kenya",
+     "cic insurance"
+    ]
+   },
+   {
+    "brand": "Jubilee Insurance Kenya",
+    "aliases": [
+     "jubilee insurance kenya",
+     "jubilee insurance"
+    ]
+   },
+   {
+    "brand": "DHL Kenya",
+    "aliases": [
+     "dhl kenya",
+     "dhl"
+    ]
+   },
+   {
+    "brand": "Fargo Courier Kenya",
+    "aliases": [
+     "fargo courier kenya",
+     "fargo courier"
+    ]
+   },
+   {
+    "brand": "Mitchell Cotts Kenya",
+    "aliases": [
+     "mitchell cotts kenya",
+     "mitchell cotts"
+    ]
+   },
+   {
+    "brand": "Siginon Group",
+    "aliases": [
+     "siginon group",
+     "siginon"
+    ]
+   },
+   {
+    "brand": "BDO East Africa \u2014 Kenya",
+    "aliases": [
+     "bdo east africa kenya",
+     "bdo east africa"
+    ]
+   },
+   {
+    "brand": "Grant Thornton Kenya",
+    "aliases": [
+     "grant thornton kenya",
+     "grant thornton"
+    ]
+   },
+   {
+    "brand": "KPMG East Africa \u2014 Kenya",
+    "aliases": [
+     "kpmg east africa kenya",
+     "kpmg east africa"
+    ]
+   },
+   {
+    "brand": "PwC Kenya",
+    "aliases": [
+     "pwc kenya",
+     "pwc"
+    ]
+   },
+   {
+    "brand": "Broll Kenya",
+    "aliases": [
+     "broll kenya",
+     "broll"
+    ]
+   },
+   {
+    "brand": "Knight Frank Kenya",
+    "aliases": [
+     "knight frank kenya",
+     "knight frank"
+    ]
+   },
+   {
+    "brand": "G4S Kenya",
+    "aliases": [
+     "g4s kenya",
+     "g4s"
+    ]
+   },
+   {
+    "brand": "Securex Kenya",
+    "aliases": [
+     "securex kenya",
+     "securex"
+    ]
+   },
+   {
+    "brand": "Airtel Kenya",
+    "aliases": [
+     "airtel kenya",
+     "airtel"
+    ]
+   },
+   {
+    "brand": "Liquid Intelligent Technologies Kenya",
+    "aliases": [
+     "liquid intelligent technologies kenya",
+     "liquid intelligent technologies"
+    ]
+   },
+   {
+    "brand": "Safaricom Kenya",
+    "aliases": [
+     "safaricom kenya",
+     "safaricom"
+    ]
+   },
+   {
+    "brand": "Telkom Kenya",
+    "aliases": [
+     "telkom kenya",
+     "telkom"
+    ]
+   },
+   {
+    "brand": "Fuliza",
+    "aliases": [
+     "fuliza"
+    ]
+   },
+   {
+    "brand": "Airtel",
+    "aliases": [
+     "airtel",
+     "airtel money"
+    ]
+   },
+   {
+    "brand": "Inooro FM",
+    "aliases": [
+     "inooro fm",
+     "inooro"
+    ]
+   },
+   {
+    "brand": "Kameme FM",
+    "aliases": [
+     "kameme fm",
+     "kameme"
+    ]
+   },
+   {
+    "brand": "Coro FM",
+    "aliases": [
+     "coro fm",
+     "coro"
+    ]
+   },
+   {
+    "brand": "Citizen",
+    "aliases": [
+     "citizen",
+     "citizen tv",
+     "citizen radio"
+    ]
+   },
+   {
+    "brand": "Royal Media",
+    "aliases": [
+     "royal media",
+     "royal media services"
+    ]
+   },
+   {
+    "brand": "Musyi FM",
+    "aliases": [
+     "musyi fm",
+     "musyi"
+    ]
+   },
+   {
+    "brand": "Ramogi FM",
+    "aliases": [
+     "ramogi fm",
+     "ramogi"
+    ]
+   },
+   {
+    "brand": "Radio Jambo",
+    "aliases": [
+     "radio jambo"
+    ]
+   },
+   {
+    "brand": "Kenya Power",
+    "aliases": [
+     "kenya power",
+     "kplc",
+     "stima"
+    ]
+   },
+   {
+    "brand": "NHIF",
+    "aliases": [
+     "nhif"
+    ]
+   },
+   {
+    "brand": "NSSF",
+    "aliases": [
+     "nssf"
+    ]
+   },
+   {
+    "brand": "KRA",
+    "aliases": [
+     "kra",
+     "kenya revenue authority"
+    ]
+   },
+   {
+    "brand": "Huduma",
+    "aliases": [
+     "huduma",
+     "huduma centre",
+     "huduma namba"
+    ]
+   },
+   {
+    "brand": "Bidco",
+    "aliases": [
+     "bidco"
+    ]
+   },
+   {
+    "brand": "Betika",
+    "aliases": [
+     "betika"
+    ]
+   },
+   {
+    "brand": "SportPesa",
+    "aliases": [
+     "sportpesa",
+     "sport pesa"
+    ]
+   },
+   {
+    "brand": "Odibets",
+    "aliases": [
+     "odibets",
+     "odi bets"
+    ]
+   },
+   {
+    "brand": "Tala",
+    "aliases": [
+     "tala"
+    ]
+   },
+   {
+    "brand": "Branch",
+    "aliases": [
+     "branch",
+     "branch loan",
+     "branch app"
+    ]
+   },
+   {
+    "brand": "KPLC",
+    "aliases": [
+     "kplc"
+    ]
+   },
+   {
+    "brand": "Nairobi Water",
+    "aliases": [
+     "nairobi water"
+    ]
+   },
+   {
+    "brand": "Kenyatta Hospital",
+    "aliases": [
+     "kenyatta hospital",
+     "knh"
+    ]
+   },
+   {
+    "brand": "Uber",
+    "aliases": [
+     "uber"
+    ]
+   },
+   {
+    "brand": "Bolt",
+    "aliases": [
+     "bolt"
+    ]
+   },
+   {
+    "brand": "Jumia",
+    "aliases": [
+     "jumia"
+    ]
+   },
+   {
+    "brand": "KBC",
+    "aliases": [
+     "kbc"
+    ]
+   },
+   {
+    "brand": "Nation",
+    "aliases": [
+     "nation",
+     "nation media",
+     "daily nation",
+     "taifa leo"
+    ]
+   },
+   {
+    "brand": "Standard",
+    "aliases": [
+     "standard",
+     "the standard",
+     "standard media"
+    ]
+   }
+  ],
+  "brand_lexicon_version": 3,
+  "commission_id": "LISTEN-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 3,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-157aa12bd34f",
+ "northena_trace_id": "trc-50c89f5a881e",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-63f66a09e65c"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-63f66a09e65c",
+  "pid": 2416881
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-c1b410ab58aa",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_listener_train_admitted"
+  },
+  {
+   "row_id": "led-3f02b6d9e70d",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_listener_train_daemonised:pid=2416881"
+  }
+ ],
+ "code_sha256": "3e42b2291e5a0b75ceecee84dfd652a1ef4ad62325e77d22dff4bcf73e8f9530",
+ "started_at": "2026-10-04T16:01:03.166892Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T17:00:38.269052Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-7c00319d149a"
+ },
+ "remote_state": {
+  "phase": "malpha_listener_train",
+  "status": "running",
+  "started_at": "2026-10-04T16:01:03Z",
+  "progress": {
+   "stage": "training",
+   "step": 1725,
+   "of": 12000,
+   "loss": 1.0647,
+   "lr": 2.921077364139166e-05,
+   "elapsed_s": 3564,
+   "gpu_peak_gb": 57.58,
+   "last_checkpoint_step": 1500,
+   "next_checkpoint_step": 2000
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T16:01:06Z",
+    "train_segments": 111279,
+    "dev_segments": 900,
+    "train_hours": 165.85,
+    "admission_read": false,
+    "lexicon_sha256": "447e2c0aaea38bdc78a59a33b393a1d569d6d1be28fd3099311dec07dcdc9a21",
+    "brands": 649,
+    "internet_corpus": {
+     "segments": 30358,
+     "hours": 72.75,
+     "per_language": {
+      "kik": 0,
+      "kam": 27360,
+      "swa": 2998
+     }
+    }
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-04T16:20:55Z",
+    "message": "checkpoint at step 500"
+   },
+   {
+    "at": "2026-10-04T16:37:05Z",
+    "message": "checkpoint at step 1000"
+   },
+   {
+    "at": "2026-10-04T16:53:15Z",
+    "message": "checkpoint at step 1500"
+   }
+  ],
+  "job_id": "m9j-63f66a09e65c",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T17:00:29Z"
+ },
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  61%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 360/587 [00:00<00:00, 3590.37it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3598.63it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-63f66a09e65c/worker.zip/services/training_lab/malpha_worker.py:846: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)",
+ "process_alive": true
+}

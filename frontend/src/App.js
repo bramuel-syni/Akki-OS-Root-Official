@@ -58,6 +58,7 @@ import BuildSkill from "@/pages/os/BuildSkill";
 import BuildExtract from "@/pages/os/BuildExtract";
 import BuildlibAgents from "@/pages/os/BuildlibAgents";
 import BuildYourAgents from "@/pages/os/BuildYourAgents";
+import ShieldRegister from "@/pages/os/ShieldRegister";
 import BuildlibModels from "@/pages/os/BuildlibModels";
 import CollabMentions from "@/pages/os/CollabMentions";
 import CollabEmails from "@/pages/os/CollabEmails";
@@ -1310,7 +1311,7 @@ function App() {
           <Route path="/os/work/perspective" element={<OwnerDeferredWorkspace />} />
           <Route path="/os/admin/estate" element={<AdminEstate />} />
           <Route path="/os/admin/estate/intelligence" element={<EstateIntelligence />} />
-          <Route path="/os/admin/govern" element={<OwnerDeferredWorkspace />} />
+          <Route path="/os/admin/govern" element={<ShieldRegister />} />
           <Route path="/os/admin/greymirror" element={<AdminEstate />} />
           <Route path="/os/admin/greymirror/watch" element={<LegacyFeatureRedirect to="/os/admin/greymirror/watch/state" />} />
           {watchSections.map(section => <Route key={section.key} path={section.path} element={<AdminEstate />} />)}
@@ -1323,7 +1324,8 @@ function App() {
           <Route path="/os/build/youragents" element={<BuildYourAgents />} />
           {['agentbuild', 'buildskill', 'extract', 'yourmodels'].map(leaf => <Route key={leaf} path={`/os/build/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
           {['mentions', 'emails', 'projects', 'hrstuff'].map(leaf => <Route key={leaf} path={`/os/work/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
-          {['new', 'frequent', 'connected', 'requests'].map(leaf => <Route key={leaf} path={`/os/apps/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
+          <Route path="/os/apps/connected" element={<AppsConnected />} />
+          {['new', 'frequent', 'requests'].map(leaf => <Route key={leaf} path={`/os/apps/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
 
           {/* Sub-slice 4h · 2 DAP LATEST view classes (view 10 + 11) — reachable at top-level /dap/... */}
           <Route path="/dap/approvals-ledger" element={<Navigate to="/os/admin/modeladmission" replace />} />

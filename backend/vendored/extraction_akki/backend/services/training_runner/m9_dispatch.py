@@ -25,8 +25,9 @@ from services.census_autonomy import engine
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/training_runner/m9_worker.py"
 PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect", "lab_measure", "lab_train_music", "lab_classify_estate", "lab_text_lid",
-          "malpha_aip_build", "malpha_aip_requalify", "malpha_listener_train", "malpha_evaluate", "malpha_story_text_train", "malpha_voice_train", "malpha_baseline_render")
+          "malpha_aip_build", "malpha_aip_requalify", "malpha_aip_relabel", "malpha_internet_corpus", "malpha_listener_train", "malpha_evaluate", "malpha_story_text_train", "malpha_voice_train", "malpha_baseline_render")
 MALPHA_PHASES = {"malpha_aip_build": {'lab_corpus_root', 'max_files_per_language', 'cpu_workers', 'token_max_seconds', 'codec_sample_per_language', 'brand_lexicon'}, "malpha_aip_requalify": {'min_dev_segments', 'min_dev_mention_segments'},
+                 "malpha_aip_relabel": {'brand_lexicon', 'brand_lexicon_version'}, "malpha_internet_corpus": {'datasets', 'max_hours_per_dataset', 'brand_lexicon'},
                  "malpha_listener_train": {'recipe', 'brand_lexicon'}, "malpha_evaluate": {'artefact_path', 'artefact_sha256', 'brand_lexicon', 'admission_target', 'trained_job_id'},
                  "malpha_story_text_train": {'recipe', 'base_registration'}, "malpha_voice_train": {'recipe'}, "malpha_baseline_render": {'prompts_per_language'}}
 MALPHA_COMMON = {'commission_id', 'languages', 'gpu_index', 'budget_mode', 'owner_order_ref', 'seed', 'iteration', 'aip_db_dir'}
@@ -162,9 +163,14 @@ def validate(phase, params, host):
         if params['epochs'] > 100 or params['folds'] > 10 or not 0 < float(params['lr']) < 1 or not 10 <= float(params['max_seconds_per_file']) <= 3600:
             raise ValueError('MUSIC_DETECTOR_BOUNDS_INVALID:recipe')
     if phase in MALPHA_PHASES:
-        required = MALPHA_COMMON | MALPHA_PHASES[phase]; optional = {'resume_from'}
+        required = MALPHA_COMMON | MALPHA_PHASES[phase]; optional = {'resume_from', 'brand_lexicon_version'}
         if not required <= set(params) <= required | optional:
             raise ValueError('MALPHA_SCOPE_INVALID:' + ','.join(sorted((required | optional) ^ set(params))))
+        if 'brand_lexicon' in params and (not isinstance(params['brand_lexicon'], list) or not params['brand_lexicon'] or not all(isinstance(b, dict) and b.get('brand') and isinstance(b.get('aliases'), list) and b['aliases'] for b in params['brand_lexicon'])):
+            raise ValueError('MALPHA_LEXICON_INVALID')
+        if phase == 'malpha_internet_corpus' and (not isinstance(params['datasets'], list) or not params['datasets'] or not all(isinstance(d, dict) and re.fullmatch(r'[\w.-]+/[\w.-]+', str(d.get('repo'))) and d.get('language') in ('kik', 'kam', 'swa') for d in params['datasets'])
+                                                or not 0 < float(params['max_hours_per_dataset']) <= 2000):
+            raise ValueError('MALPHA_INTERNET_CORPUS_INVALID')
         if params['budget_mode'] != 'uncapped_until_billing' or not params['owner_order_ref'] or not isinstance(params['languages'], list) or not set(params['languages']) <= {'kik', 'kam', 'swa'} or not params['languages']:
             raise ValueError('MALPHA_AUTHORITY_INVALID')
         if type(params['gpu_index']) is not int or params['gpu_index'] not in (0, 1) or type(params['iteration']) is not int or params['iteration'] < 0 or not str(params['aip_db_dir']).startswith(os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']):

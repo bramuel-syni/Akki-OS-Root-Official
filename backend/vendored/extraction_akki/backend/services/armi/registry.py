@@ -42,6 +42,31 @@ def _profile(tenant, agent_id, kind, name, **fields):
 
 
 # ----------------------------------------------------------------------------- derivation from native records (evidence-backed, never invented)
+def _caas_contribution(tenant):
+    """Business contribution from metered CaaS deliveries. Rule: one delivery credits at most ONE identity — the authoring LLM role named on the delivery
+    record; deterministic aggregates credit no agent. Amounts are the rates frozen on the metered events, so shares can never exceed what was metered."""
+    from services.caas import service as caas
+    rows = list(caas.db().caas_deliveries.find({'tenant_id': tenant}, {'_id': 0, 'delivery_id': 1, 'product': 1, 'accepted': 1, 'authored': 1, 'meter_id': 1}))
+    meters = {m['meter_id']: m for m in caas.db().caas_meter.find({'tenant_id': tenant}, {'_id': 0, 'meter_id': 1, 'cost_usd': 1})}
+    by_agent, unattributed = {}, {'deliveries': 0, 'amount_usd': 0.0, 'priced': 0}
+    for d in rows:
+        cost = (meters.get(d.get('meter_id')) or {}).get('cost_usd')
+        model = (d.get('authored') or {}).get('model')
+        if not model: unattributed['deliveries'] += 1; unattributed['amount_usd'] += cost or 0; unattributed['priced'] += cost is not None; continue
+        c = by_agent.setdefault(f'llm:planner:{model}', {'deliveries': 0, 'accepted': 0, 'priced': 0, 'metered_amount_usd': 0.0, 'tokens_in': 0, 'tokens_out': 0})
+        c['deliveries'] += 1; c['accepted'] += 1 if d.get('accepted') else 0; c['tokens_in'] += (d['authored'].get('tokens_in') or 0); c['tokens_out'] += (d['authored'].get('tokens_out') or 0)
+        if cost is not None: c['priced'] += 1; c['metered_amount_usd'] += cost
+    return by_agent, unattributed
+
+
+def _contribution(by_agent, agent_id):
+    c = by_agent.get(agent_id)
+    if not c: return {'revenue_attributed_usd': None, 'deliveries': 0, 'evidence_class': 'not_measured', 'basis': 'no CaaS delivery names this identity as its author', 'rule': 'one delivery → one identity (the authoring role); aggregates credit no agent'}
+    return {'revenue_attributed_usd': round(c['metered_amount_usd'], 2) if c['priced'] else None, 'deliveries': c['deliveries'], 'accepted': c['accepted'], 'priced_deliveries': c['priced'], 'unpriced_deliveries': c['deliveries'] - c['priced'], 'evidence_class': 'measured',
+            'basis': f"{c['deliveries']} metered CaaS deliveries authored by this role ({c['accepted']} accepted); amounts are the rates frozen on the metered events", 'rule': 'one delivery → one identity (the authoring role); aggregates credit no agent',
+            'revenue_note': None if c['priced'] else 'deliveries metered before a CaaS rate existed; count is measured, money is not invented'}
+
+
 def _llm_roles(tenant):
     from services.chokepoint.model_roles import assignments
     from services.transform_forms.doc_studio import service as studio
@@ -49,14 +74,18 @@ def _llm_roles(tenant):
     commissions = studio.list_commissions(tenant)
     released = sum(1 for c in commissions if (c.get('release') or {}).get('state') == 'clear'); total = len(commissions)
     receipts = glob.glob('/app/assessment_workspace/phase0/llm_crossings/**/*.json', recursive=True)
+    by_agent, _ = _caas_contribution(tenant)
     for role in table['roles']:
         involved = {'planner': total, 'writer': total, 'reviewer': total, 'assistant': 0}[role['role']]
-        out.append(_profile(tenant, f"llm:{role['role']}:{role['model']}", 'llm', f"{role['model']} as {role['role']}", provider=role['sdk_provider'], version=role['model'],
+        agent_id = f"llm:{role['role']}:{role['model']}"; caas_c = by_agent.get(agent_id) or {}
+        out.append(_profile(tenant, agent_id, 'llm', f"{role['model']} as {role['role']}", provider=role['sdk_provider'], version=role['model'],
                             jd={'role': role['role'], 'job': role['job'], 'strengths': [role['strength']], 'can_do': [role['job']], 'cannot_do': ['see privileged originals (Shield chokepoint, masked tiers only)', 'bind actual estate values (internal workers do)', 'start compute or admit models']},
-                            objectives=['document studio releases', 'training-lab advisory'], capabilities=[role['strength']], limits=['sole chokepoint; purpose allow-list; masking tier llm_prompt_governed_text'],
+                            objectives=['document studio releases', 'training-lab advisory'] + (['CaaS authored deliverables'] if caas_c else []), capabilities=[role['strength']], limits=['sole chokepoint; purpose allow-list; masking tier llm_prompt_governed_text'],
                             admission={'record': 'services/chokepoint/model_roles.py assignment table', 'decision': 'configured role', 'evaluation': table['evaluation']},
                             compliance=_score(released, involved, 'document commissions involving this role that reached release state clear') if involved else _score(0, 0, 'no commissions recorded for this role'),
-                            resources={'crossing_receipts_on_disk': len(receipts), 'gpu_hours': 0.0, 'cost_usd': None}, work={'assignments_completed': released, 'assignments_total': involved, 'kind': 'document commissions'},
+                            resources={'crossing_receipts_on_disk': len(receipts), 'gpu_hours': 0.0, 'tokens_in': caas_c.get('tokens_in', 0), 'tokens_out': caas_c.get('tokens_out', 0), 'cost_usd': None, 'cost_note': 'token counts are from CaaS delivery receipts; no owner-supplied token rate for this model'},
+                            work={'assignments_completed': released + caas_c.get('deliveries', 0), 'assignments_total': involved + caas_c.get('deliveries', 0), 'kind': 'document commissions' + (' and CaaS deliveries' if caas_c else '')},
+                            contribution=_contribution(by_agent, agent_id),
                             collaborators=[{'agent_id': f"llm:{o['role']}:{o['model']}", 'shared': 'same commission pipeline'} for o in table['roles'] if o['role'] != role['role'] and o['role'] != 'assistant']))
     return out
 
@@ -84,12 +113,12 @@ def _malpha(tenant):
         for lane in c['lanes']:
             jobs = malpha.jobs(commission_id=c['commission_id'], lane=lane)
             done = [j for j in jobs if j['status'] == 'completed']; failed = [j for j in jobs if j['status'] in ('failed', 'interrupted', 'refused')]
-            state = (c.get('lane_state') or {}).get(lane) or {}
+            state = (c.get('lane_state') or {}).get(lane) or {}; priced = malpha.price_gpu(jobs)
             out.append(_profile(tenant, f"model:malpha:{c['commission_id']}:{lane}", 'model', f"{c['title']} — {lane}", status='active' if state.get('status') not in ('held',) else 'suspended', version=f"iteration {state.get('iteration', 0)}",
                                 jd={'role': 'commissioned model under training', 'job': c['product'], 'strengths': [], 'can_do': ['improve autonomously against its frozen target'], 'cannot_do': ['read the sealed admission split', 'serve before independent admission']},
                                 objectives=[c['title']], capabilities=c['languages'], limits=[f"budget {c['budget']['mode']}", 'speaker-cluster-disjoint sealed splits'],
                                 admission={'record': (c.get('admitted') or {}).get(lane), 'decision': 'admitted' if (c.get('admitted') or {}).get(lane) else f"not yet admitted · lane {state.get('status', 'not started')}", 'target': c['target_outcome']['admission'] if lane == 'listener' else c['target_outcome']['admission'].get(lane)},
-                                compliance=_score(len(done), len(done) + len(failed), 'lane jobs that settled with a verified receipt'), resources={'gpu_hours': round(sum((j.get('gpu_seconds') or 0) for j in jobs) / 3600, 3), 'cost_usd': None, 'jobs': len(jobs)},
+                                compliance=_score(len(done), len(done) + len(failed), 'lane jobs that settled with a verified receipt'), resources={'gpu_hours': round(sum((j.get('gpu_seconds') or 0) for j in jobs) / 3600, 3), 'cost_usd': priced['cost_usd'], 'cost_note': priced['cost_note'], 'jobs': len(jobs)},
                                 work={'assignments_completed': len(done), 'assignments_failed': len(failed), 'latest_summary': state.get('summary'), 'kind': 'training iterations'},
                                 collaborators=[{'agent_id': 'agent:akki-autopilot', 'shared': 'dispatch and settlement'}] + [{'agent_id': f"model:malpha:{c['commission_id']}:{o}", 'shared': 'same commission'} for o in c['lanes'] if o != lane]))
     return out
@@ -238,6 +267,15 @@ def score(tenant, actor, assignment_id, body):
 
 def overview(tenant):
     agents = list_agents(tenant)
+    from services.cost_ledger.rates import load_rates
+    rates = load_rates(); priced = [a for a in agents if (a.get('resources') or {}).get('cost_usd') is not None and (a.get('resources') or {}).get('gpu_hours')]
+    try: by_agent, unattributed = _caas_contribution(tenant)
+    except Exception as exc: log.warning('armi contribution derivation failed: %s', exc); by_agent, unattributed = {}, {'deliveries': 0, 'amount_usd': 0.0, 'priced': 0}
+    attributed = sum(c['deliveries'] for c in by_agent.values()); amount = sum(c['metered_amount_usd'] for c in by_agent.values()); any_priced = any(c['priced'] for c in by_agent.values())
     return {'agents': len(agents), 'by_kind': {k: sum(1 for a in agents if a['kind'] == k) for k in sorted({a['kind'] for a in agents})}, 'by_status': {s: sum(1 for a in agents if a['status'] == s) for s in STATUSES},
-            'gpu_hours_total': round(sum((a.get('resources') or {}).get('gpu_hours') or 0 for a in agents), 3), 'cost_usd': None, 'cost_note': 'no governed rate card; money is not estimated here',
+            'gpu_hours_total': round(sum((a.get('resources') or {}).get('gpu_hours') or 0 for a in agents), 3), 'cost_usd': round(sum(a['resources']['cost_usd'] for a in priced), 2) if priced else None,
+            'cost_note': 'owner-supplied GPU-hour rate applied to measured hours' if priced else 'no governed rate card; money is not estimated here',
+            'rate_card': {lane: len(rows) for lane, rows in rates.items()},
+            'contribution': {'deliveries_total': attributed + unattributed['deliveries'], 'attributed': attributed, 'unattributed': unattributed['deliveries'], 'amount_usd': round(amount, 2) if any_priced else None,
+                             'rule': 'one CaaS delivery credits at most one identity (its authoring role); deterministic aggregates credit no agent; amounts are the rates frozen on metered events'},
             'protected': {'watch_profiles_exported': False, 'malicious_probability': NOT_COMPUTED}}

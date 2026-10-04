@@ -93,7 +93,7 @@ from services.chokepoint.masking_tier import (
 
 TRAINING_LAB_PURPOSES = ('training_lab.advisory_review', 'training_lab.conversation')
 AUTHOR_PURPOSES = ('doc_studio.author', 'census.estate_intelligence_dossier')
-GOVERNED_PURPOSES = TRAINING_LAB_PURPOSES + AUTHOR_PURPOSES + ('doc_studio.review', 'doc_studio.plan')
+GOVERNED_PURPOSES = TRAINING_LAB_PURPOSES + AUTHOR_PURPOSES + ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable')
 
 log = logging.getLogger(__name__)
 
@@ -350,17 +350,42 @@ async def invoke(
             f"allowlist)."
         )
 
-    # M12-W1d · Option D · DAP-7 custody sequence: DE-IDENTIFY the
-    # prompt BEFORE any dispatch.  No conditional guards this call —
-    # the sequence ALWAYS runs.  For custody_class="synthetic" the
-    # payload has no estate content; the deidentifier runs as a
-    # verified no-op returning the unchanged text with an empty
-    # token_map.
+    # M12-W1d · Option D · DAP-7 custody sequence: DE-IDENTIFY BEFORE any
+    # dispatch.  No conditional guards this call — the sequence ALWAYS
+    # runs.  For custody_class="synthetic" the payload has no estate
+    # content; the deidentifier runs as a verified no-op returning the
+    # unchanged text with an empty token_map.  Mα MA-04: the system
+    # message is a payload path too — both paths are de-identified in one
+    # pass so the same entity carries the same token on both.
     from services.synisense.shield.deidentifier import deidentify
-    de_id_result = await deidentify(
-        prompt, tenant_id=tenant_id, purpose=purpose,
+    sysmsg = system_message or (
+        "You are Akki — a governed reasoning faculty. Answer directly, "
+        "cite the receipt kind, refuse when evidence is thin."
     )
-    redacted_prompt = de_id_result.redacted_text
+    _scrub_credential_shaped_prompt(sysmsg)
+    _SEP = "\n\n[[AKKI_PAYLOAD_PATH_BOUNDARY]]\n\n"
+    de_id_result = await deidentify(
+        sysmsg + _SEP + prompt, tenant_id=tenant_id, purpose=purpose,
+    )
+    if _SEP in de_id_result.redacted_text:
+        sysmsg, redacted_prompt = de_id_result.redacted_text.split(_SEP, 1)
+    else:
+        de_id_result = await deidentify(prompt, tenant_id=tenant_id, purpose=purpose)
+        redacted_prompt = de_id_result.redacted_text
+
+    # Mα MA-04/05 · Shield REGISTER GATE on BOTH payload paths (system
+    # message AND prompt): enforced categories become typed placeholders
+    # that are rebound in the reply; advisory categories are receipted;
+    # an enforced value surviving in the outbound text refuses the call.
+    from services.synisense.shield import register_gate
+    gate = register_gate.gate(sysmsg, redacted_prompt, tenant_id, purpose)
+    if gate.refused:
+        _register_llm_crossing(
+            kind=f"{_kind_from_purpose(purpose)}_refused", endpoint=endpoint, verb="shield_register_gate", model=model, provider=provider,
+            tokens_in=0, tokens_out=0, latency_ms=0, purpose=purpose, actor=actor, masking_tier=masking_tier, metering_source="register_refusal", shield=gate.summary(),
+        )
+        raise LLMShieldFailure(f"shield_register_refused — {gate.reason}")
+    sysmsg, redacted_prompt = gate.system_message, gate.prompt
 
     # M12-W1d · Option D · WATCH INPUT-SEAT EMIT before dispatch.  A
     # crossing that cannot be observed does not happen (fail-closed
@@ -380,7 +405,7 @@ async def invoke(
     )
     from datetime import datetime as _datetime, timezone as _timezone
     _hostility, _provenance, _verdict = score_input_seat(
-        purpose, custody_class, tenant_id, provider,
+        purpose, custody_class, tenant_id, provider, payload_text=sysmsg + "\n" + redacted_prompt,
     )
     _prompt_hash = _hashlib.sha256(redacted_prompt.encode("utf-8")).hexdigest()
     emit_crossing(CrossingEvent(
@@ -412,10 +437,6 @@ async def invoke(
 
     # 5. Instantiate client (test-injectable via _client_factory).
     session = session_id or f"sid-{uuid.uuid4().hex[:12]}"
-    sysmsg = system_message or (
-        "You are Akki — a governed reasoning faculty. Answer directly, "
-        "cite the receipt kind, refuse when evidence is thin."
-    )
     api_key = _emergent_api_key() if provider == "emergent" else _byo_provider_key(provider)
 
     t_start = time.perf_counter()
@@ -451,7 +472,7 @@ async def invoke(
     if purpose in AUTHOR_PURPOSES and hasattr(client, 'with_params'):
         # The estate pack's writer answers ~50 slots plus a paper section per chapter; 16000 cut the JSON mid-string (3 Oct 2026).
         client = client.with_params(max_tokens=32000)
-    if purpose in ('doc_studio.review', 'doc_studio.plan') and hasattr(client, 'with_params'):
+    if purpose in ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable') and hasattr(client, 'with_params'):
         # Reasoning families spend part of the budget thinking before the JSON; 6000 left Fable with no text (finish_reason=length).
         client = client.with_params(max_tokens=20000)
 
@@ -493,7 +514,7 @@ async def invoke(
     # token_map produced by de-identification.  Unmatched token in
     # response raises (fail-closed per canon 3 §13.1).
     from services.synisense.shield.reidentifier import reidentify
-    reidentified_response = reidentify(str(response_text), de_id_result.token_map)
+    reidentified_response = register_gate.rebind(reidentify(str(response_text), de_id_result.token_map), gate.token_map)
 
     # 7. Metering.
     tokens_in, tokens_out, metering_source = _extract_metering(redacted_prompt, reidentified_response, client)
@@ -512,6 +533,7 @@ async def invoke(
         actor=actor,
         masking_tier=masking_tier,
         metering_source=metering_source,
+        shield=gate.summary(),
     )
 
     return LLMResponse(
@@ -526,7 +548,8 @@ async def invoke(
         shield={"dilution_score": getattr(de_id_result, "dilution_score", None),
                 "exposure_reduction_score": getattr(de_id_result, "exposure_reduction_score", None),
                 "entities_masked": sum((getattr(de_id_result, "de_id_summary", None) or {}).values()) if isinstance(getattr(de_id_result, "de_id_summary", None), dict) else None,
-                "prompt_sha256": _prompt_hash},
+                "prompt_sha256": _prompt_hash,
+                "register": gate.summary()},
     )
 
 
@@ -544,6 +567,7 @@ def _register_llm_crossing(
     actor: str,
     masking_tier: str,
     metering_source: str = "unavailable",
+    shield: Optional[Dict[str, Any]] = None,
 ):
     """Write the crossing receipt with W5 metering."""
     if not isinstance(tokens_in, int) or tokens_in < 0:
@@ -580,6 +604,7 @@ def _register_llm_crossing(
             "latency_ms": latency_ms,
             "purpose_declared": purpose,
             "metering_source": metering_source,
+            **({"shield_register": shield} if shield else {}),
         },
         actor=actor,
         masking_tier=masking_tier,

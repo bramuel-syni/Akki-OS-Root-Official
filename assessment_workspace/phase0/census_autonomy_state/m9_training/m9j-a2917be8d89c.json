@@ -52,7 +52,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-a2917be8d89c",
   "pid": 1367931
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-10d62b665981",
@@ -65,28 +65,34 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_malpha_story_text_train_daemonised:pid=1367931"
+  },
+  {
+   "row_id": "led-398fb52af473",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_story_text_train_completed"
   }
  ],
  "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
  "started_at": "2026-10-04T10:25:59.863075Z",
  "last_status_rpc": {
-  "at": "2026-10-04T10:56:13.898803Z",
+  "at": "2026-10-04T12:00:14.025820Z",
   "rc": 0,
-  "receipt_id": "gpurcp-2d1677d855b7"
+  "receipt_id": "gpurcp-e52953392026"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-04T10:25:59Z",
   "progress": {
    "stage": "training",
-   "step": 1090,
+   "step": 3000,
    "of": 3000,
-   "loss": 1.8265,
-   "elapsed_s": 1796,
+   "loss": 0.9992,
+   "elapsed_s": 4853,
    "gpu_peak_gb": 11.21,
-   "last_checkpoint_step": 1000,
-   "next_checkpoint_step": 1200
+   "last_checkpoint_step": 3000,
+   "next_checkpoint_step": 3200
   },
   "stages": {
    "data": {
@@ -162,14 +168,476 @@
      "language_fidelity_rate": 1.0,
      "mean_distinct_2": 1.0
     }
+   },
+   "dev_eval_step_1500": {
+    "at": "2026-10-04T11:07:30Z",
+    "kik": {
+     "dev_perplexity": 19.337,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 22.336,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 34.511,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    }
+   },
+   "dev_eval_step_2000": {
+    "at": "2026-10-04T11:21:27Z",
+    "kik": {
+     "dev_perplexity": 24.436,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9829
+    },
+    "kam": {
+     "dev_perplexity": 28.538,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9949
+    },
+    "swa": {
+     "dev_perplexity": 44.997,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    }
+   },
+   "dev_eval_step_2500": {
+    "at": "2026-10-04T11:34:56Z",
+    "kik": {
+     "dev_perplexity": 28.534,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 33.677,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.9963
+    },
+    "swa": {
+     "dev_perplexity": 53.46,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    }
+   },
+   "dev_eval_step_3000": {
+    "at": "2026-10-04T11:48:22Z",
+    "kik": {
+     "dev_perplexity": 31.051,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9937
+    },
+    "kam": {
+     "dev_perplexity": 36.575,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 58.443,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9943
+    }
    }
   },
   "events": [],
   "job_id": "m9j-a2917be8d89c",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T10:56:01Z"
+  "updated_at": "2026-10-04T11:48:22Z",
+  "finished_at": "2026-10-04T11:48:22Z",
+  "receipt_sha256": "5aebb19c660b090d4dc201bae97d93d4eb8d0335a2b6feeb5e047180972338b0"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6280.14it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-a2917be8d89c/worker.zip/services/training_lab/malpha_voice_worker.py:163: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum)",
- "process_alive": true
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-a2917be8d89c",
+  "phase": "malpha_story_text_train",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-04T10:25:59Z",
+  "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
+  "status": "completed",
+  "result": {
+   "commission_id": "STORY-KIK-KAM-SWA",
+   "iteration": 2,
+   "lane": "story_text",
+   "recipe": {
+    "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "lr": 0.0001,
+    "batch_size": 4,
+    "grad_accum": 4,
+    "max_steps": 3000,
+    "warmup_steps": 100,
+    "eval_every": 500,
+    "checkpoint_every": 200,
+    "max_seq_len": 1024,
+    "lora_r": 32,
+    "lora_alpha": 64,
+    "init_adapter": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-85cad8822906/artefact/lora_adapter"
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-04T10:26:07Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "steps": 3000,
+   "base_perplexity": {
+    "kik": 69.657,
+    "kam": 70.076,
+    "swa": 64.331
+   },
+   "dev": {
+    "step": 3000,
+    "at": "2026-10-04T11:47:08Z",
+    "per_language": {
+     "kik": {
+      "dev_perplexity": 31.051,
+      "base_perplexity": 69.657,
+      "dev_perplexity_below_base": true,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 0.9937,
+      "samples": [
+       {
+        "title": "15% PAY INCREASE",
+        "chars": 343,
+        "words": 51,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.6175,
+         "kam": 0.4702,
+         "swa": 0.3804
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "2a25df9023a736e9146acdcdf986b168000361801820c44889709422a482f65d"
+       },
+       {
+        "title": "ABOUT WOMEN",
+        "chars": 930,
+        "words": 159,
+        "distinct_2": 0.9874,
+        "trigram_similarity": {
+         "kik": 0.5526,
+         "kam": 0.3898,
+         "swa": 0.3814
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "b817cb88c83b0dddb066fb4a85581816a767446e4d2135ea918e16e77c5bd9d2"
+       }
+      ]
+     },
+     "kam": {
+      "dev_perplexity": 36.575,
+      "base_perplexity": 70.076,
+      "dev_perplexity_below_base": true,
+      "language_fidelity_rate": 0.5,
+      "mean_distinct_2": 1.0,
+      "samples": [
+       {
+        "title": "hon-mwangangi--(phonecalls)",
+        "chars": 390,
+        "words": 63,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4604,
+         "kam": 0.5407,
+         "swa": 0.5414
+        },
+        "language_fidelity": false,
+        "excerpt_sha256": "da61ccd632c0beb6f6aec173da955b09e78a40710978a3c0553d78095e728624"
+       },
+       {
+        "title": "patrick-musil",
+        "chars": 881,
+        "words": 142,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.5221,
+         "kam": 0.6675,
+         "swa": 0.5633
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "87bfecc1282ad0fbe94b71eca20d7c261c485fead56e3f7d9ded8d0890e9dff5"
+       }
+      ]
+     },
+     "swa": {
+      "dev_perplexity": 58.443,
+      "base_perplexity": 64.331,
+      "dev_perplexity_below_base": true,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 0.9943,
+      "samples": [
+       {
+        "title": "ANGA",
+        "chars": 1051,
+        "words": 177,
+        "distinct_2": 0.9886,
+        "trigram_similarity": {
+         "kik": 0.4886,
+         "kam": 0.5341,
+         "swa": 0.7255
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "d57b5088ed6170bdd31a96424ce10d5c71427e2cb97bf36a65247637d3cffb07"
+       },
+       {
+        "title": "CHAPAKAZI SALAMU",
+        "chars": 1012,
+        "words": 166,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.4991,
+         "kam": 0.597,
+         "swa": 0.8016
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "2f2954d9ecbb22ecc9247521fdfa91a38544de41837acbaf61817f486ec1492f"
+       }
+      ]
+     }
+    },
+    "train_loss": 1.0066
+   },
+   "history": [
+    {
+     "step": 500,
+     "train_loss": 2.0127,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 12.384,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 13.37,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 20.458,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 1000,
+     "train_loss": 1.7357,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 15.186,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 17.169,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 26.684,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 1500,
+     "train_loss": 1.4556,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 19.337,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 22.336,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 34.511,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 2000,
+     "train_loss": 1.2301,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 24.436,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9829
+      },
+      "kam": {
+       "dev_perplexity": 28.538,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9949
+      },
+      "swa": {
+       "dev_perplexity": 44.997,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 2500,
+     "train_loss": 1.1035,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 28.534,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": 33.677,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 0.9963
+      },
+      "swa": {
+       "dev_perplexity": 53.46,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 3000,
+     "train_loss": 1.0066,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 31.051,
+       "base_perplexity": 69.657,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9937
+      },
+      "kam": {
+       "dev_perplexity": 36.575,
+       "base_perplexity": 70.076,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 0.5,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 58.443,
+       "base_perplexity": 64.331,
+       "dev_perplexity_below_base": true,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9943
+      }
+     }
+    }
+   ],
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-a2917be8d89c/artefact/lora_adapter",
+    "sha256": "83bc49ab73448998a7b15345791a02d8be1ac3452fffa002ff6a3b8d80c54bb7",
+    "bytes": 150947099,
+    "base": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+   },
+   "compute": {
+    "wall_seconds": 4937.0,
+    "gpu_seconds": 4937.0,
+    "gpu_hours": 1.3714,
+    "gpu_peak_gb": 11.21
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false,
+   "text_exported": false
+  },
+  "finished_at": "2026-10-04T11:48:22Z",
+  "receipt_sha256": "5aebb19c660b090d4dc201bae97d93d4eb8d0335a2b6feeb5e047180972338b0",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T11:48:22Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-a2917be8d89c",
+  "started_at_utc": "2026-10-04T10:25:59.863075Z",
+  "finished_at_utc": "2026-10-04T11:48:22Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-a2917be8d89c"
+ }
 }

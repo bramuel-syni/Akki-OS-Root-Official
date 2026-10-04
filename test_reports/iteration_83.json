@@ -1,0 +1,28 @@
+{
+  "summary": "Frontend-only testing of ARMI 'Your Agents' page at /os/build/youragents. Verified prototype header, 15 rows (1 agent/4 llm/5 model/4 skill/1 worker), overview tiles + kind filter chips, profile open/close toggle, every operator lifecycle action (onboard→bind_version→activate→assign→complete→score→suspend→revoke), validation (score/assign submit disabled when required field empty), sync + reload preserve selection, analyst (read-only) hides operator controls and shows armi-readonly-note, and 390x844 responsive layout has no horizontal overflow.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {"flow": "Score an onboarded agent's assignment", "issue": "After recording a score (quality 0.9, compliant, evidence 'ui test') the armi-tile-compliance for the newly onboarded identity still reads 'not measured — 0 of 0 · no assignments yet'. The score IS stored (Work tile shows '1 manual assignments done, quality 0.9') but the compliance figure does not fold the manual assignment score as its own evidence line as advertised in the Assignments section copy. May need the registry/compliance derivation to include manual assignment scores (or re-run after sync).", "affected_selectors": ["armi-tile-compliance", "armi-assignments-table"]}
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Investigate why manual-assignment scores (POST /api/armi/assignments/{id}/score) do not fold into armi-tile-compliance for freshly onboarded identities. Expected per on-screen copy: 'scores fold into the compliance figure as their own evidence line'. Observed: compliance tile still reads 'not measured, 0 of 0 · no assignments yet' even after the score was recorded successfully and reflected in the Work tile."
+  ],
+  "critical_code_review_comments": [
+    "BuildYourAgents.jsx line 56: capitalising action label uses `body.action[0].toUpperCase() + body.action.slice(1)` — for 'bind_version' this would produce 'Bind_version' but is overridden to 'Version binding'; fine, just worth centralising.",
+    "ArmiAssignments.jsx: assignment rows use `data-testid=armi-assignment-{id}` while the status cell uses `armi-assignment-status-{id}`. Prefix collision requires filter when enumerating rows — consider renaming the row testid (e.g. armi-assignment-row-{id}) for cleaner selectors.",
+    "useArmi.js act(): if lifecycle action is successful but one of the follow-up GET /api/armi/overview or /api/armi/agents calls fails, state falls through to error without a notice; consider surfacing partial success."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "95% (1 integration gap: compliance tile not updated by manual score)"},
+  "test_credentials": "RMS operator demo.operator@demo.rms.example.com / demo-operator-pw and RMS analyst demo.analyst@demo.rms.example.com / demo-analyst-pw — both work via POST /api/auth/login, token stored in sessionStorage['akki_access_token'] before navigating to /os/build/youragents.",
+  "seed_data_creation": "Created one test agent via UI onboard ('UI test agent veclp' → agent_id agent:ui-test-agent-veclp). Cleaned up directly from Mongo: db.armi_agents.delete_many({'name': /^UI test agent/i}) → 1 removed; db.armi_assignments.delete_many({'agent_id': {$in: [...]}}) → 1 removed.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Prototype rows for ARMI render fine with 15 derived identities + any onboarded ones. The compliance fold gap on manual assignment scores is the only observed issue; status transitions, assignments table (data-testid armi-assignment-{id} / armi-assignment-status-{id} / armi-complete-{id} / armi-score-{id}), revoke lockout (no activate button, armi-revoked-note shown), analyst read-only (armi-profile-actions / armi-sync / armi-onboard-open hidden; armi-readonly-note shown), and 390px mobile layout (scrollWidth=390) all verified working. No console errors observed during flow.",
+  "rca of the issue": "Compliance tile not folding manual assignment score: likely the compliance aggregation reads the agent's testing-iteration ledger (seed-derived) but POST /api/armi/assignments/{id}/score persists to the assignment record and only exposes it via assignment_summary (mean_quality) and work.assignments_completed — the top-level agent.compliance is not recomputed from manual scores. Fix would be in backend services/armi/registry.py compliance aggregator to also include manual assignment score evidence lines."
+}

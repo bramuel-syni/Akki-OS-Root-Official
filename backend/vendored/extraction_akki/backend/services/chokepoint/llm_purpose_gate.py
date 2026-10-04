@@ -80,6 +80,9 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     # against the evidence; a planner may be asked to order multi-step work. Both cross the same Shield boundary.
     "doc_studio.review",
     "doc_studio.plan",
+    # Owner 2026-10-04 Mα five-promise order (CaaS domain products: marketing, media planning, campaign strategy, content mining):
+    # the planner authors a client deliverable from licensed aggregates and the client brief only — Mode B, no privileged originals.
+    "caas.domain_deliverable",
 })
 
 

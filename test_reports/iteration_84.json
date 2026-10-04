@@ -1,0 +1,43 @@
+{
+  "summary": "End-to-end test of the CaaS licensor UI at /os/apps/connected and the client-side /api/caas/client/* API. Backend pytest suite (8/8) passed. Full operator UI journey verified: admit → grant → issue key (secret shown once) → client-side deliver with X-CaaS-Key → revoke key → reissue → revoke licence → suspend/reinstate/revoke client. Analyst read-only role verified. Regression smoke of ARMI, apps/new, apps/requests passed. One UI issue found: horizontal overflow at 390px with a client profile open (scrollWidth 404 > 390). One spec/implementation discrepancy noted (product testid naming).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "AppsConnected (mobile 390x844)", "issue": "Horizontal overflow with a client profile open: document.documentElement.scrollWidth = 404 (> 390). Internal tables are correctly wrapped in .estate-table-wrap (licences, keys, deliveries, metering) so the overflow originates elsewhere on the page (likely a non-wrapped section such as the lifecycle rows, licence summary cell contents like terms-identifier, or the overview tile grid min-width).", "selector": "html", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "CaaS at 390px", "issues": ["~14px horizontal overflow with client profile open; needs min-width audit on CaaS sections / tile grid"]}
+    ],
+    "spec_divergence": [
+      {"component": "GrantForm product chips", "issue": "Spec said chips use testid 'caas-grant-product-brand-mention-inventory' / 'caas-grant-product-estate-language-inventory' (all dashes). Implementation uses 'caas-grant-product-brand-mention_inventory' and 'caas-grant-product-estate-language_inventory' (dot→dash but underscore inside sub-name kept). Catalogue cards also use the same underscore (caas-product-estate-language_inventory). Not a functional bug; worth syncing docs/tests."}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/caas/test_caas_journey.py",
+    "/app/test_reports/pytest/caas_iter84.xml",
+    "/app/test_reports/caas_client_check_iter84.py"
+  ],
+  "action_items": [
+    "Fix mobile horizontal overflow on /os/apps/connected at 390px with a client profile open (scrollWidth=404 vs 390). Audit CaaS section min-widths / overview tile grid.",
+    "Reconcile product-chip testid naming: either make them pure-dash to match the review-request spec, or update the external spec/docs to the current underscore form.",
+    "(Optional, test ergonomics) Make the ReasonForm (revoke-key/revoke-licence) reason input use type=\"text\" explicitly so broad input[type=text] selectors in older playbooks also pick it up; tests here used the explicit data-testid and worked."
+  ],
+  "critical_code_review_comments": [
+    "The CaaS flow is well instrumented with data-testids; ReasonForm uses `disabled={!reason.trim()}` which correctly guards state-changing submits.",
+    "Deliver endpoint returns well-shaped payload (delivery_id, accepted, meter{quantity,rate_usd}, raw_estate_exported=false, result.by_language keys kik/kam/swa) and metering reconciles immediately in UI.",
+    "After licence/client revocation, previously issued secrets are correctly rejected (401 Key is not active); keys show 'licence revoked: client revoked' label.",
+    "Lifecycle list correctly accumulates admitted→suspend→reinstate→revoke entries; action buttons are correctly hidden for a revoked client.",
+    "Mobile overflow issue is the only non-trivial regression visible to end users."
+  ],
+  "updated_files": [
+    "/app/test_reports/caas_client_check_iter84.py (new; executable client-side regression)"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "95%"},
+  "test_credentials": "demo.operator@demo.rms.example.com / demo-operator-pw; demo.analyst@demo.rms.example.com / demo-analyst-pw (both verified)",
+  "seed_data_creation": "Created one SYNTHETIC CaaS client 'Testing Agent Media Ltd — SYNTHETIC' (cl-917b677a8b) with one revoked licence lic-c297d2c1bf (2 revoked keys key-e0c7700d92, key-c4f2c50a24) and 1 recorded aggregate delivery dlv-6c81299c36 of brand.mention_inventory. Final status: client revoked; no cleanup needed (no delete API; terminal state).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "CaaS backend pytest (8) + client-side X-CaaS-Key regression (/app/test_reports/caas_client_check_iter84.py) are stable and should be run first for CaaS regressions. All operator UI testids match code except product-chip naming uses underscore inside sub-name (e.g. caas-grant-product-brand-mention_inventory). The one open issue is mobile overflow at 390px on /os/apps/connected with a client profile open (sw=404 cw=390).",
+  "rca of the issue": "Mobile overflow RCA (not completed): all four tables are wrapped in .estate-table-wrap scroll containers, so the 14px overshoot comes from a non-table block. Most likely culprits in /os/apps/connected: (a) the overview tile grid (estate-tiles) possibly having a minmax(220px, …) that forces >390px when a long tile label like 'Raw estate never exported' is present, (b) a long inline token like 'terms-cf40995e408e09f9' inside the licence row profile breaking word-wrap, or (c) client-profile header grid. Suggested check: inspect .estate-section > :not(.estate-table-wrap) child widths at 390px."
+}

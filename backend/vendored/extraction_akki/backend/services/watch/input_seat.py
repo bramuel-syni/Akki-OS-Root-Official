@@ -182,24 +182,24 @@ def score_input_seat(
     custody_class: str,
     tenant_id: str,
     provider: str,
+    payload_text: Optional[str] = None,
 ) -> Tuple[str, str, str]:
     """Lango's hostility + provenance scoring → graded verdict.
 
     Canon 3 §13.1: 'every payload bound for a model is scored for
     hostility and provenance before the call is made'.
 
-    Canon 8 §85: learned components are calibrated per Doc 4 §49; a
-    stale/absent detector loses structural-certainty rights.  At this
-    seal no learned models are wired, so this scorer returns the
-    honest-empty grading (hostility=low, verdict=pass) that Canon 1
-    §4.11 'never fabricate what wasn't measured' requires.  Provenance
-    derives from the DECLARED custody_class alone (a structural fact
-    the caller supplies), never from probabilistic inference at this
-    seal.
-
-    Learned scoring lands in the Watch milestone (Grey Mirror +
-    Mkono).  Callers monkeypatch this function in tests to exercise
-    the graded-gate enforcement path for hold / block verdicts.
+    Provenance derives from the DECLARED custody_class (a structural
+    fact the caller supplies).  Hostility (Mα MA-05) is scored from the
+    actual outbound CONTENT — system message and prompt — by the Shield
+    register gate's declared, deterministic rule list (instruction
+    override, prompt exfiltration, data exfiltration, persona hijack,
+    fetch/rehydration requests, injected markup, destructive commands,
+    opaque blobs, credential-shaped material).  It is a rule detector,
+    not a learned model, and says so in the receipt.  When no payload is
+    supplied the scorer returns the honest-empty low/pass rather than
+    inventing a measurement.  Callers monkeypatch this function in tests
+    to exercise the hold / block enforcement path.
     """
     # Provenance derives from declared custody class.
     if custody_class == _SYNTHETIC_CUSTODY:
@@ -209,13 +209,11 @@ def score_input_seat(
     else:
         provenance = "unknown"      # unlisted custody class
 
-    # Hostility: honest-empty until learned model wires.
-    hostility = "low"
-
-    # Verdict: honest-empty pass until learned model wires.
-    verdict = "pass"
-
-    return (hostility, provenance, verdict)
+    if payload_text is None:
+        return ("low", provenance, "pass")   # nothing measured, nothing invented
+    from services.synisense.shield.register_gate import score_hostility
+    scored = score_hostility(payload_text)
+    return (scored["grade"], provenance, scored["verdict"])
 
 
 # ---------------------------------------------------------------------------

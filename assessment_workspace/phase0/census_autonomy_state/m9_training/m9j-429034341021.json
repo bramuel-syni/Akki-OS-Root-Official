@@ -1,0 +1,142 @@
+{
+ "job_id": "m9j-429034341021",
+ "phase": "malpha_story_text_train",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T16:01:07.448241Z",
+ "params": {
+  "recipe": {
+   "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "lr": 0.0001,
+   "batch_size": 4,
+   "grad_accum": 4,
+   "max_steps": 6000,
+   "warmup_steps": 100,
+   "eval_every": 500,
+   "checkpoint_every": 200,
+   "max_seq_len": 1024,
+   "lora_r": 32,
+   "lora_alpha": 64,
+   "init_adapter": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-5bdbf2e62d75/artefact/lora_adapter"
+  },
+  "base_registration": {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 4,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-85cb55212c65",
+ "northena_trace_id": "trc-b190e2084d5c",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-429034341021"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-429034341021",
+  "pid": 1953881
+ },
+ "status": "cancelled",
+ "ledger_rows": [
+  {
+   "row_id": "led-f7f692aa3867",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_story_text_train_admitted"
+  },
+  {
+   "row_id": "led-38945a1714a0",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_story_text_train_daemonised:pid=1953881"
+  },
+  {
+   "row_id": "led-52cd4935383c",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_story_text_train_cancelled:superseded: recipe fault: the ladder continued from the over-fitted iteration-3 adapter with more steps while dev perplexity had risen monotonically since iteratio"
+  }
+ ],
+ "code_sha256": "3e42b2291e5a0b75ceecee84dfd652a1ef4ad62325e77d22dff4bcf73e8f9530",
+ "started_at": "2026-10-04T16:01:12.790411Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T16:15:34.358665Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-78e40ed54fb8"
+ },
+ "remote_state": {
+  "phase": "malpha_story_text_train",
+  "status": "running",
+  "started_at": "2026-10-04T16:01:12Z",
+  "progress": {
+   "stage": "training",
+   "step": 500,
+   "of": 6000,
+   "loss": 0.3867,
+   "elapsed_s": 827,
+   "gpu_peak_gb": 11.21,
+   "last_checkpoint_step": 400,
+   "next_checkpoint_step": 600
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T16:01:20Z",
+    "train_documents": 1031,
+    "dev_documents": 117,
+    "per_language": {
+     "kik": {
+      "train": 463,
+      "dev": 41
+     },
+     "kam": {
+      "train": 190,
+      "dev": 64
+     },
+     "swa": {
+      "train": 378,
+      "dev": 12
+     }
+    },
+    "admission_read": false
+   },
+   "base_perplexity": {
+    "at": "2026-10-04T16:01:29Z",
+    "kik": 69.657,
+    "kam": 70.076,
+    "swa": 64.331
+   }
+  },
+  "events": [],
+  "job_id": "m9j-429034341021",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T16:15:06Z"
+ },
+ "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6785.45it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-429034341021/worker.zip/services/training_lab/malpha_voice_worker.py:163: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum)",
+ "process_alive": true,
+ "cancel_rpc": {
+  "at": "2026-10-04T16:16:00.382118Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-334476291a44",
+  "outcome": "stopped",
+  "reason": "superseded: recipe fault: the ladder continued from the over-fitted iteration-3 adapter with more steps while dev perplexity had risen monotonically since iteration 2 step 500 (15.0 \u2192 182.2); correcte"
+ },
+ "reason": "superseded: recipe fault: the ladder continued from the over-fitted iteration-3 adapter with more steps while dev perplexity had risen monotonically since iteration 2 step 500 (15.0 \u2192 182.2); correcte",
+ "finished_at": "2026-10-04T16:16:00.382148Z"
+}

@@ -14,6 +14,7 @@ import { useArmi, pct, hoursLabel, STATUS_TONE, slug } from '@/components/armi/u
 import { ArmiProfile } from '@/components/armi/ArmiProfile';
 import { ArmiAssignments } from '@/components/armi/ArmiAssignments';
 import { OnboardForm } from '@/components/armi/ArmiForms';
+import { ArmiRateCard } from '@/components/armi/ArmiRateCard';
 import '@/components/estate/estate.css';
 
 const KIND = { agent: 'Agent', llm: 'LLM role', model: 'Model', skill: 'Skill', worker: 'Worker' };
@@ -44,12 +45,14 @@ export default function BuildYourAgents() {
         <div className="estate-tiles">
           <div className="estate-tile" data-testid="armi-overview-agents"><span className="estate-label">On the register</span><b>{overview.agents}</b><small>{Object.entries(overview.by_kind || {}).map(([k, v]) => `${v} ${KIND[k] || k}${v === 1 ? '' : 's'}`).join(' · ')}</small></div>
           <div className="estate-tile sage" data-testid="armi-overview-status"><span className="estate-label">Lifecycle</span><b>{overview.by_status?.active ?? 0} active</b><small>{overview.by_status?.onboarded ?? 0} onboarded · {overview.by_status?.suspended ?? 0} suspended · {overview.by_status?.revoked ?? 0} revoked</small></div>
-          <div className="estate-tile brass" data-testid="armi-overview-gpu"><span className="estate-label">Resources metered</span><b>{hoursLabel(overview.gpu_hours_total)}</b><small>{overview.cost_note}</small></div>
+          <div className="estate-tile brass" data-testid="armi-overview-gpu"><span className="estate-label">Resources metered</span><b>{hoursLabel(overview.gpu_hours_total)}</b><small>{overview.cost_usd == null ? overview.cost_note : `$${overview.cost_usd} · ${overview.cost_note}`}</small></div>
+          <div className="estate-tile" data-testid="armi-overview-contribution"><span className="estate-label">Business contribution</span><b>{overview.contribution?.deliveries_total ?? 0} deliveries</b><small>{overview.contribution?.attributed ?? 0} credited to an authoring role · {overview.contribution?.unattributed ?? 0} platform aggregates · {overview.contribution?.amount_usd == null ? 'unpriced' : `$${overview.contribution.amount_usd} metered`}</small></div>
           <div className="estate-tile oxblood" data-testid="armi-overview-protected"><span className="estate-label">Protected</span><b>Watch not exported</b><small>{overview.protected?.malicious_probability}</small></div>
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 14 }} data-testid="armi-kind-filter">{['all', 'agent', 'llm', 'model', 'skill', 'worker'].map(k => <button key={k} className={`estate-chip${kind === k ? ' on' : ''}`} data-testid={`armi-filter-${k}`} onClick={() => setKind(k)}>{k === 'all' ? `All (${(agents || []).length})` : `${KIND[k]}s (${(agents || []).filter(a => a.kind === k).length})`}</button>)}</div>
       </section>}
       {onboarding && canOperate && <OnboardForm busy={busy} onCancel={() => setOnboarding(false)} onSubmit={async body => { const r = await on('Onboarding', '/api/armi/agents', body, null); if (r) { setOnboarding(false); select(r.agent.agent_id); } }} />}
+      <ArmiRateCard canOperate={canOperate} onChanged={reload} />
       {selected && !agent && !error && <p className="estate-note" data-testid="armi-profile-loading">Reading the profile…</p>}
       {agent && <div style={{ marginTop: 16 }}>
         <ArmiProfile agent={agent} agents={agents} canOperate={canOperate} busy={busy}
