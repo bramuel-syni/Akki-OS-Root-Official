@@ -1,0 +1,47 @@
+{
+  "date_utc": "2026-10-04",
+  "case_type": "planning_and_native_capacity_preflight",
+  "status": "PASS_FOR_PLAN_INTEGRITY_ONLY",
+  "programme_acceptance": "NOT_RUN",
+  "application_code_changed": false,
+  "malpha_training_dispatched": false,
+  "plan_checks": {
+    "requirement_job_rows": 31,
+    "unique_test_identifiers": 31,
+    "required_columns_present": true,
+    "synthetic_fixture_count": 4,
+    "synthetic_case_ids_unique": true,
+    "fixture_cost_arithmetic": "PASS",
+    "critical_owner_order_phrases_retained": true,
+    "five_promise_and_non_audio_scope_present": true,
+    "runtime_claim_matches_no_dispatch": true,
+    "limitation": "These checks validate the planning record, not exhaustive clause completeness, implementation, model quality, security or admission."
+  },
+  "existing_regressions": {
+    "command": "PYTHONPATH=/app/backend/vendored/extraction_akki/backend python -m pytest tests/census_operational/test_acoustic_observables.py tests/m6_doc_studio/test_estate_forecast.py -q -o addopts=''",
+    "working_directory": "/app/backend",
+    "passed": 17,
+    "failed": 0,
+    "warnings": 1,
+    "warning": "Pre-existing python_multipart import deprecation",
+    "limitation": "Existing tests include synthetic fixtures; no trained-model or full-AIP acceptance was exercised."
+  },
+  "native_preflight": {
+    "status": "CAPTURED",
+    "captured_at_utc": "2026-10-04T07:50:40.313204+00:00",
+    "device_count": 4,
+    "model": "NVIDIA H200",
+    "evidence_path": "/app/memory/M_ALPHA_GPU_PREFLIGHT.json",
+    "resident_workload_preserved": true,
+    "new_training_started": false
+  },
+  "snapshot_hashes": {
+    "M_ALPHA_GPU_PREFLIGHT.json": "07f3434a01684e7bad94f43618e762cc065d8d3e9829bb4fd31e690c8098f9e8",
+    "M_ALPHA_HANDOFF.md": "32c983b17a3e1669054b3b0bb0dc4a891f055cde62431168d9ddbd6bf0942088",
+    "M_ALPHA_OWNER_ORDERS.md": "d3db22ee2f93805ba023a1c587b2696f1248a46a51875db191571c78fa9af04f",
+    "M_ALPHA_PLAN.md": "c0a5efb333f7e84a5d31dafe331bbe8d5ec367016e0d881c0a3113e1c41098c2",
+    "M_ALPHA_QUALITY_REFERENCES.md": "8e3fdca55de75e61f50855a71ff52705b0c70b6e6fa4c23728d05546f9517dd1",
+    "M_ALPHA_RESPONSE_ARCHIVE.md": "0ba41dca269a34e470973e539241c242018c9f8ee05e5f694da2c38d9db47539",
+    "M_ALPHA_SYNTHETIC_FIXTURES.json": "d5f69d1f06a5e1edf46f561e787ec60dedacb4f468608fb3d84d3bc0a779350b"
+  }
+}

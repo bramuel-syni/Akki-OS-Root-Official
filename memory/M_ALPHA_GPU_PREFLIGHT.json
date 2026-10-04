@@ -1,0 +1,16 @@
+{
+  "kind": "native_read_only_preflight",
+  "programme": "M-alpha",
+  "status": "CAPTURED",
+  "captured_at_utc": "2026-10-04T07:50:40.313204+00:00",
+  "method": "services.census_autonomy.gpu_spend_capture.capture_gpu_spend via existing sealed SSH seam",
+  "mode": "real",
+  "devices": [
+    {"host": "akki-vm", "index": 0, "name": "NVIDIA H200", "memory_used_mib": 0, "utilization_percent": 0},
+    {"host": "akki-vm", "index": 1, "name": "NVIDIA H200", "memory_used_mib": 0, "utilization_percent": 0},
+    {"host": "akki-vm-ii", "index": 0, "name": "NVIDIA H200", "memory_used_mib": 0, "utilization_percent": 0},
+    {"host": "akki-vm-ii", "index": 1, "name": "NVIDIA H200", "memory_used_mib": 52719, "utilization_percent": 0}
+  ],
+  "malpha_training_started": false,
+  "note": "Momentary native observations, not current lease grants or evidence of model quality. No training, weights download, process kill or policy change performed. Respect existing resident workload."
+}
