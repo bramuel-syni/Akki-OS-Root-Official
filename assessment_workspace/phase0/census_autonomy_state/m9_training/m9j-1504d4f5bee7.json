@@ -72,9 +72,9 @@
  "code_sha256": "b57a0c3666db277ac92fed73e286cc7a6e9cf1738d5ba80c50a74ee3f3f5e79c",
  "started_at": "2026-10-04T16:16:35.239045Z",
  "last_status_rpc": {
-  "at": "2026-10-04T17:00:14.299759Z",
+  "at": "2026-10-04T17:15:37.986362Z",
   "rc": 0,
-  "receipt_id": "gpurcp-e0e3c2c8bcee"
+  "receipt_id": "gpurcp-271e570d50f6"
  },
  "remote_state": {
   "phase": "malpha_voice_train",
@@ -82,13 +82,13 @@
   "started_at": "2026-10-04T16:16:35Z",
   "progress": {
    "stage": "training codec language model",
-   "step": 22775,
+   "step": 34150,
    "of": 40000,
-   "loss": 2.3701,
-   "elapsed_s": 2616,
+   "loss": 1.8493,
+   "elapsed_s": 3538,
    "gpu_peak_gb": 13.4,
-   "last_checkpoint_step": 22500,
-   "next_checkpoint_step": 23000,
+   "last_checkpoint_step": 34000,
+   "next_checkpoint_step": 34500,
    "parameters": 111314968
   },
   "stages": {
@@ -309,6 +309,90 @@
      "max_cosine": 0.4314,
      "rendered": 12
     }
+   },
+   "dev_eval_step_25000": {
+    "at": "2026-10-04T17:03:27Z",
+    "kik": {
+     "overall_similarity": 0.5729,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4626,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5615,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5958,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.4717,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5028,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_27500": {
+    "at": "2026-10-04T17:06:50Z",
+    "kik": {
+     "overall_similarity": 0.511,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4897,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5578,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5243,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.4537,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5592,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_30000": {
+    "at": "2026-10-04T17:10:18Z",
+    "kik": {
+     "overall_similarity": 0.5896,
+     "identity_gate_passes": true,
+     "max_cosine": 0.3767,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5642,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5465,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5469,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5407,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_32500": {
+    "at": "2026-10-04T17:13:33Z",
+    "kik": {
+     "overall_similarity": 0.5123,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4745,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5255,
+     "identity_gate_passes": false,
+     "max_cosine": 0.61,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.4968,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5148,
+     "rendered": 12
+    }
    }
   },
   "events": [
@@ -324,7 +408,7 @@
   "job_id": "m9j-1504d4f5bee7",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-04T17:00:13Z"
+  "updated_at": "2026-10-04T17:15:36Z"
  },
  "worker_log_tail": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-1504d4f5bee7/worker.zip/services/training_lab/malpha_voice_worker.py:212: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 9692.75it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-1504d4f5bee7/worker.zip/services/training_lab/malpha_voice_worker.py:452: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))",
  "process_alive": true

@@ -83,6 +83,10 @@ ALLOWED_PURPOSES: FrozenSet[str] = frozenset({
     # Owner 2026-10-04 Mα five-promise order (CaaS domain products: marketing, media planning, campaign strategy, content mining):
     # the planner authors a client deliverable from licensed aggregates and the client brief only — Mode B, no privileged originals.
     "caas.domain_deliverable",
+    # Owner 2026-10-04 Mα MA-08 measured routing: eligible candidate models run the SAME fixed task set through the SAME Shield
+    # boundary (licensed aggregates + synthetic briefs only) so a role assignment rests on measured task evidence, not catalogue rank.
+    # Not role-bound by design: the trial compares families; adoption of a result is a separate operator act.
+    "routing.candidate_trial",
 })
 
 

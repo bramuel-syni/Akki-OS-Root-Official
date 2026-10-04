@@ -20,9 +20,14 @@ EVALUATION = {'date': '2026-10-02', 'basis': 'integration model catalogue plus p
 
 
 def resolve(role):
+    """Configured assignment from the environment, superseded by an ADOPTED measured routing decision (Mα MA-08) when one exists."""
     spec = ROLES[role]
-    return {'role': role, 'connection': os.environ[f"{spec['env']}_CONNECTION"], 'sdk_provider': os.environ[f"{spec['env']}_MODEL_PROVIDER"], 'model': os.environ[f"{spec['env']}_MODEL"],
-            'job': spec['job'], 'strength': spec['strength']}
+    row = {'role': role, 'connection': os.environ[f"{spec['env']}_CONNECTION"], 'sdk_provider': os.environ[f"{spec['env']}_MODEL_PROVIDER"], 'model': os.environ[f"{spec['env']}_MODEL"],
+           'job': spec['job'], 'strength': spec['strength'], 'basis': 'configured (environment); no measured trial adopted'}
+    from services.chokepoint import routing
+    d = routing.decision(role)
+    if d: row.update(model=d['model'], sdk_provider=d['sdk_provider'], basis=f"measured routing trial {d['trial_id']} adopted {d['adopted_at']}", configured_model=os.environ[f"{spec['env']}_MODEL"])
+    return row
 
 
 def for_purpose(purpose):

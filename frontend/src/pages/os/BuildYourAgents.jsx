@@ -15,6 +15,7 @@ import { ArmiProfile } from '@/components/armi/ArmiProfile';
 import { ArmiAssignments } from '@/components/armi/ArmiAssignments';
 import { OnboardForm } from '@/components/armi/ArmiForms';
 import { ArmiRateCard } from '@/components/armi/ArmiRateCard';
+import { ArmiRouting } from '@/components/armi/ArmiRouting';
 import '@/components/estate/estate.css';
 
 const KIND = { agent: 'Agent', llm: 'LLM role', model: 'Model', skill: 'Skill', worker: 'Worker' };
@@ -58,6 +59,7 @@ export default function BuildYourAgents() {
         <ArmiProfile agent={agent} agents={agents} canOperate={canOperate} busy={busy}
           onTransition={body => on(body.action === 'bind_version' ? 'Version binding' : body.action[0].toUpperCase() + body.action.slice(1), `/api/armi/agents/${agent.agent_id}/transition`, body)}
           onAssign={body => on('Assignment', `/api/armi/agents/${agent.agent_id}/assign`, body)} />
+        {agent.kind === 'llm' && <ArmiRouting role={agent.agent_id.split(':')[1]} canOperate={canOperate} />}
         <ArmiAssignments agent={agent} canOperate={canOperate} busy={busy}
           onComplete={(id, body) => on('Outcome', `/api/armi/assignments/${id}/complete`, body)}
           onScore={(id, body) => on('Score', `/api/armi/assignments/${id}/score`, body)} />

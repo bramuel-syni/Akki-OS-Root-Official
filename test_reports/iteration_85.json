@@ -1,0 +1,21 @@
+{
+  "summary": "Iteration 85 — MA-30 economics (owner-supplied rate card, refusal matrix) and MA-29 ARMI business-contribution attribution verified end-to-end plus /os/apps/connected mobile-overflow regression. In-process pytest: 11/11 (6 economics + 5 ARMI). Live backend (new tests/live_iter85.py): 6/6 passed covering public rates shape, refusal matrix (401/403/422/422/422/404 + rates unchanged after), Mα status metering shape, /api/armi/overview contribution+rate_card+cost_note+protected flags, /api/armi/agents llm.contribution.basis/rule and model:malpha resources.cost_usd=None, and /api/caas/metering per-line priced+unpriced==quantity invariant. Frontend operator: all overview tiles (armi-overview-contribution shows '1 deliveries · 0 credited · 1 platform aggregates · unpriced', armi-overview-gpu '14.03 GPU-h · no governed rate card'), armi-rate-card + armi-rate-table with gpt-5-mini row flagged 'PLACEHOLDER, not applied', armi-rate-open opens form with all six testid fields, submit disabled until source+rate filled, 422 shown in armi-rate-error with proper message when source='placeholder test', cancel closes form; GET rates confirmed unchanged after. Agent row click opens armi-profile with armi-tile-resources ('0 GPU-h · cost not priced — no governed rate card') and armi-tile-contribution ('— no attributed revenue is on the Cost Ledger yet; nothing is estimated here'). Analyst sees rate-card + rate-table but armi-rate-open is MISSING (correct). Responsive: /os/build/youragents at 1920x1080 (sw=cw=1920) and 390x844 with and without profile open (sw=cw=390). /os/apps/connected regression at 390x844 with the SYNTHETIC cl-917b677a8b profile open: sw=cw=390 (previously 404) — FIXED. caas-metering text includes 'cost not priced' and the no-rate-card narrative. No POST under /api/training/malpha was issued; no valid rate was authored.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/economics/test_rate_card.py",
+    "/app/backend/tests/armi/test_armi_lifecycle.py",
+    "/app/backend/tests/live_iter85.py"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "cost_note in /api/caas/metering is currently top-level only, not per-line. Spec sentence 'each line … cost_note present' is only satisfied at the aggregate level. Low priority but worth per-line note for clarity when rate_usd is null."
+  ],
+  "updated_files": ["/app/backend/tests/live_iter85.py"],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "operator demo.operator@demo.rms.example.com / demo-operator-pw; analyst demo.analyst@demo.rms.example.com / demo-analyst-pw (login returns Bearer access_token; cookies alone do not authenticate the SPA session for subsequent /api/* calls from external test clients).",
+  "seed_data_creation": "None — the ARMI lifecycle test is self-cleaning; no rate was written to the live register.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Live-API auth uses JSON Bearer tokens from POST /api/auth/login → access_token; attach Authorization: Bearer <tok> (cookie-only sessions return 401 with 'Sign in to view your estate\\'s census.'). ARMI agent list uses key 'agent_id' not 'id'. /api/caas/metering returns {tenant_id, events, lines[], cost_usd, unpriced_deliveries, cost_note, recent}; cost_note is at the top level only. iter_85 live test harness at /app/backend/tests/live_iter85.py is safe for reuse (write operations only exercise refusal paths)."
+}

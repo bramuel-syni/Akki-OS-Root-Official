@@ -205,8 +205,12 @@ AGGREGATES = {'estate.language_inventory': _language_inventory, 'estate.content_
 
 
 def _numbers(obj):
+    """Figures in a JSON payload, normalised numerically (0.8740 ≡ 0.874); clock times such as 06:00 are not figures."""
     found = set()
-    for m in re.finditer(r'(?<![\w.])\d+(?:[.,]\d+)?(?![\w.])', json.dumps(obj, default=str)): found.add(m.group(0).replace(',', ''))
+    text = re.sub(r'\b\d{1,2}:\d{2}(?::\d{2})?\b', ' ', json.dumps(obj, default=str))
+    for m in re.finditer(r'(?<![\w.])\d+(?:[.,]\d+)?(?![\w.])', text):
+        try: found.add(repr(float(m.group(0).replace(',', ''))))
+        except ValueError: continue
     return found
 
 
@@ -217,8 +221,8 @@ def accept(product, deliverable, context):
     for s in spec['sections']:
         v = deliverable.get(s)
         if v in (None, '', [], {}): findings.append(f'section missing or empty: {s}')
-    extra = _numbers(deliverable) - _numbers(context) - {str(i) for i in range(0, 101)}
-    if extra: findings.append('figures not present in the licensed context or brief: ' + ', '.join(sorted(extra)[:12]))
+    extra = _numbers(deliverable) - _numbers(context) - {repr(float(i)) for i in range(0, 101)}
+    if extra: findings.append('figures not present in the licensed context or brief: ' + ', '.join(sorted(x.rstrip('0').rstrip('.') if '.' in x else x for x in extra)[:12]))
     return {'accepted': not findings, 'findings': findings, 'sections_required': spec['sections']}
 
 

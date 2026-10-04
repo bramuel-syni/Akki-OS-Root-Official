@@ -557,6 +557,8 @@ from routers.armi import router as armi_router  # noqa: E402
 app.include_router(armi_router)
 from routers.caas import router as caas_router  # noqa: E402
 app.include_router(caas_router)
+from routers.routing import router as routing_router  # noqa: E402
+app.include_router(routing_router)
 from routers.shield_register import router as shield_register_router  # noqa: E402
 app.include_router(shield_register_router)
 from routers.media_library import router as media_library_router  # noqa: E402

@@ -457,6 +457,9 @@ async def invoke(
                 if role['model'] != model:
                     raise LLMShieldFailure(f"model_not_assigned_to_role — {purpose} is assigned {role['model']} ({role['role']}); got {model!r}")
                 sdk_provider = role['sdk_provider']
+            elif provider == 'emergent':
+                # Universal connection: the SDK family follows the model name (gpt-/o-series → openai, claude- → anthropic, gemini- → gemini).
+                sdk_provider = 'anthropic' if model.startswith('claude') else 'gemini' if model.startswith('gemini') else 'openai'
             else:
                 sdk_provider = provider
             client = client.with_model(sdk_provider, model)
@@ -472,7 +475,7 @@ async def invoke(
     if purpose in AUTHOR_PURPOSES and hasattr(client, 'with_params'):
         # The estate pack's writer answers ~50 slots plus a paper section per chapter; 16000 cut the JSON mid-string (3 Oct 2026).
         client = client.with_params(max_tokens=32000)
-    if purpose in ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable') and hasattr(client, 'with_params'):
+    if purpose in ('doc_studio.review', 'doc_studio.plan', 'caas.domain_deliverable', 'routing.candidate_trial') and hasattr(client, 'with_params'):
         # Reasoning families spend part of the budget thinking before the JSON; 6000 left Fable with no text (finish_reason=length).
         client = client.with_params(max_tokens=20000)
 
