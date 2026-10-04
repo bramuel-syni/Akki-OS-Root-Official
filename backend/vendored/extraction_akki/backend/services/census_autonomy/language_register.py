@@ -26,6 +26,11 @@ LANGUAGES: List[Dict[str, Any]] = [
     {'code': 'mas', 'language': 'Maa (Maasai)', 'stations': [], 'group': None},
 ]
 GROUPS = {'thagicu': 'Kikuyu–Embu–Meru (Thagicu)', 'luhya': 'Luhya: Wanga–Bukusu–Maragoli'}
+LANGUAGES_KEPT = len(LANGUAGES)  # every consumer (forecast, report, retraining payloads) keeps all thirteen codes; never a twelve-code cap
+
+
+def _classes(modelled) -> str:
+    return f'{len(modelled)}-class'
 
 
 def _station_key(name: str) -> str:
@@ -82,7 +87,7 @@ def build(forecast: Dict[str, Any] | None, aggregates: Dict[str, Any] | None, pr
         inside = sum(sum(v for k, v in r['named_folder_speech']['labelled_inside'].items() if k in {m['code'] for m in members}) for r in members if not r['modelled'] and r['named_folder_speech'])
         ceiling = {k: round(core[k] + _sum(named_unmodelled)[k] - (inside if k == 'est' else 0.0), 1) for k in ('est', 'lo', 'hi')}
         groups[gid] = {'name': gname, 'members': [r['code'] for r in members], 'modelled_core_speech': core, 'named_unmodelled_speech': _sum(named_unmodelled), 'group_speech': ceiling,
-                       'note': 'The seven-class model files the unmodelled members under the modelled relative; the group total is robust, the split inside it is a floor (named folders) until the thirteen-class model runs.'}
+                       'note': f'The {_classes(modelled)} model files the unmodelled members under the modelled relative; the group total is robust, the split inside it is a floor (named folders) until the thirteen-class model runs.'}
     for r in rows:
         if r['modelled']:
             r['assessment'] = {'speech_hours': r['forecast_labelled_speech'], 'basis': 'labelled by the census language model, scaled to the whole estate (forecast)',
@@ -92,16 +97,21 @@ def build(forecast: Dict[str, Any] | None, aggregates: Dict[str, Any] | None, pr
             ceiling = groups[r['group']]['group_speech'] if r['group'] else ({'est': estate['unlabelled_speech']['est'], 'lo': estate['unlabelled_speech']['lo'], 'hi': estate['unlabelled_speech']['hi']} if r['stations'] else {'est': 0.0, 'lo': 0.0, 'hi': 0.0})
             r['assessment'] = {'speech_hours_floor': floor, 'speech_hours_ceiling': ceiling,
                                'basis': ('folders carrying the station\'s name, scaled to their populations (forecast); ceiling = the related-language group' if r['group'] else
-                                         'no folder carries the station\'s name; ceiling = the speech the seven-class model could not label' if r['stations'] else
+                                         f'no folder carries the station\'s name; ceiling = the speech the {_classes(modelled)} model could not label' if r['stations'] else
                                          'no news station and no named folder; present only in the workbench register'),
                                'converts_with': 'the thirteen-class language model trained on the workbench\'s labelled recordings, then one census pass over the existing sample'}
     labelled_total = _sum([estate['languages'][c] for c in modelled])
     unl = estate['unlabelled_speech']
-    non_english = {'lo': round(labelled_total['est'], 1), 'hi': round(estate['speech']['est'], 1), 'planning': round(estate['speech']['est'] - 0.5 * unl['est'], 1),
-                   'note': 'English cannot be labelled by the seven-class model: at most the unlabelled pool is English (lo), at least none of it is (hi); planning figure halves the pool.'}
-    return {'languages': rows, 'groups': groups, 'modelled_codes': sorted(modelled),
-            'totals': {'speech': estate['speech'], 'labelled_seven': labelled_total, 'unlabelled': unl, 'non_english_speech_hours': non_english},
+    if 'eng' in modelled:
+        eng = estate['languages'].get('eng') or {'est': 0.0, 'lo': 0.0, 'hi': 0.0}
+        non_english = {'lo': round(estate['speech']['lo'] - eng['hi'], 1), 'hi': round(estate['speech']['hi'] - eng['lo'], 1), 'planning': round(estate['speech']['est'] - eng['est'], 1),
+                       'note': f'English is labelled by the {_classes(modelled)} model; non-English speech = all speech minus labelled English (interval from the two forecasts).'}
+    else:
+        non_english = {'lo': round(labelled_total['est'], 1), 'hi': round(estate['speech']['est'], 1), 'planning': round(estate['speech']['est'] - 0.5 * unl['est'], 1),
+                       'note': f'English cannot be labelled by the {_classes(modelled)} model: at most the unlabelled pool is English (lo), at least none of it is (hi); planning figure halves the pool.'}
+    return {'languages': rows, 'groups': groups, 'modelled_codes': sorted(modelled), 'register_codes': [l['code'] for l in LANGUAGES], 'unmodelled_codes': sorted(c for c in (l['code'] for l in LANGUAGES) if c not in modelled),
+            'totals': {'speech': estate['speech'], 'labelled_modelled': labelled_total, 'labelled_seven': labelled_total, 'unlabelled': unl, 'non_english_speech_hours': non_english},
             'script_check': {'confirmation_floor': (profiles or {}).get('confirmation_floor'), 'stations_profiled': len((profiles or {}).get('stations') or [])} if profiles else None,
-            'method': ('Stations from three registers (news vault, workbench folder_languages, folder paths). Seven languages: census model labels scaled in the whole-estate '
-                       'forecast. Six unmodelled: floor = speech forecast in folders named after the station; ceiling = the related-language group (Thagicu, Luhya) or the '
+            'method': (f'Stations from three registers (news vault, workbench folder_languages, folder paths). {len(modelled)} modelled languages: census model labels scaled in the whole-estate '
+                       f'forecast. {len(LANGUAGES) - len(modelled)} unmodelled: floor = speech forecast in folders named after the station; ceiling = the related-language group (Thagicu, Luhya) or the '
                        'unlabelled pool (English); script check = character-trigram profile of each station\'s scripts against the workbench transcripts and the other stations.')}

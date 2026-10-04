@@ -1,0 +1,134 @@
+{
+ "job_id": "m9j-f259a66e4dd1",
+ "phase": "malpha_voice_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T10:15:47.531484Z",
+ "params": {
+  "recipe": {
+   "lr": 0.00014699999999999997,
+   "batch_size": 48,
+   "max_steps": 80000,
+   "warmup_steps": 1000,
+   "eval_every": 2500,
+   "checkpoint_every": 500,
+   "d_model": 768,
+   "layers": 12,
+   "heads": 12,
+   "max_segment_seconds": 12.0,
+   "spectral_feedback": true,
+   "eval_prompts_per_language": 12,
+   "comparators_per_language": 300,
+   "identity_cosine_threshold": 0.4
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 3,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-df82e8e79fa8",
+ "northena_trace_id": "trc-8e4ee774c363",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-f259a66e4dd1"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f259a66e4dd1",
+  "pid": 1826022
+ },
+ "status": "cancelled",
+ "ledger_rows": [
+  {
+   "row_id": "led-510575669c01",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_voice_train_admitted"
+  },
+  {
+   "row_id": "led-cb422a09a0df",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_voice_train_daemonised:pid=1826022"
+  },
+  {
+   "row_id": "led-aeaf689d13c3",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_voice_train_cancelled:superseded: dispatched under the old iteration counter (ladder step 3 instead of 1) against the pre-requalification dev split (Kamba dev = 2 segments); restarted at ite"
+  }
+ ],
+ "code_sha256": "6fe598f345bfcfb5e1edfb8eb0607db932c13a214cc2a3b9acf20bdc5193083b",
+ "started_at": "2026-10-04T10:15:53.350918Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:23:19.652174Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-209a6948c225"
+ },
+ "remote_state": {
+  "phase": "malpha_voice_train",
+  "status": "running",
+  "started_at": "2026-10-04T10:15:53Z",
+  "progress": {
+   "stage": "training codec language model",
+   "step": 1450,
+   "of": 80000,
+   "loss": 6.5118,
+   "elapsed_s": 442,
+   "gpu_peak_gb": 13.22,
+   "last_checkpoint_step": 1000,
+   "next_checkpoint_step": 1500,
+   "parameters": 111165976
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T10:15:59Z",
+    "train_segments": 81423,
+    "train_hours": 67.2,
+    "dev_segments": 261,
+    "text_vocab": 68,
+    "admission_read": false,
+    "per_language": {
+     "kik": 32179,
+     "kam": 16291,
+     "swa": 32953
+    },
+    "excluded_overlong_transcripts": 9,
+    "max_text_chars": 400,
+    "max_codec_frames": 152
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-04T10:16:15Z",
+    "message": "identity comparators prepared in memory: {kik: 300, kam: 300, swa: 300}; never written to disk"
+   }
+  ],
+  "job_id": "m9j-f259a66e4dd1",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T10:23:17Z"
+ },
+ "worker_log_tail": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f259a66e4dd1/worker.zip/services/training_lab/malpha_voice_worker.py:194: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 8241.76it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f259a66e4dd1/worker.zip/services/training_lab/malpha_voice_worker.py:385: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))",
+ "process_alive": true,
+ "cancel_rpc": {
+  "at": "2026-10-04T10:24:58.550691Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-6d1f3d36ac08",
+  "outcome": "stopped",
+  "reason": "superseded: dispatched under the old iteration counter (ladder step 3 instead of 1) against the pre-requalification dev split (Kamba dev = 2 segments); restarted at iteration 1 on the requalified data"
+ },
+ "reason": "superseded: dispatched under the old iteration counter (ladder step 3 instead of 1) against the pre-requalification dev split (Kamba dev = 2 segments); restarted at iteration 1 on the requalified data",
+ "finished_at": "2026-10-04T10:24:58.550705Z"
+}

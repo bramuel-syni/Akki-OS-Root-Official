@@ -1,0 +1,470 @@
+{
+ "job_id": "m9j-3b1d0e135464",
+ "phase": "malpha_listener_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T10:25:44.525708Z",
+ "params": {
+  "recipe": {
+   "base": "openai/whisper-small",
+   "lr": 0.0001,
+   "batch_size": 32,
+   "grad_accum": 1,
+   "max_steps": 6000,
+   "warmup_steps": 300,
+   "eval_every": 1500,
+   "checkpoint_every": 500,
+   "dev_per_language": 300
+  },
+  "brand_lexicon": [
+   {
+    "brand": "Safaricom",
+    "aliases": [
+     "safaricom",
+     "saf"
+    ]
+   },
+   {
+    "brand": "M-Pesa",
+    "aliases": [
+     "mpesa",
+     "m-pesa",
+     "m pesa"
+    ]
+   },
+   {
+    "brand": "Fuliza",
+    "aliases": [
+     "fuliza"
+    ]
+   },
+   {
+    "brand": "Airtel",
+    "aliases": [
+     "airtel",
+     "airtel money"
+    ]
+   },
+   {
+    "brand": "Equity Bank",
+    "aliases": [
+     "equity",
+     "equity bank",
+     "equitel"
+    ]
+   },
+   {
+    "brand": "KCB",
+    "aliases": [
+     "kcb",
+     "kenya commercial bank"
+    ]
+   },
+   {
+    "brand": "Co-operative Bank",
+    "aliases": [
+     "co-op bank",
+     "coop bank",
+     "cooperative bank",
+     "co-operative bank"
+    ]
+   },
+   {
+    "brand": "Inooro FM",
+    "aliases": [
+     "inooro",
+     "inooro fm"
+    ]
+   },
+   {
+    "brand": "Kameme FM",
+    "aliases": [
+     "kameme",
+     "kameme fm"
+    ]
+   },
+   {
+    "brand": "Coro FM",
+    "aliases": [
+     "coro fm",
+     "coro"
+    ]
+   },
+   {
+    "brand": "Citizen",
+    "aliases": [
+     "citizen",
+     "citizen tv",
+     "citizen radio"
+    ]
+   },
+   {
+    "brand": "Royal Media",
+    "aliases": [
+     "royal media",
+     "royal media services"
+    ]
+   },
+   {
+    "brand": "Musyi FM",
+    "aliases": [
+     "musyi",
+     "musyi fm"
+    ]
+   },
+   {
+    "brand": "Ramogi FM",
+    "aliases": [
+     "ramogi"
+    ]
+   },
+   {
+    "brand": "Radio Jambo",
+    "aliases": [
+     "radio jambo",
+     "jambo"
+    ]
+   },
+   {
+    "brand": "Kenya Power",
+    "aliases": [
+     "kenya power",
+     "kplc",
+     "stima"
+    ]
+   },
+   {
+    "brand": "NHIF",
+    "aliases": [
+     "nhif"
+    ]
+   },
+   {
+    "brand": "NSSF",
+    "aliases": [
+     "nssf"
+    ]
+   },
+   {
+    "brand": "KRA",
+    "aliases": [
+     "kra",
+     "kenya revenue authority"
+    ]
+   },
+   {
+    "brand": "Huduma",
+    "aliases": [
+     "huduma",
+     "huduma centre",
+     "huduma namba"
+    ]
+   },
+   {
+    "brand": "Tusker",
+    "aliases": [
+     "tusker"
+    ]
+   },
+   {
+    "brand": "Coca-Cola",
+    "aliases": [
+     "coca cola",
+     "coca-cola",
+     "coke"
+    ]
+   },
+   {
+    "brand": "Brookside",
+    "aliases": [
+     "brookside"
+    ]
+   },
+   {
+    "brand": "Unga",
+    "aliases": [
+     "jogoo",
+     "unga limited"
+    ]
+   },
+   {
+    "brand": "Bidco",
+    "aliases": [
+     "bidco"
+    ]
+   },
+   {
+    "brand": "Betika",
+    "aliases": [
+     "betika"
+    ]
+   },
+   {
+    "brand": "SportPesa",
+    "aliases": [
+     "sportpesa",
+     "sport pesa"
+    ]
+   },
+   {
+    "brand": "Odibets",
+    "aliases": [
+     "odibets",
+     "odi bets"
+    ]
+   },
+   {
+    "brand": "Tala",
+    "aliases": [
+     "tala"
+    ]
+   },
+   {
+    "brand": "Branch",
+    "aliases": [
+     "branch loan",
+     "branch app"
+    ]
+   },
+   {
+    "brand": "KPLC",
+    "aliases": [
+     "kplc"
+    ]
+   },
+   {
+    "brand": "Nairobi Water",
+    "aliases": [
+     "nairobi water"
+    ]
+   },
+   {
+    "brand": "Kenyatta Hospital",
+    "aliases": [
+     "kenyatta hospital",
+     "knh"
+    ]
+   },
+   {
+    "brand": "Uber",
+    "aliases": [
+     "uber"
+    ]
+   },
+   {
+    "brand": "Bolt",
+    "aliases": [
+     "bolt"
+    ]
+   },
+   {
+    "brand": "Jumia",
+    "aliases": [
+     "jumia"
+    ]
+   },
+   {
+    "brand": "KBC",
+    "aliases": [
+     "kbc"
+    ]
+   },
+   {
+    "brand": "Nation",
+    "aliases": [
+     "nation media",
+     "daily nation",
+     "taifa leo"
+    ]
+   },
+   {
+    "brand": "Standard",
+    "aliases": [
+     "the standard",
+     "standard media"
+    ]
+   }
+  ],
+  "commission_id": "LISTEN-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 1,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-1ab4b0cca299",
+ "northena_trace_id": "trc-367927d87b78",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-3b1d0e135464"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3b1d0e135464",
+  "pid": 1826953
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-fd9f65212ff8",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_listener_train_admitted"
+  },
+  {
+   "row_id": "led-8b13668b51d5",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_listener_train_daemonised:pid=1826953"
+  }
+ ],
+ "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
+ "started_at": "2026-10-04T10:25:50.432017Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:56:09.383993Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-5c97ae01b4cd"
+ },
+ "remote_state": {
+  "phase": "malpha_listener_train",
+  "status": "running",
+  "started_at": "2026-10-04T10:25:50Z",
+  "progress": {
+   "stage": "training",
+   "step": 3375,
+   "of": 6000,
+   "loss": 1.1619,
+   "lr": 4.665057979781396e-05,
+   "elapsed_s": 1812,
+   "gpu_peak_gb": 33.81,
+   "last_checkpoint_step": 3000,
+   "next_checkpoint_step": 3500
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T10:25:53Z",
+    "train_segments": 80921,
+    "dev_segments": 900,
+    "train_hours": 93.1,
+    "admission_read": false
+   },
+   "dev_eval_step_1500": {
+    "at": "2026-10-04T10:42:46Z",
+    "mean_wer": 0.8003,
+    "words": {
+     "kam": {
+      "wer": 1.0477,
+      "cer": 0.73,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.8449,
+      "cer": 0.4851,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.5084,
+      "cer": 0.2544,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 1.0,
+      "recall": 0.0938,
+      "f1": 0.1714
+     },
+     "kik": {
+      "precision": 1.0,
+      "recall": 0.5806,
+      "f1": 0.7347
+     },
+     "swa": {
+      "precision": 0.9583,
+      "recall": 0.5227,
+      "f1": 0.6765
+     }
+    }
+   },
+   "dev_eval_step_3000": {
+    "at": "2026-10-04T10:53:38Z",
+    "mean_wer": 0.7556,
+    "words": {
+     "kam": {
+      "wer": 1.0154,
+      "cer": 0.6684,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.8158,
+      "cer": 0.4437,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.4357,
+      "cer": 0.2268,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.5,
+      "recall": 0.125,
+      "f1": 0.2
+     },
+     "kik": {
+      "precision": 1.0,
+      "recall": 0.7097,
+      "f1": 0.8302
+     },
+     "swa": {
+      "precision": 0.95,
+      "recall": 0.8636,
+      "f1": 0.9048
+     }
+    }
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-04T10:32:06Z",
+    "message": "checkpoint at step 500"
+   },
+   {
+    "at": "2026-10-04T10:36:53Z",
+    "message": "checkpoint at step 1000"
+   },
+   {
+    "at": "2026-10-04T10:40:52Z",
+    "message": "checkpoint at step 1500"
+   },
+   {
+    "at": "2026-10-04T10:46:07Z",
+    "message": "checkpoint at step 2000"
+   },
+   {
+    "at": "2026-10-04T10:49:57Z",
+    "message": "checkpoint at step 2500"
+   },
+   {
+    "at": "2026-10-04T10:53:04Z",
+    "message": "checkpoint at step 3000"
+   }
+  ],
+  "job_id": "m9j-3b1d0e135464",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T10:56:04Z"
+ },
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 10006.73it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3b1d0e135464/worker.zip/services/training_lab/malpha_worker.py:696: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.",
+ "process_alive": true
+}

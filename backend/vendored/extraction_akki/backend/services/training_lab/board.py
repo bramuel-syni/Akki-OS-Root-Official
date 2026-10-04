@@ -4,7 +4,7 @@ from services.training_lab import store as lab
 from services.training_lab.evidence import number
 
 NAMES = {'guz': 'Ekegusii', 'kam': 'Kikamba', 'kik': 'Gikuyu', 'kln': 'Kalenjin', 'luo': 'Dholuo', 'lwg': 'Luhya (Wanga)', 'swa': 'Kiswahili',
-         'eng': 'English', 'sheng': 'Sheng', 'bxk': 'Bukusu'}
+         'eng': 'English', 'sheng': 'Sheng', 'bxk': 'Bukusu', 'mer': 'Kimeru', 'ebu': 'Kiembu', 'mrg': 'Maragoli', 'mas': 'Maa'}
 BASES = {'qwen3-8b-base': '8B', 'qwen3-1.7b-base': '1.7B'}
 BASE_NAMES = {'qwen3-8b-base': 'Qwen3 8B base', 'qwen3-1.7b-base': 'Qwen3 1.7B base'}
 FINISHED = ('In service', 'Refused', 'Retired')

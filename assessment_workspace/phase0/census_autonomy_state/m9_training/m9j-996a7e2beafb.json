@@ -1,0 +1,613 @@
+{
+ "job_id": "m9j-996a7e2beafb",
+ "phase": "malpha_aip_build",
+ "host": "akki-vm-ii",
+ "principal_id": "malpha-smoke",
+ "submitted_at": "2026-10-04T08:53:12.779775Z",
+ "params": {
+  "commission_id": "SMOKE",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 0,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_smoke",
+  "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+  "max_files_per_language": 3,
+  "cpu_workers": 4,
+  "token_max_seconds": 12.0,
+  "codec_sample_per_language": 3,
+  "brand_lexicon": [
+   {
+    "brand": "Safaricom",
+    "aliases": [
+     "safaricom",
+     "saf"
+    ]
+   },
+   {
+    "brand": "M-Pesa",
+    "aliases": [
+     "mpesa",
+     "m-pesa",
+     "m pesa"
+    ]
+   },
+   {
+    "brand": "Fuliza",
+    "aliases": [
+     "fuliza"
+    ]
+   },
+   {
+    "brand": "Airtel",
+    "aliases": [
+     "airtel",
+     "airtel money"
+    ]
+   },
+   {
+    "brand": "Equity Bank",
+    "aliases": [
+     "equity",
+     "equity bank",
+     "equitel"
+    ]
+   },
+   {
+    "brand": "KCB",
+    "aliases": [
+     "kcb",
+     "kenya commercial bank"
+    ]
+   },
+   {
+    "brand": "Co-operative Bank",
+    "aliases": [
+     "co-op bank",
+     "coop bank",
+     "cooperative bank",
+     "co-operative bank"
+    ]
+   },
+   {
+    "brand": "Inooro FM",
+    "aliases": [
+     "inooro",
+     "inooro fm"
+    ]
+   },
+   {
+    "brand": "Kameme FM",
+    "aliases": [
+     "kameme",
+     "kameme fm"
+    ]
+   },
+   {
+    "brand": "Coro FM",
+    "aliases": [
+     "coro fm",
+     "coro"
+    ]
+   },
+   {
+    "brand": "Citizen",
+    "aliases": [
+     "citizen",
+     "citizen tv",
+     "citizen radio"
+    ]
+   },
+   {
+    "brand": "Royal Media",
+    "aliases": [
+     "royal media",
+     "royal media services"
+    ]
+   },
+   {
+    "brand": "Musyi FM",
+    "aliases": [
+     "musyi",
+     "musyi fm"
+    ]
+   },
+   {
+    "brand": "Ramogi FM",
+    "aliases": [
+     "ramogi"
+    ]
+   },
+   {
+    "brand": "Radio Jambo",
+    "aliases": [
+     "radio jambo",
+     "jambo"
+    ]
+   },
+   {
+    "brand": "Kenya Power",
+    "aliases": [
+     "kenya power",
+     "kplc",
+     "stima"
+    ]
+   },
+   {
+    "brand": "NHIF",
+    "aliases": [
+     "nhif"
+    ]
+   },
+   {
+    "brand": "NSSF",
+    "aliases": [
+     "nssf"
+    ]
+   },
+   {
+    "brand": "KRA",
+    "aliases": [
+     "kra",
+     "kenya revenue authority"
+    ]
+   },
+   {
+    "brand": "Huduma",
+    "aliases": [
+     "huduma",
+     "huduma centre",
+     "huduma namba"
+    ]
+   },
+   {
+    "brand": "Tusker",
+    "aliases": [
+     "tusker"
+    ]
+   },
+   {
+    "brand": "Coca-Cola",
+    "aliases": [
+     "coca cola",
+     "coca-cola",
+     "coke"
+    ]
+   },
+   {
+    "brand": "Brookside",
+    "aliases": [
+     "brookside"
+    ]
+   },
+   {
+    "brand": "Unga",
+    "aliases": [
+     "jogoo",
+     "unga limited"
+    ]
+   },
+   {
+    "brand": "Bidco",
+    "aliases": [
+     "bidco"
+    ]
+   },
+   {
+    "brand": "Betika",
+    "aliases": [
+     "betika"
+    ]
+   },
+   {
+    "brand": "SportPesa",
+    "aliases": [
+     "sportpesa",
+     "sport pesa"
+    ]
+   },
+   {
+    "brand": "Odibets",
+    "aliases": [
+     "odibets",
+     "odi bets"
+    ]
+   },
+   {
+    "brand": "Tala",
+    "aliases": [
+     "tala"
+    ]
+   },
+   {
+    "brand": "Branch",
+    "aliases": [
+     "branch loan",
+     "branch app"
+    ]
+   },
+   {
+    "brand": "KPLC",
+    "aliases": [
+     "kplc"
+    ]
+   },
+   {
+    "brand": "Nairobi Water",
+    "aliases": [
+     "nairobi water"
+    ]
+   },
+   {
+    "brand": "Kenyatta Hospital",
+    "aliases": [
+     "kenyatta hospital",
+     "knh"
+    ]
+   },
+   {
+    "brand": "Uber",
+    "aliases": [
+     "uber"
+    ]
+   },
+   {
+    "brand": "Bolt",
+    "aliases": [
+     "bolt"
+    ]
+   },
+   {
+    "brand": "Jumia",
+    "aliases": [
+     "jumia"
+    ]
+   },
+   {
+    "brand": "KBC",
+    "aliases": [
+     "kbc"
+    ]
+   },
+   {
+    "brand": "Nation",
+    "aliases": [
+     "nation media",
+     "daily nation",
+     "taifa leo"
+    ]
+   },
+   {
+    "brand": "Standard",
+    "aliases": [
+     "the standard",
+     "standard media"
+    ]
+   }
+  ]
+ },
+ "northena_run_id": "run-38e65e058619",
+ "northena_trace_id": "trc-2197182930b5",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-996a7e2beafb"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-996a7e2beafb",
+  "pid": 1320338
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-a68ed01222dc",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_aip_build_admitted"
+  },
+  {
+   "row_id": "led-f80f91ec47c3",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_aip_build_daemonised:pid=1320338"
+  },
+  {
+   "row_id": "led-e6401b45956a",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_aip_build_completed"
+  }
+ ],
+ "code_sha256": "34b917e111de9182186da050153cd728ae238f3e84769ca107b7f8dbbec168eb",
+ "started_at": "2026-10-04T08:53:18.682518Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T08:55:01.402066Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-7728be0d9d09"
+ },
+ "remote_state": {
+  "phase": "malpha_aip_build",
+  "status": "completed",
+  "started_at": "2026-10-04T08:53:18Z",
+  "progress": {
+   "stage": "codec round-trip qualification",
+   "elapsed_s": 51
+  },
+  "stages": {},
+  "events": [
+   {
+    "at": "2026-10-04T08:53:23Z",
+    "message": "kik: shard processes [0, 1, 2] exited non-zero; their unread files are recorded as errors"
+   },
+   {
+    "at": "2026-10-04T08:53:28Z",
+    "message": "kam: shard processes [2] exited non-zero; their unread files are recorded as errors"
+   },
+   {
+    "at": "2026-10-04T08:53:33Z",
+    "message": "swa: shard processes [0, 1, 2] exited non-zero; their unread files are recorded as errors"
+   }
+  ],
+  "job_id": "m9j-996a7e2beafb",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T08:54:09Z",
+  "finished_at": "2026-10-04T08:54:09Z",
+  "receipt_sha256": "2c5c2a13b30995465479b9b9c6d671bcc691a69b3f54ce00eadab6147f6d5bf8"
+ },
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 7401.54it/s]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-996a7e2beafb",
+  "phase": "malpha_aip_build",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-04T08:53:18Z",
+  "code_sha256": "34b917e111de9182186da050153cd728ae238f3e84769ca107b7f8dbbec168eb",
+  "status": "completed",
+  "result": {
+   "protocol": "akki-malpha-aip-db-v1",
+   "commission_id": "SMOKE",
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "seed": 20261004,
+   "split_rule": "speaker-cluster-disjoint; straddling sessions \u2192 train; admission 10% / dev 10% by cluster hash",
+   "files": {
+    "kik": {
+     "files": 3,
+     "read": 0,
+     "errors": 3,
+     "hours_recorded": 0.0,
+     "sessions_by_split": {}
+    },
+    "kam": {
+     "files": 3,
+     "read": 2,
+     "errors": 1,
+     "hours_recorded": 0.144,
+     "sessions_by_split": {}
+    },
+    "swa": {
+     "files": 3,
+     "read": 0,
+     "errors": 3,
+     "hours_recorded": 0.0,
+     "sessions_by_split": {}
+    }
+   },
+   "segments": {
+    "kik": {
+     "train": {
+      "segments": 0,
+      "hours": 0.0
+     },
+     "dev": {
+      "segments": 0,
+      "hours": 0.0
+     },
+     "admission": {
+      "segments": 0,
+      "hours": 0.0
+     }
+    },
+    "kam": {
+     "train": {
+      "segments": 0,
+      "hours": 0.0
+     },
+     "dev": {
+      "segments": 0,
+      "hours": 0.0
+     },
+     "admission": {
+      "segments": 0,
+      "hours": 0.0
+     }
+    },
+    "swa": {
+     "train": {
+      "segments": 0,
+      "hours": 0.0
+     },
+     "dev": {
+      "segments": 0,
+      "hours": 0.0
+     },
+     "admission": {
+      "segments": 0,
+      "hours": 0.0
+     }
+    }
+   },
+   "seals": {
+    "kik": {
+     "admission_seg_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "dev_seg_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "sealed_at": "2026-10-04T08:54:09Z"
+    },
+    "kam": {
+     "admission_seg_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "dev_seg_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "sealed_at": "2026-10-04T08:54:09Z"
+    },
+    "swa": {
+     "admission_seg_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "dev_seg_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "sealed_at": "2026-10-04T08:54:09Z"
+    }
+   },
+   "codec_provenance": {
+    "repo": "kyutai/mimi",
+    "revision": "89091b3e466eb6a9d11e537bf26b144f194978f7",
+    "codebooks_used": 8,
+    "codebook_size": 2048,
+    "frame_rate_hz": 12.5,
+    "tokens_per_second": 100.0,
+    "content_stream": "codebook 0 (semantic, WavLM-distilled)",
+    "character_stream": "codebooks 1-7 (acoustic residual)",
+    "sampling_rate": 24000,
+    "dtype": "torch.float32"
+   },
+   "codec_qualification": {
+    "kik": {},
+    "kam": {},
+    "swa": {}
+   },
+   "tokens": {
+    "kik": {
+     "segments": 0,
+     "frames": 0,
+     "hours": 0.0,
+     "tokens": 0
+    },
+    "kam": {
+     "segments": 0,
+     "frames": 0,
+     "hours": 0.0,
+     "tokens": 0
+    },
+    "swa": {
+     "segments": 0,
+     "frames": 0,
+     "hours": 0.0,
+     "tokens": 0
+    }
+   },
+   "character_register": {
+    "kik": {
+     "duration_s": null,
+     "chars_per_s": null,
+     "energy_db_mean": null,
+     "energy_db_std": null,
+     "pause_ratio": null,
+     "f0_mean_hz": null,
+     "f0_std_semitones": null,
+     "f0_range_hz": null,
+     "voiced_ratio": null,
+     "spectral_centroid_hz": null,
+     "spectral_bandwidth_hz": null,
+     "spectral_rolloff_hz": null,
+     "spectral_flatness": null,
+     "zcr": null
+    },
+    "kam": {
+     "duration_s": null,
+     "chars_per_s": null,
+     "energy_db_mean": null,
+     "energy_db_std": null,
+     "pause_ratio": null,
+     "f0_mean_hz": null,
+     "f0_std_semitones": null,
+     "f0_range_hz": null,
+     "voiced_ratio": null,
+     "spectral_centroid_hz": null,
+     "spectral_bandwidth_hz": null,
+     "spectral_rolloff_hz": null,
+     "spectral_flatness": null,
+     "zcr": null
+    },
+    "swa": {
+     "duration_s": null,
+     "chars_per_s": null,
+     "energy_db_mean": null,
+     "energy_db_std": null,
+     "pause_ratio": null,
+     "f0_mean_hz": null,
+     "f0_std_semitones": null,
+     "f0_range_hz": null,
+     "voiced_ratio": null,
+     "spectral_centroid_hz": null,
+     "spectral_bandwidth_hz": null,
+     "spectral_rolloff_hz": null,
+     "spectral_flatness": null,
+     "zcr": null
+    }
+   },
+   "brand_inventory": {
+    "kik": {},
+    "kam": {},
+    "swa": {}
+   },
+   "feature_columns": [
+    "duration_s",
+    "chars_per_s",
+    "energy_db_mean",
+    "energy_db_std",
+    "pause_ratio",
+    "f0_mean_hz",
+    "f0_std_semitones",
+    "f0_range_hz",
+    "voiced_ratio",
+    "spectral_centroid_hz",
+    "spectral_bandwidth_hz",
+    "spectral_rolloff_hz",
+    "spectral_flatness",
+    "zcr"
+   ],
+   "layers": [
+    "content (transcript, sealed by sha)",
+    "timing (start/end, pcm offsets)",
+    "speaker-local label + corpus cluster id",
+    "condition (codec/rate/channels)",
+    "discoverable spectrum columns",
+    "codec tokens (content stream cb0, character stream cb1-7)"
+   ],
+   "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_smoke",
+   "manifest_sha256": "89dc8c10710dca4b9351278bb6feae88d741844cb01a9927f1f69c66cc1ca055",
+   "compute": {
+    "wall_seconds": 51.2,
+    "gpu_seconds": 51.2,
+    "device": "cuda"
+   },
+   "raw_media_exported": false,
+   "text_exported": false,
+   "paths_exported": false,
+   "training_started": false
+  },
+  "finished_at": "2026-10-04T08:54:09Z",
+  "receipt_sha256": "2c5c2a13b30995465479b9b9c6d671bcc691a69b3f54ce00eadab6147f6d5bf8",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T08:54:09Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-996a7e2beafb",
+  "started_at_utc": "2026-10-04T08:53:18.682518Z",
+  "finished_at_utc": "2026-10-04T08:54:09Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-996a7e2beafb"
+ }
+}

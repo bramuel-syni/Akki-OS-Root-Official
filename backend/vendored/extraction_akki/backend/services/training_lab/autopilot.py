@@ -209,6 +209,10 @@ async def tick(tenant=TENANT):
     await evaluate_finished(tenant)
     await asyncio.to_thread(dispatch_signed, tenant)
     await refresh_estate_pack(tenant)
+    try:
+        from services.training_lab import malpha
+        await asyncio.to_thread(malpha.tick)
+    except Exception: log.exception('malpha tick failed')
 
 
 def kick(background):

@@ -19,6 +19,7 @@ from services.transform_forms.doc_studio.install import environment, read_manife
 from services.transform_forms.doc_studio.manifest_template import manifest_from_brief
 from services.transform_forms.doc_studio.producer_close import commission_from_job
 from services.transform_forms.doc_studio.producer_estate import commission_from_report
+from services.transform_forms.doc_studio.producer_malpha_tier2 import commission_from_malpha_tier2
 from services.transform_forms.doc_studio.producer_training import commission_from_training
 from services.transform_forms.doc_studio.receipts import bind_receipts
 from services.transform_forms.doc_studio.skill_env import SCRIPTS_DIR, build_env, skill_module
@@ -56,7 +57,7 @@ def _estate_plan(job_id: str, tenant_id: str, principal_id: str, now_: datetime)
     return plan
 
 
-PRODUCERS = {"estate-intelligence": _estate_plan, "commission-close": commission_from_job, "training-whitepaper": commission_from_training}
+PRODUCERS = {"estate-intelligence": _estate_plan, "commission-close": commission_from_job, "training-whitepaper": commission_from_training, "malpha-tier2": commission_from_malpha_tier2}
 
 
 def create_from_producer(producer: str, job_id: str, tenant_id: str, principal_id: str) -> Tuple[Dict[str, Any], bool]:

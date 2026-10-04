@@ -24,7 +24,12 @@ from services.census_autonomy import engine
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/training_runner/m9_worker.py"
-PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect", "lab_measure", "lab_train_music", "lab_classify_estate", "lab_text_lid")
+PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect", "lab_measure", "lab_train_music", "lab_classify_estate", "lab_text_lid",
+          "malpha_aip_build", "malpha_aip_requalify", "malpha_listener_train", "malpha_evaluate", "malpha_story_text_train", "malpha_voice_train", "malpha_baseline_render")
+MALPHA_PHASES = {"malpha_aip_build": {'lab_corpus_root', 'max_files_per_language', 'cpu_workers', 'token_max_seconds', 'codec_sample_per_language', 'brand_lexicon'}, "malpha_aip_requalify": {'min_dev_segments', 'min_dev_mention_segments'},
+                 "malpha_listener_train": {'recipe', 'brand_lexicon'}, "malpha_evaluate": {'artefact_path', 'artefact_sha256', 'brand_lexicon', 'admission_target', 'trained_job_id'},
+                 "malpha_story_text_train": {'recipe', 'base_registration'}, "malpha_voice_train": {'recipe'}, "malpha_baseline_render": {'prompts_per_language'}}
+MALPHA_COMMON = {'commission_id', 'languages', 'gpu_index', 'budget_mode', 'owner_order_ref', 'seed', 'iteration', 'aip_db_dir'}
 OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
 OWNER_ORDER_REF = "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)"
@@ -73,7 +78,7 @@ def build_bundle():
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
         for module in ('services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/training_lab/music_detector_worker.py', 'services/audio_plane_v1/acoustic_observables.py',
-                       'services/training_lab/estate_language_worker.py', 'services/audio_plane_v1/corrective_model.py'):
+                       'services/training_lab/estate_language_worker.py', 'services/audio_plane_v1/corrective_model.py', 'services/training_lab/malpha_worker.py', 'services/training_lab/malpha_voice_worker.py'):
             archive.writestr(zipfile.ZipInfo(module, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / module).read_bytes())
         for directory in ("services", "services/training_runner", "services/training_lab", "services/audio_plane_v1"):
             archive.writestr(zipfile.ZipInfo(directory + "/__init__.py", date_time=(2026, 1, 1, 0, 0, 0)), b"")
@@ -156,6 +161,20 @@ def validate(phase, params, host):
                 raise ValueError('MUSIC_DETECTOR_BOUNDS_INVALID:' + key)
         if params['epochs'] > 100 or params['folds'] > 10 or not 0 < float(params['lr']) < 1 or not 10 <= float(params['max_seconds_per_file']) <= 3600:
             raise ValueError('MUSIC_DETECTOR_BOUNDS_INVALID:recipe')
+    if phase in MALPHA_PHASES:
+        required = MALPHA_COMMON | MALPHA_PHASES[phase]; optional = {'resume_from'}
+        if not required <= set(params) <= required | optional:
+            raise ValueError('MALPHA_SCOPE_INVALID:' + ','.join(sorted((required | optional) ^ set(params))))
+        if params['budget_mode'] != 'uncapped_until_billing' or not params['owner_order_ref'] or not isinstance(params['languages'], list) or not set(params['languages']) <= {'kik', 'kam', 'swa'} or not params['languages']:
+            raise ValueError('MALPHA_AUTHORITY_INVALID')
+        if type(params['gpu_index']) is not int or params['gpu_index'] not in (0, 1) or type(params['iteration']) is not int or params['iteration'] < 0 or not str(params['aip_db_dir']).startswith(os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']):
+            raise ValueError('MALPHA_BOUNDS_INVALID')
+        if 'recipe' in params and (not isinstance(params['recipe'], dict) or not params['recipe'] or 'max_steps' in params['recipe'] and not 1 <= int(params['recipe']['max_steps']) <= 2_000_000):
+            raise ValueError('MALPHA_RECIPE_INVALID')
+        if phase == 'malpha_aip_build' and params['lab_corpus_root'] != os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']:
+            raise ValueError('MALPHA_CORPUS_SCOPE_INVALID')
+        if phase == 'malpha_evaluate' and (not re.fullmatch(r'[a-f0-9]{64}', str(params['artefact_sha256'])) or not str(params['artefact_path']).startswith(os.environ['M9_REMOTE_ROOT'])):
+            raise ValueError('MALPHA_ARTEFACT_INVALID')
     if phase in ("calibrate", "compare_optimizers", "train", "pipeline", "serve"):
         if type(params.get("gpu_index")) is not int or params["gpu_index"] not in (0, 1):
             raise ValueError("M9_GPU_INDEX_REQUIRED")

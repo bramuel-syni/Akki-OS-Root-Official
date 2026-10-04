@@ -22,7 +22,9 @@ SEED = 'akki-estate-forecast-v1'
 KERNEL_SIGMA = 1.0          # natural-log units of mean file size; doubled while fewer than MIN_EFFECTIVE donors carry weight
 MIN_EFFECTIVE = 3.0
 MIN_DONOR_READS = 5
-LANGUAGES_KEPT = 12
+from services.census_autonomy.language_register import LANGUAGES as _REGISTER
+
+LANGUAGES_KEPT = len(_REGISTER)  # the thirteen-language register sets the cap; no code the register names is dropped (owner order 3 Oct 2026)
 FOLDERS_KEPT = 100
 _CACHE: Dict[str, Dict[str, Any]] = {}
 

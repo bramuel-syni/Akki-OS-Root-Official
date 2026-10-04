@@ -1,0 +1,247 @@
+{
+ "job_id": "m9j-2424ab203154",
+ "phase": "malpha_aip_requalify",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T10:23:19.670860Z",
+ "params": {
+  "min_dev_segments": 300,
+  "min_dev_mention_segments": 30,
+  "commission_id": "LISTEN-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 0,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-81b2a93003f5",
+ "northena_trace_id": "trc-afb362332974",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-2424ab203154"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-2424ab203154",
+  "pid": 1826594
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-39aed26c6a4b",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_aip_requalify_admitted"
+  },
+  {
+   "row_id": "led-0505441b851d",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_aip_requalify_daemonised:pid=1826594"
+  },
+  {
+   "row_id": "led-3c2aca8373cb",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_aip_requalify_completed"
+  }
+ ],
+ "code_sha256": "7d8fd32da2336e0815d0d80634ccb19b17ca061a80ca92e61a600ae68a586b8e",
+ "started_at": "2026-10-04T10:23:25.231605Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:25:02.847992Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-77eb38d5936a"
+ },
+ "remote_state": {
+  "phase": "malpha_aip_requalify",
+  "status": "completed",
+  "started_at": "2026-10-04T10:23:25Z",
+  "progress": {},
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-2424ab203154",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T10:23:37Z",
+  "finished_at": "2026-10-04T10:23:37Z",
+  "receipt_sha256": "7ac3d4fea7e8a82992eb39afe5b15b2d13da6cfab3e7fa9fc0f306098903381e"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-2424ab203154",
+  "phase": "malpha_aip_requalify",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T10:23:25Z",
+  "code_sha256": "7d8fd32da2336e0815d0d80634ccb19b17ca061a80ca92e61a600ae68a586b8e",
+  "status": "completed",
+  "result": {
+   "protocol": "akki-malpha-aip-db-v1",
+   "commission_id": "LISTEN-KIK-KAM-SWA",
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "seed": 20261004,
+   "segments": {
+    "kam": {
+     "train": {
+      "segments": 13391,
+      "hours": 13.171
+     },
+     "dev": {
+      "segments": 3810,
+      "hours": 3.641
+     },
+     "admission": {
+      "segments": 129,
+      "hours": 0.212
+     },
+     "dev_by_basis": {
+      "session_holdout": 3808,
+      "cluster_disjoint": 2
+     }
+    },
+    "kik": {
+     "train": {
+      "segments": 32120,
+      "hours": 38.422
+     },
+     "dev": {
+      "segments": 2962,
+      "hours": 3.611
+     },
+     "admission": {
+      "segments": 357,
+      "hours": 0.376
+     },
+     "dev_by_basis": {
+      "session_holdout": 2796,
+      "cluster_disjoint": 166
+     }
+    },
+    "swa": {
+     "train": {
+      "segments": 35410,
+      "hours": 41.507
+     },
+     "dev": {
+      "segments": 583,
+      "hours": 0.847
+     },
+     "admission": {
+      "segments": 88,
+      "hours": 0.071
+     },
+     "dev_by_basis": {
+      "cluster_disjoint": 329,
+      "session_holdout": 254
+     }
+    }
+   },
+   "seals": {
+    "kam": {
+     "admission_seg_ids_sha256": "0f2c4dd4345e3bbb8aba2e3773740076d0c98d3f5750b0aa02263ddbca33e807",
+     "dev_seg_ids_sha256": "5d0f34f68a6c4ce8b9d144a592051cbd94cad32ffb40c1b3909736efd0a3ddae",
+     "sealed_at": "2026-10-04T09:19:36Z",
+     "dev_resealed_at": "2026-10-04T10:23:31Z",
+     "admission_seal_unchanged": true
+    },
+    "kik": {
+     "admission_seg_ids_sha256": "3e0aad9669922ffe5aa15a1d2cca1f9155ac1dec20a20041b040232f24764132",
+     "dev_seg_ids_sha256": "2f05e1f27452a64a4620c371ab384e70273aee65f5d2d5b546679bcab915f1f0",
+     "sealed_at": "2026-10-04T09:19:36Z",
+     "dev_resealed_at": "2026-10-04T10:23:26Z",
+     "admission_seal_unchanged": true
+    },
+    "swa": {
+     "admission_seg_ids_sha256": "96b7afb48debccf1f7ef6b0e150fac643e85e924db33ff01e79744d6f0576a0a",
+     "dev_seg_ids_sha256": "07f0d727c40fb31f2e0969b404fe84c77f5c491e413b96dc650100df768b5702",
+     "sealed_at": "2026-10-04T09:19:36Z",
+     "dev_resealed_at": "2026-10-04T10:23:34Z",
+     "admission_seal_unchanged": true
+    }
+   },
+   "requalification": {
+    "at": "2026-10-04T10:23:37Z",
+    "min_dev_segments": 300,
+    "min_dev_mention_segments": 30,
+    "report": {
+     "kik": {
+      "before": {
+       "segments": 166,
+       "mention_segments": 1
+      },
+      "after": {
+       "segments": 2962,
+       "mention_segments": 30
+      },
+      "promoted_sessions": 41,
+      "promoted_segments_without_codec_tokens": 0
+     },
+     "kam": {
+      "before": {
+       "segments": 2,
+       "mention_segments": 0
+      },
+      "after": {
+       "segments": 3810,
+       "mention_segments": 30
+      },
+      "promoted_sessions": 75,
+      "promoted_segments_without_codec_tokens": 0
+     },
+     "swa": {
+      "before": {
+       "segments": 329,
+       "mention_segments": 6
+      },
+      "after": {
+       "segments": 583,
+       "mention_segments": 37
+      },
+      "promoted_sessions": 4,
+      "promoted_segments_without_codec_tokens": 0
+     }
+    },
+    "authority": "MA-12 absent-strata refusal \u2192 correction; selection effect disclosed"
+   },
+   "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1",
+   "manifest_sha256": "496439eb97fad96a9ac184665c93bf6df97e6e921d4058cfc0127cc851575595",
+   "compute": {
+    "wall_seconds": 11.8,
+    "gpu_seconds": 0,
+    "device": "cpu"
+   },
+   "raw_media_exported": false,
+   "text_exported": false,
+   "paths_exported": false,
+   "training_started": false
+  },
+  "finished_at": "2026-10-04T10:23:37Z",
+  "receipt_sha256": "7ac3d4fea7e8a82992eb39afe5b15b2d13da6cfab3e7fa9fc0f306098903381e",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T10:23:37Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-2424ab203154",
+  "started_at_utc": "2026-10-04T10:23:25.231605Z",
+  "finished_at_utc": "2026-10-04T10:23:37Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-2424ab203154"
+ }
+}

@@ -1,0 +1,404 @@
+{
+ "job_id": "m9j-83f56fab74ed",
+ "phase": "malpha_listener_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T09:30:28.811797Z",
+ "params": {
+  "recipe": {
+   "base": "openai/whisper-small",
+   "lr": 0.0001,
+   "batch_size": 32,
+   "grad_accum": 1,
+   "max_steps": 6000,
+   "warmup_steps": 300,
+   "eval_every": 1500,
+   "checkpoint_every": 500,
+   "dev_per_language": 300
+  },
+  "brand_lexicon": [
+   {
+    "brand": "Safaricom",
+    "aliases": [
+     "safaricom",
+     "saf"
+    ]
+   },
+   {
+    "brand": "M-Pesa",
+    "aliases": [
+     "mpesa",
+     "m-pesa",
+     "m pesa"
+    ]
+   },
+   {
+    "brand": "Fuliza",
+    "aliases": [
+     "fuliza"
+    ]
+   },
+   {
+    "brand": "Airtel",
+    "aliases": [
+     "airtel",
+     "airtel money"
+    ]
+   },
+   {
+    "brand": "Equity Bank",
+    "aliases": [
+     "equity",
+     "equity bank",
+     "equitel"
+    ]
+   },
+   {
+    "brand": "KCB",
+    "aliases": [
+     "kcb",
+     "kenya commercial bank"
+    ]
+   },
+   {
+    "brand": "Co-operative Bank",
+    "aliases": [
+     "co-op bank",
+     "coop bank",
+     "cooperative bank",
+     "co-operative bank"
+    ]
+   },
+   {
+    "brand": "Inooro FM",
+    "aliases": [
+     "inooro",
+     "inooro fm"
+    ]
+   },
+   {
+    "brand": "Kameme FM",
+    "aliases": [
+     "kameme",
+     "kameme fm"
+    ]
+   },
+   {
+    "brand": "Coro FM",
+    "aliases": [
+     "coro fm",
+     "coro"
+    ]
+   },
+   {
+    "brand": "Citizen",
+    "aliases": [
+     "citizen",
+     "citizen tv",
+     "citizen radio"
+    ]
+   },
+   {
+    "brand": "Royal Media",
+    "aliases": [
+     "royal media",
+     "royal media services"
+    ]
+   },
+   {
+    "brand": "Musyi FM",
+    "aliases": [
+     "musyi",
+     "musyi fm"
+    ]
+   },
+   {
+    "brand": "Ramogi FM",
+    "aliases": [
+     "ramogi"
+    ]
+   },
+   {
+    "brand": "Radio Jambo",
+    "aliases": [
+     "radio jambo",
+     "jambo"
+    ]
+   },
+   {
+    "brand": "Kenya Power",
+    "aliases": [
+     "kenya power",
+     "kplc",
+     "stima"
+    ]
+   },
+   {
+    "brand": "NHIF",
+    "aliases": [
+     "nhif"
+    ]
+   },
+   {
+    "brand": "NSSF",
+    "aliases": [
+     "nssf"
+    ]
+   },
+   {
+    "brand": "KRA",
+    "aliases": [
+     "kra",
+     "kenya revenue authority"
+    ]
+   },
+   {
+    "brand": "Huduma",
+    "aliases": [
+     "huduma",
+     "huduma centre",
+     "huduma namba"
+    ]
+   },
+   {
+    "brand": "Tusker",
+    "aliases": [
+     "tusker"
+    ]
+   },
+   {
+    "brand": "Coca-Cola",
+    "aliases": [
+     "coca cola",
+     "coca-cola",
+     "coke"
+    ]
+   },
+   {
+    "brand": "Brookside",
+    "aliases": [
+     "brookside"
+    ]
+   },
+   {
+    "brand": "Unga",
+    "aliases": [
+     "jogoo",
+     "unga limited"
+    ]
+   },
+   {
+    "brand": "Bidco",
+    "aliases": [
+     "bidco"
+    ]
+   },
+   {
+    "brand": "Betika",
+    "aliases": [
+     "betika"
+    ]
+   },
+   {
+    "brand": "SportPesa",
+    "aliases": [
+     "sportpesa",
+     "sport pesa"
+    ]
+   },
+   {
+    "brand": "Odibets",
+    "aliases": [
+     "odibets",
+     "odi bets"
+    ]
+   },
+   {
+    "brand": "Tala",
+    "aliases": [
+     "tala"
+    ]
+   },
+   {
+    "brand": "Branch",
+    "aliases": [
+     "branch loan",
+     "branch app"
+    ]
+   },
+   {
+    "brand": "KPLC",
+    "aliases": [
+     "kplc"
+    ]
+   },
+   {
+    "brand": "Nairobi Water",
+    "aliases": [
+     "nairobi water"
+    ]
+   },
+   {
+    "brand": "Kenyatta Hospital",
+    "aliases": [
+     "kenyatta hospital",
+     "knh"
+    ]
+   },
+   {
+    "brand": "Uber",
+    "aliases": [
+     "uber"
+    ]
+   },
+   {
+    "brand": "Bolt",
+    "aliases": [
+     "bolt"
+    ]
+   },
+   {
+    "brand": "Jumia",
+    "aliases": [
+     "jumia"
+    ]
+   },
+   {
+    "brand": "KBC",
+    "aliases": [
+     "kbc"
+    ]
+   },
+   {
+    "brand": "Nation",
+    "aliases": [
+     "nation media",
+     "daily nation",
+     "taifa leo"
+    ]
+   },
+   {
+    "brand": "Standard",
+    "aliases": [
+     "the standard",
+     "standard media"
+    ]
+   }
+  ],
+  "commission_id": "LISTEN-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 1,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-6840e1607398",
+ "northena_trace_id": "trc-178d0e8cc039",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-83f56fab74ed"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-83f56fab74ed",
+  "pid": 1824249
+ },
+ "status": "failed",
+ "ledger_rows": [
+  {
+   "row_id": "led-aec3af8d90ae",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_listener_train_admitted"
+  },
+  {
+   "row_id": "led-2e10eec28dee",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_listener_train_daemonised:pid=1824249"
+  },
+  {
+   "row_id": "led-b2c014fa34c3",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_listener_train_failed"
+  }
+ ],
+ "code_sha256": "bbdde8dc52a354672edc018aac5070d93b1b8b5c35fde7e47c4a71da0b2835ff",
+ "started_at": "2026-10-04T09:30:34.673094Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:00:19.126347Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-f9c33dc604b6"
+ },
+ "remote_state": {
+  "phase": "malpha_listener_train",
+  "status": "failed",
+  "started_at": "2026-10-04T09:30:34Z",
+  "progress": {},
+  "stages": {
+   "data": {
+    "at": "2026-10-04T09:30:38Z",
+    "train_segments": 87779,
+    "dev_segments": 468,
+    "train_hours": 100.62,
+    "admission_read": false
+   }
+  },
+  "events": [],
+  "job_id": "m9j-83f56fab74ed",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T09:31:21Z",
+  "finished_at": "2026-10-04T09:31:21Z",
+  "receipt_sha256": "cb67e8092236b88d5e48762d25bd5ca4ae95ad5a074d65179061b3efc5354f61"
+ },
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/479 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 479/479 [00:00<00:00, 8521.57it/s]",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-83f56fab74ed",
+  "phase": "malpha_listener_train",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T09:30:34Z",
+  "code_sha256": "bbdde8dc52a354672edc018aac5070d93b1b8b5c35fde7e47c4a71da0b2835ff",
+  "status": "failed",
+  "error": {
+   "type": "AttributeError",
+   "message": "WhisperTokenizer has no attribute additional_special_tokens",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-83f56fab74ed/worker.zip/services/training_runner/m9_worker.py\", line 1362, in execute\n    receipt['result'] = fn(control, state)\n                        ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-83f56fab74ed/worker.zip/services/training_lab/malpha_worker.py\", line 619, in listener_train\n    processor, model, ids = _prepare_whisper(recipe['base'], langs, device)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-83f56fab74ed/worker.zip/services/training_lab/malpha_worker.py\", line 533, in _prepare_whisper\n    tok.add_special_tokens({'additional_special_tokens': list(tok.additional_special_tokens) + new})\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\", line 1308, in __getattr__\n    raise AttributeError(f\"{self.__class__.__name__} has no attribute {key}\")\nAttributeError: WhisperTokenizer has no attribute additional_special_tokens. Did you mean: 'add_special_tokens'?\n"
+  },
+  "stages_completed": {
+   "data": {
+    "at": "2026-10-04T09:30:38Z",
+    "train_segments": 87779,
+    "dev_segments": 468,
+    "train_hours": 100.62,
+    "admission_read": false
+   }
+  },
+  "finished_at": "2026-10-04T09:31:21Z",
+  "receipt_sha256": "cb67e8092236b88d5e48762d25bd5ca4ae95ad5a074d65179061b3efc5354f61",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T09:31:21Z",
+ "reason": "AttributeError: WhisperTokenizer has no attribute additional_special_tokens",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-83f56fab74ed",
+  "started_at_utc": "2026-10-04T09:30:34.673094Z",
+  "finished_at_utc": "2026-10-04T09:31:21Z",
+  "status": "failed",
+  "provenance_ref": "m9_training://run_log/m9j-83f56fab74ed"
+ }
+}

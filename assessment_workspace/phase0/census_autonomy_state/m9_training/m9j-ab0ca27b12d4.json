@@ -1,0 +1,224 @@
+{
+ "job_id": "m9j-ab0ca27b12d4",
+ "phase": "malpha_voice_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T10:26:00.229032Z",
+ "params": {
+  "recipe": {
+   "lr": 0.0003,
+   "batch_size": 48,
+   "max_steps": 40000,
+   "warmup_steps": 1000,
+   "eval_every": 2500,
+   "checkpoint_every": 500,
+   "d_model": 768,
+   "layers": 12,
+   "heads": 12,
+   "max_segment_seconds": 12.0,
+   "spectral_feedback": true,
+   "eval_prompts_per_language": 12,
+   "comparators_per_language": 300,
+   "identity_cosine_threshold": 0.4
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 1,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-d1d7eb84ee8b",
+ "northena_trace_id": "trc-4255ecc693b8",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-ab0ca27b12d4"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ab0ca27b12d4",
+  "pid": 1827142
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-12735c179d72",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_voice_train_admitted"
+  },
+  {
+   "row_id": "led-4f4e9c45d6ad",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_voice_train_daemonised:pid=1827142"
+  }
+ ],
+ "code_sha256": "1fb83fac9dfd7cca5446043b873ca87bead4cddc4d37507c920acfecdf2a4120",
+ "started_at": "2026-10-04T10:26:05.775014Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:56:18.334927Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-b3471115686f"
+ },
+ "remote_state": {
+  "phase": "malpha_voice_train",
+  "status": "running",
+  "started_at": "2026-10-04T10:26:05Z",
+  "progress": {
+   "stage": "training codec language model",
+   "step": 13900,
+   "of": 40000,
+   "loss": 3.2646,
+   "elapsed_s": 1809,
+   "gpu_peak_gb": 13.38,
+   "last_checkpoint_step": 13500,
+   "next_checkpoint_step": 14000,
+   "parameters": 111165976
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T10:26:17Z",
+    "train_segments": 75012,
+    "train_hours": 62.04,
+    "dev_segments": 3811,
+    "text_vocab": 68,
+    "admission_read": false,
+    "per_language": {
+     "kik": 29627,
+     "kam": 12642,
+     "swa": 32743
+    },
+    "excluded_overlong_transcripts": 9,
+    "max_text_chars": 400,
+    "max_codec_frames": 152
+   },
+   "dev_eval_step_2500": {
+    "at": "2026-10-04T10:39:04Z",
+    "kik": {
+     "overall_similarity": 0.5473,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4319,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5191,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5429,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.4296,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4865,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_5000": {
+    "at": "2026-10-04T10:44:11Z",
+    "kik": {
+     "overall_similarity": 0.6077,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4675,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6719,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5481,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6457,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5821,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_7500": {
+    "at": "2026-10-04T10:47:39Z",
+    "kik": {
+     "overall_similarity": 0.6448,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4477,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5372,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5479,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.4154,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6007,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_10000": {
+    "at": "2026-10-04T10:51:08Z",
+    "kik": {
+     "overall_similarity": 0.6718,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4291,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5689,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5266,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6705,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5214,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_12500": {
+    "at": "2026-10-04T10:54:38Z",
+    "kik": {
+     "overall_similarity": 0.7221,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4351,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.524,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4807,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.4747,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4998,
+     "rendered": 12
+    }
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-04T10:26:37Z",
+    "message": "identity comparators prepared in memory: {kik: 300, kam: 300, swa: 300}; never written to disk"
+   }
+  ],
+  "job_id": "m9j-ab0ca27b12d4",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T10:56:17Z"
+ },
+ "worker_log_tail": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ab0ca27b12d4/worker.zip/services/training_lab/malpha_voice_worker.py:196: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 6572.94it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ab0ca27b12d4/worker.zip/services/training_lab/malpha_voice_worker.py:387: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))",
+ "process_alive": true
+}

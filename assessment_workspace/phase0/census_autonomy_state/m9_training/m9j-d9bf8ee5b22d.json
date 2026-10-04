@@ -1,0 +1,384 @@
+{
+ "job_id": "m9j-d9bf8ee5b22d",
+ "phase": "malpha_listener_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T10:15:41.265441Z",
+ "params": {
+  "recipe": {
+   "base": "openai/whisper-large-v3-turbo",
+   "lr": 3e-05,
+   "batch_size": 16,
+   "grad_accum": 4,
+   "max_steps": 12000,
+   "warmup_steps": 500,
+   "eval_every": 2000,
+   "checkpoint_every": 500,
+   "dev_per_language": 300
+  },
+  "brand_lexicon": [
+   {
+    "brand": "Safaricom",
+    "aliases": [
+     "safaricom",
+     "saf"
+    ]
+   },
+   {
+    "brand": "M-Pesa",
+    "aliases": [
+     "mpesa",
+     "m-pesa",
+     "m pesa"
+    ]
+   },
+   {
+    "brand": "Fuliza",
+    "aliases": [
+     "fuliza"
+    ]
+   },
+   {
+    "brand": "Airtel",
+    "aliases": [
+     "airtel",
+     "airtel money"
+    ]
+   },
+   {
+    "brand": "Equity Bank",
+    "aliases": [
+     "equity",
+     "equity bank",
+     "equitel"
+    ]
+   },
+   {
+    "brand": "KCB",
+    "aliases": [
+     "kcb",
+     "kenya commercial bank"
+    ]
+   },
+   {
+    "brand": "Co-operative Bank",
+    "aliases": [
+     "co-op bank",
+     "coop bank",
+     "cooperative bank",
+     "co-operative bank"
+    ]
+   },
+   {
+    "brand": "Inooro FM",
+    "aliases": [
+     "inooro",
+     "inooro fm"
+    ]
+   },
+   {
+    "brand": "Kameme FM",
+    "aliases": [
+     "kameme",
+     "kameme fm"
+    ]
+   },
+   {
+    "brand": "Coro FM",
+    "aliases": [
+     "coro fm",
+     "coro"
+    ]
+   },
+   {
+    "brand": "Citizen",
+    "aliases": [
+     "citizen",
+     "citizen tv",
+     "citizen radio"
+    ]
+   },
+   {
+    "brand": "Royal Media",
+    "aliases": [
+     "royal media",
+     "royal media services"
+    ]
+   },
+   {
+    "brand": "Musyi FM",
+    "aliases": [
+     "musyi",
+     "musyi fm"
+    ]
+   },
+   {
+    "brand": "Ramogi FM",
+    "aliases": [
+     "ramogi"
+    ]
+   },
+   {
+    "brand": "Radio Jambo",
+    "aliases": [
+     "radio jambo",
+     "jambo"
+    ]
+   },
+   {
+    "brand": "Kenya Power",
+    "aliases": [
+     "kenya power",
+     "kplc",
+     "stima"
+    ]
+   },
+   {
+    "brand": "NHIF",
+    "aliases": [
+     "nhif"
+    ]
+   },
+   {
+    "brand": "NSSF",
+    "aliases": [
+     "nssf"
+    ]
+   },
+   {
+    "brand": "KRA",
+    "aliases": [
+     "kra",
+     "kenya revenue authority"
+    ]
+   },
+   {
+    "brand": "Huduma",
+    "aliases": [
+     "huduma",
+     "huduma centre",
+     "huduma namba"
+    ]
+   },
+   {
+    "brand": "Tusker",
+    "aliases": [
+     "tusker"
+    ]
+   },
+   {
+    "brand": "Coca-Cola",
+    "aliases": [
+     "coca cola",
+     "coca-cola",
+     "coke"
+    ]
+   },
+   {
+    "brand": "Brookside",
+    "aliases": [
+     "brookside"
+    ]
+   },
+   {
+    "brand": "Unga",
+    "aliases": [
+     "jogoo",
+     "unga limited"
+    ]
+   },
+   {
+    "brand": "Bidco",
+    "aliases": [
+     "bidco"
+    ]
+   },
+   {
+    "brand": "Betika",
+    "aliases": [
+     "betika"
+    ]
+   },
+   {
+    "brand": "SportPesa",
+    "aliases": [
+     "sportpesa",
+     "sport pesa"
+    ]
+   },
+   {
+    "brand": "Odibets",
+    "aliases": [
+     "odibets",
+     "odi bets"
+    ]
+   },
+   {
+    "brand": "Tala",
+    "aliases": [
+     "tala"
+    ]
+   },
+   {
+    "brand": "Branch",
+    "aliases": [
+     "branch loan",
+     "branch app"
+    ]
+   },
+   {
+    "brand": "KPLC",
+    "aliases": [
+     "kplc"
+    ]
+   },
+   {
+    "brand": "Nairobi Water",
+    "aliases": [
+     "nairobi water"
+    ]
+   },
+   {
+    "brand": "Kenyatta Hospital",
+    "aliases": [
+     "kenyatta hospital",
+     "knh"
+    ]
+   },
+   {
+    "brand": "Uber",
+    "aliases": [
+     "uber"
+    ]
+   },
+   {
+    "brand": "Bolt",
+    "aliases": [
+     "bolt"
+    ]
+   },
+   {
+    "brand": "Jumia",
+    "aliases": [
+     "jumia"
+    ]
+   },
+   {
+    "brand": "KBC",
+    "aliases": [
+     "kbc"
+    ]
+   },
+   {
+    "brand": "Nation",
+    "aliases": [
+     "nation media",
+     "daily nation",
+     "taifa leo"
+    ]
+   },
+   {
+    "brand": "Standard",
+    "aliases": [
+     "the standard",
+     "standard media"
+    ]
+   }
+  ],
+  "commission_id": "LISTEN-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 3,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-ad1ef36e3814",
+ "northena_trace_id": "trc-f66c8f39c72b",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-d9bf8ee5b22d"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d9bf8ee5b22d",
+  "pid": 1825929
+ },
+ "status": "cancelled",
+ "ledger_rows": [
+  {
+   "row_id": "led-b7393fc5c720",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_listener_train_admitted"
+  },
+  {
+   "row_id": "led-8eca177ef151",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_listener_train_daemonised:pid=1825929"
+  },
+  {
+   "row_id": "led-fbea39637aa5",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_listener_train_cancelled:superseded: dispatched under the old iteration counter (ladder step 3 instead of 1) against the pre-requalification dev split (Kamba dev = 2 segments); restarted at "
+  }
+ ],
+ "code_sha256": "6fe598f345bfcfb5e1edfb8eb0607db932c13a214cc2a3b9acf20bdc5193083b",
+ "started_at": "2026-10-04T10:15:47.158574Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:23:15.774129Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-352972f05f9c"
+ },
+ "remote_state": {
+  "phase": "malpha_listener_train",
+  "status": "running",
+  "started_at": "2026-10-04T10:15:47Z",
+  "progress": {
+   "stage": "training",
+   "step": 100,
+   "of": 12000,
+   "loss": 2.1671,
+   "lr": 6e-06,
+   "elapsed_s": 411,
+   "gpu_peak_gb": 57.58,
+   "last_checkpoint_step": 0,
+   "next_checkpoint_step": 500
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T10:15:50Z",
+    "train_segments": 87779,
+    "dev_segments": 468,
+    "train_hours": 100.62,
+    "admission_read": false
+   }
+  },
+  "events": [],
+  "job_id": "m9j-d9bf8ee5b22d",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T10:22:40Z"
+ },
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 343/587 [00:00<00:00, 3426.95it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3602.63it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d9bf8ee5b22d/worker.zip/services/training_lab/malpha_worker.py:643: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)",
+ "process_alive": true,
+ "cancel_rpc": {
+  "at": "2026-10-04T10:24:51.265538Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-dc32eb176762",
+  "outcome": "stopped",
+  "reason": "superseded: dispatched under the old iteration counter (ladder step 3 instead of 1) against the pre-requalification dev split (Kamba dev = 2 segments); restarted at iteration 1 on the requalified data"
+ },
+ "reason": "superseded: dispatched under the old iteration counter (ladder step 3 instead of 1) against the pre-requalification dev split (Kamba dev = 2 segments); restarted at iteration 1 on the requalified data",
+ "finished_at": "2026-10-04T10:24:51.265552Z"
+}

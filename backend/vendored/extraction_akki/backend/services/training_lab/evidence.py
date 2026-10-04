@@ -1,7 +1,9 @@
 """Allowlisted aggregate projection. Never forward transcripts, logs or arbitrary labels."""
 import math
 
-LANGUAGES = {'guz','kam','kik','kln','luo','lwg','swa','eng','sheng','bxk'}
+from services.census_autonomy.language_register import LANGUAGES as _REGISTER
+
+LANGUAGES = {l['code'] for l in _REGISTER} | {'sheng'}  # all thirteen register codes (+ Sheng); a projection must not drop a language the register names
 
 
 def number(value):

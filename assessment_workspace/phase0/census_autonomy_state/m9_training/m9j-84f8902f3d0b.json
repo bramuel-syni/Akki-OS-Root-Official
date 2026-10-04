@@ -1,0 +1,388 @@
+{
+ "job_id": "m9j-84f8902f3d0b",
+ "phase": "malpha_aip_build",
+ "host": "akki-vm-ii",
+ "principal_id": "malpha-smoke",
+ "submitted_at": "2026-10-04T08:48:07.925728Z",
+ "params": {
+  "commission_id": "SMOKE",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 0,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_smoke",
+  "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+  "max_files_per_language": 3,
+  "cpu_workers": 4,
+  "token_max_seconds": 12.0,
+  "codec_sample_per_language": 3,
+  "brand_lexicon": [
+   {
+    "brand": "Safaricom",
+    "aliases": [
+     "safaricom",
+     "saf"
+    ]
+   },
+   {
+    "brand": "M-Pesa",
+    "aliases": [
+     "mpesa",
+     "m-pesa",
+     "m pesa"
+    ]
+   },
+   {
+    "brand": "Fuliza",
+    "aliases": [
+     "fuliza"
+    ]
+   },
+   {
+    "brand": "Airtel",
+    "aliases": [
+     "airtel",
+     "airtel money"
+    ]
+   },
+   {
+    "brand": "Equity Bank",
+    "aliases": [
+     "equity",
+     "equity bank",
+     "equitel"
+    ]
+   },
+   {
+    "brand": "KCB",
+    "aliases": [
+     "kcb",
+     "kenya commercial bank"
+    ]
+   },
+   {
+    "brand": "Co-operative Bank",
+    "aliases": [
+     "co-op bank",
+     "coop bank",
+     "cooperative bank",
+     "co-operative bank"
+    ]
+   },
+   {
+    "brand": "Inooro FM",
+    "aliases": [
+     "inooro",
+     "inooro fm"
+    ]
+   },
+   {
+    "brand": "Kameme FM",
+    "aliases": [
+     "kameme",
+     "kameme fm"
+    ]
+   },
+   {
+    "brand": "Coro FM",
+    "aliases": [
+     "coro fm",
+     "coro"
+    ]
+   },
+   {
+    "brand": "Citizen",
+    "aliases": [
+     "citizen",
+     "citizen tv",
+     "citizen radio"
+    ]
+   },
+   {
+    "brand": "Royal Media",
+    "aliases": [
+     "royal media",
+     "royal media services"
+    ]
+   },
+   {
+    "brand": "Musyi FM",
+    "aliases": [
+     "musyi",
+     "musyi fm"
+    ]
+   },
+   {
+    "brand": "Ramogi FM",
+    "aliases": [
+     "ramogi"
+    ]
+   },
+   {
+    "brand": "Radio Jambo",
+    "aliases": [
+     "radio jambo",
+     "jambo"
+    ]
+   },
+   {
+    "brand": "Kenya Power",
+    "aliases": [
+     "kenya power",
+     "kplc",
+     "stima"
+    ]
+   },
+   {
+    "brand": "NHIF",
+    "aliases": [
+     "nhif"
+    ]
+   },
+   {
+    "brand": "NSSF",
+    "aliases": [
+     "nssf"
+    ]
+   },
+   {
+    "brand": "KRA",
+    "aliases": [
+     "kra",
+     "kenya revenue authority"
+    ]
+   },
+   {
+    "brand": "Huduma",
+    "aliases": [
+     "huduma",
+     "huduma centre",
+     "huduma namba"
+    ]
+   },
+   {
+    "brand": "Tusker",
+    "aliases": [
+     "tusker"
+    ]
+   },
+   {
+    "brand": "Coca-Cola",
+    "aliases": [
+     "coca cola",
+     "coca-cola",
+     "coke"
+    ]
+   },
+   {
+    "brand": "Brookside",
+    "aliases": [
+     "brookside"
+    ]
+   },
+   {
+    "brand": "Unga",
+    "aliases": [
+     "jogoo",
+     "unga limited"
+    ]
+   },
+   {
+    "brand": "Bidco",
+    "aliases": [
+     "bidco"
+    ]
+   },
+   {
+    "brand": "Betika",
+    "aliases": [
+     "betika"
+    ]
+   },
+   {
+    "brand": "SportPesa",
+    "aliases": [
+     "sportpesa",
+     "sport pesa"
+    ]
+   },
+   {
+    "brand": "Odibets",
+    "aliases": [
+     "odibets",
+     "odi bets"
+    ]
+   },
+   {
+    "brand": "Tala",
+    "aliases": [
+     "tala"
+    ]
+   },
+   {
+    "brand": "Branch",
+    "aliases": [
+     "branch loan",
+     "branch app"
+    ]
+   },
+   {
+    "brand": "KPLC",
+    "aliases": [
+     "kplc"
+    ]
+   },
+   {
+    "brand": "Nairobi Water",
+    "aliases": [
+     "nairobi water"
+    ]
+   },
+   {
+    "brand": "Kenyatta Hospital",
+    "aliases": [
+     "kenyatta hospital",
+     "knh"
+    ]
+   },
+   {
+    "brand": "Uber",
+    "aliases": [
+     "uber"
+    ]
+   },
+   {
+    "brand": "Bolt",
+    "aliases": [
+     "bolt"
+    ]
+   },
+   {
+    "brand": "Jumia",
+    "aliases": [
+     "jumia"
+    ]
+   },
+   {
+    "brand": "KBC",
+    "aliases": [
+     "kbc"
+    ]
+   },
+   {
+    "brand": "Nation",
+    "aliases": [
+     "nation media",
+     "daily nation",
+     "taifa leo"
+    ]
+   },
+   {
+    "brand": "Standard",
+    "aliases": [
+     "the standard",
+     "standard media"
+    ]
+   }
+  ]
+ },
+ "northena_run_id": "run-ccd3232e46e8",
+ "northena_trace_id": "trc-5fae0d28caad",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-84f8902f3d0b"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-84f8902f3d0b",
+  "pid": 1319495
+ },
+ "status": "failed",
+ "ledger_rows": [
+  {
+   "row_id": "led-abfe14fbc85d",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_aip_build_admitted"
+  },
+  {
+   "row_id": "led-282e612b0c41",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_aip_build_daemonised:pid=1319495"
+  },
+  {
+   "row_id": "led-e3a9dc0763a8",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_aip_build_failed"
+  }
+ ],
+ "code_sha256": "593f4fb7b126fca0e5a57db45d6674e772b91ecd9b1df6224380b6022b9acc1b",
+ "started_at": "2026-10-04T08:48:14.051487Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T08:49:32.545857Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-812d56cd9b51"
+ },
+ "remote_state": {
+  "phase": "malpha_aip_build",
+  "status": "failed",
+  "started_at": "2026-10-04T08:48:13Z",
+  "progress": {
+   "stage": "reading Kikuyu recordings into the database",
+   "language": "kik",
+   "files": 0,
+   "of": 3,
+   "elapsed_s": 0
+  },
+  "stages": {},
+  "events": [],
+  "job_id": "m9j-84f8902f3d0b",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T08:48:14Z",
+  "finished_at": "2026-10-04T08:48:14Z",
+  "receipt_sha256": "1903c3bbbca007abac617c986a0fda0d856658d230b021b65872bc955446e0f1"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-84f8902f3d0b",
+  "phase": "malpha_aip_build",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-04T08:48:13Z",
+  "code_sha256": "593f4fb7b126fca0e5a57db45d6674e772b91ecd9b1df6224380b6022b9acc1b",
+  "status": "failed",
+  "error": {
+   "type": "ImportError",
+   "message": "cannot import name 'BrokenProcessPool' from 'concurrent.futures' (/usr/lib/python3.12/concurrent/futures/__init__.py)",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-84f8902f3d0b/worker.zip/services/training_runner/m9_worker.py\", line 1362, in execute\n    receipt['result'] = fn(control, state)\n                        ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-84f8902f3d0b/worker.zip/services/training_lab/malpha_worker.py\", line 330, in aip_build\n    results = _read_language(files, pcm_store.path(lang), 0.8, 30.0, int(control.get('cpu_workers', 24)),\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-84f8902f3d0b/worker.zip/services/training_lab/malpha_worker.py\", line 293, in _read_language\n    from concurrent.futures import BrokenProcessPool, ProcessPoolExecutor, as_completed\nImportError: cannot import name 'BrokenProcessPool' from 'concurrent.futures' (/usr/lib/python3.12/concurrent/futures/__init__.py)\n"
+  },
+  "stages_completed": {},
+  "finished_at": "2026-10-04T08:48:14Z",
+  "receipt_sha256": "1903c3bbbca007abac617c986a0fda0d856658d230b021b65872bc955446e0f1",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T08:48:14Z",
+ "reason": "ImportError: cannot import name 'BrokenProcessPool' from 'concurrent.futures' (/usr/lib/python3.12/concurrent/futures/__init__.py)",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-84f8902f3d0b",
+  "started_at_utc": "2026-10-04T08:48:14.051487Z",
+  "finished_at_utc": "2026-10-04T08:48:14Z",
+  "status": "failed",
+  "provenance_ref": "m9_training://run_log/m9j-84f8902f3d0b"
+ }
+}

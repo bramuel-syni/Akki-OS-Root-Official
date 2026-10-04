@@ -1,0 +1,408 @@
+{
+ "job_id": "m9j-85cad8822906",
+ "phase": "malpha_story_text_train",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T09:30:38.703243Z",
+ "params": {
+  "recipe": {
+   "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "lr": 0.0002,
+   "batch_size": 4,
+   "grad_accum": 4,
+   "max_steps": 1500,
+   "warmup_steps": 100,
+   "eval_every": 500,
+   "checkpoint_every": 200,
+   "max_seq_len": 1024,
+   "lora_r": 32,
+   "lora_alpha": 64
+  },
+  "base_registration": {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 1,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-039335ac3e48",
+ "northena_trace_id": "trc-f3caf183fac6",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-85cad8822906"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-85cad8822906",
+  "pid": 1366544
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-75540465fcbf",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_story_text_train_admitted"
+  },
+  {
+   "row_id": "led-d683bedd4001",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_story_text_train_daemonised:pid=1366544"
+  },
+  {
+   "row_id": "led-ceba7bfe8ebb",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_story_text_train_completed"
+  }
+ ],
+ "code_sha256": "bbdde8dc52a354672edc018aac5070d93b1b8b5c35fde7e47c4a71da0b2835ff",
+ "started_at": "2026-10-04T09:30:44.595238Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:23:11.486562Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-3358703e6845"
+ },
+ "remote_state": {
+  "phase": "malpha_story_text_train",
+  "status": "completed",
+  "started_at": "2026-10-04T09:30:44Z",
+  "progress": {
+   "stage": "training",
+   "step": 1500,
+   "of": 1500,
+   "loss": 2.2483,
+   "elapsed_s": 2640,
+   "gpu_peak_gb": 11.21,
+   "last_checkpoint_step": 1400,
+   "next_checkpoint_step": 1600
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T09:30:51Z",
+    "train_documents": 1139,
+    "dev_documents": 9,
+    "per_language": {
+     "kik": {
+      "train": 503,
+      "dev": 1
+     },
+     "kam": {
+      "train": 254,
+      "dev": 0
+     },
+     "swa": {
+      "train": 382,
+      "dev": 8
+     }
+    },
+    "admission_read": false
+   },
+   "dev_eval_step_500": {
+    "at": "2026-10-04T09:47:19Z",
+    "kik": {
+     "dev_perplexity": 13.063,
+     "language_fidelity_rate": 0.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": null,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 22.098,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    }
+   },
+   "dev_eval_step_1000": {
+    "at": "2026-10-04T10:00:47Z",
+    "kik": {
+     "dev_perplexity": 12.577,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": null,
+     "language_fidelity_rate": 0.0,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 21.586,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9895
+    }
+   },
+   "dev_eval_step_1500": {
+    "at": "2026-10-04T10:15:46Z",
+    "kik": {
+     "dev_perplexity": 13.66,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": null,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9861
+    },
+    "swa": {
+     "dev_perplexity": 24.684,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9857
+    }
+   }
+  },
+  "events": [],
+  "job_id": "m9j-85cad8822906",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-04T10:15:47Z",
+  "finished_at": "2026-10-04T10:15:47Z",
+  "receipt_sha256": "7ff083c24bfaf6d38ba49f5ea8e690624b4fc5801cc4004c677a60f7fbbe2d81"
+ },
+ "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 7362.72it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-85cad8822906/worker.zip/services/training_lab/malpha_voice_worker.py:156: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum)",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-85cad8822906",
+  "phase": "malpha_story_text_train",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-04T09:30:44Z",
+  "code_sha256": "bbdde8dc52a354672edc018aac5070d93b1b8b5c35fde7e47c4a71da0b2835ff",
+  "status": "completed",
+  "result": {
+   "commission_id": "STORY-KIK-KAM-SWA",
+   "iteration": 1,
+   "lane": "story_text",
+   "recipe": {
+    "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "lr": 0.0002,
+    "batch_size": 4,
+    "grad_accum": 4,
+    "max_steps": 1500,
+    "warmup_steps": 100,
+    "eval_every": 500,
+    "checkpoint_every": 200,
+    "max_seq_len": 1024,
+    "lora_r": 32,
+    "lora_alpha": 64
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-04T09:30:51Z",
+    "train_documents": 1139,
+    "dev_documents": 9,
+    "per_language": {
+     "kik": {
+      "train": 503,
+      "dev": 1
+     },
+     "kam": {
+      "train": 254,
+      "dev": 0
+     },
+     "swa": {
+      "train": 382,
+      "dev": 8
+     }
+    },
+    "admission_read": false
+   },
+   "steps": 1500,
+   "dev": {
+    "step": 1500,
+    "at": "2026-10-04T10:14:49Z",
+    "per_language": {
+     "kik": {
+      "dev_perplexity": 13.66,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 1.0,
+      "samples": [
+       {
+        "title": "HEALTH",
+        "chars": 858,
+        "words": 132,
+        "distinct_2": 1.0,
+        "trigram_similarity": {
+         "kik": 0.7084,
+         "kam": 0.591,
+         "swa": 0.6
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "df5a5fc28526407133869811ee0b20e483e6e2694e3ebde3dd18dafcd72ed62e"
+       }
+      ]
+     },
+     "kam": {
+      "dev_perplexity": null,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 0.9861,
+      "samples": [
+       {
+        "title": "a story told on the radio",
+        "chars": 464,
+        "words": 73,
+        "distinct_2": 0.9861,
+        "trigram_similarity": {
+         "kik": 0.4622,
+         "kam": 0.5972,
+         "swa": 0.5376
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "bc0a8c2da8cf54ad7206068d37b2a00d0dd93aea3d9ae23aa02060b6f6e9364b"
+       }
+      ]
+     },
+     "swa": {
+      "dev_perplexity": 24.684,
+      "language_fidelity_rate": 1.0,
+      "mean_distinct_2": 0.9857,
+      "samples": [
+       {
+        "title": "ANGA",
+        "chars": 922,
+        "words": 141,
+        "distinct_2": 0.9929,
+        "trigram_similarity": {
+         "kik": 0.4808,
+         "kam": 0.6089,
+         "swa": 0.8168
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "643fc06bd5bbc318268b1bdefa36eca9635fea83ee9886b8d31462b1b0cad61f"
+       },
+       {
+        "title": "CHAPAKAZI SALAMU",
+        "chars": 911,
+        "words": 133,
+        "distinct_2": 0.9784,
+        "trigram_similarity": {
+         "kik": 0.4689,
+         "kam": 0.5554,
+         "swa": 0.8094
+        },
+        "language_fidelity": true,
+        "excerpt_sha256": "1091516e0deaf5f79a1f2ac3a4eaf5585e8239401a8c126e64f60ae260e04624"
+       }
+      ]
+     }
+    },
+    "train_loss": 2.2658
+   },
+   "history": [
+    {
+     "step": 500,
+     "train_loss": 2.8728,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 13.063,
+       "language_fidelity_rate": 0.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": null,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 22.098,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      }
+     }
+    },
+    {
+     "step": 1000,
+     "train_loss": 2.5057,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 12.577,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": null,
+       "language_fidelity_rate": 0.0,
+       "mean_distinct_2": 1.0
+      },
+      "swa": {
+       "dev_perplexity": 21.586,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9895
+      }
+     }
+    },
+    {
+     "step": 1500,
+     "train_loss": 2.2658,
+     "per_language": {
+      "kik": {
+       "dev_perplexity": 13.66,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 1.0
+      },
+      "kam": {
+       "dev_perplexity": null,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9861
+      },
+      "swa": {
+       "dev_perplexity": 24.684,
+       "language_fidelity_rate": 1.0,
+       "mean_distinct_2": 0.9857
+      }
+     }
+    }
+   ],
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-85cad8822906/artefact/lora_adapter",
+    "sha256": "a7d05c46578ba072e9764b0e6b2bada98c864bc99cd203f4ad38a37b1fdf2e2b",
+    "base": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+   },
+   "compute": {
+    "wall_seconds": 2697.6,
+    "gpu_seconds": 2697.6,
+    "gpu_hours": 0.7493,
+    "gpu_peak_gb": 11.21
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false,
+   "text_exported": false
+  },
+  "finished_at": "2026-10-04T10:15:47Z",
+  "receipt_sha256": "7ff083c24bfaf6d38ba49f5ea8e690624b4fc5801cc4004c677a60f7fbbe2d81",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T10:15:47Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-85cad8822906",
+  "started_at_utc": "2026-10-04T09:30:44.595238Z",
+  "finished_at_utc": "2026-10-04T10:15:47Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-85cad8822906"
+ }
+}

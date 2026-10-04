@@ -57,6 +57,7 @@ import BuildAgent from "@/pages/os/BuildAgent";
 import BuildSkill from "@/pages/os/BuildSkill";
 import BuildExtract from "@/pages/os/BuildExtract";
 import BuildlibAgents from "@/pages/os/BuildlibAgents";
+import BuildYourAgents from "@/pages/os/BuildYourAgents";
 import BuildlibModels from "@/pages/os/BuildlibModels";
 import CollabMentions from "@/pages/os/CollabMentions";
 import CollabEmails from "@/pages/os/CollabEmails";
@@ -1319,7 +1320,8 @@ function App() {
 
           {/* Sub-slice 4f · Build/Buildlib (build tab) + Collab (work tab) + 3rdParty (apps tab) */}
           <Route path="/os/build/train" element={<AdminEstate />} />
-          {['agentbuild', 'buildskill', 'extract', 'youragents', 'yourmodels'].map(leaf => <Route key={leaf} path={`/os/build/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
+          <Route path="/os/build/youragents" element={<BuildYourAgents />} />
+          {['agentbuild', 'buildskill', 'extract', 'yourmodels'].map(leaf => <Route key={leaf} path={`/os/build/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
           {['mentions', 'emails', 'projects', 'hrstuff'].map(leaf => <Route key={leaf} path={`/os/work/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
           {['new', 'frequent', 'connected', 'requests'].map(leaf => <Route key={leaf} path={`/os/apps/${leaf}`} element={<OwnerDeferredWorkspace />} />)}
 

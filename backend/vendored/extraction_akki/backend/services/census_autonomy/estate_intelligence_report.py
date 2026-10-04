@@ -10,6 +10,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
+from services.census_autonomy.language_register import LANGUAGES_KEPT
 from services.census_autonomy import estate_intelligence_dispatch as dispatch
 from services.census_autonomy.estate_intelligence_worker import TIMESTAMP_TYPES, NUMERIC_TYPES, rollup
 
@@ -546,7 +547,7 @@ def content_rollup(rows, source_id, tenant_id):
     for c in contents:
         for code, e in ((c.get("estimates") or {}).get("languages") or {}).items():
             languages.setdefault(code, []).append(e)
-    languages = dict(sorted(((code, combine(parts)) for code, parts in languages.items()), key=lambda kv: -(kv[1]["est"] or 0))[:12])
+    languages = dict(sorted(((code, combine(parts)) for code, parts in languages.items()), key=lambda kv: -(kv[1]["est"] or 0))[:LANGUAGES_KEPT])
     folders = [f for c in contents for f in (c.get("folders") or [])]
     folders.sort(key=lambda f: -((f["estimates"]["speech"].get("est") or 0) if f["sample"].get("read") else (f["hours"].get("est") or 0)))
     samples = [c.get("sample") or {} for c in contents]
@@ -630,7 +631,7 @@ def content_estate_total(stores):
     hours_se = math.sqrt(sum((c["headers"].get("hours_se") or 0) ** 2 for c in parts))
     return {"hours_held": {"est": round(hours_est, 1), "lo": round(max(0.0, hours_est - 1.96 * hours_se), 1), "hi": round(hours_est + 1.96 * hours_se, 1)},
             "speech": combine([c["estimates"]["speech"] for c in parts]), "music": combine([c["estimates"]["music"] for c in parts]),
-            "languages": dict(sorted(((code, combine(v)) for code, v in languages.items()), key=lambda kv: -(kv[1]["est"] or 0))[:12]),
+            "languages": dict(sorted(((code, combine(v)) for code, v in languages.items()), key=lambda kv: -(kv[1]["est"] or 0))[:LANGUAGES_KEPT]),
             "media_objects": sum(c.get("media_objects") or 0 for c in parts), "media_bytes": sum(c.get("media_bytes") or 0 for c in parts),
             "sample_read_files": sum((c.get("sample") or {}).get("read_files") or 0 for c in parts), "sample_planned_files": sum((c.get("sample") or {}).get("planned_files") or 0 for c in parts),
             "egress_usd": round(sum((c.get("egress") or {}).get("usd_estimate") or 0 for c in parts), 2)}

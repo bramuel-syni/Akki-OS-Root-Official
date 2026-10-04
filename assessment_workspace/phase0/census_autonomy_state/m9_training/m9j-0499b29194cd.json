@@ -1,0 +1,167 @@
+{
+ "job_id": "m9j-0499b29194cd",
+ "phase": "malpha_voice_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T09:30:44.953431Z",
+ "params": {
+  "recipe": {
+   "lr": 0.0003,
+   "batch_size": 48,
+   "max_steps": 40000,
+   "warmup_steps": 1000,
+   "eval_every": 2500,
+   "checkpoint_every": 500,
+   "d_model": 768,
+   "layers": 12,
+   "heads": 12,
+   "max_segment_seconds": 12.0,
+   "spectral_feedback": true,
+   "eval_prompts_per_language": 12,
+   "comparators_per_language": 300,
+   "identity_cosine_threshold": 0.4
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 1,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-cd4fa561f0c8",
+ "northena_trace_id": "trc-9859ed7d3cac",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-0499b29194cd"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-0499b29194cd",
+  "pid": 1824383
+ },
+ "status": "failed",
+ "ledger_rows": [
+  {
+   "row_id": "led-8c2007b1ee10",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_voice_train_admitted"
+  },
+  {
+   "row_id": "led-36a2e32f8839",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_voice_train_daemonised:pid=1824383"
+  },
+  {
+   "row_id": "led-a687c11f759c",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_voice_train_failed"
+  }
+ ],
+ "code_sha256": "bbdde8dc52a354672edc018aac5070d93b1b8b5c35fde7e47c4a71da0b2835ff",
+ "started_at": "2026-10-04T09:30:50.516242Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T10:00:06.432084Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-7ea169d77f86"
+ },
+ "remote_state": {
+  "phase": "malpha_voice_train",
+  "status": "failed",
+  "started_at": "2026-10-04T09:30:50Z",
+  "progress": {
+   "stage": "training codec language model",
+   "step": 200,
+   "of": 40000,
+   "loss": 7.0984,
+   "elapsed_s": 208,
+   "gpu_peak_gb": 12.14,
+   "last_checkpoint_step": 0,
+   "next_checkpoint_step": 500,
+   "parameters": 110844952
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T09:31:01Z",
+    "train_segments": 81432,
+    "train_hours": 67.22,
+    "dev_segments": 261,
+    "text_vocab": 68,
+    "admission_read": false,
+    "per_language": {
+     "kik": 32180,
+     "kam": 16295,
+     "swa": 32957
+    }
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-04T09:31:37Z",
+    "message": "identity comparators prepared in memory: {kik: 300, kam: 300, swa: 300}; never written to disk"
+   }
+  ],
+  "job_id": "m9j-0499b29194cd",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T09:34:28Z",
+  "finished_at": "2026-10-04T09:34:28Z",
+  "receipt_sha256": "2a2b017fd02ec913d861efc92902c2e2fd58a2b72a3dc7e7b3f3eb94db0e6c68"
+ },
+ "worker_log_tail": "KernelUtils.cu:16: vectorized_gather_kernel: block: [918,0,0], thread: [25,0,0] Assertion `ind >=0 && ind < ind_dim_size && \"vectorized gather kernel index out of bounds\"` failed.\n/pytorch/aten/src/ATen/native/cuda/IndexKernelUtils.cu:16: vectorized_gather_kernel: block: [918,0,0], thread: [26,0,0] Assertion `ind >=0 && ind < ind_dim_size && \"vectorized gather kernel index out of bounds\"` failed.\n/pytorch/aten/src/ATen/native/cuda/IndexKernelUtils.cu:16: vectorized_gather_kernel: block: [918,0,0], thread: [27,0,0] Assertion `ind >=0 && ind < ind_dim_size && \"vectorized gather kernel index out of bounds\"` failed.\n/pytorch/aten/src/ATen/native/cuda/IndexKernelUtils.cu:16: vectorized_gather_kernel: block: [918,0,0], thread: [28,0,0] Assertion `ind >=0 && ind < ind_dim_size && \"vectorized gather kernel index out of bounds\"` failed.\n/pytorch/aten/src/ATen/native/cuda/IndexKernelUtils.cu:16: vectorized_gather_kernel: block: [918,0,0], thread: [29,0,0] Assertion `ind >=0 && ind < ind_dim_size && \"vectorized gather kernel index out of bounds\"` failed.\n/pytorch/aten/src/ATen/native/cuda/IndexKernelUtils.cu:16: vectorized_gather_kernel: block: [918,0,0], thread: [30,0,0] Assertion `ind >=0 && ind < ind_dim_size && \"vectorized gather kernel index out of bounds\"` failed.\n/pytorch/aten/src/ATen/native/cuda/IndexKernelUtils.cu:16: vectorized_gather_kernel: block: [918,0,0], thread: [31,0,0] Assertion `ind >=0 && ind < ind_dim_size && \"vectorized gather kernel index out of bounds\"` failed.",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-0499b29194cd",
+  "phase": "malpha_voice_train",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T09:30:50Z",
+  "code_sha256": "bbdde8dc52a354672edc018aac5070d93b1b8b5c35fde7e47c4a71da0b2835ff",
+  "status": "failed",
+  "error": {
+   "type": "AcceleratorError",
+   "message": "CUDA error: device-side assert triggered\nSearch for `cudaErrorAssert' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-0499b29194cd/worker.zip/services/training_runner/m9_worker.py\", line 1362, in execute\n    receipt['result'] = fn(control, state)\n                        ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-0499b29194cd/worker.zip/services/training_lab/malpha_voice_worker.py\", line 372, in voice_train\n    logits = model(text_ids, inp)  # (K, B, W, V)\n             ^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-0499b29194cd/worker.zip/services/training_lab/malpha_voice_worker.py\", line 199, in forward\n    h = self.norm(self.body(x, mask=mask))[:, Lt:Lt + T]\n                  ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py\", line 537, in forward\n    is_causal = _detect_is_causal_mask(mask, is_causal, seq_len)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py\", line 1252, in _detect_is_causal_mask\n    make_causal = bool((mask == causal_comparison).all())\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.AcceleratorError: CUDA error: device-side assert triggered\nSearch for `cudaErrorAssert' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n\n"
+  },
+  "stages_completed": {
+   "data": {
+    "at": "2026-10-04T09:31:01Z",
+    "train_segments": 81432,
+    "train_hours": 67.22,
+    "dev_segments": 261,
+    "text_vocab": 68,
+    "admission_read": false,
+    "per_language": {
+     "kik": 32180,
+     "kam": 16295,
+     "swa": 32957
+    }
+   }
+  },
+  "finished_at": "2026-10-04T09:34:28Z",
+  "receipt_sha256": "2a2b017fd02ec913d861efc92902c2e2fd58a2b72a3dc7e7b3f3eb94db0e6c68",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T09:34:28Z",
+ "reason": "AcceleratorError: CUDA error: device-side assert triggered\nSearch for `cudaErrorAssert' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be async",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-0499b29194cd",
+  "started_at_utc": "2026-10-04T09:30:50.516242Z",
+  "finished_at_utc": "2026-10-04T09:34:28Z",
+  "status": "failed",
+  "provenance_ref": "m9_training://run_log/m9j-0499b29194cd"
+ }
+}

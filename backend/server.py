@@ -551,6 +551,12 @@ from routers.training_lab import router as training_lab_router  # noqa: E402
 app.include_router(training_lab_router)
 from routers.training_production import router as training_production_router  # noqa: E402
 app.include_router(training_production_router)
+from routers.malpha import router as malpha_router  # noqa: E402
+app.include_router(malpha_router)
+from routers.armi import router as armi_router  # noqa: E402
+app.include_router(armi_router)
+from routers.shield_register import router as shield_register_router  # noqa: E402
+app.include_router(shield_register_router)
 from routers.media_library import router as media_library_router  # noqa: E402
 app.include_router(media_library_router)
 

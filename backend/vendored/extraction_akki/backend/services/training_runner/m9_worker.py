@@ -1353,6 +1353,13 @@ def execute(control):
         elif control['phase'] == 'lab_text_lid':
             from services.training_lab.estate_language_worker import classify_text
             receipt['result'] = classify_text(control, state)
+        elif control['phase'].startswith('malpha_'):
+            os.environ['CUDA_VISIBLE_DEVICES'] = str(control['gpu_index'])
+            from services.training_lab import malpha_worker as mw
+            from services.training_lab import malpha_voice_worker as mv
+            fn = {'malpha_aip_build': mw.aip_build, 'malpha_aip_requalify': mw.aip_requalify, 'malpha_listener_train': mw.listener_train, 'malpha_evaluate': mw.evaluate_admission,
+                  'malpha_story_text_train': mv.story_text_train, 'malpha_voice_train': mv.voice_train, 'malpha_baseline_render': mv.baseline_render}[control['phase']]
+            receipt['result'] = fn(control, state)
         else:
             receipt["result"] = PHASES[control["phase"]](control, state)
         receipt["status"] = "completed"

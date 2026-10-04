@@ -1,0 +1,953 @@
+{
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001",
+        "F002"
+      ],
+      "text": "{F001} of {F002} figures in this report resolve to a retained record; the rest are listed as refused and do not render as numbers (WPW-9)."
+    },
+    "C002": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Settlement: refused — run ended failed: AttributeError: WhisperTokenizer has no attribute additional_special_tokens. Run status failed; drafted automatically when the run settled (WPW-8). Internal — must not cross the outer gate (WPW-10)."
+    },
+    "C003": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Commission: Multilingual radio brand listener (Kikuyu, Kamba, Kiswahili) (LISTEN-KIK-KAM-SWA)."
+    },
+    "C004": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Product: recognition plus brand/entity detection with evidence: brand, span, language, recording/time, confidence/abstention, context, permitted playback"
+    },
+    "C005": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Task: spoken brand-mention monitoring on radio audio — radio broadcast speech, three languages, code-switching."
+    },
+    "C006": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Admission bars for the listener lane (fixed before training):"
+    },
+    "C007": {
+      "supports": [
+        "F003",
+        "F004"
+      ],
+      "text": "kam: mention_precision 0.9, mention_recall 0.9"
+    },
+    "C008": {
+      "supports": [
+        "F005",
+        "F006"
+      ],
+      "text": "kik: mention_precision 0.9, mention_recall 0.9"
+    },
+    "C009": {
+      "supports": [
+        "F007",
+        "F008"
+      ],
+      "text": "swa: mention_precision 0.9, mention_recall 0.9"
+    },
+    "C010": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Gate policy: every language meets both bars on the sealed admission split; no averaging"
+    },
+    "C011": {
+      "supports": [
+        "F009",
+        "F010"
+      ],
+      "text": "Metric contract status: DERIVED from the owner 90% admission target: operationalised as mention precision AND recall ≥ 0.90 per language; MOAC90/switch85 remain the LID criteria, not substituted"
+    },
+    "C012": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Budget authority: uncapped_until_billing — recorded authority, not a number."
+    },
+    "C013": {
+      "supports": [
+        "F011"
+      ],
+      "text": "This report settles listener iteration 2 (job m9j-a381bc37a692)."
+    },
+    "C014": {
+      "supports": [
+        "F012"
+      ],
+      "text": "Datasets derived from each recording (one file → several queryable layers): content (transcript, sealed by sha); timing (start/end, pcm offsets); speaker-local label + corpus cluster id; condition (codec/rate/channels); discoverable spectrum columns; codec tokens (content stream cb0, character stream cb1-7)."
+    },
+    "C015": {
+      "supports": [
+        "F013"
+      ],
+      "text": "Discoverable-spectrum columns (14): duration_s, chars_per_s, energy_db_mean, energy_db_std, pause_ratio, f0_mean_hz, f0_std_semitones, f0_range_hz, voiced_ratio, spectral_centroid_hz, spectral_bandwidth_hz, spectral_rolloff_hz, spectral_flatness, zcr."
+    },
+    "C016": {
+      "supports": [
+        "F014",
+        "F015"
+      ],
+      "text": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash."
+    },
+    "C017": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Classification-driven exclusions: raw audio never leaves the host (raw_media_exported=false); transcripts stay on the host (text_exported=false); presenter identity is a corpus-local cluster id — no voiceprint is stored; the sealed admission split is never read by training."
+    },
+    "C018": {
+      "supports": [
+        "F016",
+        "F017",
+        "F018",
+        "F019",
+        "F020",
+        "F021",
+        "F022",
+        "F023",
+        "F024",
+        "F025",
+        "F026",
+        "F027"
+      ],
+      "text": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions promoted, dev_basis=session_holdout)."
+    },
+    "C019": {
+      "supports": [
+        "F028",
+        "F029",
+        "F030"
+      ],
+      "text": "This run read (from the host state before it ended): train_segments 87779, dev_segments 468, train_hours 100.62, admission_read False."
+    },
+    "C020": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Starting model: openai/whisper-small (Whisper family, adapted with added language tokens for Kikuyu and Kikamba; Kiswahili uses the model's own <|sw|>)."
+    },
+    "C021": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Licence note: the record carries no base registration for this model — the record is silent; licence verification is owed before serving."
+    },
+    "C022": {
+      "supports": [
+        "F031",
+        "F032",
+        "F033",
+        "F034",
+        "F035",
+        "F036",
+        "F037",
+        "F038"
+      ],
+      "text": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300."
+    },
+    "C023": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Training: full fine-tune of the Whisper encoder–decoder with teacher forcing on transcripts, bf16 autocast, AdamW, cosine schedule with warm-up; brand mentions are detected on the decoded text against the fixed lexicon (exact alias match; one edit tolerated for aliases of six or more characters). Dev evaluation runs every eval_every steps on a stratified dev sample (all mention-bearing segments up to half the budget, then negatives)."
+    },
+    "C024": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Adopted ideation events: the record is silent — no cif_ideation entry references this run."
+    },
+    "C025": {
+      "supports": [
+        "F039"
+      ],
+      "text": "Hardware: akki-vm GPU 0."
+    },
+    "C026": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Duration: the record is silent on this."
+    },
+    "C027": {
+      "supports": [
+        "F040",
+        "F041"
+      ],
+      "text": "Cost actual against estimate: 0.000 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent."
+    },
+    "C028": {
+      "supports": [
+        "F042"
+      ],
+      "text": "Seed: 20261004."
+    },
+    "C029": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Worker bundle: bbdde8dc52a35467… (hashed, receipted on the host; digest verified at settlement: yes)."
+    },
+    "C030": {
+      "supports": [
+        "F043"
+      ],
+      "text": "Iteration / attempt: iteration 2."
+    },
+    "C031": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Held-out material: dev split (iteration feedback; the sealed admission split is read only by the independent evaluation). sealed_admission_read = —."
+    },
+    "C032": {
+      "supports": [
+        "F044"
+      ],
+      "text": "No ablations were run in this settlement. The controlled same-base comparison of spectral-feedback curricula (MA-16) is a separate commission and is not claimed here."
+    },
+    "C033": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Results are on the dev split, which guides iteration; they are not admission evidence. Admission is decided only on the sealed, speaker-cluster-disjoint split by a separate evaluation run."
+    },
+    "C034": {
+      "supports": [
+        "F001"
+      ],
+      "text": "The dev split was requalified after the cluster-disjoint rule left it too small to measure: whole train sessions were promoted to dev (dev_basis=session_holdout), so presenter voices may overlap between train and dev. This is a disclosed selection effect on dev; the admission split is unchanged."
+    },
+    "C035": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Brand mentions are detected against a fixed lexicon of the recorded number of brands and aliases; brands outside it are not measured. Timestamps are attributed at transcript-segment granularity."
+    },
+    "C036": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Monetary cost is not stated: GPU-hours are measured, no governed rate card exists, and the owner authority is uncapped until billing."
+    },
+    "C037": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Run ended failed. AttributeError: WhisperTokenizer has no attribute additional_special_tokens — AttributeError. Retained checkpoint: none."
+    }
+  },
+  "content_id": "malpha-tier2-m9j-a381bc37a692",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "The independent evaluation run on the sealed admission split",
+        "gap": "Admission of the model",
+        "reason": "Dev results guide iteration; only the sealed-split evaluation decides admission"
+      },
+      {
+        "closes_with": "Native listeners judging unseen stories and transcripts",
+        "gap": "Native-speaker quality",
+        "reason": "No human rating is on the record"
+      },
+      {
+        "closes_with": "Actual billing data joined to the measured GPU-hours",
+        "gap": "Monetary cost",
+        "reason": "No governed GPU rate card; uncapped-until-billing authority"
+      },
+      {
+        "closes_with": "Owner rulings R1/R2 and a separate egress crossing",
+        "gap": "Publication",
+        "reason": "Tier 2 is internal (WPW-10); Tier 3 eligibility is mechanical and its rulings are parked"
+      }
+    ],
+    "covers": "The retained record of one Mα run only: m9j-a381bc37a692. Evidence classes are carried per figure; where the record is silent the report says so."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Figures that resolve to a retained record",
+      "receipt": "R01",
+      "unit": "figures",
+      "value": 18
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Figures in the report (resolved and refused)",
+      "receipt": "R01",
+      "unit": "figures",
+      "value": 20
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kam: mention_precision 0.9, mention_recall 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kam: mention_precision 0.9, mention_recall 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kik: mention_precision 0.9, mention_recall 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kik: mention_precision 0.9, mention_recall 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "swa: mention_precision 0.9, mention_recall 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "swa: mention_precision 0.9, mention_recall 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Metric contract status: DERIVED from the owner 90% admission target: operationalised as mention precision AND recall ≥ 0.90 per language; MOAC90/switch85 remain the LID criteria, not substituted",
+      "unit": "as recorded",
+      "value": 90
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Metric contract status: DERIVED from the owner 90% admission target: operationalised as mention precision AND recall ≥ 0.90 per language; MOAC90/switch85 remain the LID criteria, not substituted",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "This report settles listener iteration 2 (job m9j-a381bc37a692).",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Datasets derived from each recording (one file → several queryable layers): content (transcript, sealed by sha); timing (start/end, pcm offsets); speaker-local label + corpus cluster id; condition (codec/rate/channels); discoverable spectrum columns; codec tokens (content stream cb0, character strea",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Discoverable-spectrum columns (14): duration_s, chars_per_s, energy_db_mean, energy_db_std, pause_ratio, f0_mean_hz, f0_std_semitones, f0_range_hz, voiced_ratio, spectral_centroid_hz, spectral_bandwidth_hz, spectral_rolloff_hz, spectral_flatness, zcr.",
+      "unit": "as recorded",
+      "value": 14
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash.",
+      "unit": "as recorded",
+      "value": 10
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash.",
+      "unit": "as recorded",
+      "value": 10
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 166
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 2962
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 30
+    },
+    "F019": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 41
+    },
+    "F020": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F021": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 3810
+    },
+    "F022": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 30
+    },
+    "F023": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 75
+    },
+    "F024": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 329
+    },
+    "F025": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 583
+    },
+    "F026": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 37
+    },
+    "F027": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 4
+    },
+    "F028": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read (from the host state before it ended): train_segments 87779, dev_segments 468, train_hours 100.62, admission_read False.",
+      "unit": "as recorded",
+      "value": 87779
+    },
+    "F029": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read (from the host state before it ended): train_segments 87779, dev_segments 468, train_hours 100.62, admission_read False.",
+      "unit": "as recorded",
+      "value": 468
+    },
+    "F030": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read (from the host state before it ended): train_segments 87779, dev_segments 468, train_hours 100.62, admission_read False.",
+      "unit": "as recorded",
+      "value": 100.62
+    },
+    "F031": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 5
+    },
+    "F032": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 32
+    },
+    "F033": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F034": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 14000
+    },
+    "F035": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 500
+    },
+    "F036": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 2000
+    },
+    "F037": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 500
+    },
+    "F038": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): base = openai/whisper-small, lr = 6e-05, batch_size = 32, grad_accum = 2, max_steps = 14000, warmup_steps = 500, eval_every = 2000, checkpoint_every = 500, dev_per_language = 300.",
+      "unit": "as recorded",
+      "value": 300
+    },
+    "F039": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Hardware: akki-vm GPU 0.",
+      "unit": "as recorded",
+      "value": 0
+    },
+    "F040": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Cost actual against estimate: 0.000 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent.",
+      "unit": "as recorded",
+      "value": 0.0
+    },
+    "F041": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Cost actual against estimate: 0.000 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent.",
+      "unit": "as recorded",
+      "value": 18
+    },
+    "F042": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Seed: 20261004.",
+      "unit": "as recorded",
+      "value": 20261004
+    },
+    "F043": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Iteration / attempt: iteration 2.",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F044": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "No ablations were run in this settlement. The controlled same-base comparison of spectral-feedback curricula (MA-16) is a separate commission and is not claimed here.",
+      "unit": "as recorded",
+      "value": 16
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "receipts": {
+    "R01": {
+      "platform_ref": "m9j-a381bc37a692",
+      "resolves_to": "Retained m9 job record and host receipt for m9j-a381bc37a692 (listener iteration 2, failed)"
+    },
+    "R02": {
+      "platform_ref": "m9j-5db976bdd3f2",
+      "resolves_to": "AIP database build record m9j-5db976bdd3f2 on akki-vm (segments, seals, codec qualification)"
+    },
+    "R03": {
+      "resolves_to": "White Paper Wizard Tier 1 notebook for LISTEN-KIK-KAM-SWA (append-only, hash-chained; entries referenced by id)"
+    }
+  },
+  "series": {},
+  "tables": {
+    "T001": {
+      "class": "measured",
+      "columns": [
+        "Language",
+        "Train segments (h)",
+        "Dev segments (h)",
+        "Admission segments (h)",
+        "Recordings read"
+      ],
+      "label": "Data statement — table",
+      "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+      "receipt": "R02",
+      "right_align_from": 5,
+      "rows": [
+        [
+          "kik",
+          "34,916 (41.866)",
+          "166 (0.167)",
+          "357 (0.376)",
+          "583 of 583"
+        ],
+        [
+          "kam",
+          "17,199 (16.806)",
+          "2 (0.007)",
+          "129 (0.212)",
+          "1165 of 1165"
+        ],
+        [
+          "swa",
+          "35,664 (41.948)",
+          "329 (0.405)",
+          "88 (0.071)",
+          "549 of 549"
+        ]
+      ]
+    },
+    "T002": {
+      "class": "measured",
+      "columns": [
+        "Criterion",
+        "Measured",
+        "Threshold",
+        "Pass"
+      ],
+      "label": "Results on held-out material — table",
+      "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+      "receipt": "R01",
+      "right_align_from": 4,
+      "rows": [
+        [
+          "`held_out_accuracy`",
+          "not measured — run ended failed",
+          "—",
+          "❌"
+        ],
+        [
+          "`abstention_calibration`",
+          "not measured — run ended failed",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`cost_actual_vs_estimate`",
+          "_the record is silent (receipt did not resolve)_",
+          "no numeric cap (owner order, recorded authority)",
+          "— (reported, not gated)"
+        ],
+        [
+          "`latency_p95_ms`",
+          "not measured — run ended failed",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`refusal_rate_on_out_of_domain`",
+          "not instrumented in this lane",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`adapter_size_mib`",
+          "no artefact size on the record",
+          "—",
+          "— (reported, not gated)"
+        ]
+      ]
+    },
+    "T003": {
+      "class": "measured",
+      "columns": [
+        "Criterion",
+        "Measured",
+        "Threshold",
+        "Pass",
+        "Evidence class"
+      ],
+      "label": "Six acceptance criteria — measured value, adopted threshold, pass",
+      "note": "Every criterion of the fixed set is named; a criterion the run did not instrument says so instead of carrying a filled value.",
+      "receipt": "R01",
+      "right_align_from": 5,
+      "rows": [
+        [
+          "held_out_accuracy",
+          "not measured — run ended failed",
+          "—",
+          "fail",
+          "not instrumented"
+        ],
+        [
+          "abstention_calibration",
+          "not measured — run ended failed",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "cost_actual_vs_estimate",
+          "0.000 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+          "no numeric cap (owner order, recorded authority)",
+          "reported, not gated",
+          "measured"
+        ],
+        [
+          "latency_p95_ms",
+          "not measured — run ended failed",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "refusal_rate_on_out_of_domain",
+          "not instrumented in this lane",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "adapter_size_mib",
+          "no artefact size on the record",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ]
+      ]
+    },
+    "T004": {
+      "class": "measured",
+      "columns": [
+        "Figure",
+        "Evidence class",
+        "Receipt line",
+        "Summary"
+      ],
+      "label": "Figure register — evidence class and receipt line of every rendered figure",
+      "note": "Each receipt line resolves into the retained record it names; resolution is checked mechanically before the figure renders.",
+      "receipt": "R01",
+      "right_align_from": 4,
+      "rows": [
+        [
+          "objective_contract",
+          "observed",
+          "wpw://notebook/LISTEN-KIK-KAM-SWA/wpwe-9df0d8f3cfb1",
+          "commissioning reflection recorded 2026-10-04T08:59:11.220988Z before any compute; definition sha 97abab8a665c"
+        ],
+        [
+          "corpus_shape",
+          "measured",
+          "m9j-5db976bdd3f2#receipt.result.segments",
+          "segments and hours per language and split in the AIP database"
+        ],
+        [
+          "corpus_files",
+          "measured",
+          "m9j-5db976bdd3f2#receipt.result.files",
+          "recordings read per language"
+        ],
+        [
+          "dataset_layers",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.layers",
+          "declared dataset layers derived from each recording"
+        ],
+        [
+          "feature_columns",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.feature_columns",
+          "discoverable-spectrum columns"
+        ],
+        [
+          "split_rule",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.split_rule",
+          "split and sealing rule"
+        ],
+        [
+          "custody_flags",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.raw_media_exported",
+          "raw media export flag on the database record"
+        ],
+        [
+          "database_binding",
+          "observed",
+          "m9j-a381bc37a692#params.aip_db_dir",
+          "database path bound to this run"
+        ],
+        [
+          "dev_requalification",
+          "measured",
+          "m9j-2424ab203154#receipt.result.requalification.report",
+          "dev split before/after requalification, promoted sessions per language"
+        ],
+        [
+          "run_data",
+          "observed",
+          "m9j-a381bc37a692#remote_state.stages.data",
+          "data stage recorded on the host"
+        ],
+        [
+          "baseline_model",
+          "observed",
+          "m9j-a381bc37a692#params.recipe.base",
+          "starting model for the listener"
+        ],
+        [
+          "baseline_selection_event",
+          "measured",
+          "wpw://notebook/LISTEN-KIK-KAM-SWA/wpwe-8583ae54f361",
+          "baseline selection recorded 2026-10-04T10:25:44.503385Z: dev split requalified; admission seals unchanged"
+        ],
+        [
+          "recipe",
+          "observed",
+          "m9j-a381bc37a692#params.recipe",
+          "the recipe this iteration ran"
+        ],
+        [
+          "host_binding",
+          "observed",
+          "m9j-a381bc37a692#host",
+          "host that ran the job"
+        ],
+        [
+          "gpu_index",
+          "observed",
+          "m9j-a381bc37a692#params.gpu_index",
+          "device index on the host"
+        ],
+        [
+          "budget_mode",
+          "observed",
+          "m9j-a381bc37a692#params.budget_mode",
+          "budget authority bound to the job"
+        ],
+        [
+          "seed",
+          "observed",
+          "m9j-a381bc37a692#params.seed",
+          "seed bound to the job"
+        ],
+        [
+          "worker_bundle",
+          "observed",
+          "m9j-a381bc37a692#code_sha256",
+          "sha256 of the hashed worker bundle executed on the host"
+        ]
+      ]
+    },
+    "T005": {
+      "class": "measured",
+      "columns": [
+        "Figure",
+        "Receipt line",
+        "Reason"
+      ],
+      "label": "Refused figures — receipt lines that did not resolve",
+      "note": "A figure that does not resolve does not render (WPW-9); the section it belonged to says the record is silent.",
+      "receipt": "R01",
+      "right_align_from": 3,
+      "rows": [
+        [
+          "elapsed",
+          "m9j-a381bc37a692#remote_state.progress.elapsed_s",
+          "receipt line does not resolve to a retained record; figure not rendered (WPW-9)"
+        ],
+        [
+          "criterion_cost_actual_vs_estimate",
+          "m9j-a381bc37a692#remote_state.progress.elapsed_s",
+          "receipt line does not resolve to a retained record; figure not rendered (WPW-9)"
+        ]
+      ]
+    }
+  },
+  "title": "Technical report (internal) — Multilingual radio brand listener (Kikuyu, Kamba, Kiswahili) · listener v2",
+  "version": 1,
+  "wpw": {
+    "figures_resolved": 18,
+    "figures_total": 20,
+    "internal_only": true,
+    "refusal_reason": "run ended failed: AttributeError: WhisperTokenizer has no attribute additional_special_tokens",
+    "settlement": "refused",
+    "tier": 2
+  }
+}
