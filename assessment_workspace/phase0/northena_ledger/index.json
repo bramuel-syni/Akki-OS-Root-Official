@@ -613246,5 +613246,29 @@
     "stage": "converge",
     "decision": "terminate_success",
     "at_iso": "2026-10-04T19:20:38.487311Z"
+  },
+  {
+    "row_id": "led-2835a3b3dae8",
+    "run_id": "run-e42102ae4e7b",
+    "trace_id": "trc-c571009fe9ff",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-10-04T19:30:29.681950Z"
+  },
+  {
+    "row_id": "led-7aec3754c03b",
+    "run_id": "run-0b0aa73f33ab",
+    "trace_id": "trc-2b2d0b825cfa",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-10-04T19:31:10.057990Z"
+  },
+  {
+    "row_id": "led-7e17f3969170",
+    "run_id": "run-0b0aa73f33ab",
+    "trace_id": "trc-2b2d0b825cfa",
+    "stage": "gate",
+    "decision": "warm",
+    "at_iso": "2026-10-04T19:31:16.040611Z"
   }
 ]

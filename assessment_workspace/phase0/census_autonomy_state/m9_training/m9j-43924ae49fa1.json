@@ -75,9 +75,9 @@
  "code_sha256": "adbe8f70bb1dce7b88938b6dc8676bc3b844a18a50f669168e6cffcda5da2ac1",
  "started_at": "2026-10-04T18:38:57.352372Z",
  "last_status_rpc": {
-  "at": "2026-10-04T19:22:47.790489Z",
+  "at": "2026-10-04T19:30:59.049549Z",
   "rc": 0,
-  "receipt_id": "gpurcp-73461729c7b2"
+  "receipt_id": "gpurcp-3c031dc0e676"
  },
  "remote_state": {
   "phase": "malpha_voice_train",
@@ -85,13 +85,13 @@
   "started_at": "2026-10-04T18:38:57Z",
   "progress": {
    "stage": "training codec language model",
-   "step": 20100,
+   "step": 25625,
    "of": 40000,
-   "loss": 2.7881,
-   "elapsed_s": 2627,
+   "loss": 1.6363,
+   "elapsed_s": 3117,
    "gpu_peak_gb": 17.35,
-   "last_checkpoint_step": 20000,
-   "next_checkpoint_step": 20500,
+   "last_checkpoint_step": 25500,
+   "next_checkpoint_step": 26000,
    "parameters": 111314968
   },
   "stages": {
@@ -315,6 +315,48 @@
      "max_cosine": 0.5767,
      "rendered": 12
     }
+   },
+   "dev_eval_step_22500": {
+    "at": "2026-10-04T19:26:26Z",
+    "kik": {
+     "overall_similarity": 0.5349,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4886,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.4998,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5435,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5461,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6557,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_25000": {
+    "at": "2026-10-04T19:30:09Z",
+    "kik": {
+     "overall_similarity": 0.5682,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6512,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5607,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5573,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.589,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6303,
+     "rendered": 12
+    }
    }
   },
   "events": [
@@ -334,7 +376,7 @@
   "job_id": "m9j-43924ae49fa1",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-04T19:22:47Z"
+  "updated_at": "2026-10-04T19:30:57Z"
  },
  "worker_log_tail": "le_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 7068.70it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-43924ae49fa1/worker.zip/services/training_lab/malpha_voice_worker.py:476: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(",
  "process_alive": true

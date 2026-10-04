@@ -94,9 +94,9 @@
  "code_sha256": "adbe8f70bb1dce7b88938b6dc8676bc3b844a18a50f669168e6cffcda5da2ac1",
  "started_at": "2026-10-04T18:42:30.797893Z",
  "last_status_rpc": {
-  "at": "2026-10-04T19:22:51.471448Z",
+  "at": "2026-10-04T19:31:02.766964Z",
   "rc": 0,
-  "receipt_id": "gpurcp-f37e2f741a5e"
+  "receipt_id": "gpurcp-23e3f7e4c88b"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
@@ -171,13 +171,45 @@
     ],
     "_best_step": 250,
     "_selection": "worst-language fidelity first, perplexity tie-break"
+   },
+   "dev_eval_step_500": {
+    "at": "2026-10-04T19:30:40Z",
+    "kik": {
+     "dev_perplexity": 16.696,
+     "base_perplexity": 55.146,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.938,
+     "mean_distinct_2": 0.9995
+    },
+    "kam": {
+     "dev_perplexity": 20.826,
+     "base_perplexity": 54.704,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.562,
+     "mean_distinct_2": 0.9972
+    },
+    "swa": {
+     "dev_perplexity": 19.976,
+     "base_perplexity": 36.037,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9995
+    },
+    "_score": [
+     1,
+     0.562,
+     2.5,
+     -19.079878720271257
+    ],
+    "_best_step": 500,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
    }
   },
   "events": [],
   "job_id": "m9j-d4085045c5b6",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T19:20:44Z"
+  "updated_at": "2026-10-04T19:30:40Z"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 6038.67it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d4085045c5b6/worker.zip/services/training_lab/malpha_voice_worker.py:175: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
  "process_alive": true

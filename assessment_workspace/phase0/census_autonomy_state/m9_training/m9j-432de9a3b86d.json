@@ -4090,9 +4090,9 @@
  "code_sha256": "fe9e772996639d4826109a57ee8476a276aa2be3dd75ef646b27c7856309f423",
  "started_at": "2026-10-04T18:15:50.233726Z",
  "last_status_rpc": {
-  "at": "2026-10-04T19:22:43.880182Z",
+  "at": "2026-10-04T19:30:54.856407Z",
   "rc": 0,
-  "receipt_id": "gpurcp-b371ffde8b2b"
+  "receipt_id": "gpurcp-81b233c2a17c"
  },
  "remote_state": {
   "phase": "malpha_internet_corpus",
@@ -4101,11 +4101,11 @@
   "progress": {
    "stage": "expanding qualified public corpus",
    "language": "kik",
-   "rows": 24800,
-   "rows_added": 24800,
-   "hours": 39.477,
+   "rows": 28000,
+   "rows_added": 28000,
+   "hours": 44.65,
    "of_hours": null,
-   "elapsed_s": 3988,
+   "elapsed_s": 4494,
    "source_revision": "fb6c11443135937f4fb284bbc38174e768fcc154"
   },
   "stages": {},
@@ -4113,7 +4113,7 @@
   "job_id": "m9j-432de9a3b86d",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T19:22:18Z"
+  "updated_at": "2026-10-04T19:30:44Z"
  },
  "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
  "process_alive": true
