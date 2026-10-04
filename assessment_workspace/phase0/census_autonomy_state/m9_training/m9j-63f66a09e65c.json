@@ -4064,9 +4064,9 @@
  "code_sha256": "3e42b2291e5a0b75ceecee84dfd652a1ef4ad62325e77d22dff4bcf73e8f9530",
  "started_at": "2026-10-04T16:01:03.166892Z",
  "last_status_rpc": {
-  "at": "2026-10-04T18:45:38.804861Z",
+  "at": "2026-10-04T19:22:32.578070Z",
   "rc": 0,
-  "receipt_id": "gpurcp-352719fd021a"
+  "receipt_id": "gpurcp-71ebdd19cbc3"
  },
  "remote_state": {
   "phase": "malpha_listener_train",
@@ -4074,14 +4074,14 @@
   "started_at": "2026-10-04T16:01:03Z",
   "progress": {
    "stage": "training",
-   "step": 5000,
+   "step": 6150,
    "of": 12000,
-   "loss": 0.8746,
-   "lr": 2.052570236922782e-05,
-   "elapsed_s": 9836,
+   "loss": 0.5654,
+   "lr": 1.614312726545331e-05,
+   "elapsed_s": 12075,
    "gpu_peak_gb": 57.59,
-   "last_checkpoint_step": 5000,
-   "next_checkpoint_step": 5500
+   "last_checkpoint_step": 6000,
+   "next_checkpoint_step": 6500
   },
   "stages": {
    "data": {
@@ -4177,6 +4177,44 @@
       "f1": 0.6623
      }
     }
+   },
+   "dev_eval_step_6000": {
+    "at": "2026-10-04T19:17:26Z",
+    "mean_wer": 0.6082,
+    "words": {
+     "kam": {
+      "wer": 0.7877,
+      "cer": 0.4249,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.6438,
+      "cer": 0.3254,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.3931,
+      "cer": 0.2113,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.8462,
+      "recall": 0.3976,
+      "f1": 0.541
+     },
+     "kik": {
+      "precision": 0.92,
+      "recall": 0.6053,
+      "f1": 0.7302
+     },
+     "swa": {
+      "precision": 0.6538,
+      "recall": 0.7083,
+      "f1": 0.68
+     }
+    }
    }
   },
   "events": [
@@ -4219,12 +4257,20 @@
    {
     "at": "2026-10-04T18:45:19Z",
     "message": "checkpoint at step 5000"
+   },
+   {
+    "at": "2026-10-04T19:00:47Z",
+    "message": "checkpoint at step 5500"
+   },
+   {
+    "at": "2026-10-04T19:16:22Z",
+    "message": "checkpoint at step 6000"
    }
   ],
   "job_id": "m9j-63f66a09e65c",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-04T18:45:19Z"
+  "updated_at": "2026-10-04T19:22:19Z"
  },
  "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  61%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 360/587 [00:00<00:00, 3590.37it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3598.63it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-63f66a09e65c/worker.zip/services/training_lab/malpha_worker.py:846: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.",
  "process_alive": true

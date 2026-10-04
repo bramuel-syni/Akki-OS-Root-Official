@@ -5,8 +5,10 @@ export const STATUS_BG = { Shaping: 'var(--surface2)', 'In Approval': 'rgba(76,9
 const GROUPS = [['Running', ['In training', 'Testing', 'Queued']], ['Shaping', ['Shaping']], ['In approval', ['In Approval']], ['In service', ['In service']], ['Refused', ['Refused']], ['Retired', ['Retired']]];
 const LIFE = [['shaping', 'Shape'], ['approval', 'Approve'], ['training', 'Train'], ['testing', 'Test'], ['service', 'Accept']];
 const STAGE_OF = { Shaping: 0, 'In Approval': 1, Queued: 1, 'In training': 2, Testing: 3, Refused: 3, 'In service': 4, Retired: 4 };
-export const FINISHED = ['In service', 'Refused', 'Retired'];
-const FAMILY = { text: 'Text language identification', audio: 'Audio language cognition', music: 'Music identification', reinforcement: 'Weak-language reinforcement', owner: 'Opened here' };
+export const FINISHED = ['In service', 'Admitted', 'Refused', 'Retired'];
+STATUS_COLOR.Admitted = 'var(--brass)'; STATUS_BG.Admitted = 'rgba(176,141,46,.14)'; STAGE_OF.Admitted = 4;
+GROUPS.splice(4, 0, ['Admitted · offline', ['Admitted']]);
+const FAMILY = { text: 'Text language identification', audio: 'Audio language cognition', music: 'Music identification', reinforcement: 'Weak-language reinforcement', owner: 'Opened here', malpha_listener: 'M Alpha · brand listener', malpha_text: 'M Alpha · story generation', malpha_voice: 'M Alpha · invented voice', malpha_comparison: 'M Alpha · research comparison' };
 const STAGE_BUMP = { approval: 'approval', begin: 'approval', queue: 'approval', status: 'training', checks: 'testing', record: 'testing', suggest: 'testing', refused: 'testing', doc: 'testing', remodel: 'service' };
 const ORDER = LIFE.map(([key]) => key);
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -36,7 +38,8 @@ export const nextVersionName = (name, names) => {
 
 export function progressOf(run) {
   const s = run.status;
-  if (s === 'In service' || s === 'Retired') return 100;
+  if (run.progress?.basis === 'optimizer_steps' && run.progress.of > 0 && ['In training', 'Queued'].includes(s)) return Math.min(100, Math.max(0, Math.round(100 * run.progress.step / run.progress.of)));
+  if (s === 'In service' || s === 'Admitted' || s === 'Retired') return 100;
   if (s === 'Refused') return 92;
   if (s === 'Testing') return 85;
   if (s === 'In training') return 60;
@@ -53,7 +56,7 @@ const tone = t => ['estimate'].includes(t) ? 'var(--brass)' : ['you said', 'meas
 const classTone = cls => cls === 'Regulatory' ? ['var(--oxblood)', 'rgba(184,57,91,.12)'] : cls === 'Internal' ? ['var(--accent)', 'rgba(76,95,213,.10)'] : ['var(--brass)', 'rgba(176,141,46,.16)'];
 
 function checksOf(run) {
-  return run.checks.map((c, j) => ({ key: `c${j}`, n: c.n, v: c.v || '', label: c.passes ? 'Settled' : 'Below floor', color: c.passes ? 'var(--sage)' : 'var(--oxblood)', nameColor: 'var(--ink2)' }));
+  return run.checks.map((c, j) => ({ key: `c${j}`, n: c.n, v: c.v || '', label: c.label || (c.passes ? 'Settled' : 'Below floor'), color: c.passes === null ? 'var(--brass)' : c.passes ? 'var(--sage)' : 'var(--oxblood)', nameColor: 'var(--ink2)' }));
 }
 
 export function threadItems(run, { state, names, pendingText, canOperate, toggleThink, pickBaseline }) {
@@ -78,9 +81,9 @@ export function threadItems(run, { state, names, pendingText, canOperate, toggle
       bubbleBg: user ? 'rgba(76,95,213,.07)' : m.status === 'unavailable' ? 'rgba(176,141,46,.10)' : 'var(--surface)', bubbleBorder: user ? 'rgba(76,95,213,.20)' : 'var(--line)', hasBubble: Boolean(m.text),
       hasThink: think.length > 0, thinkLabel: `How I got here · ${think.length} step${think.length === 1 ? '' : 's'}`, thinkOpen: Boolean(state.tmThink?.[thinkKey]), thinkClosed: !state.tmThink?.[thinkKey], onThink: () => toggleThink(thinkKey),
       thinkSteps: think.map((t, j) => ({ key: `k${j}`, t, line: j === think.length - 1 ? 'transparent' : 'var(--line)', pad: j === think.length - 1 ? '0' : '14px' })),
-      hasChecks: m.widget === 'checks' && checks.length > 0, checks, checksTitle: `${checks.length} ${run.family === 'music' ? 'measures' : 'languages'} on the sealed held-out set`,
+      hasChecks: m.widget === 'checks' && checks.length > 0, checks, checksTitle: run.checks_title || `${checks.length} ${run.family === 'music' ? 'measures' : 'languages'} on the sealed held-out set`,
       hasRecord: m.widget === 'record', recRows: run.record_rows.map((row, j) => ({ key: `r${j}`, k: row[0], v: row[1] })), recLearnings: run.learnings || 'No reading recorded beyond the certificate.',
-      hasRefused: m.widget === 'refused', reason: run.reason || '', retired: run.status === 'Retired' || !canOperate,
+      hasRefused: m.widget === 'refused', reason: run.reason || '', retired: run.status === 'Retired' || !canOperate || run.read_only_execution,
       hasApproval: m.widget === 'approval', apprLine: run.approval?.line || '', signed: Boolean(run.approval?.signed), canRemind: Boolean(run.approval?.plan_sha256) && !run.approval?.signed && canOperate,
       remindDisabled: Boolean(run.approval?.signed) || (!canOperate && Boolean(run.approval?.plan_sha256)) || !run.approval?.plan_sha256,
       remindLabel: run.approval?.signed ? `Signed off by ${run.approval.signed.by} · ${relative(run.approval.signed.at)} · ${run.approval.signed.plan_sha256.slice(0, 12)}` : run.approval?.plan_sha256 ? `Awaiting the owner's signature · ${run.approval.plan_sha256.slice(0, 12)}` : 'No signable plan yet',
@@ -113,7 +116,7 @@ export function reportOf(run) {
   named.forEach(([k, label]) => { if (rows[k]) secs.push({ key: k, k: label, v: rows[k] }); });
   if (!secs.length) secs.push({ key: 'none', k: 'Acceptance record', v: 'None written for this run.' });
   const signed = Boolean(run.approval?.signed);
-  const lead = run.status === 'In service' ? (signed ? `Admitted against the acceptance that was signed: ${rows.Acceptance || 'every check cleared'}.` : 'Cleared every per-language check against the sealed held-out set and was admitted under the owner\'s per-stratum ruling.')
+  const lead = run.read_only_execution ? (run.reason || 'Research record; independent acceptance outstanding.') : run.status === 'Admitted' ? 'Admitted under its recorded criteria. Serving is offline; the checkpoint and admission remain intact.' : run.status === 'In service' ? (signed ? `Admitted against the acceptance that was signed: ${rows.Acceptance || 'every check cleared'}.` : 'Cleared every per-language check against the sealed held-out set and was admitted under the owner\'s per-stratum ruling.')
     : run.status === 'Refused' ? 'Stopped at acceptance. Nothing about the run is hidden, and the reason travels with it.' : 'Retired with its reason recorded. The record stays as written.';
   const obs = run.learnings || (run.status === 'Refused' ? 'A new version opens in the same lineage; the refusal is never overwritten.'
     : run.status === 'In service' ? (signed ? 'The artefact stays on the GPU host under tenant custody; serving is a separate operation. Open the next version to widen the evidence.' : 'Serving is a separate operation from admission.') : 'Nothing further was observed after retirement.');
@@ -135,8 +138,8 @@ export function dashCards(run) {
 }
 
 export function journalMeta(counts) {
-  const live = counts['In service'] || 0, refused = counts.Refused || 0, retired = counts.Retired || 0, n = live + refused + retired;
-  return n ? `${n} finished · ${live} in service, ${refused} refused, ${retired} retired` : 'Nothing finished yet';
+  const live = counts['In service'] || 0, admitted = counts.Admitted || 0, refused = counts.Refused || 0, retired = counts.Retired || 0, n = live + admitted + refused + retired;
+  return n ? `${n} finished · ${live} in service, ${admitted} admitted offline, ${refused} refused, ${retired} retired` : 'Nothing finished yet';
 }
 
 export function stageDots(run, go) {

@@ -1,0 +1,59 @@
+{
+  "summary": "Completed backend+frontend M Alpha verification for new evaluation/split/audit safeguards, read-only board/evidence contracts, and scoped 36-test regression. Total pytest: 46/46 passed; UI preview flow validated on desktop and mobile with authenticated sessionStorage token.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/auth/login",
+        "issue": "No brute-force lockout after 5 failed login attempts (5x401 followed by immediate 200 with correct password)."
+      },
+      {
+        "endpoint": "CORS preflight (/api/auth/login)",
+        "issue": "Preflight allow-origin echoed a different preview origin than requested host; monitor ingress CORS consistency for credentialed browser flows."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "/os/build/train (mobile 390x844)",
+        "issues": [
+          "Selected thread content is not fully in initial viewport; user must scroll to see active thread details."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/malpha/test_malpha_eval_splits_audit_and_board_iteration89.py",
+    "/app/backend/tests/malpha/test_malpha_worker_hardening_offline.py",
+    "/app/backend/tests/malpha/test_malpha_capacity_audit_and_learning_guards_offline.py",
+    "/app/backend/tests/malpha/test_malpha_live_readonly_iteration88.py",
+    "/app/backend/tests/wpw/test_tier2_malpha.py",
+    "/app/backend/tests/routing/test_measured_routing.py",
+    "/app/test_reports/pytest/iteration_89_final.xml"
+  ],
+  "action_items": [
+    "If lockout is a required auth control, implement and test account/IP throttling policy after repeated failures.",
+    "Validate ingress/app CORS origin alignment for preview domains when credentials mode is enabled.",
+    "Optional UX polish: auto-focus/auto-scroll selected training thread into viewport on initial mobile load."
+  ],
+  "critical_code_review_comments": [
+    "M Alpha evaluation-evidence live data correctly blocks acceptance with low positives/groups (kik 6, kam 8, swa 9 positives), overlap present, and reference verification false; no test-content read flagged.",
+    "Seed admin helper remains create-only (`seed_admin_if_absent`) and does not rotate/update existing admin password if changed; this diverges from strict playbook expectation."
+  ],
+  "updated_files": [
+    "/app/backend/tests/malpha/test_malpha_eval_splits_audit_and_board_iteration89.py",
+    "/app/test_reports/iteration_89.json"
+  ],
+  "success_rate": {
+    "backend": "100% (46/46)",
+    "frontend": "100% for scoped authenticated preview checks"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Regression baseline file from prior run (`iteration_88_final.xml`) re-executed with 36/36 pass, plus 10 new tests for evaluation/splits/corpus-audit/board evidence. Live evidence confirms both real hosts audited and blocked: Kamba train/admission speaker overlap=6 and dev/admission overlap=5; metadata-only flags and CPU-only audit preserved. UI checked with sessionStorage akki_access_token flow on /os/build/train?run=m9j-63f66a09e65c; screenshots captured at desktop 1920x800 and mobile 390x844.",
+  "rca of the issue": "Auth hardening gap: login path validates credentials but has no observable lockout gate after repeated failures; repeated 401 attempts do not trigger temporary refusal on correct password. CORS discrepancy appears at ingress edge (requested preview host vs echoed alternate preview origin) rather than application code path, suggesting edge config mismatch."
+}

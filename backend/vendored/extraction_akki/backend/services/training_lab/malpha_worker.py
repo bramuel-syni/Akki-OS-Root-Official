@@ -154,21 +154,9 @@ def _split_bucket(seed, lang, key):
 
 
 def assign_splits(rows, clusters, seed, lang, admission_pct=10, dev_pct=10):
-    """Speaker-cluster-disjoint sealing: a cluster (presenter heard across sessions) lands in one split; sessions whose speakers straddle splits
-    fall back to train so dev/admission never hear a training voice."""
-    def bucket(key):
-        b = _split_bucket(seed, lang, key)
-        return 'admission' if b < admission_pct else 'dev' if b < admission_pct + dev_pct else 'train'
-    session_split = {}
-    by_session = defaultdict(set)
-    for r in rows:
-        cid = clusters.get(f"{r['session']}|{r['speaker']}")
-        by_session[r['session']].add(f'c{cid}' if cid is not None else f"s:{r['session']}")
-    for session, keys in by_session.items():
-        splits = {bucket(k) for k in keys}
-        session_split[session] = splits.pop() if len(splits) == 1 else 'train'
-    for r in rows: r['split'] = session_split[r['session']]
-    return session_split
+    """Prospective database builds only. Existing manifests are never resealed."""
+    from services.training_lab.malpha_splits import connected_splits
+    return connected_splits(rows, clusters, seed, lang, admission_pct, dev_pct)
 
 
 # ----------------------------------------------------------------------------- Mimi codec: content + character streams with provenance
@@ -452,7 +440,7 @@ def aip_build(control, state):
         for r in rows: hours[r['split']] += r['features']['duration_s'] / 3600
         splits[lang] = {s: {'segments': counts[s], 'hours': round(hours[s], 3)} for s in ('train', 'dev', 'admission')}
         seals[lang] = {'admission_seg_ids_sha256': _sha(json.dumps(sorted(r['seg_id'] for r in rows if r['split'] == 'admission'))), 'dev_seg_ids_sha256': _sha(json.dumps(sorted(r['seg_id'] for r in rows if r['split'] == 'dev'))), 'sealed_at': now()}
-    manifest = {'protocol': 'akki-malpha-aip-db-v1', 'commission_id': control['commission_id'], 'built_at': now(), 'languages': langs, 'seed': seed, 'split_rule': 'speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash',
+    manifest = {'protocol': 'akki-malpha-aip-db-v2', 'commission_id': control['commission_id'], 'built_at': now(), 'languages': langs, 'seed': seed, 'split_rule': 'connected recording/speaker/exact-text components; unknown-speaker components train only; admission 10% / dev 10% by component hash; support must be audited',
                 'files': files_summary, 'segments': splits, 'seals': seals, 'codec_provenance': codec_provenance, 'codec_qualification': codec, 'tokens': tokens_summary, 'character_register': register,
                 'brand_inventory': inventory, 'feature_columns': list(FEATURES), 'layers': ['content (transcript, sealed by sha)', 'timing (start/end, pcm offsets)', 'speaker-local label + corpus cluster id', 'condition (codec/rate/channels)', 'discoverable spectrum columns', 'codec tokens (content stream cb0, character stream cb1-7)']}
     (out / 'manifest.json').write_text(json.dumps(manifest, indent=1, sort_keys=True))
@@ -693,22 +681,27 @@ def mention_metrics(rows, hyps, lexicon):
     """Per-language precision AND recall at the segment×brand level with 95% Wilson intervals (small n is visible, never averaged away),
     false positives per hour, abstention and timing tolerance recorded separately."""
     out = {}
+    if len(rows) != len(hyps): raise ValueError('PREDICTIONS_MUST_ALIGN_WITH_ALL_REFERENCES')
+    from services.training_lab.malpha_evaluation import listener_evidence
     for lang in sorted({r['language'] for r in rows}):
-        tp = fp = fn = 0; hours = 0.0; positives = 0; per_brand = defaultdict(lambda: Counter())
+        tp = fp = fn = 0; hours = 0.0; positives = 0; per_brand = defaultdict(lambda: Counter()); groups = defaultdict(lambda: [0, 0, 0])
         for r, h in zip(rows, hyps):
             if r['language'] != lang: continue
             truth = set(r.get('mentions') or []); pred = set(detect_mentions(h, lexicon)) if h is not None else set()
             hours += r['features']['duration_s'] / 3600; positives += bool(truth)
+            group = groups[r.get('session') or r.get('ref') or 'unknown-group']
+            for index, count in enumerate((len(truth & pred), len(pred - truth), len(truth - pred))): group[index] += count
             for b in truth & pred: tp += 1; per_brand[b]['tp'] += 1
             for b in pred - truth: fp += 1; per_brand[b]['fp'] += 1
             for b in truth - pred: fn += 1; per_brand[b]['fn'] += 1
         precision = tp / (tp + fp) if tp + fp else None; recall = tp / (tp + fn) if tp + fn else None
         f1 = 2 * precision * recall / (precision + recall) if precision and recall else (0.0 if (tp + fp and tp + fn) else None)
-        out[lang] = {'segments': sum(1 for r in rows if r['language'] == lang), 'segments_with_mentions': positives, 'tp': tp, 'fp': fp, 'fn': fn,
+        out[lang] = {'segments': sum(1 for r in rows if r['language'] == lang), 'segments_with_mentions': positives, 'segments_without_mentions': sum(1 for r in rows if r['language'] == lang) - positives, 'tp': tp, 'fp': fp, 'fn': fn,
                      'precision': round(precision, 4) if precision is not None else None, 'recall': round(recall, 4) if recall is not None else None, 'f1': round(f1, 4) if f1 is not None else None,
                      'precision_ci95': wilson(tp, tp + fp), 'recall_ci95': wilson(tp, tp + fn),
                      'false_positives_per_hour': round(fp / hours, 3) if hours else None, 'hours_evaluated': round(hours, 3), 'timestamp_tolerance': 'segment boundaries (mention attributed to its transcript segment)',
                      'abstained_segments': sum(1 for r, h in zip(rows, hyps) if r['language'] == lang and h is None), 'per_brand': {b: dict(c) for b, c in per_brand.items()}}
+        out[lang]['evidence'] = listener_evidence(out[lang], group_counts=list(groups.values()), reference_verified=False)
     return out
 
 
@@ -959,9 +952,9 @@ def evaluate_admission(control, state):
     target = float(control.get('admission_target', 0.9)); verdict = {}
     for lang in langs:
         m, w = ev['mentions'].get(lang) or {}, ev['words'].get(lang) or {}
-        ok = m.get('precision') is not None and m.get('recall') is not None and m['precision'] >= target and m['recall'] >= target
+        ok = (m.get('evidence') or {}).get('acceptance_ready') is True
         verdict[lang] = {'mention_precision': m.get('precision'), 'mention_recall': m.get('recall'), 'mention_f1': m.get('f1'), 'precision_ci95': m.get('precision_ci95'), 'recall_ci95': m.get('recall_ci95'), 'wer': w.get('wer'), 'cer': w.get('cer'), 'segments_with_mentions': m.get('segments_with_mentions'),
-                         'meets_target': bool(ok), 'target': target, 'measured_on': 'sealed admission split, speaker-cluster-disjoint from training'}
+                         'meets_target': bool(ok), 'target': target, 'evidence': m.get('evidence'), 'measured_on': 'sealed admission split; independence must be verified, not inferred from its name'}
     lock.close()
     return {'commission_id': control['commission_id'], 'iteration': control['iteration'], 'artefact_sha256': control['artefact_sha256'], 'languages': langs, 'evaluation': ev, 'verdict': verdict, 'lexicon_sha256': lexicon_sha(lexicon), 'brands': len(lexicon),
             'admitted_all_languages': all(v['meets_target'] for v in verdict.values()), 'evaluation_exposure': 'one read of the sealed split for this artefact; recorded by the control plane',

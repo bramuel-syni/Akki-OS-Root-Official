@@ -26,6 +26,15 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
   const select = useCallback((id, fromJournal) => { setParams(id ? { run: id } : {}); patch({ tmComposer: '', tmTab: fromJournal ? 'overview' : 'chat', tmJournalMode: Boolean(fromJournal) }); }, [setParams, patch]);
   const selKey = sel ? `${sel.run_id}:${sel.messages.length}` : '';
   useEffect(() => { if (active && selKey) scrollLog(); }, [active, selKey]);
+  const currentRun = sel?.run_id;
+  useEffect(() => {
+    if (!active || !currentRun || !window.matchMedia('(max-width: 600px)').matches) return undefined;
+    const frame = requestAnimationFrame(() => {
+      const title = document.querySelector('[data-testid="train-thread-title"]');
+      if (title) { title.style.scrollMarginTop = '20px'; title.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [active, currentRun]);
   const guard = fn => (...args) => canOperate ? fn(...args) : unavailable('Operator access required', 'Your admitted role may read every run and its record, but may not send messages or record decisions here. No change was made.');
   const failed = exc => unavailable('Not done', exc.message || 'The training lab did not accept that. Nothing about the run has changed.');
   const act = (action, value) => sel && data.act(sel.run_id, action, value).then(scrollLog).catch(failed);
@@ -58,7 +67,7 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     tmReportLead: report?.lead || '', tmReportSecs: report?.secs || [], tmReportObs: report?.obs || '', tmGenPaper: guard(() => act('white_paper')),
     tmObjectiveText: sel?.objective || '', tmDashCards: sel ? dashCards(sel) : [], tmDetailLearnings: sel?.learnings || '',
     tmShowLog: Boolean(sel) && (!finished || tab === 'chat'), tmThread: sel ? threadItems(sel, { state, names, pendingText: data.pending[sel.run_id], canOperate, toggleThink: key => patch({ tmThink: { ...(state.tmThink || {}), [key]: !state.tmThink?.[key] } }), pickBaseline: guard(value => act('use_baseline', value)) }) : [],
-    tmShowSummary: false, tmShowComposer: Boolean(sel) && canOperate && (!finished || tab === 'chat'), tmComposer: state.tmComposer || '', tmComposerChange: e => patch({ tmComposer: e.target.value }),
+    tmShowSummary: false, tmShowComposer: Boolean(sel) && !sel.read_only_execution && canOperate && (!finished || tab === 'chat'), tmComposer: state.tmComposer || '', tmComposerChange: e => patch({ tmComposer: e.target.value }),
     tmComposerKey: e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }, tmComposerPlaceholder: placeholder, tmSend: send, tmSending: Boolean(sel && data.pending[sel.run_id]),
     tmAttach: () => unavailable('Attach a file', 'Recordings and labels travel through the Media Library, where rights and retention are recorded. Upload there, then name the recording in this thread.'),
     tmJournalTitle: 'Trained model journal', tmJournalMeta: journalMeta(counts), tmJournalEmpty: !runs.some(r => FINISHED.includes(r.status)), tmJournalEmptyCopy: 'Nothing has finished yet. Models arrive here once they enter service, are refused, or are retired.',
@@ -79,16 +88,17 @@ export function useTrainModelsExperience({ active, session, navigate, params, se
     205: { 'data-testid': 'train-new-run-empty' }, 213: { 'data-testid': 'train-new-run' }, 237: { 'data-testid': 'train-search' }, 284: { 'data-testid': 'train-new-run-placeholder' },
     250: ctx => ({ 'data-testid': `train-run-${ctx.r.key}` }), 257: ctx => ({ 'data-testid': `train-run-delete-${ctx.r.key}` }),
     290: { 'data-testid': 'train-thread-title' }, 291: { 'data-testid': 'train-thread-status' }, 293: { 'data-testid': 'train-thread-meta' },
-    298: { 'data-testid': 'train-tab-overview-proto' }, 299: { 'data-testid': 'train-tab-report-proto' }, 306: ctx => ({ 'data-testid': `train-stage-${ctx.d.key}` }), 331: { 'data-testid': 'train-generate-paper' },
+    298: { 'data-testid': 'train-tab-overview-proto' }, 299: { 'data-testid': 'train-tab-report-proto' }, 306: ctx => ({ 'data-testid': `train-stage-${ctx.d.key}` }), 331: { 'data-testid': 'train-generate-paper', hidden: Boolean(sel?.read_only_execution) },
     363: { 'data-testid': 'train-thread' }, 365: ctx => ({ 'data-testid': `train-thread-item-${ctx.it.key}` }), 374: ctx => ({ 'data-testid': `train-think-${ctx.it.key}` }),
     400: ctx => ({ 'data-testid': `train-bubble-${ctx.it.key}` }), 416: { 'data-testid': 'train-use-baseline' }, 420: { 'data-testid': 'train-show-alternatives' }, 447: ctx => ({ 'data-testid': `train-use-alt-${ctx.ac.key}` }),
     533: { 'data-testid': 'train-approve-plan' }, 536: { 'data-testid': 'train-signoff-label' }, 543: { 'data-testid': 'train-begin-training' }, 571: { 'data-testid': 'train-open-next-version' }, 577: { 'data-testid': 'train-prepare-paper' }, 578: { 'data-testid': 'train-not-now' }, 585: { 'data-testid': 'train-view-document' },
     618: ctx => ({ 'data-testid': 'train-resubmit', hidden: ctx.it.retired }), 619: ctx => ({ 'data-testid': 'train-adjust', hidden: ctx.it.retired }), 620: ctx => ({ 'data-testid': 'train-retire', hidden: ctx.it.retired }),
     668: { 'data-testid': 'train-composer', disabled: model.tmSending }, 670: { 'data-testid': 'train-send', disabled: model.tmSending || !(state.tmComposer || '').trim() },
     687: ctx => ({ 'data-testid': `train-journal-${ctx.j.key}` }), 601: ctx => ({ 'data-testid': `train-checks-${ctx.it.key}` }), 616: { 'data-testid': 'train-refused-reason' }, 530: { 'data-testid': 'train-approval-line' },
+    254: ctx => ({ 'data-testid': `train-progress-${ctx.r.key}` }),
   };
   const replace = !active ? {} : {
-    421: ctx => `Show ${ctx.it.altCount} other option${ctx.it.altCount === 1 ? '' : 's'}`, 528: ctx => (ctx.it.signed ? 'Signed off' : 'Awaiting signature'), 533: 'Approve and start', 551: 'Run certificate', 601: ctx => ctx.it.checksTitle,
+    421: ctx => `Show ${ctx.it.altCount} other option${ctx.it.altCount === 1 ? '' : 's'}`, 528: ctx => (ctx.it.signed ? 'Signed off' : 'Awaiting signature'), 533: 'Approve and start', 551: () => sel?.read_only_execution ? 'Research record' : 'Run certificate', 601: ctx => ctx.it.checksTitle,
     519: 'Regulated or restricted sources lift the approval to a higher signature tier automatically.', 584: 'It is written in Documents by the frontier writer from this run\'s own record, every figure by reference.',
   };
   return { active, model, enhance, replace, slots, counts, loading: data.loading };

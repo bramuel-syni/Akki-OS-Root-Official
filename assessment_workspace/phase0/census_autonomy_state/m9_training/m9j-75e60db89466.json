@@ -75,9 +75,9 @@
  "code_sha256": "233d86c82d2f86aad94cf797febdfe30d5085d848964a02a0aa54fb2cc72bf27",
  "started_at": "2026-10-04T18:00:54.809329Z",
  "last_status_rpc": {
-  "at": "2026-10-04T18:45:42.056841Z",
+  "at": "2026-10-04T19:22:36.274273Z",
   "rc": 0,
-  "receipt_id": "gpurcp-c2d2ed87db62"
+  "receipt_id": "gpurcp-36057e32db24"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
@@ -85,14 +85,14 @@
   "started_at": "2026-10-04T18:00:54Z",
   "progress": {
    "stage": "training",
-   "step": 1000,
+   "step": 1890,
    "of": 3000,
-   "loss": 2.9374,
-   "elapsed_s": 2555,
+   "loss": 2.6774,
+   "elapsed_s": 4881,
    "gpu_peak_gb": 11.21,
-   "last_checkpoint_step": 1000,
-   "next_checkpoint_step": 1250,
-   "best_step": 750
+   "last_checkpoint_step": 1750,
+   "next_checkpoint_step": 2000,
+   "best_step": 1250
   },
   "stages": {
    "data": {
@@ -198,13 +198,117 @@
     },
     "_score": 24.854,
     "_best_step": 750
+   },
+   "dev_eval_step_1000": {
+    "at": "2026-10-04T18:47:20Z",
+    "kik": {
+     "dev_perplexity": 20.919,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 23.977,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 0.996
+    },
+    "swa": {
+     "dev_perplexity": 28.286,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 24.209,
+    "_best_step": 1000
+   },
+   "dev_eval_step_1250": {
+    "at": "2026-10-04T18:57:50Z",
+    "kik": {
+     "dev_perplexity": 20.378,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 24.502,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.9987
+    },
+    "swa": {
+     "dev_perplexity": 27.536,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 23.956,
+    "_best_step": 1250
+   },
+   "dev_eval_step_1500": {
+    "at": "2026-10-04T19:08:30Z",
+    "kik": {
+     "dev_perplexity": 20.187,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 27.62,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.9994
+    },
+    "swa": {
+     "dev_perplexity": 27.648,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 24.888,
+    "_best_step": 1250
+   },
+   "dev_eval_step_1750": {
+    "at": "2026-10-04T19:19:02Z",
+    "kik": {
+     "dev_perplexity": 19.9,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9985
+    },
+    "kam": {
+     "dev_perplexity": 28.249,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 27.161,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 24.809,
+    "_best_step": 1250
    }
   },
   "events": [],
   "job_id": "m9j-75e60db89466",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T18:43:36Z"
+  "updated_at": "2026-10-04T19:22:22Z"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 5790.81it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-75e60db89466/worker.zip/services/training_lab/malpha_voice_worker.py:174: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
  "process_alive": true

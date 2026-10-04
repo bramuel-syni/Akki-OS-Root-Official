@@ -25,7 +25,7 @@ RESIDENT_PROTECTED_MIB = 4096
 HOST_ALLOCATION = {'malpha_aip_build': [('akki-vm', 0), ('akki-vm-ii', 0)], 'malpha_aip_requalify': [('akki-vm', 0), ('akki-vm-ii', 0)], 'malpha_listener_train': [('akki-vm', 0)], 'malpha_voice_train': [('akki-vm', 1)],
                    'malpha_story_text_train': [('akki-vm-ii', 0)], 'malpha_baseline_render': [('akki-vm-ii', 0), ('akki-vm', 0), ('akki-vm', 1)], 'malpha_evaluate': [('akki-vm', 0), ('akki-vm', 1), ('akki-vm-ii', 0)],
                    'malpha_aip_relabel': [('akki-vm', 0), ('akki-vm-ii', 0)], 'malpha_internet_corpus': [('akki-vm', 0), ('akki-vm-ii', 0)]}
-CPU_PHASES = ('malpha_aip_requalify', 'malpha_aip_relabel', 'malpha_internet_corpus', 'malpha_worker_audit')  # no GPU lock; they run beside a training job on the same host
+CPU_PHASES = ('malpha_aip_requalify', 'malpha_aip_relabel', 'malpha_internet_corpus', 'malpha_worker_audit', 'malpha_corpus_audit')  # no GPU lock; they run beside a training job on the same host
 MIN_DEV_SEGMENTS, MIN_DEV_MENTION_SEGMENTS = 300, 30
 SEED = 20261004
 INTERNET_MAX_HOURS_PER_DATASET = None  # owner expansion: source exhaustion, rights or physical backpressure, never an arbitrary hours ceiling
@@ -279,6 +279,17 @@ def dispatch_worker_audits():
     return out
 
 
+def dispatch_corpus_audits():
+    out = []
+    for host, index in HOST_ALLOCATION['malpha_aip_build']:
+        if not aip_ready(host) or not relabel_ready(host): continue
+        existing = jobs(phase='malpha_corpus_audit', host=host, **{'params.audit_version': 1})
+        if any(j['status'] in ('running', 'submitting', 'completed') for j in existing) or len(existing) >= MAX_ATTEMPTS_PER_ITERATION: continue
+        out.append(_submit('LISTEN-KIK-KAM-SWA', 'corpus_audit', 'malpha_corpus_audit',
+                           {'audit_version': 1, 'lab_corpus_root': os.environ['LANGUAGE_COGNITION_REMOTE_ROOT']}, host, index, 0))
+    return out
+
+
 def listener_recipe(iteration, history):
     """Planned ladder (small → small longer → large-v3-turbo), then measurement-driven continuation. Contextual brand biasing through Whisper's
     previous-text channel is standard from the first recipe after the owner's catalogue arrived; the artefact is chosen by worst-language mention F1."""
@@ -422,11 +433,25 @@ def dispatch_lane(cid, lane, snapshot):
 
 
 def dispatch_evaluation(cid, lane, trained, snapshot):
+    from services.training_lab.malpha_evaluation import admission_preflight
+    preflight = admission_preflight(jobs(host=trained['host']))
+    if not preflight['ready']:
+        key = f'evaluation_holds.{lane}'
+        previous = (commission(cid).get('evaluation_holds') or {}).get(lane) or {}
+        if previous.get('panel_id') != preflight.get('panel_id') or not previous:
+            db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {key: preflight}})
+            _log(cid, 'evaluation_held', 'Sealed evaluation held: insufficient independently qualified references/support; no test content opened.', job_id=trained['job_id'])
+        return None
     slot = next(((h, i) for h, i in HOST_ALLOCATION['malpha_evaluate'] if h == trained['host'] and (h, i) not in _busy_devices() and (snapshot['devices'].get((h, i)) or {}).get('memory_used_mib', 1e9) <= RESIDENT_PROTECTED_MIB), None)
     if not slot: return None
     art = trained['result']['artefact']; active = brand_lexicon()
+    reservation = f"confirmation_panels.{preflight['panel_id']}"
+    reserved = db().malpha_commissions.update_one({'commission_id': cid, reservation: {'$exists': False}},
+        {'$set': {reservation: {'status': 'reserved', 'artefact_sha256': art['sha256'], 'reserved_at': now(), 'source_job_id': trained['job_id']}}})
+    if not reserved.modified_count: return None
     params = {'artefact_path': art['path'], 'artefact_sha256': art['sha256'], 'brand_lexicon': active['lexicon'], 'brand_lexicon_version': active['version'], 'admission_target': 0.9, 'trained_job_id': trained['job_id']}
     rec = _submit(cid, f'{lane}_evaluate', 'malpha_evaluate', params, slot[0], slot[1], trained['iteration'])
+    db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'{reservation}.status': rec['status'], f'{reservation}.job_id': rec['job_id']}})
     db().malpha_commissions.update_one({'commission_id': cid}, {'$inc': {f"evaluation_exposure.{art['sha256'][:12]}": 1}})
     return rec
 
@@ -495,6 +520,11 @@ def settle(rec, snapshot):
     result = rec['result']
     if phase == 'malpha_worker_audit':
         _log(cid, 'worker_audit', f"Worker contracts verified on {rec['host']}: {len(result['checks'])} synthetic-tensor checks; NOT quality evidence.", job_id=rec['job_id'])
+        return
+    if phase == 'malpha_corpus_audit':
+        wpw.record_event(cid, 'anomaly' if not result['independence_verified'] else 'checkpoint', 'observed', ref,
+            {'audit': result, 'measurement': 'metadata-only sealed separation and support; no test outcomes observed'})
+        _log(cid, 'corpus_audit', f"Corpus metadata audit on {rec['host']}: independence {result['independence_verified']}, support {result['support_sufficient']}. References still need independent annotation.", job_id=rec['job_id'])
         return
     if lane == 'story_text_comparison':
         _log(cid, 'comparison', 'Larger-base capacity trial completed; research only, not product admission or a matched causal benchmark.', job_id=rec['job_id'])
@@ -581,7 +611,7 @@ def _tick_unlocked():
         _log('*', 'hosts_unreachable', f"GPU snapshot {snapshot.get('status')}; nothing dispatched this tick"); return snapshot
     settled = refresh_jobs()
     for rec in settled: settle(rec, snapshot)
-    dispatched = list(dispatch_worker_audits()) + list(dispatch_aip_build(snapshot)) + list(dispatch_requalify(snapshot)) + list(dispatch_relabel(snapshot)) + list(dispatch_internet_corpus(snapshot))
+    dispatched = list(dispatch_worker_audits()) + list(dispatch_corpus_audits()) + list(dispatch_aip_build(snapshot)) + list(dispatch_requalify(snapshot)) + list(dispatch_relabel(snapshot)) + list(dispatch_internet_corpus(snapshot))
     for c in commissions():
         for lane in c['lanes']:
             state = (c.get('lane_state') or {}).get(lane) or {}
@@ -621,7 +651,9 @@ def metering():
 
 def status():
     active = brand_lexicon()
+    from services.training_lab.malpha_evaluation import admission_preflight
     return {'commissions': commissions(), 'jobs': [{k: v for k, v in j.items() if k not in ('result',)} | {'result_summary': _summary(j['lane'], j['result']) if j.get('result') and j['lane'] in ('listener', 'story_text', 'story_voice') else None} for j in jobs()],
+            'evaluation_evidence': admission_preflight(jobs()),
             'metering': metering(), 'brand_lexicon': {'version': active['version'], 'brands': len(active['lexicon']), 'lexicon_sha256': active['lexicon_sha256'], 'source': active['source'], 'relabel_ready': {h: relabel_ready(h) for h, _ in HOST_ALLOCATION['malpha_aip_relabel']}},
             'internet_corpus': {'datasets': INTERNET_DATASETS, 'max_hours_per_dataset': INTERNET_MAX_HOURS_PER_DATASET, 'authority': INTERNET_DATA_ORDER_REF, 'ready': {h: internet_ready(h) for h, _ in HOST_ALLOCATION['malpha_internet_corpus']}},
             'log': list(db().malpha_log.find({}, {'_id': 0}, sort=[('at', -1)], limit=60)), 'wpw': {cid: {'attached': wpw.is_attached_to_run(cid), 'entries': len(wpw.list_entries(cid)), 'chain': wpw.verify_hash_chain(cid)} for cid in COMMISSIONS}}

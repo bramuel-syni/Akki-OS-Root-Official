@@ -32,6 +32,7 @@ MALPHA_PHASES = {"malpha_aip_build": {'lab_corpus_root', 'max_files_per_language
                  "malpha_story_text_train": {'recipe', 'base_registration'}, "malpha_voice_train": {'recipe'}, "malpha_baseline_render": {'prompts_per_language'}}
 MALPHA_COMMON = {'commission_id', 'languages', 'gpu_index', 'budget_mode', 'owner_order_ref', 'seed', 'iteration', 'aip_db_dir'}
 MALPHA_PHASES['malpha_worker_audit'] = {'worker_contract_version'}
+MALPHA_PHASES['malpha_corpus_audit'] = {'audit_version', 'lab_corpus_root'}
 PHASES = tuple(dict.fromkeys((*PHASES, *MALPHA_PHASES)))
 OWNER_RULING_20260930 = "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)"
 JOB_ID = re.compile(r"m9j-[a-f0-9]{12}")
@@ -82,7 +83,8 @@ def build_bundle():
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
         for module in ('services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/training_lab/music_detector_worker.py', 'services/audio_plane_v1/acoustic_observables.py',
                        'services/training_lab/estate_language_worker.py', 'services/audio_plane_v1/corrective_model.py', 'services/training_lab/malpha_worker.py', 'services/training_lab/malpha_voice_worker.py',
-                       'services/training_lab/malpha_internet_worker.py', 'services/training_lab/malpha_worker_policy.py', 'services/training_lab/malpha_worker_audit.py'):
+                       'services/training_lab/malpha_internet_worker.py', 'services/training_lab/malpha_worker_policy.py', 'services/training_lab/malpha_worker_audit.py',
+                       'services/training_lab/malpha_evaluation.py', 'services/training_lab/malpha_corpus_audit.py', 'services/training_lab/malpha_splits.py'):
             archive.writestr(zipfile.ZipInfo(module, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / module).read_bytes())
         for directory in ("services", "services/training_runner", "services/training_lab", "services/audio_plane_v1"):
             archive.writestr(zipfile.ZipInfo(directory + "/__init__.py", date_time=(2026, 1, 1, 0, 0, 0)), b"")

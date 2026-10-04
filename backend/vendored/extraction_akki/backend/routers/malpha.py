@@ -116,6 +116,16 @@ async def learning_reviews(actor=Depends(census_identity)):
     return {'tenant_id': actor['tenant_id'], 'reviews': await asyncio.to_thread(malpha_learning.list_reviews)}
 
 
+@router.get('/evaluation-evidence', response_model=c.Envelope)
+async def evaluation_evidence(actor=Depends(census_identity)):
+    _operator(actor)
+    from services.training_lab.malpha_evaluation import admission_preflight
+    from services.training_lab import malpha
+    records = await asyncio.to_thread(malpha.jobs)
+    audits = [{k: j.get(k) for k in ('job_id', 'host', 'status', 'finished_at', 'result')} for j in records if j['phase'] == 'malpha_corpus_audit']
+    return {'tenant_id': actor['tenant_id'], 'listener_preflight': admission_preflight(records), 'corpus_audits': audits}
+
+
 @router.post('/learning', status_code=202, response_model=c.Envelope)
 async def learning_review(background: BackgroundTasks, actor=Depends(census_identity)):
     _operator(actor)

@@ -1,0 +1,434 @@
+{
+ "job_id": "m9j-a07d621a84b4",
+ "phase": "malpha_corpus_audit",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T19:07:04.140214Z",
+ "params": {
+  "audit_version": 1,
+  "lab_corpus_root": "/mnt/volume_dkgjrkx/akki-lc",
+  "commission_id": "LISTEN-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 0,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-3b49fccad513",
+ "northena_trace_id": "trc-f3d44dcd4fdd",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-a07d621a84b4"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-a07d621a84b4",
+  "pid": 3106997
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-2a9c36f8c3f0",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_corpus_audit_admitted"
+  },
+  {
+   "row_id": "led-0225c84fcb42",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_corpus_audit_daemonised:pid=3106997"
+  },
+  {
+   "row_id": "led-e8faa0a4ecf1",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_corpus_audit_completed"
+  }
+ ],
+ "code_sha256": "999c232807df2cc36ac50beb3f348701e56117f275e585bcc1199bc0d412cf8f",
+ "started_at": "2026-10-04T19:07:10.279199Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T19:08:12.463936Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-9920293523a9"
+ },
+ "remote_state": {
+  "phase": "malpha_corpus_audit",
+  "status": "completed",
+  "started_at": "2026-10-04T19:07:10Z",
+  "progress": {
+   "stage": "checking metadata separation and admission support",
+   "language": "swa"
+  },
+  "stages": {
+   "corpus_qualification": {
+    "at": "2026-10-04T19:07:11Z",
+    "audit_version": 1,
+    "per_language": {
+     "kik": {
+      "segments": {
+       "train": 32120,
+       "dev": 2962,
+       "admission": 357
+      },
+      "admission_seal_sha256": "3e0aad9669922ffe5aa15a1d2cca1f9155ac1dec20a20041b040232f24764132",
+      "seal_matches": true,
+      "speaker_assignments_missing": 819,
+      "overlap_counts": {
+       "train_dev": {
+        "speaker_clusters": 35,
+        "recording_sessions": 0,
+        "exact_text_hashes": 102
+       },
+       "train_admission": {
+        "speaker_clusters": 0,
+        "recording_sessions": 0,
+        "exact_text_hashes": 32
+       },
+       "dev_admission": {
+        "speaker_clusters": 0,
+        "recording_sessions": 0,
+        "exact_text_hashes": 19
+       }
+      },
+      "admission_independence_verified": false,
+      "support": {
+       "sufficient": false,
+       "missing_support": [
+        "positive_segments",
+        "recording_groups"
+       ],
+       "positive_segments": 6,
+       "negative_segments": 351,
+       "recording_groups": 2
+      },
+      "reference_qualification": {
+       "verified": false,
+       "basis": "transcript alias matching, not independent human annotation"
+      },
+      "limitations": [
+       "Speaker-cluster labels inherit clustering error.",
+       "Exact text overlap can include common phrases; all such cases require review.",
+       "Dev is session-held-out and may share speakers with training; it is not an independent speaker test."
+      ]
+     },
+     "kam": {
+      "segments": {
+       "train": 13391,
+       "dev": 3810,
+       "admission": 129
+      },
+      "admission_seal_sha256": "0f2c4dd4345e3bbb8aba2e3773740076d0c98d3f5750b0aa02263ddbca33e807",
+      "seal_matches": true,
+      "speaker_assignments_missing": 425,
+      "overlap_counts": {
+       "train_dev": {
+        "speaker_clusters": 54,
+        "recording_sessions": 0,
+        "exact_text_hashes": 109
+       },
+       "train_admission": {
+        "speaker_clusters": 6,
+        "recording_sessions": 0,
+        "exact_text_hashes": 4
+       },
+       "dev_admission": {
+        "speaker_clusters": 5,
+        "recording_sessions": 0,
+        "exact_text_hashes": 2
+       }
+      },
+      "admission_independence_verified": false,
+      "support": {
+       "sufficient": false,
+       "missing_support": [
+        "positive_segments",
+        "recording_groups"
+       ],
+       "positive_segments": 8,
+       "negative_segments": 121,
+       "recording_groups": 13
+      },
+      "reference_qualification": {
+       "verified": false,
+       "basis": "transcript alias matching, not independent human annotation"
+      },
+      "limitations": [
+       "Speaker-cluster labels inherit clustering error.",
+       "Exact text overlap can include common phrases; all such cases require review.",
+       "Dev is session-held-out and may share speakers with training; it is not an independent speaker test."
+      ]
+     },
+     "swa": {
+      "segments": {
+       "train": 35410,
+       "dev": 583,
+       "admission": 88
+      },
+      "admission_seal_sha256": "96b7afb48debccf1f7ef6b0e150fac643e85e924db33ff01e79744d6f0576a0a",
+      "seal_matches": true,
+      "speaker_assignments_missing": 834,
+      "overlap_counts": {
+       "train_dev": {
+        "speaker_clusters": 11,
+        "recording_sessions": 0,
+        "exact_text_hashes": 39
+       },
+       "train_admission": {
+        "speaker_clusters": 2,
+        "recording_sessions": 0,
+        "exact_text_hashes": 8
+       },
+       "dev_admission": {
+        "speaker_clusters": 0,
+        "recording_sessions": 0,
+        "exact_text_hashes": 3
+       }
+      },
+      "admission_independence_verified": false,
+      "support": {
+       "sufficient": false,
+       "missing_support": [
+        "positive_segments",
+        "negative_segments",
+        "recording_groups"
+       ],
+       "positive_segments": 9,
+       "negative_segments": 79,
+       "recording_groups": 3
+      },
+      "reference_qualification": {
+       "verified": false,
+       "basis": "transcript alias matching, not independent human annotation"
+      },
+      "limitations": [
+       "Speaker-cluster labels inherit clustering error.",
+       "Exact text overlap can include common phrases; all such cases require review.",
+       "Dev is session-held-out and may share speakers with training; it is not an independent speaker test."
+      ]
+     }
+    },
+    "speaker_assignments_sha256": "ad6e9c7d7367c6ecb81e0403a875f49f0eed114a109a0f74ec13825464b8e30c",
+    "seal_set_sha256": "e3d5fb813059bab72db932dd0b0a3eb3072aa2bac46e9d5ed75c5a7f8b04d38a",
+    "independence_verified": false,
+    "support_sufficient": false,
+    "reference_verified": false,
+    "test_content_read": false,
+    "metadata_only": true,
+    "sealed_admission_read": false,
+    "raw_media_exported": false,
+    "text_exported": false,
+    "training_started": false,
+    "compute": {
+     "device": "cpu",
+     "gpu_seconds": 0,
+     "wall_seconds": 0.916
+    }
+   }
+  },
+  "events": [],
+  "job_id": "m9j-a07d621a84b4",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T19:07:11Z",
+  "finished_at": "2026-10-04T19:07:11Z",
+  "receipt_sha256": "a01b8620c50588f06822d19805433b14b49a16c62746e2bb4636b3509e2a065d"
+ },
+ "worker_log_tail": "",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-a07d621a84b4",
+  "phase": "malpha_corpus_audit",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T19:07:10Z",
+  "code_sha256": "999c232807df2cc36ac50beb3f348701e56117f275e585bcc1199bc0d412cf8f",
+  "status": "completed",
+  "result": {
+   "audit_version": 1,
+   "per_language": {
+    "kik": {
+     "segments": {
+      "train": 32120,
+      "dev": 2962,
+      "admission": 357
+     },
+     "admission_seal_sha256": "3e0aad9669922ffe5aa15a1d2cca1f9155ac1dec20a20041b040232f24764132",
+     "seal_matches": true,
+     "speaker_assignments_missing": 819,
+     "overlap_counts": {
+      "train_dev": {
+       "speaker_clusters": 35,
+       "recording_sessions": 0,
+       "exact_text_hashes": 102
+      },
+      "train_admission": {
+       "speaker_clusters": 0,
+       "recording_sessions": 0,
+       "exact_text_hashes": 32
+      },
+      "dev_admission": {
+       "speaker_clusters": 0,
+       "recording_sessions": 0,
+       "exact_text_hashes": 19
+      }
+     },
+     "admission_independence_verified": false,
+     "support": {
+      "sufficient": false,
+      "missing_support": [
+       "positive_segments",
+       "recording_groups"
+      ],
+      "positive_segments": 6,
+      "negative_segments": 351,
+      "recording_groups": 2
+     },
+     "reference_qualification": {
+      "verified": false,
+      "basis": "transcript alias matching, not independent human annotation"
+     },
+     "limitations": [
+      "Speaker-cluster labels inherit clustering error.",
+      "Exact text overlap can include common phrases; all such cases require review.",
+      "Dev is session-held-out and may share speakers with training; it is not an independent speaker test."
+     ]
+    },
+    "kam": {
+     "segments": {
+      "train": 13391,
+      "dev": 3810,
+      "admission": 129
+     },
+     "admission_seal_sha256": "0f2c4dd4345e3bbb8aba2e3773740076d0c98d3f5750b0aa02263ddbca33e807",
+     "seal_matches": true,
+     "speaker_assignments_missing": 425,
+     "overlap_counts": {
+      "train_dev": {
+       "speaker_clusters": 54,
+       "recording_sessions": 0,
+       "exact_text_hashes": 109
+      },
+      "train_admission": {
+       "speaker_clusters": 6,
+       "recording_sessions": 0,
+       "exact_text_hashes": 4
+      },
+      "dev_admission": {
+       "speaker_clusters": 5,
+       "recording_sessions": 0,
+       "exact_text_hashes": 2
+      }
+     },
+     "admission_independence_verified": false,
+     "support": {
+      "sufficient": false,
+      "missing_support": [
+       "positive_segments",
+       "recording_groups"
+      ],
+      "positive_segments": 8,
+      "negative_segments": 121,
+      "recording_groups": 13
+     },
+     "reference_qualification": {
+      "verified": false,
+      "basis": "transcript alias matching, not independent human annotation"
+     },
+     "limitations": [
+      "Speaker-cluster labels inherit clustering error.",
+      "Exact text overlap can include common phrases; all such cases require review.",
+      "Dev is session-held-out and may share speakers with training; it is not an independent speaker test."
+     ]
+    },
+    "swa": {
+     "segments": {
+      "train": 35410,
+      "dev": 583,
+      "admission": 88
+     },
+     "admission_seal_sha256": "96b7afb48debccf1f7ef6b0e150fac643e85e924db33ff01e79744d6f0576a0a",
+     "seal_matches": true,
+     "speaker_assignments_missing": 834,
+     "overlap_counts": {
+      "train_dev": {
+       "speaker_clusters": 11,
+       "recording_sessions": 0,
+       "exact_text_hashes": 39
+      },
+      "train_admission": {
+       "speaker_clusters": 2,
+       "recording_sessions": 0,
+       "exact_text_hashes": 8
+      },
+      "dev_admission": {
+       "speaker_clusters": 0,
+       "recording_sessions": 0,
+       "exact_text_hashes": 3
+      }
+     },
+     "admission_independence_verified": false,
+     "support": {
+      "sufficient": false,
+      "missing_support": [
+       "positive_segments",
+       "negative_segments",
+       "recording_groups"
+      ],
+      "positive_segments": 9,
+      "negative_segments": 79,
+      "recording_groups": 3
+     },
+     "reference_qualification": {
+      "verified": false,
+      "basis": "transcript alias matching, not independent human annotation"
+     },
+     "limitations": [
+      "Speaker-cluster labels inherit clustering error.",
+      "Exact text overlap can include common phrases; all such cases require review.",
+      "Dev is session-held-out and may share speakers with training; it is not an independent speaker test."
+     ]
+    }
+   },
+   "speaker_assignments_sha256": "ad6e9c7d7367c6ecb81e0403a875f49f0eed114a109a0f74ec13825464b8e30c",
+   "seal_set_sha256": "e3d5fb813059bab72db932dd0b0a3eb3072aa2bac46e9d5ed75c5a7f8b04d38a",
+   "independence_verified": false,
+   "support_sufficient": false,
+   "reference_verified": false,
+   "test_content_read": false,
+   "metadata_only": true,
+   "sealed_admission_read": false,
+   "raw_media_exported": false,
+   "text_exported": false,
+   "training_started": false,
+   "compute": {
+    "device": "cpu",
+    "gpu_seconds": 0,
+    "wall_seconds": 0.916
+   }
+  },
+  "finished_at": "2026-10-04T19:07:11Z",
+  "receipt_sha256": "a01b8620c50588f06822d19805433b14b49a16c62746e2bb4636b3509e2a065d",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T19:07:11Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-a07d621a84b4",
+  "started_at_utc": "2026-10-04T19:07:10.279199Z",
+  "finished_at_utc": "2026-10-04T19:07:11Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-a07d621a84b4"
+ }
+}

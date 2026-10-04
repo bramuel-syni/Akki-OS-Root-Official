@@ -7,7 +7,7 @@ NAMES = {'guz': 'Ekegusii', 'kam': 'Kikamba', 'kik': 'Gikuyu', 'kln': 'Kalenjin'
          'eng': 'English', 'sheng': 'Sheng', 'bxk': 'Bukusu', 'mer': 'Kimeru', 'ebu': 'Kiembu', 'mrg': 'Maragoli', 'mas': 'Maa'}
 BASES = {'qwen3-8b-base': '8B', 'qwen3-1.7b-base': '1.7B'}
 BASE_NAMES = {'qwen3-8b-base': 'Qwen3 8B base', 'qwen3-1.7b-base': 'Qwen3 1.7B base'}
-FINISHED = ('In service', 'Refused', 'Retired')
+FINISHED = ('In service', 'Admitted', 'Refused', 'Retired')
 
 
 def pct(value, digits=1):
@@ -70,7 +70,7 @@ def _text_runs():
         served = [a for a in own if (a.get('serving') or {}).get('status') == 'running']
         status, reason = 'Retired', ''
         if job['status'] == 'completed' and cert:
-            if admission.get('outcome') == 'admitted': status = 'In service'
+            if admission.get('outcome') == 'admitted': status = 'In service' if served else 'Admitted'
             elif admission.get('outcome') == 'refused':
                 status = 'Refused'; failing = [NAMES.get(k, k) for k, v in ((decision or {}).get('per_stratum') or {}).items() if not v.get('passes')]
                 reason = ('Admission refused: ' + (', '.join(failing) + ' regressed below the base model on the sealed held-out set.' if failing else (admission.get('refusal_note') or 'a measured criterion fell below its floor.')))
@@ -115,8 +115,8 @@ def _text_runs():
             messages.append(_msg(job['finished_at'], f"Training compute finished — {_duration(training.get('wallclock_seconds'))} on one {training.get('device', 'GPU')}. The per-language checks ran against the sealed held-out set; nobody can override the result, including me.", widget='checks'))
         if status == 'Refused':
             messages.append(_msg(cert.get('certified_at') or job.get('finished_at'), reason or 'The recorded acceptance decision refused this candidate.', widget='refused'))
-        elif status == 'In service':
-            messages.append(_msg(admission.get('computed_at') or job.get('finished_at'), f"Admitted under the owner's per-stratum ruling. Here is the full record.", widget='record'))
+        elif status in ('In service', 'Admitted'):
+            messages.append(_msg(admission.get('computed_at') or job.get('finished_at'), "Admitted under the owner's per-stratum ruling. " + ('Serving is active.' if served else 'Serving is not running; admission and the checkpoint remain intact.'), widget='record'))
             if (cert.get('whitepaper') or {}).get('drafted'):
                 messages.append(_msg(admission.get('computed_at') or job.get('finished_at'), 'A white paper was drafted from this run\'s own record; it cites the admission and the baseline line.', widget='suggest'))
             messages.append(_msg(admission.get('computed_at') or job.get('finished_at'), 'To improve on it, open the next version. This one keeps its record, its status and its calls.', widget='remodel'))
@@ -133,7 +133,7 @@ def _text_runs():
 
 
 def _eta(status, reason=''):
-    return {'In service': 'complete', 'Refused': 'stopped at acceptance', 'Retired': 'stopped' if reason else 'retired', 'In training': 'training', 'Testing': 'checks running',
+    return {'In service': 'complete', 'Admitted': 'admitted · serving offline', 'Refused': 'stopped at acceptance', 'Retired': 'stopped' if reason else 'retired', 'In training': 'training', 'Testing': 'checks running',
             'Queued': 'waiting for a slot', 'In Approval': 'waiting on your approval', 'Shaping': 'not started — no training compute spent'}.get(status, '')
 
 
@@ -467,7 +467,7 @@ def _apply_retirements(tenant, rows):
     retired = board_runs.retired(tenant)
     for row in rows:
         mark = retired.get(row['run_id'])
-        if mark and row['status'] in ('Refused', 'In service', 'Retired'):
+        if mark and row['status'] in ('Refused', 'In service', 'Admitted', 'Retired'):
             row['retired_from'] = row['status']
             row['status'] = 'Retired'; row['eta'] = 'retired'
             row['reason'] = f"Retired by the owner on {mark['retired_at'][:10]}. " + (row['reason'] if row.get('reason') else 'Its record stays as written.')
@@ -488,6 +488,8 @@ def runs(tenant):
             second = _reinforcement_run(tenant, version_id)
             if second: rows.append(second)
         rows.extend(_versioned(_text_runs())); rows.extend(_versioned(_audio_runs()))
+        from services.training_lab import malpha_board
+        rows = malpha_board.runs() + rows
     rows = _owner_runs(tenant) + rows
     return _apply_retirements(tenant, rows)
 
@@ -496,6 +498,6 @@ def board(tenant):
     from services.training_lab import signoff
     rows = runs(tenant)
     signed = signoff.all_for(tenant)
-    counts = {status: sum(1 for r in rows if r['status'] == status) for status in ('Shaping', 'In Approval', 'Queued', 'In training', 'Testing', 'In service', 'Refused', 'Retired')}
+    counts = {status: sum(1 for r in rows if r['status'] == status) for status in ('Shaping', 'In Approval', 'Queued', 'In training', 'Testing', 'In service', 'Admitted', 'Refused', 'Retired')}
     return {'runs': rows, 'counts': counts, 'training_authorized': bool(signed), 'signoffs': {k: {'status': v['status'], 'signed_by': v['signed_by'], 'signed_at': v['signed_at'], 'plan_sha256': v['plan_sha256']} for k, v in signed.items()},
             'music_detector_admitted': ((signed.get('music-identification') or {}).get('outcome') or {}).get('decision') == 'admitted'}

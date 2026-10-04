@@ -108,6 +108,14 @@ def story_text_train(control, state):
             for i in range(0, len(body), room): out.append((d['lang'], head + body[i:i + room]))
         return out
     train_chunks, dev_chunks = chunks(train), chunks(dev)
+    from services.training_lab.malpha_evaluation import fingerprint
+    panel = {l: [d['title'] for d in sorted(dev, key=lambda d: (d['lang'], d['session'], d['title'])) if d['lang'] == l][:n_samples] for l in langs}
+    if any(not panel[l] for l in langs): raise ValueError('REAL_DEVELOPMENT_PROMPTS_REQUIRED_FOR_EVERY_LANGUAGE')
+    evaluation_protocol = {'version': 'malpha-story-eval-v2', 'prompt_panel_sha256': fingerprint(panel),
+        'prompts_per_language': {l: len(panel[l]) for l in langs}, 'sample_seed': int(control['seed']),
+        'perplexity_definition': 'token-weighted causal NLL over first64 registered dev chunks per language; includes prompt tokens; naturalness NOT measured',
+        'dev_tokens_sha256': fingerprint(dev_chunks), 'max_new_tokens': 320, 'temperature': .8, 'top_p': .95}
+    state.stage('evaluation_protocol', evaluation_protocol)
     optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=float(recipe['lr']), weight_decay=float(recipe.get('weight_decay', 0.0)))
     batch, accum, max_steps, warmup = int(recipe['batch_size']), int(recipe.get('grad_accum', 1)), int(recipe['max_steps']), int(recipe.get('warmup_steps', 100))
     ckpt_every, eval_every = int(recipe.get('checkpoint_every', 200)), int(recipe.get('eval_every', 500))
@@ -140,15 +148,17 @@ def story_text_train(control, state):
         return tokenizer.decode(out[0, ids.shape[1]:], skip_special_tokens=True).strip()
 
     def evaluation():
-        ev = {'step': step, 'at': now(), 'per_language': {}}
+        ev = {'step': step, 'at': now(), 'per_language': {}, 'evaluation_protocol': evaluation_protocol}
         for lang in langs:
-            pool = [d['title'] for d in dev if d['lang'] == lang] or ['a story told on the radio']
-            titles = [pool[i % len(pool)] for i in range(n_samples)]
-            samples = []
-            for t in titles:
-                text = generate(lang, t); sims = {l: round(profile_cosine(trigram_profile([text]), profiles[l]), 4) for l in langs}
-                samples.append({'title': t, 'chars': len(text), 'words': len(text.split()), 'distinct_2': distinct_n(text), 'trigram_similarity': sims, 'language_fidelity': max(sims, key=sims.get) == lang, 'excerpt_sha256': hashlib.sha256(text.encode()).hexdigest()})
-            (job_dir / f'samples_{lang}_step{step}.json').write_text(json.dumps({'samples': samples}, ensure_ascii=False, indent=1))
+            titles = panel[lang]; samples, local_samples = [], []
+            for index, t in enumerate(titles):
+                with torch.random.fork_rng(devices=[torch.cuda.current_device()]):
+                    torch.manual_seed(int(control['seed']) + langs.index(lang)*1000 + index)
+                    text = generate(lang, t)
+                sims = {l: round(profile_cosine(trigram_profile([text]), profiles[l]), 4) for l in langs}
+                sample = {'prompt_sha256': hashlib.sha256(_prompt(lang, t).encode()).hexdigest(), 'chars': len(text), 'words': len(text.split()), 'distinct_2': distinct_n(text), 'trigram_similarity': sims, 'language_fidelity': bool(text.strip()) and max(sims, key=sims.get) == lang, 'excerpt_sha256': hashlib.sha256(text.encode()).hexdigest()}
+                samples.append(sample); local_samples.append({**sample, 'title': t, 'text': text})
+            (job_dir / f'samples_{lang}_step{step}.json').write_text(json.dumps({'samples': local_samples, 'evaluation_protocol': evaluation_protocol, 'custody': 'estate_only'}, ensure_ascii=False, indent=1))
             ppl = perplexity(lang); base = (base_perplexity or {}).get(lang)
             ev['per_language'][lang] = {'dev_perplexity': ppl, 'base_perplexity': base, 'dev_perplexity_below_base': (ppl is not None and base is not None and ppl < base) if base is not None else None,
                                         'language_fidelity_rate': round(sum(s['language_fidelity'] for s in samples) / len(samples), 3), 'mean_distinct_2': round(sum(s['distinct_2'] for s in samples) / len(samples), 4), 'samples': samples}

@@ -94,9 +94,9 @@
  "code_sha256": "adbe8f70bb1dce7b88938b6dc8676bc3b844a18a50f669168e6cffcda5da2ac1",
  "started_at": "2026-10-04T18:42:30.797893Z",
  "last_status_rpc": {
-  "at": "2026-10-04T18:45:56.777645Z",
+  "at": "2026-10-04T19:22:51.471448Z",
   "rc": 0,
-  "receipt_id": "gpurcp-540585b45eef"
+  "receipt_id": "gpurcp-f37e2f741a5e"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
@@ -104,14 +104,14 @@
   "started_at": "2026-10-04T18:42:30Z",
   "progress": {
    "stage": "training",
-   "step": 50,
+   "step": 500,
    "of": 3000,
-   "loss": 3.4847,
-   "elapsed_s": 178,
-   "gpu_peak_gb": 24.82,
-   "last_checkpoint_step": 0,
-   "next_checkpoint_step": 250,
-   "best_step": null
+   "loss": 2.319,
+   "elapsed_s": 2287,
+   "gpu_peak_gb": 24.84,
+   "last_checkpoint_step": 500,
+   "next_checkpoint_step": 750,
+   "best_step": 250
   },
   "stages": {
    "data": {
@@ -139,13 +139,45 @@
     "kik": 55.146,
     "kam": 54.704,
     "swa": 36.037
+   },
+   "dev_eval_step_250": {
+    "at": "2026-10-04T19:07:50Z",
+    "kik": {
+     "dev_perplexity": 18.606,
+     "base_perplexity": 55.146,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.562,
+     "mean_distinct_2": 0.9996
+    },
+    "kam": {
+     "dev_perplexity": 20.195,
+     "base_perplexity": 54.704,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 1.0
+    },
+    "swa": {
+     "dev_perplexity": 21.323,
+     "base_perplexity": 36.037,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9982
+    },
+    "_score": [
+     1,
+     0.5,
+     2.0620000000000003,
+     -20.01006012959949
+    ],
+    "_best_step": 250,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
    }
   },
   "events": [],
   "job_id": "m9j-d4085045c5b6",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T18:45:35Z"
+  "updated_at": "2026-10-04T19:20:44Z"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 6038.67it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-d4085045c5b6/worker.zip/services/training_lab/malpha_voice_worker.py:175: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
  "process_alive": true
