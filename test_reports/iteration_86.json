@@ -1,0 +1,22 @@
+{
+  "summary": "Iteration 86 — MA-08 measured routing verified end-to-end. Backend pytest: 11/11 pass (routing/test_measured_routing.py + economics/test_rate_card.py). New live suite /app/backend/tests/live_iter86.py: 4/4 pass (assignments shape, trials list+detail, auth refusals incl. 401/403/409/404 matrix, adoption round-trip with ARMI sync and revert). Frontend /os/build/youragents verified for operator: armi-routing section appears when the planner (gpt-6-astra) row is clicked, basis = 'Configured assignment gpt-6-astra; no measured trial adopted yet…', trial meta shows 'trial rt-a5201bf3bb · measured · 3 tasks · 5 candidates', all 5 candidate rows present, floors badges met for gpt-6-astra/gpt-5.4-mini/claude-sonnet-5-5 and 'not met' for haiku/gemini, 'recommended' label on gpt-5.4-mini row, recommendation note mentions 'cost unknown … fewest measured tokens is the disclosed proxy', armi-routing-findings visible, armi-routing-run button present and enabled (NOT clicked), adopt buttons present only on floor-meeting rows. UI adopt→revert round-trip succeeded: adopt gpt-5.4-mini → basis switches to 'Adopted on measured evidence: gpt-5.4-mini from trial rt-a5201bf3bb…', row shows 'adopted', armi-routing-revert appears, clicking revert returns basis to the configured text. Non-llm rows (agent-e1, model-*, skill-*) do NOT render armi-routing (verified). Analyst login sees armi-routing-table but no armi-routing-run / armi-routing-adopt-* / armi-routing-revert controls. Responsive: scrollWidth==clientWidth==1920 at desktop and ==390 at mobile with the planner profile+routing table open. Live backend state after testing: planner.model=gpt-6-astra, decision=null, basis starts 'configured (environment); no measured trial adopted'. No new trial POSTed; no training/malpha POSTs issued; adoption used only the latest measured trial (rt-a5201bf3bb) and was reverted; ARMI sync re-run after revert.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/routing/test_measured_routing.py",
+    "/app/backend/tests/economics/test_rate_card.py",
+    "/app/backend/tests/live_iter86.py"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "ArmiRouting.jsx renders adopt buttons only on floor-meeting rows (correct) and gates armi-routing-run / adopt / revert behind operator role (correct). No defects observed.",
+    "test_measured_routing.py::test_live_adoption_is_floor_bound_and_reversible is written to be reversible even if interrupted, which matches the review-request warning. Keep it the last test in the file so a failed run cannot leave a stale decision; it already is."
+  ],
+  "updated_files": ["/app/backend/tests/live_iter86.py"],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "operator demo.operator@demo.rms.example.com / demo-operator-pw; analyst demo.analyst@demo.rms.example.com / demo-analyst-pw",
+  "seed_data_creation": "None — adoption decision made during live test was reverted; ARMI sync re-run to restore configured planner mapping.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "The sign-in form is INLINE on protected pages (no /login route); use the on-page email/password inputs and the 'Sign in' text button. Switching users in Playwright requires either a fresh browser context (page.context.clear_cookies()+page.reload may still leave the SPA session) or ending the previous session via UI. Live /api/routing/trials/{id} returns candidate.tasks[] but /api/routing/trials?role=... deliberately omits tasks. ARMI agent lookup uses 'agent_id' key; after adoption the planner llm agent is 'llm:planner:<adopted-model>' with admission.decision starting with 'measured routing trial'. Always finish with POST /api/routing/revert {role:'planner'} then POST /api/armi/sync."
+}

@@ -74,9 +74,9 @@
  "code_sha256": "b57a0c3666db277ac92fed73e286cc7a6e9cf1738d5ba80c50a74ee3f3f5e79c",
  "started_at": "2026-10-04T16:16:28.986567Z",
  "last_status_rpc": {
-  "at": "2026-10-04T17:15:33.676492Z",
+  "at": "2026-10-04T17:45:32.824903Z",
   "rc": 0,
-  "receipt_id": "gpurcp-7104b08dac3c"
+  "receipt_id": "gpurcp-ff63f9eb7276"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
@@ -84,14 +84,14 @@
   "started_at": "2026-10-04T16:16:28Z",
   "progress": {
    "stage": "training",
-   "step": 1500,
+   "step": 2250,
    "of": 3000,
-   "loss": 2.8474,
-   "elapsed_s": 3447,
+   "loss": 2.675,
+   "elapsed_s": 5160,
    "gpu_peak_gb": 11.21,
-   "last_checkpoint_step": 1500,
-   "next_checkpoint_step": 1750,
-   "best_step": 1250
+   "last_checkpoint_step": 2250,
+   "next_checkpoint_step": 2500,
+   "best_step": 1750
   },
   "stages": {
    "data": {
@@ -249,13 +249,91 @@
     },
     "_score": 22.826,
     "_best_step": 1250
+   },
+   "dev_eval_step_1500": {
+    "at": "2026-10-04T17:17:46Z",
+    "kik": {
+     "dev_perplexity": 18.808,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 24.22,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 0.9974
+    },
+    "swa": {
+     "dev_perplexity": 26.026,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.999
+    },
+    "_score": 22.802,
+    "_best_step": 1500
+   },
+   "dev_eval_step_1750": {
+    "at": "2026-10-04T17:26:53Z",
+    "kik": {
+     "dev_perplexity": 18.52,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 0.999
+    },
+    "kam": {
+     "dev_perplexity": 23.805,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 0.875
+    },
+    "swa": {
+     "dev_perplexity": 25.699,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": 22.46,
+    "_best_step": 1750
+   },
+   "dev_eval_step_2000": {
+    "at": "2026-10-04T17:36:21Z",
+    "kik": {
+     "dev_perplexity": 18.653,
+     "base_perplexity": 69.657,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.875,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 24.095,
+     "base_perplexity": 70.076,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.625,
+     "mean_distinct_2": 0.999
+    },
+    "swa": {
+     "dev_perplexity": 26.025,
+     "base_perplexity": 64.331,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.997
+    },
+    "_score": 22.7,
+    "_best_step": 1750
    }
   },
   "events": [],
   "job_id": "m9j-f4de3dea598c",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-04T17:14:02Z"
+  "updated_at": "2026-10-04T17:42:34Z"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6235.27it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f4de3dea598c/worker.zip/services/training_lab/malpha_voice_worker.py:173: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum)",
  "process_alive": true

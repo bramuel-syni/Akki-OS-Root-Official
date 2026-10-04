@@ -1,0 +1,168 @@
+{
+ "job_id": "m9j-ed018335b45c",
+ "phase": "malpha_voice_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-04T17:30:41.869287Z",
+ "params": {
+  "recipe": {
+   "lr": 0.00020999999999999998,
+   "batch_size": 48,
+   "max_steps": 40000,
+   "warmup_steps": 1000,
+   "eval_every": 2500,
+   "checkpoint_every": 500,
+   "d_model": 768,
+   "layers": 12,
+   "heads": 12,
+   "max_segment_seconds": 12.0,
+   "spectral_feedback": true,
+   "eval_prompts_per_language": 12,
+   "comparators_per_language": 300,
+   "identity_cosine_threshold": 0.4,
+   "identity_conditioning": true,
+   "identity_candidates": 200,
+   "identity_noise": 0.75,
+   "identity_margin": 0.1,
+   "loudness_match": true,
+   "init_from": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-1504d4f5bee7/artefact/voice_lm.pt",
+   "rationale": "continue iteration 3's model (same architecture) at 0.7\u00d7 learning rate; similarity {'kik': 0.5859, 'kam': 0.627, 'swa': 0.4839}; identity gate failed for kik, kam, swa \u2192 identity resampled with more noise (0.75) and a wider construction margin (0.1)"
+  },
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 4,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-ffea480ca787",
+ "northena_trace_id": "trc-3dbfc13841e0",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-ed018335b45c"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ed018335b45c",
+  "pid": 2421733
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-61eb9bfee088",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_voice_train_admitted"
+  },
+  {
+   "row_id": "led-a4969507ac58",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_voice_train_daemonised:pid=2421733"
+  }
+ ],
+ "code_sha256": "233d86c82d2f86aad94cf797febdfe30d5085d848964a02a0aa54fb2cc72bf27",
+ "started_at": "2026-10-04T17:30:47.470148Z",
+ "last_status_rpc": {
+  "at": "2026-10-04T17:45:36.730193Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-4cad2768bdff"
+ },
+ "remote_state": {
+  "phase": "malpha_voice_train",
+  "status": "running",
+  "started_at": "2026-10-04T17:30:47Z",
+  "progress": {
+   "stage": "training codec language model",
+   "step": 3150,
+   "of": 40000,
+   "loss": 2.4496,
+   "elapsed_s": 885,
+   "gpu_peak_gb": 13.22,
+   "last_checkpoint_step": 3000,
+   "next_checkpoint_step": 3500,
+   "parameters": 111314968
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-04T17:30:58Z",
+    "train_segments": 75012,
+    "train_hours": 62.04,
+    "dev_segments": 3811,
+    "text_vocab": 68,
+    "admission_read": false,
+    "per_language": {
+     "kik": 29627,
+     "kam": 12642,
+     "swa": 32743
+    },
+    "excluded_overlong_transcripts": 9,
+    "max_text_chars": 400,
+    "max_codec_frames": 152
+   },
+   "invented_identity": {
+    "at": "2026-10-04T17:31:52Z",
+    "method": "mean of 8 corpus-derived (session, speaker) representations + isotropic noise (sigma 0.75 \u00d7 norm), re-normalised; resampled until max cosine to every corpus-derived representation < threshold \u2212 margin",
+    "representation_space": "speechbrain/spkrec-ecapa-voxceleb (192-d, unit norm)",
+    "corpus_representations_checked": 3897,
+    "gate_threshold": 0.4,
+    "construction_margin": 0.1,
+    "max_cosine_to_any_corpus_representation": 0.2749,
+    "passes_construction_check": true,
+    "candidates_tried": 1,
+    "scope": "corpus-derived speaker representations of this estate only; not a global uniqueness claim over all humans",
+    "conditioning_input_fixed_at_serving": true
+   },
+   "dev_eval_step_2500": {
+    "at": "2026-10-04T17:44:36Z",
+    "kik": {
+     "overall_similarity": 0.4632,
+     "identity_gate_passes": false,
+     "max_cosine": 0.4681,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6047,
+     "identity_gate_passes": false,
+     "max_cosine": 0.511,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.3959,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5125,
+     "rendered": 12
+    }
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-04T17:30:58Z",
+    "message": "weights initialised from /mnt/volume_dkgjrkx/akki-m9/jobs/m9j-1504d4f5bee7/artefact/voice_lm.pt"
+   },
+   {
+    "at": "2026-10-04T17:31:14Z",
+    "message": "identity comparators prepared in memory: {kik: 300, kam: 300, swa: 300}; never written to disk"
+   },
+   {
+    "at": "2026-10-04T17:31:52Z",
+    "message": "2997 temporary (session, speaker) representations prepared in memory for conditioning; never written to disk"
+   }
+  ],
+  "job_id": "m9j-ed018335b45c",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-04T17:45:35Z"
+ },
+ "worker_log_tail": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ed018335b45c/worker.zip/services/training_lab/malpha_voice_worker.py:213: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 6076.94it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ed018335b45c/worker.zip/services/training_lab/malpha_voice_worker.py:453: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))",
+ "process_alive": true
+}
