@@ -3,7 +3,7 @@
 Unit: the gate rewrites enforced categories on BOTH payload paths (system message and prompt) with one placeholder per value, receipts
 advisory categories, inspects the outbound text, scores hostility from content and rebinds the reply. Chokepoint: `invoke` carries the
 rewritten payload to a fake client, refuses hostile payloads before any call, and records the gate summary on the crossing receipt.
-Live API: propose → review → adopt → classify-by-exact-value (paraphrase, no cue) → re-scope → remove; multilingual cues; crossings view.
+Live API: propose → adopt (pending) → approve (second principal) → classify-by-exact-value (paraphrase, no cue) → re-scope → removal ceremony (counter-sign, countdown, cancel); reach; multilingual cues; crossings view.
 All documents are SYNTHETIC."""
 import asyncio
 import os
@@ -115,35 +115,72 @@ def dpo(): return _login(DPO)
 def op(): return _login(OPERATOR)
 
 
-def test_register_lifecycle_propose_adopt_enforce_remove(dpo, op):
+@pytest.fixture(scope='module')
+def master(): return _login({'email': 'demo.master_admin@demo.rms.example.com', 'password': 'demo-master-admin-pw'})
+
+
+def _register_db():
+    from services.synisense.shield import semantic_register as reg
+    return reg.db().shield_register
+
+
+def test_register_lifecycle_propose_adopt_approve_enforce_remove(dpo, op, master):
+    """Live lifecycle on the RMS register with a fixed SYNTHETIC probe (`synthetic_lifecycle_probe`): re-runnable — stale pending is
+    withdrawn, a stale ceremony cancelled, a revision supersedes the previous probe version; the adopted draft is withdrawn and its
+    withdrawn record removed as test residue."""
     reg = requests.get(f'{BASE_URL}/api/shield/register', headers=dpo, timeout=30).json()
-    assert reg['can_author'] and {'enforced', 'advisory'} == set(reg['enforcement'])
+    assert reg['can_author'] and {'enforced', 'advisory'} == set(reg['enforcement']) and reg['removal_countdown_hours'] == 48 and 'pending' in reg['statuses']
     assert all('enforcement' in c for c in reg['categories'])
+    name = 'synthetic_lifecycle_probe'
+    for stale in reg['categories']:
+        if stale['name'] == name and stale['status'] == 'pending': requests.post(f'{BASE_URL}/api/shield/register/{name}/withdraw', headers=dpo, json={'reason': 'stale test state'}, timeout=30)
+        if stale['name'] == name and stale['status'] == 'active' and stale.get('removal'): requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/cancel', headers=dpo, json={'reason': 'stale test state'}, timeout=30)
+    # propose → adopt lands pending (B28) and changes nothing at the crossing (B43) → withdraw keeps the record
     r = requests.post(f'{BASE_URL}/api/shield/register/propose', headers=dpo, json={'text': DOC, 'source_ref': 'synthetic contract fixture'}, timeout=60); assert r.status_code == 200, r.text
     drafts = {d['name']: d for d in r.json()['drafts']}
-    assert 'client_identity_values' in drafts and 'Nuru Orchard Test Cooperative' in drafts['client_identity_values']['values'] and drafts['client_identity_values']['status'] == 'draft'
-    assert drafts['client_identity_values']['version'] == 0
-    assert 'private_project_name_values' in drafts and 'Papaya Comet' in drafts['private_project_name_values']['values']
-    # a draft protects nothing until adopted: a paraphrase carrying no cue is not classified until the exact value is in force
+    assert 'client_identity_values' in drafts and 'Nuru Orchard Test Cooperative' in drafts['client_identity_values']['values'] and drafts['client_identity_values']['status'] == 'draft' and drafts['client_identity_values']['version'] == 0
+    probe_text = 'Nuru Orchard Test Cooperative opens on Tuesdays.'
+    before = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': probe_text}, timeout=30).json()
+    r = requests.post(f'{BASE_URL}/api/shield/register/client_identity_values/adopt', headers=dpo, json={'description': 'adopted by test'}, timeout=30); assert r.status_code == 200, r.text
+    cat = r.json()['category']; assert cat['status'] == 'pending' and cat['kind'] == 'exact' and cat['enforcement'] == 'enforced' and 'approved_by' not in cat
+    assert requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': probe_text}, timeout=30).json() == before, 'adoption changes nothing at the crossing (B43)'
+    r = requests.post(f'{BASE_URL}/api/shield/register/client_identity_values/withdraw', headers=dpo, json={'reason': 'test: withdrawn before approval'}, timeout=30); assert r.status_code == 200 and r.json()['category']['status'] == 'withdrawn'
+    for n in [n for n in drafts if n != 'client_identity_values']: requests.delete(f'{BASE_URL}/api/shield/register/{n}/draft', headers=dpo, timeout=30)
+    _register_db().delete_many({'tenant_id': 'RMS', 'name': 'client_identity_values', 'status': 'withdrawn', 'authored_by': cat['authored_by']})
+    # declare → pending → approve by a second principal → in force (B29); the paraphrase with no cue is protected only after approval
     nocue = 'Papaya Comet ships on Tuesdays.'
-    before = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': nocue}, timeout=30).json()
-    assert not before['categories']
-    r = requests.post(f'{BASE_URL}/api/shield/register/private_project_name_values/adopt', headers=dpo, json={'description': 'adopted by test'}, timeout=30); assert r.status_code == 200, r.text
-    cat = r.json()['category']; assert cat['status'] == 'active' and cat['version'] == 1 and cat['kind'] == 'exact' and cat['enforcement'] == 'enforced'
-    assert [h['change'][:8] for h in cat['history']][-1] == 'adopted '
+    r = requests.post(f'{BASE_URL}/api/shield/register', headers=dpo, json={'name': name, 'kind': 'exact', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'SYNTHETIC lifecycle probe', 'values': ['Papaya Comet']}, timeout=30); assert r.status_code == 201, r.text
+    cat = r.json()['category']; assert cat['status'] == 'pending' and 'approved_by' not in cat
+    assert requests.post(f'{BASE_URL}/api/shield/register', headers=dpo, json={'name': name, 'kind': 'exact', 'action': 'abstract', 'description': 'SYNTHETIC again', 'values': ['Papaya Comet']}, timeout=30).status_code == 409, 'one pending per name'
+    assert requests.post(f'{BASE_URL}/api/shield/register/{name}/approve', headers=op, timeout=30).status_code == 403, 'approval is a DPO act'
+    r = requests.post(f'{BASE_URL}/api/shield/register/{name}/approve', headers=master, timeout=30); assert r.status_code == 200, r.text
+    cat = r.json()['category']; assert cat['status'] == 'active' and cat['approved_by'] and cat['adopted_by'] and cat['approved_by'] != cat['adopted_by']
+    assert cat['history'][-1]['change'].startswith('approved') and cat['history'][-1]['same_signatory'] is False
     after = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': nocue}, timeout=30).json()
-    assert after['categories'] == ['private_project_name_values'], 'adopted exact value protects the paraphrase with no cue'
+    assert name in after['categories'], 'approved exact value protects the paraphrase with no cue'
     recon = requests.post(f'{BASE_URL}/api/shield/reconstruct', headers=op, json={'text': nocue}, timeout=30).json()
-    assert 'papaya' not in recon['safe_text'].lower() and recon['bindings_held_inside'] == 1 and '[PROJECT_1]' in recon['safe_text']
-    # re-scope and remove are DPO acts, on the record
-    name = 'private_project_name_values'
+    assert 'papaya' not in recon['safe_text'].lower() and recon['bindings_held_inside'] >= 1
+    # re-scope is a DPO act, on the record
     r = requests.post(f'{BASE_URL}/api/shield/register/{name}/enforcement', headers=dpo, json={'enforcement': 'advisory'}, timeout=30); assert r.json()['category']['enforcement'] == 'advisory'
     assert requests.post(f'{BASE_URL}/api/shield/register/{name}/enforcement', headers=op, json={'enforcement': 'enforced'}, timeout=30).status_code == 403
-    r = requests.delete(f'{BASE_URL}/api/shield/register/{name}', headers=dpo, params={'reason': 'test complete'}, timeout=30); assert r.json()['removed'] == 1
-    gone = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': nocue}, timeout=30).json(); assert not gone['categories']
-    for n in [n for n in drafts if n != name]: requests.delete(f'{BASE_URL}/api/shield/register/{n}/draft', headers=dpo, timeout=30)
-    removed = requests.get(f'{BASE_URL}/api/shield/register', headers=dpo, params={'include_removed': 'true'}, timeout=30).json()['categories']
-    assert any(c['name'] == name and c['status'] == 'removed' and c['removal_reason'] == 'test complete' for c in removed)
+    # removal runs the ceremony: proposed → second signature (different principal) → countdown → cancellable; protection continues meanwhile (B39, B44)
+    r = requests.delete(f'{BASE_URL}/api/shield/register/{name}', headers=dpo, params={'reason': 'test complete'}, timeout=30); assert r.status_code == 200, r.text
+    assert r.json()['removal']['state'] == 'proposed' and r.json()['category']['status'] == 'active'
+    assert requests.delete(f'{BASE_URL}/api/shield/register/{name}', headers=dpo, params={'reason': 'again'}, timeout=30).status_code == 409
+    assert requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/countersign', headers=dpo, timeout=30).status_code == 409, 'the proposer cannot counter-sign'
+    assert requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/apply', headers=dpo, timeout=30).status_code == 404, 'nothing to apply before the second signature'
+    r = requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/countersign', headers=master, timeout=30); assert r.status_code == 200, r.text
+    rem = r.json()['category']['removal']; assert rem['state'] == 'countdown' and rem['countdown_hours'] == 48 and rem['applies_at'] > rem['counter_signed_at']
+    assert requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/apply', headers=master, timeout=30).status_code == 409, 'countdown not elapsed'
+    assert name in requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': nocue}, timeout=30).json()['categories'], 'still protected during the countdown'
+    r = requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/cancel', headers=dpo, json={'reason': 'test: keep it'}, timeout=30); assert r.status_code == 200 and 'removal' not in r.json()['category']
+    on_record = requests.get(f'{BASE_URL}/api/shield/register', headers=dpo, params={'include_removed': 'true'}, timeout=30).json()['categories']
+    assert any(c['name'] == name and c['status'] == 'active' and any('removal cancelled' in h['change'] for h in c['history']) for c in on_record)
+    # review reach is stated over measured material only (A5.3); vault intake refuses unknown uploads and non-DPO callers
+    reach = requests.post(f'{BASE_URL}/api/shield/register/{name}/reach', headers=op, timeout=60); assert reach.status_code == 200, reach.text
+    assert 'not measured' in reach.json()['unmeasured'] and name in reach.json()['by_declaration']
+    assert requests.post(f'{BASE_URL}/api/shield/register/vault', headers=dpo, json={'file_id': 'no-such-upload-id'}, timeout=30).status_code == 404
+    assert requests.post(f'{BASE_URL}/api/shield/register/vault', headers=op, json={'file_id': 'no-such-upload-id'}, timeout=30).status_code == 403
 
 
 def test_marked_confidential_passages_are_proposed(dpo):

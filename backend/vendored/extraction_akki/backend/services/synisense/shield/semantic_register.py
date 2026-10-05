@@ -10,13 +10,22 @@ import hashlib
 import re
 import uuid
 from collections import defaultdict
+from datetime import datetime, timedelta, timezone
 
 from services.training_lab import store as lab
 
 KINDS = ('exact', 'pattern', 'contextual')
 ACTIONS = ('remove', 'abstract', 'generalise')
 ENFORCEMENT = ('enforced', 'advisory')
-STATUSES = ('draft', 'active', 'superseded', 'removed')
+# Doc 2 A4/A5: draft (proposed) → pending (adopted, not yet live) → active (approved; the only status the crossing consumes) → superseded |
+# removed (through the counter-signed countdown ceremony). `withdrawn` keeps a pending declaration the DPO abandoned on the record (A5.5).
+STATUSES = ('draft', 'pending', 'active', 'superseded', 'removed', 'withdrawn')
+RETIRED = ('superseded', 'removed', 'withdrawn')
+REMOVAL_BUSINESS_TYPE = 'system_ordinary'
+
+
+class Conflict(Exception):
+    """The requested transition is not available from the declaration's current state."""
 CONFIDENTIALITY_MARKERS = ('confidential', 'trade secret', 'proprietary', 'internal only', 'not for disclosure', 'nda', 'privileged', 'restricted', 'embargo', 'siri', 'faragha')
 
 # `enforced` categories are rewritten (or the crossing refused) on EVERY model call and rebound in the reply; `advisory` categories are
@@ -53,7 +62,8 @@ def now():
 # ----------------------------------------------------------------------------- register authoring (DPO-governed, versioned, removable)
 def ensure_defaults(tenant):
     coll = db().shield_register
-    if coll.count_documents({'tenant_id': tenant}):
+    # the shipped defaults are detected by their own authorship, not by "any document exists": a tenant whose first act is a DPO declaration still receives them
+    if coll.count_documents({'tenant_id': tenant, 'authored_by': 'shield.defaults'}):
         for cat in DEFAULT_CATEGORIES:
             # categories installed before enforcement scopes existed receive the default scope once; the DPO's later choice is never overwritten
             coll.update_many({'tenant_id': tenant, 'name': cat['name'], 'enforcement': {'$exists': False}}, {'$set': {'enforcement': cat['enforcement']}})
@@ -68,10 +78,39 @@ def ensure_defaults(tenant):
     return len(DEFAULT_CATEGORIES)
 
 
-def categories(tenant, include_removed=False, include_drafts=False):
-    ensure_defaults(tenant)
-    statuses = ['active'] + (['draft'] if include_drafts else []) + (['removed', 'superseded'] if include_removed else [])
-    return list(db().shield_register.find({'tenant_id': tenant, 'status': {'$in': statuses}}, {'_id': 0}, sort=[('status', 1), ('name', 1)]))
+def categories(tenant, include_removed=False, include_drafts=False, include_pending=False):
+    """The crossing consumes `active` only (A5.1): a pending or draft declaration is returned solely when asked for, never to `classify`."""
+    ensure_defaults(tenant); _migrate_catalogue(tenant)
+    statuses = ['active'] + (['draft'] if include_drafts else []) + (['pending'] if include_pending else []) + (list(RETIRED) if include_removed else [])
+    return list(db().shield_register.find({'tenant_id': tenant, 'status': {'$in': statuses}}, {'_id': 0}, sort=[('status', 1), ('name', 1), ('version', -1)]))
+
+
+def entity_declarations(tenant):
+    """The authored portion of the tenant entity set the de-identifier consults (A5.1): approved exact declarations carrying an entity type."""
+    _migrate_catalogue(tenant)
+    return list(db().shield_register.find({'tenant_id': tenant, 'status': 'active', 'kind': 'exact', 'entity_type': {'$type': 'string'}}, {'_id': 0}))
+
+
+_migrated = set()
+
+
+def _migrate_catalogue(tenant):
+    """One entity set (B45): the seed tenant catalogue becomes authored exact declarations in the register; the file is a migration source only."""
+    if tenant in _migrated: return 0
+    from services.synisense.shield.tenant_entities import ENTITY_TYPE_MAP, catalogue_groups
+    coll = db().shield_register; n = 0
+    for group, entries in catalogue_groups(tenant).items():
+        name = f'catalogue_{group}'; values = sorted({e.get('surface_form', '') for e in entries} | {v for e in entries for v in e.get('variant_forms', [])} - {''})
+        if not values: continue
+        current = coll.find_one({'tenant_id': tenant, 'name': name, 'status': 'active'})
+        if current is None:
+            coll.insert_one({'tenant_id': tenant, 'category_id': 'cat-' + uuid.uuid4().hex[:10], 'name': name, 'kind': 'exact', 'action': 'abstract', 'enforcement': 'enforced', 'entity_type': ENTITY_TYPE_MAP[group], 'values': values, 'cues': None, 'targets': None, 'patterns': None,
+                             'description': f'{group} named in the tenant catalogue (estate vocabulary harvested at census); recognised on every crossing', 'provenance': 'migrated_from_catalogue', 'version': 1, 'status': 'active',
+                             'authored_by': 'shield.catalogue_migration', 'authored_at': now(), 'adopted_by': 'shield.catalogue_migration', 'adopted_at': now(), 'approved_by': 'shield.catalogue_migration', 'approved_at': now(),
+                             'history': [{'at': now(), 'by': 'shield.catalogue_migration', 'change': f'migrated from tenant_catalogue.v0.json: {len(values)} surface form(s) already in force at the crossing', 'version': 1}]}); n += 1
+        elif set(values) - set(current.get('values') or []):
+            coll.update_one({'_id': current['_id']}, {'$set': {'values': sorted(set(current.get('values') or []) | set(values))}, '$push': {'history': {'at': now(), 'by': 'shield.catalogue_migration', 'change': f'{len(set(values) - set(current.get("values") or []))} surface form(s) appended from the catalogue'}}}); n += 1
+    _migrated.add(tenant); return n
 
 
 def _validate(body):
@@ -82,23 +121,125 @@ def _validate(body):
         for p in body.get('patterns') or []: re.compile(p)
         if not body.get('patterns'): raise ValueError('A pattern category needs at least one regular expression')
     if body['kind'] == 'contextual' and not body.get('cues'): raise ValueError('A contextual category names the cues that signal the protected meaning')
+    if body.get('entity_type') is not None and (body['kind'] != 'exact' or not re.fullmatch(r'[A-Z][A-Z0-9_]{1,30}', str(body['entity_type']))): raise ValueError('entity_type is an upper-case label on an exact declaration')
 
 
 def _fields(body):
-    return {k: body.get(k) for k in ('name', 'kind', 'action', 'description', 'cues', 'targets', 'patterns', 'values')} | {'enforcement': body.get('enforcement') or 'enforced'}
+    return {k: body.get(k) for k in ('name', 'kind', 'action', 'description', 'cues', 'targets', 'patterns', 'values', 'entity_type')} | {'enforcement': body.get('enforcement') or 'enforced'}
+
+
+def _one(coll, tenant, name, status):
+    return coll.find_one({'tenant_id': tenant, 'name': name, 'status': status})
+
+
+def _pending_from(tenant, actor, body, lineage, change, provenance=None, source=None):
+    """Adopt (B28): the shaped declaration enters `pending`. It is not in the crossing set until approved (B29, B43)."""
+    _validate(body)
+    coll = db().shield_register
+    if _one(coll, tenant, body['name'], 'pending'): raise Conflict('A pending declaration of that name awaits approval; approve or withdraw it first')
+    prior = _one(coll, tenant, body['name'], 'active')
+    doc = _fields(body)
+    doc.update(tenant_id=tenant, category_id=prior['category_id'] if prior else (lineage or {}).get('category_id') or 'cat-' + uuid.uuid4().hex[:10], version=(prior['version'] + 1) if prior else 1, status='pending',
+               authored_by=actor, authored_at=now(), adopted_by=actor, adopted_at=now(), history=((lineage or {}).get('history') or []) + [{'at': now(), 'by': actor, 'change': change, 'version': (prior['version'] + 1) if prior else 1}])
+    if provenance: doc['provenance'] = provenance
+    if source: doc.update(source)
+    coll.insert_one(dict(doc)); doc.pop('_id', None); return doc
 
 
 def author(tenant, actor, body):
-    """DPO authors or revises a category directly into force (the DPO act IS the adoption); a draft of the same name is consumed."""
-    _validate(body)
-    coll = db().shield_register; prior = coll.find_one({'tenant_id': tenant, 'name': body['name'], 'status': 'active'})
-    version = (prior['version'] + 1) if prior else 1
-    doc = _fields(body)
-    doc.update(tenant_id=tenant, category_id=prior['category_id'] if prior else 'cat-' + uuid.uuid4().hex[:10], version=version, status='active', authored_by=actor, authored_at=now(),
-               history=(prior.get('history') if prior else []) + [{'at': now(), 'by': actor, 'change': 'revised' if prior else 'authored', 'version': version}])
-    if prior: coll.update_one({'_id': prior['_id']}, {'$set': {'status': 'superseded', 'superseded_at': now()}})
+    """DPO declares a category in their own terms (Generate + Adopt in one act, B25/B28): it lands `pending`; approval puts it in force."""
+    coll = db().shield_register
+    doc = _pending_from(tenant, actor, body, None, 'declared by the DPO and adopted; awaits approval' + (' (revision)' if _one(coll, tenant, body['name'], 'active') else ''))
     coll.delete_many({'tenant_id': tenant, 'name': body['name'], 'status': 'draft'})
-    coll.insert_one(dict(doc)); doc.pop('_id', None); return doc
+    return doc
+
+
+def adopt(tenant, actor, name, edits=None):
+    """DPO adopts a proposed draft (optionally edited) → pending; the draft's own history is retained (B40)."""
+    coll = db().shield_register; draft = _one(coll, tenant, name, 'draft')
+    if not draft: raise LookupError('No draft with that name awaits adoption')
+    body = {k: draft.get(k) for k in ('name', 'kind', 'action', 'description', 'cues', 'targets', 'patterns', 'values', 'enforcement', 'entity_type')} | {k: v for k, v in (edits or {}).items() if v is not None}
+    doc = _pending_from(tenant, actor, body, {'category_id': draft['category_id'], 'history': draft.get('history', [])}, 'adopted' + (' with edits' if edits else '') + '; awaits approval',
+                        source={k: draft[k] for k in ('source_ref', 'source_sha256') if k in draft})
+    coll.delete_one({'_id': draft['_id']}); return doc
+
+
+def approve(tenant, actor, name):
+    """Approve (B29, A5.4): the governed act that commits a pending declaration into force; the prior version is superseded, its history carried."""
+    coll = db().shield_register; pend = _one(coll, tenant, name, 'pending')
+    if not pend: raise LookupError('No pending declaration with that name awaits approval')
+    prior = _one(coll, tenant, name, 'active')
+    history = (prior.get('history', []) if prior else []) + pend.get('history', []) + [{'at': now(), 'by': actor, 'change': 'approved into force', 'version': pend['version'], 'same_signatory': actor == pend.get('adopted_by')}]
+    if prior: coll.update_one({'_id': prior['_id']}, {'$set': {'status': 'superseded', 'superseded_at': now(), 'superseded_by_version': pend['version']}})
+    coll.update_one({'_id': pend['_id']}, {'$set': {'status': 'active', 'approved_by': actor, 'approved_at': now(), 'history': history}})
+    return coll.find_one({'_id': pend['_id']}, {'_id': 0})
+
+
+def withdraw(tenant, actor, name, reason):
+    """DPO abandons a pending declaration; it stays on the record as withdrawn (A5.5)."""
+    coll = db().shield_register; pend = _one(coll, tenant, name, 'pending')
+    if not pend: raise LookupError('No pending declaration with that name')
+    coll.update_one({'_id': pend['_id']}, {'$set': {'status': 'withdrawn', 'withdrawn_at': now(), 'withdrawn_by': actor}, '$push': {'history': {'at': now(), 'by': actor, 'change': f'withdrawn before approval: {reason}'}}})
+    return coll.find_one({'_id': pend['_id']}, {'_id': 0})
+
+
+def discard(tenant, actor, name):
+    res = db().shield_register.delete_many({'tenant_id': tenant, 'name': name, 'status': 'draft'})
+    if not res.deleted_count: raise LookupError('No draft with that name')
+    return res.deleted_count
+
+
+# ----------------------------------------------------------------------------- removal: the consequential direction runs the governed change ceremony (A5.4 B39; Doc 14 case)
+def _active_with_removal(tenant, name, state):
+    doc = db().shield_register.find_one({'tenant_id': tenant, 'name': name, 'status': 'active', 'removal.state': state})
+    if not doc: raise LookupError(f'No active declaration named {name!r} with a removal in state {state!r}')
+    return doc
+
+
+def remove(tenant, actor, name, reason):
+    """Propose removal. The declaration keeps protecting until the ceremony applies: proposed → second signature → countdown → applied → re-verified."""
+    from services.rules_service import ceremony
+    coll = db().shield_register; doc = _one(coll, tenant, name, 'active')
+    if not doc: raise LookupError('No active category with that name')
+    if doc.get('removal'): raise Conflict(f"A removal ceremony is already {doc['removal']['state']} for this declaration")
+    removal = {'state': 'proposed', 'reason': reason, 'proposed_by': actor, 'proposed_at': now(), 'business_type': REMOVAL_BUSINESS_TYPE, 'countdown_hours': ceremony.SYSTEM_ORDINARY_COUNTDOWN_HOURS, 'witness_source': ceremony.WITNESS_IDENTITY_SOURCE}
+    coll.update_one({'_id': doc['_id']}, {'$set': {'removal': removal}, '$push': {'history': {'at': now(), 'by': actor, 'change': f'removal proposed: {reason}; awaits a second signature'}}})
+    return coll.find_one({'_id': doc['_id']}, {'_id': 0})
+
+
+def countersign_removal(tenant, actor, name):
+    from services.rules_service import ceremony
+    doc = _active_with_removal(tenant, name, 'proposed')
+    if actor == doc['removal']['proposed_by']: raise ceremony.SecondSignatoryMissing('The second signature must come from a different DPO or master admin than the proposer')
+    signed = now(); applies_at = (datetime.fromisoformat(signed) + timedelta(hours=doc['removal']['countdown_hours'])).isoformat()
+    db().shield_register.update_one({'_id': doc['_id']}, {'$set': {'removal.state': 'countdown', 'removal.counter_signed_by': actor, 'removal.counter_signed_at': signed, 'removal.applies_at': applies_at},
+                                                           '$push': {'history': {'at': now(), 'by': actor, 'change': f"removal counter-signed; countdown of {doc['removal']['countdown_hours']} h runs until {applies_at}; cancellable until then"}}})
+    return db().shield_register.find_one({'_id': doc['_id']}, {'_id': 0})
+
+
+def cancel_removal(tenant, actor, name, reason):
+    coll = db().shield_register; doc = coll.find_one({'tenant_id': tenant, 'name': name, 'status': 'active', 'removal.state': {'$in': ['proposed', 'countdown']}})
+    if not doc: raise LookupError('No removal in flight for that declaration')
+    ceremony_record = {**doc['removal'], 'state': 'cancelled', 'cancelled_by': actor, 'cancelled_at': now(), 'cancel_reason': reason}
+    coll.update_one({'_id': doc['_id']}, {'$unset': {'removal': ''}, '$push': {'history': {'at': now(), 'by': actor, 'change': f'removal cancelled during the ceremony: {reason}', 'ceremony': ceremony_record}}})
+    return coll.find_one({'_id': doc['_id']}, {'_id': 0})
+
+
+def apply_removal(tenant, actor, name, now_utc=None):
+    """Apply after the countdown has elapsed, then re-verify that the crossing no longer recognises the declaration's values."""
+    from services.rules_service import ceremony
+    doc = _active_with_removal(tenant, name, 'countdown'); current = now_utc or datetime.now(timezone.utc)
+    applies_at = datetime.fromisoformat(doc['removal']['applies_at'])
+    if current < applies_at: raise ceremony.CountdownNotElapsed(f'countdown runs until {applies_at.isoformat()}; {applies_at - current} remaining')
+    coll = db().shield_register
+    coll.update_one({'_id': doc['_id']}, {'$set': {'status': 'removed', 'removed_at': now(), 'removed_by': actor, 'removal_reason': doc['removal']['reason'], 'removal.state': 'applied', 'removal.applied_by': actor, 'removal.applied_at': now()},
+                                          '$push': {'history': {'at': now(), 'by': actor, 'change': f"removed after the ceremony: {doc['removal']['reason']}"}}})
+    values = [v for v in (doc.get('values') or []) if v]
+    survivors = [v for v in values if any(s['category'] == name for s in classify(v, tenant))]
+    still_listed = any(c['name'] == name for c in categories(tenant))
+    verified = {'at': now(), 'clean': not survivors and not still_listed, 'values_checked': len(values), 'survivors': len(survivors), 'still_in_crossing_set': still_listed}
+    coll.update_one({'_id': doc['_id']}, {'$set': {'removal.re_verified': verified}, '$push': {'history': {'at': now(), 'by': 'shield.register', 'change': 'removal re-verified at the crossing: ' + ('clean' if verified['clean'] else 'NOT clean')}}})
+    return coll.find_one({'_id': doc['_id']}, {'_id': 0})
 
 
 def set_enforcement(tenant, actor, name, enforcement):
@@ -139,32 +280,6 @@ def propose(tenant, actor, text, source_ref=None):
                'history': [{'at': now(), 'by': actor, 'change': f"proposed from a document read inside the boundary: {d.pop('basis')}"}]}
         coll.insert_one(dict(doc)); doc.pop('_id', None); out.append(doc)
     return {'drafts': out, 'spans_classified': len(spans), 'marked_passages': len(marked)}
-
-
-def adopt(tenant, actor, name, edits=None):
-    """DPO adopts a draft (optionally edited) into force; the draft's own history is retained."""
-    coll = db().shield_register; draft = coll.find_one({'tenant_id': tenant, 'name': name, 'status': 'draft'})
-    if not draft: raise LookupError('No draft with that name awaits adoption')
-    body = {k: draft.get(k) for k in ('name', 'kind', 'action', 'description', 'cues', 'targets', 'patterns', 'values', 'enforcement')} | {k: v for k, v in (edits or {}).items() if v is not None}
-    _validate(body)
-    prior = coll.find_one({'tenant_id': tenant, 'name': name, 'status': 'active'})
-    doc = _fields(body); version = (prior['version'] + 1) if prior else 1
-    doc.update(tenant_id=tenant, category_id=prior['category_id'] if prior else draft['category_id'], version=version, status='active', authored_by=actor, authored_at=now(),
-               history=((prior.get('history') if prior else []) + draft.get('history', []) + [{'at': now(), 'by': actor, 'change': 'adopted' + (' with edits' if edits else ''), 'version': version}]))
-    if prior: coll.update_one({'_id': prior['_id']}, {'$set': {'status': 'superseded', 'superseded_at': now()}})
-    coll.delete_one({'_id': draft['_id']}); coll.insert_one(dict(doc)); doc.pop('_id', None); return doc
-
-
-def discard(tenant, actor, name):
-    res = db().shield_register.delete_many({'tenant_id': tenant, 'name': name, 'status': 'draft'})
-    if not res.deleted_count: raise LookupError('No draft with that name')
-    return res.deleted_count
-
-
-def remove(tenant, actor, name, reason):
-    res = db().shield_register.update_many({'tenant_id': tenant, 'name': name, 'status': 'active'}, {'$set': {'status': 'removed', 'removed_at': now(), 'removed_by': actor, 'removal_reason': reason}, '$push': {'history': {'at': now(), 'by': actor, 'change': f'removed: {reason}'}}})
-    if not res.matched_count: raise LookupError('No active category with that name')
-    return res.matched_count
 
 
 # ----------------------------------------------------------------------------- classification: exact → pattern → contextual, span-level

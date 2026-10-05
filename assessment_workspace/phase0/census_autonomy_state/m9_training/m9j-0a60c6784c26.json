@@ -1,0 +1,366 @@
+{
+ "job_id": "m9j-0a60c6784c26",
+ "phase": "malpha_voice_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-05T10:45:42.243448Z",
+ "params": {
+  "recipe": {
+   "lr": 1.7294402999999986e-05,
+   "batch_size": 48,
+   "max_steps": 40000,
+   "warmup_steps": 1000,
+   "eval_every": 2500,
+   "checkpoint_every": 500,
+   "d_model": 768,
+   "layers": 12,
+   "heads": 12,
+   "max_segment_seconds": 12.0,
+   "spectral_feedback": true,
+   "eval_prompts_per_language": 12,
+   "identity_cosine_threshold": 0.4,
+   "identity_conditioning": true,
+   "identity_candidates": 200,
+   "identity_noise": 2.5,
+   "identity_margin": 0.15,
+   "loudness_match": true,
+   "language_balance": true,
+   "dense_identity": true,
+   "worker_design_version": 2,
+   "init_from": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-82202771c7fd/artefact/voice_lm.pt",
+   "carried_from_seal_version": 3,
+   "rationale": "continue iteration 10's compatible weights at 0.7\u00d7 learning rate; similarity {'kik': 0.5709, 'kam': 0.5615, 'swa': 0.5488}; identity gate failed for kik, kam, swa \u2192 identity resampled with more noise (2.5) and a wider construction margin (0.15). Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence."
+  },
+  "hypothesis_id": "hyp-d16a2a31018b",
+  "cif_proposal_id": "cif_hyp_d16a2a31018b",
+  "split_version": 3,
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 11,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-cddb55321d03",
+ "northena_trace_id": "trc-bb5dbddef896",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-0a60c6784c26"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-0a60c6784c26",
+  "pid": 3930049
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-1841ec22f7e9",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_voice_train_admitted"
+  },
+  {
+   "row_id": "led-9dabcf1ec4a5",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_voice_train_daemonised:pid=3930049"
+  }
+ ],
+ "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
+ "started_at": "2026-10-05T10:45:47.548631Z",
+ "last_status_rpc": {
+  "at": "2026-10-05T11:30:44.847905Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-f8cd17eeb8cc"
+ },
+ "remote_state": {
+  "phase": "malpha_voice_train",
+  "status": "running",
+  "started_at": "2026-10-05T10:45:47Z",
+  "progress": {
+   "stage": "training codec language model",
+   "step": 22600,
+   "of": 40000,
+   "loss": 1.6622,
+   "elapsed_s": 2694,
+   "gpu_peak_gb": 17.36,
+   "last_checkpoint_step": 22500,
+   "next_checkpoint_step": 23000,
+   "parameters": 111312664
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-05T10:45:54Z",
+    "train_segments": 67902,
+    "train_hours": 56.29,
+    "dev_segments": 1157,
+    "text_vocab": 65,
+    "admission_read": false,
+    "per_language": {
+     "kik": 29263,
+     "kam": 9552,
+     "swa": 29087
+    },
+    "excluded_overlong_transcripts": 8,
+    "max_text_chars": 400,
+    "max_codec_frames": 152
+   },
+   "identity_scope_kik": {
+    "at": "2026-10-05T10:46:14Z",
+    "expected_groups": 1169,
+    "represented_groups": 1161,
+    "missing_groups": 8,
+    "group_set_sha256": "0562bed4f16705b36e9766394ecf8f14d0918194c681d3052371d02154c62272",
+    "sealed_admission_excluded": true
+   },
+   "identity_scope_kam": {
+    "at": "2026-10-05T10:46:21Z",
+    "expected_groups": 700,
+    "represented_groups": 689,
+    "missing_groups": 11,
+    "group_set_sha256": "9bc27fd805ae1d01bd6f9ff0919d764471a8945bcef0bdcb1246a4a984c01b85",
+    "sealed_admission_excluded": true
+   },
+   "identity_scope_swa": {
+    "at": "2026-10-05T10:46:32Z",
+    "expected_groups": 1126,
+    "represented_groups": 1119,
+    "missing_groups": 7,
+    "group_set_sha256": "98c526c91ecc2807dae71accd2863d019062e21df7c808ecc24222d8b6af8872",
+    "sealed_admission_excluded": true
+   },
+   "invented_identity": {
+    "at": "2026-10-05T10:47:13Z",
+    "method": "mean of 8 corpus-derived (session, speaker) representations + isotropic noise (sigma 2.50 \u00d7 norm), re-normalised; resampled until max cosine to every corpus-derived representation < threshold \u2212 margin",
+    "representation_space": "speechbrain/spkrec-ecapa-voxceleb (192-d, unit norm)",
+    "corpus_representations_checked": 5602,
+    "gate_threshold": 0.4,
+    "construction_margin": 0.15,
+    "max_cosine_to_any_corpus_representation": 0.2351,
+    "passes_construction_check": true,
+    "candidates_tried": 1,
+    "scope": "corpus-derived speaker representations of this estate only; not a global uniqueness claim over all humans",
+    "conditioning_input_fixed_at_serving": true
+   },
+   "dev_eval_step_2500": {
+    "at": "2026-10-05T10:59:37Z",
+    "kik": {
+     "overall_similarity": 0.5119,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6186,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6026,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6643,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5499,
+     "identity_gate_passes": false,
+     "max_cosine": 0.695,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_5000": {
+    "at": "2026-10-05T11:04:27Z",
+    "kik": {
+     "overall_similarity": 0.5923,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5972,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5644,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6122,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6034,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6511,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_7500": {
+    "at": "2026-10-05T11:08:09Z",
+    "kik": {
+     "overall_similarity": 0.605,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5926,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6355,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6372,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5233,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6278,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_10000": {
+    "at": "2026-10-05T11:12:10Z",
+    "kik": {
+     "overall_similarity": 0.5998,
+     "identity_gate_passes": false,
+     "max_cosine": 0.582,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5572,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6011,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.666,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6227,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_12500": {
+    "at": "2026-10-05T11:15:53Z",
+    "kik": {
+     "overall_similarity": 0.6274,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6026,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.645,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5492,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6272,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6547,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_15000": {
+    "at": "2026-10-05T11:19:44Z",
+    "kik": {
+     "overall_similarity": 0.5499,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5785,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.54,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5691,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6084,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6374,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_17500": {
+    "at": "2026-10-05T11:23:25Z",
+    "kik": {
+     "overall_similarity": 0.582,
+     "identity_gate_passes": false,
+     "max_cosine": 0.572,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6302,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5555,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6389,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6271,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_20000": {
+    "at": "2026-10-05T11:27:02Z",
+    "kik": {
+     "overall_similarity": 0.5545,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5976,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6342,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5664,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6093,
+     "identity_gate_passes": false,
+     "max_cosine": 0.637,
+     "rendered": 12
+    }
+   },
+   "dev_eval_step_22500": {
+    "at": "2026-10-05T11:30:37Z",
+    "kik": {
+     "overall_similarity": 0.5581,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6626,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.5536,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6342,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.5751,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6323,
+     "rendered": 12
+    }
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-05T10:45:54Z",
+    "message": "weights initialised from /mnt/volume_dkgjrkx/akki-m9/jobs/m9j-82202771c7fd/artefact/voice_lm.pt"
+   },
+   {
+    "at": "2026-10-05T10:46:32Z",
+    "message": "identity comparators prepared in memory: {kik: 1161, kam: 689, swa: 1119}; never written to disk"
+   },
+   {
+    "at": "2026-10-05T10:47:13Z",
+    "message": "2633 temporary (session, speaker) representations prepared in memory for conditioning; never written to disk"
+   }
+  ],
+  "job_id": "m9j-0a60c6784c26",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-05T11:30:43Z"
+ },
+ "worker_log_tail": "le_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 7500.85it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-0a60c6784c26/worker.zip/services/training_lab/malpha_voice_worker.py:486: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(",
+ "process_alive": true
+}

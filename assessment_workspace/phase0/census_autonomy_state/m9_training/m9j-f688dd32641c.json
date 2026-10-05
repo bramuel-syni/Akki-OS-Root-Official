@@ -1,0 +1,81 @@
+{
+ "job_id": "m9j-f688dd32641c",
+ "phase": "malpha_story_text_train",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-05T11:30:51.353525Z",
+ "params": {
+  "recipe": {
+   "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "lr": 5e-05,
+   "batch_size": 4,
+   "grad_accum": 4,
+   "max_steps": 3000,
+   "warmup_steps": 100,
+   "eval_every": 250,
+   "checkpoint_every": 250,
+   "max_seq_len": 1024,
+   "lora_r": 32,
+   "lora_alpha": 64,
+   "lora_dropout": 0.1,
+   "weight_decay": 0.01,
+   "eval_samples_per_language": 16,
+   "patience_evaluations": 4,
+   "language_balance": true,
+   "selection_policy": "base_floor_then_worst_language_fidelity",
+   "rationale": "dev perplexity did not improve on earlier iterations in iteration 9 (best measured 19.09 at step 1000 of iteration 2; iteration 9 ended at 22.447): the over-fitted adapter is not carried forward \u2014 restart from the registered base at half that iteration's learning rate (5.0e-05), dropout 0.1, weight decay 0.01, early stopping (patience 3) with the best-adapter artefact; language fidelity below 1.0 for kik, kam (0.846, 0.75) \u2192 each micro-batch now drawn from one language chosen uniformly, so the small language is not out-voted"
+  },
+  "base_registration": {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+  },
+  "hypothesis_id": "hyp-e274792e0912",
+  "cif_proposal_id": "cif_hyp_e274792e0912",
+  "split_version": 3,
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 10,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-c817da4aa8f1",
+ "northena_trace_id": "trc-29bf30512659",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-f688dd32641c"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-f688dd32641c",
+  "pid": 3449505
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-d6018a54b02b",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_story_text_train_admitted"
+  },
+  {
+   "row_id": "led-d1b18dd44384",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_story_text_train_daemonised:pid=3449505"
+  }
+ ],
+ "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
+ "started_at": "2026-10-05T11:30:57.015631Z"
+}

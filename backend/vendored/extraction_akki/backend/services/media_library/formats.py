@@ -11,7 +11,8 @@ FORMATS={
  '.wav':('audio','audio/wav'),'.mp3':('audio','audio/mpeg'),'.flac':('audio','audio/flac'),
  '.ogg':('audio','audio/ogg'),'.m4a':('audio','audio/mp4'),
  '.txt':('transcript','text/plain'),'.vtt':('transcript','text/vtt'),'.srt':('transcript','text/plain'),
- '.json':('labels','application/json'),'.csv':('labels','text/csv')}
+ '.json':('labels','application/json'),'.csv':('labels','text/csv'),
+ '.xlsx':('labels','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')}
 
 
 def describe(filename,size):
@@ -38,6 +39,16 @@ def validate(file,ext):
     if ext in signatures:
         if not signatures[ext](): raise ValueError('File contents do not match the selected audio format')
         return {'check':'container_signature_only','audio_quality':'not_measured','duration_seconds':None,'malware_scan':'not_performed'}
+    if ext=='.xlsx':
+        if prefix[:4]!=b'PK\x03\x04': raise ValueError('File contents are not an XLSX workbook')
+        import openpyxl
+        try:
+            book=openpyxl.load_workbook(file,read_only=True,data_only=True)
+            sheets=len(book.worksheets); rows=sum(1 for ws in book.worksheets for _ in ws.iter_rows(min_row=2,values_only=True))
+        except Exception: raise ValueError('Invalid XLSX workbook')
+        finally: file.seek(0)
+        if rows<1: raise ValueError('An XLSX workbook needs a header and at least one data row')
+        return {'check':'xlsx_structure','sheets':sheets,'rows':rows,'label_taxonomy':'not_verified','malware_scan':'not_performed'}
     try: text=file.read().decode('utf-8-sig')
     except UnicodeError: raise ValueError('Text and label files must use UTF-8 encoding')
     finally: file.seek(0)

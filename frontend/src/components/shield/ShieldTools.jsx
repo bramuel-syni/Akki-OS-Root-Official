@@ -20,7 +20,8 @@ export function AuthorCategoryForm({ busy, onSubmit, onCancel }) {
       <Row label="Targets inside a cued sentence"><input data-testid="shield-author-targets" style={field} value={v.targets} onChange={set('targets')} placeholder="PROPER_NOUN, ORG, PERSON, MONEY, NUMBER, PERCENT, SENTENCE" /></Row></>}
     {v.kind === 'pattern' && <Row label="Regular expressions (one per line)"><textarea data-testid="shield-author-patterns" style={{ ...field, minHeight: 56 }} value={v.patterns} onChange={set('patterns')} required /></Row>}
     {v.kind === 'exact' && <Row label="Literal values (one per line) — held in the register only"><textarea data-testid="shield-author-values" style={{ ...field, minHeight: 56 }} value={v.values} onChange={set('values')} required /></Row>}
-    <div className="estate-actions"><button type="submit" className="estate-btn primary" data-testid="shield-author-submit" disabled={Boolean(busy)}>{busy ? 'Recording…' : 'Put into force'}</button><button type="button" className="estate-btn" onClick={onCancel} data-testid="shield-author-cancel">Cancel</button></div>
+    <div className="estate-actions"><button type="submit" className="estate-btn primary" data-testid="shield-author-submit" disabled={Boolean(busy)}>{busy ? 'Recording…' : 'Declare (to pending)'}</button><button type="button" className="estate-btn" onClick={onCancel} data-testid="shield-author-cancel">Cancel</button></div>
+    <p className="estate-note" style={{ margin: '8px 0 0' }}>A declaration lands <b>pending</b>; a DPO or master admin approves it into force. Adding protects more, so one approval suffices; retiring needs a second signature and a countdown.</p>
   </form>;
 }
 
@@ -33,6 +34,26 @@ export function ProposeForm({ busy, onSubmit, onCancel }) {
     <Row label="Source reference (optional)"><input data-testid="shield-propose-ref" style={field} value={ref} onChange={e => setRef(e.target.value)} maxLength={200} /></Row>
     <div className="estate-actions"><button type="submit" className="estate-btn primary" data-testid="shield-propose-submit" disabled={Boolean(busy) || !text.trim()}>{busy ? 'Reading…' : 'Propose drafts'}</button><button type="button" className="estate-btn" onClick={onCancel} data-testid="shield-propose-cancel">Cancel</button></div>
   </form>;
+}
+
+export function VaultIntakeForm({ busy, files, onSubmit, onCancel, result }) {
+  const [fileId, setFileId] = useState(''), [ref, setRef] = useState('');
+  const workbooks = (files || []).filter(f => ['.csv', '.xlsx'].includes(f.extension) && f.status === 'available' && !f.is_deleted);
+  return <section className="estate-section" data-testid="shield-vault" style={{ marginTop: 16 }}>
+    <header className="estate-head"><div><h2>Bring in a workbook from the vault</h2><p>A CSV or XLSX already uploaded to the media library, with a <code>value</code> column (optional <code>kind</code> exact|pattern, <code>category</code>, <code>description</code>, <code>action</code>, <code>enforcement</code>, <code>entity_type</code>). Rows become <b>pending</b> declarations — nothing is in force until approved. Values stay inside the estate.</p></div></header>
+    <form onSubmit={e => { e.preventDefault(); onSubmit(fileId, ref || null); }}>
+      <Row label="Library workbook">{workbooks.length ? <select data-testid="shield-vault-file" style={field} value={fileId} onChange={e => setFileId(e.target.value)} required><option value="">Choose a CSV or XLSX upload…</option>{workbooks.map(f => <option key={f.file_id} value={f.file_id}>{f.filename} · {Math.round(f.size_bytes / 1024)} kB</option>)}</select>
+        : <input data-testid="shield-vault-file" style={field} value={fileId} onChange={e => setFileId(e.target.value)} placeholder="No CSV/XLSX workbook in the library yet — upload one in Build · Media, or paste its file id" required minLength={8} />}</Row>
+      <Row label="Source reference (optional)"><input data-testid="shield-vault-ref" style={field} value={ref} onChange={e => setRef(e.target.value)} maxLength={200} /></Row>
+      <div className="estate-actions"><button type="submit" className="estate-btn primary" data-testid="shield-vault-submit" disabled={busy === 'Vault intake' || !fileId}>{busy === 'Vault intake' ? 'Reading…' : 'Read the workbook'}</button><button type="button" className="estate-btn" onClick={onCancel} data-testid="shield-vault-cancel">Cancel</button></div>
+    </form>
+    {result && <div style={{ marginTop: 14 }} data-testid="shield-vault-result">
+      <div className="estate-meta" style={{ flexWrap: 'wrap' }}><span data-testid="shield-vault-rows">{result.rows.total} row(s) · {result.rows.accepted} accepted · {result.rows.invalid} invalid · {result.rows.duplicate} duplicate</span><span>{result.pending.length} pending declaration(s): {result.pending.map(d => d.name).join(', ') || 'none'}</span></div>
+      {result.invalid.length ? <ul className="estate-list" data-testid="shield-vault-invalid">{result.invalid.slice(0, 20).map((r, i) => <li key={i}><span>row {r.row ?? '—'}: {r.reason}</span></li>)}</ul> : null}
+      {Object.entries(result.reach.by_declaration).map(([name, r]) => <p key={name} style={{ margin: '6px 0', fontSize: 13 }}><b>{name}</b>: {r.matches} match(es) in {r.documents_matched} of {result.reach.measured_documents} measured document(s).</p>)}
+      <p className="estate-note" data-testid="shield-vault-unmeasured">{result.reach.unmeasured}</p>
+    </div>}
+  </section>;
 }
 
 export function TestPassage({ busy, preview, onTest, onClear }) {

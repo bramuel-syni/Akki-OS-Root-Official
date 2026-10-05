@@ -5,6 +5,14 @@ reconciled in `memory/REQUIREMENTS_RECONCILIATION.md`. It is not a new product
 governance engine and does not replace the native Ledger or canon.
 
 ## Mandatory before planning or changing this repository
+0. Resume protocol, every fork, before any plan or question: read this file; run
+   `backend/tests/governance/test_requirements_anchor.py`; read the last 20 lines of
+   `memory/BUILD_LEDGER.md` and verify the native ids they cite; continue the work
+   package named in the last `next` entry of `memory/BUILD_PLAN_V2_20261005.md`.
+   `memory/SYSTEM_DIAGNOSIS_20261005.md` holds the owner-ordered diagnosis (issues,
+   root causes, pending decisions D1–D7). Compaction handoff summaries are NOT
+   authority: a plan or question derived from one is a defect. Append a ledger line
+   after every state change and test run, and before any compaction.
 1. Read `memory/PRD.md`, `memory/M_ALPHA_OWNER_ORDERS.md` (including its appended
    corrections), `memory/REQUIREMENTS_RECONCILIATION.md`, and the relevant rows in
    `memory/M_ALPHA_PLAN.md`.
@@ -20,7 +28,10 @@ governance engine and does not replace the native Ledger or canon.
    `proposed-not-ratified`, and `verified-evidence`. Do not present an inference as
    an owner quote. Preserve earlier records; link explicit supersessions.
 5. Do not ask the owner to restate settled requirements. Ask only for a genuinely
-   unresolved consequential decision, after checking the recorded rulings.
+   unresolved consequential decision, after checking the recorded rulings. Every
+   question put to the owner cites the clause search performed or is one of the
+   recorded D-rows in the current diagnosis; compaction handoffs are never the
+   authority for a question or a plan.
 6. Test negative paths as well as useful outcomes. Record limits, failures and
    unmeasured quality. Do not claim functional completion from scaffolds or mocks.
 

@@ -124,3 +124,45 @@ Generally there needs to be clear disc recorded can rule that you primarily oper
 - Do not carry forward the earlier regex-only repair plus paid frontier replay
   plus immediate MA-19 jump as the settled sequence. Reconcile first, then execute
   source-traced work packages, retaining all remaining M Alpha obligations.
+## 10. Owner — full-system diagnosis order (verbatim, 2026-10-05)
+
+this was meant tobe a full system diagnosis - not just fo M alpha. M1 - M10 as well. i need a deep assesment of the issues i raise and execution plan for orders ive given.
+
+(The owner then re-supplied the preceding exchange — the assistant's 04:22 plan, the owner's two-point objection, the assistant's four questions, and the owner's four numbered answers already preserved verbatim in §8 — "here is a history of our conversation that led us here".)
+
+### Assistant response records — NOT owner quotes
+- `SYSTEM_DIAGNOSIS_20261005.md`: issue-by-issue assessment, root causes RC-1…RC-9, M1–M10 / five-promise / 31-job state, pending decisions D1–D7.
+- `EXECUTION_PLAN_20261005.md`: WP-00…WP-18 in requirement → owner → mechanism → test → pass form.
+- Sections 1–9 above are frozen; `tests/governance/test_requirements_anchor.py` fails if any of them changes. New owner material is appended as new sections only.
+
+## 11. Owner — unified wave plan order (verbatim, 2026-10-05)
+
+The assessment you have provided is very insightful. Before we go back to building, there are elemnts of M alpha that should have fed some of the buckets in M1 - M10. Now, i need you to develop a new plan with clear waves breaking down how you are planning to complete the building for the requirements you have at present. Do not flatten, be seasoned and research where possible to ensure we have a much cleaner build with absolutely no post compaction impact.
+
+### Assistant response records — NOT owner quotes
+- `BUILD_PLAN_V2_20261005.md` (waves A–F, Mα→M1–M10 reconciliation map, compaction-proof operating design, research leads) and `BUILD_LEDGER.md` (append-only WP state). `EXECUTION_PLAN_20261005.md` is retained and cross-referenced, superseded for sequencing.
+
+## 12. Owner — decisions on D1–D7 and Wave A go (verbatim, 2026-10-05)
+
+D1 - I think you need a mix of bothe as one carries the reference and one carries the order no? - consider best practice 
+D2 - not now
+D3 - I had asked that you build without this until we have the price card
+D4 - I dont know what this is
+D7 - This is not a real problem as it has been designed around RMS, there needs to be a clear structure of what data/agents are we storing in GPU and for how long - eg - if its data needed for an active run, what are the TORs for that, if its for an admitted model, should it be stored for learning in a vcpu to save cost and free up capacity - best pratice, but clear. reuse or realtime nodata movement pullseam has a play here. 
+
+Wave 1 go autonomous untill end
+
+### Assistant reading — NOT owner quotes
+- D1 → control plane carries the reference (authority, recipe ladder, acceptance); the host carries the order (a signed next-iteration order issued ahead of completion, executed by a host-side continuation worker under lease; reconciled by the control plane when it returns). Plan WP-C1 updated.
+- D2 → native listener labelling deferred; sealed reads stay locked; no substitute labels.
+- D3 → money remains unknown everywhere until a price card exists; no placeholder prices.
+- D4 → the question concerns an existing owner-approved policy exception (CC1 / `activation/crossing.py`: a separately authorised per-call mode where unmasked entity knowledge may cross). Explanation owed to the owner in plain terms; until answered the existing policy stands and is disclosed, Mode B remains the default promise.
+- D7 → not a GPU-slot question but a residency-structure requirement: a clear register of what data/models/agents reside on GPU/host storage and for how long, with terms of reference per class (active-run data; admitted models offloaded to CPU/disk and pulled on demand; serving resident only under demand), reuse-first, no data movement off the estate. New WP-C7.
+- "Wave 1" = plan Wave A (Shield inside the perimeter) — autonomous to completion.
+
+## 13. Owner — before Wave A execution (verbatim, 2026-10-05)
+
+Review your standing orders before compaction and ensure the guard rails are effective, proceed
+
+### Assistant reading — NOT owner quotes
+- Resume protocol executed (AGENTS.md §0): governance test 5/5, ledger read, native ids verified (listener it.5 and story_text it.9 `running`; story_voice it.10 `completed` 10:40Z — cron owns the next dispatch). Plan question defaults applied: Wave A autonomous in plan order; if no registered base weights exist on the estate for A2, record `blocked` and continue A1/A4-deterministic/A7 rather than stop. WP-C7 added to the plan for D7.

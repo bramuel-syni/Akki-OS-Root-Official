@@ -4074,5 +4074,124 @@
   }
  ],
  "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
- "started_at": "2026-10-05T09:30:29.292137Z"
+ "started_at": "2026-10-05T09:30:29.292137Z",
+ "last_status_rpc": {
+  "at": "2026-10-05T11:30:40.631649Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-fdac84eff72e"
+ },
+ "remote_state": {
+  "phase": "malpha_listener_train",
+  "status": "running",
+  "started_at": "2026-10-05T09:30:29Z",
+  "progress": {
+   "stage": "training",
+   "step": 3575,
+   "of": 8000,
+   "loss": 0.0869,
+   "lr": 4.9328387325320755e-06,
+   "elapsed_s": 7183,
+   "gpu_peak_gb": 57.59,
+   "last_checkpoint_step": 3500,
+   "next_checkpoint_step": 4000
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-05T09:30:32Z",
+    "train_segments": 75810,
+    "dev_segments": 900,
+    "train_hours": 87.16,
+    "admission_read": false,
+    "lexicon_sha256": "447e2c0aaea38bdc78a59a33b393a1d569d6d1be28fd3099311dec07dcdc9a21",
+    "brands": 649,
+    "internet_corpus": null
+   },
+   "contextual_bias": {
+    "at": "2026-10-05T09:30:44Z",
+    "decode_expectation_terms": {
+     "kam": 40,
+     "kik": 40,
+     "swa": 40
+    },
+    "train_prompt_probability": 0.5,
+    "distractors_per_prompt": 6,
+    "prompt_channel": "<|startofprev|> brand list"
+   },
+   "dev_eval_step_2000": {
+    "at": "2026-10-05T10:40:55Z",
+    "mean_wer": 0.6292,
+    "minimum_precision_recall": 0.463,
+    "words": {
+     "kam": {
+      "wer": 0.647,
+      "cer": 0.3723,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.691,
+      "cer": 0.3815,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.5495,
+      "cer": 0.3384,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.6857,
+      "recall": 0.6486,
+      "f1": 0.6667
+     },
+     "kik": {
+      "precision": 0.7667,
+      "recall": 0.7419,
+      "f1": 0.7541
+     },
+     "swa": {
+      "precision": 0.463,
+      "recall": 0.8065,
+      "f1": 0.5882
+     }
+    }
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-05T09:51:07Z",
+    "message": "checkpoint at step 500"
+   },
+   {
+    "at": "2026-10-05T10:07:06Z",
+    "message": "checkpoint at step 1000"
+   },
+   {
+    "at": "2026-10-05T10:23:03Z",
+    "message": "checkpoint at step 1500"
+   },
+   {
+    "at": "2026-10-05T10:38:40Z",
+    "message": "checkpoint at step 2000"
+   },
+   {
+    "at": "2026-10-05T10:56:20Z",
+    "message": "checkpoint at step 2500"
+   },
+   {
+    "at": "2026-10-05T11:12:04Z",
+    "message": "checkpoint at step 3000"
+   },
+   {
+    "at": "2026-10-05T11:27:55Z",
+    "message": "checkpoint at step 3500"
+   }
+  ],
+  "job_id": "m9j-2bc0eea34925",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-05T11:30:13Z"
+ },
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  61%|\u2588\u2588\u2588\u2588\u2588\u2588    | 358/587 [00:00<00:00, 3539.41it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3530.44it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-2bc0eea34925/worker.zip/services/training_lab/malpha_worker.py:960: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.",
+ "process_alive": true
 }
