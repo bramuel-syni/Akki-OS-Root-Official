@@ -4071,5 +4071,56 @@
   }
  ],
  "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
- "started_at": "2026-10-05T02:33:40.163756Z"
+ "started_at": "2026-10-05T02:33:40.163756Z",
+ "last_status_rpc": {
+  "at": "2026-10-05T02:45:46.413294Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-771b15f676c3"
+ },
+ "remote_state": {
+  "phase": "malpha_listener_train",
+  "status": "running",
+  "started_at": "2026-10-05T02:33:40Z",
+  "progress": {
+   "stage": "training",
+   "step": 225,
+   "of": 8000,
+   "loss": 1.4098,
+   "lr": 1.35e-05,
+   "elapsed_s": 705,
+   "gpu_peak_gb": 57.59,
+   "last_checkpoint_step": 0,
+   "next_checkpoint_step": 500
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-05T02:33:43Z",
+    "train_segments": 75810,
+    "dev_segments": 900,
+    "train_hours": 87.16,
+    "admission_read": false,
+    "lexicon_sha256": "447e2c0aaea38bdc78a59a33b393a1d569d6d1be28fd3099311dec07dcdc9a21",
+    "brands": 649,
+    "internet_corpus": null
+   },
+   "contextual_bias": {
+    "at": "2026-10-05T02:33:53Z",
+    "decode_expectation_terms": {
+     "kam": 40,
+     "kik": 40,
+     "swa": 40
+    },
+    "train_prompt_probability": 0.5,
+    "distractors_per_prompt": 6,
+    "prompt_channel": "<|startofprev|> brand list"
+   }
+  },
+  "events": [],
+  "job_id": "m9j-ff750b0d7c94",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-05T02:45:27Z"
+ },
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 339/587 [00:00<00:00, 3388.68it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3421.30it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ff750b0d7c94/worker.zip/services/training_lab/malpha_worker.py:960: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)",
+ "process_alive": true
 }

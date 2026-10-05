@@ -76,9 +76,9 @@
  "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
  "started_at": "2026-10-05T02:28:50.067718Z",
  "last_status_rpc": {
-  "at": "2026-10-05T02:33:29.713764Z",
+  "at": "2026-10-05T02:45:42.518820Z",
   "rc": 0,
-  "receipt_id": "gpurcp-4f3641bd00d9"
+  "receipt_id": "gpurcp-41d714a06b2a"
  },
  "remote_state": {
   "phase": "malpha_voice_train",
@@ -86,13 +86,13 @@
   "started_at": "2026-10-05T02:28:49Z",
   "progress": {
    "stage": "training codec language model",
-   "step": 325,
+   "step": 4800,
    "of": 40000,
-   "loss": 5.1096,
-   "elapsed_s": 275,
-   "gpu_peak_gb": 13.37,
-   "last_checkpoint_step": 0,
-   "next_checkpoint_step": 500,
+   "loss": 3.9937,
+   "elapsed_s": 1009,
+   "gpu_peak_gb": 17.36,
+   "last_checkpoint_step": 4500,
+   "next_checkpoint_step": 5000,
    "parameters": 111312664
   },
   "stages": {
@@ -148,6 +148,27 @@
     "candidates_tried": 1,
     "scope": "corpus-derived speaker representations of this estate only; not a global uniqueness claim over all humans",
     "conditioning_input_fixed_at_serving": true
+   },
+   "dev_eval_step_2500": {
+    "at": "2026-10-05T02:41:56Z",
+    "kik": {
+     "overall_similarity": 0.6322,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5554,
+     "rendered": 12
+    },
+    "kam": {
+     "overall_similarity": 0.6731,
+     "identity_gate_passes": false,
+     "max_cosine": 0.6017,
+     "rendered": 12
+    },
+    "swa": {
+     "overall_similarity": 0.6287,
+     "identity_gate_passes": false,
+     "max_cosine": 0.5805,
+     "rendered": 12
+    }
    }
   },
   "events": [
@@ -167,8 +188,8 @@
   "job_id": "m9j-11099e2f966e",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-05T02:33:27Z"
+  "updated_at": "2026-10-05T02:45:40Z"
  },
- "worker_log_tail": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-11099e2f966e/worker.zip/services/training_lab/malpha_voice_worker.py:224: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 6868.16it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-11099e2f966e/worker.zip/services/training_lab/malpha_voice_worker.py:486: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))",
+ "worker_log_tail": "le_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 6868.16it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-11099e2f966e/worker.zip/services/training_lab/malpha_voice_worker.py:486: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss))\n/mnt/volume_dkgjrkx/akki-lc/venv/lib/python3.12/site-packages/torch/nn/modules/transformer.py:431: UserWarning: Support for mismatched src_key_padding_mask and mask is deprecated. Use same type for both instead.\n  src_key_padding_mask = F._canonical_mask(",
  "process_alive": true
 }

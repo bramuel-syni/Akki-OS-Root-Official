@@ -77,9 +77,9 @@
  "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
  "started_at": "2026-10-05T02:28:43.782413Z",
  "last_status_rpc": {
-  "at": "2026-10-05T02:33:25.803232Z",
+  "at": "2026-10-05T02:45:39.136365Z",
   "rc": 0,
-  "receipt_id": "gpurcp-c0eba8fb6f55"
+  "receipt_id": "gpurcp-2a70f68b094e"
  },
  "remote_state": {
   "phase": "malpha_story_text_train",
@@ -87,14 +87,14 @@
   "started_at": "2026-10-05T02:28:43Z",
   "progress": {
    "stage": "training",
-   "step": 140,
+   "step": 320,
    "of": 3000,
-   "loss": 3.5827,
-   "elapsed_s": 259,
+   "loss": 3.2933,
+   "elapsed_s": 1008,
    "gpu_peak_gb": 11.21,
-   "last_checkpoint_step": 0,
-   "next_checkpoint_step": 250,
-   "best_step": null
+   "last_checkpoint_step": 250,
+   "next_checkpoint_step": 500,
+   "best_step": 250
   },
   "stages": {
    "data": {
@@ -138,13 +138,45 @@
     "kik": 68.863,
     "kam": 69.598,
     "swa": 60.182
+   },
+   "dev_eval_step_250": {
+    "at": "2026-10-05T02:43:34Z",
+    "kik": {
+     "dev_perplexity": 26.64,
+     "base_perplexity": 68.863,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.692,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 27.268,
+     "base_perplexity": 69.598,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.375,
+     "mean_distinct_2": 0.9984
+    },
+    "swa": {
+     "dev_perplexity": 32.439,
+     "base_perplexity": 60.182,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": [
+     1,
+     0.375,
+     2.067,
+     -28.669381328320146
+    ],
+    "_best_step": 250,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
    }
   },
   "events": [],
   "job_id": "m9j-6bd651e58186",
   "hostname": "akki-vm-ii",
   "runtime_id": "akki-vm-ii",
-  "updated_at": "2026-10-05T02:33:07Z"
+  "updated_at": "2026-10-05T02:45:36Z"
  },
  "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 6436.01it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-6bd651e58186/worker.zip/services/training_lab/malpha_voice_worker.py:185: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
  "process_alive": true
