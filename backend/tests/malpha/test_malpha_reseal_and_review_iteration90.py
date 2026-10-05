@@ -190,3 +190,16 @@ def test_open_panel_never_demotes_a_same_or_newer_seal_panel_and_current_panel_r
         review.db().malpha_review_tasks.delete_many({'panel_id': pid}); review.db().malpha_review_panels.delete_one({'panel_id': pid})
     review.db().malpha_review_panels.delete_many({'split_version': {'$in': [1, 3]}}); review.db().malpha_review_tasks.delete_many({'panel_id': {'$nin': [live['panel_id']]}})
     review.db().malpha_commissions.delete_many({})
+
+
+def test_listener_recipe_never_carries_weights_trained_under_an_older_seal():
+    """Regression (iteration 91): an artefact trained under seal v1 saw rows now sealed as admission; a v3 run initialised from it would face a sealed read on its own training audio."""
+    from services.training_lab import malpha
+    turbo = 'openai/whisper-large-v3-turbo'
+    def job(it, seal, base=turbo):
+        return {'iteration': it, 'job_id': f'm9j-{it:012x}', 'params': {'split_version': seal} if seal else {}, 'result': {'artefact': {'path': f'/x/m9j-{it}/artefact/model.pt'}, 'recipe': {'base': base, 'contextual_bias': True}, 'dev': {}}}
+    old = malpha.listener_recipe(4, [job(1, None, 'openai/whisper-small'), job(2, None, 'openai/whisper-small'), job(3, None)])
+    assert 'init_from' not in old and 'not carried' in old['rationale'] and f'seal v1' in old['rationale']
+    same = malpha.listener_recipe(5, [job(1, None, 'openai/whisper-small'), job(2, None, 'openai/whisper-small'), job(3, None), job(4, malpha.SPLIT_VERSION)])
+    assert same['init_from'] == '/x/m9j-4/artefact' and 'carried' in same['rationale']
+    assert malpha._carriable({'iteration': 3, 'params': {}})['ok'] is False and malpha._carriable({'iteration': 4, 'params': {'split_version': malpha.SPLIT_VERSION}})['ok'] is True

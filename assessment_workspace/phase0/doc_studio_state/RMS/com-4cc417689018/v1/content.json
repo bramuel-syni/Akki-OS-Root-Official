@@ -1,0 +1,1506 @@
+{
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001",
+        "F002"
+      ],
+      "text": "{F001} of {F002} figures in this report resolve to a retained record; the rest are listed as refused and do not render as numbers (WPW-9)."
+    },
+    "C002": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Settlement: refused — admission bar not met: language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Run status completed; drafted automatically when the run settled (WPW-8). Internal — must not cross the outer gate (WPW-10)."
+    },
+    "C003": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Commission: Expressive spoken storyteller with an invented voice (Kikuyu, Kamba, Kiswahili) (STORY-KIK-KAM-SWA)."
+    },
+    "C004": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Product: one agent that invents coherent stories and speaks them with the language character of each language in a voice that is no corpus presenter"
+    },
+    "C005": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Task: story generation and expressive multilingual speech rendering — radio storytelling register, three languages."
+    },
+    "C006": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Admission bars for the story_text lane (fixed before training):"
+    },
+    "C007": {
+      "supports": [
+        "F003"
+      ],
+      "text": "kam: dev_perplexity_below_base True, language_fidelity_rate 1.0"
+    },
+    "C008": {
+      "supports": [
+        "F004"
+      ],
+      "text": "kik: dev_perplexity_below_base True, language_fidelity_rate 1.0"
+    },
+    "C009": {
+      "supports": [
+        "F005"
+      ],
+      "text": "swa: dev_perplexity_below_base True, language_fidelity_rate 1.0"
+    },
+    "C010": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Gate policy: every language meets every automatable bar; native-listener judgement is recorded as pending until humans rate unseen stories"
+    },
+    "C011": {
+      "supports": [
+        "F006"
+      ],
+      "text": "Metric contract status: DERIVED/PROPOSED mapping of the owner 90% target onto measured spectral-behaviour similarity; naturalness itself is a human judgement and is not claimed from similarity"
+    },
+    "C012": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Budget authority: uncapped_until_billing — recorded authority, not a number."
+    },
+    "C013": {
+      "supports": [
+        "F007"
+      ],
+      "text": "This report settles story_text iteration 7 (job m9j-454e0b8b6002)."
+    },
+    "C014": {
+      "supports": [
+        "F008"
+      ],
+      "text": "Datasets derived from each recording (one file → several queryable layers): content (transcript, sealed by sha); timing (start/end, pcm offsets); speaker-local label + corpus cluster id; condition (codec/rate/channels); discoverable spectrum columns; codec tokens (content stream cb0, character stream cb1-7)."
+    },
+    "C015": {
+      "supports": [
+        "F009"
+      ],
+      "text": "Discoverable-spectrum columns (14): duration_s, chars_per_s, energy_db_mean, energy_db_std, pause_ratio, f0_mean_hz, f0_std_semitones, f0_range_hz, voiced_ratio, spectral_centroid_hz, spectral_bandwidth_hz, spectral_rolloff_hz, spectral_flatness, zcr."
+    },
+    "C016": {
+      "supports": [
+        "F010",
+        "F011"
+      ],
+      "text": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash."
+    },
+    "C017": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Classification-driven exclusions: raw audio never leaves the host (raw_media_exported=false); transcripts stay on the host (text_exported=false); presenter identity is a corpus-local cluster id — no voiceprint is stored; the sealed admission split is never read by training."
+    },
+    "C018": {
+      "supports": [
+        "F012",
+        "F013",
+        "F014",
+        "F015",
+        "F016",
+        "F017",
+        "F018",
+        "F019",
+        "F020",
+        "F021",
+        "F022",
+        "F023"
+      ],
+      "text": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions promoted, dev_basis=session_holdout)."
+    },
+    "C019": {
+      "supports": [
+        "F024",
+        "F025",
+        "F026",
+        "F027",
+        "F028",
+        "F029",
+        "F030",
+        "F031"
+      ],
+      "text": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}."
+    },
+    "C020": {
+      "supports": [
+        "F032",
+        "F033"
+      ],
+      "text": "Starting model: Qwen/Qwen3-1.7B-Base revision ea980cb0a6c2ae4b936e82123acc929f1cec04c1; licence verified: apache-2.0; weight sha recorded on the registration."
+    },
+    "C021": {
+      "supports": [
+        "F034",
+        "F035",
+        "F036"
+      ],
+      "text": "Baseline measurement: dev perplexity of the registered base with the adapter disabled: {'kik': 68.863, 'kam': 69.598, 'swa': 60.182}."
+    },
+    "C022": {
+      "supports": [
+        "F037",
+        "F038",
+        "F039",
+        "F040",
+        "F041",
+        "F042",
+        "F043",
+        "F044",
+        "F045",
+        "F046",
+        "F047",
+        "F048",
+        "F049",
+        "F050",
+        "F051",
+        "F052",
+        "F053",
+        "F054",
+        "F055",
+        "F056",
+        "F057",
+        "F058",
+        "F059",
+        "F060",
+        "F061",
+        "F062",
+        "F063",
+        "F064"
+      ],
+      "text": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, language_balance = True, selection_policy = base_floor_then_worst_language_fidelity, rationale = dev perplexity did not improve on earlier iterations in iteration 6 (best measured 19.09 at step 1000 of iteration 2; iteration 6 ended at 26.271): the over-fitted adapter is not carried forward — restart from the registered base at half that iteration's learning rate (5.0e-05), dropout 0.1, weight decay 0.01, early stopping (patience 3) with the best-adapter artefact; language fidelity below 1.0 for kik, kam (0.938, 0.688) → each micro-batch now drawn from one language chosen uniformly, so the small language is not out-voted."
+    },
+    "C023": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Training: LoRA adapters on the registered base over per-recording documents (title + transcript), language-tagged prompts; language fidelity is judged by character-trigram profile similarity against each language's own training profile; dev perplexity is compared with the base's own."
+    },
+    "C024": {
+      "supports": [
+        "F065"
+      ],
+      "text": "Adopted ideation events (mirrored by reference, WPW-6):"
+    },
+    "C025": {
+      "supports": [
+        "F066"
+      ],
+      "text": "malpha://job/m9j-454e0b8b6002#params.recipe · idea malpha.story_text_recipe#iteration7 · conditions malpha://job/m9j-19e16c89f6b8#result.dev · adopted (attempt 1)."
+    },
+    "C026": {
+      "supports": [
+        "F067",
+        "F068"
+      ],
+      "text": "Hardware: akki-vm-ii GPU 0 — device name not recorded; peak memory 11.21 GB."
+    },
+    "C027": {
+      "supports": [
+        "F069",
+        "F070"
+      ],
+      "text": "Duration: 5653.3 s wall, 1.5704 GPU-hours."
+    },
+    "C028": {
+      "supports": [
+        "F071",
+        "F072"
+      ],
+      "text": "Cost actual against estimate: 1.570 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent."
+    },
+    "C029": {
+      "supports": [
+        "F073"
+      ],
+      "text": "Seed: 20261004."
+    },
+    "C030": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Worker bundle: 938e9e90d7d44c7e… (hashed, receipted on the host; digest verified at settlement: yes)."
+    },
+    "C031": {
+      "supports": [
+        "F074"
+      ],
+      "text": "Iteration / attempt: iteration 7."
+    },
+    "C032": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Held-out material: dev split (iteration feedback; the sealed admission split is read only by the independent evaluation). sealed_admission_read = no."
+    },
+    "C033": {
+      "supports": [
+        "F075",
+        "F076",
+        "F077",
+        "F078",
+        "F079",
+        "F080",
+        "F081",
+        "F082",
+        "F083"
+      ],
+      "text": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000)."
+    },
+    "C034": {
+      "supports": [
+        "F084"
+      ],
+      "text": "No ablations were run in this settlement. The controlled same-base comparison of spectral-feedback curricula (MA-16) is a separate commission and is not claimed here."
+    },
+    "C035": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Results are on the dev split, which guides iteration; they are not admission evidence. Admission is decided only on the sealed, speaker-cluster-disjoint split by a separate evaluation run."
+    },
+    "C036": {
+      "supports": [
+        "F001"
+      ],
+      "text": "The dev split was requalified after the cluster-disjoint rule left it too small to measure: whole train sessions were promoted to dev (dev_basis=session_holdout), so presenter voices may overlap between train and dev. This is a disclosed selection effect on dev; the admission split is unchanged."
+    },
+    "C037": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Language fidelity is a character-trigram judgement against each language's own profile; it is not a reading of meaning or story quality, which only native readers can judge."
+    },
+    "C038": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Monetary cost is not stated: GPU-hours are measured, no governed rate card exists, and the owner authority is uncapped until billing."
+    },
+    "C039": {
+      "supports": [
+        "F085",
+        "F086",
+        "F087",
+        "F088",
+        "F089",
+        "F090",
+        "F091",
+        "F092",
+        "F093",
+        "F094"
+      ],
+      "text": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base."
+    },
+    "C040": {
+      "supports": [
+        "F095",
+        "F096",
+        "F097",
+        "F098",
+        "F099",
+        "F100",
+        "F101",
+        "F102",
+        "F103"
+      ],
+      "text": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182."
+    }
+  },
+  "content_id": "malpha-tier2-m9j-454e0b8b6002",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "The independent evaluation run on the sealed admission split",
+        "gap": "Admission of the model",
+        "reason": "Dev results guide iteration; only the sealed-split evaluation decides admission"
+      },
+      {
+        "closes_with": "Native listeners judging unseen stories and transcripts",
+        "gap": "Native-speaker quality",
+        "reason": "No human rating is on the record"
+      },
+      {
+        "closes_with": "Actual billing data joined to the measured GPU-hours",
+        "gap": "Monetary cost",
+        "reason": "No governed GPU rate card; uncapped-until-billing authority"
+      },
+      {
+        "closes_with": "Owner rulings R1/R2 and a separate egress crossing",
+        "gap": "Publication",
+        "reason": "Tier 2 is internal (WPW-10); Tier 3 eligibility is mechanical and its rulings are parked"
+      }
+    ],
+    "covers": "The retained record of one Mα run only: m9j-454e0b8b6002. Evidence classes are carried per figure; where the record is silent the report says so."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Figures that resolve to a retained record",
+      "receipt": "R01",
+      "unit": "figures",
+      "value": 24
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Figures in the report (resolved and refused)",
+      "receipt": "R01",
+      "unit": "figures",
+      "value": 24
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kam: dev_perplexity_below_base True, language_fidelity_rate 1.0",
+      "unit": "as recorded",
+      "value": 1.0
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kik: dev_perplexity_below_base True, language_fidelity_rate 1.0",
+      "unit": "as recorded",
+      "value": 1.0
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "swa: dev_perplexity_below_base True, language_fidelity_rate 1.0",
+      "unit": "as recorded",
+      "value": 1.0
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Metric contract status: DERIVED/PROPOSED mapping of the owner 90% target onto measured spectral-behaviour similarity; naturalness itself is a human judgement and is not claimed from similarity",
+      "unit": "as recorded",
+      "value": 90
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "This report settles story_text iteration 7 (job m9j-454e0b8b6002).",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Datasets derived from each recording (one file → several queryable layers): content (transcript, sealed by sha); timing (start/end, pcm offsets); speaker-local label + corpus cluster id; condition (codec/rate/channels); discoverable spectrum columns; codec tokens (content stream cb0, character strea",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Discoverable-spectrum columns (14): duration_s, chars_per_s, energy_db_mean, energy_db_std, pause_ratio, f0_mean_hz, f0_std_semitones, f0_range_hz, voiced_ratio, spectral_centroid_hz, spectral_bandwidth_hz, spectral_rolloff_hz, spectral_flatness, zcr.",
+      "unit": "as recorded",
+      "value": 14
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash.",
+      "unit": "as recorded",
+      "value": 10
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash.",
+      "unit": "as recorded",
+      "value": 10
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 166
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 2962
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 30
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 41
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 3810
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 30
+    },
+    "F019": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 75
+    },
+    "F020": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 329
+    },
+    "F021": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 583
+    },
+    "F022": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 37
+    },
+    "F023": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 4
+    },
+    "F024": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 1079
+    },
+    "F025": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 52
+    },
+    "F026": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 482
+    },
+    "F027": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 13
+    },
+    "F028": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 215
+    },
+    "F029": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 32
+    },
+    "F030": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 382
+    },
+    "F031": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T21:01:05Z, train_documents 1079, dev_documents 52, admission_read False; per language {'kik': {'train': 482, 'dev': 13}, 'kam': {'train': 215, 'dev': 32}, 'swa': {'train': 382, 'dev': 7}}.",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F032": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Starting model: Qwen/Qwen3-1.7B-Base revision ea980cb0a6c2ae4b936e82123acc929f1cec04c1; licence verified: apache-2.0; weight sha recorded on the registration.",
+      "unit": "as recorded",
+      "value": 1
+    },
+    "F033": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Starting model: Qwen/Qwen3-1.7B-Base revision ea980cb0a6c2ae4b936e82123acc929f1cec04c1; licence verified: apache-2.0; weight sha recorded on the registration.",
+      "unit": "as recorded",
+      "value": 2.0
+    },
+    "F034": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Baseline measurement: dev perplexity of the registered base with the adapter disabled: {'kik': 68.863, 'kam': 69.598, 'swa': 60.182}.",
+      "unit": "as recorded",
+      "value": 68.863
+    },
+    "F035": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Baseline measurement: dev perplexity of the registered base with the adapter disabled: {'kik': 68.863, 'kam': 69.598, 'swa': 60.182}.",
+      "unit": "as recorded",
+      "value": 69.598
+    },
+    "F036": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Baseline measurement: dev perplexity of the registered base with the adapter disabled: {'kik': 68.863, 'kam': 69.598, 'swa': 60.182}.",
+      "unit": "as recorded",
+      "value": 60.182
+    },
+    "F037": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 5
+    },
+    "F038": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 4
+    },
+    "F039": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 4
+    },
+    "F040": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 3000
+    },
+    "F041": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 100
+    },
+    "F042": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 250
+    },
+    "F043": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 250
+    },
+    "F044": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 1024
+    },
+    "F045": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 32
+    },
+    "F046": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 64
+    },
+    "F047": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 0.1
+    },
+    "F048": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 0.01
+    },
+    "F049": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 16
+    },
+    "F050": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 4
+    },
+    "F051": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F052": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 19.09
+    },
+    "F053": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 1000
+    },
+    "F054": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F055": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F056": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 26.271
+    },
+    "F057": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 5
+    },
+    "F058": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 5
+    },
+    "F059": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 0.1
+    },
+    "F060": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 0.01
+    },
+    "F061": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 3
+    },
+    "F062": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 1.0
+    },
+    "F063": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 0.938
+    },
+    "F064": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 5e-05, batch_size = 4, grad_accum = 4, max_steps = 3000, warmup_steps = 100, eval_every = 250, checkpoint_every = 250, max_seq_len = 1024, lora_r = 32, lora_alpha = 64, lora_dropout = 0.1, weight_decay = 0.01, eval_samples_per_language = 16, patience_evaluations = 4, la",
+      "unit": "as recorded",
+      "value": 0.688
+    },
+    "F065": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Adopted ideation events (mirrored by reference, WPW-6):",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F066": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "malpha://job/m9j-454e0b8b6002#params.recipe · idea malpha.story_text_recipe#iteration7 · conditions malpha://job/m9j-19e16c89f6b8#result.dev · adopted (attempt 1).",
+      "unit": "as recorded",
+      "value": 1
+    },
+    "F067": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Hardware: akki-vm-ii GPU 0 — device name not recorded; peak memory 11.21 GB.",
+      "unit": "as recorded",
+      "value": 0
+    },
+    "F068": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Hardware: akki-vm-ii GPU 0 — device name not recorded; peak memory 11.21 GB.",
+      "unit": "as recorded",
+      "value": 11.21
+    },
+    "F069": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Duration: 5653.3 s wall, 1.5704 GPU-hours.",
+      "unit": "as recorded",
+      "value": 5653.3
+    },
+    "F070": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Duration: 5653.3 s wall, 1.5704 GPU-hours.",
+      "unit": "as recorded",
+      "value": 1.5704
+    },
+    "F071": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Cost actual against estimate: 1.570 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent.",
+      "unit": "as recorded",
+      "value": 1.57
+    },
+    "F072": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Cost actual against estimate: 1.570 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent.",
+      "unit": "as recorded",
+      "value": 18
+    },
+    "F073": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Seed: 20261004.",
+      "unit": "as recorded",
+      "value": 20261004
+    },
+    "F074": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Iteration / attempt: iteration 7.",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F075": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 8
+    },
+    "F076": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 250
+    },
+    "F077": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 500
+    },
+    "F078": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 750
+    },
+    "F079": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 1000
+    },
+    "F080": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 1250
+    },
+    "F081": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 1500
+    },
+    "F082": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 1750
+    },
+    "F083": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 8 dev evaluations recorded (steps 250, 500, 750, 1000, 1250, 1500, 1750, 2000).",
+      "unit": "as recorded",
+      "value": 2000
+    },
+    "F084": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "No ablations were run in this settlement. The controlled same-base comparison of spectral-feedback curricula (MA-16) is a separate commission and is not claimed here.",
+      "unit": "as recorded",
+      "value": 16
+    },
+    "F085": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 0.846
+    },
+    "F086": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 0.812
+    },
+    "F087": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 1
+    },
+    "F088": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 20.15
+    },
+    "F089": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 68.86
+    },
+    "F090": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 23.32
+    },
+    "F091": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 69.6
+    },
+    "F092": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 25.81
+    },
+    "F093": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 60.18
+    },
+    "F094": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18). Threshold: fidelity 1.0 per language and dev perplexity below the registered base.",
+      "unit": "as recorded",
+      "value": 1.0
+    },
+    "F095": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F096": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 69.657
+    },
+    "F097": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 68.863
+    },
+    "F098": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 0.938
+    },
+    "F099": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 0.846
+    },
+    "F100": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 70.076
+    },
+    "F101": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 69.598
+    },
+    "F102": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 64.331
+    },
+    "F103": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 6: kik base_perplexity 69.657 → 68.863; kik language_fidelity_rate 0.938 → 0.846; kam base_perplexity 70.076 → 69.598; swa base_perplexity 64.331 → 60.182.",
+      "unit": "as recorded",
+      "value": 60.182
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "receipts": {
+    "R01": {
+      "platform_ref": "m9j-454e0b8b6002",
+      "resolves_to": "Retained m9 job record and host receipt for m9j-454e0b8b6002 (story_text iteration 7, completed)"
+    },
+    "R02": {
+      "platform_ref": "m9j-39538e56689e",
+      "resolves_to": "AIP database build record m9j-39538e56689e on akki-vm-ii (segments, seals, codec qualification)"
+    },
+    "R03": {
+      "resolves_to": "White Paper Wizard Tier 1 notebook for STORY-KIK-KAM-SWA (append-only, hash-chained; entries referenced by id)"
+    }
+  },
+  "series": {},
+  "tables": {
+    "T001": {
+      "class": "measured",
+      "columns": [
+        "Language",
+        "Train segments (h)",
+        "Dev segments (h)",
+        "Admission segments (h)",
+        "Recordings read"
+      ],
+      "label": "Data statement — table",
+      "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+      "receipt": "R02",
+      "right_align_from": 5,
+      "rows": [
+        [
+          "kik",
+          "34,916 (41.866)",
+          "166 (0.167)",
+          "357 (0.376)",
+          "583 of 583"
+        ],
+        [
+          "kam",
+          "17,199 (16.806)",
+          "2 (0.007)",
+          "129 (0.212)",
+          "1165 of 1165"
+        ],
+        [
+          "swa",
+          "35,664 (41.948)",
+          "329 (0.405)",
+          "88 (0.071)",
+          "549 of 549"
+        ]
+      ]
+    },
+    "T002": {
+      "class": "measured",
+      "columns": [
+        "Criterion",
+        "Measured",
+        "Threshold",
+        "Pass"
+      ],
+      "label": "Results on held-out material — table",
+      "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+      "receipt": "R01",
+      "right_align_from": 4,
+      "rows": [
+        [
+          "`held_out_accuracy`",
+          "language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18)",
+          "fidelity 1.0 per language and dev perplexity below the registered base",
+          "❌"
+        ],
+        [
+          "`abstention_calibration`",
+          "not instrumented for story generation",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`cost_actual_vs_estimate`",
+          "1.570 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+          "no numeric cap (owner order, recorded authority)",
+          "— (reported, not gated)"
+        ],
+        [
+          "`latency_p95_ms`",
+          "not instrumented for story generation",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`refusal_rate_on_out_of_domain`",
+          "not instrumented in this lane",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`adapter_size_mib`",
+          "144.0 MiB artefact",
+          "reported separately",
+          "— (reported, not gated)"
+        ]
+      ]
+    },
+    "T003": {
+      "class": "measured",
+      "columns": [
+        "Criterion",
+        "Measured",
+        "Threshold",
+        "Pass",
+        "Evidence class"
+      ],
+      "label": "Six acceptance criteria — measured value, adopted threshold, pass",
+      "note": "Every criterion of the fixed set is named; a criterion the run did not instrument says so instead of carrying a filled value.",
+      "receipt": "R01",
+      "right_align_from": 5,
+      "rows": [
+        [
+          "held_out_accuracy",
+          "language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18)",
+          "fidelity 1.0 per language and dev perplexity below the registered base",
+          "fail",
+          "measured"
+        ],
+        [
+          "abstention_calibration",
+          "not instrumented for story generation",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "cost_actual_vs_estimate",
+          "1.570 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+          "no numeric cap (owner order, recorded authority)",
+          "reported, not gated",
+          "measured"
+        ],
+        [
+          "latency_p95_ms",
+          "not instrumented for story generation",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "refusal_rate_on_out_of_domain",
+          "not instrumented in this lane",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "adapter_size_mib",
+          "144.0 MiB artefact",
+          "reported separately",
+          "reported, not gated",
+          "measured"
+        ]
+      ]
+    },
+    "T004": {
+      "class": "measured",
+      "columns": [
+        "Figure",
+        "Evidence class",
+        "Receipt line",
+        "Summary"
+      ],
+      "label": "Figure register — evidence class and receipt line of every rendered figure",
+      "note": "Each receipt line resolves into the retained record it names; resolution is checked mechanically before the figure renders.",
+      "receipt": "R01",
+      "right_align_from": 4,
+      "rows": [
+        [
+          "objective_contract",
+          "observed",
+          "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-4f4c81c7ab7a",
+          "commissioning reflection recorded 2026-10-04T08:59:11.225238Z before any compute; definition sha 94e7db5d27e4"
+        ],
+        [
+          "corpus_shape",
+          "measured",
+          "m9j-39538e56689e#receipt.result.segments",
+          "segments and hours per language and split in the AIP database"
+        ],
+        [
+          "corpus_files",
+          "measured",
+          "m9j-39538e56689e#receipt.result.files",
+          "recordings read per language"
+        ],
+        [
+          "dataset_layers",
+          "observed",
+          "m9j-39538e56689e#receipt.result.layers",
+          "declared dataset layers derived from each recording"
+        ],
+        [
+          "feature_columns",
+          "observed",
+          "m9j-39538e56689e#receipt.result.feature_columns",
+          "discoverable-spectrum columns"
+        ],
+        [
+          "split_rule",
+          "observed",
+          "m9j-39538e56689e#receipt.result.split_rule",
+          "split and sealing rule"
+        ],
+        [
+          "custody_flags",
+          "observed",
+          "m9j-39538e56689e#receipt.result.raw_media_exported",
+          "raw media export flag on the database record"
+        ],
+        [
+          "database_binding",
+          "observed",
+          "m9j-454e0b8b6002#params.aip_db_dir",
+          "database path bound to this run"
+        ],
+        [
+          "dev_requalification",
+          "measured",
+          "m9j-fe47060f57af#receipt.result.requalification.report",
+          "dev split before/after requalification, promoted sessions per language"
+        ],
+        [
+          "run_data",
+          "measured",
+          "m9j-454e0b8b6002#receipt.result.data",
+          "segments/hours this run trained and evaluated on"
+        ],
+        [
+          "baseline_registration",
+          "observed",
+          "m9j-454e0b8b6002#params.base_registration",
+          "registered base weights (repo, revision, licence verification, weight sha)"
+        ],
+        [
+          "baseline_perplexity",
+          "measured",
+          "m9j-454e0b8b6002#receipt.result.base_perplexity",
+          "dev perplexity of the untouched base, adapter disabled"
+        ],
+        [
+          "recipe",
+          "observed",
+          "m9j-454e0b8b6002#params.recipe",
+          "the recipe this iteration ran"
+        ],
+        [
+          "ideation_wpwe-528e0d7188ae",
+          "observed",
+          "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-528e0d7188ae",
+          "ideation record malpha.story_text_recipe#iteration7 adopted"
+        ],
+        [
+          "host_binding",
+          "observed",
+          "m9j-454e0b8b6002#host",
+          "host that ran the job"
+        ],
+        [
+          "gpu_index",
+          "observed",
+          "m9j-454e0b8b6002#params.gpu_index",
+          "device index on the host"
+        ],
+        [
+          "compute",
+          "measured",
+          "m9j-454e0b8b6002#receipt.result.compute",
+          "wall seconds, GPU seconds, peak memory, device name"
+        ],
+        [
+          "budget_mode",
+          "observed",
+          "m9j-454e0b8b6002#params.budget_mode",
+          "budget authority bound to the job"
+        ],
+        [
+          "seed",
+          "observed",
+          "m9j-454e0b8b6002#params.seed",
+          "seed bound to the job"
+        ],
+        [
+          "worker_bundle",
+          "observed",
+          "m9j-454e0b8b6002#code_sha256",
+          "sha256 of the hashed worker bundle executed on the host"
+        ],
+        [
+          "criterion_held_out_accuracy",
+          "measured",
+          "m9j-454e0b8b6002#receipt.result.dev.per_language",
+          "held_out_accuracy: language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 ("
+        ],
+        [
+          "criterion_cost_actual_vs_estimate",
+          "measured",
+          "m9j-454e0b8b6002#receipt.result.compute",
+          "cost_actual_vs_estimate: 1.570 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until"
+        ],
+        [
+          "criterion_adapter_size_mib",
+          "measured",
+          "m9j-454e0b8b6002#receipt.result.artefact.bytes",
+          "adapter_size_mib: 144.0 MiB artefact"
+        ],
+        [
+          "learning_curve",
+          "measured",
+          "m9j-454e0b8b6002#receipt.result.history",
+          "8 dev evaluations during training"
+        ]
+      ]
+    }
+  },
+  "title": "Technical report (internal) — Expressive spoken storyteller with an invented voice (Kikuyu, Kamba, Kiswahili) · story_text v7",
+  "version": 1,
+  "wpw": {
+    "figures_resolved": 24,
+    "figures_total": 24,
+    "internal_only": true,
+    "refusal_reason": "admission bar not met: language fidelity kik 0.846, kam 0.812, swa 1; dev perplexity kik 20.15 (base 68.86), kam 23.32 (base 69.6), swa 25.81 (base 60.18)",
+    "settlement": "refused",
+    "tier": 2
+  }
+}

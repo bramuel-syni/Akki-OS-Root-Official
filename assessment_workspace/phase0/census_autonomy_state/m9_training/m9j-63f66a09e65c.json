@@ -4046,7 +4046,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-63f66a09e65c",
   "pid": 2416881
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-c1b410ab58aa",
@@ -4059,29 +4059,35 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_malpha_listener_train_daemonised:pid=2416881"
+  },
+  {
+   "row_id": "led-72fc8e88d88f",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_listener_train_completed"
   }
  ],
  "code_sha256": "3e42b2291e5a0b75ceecee84dfd652a1ef4ad62325e77d22dff4bcf73e8f9530",
  "started_at": "2026-10-04T16:01:03.166892Z",
  "last_status_rpc": {
-  "at": "2026-10-04T20:55:24.741141Z",
+  "at": "2026-10-05T02:28:09.956198Z",
   "rc": 0,
-  "receipt_id": "gpurcp-329016db06c4"
+  "receipt_id": "gpurcp-f9bc343f0c17"
  },
  "remote_state": {
   "phase": "malpha_listener_train",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-04T16:01:03Z",
   "progress": {
    "stage": "training",
-   "step": 9100,
+   "step": 12000,
    "of": 12000,
-   "loss": 0.3171,
-   "lr": 5.745550982191202e-06,
-   "elapsed_s": 17646,
+   "loss": 0.2574,
+   "lr": 1.5000005317272656e-06,
+   "elapsed_s": 23032,
    "gpu_peak_gb": 57.6,
-   "last_checkpoint_step": 9000,
-   "next_checkpoint_step": 9500
+   "last_checkpoint_step": 12000,
+   "next_checkpoint_step": 12500
   },
   "stages": {
    "data": {
@@ -4253,6 +4259,82 @@
       "f1": 0.7308
      }
     }
+   },
+   "dev_eval_step_10000": {
+    "at": "2026-10-04T21:24:06Z",
+    "mean_wer": 0.5779,
+    "words": {
+     "kam": {
+      "wer": 0.7336,
+      "cer": 0.4043,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.6714,
+      "cer": 0.3508,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.3287,
+      "cer": 0.165,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.8298,
+      "recall": 0.4699,
+      "f1": 0.6
+     },
+     "kik": {
+      "precision": 0.8846,
+      "recall": 0.6053,
+      "f1": 0.7188
+     },
+     "swa": {
+      "precision": 0.6512,
+      "recall": 0.7778,
+      "f1": 0.7089
+     }
+    }
+   },
+   "dev_eval_step_12000": {
+    "at": "2026-10-04T22:26:03Z",
+    "mean_wer": 0.5641,
+    "words": {
+     "kam": {
+      "wer": 0.7296,
+      "cer": 0.4065,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.6314,
+      "cer": 0.3196,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.3314,
+      "cer": 0.1604,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.8261,
+      "recall": 0.4578,
+      "f1": 0.5891
+     },
+     "kik": {
+      "precision": 0.9362,
+      "recall": 0.5789,
+      "f1": 0.7154
+     },
+     "swa": {
+      "precision": 0.6588,
+      "recall": 0.7778,
+      "f1": 0.7134
+     }
+    }
    }
   },
   "events": [
@@ -4327,13 +4409,3038 @@
    {
     "at": "2026-10-04T20:52:10Z",
     "message": "checkpoint at step 9000"
+   },
+   {
+    "at": "2026-10-04T21:07:43Z",
+    "message": "checkpoint at step 9500"
+   },
+   {
+    "at": "2026-10-04T21:23:11Z",
+    "message": "checkpoint at step 10000"
+   },
+   {
+    "at": "2026-10-04T21:39:04Z",
+    "message": "checkpoint at step 10500"
+   },
+   {
+    "at": "2026-10-04T21:54:26Z",
+    "message": "checkpoint at step 11000"
+   },
+   {
+    "at": "2026-10-04T22:09:49Z",
+    "message": "checkpoint at step 11500"
+   },
+   {
+    "at": "2026-10-04T22:25:17Z",
+    "message": "checkpoint at step 12000"
    }
   ],
   "job_id": "m9j-63f66a09e65c",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-04T20:55:11Z"
+  "updated_at": "2026-10-04T22:26:31Z",
+  "finished_at": "2026-10-04T22:26:31Z",
+  "receipt_sha256": "e67e1ac20d4b8b03511dd30f5331ef15521c63e90e4b5560828b66c6567c54ac"
  },
  "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  61%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 360/587 [00:00<00:00, 3590.37it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3598.63it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-63f66a09e65c/worker.zip/services/training_lab/malpha_worker.py:846: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.",
- "process_alive": true
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-63f66a09e65c",
+  "phase": "malpha_listener_train",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-04T16:01:03Z",
+  "code_sha256": "3e42b2291e5a0b75ceecee84dfd652a1ef4ad62325e77d22dff4bcf73e8f9530",
+  "status": "completed",
+  "result": {
+   "commission_id": "LISTEN-KIK-KAM-SWA",
+   "iteration": 3,
+   "recipe": {
+    "base": "openai/whisper-large-v3-turbo",
+    "lr": 3e-05,
+    "batch_size": 16,
+    "grad_accum": 4,
+    "max_steps": 12000,
+    "warmup_steps": 500,
+    "eval_every": 2000,
+    "checkpoint_every": 500,
+    "dev_per_language": 300,
+    "include_internet_corpus": true
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-04T16:01:06Z",
+    "train_segments": 111279,
+    "dev_segments": 900,
+    "train_hours": 165.85,
+    "admission_read": false,
+    "lexicon_sha256": "447e2c0aaea38bdc78a59a33b393a1d569d6d1be28fd3099311dec07dcdc9a21",
+    "brands": 649,
+    "internet_corpus": {
+     "segments": 30358,
+     "hours": 72.75,
+     "per_language": {
+      "kik": 0,
+      "kam": 27360,
+      "swa": 2998
+     }
+    }
+   },
+   "steps": 12000,
+   "dev": {
+    "words": {
+     "kam": {
+      "wer": 0.7296,
+      "cer": 0.4065,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.6314,
+      "cer": 0.3196,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.3314,
+      "cer": 0.1604,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "segments": 300,
+      "segments_with_mentions": 77,
+      "tp": 38,
+      "fp": 8,
+      "fn": 45,
+      "precision": 0.8261,
+      "recall": 0.4578,
+      "f1": 0.5891,
+      "precision_ci95": [
+       0.6928,
+       0.9091
+      ],
+      "recall_ci95": [
+       0.3549,
+       0.5645
+      ],
+      "false_positives_per_hour": 20.324,
+      "hours_evaluated": 0.394,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "Huduma": {
+        "fn": 2,
+        "tp": 1
+       },
+       "M-PESA": {
+        "fn": 1
+       },
+       "Shake": {
+        "fn": 4
+       },
+       "Golden": {
+        "fn": 2
+       },
+       "Raha": {
+        "fn": 1
+       },
+       "President": {
+        "tp": 14,
+        "fn": 4,
+        "fp": 2
+       },
+       "Senator": {
+        "tp": 3,
+        "fn": 2
+       },
+       "Minute": {
+        "fn": 1
+       },
+       "Musyi FM": {
+        "fn": 8,
+        "fp": 2
+       },
+       "Kameme FM": {
+        "fn": 2
+       },
+       "William": {
+        "fp": 1,
+        "fn": 1
+       },
+       "Soko": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Enda": {
+        "fn": 4,
+        "tp": 2
+       },
+       "MoKo": {
+        "tp": 3,
+        "fn": 1
+       },
+       "KRA": {
+        "fn": 3,
+        "tp": 2
+       },
+       "Tala": {
+        "fn": 1
+       },
+       "Nala": {
+        "fn": 2
+       },
+       "Top": {
+        "tp": 1
+       },
+       "Brookside": {
+        "fn": 2
+       },
+       "Sawa": {
+        "fp": 2
+       },
+       "Kenya Power": {
+        "tp": 4
+       },
+       "NHIF": {
+        "tp": 1
+       },
+       "Omo": {
+        "fn": 1
+       },
+       "Bahati": {
+        "tp": 1
+       },
+       "NSSF": {
+        "fp": 1
+       },
+       "KBC": {
+        "tp": 1
+       },
+       "KCB": {
+        "fn": 1
+       },
+       "Safaricom Kenya": {
+        "tp": 1
+       },
+       "Safaricom": {
+        "tp": 1
+       },
+       "Economic": {
+        "tp": 1
+       },
+       "Branch": {
+        "fn": 1,
+        "tp": 1
+       }
+      }
+     },
+     "kik": {
+      "segments": 300,
+      "segments_with_mentions": 70,
+      "tp": 44,
+      "fp": 3,
+      "fn": 32,
+      "precision": 0.9362,
+      "recall": 0.5789,
+      "f1": 0.7154,
+      "precision_ci95": [
+       0.8284,
+       0.9781
+      ],
+      "recall_ci95": [
+       0.4668,
+       0.6835
+      ],
+      "false_positives_per_hour": 5.711,
+      "hours_evaluated": 0.525,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "Rono": {
+        "fn": 3
+       },
+       "Acacia": {
+        "fn": 2
+       },
+       "Inooro FM": {
+        "fn": 4,
+        "tp": 19
+       },
+       "President": {
+        "fn": 5,
+        "tp": 8
+       },
+       "Joy": {
+        "tp": 2
+       },
+       "Equity": {
+        "fn": 1
+       },
+       "CIC": {
+        "tp": 1
+       },
+       "Mt. Kenya": {
+        "fn": 1
+       },
+       "Happy": {
+        "tp": 1
+       },
+       "Royal": {
+        "fn": 1
+       },
+       "Royal Media": {
+        "fn": 1
+       },
+       "Shake": {
+        "fp": 1
+       },
+       "Uber": {
+        "fn": 1
+       },
+       "MoKo": {
+        "tp": 7,
+        "fn": 2
+       },
+       "William": {
+        "tp": 1,
+        "fn": 1
+       },
+       "Kinangop": {
+        "fn": 1
+       },
+       "Famila": {
+        "fp": 1
+       },
+       "KBC": {
+        "tp": 1
+       },
+       "Senator": {
+        "tp": 1,
+        "fn": 1
+       },
+       "Wadi": {
+        "fn": 1
+       },
+       "Naivas": {
+        "fn": 1
+       },
+       "Standard": {
+        "tp": 1
+       },
+       "M-PESA": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Nation": {
+        "fp": 1
+       },
+       "White": {
+        "tp": 1
+       },
+       "Kericho": {
+        "fn": 1
+       },
+       "Corona": {
+        "fn": 1
+       },
+       "Highlands": {
+        "fn": 1
+       },
+       "Super": {
+        "fn": 1
+       },
+       "Jamaa": {
+        "fn": 1
+       }
+      }
+     },
+     "swa": {
+      "segments": 300,
+      "segments_with_mentions": 61,
+      "tp": 56,
+      "fp": 29,
+      "fn": 16,
+      "precision": 0.6588,
+      "recall": 0.7778,
+      "f1": 0.7134,
+      "precision_ci95": [
+       0.5531,
+       0.7508
+      ],
+      "recall_ci95": [
+       0.6691,
+       0.8583
+      ],
+      "false_positives_per_hour": 56.402,
+      "hours_evaluated": 0.514,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "Ndovu": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Fuliza": {
+        "fp": 1
+       },
+       "M-PESA": {
+        "fn": 1,
+        "tp": 1
+       },
+       "President": {
+        "tp": 5,
+        "fn": 1,
+        "fp": 1
+       },
+       "Sawa": {
+        "fp": 7
+       },
+       "Dola": {
+        "fp": 1
+       },
+       "Jamaa": {
+        "tp": 2
+       },
+       "NHIF": {
+        "tp": 22,
+        "fn": 2
+       },
+       "Safari": {
+        "tp": 1
+       },
+       "Enda": {
+        "fn": 2,
+        "tp": 1
+       },
+       "Nguvu": {
+        "tp": 1
+       },
+       "Kartasi": {
+        "fp": 1
+       },
+       "Citizen": {
+        "tp": 5,
+        "fn": 1
+       },
+       "Tena": {
+        "fp": 6
+       },
+       "Balozi": {
+        "tp": 2
+       },
+       "Super": {
+        "fp": 6
+       },
+       "Huduma": {
+        "fn": 1,
+        "tp": 7
+       },
+       "Jamii": {
+        "fn": 5,
+        "tp": 1
+       },
+       "Water": {
+        "tp": 1
+       },
+       "Virginia": {
+        "fn": 1
+       },
+       "Umoja": {
+        "tp": 1
+       },
+       "Bahati": {
+        "tp": 2
+       },
+       "Ushindi": {
+        "fp": 2
+       },
+       "Famila": {
+        "fp": 2
+       },
+       "Daima": {
+        "tp": 1
+       },
+       "Sasini": {
+        "fp": 1
+       },
+       "Royal": {
+        "tp": 1
+       },
+       "Royal Media": {
+        "tp": 1
+       },
+       "Royale": {
+        "fp": 1
+       },
+       "Wadi": {
+        "fn": 1
+       }
+      }
+     }
+    },
+    "latency": {
+     "real_time_factor": 0.0088,
+     "audio_seconds": 5159.0,
+     "wall_seconds": 45.3
+    },
+    "samples": [
+     {
+      "language": "kam",
+      "ref_chars": 21,
+      "hyp_chars": 6,
+      "mentions_truth": [
+       "Huduma"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 12,
+      "hyp_chars": 13,
+      "mentions_truth": [
+       "Huduma"
+      ],
+      "mentions_hyp": [
+       "Huduma"
+      ]
+     },
+     {
+      "language": "kam",
+      "ref_chars": 21,
+      "hyp_chars": 20,
+      "mentions_truth": [
+       "M-PESA"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 24,
+      "hyp_chars": 14,
+      "mentions_truth": [
+       "Shake"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 10,
+      "hyp_chars": 5,
+      "mentions_truth": [
+       "Shake"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 11,
+      "hyp_chars": 9,
+      "mentions_truth": [
+       "Shake"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 11,
+      "hyp_chars": 3,
+      "mentions_truth": [
+       "Shake"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 11,
+      "hyp_chars": 13,
+      "mentions_truth": [
+       "Golden"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 22,
+      "hyp_chars": 14,
+      "mentions_truth": [
+       "Raha"
+      ],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 11,
+      "hyp_chars": 8,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 4,
+      "hyp_chars": 3,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 9,
+      "hyp_chars": 2,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     }
+    ],
+    "step": 12000,
+    "train_loss": 0.2537,
+    "at": "2026-10-04T22:26:03Z"
+   },
+   "history": [
+    {
+     "step": 2000,
+     "train_loss": 0.9675,
+     "words": {
+      "kam": {
+       "wer": 0.9148,
+       "cer": 0.5526,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.8305,
+       "cer": 0.4538,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.4306,
+       "cer": 0.2259,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 77,
+       "tp": 26,
+       "fp": 10,
+       "fn": 57,
+       "precision": 0.7222,
+       "recall": 0.3133,
+       "f1": 0.437,
+       "precision_ci95": [
+        0.5601,
+        0.8415
+       ],
+       "recall_ci95": [
+        0.2236,
+        0.4194
+       ],
+       "false_positives_per_hour": 25.405,
+       "hours_evaluated": 0.394,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 2,
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1
+        },
+        "Shake": {
+         "fn": 4
+        },
+        "Golden": {
+         "fn": 2
+        },
+        "Raha": {
+         "fn": 1
+        },
+        "Sawa": {
+         "fp": 3
+        },
+        "President": {
+         "fn": 11,
+         "fp": 1,
+         "tp": 7
+        },
+        "Senator": {
+         "tp": 4,
+         "fn": 1
+        },
+        "Minute": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 8
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "Enda": {
+         "fp": 2,
+         "fn": 3,
+         "tp": 3
+        },
+        "William": {
+         "fp": 1,
+         "fn": 1
+        },
+        "Zito": {
+         "fp": 1
+        },
+        "Soko": {
+         "fn": 1,
+         "tp": 1
+        },
+        "MoKo": {
+         "tp": 3,
+         "fn": 1
+        },
+        "KRA": {
+         "fn": 3,
+         "tp": 2
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Nala": {
+         "fn": 2
+        },
+        "Top": {
+         "tp": 1
+        },
+        "Branch": {
+         "fp": 1,
+         "tp": 1,
+         "fn": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Kenya Power": {
+         "fn": 4
+        },
+        "NHIF": {
+         "fn": 1
+        },
+        "Omo": {
+         "fn": 1
+        },
+        "Bahati": {
+         "fn": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "tp": 1
+        },
+        "Safari": {
+         "fp": 1
+        },
+        "Safaricom Kenya": {
+         "fn": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        },
+        "Economic": {
+         "tp": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 70,
+       "tp": 43,
+       "fp": 3,
+       "fn": 33,
+       "precision": 0.9348,
+       "recall": 0.5658,
+       "f1": 0.7049,
+       "precision_ci95": [
+        0.825,
+        0.9776
+       ],
+       "recall_ci95": [
+        0.4539,
+        0.6714
+       ],
+       "false_positives_per_hour": 5.711,
+       "hours_evaluated": 0.525,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "tp": 1,
+         "fn": 2
+        },
+        "Acacia": {
+         "fn": 2
+        },
+        "Inooro FM": {
+         "fn": 7,
+         "tp": 16
+        },
+        "President": {
+         "fn": 3,
+         "tp": 10
+        },
+        "Joy": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Equity": {
+         "fn": 1
+        },
+        "CIC": {
+         "tp": 1
+        },
+        "Mt. Kenya": {
+         "fn": 1
+        },
+        "Happy": {
+         "tp": 1
+        },
+        "Royal": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "MoKo": {
+         "fn": 3,
+         "tp": 6
+        },
+        "William": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Arimis": {
+         "fp": 1
+        },
+        "Kinangop": {
+         "fn": 1
+        },
+        "Enda": {
+         "fp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Senator": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Wadi": {
+         "fn": 1
+        },
+        "Naivas": {
+         "fn": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-PESA": {
+         "tp": 2
+        },
+        "Balozi": {
+         "fp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Kericho": {
+         "fn": 1
+        },
+        "Corona": {
+         "fn": 1
+        },
+        "Highlands": {
+         "fn": 1
+        },
+        "Super": {
+         "fn": 1
+        },
+        "Jamaa": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 61,
+       "tp": 46,
+       "fp": 27,
+       "fn": 26,
+       "precision": 0.6301,
+       "recall": 0.6389,
+       "f1": 0.6345,
+       "precision_ci95": [
+        0.5155,
+        0.7318
+       ],
+       "recall_ci95": [
+        0.5235,
+        0.7402
+       ],
+       "false_positives_per_hour": 52.512,
+       "hours_evaluated": 0.514,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Ndovu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1,
+         "tp": 1
+        },
+        "President": {
+         "fn": 2,
+         "tp": 4
+        },
+        "Jamaa": {
+         "tp": 2,
+         "fp": 1
+        },
+        "NHIF": {
+         "fn": 9,
+         "tp": 15
+        },
+        "Safari": {
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 2,
+         "tp": 1
+        },
+        "Nguvu": {
+         "tp": 1
+        },
+        "Sawa": {
+         "fp": 5
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1,
+         "fp": 1
+        },
+        "Tena": {
+         "fp": 6
+        },
+        "Balozi": {
+         "fn": 2
+        },
+        "Super": {
+         "fp": 6
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Jamii": {
+         "fn": 5,
+         "tp": 1
+        },
+        "Virginia": {
+         "tp": 1
+        },
+        "Water": {
+         "tp": 1
+        },
+        "Umoja": {
+         "fn": 1
+        },
+        "Bahati": {
+         "tp": 2
+        },
+        "Ushindi": {
+         "fp": 2
+        },
+        "MoKo": {
+         "fp": 1
+        },
+        "Soko": {
+         "fp": 1
+        },
+        "Famila": {
+         "fp": 2
+        },
+        "Daima": {
+         "tp": 1
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "Royal": {
+         "tp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        },
+        "Royale": {
+         "fp": 1
+        },
+        "Wadi": {
+         "fn": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0278,
+      "audio_seconds": 5159.0,
+      "wall_seconds": 143.4
+     },
+     "at": "2026-10-04T17:11:37Z"
+    },
+    {
+     "step": 4000,
+     "train_loss": 0.801,
+     "words": {
+      "kam": {
+       "wer": 0.831,
+       "cer": 0.5017,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.7136,
+       "cer": 0.39,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.4466,
+       "cer": 0.2615,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 77,
+       "tp": 28,
+       "fp": 7,
+       "fn": 55,
+       "precision": 0.8,
+       "recall": 0.3373,
+       "f1": 0.4746,
+       "precision_ci95": [
+        0.6411,
+        0.8996
+       ],
+       "recall_ci95": [
+        0.2448,
+        0.4442
+       ],
+       "false_positives_per_hour": 17.784,
+       "hours_evaluated": 0.394,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 2,
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1
+        },
+        "Shake": {
+         "fn": 3,
+         "tp": 1
+        },
+        "Golden": {
+         "fn": 2
+        },
+        "Raha": {
+         "fn": 1
+        },
+        "Sawa": {
+         "fp": 3
+        },
+        "President": {
+         "fn": 9,
+         "fp": 1,
+         "tp": 9
+        },
+        "Senator": {
+         "fn": 5
+        },
+        "Minute": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 7,
+         "tp": 1
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "Soko": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 3,
+         "tp": 3,
+         "fp": 2
+        },
+        "William": {
+         "fn": 1
+        },
+        "MoKo": {
+         "tp": 3,
+         "fn": 1
+        },
+        "KRA": {
+         "fn": 3,
+         "tp": 2
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Nala": {
+         "fn": 2
+        },
+        "Top": {
+         "tp": 1
+        },
+        "Brookside": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Branch": {
+         "fp": 1,
+         "fn": 2
+        },
+        "Kenya Power": {
+         "fn": 3,
+         "tp": 1
+        },
+        "NHIF": {
+         "tp": 1
+        },
+        "Omo": {
+         "fn": 1
+        },
+        "Bahati": {
+         "tp": 1
+        },
+        "KBC": {
+         "fn": 1
+        },
+        "KCB": {
+         "tp": 1
+        },
+        "Safaricom Kenya": {
+         "fn": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        },
+        "Economic": {
+         "tp": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 70,
+       "tp": 44,
+       "fp": 2,
+       "fn": 32,
+       "precision": 0.9565,
+       "recall": 0.5789,
+       "f1": 0.7213,
+       "precision_ci95": [
+        0.8547,
+        0.988
+       ],
+       "recall_ci95": [
+        0.4668,
+        0.6835
+       ],
+       "false_positives_per_hour": 3.808,
+       "hours_evaluated": 0.525,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "tp": 1,
+         "fn": 2
+        },
+        "Acacia": {
+         "fn": 2
+        },
+        "Inooro FM": {
+         "fn": 6,
+         "tp": 17
+        },
+        "President": {
+         "fn": 3,
+         "tp": 10,
+         "fp": 1
+        },
+        "Joy": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Equity": {
+         "fn": 1
+        },
+        "CIC": {
+         "tp": 1
+        },
+        "Mt. Kenya": {
+         "fn": 1
+        },
+        "Happy": {
+         "tp": 1
+        },
+        "Royal": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "MoKo": {
+         "tp": 6,
+         "fn": 3
+        },
+        "William": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Kinangop": {
+         "fn": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Senator": {
+         "fn": 2
+        },
+        "Wadi": {
+         "fn": 1
+        },
+        "Naivas": {
+         "fn": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-PESA": {
+         "tp": 2
+        },
+        "Balozi": {
+         "fp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Kericho": {
+         "tp": 1
+        },
+        "Corona": {
+         "fn": 1
+        },
+        "Highlands": {
+         "fn": 1
+        },
+        "Super": {
+         "fn": 1
+        },
+        "Jamaa": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 61,
+       "tp": 50,
+       "fp": 29,
+       "fn": 22,
+       "precision": 0.6329,
+       "recall": 0.6944,
+       "f1": 0.6623,
+       "precision_ci95": [
+        0.5228,
+        0.7307
+       ],
+       "recall_ci95": [
+        0.5805,
+        0.7887
+       ],
+       "false_positives_per_hour": 56.402,
+       "hours_evaluated": 0.514,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Ndovu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1,
+         "tp": 1
+        },
+        "President": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Shiriki": {
+         "fp": 1
+        },
+        "Dola": {
+         "fp": 1
+        },
+        "Jamaa": {
+         "fn": 1,
+         "fp": 2,
+         "tp": 1
+        },
+        "NHIF": {
+         "tp": 19,
+         "fn": 5
+        },
+        "Safari": {
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 2,
+         "tp": 1
+        },
+        "Nguvu": {
+         "tp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 5
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Tena": {
+         "fp": 6
+        },
+        "Balozi": {
+         "tp": 2
+        },
+        "Super": {
+         "fp": 6
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Jamii": {
+         "fn": 5,
+         "tp": 1
+        },
+        "Water": {
+         "tp": 1
+        },
+        "Virginia": {
+         "fn": 1
+        },
+        "Umoja": {
+         "fn": 1
+        },
+        "Top": {
+         "fp": 1
+        },
+        "Bahati": {
+         "tp": 2
+        },
+        "Ushindi": {
+         "fp": 2
+        },
+        "Famila": {
+         "fp": 2
+        },
+        "Daima": {
+         "fn": 1
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "Royal": {
+         "tp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        },
+        "Royale": {
+         "fp": 1
+        },
+        "Wadi": {
+         "fn": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0091,
+      "audio_seconds": 5159.0,
+      "wall_seconds": 47.2
+     },
+     "at": "2026-10-04T18:13:49Z"
+    },
+    {
+     "step": 6000,
+     "train_loss": 0.6391,
+     "words": {
+      "kam": {
+       "wer": 0.7877,
+       "cer": 0.4249,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.6438,
+       "cer": 0.3254,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.3931,
+       "cer": 0.2113,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 77,
+       "tp": 33,
+       "fp": 6,
+       "fn": 50,
+       "precision": 0.8462,
+       "recall": 0.3976,
+       "f1": 0.541,
+       "precision_ci95": [
+        0.7027,
+        0.9275
+       ],
+       "recall_ci95": [
+        0.2991,
+        0.5052
+       ],
+       "false_positives_per_hour": 15.243,
+       "hours_evaluated": 0.394,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 3
+        },
+        "M-PESA": {
+         "fn": 1
+        },
+        "Shake": {
+         "fn": 3,
+         "tp": 1
+        },
+        "Golden": {
+         "fn": 2
+        },
+        "Raha": {
+         "fn": 1
+        },
+        "President": {
+         "tp": 10,
+         "fn": 8,
+         "fp": 1
+        },
+        "Senator": {
+         "tp": 3,
+         "fn": 2
+        },
+        "Minute": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 8
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "Soko": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 4,
+         "fp": 1,
+         "tp": 2
+        },
+        "William": {
+         "fn": 1
+        },
+        "MoKo": {
+         "tp": 3,
+         "fn": 1
+        },
+        "KRA": {
+         "fn": 2,
+         "tp": 3
+        },
+        "Sawa": {
+         "fp": 3
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Nala": {
+         "fn": 2
+        },
+        "Top": {
+         "tp": 1
+        },
+        "Standard": {
+         "fp": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Kenya Power": {
+         "tp": 4
+        },
+        "NHIF": {
+         "fn": 1
+        },
+        "Omo": {
+         "fn": 1
+        },
+        "Bahati": {
+         "fn": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "tp": 1
+        },
+        "Safaricom Kenya": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "tp": 1
+        },
+        "Economic": {
+         "tp": 1
+        },
+        "Branch": {
+         "fn": 2
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 70,
+       "tp": 46,
+       "fp": 4,
+       "fn": 30,
+       "precision": 0.92,
+       "recall": 0.6053,
+       "f1": 0.7302,
+       "precision_ci95": [
+        0.8116,
+        0.9685
+       ],
+       "recall_ci95": [
+        0.4929,
+        0.7075
+       ],
+       "false_positives_per_hour": 7.615,
+       "hours_evaluated": 0.525,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "tp": 2,
+         "fn": 1
+        },
+        "Acacia": {
+         "fn": 2
+        },
+        "Inooro FM": {
+         "fn": 4,
+         "fp": 1,
+         "tp": 19
+        },
+        "President": {
+         "fn": 5,
+         "tp": 8
+        },
+        "Tena": {
+         "fp": 1
+        },
+        "Joy": {
+         "tp": 2
+        },
+        "Equity": {
+         "fn": 1
+        },
+        "CIC": {
+         "tp": 1
+        },
+        "Mt. Kenya": {
+         "fn": 1
+        },
+        "Happy": {
+         "tp": 1
+        },
+        "Royal": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Shake": {
+         "fp": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "MoKo": {
+         "fn": 3,
+         "tp": 6
+        },
+        "William": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Kinangop": {
+         "fn": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Senator": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Wadi": {
+         "fn": 1
+        },
+        "Naivas": {
+         "fn": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-PESA": {
+         "tp": 2
+        },
+        "White": {
+         "tp": 1
+        },
+        "Kericho": {
+         "fn": 1
+        },
+        "Corona": {
+         "fn": 1
+        },
+        "Highlands": {
+         "fn": 1
+        },
+        "Super": {
+         "fn": 1
+        },
+        "Jamaa": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 61,
+       "tp": 51,
+       "fp": 27,
+       "fn": 21,
+       "precision": 0.6538,
+       "recall": 0.7083,
+       "f1": 0.68,
+       "precision_ci95": [
+        0.5433,
+        0.7499
+       ],
+       "recall_ci95": [
+        0.5949,
+        0.8006
+       ],
+       "false_positives_per_hour": 52.512,
+       "hours_evaluated": 0.514,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Ndovu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Fuliza": {
+         "fp": 1
+        },
+        "M-PESA": {
+         "fn": 1,
+         "tp": 1
+        },
+        "President": {
+         "fn": 2,
+         "tp": 4,
+         "fp": 1
+        },
+        "Shiriki": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 5
+        },
+        "Jamaa": {
+         "tp": 2
+        },
+        "NHIF": {
+         "fn": 3,
+         "tp": 21
+        },
+        "Safari": {
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 2,
+         "tp": 1
+        },
+        "Nguvu": {
+         "tp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Tena": {
+         "fp": 6
+        },
+        "Balozi": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Super": {
+         "fp": 6
+        },
+        "Huduma": {
+         "fn": 2,
+         "tp": 6
+        },
+        "Jamii": {
+         "fn": 5,
+         "tp": 1
+        },
+        "Water": {
+         "tp": 1
+        },
+        "Virginia": {
+         "fn": 1
+        },
+        "Umoja": {
+         "tp": 1
+        },
+        "Bahati": {
+         "tp": 2
+        },
+        "Ushindi": {
+         "fp": 2
+        },
+        "Famila": {
+         "fp": 2
+        },
+        "Daima": {
+         "fn": 1
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "Royal": {
+         "tp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        },
+        "Royale": {
+         "fp": 1
+        },
+        "Wadi": {
+         "fn": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0124,
+      "audio_seconds": 5159.0,
+      "wall_seconds": 63.8
+     },
+     "at": "2026-10-04T19:17:26Z"
+    },
+    {
+     "step": 8000,
+     "train_loss": 0.4388,
+     "words": {
+      "kam": {
+       "wer": 0.681,
+       "cer": 0.3655,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.6733,
+       "cer": 0.3642,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.3399,
+       "cer": 0.1704,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 77,
+       "tp": 37,
+       "fp": 6,
+       "fn": 46,
+       "precision": 0.8605,
+       "recall": 0.4458,
+       "f1": 0.5873,
+       "precision_ci95": [
+        0.7274,
+        0.9344
+       ],
+       "recall_ci95": [
+        0.3436,
+        0.5528
+       ],
+       "false_positives_per_hour": 15.243,
+       "hours_evaluated": 0.394,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 2,
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1
+        },
+        "Shake": {
+         "fn": 4
+        },
+        "Golden": {
+         "fn": 2
+        },
+        "Raha": {
+         "fn": 1
+        },
+        "President": {
+         "tp": 10,
+         "fn": 8,
+         "fp": 1
+        },
+        "Senator": {
+         "tp": 4,
+         "fn": 1
+        },
+        "Minute": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 8
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "Soko": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 4,
+         "fp": 1,
+         "tp": 2
+        },
+        "William": {
+         "fn": 1
+        },
+        "MoKo": {
+         "tp": 4
+        },
+        "KRA": {
+         "fn": 2,
+         "tp": 3
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Nala": {
+         "fn": 2
+        },
+        "Top": {
+         "tp": 1
+        },
+        "Branch": {
+         "fp": 1,
+         "fn": 1,
+         "tp": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Sawa": {
+         "fp": 2
+        },
+        "Kenya Power": {
+         "tp": 3,
+         "fn": 1
+        },
+        "NHIF": {
+         "tp": 1
+        },
+        "Nice": {
+         "fp": 1
+        },
+        "Omo": {
+         "fn": 1
+        },
+        "Bahati": {
+         "tp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "tp": 1
+        },
+        "Safaricom Kenya": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "tp": 1
+        },
+        "Economic": {
+         "tp": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 70,
+       "tp": 49,
+       "fp": 4,
+       "fn": 27,
+       "precision": 0.9245,
+       "recall": 0.6447,
+       "f1": 0.7597,
+       "precision_ci95": [
+        0.8214,
+        0.9703
+       ],
+       "recall_ci95": [
+        0.5326,
+        0.743
+       ],
+       "false_positives_per_hour": 7.615,
+       "hours_evaluated": 0.525,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "fn": 3
+        },
+        "Acacia": {
+         "fn": 2
+        },
+        "Inooro FM": {
+         "fn": 6,
+         "tp": 17
+        },
+        "President": {
+         "fn": 3,
+         "tp": 10
+        },
+        "Joy": {
+         "tp": 2
+        },
+        "Equity": {
+         "fn": 1
+        },
+        "CIC": {
+         "tp": 1
+        },
+        "Mt. Kenya": {
+         "fn": 1
+        },
+        "Happy": {
+         "tp": 1
+        },
+        "Royal": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Shake": {
+         "fp": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "MoKo": {
+         "tp": 8,
+         "fn": 1
+        },
+        "William": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Kinangop": {
+         "fn": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Senator": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Wadi": {
+         "fn": 1
+        },
+        "Naivas": {
+         "fn": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-PESA": {
+         "tp": 2
+        },
+        "Nation": {
+         "fp": 1
+        },
+        "Balozi": {
+         "fp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Kericho": {
+         "tp": 1
+        },
+        "Corona": {
+         "fn": 1
+        },
+        "Highlands": {
+         "tp": 1
+        },
+        "Super": {
+         "tp": 1
+        },
+        "Jamaa": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 61,
+       "tp": 57,
+       "fp": 27,
+       "fn": 15,
+       "precision": 0.6786,
+       "recall": 0.7917,
+       "f1": 0.7308,
+       "precision_ci95": [
+        0.5728,
+        0.7687
+       ],
+       "recall_ci95": [
+        0.6843,
+        0.8695
+       ],
+       "false_positives_per_hour": 52.512,
+       "hours_evaluated": 0.514,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Ndovu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Fuliza": {
+         "fp": 1
+        },
+        "M-PESA": {
+         "fn": 1,
+         "tp": 1
+        },
+        "President": {
+         "tp": 5,
+         "fn": 1,
+         "fp": 1
+        },
+        "Dola": {
+         "fp": 1
+        },
+        "Jamaa": {
+         "tp": 2
+        },
+        "NHIF": {
+         "tp": 23,
+         "fn": 1
+        },
+        "Safari": {
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 2,
+         "tp": 1
+        },
+        "Nguvu": {
+         "tp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 5
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Tena": {
+         "fp": 6
+        },
+        "Balozi": {
+         "tp": 2
+        },
+        "Super": {
+         "fp": 6
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Jamii": {
+         "fn": 5,
+         "tp": 1
+        },
+        "Water": {
+         "tp": 1
+        },
+        "Virginia": {
+         "fn": 1
+        },
+        "Umoja": {
+         "tp": 1
+        },
+        "Bahati": {
+         "tp": 2
+        },
+        "Ushindi": {
+         "fp": 2
+        },
+        "Famila": {
+         "fp": 2
+        },
+        "Daima": {
+         "tp": 1
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "Royal": {
+         "tp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        },
+        "Royale": {
+         "fp": 1
+        },
+        "Wadi": {
+         "fn": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0083,
+      "audio_seconds": 5159.0,
+      "wall_seconds": 42.7
+     },
+     "at": "2026-10-04T20:20:51Z"
+    },
+    {
+     "step": 10000,
+     "train_loss": 0.3637,
+     "words": {
+      "kam": {
+       "wer": 0.7336,
+       "cer": 0.4043,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.6714,
+       "cer": 0.3508,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.3287,
+       "cer": 0.165,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 77,
+       "tp": 39,
+       "fp": 8,
+       "fn": 44,
+       "precision": 0.8298,
+       "recall": 0.4699,
+       "f1": 0.6,
+       "precision_ci95": [
+        0.6986,
+        0.9111
+       ],
+       "recall_ci95": [
+        0.3662,
+        0.5762
+       ],
+       "false_positives_per_hour": 20.324,
+       "hours_evaluated": 0.394,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 2,
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1
+        },
+        "Shake": {
+         "fn": 4
+        },
+        "Golden": {
+         "fn": 2
+        },
+        "Raha": {
+         "fn": 1
+        },
+        "President": {
+         "tp": 13,
+         "fn": 5,
+         "fp": 2
+        },
+        "Senator": {
+         "fn": 2,
+         "tp": 3
+        },
+        "Minute": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 7,
+         "fp": 1,
+         "tp": 1
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "William": {
+         "fp": 1,
+         "fn": 1
+        },
+        "Soko": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 4,
+         "tp": 2
+        },
+        "MoKo": {
+         "tp": 4
+        },
+        "KRA": {
+         "fn": 3,
+         "tp": 2
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Nala": {
+         "fn": 2
+        },
+        "Top": {
+         "tp": 1
+        },
+        "Branch": {
+         "fp": 1,
+         "fn": 1,
+         "tp": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Sawa": {
+         "fp": 2
+        },
+        "Kenya Power": {
+         "tp": 4
+        },
+        "NHIF": {
+         "tp": 1
+        },
+        "Omo": {
+         "fn": 1
+        },
+        "Bahati": {
+         "tp": 1
+        },
+        "NSSF": {
+         "fp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "fn": 1
+        },
+        "Safaricom Kenya": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "tp": 1
+        },
+        "Economic": {
+         "tp": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 70,
+       "tp": 46,
+       "fp": 6,
+       "fn": 30,
+       "precision": 0.8846,
+       "recall": 0.6053,
+       "f1": 0.7188,
+       "precision_ci95": [
+        0.7703,
+        0.946
+       ],
+       "recall_ci95": [
+        0.4929,
+        0.7075
+       ],
+       "false_positives_per_hour": 11.423,
+       "hours_evaluated": 0.525,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "fn": 3
+        },
+        "Acacia": {
+         "fn": 2
+        },
+        "Inooro FM": {
+         "fn": 3,
+         "fp": 1,
+         "tp": 20
+        },
+        "President": {
+         "fn": 4,
+         "tp": 9,
+         "fp": 1
+        },
+        "MoKo": {
+         "fp": 1,
+         "tp": 6,
+         "fn": 3
+        },
+        "Joy": {
+         "tp": 2
+        },
+        "Equity": {
+         "fn": 1
+        },
+        "CIC": {
+         "tp": 1
+        },
+        "Mt. Kenya": {
+         "fn": 1
+        },
+        "Happy": {
+         "tp": 1
+        },
+        "Royal": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Shake": {
+         "fp": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "William": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Kinangop": {
+         "fn": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Senator": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Wadi": {
+         "fn": 1
+        },
+        "Naivas": {
+         "fn": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-PESA": {
+         "tp": 2
+        },
+        "Nation": {
+         "fp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Kericho": {
+         "fn": 1
+        },
+        "Corona": {
+         "fn": 1
+        },
+        "Highlands": {
+         "fn": 1
+        },
+        "Super": {
+         "fn": 1
+        },
+        "Jamaa": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 61,
+       "tp": 56,
+       "fp": 30,
+       "fn": 16,
+       "precision": 0.6512,
+       "recall": 0.7778,
+       "f1": 0.7089,
+       "precision_ci95": [
+        0.5459,
+        0.7435
+       ],
+       "recall_ci95": [
+        0.6691,
+        0.8583
+       ],
+       "false_positives_per_hour": 58.347,
+       "hours_evaluated": 0.514,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Ndovu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Fuliza": {
+         "fp": 1
+        },
+        "M-PESA": {
+         "fn": 1,
+         "tp": 1
+        },
+        "President": {
+         "tp": 5,
+         "fn": 1,
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 7
+        },
+        "Dola": {
+         "fp": 1
+        },
+        "Jamaa": {
+         "tp": 2
+        },
+        "NHIF": {
+         "tp": 22,
+         "fn": 2
+        },
+        "Safari": {
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 2,
+         "tp": 1
+        },
+        "Nguvu": {
+         "tp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Tena": {
+         "fp": 6
+        },
+        "Balozi": {
+         "tp": 2
+        },
+        "Super": {
+         "fp": 6
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Jamii": {
+         "fn": 5,
+         "tp": 1
+        },
+        "Water": {
+         "tp": 1
+        },
+        "Virginia": {
+         "fn": 1
+        },
+        "Umoja": {
+         "tp": 1
+        },
+        "Geisha": {
+         "fp": 1
+        },
+        "Bahati": {
+         "tp": 2
+        },
+        "Ushindi": {
+         "fp": 2
+        },
+        "Famila": {
+         "fp": 2
+        },
+        "Daima": {
+         "tp": 1
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "Royal": {
+         "tp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        },
+        "Royale": {
+         "fp": 1
+        },
+        "Wadi": {
+         "fn": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0107,
+      "audio_seconds": 5159.0,
+      "wall_seconds": 55.3
+     },
+     "at": "2026-10-04T21:24:06Z"
+    },
+    {
+     "step": 12000,
+     "train_loss": 0.2537,
+     "words": {
+      "kam": {
+       "wer": 0.7296,
+       "cer": 0.4065,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.6314,
+       "cer": 0.3196,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.3314,
+       "cer": 0.1604,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 77,
+       "tp": 38,
+       "fp": 8,
+       "fn": 45,
+       "precision": 0.8261,
+       "recall": 0.4578,
+       "f1": 0.5891,
+       "precision_ci95": [
+        0.6928,
+        0.9091
+       ],
+       "recall_ci95": [
+        0.3549,
+        0.5645
+       ],
+       "false_positives_per_hour": 20.324,
+       "hours_evaluated": 0.394,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Huduma": {
+         "fn": 2,
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1
+        },
+        "Shake": {
+         "fn": 4
+        },
+        "Golden": {
+         "fn": 2
+        },
+        "Raha": {
+         "fn": 1
+        },
+        "President": {
+         "tp": 14,
+         "fn": 4,
+         "fp": 2
+        },
+        "Senator": {
+         "tp": 3,
+         "fn": 2
+        },
+        "Minute": {
+         "fn": 1
+        },
+        "Musyi FM": {
+         "fn": 8,
+         "fp": 2
+        },
+        "Kameme FM": {
+         "fn": 2
+        },
+        "William": {
+         "fp": 1,
+         "fn": 1
+        },
+        "Soko": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 4,
+         "tp": 2
+        },
+        "MoKo": {
+         "tp": 3,
+         "fn": 1
+        },
+        "KRA": {
+         "fn": 3,
+         "tp": 2
+        },
+        "Tala": {
+         "fn": 1
+        },
+        "Nala": {
+         "fn": 2
+        },
+        "Top": {
+         "tp": 1
+        },
+        "Brookside": {
+         "fn": 2
+        },
+        "Sawa": {
+         "fp": 2
+        },
+        "Kenya Power": {
+         "tp": 4
+        },
+        "NHIF": {
+         "tp": 1
+        },
+        "Omo": {
+         "fn": 1
+        },
+        "Bahati": {
+         "tp": 1
+        },
+        "NSSF": {
+         "fp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "KCB": {
+         "fn": 1
+        },
+        "Safaricom Kenya": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "tp": 1
+        },
+        "Economic": {
+         "tp": 1
+        },
+        "Branch": {
+         "fn": 1,
+         "tp": 1
+        }
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 70,
+       "tp": 44,
+       "fp": 3,
+       "fn": 32,
+       "precision": 0.9362,
+       "recall": 0.5789,
+       "f1": 0.7154,
+       "precision_ci95": [
+        0.8284,
+        0.9781
+       ],
+       "recall_ci95": [
+        0.4668,
+        0.6835
+       ],
+       "false_positives_per_hour": 5.711,
+       "hours_evaluated": 0.525,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "fn": 3
+        },
+        "Acacia": {
+         "fn": 2
+        },
+        "Inooro FM": {
+         "fn": 4,
+         "tp": 19
+        },
+        "President": {
+         "fn": 5,
+         "tp": 8
+        },
+        "Joy": {
+         "tp": 2
+        },
+        "Equity": {
+         "fn": 1
+        },
+        "CIC": {
+         "tp": 1
+        },
+        "Mt. Kenya": {
+         "fn": 1
+        },
+        "Happy": {
+         "tp": 1
+        },
+        "Royal": {
+         "fn": 1
+        },
+        "Royal Media": {
+         "fn": 1
+        },
+        "Shake": {
+         "fp": 1
+        },
+        "Uber": {
+         "fn": 1
+        },
+        "MoKo": {
+         "tp": 7,
+         "fn": 2
+        },
+        "William": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Kinangop": {
+         "fn": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "KBC": {
+         "tp": 1
+        },
+        "Senator": {
+         "tp": 1,
+         "fn": 1
+        },
+        "Wadi": {
+         "fn": 1
+        },
+        "Naivas": {
+         "fn": 1
+        },
+        "Standard": {
+         "tp": 1
+        },
+        "M-PESA": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Nation": {
+         "fp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Kericho": {
+         "fn": 1
+        },
+        "Corona": {
+         "fn": 1
+        },
+        "Highlands": {
+         "fn": 1
+        },
+        "Super": {
+         "fn": 1
+        },
+        "Jamaa": {
+         "fn": 1
+        }
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 61,
+       "tp": 56,
+       "fp": 29,
+       "fn": 16,
+       "precision": 0.6588,
+       "recall": 0.7778,
+       "f1": 0.7134,
+       "precision_ci95": [
+        0.5531,
+        0.7508
+       ],
+       "recall_ci95": [
+        0.6691,
+        0.8583
+       ],
+       "false_positives_per_hour": 56.402,
+       "hours_evaluated": 0.514,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Ndovu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Fuliza": {
+         "fp": 1
+        },
+        "M-PESA": {
+         "fn": 1,
+         "tp": 1
+        },
+        "President": {
+         "tp": 5,
+         "fn": 1,
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 7
+        },
+        "Dola": {
+         "fp": 1
+        },
+        "Jamaa": {
+         "tp": 2
+        },
+        "NHIF": {
+         "tp": 22,
+         "fn": 2
+        },
+        "Safari": {
+         "tp": 1
+        },
+        "Enda": {
+         "fn": 2,
+         "tp": 1
+        },
+        "Nguvu": {
+         "tp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        },
+        "Citizen": {
+         "tp": 5,
+         "fn": 1
+        },
+        "Tena": {
+         "fp": 6
+        },
+        "Balozi": {
+         "tp": 2
+        },
+        "Super": {
+         "fp": 6
+        },
+        "Huduma": {
+         "fn": 1,
+         "tp": 7
+        },
+        "Jamii": {
+         "fn": 5,
+         "tp": 1
+        },
+        "Water": {
+         "tp": 1
+        },
+        "Virginia": {
+         "fn": 1
+        },
+        "Umoja": {
+         "tp": 1
+        },
+        "Bahati": {
+         "tp": 2
+        },
+        "Ushindi": {
+         "fp": 2
+        },
+        "Famila": {
+         "fp": 2
+        },
+        "Daima": {
+         "tp": 1
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "Royal": {
+         "tp": 1
+        },
+        "Royal Media": {
+         "tp": 1
+        },
+        "Royale": {
+         "fp": 1
+        },
+        "Wadi": {
+         "fn": 1
+        }
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0088,
+      "audio_seconds": 5159.0,
+      "wall_seconds": 45.3
+     },
+     "at": "2026-10-04T22:26:03Z"
+    }
+   ],
+   "best": {
+    "step": 12000,
+    "mean_wer": 0.5641
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-63f66a09e65c/artefact/model.pt",
+    "sha256": "62a6085e7261985ab784ab394a9075f119dff30eed7823ffa0c8324db1113d35",
+    "bytes": 3235698311,
+    "best_step": 12000
+   },
+   "compute": {
+    "wall_seconds": 23126.1,
+    "gpu_seconds": 23126.1,
+    "gpu_hours": 6.4239,
+    "gpu_peak_gb": 57.6,
+    "device": "NVIDIA H200"
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false
+  },
+  "finished_at": "2026-10-04T22:26:31Z",
+  "receipt_sha256": "e67e1ac20d4b8b03511dd30f5331ef15521c63e90e4b5560828b66c6567c54ac",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-04T22:26:31Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-63f66a09e65c",
+  "started_at_utc": "2026-10-04T16:01:03.166892Z",
+  "finished_at_utc": "2026-10-04T22:26:31Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-63f66a09e65c"
+ }
 }

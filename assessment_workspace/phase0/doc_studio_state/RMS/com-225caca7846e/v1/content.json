@@ -1,0 +1,1587 @@
+{
+  "calculations": {},
+  "claims": {
+    "C001": {
+      "supports": [
+        "F001",
+        "F002"
+      ],
+      "text": "{F001} of {F002} figures in this report resolve to a retained record; the rest are listed as refused and do not render as numbers (WPW-9)."
+    },
+    "C002": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Settlement: refused — admission bar not met: spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Run status completed; drafted automatically when the run settled (WPW-8). Internal — must not cross the outer gate (WPW-10)."
+    },
+    "C003": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Commission: Expressive spoken storyteller with an invented voice (Kikuyu, Kamba, Kiswahili) (STORY-KIK-KAM-SWA)."
+    },
+    "C004": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Product: one agent that invents coherent stories and speaks them with the language character of each language in a voice that is no corpus presenter"
+    },
+    "C005": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Task: story generation and expressive multilingual speech rendering — radio storytelling register, three languages."
+    },
+    "C006": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Admission bars for the story_voice lane (fixed before training):"
+    },
+    "C007": {
+      "supports": [
+        "F003",
+        "F004"
+      ],
+      "text": "kam: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9"
+    },
+    "C008": {
+      "supports": [
+        "F005",
+        "F006"
+      ],
+      "text": "kik: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9"
+    },
+    "C009": {
+      "supports": [
+        "F007",
+        "F008"
+      ],
+      "text": "swa: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9"
+    },
+    "C010": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Gate policy: every language meets every automatable bar; native-listener judgement is recorded as pending until humans rate unseen stories"
+    },
+    "C011": {
+      "supports": [
+        "F009"
+      ],
+      "text": "Metric contract status: DERIVED/PROPOSED mapping of the owner 90% target onto measured spectral-behaviour similarity; naturalness itself is a human judgement and is not claimed from similarity"
+    },
+    "C012": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Budget authority: uncapped_until_billing — recorded authority, not a number."
+    },
+    "C013": {
+      "supports": [
+        "F010"
+      ],
+      "text": "This report settles story_voice iteration 6 (job m9j-5f12985b1674)."
+    },
+    "C014": {
+      "supports": [
+        "F011"
+      ],
+      "text": "Datasets derived from each recording (one file → several queryable layers): content (transcript, sealed by sha); timing (start/end, pcm offsets); speaker-local label + corpus cluster id; condition (codec/rate/channels); discoverable spectrum columns; codec tokens (content stream cb0, character stream cb1-7)."
+    },
+    "C015": {
+      "supports": [
+        "F012"
+      ],
+      "text": "Discoverable-spectrum columns (14): duration_s, chars_per_s, energy_db_mean, energy_db_std, pause_ratio, f0_mean_hz, f0_std_semitones, f0_range_hz, voiced_ratio, spectral_centroid_hz, spectral_bandwidth_hz, spectral_rolloff_hz, spectral_flatness, zcr."
+    },
+    "C016": {
+      "supports": [
+        "F013",
+        "F014"
+      ],
+      "text": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash."
+    },
+    "C017": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Classification-driven exclusions: raw audio never leaves the host (raw_media_exported=false); transcripts stay on the host (text_exported=false); presenter identity is a corpus-local cluster id — no voiceprint is stored; the sealed admission split is never read by training."
+    },
+    "C018": {
+      "supports": [
+        "F015",
+        "F016",
+        "F017",
+        "F018",
+        "F019",
+        "F020",
+        "F021",
+        "F022",
+        "F023",
+        "F024",
+        "F025",
+        "F026"
+      ],
+      "text": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions promoted, dev_basis=session_holdout)."
+    },
+    "C019": {
+      "supports": [
+        "F027",
+        "F028",
+        "F029",
+        "F030",
+        "F031",
+        "F032",
+        "F033",
+        "F034",
+        "F035",
+        "F036"
+      ],
+      "text": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}."
+    },
+    "C020": {
+      "supports": [
+        "F037",
+        "F038",
+        "F039",
+        "F040",
+        "F041",
+        "F042"
+      ],
+      "text": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual)."
+    },
+    "C021": {
+      "supports": [
+        "F043",
+        "F044"
+      ],
+      "text": "Starting model: none — the codec language model is trained from scratch on the database tokens; there is no pretrained voice and no presenter is cloned (AIP §§6–7). Pretrained MMS-TTS voices exist for Kikuyu and Kiswahili as comparators only; none exists for Kikamba."
+    },
+    "C022": {
+      "supports": [
+        "F045",
+        "F046",
+        "F047",
+        "F048",
+        "F049",
+        "F050",
+        "F051",
+        "F052",
+        "F053",
+        "F054",
+        "F055",
+        "F056",
+        "F057",
+        "F058",
+        "F059",
+        "F060",
+        "F061",
+        "F062",
+        "F063",
+        "F064",
+        "F065",
+        "F066",
+        "F067"
+      ],
+      "text": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_threshold = 0.4, identity_conditioning = True, identity_candidates = 200, identity_noise = 1.25, identity_margin = 0.15, loudness_match = True, language_balance = True, dense_identity = True, worker_design_version = 2, init_from = /mnt/volume_dkgjrkx/akki-m9/jobs/m9j-43924ae49fa1/artefact/voice_lm.pt, rationale = continue iteration 5's compatible weights at 0.7× learning rate; similarity {'kik': 0.6231, 'kam': 0.7042, 'swa': 0.6157}; identity gate failed for kik, kam, swa → identity resampled with more noise (1.25) and a wider construction margin (0.15). Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence.."
+    },
+    "C023": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Training: a codec language model (text characters → delayed Mimi frames, eight codebooks) trained from scratch. Rendered dev prompts are measured with the same discoverable-spectrum columns as the corpus; the per-feature divergence between generated and baseline distributions is the spectral-behaviour similarity, and where it is shifted the next curriculum up-weights the under-covered side of that feature (spectral feedback). The identity gate embeds each rendering and requires its cosine to every corpus-derived speaker comparator to stay below the threshold; comparators live in memory only."
+    },
+    "C024": {
+      "supports": [
+        "F068"
+      ],
+      "text": "Adopted ideation events (mirrored by reference, WPW-6):"
+    },
+    "C025": {
+      "supports": [
+        "F069"
+      ],
+      "text": "malpha://job/m9j-5f12985b1674#params.recipe · idea malpha.story_voice_recipe#iteration6 · conditions malpha://job/m9j-43924ae49fa1#result.dev · adopted (attempt 1)."
+    },
+    "C026": {
+      "supports": [
+        "F070",
+        "F071"
+      ],
+      "text": "Hardware: akki-vm GPU 1 — device name not recorded; peak memory 17.36 GB."
+    },
+    "C027": {
+      "supports": [
+        "F072",
+        "F073"
+      ],
+      "text": "Duration: 4163.3 s wall, 1.1565 GPU-hours."
+    },
+    "C028": {
+      "supports": [
+        "F074",
+        "F075"
+      ],
+      "text": "Cost actual against estimate: 1.156 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent."
+    },
+    "C029": {
+      "supports": [
+        "F076"
+      ],
+      "text": "Seed: 20261004."
+    },
+    "C030": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Worker bundle: f4e856e1033bc8f9… (hashed, receipted on the host; digest verified at settlement: yes)."
+    },
+    "C031": {
+      "supports": [
+        "F077"
+      ],
+      "text": "Iteration / attempt: iteration 6."
+    },
+    "C032": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Held-out material: dev split (iteration feedback; the sealed admission split is read only by the independent evaluation). sealed_admission_read = no."
+    },
+    "C033": {
+      "supports": [
+        "F078",
+        "F079",
+        "F080",
+        "F081",
+        "F082",
+        "F083",
+        "F084",
+        "F085",
+        "F086",
+        "F087",
+        "F088",
+        "F089",
+        "F090",
+        "F091",
+        "F092",
+        "F093",
+        "F094"
+      ],
+      "text": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000)."
+    },
+    "C034": {
+      "supports": [
+        "F095"
+      ],
+      "text": "No ablations were run in this settlement. The controlled same-base comparison of spectral-feedback curricula (MA-16) is a separate commission and is not claimed here."
+    },
+    "C035": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Results are on the dev split, which guides iteration; they are not admission evidence. Admission is decided only on the sealed, speaker-cluster-disjoint split by a separate evaluation run."
+    },
+    "C036": {
+      "supports": [
+        "F001"
+      ],
+      "text": "The dev split was requalified after the cluster-disjoint rule left it too small to measure: whole train sessions were promoted to dev (dev_basis=session_holdout), so presenter voices may overlap between train and dev. This is a disclosed selection effect on dev; the admission split is unchanged."
+    },
+    "C037": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Spectral-behaviour similarity is an instrument, not naturalness: a rendering can match the corpus distributions and still sound wrong. Native-listener ratings on unseen stories are required and are recorded as pending."
+    },
+    "C038": {
+      "supports": [
+        "F001"
+      ],
+      "text": "The identity gate is scoped to corpus-derived speaker representations of this estate; it is not a claim of global uniqueness over all humans."
+    },
+    "C039": {
+      "supports": [
+        "F001"
+      ],
+      "text": "No pretrained Kikamba voice exists as a comparator; the Kikamba baseline is the corpus distribution alone."
+    },
+    "C040": {
+      "supports": [
+        "F001"
+      ],
+      "text": "Monetary cost is not stated: GPU-hours are measured, no governed rate card exists, and the owner authority is uncapped until billing."
+    },
+    "C041": {
+      "supports": [
+        "F096",
+        "F097",
+        "F098",
+        "F099",
+        "F100",
+        "F101",
+        "F102",
+        "F103"
+      ],
+      "text": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement."
+    },
+    "C042": {
+      "supports": [
+        "F104",
+        "F105",
+        "F106",
+        "F107",
+        "F108",
+        "F109",
+        "F110"
+      ],
+      "text": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969."
+    }
+  },
+  "content_id": "malpha-tier2-m9j-5f12985b1674",
+  "coverage": {
+    "cannot_say": [
+      {
+        "closes_with": "The independent evaluation run on the sealed admission split",
+        "gap": "Admission of the model",
+        "reason": "Dev results guide iteration; only the sealed-split evaluation decides admission"
+      },
+      {
+        "closes_with": "Native listeners judging unseen stories and transcripts",
+        "gap": "Native-speaker quality",
+        "reason": "No human rating is on the record"
+      },
+      {
+        "closes_with": "Actual billing data joined to the measured GPU-hours",
+        "gap": "Monetary cost",
+        "reason": "No governed GPU rate card; uncapped-until-billing authority"
+      },
+      {
+        "closes_with": "Owner rulings R1/R2 and a separate egress crossing",
+        "gap": "Publication",
+        "reason": "Tier 2 is internal (WPW-10); Tier 3 eligibility is mechanical and its rulings are parked"
+      }
+    ],
+    "covers": "The retained record of one Mα run only: m9j-5f12985b1674. Evidence classes are carried per figure; where the record is silent the report says so."
+  },
+  "facts": {
+    "F001": {
+      "class": "measured",
+      "label": "Figures that resolve to a retained record",
+      "receipt": "R01",
+      "unit": "figures",
+      "value": 25
+    },
+    "F002": {
+      "class": "measured",
+      "label": "Figures in the report (resolved and refused)",
+      "receipt": "R01",
+      "unit": "figures",
+      "value": 25
+    },
+    "F003": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kam: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9",
+      "unit": "as recorded",
+      "value": 0.4
+    },
+    "F004": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kam: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F005": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kik: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9",
+      "unit": "as recorded",
+      "value": 0.4
+    },
+    "F006": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "kik: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F007": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "swa: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9",
+      "unit": "as recorded",
+      "value": 0.4
+    },
+    "F008": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "swa: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F009": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Metric contract status: DERIVED/PROPOSED mapping of the owner 90% target onto measured spectral-behaviour similarity; naturalness itself is a human judgement and is not claimed from similarity",
+      "unit": "as recorded",
+      "value": 90
+    },
+    "F010": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "This report settles story_voice iteration 6 (job m9j-5f12985b1674).",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F011": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Datasets derived from each recording (one file → several queryable layers): content (transcript, sealed by sha); timing (start/end, pcm offsets); speaker-local label + corpus cluster id; condition (codec/rate/channels); discoverable spectrum columns; codec tokens (content stream cb0, character strea",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F012": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Discoverable-spectrum columns (14): duration_s, chars_per_s, energy_db_mean, energy_db_std, pause_ratio, f0_mean_hz, f0_std_semitones, f0_range_hz, voiced_ratio, spectral_centroid_hz, spectral_bandwidth_hz, spectral_rolloff_hz, spectral_flatness, zcr.",
+      "unit": "as recorded",
+      "value": 14
+    },
+    "F013": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash.",
+      "unit": "as recorded",
+      "value": 10
+    },
+    "F014": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash.",
+      "unit": "as recorded",
+      "value": 10
+    },
+    "F015": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 166
+    },
+    "F016": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 2962
+    },
+    "F017": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 30
+    },
+    "F018": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 41
+    },
+    "F019": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F020": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 3810
+    },
+    "F021": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 30
+    },
+    "F022": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 75
+    },
+    "F023": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 329
+    },
+    "F024": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 583
+    },
+    "F025": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 37
+    },
+    "F026": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions",
+      "unit": "as recorded",
+      "value": 4
+    },
+    "F027": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 70269
+    },
+    "F028": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 57.95
+    },
+    "F029": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 1246
+    },
+    "F030": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 66
+    },
+    "F031": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 8
+    },
+    "F032": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 400
+    },
+    "F033": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 152
+    },
+    "F034": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 29265
+    },
+    "F035": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 11186
+    },
+    "F036": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R02",
+      "source_statement": "This run read: at 2026-10-04T20:09:43Z, train_segments 70269, train_hours 57.95, dev_segments 1246, text_vocab 66, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29265, 'kam': 11186, 'swa': 29818}.",
+      "unit": "as recorded",
+      "value": 29818
+    },
+    "F037": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual).",
+      "unit": "as recorded",
+      "value": 8
+    },
+    "F038": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual).",
+      "unit": "as recorded",
+      "value": 12.5
+    },
+    "F039": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual).",
+      "unit": "as recorded",
+      "value": 100.0
+    },
+    "F040": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual).",
+      "unit": "as recorded",
+      "value": 0
+    },
+    "F041": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual).",
+      "unit": "as recorded",
+      "value": 1
+    },
+    "F042": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual).",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F043": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Starting model: none — the codec language model is trained from scratch on the database tokens; there is no pretrained voice and no presenter is cloned (AIP §§6–7). Pretrained MMS-TTS voices exist for Kikuyu and Kiswahili as comparators only; none exists for Kikamba.",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F044": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Starting model: none — the codec language model is trained from scratch on the database tokens; there is no pretrained voice and no presenter is cloned (AIP §§6–7). Pretrained MMS-TTS voices exist for Kikuyu and Kiswahili as comparators only; none exists for Kikamba.",
+      "unit": "as recorded",
+      "value": 7
+    },
+    "F045": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.00010289999999999997
+    },
+    "F046": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 48
+    },
+    "F047": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 40000
+    },
+    "F048": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 1000
+    },
+    "F049": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 2500
+    },
+    "F050": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 500
+    },
+    "F051": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 768
+    },
+    "F052": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 12
+    },
+    "F053": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 12
+    },
+    "F054": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 12.0
+    },
+    "F055": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 12
+    },
+    "F056": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.4
+    },
+    "F057": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 200
+    },
+    "F058": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 1.25
+    },
+    "F059": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.15
+    },
+    "F060": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 2
+    },
+    "F061": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 5
+    },
+    "F062": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.7
+    },
+    "F063": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.6231
+    },
+    "F064": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.7042
+    },
+    "F065": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.6157
+    },
+    "F066": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 1.25
+    },
+    "F067": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Recipe (this iteration): lr = 0.00010289999999999997, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_thre",
+      "unit": "as recorded",
+      "value": 0.15
+    },
+    "F068": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Adopted ideation events (mirrored by reference, WPW-6):",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F069": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "malpha://job/m9j-5f12985b1674#params.recipe · idea malpha.story_voice_recipe#iteration6 · conditions malpha://job/m9j-43924ae49fa1#result.dev · adopted (attempt 1).",
+      "unit": "as recorded",
+      "value": 1
+    },
+    "F070": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Hardware: akki-vm GPU 1 — device name not recorded; peak memory 17.36 GB.",
+      "unit": "as recorded",
+      "value": 1
+    },
+    "F071": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Hardware: akki-vm GPU 1 — device name not recorded; peak memory 17.36 GB.",
+      "unit": "as recorded",
+      "value": 17.36
+    },
+    "F072": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Duration: 4163.3 s wall, 1.1565 GPU-hours.",
+      "unit": "as recorded",
+      "value": 4163.3
+    },
+    "F073": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Duration: 4163.3 s wall, 1.1565 GPU-hours.",
+      "unit": "as recorded",
+      "value": 1.1565
+    },
+    "F074": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Cost actual against estimate: 1.156 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent.",
+      "unit": "as recorded",
+      "value": 1.156
+    },
+    "F075": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Cost actual against estimate: 1.156 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent.",
+      "unit": "as recorded",
+      "value": 18
+    },
+    "F076": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Seed: 20261004.",
+      "unit": "as recorded",
+      "value": 20261004
+    },
+    "F077": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Iteration / attempt: iteration 6.",
+      "unit": "as recorded",
+      "value": 6
+    },
+    "F078": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 16
+    },
+    "F079": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 2500
+    },
+    "F080": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 5000
+    },
+    "F081": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 7500
+    },
+    "F082": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 10000
+    },
+    "F083": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 12500
+    },
+    "F084": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 15000
+    },
+    "F085": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 17500
+    },
+    "F086": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 20000
+    },
+    "F087": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 22500
+    },
+    "F088": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 25000
+    },
+    "F089": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 27500
+    },
+    "F090": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 30000
+    },
+    "F091": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 32500
+    },
+    "F092": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 35000
+    },
+    "F093": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 37500
+    },
+    "F094": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000).",
+      "unit": "as recorded",
+      "value": 40000
+    },
+    "F095": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "No ablations were run in this settlement. The controlled same-base comparison of spectral-feedback curricula (MA-16) is a separate commission and is not claimed here.",
+      "unit": "as recorded",
+      "value": 16
+    },
+    "F096": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.5954
+    },
+    "F097": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.6327
+    },
+    "F098": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.5969
+    },
+    "F099": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.5933
+    },
+    "F100": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.6132
+    },
+    "F101": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.6224
+    },
+    "F102": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.9
+    },
+    "F103": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener ratin",
+      "unit": "as recorded",
+      "value": 0.4
+    },
+    "F104": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969.",
+      "unit": "as recorded",
+      "value": 5
+    },
+    "F105": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969.",
+      "unit": "as recorded",
+      "value": 0.6231
+    },
+    "F106": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969.",
+      "unit": "as recorded",
+      "value": 0.5954
+    },
+    "F107": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969.",
+      "unit": "as recorded",
+      "value": 0.7042
+    },
+    "F108": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969.",
+      "unit": "as recorded",
+      "value": 0.6327
+    },
+    "F109": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969.",
+      "unit": "as recorded",
+      "value": 0.6157
+    },
+    "F110": {
+      "class": "measured",
+      "label": "Recorded value in the report statement",
+      "receipt": "R01",
+      "source_statement": "Regressions against iteration 5: kik similarity 0.6231 → 0.5954; kam similarity 0.7042 → 0.6327; swa similarity 0.6157 → 0.5969.",
+      "unit": "as recorded",
+      "value": 0.5969
+    }
+  },
+  "options": {},
+  "organisation": "RMS",
+  "receipts": {
+    "R01": {
+      "platform_ref": "m9j-5f12985b1674",
+      "resolves_to": "Retained m9 job record and host receipt for m9j-5f12985b1674 (story_voice iteration 6, completed)"
+    },
+    "R02": {
+      "platform_ref": "m9j-5db976bdd3f2",
+      "resolves_to": "AIP database build record m9j-5db976bdd3f2 on akki-vm (segments, seals, codec qualification)"
+    },
+    "R03": {
+      "resolves_to": "White Paper Wizard Tier 1 notebook for STORY-KIK-KAM-SWA (append-only, hash-chained; entries referenced by id)"
+    }
+  },
+  "series": {},
+  "tables": {
+    "T001": {
+      "class": "measured",
+      "columns": [
+        "Language",
+        "Train segments (h)",
+        "Dev segments (h)",
+        "Admission segments (h)",
+        "Recordings read"
+      ],
+      "label": "Data statement — table",
+      "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+      "receipt": "R02",
+      "right_align_from": 5,
+      "rows": [
+        [
+          "kik",
+          "34,916 (41.866)",
+          "166 (0.167)",
+          "357 (0.376)",
+          "583 of 583"
+        ],
+        [
+          "kam",
+          "17,199 (16.806)",
+          "2 (0.007)",
+          "129 (0.212)",
+          "1165 of 1165"
+        ],
+        [
+          "swa",
+          "35,664 (41.948)",
+          "329 (0.405)",
+          "88 (0.071)",
+          "549 of 549"
+        ]
+      ]
+    },
+    "T002": {
+      "class": "measured",
+      "columns": [
+        "Criterion",
+        "Measured",
+        "Threshold",
+        "Pass"
+      ],
+      "label": "Results on held-out material — table",
+      "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+      "receipt": "R01",
+      "right_align_from": 4,
+      "rows": [
+        [
+          "`held_out_accuracy`",
+          "spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224",
+          "similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement",
+          "❌"
+        ],
+        [
+          "`abstention_calibration`",
+          "rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)",
+          "reported separately",
+          "— (reported, not gated)"
+        ],
+        [
+          "`cost_actual_vs_estimate`",
+          "1.156 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+          "no numeric cap (owner order, recorded authority)",
+          "— (reported, not gated)"
+        ],
+        [
+          "`latency_p95_ms`",
+          "not instrumented for rendering in this iteration",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`refusal_rate_on_out_of_domain`",
+          "not instrumented in this lane",
+          "—",
+          "— (reported, not gated)"
+        ],
+        [
+          "`adapter_size_mib`",
+          "424.7 MiB artefact",
+          "reported separately",
+          "— (reported, not gated)"
+        ]
+      ]
+    },
+    "T003": {
+      "class": "measured",
+      "columns": [
+        "Criterion",
+        "Measured",
+        "Threshold",
+        "Pass",
+        "Evidence class"
+      ],
+      "label": "Six acceptance criteria — measured value, adopted threshold, pass",
+      "note": "Every criterion of the fixed set is named; a criterion the run did not instrument says so instead of carrying a filled value.",
+      "receipt": "R01",
+      "right_align_from": 5,
+      "rows": [
+        [
+          "held_out_accuracy",
+          "spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224",
+          "similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement",
+          "fail",
+          "measured"
+        ],
+        [
+          "abstention_calibration",
+          "rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)",
+          "reported separately",
+          "reported, not gated",
+          "measured"
+        ],
+        [
+          "cost_actual_vs_estimate",
+          "1.156 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+          "no numeric cap (owner order, recorded authority)",
+          "reported, not gated",
+          "measured"
+        ],
+        [
+          "latency_p95_ms",
+          "not instrumented for rendering in this iteration",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "refusal_rate_on_out_of_domain",
+          "not instrumented in this lane",
+          "—",
+          "reported, not gated",
+          "not instrumented"
+        ],
+        [
+          "adapter_size_mib",
+          "424.7 MiB artefact",
+          "reported separately",
+          "reported, not gated",
+          "measured"
+        ]
+      ]
+    },
+    "T004": {
+      "class": "measured",
+      "columns": [
+        "Figure",
+        "Evidence class",
+        "Receipt line",
+        "Summary"
+      ],
+      "label": "Figure register — evidence class and receipt line of every rendered figure",
+      "note": "Each receipt line resolves into the retained record it names; resolution is checked mechanically before the figure renders.",
+      "receipt": "R01",
+      "right_align_from": 4,
+      "rows": [
+        [
+          "objective_contract",
+          "observed",
+          "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-4f4c81c7ab7a",
+          "commissioning reflection recorded 2026-10-04T08:59:11.225238Z before any compute; definition sha 94e7db5d27e4"
+        ],
+        [
+          "corpus_shape",
+          "measured",
+          "m9j-5db976bdd3f2#receipt.result.segments",
+          "segments and hours per language and split in the AIP database"
+        ],
+        [
+          "corpus_files",
+          "measured",
+          "m9j-5db976bdd3f2#receipt.result.files",
+          "recordings read per language"
+        ],
+        [
+          "dataset_layers",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.layers",
+          "declared dataset layers derived from each recording"
+        ],
+        [
+          "feature_columns",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.feature_columns",
+          "discoverable-spectrum columns"
+        ],
+        [
+          "split_rule",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.split_rule",
+          "split and sealing rule"
+        ],
+        [
+          "custody_flags",
+          "observed",
+          "m9j-5db976bdd3f2#receipt.result.raw_media_exported",
+          "raw media export flag on the database record"
+        ],
+        [
+          "database_binding",
+          "observed",
+          "m9j-5f12985b1674#params.aip_db_dir",
+          "database path bound to this run"
+        ],
+        [
+          "dev_requalification",
+          "measured",
+          "m9j-2424ab203154#receipt.result.requalification.report",
+          "dev split before/after requalification, promoted sessions per language"
+        ],
+        [
+          "run_data",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.data",
+          "segments/hours this run trained and evaluated on"
+        ],
+        [
+          "codec_provenance",
+          "observed",
+          "m9j-5f12985b1674#receipt.result.codec_provenance",
+          "neural codec repo/revision/codebooks"
+        ],
+        [
+          "recipe",
+          "observed",
+          "m9j-5f12985b1674#params.recipe",
+          "the recipe this iteration ran"
+        ],
+        [
+          "spectral_feedback",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.spectral_feedback",
+          "feedback on; 48 re-weighting events"
+        ],
+        [
+          "ideation_wpwe-86b6c449db02",
+          "observed",
+          "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-86b6c449db02",
+          "ideation record malpha.story_voice_recipe#iteration6 adopted"
+        ],
+        [
+          "host_binding",
+          "observed",
+          "m9j-5f12985b1674#host",
+          "host that ran the job"
+        ],
+        [
+          "gpu_index",
+          "observed",
+          "m9j-5f12985b1674#params.gpu_index",
+          "device index on the host"
+        ],
+        [
+          "compute",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.compute",
+          "wall seconds, GPU seconds, peak memory, device name"
+        ],
+        [
+          "budget_mode",
+          "observed",
+          "m9j-5f12985b1674#params.budget_mode",
+          "budget authority bound to the job"
+        ],
+        [
+          "seed",
+          "observed",
+          "m9j-5f12985b1674#params.seed",
+          "seed bound to the job"
+        ],
+        [
+          "worker_bundle",
+          "observed",
+          "m9j-5f12985b1674#code_sha256",
+          "sha256 of the hashed worker bundle executed on the host"
+        ],
+        [
+          "criterion_held_out_accuracy",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.dev.per_language",
+          "held_out_accuracy: spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0."
+        ],
+        [
+          "criterion_abstention_calibration",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.dev.per_language",
+          "abstention_calibration: rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)"
+        ],
+        [
+          "criterion_cost_actual_vs_estimate",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.compute",
+          "cost_actual_vs_estimate: 1.156 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until"
+        ],
+        [
+          "criterion_adapter_size_mib",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.artefact.bytes",
+          "adapter_size_mib: 424.7 MiB artefact"
+        ],
+        [
+          "learning_curve",
+          "measured",
+          "m9j-5f12985b1674#receipt.result.history",
+          "16 dev evaluations during training"
+        ]
+      ]
+    }
+  },
+  "title": "Technical report (internal) — Expressive spoken storyteller with an invented voice (Kikuyu, Kamba, Kiswahili) · story_voice v6",
+  "version": 1,
+  "wpw": {
+    "figures_resolved": 25,
+    "figures_total": 25,
+    "internal_only": true,
+    "refusal_reason": "admission bar not met: spectral-behaviour similarity kik 0.5954, kam 0.6327, swa 0.5969; identity gate kik max cosine 0.5933, kam max cosine 0.6132, swa max cosine 0.6224",
+    "settlement": "refused",
+    "tier": 2
+  }
+}

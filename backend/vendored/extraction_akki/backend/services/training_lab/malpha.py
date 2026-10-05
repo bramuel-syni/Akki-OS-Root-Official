@@ -325,9 +325,19 @@ def listener_recipe(iteration, history):
         return recipe
     # beyond the planned ladder: keep the strongest base, continue from the last artefact, shorter schedule; halve the learning rate only once biasing is already learned
     recipe.update(max_steps=8000, lr=recipe['lr'] if not last_recipe.get('contextual_bias') else recipe['lr'] * 0.5 ** (iteration - len(base)))
-    if (res.get('artefact') or {}).get('path') and last_recipe.get('base') == recipe['base']: recipe['init_from'] = str(res['artefact']['path']).rsplit('/', 1)[0]
-    recipe['rationale'] = f"beyond the planned ladder: continue {recipe['base']} from iteration {last['iteration']}'s artefact ({'carried' if recipe.get('init_from') else 'base changed, fresh start'}) for 8000 steps at lr {recipe['lr']:.1e}; last reading {summary}; {bias_note}"
+    carried = _carriable(last)
+    if (res.get('artefact') or {}).get('path') and last_recipe.get('base') == recipe['base'] and carried['ok']: recipe['init_from'] = str(res['artefact']['path']).rsplit('/', 1)[0]
+    how = 'carried' if recipe.get('init_from') else ('base changed, fresh start' if last_recipe.get('base') != recipe['base'] else f"fresh start from the base: {carried['why']}")
+    recipe['rationale'] = f"beyond the planned ladder: continue {recipe['base']} from iteration {last['iteration']}'s artefact ({how}) for 8000 steps at lr {recipe['lr']:.1e}; last reading {summary}; {bias_note}"
     return recipe
+
+
+def _carriable(job):
+    """Weights may only be carried into a seal-v{SPLIT_VERSION} run from an artefact trained under the same seal: an older-seal artefact saw rows now sealed as
+    admission, so a model initialised from it would face a sealed read on audio it has trained on. The reading of that artefact still informs the recipe."""
+    seal = int((job.get('params') or {}).get('split_version') or 1)
+    if seal == SPLIT_VERSION: return {'ok': True, 'seal': seal, 'why': None}
+    return {'ok': False, 'seal': seal, 'why': f"iteration {job.get('iteration')}'s artefact was trained under seal v{seal} and saw rows now sealed as admission (v{SPLIT_VERSION}) — not carried"}
 
 
 def _story_text_best(history):
@@ -364,7 +374,7 @@ def story_text_recipe(iteration, history, base_path):
                                f"iteration {last['iteration']} ended at {round(final_score, 3) if final_score else 'n/a'}): the over-fitted adapter is not carried forward — restart from the registered base at half that iteration's learning rate "
                                f"({recipe['lr']:.1e}), dropout 0.1, weight decay 0.01, early stopping (patience 3) with the best-adapter artefact")
     else:
-        recipe.update(lr=float(res.get('recipe', {}).get('lr') or 1e-4), init_adapter=(res.get('artefact') or {}).get('path'))
+        recipe.update(lr=float(res.get('recipe', {}).get('lr') or 1e-4), init_adapter=(res.get('artefact') or {}).get('path'), carried_from_seal_version=int((last.get('params') or {}).get('split_version') or 1))
         recipe['rationale'] = f"dev perplexity still improving at the end of iteration {last['iteration']} (best {in_run['score'] if in_run else 'n/a'} at step {in_run['step'] if in_run else 'n/a'}): continue from its best adapter under the same learning rate with early stopping"
     weak = [l for l, v in (final.get('per_language') or {}).items() if (v.get('language_fidelity_rate') or 0) < 1.0]
     if weak:  # a language whose samples drift into a sister language is under-represented in the mix: balance the sampling by language
@@ -390,7 +400,8 @@ def voice_recipe(iteration, history):
                                'more steps cannot pass an identity gate without an identity mechanism. '
                                'Change: speaker-conditioned training; an invented identity (mean of 8 corpus representations + isotropic noise, resampled under the gate with a 0.05 margin) is the only voice rendered; output loudness matched to the language baseline median')
         return recipe
-    recipe.update(init_from=(res.get('artefact') or {}).get('path'), lr=float(last_recipe.get('lr', 3e-4)) * 0.7, identity_noise=float(last_recipe.get('identity_noise', 0.5)), identity_margin=float(last_recipe.get('identity_margin', 0.05)))
+    recipe.update(init_from=(res.get('artefact') or {}).get('path'), lr=float(last_recipe.get('lr', 3e-4)) * 0.7, identity_noise=float(last_recipe.get('identity_noise', 0.5)), identity_margin=float(last_recipe.get('identity_margin', 0.05)),
+                  carried_from_seal_version=int((last.get('params') or {}).get('split_version') or 1))  # disclosed lineage: the storyteller lanes face no sealed read; their gate is identity distance + native rating
     if gate_fail: recipe.update(identity_noise=round(recipe['identity_noise'] + 0.25, 2), identity_margin=min(0.15, round(recipe['identity_margin'] + 0.05, 2)))
     gate_text = f"failed for {', '.join(gate_fail)} → identity resampled with more noise ({recipe['identity_noise']}) and a wider construction margin ({recipe['identity_margin']})" if gate_fail else 'passed for every language → identity kept'
     recipe['rationale'] = f"continue iteration {last['iteration']}'s compatible weights at 0.7× learning rate; similarity {sims}; identity gate {gate_text}. Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence."
