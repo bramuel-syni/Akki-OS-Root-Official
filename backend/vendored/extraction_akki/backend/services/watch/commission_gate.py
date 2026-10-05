@@ -67,6 +67,22 @@ PROTECTED_BOUNDARIES = {
     # M2 extension · authentication (observed under the account's own identity; never blocks sign-in) and egress.
     "auth.login": "POST /api/auth/login",
     "media.download": "GET /api/media/files/{file_id}/download",
+    # WP-A7 · Shield boundaries added by Wave A (re-covered by the M2 drill pack): register ceremony acts, vault intake, the sealed stage, the reader relay.
+    "shield.register_author": "POST /api/shield/register",
+    "shield.register_adopt": "POST /api/shield/register/{name}/adopt",
+    "shield.register_approve": "POST /api/shield/register/{name}/approve",
+    "shield.register_withdraw": "POST /api/shield/register/{name}/withdraw",
+    "shield.register_enforcement": "POST /api/shield/register/{name}/enforcement",
+    "shield.register_removal": "DELETE /api/shield/register/{name}",
+    "shield.register_removal_countersign": "POST /api/shield/register/{name}/removal/countersign",
+    "shield.register_removal_apply": "POST /api/shield/register/{name}/removal/apply",
+    "shield.vault_intake": "POST /api/shield/register/vault",
+    "shield.stage": "services.synisense.shield.stage.stage (in-process; every estate crossing is staged here before the chokepoint)",
+    "shield.separate": "POST /api/shield/separate",
+    "shield.reader_read": "POST /api/shield/reader/read",
+    "shield.reader_start": "POST /api/shield/reader/start",
+    "shield.reader_revoke": "POST /api/shield/reader/revoke",
+    "shield.reader_stop": "POST /api/shield/reader/stop",
 }
 DETECTORS = {
     "fast_violation": {"count": ("WATCH_GATE_FAST_REFUSALS", 3), "window_s": ("WATCH_GATE_FAST_WINDOW_S", 60),

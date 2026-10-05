@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="6" skipped="2" tests="104" time="318.024" timestamp="2026-10-05T16:49:06.220767+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.shield.test_category3_reader" name="test_contextual_declarations_bind_to_the_reader_and_cues_never_rewrite_or_refuse" time="0.040" /><testcase classname="tests.shield.test_category3_reader" name="test_harmless_corpus_zero_refusals_and_unchanged_payload" time="0.035" /><testcase classname="tests.shield.test_category3_reader" name="test_reader_marked_meanings_are_located_and_reconstructed_in_english_and_kiswahili" time="0.023" /><testcase classname="tests.shield.test_category3_reader" name="test_indirect_disclosure_withheld_and_seeded_meanings_leave_zero_survivors_in_outbound" time="0.023" /><testcase classname="tests.shield.test_category3_reader" name="test_ambiguous_read_refuses_for_enforced_and_is_receipted_for_advisory" time="0.018" /><testcase classname="tests.shield.test_category3_reader" name="test_reader_unavailable_refuses_before_any_external_client_and_synthetic_custody_skips_the_reader" time="0.820" /><testcase classname="tests.shield.test_category3_reader" name="test_task_separation_refuses_on_the_intent_verdict_not_on_cues" time="0.036" /><testcase classname="tests.shield.test_category3_reader" name="test_long_text_is_read_in_chunks_with_global_offsets_and_receipts_carry_no_values" time="0.009" /><testcase classname="tests.shield.test_category3_reader" name="test_live_indirect_audit_excerpt_reads_without_leak_and_harmless_system_prompt_marks_nothing" time="29.827" /><testcase classname="tests.shield.test_contained_reader" name="test_egress_guard_refuses_non_loopback_and_probe_reports_blocked" time="0.001" /><testcase classname="tests.shield.test_contained_reader" name="test_json_extraction_schema_and_leak_check_on_synthetic_readings" time="0.000" /><testcase classname="tests.shield.test_contained_reader" name="test_dispatch_validation_requires_attested_hash_and_residency_entry" time="0.003" /><testcase classname="tests.shield.test_contained_reader" name="test_control_plane_refuses_when_the_reader_is_not_serving" time="0.000" /><testcase classname="tests.shield.test_contained_reader" name="test_live_health_lineage_offline_env_and_egress_probe_blocked" time="18.543" /><testcase classname="tests.shield.test_contained_reader" name="test_live_synthetic_read_is_schema_valid_and_bounded" time="37.904"><failure message="services.synisense.shield.contained_reader.ReaderUnavailable: reader refused the reading (422): UNREADABLE_OR_UNSAFE_READING ['no JSON object in the model output']">def test_live_synthetic_read_is_schema_valid_and_bounded():
+        st = _serving()
+        if (st.get('entry') or {}).get('serving', {}).get('status') == 'revoked':
+            pytest.skip('reader authority revoked')
+&gt;       out = cr.read(SYNTHETIC, CATEGORIES, 'test_contained_reader')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/shield/test_contained_reader.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+text = 'SYNTHETIC BRD. Prepare a launch brief for our client Zinnia Grove Test Cooperative under the internal codename Mango ...th with a 12% exclusivity premium; the bid is computed as 0.81 times the rival floor. Contact: amina.test@example.com.'
+categories = [{'name': 'client_identity', 'description': 'who the counterparty, client or partner is'}, {'name': 'private_project_n...hod', 'description': 'how a price or bid is computed'}, {'name': 'personal_data', 'description': 'direct identifiers'}]
+purpose = 'test_contained_reader', model_id = 'contained-reader-qwen3-8b-base'
+timeout = 240
+
+    def read(text, categories, purpose, model_id=MODEL_ID, timeout=240):
+        """One bounded, request-scoped reading inside the perimeter. Refuses (never falls back) when the reader is unavailable or the reading is unsafe."""
+        entry, job, port = _running(model_id)
+        clean = str(text or '')[:MAX_CHARS]
+        if not clean.strip(): raise ValueError('TEXT_REQUIRED')
+        payload = base64.b64encode(json.dumps({'text': clean, 'categories': [{'name': c['name'], 'description': (c.get('description') or '')[:200]} for c in categories][:60]}, ensure_ascii=False).encode()).decode()
+        command = f"echo {payload} | base64 -d | curl -s -m {timeout} -o /tmp/.akki_rd_$$ -w '%{{http_code}}' -X POST -H 'Content-Type: application/json' --data-binary @- http://127.0.0.1:{port}/read; echo; cat /tmp/.akki_rd_$$; rm -f /tmp/.akki_rd_$$"
+        result = serving._remote(job['host'], command, purpose=f'contained_reader_read:{purpose}', timeout=timeout + 30)
+        code, _, body_text = result.stdout_redacted.strip().partition('\n')
+        try: body = json.loads(body_text.strip())
+        except ValueError as exc: raise ReaderUnavailable('unreadable response from the reader') from exc
+        http = int(code) if code.strip().isdigit() else None
+        if http == 403: raise ReaderUnavailable('reader authority revoked: ' + json.dumps(body.get('revocation')))
+&gt;       if http != 200: raise ReaderUnavailable(f'reader refused the reading ({http}): {body.get("refused") or body.get("error")} {body.get("problems") or ""}')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       services.synisense.shield.contained_reader.ReaderUnavailable: reader refused the reading (422): UNREADABLE_OR_UNSAFE_READING ['no JSON object in the model output']
+
+vendored/extraction_akki/backend/services/synisense/shield/contained_reader.py:121: ReaderUnavailable</failure></testcase><testcase classname="tests.shield.test_contained_reader" name="test_live_api_status_and_role_gates" time="5.358" /><testcase classname="tests.shield.test_objective_capture" name="test_capture_freezes_one_artifact_idempotent_and_refuses_a_changed_question" time="0.011" /><testcase classname="tests.shield.test_objective_capture" name="test_tampered_record_fails_verification_and_cannot_be_consumed" time="0.011" /><testcase classname="tests.shield.test_objective_capture" name="test_failure_outcomes_are_defined_never_a_guess" time="0.021" /><testcase classname="tests.shield.test_objective_capture" name="test_enforced_register_value_in_the_objective_is_refused" time="0.014" /><testcase classname="tests.shield.test_objective_capture" name="test_observations_append_only_and_divergence_reported" time="0.017" /><testcase classname="tests.shield.test_objective_capture" name="test_chat_journey_captures_before_scope_check_and_crossing_and_consumes_one_artifact" time="0.010"><failure message="RuntimeError: Task &lt;Task pending name='Task-6' coro=&lt;ask() running at /app/backend/vendored/extraction_akki/backend/services/chat/journey.py:76&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xf97562d52890&gt;
+
+    def test_chat_journey_captures_before_scope_check_and_crossing_and_consumes_one_artifact(monkeypatch):
+        log, seen = [], {}
+        monkeypatch.setattr(oc.reader, 'read', fake_read(log=log))
+    
+        async def no_artefacts(db_, scope): log.append('read_artefacts'); return []
+    
+        async def one_candidate(db_, scope, artefacts, terms, pinned=()):
+            unit = {'unit_id': 'u1', 'provenance': {'locator': 'synthetic://u1'}, 'defensibility': {'defensibility_class': 'utterance'}}
+            return {'candidates': [{'ref': 'akki://unit/t/r/u1', 'unit_id': 'u1', 'unit': unit, 'position': 0, 'overlap': 3, 'kind': 'matched', 'rel_keys': [], 'content_sha256': 'c' * 64, 'region': 'db.training_questions', 'artifact_ref': 'a1', 'request_id': 'r', 'class_label': 'utterance', 'reextraction_ref': 'x'}],
+                    'calls': 1, 'qualified_bytes_read': 10, 'matched_total': 1, 'units_total': 1, 'failures': []}
+    
+        async def fake_route(**kw):
+            log.append('scope_check'); seen['route_artifact_ref'] = kw['artifact_ref']
+            return {'decision': 'warm', 'reason': 'warm_units', 'ledger_row': {'row_id': 'led-synthetic'}}
+    
+        class Window:
+            selected_refs = ('akki://unit/t/r/u1',); load_bearing_refs = ('akki://unit/t/r/u1',); excluded_counts = {}; top_excluded_handles = (); window_tokens = 1000; reserved_tokens = 100
+            tokenizer_sha256 = 's' * 64; ranking_rule_ref = 'rule'; objective_sha256 = 'o' * 64; loss_disclosed = True
+    
+        def fake_build(**kw):
+            return Window(), [{'ref': 'akki://unit/t/r/u1', 'region': 'db.training_questions', 'class_label': 'utterance', 'tokens': 20, 'proximity': 1.0, 'position': 0, 'content_sha256': 'c' * 64, 'unit': {'provenance': {'locator': 'synthetic://u1'}}, 'text': '{"q": "minerals"}'}], []
+    
+        class Accessor:
+            plane_id = 'plane-synthetic'
+            async def list_working_set(self): return []
+    
+        async def fake_plane(scope): return Accessor()
+        async def fake_touch(accessor, refs): return {'plane_id': 'plane-synthetic', 'hits': 0, 'misses': len(refs), 'hot_refs_before': 0, 'hot_refs_after': len(refs), 'evicted': 0}
+    
+        async def fake_answer(*, scope, session, question, context_lines, selected, model, provider, actor):
+            log.append('crossing'); seen['prompt'] = answering.prompt_for(objective=session['objective']['bounded_objective'], context_lines=context_lines, question=question, selected=selected, objective_ref=session['objective']['artifact_id'])
+            seen['session_objective'] = session['objective']
+            return {'refused': False, 'answer': 'Farmers asked about mineral licks.', 'cited_refs': ['akki://unit/t/r/u1'], 'sufficient': True, 'grounding': 'cited_in_window', 'unsupported': '', 'citations_dropped': 0,
+                    'objective_ref': session['objective']['artifact_id'], 'receipt_id': 'rcp-synthetic', 'model_id': model, 'provider': provider, 'tokens_in': 1, 'tokens_out': 1, 'latency_ms': 1, 'shield': None, 'prompt_chars': 10}
+    
+        async def no_converge(*a, **k): log.append('converge'); seen['converge_ref'] = k.get('objective_ref') or (a[3] if len(a) &gt; 3 else None)
+    
+        monkeypatch.setattr(spine, 'verified_artefacts', no_artefacts); monkeypatch.setattr(spine, 'read_candidates', one_candidate)
+        monkeypatch.setattr(spine, 'chat_plane', fake_plane); monkeypatch.setattr(spine, 'touch_working_set', fake_touch)
+        monkeypatch.setattr(deciding.gate, 'route', fake_route); monkeypatch.setattr(windowing, 'build', fake_build); monkeypatch.setattr(windowing, 'loss_statement', lambda w, r: 'nothing lost (SYNTHETIC)')
+        monkeypatch.setattr(answering, 'answer', fake_answer); monkeypatch.setattr(journey, '_converge', no_converge)
+        monkeypatch.setattr(journey.critic_seam, 'route_through_seam', lambda **k: {'seam_attested': True}); monkeypatch.setattr(journey.critic_seam, 'verdict_summary', lambda v: v)
+    
+&gt;       out = run(journey.ask(sessions.db, SCOPE, question=QUESTION))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/shield/test_objective_capture.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/shield/test_objective_capture.py:37: in run
+    asyncio.set_event_loop(_LOOP); return _LOOP.run_until_complete(coro)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+vendored/extraction_akki/backend/services/chat/journey.py:76: in ask
+    session = await sessions.create(scope, question, session_id=new_id, artifact=artifact)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = {'tenant_id': 'tenant-SYNTHETIC-a3-4dfc0b', 'principal_id': 'principal-SYNTHETIC-a3', 'roles': ['operator']}
+question = 'Which training questions from Zinnia Grove Test Cooperative were about minerals, and what did farmers ask most?'
+title = None, session_id = 'cs-bd9a189876ee'
+artifact = {'artifact_id': 'obj-86d3d0cd7842', 'request_id': 'cs-bd9a189876ee', 'tenant_id': 'tenant-SYNTHETIC-a3-4dfc0b', 'caller': 'human', ...}
+
+    async def create(scope, question, title=None, session_id=None, artifact=None):
+        session = {'session_id': session_id or new_id(), 'tenant_id': scope['tenant_id'], 'principal_id': scope['principal_id'],
+                   'objective': objective_record(question, artifact) if artifact else {'text': question, 'sha256': sha(question), 'frozen_at': now()},
+                   'title': (title or question)[:80], 'created_at': now(), 'updated_at': now(), 'archived': False,
+                   'turns': [], 'compaction': None}
+&gt;       await db[COLLECTION].insert_one(dict(session))
+E       RuntimeError: Task &lt;Task pending name='Task-6' coro=&lt;ask() running at /app/backend/vendored/extraction_akki/backend/services/chat/journey.py:76&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop
+
+vendored/extraction_akki/backend/services/chat/sessions.py:57: RuntimeError</failure></testcase><testcase classname="tests.shield.test_objective_capture" name="test_chat_journey_asks_instead_of_guessing_and_opens_no_session" time="0.006"><failure message="RuntimeError: Task &lt;Task pending name='Task-8' coro=&lt;listing() running at /app/backend/vendored/extraction_akki/backend/services/chat/sessions.py:70&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xf975617c0d50&gt;
+
+    def test_chat_journey_asks_instead_of_guessing_and_opens_no_session(monkeypatch):
+        incoherent = {**READING, 'objective': {'intent': 'unclear', 'bounded_objective': 'The question contradicts itself about which period to cover', 'coherent': False}}
+        monkeypatch.setattr(oc.reader, 'read', fake_read(incoherent))
+    
+        async def must_not_run(*a, **k): raise AssertionError('nothing may be read before an objective exists')
+        monkeypatch.setattr(spine, 'verified_artefacts', must_not_run)
+        out = run(journey.ask(sessions.db, SCOPE, question='Cover last year but only this year, and neither.'))
+        assert out['session_id'] is None and out['outcome'] == 'ask' and out['turn']['decision'] == 'ask' and out['turn']['refused'] is True
+        assert 'clarify' in out['turn']['refusal_reason'].lower() and out['turn']['evidence']['reads']['source_dispatches'] == 0 and out['turn']['objective_capture']['kind'] == 'incoherent'
+&gt;       assert run(sessions.listing(SCOPE)) == [s for s in run(sessions.listing(SCOPE)) if s['objective'].get('artifact_id')]  # no session without an artefact was opened
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/shield/test_objective_capture.py:205: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/shield/test_objective_capture.py:37: in run
+    asyncio.set_event_loop(_LOOP); return _LOOP.run_until_complete(coro)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+vendored/extraction_akki/backend/services/chat/sessions.py:70: in listing
+    async for doc in cursor:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = AsyncIOMotorCursor(&lt;pymongo.cursor.Cursor object at 0xf975617c33d0&gt;)
+
+    async def next(self):
+        """Advance the cursor.
+    
+        .. versionadded:: 2.2
+        """
+&gt;       if self.alive and (self._buffer_size() or await self._get_more()):
+                                                  ^^^^^^^^^^^^^^^^^^^^^^
+E       RuntimeError: Task &lt;Task pending name='Task-8' coro=&lt;listing() running at /app/backend/vendored/extraction_akki/backend/services/chat/sessions.py:70&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop
+
+/root/.venv/lib/python3.11/site-packages/motor/core.py:1390: RuntimeError</failure></testcase><testcase classname="tests.shield.test_objective_capture" name="test_live_capture_with_the_contained_reader_is_coherent_and_privileged_free" time="13.567"><error message="failed on teardown with &quot;ValueError: The future belongs to a different loop than the one specified as the loop argument&quot;">@pytest.fixture(autouse=True, scope='module')
+    def _cleanup():
+        yield
+        d = lab.db()
+        d.shield_objectives.delete_many({'tenant_id': TENANT}); d.shield_objective_observations.delete_many({'tenant_id': TENANT}); d.shield_register.delete_many({'tenant_id': TENANT})
+&gt;       run(sessions.db[sessions.COLLECTION].delete_many({'tenant_id': TENANT}))
+
+tests/shield/test_objective_capture.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/shield/test_objective_capture.py:37: in run
+    asyncio.set_event_loop(_LOOP); return _LOOP.run_until_complete(coro)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:633: in run_until_complete
+    future = tasks.ensure_future(future, loop=self)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/tasks.py:659: in ensure_future
+    return _ensure_future(coro_or_future, loop=loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+coro_or_future = &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt;
+loop = &lt;_UnixSelectorEventLoop running=False closed=False debug=False&gt;
+
+    def _ensure_future(coro_or_future, *, loop=None):
+        if futures.isfuture(coro_or_future):
+            if loop is not None and loop is not futures._get_loop(coro_or_future):
+&gt;               raise ValueError('The future belongs to a different loop than '
+                                'the one specified as the loop argument')
+E               ValueError: The future belongs to a different loop than the one specified as the loop argument
+
+/usr/local/lib/python3.11/asyncio/tasks.py:665: ValueError</error></testcase><testcase classname="tests.shield.test_register_lifecycle" name="test_author_lands_pending_and_pending_never_affects_a_crossing" time="0.020" /><testcase classname="tests.shield.test_register_lifecycle" name="test_approve_is_the_gate_to_enforcement_and_records_provenance" time="0.013" /><testcase classname="tests.shield.test_register_lifecycle" name="test_revision_stays_pending_until_approved_then_supersedes" time="0.019" /><testcase classname="tests.shield.test_register_lifecycle" name="test_draft_adoption_lands_pending_and_withdrawal_keeps_the_record" time="0.021" /><testcase classname="tests.shield.test_register_lifecycle" name="test_removal_needs_a_second_signature_and_a_countdown_and_exposes_nothing_meanwhile" time="0.012" /><testcase classname="tests.shield.test_register_lifecycle" name="test_removal_can_be_cancelled_during_the_countdown" time="0.005" /><testcase classname="tests.shield.test_register_lifecycle" name="test_removal_applies_after_the_countdown_and_is_reverified" time="0.028" /><testcase classname="tests.shield.test_register_lifecycle" name="test_catalogue_entities_live_in_the_register_and_the_lookup_reads_that_one_set" time="0.005" /><testcase classname="tests.shield.test_register_lifecycle" name="test_authored_entity_declaration_reaches_the_deidentifier_lookup_only_once_approved" time="0.006" /><testcase classname="tests.shield.test_register_lifecycle" name="test_vault_rows_become_pending_declarations_with_invalid_and_duplicate_rows_reported" time="0.038" /><testcase classname="tests.shield.test_register_lifecycle" name="test_vault_file_parsing_csv_and_xlsx_and_refusals" time="0.026" /><testcase classname="tests.shield.test_register_lifecycle" name="test_reach_states_the_unmeasured_honestly_when_nothing_is_measured" time="0.002" /><testcase classname="tests.shield.test_shield_register_gate" name="test_gate_rewrites_both_paths_consistently_and_rebinds" time="13.640"><failure message="AssertionError: assert 'Deliver for ... [PROJECT_1].' == 'Deliver for ...Papaya Comet.'&#10;  &#10;  Skipping 38 identical leading characters in diff, use -v to show&#10;  - ive under Papaya Comet.&#10;  + ive under [PROJECT_1].">def test_gate_rewrites_both_paths_consistently_and_rebinds():
+        from services.synisense.shield import register_gate as g
+        sysm = 'You plan for client Nuru Orchard Test Cooperative. Contact jane.doe@example.com.'
+        r = g.gate(sysm, DOC, 'RMS', 'doc_studio.plan')
+        assert not r.refused and r.inspection['clean']
+        for marker in ('Nuru Orchard', 'Papaya Comet', 'jane.doe', '0712', 'SYNTHETIC-NOT-A-KEY'):
+            assert marker.lower() not in (r.system_message + r.prompt).lower(), marker
+        assert r.system_message.count('[PARTY_1]') == 1 and r.prompt.count('[PARTY_1]') == 1, 'one value → one token across both paths'
+        assert r.enforced.get('client_identity', 0) &gt;= 2 and r.enforced.get('personal_data', 0) &gt;= 2 and r.enforced.get('credentials') == 1
+        assert 'commercial_terms' in r.advisory and 'unpublished_pricing_method' in r.advisory, 'advisory categories are receipted, not rewritten by default'
+        assert '147300' in r.prompt, 'advisory figure stays available to the model (utility preserved) until the DPO enforces it'
+&gt;       assert g.rebind('Deliver for [PARTY_1] under [PROJECT_1].', r.token_map) == 'Deliver for Nuru Orchard Test Cooperative under Papaya Comet.'
+E       AssertionError: assert 'Deliver for ... [PROJECT_1].' == 'Deliver for ...Papaya Comet.'
+E         
+E         Skipping 38 identical leading characters in diff, use -v to show
+E         - ive under Papaya Comet.
+E         + ive under [PROJECT_1].
+
+tests/shield/test_shield_register_gate.py:47: AssertionError</failure></testcase><testcase classname="tests.shield.test_shield_register_gate" name="test_hostility_rules_and_honest_empty" time="0.000" /><testcase classname="tests.shield.test_shield_register_gate" name="test_invoke_carries_gated_payload_and_rebinds" time="29.253"><failure message="AssertionError: no shared token for the shared entity: {'[PARTY_1]', '[[ENT_EMAIL_001]]'} vs {'[PARTY_2]', '[PROJECT_1]'}&#10;assert ({'[PARTY_1]', '[[ENT_EMAIL_001]]'} &amp; {'[PARTY_2]', '[PROJECT_1]'})">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xf97562d43a10&gt;
+
+    def test_invoke_carries_gated_payload_and_rebinds(monkeypatch):
+        """WP-A5: the estate crossing arrives as a sealed stage artifact — File 1 (question + instructions) and File 2 (the document) assessed apart,
+        one token per value across the pair, one query, local rebinding."""
+        _reader_live()
+        from services.chokepoint import llm
+        from services.synisense.shield import stage as shield_stage
+        monkeypatch.setattr(llm, '_client_factory', lambda **kw: _FakeClient(**kw))
+        monkeypatch.setattr(llm, '_emergent_api_key', lambda: 'test-key')
+        _FakeClient.sent.clear()
+        artifact = asyncio.run(shield_stage.stage(question='Plan the engagement for the client named in the brief.', data=DOC, tenant_id='RMS', purpose='chat.governed_answer', actor='test:shield-gate',
+                                                  system_message='You assist client Nuru Orchard Test Cooperative; never reveal jane.doe@example.com.', retain=False))
+        assert len(artifact.safe_items) == 2 and artifact.seal and artifact.receipt['seam']['joint']['passes']
+        resp = asyncio.run(llm.invoke(purpose='chat.governed_answer', safe_artifact=artifact, masking_tier='llm_prompt_governed_text', actor='test:shield-gate', model='gpt-6-astra', provider='emergent', tenant_id='RMS', custody_class='tenant_estate'))
+        assert resp.safe_artifact_id == artifact.artifact_id and artifact.consumed and artifact.binding_map == {} and artifact.entity_map == {}, 'the mapping died with the call (B40); the artifact is spent (B72)'
+        sysm, prompt = _FakeClient.sent[-1]
+        assert '[ITEM 1 — QUESTION AS ASKED]' in prompt and '[ITEM 2 — DATA]' in prompt, 'one query, two items (B72)'
+        for marker in ('nuru orchard', 'papaya comet', 'jane.doe', 'synthetic-not-a-key'):
+            assert marker not in (sysm + prompt).lower(), f'{marker} crossed the boundary'
+        # the NER layer runs first on both paths in one pass, so the same entity carries the same token on both; the register gate covers what NER missed
+        import re
+        sys_tokens = set(re.findall(r'\[\[ENT_[A-Z]+_\d+\]\]|\[[A-Z]+_\d+\]', sysm)); prompt_tokens = set(re.findall(r'\[\[ENT_[A-Z]+_\d+\]\]|\[[A-Z]+_\d+\]', prompt))
+&gt;       assert sys_tokens &amp; prompt_tokens, f'no shared token for the shared entity: {sys_tokens} vs {prompt_tokens}'
+E       AssertionError: no shared token for the shared entity: {'[PARTY_1]', '[[ENT_EMAIL_001]]'} vs {'[PARTY_2]', '[PROJECT_1]'}
+E       assert ({'[PARTY_1]', '[[ENT_EMAIL_001]]'} &amp; {'[PARTY_2]', '[PROJECT_1]'})
+
+tests/shield/test_shield_register_gate.py:104: AssertionError</failure></testcase><testcase classname="tests.shield.test_shield_register_gate" name="test_invoke_refuses_hostile_payload_before_any_call" time="13.226" /><testcase classname="tests.shield.test_shield_register_gate" name="test_register_lifecycle_propose_adopt_approve_enforce_remove" time="81.946"><failure message="AssertionError: nothing to apply before the second signature&#10;assert 429 == 404&#10; +  where 429 = &lt;Response [429]&gt;.status_code&#10; +    where &lt;Response [429]&gt; = &lt;function post at 0xf975a7e451c0&gt;('https://pensive-goodall-6.preview.emergentagent.com/api/shield/register/synthetic_lifecycle_probe/removal/apply', headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTEiLCJlbWFpbCI...I6W10sImlhdCI6MTc5MTIxOTExMiwiZXhwIjoxNzkxMjIwMDEyLCJ0eXBlIjoiYWNjZXNzIn0.w_-9iyQpK8W9PqN94lZ-d7T6xgxM-DvV2ZC85FVn7ws'}, timeout=30)&#10; +      where &lt;function post at 0xf975a7e451c0&gt; = requests.post">dpo = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTEiLCJlbWFpbCI...I6W10sImlhdCI6MTc5MTIxOTExMiwiZXhwIjoxNzkxMjIwMDEyLCJ0eXBlIjoiYWNjZXNzIn0.w_-9iyQpK8W9PqN94lZ-d7T6xgxM-DvV2ZC85FVn7ws'}
+op = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTIiLCJlbWFpbCI...I6W10sImlhdCI6MTc5MTIxOTExMiwiZXhwIjoxNzkxMjIwMDEyLCJ0eXBlIjoiYWNjZXNzIn0.Ei0O-1Vh2CiNR1fnUUcoMJbRBMd-MdxEekYZPT0GPco'}
+master = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTAiLCJlbWFpbCI...iOltdLCJpYXQiOjE3OTEyMTkxMTIsImV4cCI6MTc5MTIyMDAxMiwidHlwZSI6ImFjY2VzcyJ9.m5ZoSKJidywgg6UbplDgo5QnFgee4zBOXygEvbAQeK0'}
+
+    def test_register_lifecycle_propose_adopt_approve_enforce_remove(dpo, op, master):
+        """Live lifecycle on the RMS register with a fixed SYNTHETIC probe (`synthetic_lifecycle_probe`): re-runnable — stale pending is
+        withdrawn, a stale ceremony cancelled, a revision supersedes the previous probe version; the adopted draft is withdrawn and its
+        withdrawn record removed as test residue."""
+        reg = requests.get(f'{BASE_URL}/api/shield/register', headers=dpo, timeout=30).json()
+        assert reg['can_author'] and {'enforced', 'advisory'} == set(reg['enforcement']) and reg['removal_countdown_hours'] == 48 and 'pending' in reg['statuses']
+        assert all('enforcement' in c for c in reg['categories'])
+        name = 'synthetic_lifecycle_probe'
+        for stale in reg['categories']:
+            if stale['name'] in (name, 'client_identity_values') and stale['status'] == 'pending': requests.post(f"{BASE_URL}/api/shield/register/{stale['name']}/withdraw", headers=dpo, json={'reason': 'stale test state'}, timeout=30)
+            if stale['name'] == name and stale['status'] == 'active' and stale.get('removal'): requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/cancel', headers=dpo, json={'reason': 'stale test state'}, timeout=30)
+        # propose → adopt lands pending (B28) and changes nothing at the crossing (B43) → withdraw keeps the record
+        r = requests.post(f'{BASE_URL}/api/shield/register/propose', headers=dpo, json={'text': DOC, 'source_ref': 'synthetic contract fixture'}, timeout=60); assert r.status_code == 200, r.text
+        drafts = {d['name']: d for d in r.json()['drafts']}
+        assert 'client_identity_values' in drafts and 'Nuru Orchard Test Cooperative' in drafts['client_identity_values']['values'] and drafts['client_identity_values']['status'] == 'draft' and drafts['client_identity_values']['version'] == 0
+        probe_text = 'Nuru Orchard Test Cooperative opens on Tuesdays.'
+        before = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': probe_text}, timeout=30).json()
+        r = requests.post(f'{BASE_URL}/api/shield/register/client_identity_values/adopt', headers=dpo, json={'description': 'adopted by test'}, timeout=30); assert r.status_code == 200, r.text
+        cat = r.json()['category']; assert cat['status'] == 'pending' and cat['kind'] == 'exact' and cat['enforcement'] == 'enforced' and 'approved_by' not in cat
+        after_adopt = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': probe_text}, timeout=30).json()
+        _stable = lambda x: {k: v for k, v in x.items() if k != 'reader'} | {'reader_spans': (x.get('reader') or {}).get('spans')}  # reader receipts/seconds differ per read; the verdict must not
+        assert _stable(after_adopt) == _stable(before), 'adoption changes nothing at the crossing (B43)'
+        r = requests.post(f'{BASE_URL}/api/shield/register/client_identity_values/withdraw', headers=dpo, json={'reason': 'test: withdrawn before approval'}, timeout=30); assert r.status_code == 200 and r.json()['category']['status'] == 'withdrawn'
+        for n in [n for n in drafts if n != 'client_identity_values']: requests.delete(f'{BASE_URL}/api/shield/register/{n}/draft', headers=dpo, timeout=30)
+        _register_db().delete_many({'tenant_id': 'RMS', 'name': 'client_identity_values', 'status': 'withdrawn', 'authored_by': cat['authored_by']})
+        # declare → pending → approve by a second principal → in force (B29); the paraphrase with no cue is protected only after approval
+        nocue = 'Papaya Comet ships on Tuesdays.'
+        r = requests.post(f'{BASE_URL}/api/shield/register', headers=dpo, json={'name': name, 'kind': 'exact', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'SYNTHETIC lifecycle probe', 'values': ['Papaya Comet']}, timeout=30); assert r.status_code == 201, r.text
+        cat = r.json()['category']; assert cat['status'] == 'pending' and 'approved_by' not in cat
+        assert requests.post(f'{BASE_URL}/api/shield/register', headers=dpo, json={'name': name, 'kind': 'exact', 'action': 'abstract', 'description': 'SYNTHETIC again', 'values': ['Papaya Comet']}, timeout=30).status_code == 409, 'one pending per name'
+        assert requests.post(f'{BASE_URL}/api/shield/register/{name}/approve', headers=op, timeout=30).status_code == 403, 'approval is a DPO act'
+        r = requests.post(f'{BASE_URL}/api/shield/register/{name}/approve', headers=master, timeout=30); assert r.status_code == 200, r.text
+        cat = r.json()['category']; assert cat['status'] == 'active' and cat['approved_by'] and cat['adopted_by'] and cat['approved_by'] != cat['adopted_by']
+        assert cat['history'][-1]['change'].startswith('approved') and cat['history'][-1]['same_signatory'] is False
+        after = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': nocue}, timeout=30).json()
+        assert name in after['categories'], 'approved exact value protects the paraphrase with no cue'
+        recon = requests.post(f'{BASE_URL}/api/shield/reconstruct', headers=op, json={'text': nocue}, timeout=30).json()
+        assert 'papaya' not in recon['safe_text'].lower() and recon['bindings_held_inside'] &gt;= 1
+        # re-scope is a DPO act, on the record
+        r = requests.post(f'{BASE_URL}/api/shield/register/{name}/enforcement', headers=dpo, json={'enforcement': 'advisory'}, timeout=30); assert r.json()['category']['enforcement'] == 'advisory'
+        assert requests.post(f'{BASE_URL}/api/shield/register/{name}/enforcement', headers=op, json={'enforcement': 'enforced'}, timeout=30).status_code == 403
+        # removal runs the ceremony: proposed → second signature (different principal) → countdown → cancellable; protection continues meanwhile (B39, B44)
+        r = requests.delete(f'{BASE_URL}/api/shield/register/{name}', headers=dpo, params={'reason': 'test complete'}, timeout=30); assert r.status_code == 200, r.text
+        assert r.json()['removal']['state'] == 'proposed' and r.json()['category']['status'] == 'active'
+        assert requests.delete(f'{BASE_URL}/api/shield/register/{name}', headers=dpo, params={'reason': 'again'}, timeout=30).status_code == 409
+        assert requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/countersign', headers=dpo, timeout=30).status_code == 409, 'the proposer cannot counter-sign'
+&gt;       assert requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/apply', headers=dpo, timeout=30).status_code == 404, 'nothing to apply before the second signature'
+E       AssertionError: nothing to apply before the second signature
+E       assert 429 == 404
+E        +  where 429 = &lt;Response [429]&gt;.status_code
+E        +    where &lt;Response [429]&gt; = &lt;function post at 0xf975a7e451c0&gt;('https://pensive-goodall-6.preview.emergentagent.com/api/shield/register/synthetic_lifecycle_probe/removal/apply', headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTEiLCJlbWFpbCI...I6W10sImlhdCI6MTc5MTIxOTExMiwiZXhwIjoxNzkxMjIwMDEyLCJ0eXBlIjoiYWNjZXNzIn0.w_-9iyQpK8W9PqN94lZ-d7T6xgxM-DvV2ZC85FVn7ws'}, timeout=30)
+E        +      where &lt;function post at 0xf975a7e451c0&gt; = requests.post
+
+tests/shield/test_shield_register_gate.py:193: AssertionError</failure></testcase><testcase classname="tests.shield.test_shield_register_gate" name="test_marked_confidential_passages_are_proposed" time="12.719" /><testcase classname="tests.shield.test_shield_register_gate" name="test_multilingual_cues_swahili" time="12.815" /><testcase classname="tests.shield.test_shield_register_gate" name="test_crossings_view_and_roles" time="10.297" /><testcase classname="tests.shield.test_shield_stage" name="test_two_files_are_assessed_in_separate_passes_and_sealed_with_full_retention" time="0.025" /><testcase classname="tests.shield.test_shield_stage" name="test_altering_file_2_cannot_change_file_1_assessment" time="0.043" /><testcase classname="tests.shield.test_shield_stage" name="test_seam_unifies_one_value_one_token_and_renumbers_a_colliding_token" time="0.049" /><testcase classname="tests.shield.test_shield_stage" name="test_seam_rebinds_a_value_one_file_withheld_that_survives_in_the_other" time="0.021" /><testcase classname="tests.shield.test_shield_stage" name="test_seam_refuses_a_dropped_marker_and_a_joint_reidentification" time="0.034" /><testcase classname="tests.shield.test_shield_stage" name="test_reader_unavailable_or_ambiguous_refuses_the_stage_before_anything_external" time="0.035" /><testcase classname="tests.shield.test_shield_stage" name="test_chokepoint_verifies_the_seal_sends_one_two_item_query_rebinds_and_destroys_the_mapping" time="0.079" /><testcase classname="tests.shield.test_shield_stage" name="test_chokepoint_refuses_unsealed_tampered_mismatched_and_recheck_failures" time="0.168" /><testcase classname="tests.shield.test_shield_stage" name="test_retained_files_are_masked_at_every_read_never_raw" time="0.037" /><testcase classname="tests.shield.test_shield_stage" name="test_single_item_question_renders_as_itself" time="0.016" /><testcase classname="tests.shield.test_shield_stage" name="test_every_live_caller_passes_a_sealed_artifact_and_the_sole_invocation_scan_is_green" time="2.060" /><testcase classname="tests.shield.test_shield_stage" name="test_live_stage_reads_both_files_inside_the_perimeter" time="27.822" /><testcase classname="tests.governance.test_requirements_anchor" name="test_plan_and_diagnosis_exist_and_are_named_in_agents_anchor" time="0.002" /><testcase classname="tests.governance.test_requirements_anchor" name="test_every_work_package_has_resolving_sources" time="0.005" /><testcase classname="tests.governance.test_requirements_anchor" name="test_ledger_is_append_only_shaped_and_names_known_work_packages" time="0.002" /><testcase classname="tests.governance.test_requirements_anchor" name="test_owner_orders_sections_are_append_only" time="0.004" /><testcase classname="tests.governance.test_requirements_anchor" name="test_diagnosis_lists_pending_decisions_and_root_causes" time="0.003" /><testcase classname="tests.governance.test_residency_register" name="test_every_class_has_terms_of_reference_and_none_permits_idle_gpu_residency" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_attribution_maps_known_pids_to_classes_and_reports_the_rest_as_findings" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_serving_resident_fits_beside_the_lid_server_and_is_recorded_with_its_reason" time="0.002" /><testcase classname="tests.governance.test_residency_register" name="test_placement_that_would_evict_a_running_lane_is_refused" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_admitted_model_is_never_placed_idle_and_a_serving_resident_needs_a_demand_lease" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_reconcile_flags_placed_entries_without_a_live_process" time="0.002" /><testcase classname="tests.invariants.test_llm_chokepoint_sole_importer" name="test_only_chokepoint_llm_may_import_llm_sdks" time="1.953" /><testcase classname="tests.invariants.test_llm_chokepoint_sole_importer" name="test_chokepoint_itself_imports_an_sdk_so_the_scan_is_not_vacuous" time="0.004" /><testcase classname="tests.invariants.test_llm_chokepoint_sole_importer" name="test_scan_detects_a_planted_offender" time="1.884" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_three_faults_under_the_current_bundle_hold_the_lane_as_worker_fault" time="0.000" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_faults_under_a_superseded_bundle_do_not_exhaust_corrected_code" time="0.000" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_fault_hold_release_rule" time="0.000" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_voice_model_renders_without_an_identity_vector" time="0.001"><skipped type="pytest.skip" message="worker tensor contracts run on the estate hosts (worker audit), not in the control plane">/app/backend/tests/malpha/test_malpha_fault_hold_offline.py:73: worker tensor contracts run on the estate hosts (worker audit), not in the control plane</skipped></testcase><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_worker_audit_checks_the_unconditioned_path" time="0.000"><skipped type="pytest.skip" message="the native worker audit runs on the estate hosts; its result is read from malpha_jobs">/app/backend/tests/malpha/test_malpha_fault_hold_offline.py:81: the native worker audit runs on the estate hosts; its result is read from malpha_jobs</skipped></testcase><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_launch_larger_trial_builds_research_only_recipe_from_registered_base" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_launch_larger_trial_preflight_refuses_without_native_audit" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_launch_larger_trial_preflight_refuses_busy_or_protected_gpu" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_borrow_stops_serving_only_in_explicit_owner_operation" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_restore_serving_waits_for_terminal_trial_and_free_slot" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_dispatch_worker_audits_idempotent_per_host_and_code_digest" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_dispatch_lane_is_gated_by_native_worker_audit_without_stopping_existing_jobs" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_tick_returns_already_running_when_lease_owned_elsewhere" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_tick_releases_lease_on_error" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_provider_schema_only_removes_unsupported_item_constraints_from_wire" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_learning_review_prompt_is_role_specific_and_not_proposer" time="0.005" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_m9_dispatch_accepts_native_worker_audit_phase_contract" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_aggregate_evidence_never_exports_raw_transcripts_paths_or_vectors" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_reconstruct_binds_plan_review_purposes_and_allowed_refs" time="0.003" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_story_score_language_completeness_and_ranking_contract" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_rendered_identity_gate_failclosed_for_incomplete_nan_missing_and_threshold" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_balanced_weights_equalises_language_mass" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_source_rows_manifest_tar_train_only_and_safe_tar" time="0.043" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_refuses_licence_before_fetch" time="0.004" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_journal_reuse_is_idempotent" time="0.004" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_partial_source_failure_and_heldout_rejection" time="0.010" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_disk_backpressure_not_reported_as_success" time="0.010" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_m9_bundle_contains_malpha_modules_and_validation_rules" time="0.003" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_gap_reads_load_bearing_units_at_utterance_class" time="0.005" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_acceptance_point_is_deterministic_and_floors_are_read_only" time="0.004" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_select_adopts_measurement_rule_and_records_trace" time="0.083" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_frontier_idea_with_bounded_delta_outranks_ladder_and_unbound_ideas_wait" time="0.111" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_hypothesis_test_absorption_refusal_envelope_and_owner_release" time="0.133" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_coach_seat_verdicts_and_binding" time="0.138" /></testsuite></testsuites>

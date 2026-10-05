@@ -24,7 +24,7 @@ from services.census_autonomy import engine
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKER = "services/training_runner/m9_worker.py"
-PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "load_test", "lab_inspect", "lab_measure", "lab_train_music", "lab_classify_estate", "lab_text_lid",
+PHASES = ("acquire_bases", "assemble", "calibrate", "compare_optimizers", "train", "pipeline", "serve", "serve_reader", "load_test", "lab_inspect", "lab_measure", "lab_train_music", "lab_classify_estate", "lab_text_lid",
           "malpha_aip_build", "malpha_aip_requalify", "malpha_aip_relabel", "malpha_internet_corpus", "malpha_listener_train", "malpha_evaluate", "malpha_story_text_train", "malpha_voice_train", "malpha_baseline_render")
 MALPHA_PHASES = {"malpha_aip_build": {'lab_corpus_root', 'max_files_per_language', 'cpu_workers', 'token_max_seconds', 'codec_sample_per_language', 'brand_lexicon'}, "malpha_aip_requalify": {'min_dev_segments', 'min_dev_mention_segments'},
                  "malpha_aip_relabel": {'brand_lexicon', 'brand_lexicon_version'}, "malpha_internet_corpus": {'datasets', 'max_hours_per_dataset', 'brand_lexicon'},
@@ -84,7 +84,7 @@ def build_bundle():
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(zipfile.ZipInfo(WORKER, date_time=(2026, 1, 1, 0, 0, 0)), (ROOT / WORKER).read_bytes())
-        for module in ('services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/training_lab/music_detector_worker.py', 'services/audio_plane_v1/acoustic_observables.py',
+        for module in ('services/training_runner/reader_worker.py', 'services/training_lab/inspection_worker.py', 'services/training_lab/measurement_worker.py', 'services/training_lab/music_detector_worker.py', 'services/audio_plane_v1/acoustic_observables.py',
                        'services/training_lab/estate_language_worker.py', 'services/audio_plane_v1/corrective_model.py', 'services/training_lab/malpha_worker.py', 'services/training_lab/malpha_voice_worker.py',
                        'services/training_lab/malpha_internet_worker.py', 'services/training_lab/malpha_worker_policy.py', 'services/training_lab/malpha_worker_audit.py',
                        'services/training_lab/malpha_evaluation.py', 'services/training_lab/malpha_corpus_audit.py', 'services/training_lab/malpha_splits.py'):
@@ -206,9 +206,11 @@ def validate(phase, params, host):
             raise ValueError('MALPHA_CORPUS_SCOPE_INVALID')
         if phase == 'malpha_evaluate' and (not re.fullmatch(r'[a-f0-9]{64}', str(params['artefact_sha256'])) or not str(params['artefact_path']).startswith(os.environ['M9_REMOTE_ROOT'])):
             raise ValueError('MALPHA_ARTEFACT_INVALID')
-    if phase in ("calibrate", "compare_optimizers", "train", "pipeline", "serve"):
+    if phase in ("calibrate", "compare_optimizers", "train", "pipeline", "serve", "serve_reader"):
         if type(params.get("gpu_index")) is not int or params["gpu_index"] not in (0, 1):
             raise ValueError("M9_GPU_INDEX_REQUIRED")
+    if phase == "serve_reader" and not (all(params.get(k) for k in ("base_registry_id", "expected_weight_sha256", "port", "authority", "residency_entry_id")) and re.fullmatch(r"[a-f0-9]{64}", str(params.get("expected_weight_sha256")))):
+        raise ValueError("M9_SERVE_READER_REQUIRES_base_registry_id_expected_weight_sha256_port_authority_residency_entry_id")
     if phase == "train" and not isinstance(params.get("acceptance_floor"), (int, float)):
         raise ValueError("OUTCOME_PER_STRATUM_FLOOR_REQUIRED")  # Docs 17–19: no training without the Outcome's per-stratum acceptance threshold
     if phase == "serve" and not all(params.get(k) for k in ("run_dir", "artefact_sha256", "labels", "port", "authority")):

@@ -176,7 +176,7 @@ def test_vault_rows_become_pending_declarations_with_invalid_and_duplicate_rows_
     assert len(pend['vault_parties']['values']) == 1000 and pend['vault_refs']['patterns'] == [r'\bREF-\d{6}\b']
     assert 'vault_parties' not in _in_force() and reg.classify('Synthetic Party 0007', TENANT) == []
     reach = out['reach']
-    assert reach['measured_documents'] == 2 and reach['by_declaration']['vault_parties'] == {'documents_matched': 1, 'matches': 1} and reach['by_declaration']['vault_refs'] == {'documents_matched': 1, 'matches': 1}
+    assert reach['measured_documents'] == 2 and reach['by_declaration']['vault_parties'] | {'documents_matched': 1, 'matches': 1} == reach['by_declaration']['vault_parties'] and reach['by_declaration']['vault_refs'] | {'documents_matched': 1, 'matches': 1} == reach['by_declaration']['vault_refs'] and 'literal/pattern' in reach['by_declaration']['vault_refs']['basis']
     assert 'not measured' in reach['unmeasured'].lower()
 
 
@@ -199,5 +199,5 @@ def test_vault_file_parsing_csv_and_xlsx_and_refusals():
 
 def test_reach_states_the_unmeasured_honestly_when_nothing_is_measured():
     r = register_vault.reach([{'name': 'vault_parties', 'kind': 'exact', 'values': ['Synthetic Party 0001']}], [])
-    assert r['measured_documents'] == 0 and r['by_declaration']['vault_parties'] == {'documents_matched': 0, 'matches': 0}
+    assert r['measured_documents'] == 0 and r['by_declaration']['vault_parties'] | {'documents_matched': 0, 'matches': 0} == r['by_declaration']['vault_parties']
     assert re.search(r'no .*measured', r['unmeasured'].lower())

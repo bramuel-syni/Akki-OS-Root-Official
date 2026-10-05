@@ -431,10 +431,13 @@ def dispatch_lane(cid, lane, snapshot):
     if not worker_audit_ready(host): return None
     history = [j for j in jobs(commission_id=cid, lane=lane, status='completed')]
     iteration = len(history) + 1  # a measured result advances the ladder; a faulted attempt does not
-    faults = [j for j in jobs(commission_id=cid, lane=lane, iteration=iteration) if j['status'] in ('failed', 'interrupted')]
+    from services.training_runner import m9_dispatch
+    _, code_sha = m9_dispatch.build_bundle()
+    all_faults = [j for j in jobs(commission_id=cid, lane=lane, iteration=iteration) if j['status'] in ('failed', 'interrupted')]
+    faults = [j for j in all_faults if j.get('code_sha256') == code_sha]  # faults under a superseded worker bundle stay on the record but do not exhaust corrected code
     if len(faults) >= MAX_ATTEMPTS_PER_ITERATION:
-        reason = f"{lane} iteration {iteration} faulted {len(faults)} times ({str(faults[-1].get('reason'))[:120]}); lane held for the owner, not looped"
-        db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'held', 'iteration': iteration, 'reason': reason}}})
+        reason = f"{lane} iteration {iteration} faulted {len(faults)} times under worker bundle {code_sha[:12]} ({str(faults[-1].get('reason'))[:120]}); lane held for the owner, not looped"
+        db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'held', 'held_by': 'worker_fault', 'code_sha256': code_sha, 'iteration': iteration, 'reason': reason}}})
         wpw.record_event(cid, 'anomaly', 'observed', f"malpha://lane_state/{cid}/{lane}", {'lane': lane, 'iteration': iteration, 'held': True, 'faults': [f['job_id'] for f in faults]})
         _log(cid, 'lane_held', reason); return None
     if lane == 'listener':
@@ -448,8 +451,8 @@ def dispatch_lane(cid, lane, snapshot):
     else: params = {'recipe': voice_recipe(iteration, history)}
     # Training supervisor (Solva + CIF over the sealed modules): the ladder/measurement rule is one candidate; frontier-reviewed and owner hypotheses compete at the deterministic acceptance point.
     from services.training_lab import malpha_supervisor
-    chosen = malpha_supervisor.select(cid, lane, iteration, history, params['recipe']) if not faults else None  # a faulted attempt retries the recipe already adopted for this iteration
-    if not faults and not chosen:
+    chosen = malpha_supervisor.select(cid, lane, iteration, history, params['recipe']) if not all_faults else None  # a faulted attempt retries the recipe already adopted for this iteration
+    if not all_faults and not chosen:
         reason = f'{lane} iteration {iteration}: the training supervisor found no admissible hypothesis (every candidate refused at the acceptance point or caught by the absorption rule); refusal envelope recorded for the owner'
         db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'held', 'held_by': 'training_supervisor', 'iteration': iteration, 'reason': reason}}})
         _log(cid, 'lane_held', reason); return None
@@ -458,9 +461,7 @@ def dispatch_lane(cid, lane, snapshot):
         adopted = malpha_supervisor.db().malpha_hypotheses.find_one({'lane': lane, 'iteration': iteration, 'archive_state': 'adopted'}, {'_id': 0, 'hypothesis_id': 1, 'recipe_delta': 1, 'acceptance.proposal_id': 1})
         if adopted: params['recipe'] = {**params['recipe'], **(adopted.get('recipe_delta') or {})}; params['hypothesis_id'] = adopted['hypothesis_id']; params['cif_proposal_id'] = (adopted.get('acceptance') or {}).get('proposal_id')
     params['split_version'] = SPLIT_VERSION  # the seal this model is trained under; only artefacts trained under the current seal may face a confirmation read
-    from services.training_runner import m9_dispatch
-    _, code_sha = m9_dispatch.build_bundle()
-    latest = next((j for j in reversed(faults) if j.get('last_checkpoint') and j.get('code_sha256') == code_sha), None)  # resume only under unchanged worker code
+    latest = next((j for j in reversed(faults) if j.get('last_checkpoint')), None)  # resume only under unchanged worker code (faults are already filtered to this bundle)
     if latest: params['resume_from'] = latest['last_checkpoint']
     rec = _submit(cid, lane, phase, params, host, index, iteration)
     if rec['status'] == 'running':
@@ -470,10 +471,20 @@ def dispatch_lane(cid, lane, snapshot):
         # WPW-6: the adopted hypothesis is an ideation record mirrored by reference — the idea lives in the supervisor ledger, its conditions in the measured result it answered
         conditions = f"malpha://job/{history[-1]['job_id']}#result.dev" if history else f"malpha://commission/{cid}#target_outcome"
         wpw.record_event(cid, 'cif_ideation', 'observed', f"m9_training://run_log/{rec['job_id']}", {'cif_event_ref': f"malpha://supervisor/hypothesis/{params.get('hypothesis_id')}", 'idea_ref': f"malpha://supervisor/hypothesis/{params.get('hypothesis_id')}#statement", 'conditions_ref': conditions,
-                                                                                                    'adoption_status': 'adopted', 'cif_proposal_id': params.get('cif_proposal_id'), 'attempt': len(faults) + 1, 'resumed_from_checkpoint': bool(latest)})
+                                                                                                    'adoption_status': 'adopted', 'cif_proposal_id': params.get('cif_proposal_id'), 'attempt': len(all_faults) + 1, 'resumed_from_checkpoint': bool(latest)})
     elif chosen: malpha_supervisor.release(params['hypothesis_id'], rec.get('reason'))
-    db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'running' if rec['status'] == 'running' else 'dispatch_refused', 'iteration': iteration, 'attempt': len(faults) + 1, 'job_id': rec['job_id'], 'hypothesis_id': params.get('hypothesis_id')}, 'status': 'running'}})
+    db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'running' if rec['status'] == 'running' else 'dispatch_refused', 'iteration': iteration, 'attempt': len(all_faults) + 1, 'job_id': rec['job_id'], 'hypothesis_id': params.get('hypothesis_id')}, 'status': 'running'}})
     return rec
+
+
+def fault_hold_superseded(cid, lane, state):
+    """A worker-fault hold is released only when every fault of that iteration ran under a worker bundle that corrected code has since superseded;
+    the faulted jobs stay on the record. A supervisor hold (no admissible hypothesis) is never released here."""
+    if state.get('status') != 'held' or state.get('held_by') == 'training_supervisor': return False
+    from services.training_runner import m9_dispatch
+    _, code_sha = m9_dispatch.build_bundle()
+    faults = [j for j in jobs(commission_id=cid, lane=lane, iteration=state.get('iteration')) if j['status'] in ('failed', 'interrupted')]
+    return bool(faults) and all(j.get('code_sha256') != code_sha for j in faults)
 
 
 def dispatch_evaluation(cid, lane, trained, snapshot):
@@ -698,6 +709,10 @@ def _tick_unlocked():
     for c in commissions():
         for lane in c['lanes']:
             state = (c.get('lane_state') or {}).get(lane) or {}
+            if fault_hold_superseded(c['commission_id'], lane, state):
+                released = f"{lane} iteration {state.get('iteration')}: worker-fault hold released — every fault ran under a superseded worker bundle (corrected code is now audited per host); faulted jobs stay on the record"
+                db().malpha_commissions.update_one({'commission_id': c['commission_id']}, {'$set': {f'lane_state.{lane}.status': 'iterating', f'lane_state.{lane}.released_at': now(), f'lane_state.{lane}.released_reason': released}})
+                _log(c['commission_id'], 'lane_released', released); state = {**state, 'status': 'iterating'}
             if state.get('status') in ('admitted', 'held'): continue
             if any(j['status'] in ('running', 'submitting') for j in jobs(commission_id=c['commission_id'], lane=lane)): continue
             if state.get('status') == 'dev_target_met' and lane != 'listener': continue  # storyteller lanes wait for the human-rating gate; recorded, not looped

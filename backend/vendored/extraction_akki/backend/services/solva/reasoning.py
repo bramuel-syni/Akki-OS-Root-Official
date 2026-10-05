@@ -21,13 +21,22 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from services.chokepoint import ChokepointRefused
 from services.chokepoint import llm as _chokepoint_llm
 from services.chokepoint.llm import (
     LLMShieldFailure,
     PurposeInvalid,
 )
+from services.synisense.shield.stage import StageRefused
 
 log = logging.getLogger(__name__)
+
+async def _sealed(prompt: str, purpose: str, actor: str):
+    """WP-A5: a Solva stage payload is a single question item (frame, candidates, evidence summaries it already holds); the Shield stage seals it
+    before the chokepoint — the bare prompt path is closed for estate custody."""
+    from services.synisense.shield import stage as shield_stage
+    return await shield_stage.stage(question=prompt, tenant_id=actor or "unknown", purpose=purpose, actor=actor or "unknown")
+
 
 _DEFAULT_RUN_DIR = "/app/assessment_workspace/phase0/solva_runs"
 
@@ -153,7 +162,7 @@ async def run_frame_audit(
     try:
         resp = await _chokepoint_llm.invoke(
             purpose="solva.frame_audit",
-            prompt=prompt,
+            safe_artifact=await _sealed(prompt, "solva.frame_audit", actor),
             masking_tier="llm_reasoning_context",
             actor=actor,
             model=model,
@@ -161,7 +170,7 @@ async def run_frame_audit(
             tenant_id=actor or "unknown",
             custody_class="tenant_estate",
         )
-    except (LLMShieldFailure, PurposeInvalid) as exc:
+    except (LLMShieldFailure, PurposeInvalid, ChokepointRefused, StageRefused) as exc:
         # A8-Q3 honesty: surface refusal verbatim.
         return FrameAuditResult(
             verdict=det_verdict,   # deterministic still holds
@@ -264,7 +273,7 @@ async def run_candidate_generation(
     try:
         resp = await _chokepoint_llm.invoke(
             purpose="solva.candidate_generation",
-            prompt=prompt,
+            safe_artifact=await _sealed(prompt, "solva.candidate_generation", actor),
             masking_tier="llm_reasoning_context",
             actor=actor,
             model=model,
@@ -272,7 +281,7 @@ async def run_candidate_generation(
             tenant_id=actor or "unknown",
             custody_class="tenant_estate",
         )
-    except (LLMShieldFailure, PurposeInvalid) as exc:
+    except (LLMShieldFailure, PurposeInvalid, ChokepointRefused, StageRefused) as exc:
         return CandidateGenerationResult(
             candidates=[],
             receipt_id="",
@@ -327,7 +336,7 @@ async def run_synthesis(
     try:
         resp = await _chokepoint_llm.invoke(
             purpose="solva.synthesis",
-            prompt=prompt,
+            safe_artifact=await _sealed(prompt, "solva.synthesis", actor),
             masking_tier="llm_reasoning_context",
             actor=actor,
             model=model,
@@ -335,7 +344,7 @@ async def run_synthesis(
             tenant_id=actor or "unknown",
             custody_class="tenant_estate",
         )
-    except (LLMShieldFailure, PurposeInvalid) as exc:
+    except (LLMShieldFailure, PurposeInvalid, ChokepointRefused, StageRefused) as exc:
         return SynthesisResult(
             paragraph="",
             receipt_id="",
@@ -523,7 +532,7 @@ async def run_triangulation(
     try:
         resp = await _chokepoint_llm.invoke(
             purpose="solva.triangulation",
-            prompt=prompt,
+            safe_artifact=await _sealed(prompt, "solva.triangulation", actor),
             masking_tier="llm_reasoning_context",
             actor=actor,
             model=model,
@@ -531,7 +540,7 @@ async def run_triangulation(
             tenant_id=actor or "unknown",
             custody_class="tenant_estate",
         )
-    except (LLMShieldFailure, PurposeInvalid) as exc:
+    except (LLMShieldFailure, PurposeInvalid, ChokepointRefused, StageRefused) as exc:
         return TriangulationResult(
             supported=[], contested=[], unsupported=[],
             receipt_id="", model_id="", provider="",
@@ -585,7 +594,7 @@ async def run_tension_detection(
     try:
         resp = await _chokepoint_llm.invoke(
             purpose="solva.tension_detection",
-            prompt=prompt,
+            safe_artifact=await _sealed(prompt, "solva.tension_detection", actor),
             masking_tier="llm_reasoning_context",
             actor=actor,
             model=model,
@@ -593,7 +602,7 @@ async def run_tension_detection(
             tenant_id=actor or "unknown",
             custody_class="tenant_estate",
         )
-    except (LLMShieldFailure, PurposeInvalid) as exc:
+    except (LLMShieldFailure, PurposeInvalid, ChokepointRefused, StageRefused) as exc:
         return TensionResult(
             tensions=[], receipt_id="", model_id="", provider="",
             refused=True, refusal_reason=str(exc)[:400],
@@ -667,7 +676,7 @@ async def run_probability_weighting(
     try:
         resp = await _chokepoint_llm.invoke(
             purpose="solva.probability_weighting",
-            prompt=prompt,
+            safe_artifact=await _sealed(prompt, "solva.probability_weighting", actor),
             masking_tier="llm_reasoning_context",
             actor=actor,
             model=model,
@@ -675,7 +684,7 @@ async def run_probability_weighting(
             tenant_id=actor or "unknown",
             custody_class="tenant_estate",
         )
-    except (LLMShieldFailure, PurposeInvalid) as exc:
+    except (LLMShieldFailure, PurposeInvalid, ChokepointRefused, StageRefused) as exc:
         return ProbabilityWeightedResult(
             candidates_with_weights=[], receipt_id="", model_id="", provider="",
             refused=True, refusal_reason=str(exc)[:400],

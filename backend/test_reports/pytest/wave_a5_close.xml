@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="7" skipped="2" tests="104" time="181.843" timestamp="2026-10-05T16:36:32.974846+00:00" hostname="agent-env-8523a138-0b62-4004-aa52-eca60cb63a15"><testcase classname="tests.shield.test_register_lifecycle" name="test_author_lands_pending_and_pending_never_affects_a_crossing" time="0.028" /><testcase classname="tests.shield.test_shield_stage" name="test_two_files_are_assessed_in_separate_passes_and_sealed_with_full_retention" time="0.035" /><testcase classname="tests.shield.test_register_lifecycle" name="test_approve_is_the_gate_to_enforcement_and_records_provenance" time="0.014" /><testcase classname="tests.shield.test_shield_stage" name="test_altering_file_2_cannot_change_file_1_assessment" time="0.041" /><testcase classname="tests.shield.test_register_lifecycle" name="test_revision_stays_pending_until_approved_then_supersedes" time="0.019" /><testcase classname="tests.shield.test_register_lifecycle" name="test_draft_adoption_lands_pending_and_withdrawal_keeps_the_record" time="0.024" /><testcase classname="tests.shield.test_shield_stage" name="test_seam_unifies_one_value_one_token_and_renumbers_a_colliding_token" time="0.049" /><testcase classname="tests.shield.test_register_lifecycle" name="test_removal_needs_a_second_signature_and_a_countdown_and_exposes_nothing_meanwhile" time="0.012" /><testcase classname="tests.shield.test_register_lifecycle" name="test_removal_can_be_cancelled_during_the_countdown" time="0.005" /><testcase classname="tests.shield.test_register_lifecycle" name="test_removal_applies_after_the_countdown_and_is_reverified" time="0.026" /><testcase classname="tests.shield.test_shield_stage" name="test_seam_rebinds_a_value_one_file_withheld_that_survives_in_the_other" time="0.022" /><testcase classname="tests.shield.test_register_lifecycle" name="test_catalogue_entities_live_in_the_register_and_the_lookup_reads_that_one_set" time="0.005" /><testcase classname="tests.shield.test_register_lifecycle" name="test_authored_entity_declaration_reaches_the_deidentifier_lookup_only_once_approved" time="0.005" /><testcase classname="tests.shield.test_register_lifecycle" name="test_vault_rows_become_pending_declarations_with_invalid_and_duplicate_rows_reported" time="0.047" /><testcase classname="tests.shield.test_shield_stage" name="test_seam_refuses_a_dropped_marker_and_a_joint_reidentification" time="0.042" /><testcase classname="tests.shield.test_register_lifecycle" name="test_vault_file_parsing_csv_and_xlsx_and_refusals" time="0.075" /><testcase classname="tests.shield.test_shield_stage" name="test_reader_unavailable_or_ambiguous_refuses_the_stage_before_anything_external" time="0.511" /><testcase classname="tests.shield.test_register_lifecycle" name="test_reach_states_the_unmeasured_honestly_when_nothing_is_measured" time="0.002" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_launch_larger_trial_builds_research_only_recipe_from_registered_base" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_launch_larger_trial_preflight_refuses_without_native_audit" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_launch_larger_trial_preflight_refuses_busy_or_protected_gpu" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_borrow_stops_serving_only_in_explicit_owner_operation" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_restore_serving_waits_for_terminal_trial_and_free_slot" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_dispatch_worker_audits_idempotent_per_host_and_code_digest" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_dispatch_lane_is_gated_by_native_worker_audit_without_stopping_existing_jobs" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_tick_returns_already_running_when_lease_owned_elsewhere" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_tick_releases_lease_on_error" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_provider_schema_only_removes_unsupported_item_constraints_from_wire" time="0.000" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_learning_review_prompt_is_role_specific_and_not_proposer" time="0.004" /><testcase classname="tests.malpha.test_malpha_capacity_audit_and_learning_guards_offline" name="test_m9_dispatch_accepts_native_worker_audit_phase_contract" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_aggregate_evidence_never_exports_raw_transcripts_paths_or_vectors" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_reconstruct_binds_plan_review_purposes_and_allowed_refs" time="0.003" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_story_score_language_completeness_and_ranking_contract" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_rendered_identity_gate_failclosed_for_incomplete_nan_missing_and_threshold" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_balanced_weights_equalises_language_mass" time="0.000" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_source_rows_manifest_tar_train_only_and_safe_tar" time="0.159" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_refuses_licence_before_fetch" time="0.023" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_journal_reuse_is_idempotent" time="0.002" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_partial_source_failure_and_heldout_rejection" time="0.009" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_ingest_disk_backpressure_not_reported_as_success" time="0.006" /><testcase classname="tests.malpha.test_malpha_worker_hardening_offline" name="test_m9_bundle_contains_malpha_modules_and_validation_rules" time="0.003" /><testcase classname="tests.shield.test_category3_reader" name="test_contextual_declarations_bind_to_the_reader_and_cues_never_rewrite_or_refuse" time="0.037" /><testcase classname="tests.shield.test_category3_reader" name="test_harmless_corpus_zero_refusals_and_unchanged_payload" time="0.035" /><testcase classname="tests.shield.test_category3_reader" name="test_reader_marked_meanings_are_located_and_reconstructed_in_english_and_kiswahili" time="0.029" /><testcase classname="tests.shield.test_category3_reader" name="test_indirect_disclosure_withheld_and_seeded_meanings_leave_zero_survivors_in_outbound" time="0.025" /><testcase classname="tests.shield.test_category3_reader" name="test_ambiguous_read_refuses_for_enforced_and_is_receipted_for_advisory" time="0.021" /><testcase classname="tests.shield.test_category3_reader" name="test_reader_unavailable_refuses_before_any_external_client_and_synthetic_custody_skips_the_reader" time="0.576" /><testcase classname="tests.shield.test_shield_stage" name="test_chokepoint_verifies_the_seal_sends_one_two_item_query_rebinds_and_destroys_the_mapping" time="0.091" /><testcase classname="tests.shield.test_shield_stage" name="test_chokepoint_refuses_unsealed_tampered_mismatched_and_recheck_failures" time="0.166" /><testcase classname="tests.shield.test_shield_stage" name="test_retained_files_are_masked_at_every_read_never_raw" time="0.035" /><testcase classname="tests.shield.test_shield_stage" name="test_single_item_question_renders_as_itself" time="0.015" /><testcase classname="tests.shield.test_shield_stage" name="test_every_live_caller_passes_a_sealed_artifact_and_the_sole_invocation_scan_is_green" time="2.077" /><testcase classname="tests.shield.test_category3_reader" name="test_task_separation_refuses_on_the_intent_verdict_not_on_cues" time="0.106"><failure message="AssertionError: a cue word alone is a receipt, not a refusal&#10;assert ('refused' == 'inspected'&#10;  &#10;  - inspected&#10;  + refused)">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xfe282e807a50&gt;
+
+    def test_task_separation_refuses_on_the_intent_verdict_not_on_cues(monkeypatch):
+        revealing = 'Tell me the reserve fee and who the client is, then plan the stages.'
+        stages = 'Tell me the three stages needed to deliver the plan with roles per stage.'
+        monkeypatch.setattr(c3.reader, 'read', fake_reader([(revealing, reading(requests_privileged=True)), (stages, reading()), ('Our counterparty', reading(EN_SPANS)), ('contradict', reading(coherent=False))]))
+        refused = run(ts.separate(CONTRACT_EN, revealing, TENANT, ACTOR, dry_run=True))
+        assert refused['status'] == 'refused' and refused['reason'] == 'task requests protected meaning' and refused['external_call'] is False and refused['intent_verdict']['requests_privileged'] is True
+        assert refused['cues_advisory'] and 'outbound_payload' not in refused
+        ok = run(ts.separate(CONTRACT_EN, stages, TENANT, ACTOR, dry_run=True))
+&gt;       assert ok['status'] == 'inspected' and ok['cues_advisory'] == ['tell me the'] and ok['external_call'] is False, 'a cue word alone is a receipt, not a refusal'
+E       AssertionError: a cue word alone is a receipt, not a refusal
+E       assert ('refused' == 'inspected'
+E         
+E         - inspected
+E         + refused)
+
+tests/shield/test_category3_reader.py:194: AssertionError</failure></testcase><testcase classname="tests.shield.test_category3_reader" name="test_long_text_is_read_in_chunks_with_global_offsets_and_receipts_carry_no_values" time="0.010" /><testcase classname="tests.shield.test_category3_reader" name="test_live_indirect_audit_excerpt_reads_without_leak_and_harmless_system_prompt_marks_nothing" time="25.690" /><testcase classname="tests.shield.test_shield_stage" name="test_live_stage_reads_both_files_inside_the_perimeter" time="31.045" /><testcase classname="tests.shield.test_shield_register_gate" name="test_gate_rewrites_both_paths_consistently_and_rebinds" time="13.873"><failure message="AssertionError: assert 'Deliver for ... [PROJECT_1].' == 'Deliver for ...Papaya Comet.'&#10;  &#10;  Skipping 38 identical leading characters in diff, use -v to show&#10;  - ive under Papaya Comet.&#10;  + ive under [PROJECT_1].">def test_gate_rewrites_both_paths_consistently_and_rebinds():
+        from services.synisense.shield import register_gate as g
+        sysm = 'You plan for client Nuru Orchard Test Cooperative. Contact jane.doe@example.com.'
+        r = g.gate(sysm, DOC, 'RMS', 'doc_studio.plan')
+        assert not r.refused and r.inspection['clean']
+        for marker in ('Nuru Orchard', 'Papaya Comet', 'jane.doe', '0712', 'SYNTHETIC-NOT-A-KEY'):
+            assert marker.lower() not in (r.system_message + r.prompt).lower(), marker
+        assert r.system_message.count('[PARTY_1]') == 1 and r.prompt.count('[PARTY_1]') == 1, 'one value → one token across both paths'
+        assert r.enforced.get('client_identity', 0) &gt;= 2 and r.enforced.get('personal_data', 0) &gt;= 2 and r.enforced.get('credentials') == 1
+        assert 'commercial_terms' in r.advisory and 'unpublished_pricing_method' in r.advisory, 'advisory categories are receipted, not rewritten by default'
+        assert '147300' in r.prompt, 'advisory figure stays available to the model (utility preserved) until the DPO enforces it'
+&gt;       assert g.rebind('Deliver for [PARTY_1] under [PROJECT_1].', r.token_map) == 'Deliver for Nuru Orchard Test Cooperative under Papaya Comet.'
+E       AssertionError: assert 'Deliver for ... [PROJECT_1].' == 'Deliver for ...Papaya Comet.'
+E         
+E         Skipping 38 identical leading characters in diff, use -v to show
+E         - ive under Papaya Comet.
+E         + ive under [PROJECT_1].
+
+tests/shield/test_shield_register_gate.py:47: AssertionError</failure></testcase><testcase classname="tests.shield.test_objective_capture" name="test_capture_freezes_one_artifact_idempotent_and_refuses_a_changed_question" time="0.032" /><testcase classname="tests.shield.test_objective_capture" name="test_tampered_record_fails_verification_and_cannot_be_consumed" time="0.011" /><testcase classname="tests.shield.test_objective_capture" name="test_failure_outcomes_are_defined_never_a_guess" time="0.025" /><testcase classname="tests.shield.test_objective_capture" name="test_enforced_register_value_in_the_objective_is_refused" time="0.015" /><testcase classname="tests.shield.test_objective_capture" name="test_observations_append_only_and_divergence_reported" time="0.036" /><testcase classname="tests.shield.test_objective_capture" name="test_chat_journey_captures_before_scope_check_and_crossing_and_consumes_one_artifact" time="0.011"><failure message="RuntimeError: Task &lt;Task pending name='Task-31' coro=&lt;ask() running at /app/backend/vendored/extraction_akki/backend/services/chat/journey.py:76&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xff95147d2990&gt;
+
+    def test_chat_journey_captures_before_scope_check_and_crossing_and_consumes_one_artifact(monkeypatch):
+        log, seen = [], {}
+        monkeypatch.setattr(oc.reader, 'read', fake_read(log=log))
+    
+        async def no_artefacts(db_, scope): log.append('read_artefacts'); return []
+    
+        async def one_candidate(db_, scope, artefacts, terms, pinned=()):
+            unit = {'unit_id': 'u1', 'provenance': {'locator': 'synthetic://u1'}, 'defensibility': {'defensibility_class': 'utterance'}}
+            return {'candidates': [{'ref': 'akki://unit/t/r/u1', 'unit_id': 'u1', 'unit': unit, 'position': 0, 'overlap': 3, 'kind': 'matched', 'rel_keys': [], 'content_sha256': 'c' * 64, 'region': 'db.training_questions', 'artifact_ref': 'a1', 'request_id': 'r', 'class_label': 'utterance', 'reextraction_ref': 'x'}],
+                    'calls': 1, 'qualified_bytes_read': 10, 'matched_total': 1, 'units_total': 1, 'failures': []}
+    
+        async def fake_route(**kw):
+            log.append('scope_check'); seen['route_artifact_ref'] = kw['artifact_ref']
+            return {'decision': 'warm', 'reason': 'warm_units', 'ledger_row': {'row_id': 'led-synthetic'}}
+    
+        class Window:
+            selected_refs = ('akki://unit/t/r/u1',); load_bearing_refs = ('akki://unit/t/r/u1',); excluded_counts = {}; top_excluded_handles = (); window_tokens = 1000; reserved_tokens = 100
+            tokenizer_sha256 = 's' * 64; ranking_rule_ref = 'rule'; objective_sha256 = 'o' * 64; loss_disclosed = True
+    
+        def fake_build(**kw):
+            return Window(), [{'ref': 'akki://unit/t/r/u1', 'region': 'db.training_questions', 'class_label': 'utterance', 'tokens': 20, 'proximity': 1.0, 'position': 0, 'content_sha256': 'c' * 64, 'unit': {'provenance': {'locator': 'synthetic://u1'}}, 'text': '{"q": "minerals"}'}], []
+    
+        class Accessor:
+            plane_id = 'plane-synthetic'
+            async def list_working_set(self): return []
+    
+        async def fake_plane(scope): return Accessor()
+        async def fake_touch(accessor, refs): return {'plane_id': 'plane-synthetic', 'hits': 0, 'misses': len(refs), 'hot_refs_before': 0, 'hot_refs_after': len(refs), 'evicted': 0}
+    
+        async def fake_answer(*, scope, session, question, context_lines, selected, model, provider, actor):
+            log.append('crossing'); seen['prompt'] = answering.prompt_for(objective=session['objective']['bounded_objective'], context_lines=context_lines, question=question, selected=selected, objective_ref=session['objective']['artifact_id'])
+            seen['session_objective'] = session['objective']
+            return {'refused': False, 'answer': 'Farmers asked about mineral licks.', 'cited_refs': ['akki://unit/t/r/u1'], 'sufficient': True, 'grounding': 'cited_in_window', 'unsupported': '', 'citations_dropped': 0,
+                    'objective_ref': session['objective']['artifact_id'], 'receipt_id': 'rcp-synthetic', 'model_id': model, 'provider': provider, 'tokens_in': 1, 'tokens_out': 1, 'latency_ms': 1, 'shield': None, 'prompt_chars': 10}
+    
+        async def no_converge(*a, **k): log.append('converge'); seen['converge_ref'] = k.get('objective_ref') or (a[3] if len(a) &gt; 3 else None)
+    
+        monkeypatch.setattr(spine, 'verified_artefacts', no_artefacts); monkeypatch.setattr(spine, 'read_candidates', one_candidate)
+        monkeypatch.setattr(spine, 'chat_plane', fake_plane); monkeypatch.setattr(spine, 'touch_working_set', fake_touch)
+        monkeypatch.setattr(deciding.gate, 'route', fake_route); monkeypatch.setattr(windowing, 'build', fake_build); monkeypatch.setattr(windowing, 'loss_statement', lambda w, r: 'nothing lost (SYNTHETIC)')
+        monkeypatch.setattr(answering, 'answer', fake_answer); monkeypatch.setattr(journey, '_converge', no_converge)
+        monkeypatch.setattr(journey.critic_seam, 'route_through_seam', lambda **k: {'seam_attested': True}); monkeypatch.setattr(journey.critic_seam, 'verdict_summary', lambda v: v)
+    
+&gt;       out = run(journey.ask(sessions.db, SCOPE, question=QUESTION))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/shield/test_objective_capture.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/shield/test_objective_capture.py:37: in run
+    asyncio.set_event_loop(_LOOP); return _LOOP.run_until_complete(coro)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+vendored/extraction_akki/backend/services/chat/journey.py:76: in ask
+    session = await sessions.create(scope, question, session_id=new_id, artifact=artifact)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = {'tenant_id': 'tenant-SYNTHETIC-a3-f45cfe', 'principal_id': 'principal-SYNTHETIC-a3', 'roles': ['operator']}
+question = 'Which training questions from Zinnia Grove Test Cooperative were about minerals, and what did farmers ask most?'
+title = None, session_id = 'cs-7f5f3355b0cd'
+artifact = {'artifact_id': 'obj-b00e9a4fdd78', 'request_id': 'cs-7f5f3355b0cd', 'tenant_id': 'tenant-SYNTHETIC-a3-f45cfe', 'caller': 'human', ...}
+
+    async def create(scope, question, title=None, session_id=None, artifact=None):
+        session = {'session_id': session_id or new_id(), 'tenant_id': scope['tenant_id'], 'principal_id': scope['principal_id'],
+                   'objective': objective_record(question, artifact) if artifact else {'text': question, 'sha256': sha(question), 'frozen_at': now()},
+                   'title': (title or question)[:80], 'created_at': now(), 'updated_at': now(), 'archived': False,
+                   'turns': [], 'compaction': None}
+&gt;       await db[COLLECTION].insert_one(dict(session))
+E       RuntimeError: Task &lt;Task pending name='Task-31' coro=&lt;ask() running at /app/backend/vendored/extraction_akki/backend/services/chat/journey.py:76&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop
+
+vendored/extraction_akki/backend/services/chat/sessions.py:57: RuntimeError</failure></testcase><testcase classname="tests.shield.test_objective_capture" name="test_chat_journey_asks_instead_of_guessing_and_opens_no_session" time="0.007"><failure message="RuntimeError: Task &lt;Task pending name='Task-33' coro=&lt;listing() running at /app/backend/vendored/extraction_akki/backend/services/chat/sessions.py:70&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xff950a781f10&gt;
+
+    def test_chat_journey_asks_instead_of_guessing_and_opens_no_session(monkeypatch):
+        incoherent = {**READING, 'objective': {'intent': 'unclear', 'bounded_objective': 'The question contradicts itself about which period to cover', 'coherent': False}}
+        monkeypatch.setattr(oc.reader, 'read', fake_read(incoherent))
+    
+        async def must_not_run(*a, **k): raise AssertionError('nothing may be read before an objective exists')
+        monkeypatch.setattr(spine, 'verified_artefacts', must_not_run)
+        out = run(journey.ask(sessions.db, SCOPE, question='Cover last year but only this year, and neither.'))
+        assert out['session_id'] is None and out['outcome'] == 'ask' and out['turn']['decision'] == 'ask' and out['turn']['refused'] is True
+        assert 'clarify' in out['turn']['refusal_reason'].lower() and out['turn']['evidence']['reads']['source_dispatches'] == 0 and out['turn']['objective_capture']['kind'] == 'incoherent'
+&gt;       assert run(sessions.listing(SCOPE)) == [s for s in run(sessions.listing(SCOPE)) if s['objective'].get('artifact_id')]  # no session without an artefact was opened
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/shield/test_objective_capture.py:205: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/shield/test_objective_capture.py:37: in run
+    asyncio.set_event_loop(_LOOP); return _LOOP.run_until_complete(coro)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+vendored/extraction_akki/backend/services/chat/sessions.py:70: in listing
+    async for doc in cursor:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = AsyncIOMotorCursor(&lt;pymongo.cursor.Cursor object at 0xff950a783590&gt;)
+
+    async def next(self):
+        """Advance the cursor.
+    
+        .. versionadded:: 2.2
+        """
+&gt;       if self.alive and (self._buffer_size() or await self._get_more()):
+                                                  ^^^^^^^^^^^^^^^^^^^^^^
+E       RuntimeError: Task &lt;Task pending name='Task-33' coro=&lt;listing() running at /app/backend/vendored/extraction_akki/backend/services/chat/sessions.py:70&gt; cb=[_run_until_complete_cb() at /usr/local/lib/python3.11/asyncio/base_events.py:181]&gt; got Future &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt; attached to a different loop
+
+/root/.venv/lib/python3.11/site-packages/motor/core.py:1390: RuntimeError</failure></testcase><testcase classname="tests.shield.test_objective_capture" name="test_live_capture_with_the_contained_reader_is_coherent_and_privileged_free" time="13.329"><error message="failed on teardown with &quot;ValueError: The future belongs to a different loop than the one specified as the loop argument&quot;">@pytest.fixture(autouse=True, scope='module')
+    def _cleanup():
+        yield
+        d = lab.db()
+        d.shield_objectives.delete_many({'tenant_id': TENANT}); d.shield_objective_observations.delete_many({'tenant_id': TENANT}); d.shield_register.delete_many({'tenant_id': TENANT})
+&gt;       run(sessions.db[sessions.COLLECTION].delete_many({'tenant_id': TENANT}))
+
+tests/shield/test_objective_capture.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/shield/test_objective_capture.py:37: in run
+    asyncio.set_event_loop(_LOOP); return _LOOP.run_until_complete(coro)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:633: in run_until_complete
+    future = tasks.ensure_future(future, loop=self)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/tasks.py:659: in ensure_future
+    return _ensure_future(coro_or_future, loop=loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+coro_or_future = &lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at /usr/local/lib/python3.11/asyncio/futures.py:387]&gt;
+loop = &lt;_UnixSelectorEventLoop running=False closed=False debug=False&gt;
+
+    def _ensure_future(coro_or_future, *, loop=None):
+        if futures.isfuture(coro_or_future):
+            if loop is not None and loop is not futures._get_loop(coro_or_future):
+&gt;               raise ValueError('The future belongs to a different loop than '
+                                'the one specified as the loop argument')
+E               ValueError: The future belongs to a different loop than the one specified as the loop argument
+
+/usr/local/lib/python3.11/asyncio/tasks.py:665: ValueError</error></testcase><testcase classname="tests.shield.test_shield_register_gate" name="test_hostility_rules_and_honest_empty" time="0.000" /><testcase classname="tests.shield.test_shield_register_gate" name="test_invoke_carries_gated_payload_and_rebinds" time="29.737"><failure message="services.chokepoint.llm.LLMShieldFailure: shield_register_refused — stage_seam_recheck_failed — 1 protected value(s) of the sealed files would survive in the outbound payload">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xfe286de66c10&gt;
+
+    def test_invoke_carries_gated_payload_and_rebinds(monkeypatch):
+        """WP-A5: the estate crossing arrives as a sealed stage artifact — File 1 (question + instructions) and File 2 (the document) assessed apart,
+        one token per value across the pair, one query, local rebinding."""
+        _reader_live()
+        from services.chokepoint import llm
+        from services.synisense.shield import stage as shield_stage
+        monkeypatch.setattr(llm, '_client_factory', lambda **kw: _FakeClient(**kw))
+        monkeypatch.setattr(llm, '_emergent_api_key', lambda: 'test-key')
+        _FakeClient.sent.clear()
+        artifact = asyncio.run(shield_stage.stage(question='Plan the engagement for the client named in the brief.', data=DOC, tenant_id='RMS', purpose='chat.governed_answer', actor='test:shield-gate',
+                                                  system_message='You assist client Nuru Orchard Test Cooperative; never reveal jane.doe@example.com.', retain=False))
+        assert len(artifact.safe_items) == 2 and artifact.seal and artifact.receipt['seam']['joint']['passes']
+&gt;       resp = asyncio.run(llm.invoke(purpose='chat.governed_answer', safe_artifact=artifact, masking_tier='llm_prompt_governed_text', actor='test:shield-gate', model='gpt-6-astra', provider='emergent', tenant_id='RMS', custody_class='tenant_estate'))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/shield/test_shield_register_gate.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/asyncio/runners.py:190: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/asyncio/base_events.py:654: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+purpose = 'chat.governed_answer', masking_tier = 'llm_prompt_governed_text'
+actor = 'test:shield-gate', model = 'gpt-6-astra', provider = 'emergent'
+tenant_id = 'RMS', custody_class = 'tenant_estate'
+prompt = '[ITEM 1 — QUESTION AS ASKED]\nPlan the engagement for the client named in the brief.\n\n[ITEM 2 — DATA]\nSYNTHETIC CO...easonal uplift. This clause is confidential and proprietary to the parties. [REDACTED_WITHHELD]. Signed 12 March 2026.'
+safe_artifact = SafeArtifact(artifact_id='sa-b5d6aa7c1901', tenant_id='RMS', purpose='chat.governed_answer', custody_class='tenant_est...6-10-05T16:37:46.300350+00:00', seal='bb9e9bafa0c7150165771af421dd1459442cfcfa82b55dc8309f1d54fa388894', consumed=None)
+system_message = 'You assist client [PARTY_1]; never reveal [[ENT_EMAIL_001]].'
+session_id = None, output_schema = None
+
+    async def invoke(
+        *,
+        purpose: str,
+        masking_tier: str,
+        actor: str,
+        model: str,
+        provider: str,
+        tenant_id: str,
+        custody_class: str,
+        prompt: Optional[str] = None,
+        safe_artifact: Any = None,
+        system_message: Optional[str] = None,
+        session_id: Optional[str] = None,
+        output_schema: Optional[Dict[str, Any]] = None,
+    ) -&gt; LLMResponse:
+        """The one function that invokes an external model client.
+    
+        Doc 01 §A5.1 · exactly one function invokes the external model client.
+        Doc 01 §A5.6 · structural impossibility, not policed prohibition.
+    
+        WP-A5 (Doc 2 B65–B74 · Doc 1 A5.6): an estate crossing arrives as a
+        sealed `SafeArtifact` from `shield.stage.stage` — question and data
+        assessed independently, re-associated at the guarded seam, sealed.
+        The chokepoint verifies the seal, re-checks the outbound against the
+        artifact's protected values (mark twice), sends ONE query with the
+        two-item context, rebinds locally and destroys the mapping. A bare
+        `prompt=` is accepted only for `synthetic` custody (no estate
+        content); any unsealed estate payload refuses.
+    
+        M12-W1d (2026-09-18) · Option D per Owner R-25:
+          * `tenant_id` is REQUIRED (no Optional, no default). An empty
+            tenant_id refuses per FP-2 (unresolvable gate refuses).
+          * `custody_class` is REQUIRED. Accepted values: `"tenant_estate"`
+            (real estate work) and `"synthetic"` (connectivity self-check;
+            payload carries no estate content). Any other value refuses.
+          * No bypass parameter exists. No conditional guards the custody
+            call. The custody sequence ALWAYS runs; for synthetic payloads
+            it runs as a verified no-op.
+          * The Watch input-seat emit (W1f emitter) fires on every crossing
+            BEFORE dispatch. A crossing that cannot be observed does not
+            happen (fail-closed).
+        """
+        # M12-W1d · Option D pre-flight: tenant_id + custody_class REQUIRED.
+        if not tenant_id or not isinstance(tenant_id, str):
+            raise ChokepointRefused(
+                "tenant_id_required — invoke() refuses without a tenant scope. "
+                "A crossing with no tenant scope cannot resolve custody class "
+                "or terms (canon 3 §14 · FP-2 unresolvable gate refuses)."
+            )
+        _ACCEPTED_CUSTODY_CLASSES = {"tenant_estate", "synthetic"}
+        if custody_class not in _ACCEPTED_CUSTODY_CLASSES:
+            raise ChokepointRefused(
+                f"custody_class_invalid — got {custody_class!r}, "
+                f"expected one of {sorted(_ACCEPTED_CUSTODY_CLASSES)}. "
+                "Every crossing must declare a custody class (Option D · R-25)."
+            )
+    
+        # WP-A5 · the sealed stage is the only way estate content reaches this seat.
+        from services.synisense.shield import stage as shield_stage
+        if safe_artifact is not None and prompt is not None:
+            shield_stage.destroy(safe_artifact)
+            raise ChokepointRefused("ambiguous_payload — pass a sealed safe_artifact OR a synthetic prompt, never both.")
+        if safe_artifact is not None:
+            problem = shield_stage.verify(safe_artifact, tenant_id=tenant_id, purpose=purpose, custody_class=custody_class)
+            if problem:
+                shield_stage.destroy(safe_artifact)
+                raise ChokepointRefused(f"safe_artifact_refused — {problem}")
+            prompt = safe_artifact.render()
+            if safe_artifact.safe_system is not None:
+                system_message = safe_artifact.safe_system
+        elif custody_class != "synthetic":
+            raise ChokepointRefused(
+                "unsealed_payload_refused — an estate crossing arrives only as a SafeArtifact sealed by the Shield stage "
+                "(services.synisense.shield.stage.stage: two files assessed independently, re-associated at the guarded seam); "
+                "the bare prompt path is closed for tenant_estate custody (Doc 2 B67/B77 · Doc 1 A5.6)."
+            )
+        elif prompt is None:
+            raise ChokepointRefused("prompt_required — a synthetic crossing needs a prompt.")
+    
+        # 1. Purpose gate (Owner Order §5 · Ruling 1).
+        validate_purpose(purpose)  # raises PurposeInvalid
+    
+        # 2. Credential scrub (Owner Order §6 standing rule) — moved BEFORE
+        # tier / endpoint resolution because credential-shaped material must
+        # never reach the network path regardless of provider or tier state.
+        _scrub_credential_shaped_prompt(prompt)
+    
+        # 3. Masking tier (Owner Order §6 · W3 discipline carried forward).
+        try:
+            validate_tier(masking_tier)  # raises MaskingTierRefused
+        except MaskingTierRefused as exc:
+            raise ChokepointRefused(
+                f"masking_tier_refused — {exc} (LLM crossing)."
+            ) from exc
+    
+        # 4. Endpoint / provider (Owner sharpening §2 · connection-scoped).
+        endpoint = resolve_endpoint(provider)  # raises LLMEndpointRefused
+        # M12-W1g · closed-outbound belt-and-suspenders: even after
+        # resolve_endpoint returns, verify the resolved host is on the
+        # live allowlist.  Guards against future drift where a policy
+        # entry could survive resolve_endpoint's checks but not
+        # allowlisted_hosts()' membership.
+        from services.chokepoint.llm_endpoint_allowlist import allowlisted_hosts
+        _resolved_host = endpoint["host"]
+        if _resolved_host not in allowlisted_hosts():
+            raise LLMEndpointRefused(
+                f"resolved_host_not_in_allowlist — resolved host "
+                f"{_resolved_host!r} for provider {provider!r} is not in "
+                f"allowlisted_hosts() live set (Canon 1 §A5.5 network-layer "
+                f"allowlist)."
+            )
+    
+        # M12-W1d · Option D · DAP-7 custody sequence: DE-IDENTIFY BEFORE any
+        # dispatch.  No conditional guards this call — the sequence ALWAYS
+        # runs.  For custody_class="synthetic" the payload has no estate
+        # content; the deidentifier runs as a verified no-op returning the
+        # unchanged text with an empty token_map.  Mα MA-04: the system
+        # message is a payload path too — both paths are de-identified in one
+        # pass so the same entity carries the same token on both.
+        from services.synisense.shield.deidentifier import deidentify
+        sysmsg = system_message or (
+            "You are Akki — a governed reasoning faculty. Answer directly, "
+            "cite the receipt kind, refuse when evidence is thin."
+        )
+        _scrub_credential_shaped_prompt(sysmsg)
+        _SEP = "\n\n[[AKKI_PAYLOAD_PATH_BOUNDARY]]\n\n"
+        de_id_result = await deidentify(
+            sysmsg + _SEP + prompt, tenant_id=tenant_id, purpose=purpose,
+        )
+        if _SEP in de_id_result.redacted_text:
+            sysmsg, redacted_prompt = de_id_result.redacted_text.split(_SEP, 1)
+        else:
+            de_id_result = await deidentify(prompt, tenant_id=tenant_id, purpose=purpose)
+            redacted_prompt = de_id_result.redacted_text
+    
+        # Mα MA-04/05 · WP-A4 · Shield REGISTER GATE on BOTH payload paths (system
+        # message AND prompt): Category 1/2 deterministically, Category 3 through the
+        # contained reader (one read inside the perimeter; skipped for synthetic
+        # custody); enforced categories become typed placeholders that are rebound in
+        # the reply; advisory categories and cue hits are receipted; an enforced value
+        # surviving in the outbound text, an ambiguous read or an unavailable reader
+        # refuses the call — no fallback to the frontier for the read (Doc 1 A5.5).
+        from services.synisense.shield import register_gate
+        _attested = shield_stage.attested_recogniser(safe_artifact) if safe_artifact is not None else None
+        gate = await asyncio.to_thread(register_gate.gate, sysmsg, redacted_prompt, tenant_id, purpose, custody_class, _attested)
+        if not gate.refused and safe_artifact is not None:
+            # WP-A5 · mark twice (Doc 2 B67/B77): the seam's markers are re-checked here, at consumption, against the artifact's protected values
+            _recheck = shield_stage.recheck(safe_artifact, gate.system_message + "\n" + gate.prompt)
+            if not _recheck["clean"]:
+                gate.refused, gate.reason = True, f"stage_seam_recheck_failed — {len(_recheck['protected_values_found'])} protected value(s) of the sealed files would survive in the outbound payload"
+            gate.reader = {**gate.reader, "attested_by_seal": safe_artifact.artifact_id, "stage": safe_artifact.summary()}
+        if gate.refused:
+            if safe_artifact is not None: shield_stage.destroy(safe_artifact)
+            _register_llm_crossing(
+                kind=f"{_kind_from_purpose(purpose)}_refused", endpoint=endpoint, verb="shield_register_gate", model=model, provider=provider,
+                tokens_in=0, tokens_out=0, latency_ms=0, purpose=purpose, actor=actor, masking_tier=masking_tier, metering_source="register_refusal", shield=gate.summary(),
+            )
+&gt;           raise LLMShieldFailure(f"shield_register_refused — {gate.reason}")
+E           services.chokepoint.llm.LLMShieldFailure: shield_register_refused — stage_seam_recheck_failed — 1 protected value(s) of the sealed files would survive in the outbound payload
+
+vendored/extraction_akki/backend/services/chokepoint/llm.py:433: LLMShieldFailure</failure></testcase><testcase classname="tests.shield.test_contained_reader" name="test_egress_guard_refuses_non_loopback_and_probe_reports_blocked" time="0.001" /><testcase classname="tests.shield.test_contained_reader" name="test_json_extraction_schema_and_leak_check_on_synthetic_readings" time="0.000" /><testcase classname="tests.shield.test_contained_reader" name="test_dispatch_validation_requires_attested_hash_and_residency_entry" time="0.003" /><testcase classname="tests.shield.test_contained_reader" name="test_control_plane_refuses_when_the_reader_is_not_serving" time="0.000" /><testcase classname="tests.shield.test_contained_reader" name="test_live_health_lineage_offline_env_and_egress_probe_blocked" time="18.489" /><testcase classname="tests.shield.test_contained_reader" name="test_live_synthetic_read_is_schema_valid_and_bounded" time="51.127"><failure message="services.synisense.shield.contained_reader.ReaderUnavailable: reader refused the reading (422): UNREADABLE_OR_UNSAFE_READING ['no JSON object in the model output']">def test_live_synthetic_read_is_schema_valid_and_bounded():
+        st = _serving()
+        if (st.get('entry') or {}).get('serving', {}).get('status') == 'revoked':
+            pytest.skip('reader authority revoked')
+&gt;       out = cr.read(SYNTHETIC, CATEGORIES, 'test_contained_reader')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/shield/test_contained_reader.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+text = 'SYNTHETIC BRD. Prepare a launch brief for our client Zinnia Grove Test Cooperative under the internal codename Mango ...th with a 12% exclusivity premium; the bid is computed as 0.81 times the rival floor. Contact: amina.test@example.com.'
+categories = [{'name': 'client_identity', 'description': 'who the counterparty, client or partner is'}, {'name': 'private_project_n...hod', 'description': 'how a price or bid is computed'}, {'name': 'personal_data', 'description': 'direct identifiers'}]
+purpose = 'test_contained_reader', model_id = 'contained-reader-qwen3-8b-base'
+timeout = 240
+
+    def read(text, categories, purpose, model_id=MODEL_ID, timeout=240):
+        """One bounded, request-scoped reading inside the perimeter. Refuses (never falls back) when the reader is unavailable or the reading is unsafe."""
+        entry, job, port = _running(model_id)
+        clean = str(text or '')[:MAX_CHARS]
+        if not clean.strip(): raise ValueError('TEXT_REQUIRED')
+        payload = base64.b64encode(json.dumps({'text': clean, 'categories': [{'name': c['name'], 'description': (c.get('description') or '')[:200]} for c in categories][:60]}, ensure_ascii=False).encode()).decode()
+        command = f"echo {payload} | base64 -d | curl -s -m {timeout} -o /tmp/.akki_rd_$$ -w '%{{http_code}}' -X POST -H 'Content-Type: application/json' --data-binary @- http://127.0.0.1:{port}/read; echo; cat /tmp/.akki_rd_$$; rm -f /tmp/.akki_rd_$$"
+        result = serving._remote(job['host'], command, purpose=f'contained_reader_read:{purpose}', timeout=timeout + 30)
+        code, _, body_text = result.stdout_redacted.strip().partition('\n')
+        try: body = json.loads(body_text.strip())
+        except ValueError as exc: raise ReaderUnavailable('unreadable response from the reader') from exc
+        http = int(code) if code.strip().isdigit() else None
+        if http == 403: raise ReaderUnavailable('reader authority revoked: ' + json.dumps(body.get('revocation')))
+&gt;       if http != 200: raise ReaderUnavailable(f'reader refused the reading ({http}): {body.get("refused") or body.get("error")} {body.get("problems") or ""}')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       services.synisense.shield.contained_reader.ReaderUnavailable: reader refused the reading (422): UNREADABLE_OR_UNSAFE_READING ['no JSON object in the model output']
+
+vendored/extraction_akki/backend/services/synisense/shield/contained_reader.py:121: ReaderUnavailable</failure></testcase><testcase classname="tests.shield.test_shield_register_gate" name="test_invoke_refuses_hostile_payload_before_any_call" time="33.426" /><testcase classname="tests.shield.test_shield_register_gate" name="test_register_lifecycle_propose_adopt_approve_enforce_remove" time="48.515"><failure message="AssertionError: adoption changes nothing at the crossing (B43)&#10;assert {'tenant_id':...entity'], ...} == {'tenant_id':...entity'], ...}&#10;  &#10;  Omitting 5 identical items, use -vv to show&#10;  Differing items:&#10;  {'reader': {'recogniser': 'contained_reader', 'spans': 1, 'indirect_disclosures': 0, 'undeclared': 0, ...}} != {'reader': {'recogniser': 'contained_reader', 'spans': 1, 'indirect_disclosures': 0, 'undeclared': 0, ...}}&#10;  Use -v to get more diff">dpo = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTEiLCJlbWFpbCI...I6W10sImlhdCI6MTc5MTIxODMwMCwiZXhwIjoxNzkxMjE5MjAwLCJ0eXBlIjoiYWNjZXNzIn0.S0FkuGoZVUx_dg50CbbuCbZLsbimVUGzHDqk_IZWiic'}
+op = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTIiLCJlbWFpbCI...I6W10sImlhdCI6MTc5MTIxODMwMCwiZXhwIjoxNzkxMjE5MjAwLCJ0eXBlIjoiYWNjZXNzIn0.FY_rb418VsQAD9_1gf9EMaA-UT9-Wl8aWzzZJsFhxEQ'}
+master = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWI1NmRkNDg4OTRhYmIyNjkxMzVjYTAiLCJlbWFpbCI...iOltdLCJpYXQiOjE3OTEyMTgzMDEsImV4cCI6MTc5MTIxOTIwMSwidHlwZSI6ImFjY2VzcyJ9._SqCIVUWTREBjH2hlruixwD0YJHYR8m0ceKzI1ZQ1yE'}
+
+    def test_register_lifecycle_propose_adopt_approve_enforce_remove(dpo, op, master):
+        """Live lifecycle on the RMS register with a fixed SYNTHETIC probe (`synthetic_lifecycle_probe`): re-runnable — stale pending is
+        withdrawn, a stale ceremony cancelled, a revision supersedes the previous probe version; the adopted draft is withdrawn and its
+        withdrawn record removed as test residue."""
+        reg = requests.get(f'{BASE_URL}/api/shield/register', headers=dpo, timeout=30).json()
+        assert reg['can_author'] and {'enforced', 'advisory'} == set(reg['enforcement']) and reg['removal_countdown_hours'] == 48 and 'pending' in reg['statuses']
+        assert all('enforcement' in c for c in reg['categories'])
+        name = 'synthetic_lifecycle_probe'
+        for stale in reg['categories']:
+            if stale['name'] == name and stale['status'] == 'pending': requests.post(f'{BASE_URL}/api/shield/register/{name}/withdraw', headers=dpo, json={'reason': 'stale test state'}, timeout=30)
+            if stale['name'] == name and stale['status'] == 'active' and stale.get('removal'): requests.post(f'{BASE_URL}/api/shield/register/{name}/removal/cancel', headers=dpo, json={'reason': 'stale test state'}, timeout=30)
+        # propose → adopt lands pending (B28) and changes nothing at the crossing (B43) → withdraw keeps the record
+        r = requests.post(f'{BASE_URL}/api/shield/register/propose', headers=dpo, json={'text': DOC, 'source_ref': 'synthetic contract fixture'}, timeout=60); assert r.status_code == 200, r.text
+        drafts = {d['name']: d for d in r.json()['drafts']}
+        assert 'client_identity_values' in drafts and 'Nuru Orchard Test Cooperative' in drafts['client_identity_values']['values'] and drafts['client_identity_values']['status'] == 'draft' and drafts['client_identity_values']['version'] == 0
+        probe_text = 'Nuru Orchard Test Cooperative opens on Tuesdays.'
+        before = requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': probe_text}, timeout=30).json()
+        r = requests.post(f'{BASE_URL}/api/shield/register/client_identity_values/adopt', headers=dpo, json={'description': 'adopted by test'}, timeout=30); assert r.status_code == 200, r.text
+        cat = r.json()['category']; assert cat['status'] == 'pending' and cat['kind'] == 'exact' and cat['enforcement'] == 'enforced' and 'approved_by' not in cat
+&gt;       assert requests.post(f'{BASE_URL}/api/shield/classify', headers=op, json={'text': probe_text}, timeout=30).json() == before, 'adoption changes nothing at the crossing (B43)'
+E       AssertionError: adoption changes nothing at the crossing (B43)
+E       assert {'tenant_id':...entity'], ...} == {'tenant_id':...entity'], ...}
+E         
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'reader': {'recogniser': 'contained_reader', 'spans': 1, 'indirect_disclosures': 0, 'undeclared': 0, ...}} != {'reader': {'recogniser': 'contained_reader', 'spans': 1, 'indirect_disclosures': 0, 'undeclared': 0, ...}}
+E         Use -v to get more diff
+
+tests/shield/test_shield_register_gate.py:166: AssertionError</failure></testcase><testcase classname="tests.shield.test_contained_reader" name="test_live_api_status_and_role_gates" time="4.755" /><testcase classname="tests.governance.test_residency_register" name="test_every_class_has_terms_of_reference_and_none_permits_idle_gpu_residency" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_attribution_maps_known_pids_to_classes_and_reports_the_rest_as_findings" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_serving_resident_fits_beside_the_lid_server_and_is_recorded_with_its_reason" time="0.002" /><testcase classname="tests.governance.test_residency_register" name="test_placement_that_would_evict_a_running_lane_is_refused" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_admitted_model_is_never_placed_idle_and_a_serving_resident_needs_a_demand_lease" time="0.001" /><testcase classname="tests.governance.test_residency_register" name="test_reconcile_flags_placed_entries_without_a_live_process" time="0.002" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_gap_reads_load_bearing_units_at_utterance_class" time="0.004" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_acceptance_point_is_deterministic_and_floors_are_read_only" time="0.003" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_select_adopts_measurement_rule_and_records_trace" time="0.080" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_frontier_idea_with_bounded_delta_outranks_ladder_and_unbound_ideas_wait" time="0.107" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_hypothesis_test_absorption_refusal_envelope_and_owner_release" time="0.111" /><testcase classname="tests.malpha.test_malpha_supervisor_offline" name="test_coach_seat_verdicts_and_binding" time="0.106" /><testcase classname="tests.governance.test_requirements_anchor" name="test_plan_and_diagnosis_exist_and_are_named_in_agents_anchor" time="0.000" /><testcase classname="tests.governance.test_requirements_anchor" name="test_every_work_package_has_resolving_sources" time="0.003" /><testcase classname="tests.governance.test_requirements_anchor" name="test_ledger_is_append_only_shaped_and_names_known_work_packages" time="0.000" /><testcase classname="tests.governance.test_requirements_anchor" name="test_owner_orders_sections_are_append_only" time="0.000" /><testcase classname="tests.governance.test_requirements_anchor" name="test_diagnosis_lists_pending_decisions_and_root_causes" time="0.000" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_three_faults_under_the_current_bundle_hold_the_lane_as_worker_fault" time="0.000" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_faults_under_a_superseded_bundle_do_not_exhaust_corrected_code" time="0.000" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_fault_hold_release_rule" time="0.000" /><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_voice_model_renders_without_an_identity_vector" time="0.001"><skipped type="pytest.skip" message="worker tensor contracts run on the estate hosts (worker audit), not in the control plane">/app/backend/tests/malpha/test_malpha_fault_hold_offline.py:73: worker tensor contracts run on the estate hosts (worker audit), not in the control plane</skipped></testcase><testcase classname="tests.malpha.test_malpha_fault_hold_offline" name="test_worker_audit_checks_the_unconditioned_path" time="0.000"><skipped type="pytest.skip" message="the native worker audit runs on the estate hosts; its result is read from malpha_jobs">/app/backend/tests/malpha/test_malpha_fault_hold_offline.py:81: the native worker audit runs on the estate hosts; its result is read from malpha_jobs</skipped></testcase><testcase classname="tests.invariants.test_llm_chokepoint_sole_importer" name="test_only_chokepoint_llm_may_import_llm_sdks" time="1.842" /><testcase classname="tests.invariants.test_llm_chokepoint_sole_importer" name="test_chokepoint_itself_imports_an_sdk_so_the_scan_is_not_vacuous" time="0.004" /><testcase classname="tests.invariants.test_llm_chokepoint_sole_importer" name="test_scan_detects_a_planted_offender" time="1.916" /><testcase classname="tests.shield.test_shield_register_gate" name="test_marked_confidential_passages_are_proposed" time="11.664" /><testcase classname="tests.shield.test_shield_register_gate" name="test_multilingual_cues_swahili" time="11.899" /><testcase classname="tests.shield.test_shield_register_gate" name="test_crossings_view_and_roles" time="1.893" /></testsuite></testsuites>

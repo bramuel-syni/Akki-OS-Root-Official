@@ -1,0 +1,37 @@
+{
+  "summary": "Frontend validation of Wave-A WP-A1 Shield confidentiality register lifecycle at /os/admin/govern. Exercised DPO author -> pending -> approve -> in-force -> propose retirement -> master_admin countersign -> countdown -> cancel -> withdraw flow, plus reach report, vault invalid file-id, read-only operator role, forbidden analyst role, and mobile layout. Also ran API negatives via curl. All scripted assertions passed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": ["/app/test_reports/iteration_93.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "DELETE /api/shield/register/{name}?reason=... is the 'propose retirement' endpoint; carrying a required semantic body (reason) in a URL query of a DELETE is unusual and conflicts with the symmetry of removal/countersign|cancel|apply which are POSTs with JSON bodies. Consider aliasing POST /register/{name}/removal with a JSON body for consistency and OpenAPI clarity.",
+    "Vault error from the backend reads 'No such upload in this tenant\\'s library'. The acceptance-text in the spec referenced 'No such upload' — the current wording is fine but the test fixture should match reality."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (6/6 API negatives)", "frontend": "100% (10/10 scripted checks)"},
+  "test_credentials": "Used demo.dpo / demo.master_admin / demo.operator / demo.analyst on tenant RMS (all from /app/memory/test_credentials.md).",
+  "seed_data_creation": "Synthetic category 'ui_probe_hx86l8' authored, approved into force; left clean (no removal in flight) after master_admin cancelled both the UI-proposed and API-proposed ceremonies. 'ui_withdraw_hx86l8' authored & withdrawn (now on record as withdrawn). Safe to re-run; new runs will use a fresh random6 suffix.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All Wave-A1 UI flows verified. Observations: (1) banner text for retirement proposal is 'Retirement proposal recorded.'; (2) in-force row with ceremony shows 'RETIREMENT PROPOSED' tag; (3) countdown message reads 'Visible countdown runs until …'; (4) analyst role gets no shield-surface (no explicit forbidden testid, but surface absent + readable 'cannot/forbidden/role' text — if a dedicated data-testid='shield-forbidden' banner is desired, main agent should add one). Everything else matches the WP-A1 contract.",
+  "detailed_results": {
+    "tabs_and_toolbar_dpo": "shield-tab-force/pending/drafts/crossings/rails all present; shield-author-open/propose-open/vault-open/test-open all visible.",
+    "declare_as_dpo": "Banner 'Declaration recorded.' shown; detail opens with status 'pending · adopted, awaits approval, protects nothing'; shield-approve + shield-withdraw-open visible; passage test for 'Zebra Lantern Test ships Monday.' returned categories='none' (not listed while pending).",
+    "approve": "Status flipped to 'in force'; shield-category-provenance has 'adopted by …' and 'approved by …'; history contains 'approved into force'; passage test now lists 'ui_probe_hx86l8' and safe text is '[UI_PROBE_HX86L8_1] ships Monday.'",
+    "propose_retirement_dpo": "shield-removal-ceremony panel appears, state 'proposed by … 48 h countdown …', shield-removal-countersign DISABLED for proposer, shield-removal-proposer-note shown, in-force row shows 'RETIREMENT PROPOSED'.",
+    "countersign_master_admin": "shield-removal-countersign enabled; after click state becomes countdown with explicit end timestamp; shield-removal-apply visible and DISABLED; cancel via shield-removal-cancel-open/form/submit removes the ceremony panel, status stays 'in force', history includes a cancellation entry.",
+    "withdraw_flow": "Second category 'ui_withdraw_hx86l8' created; shield-withdraw-* flow produced banner 'Withdrawal recorded.'; retired/withdrawn count on pageSub incremented from 7 to 8; category absent from Pending and from In force rows.",
+    "review_reach": "shield-reach panel shows per-declaration line and shield-reach-unmeasured text contains 'not measured'; shield-reach-close hides the panel.",
+    "vault_tool": "File control is <input> (no CSV/XLSX in library) with the expected placeholder; submitting unknown id 'no-such-upload-id-1' surfaced oxblood banner 'No such upload in this tenant\\'s library' (404). No crash.",
+    "operator_role": "shield-readonly-note visible; shield-author-open/propose-open/vault-open absent; detail shows shield-review-reach + shield-detail-close but no approve/remove/toggle-enforcement buttons.",
+    "analyst_role": "Shield surface absent (no shield-surface); page text includes 'cannot/forbidden/role' explanatory copy; no author button. No explicit data-testid for a 'forbidden banner' detected.",
+    "mobile_390": "document.documentElement.scrollWidth == 390 on both list and category detail — no horizontal overflow.",
+    "api_negatives": {
+      "POST /approve as operator": "403 'Register authoring is a DPO act'",
+      "DELETE /register/{name}?reason=… then POST /removal/countersign by same DPO": "409 'The second signature must come from a different DPO or master admin than the proposer'",
+      "POST /register/vault unknown file_id as DPO": "404 'No such upload in this tenant\\'s library'",
+      "POST /register/vault as operator": "403 'Register authoring is a DPO act'"
+    }
+  }
+}

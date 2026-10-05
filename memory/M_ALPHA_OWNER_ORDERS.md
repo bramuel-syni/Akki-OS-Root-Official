@@ -166,3 +166,25 @@ Review your standing orders before compaction and ensure the guard rails are eff
 
 ### Assistant reading — NOT owner quotes
 - Resume protocol executed (AGENTS.md §0): governance test 5/5, ledger read, native ids verified (listener it.5 and story_text it.9 `running`; story_voice it.10 `completed` 10:40Z — cron owns the next dispatch). Plan question defaults applied: Wave A autonomous in plan order; if no registered base weights exist on the estate for A2, record `blocked` and continue A1/A4-deterministic/A7 rather than stop. WP-C7 added to the plan for D7.
+
+## 14. Owner — resumed fork, Wave A continuation (verbatim, 2026-10-05)
+
+Review your standing orders before compaction and ensure the guard rails are effective, proceed
+
+### Assistant reading — NOT owner quotes
+- Resume protocol executed again in this fork: governance test 5/5; ledger last `next` = measure reader latency → record bound → WP-A3; native ids verified live (reader `m9j-6db25f9769cd` serving on akki-vm-ii GPU1, listener `m9j-2bc0eea34925` running, story_text `m9j-dade36472f5e` and story_voice `m9j-82202771c7fd` completed — cron owns the next dispatch). Reader-latency question defaulted to (a): record the measured bound, correctness first; optimisation owed under WP-D2. Wave A continues in plan order A2-close → A3 → A4 → A5 → A6 → A7.
+
+## 15. Owner — resumed fork, Wave A continuation (verbatim, 2026-10-05)
+
+Review your standing orders before compaction and ensure the guard rails are effective, proceed
+
+### Assistant reading — NOT owner quotes
+- Resume protocol executed in this fork: governance 11/11; ledger last `next` = WP-A4 tests-first; native ids verified live (reader `m9j-7bb97662f007` serving on akki-vm-ii GPU1 after the WP-A4 prompt-hardening restart, 0 reads so far; listener `m9j-2bc0eea34925` it.5, story_text `m9j-f688dd32641c` it.10, story_voice `m9j-346358ddf574` it.12 running; two 13:30Z worker_audit jobs). Plan question defaulted to (a): Wave A continues autonomously in plan order A4 → A5 → A6 → A7; testing agent after A4+A5; lanes untouched.
+
+## 16. Owner — resumed fork, Wave A continuation (verbatim, 2026-10-05)
+
+Review your standing orders before compaction and ensure the guard rails are effective, proceed
+
+### Assistant reading — NOT owner quotes
+- Resume protocol executed in this fork: governance 11/11; ledger last `next` = re-probe reader, then WP-A4 tests-first (A4 and A5 files existed on disk but had no ledger lines — ledger gap repaired below). Native ids verified live: listener `m9j-fdfc07f72b67` it.6 running (akki-vm GPU0), story_text `m9j-0bcf819d3e2b` it.11 running (vm-ii GPU0), story_voice it.13 **faulted 3× and held** (`ValueError: Complete identity comparators required` — worker could not run the adopted CIF hypothesis `identity_conditioning=false`; a worker code defect, not data). Plan question defaulted to (a): Wave A continues autonomously A5-close → A6 → A7, then B3/B1-harness/C5; lanes untouched except the worker-defect correction below.
+- Guard-rail review outcome: (1) the `MAX_ATTEMPTS_PER_ITERATION` hold worked as designed; (2) the sole-importer AST scan the chokepoint docstring cites was no longer on disk — restored (`tests/invariants/test_llm_chokepoint_sole_importer.py`); (3) the Shield stage seam, chokepoint re-check and NER second pass had three defects found by running the live pair (reader over-marking a role noun; NER re-tagging Shield placeholders; reader reading an NER-masked copy) — corrected inside the owning services; (4) WP-A7 Watch re-coverage immediately throttled the demo DPO after three deliberate negative probes (fast_violation → shape) — evidence the gate bites on the new boundaries; tests honour the friction rather than reconfigure it.

@@ -387,7 +387,9 @@ def voice_train(control, state):
             spk_by_group[k] = torch.nn.functional.normalize(torch.stack([embed16(pcm_store.read(k[0], s).astype(np.float32) / 32767.0) for s in segs]).mean(0), dim=0)
             if n_done % 500 == 0: state.update(progress={'stage': 'speaker representations (temporary, in memory)', 'done': n_done, 'of': len(members), 'elapsed_s': int(time.time() - started)})
         state.event(f'{len(spk_by_group)} temporary (session, speaker) representations prepared in memory for conditioning; never written to disk')
-    corpus_reps = torch.cat([torch.stack(list(spk_by_group.values()))] + [comparators[l] for l in langs if comparators[l] is not None]) if identity_on else None
+    # the rendered-identity gate is measured against the corpus comparators whether or not the model is identity-conditioned (an unconditioned
+    # hypothesis is a legitimate tunable); conditioning representations join the comparator set only when they exist
+    corpus_reps = torch.cat(([torch.stack(list(spk_by_group.values()))] if spk_by_group else []) + [comparators[l] for l in langs if comparators[l] is not None]) if any(comparators[l] is not None for l in langs) else None
     if corpus_reps is None or not len(corpus_reps): raise ValueError('Complete identity comparators required')
 
     def invent_identity():

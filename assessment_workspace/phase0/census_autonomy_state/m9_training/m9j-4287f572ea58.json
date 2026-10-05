@@ -1,0 +1,108 @@
+{
+ "job_id": "m9j-4287f572ea58",
+ "phase": "serve_reader",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca0",
+ "submitted_at": "2026-10-05T15:24:07.923843Z",
+ "params": {
+  "base_registry_id": "qwen3-8b-base",
+  "expected_weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+  "port": 8641,
+  "gpu_index": 1,
+  "max_chars": 12000,
+  "residency_entry_id": "res-29e6ebda43",
+  "authority": {
+   "model_id": "contained-reader-qwen3-8b-base",
+   "registry_version": 20,
+   "granted_by": "6ab56dd48894abb269135ca0",
+   "granted_at": "2026-10-05T15:24:07.923177Z",
+   "owner_ruling_ref": "OWNER_ORDERS \u00a712 (Wave A autonomous; D7 residency structure) \u00b7 BUILD_PLAN_V2 WP-A2/WP-C7"
+  }
+ },
+ "northena_run_id": "run-c5ac73708429",
+ "northena_trace_id": "trc-99aed41db551",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-4287f572ea58"
+ },
+ "lawful_basis_ref": "OWNER_ORDERS \u00a712 Wave A autonomous \u00b7 BUILD_PLAN_V2 WP-A2",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-4287f572ea58",
+  "pid": 3472782
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-5409b4787ab4",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_serve_reader_admitted"
+  },
+  {
+   "row_id": "led-a525d7c8b900",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_serve_reader_daemonised:pid=3472782"
+  }
+ ],
+ "code_sha256": "fda721f573a9c7c525454e02f970bb1b706ddabbb949434c59c7e9dd77708a4c",
+ "started_at": "2026-10-05T15:24:13.589316Z",
+ "last_status_rpc": {
+  "at": "2026-10-05T17:17:34.180220Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-8b3ae0dbfdb5"
+ },
+ "remote_state": {
+  "phase": "serve_reader",
+  "status": "running",
+  "started_at": "2026-10-05T15:24:13Z",
+  "progress": {
+   "stage": "serving",
+   "port": 8641,
+   "model_id": "contained-reader-qwen3-8b-base",
+   "role": "contained_reader",
+   "base": "qwen3-8b-base",
+   "base_repo": "Qwen/Qwen3-8B-Base",
+   "base_revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+   "registry_version": 20,
+   "host": "akki-vm-ii",
+   "gpu_index": 1,
+   "precision": "bfloat16",
+   "resident_mib": 15770,
+   "residency_entry_id": "res-29e6ebda43",
+   "warmup_seconds": 3.89,
+   "warmup_reading_parsed": true,
+   "requests": 86,
+   "served": 80,
+   "refused": 0,
+   "unparseable": 6,
+   "revoked": false,
+   "uptime_seconds": 6751,
+   "blocked_egress_attempts": 4
+  },
+  "stages": {
+   "serving_started": {
+    "at": "2026-10-05T15:24:46Z",
+    "port": 8641,
+    "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+    "egress_probe": {
+     "blocked": true,
+     "detail": "EGRESS_DENIED: contained reader may not connect to 1.1.1.1"
+    },
+    "resident_mib": 15770
+   }
+  },
+  "events": [],
+  "job_id": "m9j-4287f572ea58",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-05T17:17:17Z"
+ },
+ "worker_log_tail": "Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:00<00:00, 6146.91it/s]",
+ "process_alive": true
+}

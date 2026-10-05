@@ -1,0 +1,54 @@
+{
+  "audience": {
+    "detail": "evidence with limitations",
+    "knowledge": "familiar with the commission; technical",
+    "priorities": [
+      "per-language results",
+      "traceability",
+      "limitations and negative results"
+    ],
+    "who": "Model owner, reviewers and the research record · RMS"
+  },
+  "brand": {
+    "expressiveness": "restrained",
+    "formality": "formal",
+    "house": "house-neutral",
+    "variation_allowed": "within-family"
+  },
+  "brief_id": "BR-2026-10-05-m9j-2bc0eea34925",
+  "constraints": {
+    "confidentiality": "Internal — White Paper Wizard technical report; must not cross the outer gate",
+    "page_size": "A4"
+  },
+  "content": {
+    "appendix": true,
+    "diagrams": false,
+    "evidence": true,
+    "financial": false,
+    "imagery": false,
+    "narrative": true
+  },
+  "content_ref": "malpha-tier2-m9j-2bc0eea34925@1",
+  "outputs": [
+    {
+      "editable_charts": false,
+      "format": "docx",
+      "role": "internal technical report"
+    },
+    {
+      "editable_charts": false,
+      "format": "html",
+      "role": "review surface"
+    }
+  ],
+  "purpose": {
+    "kind": "decide",
+    "statement": "Decide the next qualified change for this lane from what the settled run measured against its fixed acceptance; every figure traceable to the run record."
+  },
+  "setting": {
+    "mode": "read-ahead",
+    "ongoing_use": true,
+    "printed": true,
+    "read_unattended": true
+  }
+}

@@ -148,6 +148,7 @@ _REGEX_PATTERNS: List[Tuple[str, re.Pattern]] = [
 
 # spaCy entity types we redact. Locked to the course-correction list.
 _SPACY_TYPES_KEPT = {"PERSON", "ORG", "GPE", "PRODUCT", "NORP", "FAC", "EVENT", "LAW"}
+_PLACEHOLDER_REGION = re.compile(r"\[\[?[A-Z][A-Z0-9_]*?(?:_\d+|_WITHHELD)\]\]?")
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -602,6 +603,12 @@ async def deidentify(content: str, *, tenant_id: str, purpose: Optional[str] = N
             "start": ent.start_char, "end": ent.end_char,
             "type": ent.label_, "match": ent.text, "priority": 3,
         })
+
+    # Shield's own placeholders ([PARTY_1], [[ENT_ORG_001]], [REDACTED_WITHHELD]) are never entities: a second pass over staged text
+    # (chokepoint "mark twice", retained-file reads) must not re-tag a token as an ORG/PERSON and break the binding (seen live 5 Oct).
+    placeholder_regions = [(m.start(), m.end()) for m in _PLACEHOLDER_REGION.finditer(original)]
+    if placeholder_regions:
+        hits = [h for h in hits if not any(h["start"] < e and h["end"] > s for s, e in placeholder_regions)]
 
     # Resolve overlaps: prefer lower priority number (higher priority).
     # Same priority → prefer earlier start, longer span.

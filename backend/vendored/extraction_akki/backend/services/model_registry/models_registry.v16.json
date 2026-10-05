@@ -1,0 +1,470 @@
+{
+  "version": "v16",
+  "extends": "v15",
+  "annotated_model_id": "contained-reader-qwen3-8b-base",
+  "authority_source": "WP-A2 reader stop by 6ab56dd48894abb269135ca0: WP-A4 reader: deterministic carrier scrub before the leak check (indirect-disclosure readings refused 422 on their own spans)",
+  "models": {
+    "gpt-5.4": {
+      "model_id": "gpt-5.4",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream OpenAI licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gpt-5.2": {
+      "model_id": "gpt-5.2",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream OpenAI licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gpt-5-mini": {
+      "model_id": "gpt-5-mini",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation_low_cost",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream OpenAI licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "claude-sonnet-4-6": {
+      "model_id": "claude-sonnet-4-6",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Anthropic licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "claude-haiku-4-5-20251001": {
+      "model_id": "claude-haiku-4-5-20251001",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation_low_cost",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Anthropic licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gemini-3.1-pro-preview": {
+      "model_id": "gemini-3.1-pro-preview",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Google licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "gemini-2.5-flash": {
+      "model_id": "gemini-2.5-flash",
+      "provider": "emergent",
+      "custody_kind": "emergent_universal_env_var",
+      "connected_at": "2026-08-25T00:00:00Z",
+      "role": "purchased_llm_text_generation_low_cost",
+      "license_note": "Access granted via Emergent Universal LLM proxy; upstream Google licence honoured by the proxy operator. No raw key on record; custody marker only."
+    },
+    "m9j-74af7cef0a85": {
+      "model_id": "m9j-74af7cef0a85",
+      "provider": "trained_on_this_estate",
+      "custody_kind": "estate_trained",
+      "connected_at": "2026-09-30T07:12:24Z",
+      "role": "trained_adapter",
+      "license_note": "Adapter trained on rights-held tenant material · lineage resolved · MOAC on record at admission.",
+      "moac_card_computed_at": "2026-09-30T07:12:24.667119Z",
+      "evidence_source_kind": "uncurated_estate_sample",
+      "re_check_due_at": "2026-12-29T07:12:24Z",
+      "recipe_version": "recipe-sha256:f2e8a541220e474b92e887d0ebba720cd6fd627aaeba989ca249ee1594eb0426",
+      "recipe": {
+        "optimizer": "adamw",
+        "lr": 0.0001,
+        "muon_lr": 0.01,
+        "muon_momentum": 0.95,
+        "weight_decay": 0.01,
+        "epochs": 2,
+        "max_steps": 0,
+        "batch_size": 256,
+        "grad_accum": 1,
+        "max_seq_len": 256,
+        "tokens_per_batch": 4096,
+        "gradient_checkpointing": false,
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "target_modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "warmup_steps": 100,
+        "max_grad_norm": 1.0,
+        "seed": 41,
+        "checkpoint_every": 500,
+        "eval_every": 1500
+      },
+      "base": {
+        "registry_id": "qwen3-8b-base",
+        "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803"
+      },
+      "artefact_sha256": "e973b373d27f9f5d5fd8d15cc5cd7e4b8ccca5de566b919dfdd7c235c70ca969",
+      "host": "akki-vm-ii",
+      "adapter_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-m9/runs/m9j-74af7cef0a85/full/adapter",
+      "run_dir": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-74af7cef0a85/full",
+      "training_manifest_sha256": "6a823e91cff5e85e028f4d8bf2943c2325185f679ac0a2c2f529781e118c2233",
+      "corpus_id": "rms-transcripts-v1",
+      "corpus_manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+      "cited_units": 129984,
+      "task": "text_lid",
+      "labels": {
+        "guz": "Kisii",
+        "kam": "Kikamba",
+        "kik": "Kikuyu",
+        "kln": "Kalenjin",
+        "luo": "Luo",
+        "lwg": "Luhya",
+        "swa": "Kiswahili"
+      },
+      "training_job_id": "m9j-74af7cef0a85",
+      "variant": "full",
+      "excluded_unit_ids": [],
+      "rederived_from": null,
+      "owner_ruling_ref": "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)",
+      "status": "admitted",
+      "serving": {
+        "job_id": "m9j-85e42d34b978",
+        "host": "akki-vm-ii",
+        "port": 8611,
+        "gpu_index": 1,
+        "started_at": "2026-10-05T02:28:05.509729Z",
+        "status": "running",
+        "started_by": "akki-autopilot"
+      },
+      "recall": null,
+      "readjudication_ref": "m9j-74af7cef0a85:full:2026-09-30T07:12:24.667105Z",
+      "annotations": [
+        {
+          "registry_version": "v3",
+          "authority_source": "M9.4 governed serving start by 6ab56dd48894abb269135ca2 · registry v2 admission · owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-934daf924154",
+              "host": "akki-vm-ii",
+              "port": 8611,
+              "gpu_index": 1,
+              "started_at": "2026-09-30T07:12:43.706748Z",
+              "status": "running",
+              "started_by": "6ab56dd48894abb269135ca2"
+            }
+          }
+        },
+        {
+          "registry_version": "v4",
+          "authority_source": "M9.4 serving stop by akki-autopilot: Owner-approved temporary GPU reallocation for M Alpha research trial",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-934daf924154",
+              "host": "akki-vm-ii",
+              "port": 8611,
+              "gpu_index": 1,
+              "started_at": "2026-09-30T07:12:43.706748Z",
+              "status": "completed",
+              "started_by": "6ab56dd48894abb269135ca2",
+              "stopped_at": "2026-10-04T18:42:14.983950Z",
+              "stop_reason": "Owner-approved temporary GPU reallocation for M Alpha research trial"
+            }
+          }
+        },
+        {
+          "registry_version": "v5",
+          "authority_source": "M9.4 governed serving start by akki-autopilot · registry v4 admission · owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-85e42d34b978",
+              "host": "akki-vm-ii",
+              "port": 8611,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T02:28:05.509729Z",
+              "status": "running",
+              "started_by": "akki-autopilot"
+            }
+          }
+        }
+      ]
+    },
+    "m9j-74af7cef0a85-pruned": {
+      "model_id": "m9j-74af7cef0a85-pruned",
+      "provider": "trained_on_this_estate",
+      "custody_kind": "estate_trained",
+      "connected_at": "2026-09-30T07:12:24Z",
+      "role": "trained_adapter",
+      "license_note": "Adapter trained on rights-held tenant material · lineage resolved · MOAC on record at admission.",
+      "moac_card_computed_at": "2026-09-30T07:12:24.833544Z",
+      "evidence_source_kind": "uncurated_estate_sample",
+      "re_check_due_at": "2026-12-29T07:12:24Z",
+      "recipe_version": "recipe-sha256:f2e8a541220e474b92e887d0ebba720cd6fd627aaeba989ca249ee1594eb0426",
+      "recipe": {
+        "optimizer": "adamw",
+        "lr": 0.0001,
+        "muon_lr": 0.01,
+        "muon_momentum": 0.95,
+        "weight_decay": 0.01,
+        "epochs": 2,
+        "max_steps": 0,
+        "batch_size": 256,
+        "grad_accum": 1,
+        "max_seq_len": 256,
+        "tokens_per_batch": 4096,
+        "gradient_checkpointing": false,
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "target_modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ],
+        "warmup_steps": 100,
+        "max_grad_norm": 1.0,
+        "seed": 41,
+        "checkpoint_every": 500,
+        "eval_every": 1500
+      },
+      "base": {
+        "registry_id": "qwen3-8b-base",
+        "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803"
+      },
+      "artefact_sha256": "6fb4b3eeae35ab74cd1116dc40c31b90ea222e25390f0a490d8e83d32d63eac4",
+      "host": "akki-vm-ii",
+      "adapter_path": "akki-vm-ii:///mnt/volume_dkgjrkx/akki-m9/runs/m9j-74af7cef0a85/full/pruned_adapter",
+      "run_dir": "/mnt/volume_dkgjrkx/akki-m9/runs/m9j-74af7cef0a85/full",
+      "training_manifest_sha256": "6a823e91cff5e85e028f4d8bf2943c2325185f679ac0a2c2f529781e118c2233",
+      "corpus_id": "rms-transcripts-v1",
+      "corpus_manifest_sha256": "edfa925ea63c73898aa3b48f5a0104bc3a23d45d210de69e9814339c45728146",
+      "cited_units": 129984,
+      "task": "text_lid",
+      "labels": {
+        "guz": "Kisii",
+        "kam": "Kikamba",
+        "kik": "Kikuyu",
+        "kln": "Kalenjin",
+        "luo": "Luo",
+        "lwg": "Luhya",
+        "swa": "Kiswahili"
+      },
+      "training_job_id": "m9j-74af7cef0a85",
+      "variant": "pruned",
+      "excluded_unit_ids": [],
+      "rederived_from": null,
+      "owner_ruling_ref": "owner ruling 2026-09-30 (1a): per-stratum acceptance = Outcome floor AND no regression below the base; aggregate M-a global (Docs 17–19 · §26.2)",
+      "status": "admitted",
+      "serving": null,
+      "recall": null,
+      "readjudication_ref": "m9j-74af7cef0a85:pruned:2026-09-30T07:12:24.833531Z"
+    },
+    "contained-reader-qwen3-8b-base": {
+      "model_id": "contained-reader-qwen3-8b-base",
+      "role": "contained_reader",
+      "base": "qwen3-8b-base",
+      "base_repo": "Qwen/Qwen3-8B-Base",
+      "base_revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+      "licence_verified": "apache-2.0",
+      "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+      "weight_bytes": 16381516776,
+      "host": "akki-vm-ii",
+      "provenance": "estate base registration (receipted); no runtime download",
+      "registration_receipt_id": "gpurcp-fad2acfd0d6c",
+      "registered_by": "6ab56dd48894abb269135ca0",
+      "registered_at": "2026-10-05T11:54:40.365505Z",
+      "status": "registered",
+      "owner_ruling_ref": "OWNER_ORDERS §12 (Wave A autonomous; D7 residency structure) · BUILD_PLAN_V2 WP-A2/WP-C7",
+      "serving": {
+        "job_id": "m9j-7bb97662f007",
+        "host": "akki-vm-ii",
+        "port": 8641,
+        "gpu_index": 1,
+        "started_at": "2026-10-05T13:38:21.911815Z",
+        "status": "completed",
+        "started_by": "6ab56dd48894abb269135ca0",
+        "residency_entry_id": "res-af634ddb72",
+        "stopped_at": "2026-10-05T14:44:19.173632Z",
+        "stop_reason": "WP-A4 reader: deterministic carrier scrub before the leak check (indirect-disclosure readings refused 422 on their own spans)"
+      },
+      "annotations": [
+        {
+          "registry_version": "v7",
+          "authority_source": "WP-A2 contained reader start by 6ab56dd48894abb269135ca0 · residency entry res-09a515ddd7 · registry v6",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-352ea283c0de",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T11:54:50.652906Z",
+              "status": "running",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-09a515ddd7"
+            }
+          }
+        },
+        {
+          "registry_version": "v8",
+          "authority_source": "WP-A2 reader stop by agent:wave-a2: WP-A2: restart with KV cache + JSON-closed stopping criterion (latency 143 s → target < 15 s)",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-352ea283c0de",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T11:54:50.652906Z",
+              "status": "completed",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-09a515ddd7",
+              "stopped_at": "2026-10-05T12:08:55.212587Z",
+              "stop_reason": "WP-A2: restart with KV cache + JSON-closed stopping criterion (latency 143 s → target < 15 s)"
+            }
+          }
+        },
+        {
+          "registry_version": "v9",
+          "authority_source": "WP-A2 contained reader start by 6ab56dd48894abb269135ca0 · residency entry res-41bf5b1437 · registry v8",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-6db25f9769cd",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T12:09:20.183314Z",
+              "status": "running",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-41bf5b1437"
+            }
+          }
+        },
+        {
+          "registry_version": "v10",
+          "authority_source": "WP-A2 reader stop by 6ab56dd48894abb269135ca0: WP-A2 latency fix: single warm inference thread (per-thread CUDA warm-up measured 2.6 vs 56 tok/s)",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-6db25f9769cd",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T12:09:20.183314Z",
+              "status": "completed",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-41bf5b1437",
+              "stopped_at": "2026-10-05T13:01:22.190105Z",
+              "stop_reason": "WP-A2 latency fix: single warm inference thread (per-thread CUDA warm-up measured 2.6 vs 56 tok/s)"
+            }
+          }
+        },
+        {
+          "registry_version": "v11",
+          "authority_source": "WP-A2 contained reader start by 6ab56dd48894abb269135ca0 · residency entry res-83ce605e64 · registry v10",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-751213f3b0ae",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T13:01:35.742607Z",
+              "status": "running",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-83ce605e64"
+            }
+          }
+        },
+        {
+          "registry_version": "v12",
+          "authority_source": "WP-A2 reader stop by 6ab56dd48894abb269135ca0: WP-A4 reader prompt hardening: delimited material, JSON-shaped example, requests_privileged, lenient coercion",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-751213f3b0ae",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T13:01:35.742607Z",
+              "status": "completed",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-83ce605e64",
+              "stopped_at": "2026-10-05T13:27:00.433959Z",
+              "stop_reason": "WP-A4 reader prompt hardening: delimited material, JSON-shaped example, requests_privileged, lenient coercion"
+            }
+          }
+        },
+        {
+          "registry_version": "v13",
+          "authority_source": "WP-A2 contained reader start by 6ab56dd48894abb269135ca0 · residency entry res-0951092971 · registry v12",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-0af0be72da12",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T13:27:12.946584Z",
+              "status": "running",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-0951092971"
+            }
+          }
+        },
+        {
+          "registry_version": "v14",
+          "authority_source": "WP-A2 reader stop by 6ab56dd48894abb269135ca0: WP-A4 reader: short safe_rewrite + runaway stop guard (malformed JSON ran to max tokens twice)",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-0af0be72da12",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T13:27:12.946584Z",
+              "status": "completed",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-0951092971",
+              "stopped_at": "2026-10-05T13:38:08.072246Z",
+              "stop_reason": "WP-A4 reader: short safe_rewrite + runaway stop guard (malformed JSON ran to max tokens twice)"
+            }
+          }
+        },
+        {
+          "registry_version": "v15",
+          "authority_source": "WP-A2 contained reader start by 6ab56dd48894abb269135ca0 · residency entry res-af634ddb72 · registry v14",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-7bb97662f007",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T13:38:21.911815Z",
+              "status": "running",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-af634ddb72"
+            }
+          }
+        },
+        {
+          "registry_version": "v16",
+          "authority_source": "WP-A2 reader stop by 6ab56dd48894abb269135ca0: WP-A4 reader: deterministic carrier scrub before the leak check (indirect-disclosure readings refused 422 on their own spans)",
+          "patch": {
+            "serving": {
+              "job_id": "m9j-7bb97662f007",
+              "host": "akki-vm-ii",
+              "port": 8641,
+              "gpu_index": 1,
+              "started_at": "2026-10-05T13:38:21.911815Z",
+              "status": "completed",
+              "started_by": "6ab56dd48894abb269135ca0",
+              "residency_entry_id": "res-af634ddb72",
+              "stopped_at": "2026-10-05T14:44:19.173632Z",
+              "stop_reason": "WP-A4 reader: deterministic carrier scrub before the leak check (indirect-disclosure readings refused 422 on their own spans)"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

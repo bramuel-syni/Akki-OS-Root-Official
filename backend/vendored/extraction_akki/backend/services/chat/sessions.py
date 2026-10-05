@@ -38,9 +38,20 @@ def _public(doc):
     return doc
 
 
-async def create(scope, question, title=None):
-    session = {'session_id': 'cs-' + uuid.uuid4().hex[:12], 'tenant_id': scope['tenant_id'], 'principal_id': scope['principal_id'],
-               'objective': {'text': question, 'sha256': sha(question), 'frozen_at': now()},
+def objective_record(question, artifact):
+    """The session's frozen objective (Doc 05) now carries the WP-A3 artefact by reference: the raw question stays in custody here; the
+    bounded objective is what crosses (Doc 1 B83/B91)."""
+    return {'text': question, 'sha256': sha(question), 'frozen_at': now(), 'artifact_id': artifact['artifact_id'], 'artifact_sha256': artifact['sha256'], 'intent': artifact['intent'],
+            'bounded_objective': artifact['bounded_objective'], 'meaning': artifact['meaning'], 'captured_at': artifact['captured_at'], 'reader_receipt_id': (artifact.get('reader') or {}).get('receipt_id')}
+
+
+def new_id():
+    return 'cs-' + uuid.uuid4().hex[:12]
+
+
+async def create(scope, question, title=None, session_id=None, artifact=None):
+    session = {'session_id': session_id or new_id(), 'tenant_id': scope['tenant_id'], 'principal_id': scope['principal_id'],
+               'objective': objective_record(question, artifact) if artifact else {'text': question, 'sha256': sha(question), 'frozen_at': now()},
                'title': (title or question)[:80], 'created_at': now(), 'updated_at': now(), 'archived': False,
                'turns': [], 'compaction': None}
     await db[COLLECTION].insert_one(dict(session))

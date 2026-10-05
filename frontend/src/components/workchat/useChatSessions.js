@@ -28,6 +28,10 @@ export function useChatSessions(enabled) {
     setError(''); setPending(question);
     const r = await tryPost('/api/chat/ask', { question, session_id: active?.session_id || null });
     if (!r.ok) { setPending(''); setError(failure(r, 'The question could not be answered.')); return null; }
+    if (!r.data.session_id) {
+      // WP-A3 (Doc 1 B5.5): no objective could be captured — a clarification request or refusal, never a guessed objective; no session opened
+      setPending(''); setError(r.data.turn?.refusal_reason || 'The question could not be bounded to an objective.'); return r.data;
+    }
     await open(r.data.session_id); await refresh();
     setPending('');
     return r.data;

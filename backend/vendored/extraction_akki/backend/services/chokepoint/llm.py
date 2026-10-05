@@ -119,6 +119,8 @@ class LLMResponse:
     latency_ms: int
     purpose: str
     shield: Optional[Dict[str, Any]] = None  # de-identification measurements of this crossing (no token values)
+    text_as_returned: Optional[str] = None  # the model's reply in placeholder form — exactly what came back across the boundary, before local rebinding
+    safe_artifact_id: Optional[str] = None  # the sealed Shield-stage artifact this crossing consumed (WP-A5)
 
 
 class LLMShieldFailure(RuntimeError):
@@ -274,13 +276,14 @@ def _emergent_api_key() -> str:
 async def invoke(
     *,
     purpose: str,
-    prompt: str,
     masking_tier: str,
     actor: str,
     model: str,
     provider: str,
     tenant_id: str,
     custody_class: str,
+    prompt: Optional[str] = None,
+    safe_artifact: Any = None,
     system_message: Optional[str] = None,
     session_id: Optional[str] = None,
     output_schema: Optional[Dict[str, Any]] = None,
@@ -289,6 +292,15 @@ async def invoke(
 
     Doc 01 §A5.1 · exactly one function invokes the external model client.
     Doc 01 §A5.6 · structural impossibility, not policed prohibition.
+
+    WP-A5 (Doc 2 B65–B74 · Doc 1 A5.6): an estate crossing arrives as a
+    sealed `SafeArtifact` from `shield.stage.stage` — question and data
+    assessed independently, re-associated at the guarded seam, sealed.
+    The chokepoint verifies the seal, re-checks the outbound against the
+    artifact's protected values (mark twice), sends ONE query with the
+    two-item context, rebinds locally and destroys the mapping. A bare
+    `prompt=` is accepted only for `synthetic` custody (no estate
+    content); any unsealed estate payload refuses.
 
     M12-W1d (2026-09-18) · Option D per Owner R-25:
       * `tenant_id` is REQUIRED (no Optional, no default). An empty
@@ -317,6 +329,28 @@ async def invoke(
             f"expected one of {sorted(_ACCEPTED_CUSTODY_CLASSES)}. "
             "Every crossing must declare a custody class (Option D · R-25)."
         )
+
+    # WP-A5 · the sealed stage is the only way estate content reaches this seat.
+    from services.synisense.shield import stage as shield_stage
+    if safe_artifact is not None and prompt is not None:
+        shield_stage.destroy(safe_artifact)
+        raise ChokepointRefused("ambiguous_payload — pass a sealed safe_artifact OR a synthetic prompt, never both.")
+    if safe_artifact is not None:
+        problem = shield_stage.verify(safe_artifact, tenant_id=tenant_id, purpose=purpose, custody_class=custody_class)
+        if problem:
+            shield_stage.destroy(safe_artifact)
+            raise ChokepointRefused(f"safe_artifact_refused — {problem}")
+        prompt = safe_artifact.render()
+        if safe_artifact.safe_system is not None:
+            system_message = safe_artifact.safe_system
+    elif custody_class != "synthetic":
+        raise ChokepointRefused(
+            "unsealed_payload_refused — an estate crossing arrives only as a SafeArtifact sealed by the Shield stage "
+            "(services.synisense.shield.stage.stage: two files assessed independently, re-associated at the guarded seam); "
+            "the bare prompt path is closed for tenant_estate custody (Doc 2 B67/B77 · Doc 1 A5.6)."
+        )
+    elif prompt is None:
+        raise ChokepointRefused("prompt_required — a synthetic crossing needs a prompt.")
 
     # 1. Purpose gate (Owner Order §5 · Ruling 1).
     validate_purpose(purpose)  # raises PurposeInvalid
@@ -374,13 +408,24 @@ async def invoke(
         de_id_result = await deidentify(prompt, tenant_id=tenant_id, purpose=purpose)
         redacted_prompt = de_id_result.redacted_text
 
-    # Mα MA-04/05 · Shield REGISTER GATE on BOTH payload paths (system
-    # message AND prompt): enforced categories become typed placeholders
-    # that are rebound in the reply; advisory categories are receipted;
-    # an enforced value surviving in the outbound text refuses the call.
+    # Mα MA-04/05 · WP-A4 · Shield REGISTER GATE on BOTH payload paths (system
+    # message AND prompt): Category 1/2 deterministically, Category 3 through the
+    # contained reader (one read inside the perimeter; skipped for synthetic
+    # custody); enforced categories become typed placeholders that are rebound in
+    # the reply; advisory categories and cue hits are receipted; an enforced value
+    # surviving in the outbound text, an ambiguous read or an unavailable reader
+    # refuses the call — no fallback to the frontier for the read (Doc 1 A5.5).
     from services.synisense.shield import register_gate
-    gate = register_gate.gate(sysmsg, redacted_prompt, tenant_id, purpose)
+    _attested = shield_stage.attested_recogniser(safe_artifact) if safe_artifact is not None else None
+    gate = await asyncio.to_thread(register_gate.gate, sysmsg, redacted_prompt, tenant_id, purpose, custody_class, _attested)
+    if not gate.refused and safe_artifact is not None:
+        # WP-A5 · mark twice (Doc 2 B67/B77): the seam's markers are re-checked here, at consumption, against the artifact's protected values
+        _recheck = shield_stage.recheck(safe_artifact, gate.system_message + "\n" + gate.prompt)
+        if not _recheck["clean"]:
+            gate.refused, gate.reason = True, f"stage_seam_recheck_failed — {len(_recheck['protected_values_found'])} protected value(s) of the sealed files would survive in the outbound payload"
+        gate.reader = {**gate.reader, "attested_by_seal": safe_artifact.artifact_id, "stage": safe_artifact.summary()}
     if gate.refused:
+        if safe_artifact is not None: shield_stage.destroy(safe_artifact)
         _register_llm_crossing(
             kind=f"{_kind_from_purpose(purpose)}_refused", endpoint=endpoint, verb="shield_register_gate", model=model, provider=provider,
             tokens_in=0, tokens_out=0, latency_ms=0, purpose=purpose, actor=actor, masking_tier=masking_tier, metering_source="register_refusal", shield=gate.summary(),
@@ -429,6 +474,7 @@ async def invoke(
     # seat record carries the full history the Watch consuming half
     # (Grey Mirror + Mkono) will read.
     if _verdict in ("hold", "block"):
+        if safe_artifact is not None: shield_stage.destroy(safe_artifact)
         raise WatchInputSeatVerdictRefused(
             f"watch_input_seat_verdict_refused — verdict={_verdict!r} "
             f"(hostility={_hostility!r}, provenance={_provenance!r}); "
@@ -492,6 +538,7 @@ async def invoke(
             raise RuntimeError("upstream_empty_response — the model returned no text (reasoning consumed the completion budget or the response was withheld)")
     except Exception as exc:  # noqa: BLE001
         latency_ms = int((time.perf_counter() - t_start) * 1000)
+        if safe_artifact is not None: shield_stage.destroy(safe_artifact)
         log.warning(
             "chokepoint.llm.invoke failed (%s) after %d ms",
             type(exc).__name__,
@@ -523,6 +570,9 @@ async def invoke(
     # response raises (fail-closed per canon 3 §13.1).
     from services.synisense.shield.reidentifier import reidentify
     reidentified_response = register_gate.rebind(reidentify(str(response_text), de_id_result.token_map), gate.token_map)
+    if safe_artifact is not None:
+        # WP-A5 · the files' placeholders bind back locally; the mapping then dies with the call (Doc 1 A5.3 B40) and the artifact is spent (Doc 2 B72)
+        reidentified_response = shield_stage.rebind(reidentified_response, safe_artifact)
 
     # 7. Metering.
     tokens_in, tokens_out, metering_source = _extract_metering(redacted_prompt, reidentified_response, client)
@@ -543,6 +593,8 @@ async def invoke(
         metering_source=metering_source,
         shield=gate.summary(),
     )
+    if safe_artifact is not None:
+        shield_stage.consume(safe_artifact, receipt.receipt_id)
 
     return LLMResponse(
         text=reidentified_response,  # M12-W1d · re-identified text · never raw redacted
@@ -553,6 +605,8 @@ async def invoke(
         tokens_out=tokens_out,
         latency_ms=latency_ms,
         purpose=purpose,
+        text_as_returned=str(response_text),
+        safe_artifact_id=safe_artifact.artifact_id if safe_artifact is not None else None,
         shield={"dilution_score": getattr(de_id_result, "dilution_score", None),
                 "exposure_reduction_score": getattr(de_id_result, "exposure_reduction_score", None),
                 "entities_masked": sum((getattr(de_id_result, "de_id_summary", None) or {}).values()) if isinstance(getattr(de_id_result, "de_id_summary", None), dict) else None,

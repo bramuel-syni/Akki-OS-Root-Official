@@ -136,9 +136,13 @@ async def reconstruct(actor, retry_failed=False, naivety=None):
                 'Return ONLY one JSON object matching the supplied Review schema: verdict (accept, revise or reject), findings, required_changes. '
                 'Do not return a proposal or new experiment list. Reject unsupported claims, identity threshold weakening and any sealed-admission reuse. '
                 'An accept verdict authorises no execution or model admission; it only accepts the experimental plan for engineering review.')
-            response = await asyncio.wait_for(invoke(purpose=purpose, prompt=json.dumps({**content, 'schema': provider_schema(schema.model_json_schema())}),
+            # WP-A5: File 1 = protocol, design, rules and schema (the ask); File 2 = the measured evidence (the data) — sealed by the Shield stage
+            from services.synisense.shield import stage as shield_stage
+            artifact = await shield_stage.stage(question=json.dumps({**{k: v for k, v in content.items() if k != 'evidence'}, 'schema': provider_schema(schema.model_json_schema())}), data=json.dumps({'evidence': content.get('evidence')}) if content.get('evidence') is not None else None,
+                                                tenant_id=malpha.TENANT, purpose=purpose, actor=actor, system_message=instructions, session_id=f'malpha-learning:{key}:{role["role"]}')
+            response = await asyncio.wait_for(invoke(purpose=purpose, safe_artifact=artifact,
                 masking_tier='llm_prompt_governed_text', actor=actor, tenant_id=malpha.TENANT, custody_class='tenant_estate',
-                provider=role['connection'], model=role['model'], system_message=instructions, session_id=f'malpha-learning:{key}:{role["role"]}',
+                provider=role['connection'], model=role['model'], session_id=f'malpha-learning:{key}:{role["role"]}',
                 output_schema=provider_schema(schema.model_json_schema()) if schema is Review else None), timeout=240)
             receipt = {'model': response.model_id, 'receipt_id': response.receipt_id,
                 'tokens_in': response.tokens_in, 'tokens_out': response.tokens_out, 'latency_ms': response.latency_ms}

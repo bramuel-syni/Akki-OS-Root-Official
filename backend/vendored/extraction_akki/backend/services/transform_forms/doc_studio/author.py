@@ -140,6 +140,7 @@ def _schema_hint(plan_: Dict[str, Any]) -> Dict[str, Any]:
 async def write(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str, Any], tenant: str, actor: str, session: str, issues: List[str] | None = None, previous: Dict[str, Any] | None = None) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     from services.chokepoint.llm import invoke
     from services.chokepoint.model_roles import resolve
+    from services.synisense.shield import stage
     writer = resolve('writer')
     prompt = {'brief': {k: brief.get(k) for k in ('purpose', 'audience', 'setting', 'constraints')}, 'evidence': evidence(content), 'plan': plan_, 'return_exactly': _schema_hint(plan_),
               'rules': ['every figure as a supplied token; digits only for four-digit years', 'use only tokens that exist in evidence',
@@ -154,9 +155,11 @@ async def write(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str,
                         'no markdown, no bullets, no URLs, no "Source:"']}
     if issues:
         prompt['repair'] = {'your_previous_draft': previous, 'content_manager_rejections': issues, 'instruction': 'Fix every rejection and return the full corrected JSON.'}
-    response = await invoke(purpose=PURPOSE, prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor,
-                            model=writer['model'], provider=writer['connection'], tenant_id=tenant, custody_class='tenant_estate',
-                            system_message=SYSTEM, session_id=session)
+    # WP-A5: File 1 = the brief, plan and rules (the ask); File 2 = the evidence model (the data) — sealed by the Shield stage, one query
+    artifact = await stage.stage(question=json.dumps({k: v for k, v in prompt.items() if k != 'evidence'}, default=str), data=json.dumps({'evidence': prompt['evidence']}, default=str), tenant_id=tenant, purpose=PURPOSE, actor=actor,
+                                 system_message=SYSTEM, session_id=session)
+    response = await invoke(purpose=PURPOSE, safe_artifact=artifact, masking_tier='llm_prompt_governed_text', actor=actor,
+                            model=writer['model'], provider=writer['connection'], tenant_id=tenant, custody_class='tenant_estate', session_id=session)
     raw = response.text.strip()
     if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
     start, end = raw.find('{'), raw.rfind('}')
@@ -335,11 +338,14 @@ PLAN_SYSTEM = ('You are the planning orchestrator in Akki\'s document studio. Yo
 async def plan_notes(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str, Any], tenant: str, actor: str, session: str) -> Dict[str, Any]:
     from services.chokepoint.llm import invoke
     from services.chokepoint.model_roles import resolve
+    from services.synisense.shield import stage
     planner = resolve('planner')
     chapters = [{'slot': s['slot'], 'question': s.get('question'), 'needs': s.get('needs'), 'must_cite': s.get('must_cite'), 'tables': s.get('tables')} for s in plan_['slots'] if s['type'] in ('assertion_points', 'comparison', 'assertion_exhibit')]
     prompt = {'brief': {k: brief.get(k) for k in ('purpose', 'audience', 'constraints')}, 'evidence': evidence(content), 'outline': chapters, 'story': plan_['story']}
-    response = await invoke(purpose=PLAN_PURPOSE, prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor, model=planner['model'],
-                            provider=planner['connection'], tenant_id=tenant, custody_class='tenant_estate', system_message=PLAN_SYSTEM, session_id=session + ':plan')
+    artifact = await stage.stage(question=json.dumps({k: v for k, v in prompt.items() if k != 'evidence'}, default=str), data=json.dumps({'evidence': prompt['evidence']}, default=str), tenant_id=tenant, purpose=PLAN_PURPOSE, actor=actor,
+                                 system_message=PLAN_SYSTEM, session_id=session + ':plan')
+    response = await invoke(purpose=PLAN_PURPOSE, safe_artifact=artifact, masking_tier='llm_prompt_governed_text', actor=actor, model=planner['model'],
+                            provider=planner['connection'], tenant_id=tenant, custody_class='tenant_estate', session_id=session + ':plan')
     raw = response.text.strip()
     if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
     start, end = raw.find('{'), raw.rfind('}')
@@ -360,6 +366,7 @@ REVIEW_SYSTEM = ('You are the independent reviewer in Akki\'s document studio, f
 async def review(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str, Any], draft: Dict[str, Any], tenant: str, actor: str, session: str) -> Dict[str, Any]:
     from services.chokepoint.llm import invoke
     from services.chokepoint.model_roles import resolve
+    from services.synisense.shield import stage
     reviewer = resolve('reviewer')
     prompt = {'brief': {k: brief.get(k) for k in ('purpose', 'audience', 'constraints')}, 'evidence': evidence(content), 'plan': plan_['story'], 'draft': draft,
               'acceptance': ['every figure is a token that exists in evidence and is used for the quantity its label names', 'each chapter answers its question with its own evidence',
@@ -368,8 +375,10 @@ async def review(content: Dict[str, Any], brief: Dict[str, Any], plan_: Dict[str
     while True:
         attempts += 1
         try:
-            response = await invoke(purpose='doc_studio.review', prompt=json.dumps(prompt, default=str), masking_tier='llm_prompt_governed_text', actor=actor, model=reviewer['model'],
-                                    provider=reviewer['connection'], tenant_id=tenant, custody_class='tenant_estate', system_message=REVIEW_SYSTEM, session_id=f'{session}:review:{attempts}')
+            artifact = await stage.stage(question=json.dumps({k: v for k, v in prompt.items() if k != 'evidence'}, default=str), data=json.dumps({'evidence': prompt['evidence']}, default=str), tenant_id=tenant, purpose='doc_studio.review', actor=actor,
+                                         system_message=REVIEW_SYSTEM, session_id=f'{session}:review:{attempts}')
+            response = await invoke(purpose='doc_studio.review', safe_artifact=artifact, masking_tier='llm_prompt_governed_text', actor=actor, model=reviewer['model'],
+                                    provider=reviewer['connection'], tenant_id=tenant, custody_class='tenant_estate', session_id=f'{session}:review:{attempts}')
             break
         except Exception as exc:
             # The provider's own content filter on the reviewer family returns no text, and it is not deterministic: one retry, then the gap is disclosed.

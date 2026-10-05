@@ -3,7 +3,17 @@ import React from 'react';
 export function SessionMemory({ session, memory, onCompact, onReload, onArchive }) {
   const compaction = memory?.compaction || session.compaction;
   const open = session.turns.filter(t => !t.compacted).length;
+  const objective = session.objective || {};
+  const intent = [...session.turns].reverse().find(t => t.evidence?.intent)?.evidence?.intent;
   return <div className="workchat-memory" data-testid="workchat-memory-bar">
+    {objective.artifact_id && <div className="workchat-objective" data-testid="workchat-objective" style={{ flexBasis: '100%' }}>
+      <span className="workchat-label">Objective (frozen before anything crossed)</span>
+      <span data-testid="workchat-objective-bounded">{objective.bounded_objective}</span>
+      <span className="workchat-badge neutral" data-testid="workchat-objective-ref" title={`Captured ${objective.captured_at} by the contained reader; artefact ${objective.artifact_id}`}>intent · {objective.intent}</span>
+      {intent && <span className={`workchat-badge ${intent.diverged ? 'refused' : 'warm'}`} data-testid="workchat-objective-divergence">
+        {intent.diverged ? `conduct diverged: ${intent.divergent.map(d => d.flag).join(', ')}` : `conduct matches the declared objective · ${intent.observations} observed`}
+      </span>}
+    </div>}
     <span className="workchat-label">Conversation memory</span>
     <span data-testid="workchat-memory-turns">{session.turns.length} exchanges · {open} not summarised</span>
     {compaction

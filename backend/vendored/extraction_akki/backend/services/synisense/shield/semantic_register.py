@@ -22,6 +22,10 @@ ENFORCEMENT = ('enforced', 'advisory')
 STATUSES = ('draft', 'pending', 'active', 'superseded', 'removed', 'withdrawn')
 RETIRED = ('superseded', 'removed', 'withdrawn')
 REMOVAL_BUSINESS_TYPE = 'system_ordinary'
+# WP-A4 (Doc 2 B21/B35): Category-3 (contextual) declarations are recognised by the contained reader; cue words are the draft proposer and
+# advisory receipts only — never a rewrite or refusal cause
+RECOGNISER = 'contained_reader'
+CUE_MODES = ('advisory', 'propose', 'off')
 
 
 class Conflict(Exception):
@@ -31,12 +35,12 @@ CONFIDENTIALITY_MARKERS = ('confidential', 'trade secret', 'proprietary', 'inter
 # `enforced` categories are rewritten (or the crossing refused) on EVERY model call and rebound in the reply; `advisory` categories are
 # found and receipted on every crossing but only rewritten in the confidential-document workflow — the DPO moves a category between the two.
 DEFAULT_CATEGORIES = [
-    {'name': 'client_identity', 'kind': 'contextual', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'who the counterparty, client or partner is — names, trading names, cooperative or company identifiers',
+    {'name': 'client_identity', 'kind': 'contextual', 'recogniser': 'contained_reader', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'who the counterparty, client or partner is — names, trading names, cooperative or company identifiers',
      'cues': ['client', 'customer', 'counterparty', 'partner', 'cooperative', 'co-operative', 'ltd', 'limited', 'plc', 'company', 'between', 'party', 'licensee', 'licensor', 'supplier', 'vendor', 'tenant', 'landlord', 'mteja', 'kampuni'], 'targets': ['PERSON', 'ORG', 'PROPER_NOUN']},
-    {'name': 'private_project_name', 'kind': 'contextual', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'internal code names and unreleased project names', 'cues': ['project', 'codename', 'code name', 'internal', 'initiative', 'programme', 'program', 'workstream', 'mradi'], 'targets': ['PROPER_NOUN', 'ORG']},
-    {'name': 'credentials', 'kind': 'pattern', 'action': 'remove', 'enforcement': 'enforced', 'description': 'keys, tokens, passwords, access credentials', 'patterns': [r'(?i)\b(?:api[-_ ]?key|secret|token|password|passcode|credential|nenosiri)s?\b\s*(?:[:=]\s*|\s+)[A-Za-z0-9\-_./+]{6,}', r'\b[A-Z0-9]{3,}(?:-[A-Z0-9]{2,}){2,}\b', r'\bsk-[A-Za-z0-9]{8,}\b']},
-    {'name': 'commercial_terms', 'kind': 'contextual', 'action': 'abstract', 'enforcement': 'advisory', 'description': 'fees, prices, discounts, margins, payment terms, penalties, exclusivity and other negotiated figures', 'cues': ['fee', 'price', 'pricing', 'discount', 'margin', 'rate', 'payment', 'penalty', 'royalty', 'commission', 'retainer', 'deposit', 'reserve', 'bid', 'floor', 'uplift', 'cap', 'budget', 'cost', 'salary', 'kes', 'usd', 'eur', 'gbp', 'shilling', '%', 'bei', 'ada', 'malipo', 'mshahara'], 'targets': ['MONEY', 'NUMBER', 'PERCENT']},
-    {'name': 'unpublished_pricing_method', 'kind': 'contextual', 'action': 'remove', 'enforcement': 'advisory', 'description': 'how a price or bid is computed — formulas, multipliers, thresholds, seasonal adjustments', 'cues': ['method', 'formula', 'calculates', 'calculated', 'computed', 'times', 'multiplied', 'multiplier', 'plus', 'minus', 'threshold', 'coefficient', 'adjustment', 'uplift', 'weighting', 'algorithm', 'fomula', 'mara'], 'targets': ['SENTENCE']},
+    {'name': 'private_project_name', 'kind': 'contextual', 'recogniser': 'contained_reader', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'internal code names and unreleased project names', 'cues': ['project', 'codename', 'code name', 'internal', 'initiative', 'programme', 'program', 'workstream', 'mradi'], 'targets': ['PROPER_NOUN', 'ORG']},
+    {'name': 'credentials', 'kind': 'pattern', 'action': 'remove', 'enforcement': 'enforced', 'description': 'keys, tokens, passwords, access credentials', 'patterns': [r'(?i)\b(?:api[-_ ]?key|secret|token|password|passcode|credential|nenosiri)s?\b\s*(?:[:=]\s*|\s+(?=[A-Za-z\-_./+]*\d))[A-Za-z0-9\-_./+]{6,}', r'\b[A-Z0-9]{3,}(?:-[A-Z0-9]{2,}){2,}\b', r'\bsk-[A-Za-z0-9]{8,}\b']},
+    {'name': 'commercial_terms', 'kind': 'contextual', 'recogniser': 'contained_reader', 'action': 'abstract', 'enforcement': 'advisory', 'description': 'fees, prices, discounts, margins, payment terms, penalties, exclusivity and other negotiated figures', 'cues': ['fee', 'price', 'pricing', 'discount', 'margin', 'rate', 'payment', 'penalty', 'royalty', 'commission', 'retainer', 'deposit', 'reserve', 'bid', 'floor', 'uplift', 'cap', 'budget', 'cost', 'salary', 'kes', 'usd', 'eur', 'gbp', 'shilling', '%', 'bei', 'ada', 'malipo', 'mshahara'], 'targets': ['MONEY', 'NUMBER', 'PERCENT']},
+    {'name': 'unpublished_pricing_method', 'kind': 'contextual', 'recogniser': 'contained_reader', 'action': 'remove', 'enforcement': 'advisory', 'description': 'how a price or bid is computed — formulas, multipliers, thresholds, seasonal adjustments', 'cues': ['method', 'formula', 'calculates', 'calculated', 'computed', 'times', 'multiplied', 'multiplier', 'plus', 'minus', 'threshold', 'coefficient', 'adjustment', 'uplift', 'weighting', 'algorithm', 'fomula', 'mara'], 'targets': ['SENTENCE']},
     {'name': 'personal_data', 'kind': 'pattern', 'action': 'remove', 'enforcement': 'enforced', 'description': 'direct identifiers: phone numbers, e-mail addresses, national ID / passport numbers, physical addresses',
      'patterns': [r'(?<![\w.+-])[\w.+-]+@[\w-]+(?:\.[\w-]+)+', r'(?<!\d)(?:\+?254|0)7\d{2}[ -]?\d{3}[ -]?\d{3}(?!\d)', r'(?<!\d)\+?\d{1,3}[ -]?\(?\d{2,4}\)?[ -]?\d{3}[ -]?\d{3,4}(?!\d)', r'(?i)\b(?:id|passport|national id|kra pin|kitambulisho)\s*(?:no\.?|number|nambari|:)?\s*[A-Z]?\d{6,9}\b', r'(?i)\bP\.?O\.?\s*Box\s*\d+[^\n,.]*']},
     {'name': 'dates_and_deadlines', 'kind': 'pattern', 'action': 'generalise', 'enforcement': 'advisory', 'description': 'calendar dates and deadlines that would identify the engagement', 'patterns': [r'\b\d{4}-\d{2}-\d{2}\b', r'\b\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?,?\s+\d{4}\b', r'\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},?\s+\d{4}\b']},
@@ -69,8 +73,8 @@ def ensure_defaults(tenant):
             coll.update_many({'tenant_id': tenant, 'name': cat['name'], 'enforcement': {'$exists': False}}, {'$set': {'enforcement': cat['enforcement']}})
             # a default the DPO never revised tracks the shipped cue/pattern lists (multilingual cues added later); DPO-authored versions are untouched
             doc = coll.find_one({'tenant_id': tenant, 'name': cat['name'], 'status': 'active', 'authored_by': 'shield.defaults'})
-            if doc and any(doc.get(k) != cat.get(k) for k in ('cues', 'patterns', 'targets', 'description')):
-                coll.update_one({'_id': doc['_id']}, {'$set': {k: cat.get(k) for k in ('cues', 'patterns', 'targets', 'description')}, '$push': {'history': {'at': now(), 'by': 'shield.defaults', 'change': 'shipped default cues/patterns refreshed (never revised by the DPO)'}}})
+            if doc and any(doc.get(k) != cat.get(k) for k in ('cues', 'patterns', 'targets', 'description', 'recogniser')):
+                coll.update_one({'_id': doc['_id']}, {'$set': {k: cat.get(k) for k in ('cues', 'patterns', 'targets', 'description', 'recogniser')}, '$push': {'history': {'at': now(), 'by': 'shield.defaults', 'change': 'shipped default cues/patterns refreshed (never revised by the DPO)'}}})
         coll.update_many({'tenant_id': tenant, 'enforcement': {'$exists': False}}, {'$set': {'enforcement': 'enforced'}})
         return 0
     for cat in DEFAULT_CATEGORIES:
@@ -120,12 +124,16 @@ def _validate(body):
     if body['kind'] == 'pattern':
         for p in body.get('patterns') or []: re.compile(p)
         if not body.get('patterns'): raise ValueError('A pattern category needs at least one regular expression')
-    if body['kind'] == 'contextual' and not body.get('cues'): raise ValueError('A contextual category names the cues that signal the protected meaning')
+    if body['kind'] == 'contextual':
+        # Doc 2 A5.2 (B35): a category declaration is testable only when bound to the reasoning-layer recogniser — the DPO's description is what the
+        # contained reader applies; cue words are optional proposer hints, never the enforcement mechanism
+        if len(str(body.get('description') or '').strip()) < 3: raise ValueError('A contextual (Category-3) declaration describes the privileged meaning the contained reader must recognise')
+        body['recogniser'] = RECOGNISER
     if body.get('entity_type') is not None and (body['kind'] != 'exact' or not re.fullmatch(r'[A-Z][A-Z0-9_]{1,30}', str(body['entity_type']))): raise ValueError('entity_type is an upper-case label on an exact declaration')
 
 
 def _fields(body):
-    return {k: body.get(k) for k in ('name', 'kind', 'action', 'description', 'cues', 'targets', 'patterns', 'values', 'entity_type')} | {'enforcement': body.get('enforcement') or 'enforced'}
+    return {k: body.get(k) for k in ('name', 'kind', 'action', 'description', 'cues', 'targets', 'patterns', 'values', 'entity_type', 'recogniser')} | {'enforcement': body.get('enforcement') or 'enforced'}
 
 
 def _one(coll, tenant, name, status):
@@ -249,11 +257,11 @@ def set_enforcement(tenant, actor, name, enforcement):
     return db().shield_register.find_one({'tenant_id': tenant, 'name': name, 'status': 'active'}, {'_id': 0})
 
 
-def propose(tenant, actor, text, source_ref=None):
-    """Generate draft declarations from a document read INSIDE the boundary: the exact values each contextual category found (so the same value is
-    protected later even without its cue), and a contextual draft for passages carrying confidentiality markers that no category covered.
-    Drafts do nothing until the DPO adopts them."""
-    coll = db().shield_register; spans = classify(text, tenant); drafts = []
+def propose(tenant, actor, text, source_ref=None, reader_findings=None):
+    """Generate draft declarations from a document read INSIDE the boundary: the exact values each contextual category's cues found (the proposer's
+    heuristics), the privileged values the contained reader marked that no declaration covers (`reader_findings`, WP-A4), and a contextual draft
+    for passages carrying confidentiality markers that no category covered. Drafts do nothing until the DPO adopts them."""
+    coll = db().shield_register; spans = classify(text, tenant, cues='propose'); drafts = []
     by_cat = defaultdict(set)
     for s in spans:
         if s['kind'] == 'contextual' and s['action'] != 'remove' and len(s['text']) >= 3 and not re.fullmatch(r'[\d.,%\s]+', s['text']): by_cat[s['category']].add(s['text'].strip())
@@ -262,6 +270,11 @@ def propose(tenant, actor, text, source_ref=None):
         existing = coll.find_one({'tenant_id': tenant, 'name': name, 'status': {'$in': ['active', 'draft']}})
         merged = sorted(set(existing.get('values') or []) | values) if existing else sorted(values)
         drafts.append({'name': name, 'kind': 'exact', 'action': 'abstract', 'enforcement': 'enforced', 'values': merged[:500], 'description': f'literal values the register found under {cat}; protected wherever they appear, with or without a cue', 'basis': f'{len(values)} value(s) classified under {cat}'})
+    found = sorted({f['value'] for f in reader_findings or [] if len(f.get('value') or '') >= 3 and not re.fullmatch(r'[\d.,%\s]+', f['value'])})
+    if found:
+        existing = coll.find_one({'tenant_id': tenant, 'name': 'reader_privileged_values', 'status': {'$in': ['active', 'draft']}})
+        merged = sorted(set(existing.get('values') or []) | set(found)) if existing else found
+        drafts.append({'name': 'reader_privileged_values', 'kind': 'exact', 'action': 'abstract', 'enforcement': 'enforced', 'values': merged[:500], 'description': 'values the contained reader judged privileged that no declaration covers; adopt to protect them wherever they appear', 'basis': f'{len(found)} value(s) marked privileged by the contained reader outside every declared category'})
     covered = [(s['start'], s['end']) for s in spans]
     marked = []
     for a, b, sentence in _sentences(text):
@@ -305,9 +318,12 @@ def _candidates(sentence, start):
     return found
 
 
-def classify(text, tenant, enforcement=None):
-    """Protected spans with category, kind, enforcement scope and the cue or pattern that fired. Contextual categories fire on candidates inside a
-    sentence carrying their cues. `enforcement='enforced'` restricts to the categories rewritten on every crossing."""
+def classify(text, tenant, enforcement=None, reader_spans=None, cues='advisory'):
+    """Protected spans with category, kind, enforcement scope and the cue, pattern or reader reason that fired.
+    Category 1/2 (`pattern`, `exact`) are deterministic. Category 3 (`contextual`) spans come from the contained reader (`reader_spans`, WP-A4);
+    cue words fire only as `advisory` receipts (default), as the draft proposer (`cues='propose'`) or not at all (`cues='off'`) — never as a
+    rewrite or refusal cause. `enforcement='enforced'` restricts to the categories rewritten on every crossing."""
+    if cues not in CUE_MODES: raise ValueError('cues must be advisory|propose|off')
     cats = [c for c in categories(tenant) if enforcement is None or c.get('enforcement', 'enforced') == enforcement]; spans = []
     def span(cat, start, end, value, cue): return {'start': start, 'end': end, 'text': value, 'category': cat['name'], 'kind': cat['kind'], 'action': cat['action'], 'enforcement': cat.get('enforcement', 'enforced'), 'cue': cue}
     for cat in cats:
@@ -318,6 +334,33 @@ def classify(text, tenant, enforcement=None):
             for p in cat.get('patterns') or []:
                 for m in re.finditer(p, text):
                     if m.group().strip(): spans.append(span(cat, m.start(), m.end(), m.group(), p[:40]))
+    names = {c['name'] for c in cats}
+    for s in reader_spans or []:
+        if s['category'] in names or s['category'] == 'indirect_disclosure': spans.append({**s, 'source': RECOGNISER})
+    if cues != 'off':
+        for s in _cue_spans(text, cats):
+            spans.append({**s, 'enforcement': 'advisory', 'proposer': True} if cues == 'advisory' else s)
+    spans.sort(key=lambda s: (s['start'], -(s['end'] - s['start'])))
+    merged = []
+    for s in spans:
+        if merged and s['start'] < merged[-1]['end']:
+            if merged[-1].get('proposer') and not s.get('proposer'):
+                # a cue (proposer) span never absorbs a declared/reader span: the real span takes the slot, the cue rides along as a receipt
+                merged[-1] = {**s, 'also': (merged[-1].get('also') or []) + [merged[-1]['category']]}; continue
+            if s.get('proposer'):
+                merged[-1].setdefault('also', []).append(s['category']); continue
+            if s['action'] == 'remove' and merged[-1]['action'] != 'remove' and s['enforcement'] == 'enforced': merged[-1]['action'] = 'remove'
+            if s['enforcement'] == 'enforced': merged[-1]['enforcement'] = 'enforced'
+            if s['end'] > merged[-1]['end'] and s['enforcement'] == 'enforced': merged[-1]['end'] = s['end']; merged[-1]['text'] = text[merged[-1]['start']:s['end']]
+            merged[-1].setdefault('also', []).append(s['category']); continue
+        merged.append(s)
+    return merged
+
+
+def _cue_spans(text, cats):
+    """Cue-word detection for contextual categories — the proposer's heuristics (RC-2: regex is not reasoning)."""
+    out = []
+    def span(cat, start, end, value, cue): return {'start': start, 'end': end, 'text': value, 'category': cat['name'], 'kind': cat['kind'], 'action': cat['action'], 'enforcement': cat.get('enforcement', 'enforced'), 'cue': cue, 'source': 'cue'}
     for s_start, s_end, sentence in _sentences(text):
         low = sentence.lower()
         active = [(c, [cue for cue in c.get('cues') or [] if cue in low]) for c in cats if c['kind'] == 'contextual']
@@ -327,20 +370,11 @@ def classify(text, tenant, enforcement=None):
         for cat, cues in active:
             targets = set(cat.get('targets') or [])
             if 'SENTENCE' in targets and len(cues) >= 2:
-                spans.append(span(cat, s_start, s_end, sentence, ', '.join(cues[:4]))); continue
+                out.append(span(cat, s_start, s_end, sentence, ', '.join(cues[:4]))); continue
             for label, a, b, value in cands:
                 if label in targets or (label == 'PROPER_NOUN' and {'PERSON', 'ORG'} & targets):
-                    spans.append(span(cat, a, b, value, ', '.join(cues[:3])))
-    spans.sort(key=lambda s: (s['start'], -(s['end'] - s['start'])))
-    merged = []
-    for s in spans:
-        if merged and s['start'] < merged[-1]['end']:
-            if s['action'] == 'remove' and merged[-1]['action'] != 'remove': merged[-1]['action'] = 'remove'
-            if s['enforcement'] == 'enforced': merged[-1]['enforcement'] = 'enforced'
-            if s['end'] > merged[-1]['end']: merged[-1]['end'] = s['end']; merged[-1]['text'] = text[merged[-1]['start']:s['end']]
-            merged[-1].setdefault('also', []).append(s['category']); continue
-        merged.append(s)
-    return merged
+                    out.append(span(cat, a, b, value, ', '.join(cues[:3])))
+    return out
 
 
 def _placeholder(span, counters):
@@ -351,14 +385,17 @@ def _placeholder(span, counters):
     return f'[{kind}_{counters[kind]}]', hint
 
 
-def reconstruct(text, tenant, mode='abstract'):
+def reconstruct(text, tenant, mode='abstract', reader_spans=None):
     """Shield reconstruction: protected spans become typed placeholders (abstract) or are dropped (remove); the binding map never leaves the tenant.
-    Returns the safe text, the binding map, the categories applied and the joint-disclosure check."""
-    spans = classify(text, tenant); counters = defaultdict(int); out, pos, bindings, applied = [], 0, {}, defaultdict(int)
+    Category-3 spans come from the contained reader (`reader_spans`); cue words are receipted only. Returns the safe text, the binding map, the
+    categories applied and the joint-disclosure check."""
+    spans = [s for s in classify(text, tenant, reader_spans=reader_spans) if not s.get('proposer')]
+    cue_only = [s for s in classify(text, tenant, reader_spans=reader_spans) if s.get('proposer')]
+    counters = defaultdict(int); out, pos, bindings, applied = [], 0, {}, defaultdict(int)
     for s in spans:
         out.append(text[pos:s['start']]); applied[s['category']] += 1
         if s['action'] == 'remove' or mode == 'remove':
-            kind = 'METHOD' if s['category'] == 'unpublished_pricing_method' else 'REDACTED'
+            kind = 'METHOD' if s['category'] == 'unpublished_pricing_method' else 'DISCLOSURE' if s['category'] == 'indirect_disclosure' else 'REDACTED'
             out.append(f'[{kind}_WITHHELD]')
         else:
             token, hint = _placeholder(s, counters); bindings[token] = {'value': s['text'], 'category': s['category'], 'hint': hint}; out.append(token if mode == 'abstract' else f'[{hint}]')
@@ -367,7 +404,9 @@ def reconstruct(text, tenant, mode='abstract'):
     check = joint_disclosure_check(safe, text, bindings)
     if not check['passes']:
         safe = check['generalised_text']
-    return {'safe_text': safe, 'bindings': bindings, 'categories_applied': dict(applied), 'spans': [{k: v for k, v in s.items() if k != 'text'} | {'length': s['end'] - s['start']} for s in spans], 'joint_disclosure': {k: v for k, v in check.items() if k != 'generalised_text'},
+    advisory_cues = defaultdict(int)
+    for s in cue_only: advisory_cues[s['category']] += 1
+    return {'safe_text': safe, 'bindings': bindings, 'categories_applied': dict(applied), 'advisory_cues': dict(advisory_cues), 'spans': [{k: v for k, v in s.items() if k != 'text'} | {'length': s['end'] - s['start']} for s in spans], 'joint_disclosure': {k: v for k, v in check.items() if k != 'generalised_text'},
             'binding_digest': hashlib.sha256(''.join(sorted(b['value'] for b in bindings.values())).encode()).hexdigest()}
 
 

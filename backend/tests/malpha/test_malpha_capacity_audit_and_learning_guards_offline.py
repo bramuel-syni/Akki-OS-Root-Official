@@ -1,6 +1,7 @@
 """Mα guardrail offline tests: larger-base trial controls, worker-audit gating, lease lock, learning schema wire contract."""
 
 import asyncio
+import json
 import os
 import sys
 from types import SimpleNamespace
@@ -16,6 +17,22 @@ from services.training_lab import malpha_comparisons as mc  # noqa: E402
 from services.training_lab import malpha_learning as ml  # noqa: E402
 from services.training_runner import m9_dispatch  # noqa: E402
 from services.training_runner import m9_serving  # noqa: E402
+
+def _fake_stage(monkeypatch):
+    """WP-A5 offline: the Shield stage is faked at its seam — the artifact carries the caller's items verbatim; `_payload` merges the JSON items back for assertions."""
+    from services.synisense.shield import stage as st
+
+    async def fake(*, question, data=None, tenant_id, purpose, actor, custody_class='tenant_estate', system_message=None, objective_ref=None, session_id=None, retain=True):
+        return st.SafeArtifact(artifact_id='sa-fake', tenant_id=tenant_id, purpose=purpose, custody_class=custody_class, safe_items=[question] + ([data] if data else []), safe_system=system_message,
+                               objective_ref=objective_ref, receipt={}, protected_digest='', created_at='2026-10-05T00:00:00Z', seal='fake')
+    monkeypatch.setattr(st, 'stage', fake)
+
+
+def _payload(kwargs):
+    out = {}
+    for item in kwargs['safe_artifact'].safe_items: out.update(json.loads(item))
+    return out
+
 
 
 def test_launch_larger_trial_builds_research_only_recipe_from_registered_base(monkeypatch):
@@ -239,6 +256,7 @@ def test_learning_review_prompt_is_role_specific_and_not_proposer(monkeypatch):
             return _Resp('{"findings":["f"],"experiments":[{"lane":"listener","hypothesis":"h","evidence_refs":["listener-result-1"],"change":"c","measurement":"m","failure_condition":"x"}],"limitations":["l"]}')
         return _Resp('{"verdict":"revise","findings":["ok"],"required_changes":["rc"]}')
 
+    _fake_stage(monkeypatch)
     monkeypatch.setattr("services.chokepoint.llm.invoke", fake_invoke)
     monkeypatch.setattr("services.chokepoint.model_roles.resolve", lambda role: {"sdk_provider": "p1", "connection": "c", "model": "m1", "role": "planner"} if role == "planner" else {"sdk_provider": "p2", "connection": "c2", "model": "m2", "role": "reviewer"})
     monkeypatch.setattr(ml.store, "db", lambda: SimpleNamespace(malpha_learning_reviews=_Collection()))
@@ -268,7 +286,7 @@ def test_learning_review_prompt_is_role_specific_and_not_proposer(monkeypatch):
     result = asyncio.run(ml.reconstruct("tester"))
     assert result["status"] == "reviewed"
     review_call = next(c for c in calls if c["purpose"] == "malpha.learning_review")
-    assert "NOT the proposer" in review_call["system_message"]
+    assert "NOT the proposer" in review_call["safe_artifact"].safe_system  # WP-A5: the system message crosses inside the sealed artifact
 
 
 def test_m9_dispatch_accepts_native_worker_audit_phase_contract(monkeypatch):

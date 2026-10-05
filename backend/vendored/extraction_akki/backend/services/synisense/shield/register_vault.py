@@ -58,20 +58,40 @@ def _declarations(rows):
 
 
 def reach(declarations, measured):
-    """Counts of measured documents each declaration would touch. `measured` = [(document_id, text)]; the unmeasured is stated, not implied clean."""
+    """Counts of measured documents each declaration would touch. `measured` = [(document_id, text)]; the unmeasured is stated, not implied clean.
+    Category-3 (contextual) declarations are measured through the contained reader by `reach_contextual`; here they are reported as not measurable
+    by pattern, never implied clean."""
     by = {}
     for d in declarations:
         if d['kind'] == 'exact': pats = [re.compile(re.escape(v), re.IGNORECASE) for v in d.get('values') or []]
         elif d['kind'] == 'pattern': pats = [re.compile(p) for p in d.get('patterns') or []]
-        else: pats = []
+        else:
+            by[d['name']] = {'documents_matched': None, 'matches': None, 'basis': 'contextual declaration: reach is measured by the contained reader (reach_contextual), not by pattern'}; continue
         docs = matches = 0
         for _, text in measured:
             n = sum(len(p.findall(text)) for p in pats)
             if n: docs += 1; matches += n
-        by[d['name']] = {'documents_matched': docs, 'matches': matches}
+        by[d['name']] = {'documents_matched': docs, 'matches': matches, 'basis': 'literal/pattern match over the measured material'}
     statement = ('Reach is computed over the measured material only: ' + (f'{len(measured)} text document(s) the library holds for this tenant. ' if measured else 'no document has been measured for this tenant yet. ')
                  + 'Estate audio, object-store and NAS buckets and any file not uploaded to the library are not measured and are not represented here.')
     return {'measured_documents': len(measured), 'measured_ids': [i for i, _ in measured], 'by_declaration': by, 'unmeasured': statement}
+
+
+READER_REACH_DOCS = 8
+
+
+def reach_contextual(declaration, measured, tenant, recognise):
+    """Review reach of a Category-3 declaration (Doc 2 A5.2/A5.3): the contained reader reads a bounded number of measured documents against this
+    one description; documents beyond the bound are stated as not read. Counts only — values never leave."""
+    read, docs, spans, errors = 0, 0, 0, []
+    for doc_id, text in measured[:READER_REACH_DOCS]:
+        try: out = recognise(text[:9000], tenant, f'register.reach:{declaration["name"]}', categories=[declaration])
+        except Exception as exc:  # noqa: BLE001 — disclosed, not hidden
+            errors.append({'document_id': doc_id, 'error': type(exc).__name__}); continue
+        read += 1; n = sum(1 for s in out['spans'] if s['category'] == declaration['name'])
+        if n: docs += 1; spans += n
+    return {'recogniser': 'contained_reader', 'documents_read': read, 'documents_not_read': max(0, len(measured) - READER_REACH_DOCS), 'documents_matched': docs, 'spans': spans, 'errors': errors,
+            'basis': f'the contained reader applied the declaration description to up to {READER_REACH_DOCS} measured documents; the rest are not read and not implied clean'}
 
 
 def measured_material(tenant, exclude_file_id=None):

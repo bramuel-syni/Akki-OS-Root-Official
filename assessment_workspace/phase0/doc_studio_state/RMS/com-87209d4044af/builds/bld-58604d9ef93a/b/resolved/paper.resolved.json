@@ -1,0 +1,958 @@
+{
+  "brief_ref": "BR-2026-10-05-m9j-346358ddf574",
+  "build_stamp": "2026-10-05T13:45:50Z",
+  "content_ref": "malpha-tier2-m9j-346358ddf574@1",
+  "direction": "D1",
+  "family": "strategy",
+  "furniture": {
+    "confidentiality": "Internal — must not cross the outer gate",
+    "paper_id": "m9j-346358ddf574"
+  },
+  "inputs_sha256": {
+    "brief.json": "3994bc27afc5b7d435214b8f38e07d02ca4b967d36ca86bc5167268122d093b3",
+    "content.json": "46a891f13e74b35c2e386a4e977952e2e2fdc86e82dd22b183020132f9935ef4",
+    "house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+    "paper.json": "3a40b199363fdd2b8bbcb51d1b6fa345918e98ff51081648a9297f7e9c911f5c",
+    "strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+    "verdict.json": "d70799af1ab12a18b6ba4b76d634ecb50833a13a373b1537622760f4846d2c66"
+  },
+  "look": {
+    "cover_composition": "title-left-high",
+    "divider_treatment": "inverted-field",
+    "fonts": {
+      "body": "Arial",
+      "number": "Courier New",
+      "title": "Century Schoolbook"
+    },
+    "palette": {
+      "accent": "0E7C86",
+      "field": "FFFFFF",
+      "hatch": "EAEEF2",
+      "muted": "7F8C9A",
+      "rule": "D8DEE5",
+      "structure": "22313F"
+    },
+    "palette_id": "slate",
+    "printed_override": "field forced to printable white (M3)",
+    "type_pair_id": "century-arial",
+    "veto_steps": []
+  },
+  "manifest_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "organisation": "RMS",
+  "sections": [
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "25 of 25 figures in this report resolve to a retained record; the rest are listed as refused and do not render as numbers (WPW-9)."
+        },
+        {
+          "kind": "para",
+          "text": "Settlement: refused — admission bar not met: spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6236, swa max cosine 0.5858. Run status completed; drafted automatically when the run settled (WPW-8). Internal — must not cross the outer gate (WPW-10)."
+        }
+      ],
+      "heading": "Settlement"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Commission: Expressive spoken storyteller with an invented voice (Kikuyu, Kamba, Kiswahili) (STORY-KIK-KAM-SWA)."
+        },
+        {
+          "kind": "para",
+          "text": "Product: one agent that invents coherent stories and speaks them with the language character of each language in a voice that is no corpus presenter"
+        },
+        {
+          "kind": "para",
+          "text": "Task: story generation and expressive multilingual speech rendering — radio storytelling register, three languages."
+        },
+        {
+          "kind": "para",
+          "text": "Admission bars for the story_voice lane (fixed before training):"
+        },
+        {
+          "kind": "para",
+          "text": "kam: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9"
+        },
+        {
+          "kind": "para",
+          "text": "kik: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9"
+        },
+        {
+          "kind": "para",
+          "text": "swa: identity_gate_max_cosine_below 0.4, native_listener_rating human evaluation required — not automatable, spectral_behaviour_similarity 0.9"
+        },
+        {
+          "kind": "para",
+          "text": "Gate policy: every language meets every automatable bar; native-listener judgement is recorded as pending until humans rate unseen stories"
+        },
+        {
+          "kind": "para",
+          "text": "Metric contract status: DERIVED/PROPOSED mapping of the owner 90% target onto measured spectral-behaviour similarity; naturalness itself is a human judgement and is not claimed from similarity"
+        },
+        {
+          "kind": "para",
+          "text": "Budget authority: uncapped_until_billing — recorded authority, not a number."
+        },
+        {
+          "kind": "para",
+          "text": "This report settles story_voice iteration 12 (job m9j-346358ddf574)."
+        }
+      ],
+      "heading": "Problem and objective"
+    },
+    {
+      "blocks": [
+        {
+          "caption": "",
+          "class": "measured",
+          "columns": [
+            "Language",
+            "Train segments (h)",
+            "Dev segments (h)",
+            "Admission segments (h)",
+            "Recordings read"
+          ],
+          "id": "T001",
+          "kind": "rows_table",
+          "label": "Data statement — table",
+          "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+          "raw_rows": [
+            [
+              "kik",
+              "34,916 (41.866)",
+              "166 (0.167)",
+              "357 (0.376)",
+              "583 of 583"
+            ],
+            [
+              "kam",
+              "17,199 (16.806)",
+              "2 (0.007)",
+              "129 (0.212)",
+              "1165 of 1165"
+            ],
+            [
+              "swa",
+              "35,664 (41.948)",
+              "329 (0.405)",
+              "88 (0.071)",
+              "549 of 549"
+            ]
+          ],
+          "receipt": "R02",
+          "receipt_text": "AIP database build record m9j-5db976bdd3f2 on akki-vm (segments, seals, codec qualification)",
+          "receipts": [
+            "R02"
+          ],
+          "right_align_from": 5,
+          "rows": [
+            [
+              "kik",
+              "34,916 (41.866)",
+              "166 (0.167)",
+              "357 (0.376)",
+              "583 of 583"
+            ],
+            [
+              "kam",
+              "17,199 (16.806)",
+              "2 (0.007)",
+              "129 (0.212)",
+              "1165 of 1165"
+            ],
+            [
+              "swa",
+              "35,664 (41.948)",
+              "329 (0.405)",
+              "88 (0.071)",
+              "549 of 549"
+            ]
+          ],
+          "rows_from": 0,
+          "rows_total": 3,
+          "so_what": "Values as recorded on the retained run record; a dash means the record is silent."
+        },
+        {
+          "kind": "para",
+          "text": "Datasets derived from each recording (one file → several queryable layers): content (transcript, sealed by sha); timing (start/end, pcm offsets); speaker-local label + corpus cluster id; condition (codec/rate/channels); discoverable spectrum columns; codec tokens (content stream cb0, character stream cb1-7)."
+        },
+        {
+          "kind": "para",
+          "text": "Discoverable-spectrum columns (14): duration_s, chars_per_s, energy_db_mean, energy_db_std, pause_ratio, f0_mean_hz, f0_std_semitones, f0_range_hz, voiced_ratio, spectral_centroid_hz, spectral_bandwidth_hz, spectral_rolloff_hz, spectral_flatness, zcr."
+        },
+        {
+          "kind": "para",
+          "text": "Split rule: speaker-cluster-disjoint; straddling sessions → train; admission 10% / dev 10% by cluster hash."
+        },
+        {
+          "kind": "para",
+          "text": "Classification-driven exclusions: raw audio never leaves the host (raw_media_exported=false); transcripts stay on the host (text_exported=false); presenter identity is a corpus-local cluster id — no voiceprint is stored; the sealed admission split is never read by training."
+        },
+        {
+          "kind": "para",
+          "text": "Dev requalification (admission untouched): kik: 166 → 2962 segments (30 with brand mentions; 41 sessions promoted, dev_basis=session_holdout); kam: 2 → 3810 segments (30 with brand mentions; 75 sessions promoted, dev_basis=session_holdout); swa: 329 → 583 segments (37 with brand mentions; 4 sessions promoted, dev_basis=session_holdout)."
+        },
+        {
+          "kind": "para",
+          "text": "This run read: at 2026-10-05T12:31:03Z, train_segments 67902, train_hours 56.29, dev_segments 1157, text_vocab 65, admission_read False, excluded_overlong_transcripts 8, max_text_chars 400, max_codec_frames 152; per language {'kik': 29263, 'kam': 9552, 'swa': 29087}."
+        }
+      ],
+      "heading": "Data statement"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Codec: kyutai/mimi revision 89091b3e466eb6a9d11e537bf26b144f194978f7, 8 codebooks × 12.5 Hz = 100.0 tokens/s; content stream codebook 0 (semantic, WavLM-distilled), character stream codebooks 1-7 (acoustic residual)."
+        },
+        {
+          "kind": "para",
+          "text": "Starting model: none — the codec language model is trained from scratch on the database tokens; there is no pretrained voice and no presenter is cloned (AIP §§6–7). Pretrained MMS-TTS voices exist for Kikuyu and Kiswahili as comparators only; none exists for Kikamba."
+        }
+      ],
+      "heading": "Baseline record"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Recipe (this iteration): lr = 1.210608209999999e-05, batch_size = 48, max_steps = 40000, warmup_steps = 1000, eval_every = 2500, checkpoint_every = 500, d_model = 768, layers = 12, heads = 12, max_segment_seconds = 12.0, spectral_feedback = True, eval_prompts_per_language = 12, identity_cosine_threshold = 0.4, identity_conditioning = True, identity_candidates = 200, identity_noise = 2.0, identity_margin = 0.15, loudness_match = True, language_balance = True, dense_identity = True, worker_design_version = 2, init_from = /mnt/volume_dkgjrkx/akki-m9/jobs/m9j-0a60c6784c26/artefact/voice_lm.pt, carried_from_seal_version = 3, rationale = continue iteration 11's compatible weights at 0.7× learning rate; similarity {'kik': 0.5596, 'kam': 0.5962, 'swa': 0.5656}; identity gate failed for kik, kam, swa → identity resampled with more noise (2.75) and a wider construction margin (0.15). Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence. | supervisor adopted hyp-88815a18641b (frontier_cif): Repairing the out-of-bounds identity_noise value will make the recipe valid, but is unlikely by itself to establish rendered identity safety. → {\"identity_noise\": 2.0}."
+        },
+        {
+          "kind": "para",
+          "text": "Training: a codec language model (text characters → delayed Mimi frames, eight codebooks) trained from scratch. Rendered dev prompts are measured with the same discoverable-spectrum columns as the corpus; the per-feature divergence between generated and baseline distributions is the spectral-behaviour similarity, and where it is shifted the next curriculum up-weights the under-covered side of that feature (spectral feedback). The identity gate embeds each rendering and requires its cosine to every corpus-derived speaker comparator to stay below the threshold; comparators live in memory only."
+        },
+        {
+          "kind": "para",
+          "text": "Adopted ideation events (mirrored by reference, WPW-6):"
+        },
+        {
+          "kind": "para",
+          "text": "malpha://supervisor/hypothesis/hyp-88815a18641b · idea malpha://supervisor/hypothesis/hyp-88815a18641b#statement · conditions malpha://job/m9j-0a60c6784c26#result.dev · adopted (attempt 1)."
+        }
+      ],
+      "heading": "Method and adopted ideation events"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Hardware: akki-vm GPU 1 — device name not recorded; peak memory 17.11 GB."
+        },
+        {
+          "kind": "para",
+          "text": "Duration: 4203.5 s wall, 1.1676 GPU-hours."
+        },
+        {
+          "kind": "para",
+          "text": "Cost actual against estimate: 1.167 GPU-hours measured. Estimate: none — the run was commissioned under uncapped_until_billing (owner order), no governed GPU rate card exists, so money is not invented; WPW-18 observation line therefore has no base and is recorded as silent."
+        },
+        {
+          "kind": "para",
+          "text": "Seed: 20261004."
+        },
+        {
+          "kind": "para",
+          "text": "Worker bundle: 0cc990c81bb27ff0… (hashed, receipted on the host; digest verified at settlement: yes)."
+        },
+        {
+          "kind": "para",
+          "text": "Iteration / attempt: iteration 12."
+        }
+      ],
+      "heading": "Setup and reproducibility"
+    },
+    {
+      "blocks": [
+        {
+          "caption": "",
+          "class": "measured",
+          "columns": [
+            "Criterion",
+            "Measured",
+            "Threshold",
+            "Pass"
+          ],
+          "id": "T002",
+          "kind": "rows_table",
+          "label": "Results on held-out material — table",
+          "note": "Values as recorded on the retained run record; a dash means the record is silent.",
+          "raw_rows": [
+            [
+              "`held_out_accuracy`",
+              "spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6236, swa max cosine 0.5858",
+              "similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement",
+              "❌"
+            ],
+            [
+              "`abstention_calibration`",
+              "rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)",
+              "reported separately",
+              "— (reported, not gated)"
+            ],
+            [
+              "`cost_actual_vs_estimate`",
+              "1.167 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+              "no numeric cap (owner order, recorded authority)",
+              "— (reported, not gated)"
+            ],
+            [
+              "`latency_p95_ms`",
+              "not instrumented for rendering in this iteration",
+              "—",
+              "— (reported, not gated)"
+            ],
+            [
+              "`refusal_rate_on_out_of_domain`",
+              "not instrumented in this lane",
+              "—",
+              "— (reported, not gated)"
+            ],
+            [
+              "`adapter_size_mib`",
+              "424.7 MiB artefact",
+              "reported separately",
+              "— (reported, not gated)"
+            ]
+          ],
+          "receipt": "R01",
+          "receipt_text": "Retained m9 job record and host receipt for m9j-346358ddf574 (story_voice iteration 12, completed)",
+          "receipts": [
+            "R01"
+          ],
+          "right_align_from": 4,
+          "rows": [
+            [
+              "`held_out_accuracy`",
+              "spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6236, swa max cosine 0.5858",
+              "similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement",
+              "❌"
+            ],
+            [
+              "`abstention_calibration`",
+              "rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)",
+              "reported separately",
+              "— (reported, not gated)"
+            ],
+            [
+              "`cost_actual_vs_estimate`",
+              "1.167 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+              "no numeric cap (owner order, recorded authority)",
+              "— (reported, not gated)"
+            ],
+            [
+              "`latency_p95_ms`",
+              "not instrumented for rendering in this iteration",
+              "—",
+              "— (reported, not gated)"
+            ],
+            [
+              "`refusal_rate_on_out_of_domain`",
+              "not instrumented in this lane",
+              "—",
+              "— (reported, not gated)"
+            ],
+            [
+              "`adapter_size_mib`",
+              "424.7 MiB artefact",
+              "reported separately",
+              "— (reported, not gated)"
+            ]
+          ],
+          "rows_from": 0,
+          "rows_total": 6,
+          "so_what": "Values as recorded on the retained run record; a dash means the record is silent."
+        },
+        {
+          "kind": "para",
+          "text": "Held-out material: dev split (iteration feedback; the sealed admission split is read only by the independent evaluation). sealed_admission_read = no."
+        },
+        {
+          "kind": "para",
+          "text": "Learning curve: 16 dev evaluations recorded (steps 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000, 32500, 35000, 37500, 40000)."
+        }
+      ],
+      "heading": "Results on held-out material"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "No ablations were run in this settlement. The controlled same-base comparison of spectral-feedback curricula (MA-16) is a separate commission and is not claimed here."
+        }
+      ],
+      "heading": "Ablations"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Results are on the dev split, which guides iteration; they are not admission evidence. Admission is decided only on the sealed, speaker-cluster-disjoint split by a separate evaluation run."
+        },
+        {
+          "kind": "para",
+          "text": "The dev split was requalified after the cluster-disjoint rule left it too small to measure: whole train sessions were promoted to dev (dev_basis=session_holdout), so presenter voices may overlap between train and dev. This is a disclosed selection effect on dev; the admission split is unchanged."
+        },
+        {
+          "kind": "para",
+          "text": "Spectral-behaviour similarity is an instrument, not naturalness: a rendering can match the corpus distributions and still sound wrong. Native-listener ratings on unseen stories are required and are recorded as pending."
+        },
+        {
+          "kind": "para",
+          "text": "The identity gate is scoped to corpus-derived speaker representations of this estate; it is not a claim of global uniqueness over all humans."
+        },
+        {
+          "kind": "para",
+          "text": "No pretrained Kikamba voice exists as a comparator; the Kikamba baseline is the corpus distribution alone."
+        },
+        {
+          "kind": "para",
+          "text": "Monetary cost is not stated: GPU-hours are measured, no governed rate card exists, and the owner authority is uncapped until billing."
+        }
+      ],
+      "heading": "Limitations"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "para",
+          "text": "Admission bar not met on this material. spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6236, swa max cosine 0.5858. Threshold: similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement."
+        },
+        {
+          "kind": "para",
+          "text": "Regressions against iteration 11: kam similarity 0.5962 → 0.596."
+        }
+      ],
+      "heading": "Negative results"
+    },
+    {
+      "blocks": [
+        {
+          "caption": "",
+          "class": "measured",
+          "columns": [
+            "Criterion",
+            "Measured",
+            "Threshold",
+            "Pass",
+            "Evidence class"
+          ],
+          "id": "T003",
+          "kind": "rows_table",
+          "label": "Six acceptance criteria — measured value, adopted threshold, pass",
+          "note": "Every criterion of the fixed set is named; a criterion the run did not instrument says so instead of carrying a filled value.",
+          "raw_rows": [
+            [
+              "held_out_accuracy",
+              "spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6236, swa max cosine 0.5858",
+              "similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement",
+              "fail",
+              "measured"
+            ],
+            [
+              "abstention_calibration",
+              "rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)",
+              "reported separately",
+              "reported, not gated",
+              "measured"
+            ],
+            [
+              "cost_actual_vs_estimate",
+              "1.167 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+              "no numeric cap (owner order, recorded authority)",
+              "reported, not gated",
+              "measured"
+            ],
+            [
+              "latency_p95_ms",
+              "not instrumented for rendering in this iteration",
+              "—",
+              "reported, not gated",
+              "not instrumented"
+            ],
+            [
+              "refusal_rate_on_out_of_domain",
+              "not instrumented in this lane",
+              "—",
+              "reported, not gated",
+              "not instrumented"
+            ],
+            [
+              "adapter_size_mib",
+              "424.7 MiB artefact",
+              "reported separately",
+              "reported, not gated",
+              "measured"
+            ]
+          ],
+          "receipt": "R01",
+          "receipt_text": "Retained m9 job record and host receipt for m9j-346358ddf574 (story_voice iteration 12, completed)",
+          "receipts": [
+            "R01"
+          ],
+          "right_align_from": 5,
+          "rows": [
+            [
+              "held_out_accuracy",
+              "spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6236, swa max cosine 0.5858",
+              "similarity ≥ 0.90 and every corpus comparator below cosine 0.40, per language; native-listener rating is a separate human judgement",
+              "fail",
+              "measured"
+            ],
+            [
+              "abstention_calibration",
+              "rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)",
+              "reported separately",
+              "reported, not gated",
+              "measured"
+            ],
+            [
+              "cost_actual_vs_estimate",
+              "1.167 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until_billing",
+              "no numeric cap (owner order, recorded authority)",
+              "reported, not gated",
+              "measured"
+            ],
+            [
+              "latency_p95_ms",
+              "not instrumented for rendering in this iteration",
+              "—",
+              "reported, not gated",
+              "not instrumented"
+            ],
+            [
+              "refusal_rate_on_out_of_domain",
+              "not instrumented in this lane",
+              "—",
+              "reported, not gated",
+              "not instrumented"
+            ],
+            [
+              "adapter_size_mib",
+              "424.7 MiB artefact",
+              "reported separately",
+              "reported, not gated",
+              "measured"
+            ]
+          ],
+          "rows_from": 0,
+          "rows_total": 6,
+          "so_what": "Every criterion of the fixed set is named; a criterion the run did not instrument says so instead of carrying a filled value."
+        }
+      ],
+      "heading": "Acceptance criteria"
+    },
+    {
+      "blocks": [
+        {
+          "caption": "",
+          "class": "measured",
+          "columns": [
+            "Figure",
+            "Evidence class",
+            "Receipt line",
+            "Summary"
+          ],
+          "id": "T004",
+          "kind": "rows_table",
+          "label": "Figure register — evidence class and receipt line of every rendered figure",
+          "note": "Each receipt line resolves into the retained record it names; resolution is checked mechanically before the figure renders.",
+          "raw_rows": [
+            [
+              "objective_contract",
+              "observed",
+              "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-4f4c81c7ab7a",
+              "commissioning reflection recorded 2026-10-04T08:59:11.225238Z before any compute; definition sha 94e7db5d27e4"
+            ],
+            [
+              "corpus_shape",
+              "measured",
+              "m9j-5db976bdd3f2#receipt.result.segments",
+              "segments and hours per language and split in the AIP database"
+            ],
+            [
+              "corpus_files",
+              "measured",
+              "m9j-5db976bdd3f2#receipt.result.files",
+              "recordings read per language"
+            ],
+            [
+              "dataset_layers",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.layers",
+              "declared dataset layers derived from each recording"
+            ],
+            [
+              "feature_columns",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.feature_columns",
+              "discoverable-spectrum columns"
+            ],
+            [
+              "split_rule",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.split_rule",
+              "split and sealing rule"
+            ],
+            [
+              "custody_flags",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.raw_media_exported",
+              "raw media export flag on the database record"
+            ],
+            [
+              "database_binding",
+              "observed",
+              "m9j-346358ddf574#params.aip_db_dir",
+              "database path bound to this run"
+            ],
+            [
+              "dev_requalification",
+              "measured",
+              "m9j-2424ab203154#receipt.result.requalification.report",
+              "dev split before/after requalification, promoted sessions per language"
+            ],
+            [
+              "run_data",
+              "measured",
+              "m9j-346358ddf574#receipt.result.data",
+              "segments/hours this run trained and evaluated on"
+            ],
+            [
+              "codec_provenance",
+              "observed",
+              "m9j-346358ddf574#receipt.result.codec_provenance",
+              "neural codec repo/revision/codebooks"
+            ],
+            [
+              "recipe",
+              "observed",
+              "m9j-346358ddf574#params.recipe",
+              "the recipe this iteration ran"
+            ],
+            [
+              "spectral_feedback",
+              "measured",
+              "m9j-346358ddf574#receipt.result.spectral_feedback",
+              "feedback on; 48 re-weighting events"
+            ],
+            [
+              "ideation_wpwe-918e71a44e61",
+              "observed",
+              "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-918e71a44e61",
+              "ideation record malpha://supervisor/hypothesis/hyp-88815a18641b#statement adopted"
+            ],
+            [
+              "host_binding",
+              "observed",
+              "m9j-346358ddf574#host",
+              "host that ran the job"
+            ],
+            [
+              "gpu_index",
+              "observed",
+              "m9j-346358ddf574#params.gpu_index",
+              "device index on the host"
+            ],
+            [
+              "compute",
+              "measured",
+              "m9j-346358ddf574#receipt.result.compute",
+              "wall seconds, GPU seconds, peak memory, device name"
+            ],
+            [
+              "budget_mode",
+              "observed",
+              "m9j-346358ddf574#params.budget_mode",
+              "budget authority bound to the job"
+            ],
+            [
+              "seed",
+              "observed",
+              "m9j-346358ddf574#params.seed",
+              "seed bound to the job"
+            ],
+            [
+              "worker_bundle",
+              "observed",
+              "m9j-346358ddf574#code_sha256",
+              "sha256 of the hashed worker bundle executed on the host"
+            ],
+            [
+              "criterion_held_out_accuracy",
+              "measured",
+              "m9j-346358ddf574#receipt.result.dev.per_language",
+              "held_out_accuracy: spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6"
+            ],
+            [
+              "criterion_abstention_calibration",
+              "measured",
+              "m9j-346358ddf574#receipt.result.dev.per_language",
+              "abstention_calibration: rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)"
+            ],
+            [
+              "criterion_cost_actual_vs_estimate",
+              "measured",
+              "m9j-346358ddf574#receipt.result.compute",
+              "cost_actual_vs_estimate: 1.167 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until"
+            ],
+            [
+              "criterion_adapter_size_mib",
+              "measured",
+              "m9j-346358ddf574#receipt.result.artefact.bytes",
+              "adapter_size_mib: 424.7 MiB artefact"
+            ],
+            [
+              "learning_curve",
+              "measured",
+              "m9j-346358ddf574#receipt.result.history",
+              "16 dev evaluations during training"
+            ]
+          ],
+          "receipt": "R01",
+          "receipt_text": "Retained m9 job record and host receipt for m9j-346358ddf574 (story_voice iteration 12, completed)",
+          "receipts": [
+            "R01"
+          ],
+          "right_align_from": 4,
+          "rows": [
+            [
+              "objective_contract",
+              "observed",
+              "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-4f4c81c7ab7a",
+              "commissioning reflection recorded 2026-10-04T08:59:11.225238Z before any compute; definition sha 94e7db5d27e4"
+            ],
+            [
+              "corpus_shape",
+              "measured",
+              "m9j-5db976bdd3f2#receipt.result.segments",
+              "segments and hours per language and split in the AIP database"
+            ],
+            [
+              "corpus_files",
+              "measured",
+              "m9j-5db976bdd3f2#receipt.result.files",
+              "recordings read per language"
+            ],
+            [
+              "dataset_layers",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.layers",
+              "declared dataset layers derived from each recording"
+            ],
+            [
+              "feature_columns",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.feature_columns",
+              "discoverable-spectrum columns"
+            ],
+            [
+              "split_rule",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.split_rule",
+              "split and sealing rule"
+            ],
+            [
+              "custody_flags",
+              "observed",
+              "m9j-5db976bdd3f2#receipt.result.raw_media_exported",
+              "raw media export flag on the database record"
+            ],
+            [
+              "database_binding",
+              "observed",
+              "m9j-346358ddf574#params.aip_db_dir",
+              "database path bound to this run"
+            ],
+            [
+              "dev_requalification",
+              "measured",
+              "m9j-2424ab203154#receipt.result.requalification.report",
+              "dev split before/after requalification, promoted sessions per language"
+            ],
+            [
+              "run_data",
+              "measured",
+              "m9j-346358ddf574#receipt.result.data",
+              "segments/hours this run trained and evaluated on"
+            ],
+            [
+              "codec_provenance",
+              "observed",
+              "m9j-346358ddf574#receipt.result.codec_provenance",
+              "neural codec repo/revision/codebooks"
+            ],
+            [
+              "recipe",
+              "observed",
+              "m9j-346358ddf574#params.recipe",
+              "the recipe this iteration ran"
+            ],
+            [
+              "spectral_feedback",
+              "measured",
+              "m9j-346358ddf574#receipt.result.spectral_feedback",
+              "feedback on; 48 re-weighting events"
+            ],
+            [
+              "ideation_wpwe-918e71a44e61",
+              "observed",
+              "wpw://notebook/STORY-KIK-KAM-SWA/wpwe-918e71a44e61",
+              "ideation record malpha://supervisor/hypothesis/hyp-88815a18641b#statement adopted"
+            ],
+            [
+              "host_binding",
+              "observed",
+              "m9j-346358ddf574#host",
+              "host that ran the job"
+            ],
+            [
+              "gpu_index",
+              "observed",
+              "m9j-346358ddf574#params.gpu_index",
+              "device index on the host"
+            ],
+            [
+              "compute",
+              "measured",
+              "m9j-346358ddf574#receipt.result.compute",
+              "wall seconds, GPU seconds, peak memory, device name"
+            ],
+            [
+              "budget_mode",
+              "observed",
+              "m9j-346358ddf574#params.budget_mode",
+              "budget authority bound to the job"
+            ],
+            [
+              "seed",
+              "observed",
+              "m9j-346358ddf574#params.seed",
+              "seed bound to the job"
+            ],
+            [
+              "worker_bundle",
+              "observed",
+              "m9j-346358ddf574#code_sha256",
+              "sha256 of the hashed worker bundle executed on the host"
+            ],
+            [
+              "criterion_held_out_accuracy",
+              "measured",
+              "m9j-346358ddf574#receipt.result.dev.per_language",
+              "held_out_accuracy: spectral-behaviour similarity kik 0.5749, kam 0.596, swa 0.5896; identity gate kik max cosine 0.5343, kam max cosine 0.6"
+            ],
+            [
+              "criterion_abstention_calibration",
+              "measured",
+              "m9j-346358ddf574#receipt.result.dev.per_language",
+              "abstention_calibration: rendered kik 12/12, kam 12/12, swa 12/12 prompts (a prompt the model could not render is an abstention)"
+            ],
+            [
+              "criterion_cost_actual_vs_estimate",
+              "measured",
+              "m9j-346358ddf574#receipt.result.compute",
+              "cost_actual_vs_estimate: 1.167 GPU-hours measured; monetary cost unknown (no governed GPU rate card); estimate: none — budget mode uncapped_until"
+            ],
+            [
+              "criterion_adapter_size_mib",
+              "measured",
+              "m9j-346358ddf574#receipt.result.artefact.bytes",
+              "adapter_size_mib: 424.7 MiB artefact"
+            ],
+            [
+              "learning_curve",
+              "measured",
+              "m9j-346358ddf574#receipt.result.history",
+              "16 dev evaluations during training"
+            ]
+          ],
+          "rows_from": 0,
+          "rows_total": 25,
+          "so_what": "Each receipt line resolves into the retained record it names; resolution is checked mechanically before the figure renders."
+        }
+      ],
+      "heading": "Figure register"
+    },
+    {
+      "blocks": [
+        {
+          "cannot_say": [
+            {
+              "closes_with": "The independent evaluation run on the sealed admission split",
+              "gap": "Admission of the model",
+              "reason": "Dev results guide iteration; only the sealed-split evaluation decides admission"
+            },
+            {
+              "closes_with": "Native listeners judging unseen stories and transcripts",
+              "gap": "Native-speaker quality",
+              "reason": "No human rating is on the record"
+            },
+            {
+              "closes_with": "Actual billing data joined to the measured GPU-hours",
+              "gap": "Monetary cost",
+              "reason": "No governed GPU rate card; uncapped-until-billing authority"
+            },
+            {
+              "closes_with": "Owner rulings R1/R2 and a separate egress crossing",
+              "gap": "Publication",
+              "reason": "Tier 2 is internal (WPW-10); Tier 3 eligibility is mechanical and its rulings are parked"
+            }
+          ],
+          "covers": "The retained record of one Mα run only: m9j-346358ddf574. Evidence classes are carried per figure; where the record is silent the report says so.",
+          "kind": "coverage"
+        }
+      ],
+      "heading": "Coverage and limits"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "receipts",
+          "receipts": [
+            {
+              "id": "R01",
+              "text": "Retained m9 job record and host receipt for m9j-346358ddf574 (story_voice iteration 12, completed)"
+            },
+            {
+              "id": "R02",
+              "text": "AIP database build record m9j-5db976bdd3f2 on akki-vm (segments, seals, codec qualification)"
+            },
+            {
+              "id": "R03",
+              "text": "White Paper Wizard Tier 1 notebook for STORY-KIK-KAM-SWA (append-only, hash-chained; entries referenced by id)"
+            }
+          ]
+        }
+      ],
+      "heading": "Evidence references"
+    }
+  ],
+  "seed": "malpha-tier2-m9j-346358ddf574/decide/2026-10-05",
+  "sizes_pt": {
+    "big_number": 60,
+    "body": 14,
+    "cover_sub": 18,
+    "cover_title": 40,
+    "kicker": 11,
+    "section_number": 96,
+    "section_title": 32,
+    "small": 10,
+    "table": 13,
+    "title": 26
+  },
+  "spec_id": "PP-m9j-346358ddf574",
+  "spec_type": "paper",
+  "subtitle": "White Paper Wizard technical report · settled automatically · internal",
+  "title": "Technical report (internal) — Expressive spoken storyteller with an invented voice (Kikuyu, Kamba, Kiswahili) · story_voice v12",
+  "verdict_ref": "V-2026-10-05-m9j-346358ddf574",
+  "voice": "strategy-house"
+}

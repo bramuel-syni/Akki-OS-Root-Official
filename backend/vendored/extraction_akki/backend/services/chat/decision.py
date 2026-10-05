@@ -81,7 +81,7 @@ async def _existing_draft(db, scope, slice_):
     return None
 
 
-async def decide(db, scope, *, session_id, turn_id, question, terms, artefacts, candidates):
+async def decide(db, scope, *, session_id, turn_id, question, terms, artefacts, candidates, objective_ref=None):
     regions = sorted({a['region'] for a in artefacts})
     subject = subject_match(terms, candidates, artefacts)
     matched = sorted({c['region'] for c in candidates if c['kind'] == 'matched'}) if subject['on_subject'] else []
@@ -102,11 +102,12 @@ async def decide(db, scope, *, session_id, turn_id, question, terms, artefacts, 
             scope_set = set(regions) | {sub_objective}
         else:
             sub_objective, scope_set = 'unresolved', set(regions)
+    # WP-A3 (Doc 1 B91): the scope check consumes the frozen objective artefact by reference — one object, created at capture, named here
     route = await gate.route(run_id=session_id, trace_id=turn_id, sub_objective=sub_objective,
-                             artifact_ref={'artifact_type': 'objective_request', 'artifact_id': f'chat-{session_id}', 'version': 'v1'},
+                             artifact_ref={'artifact_type': 'objective_request', 'artifact_id': objective_ref or f'chat-{session_id}', 'version': 'v1'},
                              lawful_basis_ref=os.environ.get('CENSUS_LAWFUL_BASIS_PATH', 'chat:governed_answer'),
                              scope=scope_set, warm_index=regions)
-    decision = {'decision': route['decision'], 'reason': route['reason'], 'ledger_row_id': route['ledger_row']['row_id'],
+    decision = {'decision': route['decision'], 'reason': route['reason'], 'ledger_row_id': route['ledger_row']['row_id'], 'objective_ref': objective_ref,
                 'sub_objective': sub_objective, 'scope_regions': regions, 'matched_regions': matched, 'subject_match': subject, 'slice_rule': SLICE_RULE}
     if route['decision'] == 'fresh' and slice_:
         decision['slice'] = {k: slice_[k] for k in ('source_id', 'database', 'table', 'row_count', 'column_count', 'primary_key', 'census_run_id')}

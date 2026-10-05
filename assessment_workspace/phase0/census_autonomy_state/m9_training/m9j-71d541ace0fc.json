@@ -1,0 +1,228 @@
+{
+ "job_id": "m9j-71d541ace0fc",
+ "phase": "malpha_voice_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-05T14:15:44.660697Z",
+ "params": {
+  "recipe": {
+   "lr": 8.474257469999992e-06,
+   "batch_size": 48,
+   "max_steps": 40000,
+   "warmup_steps": 1000,
+   "eval_every": 2500,
+   "checkpoint_every": 500,
+   "d_model": 768,
+   "layers": 12,
+   "heads": 12,
+   "max_segment_seconds": 12.0,
+   "spectral_feedback": true,
+   "eval_prompts_per_language": 12,
+   "identity_cosine_threshold": 0.4,
+   "identity_conditioning": false,
+   "identity_candidates": 200,
+   "identity_noise": 2.0,
+   "identity_margin": 0.15,
+   "loudness_match": true,
+   "language_balance": true,
+   "dense_identity": true,
+   "worker_design_version": 2,
+   "init_from": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-346358ddf574/artefact/voice_lm.pt",
+   "carried_from_seal_version": 3,
+   "rationale": "continue iteration 12's compatible weights at 0.7\u00d7 learning rate; similarity {'kik': 0.5749, 'kam': 0.596, 'swa': 0.5896}; identity gate failed for kik, kam, swa \u2192 identity resampled with more noise (2.25) and a wider construction margin (0.15). Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence."
+  },
+  "hypothesis_id": "hyp-17ab101501fe",
+  "cif_proposal_id": "cif_hyp_17ab101501fe",
+  "split_version": 3,
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 13,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-6341d0f1b178",
+ "northena_trace_id": "trc-48f1fe5d6f8a",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-71d541ace0fc"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-71d541ace0fc",
+  "pid": 3940013
+ },
+ "status": "failed",
+ "ledger_rows": [
+  {
+   "row_id": "led-c91f80a31b6b",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_voice_train_admitted"
+  },
+  {
+   "row_id": "led-788400cca4ea",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_voice_train_daemonised:pid=3940013"
+  },
+  {
+   "row_id": "led-2b9083d9008a",
+   "stage": "converge",
+   "decision": "terminate_budget",
+   "reason": "m9_malpha_voice_train_failed"
+  }
+ ],
+ "code_sha256": "726384a9e1294440899811e6f672d6bf8c28c41d3f0a65c45495217d34fda0fc",
+ "started_at": "2026-10-05T14:15:50.523733Z",
+ "last_status_rpc": {
+  "at": "2026-10-05T14:45:10.037796Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-1ed85bf177d8"
+ },
+ "remote_state": {
+  "phase": "malpha_voice_train",
+  "status": "failed",
+  "started_at": "2026-10-05T14:15:50Z",
+  "progress": {},
+  "stages": {
+   "data": {
+    "at": "2026-10-05T14:15:58Z",
+    "train_segments": 67902,
+    "train_hours": 56.29,
+    "dev_segments": 1157,
+    "text_vocab": 65,
+    "admission_read": false,
+    "per_language": {
+     "kik": 29263,
+     "kam": 9552,
+     "swa": 29087
+    },
+    "excluded_overlong_transcripts": 8,
+    "max_text_chars": 400,
+    "max_codec_frames": 152
+   },
+   "identity_scope_kik": {
+    "at": "2026-10-05T14:16:23Z",
+    "expected_groups": 1169,
+    "represented_groups": 1161,
+    "missing_groups": 8,
+    "group_set_sha256": "0562bed4f16705b36e9766394ecf8f14d0918194c681d3052371d02154c62272",
+    "sealed_admission_excluded": true
+   },
+   "identity_scope_kam": {
+    "at": "2026-10-05T14:16:32Z",
+    "expected_groups": 700,
+    "represented_groups": 689,
+    "missing_groups": 11,
+    "group_set_sha256": "9bc27fd805ae1d01bd6f9ff0919d764471a8945bcef0bdcb1246a4a984c01b85",
+    "sealed_admission_excluded": true
+   },
+   "identity_scope_swa": {
+    "at": "2026-10-05T14:16:41Z",
+    "expected_groups": 1126,
+    "represented_groups": 1119,
+    "missing_groups": 7,
+    "group_set_sha256": "98c526c91ecc2807dae71accd2863d019062e21df7c808ecc24222d8b6af8872",
+    "sealed_admission_excluded": true
+   }
+  },
+  "events": [
+   {
+    "at": "2026-10-05T14:15:59Z",
+    "message": "init_from ignored: /mnt/volume_dkgjrkx/akki-m9/jobs/m9j-346358ddf574/artefact/voice_lm.pt has a different text vocabulary or identity architecture; training from scratch"
+   },
+   {
+    "at": "2026-10-05T14:16:41Z",
+    "message": "identity comparators prepared in memory: {kik: 1161, kam: 689, swa: 1119}; never written to disk"
+   }
+  ],
+  "job_id": "m9j-71d541ace0fc",
+  "hostname": "akki-vm",
+  "runtime_id": "akki-vm",
+  "updated_at": "2026-10-05T14:16:41Z",
+  "finished_at": "2026-10-05T14:16:41Z",
+  "receipt_sha256": "09f6857ad306957fef1ed1b89ccb5d8136379fa9795e322926a857ea322c0e00"
+ },
+ "worker_log_tail": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-71d541ace0fc/worker.zip/services/training_lab/malpha_voice_worker.py:224: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  self.body = nn.TransformerEncoder(layer, layers); self.norm = nn.LayerNorm(d_model)\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/350 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 350/350 [00:00<00:00, 6998.24it/s]\nCould not parse CUDA device string 'cuda': not enough values to unpack (expected 2, got 1). Falling back to device 0.",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-71d541ace0fc",
+  "phase": "malpha_voice_train",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-05T14:15:50Z",
+  "code_sha256": "726384a9e1294440899811e6f672d6bf8c28c41d3f0a65c45495217d34fda0fc",
+  "status": "failed",
+  "error": {
+   "type": "ValueError",
+   "message": "Complete identity comparators required",
+   "trace": "Traceback (most recent call last):\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-71d541ace0fc/worker.zip/services/training_runner/m9_worker.py\", line 1367, in execute\n    receipt['result'] = fn(control, state)\n                        ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-71d541ace0fc/worker.zip/services/training_lab/malpha_voice_worker.py\", line 391, in voice_train\n    if corpus_reps is None or not len(corpus_reps): raise ValueError('Complete identity comparators required')\n                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Complete identity comparators required\n"
+  },
+  "stages_completed": {
+   "data": {
+    "at": "2026-10-05T14:15:58Z",
+    "train_segments": 67902,
+    "train_hours": 56.29,
+    "dev_segments": 1157,
+    "text_vocab": 65,
+    "admission_read": false,
+    "per_language": {
+     "kik": 29263,
+     "kam": 9552,
+     "swa": 29087
+    },
+    "excluded_overlong_transcripts": 8,
+    "max_text_chars": 400,
+    "max_codec_frames": 152
+   },
+   "identity_scope_kik": {
+    "at": "2026-10-05T14:16:23Z",
+    "expected_groups": 1169,
+    "represented_groups": 1161,
+    "missing_groups": 8,
+    "group_set_sha256": "0562bed4f16705b36e9766394ecf8f14d0918194c681d3052371d02154c62272",
+    "sealed_admission_excluded": true
+   },
+   "identity_scope_kam": {
+    "at": "2026-10-05T14:16:32Z",
+    "expected_groups": 700,
+    "represented_groups": 689,
+    "missing_groups": 11,
+    "group_set_sha256": "9bc27fd805ae1d01bd6f9ff0919d764471a8945bcef0bdcb1246a4a984c01b85",
+    "sealed_admission_excluded": true
+   },
+   "identity_scope_swa": {
+    "at": "2026-10-05T14:16:41Z",
+    "expected_groups": 1126,
+    "represented_groups": 1119,
+    "missing_groups": 7,
+    "group_set_sha256": "98c526c91ecc2807dae71accd2863d019062e21df7c808ecc24222d8b6af8872",
+    "sealed_admission_excluded": true
+   }
+  },
+  "finished_at": "2026-10-05T14:16:41Z",
+  "receipt_sha256": "09f6857ad306957fef1ed1b89ccb5d8136379fa9795e322926a857ea322c0e00",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-05T14:16:41Z",
+ "reason": "ValueError: Complete identity comparators required",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-71d541ace0fc",
+  "started_at_utc": "2026-10-05T14:15:50.523733Z",
+  "finished_at_utc": "2026-10-05T14:16:41Z",
+  "status": "failed",
+  "provenance_ref": "m9_training://run_log/m9j-71d541ace0fc"
+ }
+}

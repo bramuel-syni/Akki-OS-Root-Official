@@ -28,6 +28,22 @@ from services.training_lab import malpha_worker as mw  # noqa: E402
 from services.training_lab import malpha_worker_policy as policy  # noqa: E402
 from services.training_runner import m9_dispatch  # noqa: E402
 
+def _fake_stage(monkeypatch):
+    """WP-A5 offline: the Shield stage is faked at its seam — the artifact carries the caller's items verbatim; `_payload` merges the JSON items back for assertions."""
+    from services.synisense.shield import stage as st
+
+    async def fake(*, question, data=None, tenant_id, purpose, actor, custody_class='tenant_estate', system_message=None, objective_ref=None, session_id=None, retain=True):
+        return st.SafeArtifact(artifact_id='sa-fake', tenant_id=tenant_id, purpose=purpose, custody_class=custody_class, safe_items=[question] + ([data] if data else []), safe_system=system_message,
+                               objective_ref=objective_ref, receipt={}, protected_digest='', created_at='2026-10-05T00:00:00Z', seal='fake')
+    monkeypatch.setattr(st, 'stage', fake)
+
+
+def _payload(kwargs):
+    out = {}
+    for item in kwargs['safe_artifact'].safe_items: out.update(json.loads(item))
+    return out
+
+
 
 def test_aggregate_evidence_never_exports_raw_transcripts_paths_or_vectors():
     jobs = [
@@ -104,9 +120,11 @@ def test_reconstruct_binds_plan_review_purposes_and_allowed_refs(monkeypatch):
             self.tokens_out = 1
             self.latency_ms = 1
 
+    _fake_stage(monkeypatch)
+
     async def fake_invoke(**kwargs):
         calls.append(kwargs)
-        payload = json.loads(kwargs["prompt"])
+        payload = _payload(kwargs)
         assert kwargs["purpose"] in {"malpha.learning_plan", "malpha.learning_review"}
         assert set(payload["allowed_evidence_refs"]) >= {"listener-result-1", "design-listener"}
         if kwargs["purpose"] == "malpha.learning_plan":
@@ -171,7 +189,7 @@ def test_reconstruct_binds_plan_review_purposes_and_allowed_refs(monkeypatch):
     result = asyncio.run(ml.reconstruct("tester"))
     assert result["status"] == "reviewed"
     assert [c["purpose"] for c in calls] == ["malpha.learning_plan", "malpha.learning_review"]
-    assert all("must-never-leak" not in c["prompt"] for c in calls)
+    assert all("must-never-leak" not in " ".join(c["safe_artifact"].safe_items) for c in calls)  # WP-A5: the prompt crosses inside the sealed artifact
 
 
 def test_story_score_language_completeness_and_ranking_contract():

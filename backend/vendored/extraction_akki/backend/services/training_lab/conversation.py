@@ -168,14 +168,17 @@ async def turn(tenant, actor, run, text):
     if shaping and run.get('ready'): allowed['record_training_request'] = ACTIONS['record_training_request']
     try:
         assistant = resolve('assistant')
+        # WP-A5: File 1 = what the owner says, the reply schema and the allowed actions (the ask); File 2 = the run record, populations and job memory (the data)
+        from services.synisense.shield import stage as shield_stage
+        artifact = await shield_stage.stage(question=json.dumps({'schema': Turn.model_json_schema(), 'allowed_actions': allowed, 'owner_says': text}, default=str),
+                                            data=json.dumps({'run': {'name': run['name'], 'status': run['status'], 'objective': run['objective'], 'record': run.get('evidence'),
+                                                                     'record_rows': run.get('record_rows'), 'checks': [{'name': c['n'], 'value': c['v']} for c in run.get('checks', [])], 'reason': run.get('reason')},
+                                                             'registered_populations': catalogue(tenant) if shaping else [], 'job_memory': memory}, default=str),
+                                            tenant_id=tenant, purpose='training_lab.conversation', actor=actor['principal_id'], system_message=SYSTEM + (' ' + SHAPING if shaping else '') + ' ' + MEMORY, session_id=f"train-models:{run['run_id']}")
         response = await asyncio.wait_for(invoke(
             purpose='training_lab.conversation', provider=assistant['connection'], model=assistant['model'],
             tenant_id=tenant, actor=actor['principal_id'], custody_class='tenant_estate', masking_tier='llm_prompt_governed_text',
-            session_id=f"train-models:{run['run_id']}", system_message=SYSTEM + (' ' + SHAPING if shaping else '') + ' ' + MEMORY,
-            prompt=json.dumps({'schema': Turn.model_json_schema(), 'run': {'name': run['name'], 'status': run['status'], 'objective': run['objective'], 'record': run.get('evidence'),
-                                                                               'record_rows': run.get('record_rows'), 'checks': [{'name': c['n'], 'value': c['v']} for c in run.get('checks', [])], 'reason': run.get('reason')},
-                               'registered_populations': catalogue(tenant) if shaping else [],
-                               'allowed_actions': allowed, 'job_memory': memory, 'owner_says': text}, default=str)), timeout=120)
+            session_id=f"train-models:{run['run_id']}", safe_artifact=artifact), timeout=120)
         raw = response.text.strip()
         if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
         parsed = Turn.model_validate_json(raw)

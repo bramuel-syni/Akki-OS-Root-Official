@@ -58,14 +58,16 @@ def _cost(model, tokens_in, tokens_out):
 async def _run_task(tenant, actor, trial_id, cand, task, context):
     from services.caas import service as caas
     from services.chokepoint.llm import invoke
+    from services.synisense.shield import stage
     spec = caas.PRODUCTS[task['product']]
     system = ('You produce a ' + spec['title'] + ' for a radio advertiser. Answer as strict JSON with exactly these top-level keys: ' + ', '.join(spec['sections']) +
               '. Each value is a short British-English paragraph or a list of short items. Use ONLY the figures given in context; if a figure is not given, say so rather than estimate. '
               'Never name an individual presenter or quote any recording. Answer with the JSON object only.')
-    prompt = json.dumps({'brief': task['brief'], 'licensed_context': context, 'required_sections': spec['sections']}, default=str)
     t0 = time.perf_counter(); row = {'task_id': task['task_id'], 'product': task['product']}
     try:
-        r = await invoke(purpose=PURPOSE, prompt=prompt, masking_tier='llm_prompt_governed_text', actor=actor, model=cand['model'], provider='emergent', tenant_id=tenant, custody_class='tenant_estate', system_message=system, session_id=f"routing:{trial_id}:{cand['model']}:{task['task_id']}")
+        artifact = await stage.stage(question=json.dumps({'brief': task['brief'], 'required_sections': spec['sections']}, default=str), data=json.dumps({'licensed_context': context}, default=str), tenant_id=tenant, purpose=PURPOSE, actor=actor, system_message=system,
+                                     session_id=f"routing:{trial_id}:{cand['model']}:{task['task_id']}")
+        r = await invoke(purpose=PURPOSE, safe_artifact=artifact, masking_tier='llm_prompt_governed_text', actor=actor, model=cand['model'], provider='emergent', tenant_id=tenant, custody_class='tenant_estate', session_id=f"routing:{trial_id}:{cand['model']}:{task['task_id']}")
         raw = (r.text or '').strip()
         if raw.startswith('```'): raw = raw.split('\n', 1)[1].rsplit('```', 1)[0].strip()
         start, end = raw.find('{'), raw.rfind('}')

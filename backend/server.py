@@ -561,6 +561,8 @@ from routers.routing import router as routing_router  # noqa: E402
 app.include_router(routing_router)
 from routers.shield_register import router as shield_register_router  # noqa: E402
 app.include_router(shield_register_router)
+from routers.residency import router as residency_router  # noqa: E402
+app.include_router(residency_router)
 from routers.media_library import router as media_library_router  # noqa: E402
 app.include_router(media_library_router)
 

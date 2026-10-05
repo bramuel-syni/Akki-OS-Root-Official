@@ -1353,6 +1353,9 @@ def execute(control):
         elif control['phase'] == 'lab_text_lid':
             from services.training_lab.estate_language_worker import classify_text
             receipt['result'] = classify_text(control, state)
+        elif control['phase'] == 'serve_reader':
+            from services.training_runner.reader_worker import serve_reader
+            receipt['result'] = serve_reader(control, state)
         elif control['phase'].startswith('malpha_'):
             os.environ['CUDA_VISIBLE_DEVICES'] = str(control['gpu_index'])
             from services.training_lab import malpha_worker as mw

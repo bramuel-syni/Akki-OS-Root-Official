@@ -1,0 +1,217 @@
+{
+ "job_id": "m9j-3c2d8f12e48f",
+ "phase": "malpha_story_text_train",
+ "host": "akki-vm-ii",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-05T16:45:46.489623Z",
+ "params": {
+  "recipe": {
+   "base_path": "/mnt/volume_dkgjrkx/akki-m9/hf_cache/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "lr": 5e-05,
+   "batch_size": 4,
+   "grad_accum": 4,
+   "max_steps": 3000,
+   "warmup_steps": 100,
+   "eval_every": 250,
+   "checkpoint_every": 250,
+   "max_seq_len": 1024,
+   "lora_r": 32,
+   "lora_alpha": 64,
+   "lora_dropout": 0.1,
+   "weight_decay": 0.01,
+   "eval_samples_per_language": 16,
+   "patience_evaluations": 4,
+   "language_balance": true,
+   "selection_policy": "base_floor_then_worst_language_fidelity",
+   "rationale": "dev perplexity did not improve on earlier iterations in iteration 11 (best measured 19.09 at step 1000 of iteration 2; iteration 11 ended at 23.237): the over-fitted adapter is not carried forward \u2014 restart from the registered base at half that iteration's learning rate (5.0e-05), dropout 0.1, weight decay 0.01, early stopping (patience 3) with the best-adapter artefact; language fidelity below 1.0 for kik, kam (0.846, 0.812) \u2192 each micro-batch now drawn from one language chosen uniformly, so the small language is not out-voted"
+  },
+  "base_registration": {
+   "repo": "Qwen/Qwen3-1.7B-Base",
+   "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "3c2df493dba4bd4cf854dbbdce1635550f5a86a71b3b87657b2946db11b59c3c"
+  },
+  "hypothesis_id": "hyp-fc05f9a03218",
+  "cif_proposal_id": "cif_hyp_fc05f9a03218",
+  "split_version": 3,
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 0,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 12,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-ad2f74b74e5f",
+ "northena_trace_id": "trc-7dee24784c12",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-3c2d8f12e48f"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3c2d8f12e48f",
+  "pid": 3480721
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-23359a98f115",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_story_text_train_admitted"
+  },
+  {
+   "row_id": "led-c10773cdd1fa",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_story_text_train_daemonised:pid=3480721"
+  }
+ ],
+ "code_sha256": "ea9d0d9b724d6834d504113003835092db91d07fb4cad8d1794e6ba816d0cfa7",
+ "started_at": "2026-10-05T16:45:52.178904Z",
+ "last_status_rpc": {
+  "at": "2026-10-05T17:15:37.717520Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-493941381881"
+ },
+ "remote_state": {
+  "phase": "malpha_story_text_train",
+  "status": "running",
+  "started_at": "2026-10-05T16:45:52Z",
+  "progress": {
+   "stage": "training",
+   "step": 610,
+   "of": 3000,
+   "loss": 3.1058,
+   "elapsed_s": 1771,
+   "gpu_peak_gb": 11.21,
+   "last_checkpoint_step": 500,
+   "next_checkpoint_step": 750,
+   "best_step": 250
+  },
+  "stages": {
+   "data": {
+    "at": "2026-10-05T16:46:00Z",
+    "train_documents": 1079,
+    "dev_documents": 52,
+    "per_language": {
+     "kik": {
+      "train": 482,
+      "dev": 13
+     },
+     "kam": {
+      "train": 215,
+      "dev": 32
+     },
+     "swa": {
+      "train": 382,
+      "dev": 7
+     }
+    },
+    "admission_read": false
+   },
+   "evaluation_protocol": {
+    "at": "2026-10-05T16:46:06Z",
+    "version": "malpha-story-eval-v2",
+    "prompt_panel_sha256": "3e574c75b67a84bdbc2b35e72544821cfbb59def4d7c8e89466dd65c17493fe7",
+    "prompts_per_language": {
+     "kik": 13,
+     "kam": 16,
+     "swa": 7
+    },
+    "sample_seed": 20261004,
+    "perplexity_definition": "token-weighted causal NLL over first64 registered dev chunks per language; includes prompt tokens; naturalness NOT measured",
+    "dev_tokens_sha256": "8a0b415131f9be2589e3a83e5c6b79a51c8b18ac068d53cdd3f79c9a4894b052",
+    "max_new_tokens": 320,
+    "temperature": 0.8,
+    "top_p": 0.95
+   },
+   "base_perplexity": {
+    "at": "2026-10-05T16:46:11Z",
+    "kik": 68.863,
+    "kam": 69.598,
+    "swa": 60.182
+   },
+   "dev_eval_step_250": {
+    "at": "2026-10-05T16:59:18Z",
+    "kik": {
+     "dev_perplexity": 26.63,
+     "base_perplexity": 68.863,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.846,
+     "mean_distinct_2": 0.9983
+    },
+    "kam": {
+     "dev_perplexity": 27.295,
+     "base_perplexity": 69.598,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.5,
+     "mean_distinct_2": 0.9997
+    },
+    "swa": {
+     "dev_perplexity": 32.411,
+     "base_perplexity": 60.182,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 1.0
+    },
+    "_score": [
+     1,
+     0.5,
+     2.346,
+     -28.66699904574431
+    ],
+    "_best_step": 250,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
+   },
+   "dev_eval_step_500": {
+    "at": "2026-10-05T17:12:09Z",
+    "kik": {
+     "dev_perplexity": 22.215,
+     "base_perplexity": 68.863,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.538,
+     "mean_distinct_2": 1.0
+    },
+    "kam": {
+     "dev_perplexity": 23.884,
+     "base_perplexity": 69.598,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 0.312,
+     "mean_distinct_2": 0.999
+    },
+    "swa": {
+     "dev_perplexity": 28.473,
+     "base_perplexity": 60.182,
+     "dev_perplexity_below_base": true,
+     "language_fidelity_rate": 1.0,
+     "mean_distinct_2": 0.9975
+    },
+    "_score": [
+     1,
+     0.312,
+     1.85,
+     -24.72078188223887
+    ],
+    "_best_step": 250,
+    "_selection": "worst-language fidelity first, perplexity tie-break"
+   }
+  },
+  "events": [],
+  "job_id": "m9j-3c2d8f12e48f",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-05T17:15:29Z"
+ },
+ "worker_log_tail": "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 310/310 [00:00<00:00, 5580.26it/s]\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-3c2d8f12e48f/worker.zip/services/training_lab/malpha_voice_worker.py:185: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss = model(input_ids=ids, labels=labels).loss / accum; loss.backward(); losses.append(float(loss) * accum); micro += 1",
+ "process_alive": true
+}

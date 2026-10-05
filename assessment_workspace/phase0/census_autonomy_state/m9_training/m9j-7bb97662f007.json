@@ -1,0 +1,179 @@
+{
+ "job_id": "m9j-7bb97662f007",
+ "phase": "serve_reader",
+ "host": "akki-vm-ii",
+ "principal_id": "6ab56dd48894abb269135ca0",
+ "submitted_at": "2026-10-05T13:38:15.785014Z",
+ "params": {
+  "base_registry_id": "qwen3-8b-base",
+  "expected_weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+  "port": 8641,
+  "gpu_index": 1,
+  "max_chars": 12000,
+  "residency_entry_id": "res-af634ddb72",
+  "authority": {
+   "model_id": "contained-reader-qwen3-8b-base",
+   "registry_version": 14,
+   "granted_by": "6ab56dd48894abb269135ca0",
+   "granted_at": "2026-10-05T13:38:15.781154Z",
+   "owner_ruling_ref": "OWNER_ORDERS \u00a712 (Wave A autonomous; D7 residency structure) \u00b7 BUILD_PLAN_V2 WP-A2/WP-C7"
+  }
+ },
+ "northena_run_id": "run-7cd34f753e9c",
+ "northena_trace_id": "trc-e8c2a2669998",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-7bb97662f007"
+ },
+ "lawful_basis_ref": "OWNER_ORDERS \u00a712 Wave A autonomous \u00b7 BUILD_PLAN_V2 WP-A2",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-7bb97662f007",
+  "pid": 3464659
+ },
+ "status": "completed",
+ "ledger_rows": [
+  {
+   "row_id": "led-10d623236c62",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_serve_reader_admitted"
+  },
+  {
+   "row_id": "led-f6e9fb554053",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_serve_reader_daemonised:pid=3464659"
+  },
+  {
+   "row_id": "led-30e0afa61856",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_serve_reader_completed"
+  }
+ ],
+ "code_sha256": "b29d79cb6dcea44dfc85c558ba6307608ee39a4f00d74668a39bcf37a7781031",
+ "started_at": "2026-10-05T13:38:21.546925Z",
+ "last_status_rpc": {
+  "at": "2026-10-05T14:44:18.583253Z",
+  "rc": 0,
+  "receipt_id": "gpurcp-f15bba8b0c22"
+ },
+ "remote_state": {
+  "phase": "serve_reader",
+  "status": "completed",
+  "started_at": "2026-10-05T13:38:21Z",
+  "progress": {
+   "stage": "serving",
+   "port": 8641,
+   "model_id": "contained-reader-qwen3-8b-base",
+   "role": "contained_reader",
+   "base": "qwen3-8b-base",
+   "base_repo": "Qwen/Qwen3-8B-Base",
+   "base_revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+   "registry_version": 14,
+   "host": "akki-vm-ii",
+   "gpu_index": 1,
+   "precision": "bfloat16",
+   "resident_mib": 15770,
+   "residency_entry_id": "res-af634ddb72",
+   "warmup_seconds": 26.99,
+   "warmup_reading_parsed": true,
+   "requests": 8,
+   "served": 6,
+   "refused": 0,
+   "unparseable": 2,
+   "revoked": false,
+   "uptime_seconds": 3901,
+   "blocked_egress_attempts": 1
+  },
+  "stages": {
+   "serving_started": {
+    "at": "2026-10-05T13:39:07Z",
+    "port": 8641,
+    "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+    "egress_probe": {
+     "blocked": true,
+     "detail": "EGRESS_DENIED: contained reader may not connect to 1.1.1.1"
+    },
+    "resident_mib": 15770
+   }
+  },
+  "events": [],
+  "job_id": "m9j-7bb97662f007",
+  "hostname": "akki-vm-ii",
+  "runtime_id": "akki-vm-ii",
+  "updated_at": "2026-10-05T14:44:12Z",
+  "finished_at": "2026-10-05T14:44:12Z",
+  "receipt_sha256": "96c8282aa0478eca682ea43df2e1a8f166480168a43be4dba809a4c603c8aca9"
+ },
+ "worker_log_tail": "thon3.12/socketserver.py\", line 362, in finish_request\n    self.RequestHandlerClass(request, client_address, self)\n  File \"/usr/lib/python3.12/socketserver.py\", line 761, in __init__\n    self.handle()\n  File \"/usr/lib/python3.12/http/server.py\", line 436, in handle\n    self.handle_one_request()\n  File \"/usr/lib/python3.12/http/server.py\", line 424, in handle_one_request\n    method()\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-7bb97662f007/worker.zip/services/training_runner/reader_worker.py\", line 270, in do_POST\n    return self._send(422, {'refused': 'UNREADABLE_OR_UNSAFE_READING', 'problems': problems, 'seconds': round(dt, 3), 'lineage': lineage, 'raw_head': raw_head})\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-7bb97662f007/worker.zip/services/training_runner/reader_worker.py\", line 246, in _send\n    self.send_response(code); self.send_header('Content-Type', 'application/json'); self.send_header('Content-Length', str(len(raw))); self.end_headers(); self.wfile.write(raw)\n                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socketserver.py\", line 840, in write\n    self._sock.sendall(b)\nBrokenPipeError: [Errno 32] Broken pipe\n----------------------------------------",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-7bb97662f007",
+  "phase": "serve_reader",
+  "runtime_id": "akki-vm-ii",
+  "hostname": "akki-vm-ii",
+  "started_at": "2026-10-05T13:38:21Z",
+  "code_sha256": "b29d79cb6dcea44dfc85c558ba6307608ee39a4f00d74668a39bcf37a7781031",
+  "status": "completed",
+  "result": {
+   "model_id": "contained-reader-qwen3-8b-base",
+   "role": "contained_reader",
+   "base": "qwen3-8b-base",
+   "base_repo": "Qwen/Qwen3-8B-Base",
+   "base_revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+   "licence_verified": "apache-2.0",
+   "weight_sha256": "297a420bc8f7e159e5b66ef4c94463326d7ba2fad18b4ca3d8fbb7d502eba803",
+   "registry_version": 14,
+   "host": "akki-vm-ii",
+   "gpu_index": 1,
+   "precision": "bfloat16",
+   "resident_mib": 15770,
+   "residency_entry_id": "res-af634ddb72",
+   "warmup_seconds": 26.99,
+   "warmup_reading_parsed": true,
+   "requests": 8,
+   "served": 6,
+   "refused": 0,
+   "unparseable": 2,
+   "latency_seconds": {
+    "p50": 10.706,
+    "p95": 430.584,
+    "max": 430.584,
+    "n": 8
+   },
+   "uptime_seconds": 3905,
+   "stop_reason": "WP-A4 reader: deterministic carrier scrub before the leak check (indirect-disclosure readings refused 422 on their own spans)",
+   "revoked_at_stop": null,
+   "blocked_egress_attempts": [
+    {
+     "host": "1.1.1.1",
+     "at": "2026-10-05T13:39:07Z"
+    }
+   ],
+   "egress_probe_at_start": {
+    "blocked": true,
+    "detail": "EGRESS_DENIED: contained reader may not connect to 1.1.1.1"
+   },
+   "finished_at": "2026-10-05T14:44:12Z"
+  },
+  "finished_at": "2026-10-05T14:44:12Z",
+  "receipt_sha256": "96c8282aa0478eca682ea43df2e1a8f166480168a43be4dba809a4c603c8aca9",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-05T14:44:12Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-7bb97662f007",
+  "started_at_utc": "2026-10-05T13:38:21.546925Z",
+  "finished_at_utc": "2026-10-05T14:44:12Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-7bb97662f007"
+ }
+}

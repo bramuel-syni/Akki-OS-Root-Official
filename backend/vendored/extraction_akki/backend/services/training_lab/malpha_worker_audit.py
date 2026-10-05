@@ -30,6 +30,8 @@ def audit(control, state):
                 after = model(text, inputs, identity)
             checks[key + '_text_padding_masked'] = bool(torch.allclose(before, after, atol=1e-5, rtol=1e-5))
         checks['missing_render_refused'] = not rendered_identity_gate([0.2], prompts=2, rendered=1, comparators=5)['passes']
+        unconditioned = build_voice_model(16, 32, 1, 4, 32, identity_dim=0, dense_identity=True)  # identity_conditioning=false is a registered tunable; the worker must render without a vector
+        checks['unconditioned_finite_forward'] = bool(torch.isfinite(unconditioned(torch.tensor([[2, 3, 0, 0]]), torch.full((1, MIMI_CODEBOOKS, 5), CODE_BOS, dtype=torch.long), None)).all())
         checks['threshold_boundary_refused'] = not rendered_identity_gate([0.4], prompts=1, rendered=1, comparators=5)['passes']
         weights = balanced_weights([{'language': l} for l in ('kik', 'kik', 'kam', 'swa')])
         checks['language_mass_balanced'] = weights == [0.5, 0.5, 1.0, 1.0]

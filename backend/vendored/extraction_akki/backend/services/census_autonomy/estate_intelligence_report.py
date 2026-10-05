@@ -1020,9 +1020,13 @@ async def compose_dossier(job_id, actor, tenant_id, model=None, provider=None):
                          "top_duplicate_pairs": report["summary"]["duplication"]["top_pairs"][:8],
                          "top_degraded": report["summary"]["quality"]["top_degraded"][:8], "top_pii": report["summary"]["quality"]["top_pii"][:8],
                          "orphaned_references": report["summary"]["quality"]["orphaned_references"][:8]}, default=str)
-    response = await chokepoint.invoke(purpose="census.estate_intelligence_dossier", prompt=prompt, masking_tier="llm_prompt_governed_text",
-                                       actor=actor, model=model, provider=provider, tenant_id=tenant_id, custody_class="tenant_estate",
-                                       system_message=DOSSIER_SYSTEM, session_id=f"eid-{job_id}")
+    # WP-A5: File 1 = the dossier ask (sections, rules); File 2 = the aggregate census measurements — sealed by the Shield stage, one query
+    from services.synisense.shield import stage
+    artifact = await stage.stage(question=json.dumps({"ask": "Write the estate-handling dossier for the measurements supplied as data.", "sections": ["Executive summary", "Condition of the estate", "Duplication and storage economics",
+                                                                                                                                                  "What the data can do", "Risks and obligations", "90-day plan"]}),
+                                 data=prompt, tenant_id=tenant_id, purpose="census.estate_intelligence_dossier", actor=actor, system_message=DOSSIER_SYSTEM, session_id=f"eid-{job_id}")
+    response = await chokepoint.invoke(purpose="census.estate_intelligence_dossier", safe_artifact=artifact, masking_tier="llm_prompt_governed_text",
+                                       actor=actor, model=model, provider=provider, tenant_id=tenant_id, custody_class="tenant_estate", session_id=f"eid-{job_id}")
     dossier = {"text": response.text, "receipt_id": response.receipt_id, "model_id": response.model_id, "provider": response.provider,
                "tokens_in": response.tokens_in, "tokens_out": response.tokens_out, "latency_ms": response.latency_ms, "at": now(),
                "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(), "composed_from": "aggregates only; no row values"}

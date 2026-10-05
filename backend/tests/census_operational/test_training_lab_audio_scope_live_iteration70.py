@@ -14,6 +14,22 @@ import requests
 from dotenv import dotenv_values
 import re
 
+def _fake_stage(monkeypatch):
+    """WP-A5 offline: the Shield stage is faked at its seam — the artifact carries the caller's items verbatim; `_payload` merges the JSON items back for assertions."""
+    from services.synisense.shield import stage as st
+
+    async def fake(*, question, data=None, tenant_id, purpose, actor, custody_class='tenant_estate', system_message=None, objective_ref=None, session_id=None, retain=True):
+        return st.SafeArtifact(artifact_id='sa-fake', tenant_id=tenant_id, purpose=purpose, custody_class=custody_class, safe_items=[question] + ([data] if data else []), safe_system=system_message,
+                               objective_ref=objective_ref, receipt={}, protected_digest='', created_at='2026-10-05T00:00:00Z', seal='fake')
+    monkeypatch.setattr(st, 'stage', fake)
+
+
+def _payload(kwargs):
+    out = {}
+    for item in kwargs['safe_artifact'].safe_items: out.update(json.loads(item))
+    return out
+
+
 
 VENDORED_BACKEND = Path("/app/backend/vendored/extraction_akki/backend")
 if str(VENDORED_BACKEND) not in sys.path:
@@ -570,8 +586,10 @@ async def test_specialist_reviews_contract_with_mocked_provider(monkeypatch):
             self.tokens_out = 15
             self.latency_ms = 12
 
+    _fake_stage(monkeypatch)
+
     async def fake_invoke(**kwargs):
-        payload = json.loads(kwargs["prompt"])
+        payload = _payload(kwargs)
         captured.append(payload)
         if payload["role"] == "entrepreneur":
             raise RuntimeError("provider down")

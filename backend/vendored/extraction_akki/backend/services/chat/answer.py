@@ -12,9 +12,10 @@ from services.chokepoint import llm as chokepoint
 from services.chokepoint.llm import LLMShieldFailure, PurposeInvalid
 from services.chokepoint.llm_endpoint_allowlist import LLMEndpointRefused
 from services.synisense.exceptions import ServiceUnavailable
+from services.synisense.shield import stage as shield_stage
 from services.watch.input_seat import WatchInputSeatVerdictRefused
 
-REFUSALS = (LLMShieldFailure, PurposeInvalid, ChokepointRefused, LLMEndpointRefused, WatchInputSeatVerdictRefused, ServiceUnavailable)
+REFUSALS = (LLMShieldFailure, PurposeInvalid, ChokepointRefused, LLMEndpointRefused, WatchInputSeatVerdictRefused, ServiceUnavailable, shield_stage.StageRefused)
 
 SYSTEM = ("You are Akki, a governed answerer. You may use ONLY the qualified units supplied in the window. "
           "Every statement must be supported by those units. Reply with one JSON object and nothing else: "
@@ -24,13 +25,21 @@ SYSTEM = ("You are Akki, a governed answerer. You may use ONLY the qualified uni
           "Never invent values, names or totals that are not in the units.")
 
 
-def prompt_for(*, objective, context_lines, question, selected):
-    parts = [f"OBJECTIVE (frozen for this session): {objective}"]
+def prompt_for(*, objective, context_lines, question, selected, objective_ref=None):
+    """The whole two-item context as the model sees it (question item, then the data item) — for records and tests."""
+    q, d = items_for(objective=objective, context_lines=context_lines, question=question, selected=selected, objective_ref=objective_ref)
+    return q + '\n\n' + d
+
+
+def items_for(*, objective, context_lines, question, selected, objective_ref=None):
+    """WP-A5 (Doc 2 B65): File 1 — the question as asked under the frozen objective (WP-A3, Doc 1 B83/B91: the bounded objective, named by
+    reference) with the bounded conversation ring; File 2 — the extracted data: the pinned whole units. Split here, assessed apart by the stage."""
+    parts = [f"OBJECTIVE (frozen for this session{', artefact ' + objective_ref if objective_ref else ''}): {objective}"]
     if context_lines:
         parts.append('CONVERSATION SO FAR:\n' + '\n'.join(context_lines))
     parts.append(f"QUESTION: {question}")
-    parts.append(f"WINDOW ({len(selected)} whole qualified units, one JSON per line):\n" + '\n'.join(c['text'] for c in selected))
-    return '\n\n'.join(parts)
+    data = f"WINDOW ({len(selected)} whole qualified units, one JSON per line):\n" + '\n'.join(c['text'] for c in selected)
+    return '\n\n'.join(parts), data
 
 
 def parse(text):
@@ -59,14 +68,19 @@ def ground(parsed, selected_refs, raw_text):
 
 
 async def answer(*, scope, session, question, context_lines, selected, model, provider, actor):
-    prompt = prompt_for(objective=session['objective']['text'], context_lines=context_lines, question=question, selected=selected)
+    objective = session['objective']
+    q_item, d_item = items_for(objective=objective.get('bounded_objective') or objective['text'], context_lines=context_lines, question=question, selected=selected, objective_ref=objective.get('artifact_id'))
+    prompt_chars = len(q_item) + len(d_item)
     try:
-        response = await chokepoint.invoke(purpose='chat.governed_answer', prompt=prompt, masking_tier='llm_prompt_governed_text',
+        # WP-A5: the Shield stage seals the two files (independent assessment, guarded seam) before the sole crossing consumes them
+        artifact = await shield_stage.stage(question=q_item, data=d_item, tenant_id=scope['tenant_id'], purpose='chat.governed_answer', actor=actor, system_message=SYSTEM,
+                                            objective_ref=objective.get('artifact_id'), session_id=session['session_id'])
+        response = await chokepoint.invoke(purpose='chat.governed_answer', safe_artifact=artifact, masking_tier='llm_prompt_governed_text',
                                            actor=actor, model=model, provider=provider, tenant_id=scope['tenant_id'],
-                                           custody_class='tenant_estate', system_message=SYSTEM, session_id=session['session_id'])
+                                           custody_class='tenant_estate', session_id=session['session_id'])
     except REFUSALS as exc:
-        return {'refused': True, 'refusal_reason': str(exc)[:400], 'prompt_chars': len(prompt)}
+        return {'refused': True, 'refusal_reason': str(exc)[:400], 'prompt_chars': prompt_chars}
     grounded = ground(parse(response.text), {c['ref'] for c in selected}, response.text)
-    return {'refused': False, **grounded, 'receipt_id': response.receipt_id, 'model_id': response.model_id, 'provider': response.provider,
+    return {'refused': False, **grounded, 'objective_ref': objective.get('artifact_id'), 'receipt_id': response.receipt_id, 'model_id': response.model_id, 'provider': response.provider,
             'tokens_in': response.tokens_in, 'tokens_out': response.tokens_out, 'latency_ms': response.latency_ms,
-            'shield': response.shield, 'prompt_chars': len(prompt)}
+            'shield': response.shield, 'prompt_chars': prompt_chars, 'safe_artifact_id': response.safe_artifact_id}
