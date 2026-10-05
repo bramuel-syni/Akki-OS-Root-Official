@@ -4055,7 +4055,7 @@
   "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ff750b0d7c94",
   "pid": 3916148
  },
- "status": "running",
+ "status": "completed",
  "ledger_rows": [
   {
    "row_id": "led-ab745140db92",
@@ -4068,29 +4068,35 @@
    "stage": "gate",
    "decision": "warm",
    "reason": "m9_malpha_listener_train_daemonised:pid=3916148"
+  },
+  {
+   "row_id": "led-f5b12f8d5849",
+   "stage": "converge",
+   "decision": "terminate_success",
+   "reason": "m9_malpha_listener_train_completed"
   }
  ],
  "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
  "started_at": "2026-10-05T02:33:40.163756Z",
  "last_status_rpc": {
-  "at": "2026-10-05T02:45:46.413294Z",
+  "at": "2026-10-05T07:15:07.152092Z",
   "rc": 0,
-  "receipt_id": "gpurcp-771b15f676c3"
+  "receipt_id": "gpurcp-beb36f361839"
  },
  "remote_state": {
   "phase": "malpha_listener_train",
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-05T02:33:40Z",
   "progress": {
    "stage": "training",
-   "step": 225,
+   "step": 8000,
    "of": 8000,
-   "loss": 1.4098,
-   "lr": 1.35e-05,
-   "elapsed_s": 705,
+   "loss": 0.1459,
+   "lr": 1.5000012501498729e-06,
+   "elapsed_s": 15463,
    "gpu_peak_gb": 57.59,
-   "last_checkpoint_step": 0,
-   "next_checkpoint_step": 500
+   "last_checkpoint_step": 8000,
+   "next_checkpoint_step": 8500
   },
   "stages": {
    "data": {
@@ -4113,14 +4119,2658 @@
     "train_prompt_probability": 0.5,
     "distractors_per_prompt": 6,
     "prompt_channel": "<|startofprev|> brand list"
+   },
+   "dev_eval_step_2000": {
+    "at": "2026-10-05T03:43:57Z",
+    "mean_wer": 0.8902,
+    "minimum_precision_recall": 0.4894,
+    "words": {
+     "kam": {
+      "wer": 0.8023,
+      "cer": 0.4705,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.9172,
+      "cer": 0.5633,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.9511,
+      "cer": 0.6738,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.5814,
+      "recall": 0.6757,
+      "f1": 0.625
+     },
+     "kik": {
+      "precision": 0.5556,
+      "recall": 0.8065,
+      "f1": 0.6579
+     },
+     "swa": {
+      "precision": 0.4894,
+      "recall": 0.7419,
+      "f1": 0.5897
+     }
+    }
+   },
+   "dev_eval_step_4000": {
+    "at": "2026-10-05T04:47:52Z",
+    "mean_wer": 0.8153,
+    "minimum_precision_recall": 0.451,
+    "words": {
+     "kam": {
+      "wer": 0.8872,
+      "cer": 0.5906,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.8245,
+      "cer": 0.4961,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.7343,
+      "cer": 0.5412,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.6279,
+      "recall": 0.7297,
+      "f1": 0.675
+     },
+     "kik": {
+      "precision": 0.5833,
+      "recall": 0.6774,
+      "f1": 0.6269
+     },
+     "swa": {
+      "precision": 0.451,
+      "recall": 0.7419,
+      "f1": 0.561
+     }
+    }
+   },
+   "dev_eval_step_6000": {
+    "at": "2026-10-05T05:50:17Z",
+    "mean_wer": 0.6848,
+    "minimum_precision_recall": 0.5319,
+    "words": {
+     "kam": {
+      "wer": 0.6424,
+      "cer": 0.3689,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.7158,
+      "cer": 0.3969,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.6961,
+      "cer": 0.4758,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.6765,
+      "recall": 0.6216,
+      "f1": 0.6479
+     },
+     "kik": {
+      "precision": 0.7667,
+      "recall": 0.7419,
+      "f1": 0.7541
+     },
+     "swa": {
+      "precision": 0.5319,
+      "recall": 0.8065,
+      "f1": 0.641
+     }
+    }
+   },
+   "dev_eval_step_8000": {
+    "at": "2026-10-05T06:52:25Z",
+    "mean_wer": 0.6215,
+    "minimum_precision_recall": 0.5778,
+    "words": {
+     "kam": {
+      "wer": 0.6345,
+      "cer": 0.3687,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.7061,
+      "cer": 0.3865,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.5238,
+      "cer": 0.3252,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "precision": 0.7143,
+      "recall": 0.6757,
+      "f1": 0.6944
+     },
+     "kik": {
+      "precision": 0.7778,
+      "recall": 0.6774,
+      "f1": 0.7241
+     },
+     "swa": {
+      "precision": 0.5778,
+      "recall": 0.8387,
+      "f1": 0.6842
+     }
+    }
    }
   },
-  "events": [],
+  "events": [
+   {
+    "at": "2026-10-05T02:54:41Z",
+    "message": "checkpoint at step 500"
+   },
+   {
+    "at": "2026-10-05T03:10:25Z",
+    "message": "checkpoint at step 1000"
+   },
+   {
+    "at": "2026-10-05T03:26:18Z",
+    "message": "checkpoint at step 1500"
+   },
+   {
+    "at": "2026-10-05T03:41:56Z",
+    "message": "checkpoint at step 2000"
+   },
+   {
+    "at": "2026-10-05T03:59:21Z",
+    "message": "checkpoint at step 2500"
+   },
+   {
+    "at": "2026-10-05T04:15:05Z",
+    "message": "checkpoint at step 3000"
+   },
+   {
+    "at": "2026-10-05T04:30:55Z",
+    "message": "checkpoint at step 3500"
+   },
+   {
+    "at": "2026-10-05T04:46:52Z",
+    "message": "checkpoint at step 4000"
+   },
+   {
+    "at": "2026-10-05T05:03:25Z",
+    "message": "checkpoint at step 4500"
+   },
+   {
+    "at": "2026-10-05T05:18:52Z",
+    "message": "checkpoint at step 5000"
+   },
+   {
+    "at": "2026-10-05T05:34:12Z",
+    "message": "checkpoint at step 5500"
+   },
+   {
+    "at": "2026-10-05T05:49:37Z",
+    "message": "checkpoint at step 6000"
+   },
+   {
+    "at": "2026-10-05T06:05:45Z",
+    "message": "checkpoint at step 6500"
+   },
+   {
+    "at": "2026-10-05T06:21:03Z",
+    "message": "checkpoint at step 7000"
+   },
+   {
+    "at": "2026-10-05T06:36:33Z",
+    "message": "checkpoint at step 7500"
+   },
+   {
+    "at": "2026-10-05T06:51:43Z",
+    "message": "checkpoint at step 8000"
+   }
+  ],
   "job_id": "m9j-ff750b0d7c94",
   "hostname": "akki-vm",
   "runtime_id": "akki-vm",
-  "updated_at": "2026-10-05T02:45:27Z"
+  "updated_at": "2026-10-05T06:52:56Z",
+  "finished_at": "2026-10-05T06:52:56Z",
+  "receipt_sha256": "746bc31b6e20379a50ddba476a644d7cdca1ab506f79c11380aa14d0bdd3ea88"
  },
- "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 339/587 [00:00<00:00, 3388.68it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3421.30it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ff750b0d7c94/worker.zip/services/training_lab/malpha_worker.py:960: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)",
- "process_alive": true
+ "worker_log_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\rLoading weights:   0%|          | 0/587 [00:00<?, ?it/s]\rLoading weights:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 339/587 [00:00<00:00, 3388.68it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 587/587 [00:00<00:00, 3421.30it/s]\n[transformers] The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`\n/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ff750b0d7c94/worker.zip/services/training_lab/malpha_worker.py:960: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  loss.backward(); losses.append(float(loss) * accum)\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.",
+ "process_alive": false,
+ "receipt": {
+  "protocol": "akki-m9-governed-training-v1",
+  "job_id": "m9j-ff750b0d7c94",
+  "phase": "malpha_listener_train",
+  "runtime_id": "akki-vm",
+  "hostname": "akki-vm",
+  "started_at": "2026-10-05T02:33:40Z",
+  "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
+  "status": "completed",
+  "result": {
+   "commission_id": "LISTEN-KIK-KAM-SWA",
+   "iteration": 4,
+   "recipe": {
+    "base": "openai/whisper-large-v3-turbo",
+    "lr": 3e-05,
+    "batch_size": 16,
+    "grad_accum": 4,
+    "max_steps": 8000,
+    "warmup_steps": 500,
+    "eval_every": 2000,
+    "checkpoint_every": 500,
+    "dev_per_language": 300,
+    "contextual_bias": true,
+    "bias_prob": 0.5,
+    "bias_distractors": 6,
+    "bias_terms_per_language": 40,
+    "language_balance": true,
+    "mention_oversample": true,
+    "selection_policy": "minimum_precision_and_recall",
+    "rationale": "beyond the planned ladder: continue openai/whisper-large-v3-turbo from iteration 3's artefact (fresh start from the base: iteration 3's artefact was trained under seal v1 and saw rows now sealed as admission (v3) \u2014 not carried) for 8000 steps at lr 3.0e-05; last reading {'kik': {'P': 0.9362, 'R': 0.5789, 'WER': 0.6314}, 'kam': {'P': 0.8261, 'R': 0.4578, 'WER': 0.7296}, 'swa': {'P': 0.6588, 'R': 0.7778, 'WER': 0.3314}}; contextual brand biasing newly on (expectation list of the 40 most-heard brands per language through <|startofprev|>; trained with true brands among distractors on half the segments)",
+    "include_internet_corpus": false
+   },
+   "languages": [
+    "kik",
+    "kam",
+    "swa"
+   ],
+   "data": {
+    "at": "2026-10-05T02:33:43Z",
+    "train_segments": 75810,
+    "dev_segments": 900,
+    "train_hours": 87.16,
+    "admission_read": false,
+    "lexicon_sha256": "447e2c0aaea38bdc78a59a33b393a1d569d6d1be28fd3099311dec07dcdc9a21",
+    "brands": 649,
+    "internet_corpus": null
+   },
+   "steps": 8000,
+   "dev": {
+    "words": {
+     "kam": {
+      "wer": 0.6345,
+      "cer": 0.3687,
+      "n": 300
+     },
+     "kik": {
+      "wer": 0.7061,
+      "cer": 0.3865,
+      "n": 300
+     },
+     "swa": {
+      "wer": 0.5238,
+      "cer": 0.3252,
+      "n": 300
+     }
+    },
+    "mentions": {
+     "kam": {
+      "segments": 300,
+      "segments_with_mentions": 31,
+      "segments_without_mentions": 269,
+      "tp": 25,
+      "fp": 10,
+      "fn": 12,
+      "precision": 0.7143,
+      "recall": 0.6757,
+      "f1": 0.6944,
+      "precision_ci95": [
+       0.5494,
+       0.8367
+      ],
+      "recall_ci95": [
+       0.5146,
+       0.8037
+      ],
+      "false_positives_per_hour": 23.731,
+      "hours_evaluated": 0.421,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "President": {
+        "tp": 7
+       },
+       "Super": {
+        "fp": 1
+       },
+       "Corona": {
+        "tp": 5,
+        "fn": 3,
+        "fp": 1
+       },
+       "Musyi FM": {
+        "fp": 2,
+        "tp": 1,
+        "fn": 1
+       },
+       "MoKo": {
+        "fn": 1
+       },
+       "Kenya Power": {
+        "tp": 2
+       },
+       "Sawa": {
+        "fp": 3
+       },
+       "Royal": {
+        "tp": 2
+       },
+       "Royal Media": {
+        "tp": 2
+       },
+       "Royale": {
+        "fp": 2
+       },
+       "Senator": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Nation": {
+        "tp": 1
+       },
+       "Nala": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Prestige": {
+        "fn": 1
+       },
+       "Kenyatta Hospital": {
+        "fn": 1
+       },
+       "KRA": {
+        "tp": 1
+       },
+       "Famila": {
+        "fp": 1
+       },
+       "Soko": {
+        "fn": 1
+       },
+       "Enda": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Citizen": {
+        "tp": 1
+       },
+       "Jamaa": {
+        "fn": 1
+       }
+      },
+      "evidence": {
+       "protocol": {
+        "version": "malpha-listener-evidence-v1",
+        "target": 0.9,
+        "confidence": 0.95,
+        "minimum_positive_segments": 100,
+        "minimum_negative_segments": 100,
+        "minimum_groups": 20,
+        "bootstrap_draws": 1000,
+        "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+        "reference_requirement": "independently_verified_brand_annotations"
+       },
+       "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+       "point_target_met": false,
+       "supported_target_met": false,
+       "acceptance_ready": false,
+       "status": "below_target",
+       "support": {
+        "sufficient": false,
+        "missing_support": [
+         "positive_segments"
+        ],
+        "positive_segments": 31,
+        "negative_segments": 269,
+        "recording_groups": 33
+       },
+       "precision_wilson_ci95": [
+        0.5494506513681738,
+        0.836734637635653
+       ],
+       "recall_wilson_ci95": [
+        0.514636672419722,
+        0.8036673347185581
+       ],
+       "session_bootstrap_ci95": {
+        "precision": [
+         0.5,
+         0.8695652173913043
+        ],
+        "recall": [
+         0.4807692307692308,
+         0.875
+        ],
+        "valid_draws": 1000
+       },
+       "reference_verified": false,
+       "reasons": [
+        "positive_segments",
+        "brand_reference_not_independently_verified",
+        "confidence_not_established",
+        "point_target_not_met"
+       ],
+       "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+      }
+     },
+     "kik": {
+      "segments": 300,
+      "segments_with_mentions": 31,
+      "segments_without_mentions": 269,
+      "tp": 21,
+      "fp": 6,
+      "fn": 10,
+      "precision": 0.7778,
+      "recall": 0.6774,
+      "f1": 0.7241,
+      "precision_ci95": [
+       0.5924,
+       0.8939
+      ],
+      "recall_ci95": [
+       0.5014,
+       0.8143
+      ],
+      "false_positives_per_hour": 13.697,
+      "hours_evaluated": 0.438,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "Bahati": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Inooro FM": {
+        "fn": 3,
+        "fp": 3,
+        "tp": 8
+       },
+       "MoKo": {
+        "fn": 3,
+        "tp": 7
+       },
+       "Nguvu": {
+        "fn": 1,
+        "tp": 1
+       },
+       "Ndume": {
+        "fp": 1
+       },
+       "Sawa": {
+        "fp": 1
+       },
+       "Joy": {
+        "fn": 1
+       },
+       "Kasuku": {
+        "fp": 1
+       },
+       "Pilot": {
+        "tp": 1
+       },
+       "President": {
+        "fn": 1,
+        "tp": 1
+       },
+       "White": {
+        "tp": 1
+       },
+       "Happy": {
+        "tp": 1
+       }
+      },
+      "evidence": {
+       "protocol": {
+        "version": "malpha-listener-evidence-v1",
+        "target": 0.9,
+        "confidence": 0.95,
+        "minimum_positive_segments": 100,
+        "minimum_negative_segments": 100,
+        "minimum_groups": 20,
+        "bootstrap_draws": 1000,
+        "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+        "reference_requirement": "independently_verified_brand_annotations"
+       },
+       "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+       "point_target_met": false,
+       "supported_target_met": false,
+       "acceptance_ready": false,
+       "status": "below_target",
+       "support": {
+        "sufficient": false,
+        "missing_support": [
+         "positive_segments",
+         "recording_groups"
+        ],
+        "positive_segments": 31,
+        "negative_segments": 269,
+        "recording_groups": 13
+       },
+       "precision_wilson_ci95": [
+        0.5924307113336743,
+        0.8939276054763997
+       ],
+       "recall_wilson_ci95": [
+        0.5014100930808565,
+        0.8143057343364082
+       ],
+       "session_bootstrap_ci95": {
+        "precision": [
+         0.5294117647058824,
+         0.9310344827586207
+        ],
+        "recall": [
+         0.5789473684210527,
+         0.9090909090909091
+        ],
+        "valid_draws": 1000
+       },
+       "reference_verified": false,
+       "reasons": [
+        "positive_segments",
+        "recording_groups",
+        "brand_reference_not_independently_verified",
+        "confidence_not_established",
+        "point_target_not_met"
+       ],
+       "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+      }
+     },
+     "swa": {
+      "segments": 300,
+      "segments_with_mentions": 30,
+      "segments_without_mentions": 270,
+      "tp": 26,
+      "fp": 19,
+      "fn": 5,
+      "precision": 0.5778,
+      "recall": 0.8387,
+      "f1": 0.6842,
+      "precision_ci95": [
+       0.433,
+       0.7103
+      ],
+      "recall_ci95": [
+       0.6737,
+       0.9291
+      ],
+      "false_positives_per_hour": 61.017,
+      "hours_evaluated": 0.311,
+      "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+      "abstained_segments": 0,
+      "per_brand": {
+       "Rono": {
+        "fn": 1
+       },
+       "Citizen": {
+        "fp": 3,
+        "tp": 10
+       },
+       "Jamaa": {
+        "tp": 5
+       },
+       "Shake": {
+        "fn": 1
+       },
+       "Tena": {
+        "fp": 1
+       },
+       "Famila": {
+        "fp": 10
+       },
+       "Jamii": {
+        "tp": 6,
+        "fn": 2
+       },
+       "Sasini": {
+        "fp": 1
+       },
+       "President": {
+        "fn": 1,
+        "tp": 2
+       },
+       "Fuliza": {
+        "fp": 1
+       },
+       "Safaricom Kenya": {
+        "tp": 1
+       },
+       "Safaricom": {
+        "tp": 1
+       },
+       "Enda": {
+        "tp": 1,
+        "fp": 1
+       },
+       "Kartasi": {
+        "fp": 1
+       },
+       "Sawa": {
+        "fp": 1
+       }
+      },
+      "evidence": {
+       "protocol": {
+        "version": "malpha-listener-evidence-v1",
+        "target": 0.9,
+        "confidence": 0.95,
+        "minimum_positive_segments": 100,
+        "minimum_negative_segments": 100,
+        "minimum_groups": 20,
+        "bootstrap_draws": 1000,
+        "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+        "reference_requirement": "independently_verified_brand_annotations"
+       },
+       "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+       "point_target_met": false,
+       "supported_target_met": false,
+       "acceptance_ready": false,
+       "status": "below_target",
+       "support": {
+        "sufficient": false,
+        "missing_support": [
+         "positive_segments",
+         "recording_groups"
+        ],
+        "positive_segments": 30,
+        "negative_segments": 270,
+        "recording_groups": 7
+       },
+       "precision_wilson_ci95": [
+        0.4330078870920313,
+        0.710312975327297
+       ],
+       "recall_wilson_ci95": [
+        0.6736564604120675,
+        0.929073755566347
+       ],
+       "session_bootstrap_ci95": {
+        "precision": [
+         0.17142857142857143,
+         0.8392857142857143
+        ],
+        "recall": [
+         0.6,
+         0.9285714285714286
+        ],
+        "valid_draws": 999
+       },
+       "reference_verified": false,
+       "reasons": [
+        "positive_segments",
+        "recording_groups",
+        "brand_reference_not_independently_verified",
+        "confidence_not_established",
+        "point_target_not_met"
+       ],
+       "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+      }
+     }
+    },
+    "latency": {
+     "real_time_factor": 0.01,
+     "audio_seconds": 4215.0,
+     "wall_seconds": 42.3
+    },
+    "contextual_bias": {
+     "kam": 40,
+     "kik": 40,
+     "swa": 40
+    },
+    "samples": [
+     {
+      "language": "kam",
+      "ref_chars": 29,
+      "hyp_chars": 32,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 22,
+      "hyp_chars": 20,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 10,
+      "hyp_chars": 10,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 2,
+      "hyp_chars": 2,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 8,
+      "hyp_chars": 7,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 27,
+      "hyp_chars": 25,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 24,
+      "hyp_chars": 9,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 5,
+      "hyp_chars": 4,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 9,
+      "hyp_chars": 15,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 13,
+      "hyp_chars": 4,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 34,
+      "hyp_chars": 3,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     },
+     {
+      "language": "kam",
+      "ref_chars": 2,
+      "hyp_chars": 2,
+      "mentions_truth": [],
+      "mentions_hyp": []
+     }
+    ],
+    "step": 8000,
+    "train_loss": 0.1606,
+    "at": "2026-10-05T06:52:25Z"
+   },
+   "history": [
+    {
+     "step": 2000,
+     "train_loss": 0.5956,
+     "words": {
+      "kam": {
+       "wer": 0.8023,
+       "cer": 0.4705,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.9172,
+       "cer": 0.5633,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.9511,
+       "cer": 0.6738,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 25,
+       "fp": 18,
+       "fn": 12,
+       "precision": 0.5814,
+       "recall": 0.6757,
+       "f1": 0.625,
+       "precision_ci95": [
+        0.4333,
+        0.7162
+       ],
+       "recall_ci95": [
+        0.5146,
+        0.8037
+       ],
+       "false_positives_per_hour": 42.716,
+       "hours_evaluated": 0.421,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Fuliza": {
+         "fp": 1
+        },
+        "President": {
+         "tp": 7
+        },
+        "Super": {
+         "fp": 1
+        },
+        "Corona": {
+         "tp": 5,
+         "fn": 3,
+         "fp": 1
+        },
+        "Nguvu": {
+         "fp": 1
+        },
+        "Musyi FM": {
+         "fp": 3,
+         "tp": 1,
+         "fn": 1
+        },
+        "Enda": {
+         "fp": 1,
+         "fn": 1,
+         "tp": 1
+        },
+        "MoKo": {
+         "fn": 1,
+         "fp": 1
+        },
+        "Kenya Power": {
+         "tp": 2
+        },
+        "Seti": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 3
+        },
+        "Royal": {
+         "tp": 2
+        },
+        "Royal Media": {
+         "tp": 2
+        },
+        "Royale": {
+         "fp": 2
+        },
+        "Senator": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Nation": {
+         "fn": 1
+        },
+        "Nala": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Prestige": {
+         "fn": 1
+        },
+        "Kenyatta Hospital": {
+         "fn": 1
+        },
+        "KRA": {
+         "tp": 1
+        },
+        "Shake": {
+         "fp": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "Soko": {
+         "fn": 1
+        },
+        "Tena": {
+         "fp": 1
+        },
+        "Citizen": {
+         "tp": 1
+        },
+        "Jamaa": {
+         "tp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 33
+        },
+        "precision_wilson_ci95": [
+         0.43328577386964223,
+         0.716154490721508
+        ],
+        "recall_wilson_ci95": [
+         0.514636672419722,
+         0.8036673347185581
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.4166666666666667,
+          0.7115384615384616
+         ],
+         "recall": [
+          0.5,
+          0.8484848484848485
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 25,
+       "fp": 20,
+       "fn": 6,
+       "precision": 0.5556,
+       "recall": 0.8065,
+       "f1": 0.6579,
+       "precision_ci95": [
+        0.4118,
+        0.6906
+       ],
+       "recall_ci95": [
+        0.6372,
+        0.9081
+       ],
+       "false_positives_per_hour": 45.656,
+       "hours_evaluated": 0.438,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Bahati": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Inooro FM": {
+         "fn": 3,
+         "fp": 11,
+         "tp": 8
+        },
+        "Ndume": {
+         "fp": 2
+        },
+        "Kinangop": {
+         "fp": 1
+        },
+        "Corona": {
+         "fp": 1
+        },
+        "MoKo": {
+         "fp": 2,
+         "tp": 9,
+         "fn": 1
+        },
+        "Nguvu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Sawa": {
+         "fp": 1
+        },
+        "Joy": {
+         "tp": 1
+        },
+        "Kasuku": {
+         "fp": 1
+        },
+        "Pilot": {
+         "tp": 1
+        },
+        "President": {
+         "tp": 2
+        },
+        "White": {
+         "tp": 1
+        },
+        "Happy": {
+         "tp": 1
+        },
+        "Jogoo": {
+         "fp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 13
+        },
+        "precision_wilson_ci95": [
+         0.41176134493521055,
+         0.6906106996500242
+        ],
+        "recall_wilson_ci95": [
+         0.6371974218820453,
+         0.908129916384139
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.2608695652173913,
+          0.7058823529411765
+         ],
+         "recall": [
+          0.5714285714285714,
+          0.8947368421052632
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "segments_without_mentions": 270,
+       "tp": 23,
+       "fp": 24,
+       "fn": 8,
+       "precision": 0.4894,
+       "recall": 0.7419,
+       "f1": 0.5897,
+       "precision_ci95": [
+        0.3528,
+        0.6276
+       ],
+       "recall_ci95": [
+        0.5675,
+        0.863
+       ],
+       "false_positives_per_hour": 77.074,
+       "hours_evaluated": 0.311,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "fn": 1
+        },
+        "Nice": {
+         "fp": 1
+        },
+        "President": {
+         "fp": 1,
+         "fn": 2,
+         "tp": 1
+        },
+        "Citizen": {
+         "fp": 3,
+         "tp": 9,
+         "fn": 1
+        },
+        "Wadi": {
+         "fp": 1
+        },
+        "Jamaa": {
+         "fn": 1,
+         "tp": 4
+        },
+        "Shake": {
+         "fn": 1
+        },
+        "Fuliza": {
+         "fp": 2
+        },
+        "Corona": {
+         "fp": 2
+        },
+        "Jogoo": {
+         "fp": 1
+        },
+        "Jamii": {
+         "fp": 1,
+         "tp": 6,
+         "fn": 2
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "Umoja": {
+         "fp": 2
+        },
+        "Fundi": {
+         "fp": 1
+        },
+        "Safaricom Kenya": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "tp": 1
+        },
+        "Bahati": {
+         "fp": 1
+        },
+        "Enda": {
+         "tp": 1
+        },
+        "Famila": {
+         "fp": 4
+        },
+        "Senator": {
+         "fp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 30,
+         "negative_segments": 270,
+         "recording_groups": 7
+        },
+        "precision_wilson_ci95": [
+         0.3527555503368215,
+         0.6275754625177314
+        ],
+        "recall_wilson_ci95": [
+         0.5675386419056621,
+         0.8629829409360625
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.16,
+          0.6103896103896104
+         ],
+         "recall": [
+          0.4,
+          0.8947368421052632
+         ],
+         "valid_draws": 999
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0288,
+      "audio_seconds": 4215.0,
+      "wall_seconds": 121.4
+     },
+     "at": "2026-10-05T03:43:57Z"
+    },
+    {
+     "step": 4000,
+     "train_loss": 0.3896,
+     "words": {
+      "kam": {
+       "wer": 0.8872,
+       "cer": 0.5906,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.8245,
+       "cer": 0.4961,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.7343,
+       "cer": 0.5412,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 27,
+       "fp": 16,
+       "fn": 10,
+       "precision": 0.6279,
+       "recall": 0.7297,
+       "f1": 0.675,
+       "precision_ci95": [
+        0.4786,
+        0.7562
+       ],
+       "recall_ci95": [
+        0.5702,
+        0.846
+       ],
+       "false_positives_per_hour": 37.97,
+       "hours_evaluated": 0.421,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Fuliza": {
+         "fp": 1
+        },
+        "Kent": {
+         "fp": 1
+        },
+        "MoKo": {
+         "fp": 1,
+         "fn": 1
+        },
+        "President": {
+         "tp": 7,
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 4
+        },
+        "Corona": {
+         "tp": 5,
+         "fn": 3,
+         "fp": 2
+        },
+        "Musyi FM": {
+         "fp": 2,
+         "fn": 2
+        },
+        "Kenya Power": {
+         "tp": 2
+        },
+        "Magnee": {
+         "fp": 1
+        },
+        "Royal": {
+         "tp": 2
+        },
+        "Royal Media": {
+         "tp": 2
+        },
+        "Royale": {
+         "fp": 2
+        },
+        "Senator": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Nation": {
+         "tp": 1
+        },
+        "Nala": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Prestige": {
+         "fn": 1
+        },
+        "Kenyatta Hospital": {
+         "fn": 1
+        },
+        "KRA": {
+         "tp": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "Soko": {
+         "tp": 1
+        },
+        "Enda": {
+         "tp": 2
+        },
+        "Citizen": {
+         "tp": 1
+        },
+        "Jamaa": {
+         "tp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 33
+        },
+        "precision_wilson_ci95": [
+         0.4785980915968848,
+         0.7562366099034943
+        ],
+        "recall_wilson_ci95": [
+         0.5702183167528574,
+         0.846025384889509
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.4146341463414634,
+          0.7916666666666666
+         ],
+         "recall": [
+          0.5588235294117647,
+          0.9047619047619048
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 21,
+       "fp": 15,
+       "fn": 10,
+       "precision": 0.5833,
+       "recall": 0.6774,
+       "f1": 0.6269,
+       "precision_ci95": [
+        0.422,
+        0.7286
+       ],
+       "recall_ci95": [
+        0.5014,
+        0.8143
+       ],
+       "false_positives_per_hour": 34.242,
+       "hours_evaluated": 0.438,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Bahati": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Inooro FM": {
+         "fn": 3,
+         "fp": 4,
+         "tp": 8
+        },
+        "Corona": {
+         "fp": 1
+        },
+        "Ndume": {
+         "fp": 6
+        },
+        "MoKo": {
+         "fp": 2,
+         "fn": 3,
+         "tp": 7
+        },
+        "Nguvu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Sawa": {
+         "fp": 1
+        },
+        "Joy": {
+         "fn": 1
+        },
+        "Kasuku": {
+         "fp": 1
+        },
+        "Pilot": {
+         "tp": 1
+        },
+        "President": {
+         "fn": 1,
+         "tp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Happy": {
+         "tp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 13
+        },
+        "precision_wilson_ci95": [
+         0.4220025157487167,
+         0.7285943794855393
+        ],
+        "recall_wilson_ci95": [
+         0.5014100930808565,
+         0.8143057343364082
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.36363636363636365,
+          0.7567567567567568
+         ],
+         "recall": [
+          0.5789473684210527,
+          0.9090909090909091
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "segments_without_mentions": 270,
+       "tp": 23,
+       "fp": 28,
+       "fn": 8,
+       "precision": 0.451,
+       "recall": 0.7419,
+       "f1": 0.561,
+       "precision_ci95": [
+        0.3227,
+        0.5862
+       ],
+       "recall_ci95": [
+        0.5675,
+        0.863
+       ],
+       "false_positives_per_hour": 89.92,
+       "hours_evaluated": 0.311,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "fn": 1
+        },
+        "Citizen": {
+         "fp": 4,
+         "tp": 9,
+         "fn": 1
+        },
+        "Jamaa": {
+         "tp": 5
+        },
+        "Shake": {
+         "fn": 1
+        },
+        "Sawa": {
+         "fp": 2
+        },
+        "Jogoo": {
+         "fp": 2
+        },
+        "Famila": {
+         "fp": 9
+        },
+        "Fuliza": {
+         "fp": 2
+        },
+        "Enda": {
+         "fp": 1,
+         "tp": 1
+        },
+        "Tena": {
+         "fp": 1
+        },
+        "Soko": {
+         "fp": 1
+        },
+        "Jamii": {
+         "tp": 6,
+         "fp": 2,
+         "fn": 2
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "President": {
+         "fn": 1,
+         "tp": 2
+        },
+        "Safari": {
+         "fp": 1
+        },
+        "Safaricom Kenya": {
+         "fn": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        },
+        "Nguvu": {
+         "fp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 30,
+         "negative_segments": 270,
+         "recording_groups": 7
+        },
+        "precision_wilson_ci95": [
+         0.3226751854937402,
+         0.5861529144963119
+        ],
+        "recall_wilson_ci95": [
+         0.5675386419056621,
+         0.8629829409360625
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.13636363636363635,
+          0.639344262295082
+         ],
+         "recall": [
+          0.4444444444444444,
+          0.875
+         ],
+         "valid_draws": 999
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.014,
+      "audio_seconds": 4215.0,
+      "wall_seconds": 59.1
+     },
+     "at": "2026-10-05T04:47:52Z"
+    },
+    {
+     "step": 6000,
+     "train_loss": 0.2385,
+     "words": {
+      "kam": {
+       "wer": 0.6424,
+       "cer": 0.3689,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.7158,
+       "cer": 0.3969,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.6961,
+       "cer": 0.4758,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 23,
+       "fp": 11,
+       "fn": 14,
+       "precision": 0.6765,
+       "recall": 0.6216,
+       "f1": 0.6479,
+       "precision_ci95": [
+        0.5084,
+        0.8087
+       ],
+       "recall_ci95": [
+        0.461,
+        0.7594
+       ],
+       "false_positives_per_hour": 26.104,
+       "hours_evaluated": 0.421,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "President": {
+         "tp": 7
+        },
+        "Equity": {
+         "fp": 1
+        },
+        "Corona": {
+         "tp": 5,
+         "fn": 3,
+         "fp": 2
+        },
+        "Musyi FM": {
+         "fp": 1,
+         "tp": 1,
+         "fn": 1
+        },
+        "MoKo": {
+         "fn": 1
+        },
+        "Kenya Power": {
+         "tp": 2
+        },
+        "Magnee": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 3
+        },
+        "Royal": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Royal Media": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Senator": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Nation": {
+         "tp": 1
+        },
+        "Nala": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Prestige": {
+         "fn": 1
+        },
+        "Kenyatta Hospital": {
+         "fn": 1
+        },
+        "KRA": {
+         "tp": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "Soko": {
+         "fn": 1
+        },
+        "Enda": {
+         "fn": 2
+        },
+        "Tena": {
+         "fp": 1
+        },
+        "Citizen": {
+         "tp": 1
+        },
+        "Royale": {
+         "fp": 1
+        },
+        "Jamaa": {
+         "tp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 33
+        },
+        "precision_wilson_ci95": [
+         0.508428945939082,
+         0.808683564359745
+        ],
+        "recall_wilson_ci95": [
+         0.46100430439217654,
+         0.7593600082420173
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.5161290322580645,
+          0.8055555555555556
+         ],
+         "recall": [
+          0.48484848484848486,
+          0.7714285714285715
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 23,
+       "fp": 7,
+       "fn": 8,
+       "precision": 0.7667,
+       "recall": 0.7419,
+       "f1": 0.7541,
+       "precision_ci95": [
+        0.5907,
+        0.8821
+       ],
+       "recall_ci95": [
+        0.5675,
+        0.863
+       ],
+       "false_positives_per_hour": 15.98,
+       "hours_evaluated": 0.438,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Bahati": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Inooro FM": {
+         "fn": 2,
+         "fp": 3,
+         "tp": 9
+        },
+        "President": {
+         "fp": 1,
+         "fn": 1,
+         "tp": 1
+        },
+        "MoKo": {
+         "fn": 2,
+         "tp": 8
+        },
+        "Nguvu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Ndume": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 1
+        },
+        "Joy": {
+         "fn": 1
+        },
+        "Kasuku": {
+         "fp": 1
+        },
+        "Pilot": {
+         "tp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Happy": {
+         "tp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 13
+        },
+        "precision_wilson_ci95": [
+         0.5907167384187784,
+         0.8820761185551051
+        ],
+        "recall_wilson_ci95": [
+         0.5675386419056621,
+         0.8629829409360625
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.5,
+          0.9259259259259259
+         ],
+         "recall": [
+          0.5853658536585366,
+          0.9090909090909091
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "segments_without_mentions": 270,
+       "tp": 25,
+       "fp": 22,
+       "fn": 6,
+       "precision": 0.5319,
+       "recall": 0.8065,
+       "f1": 0.641,
+       "precision_ci95": [
+        0.3923,
+        0.6667
+       ],
+       "recall_ci95": [
+        0.6372,
+        0.9081
+       ],
+       "false_positives_per_hour": 70.651,
+       "hours_evaluated": 0.311,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "tp": 1
+        },
+        "Citizen": {
+         "fp": 3,
+         "tp": 10
+        },
+        "Jamaa": {
+         "tp": 5
+        },
+        "Shake": {
+         "fn": 1
+        },
+        "Famila": {
+         "fp": 11
+        },
+        "Fuliza": {
+         "fp": 2
+        },
+        "Tena": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 2
+        },
+        "Jamii": {
+         "tp": 6,
+         "fn": 2
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "President": {
+         "fn": 1,
+         "tp": 2
+        },
+        "Safari": {
+         "fp": 1
+        },
+        "Safaricom Kenya": {
+         "fn": 1
+        },
+        "Safaricom": {
+         "fn": 1
+        },
+        "Enda": {
+         "tp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 30,
+         "negative_segments": 270,
+         "recording_groups": 7
+        },
+        "precision_wilson_ci95": [
+         0.3923238322019481,
+         0.6666831292343925
+        ],
+        "recall_wilson_ci95": [
+         0.6371974218820453,
+         0.908129916384139
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.16666666666666666,
+          0.7962962962962963
+         ],
+         "recall": [
+          0.6,
+          1.0
+         ],
+         "valid_draws": 999
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.0095,
+      "audio_seconds": 4215.0,
+      "wall_seconds": 40.0
+     },
+     "at": "2026-10-05T05:50:17Z"
+    },
+    {
+     "step": 8000,
+     "train_loss": 0.1606,
+     "words": {
+      "kam": {
+       "wer": 0.6345,
+       "cer": 0.3687,
+       "n": 300
+      },
+      "kik": {
+       "wer": 0.7061,
+       "cer": 0.3865,
+       "n": 300
+      },
+      "swa": {
+       "wer": 0.5238,
+       "cer": 0.3252,
+       "n": 300
+      }
+     },
+     "mentions": {
+      "kam": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 25,
+       "fp": 10,
+       "fn": 12,
+       "precision": 0.7143,
+       "recall": 0.6757,
+       "f1": 0.6944,
+       "precision_ci95": [
+        0.5494,
+        0.8367
+       ],
+       "recall_ci95": [
+        0.5146,
+        0.8037
+       ],
+       "false_positives_per_hour": 23.731,
+       "hours_evaluated": 0.421,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "President": {
+         "tp": 7
+        },
+        "Super": {
+         "fp": 1
+        },
+        "Corona": {
+         "tp": 5,
+         "fn": 3,
+         "fp": 1
+        },
+        "Musyi FM": {
+         "fp": 2,
+         "tp": 1,
+         "fn": 1
+        },
+        "MoKo": {
+         "fn": 1
+        },
+        "Kenya Power": {
+         "tp": 2
+        },
+        "Sawa": {
+         "fp": 3
+        },
+        "Royal": {
+         "tp": 2
+        },
+        "Royal Media": {
+         "tp": 2
+        },
+        "Royale": {
+         "fp": 2
+        },
+        "Senator": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Nation": {
+         "tp": 1
+        },
+        "Nala": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Prestige": {
+         "fn": 1
+        },
+        "Kenyatta Hospital": {
+         "fn": 1
+        },
+        "KRA": {
+         "tp": 1
+        },
+        "Famila": {
+         "fp": 1
+        },
+        "Soko": {
+         "fn": 1
+        },
+        "Enda": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Citizen": {
+         "tp": 1
+        },
+        "Jamaa": {
+         "fn": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 33
+        },
+        "precision_wilson_ci95": [
+         0.5494506513681738,
+         0.836734637635653
+        ],
+        "recall_wilson_ci95": [
+         0.514636672419722,
+         0.8036673347185581
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.5,
+          0.8695652173913043
+         ],
+         "recall": [
+          0.4807692307692308,
+          0.875
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "kik": {
+       "segments": 300,
+       "segments_with_mentions": 31,
+       "segments_without_mentions": 269,
+       "tp": 21,
+       "fp": 6,
+       "fn": 10,
+       "precision": 0.7778,
+       "recall": 0.6774,
+       "f1": 0.7241,
+       "precision_ci95": [
+        0.5924,
+        0.8939
+       ],
+       "recall_ci95": [
+        0.5014,
+        0.8143
+       ],
+       "false_positives_per_hour": 13.697,
+       "hours_evaluated": 0.438,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Bahati": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Inooro FM": {
+         "fn": 3,
+         "fp": 3,
+         "tp": 8
+        },
+        "MoKo": {
+         "fn": 3,
+         "tp": 7
+        },
+        "Nguvu": {
+         "fn": 1,
+         "tp": 1
+        },
+        "Ndume": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 1
+        },
+        "Joy": {
+         "fn": 1
+        },
+        "Kasuku": {
+         "fp": 1
+        },
+        "Pilot": {
+         "tp": 1
+        },
+        "President": {
+         "fn": 1,
+         "tp": 1
+        },
+        "White": {
+         "tp": 1
+        },
+        "Happy": {
+         "tp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 31,
+         "negative_segments": 269,
+         "recording_groups": 13
+        },
+        "precision_wilson_ci95": [
+         0.5924307113336743,
+         0.8939276054763997
+        ],
+        "recall_wilson_ci95": [
+         0.5014100930808565,
+         0.8143057343364082
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.5294117647058824,
+          0.9310344827586207
+         ],
+         "recall": [
+          0.5789473684210527,
+          0.9090909090909091
+         ],
+         "valid_draws": 1000
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      },
+      "swa": {
+       "segments": 300,
+       "segments_with_mentions": 30,
+       "segments_without_mentions": 270,
+       "tp": 26,
+       "fp": 19,
+       "fn": 5,
+       "precision": 0.5778,
+       "recall": 0.8387,
+       "f1": 0.6842,
+       "precision_ci95": [
+        0.433,
+        0.7103
+       ],
+       "recall_ci95": [
+        0.6737,
+        0.9291
+       ],
+       "false_positives_per_hour": 61.017,
+       "hours_evaluated": 0.311,
+       "timestamp_tolerance": "segment boundaries (mention attributed to its transcript segment)",
+       "abstained_segments": 0,
+       "per_brand": {
+        "Rono": {
+         "fn": 1
+        },
+        "Citizen": {
+         "fp": 3,
+         "tp": 10
+        },
+        "Jamaa": {
+         "tp": 5
+        },
+        "Shake": {
+         "fn": 1
+        },
+        "Tena": {
+         "fp": 1
+        },
+        "Famila": {
+         "fp": 10
+        },
+        "Jamii": {
+         "tp": 6,
+         "fn": 2
+        },
+        "Sasini": {
+         "fp": 1
+        },
+        "President": {
+         "fn": 1,
+         "tp": 2
+        },
+        "Fuliza": {
+         "fp": 1
+        },
+        "Safaricom Kenya": {
+         "tp": 1
+        },
+        "Safaricom": {
+         "tp": 1
+        },
+        "Enda": {
+         "tp": 1,
+         "fp": 1
+        },
+        "Kartasi": {
+         "fp": 1
+        },
+        "Sawa": {
+         "fp": 1
+        }
+       },
+       "evidence": {
+        "protocol": {
+         "version": "malpha-listener-evidence-v1",
+         "target": 0.9,
+         "confidence": 0.95,
+         "minimum_positive_segments": 100,
+         "minimum_negative_segments": 100,
+         "minimum_groups": 20,
+         "bootstrap_draws": 1000,
+         "policy_basis": "preregistered engineering evidence requirements; not a replacement for owner targets",
+         "reference_requirement": "independently_verified_brand_annotations"
+        },
+        "protocol_sha256": "709311c5fb1ff391c54493b4f83588f896530b1dfd6d690b8ebfe421bae4661f",
+        "point_target_met": false,
+        "supported_target_met": false,
+        "acceptance_ready": false,
+        "status": "below_target",
+        "support": {
+         "sufficient": false,
+         "missing_support": [
+          "positive_segments",
+          "recording_groups"
+         ],
+         "positive_segments": 30,
+         "negative_segments": 270,
+         "recording_groups": 7
+        },
+        "precision_wilson_ci95": [
+         0.4330078870920313,
+         0.710312975327297
+        ],
+        "recall_wilson_ci95": [
+         0.6736564604120675,
+         0.929073755566347
+        ],
+        "session_bootstrap_ci95": {
+         "precision": [
+          0.17142857142857143,
+          0.8392857142857143
+         ],
+         "recall": [
+          0.6,
+          0.9285714285714286
+         ],
+         "valid_draws": 999
+        },
+        "reference_verified": false,
+        "reasons": [
+         "positive_segments",
+         "recording_groups",
+         "brand_reference_not_independently_verified",
+         "confidence_not_established",
+         "point_target_not_met"
+        ],
+        "limitations": "Session blocks assume exchangeable independent recordings; intervals do not validate transcript-derived alias labels. Stratified development precision is not production-prevalence precision."
+       }
+      }
+     },
+     "latency": {
+      "real_time_factor": 0.01,
+      "audio_seconds": 4215.0,
+      "wall_seconds": 42.3
+     },
+     "at": "2026-10-05T06:52:25Z"
+    }
+   ],
+   "best": {
+    "step": 8000,
+    "mean_wer": 0.6215,
+    "minimum_precision_recall": 0.5778,
+    "basis": "minimum language precision/recall, then mean WER"
+   },
+   "artefact": {
+    "path": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-ff750b0d7c94/artefact/model.pt",
+    "sha256": "65d657b43e782ee9b866ea5b552a733ae0164207a27627c4809969c786d88a11",
+    "bytes": 3235700295,
+    "best_step": 8000,
+    "contextual_bias_terms": {
+     "kam": 40,
+     "kik": 40,
+     "swa": 40
+    }
+   },
+   "compute": {
+    "wall_seconds": 15553.9,
+    "gpu_seconds": 15553.9,
+    "gpu_hours": 4.3205,
+    "gpu_peak_gb": 57.59,
+    "device": "NVIDIA H200"
+   },
+   "sealed_admission_read": false,
+   "training_started": true,
+   "raw_media_exported": false
+  },
+  "finished_at": "2026-10-05T06:52:56Z",
+  "receipt_sha256": "746bc31b6e20379a50ddba476a644d7cdca1ab506f79c11380aa14d0bdd3ea88",
+  "digest_verified": true
+ },
+ "finished_at": "2026-10-05T06:52:56Z",
+ "track4_run_receipt": {
+  "job_kind": "training_runs",
+  "run_id": "m9j-ff750b0d7c94",
+  "started_at_utc": "2026-10-05T02:33:40.163756Z",
+  "finished_at_utc": "2026-10-05T06:52:56Z",
+  "status": "completed",
+  "provenance_ref": "m9_training://run_log/m9j-ff750b0d7c94"
+ }
 }

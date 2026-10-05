@@ -1,0 +1,125 @@
+{
+  "adopted": "D1",
+  "brief_ref": "BR-2026-10-05-m9j-11099e2f966e",
+  "candidates": [
+    {
+      "assembly": {
+        "compositions": [
+          "cover",
+          "exec_summary",
+          "section",
+          "assertion_exhibit",
+          "assertion_points",
+          "comparison",
+          "coverage_limits",
+          "appendix"
+        ],
+        "density": "sparse",
+        "imagery": "none",
+        "narrative": "recommendation-and-evidence",
+        "treatment": "restrained"
+      },
+      "idea_id": "D1",
+      "name": "Evidence-led",
+      "rationale": "Audience priorities are per-language results, traceability, limitations and negative results; every slide must carry a receipted exhibit. Read-ahead use means exhibits must be self-explaining.",
+      "verdict": "adopt"
+    },
+    {
+      "assembly": {
+        "compositions": [
+          "cover",
+          "hero",
+          "big_number",
+          "assertion_exhibit",
+          "closing"
+        ],
+        "density": "medium",
+        "imagery": "abstract",
+        "narrative": "vision-then-journey",
+        "treatment": "expressive"
+      },
+      "conditions": "Re-enter when the purpose is to persuade or inspire a programme or all-hands audience rather than to decide.",
+      "idea_id": "D2",
+      "name": "Future-state",
+      "verdict": "defer"
+    },
+    {
+      "assembly": {
+        "compositions": [
+          "cover",
+          "persona",
+          "journey",
+          "benefits",
+          "evidence"
+        ],
+        "density": "medium",
+        "imagery": "photographic",
+        "narrative": "stakeholder-journey",
+        "treatment": "warm"
+      },
+      "idea_id": "D3",
+      "name": "Human-centred",
+      "rationale": "No stakeholder research exists in the content model; the direction would require evidence that does not exist.",
+      "verdict": "reject"
+    }
+  ],
+  "confirmed_at": "2026-10-05T03:45:42Z",
+  "confirmed_by": "akki-autopilot",
+  "frame_ref": "FR-strategy-decide-v1",
+  "goal": "Select a direction that lets Model owner, reviewers and the research record · RMS decide from this pack: Decide the next qualified change for this lane from what the settled run measured against its fixed acceptance; every figure traceable to the run record.",
+  "manifest": [
+    {
+      "assumption": "Audience is Model owner, reviewers and the research record · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is familiar with the commission; technical",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are per-language results, traceability, limitations and negative results",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    }
+  ],
+  "verdict_id": "V-2026-10-05-m9j-11099e2f966e"
+}

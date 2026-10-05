@@ -1,0 +1,61 @@
+{
+  "summary": "Executed backend-only reconciliation regression scope: requirements anchors, m9_dispatch supervised-lineage validation, local Shield NER loader hardening, isolated Shield gate regression, 6 existing supervisor offline tests, and read-only live operator checks against REACT_APP_BACKEND_URL. No submit/dispatch/tick API calls were made by test code.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "background autopilot tick (services/training_lab/autopilot.py -> malpha.tick)",
+        "issue": "Observed live backend.err exception: ValueError MALPHA_SCOPE_INVALID:cif_proposal_id,hypothesis_id,resume_from during autopilot submit/validate path.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "/api/healthz/shield",
+        "issue": "Returns 404 in this fork; deidentifier docs still reference this route as if present."
+      },
+      {
+        "endpoint": "/api/healthz and /api/readyz",
+        "issue": "Both return 404 externally despite existing routers/health.py implementation, indicating route not mounted on active app path."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/malpha/test_iteration_92_dispatch_shield_ner_offline.py",
+    "/app/backend/tests/malpha/test_iteration_92_live_readonly_supervisor.py",
+    "/app/backend/tests/malpha/test_malpha_supervisor_offline.py",
+    "/app/test_reports/pytest/iteration_92_offline.xml",
+    "/app/test_reports/pytest/iteration_92_supervisor_offline.xml",
+    "/app/test_reports/pytest/iteration_92_live_readonly.xml",
+    "/app/test_reports/pytest/iteration_92_combined.xml"
+  ],
+  "action_items": [
+    "Fix autopilot/supervisor-to-dispatch param contract so background ticks do not raise MALPHA_SCOPE_INVALID for hypothesis/cif/resume fields.",
+    "Align active health routing: either mount /api/healthz,/api/readyz(/shield if intended) or update docs/comments to current truth.",
+    "Retest read-only live checks after route/contract fix; do not run mutating Shield lifecycle tests in shared environment."
+  ],
+  "critical_code_review_comments": [
+    "m9_dispatch.validate supervised lineage gating behaves correctly under direct tests (matching pair accepted only on listener/story_text/voice; malformed/partial/mismatch refused), but autopilot runtime still emitted MALPHA_SCOPE_INVALID in logs, suggesting producer/consumer drift outside validator itself.",
+    "deidentifier local-loader hardening behavior validated offline: no runtime install/download path, failure cache avoids hot-path retries, and fail-closed ServiceUnavailable behavior holds. Real smoke confirmed installed en_core_web_sm path in this environment.",
+    "Shield route truth mismatch: code comments in deidentifier mention /api/healthz/shield readiness, but live ingress returned 404 for /api/healthz/shield, /api/healthz, and /api/readyz; only /api/shield/allowlists was reachable among checked Shield-adjacent routes."
+  ],
+  "updated_files": [
+    "/app/backend/tests/malpha/test_iteration_92_dispatch_shield_ner_offline.py",
+    "/app/backend/tests/malpha/test_iteration_92_live_readonly_supervisor.py",
+    "/app/test_reports/iteration_92.json"
+  ],
+  "success_rate": {
+    "backend": "100% (23/23 executed tests passed)",
+    "frontend": "N/A (backend-only scope)"
+  },
+  "test_credentials": "Read from /app/memory/test_credentials.md; used existing RMS operator demo.operator@demo.rms.example.com / demo-operator-pw only.",
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Bounded scope executed only: offline regressions + read-only live GET checks. Shield lifecycle author/adopt/remove live tests were intentionally NOT run. MOCKED components used in isolation tests: fake external client for llm.invoke block-path and monkeypatched register/deidentifier branches. Read-only live Mα status snapshot showed currently running jobs with fresh started_at timestamps (listener m9j-2bc0eea34925, story_text m9j-dade36472f5e, story_voice m9j-82202771c7fd) at time of check.",
+  "rca of the issue": "Primary runtime exception observed in backend.err points to contract mismatch between malpha dispatch producer and m9_dispatch.validate allowlist: autopilot tick attempted submit with hypothesis/cif/resume fields in a shape currently rejected by validate (MALPHA_SCOPE_INVALID). This is separate from the isolated validator tests that passed for bounded accepted/rejected cases. Health route discrepancy RCA: health endpoints are defined in source routers but appear unmounted or not exposed through active ingress/router wiring in this fork, while docs/comments still imply availability."
+}

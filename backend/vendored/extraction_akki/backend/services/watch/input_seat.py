@@ -32,12 +32,12 @@ Canon 8 §85 (learned-component discipline verbatim):
 
 Contract:
 
-    score_input_seat(purpose, custody_class, tenant_id, provider)
+    score_input_seat(purpose, custody_class, tenant_id, provider, payload_text=None)
         -> tuple[hostility, provenance, verdict]
-        Lango scorer.  Placeholder honest-empty implementation at
-        this seal: returns ('low', <provenance>, 'pass') because no
-        learned detection models are wired yet (Canon 8 §85 discipline
-        + Canon 1 §4.11 'never fabricate what wasn't measured').
+        Lango scorer. With payload_text, uses the declared deterministic
+        content rules in Shield's register gate; not a learned detector.
+        Without payload_text, returns unmeasured ('low', <provenance>, 'pass')
+        for legacy callers. The external chokepoint supplies both payload paths.
         Provenance derives from declared custody_class:
           - synthetic         -> 'known'  (no estate content)
           - tenant_estate     -> 'known'  (tenant-attributed)
@@ -167,7 +167,7 @@ class CrossingEvent:
 
 
 # ---------------------------------------------------------------------------
-# Lango scorer (W1f · honest-empty placeholder until learned models wire)
+# Lango scorer (deterministic content rules; learned calibration remains open)
 # ---------------------------------------------------------------------------
 
 # Custody classes that carry tenant-attributed provenance by declaration.

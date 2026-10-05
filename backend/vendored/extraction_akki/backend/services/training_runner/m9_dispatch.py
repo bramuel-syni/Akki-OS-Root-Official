@@ -31,6 +31,8 @@ MALPHA_PHASES = {"malpha_aip_build": {'lab_corpus_root', 'max_files_per_language
                  "malpha_listener_train": {'recipe', 'brand_lexicon'}, "malpha_evaluate": {'artefact_path', 'artefact_sha256', 'brand_lexicon', 'admission_target', 'trained_job_id'},
                  "malpha_story_text_train": {'recipe', 'base_registration'}, "malpha_voice_train": {'recipe'}, "malpha_baseline_render": {'prompts_per_language'}}
 MALPHA_COMMON = {'commission_id', 'languages', 'gpu_index', 'budget_mode', 'owner_order_ref', 'seed', 'iteration', 'aip_db_dir'}
+MALPHA_SUPERVISED_PHASES = frozenset({'malpha_listener_train', 'malpha_story_text_train', 'malpha_voice_train'})
+MALPHA_SUPERVISOR_REFS = frozenset({'hypothesis_id', 'cif_proposal_id'})
 MALPHA_PHASES['malpha_worker_audit'] = {'worker_contract_version'}
 MALPHA_PHASES['malpha_corpus_audit'] = {'audit_version', 'lab_corpus_root'}
 MALPHA_PHASES['malpha_aip_reseal'] = {'lab_corpus_root', 'split_version'}
@@ -170,10 +172,17 @@ def validate(phase, params, host):
             raise ValueError('MUSIC_DETECTOR_BOUNDS_INVALID:recipe')
     if phase in MALPHA_PHASES:
         required = MALPHA_COMMON | MALPHA_PHASES[phase]; optional = {'resume_from', 'brand_lexicon_version', 'split_version'}
+        if phase in MALPHA_SUPERVISED_PHASES: optional |= MALPHA_SUPERVISOR_REFS
         if phase == 'malpha_internet_corpus': optional |= {'data_revision'}
         if phase == 'malpha_evaluate': optional |= {'reference_labels'}
         if not required <= set(params) <= required | optional:
-            raise ValueError('MALPHA_SCOPE_INVALID:' + ','.join(sorted((required | optional) ^ set(params))))
+            raise ValueError('MALPHA_SCOPE_INVALID:' + ','.join(sorted((required - set(params)) | (set(params) - required - optional))))
+        # Lineage from the existing supervisor, not a new acceptance authority.
+        # Older jobs may omit it; a supplied pair must match its producer contract.
+        if MALPHA_SUPERVISOR_REFS & set(params):
+            hid = params.get('hypothesis_id')
+            if not isinstance(hid, str) or not re.fullmatch(r'hyp-[a-f0-9]{12}', hid) or params.get('cif_proposal_id') != 'cif_' + hid.replace('-', '_'):
+                raise ValueError('MALPHA_SUPERVISOR_REFS_INVALID')
         if 'split_version' in params and (type(params['split_version']) is not int or params['split_version'] < 1):
             raise ValueError('MALPHA_SPLIT_VERSION_INVALID')
         if 'reference_labels' in params and (not isinstance(params['reference_labels'], dict) or not all(re.fullmatch(r'[a-f0-9]{16}', k) and isinstance(v, list) for k, v in params['reference_labels'].items())):

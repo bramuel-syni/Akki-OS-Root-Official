@@ -446,6 +446,17 @@ def dispatch_lane(cid, lane, snapshot):
         if not base_path: _log(cid, 'blocked', 'story_text: no registered Qwen3 base on the host; lane held'); return None
         params = {'recipe': story_text_recipe(iteration, history, base_path), 'base_registration': {k: entry.get(k) for k in ('repo', 'revision', 'licence_verified', 'weight_sha256')}}
     else: params = {'recipe': voice_recipe(iteration, history)}
+    # Training supervisor (Solva + CIF over the sealed modules): the ladder/measurement rule is one candidate; frontier-reviewed and owner hypotheses compete at the deterministic acceptance point.
+    from services.training_lab import malpha_supervisor
+    chosen = malpha_supervisor.select(cid, lane, iteration, history, params['recipe']) if not faults else None  # a faulted attempt retries the recipe already adopted for this iteration
+    if not faults and not chosen:
+        reason = f'{lane} iteration {iteration}: the training supervisor found no admissible hypothesis (every candidate refused at the acceptance point or caught by the absorption rule); refusal envelope recorded for the owner'
+        db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'held', 'held_by': 'training_supervisor', 'iteration': iteration, 'reason': reason}}})
+        _log(cid, 'lane_held', reason); return None
+    if chosen: params['recipe'] = chosen['recipe']; params['hypothesis_id'] = chosen['hypothesis']['hypothesis_id']; params['cif_proposal_id'] = chosen['proposal_id']
+    else:
+        adopted = malpha_supervisor.db().malpha_hypotheses.find_one({'lane': lane, 'iteration': iteration, 'archive_state': 'adopted'}, {'_id': 0, 'hypothesis_id': 1, 'recipe_delta': 1, 'acceptance.proposal_id': 1})
+        if adopted: params['recipe'] = {**params['recipe'], **(adopted.get('recipe_delta') or {})}; params['hypothesis_id'] = adopted['hypothesis_id']; params['cif_proposal_id'] = (adopted.get('acceptance') or {}).get('proposal_id')
     params['split_version'] = SPLIT_VERSION  # the seal this model is trained under; only artefacts trained under the current seal may face a confirmation read
     from services.training_runner import m9_dispatch
     _, code_sha = m9_dispatch.build_bundle()
@@ -453,12 +464,15 @@ def dispatch_lane(cid, lane, snapshot):
     if latest: params['resume_from'] = latest['last_checkpoint']
     rec = _submit(cid, lane, phase, params, host, index, iteration)
     if rec['status'] == 'running':
+        if params.get('hypothesis_id'): malpha_supervisor.bind_job(params['hypothesis_id'], rec['job_id'])
         if params['recipe'].get('rationale'): _log(cid, 'recipe', f"{lane} iteration {iteration} — why this recipe: {params['recipe']['rationale']}", job_id=rec['job_id'])
-        # WPW-6: the recipe choice is an ideation record mirrored by reference — the idea lives in the job params, its conditions in the measured result it answered
+        if chosen: _log(cid, 'supervisor', f"{lane} iteration {iteration} — supervisor: {chosen['gap']['conclusion'][:400]}", job_id=rec['job_id'], hypothesis_id=params['hypothesis_id'])
+        # WPW-6: the adopted hypothesis is an ideation record mirrored by reference — the idea lives in the supervisor ledger, its conditions in the measured result it answered
         conditions = f"malpha://job/{history[-1]['job_id']}#result.dev" if history else f"malpha://commission/{cid}#target_outcome"
-        wpw.record_event(cid, 'cif_ideation', 'observed', f"m9_training://run_log/{rec['job_id']}", {'cif_event_ref': f"malpha://job/{rec['job_id']}#params.recipe", 'idea_ref': f"malpha.{lane}_recipe#iteration{iteration}", 'conditions_ref': conditions,
-                                                                                                    'adoption_status': 'adopted', 'attempt': len(faults) + 1, 'resumed_from_checkpoint': bool(latest)})
-    db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'running' if rec['status'] == 'running' else 'dispatch_refused', 'iteration': iteration, 'attempt': len(faults) + 1, 'job_id': rec['job_id']}, 'status': 'running'}})
+        wpw.record_event(cid, 'cif_ideation', 'observed', f"m9_training://run_log/{rec['job_id']}", {'cif_event_ref': f"malpha://supervisor/hypothesis/{params.get('hypothesis_id')}", 'idea_ref': f"malpha://supervisor/hypothesis/{params.get('hypothesis_id')}#statement", 'conditions_ref': conditions,
+                                                                                                    'adoption_status': 'adopted', 'cif_proposal_id': params.get('cif_proposal_id'), 'attempt': len(faults) + 1, 'resumed_from_checkpoint': bool(latest)})
+    elif chosen: malpha_supervisor.release(params['hypothesis_id'], rec.get('reason'))
+    db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'running' if rec['status'] == 'running' else 'dispatch_refused', 'iteration': iteration, 'attempt': len(faults) + 1, 'job_id': rec['job_id'], 'hypothesis_id': params.get('hypothesis_id')}, 'status': 'running'}})
     return rec
 
 
@@ -552,6 +566,7 @@ def settle(rec, snapshot):
         wpw.record_event(cid, 'anomaly', 'observed', ref, {'lane': lane, 'iteration': rec['iteration'], 'status': rec['status'], 'reason': rec.get('reason'), 'last_checkpoint': rec.get('last_checkpoint')})
         _log(cid, 'job_failed', f"{lane} iteration {rec['iteration']} ({rec['job_id']}) ended {rec['status']}: {str(rec.get('reason'))[:200]}. Retained checkpoint: {rec.get('last_checkpoint') or 'none'}.", job_id=rec['job_id'])
         if phase not in ('malpha_aip_build', 'malpha_aip_requalify', 'malpha_aip_relabel', 'malpha_internet_corpus'): _tier2(rec)
+        if lane in ('listener', 'story_text', 'story_voice'): _supervise(rec)
         return
     result = rec['result']
     if phase == 'malpha_worker_audit':
@@ -634,7 +649,19 @@ def settle(rec, snapshot):
     _log(cid, 'iteration_settled', f"{lane} iteration {rec['iteration']} settled after {result.get('steps')} steps, {round((rec.get('gpu_seconds') or 0) / 3600, 2)} GPU-h: {json.dumps(summary)}. Dev target {'met → independent sealed evaluation next' if meets else 'not met → next qualified change'}.", job_id=rec['job_id'])
     db().malpha_commissions.update_one({'commission_id': cid}, {'$set': {f'lane_state.{lane}': {'status': 'dev_target_met' if meets else 'iterating', 'iteration': rec['iteration'], 'job_id': rec['job_id'], 'summary': summary}}})
     _tier2(rec)
+    _supervise(rec)
     if meets and lane == 'listener': dispatch_evaluation(cid, lane, rec, snapshot)
+
+
+def _supervise(rec):
+    """Hypothesis test at settlement (supported / refuted / inconclusive); the supervisor must never break settlement."""
+    from services.training_lab import malpha_supervisor
+    try:
+        outcome = malpha_supervisor.on_settled(rec)
+        if outcome: _log(rec['commission_id'], 'hypothesis_tested', f"{rec['lane']} iteration {rec['iteration']}: hypothesis {outcome['test']['verdict']} — {json.dumps({k: v for k, v in outcome['test'].items() if k != 'at'}, default=str)[:300]}" + (f"; FINDING {outcome['finding']['finding_id']}: {outcome['finding']['what'][:200]}" if outcome.get('finding') else ''), job_id=rec['job_id'])
+    except Exception as exc:
+        log.exception('training supervisor failed at settlement for %s', rec.get('job_id'))
+        _log(rec['commission_id'], 'supervisor_failed', f"{rec['lane']} iteration {rec['iteration']}: hypothesis test could not be recorded: {exc!r}"[:600], job_id=rec['job_id'])
 
 
 def tick():
@@ -663,6 +690,10 @@ def _tick_unlocked():
         _log('*', 'hosts_unreachable', f"GPU snapshot {snapshot.get('status')}; nothing dispatched this tick"); return snapshot
     settled = refresh_jobs()
     for rec in settled: settle(rec, snapshot)
+    try:
+        from services.training_lab import malpha_supervisor
+        malpha_supervisor.paper_cycle()  # frontier ideas are archived on paper every pass; compute is only spent through dispatch_lane
+    except Exception: log.exception('supervisor paper cycle failed')
     dispatched = list(dispatch_worker_audits()) + list(dispatch_aip_build(snapshot)) + list(dispatch_requalify(snapshot)) + list(dispatch_relabel(snapshot)) + list(dispatch_reseal(snapshot)) + list(dispatch_corpus_audits()) + list(dispatch_internet_corpus(snapshot))
     for c in commissions():
         for lane in c['lanes']:
@@ -711,7 +742,13 @@ def status():
             'data_policy': {'source': 'staged estate corpus only', 'authority': ESTATE_ONLY_ORDER_REF, 'superseded': INTERNET_DATA_ORDER_REF, 'split_version': SPLIT_VERSION, 'reseal_ready': {h: reseal_ready(h) for h, _ in HOST_ALLOCATION['malpha_aip_reseal']}},
             'metering': metering(), 'brand_lexicon': {'version': active['version'], 'brands': len(active['lexicon']), 'lexicon_sha256': active['lexicon_sha256'], 'source': active['source'], 'relabel_ready': {h: relabel_ready(h) for h, _ in HOST_ALLOCATION['malpha_aip_relabel']}},
             'internet_corpus': {'status': 'stopped — estate-only policy', 'datasets': INTERNET_DATASETS, 'max_hours_per_dataset': INTERNET_MAX_HOURS_PER_DATASET, 'authority': ESTATE_ONLY_ORDER_REF, 'ingested_rows_trained_on_from_now': False, 'ready': {h: internet_ready(h) for h, _ in HOST_ALLOCATION['malpha_internet_corpus']}},
-            'log': list(db().malpha_log.find({}, {'_id': 0}, sort=[('at', -1)], limit=60)), 'wpw': {cid: {'attached': wpw.is_attached_to_run(cid), 'entries': len(wpw.list_entries(cid)), 'chain': wpw.verify_hash_chain(cid)} for cid in COMMISSIONS}}
+            'log': list(db().malpha_log.find({}, {'_id': 0}, sort=[('at', -1)], limit=60)), 'wpw': {cid: {'attached': wpw.is_attached_to_run(cid), 'entries': len(wpw.list_entries(cid)), 'chain': wpw.verify_hash_chain(cid)} for cid in COMMISSIONS},
+            'supervisor': _supervisor_summary()}
+
+
+def _supervisor_summary():
+    from services.training_lab import malpha_supervisor
+    return malpha_supervisor.summary()
 
 
 def job_detail(job_id):

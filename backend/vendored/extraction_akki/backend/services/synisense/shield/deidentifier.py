@@ -38,8 +38,6 @@ from __future__ import annotations
 import asyncio
 import logging
 import re
-import subprocess
-import sys
 import threading
 import time
 from typing import Any, Dict, List, Optional, Tuple
@@ -207,7 +205,7 @@ _ORG_PROTECTOR_TERMS = frozenset({
 #
 # Tries `en_core_web_trf` first per the brief, falls back to
 # `en_core_web_sm` on ImportError (spacy-transformers missing) or
-# OSError (model not installed and can't fetch). The fallback is
+# OSError (model not installed). Runtime downloads are prohibited. The fallback is
 # explicitly permitted by the brief.
 # ─────────────────────────────────────────────────────────────────────
 _SPACY_NLP = None
@@ -217,48 +215,28 @@ _SPACY_LOCK = threading.Lock()
 
 
 def _attempt_load(model_name: str):
-    """Try `spacy.load(model_name)`. For the heavy `en_core_web_trf`
-    model we ONLY attempt loading if `spacy-transformers` is already
-    importable — otherwise we'd kick off a ~2GB torch+transformers
-    install that doesn't fit the dev container. The Phase A brief
-    explicitly permits the `en_core_web_sm` fallback in that case.
+    """Load a prescribed, already-installed pipeline; never fetch or repair it.
 
-    H2.5 follow-up Part A (2026-05-24) — broadened ``except OSError``
-    to ``except Exception``. Asymmetric cost analysis: the regulatory
-    cost of fail-OPEN (PAN leaking to the LLM because the model load
-    raised something we didn't expect — e.g. ``MemoryError`` at OOM,
-    ``ImportError`` on a corrupt wheel, ``RuntimeError`` from a
-    miswired spaCy plugin) vastly outweighs the UX cost of
-    fail-CLOSED on benign exceptions. The caller catches this
-    Exception and reroutes to the ``en_core_web_sm`` retry path; if
-    THAT also raises, ``_ensure_spacy`` returns ``None`` and the
-    pipeline raises ``ServiceUnavailable`` → HTTP 503."""
+    Owner containment order / Doc 1 A5.5. `_ensure_spacy` retains the existing
+    installed trf → installed sm fallback. Missing/corrupt pipelines fail closed
+    through ServiceUnavailable; installation belongs to deployment admission,
+    not processing a confidential request. This is not a network-isolation proof.
+    """
     import spacy  # noqa: WPS433 — lazy by design
+    if model_name not in ('en_core_web_trf', 'en_core_web_sm'):
+        raise ValueError('Shield NER model is not a prescribed installed pipeline')
     if model_name == "en_core_web_trf":
         try:
             import spacy_transformers  # noqa: F401
         except ImportError as exc:
             raise OSError(
                 "spacy-transformers not installed — skipping en_core_web_trf "
-                "to avoid a 2GB torch install. Falling back to en_core_web_sm."
+                "and trying the prescribed installed en_core_web_sm fallback."
             ) from exc
-    try:
-        return spacy.load(model_name)
-    except Exception as exc:  # noqa: BLE001 — see docstring; fail-closed by design
-        # Originally `except OSError` — broadened to Exception so a
-        # MemoryError / ImportError / RuntimeError at load time also
-        # routes to the sm fallback (and ultimately to 503) instead of
-        # bubbling unhandled out of `_ensure_spacy` and silently
-        # leaving the cache empty.
-        log.warning(
-            "synisense.shield: %s load raised %s: %s — attempting download",
-            model_name, type(exc).__name__, str(exc)[:200],
-        )
-        subprocess.run(  # noqa: S603 — known model, no shell
-            [sys.executable, "-m", "spacy", "download", model_name],
-            check=True, capture_output=True, timeout=120,
-        )
-        return spacy.load(model_name)
+    nlp = spacy.load(model_name)
+    if not nlp.has_pipe('ner'):
+        raise RuntimeError('Installed Shield pipeline has no NER component')
+    return nlp
 
 
 def _ensure_spacy() -> Any:
@@ -277,16 +255,18 @@ def _ensure_spacy() -> Any:
     with _SPACY_LOCK:
         if _SPACY_NLP is not None:
             return _SPACY_NLP
+        if _SPACY_LOAD_ERROR is not None:
+            return None
         # Try trf first.
         for candidate in ("en_core_web_trf", "en_core_web_sm"):
             try:
                 _SPACY_NLP = _attempt_load(candidate)
                 _SPACY_MODEL_NAME = candidate
+                _SPACY_LOAD_ERROR = None
                 if candidate == "en_core_web_sm":
                     log.warning(
-                        "synisense.shield: using en_core_web_sm fallback "
-                        "(F1 ≈ 0.86 vs ~0.91 for trf). To upgrade, install "
-                        "spacy-transformers + en_core_web_trf."
+                        "synisense.shield: using prescribed installed en_core_web_sm "
+                        "fallback; estate task quality is not established by model loading."
                     )
                 log.info("synisense.shield: spaCy NER ready (model=%s)", candidate)
                 return _SPACY_NLP
@@ -346,11 +326,10 @@ def get_spacy_load_error() -> Optional[str]:
 # ─────────────────────────────────────────────────────────────────────
 # H2.5 follow-up Part B (2026-05-24) — Boot-time Shield warmup.
 # ─────────────────────────────────────────────────────────────────────
-# Called from FastAPI's startup event. On failure, raises so the
-# process dies; supervisor restarts it and keeps crash-looping until
-# ops fixes the model. Plus exposes the latest warmup state so
-# `GET /api/healthz/shield` can answer truthfully without re-running
-# the load.
+# Callable by a runtime startup hook; warmup failure is observable, not fatal.
+# Current backend/server.py does NOT wire this hook or mount Shield healthz.
+# get_warmup_state() is an in-process diagnostic, not proof of a live HTTP
+# readiness endpoint. Request-time deidentify still fails closed if NER is absent.
 # ─────────────────────────────────────────────────────────────────────
 _WARMUP_AT: Optional[str] = None
 _WARMUP_DURATION_MS: Optional[int] = None
@@ -359,7 +338,7 @@ _WARMUP_ERROR: Optional[str] = None
 
 
 def get_warmup_state() -> Dict[str, Any]:
-    """Snapshot of the latest warmup outcome for the healthz endpoint."""
+    """In-process warmup diagnostic; the current shell mounts no Shield healthz."""
     import importlib
     model_version: Optional[str] = None
     try:
@@ -380,8 +359,12 @@ def get_warmup_state() -> Dict[str, Any]:
 
 
 async def warmup_or_warn() -> None:
-    """Boot-time Shield warmup. Loads spaCy + runs a no-op deidentify
+    """Optional Shield warmup hook. Loads spaCy + runs a no-op deidentify
     on a trivial string to verify the pipeline actually executes.
+
+    Runtime wiring note (2026-10-05): the current pod-shell does not call this
+    hook or mount the historical healthz routes described below. These older
+    notes explain the failure policy, not current HTTP route availability.
 
     H2.5 P0 hotfix (2026-05-24, post-prod-deploy outage) — was
     previously named ``warmup_or_die``. Renamed and DOWNGRADED from
@@ -402,16 +385,16 @@ async def warmup_or_warn() -> None:
         in ``_attempt_load`` and ``_ensure_spacy`` still raises
         ``ServiceUnavailable`` → HTTP 503 → ``audit_invariant_violations``
         row on every PAN-containing chat when the model is missing.
-      * Observability — ``/api/healthz/shield`` returns ``ready=false``
-        with the diagnostic state, so external probes / k8s
-        readinessProbes / load balancers can see the failure.
+      * Observability — ``get_warmup_state()`` returns the diagnostic state
+        when a caller has run warmup. HTTP readiness wiring is separate and
+        must be verified on the actual runtime, never assumed from this hook.
       * Boot trail — this function writes an
         ``audit_invariant_violations`` row with
         ``kind=shield_unavailable_at_boot`` so operators get a
         permanent record of the boot-time outage.
 
     Sets module-level ``_WARMUP_*`` globals so
-    ``GET /api/healthz/shield`` reads the most recent warmup snapshot.
+    ``get_warmup_state()`` reads the most recent warmup snapshot.
     """
     from datetime import datetime as _dt, timezone as _tz
     global _WARMUP_AT, _WARMUP_DURATION_MS, _WARMUP_OK, _WARMUP_ERROR

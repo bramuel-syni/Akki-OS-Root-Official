@@ -1,5 +1,32 @@
 # Mα — compaction-safe execution handoff
 
+## CONTROLLING CONTINUATION — 2026-10-05
+Read `/app/AGENTS.md` and `memory/REQUIREMENTS_RECONCILIATION.md` first, then
+`M_ALPHA_OWNER_ORDERS.md` §8–9. The original checkpoint below is historical and
+must NOT be used to claim that no M Alpha code/jobs exist.
+
+- Owner corrected three-category confidentiality, estate-local semantic reading,
+  Shield before external processing, audio biometric exclusion, and mandatory
+  requirements-first operation across ALL explicit requirements/ratifications.
+- Implemented bounded native dispatcher lineage-pair validation and offline-only
+  installed NER loading; no new model, rewritten architecture or regex bypass.
+- Normal scheduler resumed listener it.5 `m9j-2bc0eea34925`, story_text it.9
+  `m9j-dade36472f5e`, voice it.10 `m9j-82202771c7fd` at 09:30 UTC. PIDs
+  3926888/3446401/3927146 verified active on the two hosts at ~09:41 UTC. Leave
+  these remote workers and the vm-ii GPU1 resident workload untouched.
+- Test report `test_reports/iteration_92.json` and its `iteration_92_adjudication.md`:
+  apparent persistent dispatch error was pre-fix 09:15 log; successful native
+  launches followed 09:29 reload. Health routes unmounted; docs now say so.
+- Next P0: qualify/wire contained semantic reader with pre-redaction objective,
+  description-based protection, independent dual-file checks and existing policy
+  governance. Do not resume an old regex-only fix/paid replay/MA-19 plan as though
+  the owner ratified it. Cue false positives and full LLMShieldFailure closure
+  remain unverified. Audio input-spectrum anonymity is NOT established by codec
+  tokens/output identity distance; source findings are in reconciliation.
+- Next P1: complete native human review, qualified audio privacy/utility, durable
+  control-plane continuity. Other MA jobs including MA-19/LID/CaaS/output comparisons
+  remain mandatory; no percentage raised on documentation or unit tests.
+
 ## Read first, in this order
 1. `/app/memory/M_ALPHA_OWNER_ORDERS.md` — verbatim owner instructions and preceding options.
 2. `/app/memory/M_ALPHA_PLAN.md` — 31 dependency-linked jobs; requirement/capability/test/pass; four waves.

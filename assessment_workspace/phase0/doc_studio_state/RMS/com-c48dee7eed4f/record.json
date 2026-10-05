@@ -1,0 +1,214 @@
+{
+  "adopted_direction": "D1",
+  "authoring": {
+    "source": "deterministic producer malpha-tier2; no model authored the brief, content or specs",
+    "tokens": 0
+  },
+  "brief_id": "BR-2026-10-05-m9j-8031db0553eb",
+  "build_stamp": "2026-10-05T05:00:36Z",
+  "build_stamp_rule": "set once at commission creation; frozen",
+  "builds": [
+    {
+      "at": "2026-10-05T05:00:36Z",
+      "build_id": "bld-4f045df1ed3e",
+      "by": "akki-autopilot",
+      "content_version": 1,
+      "environment": {
+        "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+        "matplotlib": "3.11.2",
+        "openpyxl": "3.1.5",
+        "python": "3.11.16",
+        "python-docx": "1.2.0",
+        "python-pptx": "1.0.2"
+      },
+      "error": null,
+      "exports": {
+        "thumbnails": {
+          "at": "2026-10-05T05:00:40Z",
+          "by": "akki-autopilot",
+          "refusal": "no pptx output",
+          "rendered": false
+        }
+      },
+      "log_path": "/app/assessment_workspace/phase0/doc_studio_state/RMS/com-c48dee7eed4f/builds/bld-4f045df1ed3e/log.txt",
+      "look": {
+        "cover_composition": "title-centred-band",
+        "divider_treatment": "number-large",
+        "palette_id": "slate",
+        "type_pair_id": "century-arial"
+      },
+      "manifest": {
+        "build_stamp": "2026-10-05T05:00:36Z",
+        "contract": "Same inputs_sha256 + same environment => same outputs_sha256. Revisions create a new manifest; never edit outputs by hand.",
+        "environment": {
+          "libreoffice": "LibreOffice 7.4.7.2 40(Build:2)",
+          "matplotlib": "3.11.2",
+          "openpyxl": "3.1.5",
+          "python": "3.11.16",
+          "python-docx": "1.2.0",
+          "python-pptx": "1.0.2"
+        },
+        "inputs_sha256": {
+          "paper.resolved.json": "f6211031fb57819890cdfb2584984209d888f8a42a463003a363ab40cebd0836",
+          "paper.resolved/brief.json": "4bc345ed05f2e07c26bed5144f37e9446eb72c90fe3a33fe5d3f9c3b5eaa4311",
+          "paper.resolved/content.json": "9462e9f64a870c5ca151bcaa62d1c7e162839d0ce4b238e5583fa628722cc4d8",
+          "paper.resolved/house-neutral.json": "013a6041858ea824ac2532e35ecec9f8adecaf94c41a595e88c331391114a965",
+          "paper.resolved/paper.json": "f02a1fc91a7e8ac71db76eff3da549cb804549aadfbaffd2d0cfe34c7652164e",
+          "paper.resolved/strategy-house.json": "b161b59fe99e0d942420dda9a221035dbed1d16b9791c5d54f5275fa0f5e8e85",
+          "paper.resolved/verdict.json": "a567068709ebe723d2d1cad42a93c7a38ff09e9a41cbfb5d0e41186493b7eea0"
+        },
+        "outputs_sha256": {
+          "malpha-tier2-m9j-8031db0553eb.docx": "854ff513b62f8cd7c15c1e5c54052191f829c32a0e5c8031aa8532060068e5fb"
+        }
+      },
+      "outputs": [
+        {
+          "changed_from_previous": null,
+          "format": "docx",
+          "name": "malpha-tier2-m9j-8031db0553eb.docx",
+          "sha256": "854ff513b62f8cd7c15c1e5c54052191f829c32a0e5c8031aa8532060068e5fb",
+          "size": 44450
+        }
+      ],
+      "prove": {
+        "builds_compared": 2,
+        "byte_identical": true,
+        "diff": {}
+      },
+      "qa": {
+        "blockers": [],
+        "status": "PASS"
+      },
+      "status": "released",
+      "validate": {
+        "blockers": [],
+        "review": [
+          "Does the paper read as an argument when read unattended, without the deck?"
+        ],
+        "status": "PASS"
+      }
+    }
+  ],
+  "commission_id": "com-c48dee7eed4f",
+  "content_id": "malpha-tier2-m9j-8031db0553eb",
+  "created_at": "2026-10-05T05:00:36Z",
+  "created_by": "akki-autopilot",
+  "current_content_version": 1,
+  "economics": {
+    "authoring_tokens_total": 0,
+    "builds_total": 1,
+    "note": "every build renders twice (prove); re-renders and revisions invoke no authoring model by construction",
+    "renders_total": 2,
+    "rerender_authoring_tokens": 0
+  },
+  "frame_ref": "FR-strategy-decide-v1",
+  "house": "house-neutral",
+  "manifest": [
+    {
+      "assumption": "Audience is Model owner, reviewers and the research record · RMS; the pack must let them decide",
+      "class": "fact",
+      "flips": [
+        "density",
+        "narrative",
+        "exhibit_per_slide"
+      ],
+      "id": "M1",
+      "source": "brief.purpose, brief.audience"
+    },
+    {
+      "assumption": "Pack is read unattended before it is presented",
+      "class": "fact",
+      "flips": [
+        "so_what_lines",
+        "self_explaining_exhibits",
+        "docx_output"
+      ],
+      "id": "M2",
+      "source": "brief.setting.read_unattended"
+    },
+    {
+      "assumption": "Pack will be printed",
+      "class": "fact",
+      "flips": [
+        "palette_field",
+        "full_bleed_disallowed"
+      ],
+      "id": "M3",
+      "source": "brief.setting.printed"
+    },
+    {
+      "assumption": "Audience knowledge is familiar with the commission; technical",
+      "class": "recalled",
+      "flips": [
+        "jargon_policy",
+        "glossary_in_appendix"
+      ],
+      "id": "M4",
+      "source": "brief.audience.knowledge"
+    },
+    {
+      "assumption": "Audience priorities are per-language results, traceability, limitations and negative results",
+      "class": "fact",
+      "flips": [
+        "exhibit_selection",
+        "slide_order"
+      ],
+      "id": "M5",
+      "source": "brief.audience.priorities"
+    }
+  ],
+  "organisation": "RMS",
+  "outputs": [
+    "docx",
+    "html"
+  ],
+  "producer": "malpha-tier2",
+  "purpose": "decide",
+  "receipt_blockers": [],
+  "receipts": {
+    "R01": {
+      "binding": "platform",
+      "kind": "m9j",
+      "platform_ref": "m9j-8031db0553eb",
+      "resolves_to": "Retained m9 job record and host receipt for m9j-8031db0553eb (story_voice iteration 9, completed)",
+      "status": "completed",
+      "verified": true
+    },
+    "R02": {
+      "binding": "platform",
+      "kind": "m9j",
+      "platform_ref": "m9j-5db976bdd3f2",
+      "resolves_to": "AIP database build record m9j-5db976bdd3f2 on akki-vm (segments, seals, codec qualification)",
+      "status": "completed",
+      "verified": true
+    },
+    "R03": {
+      "binding": "declared",
+      "resolves_to": "White Paper Wizard Tier 1 notebook for STORY-KIK-KAM-SWA (append-only, hash-chained; entries referenced by id)"
+    }
+  },
+  "release": {
+    "reason": "build bld-4f045df1ed3e byte-identical across two builds; validate and QA PASS",
+    "state": "clear"
+  },
+  "revisions": [],
+  "seed": "malpha-tier2-m9j-8031db0553eb/decide/2026-10-05",
+  "seed_rule": "content_id/purpose.kind/commission-date, derived by the producer",
+  "source_ref": "m9j-8031db0553eb",
+  "specs": [
+    "paper.json"
+  ],
+  "tenant_id": "RMS",
+  "title": "Technical report (internal) — Expressive spoken storyteller with an invented voice (Kikuyu, Kamba, Kiswahili) · story_voice v9",
+  "updated_at": "2026-10-05T05:00:40Z",
+  "verdict_id": "V-2026-10-05-m9j-8031db0553eb",
+  "versions": [
+    {
+      "at": "2026-10-05T05:00:36Z",
+      "by": "akki-autopilot",
+      "reason": "commissioned by producer malpha-tier2 from m9j-8031db0553eb",
+      "version": 1
+    }
+  ],
+  "voice": "strategy-house"
+}

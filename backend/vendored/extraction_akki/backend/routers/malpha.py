@@ -135,6 +135,93 @@ async def learning_review(background: BackgroundTasks, actor=Depends(census_iden
     return {'tenant_id': actor['tenant_id'], 'status': 'scheduled', 'training_interrupted': False}
 
 
+# ----------------------------------------------------------------------------- training supervisor (Solva + CIF over the sealed modules) and the owner's coach seat
+class Hypothesis(BaseModel):
+    lane: str
+    statement: str
+    recipe_delta: dict
+    prediction: dict | None = None
+
+
+class Verdict(BaseModel):
+    verdict: str
+    reason: str
+    missing_condition: str | None = None
+
+
+class Binding(BaseModel):
+    recipe_delta: dict
+
+
+class Reason(BaseModel):
+    reason: str
+
+
+@router.get('/supervisor', response_model=c.Envelope)
+async def supervisor(actor=Depends(census_identity)):
+    """Per lane: the Solva reading (load-bearing units, class, conclusion), the CIF hypothesis ledger (archive states, acceptance, tests), intent audit, findings and refusal envelopes."""
+    _operator(actor)
+    from services.training_lab import malpha_supervisor
+    return {'tenant_id': actor['tenant_id'], **await asyncio.to_thread(malpha_supervisor.summary)}
+
+
+@router.get('/supervisor/hypotheses/{hypothesis_id}', response_model=c.Envelope)
+async def supervisor_hypothesis(hypothesis_id: str, actor=Depends(census_identity)):
+    _operator(actor)
+    from services.training_lab import malpha_supervisor
+    doc = await asyncio.to_thread(lambda: malpha_supervisor.db().malpha_hypotheses.find_one({'hypothesis_id': hypothesis_id}, {'_id': 0}))
+    if not doc: raise HTTPException(404, 'No hypothesis with that reference')
+    return {'tenant_id': actor['tenant_id'], 'hypothesis': doc}
+
+
+@router.post('/supervisor/hypotheses', status_code=201, response_model=c.Envelope)
+async def supervisor_originate(body: Hypothesis, actor=Depends(census_identity)):
+    """Coach seat: the owner originates a hypothesis. It still passes the deterministic acceptance point (tunables, bounds, protected floors)."""
+    _operator(actor)
+    from services.training_lab import malpha_supervisor
+    try: doc = await asyncio.to_thread(malpha_supervisor.originate, actor['principal_id'], body.lane, body.statement, body.recipe_delta, body.prediction)
+    except ValueError as exc: raise HTTPException(422, str(exc))
+    return {'tenant_id': actor['tenant_id'], 'hypothesis': doc}
+
+
+@router.post('/supervisor/hypotheses/{hypothesis_id}/verdict', response_model=c.Envelope)
+async def supervisor_verdict(hypothesis_id: str, body: Verdict, actor=Depends(census_identity)):
+    _operator(actor)
+    from services.training_lab import malpha_supervisor
+    try: doc = await asyncio.to_thread(malpha_supervisor.verdict, actor['principal_id'], hypothesis_id, body.verdict, body.reason, body.missing_condition)
+    except LookupError: raise HTTPException(404, 'No hypothesis with that reference')
+    except ValueError as exc: raise HTTPException(409, str(exc))
+    return {'tenant_id': actor['tenant_id'], 'hypothesis': doc}
+
+
+@router.post('/supervisor/hypotheses/{hypothesis_id}/bind', response_model=c.Envelope)
+async def supervisor_bind(hypothesis_id: str, body: Binding, actor=Depends(census_identity)):
+    """Engineering binding of a conditioned frontier idea to a bounded recipe_delta; the acceptance point decides."""
+    _operator(actor)
+    from services.training_lab import malpha_supervisor
+    try: doc = await asyncio.to_thread(malpha_supervisor.bind, actor['principal_id'], hypothesis_id, body.recipe_delta)
+    except LookupError: raise HTTPException(404, 'No hypothesis with that reference')
+    except ValueError as exc: raise HTTPException(409, str(exc))
+    return {'tenant_id': actor['tenant_id'], 'hypothesis': doc}
+
+
+@router.post('/supervisor/cycle', response_model=c.Envelope)
+async def supervisor_cycle(actor=Depends(census_identity)):
+    """Paper cycle: archive every frontier idea with its acceptance verdict and condition. No compute, no dispatch."""
+    _operator(actor)
+    from services.training_lab import malpha_supervisor
+    return {'tenant_id': actor['tenant_id'], 'lanes': await asyncio.to_thread(malpha_supervisor.paper_cycle)}
+
+
+@router.post('/supervisor/clear-halt', response_model=c.Envelope)
+async def supervisor_clear_halt(body: Reason, actor=Depends(census_identity)):
+    _operator(actor)
+    from services.training_lab import malpha_supervisor
+    try: out = await asyncio.to_thread(malpha_supervisor.clear_cif_halt, actor['principal_id'], body.reason)
+    except ValueError as exc: raise HTTPException(422, str(exc))
+    return {'tenant_id': actor['tenant_id'], **out}
+
+
 # ----------------------------------------------------------------------------- native-reviewer confirmation panel (independent reference for the sealed read)
 class Annotation(BaseModel):
     brands: list[str] = []

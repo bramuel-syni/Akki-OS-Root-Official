@@ -1,0 +1,81 @@
+{
+ "job_id": "m9j-82202771c7fd",
+ "phase": "malpha_voice_train",
+ "host": "akki-vm",
+ "principal_id": "akki-autopilot",
+ "submitted_at": "2026-10-05T09:30:39.594017Z",
+ "params": {
+  "recipe": {
+   "lr": 2.4706289999999983e-05,
+   "batch_size": 48,
+   "max_steps": 40000,
+   "warmup_steps": 1000,
+   "eval_every": 2500,
+   "checkpoint_every": 500,
+   "d_model": 768,
+   "layers": 12,
+   "heads": 12,
+   "max_segment_seconds": 12.0,
+   "spectral_feedback": true,
+   "eval_prompts_per_language": 12,
+   "identity_cosine_threshold": 0.4,
+   "identity_conditioning": true,
+   "identity_candidates": 200,
+   "identity_noise": 2.25,
+   "identity_margin": 0.15,
+   "loudness_match": true,
+   "language_balance": true,
+   "dense_identity": true,
+   "worker_design_version": 2,
+   "init_from": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-8031db0553eb/artefact/voice_lm.pt",
+   "carried_from_seal_version": 3,
+   "rationale": "continue iteration 9's compatible weights at 0.7\u00d7 learning rate; similarity {'kik': 0.6411, 'kam': 0.6, 'swa': 0.5412}; identity gate failed for kik, kam, swa \u2192 identity resampled with more noise (2.25) and a wider construction margin (0.15). Design v2: language-balanced curriculum, dense identity conditioning hypothesis, padded-text masking, delayed-codebook flush and complete cross-language rendered checks; no claim of convergence."
+  },
+  "hypothesis_id": "hyp-b4650eaeecea",
+  "cif_proposal_id": "cif_hyp_b4650eaeecea",
+  "split_version": 3,
+  "commission_id": "STORY-KIK-KAM-SWA",
+  "languages": [
+   "kik",
+   "kam",
+   "swa"
+  ],
+  "gpu_index": 1,
+  "budget_mode": "uncapped_until_billing",
+  "owner_order_ref": "owner order 2026-10-04 (M\u03b1): no GPU cap and no iteration ceiling until billing data; two three-language products \u2014 expressive spoken storyteller and radio brand listener (kik, kam, swa); audio as a database; admission target 90%; Spending A: existing hardware only",
+  "seed": 20261004,
+  "iteration": 10,
+  "aip_db_dir": "/mnt/volume_dkgjrkx/akki-lc/malpha/aip_db_v1"
+ },
+ "northena_run_id": "run-0f9032f5d99d",
+ "northena_trace_id": "trc-b8713c1c8573",
+ "governing_artifact_ref": {
+  "artifact_type": "objective_request",
+  "artifact_id": "M9-GOVERNED-TRAINING",
+  "version": "m9j-82202771c7fd"
+ },
+ "lawful_basis_ref": "/app/assessment_workspace/phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+ "owner_order_ref": "owner-order 2026-09-29: M9 autonomous to the end; recommended rules adopted (1c 2a 3a 4b 5a)",
+ "remote": {
+  "root": "/mnt/volume_dkgjrkx/akki-m9",
+  "job_dir": "/mnt/volume_dkgjrkx/akki-m9/jobs/m9j-82202771c7fd",
+  "pid": 3927146
+ },
+ "status": "running",
+ "ledger_rows": [
+  {
+   "row_id": "led-3cba8943444b",
+   "stage": "admit",
+   "decision": "admitted",
+   "reason": "m9_malpha_voice_train_admitted"
+  },
+  {
+   "row_id": "led-2d1b79bea398",
+   "stage": "gate",
+   "decision": "warm",
+   "reason": "m9_malpha_voice_train_daemonised:pid=3927146"
+  }
+ ],
+ "code_sha256": "938e9e90d7d44c7ebce882ee8a23b27a775c27fb0e1c005bb8cca2517e5e1fac",
+ "started_at": "2026-10-05T09:30:45.452391Z"
+}

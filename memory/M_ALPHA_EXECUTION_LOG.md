@@ -75,3 +75,24 @@ If any interpretation is wrong, say so and the affected lanes are re-planned; no
 - **UNPLANNED / LOGGED — control plane offline ~21:31 → 02:26 UTC (≈5 h):** the preview pod (E1 control plane) was paused; the remote GPU jobs ran to completion on their own (listener it.3 22:26, story_text it.7 22:35, story_voice it.7 22:39) and then every GPU sat idle ≈4 h until the pod resumed and the autopilot settled them (02:28). No data lost; ≈12 GPU-h of autonomous iteration time forgone. Mitigation needs a host-side scheduler or a deployed (always-on) control plane — owner decision, not taken autonomously.
 - **Readings (dev, transcript-derived labels):** listener it.3 (large-v3-turbo, 12k steps, 6.42 GPU-h): kik P 0.94 / R 0.58 · kam P 0.83 / R 0.46 · swa P 0.66 / R 0.78; WER 0.63 / 0.73 / 0.33 — below the 0.90/0.90 bar in every language (recall is the gap). story_text it.7: ppl 20.1 / 23.3 / 25.8 vs base 68.9 / 69.6 / 60.2, fidelity 0.85 / 0.81 / 1.0 (kik/kam samples drift into sister languages). story_voice it.7: similarity 0.54 / 0.62 / 0.43, identity gate failed in all three (max cosine 0.57 / 0.60 / 0.60 vs < 0.40). 8B research trial: ppl 17.5 / 38.1 / 21.8 (research only). 30.2 GPU-h measured in total.
 - **UNPLANNED / FIXED — seal-contaminated carry:** listener it.4 (tagged seal v3) had been initialised from the it.3 artefact, which trained under the v1 seal on rows now sealed as admission — a sealed read of that model would test audio it trained on. Rule added (`malpha._carriable`): weights are carried only from an artefact trained under the current seal; otherwise fresh start from the base, reason on the record. it.4 `m9j-383e7c63316a` superseded 5 min in (≈0.1 GPU-h); re-dispatched as `m9j-ff750b0d7c94` fresh from whisper-large-v3-turbo under v3. The storyteller lanes face no sealed read (their gate is identity distance + native rating); their weight lineage from pre-v3 iterations is now recorded on each recipe (`carried_from_seal_version`), not reset.
+
+## 9. Owner-requirements reconciliation and supervised dispatch recovery — 2026-10-05
+- Owner's latest full correction preserved in OWNER_ORDERS §8. Persistent root
+  AGENTS.md now anchors all further work to recorded requirements/ratifications;
+  REQUIREMENTS_RECONCILIATION maps claims, sources, mechanisms, tests and gaps.
+- At 09:26 native ledger had all three training lanes completed, not still running.
+  The dispatcher rejected supervisor/CIF lineage fields. Bounded correction admits
+  only a validated matching pair on the three training phases, not arbitrary fields.
+- Existing scheduled tick (not an ad-hoc/manual launch) dispatched listener it.5
+  `m9j-2bc0eea34925` at 09:30:29, text it.9 `m9j-dade36472f5e` at 09:30:39,
+  voice it.10 `m9j-82202771c7fd` at 09:30:45. At ~09:41 all three PIDs alive;
+  GPU utilization snapshot vm 100%/85%, vm-ii 37%/0%; vm-ii GPU1 resident untouched.
+- Shield NER now loads only installed prescribed models; missing/broken pipelines
+  cannot trigger runtime downloads. Existing small fallback disclosed; no claim
+  it is the required superior NER. No Qwen installed and no originals sent outside.
+- Semantic-reader, pre-redaction-objective and audio derived-register privacy gaps
+  remain explicitly open. Code inspection found stored PCM/codec/acoustic features
+  and generic feature aggregation, not proof of anonymisation. No active data or
+  training process was changed by this assessment; admission gates not relaxed.
+- Testing and old-log adjudication: iteration 92. No live declaration authoring,
+  paid planner/reviewer replay, model admission or native annotations performed.

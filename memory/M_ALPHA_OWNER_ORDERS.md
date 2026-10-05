@@ -89,3 +89,38 @@ Register this plan and our last two sets of responses+order from me pre compacti
 - Current credentials: `/app/memory/test_credentials.md` (do not duplicate secrets here).
 - Runtime URLs: use current frontend/backend environment files, never archived preview URLs.
 - Last verified status before this order: general trainer RealBackend unimplemented; special-purpose runners real; uploaded media stops at metadata readiness; semantic category protection and input-seat detector incomplete; cost data partial; Agents page unavailable. Do not erase these findings with a new milestone label.
+
+## 8. Owner — Shield capability, placement and requirements-first correction (verbatim)
+
+Source: current continuation conversation; the owner subsequently said “Proceed”
+and supplied the preceding exchange for reconciliation. Preserved as supplied;
+the numbering refers to the earlier assistant questions, not fresh options.
+
+1 - this is already prescribed, your question shows that you have not rigourously reviewed the requirements.
+2 - the "confidential identification register" is the user set point of reference that the agent uses to know what is "classified". Category 1 - conventional identifiers scrapping (PII, HII, BII, Credit card numbers, and so on), Category 2 - specific named content that user has listed and could be uploaded in an excel to a Confidentiality Vault Manager (information that only the user has), Category 3 - this is descriptive requirements where user describes the kind of information they would not like to see shared - e.g specifics in  contracts, product briefs, BRDs, Audit reports that could directly or indirectly disclose parties, IP, trade secret, value, status or any kind of information that can be deemed as privilage. The required capability here is both deterministic and reasoning by models that do not have any contact with the external world - fully owned and controlled by the estate owner e.g the latest qwen self hosted, working with a superior NER type model, and so. the foundation of this is in the requirements, i just need you to improve capability, deliver the promise and make it functional.
+3. I agree, do this for all the registered requirements on disc documents or narrated over chat, the building guard rails i have asked to implemented and the ratification i have asked to date. (ones i have explicitly issued here)
+4. This sounds like a placement issue, shield should happen outside LLM processing. What you are describing is Shield being inside a processing journey. Audio is unique as first the worker converts it into a spectrum data base with the data that makes the biometric data is scrapped or modified without affecting the quality for training, so this spectrun data is not stored with the the actual biometric info - eg to every biometric spectrum data point add 3 basis points (random thought, you can figure out how to work this out without messing up with the quality of the data.
+
+Generally there needs to be clear disc recorded can rule that you primarily operate from issued requirements and if in anycase we need to evolve/ratify a feature or add new things for better function, performance qaulity or function, we need to record on disk and consistently anchor agent to read these things before inventing from top of mind.
+
+## 9. Reconciliation boundaries — NOT additional owner quotes
+
+- Section 8 requires a requirements-first operating rule across ALL issued
+  requirements, not a Shield-only checklist. `/app/AGENTS.md` is the persistent
+  entry anchor; `REQUIREMENTS_RECONCILIATION.md` holds sources and evidence.
+- The three owner categories are protection needs; existing `exact`, `pattern`,
+  `contextual` are implementation mechanisms, NOT a replacement taxonomy.
+- The owner did not nominate Qwen3-8B as the final model, approve dedicating or
+  evicting a GPU, adopt a “three basis points” transformation, or waive biometric
+  privacy/quality tests. Those were examples or earlier assistant proposals.
+- Placement means estate-side protection before external task processing. Doc 1
+  still requires the sole invocation to enforce custody, and expressly requires
+  contained pre-redaction meaning extraction. Moving checks out of the call stack
+  while leaving a bypass would violate, not satisfy, this requirement.
+- Earlier 04:22 UTC job/Shield claims supplied by the owner are historical
+  assistant claims to verify. They are not fresh live observations in this fork.
+- Dispatcher metadata rejection is a separate control-plane contract defect; it
+  is not caused by Shield placement. Repair does not ratify or replace Shield.
+- Do not carry forward the earlier regex-only repair plus paid frontier replay
+  plus immediate MA-19 jump as the settled sequence. Reconcile first, then execute
+  source-traced work packages, retaining all remaining M Alpha obligations.

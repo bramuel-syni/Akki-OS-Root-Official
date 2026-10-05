@@ -4,6 +4,10 @@ Endpoints:
     GET /api/healthz  liveness  · no auth · no DB touch
     GET /api/readyz   readiness · DB ping + frozen-contract parity count
 
+Mounting note (2026-10-05): these are router definitions, NOT live endpoints in
+the current /app/backend/server.py pod-shell, which does not include this router.
+Do not use their existence as evidence of current readiness or Shield readiness.
+
 Owner ruling PH-E3 α (2026-07-10):
     "FS enumeration sharing V1-G7's authoritative counter — readiness
     and the parity gate must never disagree about what parity is, and

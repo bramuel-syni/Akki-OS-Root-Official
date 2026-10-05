@@ -29,6 +29,7 @@ class Experiment(BaseModel):
     change: str = Field(max_length=2000)
     measurement: str = Field(max_length=1600)
     failure_condition: str = Field(max_length=1200)
+    recipe_delta: dict[str, float | int | bool | str] | None = Field(default=None, description='Executable form over the lane tunables only; omit when the change is not a parameter change')
 
 
 class Proposal(BaseModel):
@@ -80,25 +81,31 @@ def _parse(text, schema):
 
 
 def provider_schema(value):
-    """Provider JSON grammar omits unsupported length constraints; local schema retains them."""
+    """Provider JSON grammar omits unsupported length constraints; local schema retains them. Titles are dropped from every outbound schema: they
+    are pydantic field names, not content, and they read as proper nouns to the Shield register."""
     if isinstance(value, dict):
-        return {k: provider_schema(v) for k, v in value.items() if k not in ('maxItems', 'minItems')}
+        return {k: provider_schema(v) for k, v in value.items() if k not in ('maxItems', 'minItems', 'title')}
     if isinstance(value, list): return [provider_schema(v) for v in value]
     return value
 
 
-async def reconstruct(actor, retry_failed=False):
+async def reconstruct(actor, retry_failed=False, naivety=None):
     from services.chokepoint.llm import invoke
     from services.chokepoint.model_roles import resolve
-    from services.training_lab import malpha
+    from services.training_lab import malpha, malpha_supervisor
     planner, reviewer = resolve('planner'), resolve('reviewer')
     if planner['sdk_provider'] == reviewer['sdk_provider']:
         raise ValueError('Independent model-family review required')
     evidence = aggregate_evidence(malpha.jobs())
     if not evidence: raise ValueError('No measured training evidence')
     allowed_refs = set(evidence) | {f'design-{lane}' for lane in LANES}
-    payload = {'protocol': 'learning-review-v2', 'design': {f'design-{k}': v for k, v in DESIGN.items()}, 'evidence': evidence,
-               'allowed_evidence_refs': sorted(allowed_refs)}
+    current = {lane: ((next((j for j in reversed(malpha.jobs(lane=lane, status='completed'))), {}).get('result') or {}).get('recipe') or {}) for lane in LANES}
+    tunables = {lane: {k: {'bounds': (list(v['enum']) if isinstance(v, dict) else 'bool' if v is bool else list(v)), 'current': current[lane].get(k)} for k, v in t.items()} for lane, t in malpha_supervisor.TUNABLES.items()}
+    payload = {'protocol': 'learning-review-v3', 'design': {f'design-{k}': v for k, v in DESIGN.items()}, 'evidence': evidence, 'allowed_evidence_refs': sorted(allowed_refs),
+               'tunable_parameters': tunables, 'protected_parameters': list(malpha_supervisor.PROTECTED),
+               'recipe_delta_rule': 'An experiment that is a parameter change MUST carry recipe_delta using only tunable_parameters keys of its lane, within bounds. Protected parameters are never proposed. Non-parameter changes omit recipe_delta and stay conditioned ideas.'}
+    if naivety:
+        payload['naivety_pass'] = {**naivety, 'rule': 'Canon 2 §10.1: the struck constraint is an inherited belief to re-examine, not a ground truth; law, custody, floors, seals and data policy remain untouched. Give a short evidence brief on why the struck constraint held, then propose experiments for this lane only.'}
     digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
     # Fixed versions make retries idempotent; a changed run result creates a new review.
     key = hashlib.sha256((digest + planner['model'] + reviewer['model']).encode()).hexdigest()
@@ -106,7 +113,7 @@ async def reconstruct(actor, retry_failed=False):
     coll.create_index('review_id', unique=True)
     from pymongo.errors import DuplicateKeyError
     row = {'review_id': key, 'status': 'running', 'created_at': store.now(), 'evidence_sha256': digest,
-           'evidence': evidence, 'design': DESIGN, 'execution_authority': False, 'raw_data_exported': False}
+           'evidence': evidence, 'design': DESIGN, 'execution_authority': False, 'raw_data_exported': False, 'naivety_pass': naivety or None, 'requested_by': actor}
     previous = None
     try: coll.insert_one(dict(row))
     except DuplicateKeyError:
@@ -119,7 +126,9 @@ async def reconstruct(actor, retry_failed=False):
               'Prioritise data qualification, worst-language performance, meaningful baselines, leakage prevention and intelligibility. '
               'No identity threshold relaxation, human-cloning, invented measured gains, external raw data or executable code. '
               'More compute is not evidence of convergence. Propose controlled experiments, not promises. '
-              'Every evidence_refs element MUST be an exact member of allowed_evidence_refs, without suffixes or field paths.')
+              'Every evidence_refs element MUST be an exact member of allowed_evidence_refs, without suffixes or field paths. '
+              'Where an experiment is a parameter change, express it as recipe_delta over the lane tunable_parameters (within bounds, never a protected parameter); '
+              'the deterministic acceptance point refuses anything else, and an accepted experiment is tested by one measured prediction at settlement.')
     try:
         async def call(role, purpose, content, schema):
             instructions = system if schema is Proposal else (
@@ -127,7 +136,7 @@ async def reconstruct(actor, retry_failed=False):
                 'Return ONLY one JSON object matching the supplied Review schema: verdict (accept, revise or reject), findings, required_changes. '
                 'Do not return a proposal or new experiment list. Reject unsupported claims, identity threshold weakening and any sealed-admission reuse. '
                 'An accept verdict authorises no execution or model admission; it only accepts the experimental plan for engineering review.')
-            response = await asyncio.wait_for(invoke(purpose=purpose, prompt=json.dumps({**content, 'schema': schema.model_json_schema()}),
+            response = await asyncio.wait_for(invoke(purpose=purpose, prompt=json.dumps({**content, 'schema': provider_schema(schema.model_json_schema())}),
                 masking_tier='llm_prompt_governed_text', actor=actor, tenant_id=malpha.TENANT, custody_class='tenant_estate',
                 provider=role['connection'], model=role['model'], system_message=instructions, session_id=f'malpha-learning:{key}:{role["role"]}',
                 output_schema=provider_schema(schema.model_json_schema()) if schema is Review else None), timeout=240)
@@ -154,8 +163,9 @@ async def reconstruct(actor, retry_failed=False):
         coll.update_one({'review_id': key}, {'$set': fields, '$unset': {'error_type': ''}})
         for cid in malpha.COMMISSIONS:
             malpha.wpw.record_event(cid, 'cif_ideation', 'observed', f'malpha://learning/{key}',
-                {'idea_ref': f'malpha://learning/{key}#proposal', 'conditions_ref': digest,
-                 'adoption_status': 'engineering_review', 'reviewer_verdict': review.verdict})
+                {'idea_ref': f'malpha://learning/{key}#proposal', 'conditions_ref': digest, 'cif_event_ref': f'malpha://learning/{key}',
+                 'adoption_status': 'archived: enters the training-supervisor ledger; executable experiments compete at the acceptance point, the rest wait conditioned', 'reviewer_verdict': review.verdict,
+                 'naivety_pass': bool(naivety)})
     except Exception as exc:
         coll.update_one({'review_id': key}, {'$set': {'status': 'failed', 'error_type': type(exc).__name__, 'finished_at': store.now()}})
         raise

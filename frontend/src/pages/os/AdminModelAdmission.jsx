@@ -13,6 +13,7 @@ import { ModelRegistry, modelName } from '@/components/models/ModelRegistry';
 import { ModelAdmissions, ModelCapabilities } from '@/components/models/ModelAdmissions';
 import { useModelApproval, stamp } from '@/components/models/useModelApproval';
 import { NativeReview } from '@/components/models/NativeReview';
+import { TrainingSupervisor } from '@/components/models/TrainingSupervisor';
 import { PresentationDetails, readableText } from '@/components/shared/PresentationDetails';
 import { OwnerWorkspace } from '@/components/prototype/OwnerWorkspace';
 import '@/components/census/census.css';
@@ -40,6 +41,7 @@ export default function AdminModelAdmission() {
       {loaded && <>
         <ModelRegistry models={models} health={health} checking={checking} onCheck={checkHealth} />
         <NativeReview canOperate={Boolean(session.data?.roles?.some(r => ['operator', 'master_admin'].includes(r)) && session.data?.tenant_id === 'RMS')} />
+        <TrainingSupervisor canOperate={Boolean(session.data?.roles?.some(r => ['operator', 'master_admin'].includes(r)) && session.data?.tenant_id === 'RMS')} />
         <PresentationDetails id="models-capabilities" title="Capabilities & activation requirements"><ModelCapabilities capabilities={capabilities} /></PresentationDetails>
       </>}
   </div></OwnerWorkspace>;

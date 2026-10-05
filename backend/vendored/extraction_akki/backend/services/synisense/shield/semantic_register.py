@@ -25,7 +25,7 @@ DEFAULT_CATEGORIES = [
     {'name': 'client_identity', 'kind': 'contextual', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'who the counterparty, client or partner is — names, trading names, cooperative or company identifiers',
      'cues': ['client', 'customer', 'counterparty', 'partner', 'cooperative', 'co-operative', 'ltd', 'limited', 'plc', 'company', 'between', 'party', 'licensee', 'licensor', 'supplier', 'vendor', 'tenant', 'landlord', 'mteja', 'kampuni'], 'targets': ['PERSON', 'ORG', 'PROPER_NOUN']},
     {'name': 'private_project_name', 'kind': 'contextual', 'action': 'abstract', 'enforcement': 'enforced', 'description': 'internal code names and unreleased project names', 'cues': ['project', 'codename', 'code name', 'internal', 'initiative', 'programme', 'program', 'workstream', 'mradi'], 'targets': ['PROPER_NOUN', 'ORG']},
-    {'name': 'credentials', 'kind': 'pattern', 'action': 'remove', 'enforcement': 'enforced', 'description': 'keys, tokens, passwords, access credentials', 'patterns': [r'(?i)\b(?:api[-_ ]?key|secret|token|password|passcode|credential|nenosiri)s?\s*[:=]?\s*[A-Za-z0-9\-_./+]{6,}', r'\b[A-Z0-9]{3,}(?:-[A-Z0-9]{2,}){2,}\b', r'\bsk-[A-Za-z0-9]{8,}\b']},
+    {'name': 'credentials', 'kind': 'pattern', 'action': 'remove', 'enforcement': 'enforced', 'description': 'keys, tokens, passwords, access credentials', 'patterns': [r'(?i)\b(?:api[-_ ]?key|secret|token|password|passcode|credential|nenosiri)s?\b\s*(?:[:=]\s*|\s+)[A-Za-z0-9\-_./+]{6,}', r'\b[A-Z0-9]{3,}(?:-[A-Z0-9]{2,}){2,}\b', r'\bsk-[A-Za-z0-9]{8,}\b']},
     {'name': 'commercial_terms', 'kind': 'contextual', 'action': 'abstract', 'enforcement': 'advisory', 'description': 'fees, prices, discounts, margins, payment terms, penalties, exclusivity and other negotiated figures', 'cues': ['fee', 'price', 'pricing', 'discount', 'margin', 'rate', 'payment', 'penalty', 'royalty', 'commission', 'retainer', 'deposit', 'reserve', 'bid', 'floor', 'uplift', 'cap', 'budget', 'cost', 'salary', 'kes', 'usd', 'eur', 'gbp', 'shilling', '%', 'bei', 'ada', 'malipo', 'mshahara'], 'targets': ['MONEY', 'NUMBER', 'PERCENT']},
     {'name': 'unpublished_pricing_method', 'kind': 'contextual', 'action': 'remove', 'enforcement': 'advisory', 'description': 'how a price or bid is computed — formulas, multipliers, thresholds, seasonal adjustments', 'cues': ['method', 'formula', 'calculates', 'calculated', 'computed', 'times', 'multiplied', 'multiplier', 'plus', 'minus', 'threshold', 'coefficient', 'adjustment', 'uplift', 'weighting', 'algorithm', 'fomula', 'mara'], 'targets': ['SENTENCE']},
     {'name': 'personal_data', 'kind': 'pattern', 'action': 'remove', 'enforcement': 'enforced', 'description': 'direct identifiers: phone numbers, e-mail addresses, national ID / passport numbers, physical addresses',
@@ -183,7 +183,8 @@ def _candidates(sentence, start):
         if not any(a <= start + m.start() < b for _, a, b, _ in found): found.append(('NUMBER', start + m.start(), start + m.end(), m.group()))
     for m in PROPER.finditer(sentence):
         words = m.group().split()
-        if words[0] in STOP or (len(words) == 1 and (m.start() == 0 or sentence[max(0, m.start() - 2):m.start()].strip() in ('.', '!', '?', ''))): continue
+        # a lone capitalised word that opens a sentence or a quoted string is capitalised by position, not by being a name
+        if words[0] in STOP or (len(words) == 1 and (m.start() == 0 or sentence[max(0, m.start() - 2):m.start()].strip() in ('.', '!', '?', '"', "'", ''))): continue
         if any(a <= start + m.start() < b for _, a, b, _ in found): continue
         found.append(('PROPER_NOUN', start + m.start(), start + m.end(), m.group()))
     return found
@@ -270,13 +271,18 @@ def joint_disclosure_check(safe, original, bindings):
 
 
 def inspect_outbound(payload_text, protected_values):
-    """Egress inspection for ANY outbound message: literal values, digit-run variants and lower-cased forms of protected values must be absent."""
+    """Egress inspection for ANY outbound message: literal values, digit-run variants and lower-cased forms of protected values must be absent.
+    A purely alphabetic value counts only where it stands as a word (letters on neither side): the rewrite places placeholders at word
+    boundaries, so 'one' inside 'none' or 'review' inside 'reviewer' is not a surviving value; 'qwen' inside 'qwen3' still is."""
     low = payload_text.lower(); hits = []
+    compact = re.sub(r'[^0-9a-z]', '', low)
     for v in protected_values:
         if not v or len(v.strip()) < 3: continue
+        if v.strip().isalpha():
+            if re.search(r'(?<![a-z])' + re.escape(v.strip().lower()) + r'(?![a-z])', low): hits.append(v[:40])
+            continue
         forms = {v.lower(), re.sub(r'[^0-9a-z]', '', v.lower())}
         digits = re.sub(r'\D', '', v)
         if len(digits) >= 5: forms.add(digits)
-        compact = re.sub(r'[^0-9a-z]', '', low)
         if any(f and (f in low or f in compact) for f in forms): hits.append(v[:40])
     return {'clean': not hits, 'protected_values_found': hits, 'checked': len([v for v in protected_values if v and len(v.strip()) >= 3])}
